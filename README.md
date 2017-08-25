@@ -1,6 +1,6 @@
 # CDL-bibliography
 
-This Bibtex file is shared by all documents produced by the [Contextual Dynamics Lab](http://www.context-lab.com) at [Dartmouth College](http://www.dartmouth.edu).
+This Bibtex file is shared by all documents produced by the [Contextual Dynamics Lab](http://www.context-lab.com) at [Dartmouth College](http://www.dartmouth.edu).  *Please read the instructions below **in full** before modifying this shared lab resource.*
 
 # Formatting guidelines
 
@@ -24,7 +24,7 @@ If the citation key is not unique (e.g. the same citation key could refer to mul
 This may break backwards compatibility.  For example, if a previous document used a citation key without a lower case letter, and a new similar citation key is added (which requires renaming a previous citation key without a lower case letter), the old citation key should no longer work.  Importantly, no lettered citation keys should ever be renamed.
 In other words, the only time a citation key of an existing entry should be renamed is if a new matching entry needs to be added to the BibTeX file.  The reason this is important is that the document to which a citation key refers should never change (but a citation key may be deleted).
 
-# Procedure for adding a citation to the BibTex file
+# Procedure for adding a citation to the BibTeX file
 1. Add an entry to for the article (using the citation key naming system described above) and fill in the relevant information.
 2. If the citation key (let's call it `<KEYNAME>`) already exists in the database, do the following:
 
