@@ -4,7 +4,9 @@ This Bibtex file is shared by all documents produced by the [Contextual Dynamics
 
 # Formatting guidelines
 
-All citation information should be entered using [BibDesk](http://bibdesk.sourceforge.net/) or a similar tool.  We follow the citation key conventions below.
+All citation information should be entered using [BibDesk](http://bibdesk.sourceforge.net/) or a similar tool.  If you are already familiar with BibTeX (but haven't used BibDesk), please read this [Quick Start Guide](http://bibdesk.sourceforge.net/manual/BibDeskHelp_1.html#SEC5).  If you haven't used BibTeX before, you should carefully read this [BibTeX Introduction](http://bibdesk.sourceforge.net/manual/BibDeskHelp_2.html#SEC12) for instructions on how to enter citation data.  You may also find [this BibTeX guide](http://mirror.hmc.edu/ctan/biblio/bibtex/contrib/doc/btxdoc.pdf) useful.  Make sure that you have carefully researched how to enter information into BibDesk before modifying memlab.bib to help avoid typos, compilation errors, incorrect information, etc. to the extent possible.  *If you're not sure whether you're doing something correctly, please ask another lab member for help!*
+
+We follow the citation key conventions below.
 
 ## Material with a single author
 
