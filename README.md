@@ -35,3 +35,22 @@ In other words, the only time a citation key of an existing entry should be rena
   - If `<KEYNAME>b` already exists, rename the new entry to `<KEYNAME>c` (and so on).
 3. Commit the change (`git add *; git commit -a -m "<KEYNAME>a, <KEYNAME>b"`).  Make sure to note any citation keys that were altered.
 4. Push the change (`git push`).
+
+# Using the bibtex file as a common bibliography for all LaTeX files
+1. Check out this repository to your home directory
+2. Add the following lines to your `~/.bash_profile`:
+```
+export TEXINPUTS=~/CDL-bibliography:$TEXINPUTS
+export BIBINPUTS=~/CDL-bibliography:$BIBINPUTS
+export BSTINPUTS=~/CDL-bibliography:$BSTINPUTS
+```
+3. Run (in terminal): `source ~.bash_profile`
+4. In your .tex file, use the line `\bibliography{memlab}` to generate a bibliography using the citation keys that were defined in memlab.bib and used in the current file.
+5. To compile your document (filename.tex), generate a .bib (bibliography) file (filename.bib), and a pdf (filename.pdf), run:
+```
+latex filename
+bibtex filename
+latex filename
+latex filename
+pdflatex filename
+```
