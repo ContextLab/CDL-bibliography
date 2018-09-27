@@ -27,14 +27,22 @@ This may break backwards compatibility.  For example, if a previous document use
 In other words, the only time a citation key of an existing entry should be renamed is if a new matching entry needs to be added to the BibTeX file.  The reason this is important is that the document to which a citation key refers should never change (but a citation key may be deleted).
 
 # Procedure for adding a citation to the BibTeX file
-1. Add an entry to for the article (using the citation key naming system described above) and fill in the relevant information.
-2. If the citation key (let's call it `<KEYNAME>`) already exists in the database, do the following:
+## Fork this repository
+1. Create a personal fork of the CDL-bibliography repository by pressing the "Fork" button in the upper right of the repository's page (when viewed on GitHub)
+2. Clone the fork to your local machine
+3. Set the ContextLab fork of the repository as a "remote" of your copy: `git remote add upstream https://github.com/ContextLab/CDL-bibliography.git`
+
+## Modifying the BibTex file
+1. Before making any changes, make sure you're working with the latest version: `git pull upstream master`.  If you modify memlab.bib *after* you've made changes, you may need to resolve merge conflicts.
+2. Add an entry to for the article (using the citation key naming system described above) and fill in the relevant information.
+3. If the citation key (let's call it `<KEYNAME>`) already exists in the database, do the following:
 
   - Rename the existing `<KEYNAME>` entry to `<KEYNAME>a`
   - Rename the new `<KEYNAME>` entry to `<KEYNAME>b`
   - If `<KEYNAME>b` already exists, rename the new entry to `<KEYNAME>c` (and so on).
-3. Commit the change (`git add *; git commit -a -m "<KEYNAME>a, <KEYNAME>b"`).  Make sure to note any citation keys that were altered.
-4. Push the change (`git push`).
+4. Commit the change (`git add *; git commit -a -m "<KEYNAME>a, <KEYNAME>b"`).  Make sure to note any citation keys that were altered.
+5. Push the change (`git push`).
+6. To incorporate your changes into the main CDL fork, submit a pull request (press the "Pull request" button on your personal fork's GitHub page).
 
 # Using the bibtex file as a common bibliography for all *local* LaTeX files
 1. Check out this repository to your home directory
