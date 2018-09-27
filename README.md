@@ -36,15 +36,15 @@ In other words, the only time a citation key of an existing entry should be rena
 
 ## Modifying the BibTex file
 1. Before making any changes, make sure you're working with the latest version: `git pull upstream master`.  If you modify memlab.bib *after* you've made changes, you may need to resolve merge conflicts.
-2. Add an entry to for the article (using the citation key naming system described above) and fill in the relevant information.
+2. Add an entry for the article (using the citation key naming system described above) and fill in the relevant information.
 3. If the citation key (let's call it `<KEYNAME>`) already exists in the database, do the following:
 
   - Rename the existing `<KEYNAME>` entry to `<KEYNAME>a`
   - Rename the new `<KEYNAME>` entry to `<KEYNAME>b`
   - If `<KEYNAME>b` already exists, rename the new entry to `<KEYNAME>c` (and so on).
-4. Commit the change (`git add *; git commit -a -m "<KEYNAME>a, <KEYNAME>b"`).  Make sure to note any citation keys that were altered.
+4. Commit the change (`git commit -a -m "<KEYNAME>a, <KEYNAME>b"`).  Make sure to note any citation keys that were altered or added.
 5. Push the change (`git push`).
-6. To incorporate your changes into the main CDL fork, submit a pull request (press the "Pull request" button on your personal fork's GitHub page).
+6. To incorporate your changes into the main CDL fork, submit a pull request (press the "Pull request" button on your personal fork's GitHub page).  Once an admin reviews your pull request it'll be incorporated into the main fork and shared with the world (go science)!
 
 # Using the bibtex file as a common bibliography for all *local* LaTeX files
 1. Check out this repository to your home directory
