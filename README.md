@@ -36,7 +36,7 @@ In other words, the only time a citation key of an existing entry should be rena
 3. Commit the change (`git add *; git commit -a -m "<KEYNAME>a, <KEYNAME>b"`).  Make sure to note any citation keys that were altered.
 4. Push the change (`git push`).
 
-# Using the bibtex file as a common bibliography for all LaTeX files
+# Using the bibtex file as a common bibliography for all *local* LaTeX files
 1. Check out this repository to your home directory
 2. Add the following lines to your `~/.bash_profile`:
 ```
@@ -54,3 +54,16 @@ latex filename
 latex filename
 pdflatex filename
 ```
+
+# Using the bibtex file on Overleaf
+You can use [git submodules](https://blog.github.com/2016-02-01-working-with-submodules/) to maintain a reference to the memlab.bib file in this repository that you can easily keep in sync with latest version.  This avoids the need to maintain a separate .bib file in each Overleaf project.
+
+To set this up, you first need to access the GitHub repository associated with your Overleaf project.  Instructions may be found [here](https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket%3F).
+1. Clone your Overleaf project's GitHub repository to your local computer
+2. Navigate to the repository's directory (in Terminal) and then run
+```
+git submodule add https://github.com/ContextLab/CDL-bibliography.git
+```
+3. Inside your .tex source file, change the `\bibliography{memlab}` line to `\bibliography{CDL-bibliography/memlab}`.  Now the LaTeX compiler will reference the copy of memlab.bib contained in the CDL-bibliography repository, rather than your (potentially separately maintained) local copy.
+4. Commit your changes (`git commit -a -m "added CDL bibliography as a submodule"`) and then push them (`git push`).  Your project should now be updated on Overleaf, and the automatic compiler should now have access to memlab.bib.
+5. To update your local copy, or to pull changes from the CDL-bibliography repository, run `git pull --recurse-submodules` inside your Overleaf project's repository directory.  Then `git push` your changes to upload them back onto Overleaf.
