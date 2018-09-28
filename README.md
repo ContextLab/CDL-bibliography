@@ -2,7 +2,16 @@
 
 This Bibtex file is shared by all documents produced by the [Contextual Dynamics Lab](http://www.context-lab.com) at [Dartmouth College](http://www.dartmouth.edu).  *Please read the instructions below **in full** before modifying this shared lab resource.*
 
-Credit: this bibtex file is built on a similarly named file authored by Michael Kahana's [Computational Memory Lab at the University of Pennsylvania](http://memory.psych.upenn.edu).  However, this version is not kept in sync with the CML's version.  This file is provided as a courtesy, and we make no claims with respect to accuracy, completeness, etc.
+### What can I use this repo for?
+You may find this bibtex file and/or readme file useful for any of the following:
+- Provides a "pre seeded" bibtex file that you can configure to be referenced in your LaTeX documents
+- A means of organizing a set of papers related to psychology, neuroscience, math, and machine learning
+- A template for a new bibtex file that you want to start
+- Instructions for configuring a system-referenced bibtex file that can be referenced by any LaTeX file on your local machine
+- Instructions for adding this repo (or another similar repo) as a sub-module to Overleaf projects, so that you can share a common bibtex file across your Overleaf projects
+
+### Credit
+This bibtex file is built on a similarly named file authored by Michael Kahana's [Computational Memory Lab at the University of Pennsylvania](http://memory.psych.upenn.edu).  However, this version is not kept in sync with the CML's version.  This file is provided as a courtesy, and we make no claims with respect to accuracy, completeness, etc.
 
 # Formatting guidelines
 
