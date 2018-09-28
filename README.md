@@ -1,6 +1,6 @@
 # CDL-bibliography
 
-This Bibtex file is shared by all documents produced by the [Contextual Dynamics Lab](http://www.context-lab.com) at [Dartmouth College](http://www.dartmouth.edu).  *Please read the instructions below **in full** before modifying this shared lab resource.*
+This bibtex file is shared by all documents produced by the [Contextual Dynamics Lab](http://www.context-lab.com) at [Dartmouth College](http://www.dartmouth.edu).
 
 ### What can I use this repo for?
 You may find this bibtex file and/or readme file useful for any of the following:
@@ -21,19 +21,19 @@ We follow the citation key conventions below.
 
 ## Material with a single author
 
-The citation key should be the (capitalized) first four letters of the author's name, followed by a two-digit year.  Example: Mann17.
+The citation key should be the (capitalized) first four letters of the author's name, followed by a two-digit year.  Example: Mann18.
 
 ## Material with two authors
 
-The citation key should be the (capitalized) first four letters of the authors' names, followed by a two-digit year. Example: MannHeus17.
+The citation key should be the (capitalized) first four letters of the authors' names, followed by a two-digit year. Example: MannHeus18.
 
 ## Material with three or more authors
 
-The citation key should be the (capitalized) first four letters of the first author's name, followed by "Etal," followed by a two-digit year.  Example: MannEtal17.
+The citation key should be the (capitalized) first four letters of the first author's name, followed by "Etal," followed by a two-digit year.  Example: MannEtal18.
 
 ## Conflicting citation keys
 
-If the citation key is not unique (e.g. the same citation key could refer to multiple documents), lower case letters should be added to the end of the citation key to differentiate different documents.  Examples: Mann17a, Mann17b, etc.  Note that when a new non-unique citation key is added to the BibTeX file, older citation keys may need to be updated.
+If the citation key is not unique (e.g. the same citation key could refer to multiple documents), lower case letters should be added to the end of the citation key to differentiate different documents.  Examples: Mann18a, Mann18b, etc.  Note that when a new non-unique citation key is added to the BibTeX file, older citation keys may need to be updated.
 This may break backwards compatibility.  For example, if a previous document used a citation key without a lower case letter, and a new similar citation key is added (which requires renaming a previous citation key without a lower case letter), the old citation key should no longer work.  Importantly, no lettered citation keys should ever be renamed.
 In other words, the only time a citation key of an existing entry should be renamed is if a new matching entry needs to be added to the BibTeX file.  The reason this is important is that the document to which a citation key refers should never change (but a citation key may be deleted).
 
