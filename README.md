@@ -44,7 +44,7 @@ In other words, the only time a citation key of an existing entry should be rena
 3. Set the ContextLab fork of the repository as a "remote" of your copy: `git remote add upstream https://github.com/ContextLab/CDL-bibliography.git`
 
 ## Modifying the BibTex file
-1. Before making any changes, make sure you're working with the latest version: `git pull upstream master`.  If you modify memlab.bib *after* you've made changes, you may need to resolve merge conflicts.
+1. Before making any changes, make sure you're working with the latest version: `git pull upstream master`.  If you modify memlab.bib *after* someone has made changes to the master branch, you'll need to resolve merge conflicts.  (Recommended tool for resolving merge conflicts: [Atom](https://atom.io/packages/merge-conflicts).)
 2. Add an entry for the article (using the citation key naming system described above) and fill in the relevant information.
 3. If the citation key (let's call it `<KEYNAME>`) already exists in the database, do the following:
 
