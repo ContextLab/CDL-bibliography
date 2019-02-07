@@ -21,7 +21,7 @@ export TEXINPUTS=~/CDL-bibliography:$TEXINPUTS
 export BIBINPUTS=~/CDL-bibliography:$BIBINPUTS
 export BSTINPUTS=~/CDL-bibliography:$BSTINPUTS
 ```
-3. Run (in terminal): `source ~.bash_profile`
+3. Run (in terminal): `source ~/.bash_profile`
 4. In your .tex file, use the line `\bibliography{memlab}` to generate a bibliography using the citation keys that were defined in memlab.bib and used in the current file.
 5. To compile your document (filename.tex), generate a .bib (bibliography) file (filename.bib), and a pdf (filename.pdf), run:
 ```
