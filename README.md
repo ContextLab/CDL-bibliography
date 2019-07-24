@@ -44,3 +44,8 @@ git submodule add https://github.com/ContextLab/CDL-bibliography.git
 3. Inside your .tex source file, change the `\bibliography{memlab}` line to `\bibliography{CDL-bibliography/memlab}`.  Now the LaTeX compiler will reference the copy of memlab.bib contained in the CDL-bibliography repository, rather than your (potentially separately maintained) local copy.
 4. Commit your changes (`git commit -a -m "added CDL bibliography as a submodule"`) and then push them (`git push`).  Your project should now be updated on Overleaf, and the automatic compiler should now have access to memlab.bib.
 5. To update your local copy, or to pull changes from the CDL-bibliography repository, run `git pull --recurse-submodules` inside your Overleaf project's repository directory.  Then `git push` your changes to upload them back onto Overleaf.
+6. When you clone a fresh repository that includes this repository (or others) as a submodule, run the following commands to download the contents of the submodule repositories:
+```
+git submodule init
+git submodule update
+```
