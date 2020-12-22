@@ -18,4 +18,5 @@ RUN apt-get update --fix-missing \
         bibtexparser==1.2.0 \
         numpy \
         scholarly \
+        typing_extensions \
     && rm -rf ~/.cache/pip
