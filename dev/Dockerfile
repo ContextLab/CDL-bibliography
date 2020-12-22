@@ -17,4 +17,5 @@ RUN apt-get update --fix-missing \
         unidecode==1.1.1 \
         bibtexparser==1.2.0 \
         numpy \
+        scholarly \
     && rm -rf ~/.cache/pip
