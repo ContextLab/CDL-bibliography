@@ -16,7 +16,7 @@ RUN apt-get update --fix-missing \
     && pip install \
         unidecode==1.1.1 \
         bibtexparser==1.2.0 \
-        numpy \
-        scholarly \
-        typing_extensions \
+        numpy==1.19.4 \
+        pandas==1.1.5 \
+        xlrd==2.0.1 \
     && rm -rf ~/.cache/pip
