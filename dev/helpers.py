@@ -467,7 +467,7 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps):
         if (i > 0) and (w.lower() in uncaps):
             words[i] = words[i].lower()
         
-        correct_caps = [f for f in force_caps if f.lower() == words[i].lower()]
+        correct_caps = [f for f in force_caps if f.lower() == remove_curlies(words[i].lower())]
         if len(correct_caps) >= 1:
             c = correct_caps[-1]
             if not (c[0] == '{' and c[-1] == '}'):
