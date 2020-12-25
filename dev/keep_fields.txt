@@ -13,10 +13,5 @@ editor
 school
 chapter
 address
-month
 organization
-url
-institution
-edition
-location
 force

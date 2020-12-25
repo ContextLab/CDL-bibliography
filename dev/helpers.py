@@ -7,6 +7,7 @@ from string import ascii_lowercase
 import itertools
 import os
 from urllib import request as get
+import warnings
 
 def read(fname):
     return pd.read_csv(fname, header=None).values.flatten().tolist()
@@ -19,10 +20,11 @@ prefixes = read('prefixes.txt')
 suffixes = read('suffixes.txt')
 uncaps = read('uncaps.txt')
 force_caps = read('caps.txt')
-remove_fields = read('remove_fields.txt')
+address_codes = read('addresses.txt')
 
 journal_key = load_key('journal_key.xls')
 publisher_key = load_key('publisher_key.xls')
+address_key = load_key('address_key.xls')
 
 LATEST_BIBFILE = 'https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/memlab.bib'
 
@@ -34,7 +36,7 @@ def load_bibliography(fname):
     else:
         b = get.urlopen(fname).read().decode('utf-8')
         bibdata = parser.parse(b)
-    return bibdata.get_entry_dict()
+    return bibdata
 
 def remove_accents_and_hyphens(s):
     replace = {'{\\l}': 'l',
@@ -184,7 +186,7 @@ def get_vals(bd, field, proc=lambda x: x):
         else:
             return ''
     
-    return [proc(safe_get(i, field)) for k, i in bd.items()]
+    return [proc(safe_get(i, field)) for k, i in bd.entries_dict.items()]
 
 def same_id(a, b, ignore_special=False):
     if ignore_special and (('\\' in a) or ('\\' in b)):
@@ -202,7 +204,7 @@ def check_entries(field, bd, targets, same=lambda x, y: x == y, proc=lambda x: x
     ids = get_vals(bd, 'ID')
     
     print(f'running check: {field}...')
-    tofix = [(i, v, t) for i, v, t in zip(ids, vals, targets) if not same(proc(v), proc(t))]
+    tofix = [(i, v, t) for i, v, t in zip(ids, vals, targets) if not ('force' in list(bd.entries_dict[i].keys()) or same(proc(v), proc(t)))]
     
     if len(tofix) == 0:
         print(f'no {field}s to fix!')
@@ -445,7 +447,7 @@ def generate_correct_pages(bd):
     unfixable = [(i, valid_pages(p)) for i, p in zip(ids, target_pages) if not valid_pages(p)[0]]
     return target_pages, unfixable
 
-def format_journal_name(n, key=journal_key):
+def format_journal_name(n, key=journal_key, force_caps=force_caps):
     if (n.lower() in key.keys()) and (type(key[n.lower()]) == str):
         n = key[n.lower()]
     else:
@@ -460,7 +462,7 @@ def format_journal_name(n, key=journal_key):
         
         #deal with hyphens
         if len(w.split('-')) > 1:
-            words[i] = '-'.join(format_journal_name(c, key=key) for c in w.split('-'))
+            words[i] = '-'.join(format_journal_name(c, key=key, force_caps=force_caps) for c in w.split('-'))
         
         if (i > 0) and (w.lower() in uncaps):
             words[i] = words[i].lower()
@@ -510,7 +512,7 @@ def reformat_author(author):
 def get_fields(bd):
     #get all fields
     fields = {}
-    for k in bd.keys():
+    for k in bd.entries_dict.keys():
         next_entry = bd[k]
         for field, vals in next_entry.items():
             if not (field in fields.keys()):
@@ -523,3 +525,45 @@ def get_fields(bd):
     
     return fields
 
+def polish_database(bd, fix, autofix=False):    
+    keep_fields = read('keep_fields.txt')
+    
+    print('removing extra fields...')
+    x = {}
+    for b in bd.entries_dict.keys():
+        print(f'processing {b}...')
+        next_item = {}
+        if 'force' in list(bd.entries_dict[b].keys()):
+            print('\tforce flag found: skipping entry')
+            continue
+        for k in bd.entries_dict[b].keys():
+            if k in keep_fields:
+                next_item[k] = bd[b][k]
+            else:
+                print(f'\tremoving field: {k}')
+                continue            
+        x[b] = next_item
+    
+    if autofix:
+        for k in fix.keys():
+            if not k in keep_fields:
+                continue
+                
+            for f in fix[k]:
+                if not k in list(x[f[0]].keys()):
+                    raise Exception(f'key {k} not found for bibitem {f[0]}')
+                
+                if x[f[0]][k] == f[1]:
+                    if f[1] != f[2]:
+                        print(f'autocorrecting {f[0]}[{k}] to "{f[2]}"')
+                    x[f[0]][k] = f[2]
+                else:
+                    raise Exception(f'unexpected value for key {f[0]}[{k}]: expected "{f[0]}" but found "{x[f[0]][k]}"')
+    
+    bd.entries_dict = x
+    entries_list = []
+    for k, e in x.items():
+        entries_list.append(e)
+    bd.entries = entries_list
+    
+    return bd
