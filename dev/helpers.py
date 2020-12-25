@@ -560,10 +560,8 @@ def polish_database(bd, fix, autofix=False):
                 else:
                     raise Exception(f'unexpected value for key {f[0]}[{k}]: expected "{f[0]}" but found "{x[f[0]][k]}"')
     
-    bd.entries_dict = x
     entries_list = []
     for k, e in x.items():
         entries_list.append(e)
-    bd.entries = entries_list
     
-    return bd
+    return entries_list
