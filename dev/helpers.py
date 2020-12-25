@@ -538,7 +538,7 @@ def polish_database(bd, fix, autofix=False):
             continue
         for k in bd.entries_dict[b].keys():
             if k in keep_fields:
-                next_item[k] = bd[b][k]
+                next_item[k] = bd.entries_dict[b][k]
             else:
                 print(f'\tremoving field: {k}')
                 continue            
