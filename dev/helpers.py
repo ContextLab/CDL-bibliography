@@ -102,6 +102,12 @@ def remove_non_letters(s):
         s = s.replace(c, '')
     return s
 
+def char_match(x, y, ignore_case=True):
+    if ignore_case:
+        x = x.lower()
+        y = y.lower()
+    return remove_non_letters(x.strip()) == remove_non_letters(y.strip())
+
 def rearrange(name, preserve_non_letters=False):
     original_name = name
 
@@ -160,7 +166,9 @@ def authors2key(authors, year):
 
         #re-arrange author name to FIRST [MIDDLE] LAST [SUFFIX]
         author = remove_accents_and_hyphens(author)
+        #author = reformat_author(author)
         author = remove_curlies(author)
+        author = reformat_author(author)
 
         #get first 4 letters of last name
         return last_name(author)[:4]
