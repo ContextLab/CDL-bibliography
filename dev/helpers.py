@@ -140,7 +140,7 @@ def last_name(names):
     x = []
     found_prefix = False
     for n in reversed(names):
-        if n.lower() in prefixes:
+        if (n.lower() in prefixes) and (n != n.upper()):
             found_prefix = True
         elif found_prefix or len(x) > 0:
             break
