@@ -28,7 +28,14 @@ address_key = load_key('address_key.xls')
 
 LATEST_BIBFILE = 'https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/memlab.bib'
 
+def printv(s, verbose=True):
+    if verbose:
+        print(s)
+
 def load_bibliography(fname):
+    if fname == 'github':
+        fname = LATEST_BIBFILE
+    
     parser = bp.bparser.BibTexParser(ignore_nonstandard_types=True, common_strings=True, homogenize_fields=True)
     if os.path.exists(fname):
         with open(fname, 'r') as b:
@@ -36,7 +43,7 @@ def load_bibliography(fname):
     else:
         b = get.urlopen(fname).read().decode('utf-8')
         bibdata = parser.parse(b)
-    return bibdata
+    return bibdata.get_entry_dict()
 
 def remove_accents_and_hyphens(s):
     replace = {'{\\l}': 'l',
@@ -194,7 +201,7 @@ def get_vals(bd, field, proc=lambda x: x):
         else:
             return ''
     
-    return [proc(safe_get(i, field)) for k, i in bd.entries_dict.items()]
+    return [proc(safe_get(i, field)) for k, i in bd.items()]
 
 def same_id(a, b, ignore_special=False):
     if ignore_special and (('\\' in a) or ('\\' in b)):
@@ -207,19 +214,20 @@ def same_id(a, b, ignore_special=False):
     else:
         return a == b[:len(a)]
 
-def check_entries(field, bd, targets, same=lambda x, y: x == y, proc=lambda x: x, valproc=lambda x: x):
+def check_entries(field, bd, targets, same=lambda x, y: x == y, proc=lambda x: x, valproc=lambda x: x, verbose=True):
     vals = get_vals(bd, field, proc=valproc)
     ids = get_vals(bd, 'ID')
     
-    print(f'running check: {field}...')
-    tofix = [(i, v, t) for i, v, t in zip(ids, vals, targets) if not ('force' in list(bd.entries_dict[i].keys()) or same(proc(v), proc(t)))]
+    printv(f'running check: {field}...', verbose=verbose)
+    tofix = [(i, v, t) for i, v, t in zip(ids, vals, targets) if not ('force' in list(bd[i].keys()) or same(proc(v), proc(t)))]
     
     if len(tofix) == 0:
-        print(f'no {field}s to fix!')
+        printv(f'no {field}s to fix!', verbose=verbose)
     else:
-        print(f'{len(tofix)} errors detected:')
+        printv(f'{len(tofix)} errors detected:', verbose=verbose)
         for i in tofix:
-            print(f'{i[0]}: \t{field} "{i[1]}" should be "{i[2]}"')
+            printv(f'{i[0]}: \t{field} "{i[1]}" should be "{i[2]}"', verbose=verbose)
+    printv('\n', verbose=verbose)
     return tofix
 
 def duplicate_inds(x):
@@ -231,8 +239,8 @@ def duplicate_inds(x):
         y.append([i for i, j in enumerate(x) if j == v])
     return y
 
-def find_duplicates(ids, authors, titles):
-    print('Checking for duplicated keys and entries...')
+def find_duplicates(ids, authors, titles, verbose=True):
+    printv('Checking for duplicated keys and entries...', verbose=verbose)
     
     #check for multiple entries with the same key
     #note: the current version of bibtexparser overwrites parsed entries
@@ -242,10 +250,10 @@ def find_duplicates(ids, authors, titles):
     duplicate_keys = unique_ids[np.where(counts > 1)[0]]
     
     if len(duplicate_keys) > 0:
-        print('Multiple entries for the following key(s):')
-        print('\n'.join(duplicate_keys))
+        printv('Multiple entries for the following key(s):', verbose=verbose)
+        printv('\n'.join(duplicate_keys), verbose=verbose)
     else:
-        print('No keys with multiple entries were found.')
+        printv('No keys with multiple entries were found.', verbose=verbose)
     
     #check for duplicated information.
     #a duplicate is found when two (or more) entries share BOTH a set of author last names AND a title    
@@ -262,9 +270,9 @@ def find_duplicates(ids, authors, titles):
     
     if len(duplicates) > 0:
         for d in duplicates:
-            print(f'These key combinations appear to have the same author/title combinations [ind, key]: {[[i, ids[i]] for i in d]}')
+            printv(f'These key combinations appear to have the same author/title combinations [ind, key]: {[[i, ids[i]] for i in d]}', verbose=verbose)
     else:
-        print('No entries with duplicated authors/titles were found.')
+        printv('No entries with duplicated authors/titles were found.', verbose=verbose)
     
     return duplicate_keys, duplicates
 
@@ -520,7 +528,7 @@ def reformat_author(author):
 def get_fields(bd):
     #get all fields
     fields = {}
-    for k in bd.entries_dict.keys():
+    for k in bd.keys():
         next_entry = bd[k]
         for field, vals in next_entry.items():
             if not (field in fields.keys()):
@@ -533,43 +541,133 @@ def get_fields(bd):
     
     return fields
 
-def polish_database(bd, fix, autofix=False):    
+def polish_database(bd, errors, autofix=False, verbose=True):    
     keep_fields = read('keep_fields.txt')
     
-    print('removing extra fields...')
+    printv('removing extra fields...', verbose=verbose)
     x = {}
-    for b in bd.entries_dict.keys():
-        print(f'processing {b}...')
+    for b in bd.keys():
+        printv(f'checking item {b} for extraneous fields...', verbose=verbose)
         next_item = {}
-        if 'force' in list(bd.entries_dict[b].keys()):
-            print('\tforce flag found: skipping entry')
+        if 'force' in list(bd[b].keys()):
+            printv(f'\tforce flag found: skipping pruning of entry [{b}]', verbose=verbose)
             continue
-        for k in bd.entries_dict[b].keys():
+        for k in bd[b].keys():
             if k in keep_fields:
-                next_item[k] = bd.entries_dict[b][k]
+                next_item[k] = bd[b][k]
             else:
-                print(f'\tremoving field: {k}')
+                printv(f'\tremoving field: {k}', verbose=verbose)
                 continue            
         x[b] = next_item
     
     if autofix:
-        for k in fix.keys():
-            if not k in keep_fields:
+        for i in errors.keys():
+            if i not in bd.keys():
+                raise Exception(f'key {i} not found, aborting')
+            elif 'force' in list(bd[i].keys()):
+                printv(f'\tforce flag found: skipping corrections of entry [{b}]', verbose=verbose)
                 continue
-                
-            for f in fix[k]:
-                if not k in list(x[f[0]].keys()):
-                    raise Exception(f'key {k} not found for bibitem {f[0]}')
-                
-                if x[f[0]][k] == f[1]:
-                    if f[1] != f[2]:
-                        print(f'autocorrecting {f[0]}[{k}] to "{f[2]}"')
-                    x[f[0]][k] = f[2]
-                else:
-                    raise Exception(f'unexpected value for key {f[0]}[{k}]: expected "{f[0]}" but found "{x[f[0]][k]}"')
+                        
+            for k in errors[i].keys():
+                if k in keep_fields:
+                    printv(f'autocorrecting {i}[{k}] to "{errors[i][k]}"', verbose=verbose)
+                    x[i][k] = errors[i][k]
     
+    #convert x to bibtexparser's entries_list format
     entries_list = []
     for k, e in x.items():
         entries_list.append(e)
     
     return entries_list
+    
+def write_bib(fname, biblist, order, indent='\t'):
+    def entry2str(e):
+        s = '@' + e['ENTRYTYPE'] + '{' + e['ID'] + ','
+        at_least_one = False
+        for k in order:
+            if (k not in ['ENTRYTYPE', 'ID']) and (k in e.keys()):
+                s += '\n' + indent + k.capitalize() + ' = {' + e[k] + '},'
+                at_least_one = True
+        if at_least_one:
+             s = s[:-1] #remove last comma
+
+        return s + '}' + '\n'
+    
+    bibtex_str = '\n'.join([entry2str(b) for b in biblist])
+    print(bibtex_str, file=open(fname, 'w+'))
+
+def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
+    bd = load_bibliography(bibfile)
+    
+    ids = get_vals(bd, 'ID')
+    authors = get_vals(bd, 'author')
+    years = get_vals(bd, 'year')
+    titles = get_vals(bd, 'title', proc=remove_curlies)
+    pages = get_vals(bd, 'pages')
+    journals = get_vals(bd, 'journal')
+    book_titles = get_vals(bd, 'booktitle')
+    publishers = get_vals(bd, 'publisher')
+    editors = get_vals(bd, 'editor')
+    addresses = get_vals(bd, 'address')
+    
+    #check for duplicate keys
+    duplicate_keys, redundant_keys = find_duplicates(ids, authors, titles, verbose=verbose)
+    printv('\n', verbose=verbose)
+    
+    #check for bibitem key bases
+    fix_dict = {}
+    fix_dict['ID'] = check_entries('ID', bd, [authors2key(a, y) for a, y in zip(authors, years)], same=same_id, verbose=verbose)
+    
+    #check for bibitem key suffixes
+    target_keys = check_key_suffixes(bd)
+    fix_dict['ID'].extend(check_entries('ID', bd, target_keys, verbose=verbose))
+    
+    #check page numbers: ambiguous pages
+    target_pages, unfixable = generate_correct_pages(bd)
+    if len(unfixable) > 0:
+        printv(f'The following page numbers are ambiguous or incorrect: \n', verbose=verbose)
+        printv('\n'.join([f'{i}: {p}' for i, p in unfixable]), verbose=verbose)
+    else:
+        printv('No ambiguous page numbers were found.', verbose=verbose)
+    printv('\n', verbose=verbose)
+    
+    #check page numbers: correctable formatting
+    fix_dict['pages'] = check_entries('pages', bd, target_pages, verbose=verbose)
+    
+    #check journal names
+    fix_dict['journal'] = check_entries('journal', bd, [format_journal_name(j) for j in journals], verbose=verbose)
+    
+    #check book titles
+    fix_dict['booktitle'] = check_entries('booktitle', bd, [format_journal_name(b) for b in book_titles], verbose=verbose)
+    
+    #check publishers
+    fix_dict['publisher'] = check_entries('publisher', bd, [format_journal_name(p, key=publisher_key) for p in publishers], verbose=verbose)
+    
+    #check author names
+    fix_dict['author'] = check_entries('author', bd, [reformat_author(a) for a in authors], verbose=verbose)
+    
+    #check editor names
+    fix_dict['editor'] = check_entries('editor', bd, [reformat_author(e) for e in editors], verbose=verbose)
+    
+    #check addresses
+    fix_dict['address'] = check_entries('address', bd, [format_journal_name(a, key=address_key, force_caps=address_codes) for a in addresses], verbose=verbose)
+    
+    #reorganize fix_dict by key
+    fields = fix_dict.keys()
+    errors = {}
+    for k in fields:
+        for i in fix_dict[k]:
+            if i[0] not in errors.keys():
+                errors[i[0]] = {}
+            errors[i[0]][k] = i[2]
+    
+    #remove extra fields, correct entries if autofix = True
+    polished_bd = polish_database(bd, errors, autofix=autofix, verbose=verbose)
+    
+    if outfile is not None:
+        keep_fields = read('keep_fields.txt')
+        keep_fields.sort()
+        write_bib(outfile, polished_bd, keep_fields)
+    
+    return errors, polished_bd
+
