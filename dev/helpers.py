@@ -1,13 +1,15 @@
 from unidecode import unidecode as decode
+from string import ascii_lowercase
+from urllib import request as get
+from tqdm import tqdm
+
 import bibtexparser as bp
 import numpy as np
 import pandas as pd
+
 import re
-from string import ascii_lowercase
 import itertools
 import os
-from urllib import request as get
-import warnings
 
 def read(fname):
     return pd.read_csv(fname, header=None).values.flatten().tolist()
@@ -28,13 +30,15 @@ address_key = load_key('address_key.xls')
 
 LATEST_BIBFILE = 'https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/memlab.bib'
 
-def printv(s, verbose=True):
+def printv(s, verbose=True, **kwargs):
     if verbose:
-        print(s)
+        print(s, **kwargs)
 
-def load_bibliography(fname):
+def load_bibliography(fname, verbose=True):    
     if fname == 'github':
         fname = LATEST_BIBFILE
+    
+    printv(f'loading {fname}...', verbose=verbose, end='')
     
     parser = bp.bparser.BibTexParser(ignore_nonstandard_types=True, common_strings=True, homogenize_fields=True)
     if os.path.exists(fname):
@@ -43,6 +47,7 @@ def load_bibliography(fname):
     else:
         b = get.urlopen(fname).read().decode('utf-8')
         bibdata = parser.parse(b)
+    printv('done', verbose=verbose)
     return bibdata.get_entry_dict()
 
 def remove_accents_and_hyphens(s):
@@ -219,7 +224,7 @@ def check_entries(field, bd, targets, same=lambda x, y: x == y, proc=lambda x: x
     ids = get_vals(bd, 'ID')
     
     printv(f'running check: {field}...', verbose=verbose)
-    tofix = [(i, v, t) for i, v, t in zip(ids, vals, targets) if not ('force' in list(bd[i].keys()) or same(proc(v), proc(t)))]
+    tofix = [(i, v, t) for i, v, t in tqdm(zip(ids, vals, targets)) if not ('force' in list(bd[i].keys()) or same(proc(v), proc(t)))]
     
     if len(tofix) == 0:
         printv(f'no {field}s to fix!', verbose=verbose)
@@ -304,7 +309,6 @@ def get_key_suffixes(n):
 #If keys match aside from suffix then still allow the bibtex file to "pass"
 #as long as all "matching" keys are unique and all have suffixes and the 
 #suffixes span a, b, c, ..., etc. without gaps
-
 def check_key_suffixes(bd):
     ids = get_vals(bd, 'ID')
     authors = get_vals(bd, 'author')
@@ -546,8 +550,8 @@ def polish_database(bd, errors, autofix=False, verbose=True):
     
     printv('removing extra fields...', verbose=verbose)
     x = {}
-    for b in bd.keys():
-        printv(f'checking item {b} for extraneous fields...', verbose=verbose)
+    for b in tqdm(bd.keys()):
+        #printv(f'checking item {b} for extraneous fields...', verbose=verbose)
         next_item = {}
         if 'force' in list(bd[b].keys()):
             printv(f'\tforce flag found: skipping pruning of entry [{b}]', verbose=verbose)
@@ -556,12 +560,13 @@ def polish_database(bd, errors, autofix=False, verbose=True):
             if k in keep_fields:
                 next_item[k] = bd[b][k]
             else:
-                printv(f'\tremoving field: {k}', verbose=verbose)
+                printv(f'\tremoving field: {b}[{k}]', verbose=verbose)
                 continue            
         x[b] = next_item
     
     if autofix:
-        for i in errors.keys():
+        printv('\nautocorrecting...', verbose=verbose)
+        for i in tqdm(errors.keys()):
             if i not in bd.keys():
                 raise Exception(f'key {i} not found, aborting')
             elif 'force' in list(bd[i].keys()):
@@ -671,3 +676,64 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     
     return errors, polished_bd
 
+def compare_bibs(a, b, verbose=True, return_summary=False, outfile=None):
+    if type(a) == str:
+        a = load_bibliography(a)
+    
+    if type(b) == str:
+        b = load_bibliography(b)
+    
+    def keys_compare(a, b):
+        x = set(a.keys())
+        y = set(b.keys())
+
+        return list(x - y), list(y - x), list(set.intersection(x, y)) #a only, b only, both
+    
+    summary = ''
+    
+    a_only, b_only, both = keys_compare(a, b)
+    if len(a_only) > 0:
+        summary += 'removed the following entries: ' + ', '.join(a_only)
+        if len(b_only) > 0:
+            summary += '\n\n'
+    if len(b_only) > 0:
+        summary += 'added the following entries: ' + ', '.join(b_only)
+    
+    added = {}
+    deleted = {}
+    modified = {}
+    for i in tqdm(both):
+        old_keys, new_keys, both_keys = keys_compare(a[i], b[i])
+        if len(old_keys) > 0:
+            deleted[i] = old_keys
+        if len(new_keys) > 0:
+            added[i] = new_keys
+        
+        next_modified = []
+        for j in both_keys:
+            if not (a[i][j] == b[i][j]):
+                next_modified.append(j)
+        if len(next_modified) > 0:
+            modified[i] = next_modified
+    
+    if (len(a_only) > 0) or (len(b_only) > 0):
+        summary += '\n\n'
+    
+    changed = list(set.union(set.union(set(added.keys()), set(deleted.keys())), set(modified.keys())))
+    if len(changed) > 0:
+        summary += 'modified the following entries: ' + ', '.join(changed)
+    
+    modified = len(summary) > 0
+    if outfile:
+        printv(f'writing summary of changes to file: {outfile}', verbose=verbose)
+        print(summary, file=open(outfile, 'w+'))
+    
+    if modified:
+        printv(summary, verbose=verbose)    
+    else:
+        printv('bibliographies are functionally identical', verbose=verbose)
+    
+    if return_summary:
+        return not modified, summary
+    else:
+        return not modified

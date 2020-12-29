@@ -1,35 +1,32 @@
 from helpers import check_bib, compare_bibs
-from argparse import ArgumentParser
-import sys
+import typer
 
+app = typer.Typer()
 
-
-def main():
-    parser = ArgumentParser()
-    parser.add_argument('-v', '--verify', type=str, nargs=1, help='check a .bib file for errors')
-    parser.add_argument('-c', '--compare', type=str, nargs=2, help='compare the entries in two .bib files')
-    parser.add_argument('-o', '--output', type=str, nargs=1, help='specify .bib file to output results to')
-    parser.add_argument('-q', '--quiet', help='suppress output', action='store_true')
-    parser.add_argument('-a', '--autofix', type=str, nargs=1, help='(USE WITH CAUTION!) attempt to automatically fix errors in .bib file')
-
-    args = parser.parse_args(sys.argv)
-
-    if args.verify:
-        assert not args.compare, 'cannot use verify and compare flags simultaneously'
+@app.command()
+def verify(fname: str, autofix: bool=False, outfile: str=None, verbose: bool=False):
+    errors, corrected = check_bib(fname, autofix=autofix, outfile=outfile, verbose=verbose)
+    
+    if outfile:
+        typer.echo(f'saved updated bibliography to {outfile}')
+    
+    if len(errors) == 0:
+        typer.echo('looks good!')
+    else:
+        if autofix:
+            if outfile:
+                typer.echo(f'errors found; autocorrected and saved to {outfile}')
+            else:
+                typer.echo('errors found; specify outfile to save autocorrections')
         
-        if args.autofix:
-            autofix = True
+        if verbose:
+            typer.echo('errors found; see log for details')
         else:
-            autofix = False
-        
-        errors, corrected = check_bib(args.verify, autofix=autofix, outfile=args.output, verbose=!args.quiet)
-        
-        if len(errors) == 0:
-            print('Congrats!  File looks OK.')
-        else:
-            raise Exception(f'{len(errors)} found in {args.verify}; check log for details.')
-    elif args.compare:
-        compare_bibs(args.compare[0], args.compare[1], outfile=args.output, verbose=!args.quiet)
+            typer.echo('errors found; run with verbose flag for details')
+    
+@app.command()
+def compare(fname1: str, fname2: str, verbose: bool=False, outfile: str=None):
+    compare_bibs(fname1, fname2, verbose=verbose, outfile=outfile)
 
-
-
+if __name__ == "__main__":
+    app()

@@ -19,4 +19,5 @@ RUN apt-get update --fix-missing \
         numpy==1.19.4 \
         pandas==1.1.5 \
         xlrd==2.0.1 \
+        typer==0.3.2 \
     && rm -rf ~/.cache/pip
