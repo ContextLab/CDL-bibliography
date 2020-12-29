@@ -96,7 +96,7 @@ The `verify` function checks the format of an arbitrary .bib file and verifies t
   - Bibtex keys may not be duplicated.  If two or more entries share the same "base" bibtex key, they should be renamed to make each key unique by adding a suffix to the key: MannEtal21a, MannEtal21b, etc.  If a bibtex key requires a suffix, *all* bibtex keys that share the same base must also have suffixes.  Suffixes must be assigned in order (e.g., if MannEtal21a and MannEtal21c are in the .bib file, then either MannEtal21b must also be in the .bib file, or MannEtal21c must be renamed to MannEtal21b).
 - Proper formatting of author and editor names:
   - The name must appear in the following order with no commas: First Middle Surname(s) Suffixes
-  - Surnames should be enclosed in curly braces (e.g., "{van der Meer}")
+  - Multi-word surnames should be enclosed in curly braces (e.g., "{van der Meer}")
   - Latex accents (e.g. "\'{e}" or "{\' e}") are supported
   - Initials must be separated (e.g., "AA" becomes "A A")
   - Hyphenated initials and/or names should *not* be separated (e.g., "H-T" is correct as is)
