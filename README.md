@@ -45,6 +45,27 @@ Commands:
   verify
 ```
 
+### Suggested workflow
+
+After making changes to `cdl.bib` (manually, using
+[bibdesk](https://bibdesk.sourceforge.io/), etc.), please follow the suggested
+workflow below in order to safely update the shared lab resource:
+
+1. Verify the integrity of the modified .bib file (correct any changes until this passes):
+```bash
+python bibcheck.py verify --verbose cdl.bib
+```
+2. Generate a change log and commit your changes:
+```bash
+python bibcheck.py commit --verbose
+```
+3. Push your changes to your fork:
+```bash
+git push
+```
+4. Create a pull request for pulling your changes into the ContextLab fork
+
+
 ### `verify`
 
 You can run the `verify` command using:
