@@ -97,7 +97,7 @@ The `verify` function checks the format of an arbitrary .bib file and verifies t
 - Proper formatting of author and editor names:
   - The name must appear in the following order with no commas: First Middle Surname(s) Suffixes
   - Multi-word surnames should be enclosed in curly braces (e.g., "{van der Meer}")
-  - Latex accents (e.g. "\'{e}" or "{\' e}") are supported
+  - Latex accents (e.g. "\\'{e}" or "{\\' e}") are supported
   - Initials must be separated (e.g., "AA" becomes "A A")
   - Hyphenated initials and/or names should *not* be separated (e.g., "H-T" is correct as is)
   - For multi-author (or multi-editor) papers, names should be separated by the string " and " (note single spaces on either side)
