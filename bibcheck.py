@@ -60,7 +60,7 @@ def commit(fname=bibfile, reference='github', verbose: bool=False, outfile=None)
         commit_fname = outfile
     else:
         commit_fname = get_commit_fname()
-    _, changes = compare(reference, fname, outfile=commit_fname, verbose=verbose, return_summary=True)
+    _, changes = compare_bibs(reference, fname, outfile=commit_fname, verbose=verbose, return_summary=True)
         
     #commit the changes
     subprocess.call(f'git commit -m "{changes}" {bibfile}')
