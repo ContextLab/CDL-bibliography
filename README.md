@@ -49,7 +49,7 @@ Commands:
   verify
 ```
 
-### Suggested workflow
+# Suggested workflow
 
 After making changes to `cdl.bib` (manually, using
 [bibdesk](https://bibdesk.sourceforge.io/), etc.), please follow the suggested
@@ -69,6 +69,7 @@ git push
 ```
 4. Create a pull request for pulling your changes into the ContextLab fork
 
+## Additional information and usage instructions
 
 ### `verify`
 
