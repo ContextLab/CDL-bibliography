@@ -546,10 +546,11 @@ def get_fields(bd):
     
     return fields
 
-def polish_database(bd, errors, autofix=False, verbose=True):    
+def polish_database(bd, errors, autofix=False, verbose=True, return_removed=False):    
     keep_fields = read('keep_fields.txt')
     
-    printv('removing extra fields...', verbose=verbose)
+    removed = {}
+    printv('searching for extra fields...', verbose=verbose)
     x = {}
     for b in tqdm(bd.keys()):
         #printv(f'checking item {b} for extraneous fields...', verbose=verbose)
@@ -561,8 +562,11 @@ def polish_database(bd, errors, autofix=False, verbose=True):
             if k in keep_fields:
                 next_item[k] = bd[b][k]
             else:
-                printv(f'\tremoving field: {b}[{k}]', verbose=verbose)
-                continue            
+                if b in removed.keys():
+                    removed[b].append(k)
+                else:
+                    removed[b] = [k]
+                printv(f'\textraneous field detected: {b}[{k}]', verbose=verbose)
         x[b] = next_item
     
     if autofix:
@@ -584,7 +588,10 @@ def polish_database(bd, errors, autofix=False, verbose=True):
     for k, e in x.items():
         entries_list.append(e)
     
-    return entries_list
+    if return_removed:
+        return entries_list, removed
+    else:
+        return entries_list
     
 def write_bib(fname, biblist, order, indent='\t'):
     def entry2str(e):
@@ -618,6 +625,8 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     
     #check for duplicate keys
     duplicate_keys, redundant_keys = find_duplicates(ids, authors, titles, verbose=verbose)
+    assert len(duplicate_keys) == 0, 'duplicate keys found: ' + ', '.join(duplicate_keys)
+    assert len(redundant_keys) == 0, 'redundant keys found: ' + ', '.join(redundant_keys)
     printv('\n', verbose=verbose)
     
     #check for bibitem key bases
@@ -631,8 +640,9 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     #check page numbers: ambiguous pages
     target_pages, unfixable = generate_correct_pages(bd)
     if len(unfixable) > 0:
-        printv(f'The following page numbers are ambiguous or incorrect: \n', verbose=verbose)
-        printv('\n'.join([f'{i}: {p}' for i, p in unfixable]), verbose=verbose)
+        msg = f'The following page numbers are ambiguous or incorrect: \n'
+        msg += '\n'.join([f'{i}: {p}' for i, p in unfixable])
+        raise Exception(msg)
     else:
         printv('No ambiguous page numbers were found.', verbose=verbose)
     printv('\n', verbose=verbose)
@@ -668,7 +678,8 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
             errors[i[0]][k] = i[2]
     
     #remove extra fields, correct entries if autofix = True
-    polished_bd = polish_database(bd, errors, autofix=autofix, verbose=verbose)
+    polished_bd, removed = polish_database(bd, errors, autofix=autofix, verbose=verbose, return_removed=True)
+    assert len(removed) == 0, 'the following entries have non-essential fields: ' + ', '.join(removed)
     
     if outfile is not None:
         keep_fields = read('keep_fields.txt')

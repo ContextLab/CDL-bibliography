@@ -11,8 +11,15 @@ bibfile = 'cdl.bib'
 
 @app.command()
 def verify(fname: str='cdl.bib', autofix: bool=False, outfile: str=None, verbose: bool=False):
-    errors, corrected = check_bib(fname, autofix=autofix, outfile=outfile, verbose=verbose)
-    
+    try:
+        errors, corrected = check_bib(fname, autofix=autofix, outfile=outfile, verbose=verbose)
+    except:
+        if verbose:
+            typer.echo('errors found; see log for details')
+        else:
+            typer.echo('errors found; run with verbose flag for details')
+        return
+        
     if outfile:
         typer.echo(f'saved updated bibliography to {outfile}')
     
@@ -48,7 +55,12 @@ def commit(fname=bibfile, reference='github', verbose: bool=False, outfile=None)
         return basename + '.log'
     
     #check integrity of fname
-    errors, corrected = check_bib(fname, autofix=False, outfile=None, verbose=verbose)
+    try:
+        errors, corrected = check_bib(fname, autofix=autofix, outfile=outfile, verbose=verbose)
+    except:
+        typer.echo('errors found; run verify to view and/or correct.')
+        return
+    
     if len(errors) > 0:
         typer.echo('errors found; run verify to view and/or correct.')
         return
