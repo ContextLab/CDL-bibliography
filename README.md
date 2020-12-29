@@ -16,6 +16,10 @@ You may find the included bibtex file and/or readme file useful for any of the f
 - Instructions for adding this repository as a sub-module to Overleaf projects, so that you can share a common bibtex file across your Overleaf projects
 
 ## Using the bibtex checker tools
+You may find the bibtex checker tools useful for:
+- Verifying the integrity of a .bib file
+- Autocorrecting a .bib file (use with caution!)
+- Automatically generating change logs and commit messages
 
 ### Installation
 The bibtex checker has only been tested on MacOS, but it will probably work without modification on other Unix systems, and with minor modification on Windows systems.
