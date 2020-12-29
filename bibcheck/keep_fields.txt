@@ -1,0 +1,17 @@
+year
+volume
+title
+pages
+number
+journal
+author
+ENTRYTYPE
+ID
+booktitle
+publisher
+editor
+school
+chapter
+address
+organization
+force
