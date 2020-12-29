@@ -2,7 +2,22 @@
 
 The main bibtex file ([cdl.bib](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib)) is shared by all documents produced by the [Contextual Dynamics Lab](http://www.context-lab.com) at [Dartmouth College](http://www.dartmouth.edu).
 
-## What can I use this repo for?
+## Contents:
+- [What can you use this repository for?](#what-can-you-use-this-repo-for)
+- [Using `cdl.bib`](#using-cdlbib)
+- [Using the bibtex checker tools](#using-the-bibtex-checker-tools)
+  - [Installation](#installation)
+  - [Overview](#overview)
+- [Suggested workflow](#suggested-workflow)
+- [Additional information and usage instructions](#additional-information-and-usage-instructions)
+  - [`verify`](#verify)
+  - [`compare`](#compare)
+  - [`commit`](#commit)
+- [Using the bibtex file as a common bibliography for all *local* LaTeX files](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files)
+- [Using the bibtex file on Overleaf](#using-the-bibtex-file-on-overleaf)
+- [Acknowledgements](#acknowledgements)
+
+# What can you use this repository for?
 The main components of this repository are:
 1. A bibtex file containing the bibliographic information
 2. A set of bibtex checker tools that are used to verify the integrity of the bibtex file
@@ -121,6 +136,19 @@ The `verify` function checks the format of an arbitrary .bib file and verifies t
 
 If errors are found, they are printed to the terminal along with suggested corrections (if available).
 
+***Danger zone***: `autofix`
+
+The bibtex checker can attempt to automatically correct formatting issues using the `--autofix` and `--outfile` flags.  The `--verbose` flag is also strongly encouraged when the `--autofix` flag is used.  Autocorrect mode may be used as follows:
+```bash
+python bibcheck.py verify --autofix --verbose --outfile=cleaned.bib
+```
+This will create a new .bib file, cleaned.bib, based on cdl.bib-- but with all fields and entries autocorrected where possible.  After manually checking the new "autocorrected" .bib file, cdl.bib may be overwritten with `cleaned.bib`:
+```bash
+mv cleaned.bib cdl.bib
+```
+
+This mode can easily introduce errors if not checked (manually!) carefully.  It is included for convenience (e.g., to facilitate very large numbers of simple changes), but it should not normally be used.
+
 ### `compare`
 You can run the `compare` command using:
 ```bash
@@ -158,13 +186,6 @@ In order for the commits to be pushed, the ```git push``` command must still be
 called, and a pull request must be submitted in order to integrate the changes
 into the main ContextLab fork.
 
-### Credit
-This bibtex file is built on a large bibtex file authored by Michael Kahana's
-[Computational Memory Lab at the University of Pennsylvania](http://memory.psych.upenn.edu).  
-However, this version is not kept in sync with the CML's version.  This file is
-provided as a courtesy, and we make no claims with respect to accuracy,
-completeness, etc.
-
 # Using the bibtex file as a common bibliography for all *local* LaTeX files
 1. Check out this repository to your home directory
 2. Add the following lines to your `~/.bash_profile` (or `~/.zshrc`, etc.):
@@ -201,3 +222,10 @@ git submodule add https://github.com/ContextLab/CDL-bibliography.git
 git submodule init
 git submodule update
 ```
+
+# Acknowledgements
+This bibtex file is built on a large bibtex file authored by Michael Kahana's
+[Computational Memory Lab at the University of Pennsylvania](http://memory.psych.upenn.edu).  
+However, this version is not kept in sync with the CML's version.  [Several members](https://github.com/ContextLab/CDL-bibliography/graphs/contributors) of the [Contextual Dynamics Lab](www.context-lab.com/) have contributed to the current version.
+
+This repository is provided as a courtesy, and we make no claims with respect to accuracy, completeness, etc.
