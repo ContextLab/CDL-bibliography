@@ -29,7 +29,7 @@ journal_key = load_key('journal_key.xls')
 publisher_key = load_key('publisher_key.xls')
 address_key = load_key('address_key.xls')
 
-LATEST_BIBFILE = 'https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib'
+LATEST_BIBFILE = 'https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/memlab.bib'
 
 def printv(s, verbose=True, **kwargs):
     if verbose:

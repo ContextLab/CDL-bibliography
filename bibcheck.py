@@ -5,12 +5,13 @@ from helpers import check_bib, compare_bibs
 import typer
 import numpy as np
 import subprocess
+import os
 
 app = typer.Typer()
 bibfile = 'cdl.bib'
 
 @app.command()
-def verify(fname: str, autofix: bool=False, outfile: str=None, verbose: bool=False):
+def verify(fname: str='cdl.bib', autofix: bool=False, outfile: str=None, verbose: bool=False):
     errors, corrected = check_bib(fname, autofix=autofix, outfile=outfile, verbose=verbose)
     
     if outfile:
@@ -35,17 +36,17 @@ def compare(fname1: str, fname2: str, verbose: bool=False, outfile: str=None):
     compare_bibs(fname1, fname2, verbose=verbose, outfile=outfile)
 
 @app.command()
-def commit(fname=bibfile, reference='github', verbose: bool=False):
+def commit(fname=bibfile, reference='github', verbose: bool=False, outfile=None):
     def get_commit_fname():
-        def txt_exists(fname):
-            return os.path.exists(fname + '.txt')
-        basename = 'commit'
+        def log_exists(fname):
+            return os.path.exists(fname + '.log')
+        basename = 'change'
         
-        if txt_exists:
+        if log_exists(basename):
             basename += '-' + str(np.random.randint(10))
-        while txt_exists(basename):
+        while log_exists(basename):
             basename += str(np.random.randint(10))
-        return basename + '.txt'
+        return basename + '.log'
     
     #check integrity of fname
     errors, corrected = check_bib(fname, autofix=False, outfile=None, verbose=verbose)
@@ -55,14 +56,18 @@ def commit(fname=bibfile, reference='github', verbose: bool=False):
     else:
         typer.echo('checks passed; generating commit message...')
     
-    commit_fname = get_commit_fname()
-    compare(reference, fname, outfile=commit_fname, verbose=verbose)
+    if outfile:
+        commit_fname = outfile
+    else:
+        commit_fname = get_commit_fname()
+    _, changes = compare(reference, fname, outfile=commit_fname, verbose=verbose, return_summary=True)
         
     #commit the changes
-    subprocess(f'git commit -F {commit_fname} -m "updated bibliography" {bibfile}')
+    subprocess.call(f'git commit -m "{changes}" {bibfile}')
     
-    if os.path.exists(commit_fname):
-        os.remove(commit_fname)
+    if not outfile:
+        if os.path.exists(commit_fname):
+            os.remove(commit_fname)
 
 if __name__ == "__main__":
     app()
