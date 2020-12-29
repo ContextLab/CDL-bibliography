@@ -10,12 +10,13 @@ import pandas as pd
 import re
 import itertools
 import os
+import sys
 
 def read(fname):
-    return pd.read_csv(fname, header=None).values.flatten().tolist()
+    return pd.read_csv(os.path.join('bibcheck', fname), header=None).values.flatten().tolist()
 
 def load_key(fname):
-    key = pd.read_excel(fname, header=0, index_col='orig')
+    key = pd.read_excel(os.path.join('bibcheck', fname), header=0, index_col='orig')
     return key.to_dict()['corrected']
 
 prefixes = read('prefixes.txt')
@@ -28,7 +29,7 @@ journal_key = load_key('journal_key.xls')
 publisher_key = load_key('publisher_key.xls')
 address_key = load_key('address_key.xls')
 
-LATEST_BIBFILE = 'https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/memlab.bib'
+LATEST_BIBFILE = 'https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib'
 
 def printv(s, verbose=True, **kwargs):
     if verbose:

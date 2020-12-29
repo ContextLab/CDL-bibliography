@@ -1,0 +1,7 @@
+unidecode==1.1.1
+bibtexparser==1.2.0
+numpy==1.19.4
+pandas==1.1.5
+xlrd==2.0.1
+typer==0.3.2
+tqdm==4.50.0
