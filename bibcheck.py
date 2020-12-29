@@ -4,7 +4,6 @@ sys.path.append('bibcheck')
 from helpers import check_bib, compare_bibs
 import typer
 import numpy as np
-import subprocess
 import os
 
 app = typer.Typer()
@@ -60,14 +59,11 @@ def commit(fname=bibfile, reference='github', verbose: bool=False, outfile=None)
         commit_fname = outfile
     else:
         commit_fname = get_commit_fname()
-    _, changes = compare_bibs(reference, fname, outfile=commit_fname, verbose=verbose, return_summary=True)
+    
+    _, changes = compare_bibs(reference, fname, outfile=outfile, verbose=verbose, return_summary=True)
         
     #commit the changes
-    subprocess.call(f'git commit -m "{changes}" {bibfile}')
-    
-    if not outfile:
-        if os.path.exists(commit_fname):
-            os.remove(commit_fname)
+    os.system(f'git commit -a -m "{changes}"')
 
 if __name__ == "__main__":
     app()
