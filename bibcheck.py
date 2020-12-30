@@ -39,7 +39,14 @@ def verify(fname: str='cdl.bib', autofix: bool=False, outfile: str=None, verbose
     
 @app.command()
 def compare(fname1: str, fname2: str, verbose: bool=False, outfile: str=None):
-    compare_bibs(fname1, fname2, verbose=verbose, outfile=outfile)
+    if compare_bibs(fname1, fname2, verbose=verbose, outfile=outfile):
+        typer.echo('files match!')
+    else:
+        if verbose:
+            typer.echo('files do not match; see log for details')
+        else:
+            typer.echo('files do not match; run with verbose flag for details')
+        
 
 @app.command()
 def commit(fname=bibfile, reference='github', verbose: bool=False, outfile=None):
@@ -56,7 +63,7 @@ def commit(fname=bibfile, reference='github', verbose: bool=False, outfile=None)
     
     #check integrity of fname
     try:
-        errors, corrected = check_bib(fname, autofix=autofix, outfile=outfile, verbose=verbose)
+        errors, corrected = check_bib(fname, autofix=False, outfile=outfile, verbose=verbose)
     except:
         typer.echo('errors found; run verify to view and/or correct.')
         return
