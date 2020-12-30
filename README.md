@@ -128,6 +128,7 @@ The `verify` function checks the format of an arbitrary .bib file and verifies t
   - Some types of errors may be autocorrected, although this must be treated with caution to ensure accuracy (e.g. "1002 - 15" may be autocorrected to "1002--1015")
 - Journal names must be properly capitalized and written out in full (e.g., "J. Neurosci" becomes "The Journal of Neuroscience").  Ampersands ("&") must be converted to "and".
 - Book titles must be properly capitalized and written out in full.  Ampersands ("&") must be converted to "and".
+- Article titles must be capitalized in sentence case (with exceptions blocked out in curly braces).  Titles may not be (fully) enclosed in curly braces and may not end in '.'.
 - Publisher names must be written out in full.  Ampersands ("&") must be converted to "and".
 - Addresses must be formatted properly:
   - State names and non-US countries are abbreviated with two-letter codes (e.g., "New York, New York" should be "New York, NY")

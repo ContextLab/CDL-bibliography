@@ -13,10 +13,14 @@ import os
 import sys
 
 def read(fname):
-    return pd.read_csv(os.path.join('bibcheck', fname), header=None).values.flatten().tolist()
+    if not os.path.exists(fname):
+        fname = os.path.join('bibcheck', fname)        
+    return pd.read_csv(fname, header=None).values.flatten().tolist()
 
 def load_key(fname):
-    key = pd.read_excel(os.path.join('bibcheck', fname), header=0, index_col='orig')
+    if not os.path.exists(fname):
+        fname = os.path.join('bibcheck', fname) 
+    key = pd.read_excel(fname, header=0, index_col='orig')
     return key.to_dict()['corrected']
 
 prefixes = read('prefixes.txt')
@@ -88,7 +92,7 @@ def match(names, template):
             return i
     return -1
 
-def remove_curlies(s): #only removes *matching* curly braces
+def remove_curlies(s, join=''): #only removes *matching* curly braces
     for i, c in enumerate(s):    
         if c == '{':
             j = i
@@ -106,11 +110,11 @@ def remove_curlies(s): #only removes *matching* curly braces
                     break
 
             if curly_count == 0:
-                return remove_curlies(s[:i] + ''.join(s[(i+1):j].split(' ')) + s[(j+1):])
+                return remove_curlies(s[:i] + join.join(s[(i+1):j].split(' ')) + s[(j+1):])
     return s
 
 def remove_non_letters(s):
-    remove_chars = [',', '.', '!', '?', "'", '"', '{', '}', '-', '\\']    
+    remove_chars = [',', '.', '!', '?', "'", '"', '{', '}', '-', '\\', ':', '(', ')', '[', ']', '+', '/', '*']
     for c in remove_chars:
         s = s.replace(c, '')
     return s
@@ -270,11 +274,11 @@ def find_duplicates(ids, authors, titles, verbose=True):
     duplicate_authors = duplicate_inds(last_names)
 
     for i in duplicate_title_inds:
-        duplicate_author_inds = duplicate_inds([last_names[j] for j in i])
+        duplicate_author_inds = list(np.array(i)[np.array(duplicate_inds([last_names[j] for j in i]), dtype=int)])
         for a in duplicate_author_inds:
             duplicates.append(a)
     
-    if len(duplicates) > 0:
+    if len(duplicate_keys) > 0:
         for d in duplicates:
             printv(f'These key combinations appear to have the same author/title combinations [ind, key]: {[[i, ids[i]] for i in d]}', verbose=verbose)
     else:
@@ -488,11 +492,11 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps):
         if (i > 0) and (w.lower() in uncaps):
             words[i] = words[i].lower()
         
-        correct_caps = [f for f in force_caps if f.lower() == remove_curlies(words[i].lower())]
+        correct_caps = [f for f in force_caps if f.lower() == remove_non_letters(w.lower())]
         if len(correct_caps) >= 1:
             c = correct_caps[-1]
             if not (c[0] == '{' and c[-1] == '}'):
-                c = '{' + c + '}'
+                c = insert_non_letters('{' + c + '}', remove_curlies(w, join=' '))
             words[i] = c
     return ' '.join(words)
 
@@ -546,10 +550,11 @@ def get_fields(bd):
     
     return fields
 
-def polish_database(bd, errors, autofix=False, verbose=True):    
+def polish_database(bd, errors, autofix=False, verbose=True, return_removed=False):    
     keep_fields = read('keep_fields.txt')
     
-    printv('removing extra fields...', verbose=verbose)
+    removed = {}
+    printv('searching for extra fields...', verbose=verbose)
     x = {}
     for b in tqdm(bd.keys()):
         #printv(f'checking item {b} for extraneous fields...', verbose=verbose)
@@ -561,8 +566,11 @@ def polish_database(bd, errors, autofix=False, verbose=True):
             if k in keep_fields:
                 next_item[k] = bd[b][k]
             else:
-                printv(f'\tremoving field: {b}[{k}]', verbose=verbose)
-                continue            
+                if b in removed.keys():
+                    removed[b].append(k)
+                else:
+                    removed[b] = [k]
+                printv(f'\textraneous field detected: {b}[{k}]', verbose=verbose)
         x[b] = next_item
     
     if autofix:
@@ -584,7 +592,10 @@ def polish_database(bd, errors, autofix=False, verbose=True):
     for k, e in x.items():
         entries_list.append(e)
     
-    return entries_list
+    if return_removed:
+        return entries_list, removed
+    else:
+        return entries_list
     
 def write_bib(fname, biblist, order, indent='\t'):
     def entry2str(e):
@@ -602,13 +613,108 @@ def write_bib(fname, biblist, order, indent='\t'):
     bibtex_str = '\n'.join([entry2str(b) for b in biblist])
     print(bibtex_str, file=open(fname, 'w+'))
 
+def before_letters(s, c): #true if c occurs before the first letter in s
+    for i in s:
+        if i.lower() in ascii_lowercase:
+            return False
+        elif i == c:
+            return True
+    return False
+
+def after_letters(s, c): #true if c occurs after the last letter in s
+    return before_letters(s[::-1], c)
+
+def insert_non_letters(x, y):    
+    z = ''
+    i = 0 #position in x
+    j = 0 #position in y
+    while (i < len(x)) and (j < len(y)):
+        if x[i].lower() == y[j].lower():
+            z += x[i]
+            i += 1
+            j += 1
+        elif x[i].lower() not in ascii_lowercase: #from the first case, we also know x[i] != y[j]
+            z += x[i]
+            i += 1
+        elif (x[i].lower() in ascii_lowercase) and (y[j].lower() not in ascii_lowercase):
+            z += y[j]
+            j += 1
+        else: #x[i] and y[j] are both in ascii_lowercase but x[i] != x[j] -- throw an error
+            raise Exception(f'"{y}" is not a compatable template for "{x}"')
+    
+    #insert trailing punctuation from y
+    if (j < len(y)) and (remove_non_letters(y[j:]) == ''):
+        z += y[j:]
+    
+    #insert trailing punctuation from x
+    if (i < len(x)) and (remove_non_letters(x[i:]) == ''):
+        z += x[i:]
+    
+    return z
+
+def format_title(title):
+    def ends_in_punctuation(s):
+        return (len(s) > 0) and (s[-1] in ['.', '!', '?'])
+    
+    #remove curly braces that enclose the entire title
+    # - check for "curlied" first and last words that don't extend for the entire title
+    # - more complex situations are not handled (err on the side of *not* correcting the title)
+    if before_letters(title, '{') and after_letters(title, '}') and title.count('{') == 1 and title.count('}') == 1:
+        title = title[1:-1]
+    
+    #remove '.' at the end
+    if title[-1] == '.':
+        title = title[:-1]
+    
+    #if any words appear in force_caps, enclose them in curly braces if not already done
+    reformatted_title = []
+    
+    prev_w = ''
+    curly_count = 0
+    
+    for w in title.split(' '):
+        #if w contains '{', keep adding words unmodified until a '}' is found
+        curly_count += w.count('{')
+        
+        if curly_count > 0:
+            reformatted_title.append(w)
+            prev_w = w
+            
+            curly_count -= w.count('}')
+            continue
+        
+        if curly_count < 0:
+            raise Exception(f'mismatched curly braces: {title}')
+        
+        
+        #leave "a" and specified caps unchanged
+        if w.lower() == 'a' or (before_letters(w, '{') and after_letters(w, '}')):
+            reformatted_title.append(w)                  
+        #if w contains curly braces, just append it unchanged
+        elif (w.count('{') > 0) or (w.count('}') > 0):
+            reformatted_title.append(w)        
+        else:
+            caps_match = [f for f in force_caps if f.lower() == remove_non_letters(w.lower())]
+            if len(caps_match) > 0:
+                w = insert_non_letters('{' + caps_match[-1] + '}', w)
+            elif not ends_in_punctuation(prev_w):                
+                w = w.lower()
+            reformatted_title.append(w)
+        prev_w = w
+    
+    #capitalize the first word if it's not in force_caps
+    if (not ((reformatted_title[0].count('{') > 0) or (reformatted_title[0].count('}') > 0))) and (remove_non_letters(reformatted_title[0].lower()) not in [f.lower() for f in force_caps]):
+        reformatted_title[0] = reformatted_title[0].capitalize()
+    
+    return ' '.join([r for r in reformatted_title if len(r) > 0])
+
 def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     bd = load_bibliography(bibfile)
     
     ids = get_vals(bd, 'ID')
     authors = get_vals(bd, 'author')
     years = get_vals(bd, 'year')
-    titles = get_vals(bd, 'title', proc=remove_curlies)
+    titles = get_vals(bd, 'title')
     pages = get_vals(bd, 'pages')
     journals = get_vals(bd, 'journal')
     book_titles = get_vals(bd, 'booktitle')
@@ -618,6 +724,8 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     
     #check for duplicate keys
     duplicate_keys, redundant_keys = find_duplicates(ids, authors, titles, verbose=verbose)
+    assert len(duplicate_keys) == 0, 'duplicate keys found: ' + ', '.join(duplicate_keys)
+    assert len(redundant_keys) == 0, 'redundant keys found: ' + ', '.join([str([ids[i] for i in d]) for d in redundant_keys])
     printv('\n', verbose=verbose)
     
     #check for bibitem key bases
@@ -631,8 +739,9 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     #check page numbers: ambiguous pages
     target_pages, unfixable = generate_correct_pages(bd)
     if len(unfixable) > 0:
-        printv(f'The following page numbers are ambiguous or incorrect: \n', verbose=verbose)
-        printv('\n'.join([f'{i}: {p}' for i, p in unfixable]), verbose=verbose)
+        msg = f'The following page numbers are ambiguous or incorrect: \n'
+        msg += '\n'.join([f'{i}: {p}' for i, p in unfixable])
+        raise Exception(msg)
     else:
         printv('No ambiguous page numbers were found.', verbose=verbose)
     printv('\n', verbose=verbose)
@@ -645,6 +754,9 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     
     #check book titles
     fix_dict['booktitle'] = check_entries('booktitle', bd, [format_journal_name(b) for b in book_titles], verbose=verbose)
+    
+    #check article titles
+    fix_dict['title'] = check_entries('title', bd, [format_title(t) for t in titles], verbose=verbose)
     
     #check publishers
     fix_dict['publisher'] = check_entries('publisher', bd, [format_journal_name(p, key=publisher_key) for p in publishers], verbose=verbose)
@@ -668,7 +780,9 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
             errors[i[0]][k] = i[2]
     
     #remove extra fields, correct entries if autofix = True
-    polished_bd = polish_database(bd, errors, autofix=autofix, verbose=verbose)
+    polished_bd, removed = polish_database(bd, errors, autofix=autofix, verbose=verbose, return_removed=True)
+    if not autofix:
+        assert len(removed) == 0, 'the following entries have non-essential fields: ' + ', '.join(removed)
     
     if outfile is not None:
         keep_fields = read('keep_fields.txt')
