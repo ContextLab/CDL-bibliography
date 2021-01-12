@@ -72,9 +72,9 @@ After making changes to `cdl.bib` (manually, using
 [bibdesk](https://bibdesk.sourceforge.io/), etc.), please follow the suggested
 workflow below in order to safely update the shared lab resource:
 
-1. Verify the integrity of the modified .bib file (correct any changes until this passes):
+1. Verify the integrity of the modified cdl.bib file (correct any changes until this passes):
 ```bash
-python bibcheck.py verify --verbose cdl.bib
+python bibcheck.py verify --verbose
 ```
 2. Generate a change log and commit your changes:
 ```bash
