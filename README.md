@@ -1,6 +1,6 @@
 # Contextual Dynamics Laboratory's Bibliography Management Tool
 
-![autocheck](https://github.com/ContextLab/CDL-bibliography/workflows/autocheck/badge.svg)
+![autocheck](https://github.com/ContextLab/CDL-bibliography/workflows/autocheck/badge.svg) [![DOI](https://zenodo.org/badge/69401856.svg)](https://zenodo.org/badge/latestdoi/69401856)
 
 The main bibtex file ([cdl.bib](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib)) is shared by all documents produced by the [Contextual Dynamics Lab](http://www.context-lab.com) at [Dartmouth College](http://www.dartmouth.edu).
 
