@@ -36,6 +36,28 @@ def verify(fname: str='cdl.bib', autofix: bool=False, outfile: str=None, verbose
             typer.echo('errors found; see log for details')
         else:
             typer.echo('errors found; run with verbose flag for details')
+
+
+@app.command()
+def magic(fname: str='cdl.bib', verbose: bool=True):
+    typer.echo('WARNING: potentially unsafe')
+    
+    outfile = 'cleaned.bib'
+    
+    try:
+        errors, corrected = check_bib(fname, autofix=True, outfile=outfile, verbose=verbose)
+    except:
+        if verbose:
+            typer.echo('errors found; see log for details')
+        else:
+            typer.echo('errors found; run with verbose flag for details')
+        return
+    
+    
+    os.system(f'mv {outfile} {fname}')
+    
+    commit(fname=fname)
+        
     
 @app.command()
 def compare(fname1: str, fname2: str, verbose: bool=False, outfile: str=None):
