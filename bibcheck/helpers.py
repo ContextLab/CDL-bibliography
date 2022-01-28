@@ -391,7 +391,7 @@ def valid_page(p): #single page, no hyphens
         return True, 'conference', [x.group('prefix'), int(x.group('digits'))]
 
     #doi address
-    r3 = re.compile(r'''doi\.org/(?P<doi>[a-z\d\-\./]+)''')
+    r3 = re.compile(r'''doi\.org/(?P<doi>[A-Za-z\d\-\./]+)''')
     x = r3.fullmatch(p)
     if not (x is None):
         return True, 'doi', None
