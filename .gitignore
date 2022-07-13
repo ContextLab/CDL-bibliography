@@ -2,3 +2,5 @@
 *.ipynb_checkpoints*
 *.log
 *__pycache*
+cdl.bib.bak
+cdl.bib.sav.tmp
