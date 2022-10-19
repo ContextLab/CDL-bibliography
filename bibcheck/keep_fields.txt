@@ -19,3 +19,4 @@ doi
 institution
 month
 type
+howpublished
