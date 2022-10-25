@@ -15,3 +15,8 @@ chapter
 address
 organization
 force
+doi
+institution
+month
+type
+howpublished
