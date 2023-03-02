@@ -20,3 +20,4 @@ institution
 month
 type
 howpublished
+series
