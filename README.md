@@ -16,6 +16,8 @@ The main bibtex file ([cdl.bib](https://raw.githubusercontent.com/ContextLab/CDL
   - [`compare`](#compare)
   - [`commit`](#commit)
 - [Using the bibtex file as a common bibliography for all *local* LaTeX files](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files)
+  - [General Unix/Linux Setup (Command Line Compilation)](#general-unixlinux-setup-command-line-compilation)
+  - [MacOS Setup with TeXShop and TeX Live](#macos-setup-with-texshop-and-tex-live)
 - [Using the bibtex file on Overleaf](#using-the-bibtex-file-on-overleaf)
 - [Acknowledgements](#acknowledgements)
 
@@ -190,6 +192,8 @@ called, and a pull request must be submitted in order to integrate the changes
 into the main ContextLab fork.
 
 # Using the bibtex file as a common bibliography for all *local* LaTeX files
+
+## General Unix/Linux Setup (Command Line Compilation)
 1. Check out this repository to your home directory
 2. Add the following lines to your `~/.bash_profile` (or `~/.zshrc`, etc.):
 ```
@@ -207,6 +211,28 @@ latex filename
 latex filename
 pdflatex filename
 ```
+
+## MacOS Setup with TeXShop and TeX Live
+
+Mac GUI applications like TeXShop don't execute within your shell environment, which means the environment variable approach described above won't work when compiling through the TeXShop GUI. Instead, use TeX Live's built-in support for personal files:
+
+1. Check out this repository (we'll assume you cloned it to your home directory: `~/CDL-bibliography`)
+2. Create the TeX Live personal texmf directory structure for bibliography files:
+```bash
+mkdir -p ~/Library/texmf/bibtex/bib
+```
+3. Create a symbolic link from your personal texmf directory to the CDL-bibliography repository. **Important**: You must use the absolute path (not relative paths or `~`):
+```bash
+ln -s /Users/YOUR_USERNAME/CDL-bibliography/cdl.bib ~/Library/texmf/bibtex/bib/cdl.bib
+```
+Replace `YOUR_USERNAME` with your actual macOS username, or use `$HOME` instead:
+```bash
+ln -s $HOME/CDL-bibliography/cdl.bib ~/Library/texmf/bibtex/bib/cdl.bib
+```
+4. In your .tex file, use the line `\bibliography{cdl}` to generate a bibliography using the citation keys defined in cdl.bib
+5. Compile your document using TeXShop's GUI or from the command line
+
+**Note**: This approach also works for command-line compilation, so you don't need to set up the environment variables if you use this method.
 
 # Using the bibtex file on Overleaf
 You can use [git submodules](https://blog.github.com/2016-02-01-working-with-submodules/) to maintain a reference to the cdl.bib file in this repository that you can easily keep in sync with latest version.  This avoids the need to maintain a separate .bib file in each Overleaf project.
