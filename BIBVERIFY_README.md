@@ -90,16 +90,21 @@ python bibverify.py info
 3. **CrossRef Lookup**:
    - If DOI exists: Direct lookup via DOI (most reliable)
    - If no DOI: Search by title and first author name
-4. **Fuzzy Matching**: Compares retrieved metadata with BibTeX entry using similarity ratios
-5. **Discrepancy Detection**: Identifies mismatches in:
-   - Titles (with 85% similarity threshold)
-   - Author names (with 70% similarity threshold)
-   - Publication years
-   - Journal/venue names (with 70% similarity threshold)
+4. **Conservative Match Verification** (CRITICAL):
+   - **Before reporting any discrepancies**, verifies this is actually the same paper
+   - Requires ALL of the following to match:
+     - Title similarity ≥ 85%
+     - Author similarity ≥ 70%
+     - Journal similarity ≥ 60% (if journal present)
+     - Year difference ≤ 1 year
+   - **Rejects uncertain matches** rather than reporting false positives
+   - Example: GuoEtal20 would match a different paper by title alone, but is correctly rejected due to 0% author match
+5. **Metadata Verification** (only after confident match):
    - Volume numbers
+   - Issue/number
    - Page ranges
-   - Missing DOIs
-6. **Reporting**: Generates detailed report of verification results
+   - Detects common errors (e.g., DOI in pages field)
+6. **Reporting**: Only reports discrepancies when confident it's the same paper
 
 ## Verification Results
 
@@ -166,31 +171,33 @@ The tool uses polite practices:
 
 ## Discrepancy Types
 
-### Title Mismatches
-- Often due to capitalization differences
-- LaTeX formatting (e.g., `{BERT}` vs `BERT`)
-- Punctuation variations
-- Threshold: 85% similarity
+**Note**: The tool only reports discrepancies when it's confident it found the same paper. This prevents false positives like suggesting corrections based on a completely different paper.
 
-### Author Mismatches
-- Name formatting (First Last vs F. Last)
-- Initials vs full names
-- Special characters in names
-- Threshold: 70% similarity (by last name)
+### Volume/Number Mismatches
+- Incorrect volume or issue numbers
+- Typos in metadata
+- Example: `Volume mismatch: '34' vs '35'`
 
-### Year Mismatches
-- Often indicates preprint vs published version
-- May suggest entry needs updating
+### Page Range Errors
+- Incorrect page numbers
+- **DOI in pages field** (common error)
+- Format inconsistencies
+- Example: `Pages field contains DOI, should be: 123-456`
 
-### Journal/Venue Mismatches
-- Abbreviations vs full names
-- Publisher variations
-- Conference vs journal variations
+### Year Discrepancies
+- ±1 year difference flagged as potential preprint vs published
+- Larger differences may indicate wrong entry
+- Example: `Year off by 1: 2020 vs 2019 (preprint vs published?)`
 
-### Missing DOIs
-- Very common issue
-- Tool can suggest DOIs to add
-- Improves future lookups and citations
+### Non-Matches (Warnings)
+The tool will NOT report discrepancies in these cases:
+- **No data found in CrossRef** (20% of entries)
+- **Low title similarity** (< 85%) - might be different paper
+- **Low author similarity** (< 70%) - likely different paper
+- **Low journal similarity** (< 60%) - uncertain match
+- **Year difference > 1 year** - probably different version/paper
+
+This conservative approach prevents false positives like the GuoEtal20 case where a title search might match a completely different paper.
 
 ## Integration with Existing Workflow
 

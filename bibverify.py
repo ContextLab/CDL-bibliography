@@ -218,6 +218,55 @@ class BibVerifier:
         similarity = matches / max(len(bib_last_names), len(crossref_last_names))
         return similarity > 0.7, similarity
 
+    def is_confident_match(self, entry: Dict, crossref_data: Dict) -> Tuple[bool, str]:
+        """
+        Determine if CrossRef data is a confident match for the BibTeX entry.
+
+        Returns:
+            (is_match, reason)
+        """
+        title = entry.get('title', '')
+        authors = entry.get('author', '')
+        journal = entry.get('journal', '')
+        year = entry.get('year', '')
+
+        # Get CrossRef fields
+        crossref_title = crossref_data.get('title', [''])[0] if crossref_data.get('title') else ''
+        crossref_authors = crossref_data.get('author', [])
+        crossref_journal = crossref_data.get('container-title', [''])[0] if crossref_data.get('container-title') else ''
+        crossref_year = crossref_data.get('published', {}).get('date-parts', [[None]])[0][0]
+
+        # Calculate similarities
+        title_sim = self.similarity_ratio(title, crossref_title)
+        authors_match, author_sim = self.compare_authors(authors, crossref_authors)
+        journal_sim = self.similarity_ratio(journal, crossref_journal) if journal and crossref_journal else 1.0
+
+        # Log similarities for debugging
+        self.log(f"  Title similarity: {title_sim:.2%}", "info")
+        self.log(f"  Author similarity: {author_sim:.2%}", "info")
+        self.log(f"  Journal similarity: {journal_sim:.2%}", "info")
+
+        # STRICT matching criteria: All three must be high
+        # This prevents false positives like GuoEtal20
+        if title_sim < 0.85:
+            return False, f"Title similarity too low ({title_sim:.2%})"
+
+        if author_sim < 0.70:
+            return False, f"Author similarity too low ({author_sim:.2%})"
+
+        # Journal matching is important but some entries may lack journal info
+        if journal and crossref_journal and journal_sim < 0.60:
+            return False, f"Journal similarity too low ({journal_sim:.2%})"
+
+        # Year check - allow ±1 year difference for preprints/published versions
+        if year and crossref_year:
+            year_diff = abs(int(year) - int(crossref_year))
+            if year_diff > 1:
+                return False, f"Year difference too large ({year_diff} years)"
+
+        # If we pass all checks, this is a confident match
+        return True, "Confident match"
+
     def verify_entry(self, entry: Dict) -> Tuple[bool, List[str], Dict]:
         """
         Verify a single BibTeX entry.
@@ -238,8 +287,10 @@ class BibVerifier:
         authors = entry.get('author', '')
         year = entry.get('year', '')
         journal = entry.get('journal', '')
+        booktitle = entry.get('booktitle', '')
         volume = entry.get('volume', '')
         pages = entry.get('pages', '')
+        number = entry.get('number', '')
         doi = entry.get('doi', '')
 
         # Query CrossRef
@@ -263,66 +314,62 @@ class BibVerifier:
                 self.warning_count += 1
             return False, [f"No verification data found in CrossRef"], {}
 
-        # Compare fields
+        # CRITICAL: Verify this is actually the same paper
+        # This prevents false positives like GuoEtal20
+        is_match, match_reason = self.is_confident_match(entry, crossref_data)
+        if not is_match:
+            self.log(f"CrossRef result not a confident match: {match_reason}", "warning")
+            with self.lock:
+                self.warning_count += 1
+            return False, [f"No confident match in CrossRef: {match_reason}"], {}
+
+        # At this point, we have a confident match
+        # Now verify specific metadata fields (volume, pages, number)
         discrepancies = []
         corrections = {}
-
-        # Verify title
-        crossref_title = crossref_data.get('title', [''])[0] if crossref_data.get('title') else ''
-        title_similarity = self.similarity_ratio(title, crossref_title)
-        if title_similarity < 0.85:
-            discrepancies.append(f"Title mismatch (similarity: {title_similarity:.2%})")
-            discrepancies.append(f"  BibTeX:   {title}")
-            discrepancies.append(f"  CrossRef: {crossref_title}")
-            # Don't auto-correct titles as they may have intentional formatting
-
-        # Verify authors
-        crossref_authors = crossref_data.get('author', [])
-        authors_match, author_similarity = self.compare_authors(authors, crossref_authors)
-        if not authors_match:
-            crossref_author_str = self.format_authors(crossref_authors)
-            discrepancies.append(f"Author mismatch (similarity: {author_similarity:.2%})")
-            discrepancies.append(f"  BibTeX:   {authors}")
-            discrepancies.append(f"  CrossRef: {crossref_author_str}")
-            # Could auto-correct authors but risky
-
-        # Verify year
-        crossref_year = crossref_data.get('published', {}).get('date-parts', [[None]])[0][0]
-        if crossref_year and year and str(crossref_year) != str(year):
-            discrepancies.append(f"Year mismatch: {year} vs {crossref_year}")
-            corrections['year'] = str(crossref_year)
-
-        # Verify journal/venue
-        crossref_journal = crossref_data.get('container-title', [''])[0] if crossref_data.get('container-title') else ''
-        if journal and crossref_journal:
-            journal_similarity = self.similarity_ratio(journal, crossref_journal)
-            if journal_similarity < 0.7:
-                discrepancies.append(f"Journal mismatch (similarity: {journal_similarity:.2%})")
-                discrepancies.append(f"  BibTeX:   {journal}")
-                discrepancies.append(f"  CrossRef: {crossref_journal}")
-                # Could suggest correction
 
         # Verify volume
         crossref_volume = crossref_data.get('volume', '')
         if volume and crossref_volume and volume != crossref_volume:
-            discrepancies.append(f"Volume mismatch: {volume} vs {crossref_volume}")
+            discrepancies.append(f"Volume mismatch: '{volume}' vs '{crossref_volume}'")
             corrections['volume'] = crossref_volume
+
+        # Verify issue/number
+        crossref_issue = crossref_data.get('issue', '') or crossref_data.get('journal-issue', {}).get('issue', '')
+        if number and crossref_issue and number != crossref_issue:
+            discrepancies.append(f"Issue/Number mismatch: '{number}' vs '{crossref_issue}'")
+            corrections['number'] = crossref_issue
 
         # Verify pages
         crossref_pages = crossref_data.get('page', '')
         if pages and crossref_pages:
-            # Normalize page formats for comparison
-            norm_pages = pages.replace('--', '-').replace('−', '-')
-            norm_crossref = crossref_pages.replace('--', '-').replace('−', '-')
-            if norm_pages != norm_crossref:
-                discrepancies.append(f"Pages mismatch: {pages} vs {crossref_pages}")
-                # Pages can have different formats, be cautious
+            # Check if pages field contains a DOI (common error)
+            if 'doi.org' in pages.lower():
+                discrepancies.append(f"Pages field contains DOI, should be: {crossref_pages}")
+                corrections['pages'] = crossref_pages
+            else:
+                # Normalize page formats for comparison
+                norm_pages = pages.replace('--', '-').replace('−', '-').strip()
+                norm_crossref = crossref_pages.replace('--', '-').replace('−', '-').strip()
 
-        # Add DOI if missing
-        crossref_doi = crossref_data.get('DOI', '')
-        if not doi and crossref_doi:
-            corrections['doi'] = f"https://doi.org/{crossref_doi}"
-            discrepancies.append(f"DOI missing, can add: {crossref_doi}")
+                # Only flag if they're substantially different
+                if norm_pages != norm_crossref:
+                    # Check if it's just formatting (e.g., 123-456 vs 123--456)
+                    if norm_pages.replace('-', '') != norm_crossref.replace('-', ''):
+                        discrepancies.append(f"Pages mismatch: '{pages}' vs '{crossref_pages}'")
+                        # Don't auto-correct pages as format may be intentional
+
+        # Check for year discrepancy (should be rare after confident match check)
+        crossref_year = crossref_data.get('published', {}).get('date-parts', [[None]])[0][0]
+        if crossref_year and year:
+            year_diff = abs(int(year) - int(crossref_year))
+            if year_diff == 1:
+                discrepancies.append(f"Year off by 1: {year} vs {crossref_year} (preprint vs published?)")
+                # Don't auto-correct - may be intentional for preprints
+            elif year_diff > 1:
+                # This shouldn't happen if confident_match worked correctly
+                discrepancies.append(f"Year mismatch: {year} vs {crossref_year}")
+                corrections['year'] = str(crossref_year)
 
         # Summary
         if discrepancies:
