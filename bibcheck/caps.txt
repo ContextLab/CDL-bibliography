@@ -383,7 +383,6 @@ Pyparse
 Landauer
 EMBS
 BHI
-Third
 RDoC
 USENIX
 CIRP
