@@ -10,12 +10,16 @@ The main bibtex file ([cdl.bib](https://raw.githubusercontent.com/ContextLab/CDL
 - [Using the bibtex checker tools](#using-the-bibtex-checker-tools)
   - [Installation](#installation)
   - [Overview](#overview)
+  - [bibcheck.py - Format Verification](#bibcheckpy---format-verification)
+  - [bibverify.py - Accuracy Verification](#bibverifypy---accuracy-verification)
 - [Suggested workflow](#suggested-workflow)
 - [Additional information and usage instructions](#additional-information-and-usage-instructions)
-  - [`verify`](#verify)
-  - [`compare`](#compare)
-  - [`commit`](#commit)
+  - [`bibcheck verify`](#verify)
+  - [`bibcheck compare`](#compare)
+  - [`bibcheck commit`](#commit)
 - [Using the bibtex file as a common bibliography for all *local* LaTeX files](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files)
+  - [General Unix/Linux Setup (Command Line Compilation)](#general-unixlinux-setup-command-line-compilation)
+  - [MacOS Setup with TeXShop and TeX Live](#macos-setup-with-texshop-and-tex-live)
 - [Using the bibtex file on Overleaf](#using-the-bibtex-file-on-overleaf)
 - [Acknowledgements](#acknowledgements)
 
@@ -33,10 +37,27 @@ You may find the included bibtex file and/or readme file useful for any of the f
 - Instructions for adding this repository as a sub-module to Overleaf projects, so that you can share a common bibtex file across your Overleaf projects
 
 ## Using the bibtex checker tools
-You may find the bibtex checker tools useful for:
-- Verifying the integrity of a .bib file
+
+This repository includes two complementary verification tools:
+
+1. **bibcheck.py** - Verifies formatting and consistency
+   - Checks key naming conventions
+   - Validates author/editor name formatting
+   - Ensures proper capitalization
+   - Verifies page number formatting
+   - Removes duplicate entries
+
+2. **bibverify.py** - Verifies accuracy against external sources
+   - Cross-references entries with CrossRef database (170M+ records)
+   - Validates volume, issue/number, and page fields
+   - Detects common errors (e.g., DOI in pages field)
+   - Uses conservative matching to prevent false positives
+
+You may find these tools useful for:
+- Verifying the integrity and accuracy of a .bib file
 - Autocorrecting a .bib file (use with caution!)
 - Automatically generating change logs and commit messages
+- Finding and fixing metadata errors
 
 ### Installation
 The bibtex checker has only been tested on MacOS, but it will probably work without modification on other Unix systems, and with minor modification on Windows systems.
@@ -49,7 +70,9 @@ pip install -r requirements.txt
 
 ### Overview
 
-The included checker has three general functions: `verify`, `compare`, and `commit`:
+#### bibcheck.py - Format Verification
+
+The format verification tool has three main functions: `verify`, `compare`, and `commit`:
 ```bash
 Usage: bibcheck.py [OPTIONS] COMMAND [ARGS]...
 
@@ -66,25 +89,95 @@ Commands:
   verify
 ```
 
+#### bibverify.py - Accuracy Verification
+
+The accuracy verification tool checks entries against the CrossRef database:
+```bash
+Usage: python bibverify.py [OPTIONS] COMMAND [ARGS]...
+
+Commands:
+  verify  Verify bibliographic entries against CrossRef database
+  info    Show information about the verification tool
+```
+
+**Key Features:**
+- **Fast:** Verifies 6,151 entries in ~6 minutes using parallel processing
+- **Conservative:** Requires strong similarity in title, authors, AND journal before reporting issues
+- **Accurate:** Prevents false positives by rejecting uncertain matches
+- **Focused:** Only checks volume, issue, and pages metadata (not formatting)
+
+**Basic Usage:**
+```bash
+# Verify entire bibliography with 10 parallel workers
+python bibverify.py verify cdl.bib --workers 10
+
+# Get detailed output
+python bibverify.py verify cdl.bib --verbose --workers 10
+
+# Save report to file
+python bibverify.py verify cdl.bib --workers 10 > verification_report.txt 2>&1
+```
+
+**How it Works:**
+1. Queries CrossRef API by DOI (if present) or by title/authors
+2. **Conservative Matching:** Requires ALL of:
+   - Title similarity ≥ 85%
+   - Author similarity ≥ 70%
+   - Journal similarity ≥ 60%
+   - Year difference ≤ 1 year
+3. Only reports discrepancies when confident it's the same paper
+4. Checks for volume/number mismatches, incorrect pages, and common errors
+
+**Example Output:**
+```
+============================================================
+VERIFICATION SUMMARY
+============================================================
+✓ Verified: 3,988 (65%)
+✗ Errors: 724 (12%)
+⚠ Warnings: 1,434 (23%)
+
+Common errors found:
+- Volume/issue number mismatches
+- Page range errors or off-by-one issues
+- DOI placed in pages field instead of doi field
+- Year discrepancies (preprint vs published versions)
+```
+
+**Performance:** With 10 workers, verifies ~17 entries/second. Full bibliography verification takes approximately 6 minutes.
+
+**Note:** 23% of entries may not be found in CrossRef (arXiv preprints, technical reports, very new/old publications). The tool correctly rejects uncertain matches rather than suggesting false corrections.
+
 # Suggested workflow
 
 After making changes to `cdl.bib` (manually, using
 [bibdesk](https://bibdesk.sourceforge.io/), etc.), please follow the suggested
 workflow below in order to safely update the shared lab resource:
 
-1. Verify the integrity of the modified cdl.bib file (correct any changes until this passes):
+1. **(Optional) Verify accuracy against CrossRef:**
+```bash
+python bibverify.py verify cdl.bib --workers 10 > verification_report.txt 2>&1
+# Review verification_report.txt and fix any genuine errors found
+```
+
+2. Verify the formatting/integrity of the modified cdl.bib file (correct any changes until this passes):
 ```bash
 python bibcheck.py verify --verbose
 ```
-2. Generate a change log and commit your changes:
+
+3. Generate a change log and commit your changes:
 ```bash
 python bibcheck.py commit --verbose
 ```
-3. Push your changes to your fork:
+
+4. Push your changes to your fork:
 ```bash
 git push
 ```
-4. Create a pull request for pulling your changes into the ContextLab fork
+
+5. Create a pull request for pulling your changes into the ContextLab fork
+
+**Note:** The bibverify step is optional but recommended for catching metadata errors. It's especially useful when adding new entries or updating existing ones.
 
 ## Additional information and usage instructions
 
@@ -190,6 +283,8 @@ called, and a pull request must be submitted in order to integrate the changes
 into the main ContextLab fork.
 
 # Using the bibtex file as a common bibliography for all *local* LaTeX files
+
+## General Unix/Linux Setup (Command Line Compilation)
 1. Check out this repository to your home directory
 2. Add the following lines to your `~/.bash_profile` (or `~/.zshrc`, etc.):
 ```
@@ -207,6 +302,28 @@ latex filename
 latex filename
 pdflatex filename
 ```
+
+## MacOS Setup with TeXShop and TeX Live
+
+Mac GUI applications like TeXShop don't execute within your shell environment, which means the environment variable approach described above won't work when compiling through the TeXShop GUI. Instead, use TeX Live's built-in support for personal files:
+
+1. Check out this repository (we'll assume you cloned it to your home directory: `~/CDL-bibliography`)
+2. Create the TeX Live personal texmf directory structure for bibliography files:
+```bash
+mkdir -p ~/Library/texmf/bibtex/bib
+```
+3. Create a symbolic link from your personal texmf directory to the CDL-bibliography repository. **Important**: You must use the absolute path (not relative paths or `~`):
+```bash
+ln -s /Users/YOUR_USERNAME/CDL-bibliography/cdl.bib ~/Library/texmf/bibtex/bib/cdl.bib
+```
+Replace `YOUR_USERNAME` with your actual macOS username, or use `$HOME` instead:
+```bash
+ln -s $HOME/CDL-bibliography/cdl.bib ~/Library/texmf/bibtex/bib/cdl.bib
+```
+4. In your .tex file, use the line `\bibliography{cdl}` to generate a bibliography using the citation keys defined in cdl.bib
+5. Compile your document using TeXShop's GUI or from the command line
+
+**Note**: This approach also works for command-line compilation, so you don't need to set up the environment variables if you use this method.
 
 # Using the bibtex file on Overleaf
 You can use [git submodules](https://blog.github.com/2016-02-01-working-with-submodules/) to maintain a reference to the cdl.bib file in this repository that you can easily keep in sync with latest version.  This avoids the need to maintain a separate .bib file in each Overleaf project.

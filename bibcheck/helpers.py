@@ -427,6 +427,21 @@ def valid_page(p): #single page, no hyphens
 
 
 def valid_pages(p):
+    # Check for invalid dash characters (en-dash, em-dash, minus sign, etc.)
+    invalid_dashes = {
+        '\u2013': 'en-dash (–)',
+        '\u2014': 'em-dash (—)',
+        '\u2212': 'minus sign (−)',
+        '\u2010': 'hyphen (‐)',
+        '\u2011': 'non-breaking hyphen (‑)',
+    }
+
+    for dash_char, dash_name in invalid_dashes.items():
+        if dash_char in p:
+            # Return False with error message
+            suggested_fix = p.replace(dash_char, '-')
+            return False, [p, suggested_fix]
+
     valid, kind, val = valid_page(p)
     if valid: #"single" page
         return True, [p, p]
@@ -483,21 +498,39 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps):
     #words = ['-'.join([format_journal_name(x) for x in w.split('-')]) if len(w.split('-')) > 1 else w for w in words] #deal with hyphens
     
     for i, w in enumerate(words):
-        words[i] = w.capitalize()
-        
-        #deal with hyphens
-        if len(w.split('-')) > 1:
-            words[i] = '-'.join(format_journal_name(c, key=key, force_caps=force_caps) for c in w.split('-'))
-        
-        if (i > 0) and (w.lower() in uncaps):
-            words[i] = words[i].lower()
-        
-        correct_caps = [f for f in force_caps if f.lower() == remove_non_letters(w.lower())]
+        # Check if word is fully braced (starts and ends with braces around the whole word)
+        is_fully_braced = before_letters(w, '{') and after_letters(w, '}')
+
+        if is_fully_braced:
+            # Remove outer braces for processing, we'll check caps on the content
+            unbraced = remove_curlies(w, join=' ')
+            prefix, core, suffix = strip_leading_trailing_non_letters(unbraced)
+        else:
+            # Not fully braced, process normally
+            prefix, core, suffix = strip_leading_trailing_non_letters(w)
+
+        # Skip if no core (word is only punctuation)
+        if not core:
+            words[i] = w
+            continue
+
+        correct_caps = [f for f in force_caps if f.lower() == remove_non_letters(core.lower())]
+
         if len(correct_caps) >= 1:
             c = correct_caps[-1]
             if not (c[0] == '{' and c[-1] == '}'):
-                c = insert_non_letters('{' + c + '}', remove_curlies(w, join=' '))
-            words[i] = c
+                c = insert_non_letters('{' + c + '}', remove_curlies(core, join=' '))
+            # Add back prefix and suffix (but not the outer braces we removed, since c already has them)
+            words[i] = prefix + c + suffix
+        else:
+            words[i] = w.capitalize()
+
+            #deal with hyphens
+            if len(w.split('-')) > 1:
+                words[i] = '-'.join(format_journal_name(c, key=key, force_caps=force_caps) for c in w.split('-'))
+
+            if (i > 0) and (w.lower() in uncaps):
+                words[i] = words[i].lower()
     return ' '.join(words)
 
 #rearrange author name (first middle last suffix)
@@ -624,7 +657,36 @@ def before_letters(s, c): #true if c occurs before the first letter in s
 def after_letters(s, c): #true if c occurs after the last letter in s
     return before_letters(s[::-1], c)
 
-def insert_non_letters(x, y):    
+def strip_leading_trailing_non_letters(s):
+    """Strip leading and trailing non-alphabetic characters from a string.
+    Returns (prefix, core, suffix) where core contains only letters and internal punctuation."""
+    if len(s) == 0:
+        return '', '', ''
+
+    # Find first letter
+    first_letter = -1
+    for i, c in enumerate(s):
+        if c.lower() in ascii_lowercase:
+            first_letter = i
+            break
+
+    if first_letter == -1:  # No letters found
+        return s, '', ''
+
+    # Find last letter
+    last_letter = -1
+    for i in range(len(s) - 1, -1, -1):
+        if s[i].lower() in ascii_lowercase:
+            last_letter = i
+            break
+
+    prefix = s[:first_letter]
+    core = s[first_letter:last_letter + 1]
+    suffix = s[last_letter + 1:]
+
+    return prefix, core, suffix
+
+def insert_non_letters(x, y):
     z = ''
     i = 0 #position in x
     j = 0 #position in y
@@ -641,15 +703,15 @@ def insert_non_letters(x, y):
             j += 1
         else: #x[i] and y[j] are both in ascii_lowercase but x[i] != x[j] -- throw an error
             raise Exception(f'"{y}" is not a compatable template for "{x}"')
-    
+
     #insert trailing punctuation from y
     if (j < len(y)) and (remove_non_letters(y[j:]) == ''):
         z += y[j:]
-    
+
     #insert trailing punctuation from x
     if (i < len(x)) and (remove_non_letters(x[i:]) == ''):
         z += x[i:]
-    
+
     return z
 
 def format_title(title):
@@ -689,16 +751,22 @@ def format_title(title):
         
         #leave "a" and specified caps unchanged
         if w.lower() == 'a' or (before_letters(w, '{') and after_letters(w, '}')):
-            reformatted_title.append(w)                  
+            reformatted_title.append(w)
         #if w contains curly braces, just append it unchanged
         elif (w.count('{') > 0) or (w.count('}') > 0):
-            reformatted_title.append(w)        
+            reformatted_title.append(w)
         else:
-            caps_match = [f for f in force_caps if f.lower() == remove_non_letters(w.lower())]
-            if len(caps_match) > 0:
-                w = insert_non_letters('{' + caps_match[-1] + '}', w)
-            elif not ends_in_punctuation(prev_w):                
-                w = w.lower()
+            # Strip leading/trailing non-letters before checking caps
+            prefix, core, suffix = strip_leading_trailing_non_letters(w)
+            # Only check core if it has letters
+            if core:
+                caps_match = [f for f in force_caps if f.lower() == remove_non_letters(core.lower())]
+                if len(caps_match) > 0:
+                    # Apply braces only to the core, then add back prefix and suffix
+                    core_with_braces = insert_non_letters('{' + caps_match[-1] + '}', remove_curlies(core, join=' '))
+                    w = prefix + core_with_braces + suffix
+                elif not ends_in_punctuation(prev_w):
+                    w = w.lower()
             reformatted_title.append(w)
         prev_w = w
     
