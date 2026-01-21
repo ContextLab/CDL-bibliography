@@ -1,6 +1,7 @@
 arXiv
 bioRxiv
 PsyArXiv
+SoftwareX
 PLoS
 BMC
 EEG
