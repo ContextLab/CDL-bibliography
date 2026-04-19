@@ -53218,3 +53218,247 @@
 	Title = {Mixtures of {D}irichlet processes with applications to {B}ayesian nonparametric problems},
 	Volume = {2},
 	Year = {1974}}
+@comment{% References for the Kiewit PLF proposal and its companion whitepaper.
+% All entries below have been web-verified against their primary sources
+% (publisher pages, arXiv records, ACL Anthology, AAAI OJS, ACM DL,
+% NeurIPS proceedings, HUP / Open Library, PubMed) during the
+% preparation of this document. Formatting follows the CDL bibcheck
+% conventions documented at
+% https://github.com/ContextLab/CDL-bibliography#verify :
+%   - keys: Mann21 / MannKaha21 / MannEtal21 (with a/b suffixes on
+%     collision), using the *publication* year's last two digits.
+%   - authors: "F M Surname" form, " and "-separated.
+%   - standard fields only (doi / note / eprint are not in the
+%     keep_fields list and will be stripped by bibcheck on integration).
+%   - the arXiv-preprint convention in cdl.bib is:
+%       Journal = {{arXiv}}, Volume = {doi.org/10.48550/arXiv.NNNN.NNNNN}
+%
+% Verification notes (primary source URLs) are kept in comments
+% next to each entry so the audit trail is preserved when these
+% entries are merged upstream into cdl.bib.
+
+% ---------------------------------------------------------------
+% I. Historical Dartmouth references (proposal §2)
+% ---------------------------------------------------------------
+
+% KemeKurt68: Science 162(3850):223-228, DOI 10.1126/science.162.3850.223
+% Verified via PubMed PMID 5675464.}
+
+@comment{% Keme72: Book. Verified via Open Library OL5282840M and bookseller
+% records (ISBN 0684130432). Publisher is Charles Scribner's Sons.}
+
+@comment{% McCaEtal06: AI Magazine 27(4):12-14, 2006 reprint of the original
+% 31 August 1955 proposal. Verified by downloading the AAAI OJS PDF
+% (https://ojs.aaai.org/index.php/aimagazine/article/view/1904) and
+% reading the printed page numbers 12, 13, 14. DOI 10.1609/aimag.v27i4.1904.
+% Per bibcheck the key uses the *publication* year (2006), not the
+% 1955 original date.}
+
+@comment{% Rank18: Book. Verified via HUP catalog
+% https://www.hup.harvard.edu/books/9780674970977 and the De Gruyter
+% record for ISBN 9780674988538.}
+
+@comment{% Kurt81: Chapter in the ACM HOPL-I proceedings volume
+% (Wexelblat ed., Academic Press 1981). Verified via ACM DL
+% https://dl.acm.org/doi/10.1145/800025.1198404 ; pages 515-537
+% refer to Kurtz's chapter alone (the 515-549 span in some indexes
+% includes the subsequent session discussion by Cheatham). The
+% chapter's printed title is simply the acronym "BASIC"; bibcheck's
+% sentence-case rule would render it "Basic" which mangles the
+% acronym, so we use force = {True} to preserve the authoritative
+% printed title.}
+
+@comment{% ---------------------------------------------------------------
+% II. Systems / distributed-inference references
+% ---------------------------------------------------------------
+
+% KwonEtal23: SOSP 2023. Verified pages 611-626 and DOI
+% 10.1145/3600006.3613165 via dblp conf/sosp/KwonLZ0ZY0ZS23 and
+% ACM DL. 29th SOSP was held in Koblenz, Germany.}
+
+@comment{% LiEtal24: CVPR 2024 Highlight. Verified via CVPR 2024 Open Access:
+% https://openaccess.thecvf.com/content/CVPR2024/html/Li_DistriFusion_...
+% Full author list in publication order matches arXiv 2402.19481.}
+
+@comment{% HanEtal24: NAACL 2024 long paper. Verified via ACL Anthology
+% https://aclanthology.org/2024.naacl-long.464 , DOI
+% 10.18653/v1/2024.naacl-long.464 , pages 8385-8400.}
+
+@comment{% BorzEtal23a: Petals system demo at ACL 2023.
+% https://aclanthology.org/2023.acl-demo.54 , DOI
+% 10.18653/v1/2023.acl-demo.54 , pages 558-568, Toronto. "a" suffix
+% because of the second Borzunov 2023 entry (NeurIPS, see BorzEtal23b).}
+
+@comment{% BorzEtal23b: Distinct follow-up paper at NeurIPS 2023 (Poster, not
+% Spotlight). Verified via NeurIPS proceedings
+% https://proceedings.neurips.cc/paper_files/paper/2023/hash/28bf1419b9a1f908c15f6195f58cb865-Abstract-Conference.html
+% and arXiv 2312.08361 . Author list uses "Ryabinin" (the
+% transliteration the authors themselves use in this paper; the ACL
+% demo above uses "Riabinin").}
+
+@comment{% ShihEtal23: NeurIPS 2023 Spotlight. Verified via
+% https://proceedings.neurips.cc/paper_files/paper/2023/hash/0d1986a61e30e5fa408c81216a616e20-Abstract-Conference.html
+% pages 4263-4276 in Adv. Neural Inf. Process. Syst. vol. 36. The
+% "ParaDiGMS" name is the project name; the paper's title itself is
+% "Parallel Sampling of Diffusion Models".}
+
+@comment{% ---------------------------------------------------------------
+% III. Diffusion-LM references
+% ---------------------------------------------------------------
+
+% YeEtal25: arXiv preprint (no venue acceptance as of April 2026
+% verification). Author list verified in order against arXiv abs/2508.15487.
+% The author surname "Ye" is 2 letters, yielding the short key "YeEtal25".}
+
+@comment{% NieEtal25: arXiv preprint (no venue acceptance as of April 2026
+% verification). Ten-author list verified against arXiv abs/2502.09992.}
+
+@comment{% TrauEtal25: arXiv preprint. The original refs.bib entry abbreviated
+% the author list with "and others"; the full 4-author list is
+% verified against arXiv abs/2510.27500 . Title uses "--" (en-dash)
+% as rendered by arXiv (not "---" / em-dash).}
+
+@comment{% BradNakk25: TMLR 2025. Two authors: "BradNakk25" key. Verified
+% via arXiv abs/2408.09000 and TMLR/OpenReview (forum id zrWNtzSZsf).
+% TMLR does not assign volume/issue/pages.}
+
+@comment{% RazaEtal26: TMLR 2026 (accepted February 2026). Verified via
+% arXiv abs/2601.11444 and TMLR/OpenReview (forum id 4iRx9b0Csu).
+% Full title includes the subtitle "Investigating Ensembles of
+% Diffusion Models" which the whitepaper draft had omitted.}
+
+@article{KemeKurt68,
+ author = {J G Kemeny and T E Kurtz},
+ journal = {Science},
+ number = {3850},
+ pages = {223--228},
+ title = {Dartmouth time-sharing},
+ volume = {162},
+ year = {1968}
+}
+
+@book{Keme72,
+ address = {New York, {NY}},
+ author = {J G Kemeny},
+ publisher = {Charles Scribner's Sons},
+ title = {Man and the computer},
+ year = {1972}
+}
+
+@article{McCaEtal06,
+ author = {J McCarthy and M L Minsky and N Rochester and C E Shannon},
+ journal = {{AI} Magazine},
+ number = {4},
+ pages = {12--14},
+ title = {A proposal for the {Dartmouth} summer research project on artificial intelligence, {August} 31, 1955},
+ volume = {27},
+ year = {2006}
+}
+
+@book{Rank18,
+ address = {Cambridge, {MA}},
+ author = {J L Rankin},
+ publisher = {Harvard {University} Press},
+ title = {A people's history of computing in the {United States}},
+ year = {2018}
+}
+
+@incollection{Kurt81,
+ address = {New York, {NY}},
+ author = {T E Kurtz},
+ booktitle = {History of Programming Languages},
+ editor = {R L Wexelblat},
+ force = {True},
+ pages = {515--537},
+ publisher = {Academic Press},
+ title = {{BASIC}},
+ year = {1981}
+}
+
+@article{KwonEtal23,
+ author = {W Kwon and Z Li and S Zhuang and Y Sheng and L Zheng and C H Yu and J E Gonzalez and H Zhang and I Stoica},
+ journal = {Proceedings of the 29th {ACM} Symposium on Operating Systems Principles},
+ pages = {611--626},
+ title = {Efficient memory management for large language model serving with {PagedAttention}},
+ year = {2023}
+}
+
+@article{LiEtal24,
+ author = {M Li and T Cai and J Cao and Q Zhang and H Cai and J Bai and Y Jia and M-Y Liu and K Li and S Han},
+ journal = {{IEEE} Conference on Computer Vision and Pattern Recognition},
+ title = {{DistriFusion}: distributed parallel inference for high-resolution diffusion models},
+ year = {2024}
+}
+
+@article{HanEtal24,
+ author = {X Han and S Kumar and Y Tsvetkov and M Ghazvininejad},
+ journal = {Proceedings of the 2024 Conference of the North {American} Chapter of the Association for Computational Linguistics: Human Language Technologies (volume 1: Long Papers)},
+ pages = {8385--8400},
+ title = {{David} helps {Goliath}: inference-time collaboration between small specialized and large general diffusion {LMs}},
+ year = {2024}
+}
+
+@article{BorzEtal23a,
+ address = {Toronto, Canada},
+ author = {A Borzunov and D Baranchuk and T Dettmers and M Riabinin and Y Belkada and A Chumachenko and P Samygin and C Raffel},
+ journal = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (volume 3: System Demonstrations)},
+ pages = {558--568},
+ title = {{Petals}: collaborative inference and fine-tuning of large models},
+ year = {2023}
+}
+
+@article{BorzEtal23b,
+ author = {A Borzunov and M Ryabinin and A Chumachenko and D Baranchuk and T Dettmers and Y Belkada and P Samygin and C A Raffel},
+ journal = {Advances in Neural Information Processing Systems},
+ pages = {12312--12331},
+ title = {Distributed inference and fine-tuning of large language models over the internet},
+ volume = {36},
+ year = {2023}
+}
+
+@article{ShihEtal23,
+ author = {A Shih and S Belkhale and S Ermon and D Sadigh and N Anari},
+ journal = {Advances in Neural Information Processing Systems},
+ pages = {4263--4276},
+ title = {Parallel sampling of diffusion models},
+ volume = {36},
+ year = {2023}
+}
+
+@article{YeEtal25,
+ author = {J Ye and Z Xie and L Zheng and J Gao and Z Wu and X Jiang and Z Li and L Kong},
+ journal = {{arXiv}},
+ title = {{Dream 7B}: diffusion large language models},
+ volume = {doi.org/10.48550/arXiv.2508.15487},
+ year = {2025}
+}
+
+@article{NieEtal25,
+ author = {S Nie and F Zhu and Z You and X Zhang and J Ou and J Hu and J Zhou and Y Lin and J-R Wen and C Li},
+ journal = {{arXiv}},
+ title = {Large language diffusion models},
+ volume = {doi.org/10.48550/arXiv.2502.09992},
+ year = {2025}
+}
+
+@article{TrauEtal25,
+ author = {D Trautwein and C Ihle and M Schubotz and B Gipp},
+ journal = {{arXiv}},
+ title = {Challenging tribal knowledge -- large scale measurement campaign on decentralized {NAT} traversal},
+ volume = {doi.org/10.48550/arXiv.2510.27500},
+ year = {2025}
+}
+
+@article{BradNakk25,
+ author = {A Bradley and P Nakkiran},
+ journal = {Transactions on Machine Learning Research},
+ title = {Classifier-free guidance is a predictor-corrector},
+ year = {2025}
+}
+
+@article{RazaEtal26,
+ author = {R Razafindralambo and R Sun and F Precioso and D Garreau and P-A Mattei},
+ journal = {Transactions on Machine Learning Research},
+ title = {When are two scores better than one? investigating ensembles of diffusion models},
+ year = {2026}
+}
