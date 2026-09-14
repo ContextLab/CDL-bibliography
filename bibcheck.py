@@ -1,16 +1,18 @@
 import sys
-sys.path.append('bibcheck')
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent / 'bibcheck'))
 
-from helpers import check_bib, compare_bibs
 import typer
-import numpy as np
 import os
+from verification_cli import app as crossref_app
 
 app = typer.Typer()
+app.add_typer(crossref_app, name='crossref')
 bibfile = 'cdl.bib'
 
 @app.command()
 def verify(fname: str='cdl.bib', autofix: bool=False, outfile: str=None, verbose: bool=False):
+    from helpers import check_bib
     try:
         errors, corrected = check_bib(fname, autofix=autofix, outfile=outfile, verbose=verbose)
     except:
@@ -40,6 +42,7 @@ def verify(fname: str='cdl.bib', autofix: bool=False, outfile: str=None, verbose
 
 @app.command()
 def magic(fname: str='cdl.bib', verbose: bool=True):
+    from helpers import check_bib
     typer.echo('WARNING: potentially unsafe')
     
     outfile = 'cleaned.bib'
@@ -61,6 +64,7 @@ def magic(fname: str='cdl.bib', verbose: bool=True):
     
 @app.command()
 def compare(fname1: str, fname2: str, verbose: bool=False, outfile: str=None):
+    from helpers import compare_bibs
     if compare_bibs(fname1, fname2, verbose=verbose, outfile=outfile):
         typer.echo('files match!')
     else:
@@ -72,6 +76,8 @@ def compare(fname1: str, fname2: str, verbose: bool=False, outfile: str=None):
 
 @app.command()
 def commit(fname=bibfile, reference='github', verbose: bool=False, outfile=None):
+    from helpers import check_bib, compare_bibs
+    import numpy as np
     def get_commit_fname():
         def log_exists(fname):
             return os.path.exists(fname + '.log')

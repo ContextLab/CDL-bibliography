@@ -1,0 +1,143 @@
+{
+  "entries": 10,
+  "network_requests": 10,
+  "repeat_network_requests": 0,
+  "newly_verified": 0,
+  "results": [
+    {
+      "key": "BateEtal15b",
+      "status": "needs_review",
+      "best_doi": "10.3389/fpsyg.2015.00312",
+      "best_title": [
+        "Working memory differences in long-distance dependency resolution"
+      ],
+      "issues": [
+        "title: missing evidence or mismatch",
+        "author: Missing authors or different author counts",
+        "journal: missing evidence or mismatch",
+        "volume: missing evidence or mismatch"
+      ]
+    },
+    {
+      "key": "MehtEtal24",
+      "status": "needs_review",
+      "best_doi": "10.31219/osf.io/h3cmw",
+      "best_title": [
+        "Efficient Large Language Model Inference with Vectorized Floating Point Calculations"
+      ],
+      "issues": [
+        "title: missing evidence or mismatch",
+        "author: Missing authors or different author counts",
+        "publication type/version is unsupported or differs",
+        "journal: missing evidence or mismatch",
+        "volume: missing evidence or mismatch"
+      ]
+    },
+    {
+      "key": "WangEtal23",
+      "status": "needs_review",
+      "best_doi": "10.1109/tpami.2026.3717905",
+      "best_title": [
+        "BitNet v2: Low-bit and Sparsified Activations for 1-bit Large Language Models"
+      ],
+      "issues": [
+        "title: missing evidence or mismatch",
+        "author: Missing authors or different author counts",
+        "year: missing evidence or mismatch",
+        "journal: missing evidence or mismatch",
+        "volume: missing evidence or mismatch",
+        "pages: source supplies a field absent from the citation"
+      ]
+    },
+    {
+      "key": "JianEtal24",
+      "status": "needs_review",
+      "best_doi": "10.2139/ssrn.1001904",
+      "best_title": [
+        "Experts and Non-Experts"
+      ],
+      "issues": [
+        "title: missing evidence or mismatch",
+        "author: Missing authors or different author counts",
+        "year: missing evidence or mismatch",
+        "journal: missing evidence or mismatch",
+        "volume: missing evidence or mismatch"
+      ]
+    },
+    {
+      "key": "TouvEtal23",
+      "status": "needs_review",
+      "best_doi": "10.7759/cureus.40895",
+      "best_title": [
+        "ChatDoctor: A Medical Chat Model Fine-Tuned on a Large Language Model Meta-AI (LLaMA) Using Medical Domain Knowledge"
+      ],
+      "issues": [
+        "title: missing evidence or mismatch",
+        "author: Missing authors or different author counts",
+        "journal: missing evidence or mismatch",
+        "volume: missing evidence or mismatch"
+      ]
+    },
+    {
+      "key": "Farr10",
+      "status": "needs_review",
+      "best_doi": "10.1037/a0018042",
+      "best_title": [
+        "Dissociating conditional recency in immediate and delayed free recall: A challenge for unitary models of recency."
+      ],
+      "issues": [
+        "title: missing evidence or mismatch"
+      ]
+    },
+    {
+      "key": "Orns70",
+      "status": "needs_review",
+      "best_doi": "10.1037/h0029801",
+      "best_title": [
+        "Role of prior-list organization in a free recall transfer task."
+      ],
+      "issues": [
+        "title: missing evidence or mismatch"
+      ]
+    },
+    {
+      "key": "LuekEtal71",
+      "status": "needs_review",
+      "best_doi": "10.1037/h0031842",
+      "best_title": [
+        "Effects of blocking of input and blocking of retrieval cues on free recall learning."
+      ],
+      "issues": [
+        "title: missing evidence or mismatch"
+      ]
+    },
+    {
+      "key": "Shap70",
+      "status": "needs_review",
+      "best_doi": "10.1037/h0082853",
+      "best_title": [
+        "Isolation effects, free recall, and organization."
+      ],
+      "issues": [
+        "title: missing evidence or mismatch",
+        "journal: missing evidence or mismatch"
+      ]
+    },
+    {
+      "key": "ShapPale70",
+      "status": "needs_review",
+      "best_doi": "10.1037/h0092991",
+      "best_title": [
+        "After-images."
+      ],
+      "issues": [
+        "title: missing evidence or mismatch",
+        "author: Missing authors or different author counts",
+        "year: missing evidence or mismatch",
+        "journal: missing evidence or mismatch",
+        "number: missing evidence or mismatch",
+        "pages: missing evidence or mismatch"
+      ]
+    }
+  ]
+}

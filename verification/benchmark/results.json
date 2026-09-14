@@ -1,0 +1,429 @@
+{
+  "works": 30,
+  "cases": 60,
+  "passed": 60,
+  "false_acceptances": 0,
+  "missed_matches": 0,
+  "results": [
+    {
+      "id": "YeshEtal21:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "YeshEtal21:subtitle_loss",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "KaraEtal21:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "KaraEtal21:title",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "ChiEtal08:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "ChiEtal08:pages",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "ShafEtal14:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "ShafEtal14:author_order",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "RaccEtal24:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "RaccEtal24:doi",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "MoraGosh14:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "MoraGosh14:type",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "ClewEtal19:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "ClewEtal19:year",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "BoniEtal22:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "BoniEtal22:accent_loss",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "MeinEtal20:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "MeinEtal20:pages",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "ShipAeon19:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "ShipAeon19:author_order",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "ParkEtal17:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "ParkEtal17:doi",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "JossTone20:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "JossTone20:type",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "SotoBlan04:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "SotoBlan04:year",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "HuntKing03:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "HuntKing03:title",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "GlerEtal12:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "GlerEtal12:pages",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "KawaEtal21:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "KawaEtal21:author_order",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "MoseEtal21:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "MoseEtal21:doi",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "GarrRasm14:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "GarrRasm14:type",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "SwarEtal12:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "SwarEtal12:year",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "MeyeEtal19a:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "MeyeEtal19a:title",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "McNeEtal06:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "McNeEtal06:pages",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "Golo21:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "Golo21:author_order",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "McInEtal18b:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "McInEtal18b:doi",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "BeliEtal10:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "BeliEtal10:type",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "ElSo18:original",
+      "kind": "matching_control",
+      "expected": "metadata_verified",
+      "actual": "metadata_verified",
+      "passed": true
+    },
+    {
+      "id": "ElSo18:year",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "Thor13:original",
+      "kind": "abstention_control",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "Thor13:edition",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "FranLiu18:original",
+      "kind": "abstention_control",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "FranLiu18:pages",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "BirdEtal09:original",
+      "kind": "abstention_control",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "BirdEtal09:author_order",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "VaswEtal17:original",
+      "kind": "abstention_control",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "VaswEtal17:doi",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "BateEtal15b:original",
+      "kind": "abstention_control",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    },
+    {
+      "id": "BateEtal15b:type",
+      "kind": "deliberate_perturbation",
+      "expected": "needs_review",
+      "actual": "needs_review",
+      "passed": true
+    }
+  ]
+}

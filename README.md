@@ -1,351 +1,325 @@
-# Contextual Dynamics Laboratory's Bibliography Management Tool
+# Contextual Dynamics Laboratory bibliography
 
 ![autocheck](https://github.com/ContextLab/CDL-bibliography/workflows/autocheck/badge.svg) [![DOI](https://zenodo.org/badge/69401856.svg)](https://zenodo.org/badge/latestdoi/69401856)
 
-The main bibtex file ([cdl.bib](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib)) is shared by all documents produced by the [Contextual Dynamics Lab](http://www.context-lab.com) at [Dartmouth College](http://www.dartmouth.edu).
+[cdl.bib](cdl.bib) is the shared BibTeX bibliography of the [Contextual Dynamics Lab](https://www.context-lab.com/) at Dartmouth College. This repository also provides tools for checking citation formatting and comparing bibliographic metadata with external sources.
 
-## Contents:
-- [What can you use this repository for?](#what-can-you-use-this-repo-for)
-- [Using `cdl.bib`](#using-cdlbib)
-- [Using the bibtex checker tools](#using-the-bibtex-checker-tools)
-  - [Installation](#installation)
-  - [Overview](#overview)
-  - [bibcheck.py - Format Verification](#bibcheckpy---format-verification)
-  - [bibverify.py - Accuracy Verification](#bibverifypy---accuracy-verification)
+**A formatting pass is not an accuracy check. A metadata match is not a guarantee that a citation is correct.** External databases can contain errors or omit information. Before submission, resolve outstanding findings for the references actually used in your manuscript and inspect the rendered bibliography against the cited sources.
+
+## Contents
+
+- [Installation](#installation)
 - [Suggested workflow](#suggested-workflow)
-- [Additional information and usage instructions](#additional-information-and-usage-instructions)
-  - [`bibcheck verify`](#verify)
-  - [`bibcheck compare`](#compare)
-  - [`bibcheck commit`](#commit)
-- [Using the bibtex file as a common bibliography for all *local* LaTeX files](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files)
-  - [General Unix/Linux Setup (Command Line Compilation)](#general-unixlinux-setup-command-line-compilation)
-  - [MacOS Setup with TeXShop and TeX Live](#macos-setup-with-texshop-and-tex-live)
-- [Using the bibtex file on Overleaf](#using-the-bibtex-file-on-overleaf)
-- [Acknowledgements](#acknowledgements)
+- [Citation accuracy and Crossref](#citation-accuracy-and-crossref)
+- [Formatting, comparison, and commits](#formatting-comparison-and-commits)
+- [Using the bibliography in LaTeX](#using-the-bibliography-in-latex)
+- [Using the bibliography on Overleaf](#using-the-bibliography-on-overleaf)
+- [Development](#development)
 
-# What can you use this repository for?
-The main components of this repository are:
-1. A bibtex file containing the bibliographic information
-2. A set of bibtex checker tools that are used to verify the integrity of the bibtex file
+## Installation
 
-## Using `cdl.bib`
-You may find the included bibtex file and/or readme file useful for any of the following:
-- Provides a "pre seeded" bibtex file that you can configure to be referenced in your LaTeX documents
-- A means of organizing a set of papers related to psychology, neuroscience, math, and machine learning
-- A template for a new bibtex file that you want to start
-- Instructions for configuring a system-referenced bibtex file that can be referenced by any LaTeX file on your local machine
-- Instructions for adding this repository as a sub-module to Overleaf projects, so that you can share a common bibtex file across your Overleaf projects
-
-## Using the bibtex checker tools
-
-This repository includes two complementary verification tools:
-
-1. **bibcheck.py** - Verifies formatting and consistency
-   - Checks key naming conventions
-   - Validates author/editor name formatting
-   - Ensures proper capitalization
-   - Verifies page number formatting
-   - Removes duplicate entries
-
-2. **bibverify.py** - Verifies accuracy against external sources
-   - Cross-references entries with CrossRef database (170M+ records)
-   - Validates volume, issue/number, and page fields
-   - Detects common errors (e.g., DOI in pages field)
-   - Uses conservative matching to prevent false positives
-
-You may find these tools useful for:
-- Verifying the integrity and accuracy of a .bib file
-- Autocorrecting a .bib file (use with caution!)
-- Automatically generating change logs and commit messages
-- Finding and fixing metadata errors
-
-### Installation
-The bibtex checker has only been tested on MacOS, but it will probably work without modification on other Unix systems, and with minor modification on Windows systems.
-
-To install the bibtex checker, you must first have a recent version of Python (3.5+) and [pip](https://pip.pypa.io/en/stable/installing/).  After cloning this repository, install the dependencies by running:
+Run commands from the repository root. Python 3.11 is the tested environment for the complete toolset; use a virtual environment to isolate its dependencies:
 
 ```bash
-pip install -r requirements.txt
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python bibcheck.py --help
 ```
 
-### Overview
+For only citation accuracy checking, install `requirements-verification.txt` instead. That path does not need NumPy, pandas, or the formatting lookup tables and supports Python 3.9+. The optional PDF research command additionally needs `requirements-research.txt` and a configured research adapter.
 
-#### bibcheck.py - Format Verification
+The formatter and verification runner are intended for macOS and Linux. The verification runner uses an OS file lock to prevent concurrent runs against the same cache.
 
-The format verification tool has three main functions: `verify`, `compare`, and `commit`:
+## Suggested workflow
+
+1. Add or edit entries in `cdl.bib`, preserving the DOI and the exact publication version you intend to cite.
+2. Run the format checker and inspect any corrections:
+
+   ```bash
+   python bibcheck.py verify --verbose
+   ```
+
+3. Verify new or modified citations:
+
+   ```bash
+   export CROSSREF_MAILTO='your-real-contact-address@institution.edu'
+   python bibcheck.py crossref verify cdl.bib --auto-review
+   ```
+
+4. Resolve findings in `.bibcheck/report.jsonl`. Correct the BibTeX from the actual source, then rerun verification. For sources needing human review, use the workflow below.
+5. Before submission, check the current verification status. To check only a manuscript's references, create `manuscript-keys.txt` with one citation key per line:
+
+   ```bash
+   python bibcheck.py crossref status cdl.bib --keys manuscript-keys.txt
+   # Stronger gate: require an explicit human source review for every selected citation.
+   python bibcheck.py crossref status cdl.bib --keys manuscript-keys.txt --require-human
+   ```
+
+6. Inspect the diff, commit the bibliography/code changes you intend to share, and push or open a pull request. A portable review snapshot can accompany the changes; see below.
+
+The legacy `commit` command checks formatting only. It does not run the accuracy gate. CI runs formatting and offline regression tests; it does not certify external metadata or approve unresolved references.
+
+## Citation accuracy and Crossref
+
+The integrated command is `python bibcheck.py crossref`. `python bibverify.py` is a compatibility entry point to the same implementation. The previous fuzzy, parallel verifier has been replaced; its `--workers`, `--parallel`, and `--autofix` options are no longer supported.
+
 ```bash
-Usage: bibcheck.py [OPTIONS] COMMAND [ARGS]...
+# Initial pass: check uncached entries and export a portable audit snapshot.
+python bibcheck.py crossref verify cdl.bib --snapshot verification/baseline.jsonl.gz
 
-Options:
-  --install-completion  Install completion for the current shell.
-  --show-completion     Show completion for the current shell, to copy it or
-                        customize the installation.
+# Subsequent runs: checks new/modified entries and retries provider failures.
+python bibcheck.py crossref verify cdl.bib
 
-  --help                Show this message and exit.
+# Revisit unchanged entries awaiting review, reusing cached HTTP responses.
+python bibcheck.py crossref verify cdl.bib --retry-unresolved
 
-Commands:
-  commit
-  compare
-  verify
+# Recheck everything, including fresh requests to external sources.
+python bibcheck.py crossref verify cdl.bib --refresh
+
+# Audit cached machine approvals against their saved source evidence.
+python bibcheck.py crossref verify cdl.bib --recheck-cached
+
+# Limit work for a trial run; unchecked entries remain pending.
+python bibcheck.py crossref verify cdl.bib --limit 10
+
+# Offline: reread the bibliography, invalidate stale reviews, and write a report.
+python bibcheck.py crossref status cdl.bib
 ```
 
-#### bibverify.py - Accuracy Verification
+`verify` and `status` exit **0** only when every selected entry has an accepted status, **1** when unresolved entries remain, and **2** on a parsing, configuration, or provider error. A completed initial pass can therefore exit 1: “checked” does not mean “verified.” Reports include entry fingerprints, source metadata, field comparisons, candidate DOIs, request URLs, and retrieval dates.
 
-The accuracy verification tool checks entries against the CrossRef database:
+### What is checked
+
+The checker first looks up an explicit DOI. Without a DOI, it retrieves up to five Crossref search candidates and compares their metadata. Search rank and fuzzy similarity never authorize an entry. A supplied DOI that disagrees with the citation is a review finding, even if another paper has a similar title.
+
+Automatic verification requires supported publication type, complete title/subtitle, full author list in order, publication year, and the applicable venue. Every supplied supported field must agree with the source, including volume, issue, pages/article number, publisher, DOI, ISBN, and ISSN. Missing local volume/page information is flagged when the source supplies it. An omitted issue number is advisory when the volume and full pagination already agree; a supplied but incorrect issue number still blocks verification. Unsupported fields or types require review; `force` never bypasses accuracy checks.
+
+Typography normalization retains brace-protected words, accents, punctuation, and text after a colon. It handles supported LaTeX accents, Unicode, capitalization, typographic quotes, and page-range dashes. Unknown LaTeX commands, math, and semantic markup require source review. Author initials may match source given names, but author counts/order, surnames, suffixes, and supplied middle names/initials must agree. Conflicting full names are not reduced to matching initials.
+
+Preprints are not silently replaced with final publications. Online/print year differences can be resolved automatically when a PubMed journal-issue record confirms the cited year, volume, and pages. Unresolved date conflicts, related versions, and source update/correction relationships remain flagged. Links to reviews or references are retained as evidence but do not by themselves indicate another publication version. Journal abbreviations, shortened page ranges, edited volumes, editions, and incomplete deposited metadata can also require review even when the citation is valid.
+
+### Verification statuses
+
+| Status | Meaning | Passes the default gate? |
+| --- | --- | --- |
+| `metadata_verified` | Supported metadata agrees under the documented comparison policy. This is source consistency, not proof of correctness. | Yes |
+| `human_verified` | A named human recorded source/edition review for this exact entry. | Yes |
+| `needs_review` | Missing evidence, a discrepancy, ambiguity, or unsupported metadata. | No |
+| `provider_error` | A service/network failure prevented checking. | No |
+| `pending` | No review matches the current entry and policy. | No |
+
+`--require-human` accepts only `human_verified`. Neither mode guarantees zero human or source errors. Finite search results cannot prove that no competing work exists.
+
+### Server-friendly requests
+
+A real contact email is required, through `CROSSREF_MAILTO` or `--mailto`, to identify the client to Crossref. Requests use a persistent connection and run one at a time. The default interval is one second after each response, adjustable with `--interval` to a minimum of 0.5 seconds. The client honors advertised rate limits, slows down after 429/5xx responses, respects `Retry-After`, and uses bounded retries. An extended provider failure stops the run with a checkpoint instead of querying every remaining entry during an outage.
+
+Successful responses, including genuine 404 responses, are cached for 30 days. Timeouts, malformed responses, and other service failures are not recorded as “not found.” Reviewed entries remain cached until edited, the verification policy changes, or `--refresh` is requested; the HTTP cache's expiration alone does not invalidate a review.
+
+The Python client also supports small batches of up to 20 explicit DOIs through Crossref's DOI filters. Normal verification uses singleton DOI lookups: Crossref identifies those as lighter operations. Independent bibliographic searches cannot be combined into one equivalent batch query. With thousands of entries lacking DOIs, the first pass can take hours; later runs reuse existing reviews.
+
+See [Crossref's request guidance](https://www.crossref.org/documentation/retrieve-metadata/rest-api/tips-for-using-the-crossref-rest-api/) and [July 2026 rate-limit changes](https://community.crossref.org/t/refining-rest-api-limits-for-improved-stability-and-reliability/16137). Avoid simultaneous jobs or multiple caches that collectively exceed the limits for your contact address/IP.
+
+### Cache, invalidation, and the initial baseline
+
+The initial Crossref pass checked all 6,422 entries. The subsequent [automatic review](verification/automatic-review.md) increased accepted metadata matches from 805 to 1,852, leaving 4,570 unresolved. The [current baseline](verification/README.md) includes those unresolved findings; it does not certify the whole bibliography. All figures describe the September 9, 2026 source snapshot.
+
+The working database is `.bibcheck/verification.sqlite3`, beside the bibliography. SQLite provides indexed lookup, transactional checkpoints, and an audit history without rewriting the whole database after each reference. `--database` and `--report` override output locations.
+
+A SHA-256 fingerprint covers the **exact entry text**, including whitespace, field order, key, and braces. Shared `@string`/preamble definitions and inherited `crossref`/`xdata` entries are included in the dependency fingerprint. Changing any of these invalidates affected approvals automatically. Duplicate keys, duplicate fields, malformed input, and missing/cyclic inheritance fail closed.
+
+Invalidation is deterministic and local: every `verify`, `status`, and review operation rereads the BibTeX and checks its fingerprint. No human, LLM, or network request is needed. Historical database rows remain as audit evidence; they are never returned as current approval for different content. There is no background file watcher, and an exported report is a point-in-time artifact: run `status` against the actual bibliography before relying on a result. Returning to the exact previously reviewed content can reuse its matching review.
+
+Run the initial `verify` once, resuming the same command after interruption. It saves each completed entry independently. Unchanged `needs_review` entries are retained in the review queue rather than repeatedly querying Crossref. Use `--retry-unresolved` deliberately to revisit them. Edits during a run are detected when the final report is regenerated.
+
+`--snapshot PATH` exports a snapshot when a run stops, including a checkpoint after interruption or provider failure. Check its statuses before treating it as a completed baseline: pending/error entries remain unresolved. `--wait` queues a run behind another process using the same cache. Offline `status` and `snapshot` can read checkpoints while verification runs.
+
+The SQLite database and downloaded PDFs are local, ignored files. For backup or sharing across clones, export a compressed JSON Lines snapshot:
+
 ```bash
-Usage: python bibverify.py [OPTIONS] COMMAND [ARGS]...
-
-Commands:
-  verify  Verify bibliographic entries against CrossRef database
-  info    Show information about the verification tool
+python bibcheck.py crossref snapshot verification/baseline.jsonl.gz
+python bibcheck.py crossref restore verification/baseline.jsonl.gz
 ```
 
-**Key Features:**
-- **Fast:** Verifies 6,151 entries in ~6 minutes using parallel processing
-- **Conservative:** Requires strong similarity in title, authors, AND journal before reporting issues
-- **Accurate:** Prevents false positives by rejecting uncertain matches
-- **Focused:** Only checks volume, issue, and pages metadata (not formatting)
+Snapshots contain evidence and statuses, including unresolved entries, and can be committed or otherwise shared. Restore accepts only matching fingerprints and policy versions and preserves existing local reviews. Treat snapshots like trusted repository data, not signed certificates. They do not contain the HTTP response cache or downloaded PDF files. JSONL can be inspected by decompressing it; a changing monolithic JSON file or binary SQLite database is less suitable for sharing in Git.
 
-**Basic Usage:**
+### Automated review of flagged entries
+
+The review queue is not a list of entries that must all be inspected manually. `python bibcheck.py crossref verify cdl.bib --auto-review` runs Crossref and both free review layers in sequence, reusing unchanged results. You can also run the layers separately:
+
 ```bash
-# Verify entire bibliography with 10 parallel workers
-python bibverify.py verify cdl.bib --workers 10
+# Reassess existing evidence without any network calls, including older-policy records.
+python bibcheck.py crossref auto-review cdl.bib --offline
 
-# Get detailed output
-python bibverify.py verify cdl.bib --verbose --workers 10
+# Batch exact DOI lookups against PubMed records via Europe PMC.
+python bibcheck.py crossref auto-review cdl.bib
 
-# Save report to file
-python bibverify.py verify cdl.bib --workers 10 > verification_report.txt 2>&1
+# Read the article's own publisher front matter from open-access PMC XML.
+python bibcheck.py crossref fulltext-review cdl.bib
+
+# Try a broader Crossref title search for ten unresolved entries.
+python bibcheck.py crossref discover-review cdl.bib --limit 10
+
+# Export the current results after these layers.
+python bibcheck.py crossref snapshot verification/baseline.jsonl.gz
 ```
 
-**How it Works:**
-1. Queries CrossRef API by DOI (if present) or by title/authors
-2. **Conservative Matching:** Requires ALL of:
-   - Title similarity ≥ 85%
-   - Author similarity ≥ 70%
-   - Journal similarity ≥ 60%
-   - Year difference ≤ 1 year
-3. Only reports discrepancies when confident it's the same paper
-4. Checks for volume/number mismatches, incorrect pages, and common errors
+These network commands checkpoint and skip entries already processed by that layer. `--limit 10` bounds a pilot. They do not edit citations or impersonate human reviews. DOI ambiguity, substantive source conflicts, unsupported fields, and version uncertainty stay unresolved. Publisher XML can correct incomplete registry evidence when its top-level DOI, title, full authors, and every cited field support the entry; the indexed issue year, volume, and pagination must also agree.
 
-**Example Output:**
-```
-============================================================
-VERIFICATION SUMMARY
-============================================================
-✓ Verified: 3,988 (65%)
-✗ Errors: 724 (12%)
-⚠ Warnings: 1,434 (23%)
+`discover-review` makes one focused title query with up to 20 Crossref candidates per eligible entry, using the same pacing, cache, and strict metadata comparisons. It defaults to ten entries, caps a run at 100, and accepts an optional `--keys` file with one citation key per line. It skips entries with attached external research evidence. It is a separate optional stage, not part of `verify --auto-review`. The [ten-entry live pilot](verification/benchmark/README.md) cleared no additional entries; repeating it made no network requests.
 
-Common errors found:
-- Volume/issue number mismatches
-- Page range errors or off-by-one issues
-- DOI placed in pages field instead of doi field
-- Year discrepancies (preprint vs published versions)
-```
+Optional LLM/PDF evidence collection is also batched and resumable:
 
-**Performance:** With 10 workers, verifies ~17 entries/second. Full bibliography verification takes approximately 6 minutes.
-
-**Note:** 23% of entries may not be found in CrossRef (arXiv preprints, technical reports, very new/old publications). The tool correctly rejects uncertain matches rather than suggesting false corrections.
-
-# Suggested workflow
-
-After making changes to `cdl.bib` (manually, using
-[bibdesk](https://bibdesk.sourceforge.io/), etc.), please follow the suggested
-workflow below in order to safely update the shared lab resource:
-
-1. **(Optional) Verify accuracy against CrossRef:**
 ```bash
-python bibverify.py verify cdl.bib --workers 10 > verification_report.txt 2>&1
-# Review verification_report.txt and fix any genuine errors found
+# Set OPENAI_API_KEY securely in your environment, then choose an API model
+# supporting Responses web search and structured output.
+export BIBCHECK_RESEARCH_MODEL='your-configured-model'
+python bibcheck.py crossref research-batch cdl.bib \
+  --adapter bibcheck/openai_research_adapter.py \
+  --allow-host arxiv.org --allow-host pmc.ncbi.nlm.nih.gov \
+  --limit 10
 ```
 
-2. Verify the formatting/integrity of the modified cdl.bib file (correct any changes until this passes):
+Choose allowed hosts appropriate to the cited sources; add publisher/university hosts as needed, including PDF redirects. This optional command incurs provider charges. It defaults to ten entries, allows at most 100 per invocation, and skips previous attempts unless `--retry-failed` is supplied. Use `--keys manuscript-keys.txt` to prioritize references from an active manuscript. Three consecutive failures stop the run. The included adapter limits discovery to four web-tool calls and each model response to 4,000 output tokens; these are request limits, not a dollar spending cap. Set a provider spending limit before a large run. PDF quotations are checked against downloaded page text, and the findings remain available for adjudication. Neither a model's confidence nor matching quotations alone grant approval.
+
+The included Dartmouth adapter uses your Dartmouth Chat access instead of a commercial API account. It has a custom `web_search` tool: Qwen requests a query, receives actual results, and can revise the query before selecting a retrieved PDF. No built-in model web-search capability is assumed.
+
 ```bash
-python bibcheck.py verify --verbose
+# Use DARTMOUTH_CHAT_API_KEY, or the ignored local key file described below.
+export BIBCHECK_RESEARCH_MODEL='qwen.qwen3.5-122b'
+export BIBCHECK_SEARCH_BACKEND='duckduckgo'  # or europepmc (the default)
+python bibcheck/dartmouth_research_adapter.py --check-model
+python bibcheck.py crossref research-batch cdl.bib \
+  --adapter bibcheck/dartmouth_research_adapter.py \
+  --allow-host arxiv.org --allow-host papers.nips.cc \
+  --allow-host papers.neurips.cc --allow-host proceedings.neurips.cc \
+  --limit 3
 ```
 
-3. Generate a change log and commit your changes:
+For local debugging, the adapter also reads `.bibcheck/secrets/dartmouth_chat_api_key.txt` when `DARTMOUTH_CHAT_API_KEY` is unset. Keep the containing directory mode `700` and the key file mode `600`; the directory is ignored by Git. `BIBCHECK_DARTMOUTH_KEY_FILE` selects another key-file path. The environment variable takes precedence. Never put a key in a command argument or tracked file.
+
+DuckDuckGo uses its public HTML interface, not an official full-results API. This experimental connector stops on challenges, throttling, or unrecognized responses without bypassing them. Europe PMC uses its documented scholarly API. Both return at most five results per search, pace uncached queries, and cache results for seven days. Qwen gets at most three searches and four discovery responses per entry, plus one PDF extraction response. It can select only retrieved PDF links on allowed hosts. Publication identity, edition, and field interpretation remain unresolved until adjudicated; search results and model confidence cannot grant approval.
+
+For the repository secret `DARTMOUTH_CHAT_API_KEY`, use the manual **Dartmouth citation research pilot** GitHub Actions workflow after it has been published to the default branch. It defaults to three entries, checks the exact model ID, restores fingerprint-matching baseline reviews, checkpoints attempts, and exports an evidence snapshot artifact. Model IDs and service availability are checked live; no alternate model or paid provider is selected automatically. The workflow caches local state between runs, including downloaded PDFs; GitHub caches can be evicted, so retain evidence separately when needed. Its artifact contains the portable snapshot, not PDF files. Secrets are passed only to the Dartmouth steps. No scheduled or pull-request run invokes the model. Use the deliberate retry input when revisiting failures with another backend or corrected configuration.
+
+Dartmouth extraction now asks Qwen to select numbered source passages; Python copies every quotation from the original text and validates its page and offsets. The extraction prompt excludes the input citation. Author assembly preserves source order, and conservative literal checks distinguish printed values from proposed interpretations. Publisher metadata from HTML head tags supplies PDF candidates before general search is needed. These checks establish where text came from, not whether it correctly describes the cited work; all model findings remain `needs_review`.
+
+The [follow-up benchmark and live report](verification/benchmark/README.md) records a successful known publisher-page → PDF → Qwen run and 60/60 offline metadata checks across 30 real entries and deliberate alterations. This selected sample does not establish bulk-review accuracy. The [earlier pilot](verification/dartmouth-live-pilot.md) records search challenges, stale links, throttling, and the invented quotation that motivated source-passage selection.
+
+### Fallbacks and human review
+
+The fallback order is:
+
+1. Crossref DOI lookup, or bibliographic search when no DOI is available. If a supplied DOI is absent, a search can provide candidates but cannot silently replace it.
+2. DataCite lookup for a DOI absent from Crossref; arXiv lookup when an arXiv identifier is present. These records are retained as evidence for review. Their version/date semantics are not treated as equivalent to Crossref journal metadata.
+3. Automatic PubMed comparison through Europe PMC, followed by publisher front-matter checks for available open-access full text. See the automatic-review commands above.
+4. Optional LLM-driven web search for the actual PDF, followed by local PDF text extraction and checks that quoted evidence occurs on the stated page.
+5. Human source review. Missing identifiers, paywalls, scanned PDFs, uncertain editions, and unsupported metadata stay unresolved.
+
+No LLM/search provider is enabled by default. Concrete Dartmouth Chat and OpenAI Responses API adapters are included, alongside the provider-neutral adapter contract. Configuration and the PDF evidence format are documented in [the verification design](docs/verification.md). To use an adapter you have configured:
+
 ```bash
+python -m pip install -r requirements-research.txt
+python bibcheck.py crossref research CiteKey --adapter /absolute/path/to/research-adapter \
+  --allow-host publisher.example --allow-host repository.example
+```
+
+Research is explicitly invoked for unresolved entries. The adapter discovers a PDF; bibcheck downloads it only from allowed HTTPS hosts, saves its SHA-256 and extracted page text, and validates page-specific quotations returned by the adapter. It never approves citations or edits BibTeX. This is evidence collection. The included OpenAI adapter performs real web search; other providers can implement the same contract.
+
+For review without an adapter:
+
+```bash
+python bibcheck.py crossref review-packet CiteKey --output review-packet.json
+```
+
+The packet includes the exact entry, fingerprint, source candidates, and review instructions. Inspect the actual source and edition, correct the BibTeX when necessary, and rerun verification. If a human confirms the existing citation despite missing/conflicting metadata, record that decision using the fingerprint from the packet:
+
+```bash
+python bibcheck.py crossref approve CiteKey \
+  --fingerprint HASH_FROM_REVIEW_PACKET \
+  --reviewer 'Reviewer name' \
+  --source 'Authoritative source URL or physical edition' \
+  --note 'Fields and edition checked; explanation of any source discrepancy'
+```
+
+The command rejects stale fingerprints. LLMs must not use this command to impersonate human review. `attach-evidence` can retain externally collected JSON findings, but leaves the entry unresolved.
+
+## Formatting, comparison, and commits
+
+```bash
+python bibcheck.py verify --fname cdl.bib --verbose
+python bibcheck.py compare original.bib revised.bib --verbose
 python bibcheck.py commit --verbose
 ```
 
-4. Push your changes to your fork:
+Unlike `crossref verify`, the legacy formatting command takes its filename through `--fname`. Formatting checks include citation-key conventions, author/editor formatting, duplicate detection, sentence case, page ranges, and lookup-table normalization of venues, publishers, and addresses. The allowed fields are listed in [keep_fields.txt](bibcheck/keep_fields.txt); DOI is supported. The accuracy checker can read additional fields, but unsupported fields remain unresolved. The formatter may reject/prune those fields unless its `force` override is present.
+
+Citation keys use the first four letters of the first author's surname and the last two digits of the year, with the second surname for two-author works or `Etal` for larger author lists (for example, `Mann21`, `MannKaha21`, `MannEtal21`). Collisions receive letter suffixes. Multiword surnames should be brace-protected, and author names separated with ` and `. Page ranges use `--`.
+
+The formatter is heuristic. In particular, passing formatting does not ensure correct capitalization after a colon; protected words and the formatter's `A` special case can retain capitals. Preserve proper nouns and acronyms deliberately and review titles against their sources. Duplicate detection uses surnames and title rather than publication version, so inspect proposed duplicate removals carefully.
+
+The `force` field bypasses parts of legacy formatting/pruning; it does **not** certify a citation or bypass Crossref checks. It should not be used to conceal an accuracy finding.
+
+To inspect proposed automatic formatting corrections without overwriting the source:
+
 ```bash
-git push
+python bibcheck.py verify --fname cdl.bib --autofix --verbose --outfile cleaned.bib
 ```
 
-5. Create a pull request for pulling your changes into the ContextLab fork
+Review `cleaned.bib` before replacing `cdl.bib`. The legacy `magic` command overwrites the bibliography and attempts a commit; prefer the explicit review workflow. The `commit` command compares with the remote `master` bibliography and uses `git commit -a`, which can include other tracked modifications. It does not push. Use normal Git staging/committing when you want explicit control over included files. The legacy formatting command's printed error handling is not a reliable shell exit-code gate; CI uses `bibcheck/test.py` to assert success.
 
-**Note:** The bibverify step is optional but recommended for catching metadata errors. It's especially useful when adding new entries or updating existing ones.
+## Using the bibliography in LaTeX
 
-## Additional information and usage instructions
+Copy or link `cdl.bib` into a project and use the bibliography style required by your manuscript:
 
-### `verify`
+```tex
+\bibliographystyle{plain}
+\bibliography{cdl}
+```
 
-You can run the `verify` command using:
+For traditional BibTeX compilation:
+
 ```bash
-python bibcheck.py verify <fname>
+pdflatex manuscript
+bibtex manuscript
+pdflatex manuscript
+pdflatex manuscript
 ```
-where `<fname>` is the name of the .bib file whose integrity you want to check.
-For help, run:
+
+For command-line access to one shared local bibliography, add its directory to `BIBINPUTS` in your shell configuration. The trailing colon preserves TeX's default search locations:
+
 ```bash
-python bibcheck.py verify --help
+export BIBINPUTS="$HOME/CDL-bibliography:$BIBINPUTS:"
 ```
 
-The `verify` function checks the format of an arbitrary .bib file and verifies the following information:
-- Proper bibtex key naming:
-  - Keys for single-author papers are named with the first four letters of the author's surname, plus the last two digits of the publication year (e.g., Mann21)
-  - Keys for dual-author papers are named with the first four letters of the first author's surname, followed by the first four letters of the second author's surname, followed by the last two digits of the publication year (e.g., MannKaha21)
-  - Keys for papers with three or more authors are named with the first four letters of the first author's surname, followed by "Etal", followed by the last two digits of the publication year (e.g. MannEtal21)
-  - Surnames with fewer than four letters result in shorter keys (e.g. LeeEtal21)
-  - Titles (e.g., Dr., Hon., etc.) and suffixes (e.g., Jr., Sr., II, III, etc.) are ommitted from key names
-  - Multi-word surnames (e.g., y Cajal, van der Meer, etc.) are concatenated into a single "word" without changing any capitalization, for the purposes of generating a key (e.g., yCaj05, vandEtal21, etc.)
-  - All unicode characters are converted to their nearest ASCII counterparts (e.g., "é" is converted to "e", etc.)
-  - In-press, submitted, under revision, or other "unpublished" manuscripts should use the last two digits of the *submission* year
-  - Bibtex keys may not be duplicated.  If two or more entries share the same "base" bibtex key, they should be renamed to make each key unique by adding a suffix to the key: MannEtal21a, MannEtal21b, etc.  If a bibtex key requires a suffix, *all* bibtex keys that share the same base must also have suffixes.  Suffixes must be assigned in order (e.g., if MannEtal21a and MannEtal21c are in the .bib file, then either MannEtal21b must also be in the .bib file, or MannEtal21c must be renamed to MannEtal21b).
-- Proper formatting of author and editor names:
-  - The name must appear in the following order with no commas: First Middle Surname(s) Suffixes
-  - Multi-word surnames should be enclosed in curly braces (e.g., "{van der Meer}")
-  - Latex accents (e.g. "\\'{e}" or "{\\' e}") are supported
-  - Initials must be separated (e.g., "AA" becomes "A A")
-  - Hyphenated initials and/or names should *not* be separated (e.g., "H-T" is correct as is)
-  - For multi-author (or multi-editor) papers, names should be separated by the string " and " (note single spaces on either side)
-- Removal of duplicate entries.  Entries are considered to be duplicates if they share the same author last names *and* the publications also share the same title.  Importantly, publication year, journal name, and other fields are *not* considered in detecting duplicates; this enables the duplicate checker to catch problems like a publication being entered for a preprint that is already in the database, rather than updating the existing entry.
-- Page numbering must be properly formatted:
-  - Articles with single pages should contain only one page number (e.g. "3--3" should be "3")
-  - Page ranges are denoted using an n-dash with no spaces (e.g., "3--10")
-  - The first page in the given range must be strictly smaller than the last page in the given range
-  - For journals with page-number prefixes (e.g., "e2910"), the same prefix must be used for both the start and end of the page range, and the numbering must be valid (i.e., the first page must be strictly smaller than the last page)
-  - Roman numerals are supported and subjected to the same constraints as integer pages.  They may be uppercase or lowercase, but may not be mixed case.
-  - Some types of errors may be autocorrected, although this must be treated with caution to ensure accuracy (e.g. "1002 - 15" may be autocorrected to "1002--1015")
-- Journal names must be properly capitalized and written out in full (e.g., "J. Neurosci" becomes "The Journal of Neuroscience").  Ampersands ("&") must be converted to "and".
-- Book titles must be properly capitalized and written out in full.  Ampersands ("&") must be converted to "and".
-- Article titles must be capitalized in sentence case (with exceptions blocked out in curly braces).  Titles may not be (fully) enclosed in curly braces and may not end in '.'.
-- Publisher names must be written out in full.  Ampersands ("&") must be converted to "and".
-- Addresses must be formatted properly:
-  - State names and non-US countries are abbreviated with two-letter codes (e.g., "New York, New York" should be "New York, NY")
-  - Address names should be written out in full (e.g., "NY, NY" should be "New York, NY")
-  - Abbreviations should not contain periods (".")
-- Only the following (standard) fields are allowed: year, volume, title, pages, number, journal, author, booktitle, publisher, editor, school, chapter, address, organization
-- To override autoformatting or checks for a given entry, add an additional field, "force" to that bibtex entry and set its value to "True".  No checks will be performed for that entry.  (This is useful if the above rules cannot be properly applied to a given entry.)
+With MacTeX/TeXShop, a personal TeX tree also works for GUI applications that do not inherit shell configuration:
 
-If errors are found, they are printed to the terminal along with suggested corrections (if available).
-
-***Danger zone***: `autofix`
-
-The bibtex checker can attempt to automatically correct formatting issues using the `--autofix` and `--outfile` flags.  The `--verbose` flag is also strongly encouraged when the `--autofix` flag is used.  Autocorrect mode may be used as follows:
 ```bash
-python bibcheck.py verify --autofix --verbose --outfile=cleaned.bib
+mkdir -p "$HOME/Library/texmf/bibtex/bib"
+ln -s "$HOME/CDL-bibliography/cdl.bib" "$HOME/Library/texmf/bibtex/bib/cdl.bib"
 ```
-This will create a new .bib file, cleaned.bib, based on cdl.bib-- but with all fields and entries autocorrected where possible.  After manually checking the new "autocorrected" .bib file, cdl.bib may be overwritten with `cleaned.bib`:
+
+Adjust paths for your checkout. Keep a reviewed copy of the bibliography with a submission so later edits to the shared library do not change that submission's references.
+
+## Using the bibliography on Overleaf
+
+Upload `cdl.bib` to your project, or use Overleaf's [Add from External URL](https://docs.overleaf.com/managing-projects-and-files/adding-files-to-a-project/adding-a-file-from-a-url) with the [raw bibliography](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib). Refresh a linked file explicitly when you intend to take updates, then check the resulting citations.
+
+Overleaf projects cannot contain Git submodules; the earlier instructions for adding this repository as a submodule inside an Overleaf project were incorrect. See [Overleaf's GitHub synchronization limitations](https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/github-synchronization). If using GitHub synchronization, include an actual `cdl.bib` file in the project.
+
+## Development
+
 ```bash
-mv cleaned.bib cdl.bib
+python -m pip install pytest
+python -m pytest -q tests
+python bibcheck/test.py
 ```
 
-This mode can easily introduce errors if not checked (manually!) carefully.  It is included for convenience (e.g., to facilitate very large numbers of simple changes), but it should not normally be used.
+The regression suite uses local fixtures and fake services; it does not contact Crossref. It covers entry parsing, metadata disagreements, cache invalidation, retries, resumability, stale human approvals, and optional research evidence handling. Live verification is a separate, checkpointed operation.
 
-### `compare`
-You can run the `compare` command using:
-```bash
-python bibcheck.py compare <fname1> <fname2>
-```
-where `<fname1>` is the name of the "original" .bib file and `<fname2>` is the
-name of the "new" .bib file.  The `compare` function will run a check to
-determine if there are any differences between fname2 and fname1.  For help, run:
-```bash
-python bibcheck.py compare --help
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [the verification design](docs/verification.md).
 
-Given two .bib files, any *differences* between the files are detected and printed.  Differences can include:
-- New or deleted items
-- Modified entries (e.g., new, deleted, or modified fields)
+## Acknowledgements
 
-### `commit`
-You can run the `commit` command using:
-```bash
-python bibcheck.py commit
-```
-For help, run:
-```bash
-python bibcheck.py commit --help
-```
-
-By default, the `commit` command first uses the `verify` command to check the
-local cdl.bib file's integrity.  If the check succeeds, the `compare` command
-is then used to compare the local cdl.bib file to the version stored in the
-`master` branch of the `ContextLab` fork.  The changes are then "committed" to
-the local github repository (using ```git commit```), and a commit message is
-added to the commit describing what was changed. 
-
-In order for the commits to be pushed, the ```git push``` command must still be
-called, and a pull request must be submitted in order to integrate the changes
-into the main ContextLab fork.
-
-# Using the bibtex file as a common bibliography for all *local* LaTeX files
-
-## General Unix/Linux Setup (Command Line Compilation)
-1. Check out this repository to your home directory
-2. Add the following lines to your `~/.bash_profile` (or `~/.zshrc`, etc.):
-```
-export TEXINPUTS=~/CDL-bibliography:$TEXINPUTS
-export BIBINPUTS=~/CDL-bibliography:$BIBINPUTS
-export BSTINPUTS=~/CDL-bibliography:$BSTINPUTS
-```
-3. Run (in terminal): `source ~/.bash_profile`
-4. In your .tex file, use the line `\bibliography{cdl}` to generate a bibliography using the citation keys that were defined in memlab.bib and used in the current file.
-5. To compile your document (filename.tex), generate a .bib (bibliography) file (filename.bib), and a pdf (filename.pdf), run:
-```
-latex filename
-bibtex filename
-latex filename
-latex filename
-pdflatex filename
-```
-
-## MacOS Setup with TeXShop and TeX Live
-
-Mac GUI applications like TeXShop don't execute within your shell environment, which means the environment variable approach described above won't work when compiling through the TeXShop GUI. Instead, use TeX Live's built-in support for personal files:
-
-1. Check out this repository (we'll assume you cloned it to your home directory: `~/CDL-bibliography`)
-2. Create the TeX Live personal texmf directory structure for bibliography files:
-```bash
-mkdir -p ~/Library/texmf/bibtex/bib
-```
-3. Create a symbolic link from your personal texmf directory to the CDL-bibliography repository. **Important**: You must use the absolute path (not relative paths or `~`):
-```bash
-ln -s /Users/YOUR_USERNAME/CDL-bibliography/cdl.bib ~/Library/texmf/bibtex/bib/cdl.bib
-```
-Replace `YOUR_USERNAME` with your actual macOS username, or use `$HOME` instead:
-```bash
-ln -s $HOME/CDL-bibliography/cdl.bib ~/Library/texmf/bibtex/bib/cdl.bib
-```
-4. In your .tex file, use the line `\bibliography{cdl}` to generate a bibliography using the citation keys defined in cdl.bib
-5. Compile your document using TeXShop's GUI or from the command line
-
-**Note**: This approach also works for command-line compilation, so you don't need to set up the environment variables if you use this method.
-
-# Using the bibtex file on Overleaf
-You can use [git submodules](https://blog.github.com/2016-02-01-working-with-submodules/) to maintain a reference to the cdl.bib file in this repository that you can easily keep in sync with latest version.  This avoids the need to maintain a separate .bib file in each Overleaf project.
-
-To set this up, you first need to access the GitHub repository associated with your Overleaf project.  Instructions may be found [here](https://www.overleaf.com/learn/how-to/How_do_I_connect_an_Overleaf_project_with_a_repo_on_GitHub,_GitLab_or_BitBucket%3F).
-1. Clone your Overleaf project's GitHub repository to your local computer
-2. Navigate to the repository's directory (in Terminal) and then run
-```
-git submodule add https://github.com/ContextLab/CDL-bibliography.git
-```
-3. Inside your .tex source file, change the `\bibliography{cdl}` line to `\bibliography{CDL-bibliography/cdl}`.  Now the LaTeX compiler will reference the copy of memlab.bib contained in the CDL-bibliography repository, rather than your (potentially separately maintained) local copy.
-4. Commit your changes (`git commit -a -m "added CDL bibliography as a submodule"`) and then push them (`git push`).  Your project should now be updated on Overleaf, and the automatic compiler should now have access to memlab.bib.
-5. To update your local copy, or to pull changes from the CDL-bibliography repository, run `git pull --recurse-submodules` inside your Overleaf project's repository directory.  Then `git push` your changes to upload them back onto Overleaf.
-6. When you clone a fresh repository that includes this repository (or others) as a submodule, run the following commands to download the contents of the submodule repositories:
-```
-git submodule init
-git submodule update
-```
-
-# Acknowledgements
-This bibtex file is built on a large bibtex file authored by Michael Kahana's
-[Computational Memory Lab at the University of Pennsylvania](http://memory.psych.upenn.edu).  
-However, this version is not kept in sync with the CML's version.  [Several members](https://github.com/ContextLab/CDL-bibliography/graphs/contributors) of the [Contextual Dynamics Lab](www.context-lab.com/) have contributed to the current version.
-
-This repository is provided as a courtesy, and we make no claims with respect to accuracy, completeness, etc.
+This bibliography grew from a collection authored by Michael Kahana's [Computational Memory Lab at the University of Pennsylvania](https://memory.psych.upenn.edu/). It is maintained independently, with contributions from [members of the Contextual Dynamics Lab](https://github.com/ContextLab/CDL-bibliography/graphs/contributors).
