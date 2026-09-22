@@ -1,0 +1,36 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "network_requests": 0,
+      "seconds": 203.05,
+      "statuses": {
+        "metadata_verified": 3621,
+        "needs_review": 2801
+      },
+      "added_review_records": 2804
+    },
+    {
+      "cycle": "repeat",
+      "network_requests": 0,
+      "seconds": 33.01,
+      "statuses": {
+        "metadata_verified": 3621,
+        "needs_review": 2801
+      },
+      "added_review_records": 0
+    }
+  ],
+  "baseline_sha256": "4e2ea5e26752e13fb56bbbd07084a05858da1ca7b79aeb89c2f0e7f084d333e1",
+  "queue_routes": {
+    "field_adjudication": 817,
+    "publication_version": 288,
+    "source_discovery": 885,
+    "author_identity": 811
+  },
+  "new_approvals": {
+    "Trei98": "10.1098/rstb.1998.0284",
+    "Fris05": "10.1098/rstb.2005.1622",
+    "Bert97": "10.1098/rstb.1997.0130"
+  }
+}

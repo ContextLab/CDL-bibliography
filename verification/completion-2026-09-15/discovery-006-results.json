@@ -1,0 +1,30 @@
+[
+  {
+    "cycle": "run",
+    "seconds": 140.26,
+    "network_requests": 5,
+    "review_writes": 620,
+    "library_statuses": {
+      "metadata_verified": 3580,
+      "needs_review": 2842
+    },
+    "batch_statuses": {
+      "needs_review": 493,
+      "metadata_verified": 7
+    }
+  },
+  {
+    "cycle": "repeat",
+    "seconds": 101.45,
+    "network_requests": 0,
+    "review_writes": 0,
+    "library_statuses": {
+      "metadata_verified": 3580,
+      "needs_review": 2842
+    },
+    "batch_statuses": {
+      "needs_review": 493,
+      "metadata_verified": 7
+    }
+  }
+]

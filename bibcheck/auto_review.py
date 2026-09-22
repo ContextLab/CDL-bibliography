@@ -9,22 +9,33 @@ import re
 
 from verification import (
     ACCEPTED,
+    author_evidence,
+    assess_candidates,
     POLICY,
     ProviderError,
     compare_record,
     export_snapshot,
+    given_name_tokens,
+    given_token_matches,
     load_entries,
+    normalize_author_suffix,
     normalize_doi,
     normalize_pages,
     normalized,
+    split_authors,
     outcome,
     record_advisories,
     run_lock,
     validate_output_path,
+    valid_doi_alias,
     write_report,
 )
+from bibtexparser.customization import splitname
 
 EPMC_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+# Resolver upgrades revisit unresolved saved evidence once. Previously accepted
+# entries retain their approval and original checked_at without reassessment.
+RESOLVER_VERSION = 27
 EPMC_FIELDS = {
     "id",
     "source",
@@ -44,29 +55,159 @@ EPMC_FIELDS = {
 }
 
 
-def safe_compare(fields, record):
+def safe_compare(fields, record, doi_alias=None):
     try:
-        return compare_record(fields, record)
+        return compare_record(fields, record, doi_alias)
     except (ValueError, TypeError, KeyError, AttributeError) as exc:
         return {}, [f"Unsupported source metadata: {exc}"]
+
+
+def secondary_notice_flags(candidates):
+    """A matching registry row cannot overrule a DOI-linked correction notice."""
+    flagged = set()
+    for candidate in candidates:
+        if candidate.get('source') == 'arxiv-repository':
+            from arxiv_review import notice_dois
+            flagged.update(notice_dois(candidate))
+        if candidate.get('source') == 'biorxiv-preprint':
+            from preprint_review import notice_dois
+            flagged.update(notice_dois(candidate))
+            continue
+        if candidate.get("source") == "pmc-jats":
+            from pmc_metadata import notice_dois
+            flagged.update(notice_dois(candidate))
+            continue
+        if candidate.get("source") != "europepmc":
+            continue
+        raw = candidate.get("raw_record", {})
+        try:
+            doi = normalize_doi(candidate["doi"])
+            if (raw.get("source") != "MED" or not re.fullmatch(r"\d+", str(raw.get("id", "")))
+                    or normalize_doi(raw.get("doi", "")) != doi):
+                continue
+            types = raw.get("pubTypeList", {}).get("pubType", [])
+            relations = raw.get("commentCorrectionList", {}).get("commentCorrection", [])
+            labels = list(types) + [r.get("type", "") for r in relations]
+            if raw.get("isRetracted") == "Y" or any(
+                word in str(label).lower() for label in labels
+                for word in ("errat", "retract", "correct", "expression of concern")
+            ):
+                flagged.add(doi)
+        except (ValueError, KeyError, TypeError, AttributeError):
+            continue
+    return flagged
+
+
+class PubmedSuffixConflict(ValueError):
+    pass
+
+
+def pubmed_author_suffix(person):
+    """Retain a suffix in PubMed's exact surname-initials-suffix full name."""
+    suffix = person.get("suffix", "")
+    full = normalized(person.get("fullName", ""))
+    family, initials = person.get("lastName", ""), person.get("initials", "")
+    if not family or not initials:
+        return suffix
+    prefix = normalized(family + " " + initials) + " "
+    if full.startswith(prefix):
+        tail = full[len(prefix):]
+        if re.fullmatch(r"(?:jr|sr|ii|iii|iv|v|vi|vii|viii|ix|x)\.?", tail):
+            if suffix and normalize_author_suffix(suffix) != normalize_author_suffix(tail):
+                raise PubmedSuffixConflict("Conflicting PubMed author suffix fields")
+            if suffix:
+                return suffix
+            return tail.rstrip(".").upper() if tail[0] in "ivx" else tail.rstrip(".").capitalize()
+    return suffix
+
+
+def secondary_suffix_dois(candidates):
+    """Identify source-addressed suffix witnesses, independent of entry text."""
+    found = set()
+    for candidate in candidates:
+        raw = candidate.get("raw_record", {})
+        try:
+            doi = normalize_doi(candidate["doi"])
+            if (candidate.get("source") != "europepmc" or raw.get("source") != "MED"
+                    or not re.fullmatch(r"\d+", str(raw.get("id", "")))
+                    or normalize_doi(raw.get("doi", "")) != doi):
+                continue
+            for person in raw.get("authorList", {}).get("author", []):
+                try:
+                    suffix = pubmed_author_suffix(person)
+                except PubmedSuffixConflict:
+                    suffix = "conflicting"
+                if suffix:
+                    found.add(doi)
+        except (ValueError, KeyError, TypeError, AttributeError):
+            continue
+    return found
+
+
+def secondary_suffix_conflicts(fields, candidates):
+    """A matching registry record cannot erase a DOI-linked explicit suffix."""
+    flagged = set()
+    for candidate in candidates:
+        dois = secondary_suffix_dois([candidate])
+        if not dois:
+            continue
+        try:
+            names = split_authors(fields.get("author", ""))
+            people = candidate["raw_record"]["authorList"]["author"]
+            if len(names) != len(people):
+                continue
+            for name, person in zip(names, people):
+                parts = splitname(name, strict_mode=True)
+                if normalized(" ".join(parts["von"] + parts["last"])) != normalized(person.get("lastName", "")):
+                    continue
+                suffix = pubmed_author_suffix(person)
+                if suffix and normalize_author_suffix(" ".join(parts["jr"])) != normalize_author_suffix(suffix):
+                    flagged.update(dois)
+        except (ValueError, KeyError, TypeError, AttributeError):
+            flagged.update(dois)
+    return flagged
 
 
 def select_result(fields, candidates, attempts):
     """Apply DOI and competing-work guards to all automatic routes alike."""
     supplied = normalize_doi(fields["doi"]) if fields.get("doi") else None
+    aliases = {}
+    for candidate in candidates:
+        receipt = candidate.get("doi_alias") or {}
+        prime = candidate.get("record", {}).get("DOI")
+        requested = receipt.get("requested_doi")
+        if candidate.get("source") == "crossref" and valid_doi_alias(receipt, requested, prime):
+            aliases.setdefault(normalize_doi(requested), set()).add(normalize_doi(prime))
+    aliases = {alias: next(iter(primes)) for alias, primes in aliases.items() if len(primes) == 1}
+    supplied = aliases.get(supplied, supplied)
+    flagged = {aliases.get(doi, doi) for doi in secondary_notice_flags(candidates)}
+    suffix_conflicts = {aliases.get(doi, doi) for doi in secondary_suffix_conflicts(fields, candidates)}
+    from source_locators import locator_conflicts
+    coordinates = {aliases.get(doi, doi) for doi in locator_conflicts(fields, candidates)}
     pubmed_ids = {}
     for c in candidates:
         if c.get("source") == "europepmc":
-            pubmed_ids.setdefault(normalize_doi(c["doi"]), set()).add(
+            doi = normalize_doi(c["doi"])
+            pubmed_ids.setdefault(aliases.get(doi, doi), set()).add(
                 c.get("raw_record", {}).get("id")
             )
     good = {}
     for candidate in candidates:
-        if candidate.get("source") not in {"crossref", "europepmc", "pmc-jats"}:
+        if candidate.get("source") not in {
+            "crossref",
+            "europepmc",
+            "pmc-jats",
+            "publisher-head",
+            "catalogue-imprint",
+        }:
             continue
         if candidate.get("issues") or not candidate.get("evidence"):
             continue
         doi = normalize_doi(candidate["doi"])
+        if doi in aliases:
+            continue  # An old alias record cannot override the prime metadata.
+        if doi in flagged or doi in suffix_conflicts or doi in coordinates:
+            continue
         if len(pubmed_ids.get(doi, set())) > 1:
             continue  # One DOI attached to multiple PubMed records is ambiguous.
         if supplied and doi != supplied:
@@ -78,7 +219,7 @@ def select_result(fields, candidates, attempts):
             c
             for c in candidates
             if c.get("doi")
-            and normalize_doi(c["doi"]) != selected
+            and aliases.get(normalize_doi(c["doi"]), normalize_doi(c["doi"])) != selected
             and c.get("evidence", {}).get("title", {}).get("match")
             and c.get("evidence", {}).get("author", {}).get("match")
         ]
@@ -90,7 +231,10 @@ def select_result(fields, candidates, attempts):
             )
     return outcome(
         "needs_review",
-        ["No unambiguous, fully supported metadata match"],
+        ["No unambiguous, fully supported metadata match"]
+        + (["DOI-linked source correction/retraction notice requires adjudication"] if flagged else [])
+        + (["DOI-linked PubMed author suffix conflicts with the citation"] if suffix_conflicts else [])
+        + (["DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation"] if coordinates else []),
         candidates,
         attempts,
     )
@@ -105,7 +249,7 @@ def reassess(entry, previous):
     candidates = []
     for original in previous.get("candidates", []):
         if original.get("source") == "crossref":
-            evidence, issues = safe_compare(entry["fields"], original["record"])
+            evidence, issues = safe_compare(entry["fields"], original["record"], original.get("doi_alias"))
             candidates.append(
                 dict(
                     original,
@@ -114,7 +258,7 @@ def reassess(entry, previous):
                     advisories=record_advisories(entry["fields"], original["record"]),
                 )
             )
-        elif original.get("source") not in {"europepmc", "pmc-jats"}:
+        elif original.get("source") not in {"europepmc", "pmc-jats", "publisher-head", "catalogue-imprint"}:
             candidates.append(original)
     # Reconstruct secondary judgments from raw records, not cached boolean flags.
     for original in previous.get("candidates", []):
@@ -155,6 +299,39 @@ def reassess(entry, previous):
                         )
                     )
                     break
+    for original in previous.get("candidates", []):
+        if original.get("source") == "publisher-head" and original.get("raw_metadata"):
+            from publisher_year_review import assess_publisher_year
+
+            primary = next(
+                (
+                    c
+                    for c in candidates
+                    if c.get("source") == "crossref"
+                    and c.get("doi") == original.get("doi")
+                ),
+                None,
+            )
+            if primary:
+                candidates.append(
+                    assess_publisher_year(
+                        entry["fields"],
+                        primary,
+                        {
+                            "metadata": original["raw_metadata"],
+                            "url": original["url"],
+                            "retrieved_at": original["retrieved_at"],
+                            "document_sha256": original["document_sha256"],
+                        },
+                    )
+                )
+    from catalogue_imprint import assess_catalogue_imprint, edition_for
+    for primary in list(candidates):
+        if primary.get("source") != "crossref" or not edition_for(primary):
+            continue
+        saved = [c for c in previous.get("candidates", []) if c.get("source") == "catalogue-imprint" and c.get("doi") == primary.get("doi")]
+        if len(saved) <= 1:
+            candidates.append(assess_catalogue_imprint(entry["fields"], primary, saved[0] if saved else None))
     try:
         result = select_result(
             entry["fields"], candidates, previous.get("attempts", [])
@@ -163,6 +340,24 @@ def reassess(entry, previous):
         result = outcome(
             "needs_review", [str(exc)], candidates, previous.get("attempts", [])
         )
+    from catalogue_review import reassess_saved_catalogue
+    catalogue = reassess_saved_catalogue(entry['fields'], previous)
+    if catalogue is not None:
+        result = catalogue
+    if previous.get('catalogue_review'):
+        result['catalogue_review'] = previous['catalogue_review']
+    from preprint_review import reassess_saved_preprint
+    preprint = reassess_saved_preprint(entry['fields'], previous)
+    if preprint is not None:
+        result = preprint
+    if previous.get('preprint_review'):
+        result['preprint_review'] = previous['preprint_review']
+    from arxiv_review import reassess_saved_arxiv
+    arxiv = reassess_saved_arxiv(entry['fields'], previous)
+    if arxiv is not None:
+        result = arxiv
+    if previous.get('arxiv_review'):
+        result['arxiv_review'] = previous['arxiv_review']
     if previous["status"] == "provider_error" and not candidates:
         result = previous
     if previous.get("external_evidence"):
@@ -173,7 +368,22 @@ def reassess(entry, previous):
         result["research_attempt"] = previous["research_attempt"]
     if previous.get("discovery_review"):
         result["discovery_review"] = previous["discovery_review"]
-    result["auto_review"] = dict(previous.get("auto_review", {}), policy=POLICY)
+    result["auto_review"] = dict(
+        previous.get("auto_review", {}),
+        policy=POLICY,
+        resolver_version=RESOLVER_VERSION,
+    )
+    # An additive resolver can make a saved DOI eligible for the first time,
+    # even without a new discovery response (e.g. repaired author tokenization).
+    # Reopen only new targets and preserve the completed DOI lookups.
+    if set(target_dois(result)) - set(target_dois(previous)):
+        checkpoint = result["auto_review"]
+        done = set(checkpoint.get("epmc_checked_dois", []))
+        if checkpoint.get("epmc_checked"):
+            done.update(target_dois(previous))
+        checkpoint.update(epmc_checked=False, epmc_checked_dois=sorted(done))
+        checkpoint.pop("fulltext_checked", None)
+        checkpoint.pop("publisher_year_policy", None)
     return result
 
 
@@ -195,7 +405,7 @@ def target_dois(result):
             and matches("volume")
         ):
             try:
-                found.append(normalize_doi(candidate["doi"]))
+                found.append(normalize_doi(candidate.get("doi", "")))
             except ValueError:
                 pass
     return list(dict.fromkeys(found))
@@ -254,6 +464,28 @@ def expanded_pages(value):
     return f"{prefix}{first}-{last_prefix or prefix}{last}"
 
 
+def blocking_pubmed_relationships(raw):
+    """Ordinary commentary is distinct from correction or version evidence.
+
+    NLM documents Comment in/on as separate linked citation types. Only those
+    two explicit, identified relationships are benign; unknown or malformed
+    relations and all correction/republication/preprint types remain blocking.
+    """
+    container = raw.get("commentCorrectionList")
+    if not container:
+        return False
+    if not isinstance(container, dict):
+        return True
+    links = container.get("commentCorrection")
+    if not isinstance(links, list):
+        return True
+    return any(not isinstance(link, dict)
+               or link.get("type") not in {"Comment in", "Comment on"}
+               or link.get("source") != "MED"
+               or not re.fullmatch(r"\d+", str(link.get("id", "")))
+               for link in links)
+
+
 def epmc_record(raw, primary):
     if raw.get("source") != "MED" or not re.fullmatch(r"\d+", str(raw.get("id", ""))):
         raise ValueError("Secondary evidence must be an identified PubMed record")
@@ -266,7 +498,7 @@ def epmc_record(raw, primary):
             word in str(types).lower()
             for word in ("retract", "erratum", "preprint", "correction")
         )
-        or raw.get("commentCorrectionList")
+        or blocking_pubmed_relationships(raw)
         or raw.get("isRetracted") == "Y"
     ):
         raise ValueError(
@@ -292,7 +524,7 @@ def epmc_record(raw, primary):
             {
                 "given": given,
                 "family": person.get("lastName", ""),
-                "suffix": person.get("suffix", ""),
+                "suffix": pubmed_author_suffix(person),
             }
         )
     title = raw.get("title", "")
@@ -325,14 +557,30 @@ def compatible_authors(primary, secondary):
     for a, b in zip(first, second):
         if normalized(a.get("family", "")) != normalized(b.get("family", "")):
             return False
-        if normalized(a.get("suffix", "")) != normalized(b.get("suffix", "")):
+        if normalize_author_suffix(a.get("suffix", "")) != normalize_author_suffix(b.get("suffix", "")):
             return False
-        aa = normalized(a.get("given", "")).replace(".", "").split()
-        bb = normalized(b.get("given", "")).replace(".", "").split()
+        aa = given_name_tokens(a.get("given", ""))
+        bb = given_name_tokens(b.get("given", ""))
         for x, y in zip(aa, bb):
-            if x != y and not ((len(x) == 1 or len(y) == 1) and x[0] == y[0]):
+            if not (given_token_matches(x, y) or given_token_matches(y, x)):
                 return False
     return True
+
+
+def authors_with_pubmed_suffixes(primary, secondary):
+    """Supplement only absent registry suffixes from compatible ordered authors."""
+    people = deepcopy(primary.get("author", []))
+    other = secondary.get("author", [])
+    if not people or len(people) != len(other):
+        return None
+    added = False
+    for first, second in zip(people, other):
+        if not first.get("given") or not second.get("given"):
+            return None
+        if not first.get("suffix") and second.get("suffix"):
+            first["suffix"] = second["suffix"]
+            added = True
+    return people if added and compatible_authors({"author": people}, secondary) else None
 
 
 def assess_epmc(fields, primary, raw, retrieved_at, request_url):
@@ -341,13 +589,27 @@ def assess_epmc(fields, primary, raw, retrieved_at, request_url):
         mapped = epmc_record(raw, primary["record"])
         secondary_evidence, secondary_issues = safe_compare(fields, mapped)
         evidence = deepcopy(primary.get("evidence", {}))
+        # A complete registry name plus an explicit PubMed suffix supplies each
+        # name part without replacing either source's conflicting information.
+        suffix_authors = authors_with_pubmed_suffixes(primary["record"], mapped)
+        suffix_match = bool(suffix_authors and author_evidence(fields.get("author", ""), suffix_authors)[0]
+                            and set(mapped["ISSN"]) & set(primary["record"].get("ISSN", []))
+                            and all(secondary_evidence.get(f, {}).get("match")
+                                    and evidence.get(f, {}).get("match")
+                                    for f in ("title", "year", "journal", "volume", "pages")))
+        if suffix_match:
+            secondary_evidence["author"] = {
+                "local": fields["author"], "source": suffix_authors, "match": True,
+                "detail": "Registry names with explicit DOI-linked PubMed suffixes",
+                "name_source": "crossref", "suffix_source": "europepmc",
+            }
         # Every overridden field must itself pass full local-vs-secondary checks.
         for issue in primary.get("issues", []):
             field = issue.split(":", 1)[0]
             supported = secondary_evidence.get(field, {}).get("match")
             can_resolve = False
             if field == "author" and supported:
-                can_resolve = compatible_authors(primary["record"], mapped)
+                can_resolve = suffix_match or compatible_authors(primary["record"], mapped)
             elif field == "journal" and supported:
                 can_resolve = bool(
                     set(mapped["ISSN"]) & set(primary["record"].get("ISSN", []))
@@ -359,6 +621,28 @@ def assess_epmc(fields, primary, raw, retrieved_at, request_url):
                     not original
                     or original == target
                     or ("-" not in original and original == target.split("-")[0])
+                )
+            elif field == "number" and supported:
+                # MEDLINE sometimes labels a complete issue as "Pt N". Require
+                # the exact DOI, ISSN, and all article coordinates in both
+                # sources; never strip supplement/part labels globally.
+                part = re.fullmatch(r"Pt ([1-9]\d*)", fields.get("number", ""))
+                can_resolve = bool(
+                    part
+                    and str(primary["record"].get("issue", "")) == part[1]
+                    and set(mapped["ISSN"]) & set(primary["record"].get("ISSN", []))
+                    and all(
+                        secondary_evidence.get(f, {}).get("match")
+                        and primary["evidence"].get(f, {}).get("match")
+                        for f in (
+                            "title",
+                            "author",
+                            "journal",
+                            "year",
+                            "volume",
+                            "pages",
+                        )
+                    )
                 )
             elif (
                 field == "year" and supported and issue.startswith("year: conflicting")
@@ -385,6 +669,23 @@ def assess_epmc(fields, primary, raw, retrieved_at, request_url):
                 )
             else:
                 issues.append(issue)
+        # A missing MED issue is not a contradictory issue. For print-year
+        # corroboration only, retain the independently supported Crossref issue
+        # after both sources establish every other article identity coordinate.
+        # Never insert a guessed issue into the raw/mapped MED record.
+        primary_evidence, primary_issues = safe_compare(fields, primary['record'])
+        retain_issue = (
+            primary_issues == ['year: conflicting or missing publication dates; select the cited edition explicitly']
+            and 'issue' not in raw.get('journalInfo', {})
+            and primary_evidence.get('number', {}).get('match')
+            and set(mapped.get('ISSN', [])) & set(primary['record'].get('ISSN', []))
+            and all(primary_evidence.get(f, {}).get('match') and secondary_evidence.get(f, {}).get('match')
+                    for f in ('title', 'author', 'year', 'journal', 'volume', 'pages'))
+            and any(r['finding'].startswith('year: conflicting') for r in resolved)
+        )
+        if retain_issue:
+            evidence['number'] = dict(primary_evidence['number'], source_name='crossref',
+                detail='MED omits issue; Crossref issue retained with complete DOI/ISSN/article-coordinate agreement')
         # Independently establish identity; metadata fields missing in MEDLINE
         # cannot waive an original Crossref blocker or hide a conflicting value.
         for field in (
@@ -396,6 +697,8 @@ def assess_epmc(fields, primary, raw, retrieved_at, request_url):
             "number",
             "pages",
         ):
+            if field == 'number' and retain_issue:
+                continue
             check = secondary_evidence.get(field)
             if check and not check["match"]:
                 issues.append(f"Secondary {field}: missing evidence or mismatch")
@@ -423,7 +726,46 @@ def assess_epmc(fields, primary, raw, retrieved_at, request_url):
     }
 
 
-def run_auto_review(filename, cache, report, client=None, limit=None, snapshot=None):
+def alias_targets(result):
+    """Probe legacy doubled-slash identifiers; never normalize them by guess."""
+    checked = set(result.get("auto_review", {}).get("alias_checked_dois", []))
+    targets = set()
+    for candidate in result.get("candidates", []):
+        if candidate.get("source") != "crossref":
+            continue
+        try:
+            doi = normalize_doi(candidate["doi"])
+            evidence = candidate.get("evidence", {})
+            if (re.match(r"10\.\d{4,9}//", doi) and doi not in checked
+                    and evidence.get("title", {}).get("match")
+                    and evidence.get("author", {}).get("match")):
+                targets.add(doi)
+        except (ValueError, KeyError, TypeError):
+            continue
+    return sorted(targets)
+
+
+def apply_alias_lookup(entry, previous, requested, response):
+    """Preserve a provider receipt and checkpoint a completed alias lookup."""
+    result = deepcopy(previous)
+    candidates = assess_candidates(entry["fields"], response)
+    for candidate in candidates:
+        if not valid_doi_alias(candidate.get("doi_alias"), requested, candidate.get("doi")):
+            continue  # A matching title or HTTP 200 is not alias authority.
+        if candidate not in result["candidates"]:
+            result["candidates"].append(candidate)
+    result.setdefault("attempts", []).append({"source": "crossref-alias", "doi": requested,
+        "url": response["url"], "retrieved_at": response["retrieved_at"],
+        "confirmed": any(valid_doi_alias(c.get("doi_alias"), requested, c.get("doi")) for c in candidates)})
+    result = reassess(entry, result)
+    checkpoint = result.setdefault("auto_review", {})
+    checkpoint["alias_checked_dois"] = sorted(set(checkpoint.get("alias_checked_dois", [])) | {requested})
+    return result
+
+
+def run_auto_review(
+    filename, cache, report, client=None, limit=None, snapshot=None, keys=None
+):
     validate_output_path(filename, report, cache)
     if snapshot:
         validate_output_path(filename, snapshot, cache)
@@ -432,6 +774,8 @@ def run_auto_review(filename, cache, report, client=None, limit=None, snapshot=N
         try:
             results = {}
             for key, entry in entries.items():
+                if keys is not None and key not in keys:
+                    continue
                 previous = cache.get(filename, entry, any_policy=True)
                 compare_previous = {
                     k: v
@@ -442,7 +786,14 @@ def run_auto_review(filename, cache, report, client=None, limit=None, snapshot=N
                     compare_previous
                     if previous
                     and previous.get("policy") == POLICY
-                    and previous.get("auto_review", {}).get("policy") == POLICY
+                    and (
+                        previous.get("status") in ACCEPTED
+                        or (
+                            previous.get("auto_review", {}).get("policy") == POLICY
+                            and previous.get("auto_review", {}).get("resolver_version")
+                            == RESOLVER_VERSION
+                        )
+                    )
                     else reassess(entry, previous)
                 )
                 if previous and (
@@ -455,8 +806,22 @@ def run_auto_review(filename, cache, report, client=None, limit=None, snapshot=N
                 flush=True,
             )
             if client is not None:
+                network_selected = set()
+                for key, result in results.items():
+                    if result.get("external_evidence") or result["status"] != "needs_review":
+                        continue
+                    pending_aliases = alias_targets(result)
+                    if not pending_aliases:
+                        continue
+                    if limit is not None and len(network_selected) >= limit:
+                        break
+                    network_selected.add(key)
+                    for doi in pending_aliases:
+                        response = client.crossref_doi(doi)
+                        result = apply_alias_lookup(entries[key], result, doi, response)
+                        results[key] = cache.put(filename, entries[key], result)
+                    print(f"Crossref alias checks: {key}; requests: {client.requests}", flush=True)
                 targets = {}
-                selected = 0
                 for key, result in results.items():
                     if (
                         result.get("external_evidence")
@@ -464,17 +829,23 @@ def run_auto_review(filename, cache, report, client=None, limit=None, snapshot=N
                         or result.get("auto_review", {}).get("epmc_checked")
                     ):
                         continue
-                    dois = target_dois(result)
+                    done = set(
+                        result.get("auto_review", {}).get("epmc_checked_dois", [])
+                    )
+                    dois = [d for d in target_dois(result) if d not in done]
                     if not dois:
                         continue
-                    if limit is not None and selected >= limit:
-                        break
-                    selected += 1
+                    if limit is not None and key not in network_selected and len(network_selected) >= limit:
+                        continue
+                    network_selected.add(key)
                     for doi in dois:
                         targets.setdefault(doi, []).append(key)
                 dois = list(targets)
                 remaining = {
                     key: set(target_dois(results[key]))
+                    - set(
+                        results[key].get("auto_review", {}).get("epmc_checked_dois", [])
+                    )
                     for keys in targets.values()
                     for key in keys
                 }
@@ -500,16 +871,27 @@ def run_auto_review(filename, cache, report, client=None, limit=None, snapshot=N
                                             )
                                         )
                             remaining[key].discard(doi)
+                            checkpoint = dict(result.get("auto_review", {}))
+                            retained = {
+                                k: result[k]
+                                for k in ("research_attempt", "discovery_review")
+                                if k in result
+                            }
+                            done = set(checkpoint.get("epmc_checked_dois", [])) | {doi}
                             result = dict(
                                 select_result(
                                     entries[key]["fields"],
                                     result["candidates"],
                                     result["attempts"],
                                 ),
-                                auto_review={
-                                    "policy": POLICY,
-                                    "epmc_checked": not remaining[key],
-                                },
+                                **retained,
+                                auto_review=dict(
+                                    checkpoint,
+                                    policy=POLICY,
+                                    resolver_version=RESOLVER_VERSION,
+                                    epmc_checked=not remaining[key],
+                                    epmc_checked_dois=sorted(done),
+                                ),
                             )
                             result["attempts"].append(
                                 {

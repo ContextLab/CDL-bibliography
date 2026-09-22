@@ -1,0 +1,18 @@
+[
+  {
+    "cycle": "run",
+    "seconds": 60.61,
+    "network_requests": 46,
+    "review_writes": 0,
+    "proposals": 23,
+    "entries": 56
+  },
+  {
+    "cycle": "repeat",
+    "seconds": 2.71,
+    "network_requests": 0,
+    "review_writes": 0,
+    "proposals": 23,
+    "entries": 56
+  }
+]

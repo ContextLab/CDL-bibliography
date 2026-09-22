@@ -1,0 +1,28 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 23.21,
+      "network_requests": 0,
+      "review_writes": 10,
+      "statuses": {
+        "metadata_verified": 3528,
+        "needs_review": 2894
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 21.94,
+      "network_requests": 0,
+      "review_writes": 0,
+      "statuses": {
+        "metadata_verified": 3528,
+        "needs_review": 2894
+      }
+    }
+  ],
+  "new_approvals": {
+    "Albe00": "12064937",
+    "Altm99": "238369"
+  }
+}

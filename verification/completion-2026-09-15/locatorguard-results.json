@@ -1,0 +1,35 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "network_requests": 0,
+      "seconds": 110.33,
+      "statuses": {
+        "metadata_verified": 3555,
+        "needs_review": 2867
+      },
+      "added_review_records": 2869
+    },
+    {
+      "cycle": "repeat",
+      "network_requests": 0,
+      "seconds": 26.48,
+      "statuses": {
+        "metadata_verified": 3555,
+        "needs_review": 2867
+      },
+      "added_review_records": 0
+    }
+  ],
+  "baseline_sha256": "10c44db653bd10b7ccaeb733cd021ebe53c14e1b389a6db0c9f7a4ba2afddf88",
+  "queue_routes": {
+    "field_adjudication": 844,
+    "publication_version": 305,
+    "source_discovery": 912,
+    "author_identity": 806
+  },
+  "new_approvals": {
+    "StypEtal11": "10.1159/000323343",
+    "SteiRedi12": "10.3389/fnins.2012.00131"
+  }
+}

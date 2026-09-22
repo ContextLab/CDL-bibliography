@@ -1,0 +1,201 @@
+[
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "McKoRatc89",
+    "fingerprint": "v2:1bbfc0918e13c212c16f500c73b9b1db9dd8157587da9dbb9e922c4767c55b5f",
+    "changes": {
+      "title": {
+        "before": "Assessing the occurrence of elaborative inference with recognition: compatibility checking versus compound cue theory",
+        "after": "Assessing the occurrence of eleborative inference with recognition: compatibility checking vs compound cue theory"
+      }
+    },
+    "doi": "10.1016/0749-596x(89)90012-0",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 5"
+      ],
+      "doi": "10.1016/0749-596x(89)90012-0",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "G Mc{K}oon and R Ratcliff",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "McKoon",
+              "given": "Gail",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Ratcliff",
+              "given": "Roger",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Memory and Language",
+          "match": true,
+          "source": [
+            "Journal of Memory and Language"
+          ]
+        },
+        "pages": {
+          "local": "547--563",
+          "match": true,
+          "source": [
+            "547-563"
+          ]
+        },
+        "title": {
+          "local": "Assessing the occurrence of elaborative inference with recognition: compatibility checking versus compound cue theory",
+          "match": false,
+          "source": [
+            "Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory"
+          ]
+        },
+        "volume": {
+          "local": "28",
+          "match": true,
+          "source": [
+            "28"
+          ]
+        },
+        "year": {
+          "local": "1989",
+          "match": true,
+          "source": [
+            "1989"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/0749-596x(89)90012-0",
+        "ISSN": [
+          "0749-596X"
+        ],
+        "URL": "https://doi.org/10.1016/0749-596x(89)90012-0",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "McKoon",
+            "given": "Gail",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Ratcliff",
+            "given": "Roger",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Memory and Language"
+        ],
+        "issue": "5",
+        "issued": {
+          "date-parts": [
+            [
+              1989,
+              10
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0749596X89900120?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0749596X89900120?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "547-563",
+        "published": {
+          "date-parts": [
+            [
+              1989,
+              10
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1989,
+              10
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory"
+        ],
+        "type": "journal-article",
+        "volume": "28"
+      },
+      "retrieved_at": "2026-09-09T20:02:11.422964+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0749-596x%2889%2990012-0"
+    },
+    "publisher_source": {
+      "document_sha256": "2abb458b3af7fbf88c4b561b5df6797b0b9bf96b5c30aa00a4990d4b8f107f62",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0749-596X(89)90012-0"
+        ],
+        "citation_issn": [
+          "0749-596X"
+        ],
+        "citation_journal_title": [
+          "Journal of Memory and Language"
+        ],
+        "citation_publication_date": [
+          "1989-10-31"
+        ],
+        "citation_title": [
+          "Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0749596X89900120</prism:url><dc:identifier>doi:10.1016/0749-596X(89)90012-0</dc:identifier><eid>1-s2.0-0749596X89900120</eid><prism:doi>10.1016/0749-596X(89)90012-0</prism:doi><pii>0749-596X(89)90012-0</pii><dc:title>Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory </dc:title><prism:publicationName>Journal of Memory and Language</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>0749596X</prism:issn><prism:coverDate>1989-10-31</prism:coverDate><prism:coverDisplayDate>October 1989</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0749596X89900120\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0749596X89900120\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:06.046228+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0749-596x%2889%2990012-0"
+    },
+    "reason": "Both upstream feeds spell eleborative, while the current entry and author citations spell elaborative. Hold for the original article; do not import an apparent registry typo."
+  }
+]

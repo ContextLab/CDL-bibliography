@@ -1,0 +1,14 @@
+[
+  {
+    "cycle": "run",
+    "entries": 4,
+    "seconds": 13.46,
+    "network_requests": 4
+  },
+  {
+    "cycle": "repeat",
+    "entries": 4,
+    "seconds": 0.0,
+    "network_requests": 0
+  }
+]

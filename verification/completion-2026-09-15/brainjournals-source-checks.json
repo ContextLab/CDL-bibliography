@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-21",
+  "journal_variant_sources": [
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/nlmcatalog/9214304",
+      "supports": "Cognitive Brain Research and Brain research. Cognitive brain research are explicit alternate titles, ISSN 0926-6410; different from parent Brain Research."
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/nlmcatalog/8908638",
+      "supports": "Prefixed Brain research. Brain research reviews title covers 1989-2005. Do not impose that title through formatting on post-2005 articles."
+    }
+  ],
+  "method": "Assistant inspected complete paired Crossref and MED records for all eight journal cases; automatic comparison reconstructs evidence from raw records. No LLM approval.",
+  "unchanged_entries": [
+    "ChaoKnig96",
+    "DonaRugg99",
+    "KlimEtal97b",
+    "LepaEtal00b",
+    "MeckEtal03"
+  ],
+  "journal_corrections": [
+    "EtniEtal06",
+    "KlimEtal07",
+    "MoraEtal07"
+  ]
+}

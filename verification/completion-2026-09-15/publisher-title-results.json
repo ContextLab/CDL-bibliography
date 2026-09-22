@@ -1,0 +1,36 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 20.32,
+      "network_requests": 1,
+      "added_review_records": 1,
+      "batch_statuses": {
+        "metadata_verified": 1
+      },
+      "library_statuses": {
+        "metadata_verified": 3168,
+        "needs_review": 3254
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 17.79,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 1
+      },
+      "library_statuses": {
+        "metadata_verified": 3168,
+        "needs_review": 3254
+      }
+    }
+  ],
+  "entries": {
+    "Zanz19": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:a7a946e4f6f5c1421ae697e614fceb5fdcf0ecf53789c9857611ccbaf96e33eb"
+    }
+  }
+}

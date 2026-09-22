@@ -1,0 +1,55 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 31.38,
+      "network_requests": 0,
+      "review_writes": 10,
+      "library_statuses": {
+        "metadata_verified": 3637,
+        "needs_review": 2785
+      },
+      "batch_statuses": {
+        "BetzEtal19": "needs_review",
+        "ChieHone19": "metadata_verified",
+        "DeHaEtal25": "metadata_verified",
+        "JainHuth18": "needs_review",
+        "MomeHowa18": "metadata_verified",
+        "RoyEtal19": "metadata_verified",
+        "SilvEtal19": "needs_review",
+        "StYvNase18": "metadata_verified",
+        "TsitEtal19": "needs_review",
+        "XieEtal21": "needs_review"
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 29.91,
+      "network_requests": 0,
+      "review_writes": 0,
+      "library_statuses": {
+        "metadata_verified": 3637,
+        "needs_review": 2785
+      },
+      "batch_statuses": {
+        "BetzEtal19": "needs_review",
+        "ChieHone19": "metadata_verified",
+        "DeHaEtal25": "metadata_verified",
+        "JainHuth18": "needs_review",
+        "MomeHowa18": "metadata_verified",
+        "RoyEtal19": "metadata_verified",
+        "SilvEtal19": "needs_review",
+        "StYvNase18": "metadata_verified",
+        "TsitEtal19": "needs_review",
+        "XieEtal21": "needs_review"
+      }
+    }
+  ],
+  "new_approvals": {
+    "StYvNase18": "10.1101/304774",
+    "DeHaEtal25": "10.1101/2025.07.25.666835",
+    "RoyEtal19": "10.1101/668483",
+    "ChieHone19": "10.1101/761593",
+    "MomeHowa18": "10.1101/449470"
+  }
+}

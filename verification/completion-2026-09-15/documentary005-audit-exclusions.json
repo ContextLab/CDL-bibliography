@@ -1,0 +1,7 @@
+{
+  "SerrEtal03": "Published first-page text orders Mijail Serruya, Nicholas Hatsopoulos, Matthew Fellows, Liam Paninski, John Donoghue. Crossref instead places Hatsopoulos last. The local second surname also has a typo Hatsopolous. Do not reorder to the registry or drop local middle initials solely to pass verification; full source-bound repair remains needed.",
+  "KrzyEtal09": "Accepted-manuscript cover names Martin I Krzywinski and Jacqueline E Schein, but manuscript byline on physical page 2 omits I/E. Final registry also omits those initials. Do not automatically remove locally supplied initials based on incomplete names; examine final published metadata and author identities.",
+  "Bar04": "Local published footer explicitly says Nature Publishing Group (2004). Preserve this historically supported publisher rather than replace it with the current corporate registry depositor name.",
+  "RichEtal99": "Local 1999 paper copyright is Psychonomic Society; neither that copyright line alone nor current corporate registry depositor establishes whether local Springer is the original publisher. Keep unresolved.",
+  "GagnEtal20": "Local file is a HAL manuscript with advance 2019 citation while the local entry uses the final 2020 issue. Correct journal spelling is clear, but final issue year still needs bound publisher/MED evidence. Do not change 2020 to the registry online year merely to obtain approval."
+}

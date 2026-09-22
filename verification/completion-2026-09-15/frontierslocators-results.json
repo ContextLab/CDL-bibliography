@@ -1,0 +1,44 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 90.0,
+      "network_requests": 4,
+      "added_review_records": 9,
+      "batch_statuses": {
+        "metadata_verified": 3
+      },
+      "library_statuses": {
+        "metadata_verified": 3558,
+        "needs_review": 2864
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 78.5,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 3
+      },
+      "library_statuses": {
+        "metadata_verified": 3558,
+        "needs_review": 2864
+      }
+    }
+  ],
+  "entries": {
+    "BarrEtal12a": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:a750d14c78f1edfe47b7127141a188fbb699ce4c3e4fd4fecd8539f195bc874c"
+    },
+    "Muth13": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:3acd6677548a11c619c3ee3744cee6472cbabe9dd5d1cfd499138ad9139d3a3d"
+    },
+    "NewmEtal12": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:5e093eec700336ed0043a3ae655fa881955c7b5a980d3de5eb6faa3cb0d2f6ad"
+    }
+  }
+}

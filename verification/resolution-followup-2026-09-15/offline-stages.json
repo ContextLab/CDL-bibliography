@@ -1,0 +1,22 @@
+[
+  {
+    "cycle": "run",
+    "network_requests": 0,
+    "seconds": 20.96,
+    "statuses": {
+      "metadata_verified": 2257,
+      "needs_review": 4165
+    },
+    "added_review_records": 0
+  },
+  {
+    "cycle": "repeat",
+    "network_requests": 0,
+    "seconds": 21.46,
+    "statuses": {
+      "metadata_verified": 2257,
+      "needs_review": 4165
+    },
+    "added_review_records": 0
+  }
+]

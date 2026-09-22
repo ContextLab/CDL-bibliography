@@ -1,0 +1,63 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "network_requests": 0,
+      "seconds": 88.03,
+      "statuses": {
+        "metadata_verified": 3238,
+        "needs_review": 3184
+      },
+      "added_review_records": 3214
+    },
+    {
+      "cycle": "repeat",
+      "network_requests": 0,
+      "seconds": 21.37,
+      "statuses": {
+        "metadata_verified": 3238,
+        "needs_review": 3184
+      },
+      "added_review_records": 0
+    }
+  ],
+  "baseline_sha256": "a9991047e6e0c56aceace8e5a7e932b4fbcaf547ecd4593f25157a4312e638a6",
+  "queue_routes": {
+    "field_adjudication": 1023,
+    "publication_version": 315,
+    "source_discovery": 963,
+    "author_identity": 883
+  },
+  "new_approvals": {
+    "RittEtal09": "10.1002/hbm.20585",
+    "LinEtal17": "10.1002/hipo.22751",
+    "DishEtal06": "10.1038/oby.2006.46",
+    "VaynEtal04": "10.1111/j.1460-9568.2004.03720.x",
+    "CoxEtal95": "10.1002/mrm.1910330213",
+    "CrowGrov73": "10.1111/j.1476-5381.1973.tb08379.x",
+    "FreeEtal03a": "10.1002/hbm.10120",
+    "SekiEtal02": "10.1002/hbm.10019",
+    "HeslEtal05": "10.1002/hbm.20147",
+    "GuilEtal96": "10.1111/j.1469-8986.1996.tb02368.x",
+    "SausEtal05": "10.1002/hbm.20150",
+    "SperEtal01": "10.1002/hbm.1047",
+    "CharEtal04": "10.1111/j.1460-9568.2004.03777.x",
+    "OReiMcCl94": "10.1002/hipo.450040605",
+    "Vert05": "10.1002/hipo.20118",
+    "GudeDuze05": "10.1002/hipo.20125",
+    "GuilEtal95": "10.1111/j.1469-8986.1995.tb01221.x",
+    "KirwStar04": "10.1002/hipo.20014",
+    "GleiEtal04": "10.1111/j.0013-9580.2004.42203.x",
+    "RuggEtal94": "10.1111/j.1469-8986.1994.tb01048.x",
+    "JackRedi07": "10.1002/hipo.20359",
+    "MayeEtal02": "10.1002/hipo.1111",
+    "GrubEtal06": "10.1111/j.1460-9568.2006.05130.x",
+    "JameGaut06": "10.1002/hbm.20165",
+    "BunsEich95": "10.1002/hipo.450050606",
+    "EgoSWils07": "10.1002/hipo.20253",
+    "PerrEtal83": "10.1111/j.1471-4159.1983.tb08102.x",
+    "McCaEtal04": "10.1002/hipo.20019",
+    "RollOMar95": "10.1002/hipo.450050504",
+    "CranMiln05": "10.1002/hipo.20043"
+  }
+}

@@ -150,7 +150,6 @@ def test_doi_preserves_special_characters():
     "replacement",
     [
         lambda s: s.replace("title=", "title ="),
-        lambda s: s.replace("Test20", "New20"),
         lambda s: s.replace("2020", "2021"),
         lambda s: s.replace("number={3},", "number={3}, note={test},"),
         lambda s: s.replace("\n", "\r\n"),

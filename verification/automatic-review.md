@@ -1,5 +1,7 @@
 # Automatic bibliography review — September 9, 2026
 
+This page records the September 9 run. The linked baseline/queue have since been updated; see the [current status](README.md) and [September 14 pilot](pilot50/README.md).
+
 The free automated layers resolved **1,047 of the 5,617 originally flagged entries** (18.6%), without editing `cdl.bib` or recording any human approvals. **1,852 of 6,422 entries** now have supported metadata matches; **4,570 remain unresolved**. These remaining entries are an evidence/research queue, not 4,570 confirmed errors and not a claim that they each require manual review.
 
 | Evidence route | Accepted entries |
@@ -16,7 +18,7 @@ The second-source pass checked 4,225 DOI candidates in 170 paced batch requests,
 ## Current artifacts
 
 - [Current policy-2 baseline](baseline.jsonl.gz): all 6,422 entries, statuses, fingerprints, source records, and field evidence.
-- [Compact unresolved queue](review-queue.jsonl.gz): all 4,570 unresolved entries with current fingerprints, next research route, findings, and candidate URLs. Candidate URLs are discovery leads, not confirmed corrections.
+- [Compact unresolved queue](review-queue.jsonl.gz): the current unresolved entries, fingerprints, research routes, findings, and candidate URLs. Candidate URLs are discovery leads, not confirmed corrections.
 - [Original policy-1 baseline](baseline-policy1.jsonl.gz): historical audit, not restorable as current approval under policy 2.
 - `.bibcheck/verification.sqlite3`: local indexed review history and response cache.
 - `.bibcheck/report.jsonl`: detailed current local report.

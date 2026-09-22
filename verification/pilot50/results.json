@@ -1,0 +1,2729 @@
+{
+  "model": "zai-org.glm-5.3",
+  "audited_at": "2026-09-14T19:04:43.636072+00:00",
+  "expected_sha256": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+  "comparison": "Exact equality after case/typography normalization, one terminal punctuation convention, and spaces/dots in author initials. Ordered author signatures preserve compound surnames, accents and all given-name initials. This does not test expansion of initials into full given names.",
+  "summary": {
+    "entries": 50,
+    "matches": 50,
+    "populated_fields": 446,
+    "unknown_fields": 54,
+    "first_pass_matches": 46,
+    "first_pass_source_disagreements": 1,
+    "first_pass_errors": 3,
+    "repair_calls": 4,
+    "offline_repeat_model_calls": 0,
+    "source_kinds": {
+      "europepmc-registry": 38,
+      "article-front-xml": 6,
+      "assistant-retrieved-primary-page": 8,
+      "pdf-text": 1,
+      "publisher-article-information": 1,
+      "publisher-head": 3
+    }
+  },
+  "source_limit": "The assistant checked each source record. Registry records are indexed evidence; only six original article XML documents, three publisher head records, one fetched proceedings PDF and manually retrieved primary-page excerpts were available through these routes. Null fields are evidence gaps, not verified absence. Source discovery was assisted for blocked publisher sites; this is not proof of unattended 50-entry retrieval.",
+  "outcomes": [
+    {
+      "key": "Brun04",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Fourier-, Hilbert- and wavelet-based signal analysis: are they really different approaches?",
+          "year": "2004",
+          "volume": "137",
+          "issue": "2",
+          "pages": "321-332",
+          "container": "Journal of neuroscience methods",
+          "type": "article",
+          "doi": "10.1016/j.jneumeth.2004.03.002",
+          "publisher": null,
+          "authors": [
+            "Bruns, A"
+          ],
+          "uncertainties": [
+            "No publisher field is present in the supplied registry source, so publisher is returned as null.",
+            "Only a Europe PMC registry record was provided; no article XML was available to cross-check metadata."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-80b4b06d3a1c017b",
+          "usage": {
+            "completion_tokens": 547,
+            "prompt_tokens": 1110,
+            "total_tokens": 1657,
+            "completion_tokens_details": {
+              "reasoning_tokens": 377
+            }
+          }
+        },
+        "identity": "d9dd4f7324c133f9b084544e52f3dd15ec3532d9dce88b789452b510e39776a5",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 14.89,
+        "completed_at": "2026-09-14T17:48:29.025425+00:00"
+      }
+    },
+    {
+      "key": "MannEtal22",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Fitness tracking reveals task-specific associations between memory, mental health, and physical activity",
+          "authors": [
+            "Manning, JR",
+            "Notaro, GM",
+            "Chen, E",
+            "Fitzpatrick, PC"
+          ],
+          "year": "2022",
+          "volume": "12",
+          "issue": "1",
+          "pages": "13822",
+          "container": "Scientific Reports",
+          "type": "article",
+          "doi": "10.1038/s41598-022-17781-0",
+          "publisher": "Nature Publishing Group",
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-918965141ac476c5",
+          "usage": {
+            "completion_tokens": 881,
+            "prompt_tokens": 3520,
+            "total_tokens": 4401,
+            "completion_tokens_details": {
+              "reasoning_tokens": 739
+            }
+          }
+        },
+        "identity": "eba9c5b70b1910a14569fd607a36e823c419430f81dad8e2dcb6d15d5312932f",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 23.12,
+        "completed_at": "2026-09-14T17:48:52.152474+00:00"
+      }
+    },
+    {
+      "key": "GuesMart21",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "How Computational Modeling Can Force Theory Building in Psychological Science.",
+          "year": "2021",
+          "volume": "16",
+          "issue": "4",
+          "pages": "789-802",
+          "container": "Perspectives on psychological science : a journal of the Association for Psychological Science",
+          "type": "article",
+          "doi": "10.1177/1745691620970585",
+          "publisher": null,
+          "authors": [
+            "Guest,O",
+            "Martin,AE"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-90a74b7a5284c2ea",
+          "usage": {
+            "completion_tokens": 1041,
+            "prompt_tokens": 1260,
+            "total_tokens": 2301,
+            "completion_tokens_details": {
+              "reasoning_tokens": 911
+            }
+          }
+        },
+        "identity": "d3e2e37cc0091b9dfc57b955983f69f7c8c2ca633f7a844f4f4748b0f5553c78",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 25.9,
+        "completed_at": "2026-09-14T17:49:18.059732+00:00"
+      }
+    },
+    {
+      "key": "LifaEtal21",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Feature-specific reaction times reveal a semanticisation of memories over time and with repeated remembering.",
+          "year": "2021",
+          "volume": "12",
+          "issue": "1",
+          "pages": "3177",
+          "container": "Nature communications",
+          "type": "article",
+          "doi": "10.1038/s41467-021-23288-5",
+          "publisher": "Nature Publishing Group",
+          "authors": [
+            "Lifanov, J.",
+            "Linde-Domingo, J.",
+            "Wimber, M."
+          ],
+          "uncertainties": [
+            "Container title casing differs between sources (registry: 'Nature communications'; article XML: 'Nature Communications'); the registry form was used per precedence rules, a non-substantive difference.",
+            "The value '3177' is an article locator (single start page) rather than a page range, per both registry pageInfo and XML fpage."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-997497b4312b3e5e",
+          "usage": {
+            "completion_tokens": 1056,
+            "prompt_tokens": 2834,
+            "total_tokens": 3890,
+            "completion_tokens_details": {
+              "reasoning_tokens": 835
+            }
+          }
+        },
+        "identity": "da0ba5aa0de75c8efba56b19b0c61f62fc673965dbec0ee50f00017cf3d530ac",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 26.69,
+        "completed_at": "2026-09-14T17:49:44.757170+00:00"
+      }
+    },
+    {
+      "key": "RuggCurr07",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Event-related potentials and recognition memory.",
+          "authors": [
+            "Rugg,MD",
+            "Curran,T"
+          ],
+          "year": "2007",
+          "volume": "11",
+          "issue": "6",
+          "pages": "251-257",
+          "container": "Trends in cognitive sciences",
+          "type": "article",
+          "doi": "10.1016/j.tics.2007.04.004",
+          "publisher": null,
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-89d3ece8a75fe91d",
+          "usage": {
+            "completion_tokens": 605,
+            "prompt_tokens": 1097,
+            "total_tokens": 1702,
+            "completion_tokens_details": {
+              "reasoning_tokens": 485
+            }
+          }
+        },
+        "identity": "929a90583177d0ce2832ba0974cb0ccbecf8da22c6d423aa42fdb6f26bc6ba68",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 16.29,
+        "completed_at": "2026-09-14T17:50:01.057501+00:00"
+      }
+    },
+    {
+      "key": "TianEtal16a",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "The DarkLight Rises: Visible Light Communication in the Dark",
+          "year": "2016",
+          "volume": null,
+          "issue": null,
+          "pages": null,
+          "container": "ACM Conference on Mobile Computing and Networking (MobiCom)",
+          "type": "inproceedings",
+          "doi": null,
+          "publisher": null,
+          "authors": [
+            "Tian, Z.",
+            "Wright, K.",
+            "Zhou, X."
+          ],
+          "uncertainties": [
+            "Source is a project lab webpage listing the publication informally; the formal proceedings title (e.g., 'Proceedings of the ... International Conference on Mobile Computing and Networking') is not stated, so the container is copied as given on the page.",
+            "Volume, issue, page range/article number, and DOI for the paper are not provided in the source; returned null rather than inferred.",
+            "No explicit publisher-name/Published-by field appears in the source; ACM is only implied as conference organizer, so publisher is null.",
+            "Only the month and year of the conference (October 2016) are given; year recorded as 2016."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-8c94ee3966663afb",
+          "usage": {
+            "completion_tokens": 1256,
+            "prompt_tokens": 1343,
+            "total_tokens": 2599,
+            "completion_tokens_details": {
+              "reasoning_tokens": 998
+            }
+          }
+        },
+        "identity": "b9003cd83cba7274c72724e898e2e43a3b6c3dc43dfc6c1aaff1cfb30b9d5241",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 30.89,
+        "completed_at": "2026-09-14T17:50:31.954148+00:00"
+      }
+    },
+    {
+      "key": "CarvEtal22a",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Air-Water Communication and Sensing with Light",
+          "year": "2022",
+          "volume": null,
+          "issue": null,
+          "pages": "371-374",
+          "container": "2022 14th International Conference on COMmunication Systems & NETworkS (COMSNETS)",
+          "type": "inproceedings",
+          "doi": "10.1109/comsnets53615.2022.9668473",
+          "publisher": null,
+          "authors": [
+            "Carver, C.J.",
+            "Tian, Z.",
+            "Shao, Q.",
+            "Zhang, H.",
+            "Odame, K.M.",
+            "Quattrini Li, A.",
+            "Zhou, X."
+          ],
+          "uncertainties": [
+            "Page range 371-374 derived from the running page footers on each page; the opening page number appears interleaved with licensing text ('Dartmouth 371 College'), so no explicit pages field was present.",
+            "Container title copied verbatim, preserving the source's stylized capitalization 'COMmunication Systems & NETworkS'.",
+            "'Alberto Quattrini Li' treated as a compound family name 'Quattrini Li' (consistent with the author's email alberto.quattrini.li@dartmouth.edu); if 'Li' were a middle/given name the entry would instead be 'Quattrini, A.L.'.",
+            "Zhao Tian's '§' footnote marker (work done at Dartmouth College, now at Google) and the stray zhaotian@google.com email were excluded from the byline as footnotes, not authors.",
+            "No explicit publisher field appears in the source; 'IEEE' appears only as a copyright holder (©2022 IEEE) and host branding, so publisher is returned as null per instructions."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-9500a227ec486c1c",
+          "usage": {
+            "completion_tokens": 2269,
+            "prompt_tokens": 6058,
+            "total_tokens": 8327,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1854
+            }
+          }
+        },
+        "identity": "5bbe8c650479712a04bbef6270506c7c7249da9073ab7428a0ea0797d5b1a5b1",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 67.5,
+        "completed_at": "2026-09-14T17:51:39.462625+00:00"
+      }
+    },
+    {
+      "key": "AlkiEtal98",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Hippocampal, but not amygdala, activity at encoding correlates with long-term, free recall of nonemotional information.",
+          "authors": [
+            "Alkire,MT",
+            "Haier,RJ",
+            "Fallon,JH",
+            "Cahill,L"
+          ],
+          "year": "1998",
+          "volume": "95",
+          "issue": "24",
+          "pages": "14506-14510",
+          "container": "Proceedings of the National Academy of Sciences of the United States of America",
+          "type": "article",
+          "doi": "10.1073/pnas.95.24.14506",
+          "publisher": null,
+          "uncertainties": [
+            "Publisher field is absent from the supplied Europe PMC registry record; null returned rather than inferring from journal title or host branding."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-abab5fb2ec9feae6",
+          "usage": {
+            "completion_tokens": 921,
+            "prompt_tokens": 1377,
+            "total_tokens": 2298,
+            "completion_tokens_details": {
+              "reasoning_tokens": 723
+            }
+          }
+        },
+        "identity": "c6b15a72488e9802cd4875432519c9958578e3a4c306834fab2baad8a3eff6a6",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 39.64,
+        "completed_at": "2026-09-14T17:52:19.107778+00:00"
+      }
+    },
+    {
+      "key": "MeyeEtal12",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Evidence for social working memory from a parametric functional MRI study.",
+          "year": "2012",
+          "volume": "109",
+          "issue": "6",
+          "pages": "1883-1888",
+          "container": "Proceedings of the National Academy of Sciences of the United States of America",
+          "type": "article",
+          "doi": "10.1073/pnas.1121077109",
+          "publisher": null,
+          "authors": [
+            "Meyer,ML",
+            "Spunt,RP",
+            "Berkman,ET",
+            "Taylor,SE",
+            "Lieberman,MD"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-b2f2a628cadf278f",
+          "usage": {
+            "completion_tokens": 547,
+            "prompt_tokens": 1393,
+            "total_tokens": 1940,
+            "completion_tokens_details": {
+              "reasoning_tokens": 387
+            }
+          }
+        },
+        "identity": "71db193d7fc1e1fc488354e6e6b97edbef5bdfad13e73adaa605840209187f22",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 21.84,
+        "completed_at": "2026-09-14T17:52:40.950740+00:00"
+      }
+    },
+    {
+      "key": "GrubOtte10",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Voluntary control over prestimulus activity related to encoding.",
+          "year": "2010",
+          "volume": "30",
+          "issue": "29",
+          "pages": "9793-9800",
+          "container": "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+          "type": "article",
+          "doi": "10.1523/jneurosci.0915-10.2010",
+          "publisher": null,
+          "authors": [
+            "Gruber, MJ",
+            "Otten, LJ"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-abd9ec990da2d3d6",
+          "usage": {
+            "completion_tokens": 899,
+            "prompt_tokens": 1526,
+            "total_tokens": 2425,
+            "completion_tokens_details": {
+              "reasoning_tokens": 761
+            }
+          }
+        },
+        "identity": "b6b774bd7f8c35cfe34c856eb80e4bea12a46e9adb2d076bacd49ec07d0e1cfd",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 36.67,
+        "completed_at": "2026-09-14T17:53:17.622748+00:00"
+      }
+    },
+    {
+      "key": "LynnBass21",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Quantifying the compressibility of complex networks",
+          "year": "2021",
+          "volume": "118",
+          "issue": "32",
+          "pages": "e2023473118",
+          "container": "Proceedings of the National Academy of Sciences of the United States of America",
+          "type": "article",
+          "doi": "10.1073/pnas.2023473118",
+          "publisher": "National Academy of Sciences",
+          "authors": [
+            "Lynn, CW",
+            "Bassett, DS"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-a640f0aa9b8b3f06",
+          "usage": {
+            "completion_tokens": 745,
+            "prompt_tokens": 2910,
+            "total_tokens": 3655,
+            "completion_tokens_details": {
+              "reasoning_tokens": 608
+            }
+          }
+        },
+        "identity": "11ced7c23e4fd23292bf491335ae3a93629716d388fd93a6ec9557cf92933efa",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 29.16,
+        "completed_at": "2026-09-14T17:54:24.041337+00:00"
+      }
+    },
+    {
+      "key": "WickNorm66",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Strength Models and Serial Position in Short-Term Recognition Memory",
+          "year": "1966",
+          "volume": "3",
+          "issue": null,
+          "pages": "316-347",
+          "container": "Journal of Mathematical Psychology",
+          "type": "article",
+          "doi": null,
+          "publisher": null,
+          "authors": [
+            "Wickelgren, WA",
+            "Norman, DA"
+          ],
+          "uncertainties": [
+            "Page range taken from the journal header line 'JOURNAL OF MATHEMATICAL PSYCHOLOGY: 3, 3 16-347 (1966)', where the OCR text shows a space inside the start page ('3 16'); reading it as 316-347 is corroborated by the running header '316 SHORT-TERM RECOGNITION MEMORY 317'.",
+            "No issue number is stated in the source, so issue is null.",
+            "No DOI is present in the source; the Elsevier PII 0022-2496(66)90018-6 was not converted to a DOI.",
+            "No publisher name is explicitly stated in the source, so publisher is null."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-b32ebbeb7b1eca62",
+          "usage": {
+            "completion_tokens": 1511,
+            "prompt_tokens": 1455,
+            "total_tokens": 2966,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1239
+            }
+          }
+        },
+        "identity": "ebde2e80cc57384509c6f60ed1db29e71516736fb5940a6a0ddb5766c7bb9c9d",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 57.48,
+        "completed_at": "2026-09-14T17:55:21.536238+00:00"
+      }
+    },
+    {
+      "key": "HoneEtal09",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Predicting human resting-state functional connectivity from structural connectivity.",
+          "year": "2009",
+          "volume": "106",
+          "issue": "6",
+          "pages": "2035-2040",
+          "container": "Proceedings of the National Academy of Sciences of the United States of America",
+          "type": "article",
+          "doi": "10.1073/pnas.0811168106",
+          "publisher": null,
+          "authors": [
+            "Honey,CJ",
+            "Sporns,O",
+            "Cammoun,L",
+            "Gigandet,X",
+            "Thiran,JP",
+            "Meuli,R",
+            "Hagmann,P"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-923a8a22ae3245f3",
+          "usage": {
+            "completion_tokens": 803,
+            "prompt_tokens": 1657,
+            "total_tokens": 2460,
+            "completion_tokens_details": {
+              "reasoning_tokens": 642
+            }
+          }
+        },
+        "identity": "0c353d3cc5e0673b86fc38cd874563bf652741b649542a92c25fd4397a5db6fc",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 32.65,
+        "completed_at": "2026-09-14T17:55:54.193937+00:00"
+      }
+    },
+    {
+      "key": "KopeEtal00",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Gamma rhythms and beta rhythms have different synchronization properties.",
+          "year": "2000",
+          "volume": "97",
+          "issue": "4",
+          "pages": "1867-1872",
+          "container": "Proceedings of the National Academy of Sciences of the United States of America",
+          "type": "article",
+          "doi": "10.1073/pnas.97.4.1867",
+          "publisher": null,
+          "authors": [
+            "Kopell,N",
+            "Ermentrout,GB",
+            "Whittington,MA",
+            "Traub,RD"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-8dd11c0de218d010",
+          "usage": {
+            "completion_tokens": 757,
+            "prompt_tokens": 1368,
+            "total_tokens": 2125,
+            "completion_tokens_details": {
+              "reasoning_tokens": 604
+            }
+          }
+        },
+        "identity": "33797498e79ab8e813496c5e66263c039841e643fab38191e144e3df92191f9d",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 30.78,
+        "completed_at": "2026-09-14T17:56:24.985265+00:00"
+      }
+    },
+    {
+      "key": "GlovEtal05",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Orthogonal arrangement of rhythm-generating microcircuits in the hippocampus.",
+          "authors": [
+            "Gloveli, T.",
+            "Dugladze, T.",
+            "Rotstein, H.G.",
+            "Traub, R.D.",
+            "Monyer, H.",
+            "Heinemann, U.",
+            "Whittington, M.A.",
+            "Kopell, N.J."
+          ],
+          "year": "2005",
+          "volume": "102",
+          "issue": "37",
+          "pages": "13295-13300",
+          "container": "Proceedings of the National Academy of Sciences of the United States of America",
+          "type": "article",
+          "doi": "10.1073/pnas.0506259102",
+          "publisher": null,
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-8f53bee0bde421d9",
+          "usage": {
+            "completion_tokens": 1280,
+            "prompt_tokens": 1712,
+            "total_tokens": 2992,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1084
+            }
+          }
+        },
+        "identity": "2c91dc4dbf7fb374962cb5cf72320176f47aa7f559baa87d62183a9d1e96b96d",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 49.78,
+        "completed_at": "2026-09-14T17:57:14.775697+00:00"
+      }
+    },
+    {
+      "key": "MonaEtal07",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Lexico-semantic structure and the word-frequency effect in recognition memory.",
+          "year": "2007",
+          "volume": "14",
+          "issue": "3",
+          "pages": "204-213",
+          "container": "Learning & memory (Cold Spring Harbor, N.Y.)",
+          "type": "article",
+          "doi": "10.1101/lm.363207",
+          "publisher": null,
+          "authors": [
+            "Monaco,JD",
+            "Abbott,LF",
+            "Kahana,MJ"
+          ],
+          "uncertainties": [
+            "Container title is copied from the registry's NLM catalog form 'Learning & memory (Cold Spring Harbor, N.Y.)'; the journal is also commonly cited as 'Learning & Memory' without the place qualifier.",
+            "The registry lists firstPublicationDate 2007-03-08 versus printPublicationDate 2007-03-01; both fall within the cited 2007 volume/issue, so year 2007 is unaffected.",
+            "No explicit publisher-name field is present in the source; publisher left null rather than inferred from the 'Cold Spring Harbor' journal branding."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-9a7cb0f1097e2926",
+          "usage": {
+            "completion_tokens": 1079,
+            "prompt_tokens": 1373,
+            "total_tokens": 2452,
+            "completion_tokens_details": {
+              "reasoning_tokens": 823
+            }
+          }
+        },
+        "identity": "477c6d95c4cfd04975e15c2105879b4d31e448cef081f0aa4b07bd6b1fa547cc",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 50.53,
+        "completed_at": "2026-09-14T17:58:05.310561+00:00"
+      }
+    },
+    {
+      "key": "WorrEtal04",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "High-frequency oscillations and seizure generation in neocortical epilepsy.",
+          "year": "2004",
+          "volume": "127",
+          "issue": "Pt 7",
+          "pages": "1496-1506",
+          "container": "Brain : a journal of neurology",
+          "type": "article",
+          "doi": "10.1093/brain/awh149",
+          "publisher": null,
+          "authors": [
+            "Worrell,GA",
+            "Parish,L",
+            "Cranstoun,SD",
+            "Jonas,R",
+            "Baltuch,G",
+            "Litt,B"
+          ],
+          "uncertainties": [
+            "Only a Europe PMC registry record was supplied; no article XML with an explicit publisher field was available, so publisher is returned as null rather than inferred from the journal or host.",
+            "The record lists an early-online firstPublicationDate of 2004-05-20, but the cited volume/issue (127, Pt 7) dates to July 2004; the year 2004 is the same for both, so no date conflict affects the result.",
+            "Author initials were taken from the firstName fields per preference (e.g., 'Greg A' -> GA); the fullName fields contain truncated initials consistent with these."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-95cef985ef055ab0",
+          "usage": {
+            "completion_tokens": 871,
+            "prompt_tokens": 1250,
+            "total_tokens": 2121,
+            "completion_tokens_details": {
+              "reasoning_tokens": 590
+            }
+          }
+        },
+        "identity": "adca04276b90a8814b43d9deb1621e221d27013f86613d2a29f3b59292ccf411",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 22.25,
+        "completed_at": "2026-09-14T17:58:27.573875+00:00"
+      }
+    },
+    {
+      "key": "AherBeat81",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Physiological Evidence that Demand for Processing Capacity Varies with Intelligence",
+          "year": "1981",
+          "volume": null,
+          "issue": null,
+          "pages": "121-128",
+          "container": "Intelligence and Learning",
+          "type": "incollection",
+          "doi": "10.1007/978-1-4684-1083-9_9",
+          "publisher": "Springer",
+          "authors": [
+            "Ahern,S.",
+            "Beatty,J."
+          ],
+          "uncertainties": [
+            "The source's Publisher Name field states 'Springer, Boston, MA', but the copyright notice reads '© 1981 Plenum Press, New York', indicating Plenum Press as the original historical imprint; the publisher value reflects the source's explicitly stated publisher field, with the address omitted.",
+            "=The 'vol 14' in the source citation belongs to the NATO Conference Series (a book series), not a volume of the book 'Intelligence and Learning' itself; no separate book volume is given, so volume is null."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-9b002c9f41b28110",
+          "usage": {
+            "completion_tokens": 1268,
+            "prompt_tokens": 4062,
+            "total_tokens": 5330,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1024
+            }
+          }
+        },
+        "identity": "f47b5c0f3bb36244b5e11c29e202efeab06fec24f25dc1d9515987de47419707",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 32.64,
+        "completed_at": "2026-09-14T17:59:00.224321+00:00"
+      }
+    },
+    {
+      "key": "KuhlEtal07",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Decreased demands on cognitive control reveal the neural processing benefits of forgetting.",
+          "year": "2007",
+          "volume": "10",
+          "issue": "7",
+          "pages": "908-914",
+          "container": "Nature neuroscience",
+          "type": "article",
+          "doi": "10.1038/nn1918",
+          "publisher": null,
+          "authors": [
+            "Kuhl,BA",
+            "Dudukovic,NM",
+            "Kahn,I",
+            "Wagner,AD"
+          ],
+          "uncertainties": [
+            "Only a Europe PMC registry record was supplied; no explicit publisher field appears in the source, so publisher is returned as null. The electronic first-publication date (2007-06-03) precedes the print issue date (2007-07-01), but both fall within the journal issue's publication year 2007, which is used."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-856945d33a1c50e8",
+          "usage": {
+            "completion_tokens": 819,
+            "prompt_tokens": 1227,
+            "total_tokens": 2046,
+            "completion_tokens_details": {
+              "reasoning_tokens": 605
+            }
+          }
+        },
+        "identity": "c2287acb6b467e6bb053d4364d22ee18851ea6188076c5060808bf1f58f387ad",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 32.42,
+        "completed_at": "2026-09-14T17:59:32.647285+00:00"
+      }
+    },
+    {
+      "key": "WaydEtal06",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Sparse representation in the human medial temporal lobe.",
+          "year": "2006",
+          "volume": "26",
+          "issue": "40",
+          "pages": "10232-10234",
+          "container": "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+          "type": "article",
+          "doi": "10.1523/jneurosci.2101-06.2006",
+          "publisher": null,
+          "authors": [
+            "Waydo, S.",
+            "Kraskov, A.",
+            "Quian Quiroga, R.",
+            "Fried, I.",
+            "Koch, C."
+          ],
+          "uncertainties": [
+            "No explicit publisher-name field is present in the supplied registry source, so publisher is returned as null rather than inferred from the journal or host branding.",
+            "Author byline is taken from the registry's firstName/lastName fields; 'Quian Quiroga' is preserved as a compound surname."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-8dfb5ee6a68a0691",
+          "usage": {
+            "completion_tokens": 640,
+            "prompt_tokens": 1467,
+            "total_tokens": 2107,
+            "completion_tokens_details": {
+              "reasoning_tokens": 414
+            }
+          }
+        },
+        "identity": "37213f12a1964ce700bcbc30ef41532398d589d2ec54ac59f305b43205575d82",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 43.62,
+        "completed_at": "2026-09-14T18:00:16.275297+00:00"
+      }
+    },
+    {
+      "key": "HuebWill18",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Structured Semantic Knowledge Can Emerge Automatically from Predicting Word Sequences in Child-Directed Speech.",
+          "authors": [
+            "Huebner,PA",
+            "Willits,JA"
+          ],
+          "year": "2018",
+          "volume": "9",
+          "issue": null,
+          "pages": "133",
+          "container": "Frontiers in psychology",
+          "type": "article",
+          "doi": "10.3389/fpsyg.2018.00133",
+          "publisher": "Frontiers Media SA",
+          "uncertainties": [
+            "The value '133' is the article number/locator used by Frontiers (both first page and page range are given as 133 in the XML); it is not a page range, and no end page is supplied."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-91b9c6b04f168b9c",
+          "usage": {
+            "completion_tokens": 1336,
+            "prompt_tokens": 2357,
+            "total_tokens": 3693,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1155
+            }
+          }
+        },
+        "identity": "878431a4165a8ecf3590b38718eaa59dc2e1a9745b1d2b4141b4935cdf06a417",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 48.91,
+        "completed_at": "2026-09-14T18:01:05.193606+00:00"
+      }
+    },
+    {
+      "key": "VidoEtal15",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Dose-Response of Aerobic Exercise on Cognition: A Community-Based, Pilot Randomized Controlled Trial",
+          "year": "2015",
+          "volume": "10",
+          "issue": "7",
+          "pages": "e0131647",
+          "container": "PloS one",
+          "type": "article",
+          "doi": "10.1371/journal.pone.0131647",
+          "publisher": "PLOS",
+          "authors": [
+            "Vidoni, ED",
+            "Johnson, DK",
+            "Morris, JK",
+            "Van Sciver, A",
+            "Greer, CS",
+            "Billinger, SA",
+            "Donnelly, JE",
+            "Burns, JM"
+          ],
+          "uncertainties": [
+            "Journal title capitalization differs between sources: registry gives 'PloS one' while article XML gives 'PLoS ONE'; the registry form is used per precedence, and this is a casing variance only, not a substantive conflict.",
+            "The registry title includes a trailing period not present in the article XML title; it was treated as sentence punctuation and omitted."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-931c7202574115ac",
+          "usage": {
+            "completion_tokens": 1819,
+            "prompt_tokens": 3437,
+            "total_tokens": 5256,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1560
+            }
+          }
+        },
+        "identity": "0bbac59a9528ed201e416d4598ff537d5422ae2206048f74b008aea1b24efdb1",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 70.13,
+        "completed_at": "2026-09-14T18:02:15.337535+00:00"
+      }
+    },
+    {
+      "key": "RoteEtal09",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Attention improves object representation in visual cortical field potentials.",
+          "year": "2009",
+          "volume": "29",
+          "issue": "32",
+          "pages": "10120-10130",
+          "container": "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+          "type": "article",
+          "doi": "10.1523/jneurosci.5508-08.2009",
+          "publisher": null,
+          "authors": [
+            "Rotermund,D",
+            "Taylor,K",
+            "Ernst,UA",
+            "Kreiter,AK",
+            "Pawelzik,KR"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-9cec2d26acb8a960",
+          "usage": {
+            "completion_tokens": 561,
+            "prompt_tokens": 1552,
+            "total_tokens": 2113,
+            "completion_tokens_details": {
+              "reasoning_tokens": 425
+            }
+          }
+        },
+        "identity": "829cd764f4c1f7e98da7e851938f7632871c2ca2977542a90c8b8c9bc0b0387d",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 16.28,
+        "completed_at": "2026-09-14T18:02:31.620678+00:00"
+      }
+    },
+    {
+      "key": "BuscEtal08",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Poor presurgical performance on both verbal and visual memory measures is associated with low risk for memory decline following left temporal lobectomy for intractable epilepsy.",
+          "year": "2008",
+          "volume": "10",
+          "issue": "3",
+          "pages": "199-205",
+          "container": "Epileptic disorders : international epilepsy journal with videotape",
+          "type": "article",
+          "doi": "10.1684/epd.2008.0199",
+          "publisher": null,
+          "authors": [
+            "Busch,RM",
+            "Chapin,JS",
+            "Umashankar,G",
+            "Diehl,B",
+            "Harvey,D",
+            "Naugle,RI",
+            "Nair,D",
+            "Najm,IM"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-a8ea72fe10235231",
+          "usage": {
+            "completion_tokens": 690,
+            "prompt_tokens": 1370,
+            "total_tokens": 2060,
+            "completion_tokens_details": {
+              "reasoning_tokens": 495
+            }
+          }
+        },
+        "identity": "bf99b6bd02290468b2b08b7749eb377940242feae060c7ba107cce830d5705fd",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 18.71,
+        "completed_at": "2026-09-14T18:50:43.390549+00:00"
+      }
+    },
+    {
+      "key": "Kerb14",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "The Simple Difference Formula: An Approach to Teaching Nonparametric Correlation",
+          "year": "2014",
+          "volume": "3",
+          "issue": null,
+          "pages": null,
+          "container": "Comprehensive Psychology",
+          "type": "article",
+          "doi": "10.2466/11.it.3.1",
+          "publisher": null,
+          "authors": [
+            "Kerby, D.S."
+          ],
+          "uncertainties": [
+            "The source supplies no page range or explicit article locator; none was inferred from the DOI suffix, so pages is null.",
+            "No numbered issue is given; the only issue information is the date range 'January-December 2014', so issue is null rather than a date range.",
+            "No explicit publisher-name field appears in the supplied sources; SAGE is only the host platform and copyright is held by the author (© 2014 Dave S. Kerby), so publisher is null.",
+            "The title in the source carries a trailing superscript footnote marker ('1'), which was excluded as a UI footnote, not part of the title."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-a1955e6271572972",
+          "usage": {
+            "completion_tokens": 1633,
+            "prompt_tokens": 20036,
+            "total_tokens": 21669,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1379
+            }
+          }
+        },
+        "identity": "010b916b4d3f398a2d19c6b32f575f0ce16e4a4c8b97d555baaccf438d222b02",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 41.63,
+        "completed_at": "2026-09-14T18:51:25.029717+00:00"
+      }
+    },
+    {
+      "key": "ZekvEtal18",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "The Pupil Dilation Response to Auditory Stimuli: Current State of Knowledge.",
+          "authors": [
+            "Zekveld,AA",
+            "Koelewijn,T",
+            "Kramer,SE"
+          ],
+          "year": "2018",
+          "volume": "22",
+          "issue": null,
+          "pages": "2331216518777174",
+          "container": "Trends in hearing",
+          "type": "article",
+          "doi": "10.1177/2331216518777174",
+          "publisher": "SAGE Publications",
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-8e6171d310168b6f",
+          "usage": {
+            "completion_tokens": 2420,
+            "prompt_tokens": 3898,
+            "total_tokens": 6318,
+            "completion_tokens_details": {
+              "reasoning_tokens": 2274
+            }
+          }
+        },
+        "identity": "1d42298aff3f75c7a31d43bfb35129b5a6428e64c29c0205adeb9987ecc8980c",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 61.56,
+        "completed_at": "2026-09-14T18:52:26.597242+00:00"
+      }
+    },
+    {
+      "key": "Scha03",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "The Boosting Approach to Machine Learning: An Overview",
+          "authors": [
+            "Schapire, R.E."
+          ],
+          "year": "2003",
+          "volume": null,
+          "issue": null,
+          "pages": "149-171",
+          "container": "Nonlinear Estimation and Classification",
+          "type": "incollection",
+          "doi": "10.1007/978-0-387-21579-2_9",
+          "publisher": "Springer",
+          "uncertainties": [
+            "The source lists the chapter as part of the book series 'Lecture Notes in Statistics' (series volume 171), but no separate volume number for the book 'Nonlinear Estimation and Classification' itself is given; the series volume is therefore not recorded as the book volume.",
+            "The DOI is the eBook chapter DOI shown in the source's citation; the source does not indicate a distinct print-edition chapter DOI."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-850f865c1ce933da",
+          "usage": {
+            "completion_tokens": 871,
+            "prompt_tokens": 7756,
+            "total_tokens": 8627,
+            "completion_tokens_details": {
+              "reasoning_tokens": 657
+            }
+          }
+        },
+        "identity": "e443042fe26efaec3a666cf3ac14e4665c33571dec0f27969199cf5e1aa13661",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 36.32,
+        "completed_at": "2026-09-14T18:08:04.068891+00:00"
+      }
+    },
+    {
+      "key": "DaviEtal09",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Hippocampal replay of extended experience.",
+          "year": "2009",
+          "volume": "63",
+          "issue": "4",
+          "pages": "497-507",
+          "container": "Neuron",
+          "type": "article",
+          "doi": "10.1016/j.neuron.2009.07.027",
+          "publisher": null,
+          "authors": [
+            "Davidson, TJ",
+            "Kloosterman, F",
+            "Wilson, MA"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-8e047d17a5c2329d",
+          "usage": {
+            "completion_tokens": 499,
+            "prompt_tokens": 1448,
+            "total_tokens": 1947,
+            "completion_tokens_details": {
+              "reasoning_tokens": 375
+            }
+          }
+        },
+        "identity": "aa995abce0abe18277a3ff2531392f5143fa2d95101e79d03174fc953b7911e2",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 16.62,
+        "completed_at": "2026-09-14T18:08:20.700237+00:00"
+      }
+    },
+    {
+      "key": "WitmEtal96",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Virtual spaces and real world places: transfer of route knowledge",
+          "year": "1996",
+          "volume": "45",
+          "issue": "4",
+          "pages": "413-428",
+          "container": "International Journal of Human-Computer Studies",
+          "type": "article",
+          "doi": "10.1006/ijhc.1996.0060",
+          "publisher": "Elsevier",
+          "authors": [
+            "Witmer, B.G.",
+            "Bailey, J.H.",
+            "Knerr, B.W.",
+            "Parsons, K.C."
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-ad24589193e80438",
+          "usage": {
+            "completion_tokens": 632,
+            "prompt_tokens": 1185,
+            "total_tokens": 1817,
+            "completion_tokens_details": {
+              "reasoning_tokens": 479
+            }
+          }
+        },
+        "identity": "031a726da44b9e0648b271b8c74887d130d07d8afa53141e8072bdc9e45c37b7",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 16.79,
+        "completed_at": "2026-09-14T18:08:37.508220+00:00"
+      }
+    },
+    {
+      "key": "GuptEtal12",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Segmentation of spatial experience by hippocampal θ sequences.",
+          "year": "2012",
+          "volume": "15",
+          "issue": "7",
+          "pages": "1032-1039",
+          "container": "Nature neuroscience",
+          "type": "article",
+          "doi": "10.1038/nn.3138",
+          "publisher": null,
+          "authors": [
+            "Gupta,AS",
+            "van der Meer,MAA",
+            "Touretzky,DS",
+            "Redish,AD"
+          ],
+          "uncertainties": [
+            "Second author's initials derived from firstName 'Matthijs A A' (MAA), which differs from the truncated registry initials field 'MA'; compound surname 'van der Meer' preserved.",
+            "Publisher not explicitly stated in the supplied registry source, so returned null; no article XML was provided to supply a publisher field.",
+            "firstPublicationDate (2012-06-17, early online) differs from printPublicationDate (2012-06-01), but both fall in the journal volume year 2012, so year is unambiguous."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-951f42a08724b617",
+          "usage": {
+            "completion_tokens": 1213,
+            "prompt_tokens": 1377,
+            "total_tokens": 2590,
+            "completion_tokens_details": {
+              "reasoning_tokens": 954
+            }
+          }
+        },
+        "identity": "4f3af2ac42d7e7e1e6356a10b95699600349cbf5563e793cc2b759e90f9e1da7",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 29.82,
+        "completed_at": "2026-09-14T18:09:07.334614+00:00"
+      }
+    },
+    {
+      "key": "BernEtal01b",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Event-related brain potentials differentiate positive and negative mood adjectives during both supraliminal and subliminal visual processing.",
+          "authors": [
+            "Bernat, E.",
+            "Bunce, S.",
+            "Shevrin, H."
+          ],
+          "year": "2001",
+          "volume": "42",
+          "issue": "1",
+          "pages": "11-34",
+          "container": "International journal of psychophysiology : official journal of the International Organization of Psychophysiology",
+          "type": "article",
+          "doi": "10.1016/s0167-8760(01)00133-7",
+          "publisher": null,
+          "uncertainties": [
+            "Author given names are available only as initials (E, S, H) in the source; full given names could not be confirmed.",
+            "No publisher name is stated in the source, so the publisher field is null rather than inferred from the DOI or journal branding."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-b33081a67243f620",
+          "usage": {
+            "completion_tokens": 922,
+            "prompt_tokens": 1178,
+            "total_tokens": 2100,
+            "completion_tokens_details": {
+              "reasoning_tokens": 705
+            }
+          }
+        },
+        "identity": "994667fbc5d9edbb12ab7da6111572c985a7dfcd5fd3e5195f959faf0f1dc92a",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 23.28,
+        "completed_at": "2026-09-14T18:09:30.630002+00:00"
+      }
+    },
+    {
+      "key": "CronEtal01",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Induced electrocorticographic gamma activity during auditory perception. Brazier Award-winning article, 2001.",
+          "year": "2001",
+          "volume": "112",
+          "issue": "4",
+          "pages": "565-582",
+          "container": "Clinical neurophysiology : official journal of the International Federation of Clinical Neurophysiology",
+          "type": "article",
+          "doi": "10.1016/s1388-2457(00)00545-9",
+          "publisher": null,
+          "authors": [
+            "Crone, N.E.",
+            "Boatman, D.",
+            "Gordon, B.",
+            "Hao, L."
+          ],
+          "uncertainties": [
+            "The source title field ends with 'Brazier Award-winning article, 2001.', which appears to be an appended award annotation rather than part of the title proper; it was retained verbatim as supplied per the copy-title instruction.",
+            "Only the Europe PMC registry record was supplied (no article XML or publisher field), so the publisher is returned as null rather than inferred from the journal or DOI host."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-8e383d04efd459d8",
+          "usage": {
+            "completion_tokens": 2560,
+            "prompt_tokens": 1196,
+            "total_tokens": 3756,
+            "completion_tokens_details": {
+              "reasoning_tokens": 2304
+            }
+          }
+        },
+        "identity": "a1a03cf3319a9c6a7a59cf3e191b0c082ac9461b429b06d26e806de28ba40828",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 60.18,
+        "completed_at": "2026-09-14T18:10:30.814450+00:00"
+      }
+    },
+    {
+      "key": "KoenEtal07",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Damage to the prefrontal cortex increases utilitarian moral judgements",
+          "year": "2007",
+          "volume": "446",
+          "issue": "7138",
+          "pages": "908-911",
+          "container": "Nature",
+          "type": "article",
+          "doi": "10.1038/nature05631",
+          "publisher": null,
+          "authors": [
+            "Koenigs,M",
+            "Young,L",
+            "Adolphs,R",
+            "Tranel,D",
+            "Cushman,F",
+            "Hauser,M",
+            "Damasio,A"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-965a630fb25bc479",
+          "usage": {
+            "completion_tokens": 1095,
+            "prompt_tokens": 1678,
+            "total_tokens": 2773,
+            "completion_tokens_details": {
+              "reasoning_tokens": 939
+            }
+          }
+        },
+        "identity": "8c76b469519308d360dd033fc5b9583a97fdbe37c5a9b4e97186a3c7350265f3",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 40.87,
+        "completed_at": "2026-09-14T18:11:11.703609+00:00"
+      }
+    },
+    {
+      "key": "HamaEtal08",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Memory enhancement induced by hypothalamic/fornix deep brain stimulation.",
+          "year": "2008",
+          "volume": "63",
+          "issue": "1",
+          "pages": "119-123",
+          "container": "Annals of neurology",
+          "type": "article",
+          "doi": "10.1002/ana.21295",
+          "publisher": null,
+          "authors": [
+            "Hamani,C",
+            "McAndrews,MP",
+            "Cohn,M",
+            "Oh,M",
+            "Zumsteg,D",
+            "Shapiro,CM",
+            "Wennberg,RA",
+            "Lozano,AM"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-865691879fbeebe2",
+          "usage": {
+            "completion_tokens": 615,
+            "prompt_tokens": 1409,
+            "total_tokens": 2024,
+            "completion_tokens_details": {
+              "reasoning_tokens": 451
+            }
+          }
+        },
+        "identity": "289f27c1b186494c94300b395b1e27c59eea54e1c0c6771a8aa3eebdf95b573f",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 25.34,
+        "completed_at": "2026-09-14T18:11:37.053307+00:00"
+      }
+    },
+    {
+      "key": "BretEtal02",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "The problem of functional localization in the human brain.",
+          "year": "2002",
+          "volume": "3",
+          "issue": "3",
+          "pages": "243-249",
+          "container": "Nature reviews. Neuroscience",
+          "type": "article",
+          "doi": "10.1038/nrn756",
+          "publisher": null,
+          "authors": [
+            "Brett, M.",
+            "Johnsrude, I.S.",
+            "Owen, A.M."
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-88464a231612329d",
+          "usage": {
+            "completion_tokens": 1027,
+            "prompt_tokens": 1146,
+            "total_tokens": 2173,
+            "completion_tokens_details": {
+              "reasoning_tokens": 901
+            }
+          }
+        },
+        "identity": "1e182eb2db18a0efb1798241dcb1aef9629bc6d2dbe335679499fa91a17c0fbf",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 39.9,
+        "completed_at": "2026-09-14T18:12:16.965735+00:00"
+      }
+    },
+    {
+      "key": "Nico03",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Brain-machine interfaces to restore motor function and probe neural circuits",
+          "year": "2003",
+          "volume": "4",
+          "issue": "5",
+          "pages": "417-422",
+          "container": "Nature reviews. Neuroscience",
+          "type": "article",
+          "doi": "10.1038/nrn1105",
+          "publisher": null,
+          "authors": [
+            "Nicolelis,MAL"
+          ],
+          "uncertainties": [
+            "The registry's initials field gives 'MA', but the firstName field 'Miguel A L' implies three initials (MAL); the firstName field was preferred per precedence rules, so the author is rendered as 'Nicolelis,MAL'.",
+            "No publisher-name field is present in the supplied registry record, so publisher is returned as null."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-88ace72cad43ec13",
+          "usage": {
+            "completion_tokens": 1919,
+            "prompt_tokens": 1061,
+            "total_tokens": 2980,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1732
+            }
+          }
+        },
+        "identity": "8bc08af452977d4cb4d124dc32dd34926a1008a773aeef2827081451fd039852",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 100.1,
+        "completed_at": "2026-09-14T18:13:57.076502+00:00"
+      }
+    },
+    {
+      "key": "OlveEtal04",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Increase of the hippocampal theta activity in the Morris water maze reflects learning rather than motor activity.",
+          "authors": [
+            "Olvera-Cortés,E",
+            "Guevara,MA",
+            "González-Burgos,I"
+          ],
+          "year": "2004",
+          "volume": "62",
+          "issue": "5",
+          "pages": "379-384",
+          "container": "Brain research bulletin",
+          "type": "article",
+          "doi": "10.1016/j.brainresbull.2003.10.003",
+          "publisher": null,
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-918ede752a792850",
+          "usage": {
+            "completion_tokens": 422,
+            "prompt_tokens": 1185,
+            "total_tokens": 1607,
+            "completion_tokens_details": {
+              "reasoning_tokens": 276
+            }
+          }
+        },
+        "identity": "df60904d451a480dd408c8045637a26ca126fa7095a0045791a9d141a7e2c7a8",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 18.8,
+        "completed_at": "2026-09-14T18:14:15.895744+00:00"
+      }
+    },
+    {
+      "key": "PolkEtal02",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Neural specialization for letter recognition.",
+          "authors": [
+            "Polk,TA",
+            "Stallcup,M",
+            "Aguirre,GK",
+            "Alsop,DC",
+            "D'Esposito,M",
+            "Detre,JA",
+            "Farah,MJ"
+          ],
+          "year": "2002",
+          "volume": "14",
+          "issue": "2",
+          "pages": "145-159",
+          "container": "Journal of cognitive neuroscience",
+          "type": "article",
+          "doi": "10.1162/089892902317236803",
+          "publisher": null,
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-bf9e9be1a2ee9cf2",
+          "usage": {
+            "completion_tokens": 654,
+            "prompt_tokens": 1356,
+            "total_tokens": 2010,
+            "completion_tokens_details": {
+              "reasoning_tokens": 494
+            }
+          }
+        },
+        "identity": "052a306a802cc395cd496067a6f966393c1ece4da1b93f44eb130162bb2f590c",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 42.9,
+        "completed_at": "2026-09-14T18:14:58.809774+00:00"
+      }
+    },
+    {
+      "key": "WolfEtal93",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Neurocognitive efficiency following left temporal lobectomy: standard versus limited resection.",
+          "authors": [
+            "Wolf, R.L.",
+            "Ivnik, R.J.",
+            "Hirschorn, K.A.",
+            "Sharbrough, F.W.",
+            "Cascino, G.D.",
+            "Marsh, W.R."
+          ],
+          "year": "1993",
+          "volume": "79",
+          "issue": "1",
+          "pages": "76-83",
+          "container": "Journal of neurosurgery",
+          "type": "article",
+          "doi": "10.3171/jns.1993.79.1.0076",
+          "publisher": null,
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-8f4b8a7bdca0f7c8",
+          "usage": {
+            "completion_tokens": 471,
+            "prompt_tokens": 1191,
+            "total_tokens": 1662,
+            "completion_tokens_details": {
+              "reasoning_tokens": 307
+            }
+          }
+        },
+        "identity": "88aa431362d9796f269d249c93591740d7003984597262762b90f77b8c85da1a",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 30.99,
+        "completed_at": "2026-09-14T18:15:29.812547+00:00"
+      }
+    },
+    {
+      "key": "HaukEtal04",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Somatotopic representation of action words in human motor and premotor cortex.",
+          "year": "2004",
+          "volume": "41",
+          "issue": "2",
+          "pages": "301-307",
+          "container": "Neuron",
+          "type": "article",
+          "doi": "10.1016/s0896-6273(03)00838-9",
+          "publisher": null,
+          "authors": [
+            "Hauk, O.",
+            "Johnsrude, I.",
+            "Pulvermüller, F."
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-9f7dfb2226e12831",
+          "usage": {
+            "completion_tokens": 1224,
+            "prompt_tokens": 1230,
+            "total_tokens": 2454,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1080
+            }
+          }
+        },
+        "identity": "fa46aca5428e882a274789d440473c05a9668165b7242e7db7d4d2ef87758588",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 48.17,
+        "completed_at": "2026-09-14T18:16:17.999216+00:00"
+      }
+    },
+    {
+      "key": "AlomEtal13",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Forced and voluntary exercises equally improve spatial learning and memory and hippocampal BDNF levels.",
+          "year": "2013",
+          "volume": "247",
+          "issue": null,
+          "pages": "34-39",
+          "container": "Behavioural brain research",
+          "type": "article",
+          "doi": "10.1016/j.bbr.2013.03.007",
+          "publisher": null,
+          "authors": [
+            "Alomari,MA",
+            "Khabour,OF",
+            "Alzoubi,KH",
+            "Alzubi,MA"
+          ],
+          "uncertainties": [
+            "No issue number is provided in the registry record, so issue is returned as null.",
+            "The registry source contains no explicit publisher field, so publisher is returned as null.",
+            "The firstPublicationDate (2013-03-13, early online) differs from the print publication date (2013 Jun); the cited year 2013 reflects the print journal volume."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-92fe74e48728bdd4",
+          "usage": {
+            "completion_tokens": 918,
+            "prompt_tokens": 1218,
+            "total_tokens": 2136,
+            "completion_tokens_details": {
+              "reasoning_tokens": 685
+            }
+          }
+        },
+        "identity": "5ad2826d02a5c1640d285295b1b822a36bfea848ca6ab87d08204bc6e269a6aa",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 34.17,
+        "completed_at": "2026-09-14T18:16:52.183294+00:00"
+      }
+    },
+    {
+      "key": "KuhlEtal12b",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Multi-voxel patterns of visual category representation during episodic encoding are predictive of subsequent memory.",
+          "year": "2012",
+          "volume": "50",
+          "issue": "4",
+          "pages": "458-469",
+          "container": "Neuropsychologia",
+          "type": "article",
+          "doi": "10.1016/j.neuropsychologia.2011.09.002",
+          "publisher": null,
+          "authors": [
+            "Kuhl,BA",
+            "Rissman,J",
+            "Wagner,AD"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-a1f44b30ad2951da",
+          "usage": {
+            "completion_tokens": 1032,
+            "prompt_tokens": 1374,
+            "total_tokens": 2406,
+            "completion_tokens_details": {
+              "reasoning_tokens": 887
+            }
+          }
+        },
+        "identity": "c06ad24aa6252991ae8100bdba414b7b2a0b85e6998cd4bcb60d99e1fd461af2",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 40.13,
+        "completed_at": "2026-09-14T18:17:32.319621+00:00"
+      }
+    },
+    {
+      "key": "AinsEtal12",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Rates and rhythms: a synergistic view of frequency and temporal coding in neuronal networks.",
+          "year": "2012",
+          "volume": "75",
+          "issue": "4",
+          "pages": "572-583",
+          "container": "Neuron",
+          "type": "article",
+          "doi": "10.1016/j.neuron.2012.08.004",
+          "publisher": null,
+          "authors": [
+            "Ainsworth,M",
+            "Lee,S",
+            "Cunningham,MO",
+            "Traub,RD",
+            "Kopell,NJ",
+            "Whittington,MA"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-b9f01bc5b21316bb",
+          "usage": {
+            "completion_tokens": 825,
+            "prompt_tokens": 1346,
+            "total_tokens": 2171,
+            "completion_tokens_details": {
+              "reasoning_tokens": 663
+            }
+          }
+        },
+        "identity": "f91f287847e3062390420601fdf5f163b90442bb0abd62022e9842a13455a0d9",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 33.53,
+        "completed_at": "2026-09-14T18:18:05.861539+00:00"
+      }
+    },
+    {
+      "key": "Lang05",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Disruption of attention by irrelevant stimuli in serial recall",
+          "year": "2005",
+          "volume": "53",
+          "issue": "4",
+          "pages": "513-531",
+          "container": "Journal of Memory and Language",
+          "type": "article",
+          "doi": "10.1016/j.jml.2005.07.002",
+          "publisher": "Elsevier",
+          "authors": [
+            "Lange, E.B."
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-b801e46bf207ba43",
+          "usage": {
+            "completion_tokens": 511,
+            "prompt_tokens": 4425,
+            "total_tokens": 4936,
+            "completion_tokens_details": {
+              "reasoning_tokens": 389
+            }
+          }
+        },
+        "identity": "f3be056c0b6c1721c7a727ac30d648384083965b004e7329cc0db062ce45b758",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 20.47,
+        "completed_at": "2026-09-14T18:18:26.348505+00:00"
+      }
+    },
+    {
+      "key": "MillMcGi52",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "A Statistical Description of Verbal Learning",
+          "authors": [
+            "Miller, G.A.",
+            "McGill, W.J."
+          ],
+          "year": "1952",
+          "volume": "17",
+          "issue": "4",
+          "pages": "369-396",
+          "container": "Psychometrika",
+          "type": "article",
+          "doi": "10.1007/bf02288914",
+          "publisher": "Cambridge University Press",
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-8000c88037844eb2",
+          "usage": {
+            "completion_tokens": 1052,
+            "prompt_tokens": 985,
+            "total_tokens": 2037,
+            "completion_tokens_details": {
+              "reasoning_tokens": 929
+            }
+          }
+        },
+        "identity": "f02f6429528291eba884a27d86ef4b682bc0da7025bb4f5b7bee9201af5c2e5f",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 32.22,
+        "completed_at": "2026-09-14T18:52:58.922153+00:00"
+      }
+    },
+    {
+      "key": "WyliEtal07",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Forgetting as an active process: an FMRI investigation of item-method-directed forgetting.",
+          "authors": [
+            "Wylie, GR",
+            "Foxe, JJ",
+            "Taylor, TL"
+          ],
+          "year": "2008",
+          "volume": "18",
+          "issue": "3",
+          "pages": "670-682",
+          "container": "Cerebral cortex (New York, N.Y. : 1991)",
+          "type": "article",
+          "doi": "10.1093/cercor/bhm101",
+          "publisher": null,
+          "uncertainties": [
+            "The registry lists an early-online firstPublicationDate of 2007-07-07, but the volume/issue publication year is 2008; the 2008 journal year was used.",
+            "The container title is given in NLM catalog form including the parenthetical '(New York, N.Y. : 1991)'; no publisher-name field is present in the source, so publisher is null."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-971ca1287f8d81a6",
+          "usage": {
+            "completion_tokens": 1013,
+            "prompt_tokens": 1262,
+            "total_tokens": 2275,
+            "completion_tokens_details": {
+              "reasoning_tokens": 784
+            }
+          }
+        },
+        "identity": "71f24e2db1efab13b16a4b6ab1e1244013d7a6f97a893bd237c46b6231d277e8",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 67.55,
+        "completed_at": "2026-09-14T18:23:35.943515+00:00"
+      }
+    },
+    {
+      "key": "Cohe90",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Why is it difficult to put names to faces?",
+          "year": "1990",
+          "volume": "81",
+          "issue": "3",
+          "pages": "287-297",
+          "container": "British Journal of Psychology",
+          "type": "article",
+          "doi": "10.1111/j.2044-8295.1990.tb02362.x",
+          "publisher": null,
+          "authors": [
+            "Cohen, G."
+          ],
+          "uncertainties": [
+            "The page lists 'Gillian Cohen' twice in the byline, but both entries carry identical name and affiliation, indicating a single author duplicated in the page template rather than two contributors.",
+            "No explicit publisher-name field appears in the source; copyright footers (The British Psychological Society / John Wiley & Sons) and Wiley Online Library hosting were not used to infer a publisher, so publisher is returned as null.",
+            "'First published: August 1990' matches the cited volume 81, issue 3 (August 1990) date, so 1990 is used as the issue year rather than early-online or copyright dates."
+          ]
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-9c6c5cf9f4c1312f",
+          "usage": {
+            "completion_tokens": 952,
+            "prompt_tokens": 3664,
+            "total_tokens": 4616,
+            "completion_tokens_details": {
+              "reasoning_tokens": 696
+            }
+          }
+        },
+        "identity": "6048c3e960ff8c5ea6b0c3ac65b915b47e24b16bfda45605eeb3d6bdd4fc4c45",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 63.41,
+        "completed_at": "2026-09-14T18:24:39.363687+00:00"
+      }
+    },
+    {
+      "key": "TakaEtal77",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Nonmetric Individual Differences Multidimensional Scaling: An Alternating Least Squares Method with Optimal Scaling Features",
+          "authors": [
+            "Takane, Y.",
+            "Young, F.W.",
+            "de Leeuw, J."
+          ],
+          "year": "1977",
+          "volume": "42",
+          "issue": "1",
+          "pages": "7-67",
+          "container": "Psychometrika",
+          "type": "article",
+          "doi": "10.1007/bf02293745",
+          "publisher": "Cambridge University Press",
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-98e111cff598f8f1",
+          "usage": {
+            "completion_tokens": 1039,
+            "prompt_tokens": 1092,
+            "total_tokens": 2131,
+            "completion_tokens_details": {
+              "reasoning_tokens": 914
+            }
+          }
+        },
+        "identity": "98372ca8aec90f61c3711b90645f7fc8d6eff1ffb01c3062e2dd358fe24717f3",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 50.45,
+        "completed_at": "2026-09-14T18:25:29.819613+00:00"
+      }
+    },
+    {
+      "key": "Cowa00",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "The magical number 4 in short-term memory: A reconsideration of mental storage capacity",
+          "year": "2001",
+          "volume": "24",
+          "issue": "1",
+          "pages": "87-114",
+          "container": "Behavioral and Brain Sciences",
+          "type": "article",
+          "doi": "10.1017/s0140525x01003922",
+          "publisher": "Cambridge University Press",
+          "authors": [
+            "Cowan, N."
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-a302e16922f7bc99",
+          "usage": {
+            "completion_tokens": 647,
+            "prompt_tokens": 1057,
+            "total_tokens": 1704,
+            "completion_tokens_details": {
+              "reasoning_tokens": 518
+            }
+          }
+        },
+        "identity": "fedb270959e42906a4138fc96be520f6fe469403f58072b650f0655134e274cc",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 28.22,
+        "completed_at": "2026-09-14T18:25:58.058354+00:00"
+      }
+    },
+    {
+      "key": "WiggEtal99",
+      "comparison": "match",
+      "differences": {},
+      "extraction": {
+        "finding": {
+          "title": "Neural correlates of semantic and episodic memory retrieval.",
+          "year": "1999",
+          "volume": "37",
+          "issue": "1",
+          "pages": "103-118",
+          "container": "Neuropsychologia",
+          "type": "article",
+          "doi": "10.1016/s0028-3932(98)00044-x",
+          "publisher": null,
+          "authors": [
+            "Wiggs,CL",
+            "Weisberg,J",
+            "Martin,A"
+          ],
+          "uncertainties": []
+        },
+        "trace": {
+          "provider": "dartmouth",
+          "model": "zai-org.glm-5.3",
+          "response_id": "chatcmpl-9e2e8edbc62a7907",
+          "usage": {
+            "completion_tokens": 411,
+            "prompt_tokens": 1139,
+            "total_tokens": 1550,
+            "completion_tokens_details": {
+              "reasoning_tokens": 299
+            }
+          }
+        },
+        "identity": "5cf2b3aba915f681b775ffec6ed9de787d9df3ba9c36ea021d9f127c876c0e33",
+        "expected_sha256_at_call": "d9e884f979d687f8fdf272b0dce0548ec2501886981ee8a2d133be36ae55d490",
+        "seconds": 24.98,
+        "completed_at": "2026-09-14T18:26:23.045735+00:00"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "Brun04",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/15262077",
+          "content_sha256": "7e80371a0dc75fb35c11879d8707dffcbce75e695f4472437b54da7bbf105a24"
+        }
+      ]
+    },
+    {
+      "key": "MannEtal22",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/35970908",
+          "content_sha256": "24b308c809cf5bfbe704392adf7a0f5b9c91d3c23f79acad2d850d0021743150"
+        },
+        {
+          "kind": "article-front-xml",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9378644/fullTextXML",
+          "content_sha256": "9dfffd9c5b00411afc439f1a5fc0a7b426ffc5635207379c3b97bd2f3a853c3e"
+        }
+      ]
+    },
+    {
+      "key": "GuesMart21",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/33482070",
+          "content_sha256": "6c8b364e30d22855f33815dee5811724c5bed62d3492f50467b56331c2492c5d"
+        }
+      ]
+    },
+    {
+      "key": "LifaEtal21",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/34039970",
+          "content_sha256": "71a16f889ef33e62e2e2e527c00dab1ea46a5545cc803293c9b8ee63e46d8efb"
+        },
+        {
+          "kind": "article-front-xml",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8155072/fullTextXML",
+          "content_sha256": "abb0fa892e3e5d4805205fd99930d39293cdad37f844a228074d1d86635f5621"
+        }
+      ]
+    },
+    {
+      "key": "RuggCurr07",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/17481940",
+          "content_sha256": "5ccb1a37211219bb2b4663c5e3ebde60e917fb1af97f01890ed62e1638c52c8c"
+        }
+      ]
+    },
+    {
+      "key": "TianEtal16a",
+      "sources": [
+        {
+          "kind": "assistant-retrieved-primary-page",
+          "source_file": "TianEtal16a-search.txt",
+          "content_sha256": "304c01878de7dcd70f7f604b412f87c7876f80007602edcb3a23836e55f08fe6"
+        }
+      ]
+    },
+    {
+      "key": "CarvEtal22a",
+      "sources": [
+        {
+          "kind": "pdf-text",
+          "source_file": "CarvEtal22a.txt",
+          "content_sha256": "dac381b1d6fbe67cee7337ba567fb9f3975f16e288cdef4ae926ab73f7f5c62e"
+        }
+      ]
+    },
+    {
+      "key": "AlkiEtal98",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/9826730",
+          "content_sha256": "e04a806fe4efe4d48e14f21b4d67ea5274c6a4e31692a7553256de216c18def4"
+        }
+      ]
+    },
+    {
+      "key": "MeyeEtal12",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/22308468",
+          "content_sha256": "d261a2ad0aaf6770dbc4b25ac26dd7440e6f8a4f634a4f5c6ede0e1429dbfcdf"
+        }
+      ]
+    },
+    {
+      "key": "GrubOtte10",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/20660262",
+          "content_sha256": "23222185e162be47ddcbc7090cb15e26abdcd41ae0e838c8d904037344fc7d00"
+        }
+      ]
+    },
+    {
+      "key": "LynnBass21",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/34349019",
+          "content_sha256": "cad91fd37b8a706702c4d2bff946e3d9ae13a3a93525afe3cee249d68a0cd79f"
+        },
+        {
+          "kind": "article-front-xml",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8364101/fullTextXML",
+          "content_sha256": "29e6e9cada5e3be4234ed8f3264c0a16ca485b3a6d81d3dfff5ee852241119ac"
+        }
+      ]
+    },
+    {
+      "key": "WickNorm66",
+      "sources": [
+        {
+          "kind": "assistant-retrieved-primary-page",
+          "source_file": "WickNorm66-evidence.txt",
+          "content_sha256": "91de8dbe72fdfcd2782e9b031d580301565e484a228e9d0a9e82f3f3e84205ea"
+        }
+      ]
+    },
+    {
+      "key": "HoneEtal09",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/19188601",
+          "content_sha256": "2fdf5ff97d4379afb66171f2778790589cc8d83b4380e8e7ab495242cee79f4c"
+        }
+      ]
+    },
+    {
+      "key": "KopeEtal00",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/10677548",
+          "content_sha256": "5999183463a080a7c7fee2d066cf6637ed193bace6f8a240887c2be0e70cf3ca"
+        }
+      ]
+    },
+    {
+      "key": "GlovEtal05",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/16141320",
+          "content_sha256": "31cf1642b7e6c6814bba1c28e3c4c29828d256b9247a1dcf7953544ab8ca2eaf"
+        }
+      ]
+    },
+    {
+      "key": "MonaEtal07",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/17351146",
+          "content_sha256": "8d22bb3e793194c34ef1042bcce041b265eeae2354fa2be59df91946bab81b4a"
+        }
+      ]
+    },
+    {
+      "key": "WorrEtal04",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/15155522",
+          "content_sha256": "e26a698dd8bd03a4532b8a130fcd477a8efd1a90cf36a1fdd8bd89ecc7d8b5d2"
+        }
+      ]
+    },
+    {
+      "key": "AherBeat81",
+      "sources": [
+        {
+          "kind": "assistant-retrieved-primary-page",
+          "source_file": "AherBeat81-web.txt",
+          "content_sha256": "5705f5e32fdf0b8c887911981e15cfe2d6a13b1c367d95981fda7ff46a0bbd68"
+        }
+      ]
+    },
+    {
+      "key": "KuhlEtal07",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/17558403",
+          "content_sha256": "26d10da3e0e06ab640c605a959103ccb8864239c727f2683c3690c64990763a7"
+        }
+      ]
+    },
+    {
+      "key": "WaydEtal06",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/17021178",
+          "content_sha256": "4cc00936b24c23022cf69b39e067f9683f549c02228b1e31beaf604f1a4571f1"
+        }
+      ]
+    },
+    {
+      "key": "HuebWill18",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/29520243",
+          "content_sha256": "2ca4d04953a26c6c051c7f15843f7e856fd988c939e60c8f97732d3d29d5bc43"
+        },
+        {
+          "kind": "article-front-xml",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5827184/fullTextXML",
+          "content_sha256": "efb0e50d8bafc840eab885d1d6afc2dcbde561deeea8b6840ee7b250cd375e11"
+        }
+      ]
+    },
+    {
+      "key": "VidoEtal15",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/26158265",
+          "content_sha256": "8c5e01b8a49dd48f794fb9166db08fbd417db2fcb037f720ed9aaf2c4bec2740"
+        },
+        {
+          "kind": "article-front-xml",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4497726/fullTextXML",
+          "content_sha256": "bc6da947e48b51eb249b60e0b02ed3a3a2f3aaec2006ee4b45f6294804308f73"
+        }
+      ]
+    },
+    {
+      "key": "RoteEtal09",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/19675246",
+          "content_sha256": "363011d9a1d92ab07d3e14afe9e772c5dfebae9d6698cf303978167b60617c23"
+        }
+      ]
+    },
+    {
+      "key": "BuscEtal08",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/18782688",
+          "content_sha256": "aa841f4cd0ad0b8f8cc194f0ea89bd2f7b85316d4ad5a619fe813616f0ff923e"
+        }
+      ]
+    },
+    {
+      "key": "Kerb14",
+      "sources": [
+        {
+          "kind": "assistant-retrieved-primary-page",
+          "source_file": "Kerb14-web.txt",
+          "content_sha256": "757e5ee2f4bc7bd80bb39c116a9e222f3339c5784bdc92bb72477ba3c4bfbd68"
+        },
+        {
+          "kind": "publisher-article-information",
+          "source_file": "Kerb14-web-metadata.txt",
+          "content_sha256": "76de90ab6e0a100e381e72d5fd859c1b8284f2e3ff6e86d1e4394811b93ec426"
+        }
+      ]
+    },
+    {
+      "key": "ZekvEtal18",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/30249172",
+          "content_sha256": "51ca9d279c4870eaeaa3fd755b23b1232579cce6b7ad355acff4c3f12cbd21f3"
+        },
+        {
+          "kind": "article-front-xml",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6156203/fullTextXML",
+          "content_sha256": "d257377b456692c515dbbd16ed9a285c5402e81caa873f6e4f91a04a38f59a08"
+        }
+      ]
+    },
+    {
+      "key": "Scha03",
+      "sources": [
+        {
+          "kind": "assistant-retrieved-primary-page",
+          "source_file": "Scha03-web.txt",
+          "content_sha256": "67c2f3602b0bbc0d8db588a6d1717fc2d9cf3038b793b0cdedd0a65d6af9d2ee"
+        }
+      ]
+    },
+    {
+      "key": "DaviEtal09",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/19709631",
+          "content_sha256": "2fd8add5eaa687fc6f34dc75ee49795af53f7bc6f5ea6b7ac7e4a6b6605dd0b8"
+        }
+      ]
+    },
+    {
+      "key": "WitmEtal96",
+      "sources": [
+        {
+          "kind": "assistant-retrieved-primary-page",
+          "source_file": "WitmEtal96-search.txt",
+          "content_sha256": "cd8296984108ad3c39a6e1326c1caa5b9abc397037c827662ff471e1fd3b0b36"
+        }
+      ]
+    },
+    {
+      "key": "GuptEtal12",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/22706269",
+          "content_sha256": "6d36d42017e9c6ca82a15f98fbbb933cb66868b79105906840f662fcb23438cd"
+        }
+      ]
+    },
+    {
+      "key": "BernEtal01b",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/11451477",
+          "content_sha256": "22221fe1bd1fbe732a9044b966adf9b6c15bb1964d04543c023435e56e6f6565"
+        }
+      ]
+    },
+    {
+      "key": "CronEtal01",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/11275528",
+          "content_sha256": "ff02ec059d8fcf274f01d916269ba54d52396b9890cd74200643e51cab124da8"
+        }
+      ]
+    },
+    {
+      "key": "KoenEtal07",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/17377536",
+          "content_sha256": "c5fa04473d8516666be4bd5ec9335e59ec233e2f68311b78bb940643be6566c9"
+        }
+      ]
+    },
+    {
+      "key": "HamaEtal08",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/18232017",
+          "content_sha256": "d90230b866d95585c7e85d94e8eabb75c6183d2be97115d5a6aef8c5135b5dff"
+        }
+      ]
+    },
+    {
+      "key": "BretEtal02",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/11994756",
+          "content_sha256": "1b2227ff6a18b1940c047cb075902da7a08a89b79b5ff3a8393051da4d29e1f7"
+        }
+      ]
+    },
+    {
+      "key": "Nico03",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/12728268",
+          "content_sha256": "9464ae98d328c60eeae9a4b2e424e61294266011a6d1e8b6d0555aeb95a1dc76"
+        }
+      ]
+    },
+    {
+      "key": "OlveEtal04",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/15168902",
+          "content_sha256": "2d9f897a9b6097fb284921c52ae1d5f829a7d90d359166f281750af8053c5bc7"
+        }
+      ]
+    },
+    {
+      "key": "PolkEtal02",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/11970782",
+          "content_sha256": "8c97f184dfe4c7c25ccf1826f04059bb9fde80977b4ee0484eceab0e8a2e8807"
+        }
+      ]
+    },
+    {
+      "key": "WolfEtal93",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/8315472",
+          "content_sha256": "279a8a2a768af146512f4399e0b102f5e934eb2111a232947ac131a198991f69"
+        }
+      ]
+    },
+    {
+      "key": "HaukEtal04",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/14741110",
+          "content_sha256": "e443ed5fadbf9e43552b0f0a42f645fd5b5027e7b53045a3d268b684b8569177"
+        }
+      ]
+    },
+    {
+      "key": "AlomEtal13",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/23499703",
+          "content_sha256": "e6ac45ab0f266bdca687de4f035045054bc16c85ae0cc95e80cd86df60588a4f"
+        }
+      ]
+    },
+    {
+      "key": "KuhlEtal12b",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/21925190",
+          "content_sha256": "5098284046983d3451b6285c39509c6b13623bcbfa49897a988ee141ff62f741"
+        }
+      ]
+    },
+    {
+      "key": "AinsEtal12",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/22920250",
+          "content_sha256": "dfddaacafabb8c7237994cf288b9777134b6c2daa265ca55590ddf1fb79b7cc0"
+        }
+      ]
+    },
+    {
+      "key": "Lang05",
+      "sources": [
+        {
+          "kind": "assistant-retrieved-primary-page",
+          "source_file": "Lang05-evidence.txt",
+          "content_sha256": "20ef1ba6ab0776d5c0125d668b7c9159624b2b91e7c71805d0577b476d672fe5"
+        }
+      ]
+    },
+    {
+      "key": "MillMcGi52",
+      "sources": [
+        {
+          "kind": "publisher-head",
+          "url": "https://www.cambridge.org/core/journals/psychometrika/article/abs/statistical-description-of-verbal-learning/8BD33E1187A07D0DB924F32288F21AF5",
+          "content_sha256": "6313ad0a2f51fe08b16b4179db2733059325c0ade819eeff24b8c3f35fa0077a"
+        }
+      ]
+    },
+    {
+      "key": "WyliEtal07",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/17617657",
+          "content_sha256": "24fdcfcfe39d48aa6279a617e1bb20f2785279d698824b87e5b549313ea778b9"
+        }
+      ]
+    },
+    {
+      "key": "Cohe90",
+      "sources": [
+        {
+          "kind": "assistant-retrieved-primary-page",
+          "source_file": "Cohe90-web.txt",
+          "content_sha256": "c0b5328c9504ac787b03d6426d437e5f5395169591c410c9db6d86e53addf6fe"
+        }
+      ]
+    },
+    {
+      "key": "TakaEtal77",
+      "sources": [
+        {
+          "kind": "publisher-head",
+          "url": "https://www.cambridge.org/core/journals/psychometrika/article/abs/nonmetric-individual-differences-multidimensional-scaling-an-alternating-least-squares-method-with-optimal-scaling-features/1BEF04710C812FFBD75622D2C958A55F",
+          "content_sha256": "3ed652ea2f3870c08c67d458de0b1e0f63f3735a74a394a500aaabed3bcd5c68"
+        }
+      ]
+    },
+    {
+      "key": "Cowa00",
+      "sources": [
+        {
+          "kind": "publisher-head",
+          "url": "https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/magical-number-4-in-shortterm-memory-a-reconsideration-of-mental-storage-capacity/44023F1147D4A1D44BDC0AD226838496",
+          "content_sha256": "910e5ff55c30d9d483223a1f65477b8775366eed09d2cb488e2346ea66c78fda"
+        }
+      ]
+    },
+    {
+      "key": "WiggEtal99",
+      "sources": [
+        {
+          "kind": "europepmc-registry",
+          "url": "https://europepmc.org/article/MED/9920476",
+          "content_sha256": "36e537501de607bca1d1dcf4476f99593a136d6bcc7eb7a40c28c800212eef95"
+        }
+      ]
+    }
+  ]
+}

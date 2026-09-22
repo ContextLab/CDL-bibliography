@@ -1,0 +1,32 @@
+[
+  {
+    "key": "BancEtal65",
+    "fingerprint": "v2:297a662262513e44ad37409a010f15904c54281cf690c0214526f681b05ad3de",
+    "query": "dc.title=\"la stereo electroencephalographie dans l epilepsie\" and dc.author=\"bancaud\""
+  },
+  {
+    "key": "Buzs06",
+    "fingerprint": "v2:3cc59bab79c434d429e0b0fe13c04cd9cd02a76ffcf521874de863b7d01493b0",
+    "query": "dc.title=\"rhythms of the brain\" and dc.author=\"buzsaki\""
+  },
+  {
+    "key": "Gard00",
+    "fingerprint": "v2:db9d746e52a8ed639583fe71d4408394f2af569e7ac48c2dcec20302d4092201",
+    "query": "dc.title=\"conceptual spaces the geometry of thought\" and dc.author=\"gardenfors\""
+  },
+  {
+    "key": "Kohl47",
+    "fingerprint": "v2:2de9764ea0796fca59c4017d0efcfb146c890291eba4fcf442b4c7d198131718",
+    "query": "dc.title=\"gestalt psychology\" and dc.author=\"kohler\""
+  },
+  {
+    "key": "KuceFran67",
+    "fingerprint": "v2:7015fc3501d1bbc6f0393f9fc2bca3a7bc51f316cbb318a86e1a08abe0a9cc83",
+    "query": "dc.title=\"computational analysis of present day american english\" and dc.author=\"kucera\""
+  },
+  {
+    "key": "Prib91",
+    "fingerprint": "v2:149a4c5c70f0619342a74c72e04c8e4533c6ef296a104af83c04c24a9b3ebbe1",
+    "query": "dc.title=\"brain and perception holonomy and structure in figural processing\" and dc.author=\"pribram\""
+  }
+]

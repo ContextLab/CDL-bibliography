@@ -1,0 +1,38 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 53.36,
+      "network_requests": 3,
+      "review_writes": 6,
+      "statuses": {
+        "metadata_verified": 3568,
+        "needs_review": 2854
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 48.51,
+      "network_requests": 0,
+      "review_writes": 0,
+      "statuses": {
+        "metadata_verified": 3568,
+        "needs_review": 2854
+      }
+    }
+  ],
+  "entries": {
+    "BorgGroe05": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:f1943e52cb950353157c086efc163d36dad20aada883ade71a554bcde93f64b2"
+    },
+    "NoceWrig06": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:f50dba3e507550e28f01042f0bc38b1af5c11664b29ceb8d573eb1b9b2bf00b4"
+    },
+    "SuttBart98": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:971e38709a0372884d9099931ef2534aa4fca61d536d092d243e46760827c427"
+    }
+  }
+}

@@ -8,7 +8,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
 import dartmouth_research_adapter as adapter
 import search_tools
 
-ENV = {"DARTMOUTH_CHAT_API_KEY": "test-secret"}
+ENV = {
+    "DARTMOUTH_CHAT_API_KEY": "test-secret",
+    "BIBCHECK_RESEARCH_MODEL": "qwen.qwen3.5-122b",
+}
 PDF = "https://publisher.example/paper.pdf"
 
 
@@ -41,6 +44,16 @@ class ModelSession:
     def __init__(self, findings):
         self.findings = iter(findings)
         self.requests = []
+
+    def get(self, url, **kwargs):
+        assert url == adapter.BASE + "/models"
+        return Response(
+            {
+                "data": [
+                    {"id": ENV["BIBCHECK_RESEARCH_MODEL"], "tags": [{"name": "Free"}]}
+                ]
+            }
+        )
 
     def post(self, url, **kwargs):
         assert url == adapter.BASE + "/chat/completions"
@@ -188,10 +201,12 @@ def test_model_preflight_no_silent_substitution(tmp_path, monkeypatch):
         def get(self, url, **kwargs):
             assert url == adapter.BASE + "/models"
             assert kwargs["allow_redirects"] is False
-            return Response({"data": [{"id": "qwen.qwen3.5-122b"}]})
+            return Response(
+                {"data": [{"id": "qwen.qwen3.5-122b", "tags": [{"name": "Free"}]}]}
+            )
 
     assert adapter.check_model(Models(), ENV) == "qwen.qwen3.5-122b"
-    with pytest.raises(ValueError, match="unavailable"):
+    with pytest.raises(ValueError, match="absent or not confirmed free"):
         adapter.check_model(Models(), dict(ENV, BIBCHECK_RESEARCH_MODEL="wrong-model"))
     with pytest.raises(ValueError, match="DARTMOUTH_CHAT_API_KEY"):
         adapter.run(payload(), ModelSession([]), {})

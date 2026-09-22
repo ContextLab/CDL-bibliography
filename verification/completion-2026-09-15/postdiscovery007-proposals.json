@@ -1,0 +1,375 @@
+[
+  {
+    "kind": "corroborated_author",
+    "key": "PavlAnde05",
+    "fingerprint": "v2:c3cb41ba1c4ddab9d35603135d704014786085fa56cd70d8c6c138b4bc5271d4",
+    "changes": {
+      "author": {
+        "before": "P I Pavlik and J R Anderson",
+        "after": "Pavlik, Jr, Philip I and John R Anderson"
+      }
+    },
+    "doi": "10.1207/s15516709cog0000_14",
+    "pubmed_id": "21702785",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 4"
+      ],
+      "doi": "10.1207/s15516709cog0000_14",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "P I Pavlik and J R Anderson",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Pavlik",
+              "given": "Philip I.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first",
+              "suffix": "Jr."
+            },
+            {
+              "affiliation": [],
+              "family": "Anderson",
+              "given": "John R.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cognitive Science",
+          "match": true,
+          "source": [
+            "Cognitive Science"
+          ]
+        },
+        "pages": {
+          "local": "559--586",
+          "match": true,
+          "source": [
+            "559-586"
+          ]
+        },
+        "title": {
+          "local": "Practice and forgetting effects on vocabulary memory: an activation-based model of the spacing effect",
+          "match": true,
+          "source": [
+            "Practice and Forgetting Effects on Vocabulary Memory: An Activation‐Based Model of the Spacing Effect"
+          ]
+        },
+        "volume": {
+          "local": "29",
+          "match": true,
+          "source": [
+            "29"
+          ]
+        },
+        "year": {
+          "local": "2005",
+          "match": true,
+          "source": [
+            "2005"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs"
+      ],
+      "record": {
+        "DOI": "10.1207/s15516709cog0000_14",
+        "ISSN": [
+          "0364-0213",
+          "1551-6709"
+        ],
+        "URL": "https://doi.org/10.1207/s15516709cog0000_14",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Pavlik",
+            "given": "Philip I.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first",
+            "suffix": "Jr."
+          },
+          {
+            "affiliation": [],
+            "family": "Anderson",
+            "given": "John R.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Cognitive Science"
+        ],
+        "issue": "4",
+        "issued": {
+          "date-parts": [
+            [
+              2005,
+              7
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1207%2Fs15516709cog0000_14",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1207/s15516709cog0000_14",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "559-586",
+        "published": {
+          "date-parts": [
+            [
+              2005,
+              7
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2005,
+              7
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2005,
+              7,
+              8
+            ]
+          ]
+        },
+        "publisher": "Wiley",
+        "title": [
+          "Practice and Forgetting Effects on Vocabulary Memory: An Activation‐Based Model of the Spacing Effect"
+        ],
+        "type": "journal-article",
+        "volume": "29"
+      },
+      "retrieved_at": "2026-09-21T17:58:36.143026+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1207/s15516709cog0000_14"
+    },
+    "secondary": {
+      "doi": "10.1207/s15516709cog0000_14",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "P I Pavlik and J R Anderson",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Pavlik",
+              "given": "Philip I.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first",
+              "suffix": "Jr."
+            },
+            {
+              "affiliation": [],
+              "family": "Anderson",
+              "given": "John R.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cognitive Science",
+          "match": true,
+          "source": [
+            "Cognitive Science"
+          ]
+        },
+        "pages": {
+          "local": "559--586",
+          "match": true,
+          "source": [
+            "559-586"
+          ]
+        },
+        "title": {
+          "local": "Practice and forgetting effects on vocabulary memory: an activation-based model of the spacing effect",
+          "match": true,
+          "source": [
+            "Practice and Forgetting Effects on Vocabulary Memory: An Activation‐Based Model of the Spacing Effect"
+          ]
+        },
+        "volume": {
+          "local": "29",
+          "match": true,
+          "source": [
+            "29"
+          ]
+        },
+        "year": {
+          "local": "2005",
+          "match": true,
+          "source": [
+            "2005"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs",
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Psychology Department, Carnegie Mellon University."
+                  }
+                ]
+              },
+              "firstName": "Philip I",
+              "fullName": "Pavlik PI Jr",
+              "initials": "PI",
+              "lastName": "Pavlik"
+            },
+            {
+              "firstName": "John R",
+              "fullName": "Anderson JR",
+              "initials": "JR",
+              "lastName": "Anderson"
+            }
+          ]
+        },
+        "doi": "10.1207/s15516709cog0000_14",
+        "firstPublicationDate": "2005-07-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1207/s15516709cog0000_14"
+            }
+          ]
+        },
+        "id": "21702785",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2005 Jul",
+          "issue": "4",
+          "journal": {
+            "essn": "1551-6709",
+            "isoabbreviation": "Cogn Sci",
+            "issn": "0364-0213",
+            "medlineAbbreviation": "Cogn Sci",
+            "nlmid": "7708195",
+            "title": "Cognitive science"
+          },
+          "journalIssueId": 1843169,
+          "monthOfPublication": 7,
+          "printPublicationDate": "2005-07-01",
+          "volume": "29",
+          "yearOfPublication": 2005
+        },
+        "pageInfo": "559-586",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2005",
+        "source": "MED",
+        "title": "Practice and forgetting effects on vocabulary memory: an activation-based model of the spacing effect."
+      },
+      "record": {
+        "DOI": "10.1207/s15516709cog0000_14",
+        "ISSN": [
+          "0364-0213",
+          "1551-6709"
+        ],
+        "author": [
+          {
+            "family": "Pavlik",
+            "given": "Philip I",
+            "suffix": "Jr"
+          },
+          {
+            "family": "Anderson",
+            "given": "John R",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Cognitive science",
+          "Cogn Sci",
+          "Cogn Sci",
+          "Cognitive Science"
+        ],
+        "issue": "4",
+        "page": "559-586",
+        "published": {
+          "date-parts": [
+            [
+              2005
+            ]
+          ]
+        },
+        "title": [
+          "Practice and forgetting effects on vocabulary memory: an activation-based model of the spacing effect"
+        ],
+        "type": "journal-article",
+        "volume": "29"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007%2F978-3-030-63416-2_827%22+OR+DOI%3A%2210.1016%2F0304-4076%2878%2990088-x%22+OR+DOI%3A%2210.1007%2F978-3-319-01384-8_530%22+OR+DOI%3A%2210.4135%2F9781071802687.n29%22+OR+DOI%3A%2210.1201%2F9780203496947.ch11%22+OR+DOI%3A%2210.1198%2Ftech.2003.s148%22+OR+DOI%3A%2210.1016%2F0022-2496%2884%2990005-1%22+OR+DOI%3A%2210.1351%2Fgoldbook.11476%22+OR+DOI%3A%2210.1007%2F978-1-349-15634-4_6%22+OR+DOI%3A%2210.1201%2Fb16344-8%22+OR+DOI%3A%2210.4324%2F9780429281068-18%22+OR+DOI%3A%2210.1007%2F978-981-15-4103-2_16%22+OR+DOI%3A%2210.1073%2Fpnas.70.5.1478%22+OR+DOI%3A%2210.1002%2Fhbm.20306%22+OR+DOI%3A%2210.1207%2Fs15516709cog0000_14%22+OR+DOI%3A%2210.1093%2Foso%2F9780195130492.001.0001%22+OR+DOI%3A%2210.1111%2Fj.2044-8295.1967.tb01099.x%22+OR+DOI%3A%2210.1007%2F978-3-319-57111-9_1070%22+OR+DOI%3A%2210.1007%2F978-0-387-79948-3_1070%22+OR+DOI%3A%2210.1007%2F978-3-319-47829-6_1509-1%22+OR+DOI%3A%2210.1038%2Fscientificamerican0766-90%22+OR+DOI%3A%2210.1007%2F978-1-4419-1698-3_860%22+OR+DOI%3A%2210.4324%2F9781003453536-3%22+OR+DOI%3A%2210.1007%2Fspringerreference_180582%22+OR+DOI%3A%2210.1007%2F978-3-540-29678-2_5386%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-21T18:15:51.654135+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/21702785"
+    }
+  }
+]

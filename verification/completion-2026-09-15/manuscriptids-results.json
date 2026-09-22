@@ -1,0 +1,32 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "network_requests": 0,
+      "seconds": 102.54,
+      "statuses": {
+        "metadata_verified": 3418,
+        "needs_review": 3004
+      },
+      "added_review_records": 3004
+    },
+    {
+      "cycle": "repeat",
+      "network_requests": 0,
+      "seconds": 23.02,
+      "statuses": {
+        "metadata_verified": 3418,
+        "needs_review": 3004
+      },
+      "added_review_records": 0
+    }
+  ],
+  "baseline_sha256": "7a7ef580ff347b66d0d2d78fb96bf00e49059626a7dcb7a42e6bcfbeef9073e9",
+  "queue_routes": {
+    "field_adjudication": 889,
+    "publication_version": 322,
+    "source_discovery": 946,
+    "author_identity": 847
+  },
+  "new_approvals": {}
+}

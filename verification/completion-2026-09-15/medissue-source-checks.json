@@ -1,0 +1,39 @@
+{
+  "Salz59": {
+    "source": "user-provided local publisher cover and original first page",
+    "pdf_sha256": "a087cb86039bbb3fd9994652db50984aeee05b7c2316dc7149b280879f0d1c27",
+    "doi": "10.1080/00221309.1959.9710241",
+    "year": 1959,
+    "volume": "61",
+    "issue": "1",
+    "pages": "65-94",
+    "method": "visual inspection and independent blind source extraction; production judgment is rebuilt from complete registry and MED records"
+  },
+  "FeigSimo62": {
+    "source": "https://iiif.library.cmu.edu/file/Simon_box00089_fld07212_bdl0005_doc0001/Simon_box00089_fld07212_bdl0005_doc0001.pdf",
+    "pdf_sha256": "941eb7ecab8eb9c190bde8515ef5dfc433f8cbf073dfa7744c7b912eba2ba862",
+    "doi": "10.1111/j.2044-8295.1962.tb00836.x",
+    "year": 1962,
+    "volume": "53",
+    "issue": "3",
+    "pages": "307-320",
+    "authors": [
+      "Edward A. Feigenbaum",
+      "Herbert A. Simon"
+    ],
+    "method": "visual inspection of printed issue header, full article title and byline; DOI separately bound by registry and MED"
+  },
+  "WethLevi65": {
+    "source": "https://bpspsychub.onlinelibrary.wiley.com/doi/10.1111/j.2044-8317.1965.tb00689.x",
+    "doi": "10.1111/j.2044-8317.1965.tb00689.x",
+    "year": 1965,
+    "volume": "18",
+    "issue": "1",
+    "pages": "1-10",
+    "authors": [
+      "G. B. Wetherill",
+      "H. Levitt"
+    ],
+    "method": "publisher article page explicitly shows May 1965, volume 18 issue 1, full title, byline and page range; cached registry and MED independently agree"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "seconds": 133.36,
+  "network_requests": 0,
+  "review_writes": 0,
+  "new_approvals": {
+    "MeckEtal03": "10.1016/j.cogbrainres.2003.08.008",
+    "KlimEtal97b": "10.1016/s0926-6410(97)00018-9",
+    "DonaRugg99": "10.1016/s0926-6410(98)00051-2",
+    "LepaEtal00b": "10.1016/s0926-6410(00)00005-7",
+    "ChaoKnig96": "10.1016/0926-6410(95)00043-7"
+  }
+}

@@ -1,0 +1,1120 @@
+[
+  {
+    "key": "Addi02",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Amer23a",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Amer23b",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Ande76",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 260b"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AndeAnde68",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "BaayEtal95",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "BancEtal65",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "BirdEtal09",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "BishEtal75",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "BrunEtal02b",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "12528123",
+        "issues": [
+          "publisher: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Buzs06",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Carr10",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Transcribed responsibility differs from the complete named author list"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Carr16",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Carr93",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "4395028",
+        "issues": [
+          "author: Author given names differ",
+          "address: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Chos05",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 100a"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Chri92",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Cohe88",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Cowa97",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Crow76",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 260b"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DaviHink97",
+    "status": "needs_review",
+    "issues": [
+      "Catalogue edition unresolved: Catalogue route requires a book without a supplied DOI"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "DayaAbbo01",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "12453574",
+        "issues": [
+          "publisher: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DeliEtal00",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "DudaEtal01",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "EfroTibs93",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Transcribed responsibility differs from the complete named author list"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Este59",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Este94",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 260b"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Fish93",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or uncertain place of publication"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Fodo83",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "4697972",
+        "issues": [
+          "title: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Free00",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "12138818",
+        "issues": [
+          "title: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Free75",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "2206301",
+        "issues": [
+          "title: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Fust95",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Transcribed responsibility differs from the complete named author list"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Gall06",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Gard00",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "GelmEtal13",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "GorfHoff87",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Corporate creators or related editions require review"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Gree92",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "1071256",
+        "issues": [
+          "publisher: missing evidence or mismatch",
+          "address: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Harc75",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "HertEtal91",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "2467894",
+        "issues": [
+          "publisher: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "HestEtal05",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Holl28",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Hook69",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Hull43",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Huth13",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: This route requires one legacy publication statement"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Kani79",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Kele99",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Keme72",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Kint70",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Kohl47",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "KuceFran67",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Lato91",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "4836346",
+        "issues": [
+          "author: Missing or incomplete given names",
+          "publisher: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "LemoPiet12",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 100a"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "LincNati81",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Corporate creators or related editions require review"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Luca83",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Luce86",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 260b"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "McClEtal86",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "McGe42",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "McGeIrio52",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "MeltMart72",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Corporate creators or related editions require review"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Mill91",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "2942011",
+        "issues": [
+          "publisher: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Mill96",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Mitc96",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Author heading has unsupported identity or role qualifiers"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "MiyaShah99",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 100a"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Munn50",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Nune95",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "OKeeNade78",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 260b"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Paiv71",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Paiv86",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 260b"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Penf58b",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Penf75",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "PercWald93",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "4871180",
+        "issues": [
+          "title: missing evidence or mismatch",
+          "address: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Plat99",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Prib91",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Prie81",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "883366",
+        "issues": [
+          "volume: missing evidence or mismatch",
+          "address: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Rams07",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "14703968",
+        "issues": [
+          "address: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Rank18",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "RaveEtal98",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Rayp68",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "RiekEtal97",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 100a"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Robi32",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "RumeEtal86a",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Salt91",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "4850782",
+        "issues": [
+          "publisher: missing evidence or mismatch",
+          "address: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SaltEtal04",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 100a"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Sawy95",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Corporate creators or related editions require review"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Scha01",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "12288051",
+        "issues": [
+          "publisher: missing evidence or mismatch",
+          "address: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SchaTulv94",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 100a"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Semo21",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Semo23",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Ship46",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "SquiEtal04a",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "TalaTour88",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Transcribed responsibility differs from the complete named author list"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "TellPalm98",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Titc16",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Tulv83",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 260b"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "TulvDona72",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Corporate creators or related editions require review"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Unde83",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": "460420",
+        "issues": [
+          "publisher: missing evidence or mismatch",
+          "address: missing evidence or mismatch"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "UndeShul60",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Vapn95",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Wech08",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Wern84",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "Whor56",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  },
+  {
+    "key": "vandGlas00",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": [
+      {
+        "record_id": null,
+        "issues": [
+          "Catalogue edition unresolved: Missing or ambiguous MARC field 100a"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "yCaj91",
+    "status": "needs_review",
+    "issues": [
+      "No unique, fully matching catalogue edition"
+    ],
+    "candidates": []
+  }
+]

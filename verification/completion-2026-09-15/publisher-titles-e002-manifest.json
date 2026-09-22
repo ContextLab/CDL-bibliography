@@ -1,0 +1,282 @@
+[
+  {
+    "key": "DroiWear15",
+    "fingerprint": "v2:679115922a44dccf1dfb1f5092a19ce2625733df9e39e00e87aa7bd31546a85d",
+    "doi": "10.1016/j.actpsy.2015.01.006"
+  },
+  {
+    "key": "KivlGran06",
+    "fingerprint": "v2:679a820258ad8b95daf96e0f49a5211121f0ec03ba5fc96b052dc6e9167a20c6",
+    "doi": "10.1016/j.psyneuen.2006.01.007"
+  },
+  {
+    "key": "NateEtal06",
+    "fingerprint": "v2:8763e8dd47f3df93bc6aa0377052e4898539375b6ce99336fd070c3cfd2fcfd1",
+    "doi": "10.1016/j.psyneuen.2005.05.010"
+  },
+  {
+    "key": "PastEtal08a",
+    "fingerprint": "v2:7d46ccc18be5475a34d339134a80ade28a99c3f17c3426f342155b73b2a04957",
+    "doi": "10.1016/j.neuroimage.2008.07.005"
+  },
+  {
+    "key": "SmitEtal71",
+    "fingerprint": "v2:18ed475a281245b250b383c5bfa010953bf681ddf048cfdec2b7ea66ff21efa5",
+    "doi": "10.1016/s0022-5371(71)80064-6"
+  },
+  {
+    "key": "JenkEtal02",
+    "fingerprint": "v2:cb7ea1b14cc56b650fac518c2afa6880541e3633506ef30776437e232128cc27",
+    "doi": "10.1006/nimg.2002.1132"
+  },
+  {
+    "key": "SuriSchu99",
+    "fingerprint": "v2:fc2ad12f2eb5d7940b35ed9a7d43132cea4ad1544ed40999c865590f4fd1c351",
+    "doi": "10.1016/s0306-4522(98)00697-6"
+  },
+  {
+    "key": "BravEtal97",
+    "fingerprint": "v2:b3f438ebe268222572ac196393f6bb257c7b8976a9676940dd7bcf465d3a24ca",
+    "doi": "10.1006/nimg.1996.0247"
+  },
+  {
+    "key": "HumaEtal12",
+    "fingerprint": "v2:c2e7d9cc66517782b17e726e6ae069bd331d096e607bd239d19936911558cf03",
+    "doi": "10.1016/j.ophtha.2011.09.028"
+  },
+  {
+    "key": "McKoRatc89",
+    "fingerprint": "v2:1bbfc0918e13c212c16f500c73b9b1db9dd8157587da9dbb9e922c4767c55b5f",
+    "doi": "10.1016/0749-596x(89)90012-0"
+  },
+  {
+    "key": "OharEtal04",
+    "fingerprint": "v2:4aef68391bb12b71af1529c9a6464c6d09c991fd28d713b7b7b220fb9b7a78d0",
+    "doi": "10.1016/j.clinph.2004.02.023"
+  },
+  {
+    "key": "AharEtal01",
+    "fingerprint": "v2:ec707657bd3cf1c434f35fe76cc17adbb2409cd579ba33be087210df9b6a306b",
+    "doi": "10.1016/s0896-6273(01)00491-3"
+  },
+  {
+    "key": "Gros78",
+    "fingerprint": "v2:3183598032100f048e7d5de6be007de6a12f92591993799e880b3ca3c83174e1",
+    "doi": "10.1016/0022-2496(78)90016-0"
+  },
+  {
+    "key": "LebeNico06",
+    "fingerprint": "v2:9b8a646d78a0199629b805bae290db9dad0f3f58756cb2521c49b58fd3b4bc7b",
+    "doi": "10.1016/j.tins.2006.07.004"
+  },
+  {
+    "key": "LindEtal03",
+    "fingerprint": "v2:2926e3517d77c3d1673d57b2a5987f4c575e9c34bf7e4ea13f93afeec48a117c",
+    "doi": "10.1016/j.neuroimage.2003.07.021"
+  },
+  {
+    "key": "MaybEtal05",
+    "fingerprint": "v2:d62ede4f660368fc8b7bd0319cda0174050a23bbe0bd9c24617bae9ce8f43b70",
+    "doi": "10.1016/j.neuron.2005.02.014"
+  },
+  {
+    "key": "SkraChiu03",
+    "fingerprint": "v2:733aa919cbfe2005e466a4201088cb21dc612a01b8d89dbf5a7335cc4fffc15f",
+    "doi": "10.1016/s0304-3940(03)00137-x"
+  },
+  {
+    "key": "ChevDeni90",
+    "fingerprint": "v2:acb3c5635ebe6c9b68543ff41b71366b9b0db07cf976164c4ce395194eacbefa",
+    "doi": "10.1016/0166-2236(90)90109-n"
+  },
+  {
+    "key": "DaleEtal00",
+    "fingerprint": "v2:b8395e9a6f2e3b1769d46f3c16b91c34cfbf2d1a782846d8acd37b90c365e7ef",
+    "doi": "10.1016/s0896-6273(00)81138-1"
+  },
+  {
+    "key": "LegeEtal69",
+    "fingerprint": "v2:8fe54b2ca512246001788749e6b2cd71c9b86e3c70946e29982770fbdf2d8e83",
+    "doi": "10.1016/0013-4694(69)90187-4"
+  },
+  {
+    "key": "NuneEtal97",
+    "fingerprint": "v2:57314ff2d823b6f8a04144f90b1b5cad9e234d6b96c3ae307084200ffe152e07",
+    "doi": "10.1016/s0013-4694(97)00066-7"
+  },
+  {
+    "key": "AlleEtal69",
+    "fingerprint": "v2:b2c839382fe5fbe39fb78ea864f89401b76108c18ef6cc0c59defc7c348c1b69",
+    "doi": "10.1016/s0022-5371(69)80090-3"
+  },
+  {
+    "key": "LittEtal01",
+    "fingerprint": "v2:af8bbc6ed9d4e6e028110a11d72319a40d0057d71d8830e89cd7f4cf47f4f609",
+    "doi": "10.1016/s0896-6273(01)00262-8"
+  },
+  {
+    "key": "BertEtal00",
+    "fingerprint": "v2:b3011ac0c4c20c62377b1133ab9e40cc25043be4b2eca545c126dc3301207abc",
+    "doi": "10.1016/s0926-6410(99)00051-8"
+  },
+  {
+    "key": "DobbEtal02",
+    "fingerprint": "v2:ef2e502e83ab155bc0f5dfb7f670d3a64dd8d2ddfbc2484fc8b41cfc1fa44c22",
+    "doi": "10.1016/s0896-6273(02)00858-9"
+  },
+  {
+    "key": "Unsw08",
+    "fingerprint": "v2:ff2848908285cba494a2c55decc55654920e70a877809a1972cc9f26434ba168",
+    "doi": "10.1016/j.jml.2008.04.002"
+  },
+  {
+    "key": "Will01",
+    "fingerprint": "v2:5f64fa8a4b6cda9c1dc3a1ed75533a7341b656d2ae926910fd9b0d1c160898ab",
+    "doi": "10.1016/s0306-4522(00)00579-0"
+  },
+  {
+    "key": "DEspEtal98",
+    "fingerprint": "v2:df7a9b66ca00399e552ff28efcf9ce7d7b0199a5e63ebedbebaf858b3d865876",
+    "doi": "10.1016/s0926-6410(98)00004-4"
+  },
+  {
+    "key": "BuckEtal98b",
+    "fingerprint": "v2:780dd03bf30910a079a7b15ccdafa9834ba9b720e9a655d907def5dad6aa4bf0",
+    "doi": "10.1006/nimg.1998.0328"
+  },
+  {
+    "key": "BuckEtal98a",
+    "fingerprint": "v2:bf06cde71ddd0f7f1f220286a24f361e545010f7e831726387098ffa8452d9a4",
+    "doi": "10.1006/nimg.1998.0327"
+  },
+  {
+    "key": "ShauEtal72",
+    "fingerprint": "v2:3d9db05f34d634c634c45fc416719b86b631585e01dbad7663350e7b67d01f24",
+    "doi": "10.1016/s0022-5371(72)80053-7"
+  },
+  {
+    "key": "SaliThie00",
+    "fingerprint": "v2:e4f10a598e5f21d7196398137e93d7e04b9239e90e1312ca970cdc1df5b5bbe1",
+    "doi": "10.1016/s0896-6273(00)00004-0"
+  },
+  {
+    "key": "StewFox91",
+    "fingerprint": "v2:be8ebafc9e719888e5d646592c1308fe700b69d16f63b2c09b9e201e53984bfe",
+    "doi": "10.1016/0006-8993(91)90376-7"
+  },
+  {
+    "key": "DaneCarp80",
+    "fingerprint": "v2:7f7dd68d23eda684424456af6f1fa4e4c1fd16673f89f4df8c61347fce27d16b",
+    "doi": "10.1016/s0022-5371(80)90312-6"
+  },
+  {
+    "key": "Eich96",
+    "fingerprint": "v2:e50b7777286ac25088e5a0fc85898f2093e13275dfef3e13b70bb2507130d5b7",
+    "doi": "10.1016/s0959-4388(96)80072-9"
+  },
+  {
+    "key": "PavlEtal88",
+    "fingerprint": "v2:b63f90af809c8ef76db9f62bef5b7a0b34c53f172f5ceea72ed3e196cd55422a",
+    "doi": "10.1016/0006-8993(88)91499-0"
+  },
+  {
+    "key": "PessEtal02",
+    "fingerprint": "v2:6920449e348220dbe3459a865268777a64a65a5d2781da7c9043b13e87157deb",
+    "doi": "10.1016/s0896-6273(02)00817-6"
+  },
+  {
+    "key": "BurkEtal91",
+    "fingerprint": "v2:6444ddafe649b81703bb533d07a61c6334c8d9bebfe6ea072f31867d95e1a342",
+    "doi": "10.1016/0749-596x(91)90026-g"
+  },
+  {
+    "key": "KariEtal84",
+    "fingerprint": "v2:06010718b50e2b45d7cfcd7ef7fdd14c9187a13caec5e009576b5cf2c4dacb0b",
+    "doi": "10.1016/0010-0285(84)90007-0"
+  },
+  {
+    "key": "Delp72",
+    "fingerprint": "v2:cfd1871d6f69a2428b48e5b79935cc7d136ca702aa9e275bb35ee6e31fdef393",
+    "doi": "10.1016/s0022-5371(72)80040-9"
+  },
+  {
+    "key": "Tzen73",
+    "fingerprint": "v2:e4975b2b47f02170ba7bfe88eafe87ada92bc5461c2574121d2b102e62d6bb64",
+    "doi": "10.1016/s0022-5371(73)80023-4"
+  },
+  {
+    "key": "Cohe70",
+    "fingerprint": "v2:c48163b501637856c8981366bb3d85aaf825d3e8f1297a0f4fb88fd947885418",
+    "doi": "10.1016/s0022-5371(70)80031-7"
+  },
+  {
+    "key": "HintCurr94",
+    "fingerprint": "v2:72b1a463db2c8fc866f483acc51ef2fca38f1b13de04ec2cd4d3e5dd66a25cea",
+    "doi": "10.1006/jmla.1994.1001"
+  },
+  {
+    "key": "SaltEtal93",
+    "fingerprint": "v2:9261b1cec6c41e7c05fad58d8bee8ffae81daa1c08df9b63243276aebd832774",
+    "doi": "10.1016/0167-9473(93)90193-w"
+  },
+  {
+    "key": "RosbEtal09",
+    "fingerprint": "v2:3ac58f93bca5ec52e1769be62b3ad3834bffd61a6592d989540b0de9d53f4014",
+    "doi": "10.1016/j.neuroimage.2008.09.035"
+  },
+  {
+    "key": "BjorHeal74",
+    "fingerprint": "v2:9b313856bdca551000fa61706ee6194441d78128c54409226406d2d3a63979df",
+    "doi": "10.1016/s0022-5371(74)80033-2"
+  },
+  {
+    "key": "Wick68",
+    "fingerprint": "v2:388ea1c4fc87cb9fa4f922921ddfdb52c641b3fcb6d8264459bca36c7baea0df",
+    "doi": "10.1016/0028-3932(68)90022-5"
+  },
+  {
+    "key": "NormWick69",
+    "fingerprint": "v2:a375ef5f0c15e5031cccdbb561aad41403e754305bff3687900c295c4c1f9abc",
+    "doi": "10.1016/0022-2496(69)90002-9"
+  },
+  {
+    "key": "EichEtal99",
+    "fingerprint": "v2:c20736d010d37828a6a7e07b42c4a687dd17f040a194c869e60c0f05bc3f7f12",
+    "doi": "10.1016/s0896-6273(00)80773-4"
+  },
+  {
+    "key": "Gray99",
+    "fingerprint": "v2:7af04ea035da7ebb39f1537e0d9ded72ee57cef8c5a7f45bf7e37e023b0912c8",
+    "doi": "10.1016/s0896-6273(00)80820-x"
+  },
+  {
+    "key": "HartEtal03",
+    "fingerprint": "v2:c701802692b17bfb3b33977d870b97d3e06fd83797ac8d14d89bdd6e38fd124c",
+    "doi": "10.1016/s0896-6273(03)00095-3"
+  },
+  {
+    "key": "Star68",
+    "fingerprint": "v2:1aaca2664d226bcfee84a43507d5f511cf16df7bc791b6119393c4c612693319",
+    "doi": "10.1016/s0022-5371(68)80158-6"
+  },
+  {
+    "key": "KahaEtal99b",
+    "fingerprint": "v2:cad95aa46d80d79df15577a2fdb290d39732414a0e648326bdc7f993b351e9e4",
+    "doi": "10.1016/s1364-6613(99)01395-9"
+  },
+  {
+    "key": "MartFedi83",
+    "fingerprint": "v2:f2e2629660bb3eef916bbf6414ad46b0f35fc870b9c9688911479a292a44e1a5",
+    "doi": "10.1016/0093-934x(83)90059-7"
+  },
+  {
+    "key": "WoodEtal00b",
+    "fingerprint": "v2:a5fde92037f6d32a5b2cd18a78976df183239bd2e4b44f2e345ba3487169a933",
+    "doi": "10.1016/s0006-3223(00)00917-3"
+  },
+  {
+    "key": "Boro01",
+    "fingerprint": "v2:6bdbe4ed6c1bd6455e205a9124de8805c5948ac26a4c5536c695db33c8b9b41f",
+    "doi": "10.1006/cogp.2001.0748"
+  }
+]

@@ -11,6 +11,8 @@ import re
 import itertools
 import os
 import sys
+import json
+from pathlib import Path
 
 
 def read(fname):
@@ -35,6 +37,11 @@ address_codes = read("addresses.txt")
 journal_key = load_key("journal_key.xls")
 publisher_key = load_key("publisher_key.xls")
 address_key = load_key("address_key.xls")
+
+# Preserve published citation keys after source-backed metadata corrections.
+# Each exception is tied to the exact newly computed name, and affects only
+# key naming checks; it never disables metadata or formatting checks.
+key_overrides = json.loads((Path(__file__).parent / "key_overrides.json").read_text())
 
 LATEST_BIBFILE = (
     "https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib"
@@ -284,7 +291,8 @@ def check_entries(
     tofix = [
         (i, v, t)
         for i, v, t in tqdm(zip(ids, vals, targets))
-        if not ("force" in list(bd[i].keys()) or same(proc(v), proc(t)))
+        if not ("force" in list(bd[i].keys()) or same(proc(v), proc(t))
+                or (field == "ID" and key_overrides.get(i) == t))
     ]
 
     if len(tofix) == 0:
@@ -508,6 +516,13 @@ def valid_pages(p):
             suggested_fix = p.replace(dash_char, "-")
             return False, [p, suggested_fix]
 
+    # Cell Press citations may include an electronic-page suffix on the last
+    # printed page (e.g. 439--452.e5). Preserve that published locator exactly.
+    electronic_range = re.fullmatch(r"([1-9]\d*)-{1,2}([1-9]\d*)(\.e[1-9]\d*)", p)
+    if electronic_range:
+        first, last, electronic = electronic_range.groups()
+        return int(first) < int(last), [p, first + "--" + last + electronic]
+
     valid, kind, val = valid_page(p)
     if valid:  # "single" page
         return True, [p, p]
@@ -561,7 +576,20 @@ def generate_correct_pages(bd):
 
 
 def format_journal_name(n, key=journal_key, force_caps=force_caps):
-    if (n.lower() in key.keys()) and (type(key[n.lower()]) == str):
+    # The legacy spreadsheet contains aliases that erase a historical title,
+    # monograph designation, or journal section. Formatting cannot establish
+    # that publication identity; retain those words for source verification.
+    preserve_identity = {
+        "journal of experimental psychology monograph",
+        "journal of experimental psychology monograph supplement",
+        "journal of experimental psychology; journal of experimental psychology",
+        "the quarterly journal of experimental psychology section a",
+        "the quarterly journal of experimental psychology: section a",
+        # The prefixed NLM title applied in 1989-2005. Do not impose it on
+        # articles whose sources use the unprefixed journal title.
+        "brain research reviews",
+    }
+    if (n.lower() not in preserve_identity and n.lower() in key.keys()) and (type(key[n.lower()]) == str):
         n = key[n.lower()]
     else:
         n = n.lower()
@@ -623,6 +651,20 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps):
 def reformat_author(author):
     if len(author.split(" and ")) > 1:
         return " and ".join([reformat_author(a) for a in author.split(" and ")])
+
+    # BibTeX's explicit ``family, suffix, given`` form must retain the suffix.
+    # rearrange() deliberately removes suffixes for citation-key construction;
+    # using it here used to silently discard Jr/Sr/III from author bylines.
+    from bibtexparser.customization import splitname
+    try:
+        parts = splitname(author, strict_mode=True)
+        if parts["jr"] and parts["last"] and parts["first"]:
+            family = " ".join(parts["von"] + parts["last"])
+            suffix = " ".join(parts["jr"]).replace(".", "")
+            given = reformat_author(" ".join(parts["first"]))
+            return family + ", " + suffix + ", " + given
+    except (ValueError, KeyError):
+        pass
 
     try:
         author = rearrange(author, preserve_non_letters=True)

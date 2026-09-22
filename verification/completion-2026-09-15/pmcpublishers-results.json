@@ -1,0 +1,40 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 82.91,
+      "network_requests": 2,
+      "added_review_records": 2,
+      "batch_statuses": {
+        "metadata_verified": 2
+      },
+      "library_statuses": {
+        "metadata_verified": 3560,
+        "needs_review": 2862
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 78.27,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 2
+      },
+      "library_statuses": {
+        "metadata_verified": 3560,
+        "needs_review": 2862
+      }
+    }
+  ],
+  "entries": {
+    "GraySing89": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:df67ea4ab7653ba09c34bdf42aa06333ffcc81a451aad3b3d29c6b69efa7e677"
+    },
+    "KuhlEtal11": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:39f3853ef82c4e160d4d5f2f68d6efaf7cd3bb6b38ea16979fc65c9cf892ba4e"
+    }
+  }
+}

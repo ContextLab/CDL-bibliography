@@ -1,0 +1,162 @@
+{
+  "fields": {
+    "year": "1981",
+    "title": "Physiological evidence that demand for processing capacity varies with intelligence",
+    "pages": "121--128",
+    "publisher": "Plenum Press",
+    "booktitle": "Intelligence and Learning",
+    "author": "S Ahern and J Beatty",
+    "ENTRYTYPE": "incollection",
+    "ID": "AherBeat81"
+  },
+  "primary": {
+    "advisories": [],
+    "doi": "10.1007/978-1-4684-1083-9_9",
+    "evidence": {
+      "author": {
+        "detail": "Complete author list in order; citation initials agree with source names",
+        "local": "S Ahern and J Beatty",
+        "match": true,
+        "source": [
+          {
+            "affiliation": [],
+            "family": "Ahern",
+            "given": "Sylvia",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Beatty",
+            "given": "Jackson",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ]
+      },
+      "booktitle": {
+        "local": "Intelligence and Learning",
+        "match": true,
+        "source": [
+          "Intelligence and Learning"
+        ]
+      },
+      "pages": {
+        "local": "121--128",
+        "match": true,
+        "source": [
+          "121-128"
+        ]
+      },
+      "publisher": {
+        "local": "Plenum Press",
+        "match": false,
+        "source": [
+          "Springer US"
+        ]
+      },
+      "title": {
+        "local": "Physiological evidence that demand for processing capacity varies with intelligence",
+        "match": true,
+        "source": [
+          "Physiological Evidence that Demand for Processing Capacity Varies with Intelligence"
+        ]
+      },
+      "year": {
+        "local": "1981",
+        "match": true,
+        "source": [
+          "1981"
+        ]
+      }
+    },
+    "issues": [
+      "publisher: missing evidence or mismatch"
+    ],
+    "record": {
+      "DOI": "10.1007/978-1-4684-1083-9_9",
+      "ISBN": [
+        "9781468410853",
+        "9781468410839"
+      ],
+      "URL": "https://doi.org/10.1007/978-1-4684-1083-9_9",
+      "author": [
+        {
+          "affiliation": [],
+          "family": "Ahern",
+          "given": "Sylvia",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [],
+          "family": "Beatty",
+          "given": "Jackson",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Intelligence and Learning"
+      ],
+      "issued": {
+        "date-parts": [
+          [
+            1981
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "http://link.springer.com/content/pdf/10.1007/978-1-4684-1083-9_9.pdf",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "121-128",
+      "published": {
+        "date-parts": [
+          [
+            1981
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            1981
+          ]
+        ]
+      },
+      "publisher": "Springer US",
+      "title": [
+        "Physiological Evidence that Demand for Processing Capacity Varies with Intelligence"
+      ],
+      "type": "book-chapter"
+    },
+    "retrieved_at": "2026-09-15T17:25:33.029511+00:00",
+    "source": "crossref",
+    "url": "https://doi.org/10.1007/978-1-4684-1083-9_9"
+  }
+}

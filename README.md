@@ -127,7 +127,26 @@ The initial Crossref pass checked all 6,422 entries. The subsequent [automatic r
 
 The working database is `.bibcheck/verification.sqlite3`, beside the bibliography. SQLite provides indexed lookup, transactional checkpoints, and an audit history without rewriting the whole database after each reference. `--database` and `--report` override output locations.
 
-A SHA-256 fingerprint covers the **exact entry text**, including whitespace, field order, key, and braces. Shared `@string`/preamble definitions and inherited `crossref`/`xdata` entries are included in the dependency fingerprint. Changing any of these invalidates affected approvals automatically. Duplicate keys, duplicate fields, malformed input, and missing/cyclic inheritance fail closed.
+A SHA-256 fingerprint covers the **exact entry text except its citation-key token**, including whitespace, field order, entry type, and braces. A key-only rename reuses the existing decision and check time. Every other entry edit triggers a new check, even when it only changes formatting or an unsupported field. Shared `@string`/preamble definitions and inherited `crossref`/`xdata` entries are included in the dependency fingerprint. Changing these invalidates affected approvals automatically. Duplicate keys, duplicate fields, malformed input, and missing/cyclic inheritance fail closed.
+
+The key-independent fingerprint format is `v2`; the metadata comparison policy remains 2. Existing database reviews migrate automatically when their old fingerprints match exactly. Run `status` once before renaming keys in an unmigrated local cache. New snapshots support renames across clones; old snapshots can migrate only entries whose original keys and content still match. Historical evidence and verification times are preserved.
+
+### Automatic checks on new and edited entries
+
+The `Citation verification` workflow checks every pull request and push to `master`. It compares content against the base bibliography, checks new or edited entries through the free source layers, and fails for unresolved findings or provider errors. An unchanged legacy backlog is reported but does not fail the incremental gate. A key-only rename is excluded from the change set. Deleting an entry removes it from the current report.
+
+Before activating the workflow, set the repository Actions variable `CROSSREF_MAILTO` to a real maintainer contact. The workflow must be published to GitHub to run; add `Citation verification / citations` as a required branch-protection check if merges must be prevented on failure. Fully cached runs need no contact or network access. The existing `autocheck` workflow still validates formatting and tests.
+
+The local equivalent uses a base bibliography file:
+
+```bash
+git show master:cdl.bib > /tmp/cdl-base.bib
+python bibcheck.py crossref verify cdl.bib --against /tmp/cdl-base.bib --auto-review
+```
+
+Use `--keys manuscript-keys.txt` instead of `--against` to select explicit keys. Reports and snapshots always include the full bibliography; the command's exit status gates the selected entries. All free review layers respect the selection. A manual Actions run checks the entire library and resumes any incomplete backfill. The existing baseline already contains one completed check for every entry; 4,570 unresolved entries still need better evidence or corrections.
+
+CI persists SQLite between runs and always uploads a portable checkpoint and full report when available, including on failure. PR caches are scoped to their PR ref; the default branch restores only its own cache. PR baseline evidence comes from the base revision. GitHub caches/artifacts can expire, so periodically download the checkpoint and intentionally update `verification/baseline.jsonl.gz` to preserve new decisions durably. Cache eviction can require repeating checks absent from the committed snapshot. Snapshots remain trusted audit data, not independently signed approvals.
 
 Invalidation is deterministic and local: every `verify`, `status`, and review operation rereads the BibTeX and checks its fingerprint. No human, LLM, or network request is needed. Historical database rows remain as audit evidence; they are never returned as current approval for different content. There is no background file watcher, and an exported report is a point-in-time artifact: run `status` against the actual bibliography before relying on a result. Returning to the exact previously reviewed content can reuse its matching review.
 
@@ -183,11 +202,12 @@ python bibcheck.py crossref research-batch cdl.bib \
 
 Choose allowed hosts appropriate to the cited sources; add publisher/university hosts as needed, including PDF redirects. This optional command incurs provider charges. It defaults to ten entries, allows at most 100 per invocation, and skips previous attempts unless `--retry-failed` is supplied. Use `--keys manuscript-keys.txt` to prioritize references from an active manuscript. Three consecutive failures stop the run. The included adapter limits discovery to four web-tool calls and each model response to 4,000 output tokens; these are request limits, not a dollar spending cap. Set a provider spending limit before a large run. PDF quotations are checked against downloaded page text, and the findings remain available for adjudication. Neither a model's confidence nor matching quotations alone grant approval.
 
-The included Dartmouth adapter uses your Dartmouth Chat access instead of a commercial API account. It has a custom `web_search` tool: Qwen requests a query, receives actual results, and can revise the query before selecting a retrieved PDF. No built-in model web-search capability is assumed.
+The included Dartmouth adapter uses Dartmouth Chat and defaults to full `zai-org.glm-5.3`, selected from the refreshed September 14 catalog. Dartmouth's **Local** tag denotes a free model even without a **Free** tag. Every adapter invocation checks the live catalog before inference; missing models, unknown eligibility, and explicit nonzero prices fail closed. It has a custom `web_search` tool: the model requests a query, receives actual results, and can revise the query before selecting a retrieved PDF.
 
 ```bash
 # Use DARTMOUTH_CHAT_API_KEY, or the ignored local key file described below.
-export BIBCHECK_RESEARCH_MODEL='qwen.qwen3.5-122b'
+export BIBCHECK_RESEARCH_MODEL='zai-org.glm-5.3'
+python bibcheck/dartmouth_models.py .bibcheck/dartmouth-models.json
 export BIBCHECK_SEARCH_BACKEND='duckduckgo'  # or europepmc (the default)
 python bibcheck/dartmouth_research_adapter.py --check-model
 python bibcheck.py crossref research-batch cdl.bib \
@@ -203,9 +223,15 @@ DuckDuckGo uses its public HTML interface, not an official full-results API. Thi
 
 For the repository secret `DARTMOUTH_CHAT_API_KEY`, use the manual **Dartmouth citation research pilot** GitHub Actions workflow after it has been published to the default branch. It defaults to three entries, checks the exact model ID, restores fingerprint-matching baseline reviews, checkpoints attempts, and exports an evidence snapshot artifact. Model IDs and service availability are checked live; no alternate model or paid provider is selected automatically. The workflow caches local state between runs, including downloaded PDFs; GitHub caches can be evicted, so retain evidence separately when needed. Its artifact contains the portable snapshot, not PDF files. Secrets are passed only to the Dartmouth steps. No scheduled or pull-request run invokes the model. Use the deliberate retry input when revisiting failures with another backend or corrected configuration.
 
-Dartmouth extraction now asks Qwen to select numbered source passages; Python copies every quotation from the original text and validates its page and offsets. The extraction prompt excludes the input citation. Author assembly preserves source order, and conservative literal checks distinguish printed values from proposed interpretations. Publisher metadata from HTML head tags supplies PDF candidates before general search is needed. These checks establish where text came from, not whether it correctly describes the cited work; all model findings remain `needs_review`.
+Dartmouth extraction asks the model to select numbered source passages; Python copies every quotation from the original text and validates its page and offsets. The extraction prompt excludes the input citation. Author assembly preserves source order, and conservative literal checks distinguish printed values from proposed interpretations. Publisher metadata from HTML head tags supplies PDF candidates before general search is needed. These checks establish where text came from, not whether it correctly describes the cited work; all model findings remain `needs_review`. Full GLM 5.3 uses maximum reasoning and a 16,000-token output budget. Its upstream model card specifies text input; the catalog's vision flag is not relied upon.
 
 The [follow-up benchmark and live report](verification/benchmark/README.md) records a successful known publisher-page → PDF → Qwen run and 60/60 offline metadata checks across 30 real entries and deliberate alterations. This selected sample does not establish bulk-review accuracy. The [earlier pilot](verification/dartmouth-live-pilot.md) records search challenges, stale links, throttling, and the invented quotation that motivated source-passage selection.
+
+The [September 14 representative audit](verification/pilot50/README.md) records the refreshed free GLM model catalog, fifty assistant source checks compared against blind automated extraction, thirteen bibliography corrections, and the remaining evidence gaps. All fifty extraction comparisons match after targeted repairs; twenty citations were cleared by deterministic verification. The full offline resolver update brought the baseline to 1,957 verified and 4,465 unresolved entries. Its unchanged repeat made no requests and added no review records.
+
+The [first September 15 follow-up](verification/resolution-2026-09-15/README.md) added conservative publisher-name, final-article identity, issue-label and Cambridge print-date rules, plus DOI-specific discovery checkpoints. That pass ended with **2,206 verified / 4,216 unresolved entries**.
+
+The [latest local continuation](verification/completion-2026-09-15/README.md) reached **3,669 verified / 2,753 unresolved entries** after its completed correction, source-metadata, catalogue, and preprint batches. It applies source-backed pagination, title, volume, year, issue, DOI, author, journal, and publisher corrections; adds strict edition-level book verification; improves explicit-initial and punctuation comparisons; and reopens two entries with unadjudicated correction notices. All completed stages have a zero-request, zero-write repeat. Known DOI-linked notices, suffix evidence, and corroborated article coordinates survive entry edits and portable cache restores. Work toward the remaining entries is ongoing. The [earlier follow-up](verification/resolution-followup-2026-09-15/README.md) remains a dated historical report.
 
 ### Fallbacks and human review
 

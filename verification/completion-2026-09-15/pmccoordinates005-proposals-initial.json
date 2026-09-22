@@ -1,0 +1,4141 @@
+[
+  {
+    "kind": "pmc_corroborated_coordinates",
+    "key": "KimEtal14",
+    "fingerprint": "v2:3dc9c5d498fcad7816b8d3cca3d5baf237ad8a9ddbb23565edeed5c814895adc",
+    "doi": "10.1073/pnas.1319438111",
+    "changes": {
+      "number": {
+        "before": null,
+        "after": "24"
+      },
+      "pages": {
+        "before": null,
+        "after": "8997--9002"
+      },
+      "volume": {
+        "before": "In press",
+        "after": "111"
+      }
+    },
+    "pubmed_id": "24889631",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 24"
+      ],
+      "doi": "10.1073/pnas.1319438111",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "G Kim and J A Lewis-Peacock and K A Norman and N B Turk-Browne",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Psychology and"
+                },
+                {
+                  "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08544; and"
+                }
+              ],
+              "family": "Kim",
+              "given": "Ghootae",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Psychology and"
+                },
+                {
+                  "name": "Institute for Neuroscience, University of Texas at Austin, Austin, TX 78712"
+                }
+              ],
+              "family": "Lewis-Peacock",
+              "given": "Jarrod A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Psychology and"
+                },
+                {
+                  "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08544; and"
+                }
+              ],
+              "family": "Norman",
+              "given": "Kenneth A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Psychology and"
+                },
+                {
+                  "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08544; and"
+                }
+              ],
+              "family": "Turk-Browne",
+              "given": "Nicholas B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Proceedings of the National Academy of Sciences, {USA}",
+          "match": true,
+          "source": [
+            "Proceedings of the National Academy of Sciences"
+          ]
+        },
+        "title": {
+          "local": "Pruning of memories by context-based prediction error",
+          "match": true,
+          "source": [
+            "Pruning of memories by context-based prediction error"
+          ]
+        },
+        "volume": {
+          "local": "In press",
+          "match": false,
+          "source": [
+            "111"
+          ]
+        },
+        "year": {
+          "local": "2014",
+          "match": true,
+          "source": [
+            "2014"
+          ]
+        }
+      },
+      "issues": [
+        "volume: missing evidence or mismatch",
+        "pages: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1073/pnas.1319438111",
+        "ISSN": [
+          "0027-8424",
+          "1091-6490"
+        ],
+        "URL": "https://doi.org/10.1073/pnas.1319438111",
+        "author": [
+          {
+            "affiliation": [
+              {
+                "name": "Department of Psychology and"
+              },
+              {
+                "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08544; and"
+              }
+            ],
+            "family": "Kim",
+            "given": "Ghootae",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "Department of Psychology and"
+              },
+              {
+                "name": "Institute for Neuroscience, University of Texas at Austin, Austin, TX 78712"
+              }
+            ],
+            "family": "Lewis-Peacock",
+            "given": "Jarrod A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "Department of Psychology and"
+              },
+              {
+                "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08544; and"
+              }
+            ],
+            "family": "Norman",
+            "given": "Kenneth A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "Department of Psychology and"
+              },
+              {
+                "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08544; and"
+              }
+            ],
+            "family": "Turk-Browne",
+            "given": "Nicholas B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Proceedings of the National Academy of Sciences"
+        ],
+        "issue": "24",
+        "issued": {
+          "date-parts": [
+            [
+              2014,
+              6,
+              2
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://pnas.org/doi/pdf/10.1073/pnas.1319438111",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "8997-9002",
+        "published": {
+          "date-parts": [
+            [
+              2014,
+              6,
+              2
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2014,
+              6,
+              2
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2014,
+              6,
+              17
+            ]
+          ]
+        },
+        "publisher": "National Academy of Sciences",
+        "title": [
+          "Pruning of memories by context-based prediction error"
+        ],
+        "type": "journal-article",
+        "volume": "111"
+      },
+      "retrieved_at": "2026-09-09T19:52:50.509882+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1073/pnas.1319438111"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1073/pnas.1319438111",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "G Kim and J A Lewis-Peacock and K A Norman and N B Turk-Browne",
+          "match": true,
+          "source": [
+            {
+              "family": "Kim",
+              "given": "Ghootae",
+              "suffix": ""
+            },
+            {
+              "family": "Lewis-Peacock",
+              "given": "Jarrod A.",
+              "suffix": ""
+            },
+            {
+              "family": "Norman",
+              "given": "Kenneth A.",
+              "suffix": ""
+            },
+            {
+              "family": "Turk-Browne",
+              "given": "Nicholas B.",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "Proceedings of the National Academy of Sciences, {USA}",
+          "match": true,
+          "source": [
+            "Proceedings of the National Academy of Sciences of the United States of America",
+            "Proceedings of the National Academy of Sciences",
+            "Proceedings of the National Academy of Sciences of the United States of America",
+            "Proc Natl Acad Sci U S A",
+            "Proc Natl Acad Sci U S A"
+          ]
+        },
+        "title": {
+          "local": "Pruning of memories by context-based prediction error",
+          "match": true,
+          "source": [
+            "Pruning of memories by context-based prediction error"
+          ]
+        },
+        "volume": {
+          "local": "In press",
+          "match": false,
+          "source": [
+            "111"
+          ]
+        },
+        "year": {
+          "local": "2014",
+          "match": true,
+          "source": [
+            "2014"
+          ]
+        }
+      },
+      "issues": [
+        "volume: missing evidence or mismatch",
+        "pages: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychology andPrinceton Neuroscience Institute, Princeton University, Princeton, NJ 08544; and."
+                  }
+                ]
+              },
+              "firstName": "Ghootae",
+              "fullName": "Kim G",
+              "initials": "G",
+              "lastName": "Kim"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychology andInstitute for Neuroscience, University of Texas at Austin, Austin, TX 78712."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-9918-465X"
+              },
+              "firstName": "Jarrod A",
+              "fullName": "Lewis-Peacock JA",
+              "initials": "JA",
+              "lastName": "Lewis-Peacock"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychology andPrinceton Neuroscience Institute, Princeton University, Princeton, NJ 08544; and."
+                  }
+                ]
+              },
+              "firstName": "Kenneth A",
+              "fullName": "Norman KA",
+              "initials": "KA",
+              "lastName": "Norman"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychology andPrinceton Neuroscience Institute, Princeton University, Princeton, NJ 08544; and ntb@princeton.edu."
+                  }
+                ]
+              },
+              "firstName": "Nicholas B",
+              "fullName": "Turk-Browne NB",
+              "initials": "NB",
+              "lastName": "Turk-Browne"
+            }
+          ]
+        },
+        "doi": "10.1073/pnas.1319438111",
+        "firstPublicationDate": "2014-06-02",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1073/pnas.1319438111"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC4066528"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC4066528?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1073/pnas.1319438111"
+            }
+          ]
+        },
+        "id": "24889631",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2014 Jun",
+          "issue": "24",
+          "journal": {
+            "essn": "1091-6490",
+            "isoabbreviation": "Proc Natl Acad Sci U S A",
+            "issn": "0027-8424",
+            "medlineAbbreviation": "Proc Natl Acad Sci U S A",
+            "nlmid": "7505876",
+            "title": "Proceedings of the National Academy of Sciences of the United States of America"
+          },
+          "journalIssueId": 2172378,
+          "monthOfPublication": 6,
+          "printPublicationDate": "2014-06-01",
+          "volume": "111",
+          "yearOfPublication": 2014
+        },
+        "pageInfo": "8997-9002",
+        "pmcid": "PMC4066528",
+        "pubTypeList": {
+          "pubType": [
+            "research-article",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural"
+          ]
+        },
+        "pubYear": "2014",
+        "source": "MED",
+        "title": "Pruning of memories by context-based prediction error."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Proc Natl Acad Sci U S A</journal-id><journal-id journal-id-type=\"iso-abbrev\">Proc. Natl. Acad. Sci. U.S.A</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2</journal-id><journal-id journal-id-type=\"pmc-domain\">pnas</journal-id><journal-id journal-id-type=\"nlm-id\">7505876</journal-id><journal-id journal-id-type=\"publisher-id\">PNAS</journal-id><journal-title-group><journal-title>Proceedings of the National Academy of Sciences of the United States of America</journal-title></journal-title-group><issn pub-type=\"ppub\">0027-8424</issn><issn pub-type=\"epub\">1091-6490</issn><publisher><publisher-name>National Academy of Sciences</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC4066528</article-id><article-id pub-id-type=\"pmcid-ver\">PMC4066528.1</article-id><article-id pub-id-type=\"pmcaid\">4066528</article-id><article-id pub-id-type=\"pmcaiid\">4066528</article-id><article-id pub-id-type=\"pmid\">24889631</article-id><article-id pub-id-type=\"doi\">10.1073/pnas.1319438111</article-id><article-id pub-id-type=\"publisher-id\">201319438</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Biological Sciences</subject><subj-group><subject>Psychological and Cognitive Sciences</subject></subj-group></subj-group></article-categories><title-group><article-title>Pruning of memories by context-based prediction error</article-title><alt-title alt-title-type=\"short\">Context-based memory pruning</alt-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Kim</surname><given-names initials=\"G\">Ghootae</given-names></name><xref ref-type=\"aff\" rid=\"aff1\"><sup>a</sup></xref><xref ref-type=\"aff\" rid=\"aff2\"><sup>b</sup></xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Lewis-Peacock</surname><given-names initials=\"JA\">Jarrod A.</given-names></name><xref ref-type=\"aff\" rid=\"aff3\"><sup>c</sup></xref><xref ref-type=\"aff\" rid=\"aff4\"><sup>d</sup></xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Norman</surname><given-names initials=\"KA\">Kenneth A.</given-names></name><xref ref-type=\"aff\" rid=\"aff1\"><sup>a</sup></xref><xref ref-type=\"aff\" rid=\"aff2\"><sup>b</sup></xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Turk-Browne</surname><given-names initials=\"NB\">Nicholas B.</given-names></name><xref ref-type=\"aff\" rid=\"aff1\"><sup>a</sup></xref><xref ref-type=\"aff\" rid=\"aff2\"><sup>b</sup></xref><xref ref-type=\"corresp\" rid=\"cor1\"><sup>1</sup></xref></contrib><aff id=\"aff1\"><sup>a</sup>Department of Psychology and</aff><aff id=\"aff2\"><sup>b</sup>Princeton Neuroscience Institute, <institution>Princeton University</institution>, Princeton, <addr-line>NJ</addr-line> 08544; and</aff><aff id=\"aff3\"><sup>c</sup>Department of Psychology and</aff><aff id=\"aff4\"><sup>d</sup>Institute for Neuroscience, <institution>University of Texas at Austin</institution>, Austin, <addr-line>TX</addr-line> 78712</aff></contrib-group><pub-date pub-type=\"ppub\"><day>17</day><month>6</month><year>2014</year></pub-date><pub-date pub-type=\"epub\"><day>2</day><month>6</month><year>2014</year></pub-date><volume>111</volume><issue>24</issue><fpage>8997</fpage><lpage>9002</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1073/pnas.1319438111",
+        "ISSN": [
+          "0027-8424",
+          "1091-6490"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "Kim",
+            "given": "Ghootae",
+            "suffix": ""
+          },
+          {
+            "family": "Lewis-Peacock",
+            "given": "Jarrod A.",
+            "suffix": ""
+          },
+          {
+            "family": "Norman",
+            "given": "Kenneth A.",
+            "suffix": ""
+          },
+          {
+            "family": "Turk-Browne",
+            "given": "Nicholas B.",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Proceedings of the National Academy of Sciences of the United States of America",
+          "Proceedings of the National Academy of Sciences",
+          "Proceedings of the National Academy of Sciences of the United States of America",
+          "Proc Natl Acad Sci U S A",
+          "Proc Natl Acad Sci U S A"
+        ],
+        "issue": "24",
+        "page": "8997-9002",
+        "published": {
+          "date-parts": [
+            [
+              2014
+            ]
+          ]
+        },
+        "publisher": "National Academy of Sciences",
+        "title": [
+          "Pruning of memories by context-based prediction error"
+        ],
+        "type": "journal-article",
+        "volume": "111"
+      },
+      "retrieved_at": "2026-09-17T04:15:28.968429+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A4066528&metadataPrefix=pmc_fm",
+      "xml_sha256": "3c5e20b0d00a2ad59beec0fe034ebd1b6eb43ef0d58c0c4769dab8f3c14d029f"
+    }
+  },
+  {
+    "kind": "pmc_corroborated_coordinates",
+    "key": "YeunEtal06",
+    "fingerprint": "v2:739fc25cd14830f3187b5fff240f8f41e16a046c6519f497f5d50dcdbafb44fe",
+    "doi": "10.1523/jneurosci.3109-05.2006",
+    "changes": {
+      "number": {
+        "before": null,
+        "after": "5"
+      },
+      "volume": {
+        "before": "26(5)",
+        "after": "26"
+      }
+    },
+    "pubmed_id": "16452666",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 5"
+      ],
+      "doi": "10.1523/jneurosci.3109-05.2006",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "N Yeung and L E Nystrom and J A Aronson and J D Cohen",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Yeung",
+              "given": "Nick",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Nystrom",
+              "given": "Leigh E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Aronson",
+              "given": "Jessica A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Cohen",
+              "given": "Jonathan D.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience"
+          ]
+        },
+        "pages": {
+          "local": "1429--1438",
+          "match": true,
+          "source": [
+            "1429-1438"
+          ]
+        },
+        "title": {
+          "local": "Between-task competition and cognitive control in task switching",
+          "match": true,
+          "source": [
+            "Between-Task Competition and Cognitive Control in Task Switching"
+          ]
+        },
+        "volume": {
+          "local": "26(5)",
+          "match": false,
+          "source": [
+            "26"
+          ]
+        },
+        "year": {
+          "local": "2006",
+          "match": true,
+          "source": [
+            "2006"
+          ]
+        }
+      },
+      "issues": [
+        "volume: missing evidence or mismatch",
+        "number: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1523/jneurosci.3109-05.2006",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "URL": "https://doi.org/10.1523/jneurosci.3109-05.2006",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Yeung",
+            "given": "Nick",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Nystrom",
+            "given": "Leigh E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Aronson",
+            "given": "Jessica A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Cohen",
+            "given": "Jonathan D.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience"
+        ],
+        "issue": "5",
+        "issued": {
+          "date-parts": [
+            [
+              2006,
+              2,
+              1
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://syndication.highwire.org/content/doi/10.1523/JNEUROSCI.3109-05.2006",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "1429-1438",
+        "published": {
+          "date-parts": [
+            [
+              2006,
+              2,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2006,
+              2,
+              1
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2006,
+              2,
+              1
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "Between-Task Competition and Cognitive Control in Task Switching"
+        ],
+        "type": "journal-article",
+        "volume": "26"
+      },
+      "retrieved_at": "2026-09-09T20:03:49.238995+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1523/jneurosci.3109-05.2006"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1523/jneurosci.3109-05.2006",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "N Yeung and L E Nystrom and J A Aronson and J D Cohen",
+          "match": true,
+          "source": [
+            {
+              "family": "Yeung",
+              "given": "Nick",
+              "suffix": ""
+            },
+            {
+              "family": "Nystrom",
+              "given": "Leigh E.",
+              "suffix": ""
+            },
+            {
+              "family": "Aronson",
+              "given": "Jessica A.",
+              "suffix": ""
+            },
+            {
+              "family": "Cohen",
+              "given": "Jonathan D.",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience",
+            "The Journal of Neuroscience",
+            "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+            "J Neurosci",
+            "J Neurosci"
+          ]
+        },
+        "pages": {
+          "local": "1429--1438",
+          "match": true,
+          "source": [
+            "1429-1438"
+          ]
+        },
+        "title": {
+          "local": "Between-task competition and cognitive control in task switching",
+          "match": true,
+          "source": [
+            "Between-Task Competition and Cognitive Control in Task\nSwitching"
+          ]
+        },
+        "volume": {
+          "local": "26(5)",
+          "match": false,
+          "source": [
+            "26"
+          ]
+        },
+        "year": {
+          "local": "2006",
+          "match": true,
+          "source": [
+            "2006"
+          ]
+        }
+      },
+      "issues": [
+        "volume: missing evidence or mismatch",
+        "number: source supplies a field absent from the citation"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychology, Carnegie Mellon University, Pittsburgh, Pennsylvania 15213, USA. nyeung@cmu.edu"
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-1905-2129"
+              },
+              "firstName": "Nick",
+              "fullName": "Yeung N",
+              "initials": "N",
+              "lastName": "Yeung"
+            },
+            {
+              "firstName": "Leigh E",
+              "fullName": "Nystrom LE",
+              "initials": "LE",
+              "lastName": "Nystrom"
+            },
+            {
+              "firstName": "Jessica A",
+              "fullName": "Aronson JA",
+              "initials": "JA",
+              "lastName": "Aronson"
+            },
+            {
+              "firstName": "Jonathan D",
+              "fullName": "Cohen JD",
+              "initials": "JD",
+              "lastName": "Cohen"
+            }
+          ]
+        },
+        "doi": "10.1523/jneurosci.3109-05.2006",
+        "firstPublicationDate": "2006-02-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/JNEUROSCI.3109-05.2006"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6675498"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6675498?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/jneurosci.3109-05.2006"
+            }
+          ]
+        },
+        "id": "16452666",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2006 Feb",
+          "issue": "5",
+          "journal": {
+            "essn": "1529-2401",
+            "isoabbreviation": "J Neurosci",
+            "issn": "0270-6474",
+            "medlineAbbreviation": "J Neurosci",
+            "nlmid": "8102140",
+            "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+          },
+          "journalIssueId": 1294808,
+          "monthOfPublication": 2,
+          "printPublicationDate": "2006-02-01",
+          "volume": "26",
+          "yearOfPublication": 2006
+        },
+        "pageInfo": "1429-1438",
+        "pmcid": "PMC6675498",
+        "pubTypeList": {
+          "pubType": [
+            "research-article",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural"
+          ]
+        },
+        "pubYear": "2006",
+        "source": "MED",
+        "title": "Between-task competition and cognitive control in task switching."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6675498</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6675498.1</article-id><article-id pub-id-type=\"pmcaid\">6675498</article-id><article-id pub-id-type=\"pmcaiid\">6675498</article-id><article-id pub-id-type=\"pmid\">16452666</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.3109-05.2006</article-id><article-id pub-id-type=\"other\">zns1429</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject><subj-group><subject>Behavioral/Systems/Cognitive</subject></subj-group></subj-group></article-categories><title-group><article-title>Between-Task Competition and Cognitive Control in Task\nSwitching</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Yeung</surname><given-names initials=\"N\">Nick</given-names></name><xref ref-type=\"aff\" rid=\"AFF1\">\n<sup>1</sup>\n</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Nystrom</surname><given-names initials=\"LE\">Leigh E.</given-names></name><xref ref-type=\"aff\" rid=\"AFF2\">\n<sup>2</sup>\n</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Aronson</surname><given-names initials=\"JA\">Jessica A.</given-names></name><xref ref-type=\"aff\" rid=\"AFF2\">\n<sup>2</sup>\n</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Cohen</surname><given-names initials=\"JD\">Jonathan D.</given-names></name><xref ref-type=\"aff\" rid=\"AFF2\">\n<sup>2</sup>\n</xref><xref ref-type=\"aff\" rid=\"AFF3\">\n<sup>3</sup>\n</xref></contrib><aff><target target-type=\"aff\" id=\"AFF1\" /><sup>1</sup>Department of Psychology, Carnegie\nMellon University, Pittsburgh, Pennsylvania 15213, <target target-type=\"aff\" id=\"AFF2\" /><sup>2</sup>Department of Psychology, Princeton University, Princeton, New Jersey\n08544, and <target target-type=\"aff\" id=\"AFF3\" /><sup>3</sup>Department of Psychiatry,\nUniversity of Pittsburgh, Pittsburgh, Pennsylvania 15213</aff></contrib-group><pub-date pub-type=\"ppub\"><day>1</day><month>2</month><year>2006</year></pub-date><volume>26</volume><issue>5</issue><fpage>1429</fpage><lpage>1438</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1523/jneurosci.3109-05.2006",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "Yeung",
+            "given": "Nick",
+            "suffix": ""
+          },
+          {
+            "family": "Nystrom",
+            "given": "Leigh E.",
+            "suffix": ""
+          },
+          {
+            "family": "Aronson",
+            "given": "Jessica A.",
+            "suffix": ""
+          },
+          {
+            "family": "Cohen",
+            "given": "Jonathan D.",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience",
+          "The Journal of Neuroscience",
+          "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+          "J Neurosci",
+          "J Neurosci"
+        ],
+        "issue": "5",
+        "page": "1429-1438",
+        "published": {
+          "date-parts": [
+            [
+              2006
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "Between-Task Competition and Cognitive Control in Task\nSwitching"
+        ],
+        "type": "journal-article",
+        "volume": "26"
+      },
+      "retrieved_at": "2026-09-17T04:47:58.307946+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6675498&metadataPrefix=pmc_fm",
+      "xml_sha256": "40ebcd9222c4fe8eeae932cebb4005745955f2d93806012f76079d20f1569fe1"
+    }
+  },
+  {
+    "kind": "pmc_corroborated_coordinates",
+    "key": "deGaEtal12",
+    "fingerprint": "v2:6c9ab7ba3197ac0aadc1244cc39c61fe71544d829b26bcd8f8c8cc3543cd0209",
+    "doi": "10.1093/cercor/bhs211",
+    "changes": {
+      "number": {
+        "before": null,
+        "after": "9"
+      },
+      "pages": {
+        "before": null,
+        "after": "2235--2244"
+      },
+      "volume": {
+        "before": null,
+        "after": "23"
+      },
+      "year": {
+        "before": "2012",
+        "after": "2013"
+      }
+    },
+    "pubmed_id": "22811008",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 9"
+      ],
+      "doi": "10.1093/cercor/bhs211",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "Vincent {de Gardelle} and Monika Waszczuk and Tobias Egner and Christopher Summerfield",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "de Gardelle",
+              "given": "Vincent",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Waszczuk",
+              "given": "Monika",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Egner",
+              "given": "Tobias",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Summerfield",
+              "given": "Christopher",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cerebral Cortex",
+          "match": true,
+          "source": [
+            "Cerebral Cortex"
+          ]
+        },
+        "title": {
+          "local": "Concurrent repetition enhancement and suppression responses in extrastriate visual cortex",
+          "match": true,
+          "source": [
+            "Concurrent Repetition Enhancement and Suppression Responses in Extrastriate Visual Cortex"
+          ]
+        },
+        "year": {
+          "local": "2012",
+          "match": true,
+          "source": [
+            "2012",
+            "2013"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly",
+        "volume: source supplies a field absent from the citation",
+        "pages: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1093/cercor/bhs211",
+        "ISSN": [
+          "1460-2199",
+          "1047-3211"
+        ],
+        "URL": "https://doi.org/10.1093/cercor/bhs211",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "de Gardelle",
+            "given": "Vincent",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Waszczuk",
+            "given": "Monika",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Egner",
+            "given": "Tobias",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Summerfield",
+            "given": "Christopher",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Cerebral Cortex"
+        ],
+        "issue": "9",
+        "issued": {
+          "date-parts": [
+            [
+              2012,
+              7,
+              18
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://academic.oup.com/cercor/article-pdf/23/9/2235/17309165/bhs211.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "2235-2244",
+        "published": {
+          "date-parts": [
+            [
+              2012,
+              7,
+              18
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2012,
+              7,
+              18
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2013,
+              9
+            ]
+          ]
+        },
+        "publisher": "Oxford University Press (OUP)",
+        "title": [
+          "Concurrent Repetition Enhancement and Suppression Responses in Extrastriate Visual Cortex"
+        ],
+        "type": "journal-article",
+        "volume": "23"
+      },
+      "retrieved_at": "2026-09-09T20:08:31.975174+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1093/cercor/bhs211"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1093/cercor/bhs211",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "Vincent {de Gardelle} and Monika Waszczuk and Tobias Egner and Christopher Summerfield",
+          "match": true,
+          "source": [
+            {
+              "family": "de Gardelle",
+              "given": "Vincent",
+              "suffix": ""
+            },
+            {
+              "family": "Waszczuk",
+              "given": "Monika",
+              "suffix": ""
+            },
+            {
+              "family": "Egner",
+              "given": "Tobias",
+              "suffix": ""
+            },
+            {
+              "family": "Summerfield",
+              "given": "Christopher",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cerebral Cortex",
+          "match": true,
+          "source": [
+            "Cerebral Cortex (New York, NY)",
+            "Cerebral Cortex",
+            "Cerebral cortex (New York, N.Y. : 1991)",
+            "Cereb Cortex",
+            "Cereb Cortex"
+          ]
+        },
+        "title": {
+          "local": "Concurrent repetition enhancement and suppression responses in extrastriate visual cortex",
+          "match": true,
+          "source": [
+            "Concurrent Repetition Enhancement and Suppression Responses in Extrastriate Visual Cortex"
+          ]
+        },
+        "year": {
+          "local": "2012",
+          "match": false,
+          "source": [
+            "2013"
+          ]
+        }
+      },
+      "issues": [
+        "year: missing evidence or mismatch",
+        "volume: source supplies a field absent from the citation",
+        "pages: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Experimental Psychology, University of Oxford, Oxford OX1 3UD, UK. vincent.gardelle@gmail.com"
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-5977-5597"
+              },
+              "firstName": "Vincent",
+              "fullName": "de Gardelle V",
+              "initials": "V",
+              "lastName": "de Gardelle"
+            },
+            {
+              "firstName": "Monika",
+              "fullName": "Waszczuk M",
+              "initials": "M",
+              "lastName": "Waszczuk"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-7956-3241"
+              },
+              "firstName": "Tobias",
+              "fullName": "Egner T",
+              "initials": "T",
+              "lastName": "Egner"
+            },
+            {
+              "firstName": "Christopher",
+              "fullName": "Summerfield C",
+              "initials": "C",
+              "lastName": "Summerfield"
+            }
+          ]
+        },
+        "doi": "10.1093/cercor/bhs211",
+        "firstPublicationDate": "2012-07-18",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Open access",
+              "availabilityCode": "OA",
+              "documentStyle": "pdf",
+              "site": "Unpaywall",
+              "url": "https://academic.oup.com/cercor/article-pdf/23/9/2235/17309165/bhs211.pdf"
+            },
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1093/cercor/bhs211"
+            },
+            {
+              "availability": "Open access",
+              "availabilityCode": "OA",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC3729201"
+            },
+            {
+              "availability": "Open access",
+              "availabilityCode": "OA",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC3729201?pdf=render"
+            }
+          ]
+        },
+        "id": "22811008",
+        "isOpenAccess": "Y",
+        "journalInfo": {
+          "dateOfPublication": "2013 Sep",
+          "issue": "9",
+          "journal": {
+            "essn": "1460-2199",
+            "isoabbreviation": "Cereb Cortex",
+            "issn": "1047-3211",
+            "medlineAbbreviation": "Cereb Cortex",
+            "nlmid": "9110718",
+            "title": "Cerebral cortex (New York, N.Y. : 1991)"
+          },
+          "journalIssueId": 2061100,
+          "monthOfPublication": 9,
+          "printPublicationDate": "2013-09-01",
+          "volume": "23",
+          "yearOfPublication": 2013
+        },
+        "pageInfo": "2235-2244",
+        "pmcid": "PMC3729201",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2013",
+        "source": "MED",
+        "title": "Concurrent repetition enhancement and suppression responses in extrastriate visual cortex."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Cereb Cortex</journal-id><journal-id journal-id-type=\"iso-abbrev\">Cereb. Cortex</journal-id><journal-id journal-id-type=\"pmc-domain-id\">726</journal-id><journal-id journal-id-type=\"pmc-domain\">cercor</journal-id><journal-id journal-id-type=\"nlm-id\">9110718</journal-id><journal-id journal-id-type=\"publisher-id\">cercor</journal-id><journal-title-group><journal-title>Cerebral Cortex (New York, NY)</journal-title></journal-title-group><issn pub-type=\"ppub\">1047-3211</issn><issn pub-type=\"epub\">1460-2199</issn><publisher><publisher-name>Oxford University Press</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC3729201</article-id><article-id pub-id-type=\"pmcid-ver\">PMC3729201.1</article-id><article-id pub-id-type=\"pmcaid\">3729201</article-id><article-id pub-id-type=\"pmcaiid\">3729201</article-id><article-id pub-id-type=\"pmid\">22811008</article-id><article-id pub-id-type=\"doi\">10.1093/cercor/bhs211</article-id><article-id pub-id-type=\"publisher-id\">bhs211</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject></subj-group></article-categories><title-group><article-title>Concurrent Repetition Enhancement and Suppression Responses in Extrastriate Visual Cortex</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>de Gardelle</surname><given-names initials=\"V\">Vincent</given-names></name><xref ref-type=\"aff\" rid=\"af1\">1</xref><xref ref-type=\"aff\" rid=\"af2\">2</xref><xref ref-type=\"corresp\" rid=\"cor1\" /></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Waszczuk</surname><given-names initials=\"M\">Monika</given-names></name><xref ref-type=\"aff\" rid=\"af1\">1</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Egner</surname><given-names initials=\"T\">Tobias</given-names></name><xref ref-type=\"aff\" rid=\"af3\">3</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Summerfield</surname><given-names initials=\"C\">Christopher</given-names></name><xref ref-type=\"aff\" rid=\"af1\">1</xref></contrib></contrib-group><pub-date pub-type=\"ppub\"><month>9</month><year>2013</year></pub-date><pub-date pub-type=\"epub\"><day>18</day><month>7</month><year>2012</year></pub-date><volume>23</volume><issue>9</issue><fpage>2235</fpage><lpage>2244</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1093/cercor/bhs211",
+        "ISSN": [
+          "1047-3211",
+          "1460-2199"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "de Gardelle",
+            "given": "Vincent",
+            "suffix": ""
+          },
+          {
+            "family": "Waszczuk",
+            "given": "Monika",
+            "suffix": ""
+          },
+          {
+            "family": "Egner",
+            "given": "Tobias",
+            "suffix": ""
+          },
+          {
+            "family": "Summerfield",
+            "given": "Christopher",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Cerebral Cortex (New York, NY)",
+          "Cerebral Cortex",
+          "Cerebral cortex (New York, N.Y. : 1991)",
+          "Cereb Cortex",
+          "Cereb Cortex"
+        ],
+        "issue": "9",
+        "page": "2235-2244",
+        "published": {
+          "date-parts": [
+            [
+              2013
+            ]
+          ]
+        },
+        "publisher": "Oxford University Press",
+        "title": [
+          "Concurrent Repetition Enhancement and Suppression Responses in Extrastriate Visual Cortex"
+        ],
+        "type": "journal-article",
+        "volume": "23"
+      },
+      "retrieved_at": "2026-09-17T04:48:37.379175+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A3729201&metadataPrefix=pmc_fm",
+      "xml_sha256": "1dd873073bb6ee908f06757e22bcdc3f149ff758dd2295fc133402bf770fceb1"
+    }
+  },
+  {
+    "kind": "pmc_corroborated_coordinates",
+    "key": "LianEtal12",
+    "fingerprint": "v2:7637fd5e3f74513b745a0ceece232dc81c13ae10b8a028d81a3e868438155e64",
+    "doi": "10.1093/cercor/bhr379",
+    "changes": {
+      "number": {
+        "before": null,
+        "after": "1"
+      },
+      "pages": {
+        "before": null,
+        "after": "80--96"
+      },
+      "volume": {
+        "before": null,
+        "after": "23"
+      },
+      "year": {
+        "before": "2012",
+        "after": "2013"
+      }
+    },
+    "pubmed_id": "22275474",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1093/cercor/bhr379",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "J C Liang and A D Wagner and A R Preston",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Liang",
+              "given": "Jackson C.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Wagner",
+              "given": "Anthony D.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Preston",
+              "given": "Alison R.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cerebral Cortex",
+          "match": true,
+          "source": [
+            "Cerebral Cortex"
+          ]
+        },
+        "publisher": {
+          "local": "{Oxford} {University} Press",
+          "match": true,
+          "source": [
+            "Oxford University Press (OUP)"
+          ]
+        },
+        "title": {
+          "local": "Content representation in the human medial temporal lobe",
+          "match": true,
+          "source": [
+            "Content Representation in the Human Medial Temporal Lobe"
+          ]
+        },
+        "year": {
+          "local": "2012",
+          "match": true,
+          "source": [
+            "2012",
+            "2013"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly",
+        "volume: source supplies a field absent from the citation",
+        "pages: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1093/cercor/bhr379",
+        "ISSN": [
+          "1460-2199",
+          "1047-3211"
+        ],
+        "URL": "https://doi.org/10.1093/cercor/bhr379",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Liang",
+            "given": "Jackson C.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Wagner",
+            "given": "Anthony D.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Preston",
+            "given": "Alison R.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Cerebral Cortex"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              2012,
+              1,
+              23
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://academic.oup.com/cercor/article-pdf/23/1/80/17306825/bhr379.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "80-96",
+        "published": {
+          "date-parts": [
+            [
+              2012,
+              1,
+              23
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2012,
+              1,
+              23
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2013,
+              1
+            ]
+          ]
+        },
+        "publisher": "Oxford University Press (OUP)",
+        "title": [
+          "Content Representation in the Human Medial Temporal Lobe"
+        ],
+        "type": "journal-article",
+        "volume": "23"
+      },
+      "retrieved_at": "2026-09-09T20:09:06.610648+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1093/cercor/bhr379"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1093/cercor/bhr379",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "J C Liang and A D Wagner and A R Preston",
+          "match": true,
+          "source": [
+            {
+              "family": "Liang",
+              "given": "Jackson C.",
+              "suffix": ""
+            },
+            {
+              "family": "Wagner",
+              "given": "Anthony D.",
+              "suffix": ""
+            },
+            {
+              "family": "Preston",
+              "given": "Alison R.",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cerebral Cortex",
+          "match": true,
+          "source": [
+            "Cerebral Cortex (New York, NY)",
+            "Cerebral Cortex",
+            "Cerebral cortex (New York, N.Y. : 1991)",
+            "Cereb Cortex",
+            "Cereb Cortex"
+          ]
+        },
+        "publisher": {
+          "local": "{Oxford} {University} Press",
+          "match": true,
+          "source": [
+            "Oxford University Press"
+          ]
+        },
+        "title": {
+          "local": "Content representation in the human medial temporal lobe",
+          "match": true,
+          "source": [
+            "Content Representation in the Human Medial Temporal Lobe"
+          ]
+        },
+        "year": {
+          "local": "2012",
+          "match": false,
+          "source": [
+            "2013"
+          ]
+        }
+      },
+      "issues": [
+        "year: missing evidence or mismatch",
+        "volume: source supplies a field absent from the citation",
+        "pages: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychology, Center for Learning and Memory, Institute for Neuroscience, University of Texas at Austin, Austin, TX 78712, USA."
+                  }
+                ]
+              },
+              "firstName": "Jackson C",
+              "fullName": "Liang JC",
+              "initials": "JC",
+              "lastName": "Liang"
+            },
+            {
+              "firstName": "Anthony D",
+              "fullName": "Wagner AD",
+              "initials": "AD",
+              "lastName": "Wagner"
+            },
+            {
+              "firstName": "Alison R",
+              "fullName": "Preston AR",
+              "initials": "AR",
+              "lastName": "Preston"
+            }
+          ]
+        },
+        "doi": "10.1093/cercor/bhr379",
+        "firstPublicationDate": "2012-01-23",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Unpaywall",
+              "url": "https://academic.oup.com/cercor/article-pdf/23/1/80/17306825/bhr379.pdf"
+            },
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1093/cercor/bhr379"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC3513952"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC3513952?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1093/cercor/bhr379"
+            }
+          ]
+        },
+        "id": "22275474",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2013 Jan",
+          "issue": "1",
+          "journal": {
+            "essn": "1460-2199",
+            "isoabbreviation": "Cereb Cortex",
+            "issn": "1047-3211",
+            "medlineAbbreviation": "Cereb Cortex",
+            "nlmid": "9110718",
+            "title": "Cerebral cortex (New York, N.Y. : 1991)"
+          },
+          "journalIssueId": 1989184,
+          "monthOfPublication": 1,
+          "printPublicationDate": "2013-01-01",
+          "volume": "23",
+          "yearOfPublication": 2013
+        },
+        "pageInfo": "80-96",
+        "pmcid": "PMC3513952",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural"
+          ]
+        },
+        "pubYear": "2013",
+        "source": "MED",
+        "title": "Content representation in the human medial temporal lobe."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Cereb Cortex</journal-id><journal-id journal-id-type=\"iso-abbrev\">Cereb. Cortex</journal-id><journal-id journal-id-type=\"pmc-domain-id\">726</journal-id><journal-id journal-id-type=\"pmc-domain\">cercor</journal-id><journal-id journal-id-type=\"nlm-id\">9110718</journal-id><journal-id journal-id-type=\"publisher-id\">cercor</journal-id><journal-title-group><journal-title>Cerebral Cortex (New York, NY)</journal-title></journal-title-group><issn pub-type=\"ppub\">1047-3211</issn><issn pub-type=\"epub\">1460-2199</issn><publisher><publisher-name>Oxford University Press</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC3513952</article-id><article-id pub-id-type=\"pmcid-ver\">PMC3513952.1</article-id><article-id pub-id-type=\"pmcaid\">3513952</article-id><article-id pub-id-type=\"pmcaiid\">3513952</article-id><article-id pub-id-type=\"pmid\">22275474</article-id><article-id pub-id-type=\"doi\">10.1093/cercor/bhr379</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject></subj-group></article-categories><title-group><article-title>Content Representation in the Human Medial Temporal Lobe</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Liang</surname><given-names initials=\"JC\">Jackson C.</given-names></name><xref ref-type=\"aff\" rid=\"aff1\">1</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Wagner</surname><given-names initials=\"AD\">Anthony D.</given-names></name><xref ref-type=\"aff\" rid=\"aff2\">2</xref><xref ref-type=\"aff\" rid=\"aff3\">3</xref></contrib><contrib contrib-type=\"author\" corresp=\"yes\"><name name-style=\"western\"><surname>Preston</surname><given-names initials=\"AR\">Alison R.</given-names></name><xref ref-type=\"aff\" rid=\"aff1\">1</xref></contrib></contrib-group><pub-date pub-type=\"ppub\"><month>1</month><year>2013</year></pub-date><pub-date pub-type=\"epub\"><day>23</day><month>1</month><year>2012</year></pub-date><volume>23</volume><issue>1</issue><fpage>80</fpage><lpage>96</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1093/cercor/bhr379",
+        "ISSN": [
+          "1047-3211",
+          "1460-2199"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "Liang",
+            "given": "Jackson C.",
+            "suffix": ""
+          },
+          {
+            "family": "Wagner",
+            "given": "Anthony D.",
+            "suffix": ""
+          },
+          {
+            "family": "Preston",
+            "given": "Alison R.",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Cerebral Cortex (New York, NY)",
+          "Cerebral Cortex",
+          "Cerebral cortex (New York, N.Y. : 1991)",
+          "Cereb Cortex",
+          "Cereb Cortex"
+        ],
+        "issue": "1",
+        "page": "80-96",
+        "published": {
+          "date-parts": [
+            [
+              2013
+            ]
+          ]
+        },
+        "publisher": "Oxford University Press",
+        "title": [
+          "Content Representation in the Human Medial Temporal Lobe"
+        ],
+        "type": "journal-article",
+        "volume": "23"
+      },
+      "retrieved_at": "2026-09-17T04:16:56.917568+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A3513952&metadataPrefix=pmc_fm",
+      "xml_sha256": "93391885110e081a74cd7be12de9b9373863063776b37bc551926d2b66e7859f"
+    }
+  },
+  {
+    "kind": "pmc_corroborated_coordinates",
+    "key": "Ojem91",
+    "fingerprint": "v2:bdfa7d6ad776b21f3414cd67cabf93b09ce2a1c07724d19ea5bf895fcdf2a77f",
+    "doi": "10.1523/jneurosci.11-08-02281.1991",
+    "changes": {
+      "pages": {
+        "before": "2281",
+        "after": "2281--2287"
+      }
+    },
+    "pubmed_id": "1869914",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1523/jneurosci.11-08-02281.1991",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "G A Ojemann",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Ojemann",
+              "given": "GA",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience"
+          ]
+        },
+        "number": {
+          "local": "8",
+          "match": true,
+          "source": [
+            "8"
+          ]
+        },
+        "pages": {
+          "local": "2281",
+          "match": false,
+          "source": [
+            "2281-2287"
+          ]
+        },
+        "publisher": {
+          "local": "Society for Neuroscience",
+          "match": true,
+          "source": [
+            "Society for Neuroscience"
+          ]
+        },
+        "title": {
+          "local": "Cortical organization of language",
+          "match": true,
+          "source": [
+            "Cortical organization of language"
+          ]
+        },
+        "volume": {
+          "local": "11",
+          "match": true,
+          "source": [
+            "11"
+          ]
+        },
+        "year": {
+          "local": "1991",
+          "match": true,
+          "source": [
+            "1991"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "pages: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1523/jneurosci.11-08-02281.1991",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "URL": "https://doi.org/10.1523/jneurosci.11-08-02281.1991",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Ojemann",
+            "given": "GA",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience"
+        ],
+        "issue": "8",
+        "issued": {
+          "date-parts": [
+            [
+              1991,
+              8,
+              1
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://syndication.highwire.org/content/doi/10.1523/JNEUROSCI.11-08-02281.1991",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "2281-2287",
+        "published": {
+          "date-parts": [
+            [
+              1991,
+              8,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1991,
+              8,
+              1
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1991,
+              8,
+              1
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "Cortical organization of language"
+        ],
+        "type": "journal-article",
+        "volume": "11"
+      },
+      "retrieved_at": "2026-09-09T20:10:34.144250+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1523/jneurosci.11-08-02281.1991"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1523/jneurosci.11-08-02281.1991",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "G A Ojemann",
+          "match": true,
+          "source": [
+            {
+              "family": "Ojemann",
+              "given": "G A",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience",
+            "The Journal of Neuroscience",
+            "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+            "J Neurosci",
+            "J Neurosci"
+          ]
+        },
+        "number": {
+          "local": "8",
+          "match": true,
+          "source": [
+            "8"
+          ]
+        },
+        "pages": {
+          "local": "2281",
+          "match": false,
+          "source": [
+            "2281-2287"
+          ]
+        },
+        "publisher": {
+          "local": "Society for Neuroscience",
+          "match": true,
+          "source": [
+            "Society for Neuroscience"
+          ]
+        },
+        "title": {
+          "local": "Cortical organization of language",
+          "match": true,
+          "source": [
+            "Cortical organization of language"
+          ]
+        },
+        "volume": {
+          "local": "11",
+          "match": true,
+          "source": [
+            "11"
+          ]
+        },
+        "year": {
+          "local": "1991",
+          "match": true,
+          "source": [
+            "1991"
+          ]
+        }
+      },
+      "issues": [
+        "pages: missing evidence or mismatch"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Neurological Surgery, University of Washington, Seattle 98195."
+                  }
+                ]
+              },
+              "firstName": "G A",
+              "fullName": "Ojemann GA",
+              "initials": "GA",
+              "lastName": "Ojemann"
+            }
+          ]
+        },
+        "doi": "10.1523/jneurosci.11-08-02281.1991",
+        "firstPublicationDate": "1991-08-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/JNEUROSCI.11-08-02281.1991"
+            },
+            {
+              "availability": "Free after 6 months",
+              "availabilityCode": "F6",
+              "documentStyle": "pdf",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/reprint/11/8/2281.pdf"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "abs",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/content/abstract/11/8/2281"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6575515"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6575515?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/jneurosci.11-08-02281.1991"
+            }
+          ]
+        },
+        "id": "1869914",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1991 Aug",
+          "issue": "8",
+          "journal": {
+            "essn": "1529-2401",
+            "isoabbreviation": "J Neurosci",
+            "issn": "0270-6474",
+            "medlineAbbreviation": "J Neurosci",
+            "nlmid": "8102140",
+            "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+          },
+          "journalIssueId": 859582,
+          "monthOfPublication": 8,
+          "printPublicationDate": "1991-08-01",
+          "volume": "11",
+          "yearOfPublication": 1991
+        },
+        "pageInfo": "2281-2287",
+        "pmcid": "PMC6575515",
+        "pubTypeList": {
+          "pubType": [
+            "other",
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Review",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1991",
+        "source": "MED",
+        "title": "Cortical organization of language."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"other\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6575515</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6575515.1</article-id><article-id pub-id-type=\"pmcaid\">6575515</article-id><article-id pub-id-type=\"pmcaiid\">6575515</article-id><article-id pub-id-type=\"pmid\">1869914</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.11-08-02281.1991</article-id><article-id pub-id-type=\"other\">jneuro;11/8/2281</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject></subj-group></article-categories><title-group><article-title>Cortical organization of language</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Ojemann</surname><given-names initials=\"GA\">GA</given-names></name></contrib></contrib-group><pub-date pub-type=\"ppub\"><day>1</day><month>8</month><year>1991</year></pub-date><volume>11</volume><issue>8</issue><fpage>2281</fpage><lpage>2287</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1523/jneurosci.11-08-02281.1991",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "Ojemann",
+            "given": "G A",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience",
+          "The Journal of Neuroscience",
+          "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+          "J Neurosci",
+          "J Neurosci"
+        ],
+        "issue": "8",
+        "page": "2281-2287",
+        "published": {
+          "date-parts": [
+            [
+              1991
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "Cortical organization of language"
+        ],
+        "type": "journal-article",
+        "volume": "11"
+      },
+      "retrieved_at": "2026-09-17T04:41:39.694387+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6575515&metadataPrefix=pmc_fm",
+      "xml_sha256": "427b16b688c94ece1e1ee73d42ed116966ed08d69520a00721660792d1cae569"
+    }
+  },
+  {
+    "kind": "pmc_corroborated_coordinates",
+    "key": "SpieEtal13",
+    "fingerprint": "v2:0d42d5e6c14d5b79ea871eb491859f622fc0acaf565571dbc83b7e56e376c1be",
+    "doi": "10.1093/cercor/bht198",
+    "changes": {
+      "number": {
+        "before": null,
+        "after": "1"
+      },
+      "pages": {
+        "before": "bht198",
+        "after": "10--25"
+      },
+      "volume": {
+        "before": null,
+        "after": "25"
+      },
+      "year": {
+        "before": "2013",
+        "after": "2015"
+      }
+    },
+    "pubmed_id": "23945240",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1093/cercor/bht198",
+      "evidence": {
+        "author": {
+          "detail": "Author given names differ",
+          "local": "Hugo J Spiers and Robin M A Hayman and Aleksandar Jovalekic and Elizabeth Marozzi and Kathryn J Jeffery",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Spiers",
+              "given": "H. J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Hayman",
+              "given": "R. M. A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Jovalekic",
+              "given": "A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Marozzi",
+              "given": "E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Jeffery",
+              "given": "K. J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cerebral Cortex",
+          "match": true,
+          "source": [
+            "Cerebral Cortex"
+          ]
+        },
+        "pages": {
+          "local": "bht198",
+          "match": false,
+          "source": [
+            "10-25"
+          ]
+        },
+        "publisher": {
+          "local": "{Oxford} {University} Press",
+          "match": true,
+          "source": [
+            "Oxford University Press (OUP)"
+          ]
+        },
+        "title": {
+          "local": "Place field repetition and purely local remapping in a multicompartment environment",
+          "match": true,
+          "source": [
+            "Place Field Repetition and Purely Local Remapping in a Multicompartment Environment"
+          ]
+        },
+        "year": {
+          "local": "2013",
+          "match": true,
+          "source": [
+            "2013",
+            "2015"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author given names differ",
+        "year: conflicting or missing publication dates; select the cited edition explicitly",
+        "pages: missing evidence or mismatch",
+        "volume: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1093/cercor/bht198",
+        "ISSN": [
+          "1047-3211",
+          "1460-2199"
+        ],
+        "URL": "https://doi.org/10.1093/cercor/bht198",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Spiers",
+            "given": "H. J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Hayman",
+            "given": "R. M. A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Jovalekic",
+            "given": "A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Marozzi",
+            "given": "E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Jeffery",
+            "given": "K. J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Cerebral Cortex"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              2013,
+              8,
+              13
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://academic.oup.com/cercor/article-pdf/25/1/10/7691980/bht198.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "10-25",
+        "published": {
+          "date-parts": [
+            [
+              2013,
+              8,
+              13
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2013,
+              8,
+              13
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2015,
+              1,
+              1
+            ]
+          ]
+        },
+        "publisher": "Oxford University Press (OUP)",
+        "title": [
+          "Place Field Repetition and Purely Local Remapping in a Multicompartment Environment"
+        ],
+        "type": "journal-article",
+        "volume": "25"
+      },
+      "retrieved_at": "2026-09-09T20:46:45.155403+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1093/cercor/bht198"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1093/cercor/bht198",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "Hugo J Spiers and Robin M A Hayman and Aleksandar Jovalekic and Elizabeth Marozzi and Kathryn J Jeffery",
+          "match": true,
+          "source": [
+            {
+              "family": "Spiers",
+              "given": "Hugo J.",
+              "suffix": ""
+            },
+            {
+              "family": "Hayman",
+              "given": "Robin M. A.",
+              "suffix": ""
+            },
+            {
+              "family": "Jovalekic",
+              "given": "Aleksandar",
+              "suffix": ""
+            },
+            {
+              "family": "Marozzi",
+              "given": "Elizabeth",
+              "suffix": ""
+            },
+            {
+              "family": "Jeffery",
+              "given": "Kathryn J.",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cerebral Cortex",
+          "match": true,
+          "source": [
+            "Cerebral Cortex (New York, NY)",
+            "Cerebral Cortex",
+            "Cerebral cortex (New York, N.Y. : 1991)",
+            "Cereb Cortex",
+            "Cereb Cortex"
+          ]
+        },
+        "pages": {
+          "local": "bht198",
+          "match": false,
+          "source": [
+            "10-25"
+          ]
+        },
+        "publisher": {
+          "local": "{Oxford} {University} Press",
+          "match": true,
+          "source": [
+            "Oxford University Press"
+          ]
+        },
+        "title": {
+          "local": "Place field repetition and purely local remapping in a multicompartment environment",
+          "match": true,
+          "source": [
+            "Place Field Repetition and Purely Local Remapping in a Multicompartment Environment"
+          ]
+        },
+        "year": {
+          "local": "2013",
+          "match": false,
+          "source": [
+            "2015"
+          ]
+        }
+      },
+      "issues": [
+        "year: missing evidence or mismatch",
+        "pages: missing evidence or mismatch",
+        "volume: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Cognitive, Perceptual and Brain Sciences, Division of Psychology and Language Sciences, Institute of Behavioural Neuroscience, University College London, UK."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-6792-6356"
+              },
+              "firstName": "Hugo J",
+              "fullName": "Spiers HJ",
+              "initials": "HJ",
+              "lastName": "Spiers"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Cognitive, Perceptual and Brain Sciences, Division of Psychology and Language Sciences, Institute of Behavioural Neuroscience, University College London, UK."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-1075-0430"
+              },
+              "firstName": "Robin M A",
+              "fullName": "Hayman RM",
+              "initials": "RM",
+              "lastName": "Hayman"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Cognitive, Perceptual and Brain Sciences, Division of Psychology and Language Sciences, Institute of Behavioural Neuroscience, University College London, UK Axona Ltd, Unit 4U St Albans Enterprise Centre, St Albans, UK."
+                  }
+                ]
+              },
+              "firstName": "Aleksandar",
+              "fullName": "Jovalekic A",
+              "initials": "A",
+              "lastName": "Jovalekic"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Cognitive, Perceptual and Brain Sciences, Division of Psychology and Language Sciences, Institute of Behavioural Neuroscience, University College London, UK."
+                  }
+                ]
+              },
+              "firstName": "Elizabeth",
+              "fullName": "Marozzi E",
+              "initials": "E",
+              "lastName": "Marozzi"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Cognitive, Perceptual and Brain Sciences, Division of Psychology and Language Sciences, Institute of Behavioural Neuroscience, University College London, UK."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-9495-0378"
+              },
+              "firstName": "Kathryn J",
+              "fullName": "Jeffery KJ",
+              "initials": "KJ",
+              "lastName": "Jeffery"
+            }
+          ]
+        },
+        "doi": "10.1093/cercor/bht198",
+        "firstPublicationDate": "2013-08-13",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1093/cercor/bht198"
+            },
+            {
+              "availability": "Open access",
+              "availabilityCode": "OA",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC4400414"
+            },
+            {
+              "availability": "Open access",
+              "availabilityCode": "OA",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC4400414?pdf=render"
+            }
+          ]
+        },
+        "id": "23945240",
+        "isOpenAccess": "Y",
+        "journalInfo": {
+          "dateOfPublication": "2015 Jan",
+          "issue": "1",
+          "journal": {
+            "essn": "1460-2199",
+            "isoabbreviation": "Cereb Cortex",
+            "issn": "1047-3211",
+            "medlineAbbreviation": "Cereb Cortex",
+            "nlmid": "9110718",
+            "title": "Cerebral cortex (New York, N.Y. : 1991)"
+          },
+          "journalIssueId": 2230584,
+          "monthOfPublication": 1,
+          "printPublicationDate": "2015-01-01",
+          "volume": "25",
+          "yearOfPublication": 2015
+        },
+        "pageInfo": "10-25",
+        "pmcid": "PMC4400414",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2015",
+        "source": "MED",
+        "title": "Place field repetition and purely local remapping in a multicompartment environment."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Cereb Cortex</journal-id><journal-id journal-id-type=\"iso-abbrev\">Cereb. Cortex</journal-id><journal-id journal-id-type=\"pmc-domain-id\">726</journal-id><journal-id journal-id-type=\"pmc-domain\">cercor</journal-id><journal-id journal-id-type=\"nlm-id\">9110718</journal-id><journal-id journal-id-type=\"publisher-id\">cercor</journal-id><journal-title-group><journal-title>Cerebral Cortex (New York, NY)</journal-title></journal-title-group><issn pub-type=\"ppub\">1047-3211</issn><issn pub-type=\"epub\">1460-2199</issn><publisher><publisher-name>Oxford University Press</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC4400414</article-id><article-id pub-id-type=\"pmcid-ver\">PMC4400414.1</article-id><article-id pub-id-type=\"pmcaid\">4400414</article-id><article-id pub-id-type=\"pmcaiid\">4400414</article-id><article-id pub-id-type=\"pmid\">23945240</article-id><article-id pub-id-type=\"doi\">10.1093/cercor/bht198</article-id><article-id pub-id-type=\"publisher-id\">bht198</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject></subj-group></article-categories><title-group><article-title>Place Field Repetition and Purely Local Remapping in a Multicompartment Environment</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Spiers</surname><given-names initials=\"HJ\">Hugo J.</given-names></name><xref ref-type=\"aff\" rid=\"af1\">1</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Hayman</surname><given-names initials=\"RMA\">Robin M. A.</given-names></name><xref ref-type=\"aff\" rid=\"af1\">1</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Jovalekic</surname><given-names initials=\"A\">Aleksandar</given-names></name><xref ref-type=\"aff\" rid=\"af1\">1</xref><xref ref-type=\"aff\" rid=\"af2\">2</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Marozzi</surname><given-names initials=\"E\">Elizabeth</given-names></name><xref ref-type=\"aff\" rid=\"af1\">1</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Jeffery</surname><given-names initials=\"KJ\">Kathryn J.</given-names></name><xref ref-type=\"aff\" rid=\"af1\">1</xref></contrib><aff id=\"af1\"><label>1</label><addr-line>Department of Cognitive, Perceptual and Brain Sciences, Division of Psychology and Language Sciences</addr-line>, <institution>Institute of Behavioural Neuroscience, University College London</institution>, <country>UK</country></aff><aff id=\"af2\"><label>2</label><institution>Axona Ltd, Unit 4U St Albans Enterprise Centre</institution>, <addr-line>St Albans</addr-line>, <country>UK</country></aff></contrib-group><pub-date pub-type=\"ppub\"><month>1</month><year>2015</year></pub-date><pub-date pub-type=\"epub\"><day>13</day><month>8</month><year>2013</year></pub-date><volume>25</volume><issue>1</issue><fpage>10</fpage><lpage>25</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1093/cercor/bht198",
+        "ISSN": [
+          "1047-3211",
+          "1460-2199"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "Spiers",
+            "given": "Hugo J.",
+            "suffix": ""
+          },
+          {
+            "family": "Hayman",
+            "given": "Robin M. A.",
+            "suffix": ""
+          },
+          {
+            "family": "Jovalekic",
+            "given": "Aleksandar",
+            "suffix": ""
+          },
+          {
+            "family": "Marozzi",
+            "given": "Elizabeth",
+            "suffix": ""
+          },
+          {
+            "family": "Jeffery",
+            "given": "Kathryn J.",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Cerebral Cortex (New York, NY)",
+          "Cerebral Cortex",
+          "Cerebral cortex (New York, N.Y. : 1991)",
+          "Cereb Cortex",
+          "Cereb Cortex"
+        ],
+        "issue": "1",
+        "page": "10-25",
+        "published": {
+          "date-parts": [
+            [
+              2015
+            ]
+          ]
+        },
+        "publisher": "Oxford University Press",
+        "title": [
+          "Place Field Repetition and Purely Local Remapping in a Multicompartment Environment"
+        ],
+        "type": "journal-article",
+        "volume": "25"
+      },
+      "retrieved_at": "2026-09-17T04:45:18.423985+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A4400414&metadataPrefix=pmc_fm",
+      "xml_sha256": "11886c808031692c2d9009dcdf0e986544db089d6525bcf92ffc8bddd05b19d5"
+    }
+  },
+  {
+    "kind": "pmc_corroborated_coordinates",
+    "key": "JenkRang10",
+    "fingerprint": "v2:1adeedb0e7f5e71c8cdee52b2f42ad59be606aff068c02c707fb0f4c4c0a2143",
+    "doi": "10.1523/jneurosci.1337-10.2010",
+    "changes": {
+      "number": {
+        "before": null,
+        "after": "46"
+      },
+      "pages": {
+        "before": null,
+        "after": "15558--15565"
+      },
+      "volume": {
+        "before": "In press",
+        "after": "30"
+      }
+    },
+    "pubmed_id": "21084610",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 46",
+        "Non-version source relationships retained: has-review"
+      ],
+      "doi": "10.1523/jneurosci.1337-10.2010",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "L J Jenkins and C Ranganath",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Jenkins",
+              "given": "Lucas J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Ranganath",
+              "given": "Charan",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience"
+          ]
+        },
+        "title": {
+          "local": "Prefrontal and medial temporal lobe activity at encoding predicts temporal context memory",
+          "match": true,
+          "source": [
+            "Prefrontal and Medial Temporal Lobe Activity at Encoding Predicts Temporal Context Memory"
+          ]
+        },
+        "volume": {
+          "local": "In press",
+          "match": false,
+          "source": [
+            "30"
+          ]
+        },
+        "year": {
+          "local": "2010",
+          "match": true,
+          "source": [
+            "2010"
+          ]
+        }
+      },
+      "issues": [
+        "volume: missing evidence or mismatch",
+        "pages: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1523/jneurosci.1337-10.2010",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "URL": "https://doi.org/10.1523/jneurosci.1337-10.2010",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Jenkins",
+            "given": "Lucas J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Ranganath",
+            "given": "Charan",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience"
+        ],
+        "issue": "46",
+        "issued": {
+          "date-parts": [
+            [
+              2010,
+              11,
+              17
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://syndication.highwire.org/content/doi/10.1523/JNEUROSCI.1337-10.2010",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "15558-15565",
+        "published": {
+          "date-parts": [
+            [
+              2010,
+              11,
+              17
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2010,
+              11,
+              17
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2010,
+              11,
+              17
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "relation": {
+          "has-review": [
+            {
+              "asserted-by": "object",
+              "id": "10.3410/f.6647956.6799054",
+              "id-type": "doi"
+            }
+          ]
+        },
+        "title": [
+          "Prefrontal and Medial Temporal Lobe Activity at Encoding Predicts Temporal Context Memory"
+        ],
+        "type": "journal-article",
+        "volume": "30"
+      },
+      "retrieved_at": "2026-09-09T20:47:40.649156+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1523/jneurosci.1337-10.2010"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1523/jneurosci.1337-10.2010",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "L J Jenkins and C Ranganath",
+          "match": true,
+          "source": [
+            {
+              "family": "Jenkins",
+              "given": "Lucas J.",
+              "suffix": ""
+            },
+            {
+              "family": "Ranganath",
+              "given": "Charan",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience",
+            "The Journal of Neuroscience",
+            "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+            "J Neurosci",
+            "J Neurosci"
+          ]
+        },
+        "title": {
+          "local": "Prefrontal and medial temporal lobe activity at encoding predicts temporal context memory",
+          "match": true,
+          "source": [
+            "Prefrontal and Medial Temporal Lobe Activity at Encoding Predicts Temporal Context Memory"
+          ]
+        },
+        "volume": {
+          "local": "In press",
+          "match": false,
+          "source": [
+            "30"
+          ]
+        },
+        "year": {
+          "local": "2010",
+          "match": true,
+          "source": [
+            "2010"
+          ]
+        }
+      },
+      "issues": [
+        "volume: missing evidence or mismatch",
+        "pages: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Center for Neuroscience and Department of Psychology, University of California, Davis, California 95616, USA. ljjenkins@ucdavis.edu"
+                  }
+                ]
+              },
+              "firstName": "Lucas J",
+              "fullName": "Jenkins LJ",
+              "initials": "LJ",
+              "lastName": "Jenkins"
+            },
+            {
+              "firstName": "Charan",
+              "fullName": "Ranganath C",
+              "initials": "C",
+              "lastName": "Ranganath"
+            }
+          ]
+        },
+        "doi": "10.1523/jneurosci.1337-10.2010",
+        "firstPublicationDate": "2010-11-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Free after 6 months",
+              "availabilityCode": "F6",
+              "documentStyle": "html",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/content/full/30/46/15558"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "abs",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/content/abstract/30/46/15558"
+            },
+            {
+              "availability": "Free after 6 months",
+              "availabilityCode": "F6",
+              "documentStyle": "pdf",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/reprint/30/46/15558.pdf"
+            },
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/JNEUROSCI.1337-10.2010"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC3842495"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC3842495?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/jneurosci.1337-10.2010"
+            }
+          ]
+        },
+        "id": "21084610",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2010 Nov",
+          "issue": "46",
+          "journal": {
+            "essn": "1529-2401",
+            "isoabbreviation": "J Neurosci",
+            "issn": "0270-6474",
+            "medlineAbbreviation": "J Neurosci",
+            "nlmid": "8102140",
+            "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+          },
+          "journalIssueId": 1784681,
+          "monthOfPublication": 11,
+          "printPublicationDate": "2010-11-01",
+          "volume": "30",
+          "yearOfPublication": 2010
+        },
+        "pageInfo": "15558-15565",
+        "pmcid": "PMC3842495",
+        "pubTypeList": {
+          "pubType": [
+            "Comparative Study",
+            "research-article",
+            "Randomized Controlled Trial",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural"
+          ]
+        },
+        "pubYear": "2010",
+        "source": "MED",
+        "title": "Prefrontal and medial temporal lobe activity at encoding predicts temporal context memory."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-id journal-id-type=\"publisher-id\">J. Neurosci</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC3842495</article-id><article-id pub-id-type=\"pmcid-ver\">PMC3842495.1</article-id><article-id pub-id-type=\"pmcaid\">3842495</article-id><article-id pub-id-type=\"pmcaiid\">3842495</article-id><article-id pub-id-type=\"pmid\">21084610</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.1337-10.2010</article-id><article-id pub-id-type=\"publisher-id\">3649501</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject><subj-group><subject>Behavioral/Systems/Cognitive</subject></subj-group></subj-group></article-categories><title-group><article-title>Prefrontal and Medial Temporal Lobe Activity at Encoding Predicts Temporal Context Memory</article-title></title-group><contrib-group><contrib contrib-type=\"author\" corresp=\"yes\"><name name-style=\"western\"><surname>Jenkins</surname><given-names initials=\"LJ\">Lucas J.</given-names></name><xref ref-type=\"aff\" rid=\"aff1\" /></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Ranganath</surname><given-names initials=\"C\">Charan</given-names></name><xref ref-type=\"aff\" rid=\"aff1\" /></contrib><aff id=\"aff1\">Center for Neuroscience and Department of Psychology, University of California, Davis, California 95616</aff></contrib-group><pub-date pub-type=\"ppub\"><day>17</day><month>11</month><year>2010</year></pub-date><volume>30</volume><issue>46</issue><fpage>15558</fpage><lpage>15565</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1523/jneurosci.1337-10.2010",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "Jenkins",
+            "given": "Lucas J.",
+            "suffix": ""
+          },
+          {
+            "family": "Ranganath",
+            "given": "Charan",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience",
+          "The Journal of Neuroscience",
+          "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+          "J Neurosci",
+          "J Neurosci"
+        ],
+        "issue": "46",
+        "page": "15558-15565",
+        "published": {
+          "date-parts": [
+            [
+              2010
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "Prefrontal and Medial Temporal Lobe Activity at Encoding Predicts Temporal Context Memory"
+        ],
+        "type": "journal-article",
+        "volume": "30"
+      },
+      "retrieved_at": "2026-09-17T04:14:23.884193+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A3842495&metadataPrefix=pmc_fm",
+      "xml_sha256": "4bdc094f7bc603dc355ec405d279c5f6ee1a504415ab1b2efec824b284077a06"
+    }
+  },
+  {
+    "kind": "pmc_corroborated_coordinates",
+    "key": "LiviHube87",
+    "fingerprint": "v2:a326faad455c9a7e6f964a6174b71c428702147a4f16887839d10430e4397db5",
+    "doi": "10.1523/jneurosci.07-11-03416.1987",
+    "changes": {
+      "pages": {
+        "before": "3416",
+        "after": "3416--3468"
+      }
+    },
+    "pubmed_id": "3316524",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1523/jneurosci.07-11-03416.1987",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "M S Livingstone and D H Hubel",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Livingstone",
+              "given": "MS",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Hubel",
+              "given": "DH",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience"
+          ]
+        },
+        "number": {
+          "local": "11",
+          "match": true,
+          "source": [
+            "11"
+          ]
+        },
+        "pages": {
+          "local": "3416",
+          "match": false,
+          "source": [
+            "3416-3468"
+          ]
+        },
+        "publisher": {
+          "local": "Society for Neuroscience",
+          "match": true,
+          "source": [
+            "Society for Neuroscience"
+          ]
+        },
+        "title": {
+          "local": "Psychophysical evidence for separate channels for the perception of form, color, movement, and depth",
+          "match": true,
+          "source": [
+            "Psychophysical evidence for separate channels for the perception of form, color, movement, and depth"
+          ]
+        },
+        "volume": {
+          "local": "7",
+          "match": true,
+          "source": [
+            "7"
+          ]
+        },
+        "year": {
+          "local": "1987",
+          "match": true,
+          "source": [
+            "1987"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "pages: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1523/jneurosci.07-11-03416.1987",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "URL": "https://doi.org/10.1523/jneurosci.07-11-03416.1987",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Livingstone",
+            "given": "MS",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Hubel",
+            "given": "DH",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience"
+        ],
+        "issue": "11",
+        "issued": {
+          "date-parts": [
+            [
+              1987,
+              11,
+              1
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://syndication.highwire.org/content/doi/10.1523/JNEUROSCI.07-11-03416.1987",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "3416-3468",
+        "published": {
+          "date-parts": [
+            [
+              1987,
+              11,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1987,
+              11,
+              1
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1987,
+              11,
+              1
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "Psychophysical evidence for separate channels for the perception of form, color, movement, and depth"
+        ],
+        "type": "journal-article",
+        "volume": "7"
+      },
+      "retrieved_at": "2026-09-09T20:49:11.499787+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1523/jneurosci.07-11-03416.1987"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1523/jneurosci.07-11-03416.1987",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "M S Livingstone and D H Hubel",
+          "match": true,
+          "source": [
+            {
+              "family": "Livingstone",
+              "given": "M S",
+              "suffix": ""
+            },
+            {
+              "family": "Hubel",
+              "given": "D H",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience",
+            "The Journal of Neuroscience",
+            "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+            "J Neurosci",
+            "J Neurosci"
+          ]
+        },
+        "number": {
+          "local": "11",
+          "match": true,
+          "source": [
+            "11"
+          ]
+        },
+        "pages": {
+          "local": "3416",
+          "match": false,
+          "source": [
+            "3416-3468"
+          ]
+        },
+        "publisher": {
+          "local": "Society for Neuroscience",
+          "match": true,
+          "source": [
+            "Society for Neuroscience"
+          ]
+        },
+        "title": {
+          "local": "Psychophysical evidence for separate channels for the perception of form, color, movement, and depth",
+          "match": true,
+          "source": [
+            "Psychophysical evidence for separate channels for the perception of form, color, movement, and depth"
+          ]
+        },
+        "volume": {
+          "local": "7",
+          "match": true,
+          "source": [
+            "7"
+          ]
+        },
+        "year": {
+          "local": "1987",
+          "match": true,
+          "source": [
+            "1987"
+          ]
+        }
+      },
+      "issues": [
+        "pages: missing evidence or mismatch"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Neurobiology, Harvard Medical School, Boston, Massachusetts 02115."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-1950-0123"
+              },
+              "firstName": "M S",
+              "fullName": "Livingstone MS",
+              "initials": "MS",
+              "lastName": "Livingstone"
+            },
+            {
+              "firstName": "D H",
+              "fullName": "Hubel DH",
+              "initials": "DH",
+              "lastName": "Hubel"
+            }
+          ]
+        },
+        "doi": "10.1523/jneurosci.07-11-03416.1987",
+        "firstPublicationDate": "1987-11-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/JNEUROSCI.07-11-03416.1987"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "abs",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/content/abstract/7/11/3416"
+            },
+            {
+              "availability": "Free after 6 months",
+              "availabilityCode": "F6",
+              "documentStyle": "pdf",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/reprint/7/11/3416.pdf"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6569044"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6569044?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/jneurosci.07-11-03416.1987"
+            }
+          ]
+        },
+        "id": "3316524",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1987 Nov",
+          "issue": "11",
+          "journal": {
+            "essn": "1529-2401",
+            "isoabbreviation": "J Neurosci",
+            "issn": "0270-6474",
+            "medlineAbbreviation": "J Neurosci",
+            "nlmid": "8102140",
+            "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+          },
+          "journalIssueId": 869129,
+          "monthOfPublication": 11,
+          "printPublicationDate": "1987-11-01",
+          "volume": "7",
+          "yearOfPublication": 1987
+        },
+        "pageInfo": "3416-3468",
+        "pmcid": "PMC6569044",
+        "pubTypeList": {
+          "pubType": [
+            "other",
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Research Support, Non-U.S. Gov't",
+            "Review",
+            "Research Support, U.S. Gov't, Non-P.H.S.",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1987",
+        "source": "MED",
+        "title": "Psychophysical evidence for separate channels for the perception of form, color, movement, and depth."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"other\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6569044</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6569044.1</article-id><article-id pub-id-type=\"pmcaid\">6569044</article-id><article-id pub-id-type=\"pmcaiid\">6569044</article-id><article-id pub-id-type=\"pmid\">3316524</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.07-11-03416.1987</article-id><article-id pub-id-type=\"other\">jneuro;7/11/3416</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject></subj-group></article-categories><title-group><article-title>Psychophysical evidence for separate channels for the perception of form, color, movement, and depth</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Livingstone</surname><given-names initials=\"MS\">MS</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Hubel</surname><given-names initials=\"DH\">DH</given-names></name></contrib></contrib-group><pub-date pub-type=\"ppub\"><day>1</day><month>11</month><year>1987</year></pub-date><volume>7</volume><issue>11</issue><fpage>3416</fpage><lpage>3468</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1523/jneurosci.07-11-03416.1987",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "Livingstone",
+            "given": "M S",
+            "suffix": ""
+          },
+          {
+            "family": "Hubel",
+            "given": "D H",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience",
+          "The Journal of Neuroscience",
+          "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+          "J Neurosci",
+          "J Neurosci"
+        ],
+        "issue": "11",
+        "page": "3416-3468",
+        "published": {
+          "date-parts": [
+            [
+              1987
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "Psychophysical evidence for separate channels for the perception of form, color, movement, and depth"
+        ],
+        "type": "journal-article",
+        "volume": "7"
+      },
+      "retrieved_at": "2026-09-17T04:38:20.165455+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6569044&metadataPrefix=pmc_fm",
+      "xml_sha256": "46301cfac5401c362170aab9378b9e31a145402b6536ddcc0d4034a545255ecd"
+    }
+  },
+  {
+    "kind": "pmc_corroborated_coordinates",
+    "key": "HabeKnut09",
+    "fingerprint": "v2:c6e4ac9211e0df9fec76da1dc97aec76444ec13b49d4130348d43618572f9766",
+    "doi": "10.1038/npp.2009.129",
+    "changes": {
+      "year": {
+        "before": "2009",
+        "after": "2010"
+      }
+    },
+    "pubmed_id": "19812543",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1038/npp.2009.129",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "S N Haber and B Knutson",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Haber",
+              "given": "Suzanne N",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Knutson",
+              "given": "Brian",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Neuropsychopharmacology",
+          "match": true,
+          "source": [
+            "Neuropsychopharmacology"
+          ]
+        },
+        "number": {
+          "local": "1",
+          "match": true,
+          "source": [
+            "1"
+          ]
+        },
+        "pages": {
+          "local": "4--26",
+          "match": true,
+          "source": [
+            "4-26"
+          ]
+        },
+        "publisher": {
+          "local": "Nature Publishing Group",
+          "match": false,
+          "source": [
+            "Springer Science and Business Media LLC"
+          ]
+        },
+        "title": {
+          "local": "The reward circuit: linking primate anatomy and human imaging",
+          "match": true,
+          "source": [
+            "The Reward Circuit: Linking Primate Anatomy and Human Imaging"
+          ]
+        },
+        "volume": {
+          "local": "35",
+          "match": true,
+          "source": [
+            "35"
+          ]
+        },
+        "year": {
+          "local": "2009",
+          "match": true,
+          "source": [
+            "2009",
+            "2010"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly",
+        "publisher: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1038/npp.2009.129",
+        "ISSN": [
+          "0893-133X",
+          "1740-634X"
+        ],
+        "URL": "https://doi.org/10.1038/npp.2009.129",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Haber",
+            "given": "Suzanne N",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Knutson",
+            "given": "Brian",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Neuropsychopharmacology"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              2009,
+              10,
+              7
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://www.nature.com/articles/npp2009129.pdf",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "http://www.nature.com/articles/npp2009129",
+            "content-type": "text/html",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "http://www.nature.com/articles/npp2009129.pdf",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "4-26",
+        "published": {
+          "date-parts": [
+            [
+              2009,
+              10,
+              7
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2009,
+              10,
+              7
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2010,
+              1
+            ]
+          ]
+        },
+        "publisher": "Springer Science and Business Media LLC",
+        "title": [
+          "The Reward Circuit: Linking Primate Anatomy and Human Imaging"
+        ],
+        "type": "journal-article",
+        "volume": "35"
+      },
+      "retrieved_at": "2026-09-09T21:32:29.422675+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1038/npp.2009.129"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1038/npp.2009.129",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "S N Haber and B Knutson",
+          "match": true,
+          "source": [
+            {
+              "family": "Haber",
+              "given": "Suzanne N",
+              "suffix": ""
+            },
+            {
+              "family": "Knutson",
+              "given": "Brian",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "Neuropsychopharmacology",
+          "match": true,
+          "source": [
+            "Neuropsychopharmacology",
+            "Neuropsychopharmacology",
+            "Neuropsychopharmacology : official publication of the American College of Neuropsychopharmacology",
+            "Neuropsychopharmacology",
+            "Neuropsychopharmacology"
+          ]
+        },
+        "number": {
+          "local": "1",
+          "match": true,
+          "source": [
+            "1"
+          ]
+        },
+        "pages": {
+          "local": "4--26",
+          "match": true,
+          "source": [
+            "4-26"
+          ]
+        },
+        "publisher": {
+          "local": "Nature Publishing Group",
+          "match": true,
+          "source": [
+            "Nature Publishing Group"
+          ]
+        },
+        "title": {
+          "local": "The reward circuit: linking primate anatomy and human imaging",
+          "match": true,
+          "source": [
+            "The Reward Circuit: Linking Primate Anatomy and Human Imaging"
+          ]
+        },
+        "volume": {
+          "local": "35",
+          "match": true,
+          "source": [
+            "35"
+          ]
+        },
+        "year": {
+          "local": "2009",
+          "match": false,
+          "source": [
+            "2010"
+          ]
+        }
+      },
+      "issues": [
+        "year: missing evidence or mismatch"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Pharmacology and Physiology, University of Rochester School of Medicine, Rochester, NY 14642, USA. suzanne_haber@urmc.rochester.edu"
+                  }
+                ]
+              },
+              "firstName": "Suzanne N",
+              "fullName": "Haber SN",
+              "initials": "SN",
+              "lastName": "Haber"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-7669-426X"
+              },
+              "firstName": "Brian",
+              "fullName": "Knutson B",
+              "initials": "B",
+              "lastName": "Knutson"
+            }
+          ]
+        },
+        "doi": "10.1038/npp.2009.129",
+        "firstPublicationDate": "2010-01-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Unpaywall",
+              "url": "https://www.nature.com/articles/npp2009129.pdf"
+            },
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1038/npp.2009.129"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC3055449"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC3055449?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1038/npp.2009.129"
+            }
+          ]
+        },
+        "id": "19812543",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2010 Jan",
+          "issue": "1",
+          "journal": {
+            "essn": "1740-634X",
+            "isoabbreviation": "Neuropsychopharmacology",
+            "issn": "0893-133X",
+            "medlineAbbreviation": "Neuropsychopharmacology",
+            "nlmid": "8904907",
+            "title": "Neuropsychopharmacology : official publication of the American College of Neuropsychopharmacology"
+          },
+          "journalIssueId": 1684269,
+          "monthOfPublication": 1,
+          "printPublicationDate": "2010-01-01",
+          "volume": "35",
+          "yearOfPublication": 2010
+        },
+        "pageInfo": "4-26",
+        "pmcid": "PMC3055449",
+        "pubTypeList": {
+          "pubType": [
+            "review-article",
+            "Review",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2010",
+        "source": "MED",
+        "title": "The reward circuit: linking primate anatomy and human imaging."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"review-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Neuropsychopharmacology</journal-id><journal-id journal-id-type=\"pmc-domain-id\">1448</journal-id><journal-id journal-id-type=\"pmc-domain\">nppharm</journal-id><journal-id journal-id-type=\"nlm-id\">8904907</journal-id><journal-title-group><journal-title xml:lang=\"en\">Neuropsychopharmacology</journal-title></journal-title-group><issn pub-type=\"ppub\">0893-133X</issn><issn pub-type=\"epub\">1740-634X</issn><publisher><publisher-name>Nature Publishing Group</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC3055449</article-id><article-id pub-id-type=\"pmcid-ver\">PMC3055449.1</article-id><article-id pub-id-type=\"pmcaid\">3055449</article-id><article-id pub-id-type=\"pmcaiid\">3055449</article-id><article-id pub-id-type=\"pmid\">19812543</article-id><article-id pub-id-type=\"doi\">10.1038/npp.2009.129</article-id><article-id pub-id-type=\"pii\">npp2009129</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Neuropsychopharmacology Reviews</subject></subj-group></article-categories><title-group><article-title>The Reward Circuit: Linking Primate Anatomy and Human Imaging</article-title><alt-title alt-title-type=\"running\">Reward circuit: linking primate anatomy and human imaging</alt-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Haber</surname><given-names initials=\"SN\">Suzanne N</given-names></name><xref ref-type=\"aff\" rid=\"aff1\">1</xref><xref ref-type=\"corresp\" rid=\"caf1\">*</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Knutson</surname><given-names initials=\"B\">Brian</given-names></name><xref ref-type=\"aff\" rid=\"aff2\">2</xref></contrib><aff id=\"aff1\"><label>1</label><institution>Department of Pharmacology and Physiology, University of Rochester School of Medicine</institution>, Rochester, NY, <country>USA</country></aff><aff id=\"aff2\"><label>2</label><institution>Department of Psychology, Stanford University</institution>, Stanford, CA, <country>USA</country></aff></contrib-group><pub-date pub-type=\"ppub\"><month>01</month><year>2010</year></pub-date><pub-date pub-type=\"epub\"><day>07</day><month>10</month><year>2009</year></pub-date><volume>35</volume><issue>1</issue><fpage>4</fpage><lpage>26</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1038/npp.2009.129",
+        "ISSN": [
+          "0893-133X",
+          "1740-634X"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "Haber",
+            "given": "Suzanne N",
+            "suffix": ""
+          },
+          {
+            "family": "Knutson",
+            "given": "Brian",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Neuropsychopharmacology",
+          "Neuropsychopharmacology",
+          "Neuropsychopharmacology : official publication of the American College of Neuropsychopharmacology",
+          "Neuropsychopharmacology",
+          "Neuropsychopharmacology"
+        ],
+        "issue": "1",
+        "page": "4-26",
+        "published": {
+          "date-parts": [
+            [
+              2010
+            ]
+          ]
+        },
+        "publisher": "Nature Publishing Group",
+        "title": [
+          "The Reward Circuit: Linking Primate Anatomy and Human Imaging"
+        ],
+        "type": "journal-article",
+        "volume": "35"
+      },
+      "retrieved_at": "2026-09-17T04:12:13.431813+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A3055449&metadataPrefix=pmc_fm",
+      "xml_sha256": "57fb0c1b5ab25d695290ae03c82e7843b78e4a1f484918794093058bd3051944"
+    }
+  }
+]

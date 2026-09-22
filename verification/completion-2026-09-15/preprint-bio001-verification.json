@@ -1,0 +1,40 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 33.09,
+      "network_requests": 0,
+      "review_writes": 4,
+      "library_statuses": {
+        "metadata_verified": 3632,
+        "needs_review": 2790
+      },
+      "batch_statuses": {
+        "FoxEtal14": "metadata_verified",
+        "GoldEtal21": "needs_review",
+        "LeeEtal19": "metadata_verified",
+        "ZimaMann21": "needs_review"
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 31.06,
+      "network_requests": 0,
+      "review_writes": 0,
+      "library_statuses": {
+        "metadata_verified": 3632,
+        "needs_review": 2790
+      },
+      "batch_statuses": {
+        "FoxEtal14": "metadata_verified",
+        "GoldEtal21": "needs_review",
+        "LeeEtal19": "metadata_verified",
+        "ZimaMann21": "needs_review"
+      }
+    }
+  ],
+  "new_approvals": {
+    "LeeEtal19": "10.1101/615203",
+    "FoxEtal14": "10.1101/012310"
+  }
+}

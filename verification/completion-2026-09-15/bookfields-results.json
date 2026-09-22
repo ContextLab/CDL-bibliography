@@ -1,0 +1,46 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 61.99,
+      "network_requests": 5,
+      "review_writes": 10,
+      "statuses": {
+        "metadata_verified": 3553,
+        "needs_review": 2869
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 45.46,
+      "network_requests": 0,
+      "review_writes": 0,
+      "statuses": {
+        "metadata_verified": 3553,
+        "needs_review": 2869
+      }
+    }
+  ],
+  "entries": {
+    "OReiMuna00": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:e67e40f81eaaa884bd475447653bdd3fb669ee3535cf24a6e477bd2ce7de7b1d"
+    },
+    "Rasm06": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:60b223074e183635b987b3f6c8e4a208a334f1a02b0a1c5843410f18d41360ad"
+    },
+    "Sear92": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:0741f7cb6eca768e0be0c42d4aef3c139007a496c217b4c88ef4935f58a8dbc8"
+    },
+    "ThruEtal06": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:872471ff539c7d4feff20c83f13c7a03eb59d16ae1501e2f864076ca9df940f7"
+    },
+    "Wass04": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:62f07b5e1276ef39afba582848eecfbdffeecff90b144fbfca2a0420ce795f5d"
+    }
+  }
+}

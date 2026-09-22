@@ -1,0 +1,694 @@
+[
+  {
+    "key": "HuanEtal01",
+    "pmcid": "PMC6871953",
+    "source": {
+      "pmcid": "PMC6871953",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6871953&metadataPrefix=pmc_fm",
+      "status": 200,
+      "retrieved_at": "2026-09-17T03:25:40.077903+00:00",
+      "content_type": "application/xml; charset=utf-8",
+      "retry_after": null,
+      "sha256": "32f7e547ea20bf36a0ec884b529c3a99e3cfbd979001e79623db5920a0d3059f",
+      "bytes": 8932,
+      "response_file": ".bibcheck/completion-2026-09-15/pmc-front-PMC6871953.xml",
+      "cached": false
+    },
+    "assessment": {
+      "source": "pmc-jats",
+      "doi": "10.1002/hbm.1060",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6871953&metadataPrefix=pmc_fm",
+      "record": {
+        "DOI": "10.1002/hbm.1060",
+        "type": "journal-article",
+        "title": [
+          "Comparing cortical activations for silent and overt speech using event\u2010related fMRI"
+        ],
+        "author": [
+          {
+            "family": "Huang",
+            "given": "Jie",
+            "suffix": ""
+          },
+          {
+            "family": "Carr",
+            "given": "Thomas H.",
+            "suffix": ""
+          },
+          {
+            "family": "Cao",
+            "given": "Yue",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Human Brain Mapping",
+          "Human Brain Mapping",
+          "Human brain mapping",
+          "Hum Brain Mapp",
+          "Hum Brain Mapp"
+        ],
+        "ISSN": [
+          "1065-9471",
+          "1097-0193"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2002
+            ]
+          ]
+        },
+        "volume": "15",
+        "issue": "1",
+        "page": "39-53",
+        "article-number": null,
+        "publisher": "Wiley"
+      },
+      "evidence": {
+        "title": {
+          "local": "Comparing cortical activations for silent and overt speech using event-related {fMRI}",
+          "source": [
+            "Comparing cortical activations for silent and overt speech using event\u2010related fMRI"
+          ],
+          "match": true
+        },
+        "author": {
+          "local": "J Huang and T H Carr and Y Cao",
+          "source": [
+            {
+              "family": "Huang",
+              "given": "Jie",
+              "suffix": ""
+            },
+            {
+              "family": "Carr",
+              "given": "Thomas H.",
+              "suffix": ""
+            },
+            {
+              "family": "Cao",
+              "given": "Yue",
+              "suffix": ""
+            }
+          ],
+          "match": true,
+          "detail": "Complete author list in order; citation initials agree with source names"
+        },
+        "year": {
+          "local": "2001",
+          "source": [
+            "2002"
+          ],
+          "match": false
+        },
+        "journal": {
+          "local": "Human Brain Mapping",
+          "source": [
+            "Human Brain Mapping",
+            "Human Brain Mapping",
+            "Human brain mapping",
+            "Hum Brain Mapp",
+            "Hum Brain Mapp"
+          ],
+          "match": true
+        },
+        "volume": {
+          "local": "15",
+          "source": [
+            "15"
+          ],
+          "match": true
+        },
+        "number": {
+          "local": "1",
+          "source": [
+            "1"
+          ],
+          "match": true
+        },
+        "publisher": {
+          "local": "Wiley",
+          "source": [
+            "Wiley"
+          ],
+          "match": true
+        },
+        "pages": {
+          "local": "39--53",
+          "source": [
+            "39-53"
+          ],
+          "match": true
+        }
+      },
+      "issues": [
+        "year: missing evidence or mismatch"
+      ],
+      "retrieved_at": "2026-09-17T03:25:40.077903+00:00",
+      "xml_sha256": "32f7e547ea20bf36a0ec884b529c3a99e3cfbd979001e79623db5920a0d3059f",
+      "authority": "Publisher article front matter via Europe PMC",
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Hum Brain Mapp</journal-id><journal-id journal-id-type=\"iso-abbrev\">Hum Brain Mapp</journal-id><journal-id journal-id-type=\"pmc-domain-id\">3754</journal-id><journal-id journal-id-type=\"pmc-domain\">humanbrain</journal-id><journal-id journal-id-type=\"nlm-id\">9419065</journal-id><journal-id journal-id-type=\"publisher-id\">HBM</journal-id><journal-title-group><journal-title>Human Brain Mapping</journal-title></journal-title-group><issn pub-type=\"ppub\">1065-9471</issn><issn pub-type=\"epub\">1097-0193</issn><publisher><publisher-name>Wiley</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6871953</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6871953.1</article-id><article-id pub-id-type=\"pmcaid\">6871953</article-id><article-id pub-id-type=\"pmcaiid\">6871953</article-id><article-id pub-id-type=\"pmid\">11747099</article-id><article-id pub-id-type=\"doi\">10.1002/hbm.1060</article-id><article-id pub-id-type=\"publisher-id\">HBM1060</article-id><article-version article-version-type=\"pmc-version\">1</article-version><title-group><article-title>Comparing cortical activations for silent and overt speech using event\u2010related fMRI</article-title><alt-title alt-title-type=\"right-running-head\">fMRI in Silent and Overt Speech</alt-title></title-group><contrib-group><contrib id=\"au1\" contrib-type=\"author\"><name name-style=\"western\"><surname>Huang</surname><given-names initials=\"J\">Jie</given-names></name><xref ref-type=\"aff\" rid=\"af1\">\n<sup>1</sup>\n</xref></contrib><contrib id=\"au2\" contrib-type=\"author\"><name name-style=\"western\"><surname>Carr</surname><given-names initials=\"TH\">Thomas H.</given-names></name><xref ref-type=\"aff\" rid=\"af2\">\n<sup>2</sup>\n</xref></contrib><contrib id=\"au3\" contrib-type=\"author\" corresp=\"yes\"><name name-style=\"western\"><surname>Cao</surname><given-names initials=\"Y\">Yue</given-names></name><xref ref-type=\"aff\" rid=\"af1\">\n<sup>1</sup>\n</xref><address><email>yue@rad.msu.edu</email></address></contrib></contrib-group><pub-date pub-type=\"epub\"><day>25</day><month>10</month><year>2001</year></pub-date><pub-date pub-type=\"collection\"><month>1</month><year>2002</year></pub-date><volume>15</volume><issue>1</issue><fpage>39</fpage><lpage>53</lpage></article-meta></front></article>",
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Radiology, Michigan State University, 184 Radiology Building, East Lansing, MI 48824, USA."
+                  }
+                ]
+              },
+              "firstName": "Jie",
+              "fullName": "Huang J",
+              "initials": "J",
+              "lastName": "Huang"
+            },
+            {
+              "firstName": "Thomas H",
+              "fullName": "Carr TH",
+              "initials": "TH",
+              "lastName": "Carr"
+            },
+            {
+              "firstName": "Yue",
+              "fullName": "Cao Y",
+              "initials": "Y",
+              "lastName": "Cao"
+            }
+          ]
+        },
+        "doi": "10.1002/hbm.1060",
+        "firstPublicationDate": "2002-01-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/hbm.1060"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6871953"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6871953?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/hbm.1060"
+            }
+          ]
+        },
+        "id": "11747099",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2002 Jan",
+          "issue": "1",
+          "journal": {
+            "essn": "1097-0193",
+            "isoabbreviation": "Hum Brain Mapp",
+            "issn": "1065-9471",
+            "medlineAbbreviation": "Hum Brain Mapp",
+            "nlmid": "9419065",
+            "title": "Human brain mapping"
+          },
+          "journalIssueId": 1036647,
+          "monthOfPublication": 1,
+          "printPublicationDate": "2002-01-01",
+          "volume": "15",
+          "yearOfPublication": 2002
+        },
+        "pageInfo": "39-53",
+        "pmcid": "PMC6871953",
+        "pubTypeList": {
+          "pubType": [
+            "Comparative Study",
+            "Clinical Trial",
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2002",
+        "source": "MED",
+        "title": "Comparing cortical activations for silent and overt speech using event-related fMRI."
+      }
+    }
+  },
+  {
+    "key": "WangBuzs96",
+    "pmcid": "PMC6578902",
+    "source": {
+      "pmcid": "PMC6578902",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6578902&metadataPrefix=pmc_fm",
+      "status": 200,
+      "retrieved_at": "2026-09-17T03:25:36.792159+00:00",
+      "content_type": "application/xml; charset=utf-8",
+      "retry_after": null,
+      "sha256": "da0d5f140254eba9f0c2dbd85c538b7380e262b74d98af0d2cd61422c798ef1d",
+      "bytes": 8587,
+      "response_file": ".bibcheck/completion-2026-09-15/pmc-front-PMC6578902.xml",
+      "cached": false
+    },
+    "assessment": {
+      "source": "pmc-jats",
+      "doi": "10.1523/jneurosci.16-20-06402.1996",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6578902&metadataPrefix=pmc_fm",
+      "record": {},
+      "evidence": {},
+      "issues": [
+        "Full-text evidence unresolved: Unrecognized or non-journal full-text publication type"
+      ],
+      "retrieved_at": "2026-09-17T03:25:36.792159+00:00",
+      "xml_sha256": "da0d5f140254eba9f0c2dbd85c538b7380e262b74d98af0d2cd61422c798ef1d",
+      "authority": "Publisher article front matter via Europe PMC",
+      "raw_xml": "<article xmlns:ns1=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"other\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-id journal-id-type=\"publisher-id\">J. Neurosci</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6578902</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6578902.1</article-id><article-id pub-id-type=\"pmcaid\">6578902</article-id><article-id pub-id-type=\"pmcaiid\">6578902</article-id><article-id pub-id-type=\"pmid\">8815919</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.16-20-06402.1996</article-id><article-version article-version-type=\"pmc-version\">1</article-version><title-group><article-title>Gamma Oscillation by Synaptic Inhibition in a Hippocampal Interneuronal Network Model</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Wang</surname><given-names initials=\"XJ\">Xiao-Jing</given-names></name><xref ref-type=\"aff\" rid=\"tO1\">1</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Buzs\u00e1ki</surname><given-names initials=\"G\">Gy\u00f6rgy</given-names></name><xref ref-type=\"aff\" rid=\"tO2\">2</xref></contrib></contrib-group><pub-date pub-type=\"ppub\"><day>15</day><month>10</month><year>1996</year></pub-date><volume>16</volume><issue>20</issue><fpage>6402</fpage><lpage>6413</lpage><related-article related-article-type=\"correction-forward\" xml:lang=\"en\" ns1:title=\"correction\" vol=\"18\" journal-id=\"J Neurosci\" journal-id-type=\"nlm-ta\" ext-link-type=\"pmc\" ns1:href=\"PMC6792948\"><article-title>Correction for Wang et al., Gamma Oscillation by Snaptic Inhibition in a Hippocampal Intrneuronal Network Model</article-title><volume>18</volume><issue>17</issue><date><day>1</day><month>9</month><year>1998</year></date><fpage seq=\"b\">np</fpage><lpage>np</lpage><source>The Journal of Neuroscience</source><pub-id pub-id-type=\"pmcid\">PMC6792948</pub-id></related-article></article-meta></front></article>",
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Physics Department, Brandeis University, Waltham, Massachusetts 02254, USA."
+                  }
+                ]
+              },
+              "firstName": "X J",
+              "fullName": "Wang XJ",
+              "initials": "XJ",
+              "lastName": "Wang"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-3100-4800"
+              },
+              "firstName": "G",
+              "fullName": "Buzs\u00e1ki G",
+              "initials": "G",
+              "lastName": "Buzs\u00e1ki"
+            }
+          ]
+        },
+        "doi": "10.1523/jneurosci.16-20-06402.1996",
+        "firstPublicationDate": "1996-10-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Free after 6 months",
+              "availabilityCode": "F6",
+              "documentStyle": "html",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/content/full/16/20/6402"
+            },
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/JNEUROSCI.16-20-06402.1996"
+            },
+            {
+              "availability": "Free after 6 months",
+              "availabilityCode": "F6",
+              "documentStyle": "pdf",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/reprint/16/20/6402.pdf"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "abs",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/content/abstract/16/20/6402"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6578902"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6578902?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/jneurosci.16-20-06402.1996"
+            }
+          ]
+        },
+        "id": "8815919",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1996 Oct",
+          "issue": "20",
+          "journal": {
+            "essn": "1529-2401",
+            "isoabbreviation": "J Neurosci",
+            "issn": "0270-6474",
+            "medlineAbbreviation": "J Neurosci",
+            "nlmid": "8102140",
+            "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+          },
+          "journalIssueId": 975347,
+          "monthOfPublication": 10,
+          "printPublicationDate": "1996-10-01",
+          "volume": "16",
+          "yearOfPublication": 1996
+        },
+        "pageInfo": "6402-6413",
+        "pmcid": "PMC6578902",
+        "pubTypeList": {
+          "pubType": [
+            "other",
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Research Support, U.S. Gov't, Non-P.H.S.",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1996",
+        "source": "MED",
+        "title": "Gamma oscillation by synaptic inhibition in a hippocampal interneuronal network model."
+      }
+    }
+  },
+  {
+    "key": "OMarEtal94",
+    "pmcid": "PMC6577245",
+    "source": {
+      "pmcid": "PMC6577245",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6577245&metadataPrefix=pmc_fm",
+      "status": 200,
+      "retrieved_at": "2026-09-17T03:25:30.219363+00:00",
+      "content_type": "application/xml; charset=utf-8",
+      "retry_after": null,
+      "sha256": "7554d49f121d16cfbdfa969d709ff86c1cea91c7a0b969b40c9e5546f22e073c",
+      "bytes": 7181,
+      "response_file": ".bibcheck/completion-2026-09-15/pmc-front-PMC6577245.xml",
+      "cached": false
+    },
+    "assessment": {
+      "source": "pmc-jats",
+      "doi": "10.1523/jneurosci.14-11-06511.1994",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6577245&metadataPrefix=pmc_fm",
+      "record": {},
+      "evidence": {},
+      "issues": [
+        "Full-text evidence unresolved: Unrecognized or non-journal full-text publication type"
+      ],
+      "retrieved_at": "2026-09-17T03:25:30.219363+00:00",
+      "xml_sha256": "7554d49f121d16cfbdfa969d709ff86c1cea91c7a0b969b40c9e5546f22e073c",
+      "authority": "Publisher article front matter via Europe PMC",
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"other\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6577245</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6577245.1</article-id><article-id pub-id-type=\"pmcaid\">6577245</article-id><article-id pub-id-type=\"pmcaiid\">6577245</article-id><article-id pub-id-type=\"pmid\">7965055</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.14-11-06511.1994</article-id><article-id pub-id-type=\"other\">jneuro;14/11/6511</article-id><article-version article-version-type=\"pmc-version\">1</article-version><title-group><article-title>Neurons responding to whole-body motion in the primate hippocampus</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>O'Mara</surname><given-names initials=\"SM\">SM</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Rolls</surname><given-names initials=\"ET\">ET</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Berthoz</surname><given-names initials=\"A\">A</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Kesner</surname><given-names initials=\"RP\">RP</given-names></name></contrib></contrib-group><pub-date pub-type=\"ppub\"><day>1</day><month>11</month><year>1994</year></pub-date><volume>14</volume><issue>11</issue><fpage>6511</fpage><lpage>6523</lpage></article-meta></front></article>",
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "University of Oxford, Department of Experimental Psychology, United Kingdom."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-8087-8531"
+              },
+              "firstName": "S M",
+              "fullName": "O'Mara SM",
+              "initials": "SM",
+              "lastName": "O'Mara"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-3025-1292"
+              },
+              "firstName": "E T",
+              "fullName": "Rolls ET",
+              "initials": "ET",
+              "lastName": "Rolls"
+            },
+            {
+              "firstName": "A",
+              "fullName": "Berthoz A",
+              "initials": "A",
+              "lastName": "Berthoz"
+            },
+            {
+              "firstName": "R P",
+              "fullName": "Kesner RP",
+              "initials": "RP",
+              "lastName": "Kesner"
+            }
+          ]
+        },
+        "doi": "10.1523/jneurosci.14-11-06511.1994",
+        "firstPublicationDate": "1994-11-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Unpaywall",
+              "url": "https://www.jneurosci.org/content/jneuro/14/11/6511.full.pdf"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "abs",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/content/abstract/14/11/6511"
+            },
+            {
+              "availability": "Free after 6 months",
+              "availabilityCode": "F6",
+              "documentStyle": "pdf",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/reprint/14/11/6511.pdf"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6577245"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6577245?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/jneurosci.14-11-06511.1994"
+            }
+          ]
+        },
+        "id": "7965055",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1994 Nov",
+          "issue": "11 Pt 1",
+          "journal": {
+            "essn": "1529-2401",
+            "isoabbreviation": "J Neurosci",
+            "issn": "0270-6474",
+            "medlineAbbreviation": "J Neurosci",
+            "nlmid": "8102140",
+            "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+          },
+          "journalIssueId": 818755,
+          "monthOfPublication": 11,
+          "printPublicationDate": "1994-11-01",
+          "volume": "14",
+          "yearOfPublication": 1994
+        },
+        "pageInfo": "6511-6523",
+        "pmcid": "PMC6577245",
+        "pubTypeList": {
+          "pubType": [
+            "other",
+            "Research Support, Non-U.S. Gov't",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1994",
+        "source": "MED",
+        "title": "Neurons responding to whole-body motion in the primate hippocampus."
+      }
+    }
+  },
+  {
+    "key": "KnieEtal95",
+    "pmcid": "PMC6578145",
+    "source": {
+      "pmcid": "PMC6578145",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6578145&metadataPrefix=pmc_fm",
+      "status": 200,
+      "retrieved_at": "2026-09-17T03:25:33.529926+00:00",
+      "content_type": "application/xml; charset=utf-8",
+      "retry_after": null,
+      "sha256": "7b17e97ba48bad6e3e886db2217a950a1a085e75be62b3841c6de834a993c1e4",
+      "bytes": 7508,
+      "response_file": ".bibcheck/completion-2026-09-15/pmc-front-PMC6578145.xml",
+      "cached": false
+    },
+    "assessment": {
+      "source": "pmc-jats",
+      "doi": "10.1523/jneurosci.15-03-01648.1995",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6578145&metadataPrefix=pmc_fm",
+      "record": {},
+      "evidence": {},
+      "issues": [
+        "Full-text evidence unresolved: Unrecognized or non-journal full-text publication type"
+      ],
+      "retrieved_at": "2026-09-17T03:25:33.529926+00:00",
+      "xml_sha256": "7b17e97ba48bad6e3e886db2217a950a1a085e75be62b3841c6de834a993c1e4",
+      "authority": "Publisher article front matter via Europe PMC",
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"other\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6578145</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6578145.1</article-id><article-id pub-id-type=\"pmcaid\">6578145</article-id><article-id pub-id-type=\"pmcaiid\">6578145</article-id><article-id pub-id-type=\"pmid\">7891125</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.15-03-01648.1995</article-id><article-id pub-id-type=\"other\">jneuro;15/3/1648</article-id><article-version article-version-type=\"pmc-version\">1</article-version><title-group><article-title>Place cells, head direction cells, and the learning of landmark stability</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Knierim</surname><given-names initials=\"JJ\">JJ</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Kudrimoti</surname><given-names initials=\"HS\">HS</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>McNaughton</surname><given-names initials=\"BL\">BL</given-names></name></contrib></contrib-group><pub-date pub-type=\"ppub\"><day>1</day><month>3</month><year>1995</year></pub-date><volume>15</volume><issue>3</issue><fpage>1648</fpage><lpage>1659</lpage></article-meta></front></article>",
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Arizona Research Laboratories, Division of Neural Systems, Memory, and Aging, University of Arizona, Tucson 85724."
+                  }
+                ]
+              },
+              "firstName": "J J",
+              "fullName": "Knierim JJ",
+              "initials": "JJ",
+              "lastName": "Knierim"
+            },
+            {
+              "firstName": "H S",
+              "fullName": "Kudrimoti HS",
+              "initials": "HS",
+              "lastName": "Kudrimoti"
+            },
+            {
+              "firstName": "B L",
+              "fullName": "McNaughton BL",
+              "initials": "BL",
+              "lastName": "McNaughton"
+            }
+          ]
+        },
+        "doi": "10.1523/jneurosci.15-03-01648.1995",
+        "firstPublicationDate": "1995-03-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Unpaywall",
+              "url": "https://www.jneurosci.org/content/jneuro/15/3/1648.full.pdf"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "abs",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/content/abstract/15/3/1648"
+            },
+            {
+              "availability": "Free after 6 months",
+              "availabilityCode": "F6",
+              "documentStyle": "pdf",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/reprint/15/3/1648.pdf"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6578145"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6578145?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/jneurosci.15-03-01648.1995"
+            }
+          ]
+        },
+        "id": "7891125",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1995 Mar",
+          "issue": "3 Pt 1",
+          "journal": {
+            "essn": "1529-2401",
+            "isoabbreviation": "J Neurosci",
+            "issn": "0270-6474",
+            "medlineAbbreviation": "J Neurosci",
+            "nlmid": "8102140",
+            "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+          },
+          "journalIssueId": 853404,
+          "monthOfPublication": 3,
+          "printPublicationDate": "1995-03-01",
+          "volume": "15",
+          "yearOfPublication": 1995
+        },
+        "pageInfo": "1648-1659",
+        "pmcid": "PMC6578145",
+        "pubTypeList": {
+          "pubType": [
+            "other",
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Research Support, Non-U.S. Gov't",
+            "Research Support, U.S. Gov't, Non-P.H.S.",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1995",
+        "source": "MED",
+        "title": "Place cells, head direction cells, and the learning of landmark stability."
+      }
+    }
+  }
+]

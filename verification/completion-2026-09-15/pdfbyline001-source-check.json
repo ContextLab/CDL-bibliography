@@ -1,0 +1,15 @@
+{
+  "key": "GuimAmar05",
+  "source": "https://amaral.northwestern.edu/media/publication_pdfs/Guimera-2005-Nature-433-895.pdf",
+  "pdf_sha256": "951fb8bff9fa1d9b9c9e91e7c312a81df30b5e11f03749465b70e2190952b79d",
+  "authors": [
+    "Roger Guimer\u00e0",
+    "Lu\u00eds A. Nunes Amaral"
+  ],
+  "title": "Functional cartography of complex metabolic networks",
+  "year": 2005,
+  "volume": "433",
+  "pages": "895-900",
+  "doi": "10.1038/nature03288",
+  "method": "visually inspected byline on first page; article continues to page 900, where its own DOI is printed. The different DOI nature03286 on page 895 belongs to the preceding article and was excluded. Structured registry and MED records independently corroborate the corrected complete byline."
+}

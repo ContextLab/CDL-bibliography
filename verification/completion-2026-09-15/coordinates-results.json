@@ -1,0 +1,128 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 55.14,
+      "network_requests": 18,
+      "added_review_records": 24,
+      "batch_statuses": {
+        "metadata_verified": 24
+      },
+      "library_statuses": {
+        "metadata_verified": 3167,
+        "needs_review": 3255
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 17.39,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 24
+      },
+      "library_statuses": {
+        "metadata_verified": 3167,
+        "needs_review": 3255
+      }
+    }
+  ],
+  "entries": {
+    "AdamdeBe19": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:abe9e2ea085217bcabae9242fc429b4ed64c637e429bffc3223520fad3d53b5c"
+    },
+    "BallEtal08": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:6ac59b3dfdcdbbf36dca0e06347cc2ef8047e0f138a4eae3ad1db78b416e3027"
+    },
+    "BurgOKee11": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:88437f5449c0e8b58fde4cd6aa88694b3bc836a671c5aea2a56ae2ddc4e04c60"
+    },
+    "BushEtal14": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:f0c16923a09063a133bf62a2a2509280356a94cbe72cc78ae7cdf4851d3fd437"
+    },
+    "CarrFran12": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:4b811961ad2f6803fa9244c263c6eee8ffb27a3a1f0a1214c12a798377727a97"
+    },
+    "DelaEtal12": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:83449c2ea7776094403813781304145eaf8b053d2f5a1db0f22e1477eee77bbf"
+    },
+    "DetrEtal13": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:db6d9b6440b299932124a4558175c6810527a4bd8580a08c77f235e9ccd227ba"
+    },
+    "Erbe74": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:9bf47c71a3ef46fb1ae44c73e3938b1ff4e4ea4b60d5b0e8c6f0d972838560bc"
+    },
+    "EzzyEtal18": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:637b5d3559a7f6d19824cd284b1f6e3f9d3a0f392a4020c82f027fbd0b33799d"
+    },
+    "HardEtal19": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:2bdd11a93642a8930796ec68149751b7470302902305a4dab4d1035043943743"
+    },
+    "HowaEich13": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:c2c3dbae8a18438762c1effb378b6b1af60ff940c89a3aa138f8c04cf3d470c4"
+    },
+    "JutrEtal13": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:5131b01d7482b0af08426a804e576f7245bf2d45a1f3f09f628c27b8b8ee1aef"
+    },
+    "KataEtal23": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:c59db58e2b27c136413a1c7d337bd0a836154bc885793d20da3ab0bdb518e712"
+    },
+    "KayEtal08": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:924ef1e62de6c0b18fd64234dc72cb72ce968f3ee373a13cc0ea14c49927e72a"
+    },
+    "KhreEtal18": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:3fa37c97cafcb6e2198f5745d5902c23efc5cae026a0bb21a056765806e8aeb9"
+    },
+    "LiegEtal19": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:24a5f2757110c82da92e2a966891662df59cc824c7d16ac45d41ac61783efbdb"
+    },
+    "MurnPhel94": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:f56847f4bc1ae82724c8380f340a064ba894c60f25195bafaa1859df5c32a9e6"
+    },
+    "NayaSuzu11": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:57185ee0427d7bf0c87911f82beafe9b8e911832135c27113a50df6de812573d"
+    },
+    "OCraEtal99": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:dbf00afe49d3fb1db2c78dd956c9ed69e6a5b10bf41f75ef86da573ff562a4cf"
+    },
+    "OlivAnik18": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:4cb0352444f99c3d45eaa0879fc7fd503866a4d37a9834b2d2499c4df19e1dd5"
+    },
+    "PereEtal18": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:92d55b727f681907746909f4082304c29d27cf3ac699f5cb5df810f57866a711"
+    },
+    "StauHans13": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:7f53d0a1cfe1f5466867d04656e86fd0657ea90d279f6af9ebd414211de5d089"
+    },
+    "TsaoEtal13": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:f4b2684516a52d1ff0d27738a636da0a4286bb32d0b1a6e901e7cb81f115a62a"
+    },
+    "ZhanEtal18a": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:0215b845fddfe09aad3ce654d7e8c59ffac7dcba43e5e7198bc6fb73f859350e"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "CordEtal02": "Local PDF is the 2002 ISMRM proceedings abstract (volume 10), with Arfanakis before Carew and V M Haughton. Proposed record is a journal article with different byline order and journal coordinates. Current entry mixes these versions. Do not silently substitute the journal paper.",
+  "BunsEich96": "Would discard Howard full given name and B initial without inspecting the published byline.",
+  "EkstEtal07": "Would discard D from Ekstrom and J from Kahana while expanding names; published byline required.",
+  "GenoEtal02": "Would discard E from Nichols; published byline required.",
+  "HanEtal12": "Would discard J from Kahana; published byline required.",
+  "GhosEtal11": "Both registry records split Abbas El Gamal as given Abbas El / family Gamal. The original braced compound surname El Gamal is supported by the author\u2019s Stanford institutional profile. Do not change it to satisfy the shared indexing error."
+}

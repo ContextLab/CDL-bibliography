@@ -1,0 +1,2542 @@
+[
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "DonaMurd68",
+    "fingerprint": "v2:1ccdfb86fbadce72f14a0159988b030e6aa3455f1288a462a1b71c36c9c18d73",
+    "changes": {
+      "author": {
+        "before": "W Donaldson and B B Murdock",
+        "after": "W Donaldson and Murdock, Jr, B B"
+      }
+    },
+    "doi": "10.1037/h0025510",
+    "pubmed_id": "5642138",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 3, Pt.1"
+      ],
+      "doi": "10.1037/h0025510",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "W Donaldson and B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Donaldson",
+              "given": "Wayne",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology"
+          ]
+        },
+        "pages": {
+          "local": "325--330",
+          "match": true,
+          "source": [
+            "325-330"
+          ]
+        },
+        "title": {
+          "local": "Criterion change in continuous recognition memory",
+          "match": true,
+          "source": [
+            "Criterion change in continuous recognition memory."
+          ]
+        },
+        "volume": {
+          "local": "76",
+          "match": true,
+          "source": [
+            "76"
+          ]
+        },
+        "year": {
+          "local": "1968",
+          "match": true,
+          "source": [
+            "1968"
+          ]
+        }
+      },
+      "issues": [],
+      "record": {
+        "DOI": "10.1037/h0025510",
+        "ISSN": [
+          "0022-1015"
+        ],
+        "URL": "https://doi.org/10.1037/h0025510",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Donaldson",
+            "given": "Wayne",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Murdock",
+            "given": "Bennet B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Experimental Psychology"
+        ],
+        "issue": "3, Pt.1",
+        "issued": {
+          "date-parts": [
+            [
+              1968
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://psycnet.apa.org/journals/xge/76/3p1/325.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "325-330",
+        "published": {
+          "date-parts": [
+            [
+              1968
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1968
+            ]
+          ]
+        },
+        "publisher": "American Psychological Association (APA)",
+        "title": [
+          "Criterion change in continuous recognition memory."
+        ],
+        "type": "journal-article",
+        "volume": "76"
+      },
+      "retrieved_at": "2026-09-16T14:42:18.625148+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1037/h0025510"
+    },
+    "secondary": {
+      "doi": "10.1037/h0025510",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "W Donaldson and B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Donaldson",
+              "given": "Wayne",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology"
+          ]
+        },
+        "pages": {
+          "local": "325--330",
+          "match": true,
+          "source": [
+            "325-330"
+          ]
+        },
+        "title": {
+          "local": "Criterion change in continuous recognition memory",
+          "match": true,
+          "source": [
+            "Criterion change in continuous recognition memory."
+          ]
+        },
+        "volume": {
+          "local": "76",
+          "match": true,
+          "source": [
+            "76"
+          ]
+        },
+        "year": {
+          "local": "1968",
+          "match": true,
+          "source": [
+            "1968"
+          ]
+        }
+      },
+      "issues": [
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "firstName": "W",
+              "fullName": "Donaldson W",
+              "initials": "W",
+              "lastName": "Donaldson"
+            },
+            {
+              "firstName": "B B",
+              "fullName": "Murdock BB Jr",
+              "initials": "BB",
+              "lastName": "Murdock"
+            }
+          ]
+        },
+        "doi": "10.1037/h0025510",
+        "firstPublicationDate": "1968-03-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1037/h0025510"
+            }
+          ]
+        },
+        "id": "5642138",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1968 Mar",
+          "issue": "3",
+          "journal": {
+            "isoabbreviation": "J Exp Psychol",
+            "issn": "0022-1015",
+            "medlineAbbreviation": "J Exp Psychol",
+            "nlmid": "7502586",
+            "title": "Journal of experimental psychology"
+          },
+          "journalIssueId": 194925,
+          "monthOfPublication": 3,
+          "printPublicationDate": "1968-03-01",
+          "volume": "76",
+          "yearOfPublication": 1968
+        },
+        "pageInfo": "325-330",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1968",
+        "source": "MED",
+        "title": "Criterion change in continuous recognition memory."
+      },
+      "record": {
+        "DOI": "10.1037/h0025510",
+        "ISSN": [
+          "0022-1015"
+        ],
+        "author": [
+          {
+            "family": "Donaldson",
+            "given": "W",
+            "suffix": ""
+          },
+          {
+            "family": "Murdock",
+            "given": "B B",
+            "suffix": "Jr"
+          }
+        ],
+        "container-title": [
+          "Journal of experimental psychology",
+          "J Exp Psychol",
+          "J Exp Psychol",
+          "Journal of Experimental Psychology"
+        ],
+        "issue": "3",
+        "page": "325-330",
+        "published": {
+          "date-parts": [
+            [
+              1968
+            ]
+          ]
+        },
+        "title": [
+          "Criterion change in continuous recognition memory"
+        ],
+        "type": "journal-article",
+        "volume": "76"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.3171%2Fjns.1989.71.3.0316%22+OR+DOI%3A%2210.3171%2Fjns%2F2008%2F108%2F2%2F0411%22+OR+DOI%3A%2210.1016%2Fj.neuron.2005.03.004%22+OR+DOI%3A%2210.1227%2F00006123-199404000-00001%22+OR+DOI%3A%2210.1097%2F00006123-199404000-00001%22+OR+DOI%3A%2210.1027%2F0269-8803.18.23.61%22+OR+DOI%3A%2210.1126%2Fscience.1067426%22+OR+DOI%3A%2210.1523%2Fjneurosci.11-08-02281.1991%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2005.06.026%22+OR+DOI%3A%2210.1162%2F089892999563229%22+OR+DOI%3A%2210.1016%2Fj.neurobiolaging.2008.09.020%22+OR+DOI%3A%2210.1038%2Fnature04766%22+OR+DOI%3A%2210.1007%2F978-3-662-21732-0%22+OR+DOI%3A%2210.3758%2Fbf03337827%22+OR+DOI%3A%2210.1093%2Fbrain%2Fawh100%22+OR+DOI%3A%2210.1152%2Fjn.2000.83.5.3084%22+OR+DOI%3A%2210.1016%2Fj.cub.2007.06.066%22+OR+DOI%3A%2210.1073%2Fpnas.081074098%22+OR+DOI%3A%2210.3389%2Fneuro.07.001.2009%22+OR+DOI%3A%2210.1207%2Fs15324826an0803_5%22+OR+DOI%3A%2210.1037%2F0278-7393.21.4.803%22+OR+DOI%3A%2210.1037%2Fh0025510%22+OR+DOI%3A%2210.1037%2F0735-7044.107.3.420%22+OR+DOI%3A%2210.1038%2Fnn834%22+OR+DOI%3A%2210.1073%2Fpnas.0911531107%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:00:33.273869+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/5642138"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "SwetEtal61",
+    "fingerprint": "v2:9bc2bf7749321d6fad75f5248eb5d3197f97b0b105ce63d49b83e45804ffcc60",
+    "changes": {
+      "author": {
+        "before": "John A Swets and Wilson P Tanner and Theodore G Birdsall",
+        "after": "John A Swets and Tanner, Jr, Wilson P and Theodore G Birdsall"
+      }
+    },
+    "doi": "10.1037/h0040547",
+    "pubmed_id": "13774292",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 5"
+      ],
+      "doi": "10.1037/h0040547",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "John A Swets and Wilson P Tanner and Theodore G Birdsall",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Swets",
+              "given": "John A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Tanner",
+              "given": "Wilson P.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Birdsall",
+              "given": "Theodore G.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Psychological Review",
+          "match": true,
+          "source": [
+            "Psychological Review"
+          ]
+        },
+        "pages": {
+          "local": "301--340",
+          "match": true,
+          "source": [
+            "301-340"
+          ]
+        },
+        "title": {
+          "local": "Decision processes in perception",
+          "match": true,
+          "source": [
+            "Decision processes in perception."
+          ]
+        },
+        "volume": {
+          "local": "68",
+          "match": true,
+          "source": [
+            "68"
+          ]
+        },
+        "year": {
+          "local": "1961",
+          "match": true,
+          "source": [
+            "1961"
+          ]
+        }
+      },
+      "issues": [],
+      "record": {
+        "DOI": "10.1037/h0040547",
+        "ISSN": [
+          "1939-1471",
+          "0033-295X"
+        ],
+        "URL": "https://doi.org/10.1037/h0040547",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Swets",
+            "given": "John A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Tanner",
+            "given": "Wilson P.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Birdsall",
+            "given": "Theodore G.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Psychological Review"
+        ],
+        "issue": "5",
+        "issued": {
+          "date-parts": [
+            [
+              1961,
+              9
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://psycnet.apa.org/journals/rev/68/5/301.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "301-340",
+        "published": {
+          "date-parts": [
+            [
+              1961,
+              9
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1961,
+              9
+            ]
+          ]
+        },
+        "publisher": "American Psychological Association (APA)",
+        "title": [
+          "Decision processes in perception."
+        ],
+        "type": "journal-article",
+        "volume": "68"
+      },
+      "retrieved_at": "2026-09-09T20:11:33.039688+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1037/h0040547"
+    },
+    "secondary": {
+      "doi": "10.1037/h0040547",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "John A Swets and Wilson P Tanner and Theodore G Birdsall",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Swets",
+              "given": "John A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Tanner",
+              "given": "Wilson P.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Birdsall",
+              "given": "Theodore G.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Psychological Review",
+          "match": true,
+          "source": [
+            "Psychological Review"
+          ]
+        },
+        "pages": {
+          "local": "301--340",
+          "match": true,
+          "source": [
+            "301-340"
+          ]
+        },
+        "title": {
+          "local": "Decision processes in perception",
+          "match": true,
+          "source": [
+            "Decision processes in perception."
+          ]
+        },
+        "volume": {
+          "local": "68",
+          "match": true,
+          "source": [
+            "68"
+          ]
+        },
+        "year": {
+          "local": "1961",
+          "match": true,
+          "source": [
+            "1961"
+          ]
+        }
+      },
+      "issues": [
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "firstName": "J",
+              "fullName": "SWETS J",
+              "initials": "J",
+              "lastName": "SWETS"
+            },
+            {
+              "firstName": "W P",
+              "fullName": "TANNER WP Jr",
+              "initials": "WP",
+              "lastName": "TANNER"
+            },
+            {
+              "firstName": "T G",
+              "fullName": "BIRDSALL TG",
+              "initials": "TG",
+              "lastName": "BIRDSALL"
+            }
+          ]
+        },
+        "doi": "10.1037/h0040547",
+        "firstPublicationDate": "1961-09-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "OpenAlex",
+              "url": "https://doi.org/10.1037/h0040547"
+            }
+          ]
+        },
+        "id": "13774292",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1961 Sep",
+          "journal": {
+            "essn": "1939-1471",
+            "isoabbreviation": "Psychol Rev",
+            "issn": "0033-295X",
+            "medlineAbbreviation": "Psychol Rev",
+            "nlmid": "0376476",
+            "title": "Psychological review"
+          },
+          "journalIssueId": 260613,
+          "monthOfPublication": 9,
+          "printPublicationDate": "1961-09-01",
+          "volume": "68",
+          "yearOfPublication": 1961
+        },
+        "pageInfo": "301-340",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1961",
+        "source": "MED",
+        "title": "Decision processes in perception."
+      },
+      "record": {
+        "DOI": "10.1037/h0040547",
+        "ISSN": [
+          "0033-295X",
+          "1939-1471"
+        ],
+        "author": [
+          {
+            "family": "SWETS",
+            "given": "J",
+            "suffix": ""
+          },
+          {
+            "family": "TANNER",
+            "given": "W P",
+            "suffix": "Jr"
+          },
+          {
+            "family": "BIRDSALL",
+            "given": "T G",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Psychological review",
+          "Psychol Rev",
+          "Psychol Rev",
+          "Psychological Review"
+        ],
+        "issue": null,
+        "page": "301-340",
+        "published": {
+          "date-parts": [
+            [
+              1961
+            ]
+          ]
+        },
+        "title": [
+          "Decision processes in perception"
+        ],
+        "type": "journal-article",
+        "volume": "68"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1038%2Fnn.2956%22+OR+DOI%3A%2210.1037%2Fh0034367%22+OR+DOI%3A%2210.1037%2Fh0027460%22+OR+DOI%3A%2210.1097%2F00001756-200212200-00024%22+OR+DOI%3A%2210.1152%2Fphysrev.1985.65.1.37%22+OR+DOI%3A%2210.1002%2Fcne.902820308%22+OR+DOI%3A%2210.1038%2Fnature05631%22+OR+DOI%3A%2210.1017%2Fcbo9780511790942%22+OR+DOI%3A%2210.1007%2F978-3-540-75388-9%22+OR+DOI%3A%2210.3758%2Fbf03196345%22+OR+DOI%3A%2210.1037%2F0278-7393.3.4.445%22+OR+DOI%3A%2210.3758%2Fpbr.15.3.465%22+OR+DOI%3A%2210.1037%2Fh0040547%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.21.2.302%22+OR+DOI%3A%2210.1037%2F0278-7393.21.2.302%22+OR+DOI%3A%2210.1016%2Fj.cub.2009.02.033%22+OR+DOI%3A%2210.3758%2Fbf03206470%22+OR+DOI%3A%2210.1142%2F9789814415125_0004%22+OR+DOI%3A%2210.1006%2Fjmla.2001.2805%22+OR+DOI%3A%2210.1111%2Fj.1528-1157.1996.tb00001.x%22+OR+DOI%3A%2210.3389%2Ffpsyt.2013.00159%22+OR+DOI%3A%2210.1016%2Fj.neuron.2006.09.022%22+OR+DOI%3A%2210.1002%2Fmds.20959%22+OR+DOI%3A%2210.1227%2F01.neu.0000279719.75403.f7%22+OR+DOI%3A%2210.1136%2Fjnnp.2006.095315%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:00:34.826421+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/13774292"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "Murd66",
+    "fingerprint": "v2:5a4a698141f74efe6bfe3fc8c2c629bc8489df4c2c01a315d4c71a6dcbcb802b",
+    "changes": {
+      "author": {
+        "before": "B B Murdock",
+        "after": "Murdock, Jr, B B"
+      }
+    },
+    "doi": "10.1037/h0023113",
+    "pubmed_id": "5939717",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 5"
+      ],
+      "doi": "10.1037/h0023113",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology"
+          ]
+        },
+        "pages": {
+          "local": "732--737",
+          "match": true,
+          "source": [
+            "732-737"
+          ]
+        },
+        "title": {
+          "local": "Forward and backward associations in paired associates",
+          "match": true,
+          "source": [
+            "Forward and backward associations in paired associates."
+          ]
+        },
+        "volume": {
+          "local": "71",
+          "match": true,
+          "source": [
+            "71"
+          ]
+        },
+        "year": {
+          "local": "1966",
+          "match": true,
+          "source": [
+            "1966"
+          ]
+        }
+      },
+      "issues": [],
+      "record": {
+        "DOI": "10.1037/h0023113",
+        "ISSN": [
+          "0022-1015"
+        ],
+        "URL": "https://doi.org/10.1037/h0023113",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Murdock",
+            "given": "Bennet B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Journal of Experimental Psychology"
+        ],
+        "issue": "5",
+        "issued": {
+          "date-parts": [
+            [
+              1966
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://psycnet.apa.org/journals/xge/71/5/732.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "732-737",
+        "published": {
+          "date-parts": [
+            [
+              1966
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1966
+            ]
+          ]
+        },
+        "publisher": "American Psychological Association (APA)",
+        "title": [
+          "Forward and backward associations in paired associates."
+        ],
+        "type": "journal-article",
+        "volume": "71"
+      },
+      "retrieved_at": "2026-09-16T14:42:31.512204+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1037/h0023113"
+    },
+    "secondary": {
+      "doi": "10.1037/h0023113",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology"
+          ]
+        },
+        "pages": {
+          "local": "732--737",
+          "match": true,
+          "source": [
+            "732-737"
+          ]
+        },
+        "title": {
+          "local": "Forward and backward associations in paired associates",
+          "match": true,
+          "source": [
+            "Forward and backward associations in paired associates."
+          ]
+        },
+        "volume": {
+          "local": "71",
+          "match": true,
+          "source": [
+            "71"
+          ]
+        },
+        "year": {
+          "local": "1966",
+          "match": true,
+          "source": [
+            "1966"
+          ]
+        }
+      },
+      "issues": [
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "firstName": "B B",
+              "fullName": "Murdock BB Jr",
+              "initials": "BB",
+              "lastName": "Murdock"
+            }
+          ]
+        },
+        "doi": "10.1037/h0023113",
+        "firstPublicationDate": "1966-05-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1037/h0023113"
+            }
+          ]
+        },
+        "id": "5939717",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1966 May",
+          "issue": "5",
+          "journal": {
+            "isoabbreviation": "J Exp Psychol",
+            "issn": "0022-1015",
+            "medlineAbbreviation": "J Exp Psychol",
+            "nlmid": "7502586",
+            "title": "Journal of experimental psychology"
+          },
+          "journalIssueId": 86092,
+          "monthOfPublication": 5,
+          "printPublicationDate": "1966-05-01",
+          "volume": "71",
+          "yearOfPublication": 1966
+        },
+        "pageInfo": "732-737",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1966",
+        "source": "MED",
+        "title": "Forward and backward associations in paired associates."
+      },
+      "record": {
+        "DOI": "10.1037/h0023113",
+        "ISSN": [
+          "0022-1015"
+        ],
+        "author": [
+          {
+            "family": "Murdock",
+            "given": "B B",
+            "suffix": "Jr"
+          }
+        ],
+        "container-title": [
+          "Journal of experimental psychology",
+          "J Exp Psychol",
+          "J Exp Psychol",
+          "Journal of Experimental Psychology"
+        ],
+        "issue": "5",
+        "page": "732-737",
+        "published": {
+          "date-parts": [
+            [
+              1966
+            ]
+          ]
+        },
+        "title": [
+          "Forward and backward associations in paired associates"
+        ],
+        "type": "journal-article",
+        "volume": "71"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2F0033-295x.115.1.230%22+OR+DOI%3A%2210.1002%2Fhipo.450020202%22+OR+DOI%3A%2210.1037%2Fh0047507%22+OR+DOI%3A%2210.1037%2F0033-295x.84.4.327%22+OR+DOI%3A%2210.1016%2Fb978-1-4832-1446-7.50025-x%22+OR+DOI%3A%2210.1037%2F0096-3445.132.3.351%22+OR+DOI%3A%2210.1016%2Fj.neuron.2012.11.032%22+OR+DOI%3A%2210.1038%2F77666%22+OR+DOI%3A%2210.1037%2F0096-3445.104.1.54%22+OR+DOI%3A%2210.1207%2Fs15516709cog1402_1%22+OR+DOI%3A%2210.7551%2Fmitpress%2F1888.003.0015%22+OR+DOI%3A%2210.4324%2F9781315784779-11%22+OR+DOI%3A%2210.1198%2F016214503000000666%22+OR+DOI%3A%2210.1126%2Fscience.1157086%22+OR+DOI%3A%2210.3758%2Fbf03207956%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2008.01.023%22+OR+DOI%3A%2210.1080%2F03610738108259797%22+OR+DOI%3A%2210.1038%2Fnn1538%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhr119%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0081920%22+OR+DOI%3A%2210.1037%2Fh0069819%22+OR+DOI%3A%2210.3758%2Fbf03197157%22+OR+DOI%3A%2210.4324%2F9781410612328-10%22+OR+DOI%3A%2210.1037%2Fh0023113%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.21.4.837%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:00:57.311408+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/5939717"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "Murd63c",
+    "fingerprint": "v2:ed7e36af63e1c7cdc8118a3f4190daa67a27cdc04f460963190f5cd6014a82ad",
+    "changes": {
+      "author": {
+        "before": "B B Murdock",
+        "after": "Murdock, Jr, B B"
+      }
+    },
+    "doi": "10.1037/h0046262",
+    "pubmed_id": "14087627",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 6"
+      ],
+      "doi": "10.1037/h0046262",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology"
+          ]
+        },
+        "pages": {
+          "local": "525--532",
+          "match": true,
+          "source": [
+            "525-532"
+          ]
+        },
+        "title": {
+          "local": "Interpolated recall in short-term memory",
+          "match": true,
+          "source": [
+            "Interpolated recall in short-term memory."
+          ]
+        },
+        "volume": {
+          "local": "66",
+          "match": true,
+          "source": [
+            "66"
+          ]
+        },
+        "year": {
+          "local": "1963",
+          "match": true,
+          "source": [
+            "1963"
+          ]
+        }
+      },
+      "issues": [],
+      "record": {
+        "DOI": "10.1037/h0046262",
+        "ISSN": [
+          "0022-1015"
+        ],
+        "URL": "https://doi.org/10.1037/h0046262",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Murdock",
+            "given": "Bennet B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Journal of Experimental Psychology"
+        ],
+        "issue": "6",
+        "issued": {
+          "date-parts": [
+            [
+              1963,
+              12
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://psycnet.apa.org/journals/xge/66/6/525.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "525-532",
+        "published": {
+          "date-parts": [
+            [
+              1963,
+              12
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1963,
+              12
+            ]
+          ]
+        },
+        "publisher": "American Psychological Association (APA)",
+        "title": [
+          "Interpolated recall in short-term memory."
+        ],
+        "type": "journal-article",
+        "volume": "66"
+      },
+      "retrieved_at": "2026-09-16T14:42:42.931972+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1037/h0046262"
+    },
+    "secondary": {
+      "doi": "10.1037/h0046262",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology"
+          ]
+        },
+        "pages": {
+          "local": "525--532",
+          "match": true,
+          "source": [
+            "525-532"
+          ]
+        },
+        "title": {
+          "local": "Interpolated recall in short-term memory",
+          "match": true,
+          "source": [
+            "Interpolated recall in short-term memory."
+          ]
+        },
+        "volume": {
+          "local": "66",
+          "match": true,
+          "source": [
+            "66"
+          ]
+        },
+        "year": {
+          "local": "1963",
+          "match": true,
+          "source": [
+            "1963"
+          ]
+        }
+      },
+      "issues": [
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "firstName": "B B",
+              "fullName": "MURDOCK BB Jr",
+              "initials": "BB",
+              "lastName": "MURDOCK"
+            }
+          ]
+        },
+        "doi": "10.1037/h0046262",
+        "firstPublicationDate": "1963-12-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1037/h0046262"
+            }
+          ]
+        },
+        "id": "14087627",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1963 Dec",
+          "journal": {
+            "isoabbreviation": "J Exp Psychol",
+            "issn": "0022-1015",
+            "medlineAbbreviation": "J Exp Psychol",
+            "nlmid": "7502586",
+            "title": "Journal of experimental psychology"
+          },
+          "journalIssueId": 346329,
+          "monthOfPublication": 12,
+          "printPublicationDate": "1963-12-01",
+          "volume": "66",
+          "yearOfPublication": 1963
+        },
+        "pageInfo": "525-532",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1963",
+        "source": "MED",
+        "title": "INTERPOLATED RECALL IN SHORT-TERM MEMORY."
+      },
+      "record": {
+        "DOI": "10.1037/h0046262",
+        "ISSN": [
+          "0022-1015"
+        ],
+        "author": [
+          {
+            "family": "MURDOCK",
+            "given": "B B",
+            "suffix": "Jr"
+          }
+        ],
+        "container-title": [
+          "Journal of experimental psychology",
+          "J Exp Psychol",
+          "J Exp Psychol",
+          "Journal of Experimental Psychology"
+        ],
+        "issue": null,
+        "page": "525-532",
+        "published": {
+          "date-parts": [
+            [
+              1963
+            ]
+          ]
+        },
+        "title": [
+          "INTERPOLATED RECALL IN SHORT-TERM MEMORY"
+        ],
+        "type": "journal-article",
+        "volume": "66"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs0896-6273%2804%2900289-2%22+OR+DOI%3A%2210.1016%2Fj.neuron.2004.07.009%22+OR+DOI%3A%2210.1016%2Fj.conb.2007.03.005%22+OR+DOI%3A%2210.1523%2Fjneurosci.15-11-07079.1995%22+OR+DOI%3A%2210.1152%2Fphysrev.00012.2003%22+OR+DOI%3A%2210.4324%2F9780203938966%22+OR+DOI%3A%2210.1037%2F0278-7393.30.4.778%22+OR+DOI%3A%2210.1037%2Fh0044616%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.17.5.855%22+OR+DOI%3A%2210.1037%2F0278-7393.17.5.855%22+OR+DOI%3A%2210.1037%2F0882-7974.18.2.219%22+OR+DOI%3A%2210.1037%2Fh0033901%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.7.5.326%22+OR+DOI%3A%2210.1037%2F0278-7393.7.5.326%22+OR+DOI%3A%2210.1016%2Fj.cub.2006.05.024%22+OR+DOI%3A%2210.1126%2Fscience.252.5009.1177%22+OR+DOI%3A%2210.1126%2Fscience.1164685%22+OR+DOI%3A%2210.1126%2Fscience.1188210%22+OR+DOI%3A%2210.1037%2Fh0046262%22+OR+DOI%3A%2210.1038%2Fnrn2314%22+OR+DOI%3A%2210.1037%2F0033-295x.105.2.299%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.26.5.1188%22+OR+DOI%3A%2210.1037%2F0278-7393.26.5.1188%22+OR+DOI%3A%2210.1037%2Fh0029993%22+OR+DOI%3A%2210.1016%2F0006-8993%2896%2900107-2%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:01:20.225454+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/14087627"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "Murd60a",
+    "fingerprint": "v2:f8e992f7b51d887b8f3d591a865ba3eeec50c9ec259767337f6386f9eb8adfc1",
+    "changes": {
+      "author": {
+        "before": "B B Murdock",
+        "after": "Murdock, Jr, B B"
+      }
+    },
+    "doi": "10.1037/h0042382",
+    "pubmed_id": "14425343",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1037/h0042382",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Psychological Review",
+          "match": true,
+          "source": [
+            "Psychological Review"
+          ]
+        },
+        "pages": {
+          "local": "16--31",
+          "match": true,
+          "source": [
+            "16-31"
+          ]
+        },
+        "title": {
+          "local": "The distinctiveness of stimuli",
+          "match": true,
+          "source": [
+            "The distinctiveness of stimuli."
+          ]
+        },
+        "volume": {
+          "local": "67",
+          "match": true,
+          "source": [
+            "67"
+          ]
+        },
+        "year": {
+          "local": "1960",
+          "match": true,
+          "source": [
+            "1960"
+          ]
+        }
+      },
+      "issues": [],
+      "record": {
+        "DOI": "10.1037/h0042382",
+        "ISSN": [
+          "1939-1471",
+          "0033-295X"
+        ],
+        "URL": "https://doi.org/10.1037/h0042382",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Murdock",
+            "given": "Bennet B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Psychological Review"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              1960,
+              1
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://psycnet.apa.org/journals/rev/67/1/16.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "16-31",
+        "published": {
+          "date-parts": [
+            [
+              1960,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1960,
+              1
+            ]
+          ]
+        },
+        "publisher": "American Psychological Association (APA)",
+        "title": [
+          "The distinctiveness of stimuli."
+        ],
+        "type": "journal-article",
+        "volume": "67"
+      },
+      "retrieved_at": "2026-09-09T21:27:00.174369+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1037/h0042382"
+    },
+    "secondary": {
+      "doi": "10.1037/h0042382",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Psychological Review",
+          "match": true,
+          "source": [
+            "Psychological Review"
+          ]
+        },
+        "pages": {
+          "local": "16--31",
+          "match": true,
+          "source": [
+            "16-31"
+          ]
+        },
+        "title": {
+          "local": "The distinctiveness of stimuli",
+          "match": true,
+          "source": [
+            "The distinctiveness of stimuli."
+          ]
+        },
+        "volume": {
+          "local": "67",
+          "match": true,
+          "source": [
+            "67"
+          ]
+        },
+        "year": {
+          "local": "1960",
+          "match": true,
+          "source": [
+            "1960"
+          ]
+        }
+      },
+      "issues": [
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "firstName": "B B",
+              "fullName": "MURDOCK BB Jr",
+              "initials": "BB",
+              "lastName": "MURDOCK"
+            }
+          ]
+        },
+        "doi": "10.1037/h0042382",
+        "firstPublicationDate": "1960-01-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1037/h0042382"
+            }
+          ]
+        },
+        "id": "14425343",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1960 Jan",
+          "journal": {
+            "essn": "1939-1471",
+            "isoabbreviation": "Psychol Rev",
+            "issn": "0033-295X",
+            "medlineAbbreviation": "Psychol Rev",
+            "nlmid": "0376476",
+            "title": "Psychological review"
+          },
+          "journalIssueId": 1925,
+          "monthOfPublication": 1,
+          "printPublicationDate": "1960-01-01",
+          "volume": "67",
+          "yearOfPublication": 1960
+        },
+        "pageInfo": "16-31",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1960",
+        "source": "MED",
+        "title": "The distinctiveness of stimuli."
+      },
+      "record": {
+        "DOI": "10.1037/h0042382",
+        "ISSN": [
+          "0033-295X",
+          "1939-1471"
+        ],
+        "author": [
+          {
+            "family": "MURDOCK",
+            "given": "B B",
+            "suffix": "Jr"
+          }
+        ],
+        "container-title": [
+          "Psychological review",
+          "Psychol Rev",
+          "Psychol Rev",
+          "Psychological Review"
+        ],
+        "issue": null,
+        "page": "16-31",
+        "published": {
+          "date-parts": [
+            [
+              1960
+            ]
+          ]
+        },
+        "title": [
+          "The distinctiveness of stimuli"
+        ],
+        "type": "journal-article",
+        "volume": "67"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2Fh0075186%22+OR+DOI%3A%2210.1523%2Fjneurosci.3295-06.2006%22+OR+DOI%3A%2210.1037%2Fh0042382%22+OR+DOI%3A%2210.1523%2Fjneurosci.0406-07.2007%22+OR+DOI%3A%2210.1093%2Fbrain%2Fawl329%22+OR+DOI%3A%2210.1016%2Fj.jmp.2005.10.003%22+OR+DOI%3A%2210.1111%2Fj.1467-8624.2010.01448.x%22+OR+DOI%3A%2210.1137%2Fs0036144504445133%22+OR+DOI%3A%2210.1037%2Fh0087396%22+OR+DOI%3A%2210.1093%2Fdeafed%2Feng010%22+OR+DOI%3A%2210.1037%2F0278-7393.29.5.760%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2003.12.020%22+OR+DOI%3A%2210.1080%2F14640747408400413%22+OR+DOI%3A%2210.1037%2F0278-7393.30.6.1196%22+OR+DOI%3A%2210.1111%2Fj.1528-1167.2007.01307.x%22+OR+DOI%3A%2210.1080%2F03610730500326291%22+OR+DOI%3A%2210.1037%2Fa0018022%22+OR+DOI%3A%2210.1523%2Fjneurosci.07-07-01951.1987%22+OR+DOI%3A%2210.1016%2F0006-8993%2890%2991341-d%22+OR+DOI%3A%2210.1038%2Fnn.2631%22+OR+DOI%3A%2210.1016%2Fs0272-4944%2884%2980003-1%22+OR+DOI%3A%2210.1037%2Fa0022525%22+OR+DOI%3A%2210.1037%2F%2F0882-7974.17.4.653%22+OR+DOI%3A%2210.1037%2F0882-7974.17.4.653%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.19.1.159%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:02:43.995416+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/14425343"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "Murd60b",
+    "fingerprint": "v2:b091fe1fa63dc048e4991dfa4240296e0eaea867424f3a2aa430577b071610d7",
+    "changes": {
+      "author": {
+        "before": "B B Murdock",
+        "after": "Murdock, Jr, B B"
+      }
+    },
+    "doi": "10.1037/h0045145",
+    "pubmed_id": "13726932",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 4"
+      ],
+      "doi": "10.1037/h0045145",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology"
+          ]
+        },
+        "pages": {
+          "local": "222--234",
+          "match": true,
+          "source": [
+            "222-234"
+          ]
+        },
+        "title": {
+          "local": "The immediate retention of unrelated words",
+          "match": true,
+          "source": [
+            "The immediate retention of unrelated words."
+          ]
+        },
+        "volume": {
+          "local": "60",
+          "match": true,
+          "source": [
+            "60"
+          ]
+        },
+        "year": {
+          "local": "1960",
+          "match": true,
+          "source": [
+            "1960"
+          ]
+        }
+      },
+      "issues": [],
+      "record": {
+        "DOI": "10.1037/h0045145",
+        "ISSN": [
+          "0022-1015"
+        ],
+        "URL": "https://doi.org/10.1037/h0045145",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Murdock",
+            "given": "Bennet B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Journal of Experimental Psychology"
+        ],
+        "issue": "4",
+        "issued": {
+          "date-parts": [
+            [
+              1960,
+              10
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://psycnet.apa.org/journals/xge/60/4/222.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "222-234",
+        "published": {
+          "date-parts": [
+            [
+              1960,
+              10
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1960,
+              10
+            ]
+          ]
+        },
+        "publisher": "American Psychological Association (APA)",
+        "title": [
+          "The immediate retention of unrelated words."
+        ],
+        "type": "journal-article",
+        "volume": "60"
+      },
+      "retrieved_at": "2026-09-16T14:43:16.684029+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1037/h0045145"
+    },
+    "secondary": {
+      "doi": "10.1037/h0045145",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology"
+          ]
+        },
+        "pages": {
+          "local": "222--234",
+          "match": true,
+          "source": [
+            "222-234"
+          ]
+        },
+        "title": {
+          "local": "The immediate retention of unrelated words",
+          "match": true,
+          "source": [
+            "The immediate retention of unrelated words."
+          ]
+        },
+        "volume": {
+          "local": "60",
+          "match": true,
+          "source": [
+            "60"
+          ]
+        },
+        "year": {
+          "local": "1960",
+          "match": true,
+          "source": [
+            "1960"
+          ]
+        }
+      },
+      "issues": [
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "firstName": "B B",
+              "fullName": "MURDOCK BB Jr",
+              "initials": "BB",
+              "lastName": "MURDOCK"
+            }
+          ]
+        },
+        "doi": "10.1037/h0045145",
+        "firstPublicationDate": "1960-10-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1037/h0045145"
+            }
+          ]
+        },
+        "id": "13726932",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1960 Oct",
+          "journal": {
+            "isoabbreviation": "J Exp Psychol",
+            "issn": "0022-1015",
+            "medlineAbbreviation": "J Exp Psychol",
+            "nlmid": "7502586",
+            "title": "Journal of experimental psychology"
+          },
+          "journalIssueId": 255382,
+          "monthOfPublication": 10,
+          "printPublicationDate": "1960-10-01",
+          "volume": "60",
+          "yearOfPublication": 1960
+        },
+        "pageInfo": "222-234",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1960",
+        "source": "MED",
+        "title": "The immediate retention of unrelated words."
+      },
+      "record": {
+        "DOI": "10.1037/h0045145",
+        "ISSN": [
+          "0022-1015"
+        ],
+        "author": [
+          {
+            "family": "MURDOCK",
+            "given": "B B",
+            "suffix": "Jr"
+          }
+        ],
+        "container-title": [
+          "Journal of experimental psychology",
+          "J Exp Psychol",
+          "J Exp Psychol",
+          "Journal of Experimental Psychology"
+        ],
+        "issue": null,
+        "page": "222-234",
+        "published": {
+          "date-parts": [
+            [
+              1960
+            ]
+          ]
+        },
+        "title": [
+          "The immediate retention of unrelated words"
+        ],
+        "type": "journal-article",
+        "volume": "60"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007%2Fbf00199474%22+OR+DOI%3A%2210.1080%2F00221309.1928.9923408%22+OR+DOI%3A%2210.1016%2Fs0166-4328%2889%2980093-2%22+OR+DOI%3A%2210.1037%2F0894-4105.18.3.405%22+OR+DOI%3A%2210.1016%2F0163-1047%2892%2990724-i%22+OR+DOI%3A%2210.1038%2Fnrn2335%22+OR+DOI%3A%2210.1093%2Facprof%3Aoso%2F9780199210862.003.0006%22+OR+DOI%3A%2210.1016%2F0006-8993%2871%2990358-1%22+OR+DOI%3A%2210.1016%2Fs0166-2236%2897%2901220-4%22+OR+DOI%3A%2210.1016%2Fs0896-6273%2800%2980773-4%22+OR+DOI%3A%2210.1080%2F02724980244000224%22+OR+DOI%3A%2210.1016%2Fs0896-6273%2802%2900830-9%22+OR+DOI%3A%2210.1002%2F%28sici%291098-1063%281998%298%3A4%3C330%3A%3Aaid-hipo3%3E3.3.co%3B2-2%22+OR+DOI%3A%2210.1002%2F%28sici%291098-1063%281998%298%3A4%3C330%3A%3Aaid-hipo3%3E3.0.co%3B2-l%22+OR+DOI%3A%2210.1201%2F9781420033397%22+OR+DOI%3A%2210.1037%2Fh0045145%22+OR+DOI%3A%2210.1016%2F0278-2626%2888%2990027-9%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.17.2.338%22+OR+DOI%3A%2210.1037%2F0278-7393.17.2.338%22+OR+DOI%3A%2210.1038%2Fnature12160%22+OR+DOI%3A%2210.1111%2Fj.1467-9280.2008.02203.x%22+OR+DOI%3A%2210.1037%2F0022-3514.47.6.1206%22+OR+DOI%3A%2210.1037%2Fa0034024%22+OR+DOI%3A%2210.2307%2F1417415%22+OR+DOI%3A%2210.2307%2F1422697%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:02:49.195945+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/13726932"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "Murd61",
+    "fingerprint": "v2:83376f0ae30d62723a3599cd607e90272694af19af59ba3716948e0f5a79ce77",
+    "changes": {
+      "author": {
+        "before": "B B Murdock",
+        "after": "Murdock, Jr, B B"
+      }
+    },
+    "doi": "10.1037/h0043657",
+    "pubmed_id": "14477367",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 6"
+      ],
+      "doi": "10.1037/h0043657",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology"
+          ]
+        },
+        "pages": {
+          "local": "618--625",
+          "match": true,
+          "source": [
+            "618-625"
+          ]
+        },
+        "title": {
+          "local": "The retention of individual items",
+          "match": true,
+          "source": [
+            "The retention of individual items."
+          ]
+        },
+        "volume": {
+          "local": "62",
+          "match": true,
+          "source": [
+            "62"
+          ]
+        },
+        "year": {
+          "local": "1961",
+          "match": true,
+          "source": [
+            "1961"
+          ]
+        }
+      },
+      "issues": [],
+      "record": {
+        "DOI": "10.1037/h0043657",
+        "ISSN": [
+          "0022-1015"
+        ],
+        "URL": "https://doi.org/10.1037/h0043657",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Murdock",
+            "given": "Bennet B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Journal of Experimental Psychology"
+        ],
+        "issue": "6",
+        "issued": {
+          "date-parts": [
+            [
+              1961,
+              12
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://psycnet.apa.org/journals/xge/62/6/618.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "618-625",
+        "published": {
+          "date-parts": [
+            [
+              1961,
+              12
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1961,
+              12
+            ]
+          ]
+        },
+        "publisher": "American Psychological Association (APA)",
+        "title": [
+          "The retention of individual items."
+        ],
+        "type": "journal-article",
+        "volume": "62"
+      },
+      "retrieved_at": "2026-09-16T14:43:18.863514+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1037/h0043657"
+    },
+    "secondary": {
+      "doi": "10.1037/h0043657",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology"
+          ]
+        },
+        "pages": {
+          "local": "618--625",
+          "match": true,
+          "source": [
+            "618-625"
+          ]
+        },
+        "title": {
+          "local": "The retention of individual items",
+          "match": true,
+          "source": [
+            "The retention of individual items."
+          ]
+        },
+        "volume": {
+          "local": "62",
+          "match": true,
+          "source": [
+            "62"
+          ]
+        },
+        "year": {
+          "local": "1961",
+          "match": true,
+          "source": [
+            "1961"
+          ]
+        }
+      },
+      "issues": [
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "firstName": "B B",
+              "fullName": "MURDOCK BB Jr",
+              "initials": "BB",
+              "lastName": "MURDOCK"
+            }
+          ]
+        },
+        "doi": "10.1037/h0043657",
+        "firstPublicationDate": "1961-12-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1037/h0043657"
+            }
+          ]
+        },
+        "id": "14477367",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1961 Dec",
+          "journal": {
+            "isoabbreviation": "J Exp Psychol",
+            "issn": "0022-1015",
+            "medlineAbbreviation": "J Exp Psychol",
+            "nlmid": "7502586",
+            "title": "Journal of experimental psychology"
+          },
+          "journalIssueId": 297456,
+          "monthOfPublication": 12,
+          "printPublicationDate": "1961-12-01",
+          "volume": "62",
+          "yearOfPublication": 1961
+        },
+        "pageInfo": "618-625",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1961",
+        "source": "MED",
+        "title": "The retention of individual items."
+      },
+      "record": {
+        "DOI": "10.1037/h0043657",
+        "ISSN": [
+          "0022-1015"
+        ],
+        "author": [
+          {
+            "family": "MURDOCK",
+            "given": "B B",
+            "suffix": "Jr"
+          }
+        ],
+        "container-title": [
+          "Journal of experimental psychology",
+          "J Exp Psychol",
+          "J Exp Psychol",
+          "Journal of Experimental Psychology"
+        ],
+        "issue": null,
+        "page": "618-625",
+        "published": {
+          "date-parts": [
+            [
+              1961
+            ]
+          ]
+        },
+        "title": [
+          "The retention of individual items"
+        ],
+        "type": "journal-article",
+        "volume": "62"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1038%2Fnrn756%22+OR+DOI%3A%2210.1037%2Fh0045156%22+OR+DOI%3A%2210.1037%2F0033-295x.103.3.403%22+OR+DOI%3A%2210.1080%2F09658210244000027%22+OR+DOI%3A%2210.1007%2Fs004260050043%22+OR+DOI%3A%2210.1163%2F156856897x00357%22+OR+DOI%3A%2210.1037%2Fh0028148%22+OR+DOI%3A%2210.3758%2Fbf03198091%22+OR+DOI%3A%2210.3758%2Fbf03343462%22+OR+DOI%3A%2210.7551%2Fmitpress%2F5834.001.0001%22+OR+DOI%3A%2210.1523%2Fjneurosci.1833-07.2007%22+OR+DOI%3A%2210.1037%2Fh0030541%22+OR+DOI%3A%2210.1523%2Fjneurosci.3140-11.2011%22+OR+DOI%3A%2210.1007%2Fbf03337951%22+OR+DOI%3A%2210.1016%2Fj.expneurol.2005.02.010%22+OR+DOI%3A%2210.1111%2Fj.1460-9568.2004.03817.x%22+OR+DOI%3A%2210.1016%2Fj.neuropsychologia.2007.11.021%22+OR+DOI%3A%2210.1037%2Fa0017619%22+OR+DOI%3A%2210.1111%2Fj.1528-1157.1994.tb05990.x%22+OR+DOI%3A%2210.1080%2F08856559.1927.10532397%22+OR+DOI%3A%2210.3758%2Fbf03213476%22+OR+DOI%3A%2210.1146%2Fannurev.psych.57.102904.190143%22+OR+DOI%3A%2210.1037%2Fh0043657%22+OR+DOI%3A%2210.1038%2Fnpp.2009.129%22+OR+DOI%3A%2210.55782%2Fane-1996-1116%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:02:55.976769+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/14477367"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "DrewMurd80",
+    "fingerprint": "v2:4ef1ac0eb9427a7291115bcce27ae7ab661c2c45e4fac0e05f4c27aaf355074f",
+    "changes": {
+      "author": {
+        "before": "A Drewnowski and B B Murdock",
+        "after": "A Drewnowski and Murdock, Jr, B B"
+      }
+    },
+    "doi": "10.1037/0278-7393.6.3.319",
+    "pubmed_id": "7373250",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 3"
+      ],
+      "doi": "10.1037/0278-7393.6.3.319",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "A Drewnowski and B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Drewnowski",
+              "given": "Adam",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology: Human Learning and Memory",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology: Human Learning and Memory"
+          ]
+        },
+        "pages": {
+          "local": "319--332",
+          "match": true,
+          "source": [
+            "319-332"
+          ]
+        },
+        "title": {
+          "local": "The role of auditory features in memory span for words",
+          "match": true,
+          "source": [
+            "The role of auditory features in memory span for words."
+          ]
+        },
+        "volume": {
+          "local": "6",
+          "match": true,
+          "source": [
+            "6"
+          ]
+        },
+        "year": {
+          "local": "1980",
+          "match": true,
+          "source": [
+            "1980"
+          ]
+        }
+      },
+      "issues": [],
+      "record": {
+        "DOI": "10.1037/0278-7393.6.3.319",
+        "ISSN": [
+          "0096-1515"
+        ],
+        "URL": "https://doi.org/10.1037/0278-7393.6.3.319",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Drewnowski",
+            "given": "Adam",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Murdock",
+            "given": "Bennet B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Experimental Psychology: Human Learning and Memory"
+        ],
+        "issue": "3",
+        "issued": {
+          "date-parts": [
+            [
+              1980
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://psycnet.apa.org/journals/xlm/6/3/319.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "319-332",
+        "published": {
+          "date-parts": [
+            [
+              1980
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1980
+            ]
+          ]
+        },
+        "publisher": "American Psychological Association (APA)",
+        "title": [
+          "The role of auditory features in memory span for words."
+        ],
+        "type": "journal-article",
+        "volume": "6"
+      },
+      "retrieved_at": "2026-09-09T21:32:38.062937+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1037/0278-7393.6.3.319"
+    },
+    "secondary": {
+      "doi": "10.1037/0278-7393.6.3.319",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "A Drewnowski and B B Murdock",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Drewnowski",
+              "given": "Adam",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Murdock",
+              "given": "Bennet B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Experimental Psychology: Human Learning and Memory",
+          "match": true,
+          "source": [
+            "Journal of Experimental Psychology: Human Learning and Memory"
+          ]
+        },
+        "pages": {
+          "local": "319--332",
+          "match": true,
+          "source": [
+            "319-332"
+          ]
+        },
+        "title": {
+          "local": "The role of auditory features in memory span for words",
+          "match": true,
+          "source": [
+            "The role of auditory features in memory span for words."
+          ]
+        },
+        "volume": {
+          "local": "6",
+          "match": true,
+          "source": [
+            "6"
+          ]
+        },
+        "year": {
+          "local": "1980",
+          "match": true,
+          "source": [
+            "1980"
+          ]
+        }
+      },
+      "issues": [
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "firstName": "A",
+              "fullName": "Drewnowski A",
+              "initials": "A",
+              "lastName": "Drewnowski"
+            },
+            {
+              "firstName": "B B",
+              "fullName": "Murdock BB Jr",
+              "initials": "BB",
+              "lastName": "Murdock"
+            }
+          ]
+        },
+        "doi": "10.1037/0278-7393.6.3.319",
+        "firstPublicationDate": "1980-05-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "OpenAlex",
+              "url": "https://doi.org/10.1037/0278-7393.6.3.319"
+            }
+          ]
+        },
+        "id": "7373250",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1980 May",
+          "issue": "3",
+          "journal": {
+            "isoabbreviation": "J Exp Psychol Hum Learn",
+            "issn": "0096-1515",
+            "medlineAbbreviation": "J Exp Psychol Hum Learn",
+            "nlmid": "7502588",
+            "title": "Journal of experimental psychology. Human learning and memory"
+          },
+          "journalIssueId": 298104,
+          "monthOfPublication": 5,
+          "printPublicationDate": "1980-05-01",
+          "volume": "6",
+          "yearOfPublication": 1980
+        },
+        "pageInfo": "319-332",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1980",
+        "source": "MED",
+        "title": "The role of auditory features in memory span for words."
+      },
+      "record": {
+        "DOI": "10.1037/0278-7393.6.3.319",
+        "ISSN": [
+          "0096-1515"
+        ],
+        "author": [
+          {
+            "family": "Drewnowski",
+            "given": "A",
+            "suffix": ""
+          },
+          {
+            "family": "Murdock",
+            "given": "B B",
+            "suffix": "Jr"
+          }
+        ],
+        "container-title": [
+          "Journal of experimental psychology. Human learning and memory",
+          "J Exp Psychol Hum Learn",
+          "J Exp Psychol Hum Learn",
+          "Journal of Experimental Psychology: Human Learning and Memory"
+        ],
+        "issue": "3",
+        "page": "319-332",
+        "published": {
+          "date-parts": [
+            [
+              1980
+            ]
+          ]
+        },
+        "title": [
+          "The role of auditory features in memory span for words"
+        ],
+        "type": "journal-article",
+        "volume": "6"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1126%2Fscience.1153651%22+OR+DOI%3A%2210.3389%2Ffnins.2012.00131%22+OR+DOI%3A%2210.1016%2Fj.conb.2006.09.002%22+OR+DOI%3A%2210.1126%2Fscience.284.5411.167%22+OR+DOI%3A%2210.1037%2F0278-7393.6.3.319%22+OR+DOI%3A%2210.1037%2Fh0045774%22+OR+DOI%3A%2210.1006%2Fnimg.2001.1019%22+OR+DOI%3A%2210.1073%2Fpnas.95.3.906%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.22.5.1136%22+OR+DOI%3A%2210.1037%2F0278-7393.22.5.1136%22+OR+DOI%3A%2210.1073%2Fpnas.240460497%22+OR+DOI%3A%2210.1006%2Fcogp.1997.0652%22+OR+DOI%3A%2210.2307%2F1419320%22+OR+DOI%3A%2210.2307%2F1420016%22+OR+DOI%3A%2210.2307%2F1420627%22+OR+DOI%3A%2210.1037%2Fa0033003%22+OR+DOI%3A%2210.1038%2F20178%22+OR+DOI%3A%2210.7551%2Fmitpress%2F3077.003.0010%22+OR+DOI%3A%2210.1002%2Fana.410120203%22+OR+DOI%3A%2210.1006%2Fnimg.1999.0488%22+OR+DOI%3A%2210.1037%2F0894-4105.19.2.223%22+OR+DOI%3A%2210.1073%2Fpnas.96.11.6558%22+OR+DOI%3A%2210.1093%2Facprof%3Aoso%2F9780195154054.001.0001%22+OR+DOI%3A%2210.1080%2F14640747508400525%22+OR+DOI%3A%2210.1093%2Fneucas%2F1.1.39-ab%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:02:57.557669+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/7373250"
+    }
+  }
+]

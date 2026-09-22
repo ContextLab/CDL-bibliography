@@ -1,0 +1,94 @@
+[
+  {
+    "key": "Badd90",
+    "fingerprint": "v2:03a9bad86b735a57e83c8930b389870aba27d9a4788c6879a42fee36ffe53351",
+    "query": "dc.title=\"human memory theory and practice\" and dc.author=\"baddeley\" and dc.date=\"1990\"",
+    "source": {
+      "document_sha256": "b46885707d36a257e6432052cdfe2a069688b603ecf7ba313f656fe06a72c774",
+      "query": "dc.title=\"human memory theory and practice\" and dc.author=\"baddeley\" and dc.date=\"1990\"",
+      "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>dc.title=\"human memory theory and practice\" and dc.author=\"baddeley\" and dc.date=\"1990\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+      "records": [],
+      "retrieved_at": "2026-09-17T20:34:29.220819+00:00",
+      "total_records": 0,
+      "truncated": false,
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22human+memory+theory+and+practice%22+and+dc.author%3D%22baddeley%22+and+dc.date%3D%221990%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+    }
+  },
+  {
+    "key": "BorgGroe05",
+    "fingerprint": "v2:5331b03c3f9b4d14243e8db566ccdebd8f9589a79cd921b2e09175764c980b47",
+    "query": "dc.title=\"modern multidimensional scaling theory and applications\" and dc.author=\"borg\" and dc.date=\"2005\"",
+    "source": {
+      "document_sha256": "89b99be5edba7727cc4a32615533033a51b8d3688f6e9529522c862bfe2c7c76",
+      "query": "dc.title=\"modern multidimensional scaling theory and applications\" and dc.author=\"borg\" and dc.date=\"2005\"",
+      "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>dc.title=\"modern multidimensional scaling theory and applications\" and dc.author=\"borg\" and dc.date=\"2005\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+      "records": [],
+      "retrieved_at": "2026-09-17T20:34:32.804499+00:00",
+      "total_records": 0,
+      "truncated": false,
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22modern+multidimensional+scaling+theory+and+applications%22+and+dc.author%3D%22borg%22+and+dc.date%3D%222005%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+    }
+  },
+  {
+    "key": "Fust05",
+    "fingerprint": "v2:1901efc1dbc30ba38c81bdc8df7f080705557b9b172560b8874354193e3a1ea0",
+    "query": "dc.title=\"cortex and mind unifying cognition\" and dc.author=\"fuster\" and dc.date=\"2005\"",
+    "source": {
+      "document_sha256": "264ef99644f6dec4b035de294f22642e54e6f574107a89f18771bdc5279d33e8",
+      "query": "dc.title=\"cortex and mind unifying cognition\" and dc.author=\"fuster\" and dc.date=\"2005\"",
+      "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>marcxml</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns=\"http://www.loc.gov/MARC21/slim\">\n  <leader>01074cam a2200313 a 4500</leader>\n  <controlfield tag=\"001\">17274361</controlfield>\n  <controlfield tag=\"005\">20250607050414.2</controlfield>\n  <controlfield tag=\"008\">120426s2005    enka     b    001 0 eng  </controlfield>\n  <datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">17274361</subfield>\n  </datafield>\n  <datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">7</subfield>\n    <subfield code=\"b\">cbc</subfield>\n    <subfield code=\"c\">origcop</subfield>\n    <subfield code=\"d\">2</subfield>\n    <subfield code=\"e\">ncip</subfield>\n    <subfield code=\"f\">20</subfield>\n    <subfield code=\"g\">y-gencatlg</subfield>\n  </datafield>\n  <datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">acquire</subfield>\n    <subfield code=\"b\">1 shelf copy</subfield>\n    <subfield code=\"x\">policy default</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"b\">xh11 2012-04-26 z-processor</subfield>\n    <subfield code=\"i\">xh11 2012-04-26 to Dewey</subfield>\n    <subfield code=\"w\">rd12 2012-08-15</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">LCAP batch update 2025-06-02-04:00: LCAPM-644</subfield>\n  </datafield>\n  <datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">  2012392702</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780195300840</subfield>\n  </datafield>\n  <datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">DLC</subfield>\n    <subfield code=\"c\">DLC</subfield>\n    <subfield code=\"d\">DLC</subfield>\n  </datafield>\n  <datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">pcc</subfield>\n  </datafield>\n  <datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">QP395</subfield>\n    <subfield code=\"b\">.F88 2005</subfield>\n  </datafield>\n  <datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">153</subfield>\n    <subfield code=\"2\">23</subfield>\n  </datafield>\n  <datafield tag=\"100\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Fuster, Joaquin M.</subfield>\n  </datafield>\n  <datafield tag=\"245\" ind1=\"1\" ind2=\"0\">\n    <subfield code=\"a\">Cortex and mind :</subfield>\n    <subfield code=\"b\">unifying cognition /</subfield>\n    <subfield code=\"c\">Joaqui&#x301;n M. Fuster.</subfield>\n  </datafield>\n  <datafield tag=\"260\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Oxford ;</subfield>\n    <subfield code=\"a\">New York :</subfield>\n    <subfield code=\"b\">Oxford University Press,</subfield>\n    <subfield code=\"c\">2005.</subfield>\n  </datafield>\n  <datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">xvi, 294 p. :</subfield>\n    <subfield code=\"b\">ill. (some col.) ;</subfield>\n    <subfield code=\"c\">24 cm.</subfield>\n  </datafield>\n  <datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">text</subfield>\n    <subfield code=\"b\">txt</subfield>\n    <subfield code=\"2\">rdacontent</subfield>\n  </datafield>\n  <datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">unmediated</subfield>\n    <subfield code=\"b\">n</subfield>\n    <subfield code=\"2\">rdamedia</subfield>\n  </datafield>\n  <datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">volume</subfield>\n    <subfield code=\"b\">nc</subfield>\n    <subfield code=\"2\">rdacarrier</subfield>\n  </datafield>\n  <datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Includes bibliographical references (p. 257-284) and index.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Cognition.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Cerebral cortex.</subfield>\n  </datafield>\n</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>dc.title=\"cortex and mind unifying cognition\" and dc.author=\"fuster\" and dc.date=\"2005\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+      "records": [
+        "<ns0:record xmlns:ns0=\"http://www.loc.gov/MARC21/slim\">\n  <ns0:leader>01074cam a2200313 a 4500</ns0:leader>\n  <ns0:controlfield tag=\"001\">17274361</ns0:controlfield>\n  <ns0:controlfield tag=\"005\">20250607050414.2</ns0:controlfield>\n  <ns0:controlfield tag=\"008\">120426s2005    enka     b    001 0 eng  </ns0:controlfield>\n  <ns0:datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">17274361</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">7</ns0:subfield>\n    <ns0:subfield code=\"b\">cbc</ns0:subfield>\n    <ns0:subfield code=\"c\">origcop</ns0:subfield>\n    <ns0:subfield code=\"d\">2</ns0:subfield>\n    <ns0:subfield code=\"e\">ncip</ns0:subfield>\n    <ns0:subfield code=\"f\">20</ns0:subfield>\n    <ns0:subfield code=\"g\">y-gencatlg</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">acquire</ns0:subfield>\n    <ns0:subfield code=\"b\">1 shelf copy</ns0:subfield>\n    <ns0:subfield code=\"x\">policy default</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"b\">xh11 2012-04-26 z-processor</ns0:subfield>\n    <ns0:subfield code=\"i\">xh11 2012-04-26 to Dewey</ns0:subfield>\n    <ns0:subfield code=\"w\">rd12 2012-08-15</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">LCAP batch update 2025-06-02-04:00: LCAPM-644</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">  2012392702</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780195300840</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">DLC</ns0:subfield>\n    <ns0:subfield code=\"c\">DLC</ns0:subfield>\n    <ns0:subfield code=\"d\">DLC</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">pcc</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">QP395</ns0:subfield>\n    <ns0:subfield code=\"b\">.F88 2005</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">153</ns0:subfield>\n    <ns0:subfield code=\"2\">23</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"100\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Fuster, Joaquin M.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"245\" ind1=\"1\" ind2=\"0\">\n    <ns0:subfield code=\"a\">Cortex and mind :</ns0:subfield>\n    <ns0:subfield code=\"b\">unifying cognition /</ns0:subfield>\n    <ns0:subfield code=\"c\">Joaqui\u0301n M. Fuster.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"260\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Oxford ;</ns0:subfield>\n    <ns0:subfield code=\"a\">New York :</ns0:subfield>\n    <ns0:subfield code=\"b\">Oxford University Press,</ns0:subfield>\n    <ns0:subfield code=\"c\">2005.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">xvi, 294 p. :</ns0:subfield>\n    <ns0:subfield code=\"b\">ill. (some col.) ;</ns0:subfield>\n    <ns0:subfield code=\"c\">24 cm.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">text</ns0:subfield>\n    <ns0:subfield code=\"b\">txt</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacontent</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">unmediated</ns0:subfield>\n    <ns0:subfield code=\"b\">n</ns0:subfield>\n    <ns0:subfield code=\"2\">rdamedia</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">volume</ns0:subfield>\n    <ns0:subfield code=\"b\">nc</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacarrier</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Includes bibliographical references (p. 257-284) and index.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Cognition.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Cerebral cortex.</ns0:subfield>\n  </ns0:datafield>\n</ns0:record>"
+      ],
+      "retrieved_at": "2026-09-17T20:34:36.074413+00:00",
+      "total_records": 1,
+      "truncated": false,
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22cortex+and+mind+unifying+cognition%22+and+dc.author%3D%22fuster%22+and+dc.date%3D%222005%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+    }
+  },
+  {
+    "key": "Luck05",
+    "fingerprint": "v2:cf4824dfd564333509801ffca80fa544f21f384c467f9ffbcd350ea33d54ae6e",
+    "query": "dc.title=\"an introduction to the event related potential technique\" and dc.author=\"luck\" and dc.date=\"2005\"",
+    "source": {
+      "document_sha256": "85eeb302fc57a17ebdb26d3ef18cded92a2f84d535a97160050ff7d297647096",
+      "query": "dc.title=\"an introduction to the event related potential technique\" and dc.author=\"luck\" and dc.date=\"2005\"",
+      "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>dc.title=\"an introduction to the event related potential technique\" and dc.author=\"luck\" and dc.date=\"2005\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+      "records": [],
+      "retrieved_at": "2026-09-17T20:34:39.263743+00:00",
+      "total_records": 0,
+      "truncated": false,
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22an+introduction+to+the+event+related+potential+technique%22+and+dc.author%3D%22luck%22+and+dc.date%3D%222005%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+    }
+  },
+  {
+    "key": "NoceWrig06",
+    "fingerprint": "v2:060bbff3b051d816f8886b2b42c50518828431dd2651274397c0bca67059efd2",
+    "query": "dc.title=\"numerical optimization\" and dc.author=\"nocedal\" and dc.date=\"2006\"",
+    "source": {
+      "document_sha256": "f1a14c8f8058026135f9f2ceace8f0c57c7e45078dd3e21725e2d06b8ab744ea",
+      "query": "dc.title=\"numerical optimization\" and dc.author=\"nocedal\" and dc.date=\"2006\"",
+      "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>dc.title=\"numerical optimization\" and dc.author=\"nocedal\" and dc.date=\"2006\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+      "records": [],
+      "retrieved_at": "2026-09-17T20:34:42.447181+00:00",
+      "total_records": 0,
+      "truncated": false,
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22numerical+optimization%22+and+dc.author%3D%22nocedal%22+and+dc.date%3D%222006%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+    }
+  },
+  {
+    "key": "SuttBart98",
+    "fingerprint": "v2:be1a2400accc60081b60187eb8bcbd76508cddf55007c7fef5200d43781434a3",
+    "query": "dc.title=\"reinforcement learning an introduction\" and dc.author=\"sutton\" and dc.date=\"1998\"",
+    "source": {
+      "document_sha256": "342ad341d70ede1225a3c5861400f55c139d8aeea02a6ba7c1500578372f7a75",
+      "query": "dc.title=\"reinforcement learning an introduction\" and dc.author=\"sutton\" and dc.date=\"1998\"",
+      "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>dc.title=\"reinforcement learning an introduction\" and dc.author=\"sutton\" and dc.date=\"1998\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+      "records": [],
+      "retrieved_at": "2026-09-17T20:34:45.632174+00:00",
+      "total_records": 0,
+      "truncated": false,
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22reinforcement+learning+an+introduction%22+and+dc.author%3D%22sutton%22+and+dc.date%3D%221998%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+    }
+  }
+]

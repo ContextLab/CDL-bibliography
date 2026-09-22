@@ -1,0 +1,95 @@
+[
+  {
+    "key": "vandEtal11",
+    "fingerprint": "v2:87a983d17f3f4fdde35869b7b5b896adc55435c96fb687ab0da027c13a13ffa2",
+    "doi": "10.1016/j.learninstruc.2009.10.004",
+    "field": "author",
+    "source": {
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.learninstruc.2009.10.004",
+      "retrieved_at": "2026-09-16T16:57:19.825540+00:00",
+      "source_kind": "elsevier_coredata",
+      "metadata": {
+        "citation_title": [
+          "Patterns of contingent teaching in teacher\u2013student interaction"
+        ],
+        "citation_doi": [
+          "10.1016/j.learninstruc.2009.10.004"
+        ],
+        "citation_journal_title": [
+          "Learning and Instruction"
+        ],
+        "citation_publication_date": [
+          "2011-02-28"
+        ],
+        "citation_issn": [
+          "0959-4752"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0959475209001054</prism:url><dc:identifier>doi:10.1016/j.learninstruc.2009.10.004</dc:identifier><eid>1-s2.0-S0959475209001054</eid><prism:doi>10.1016/j.learninstruc.2009.10.004</prism:doi><pii>S0959-4752(09)00105-4</pii><dc:title>Patterns of contingent teaching in teacher\u2013student interaction </dc:title><prism:publicationName>Learning and Instruction</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>09594752</prism:issn><prism:coverDate>2011-02-28</prism:coverDate><prism:coverDisplayDate>February 2011</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0959475209001054\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0959475209001054\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "document_sha256": "926bfdcb1c5dd94ee60bebd58cccfe51a9ffbaf980e25e8e6fe631bad8e52cf8"
+    },
+    "proposed": false
+  },
+  {
+    "key": "PretEtal17",
+    "fingerprint": "v2:5c84c79df48061b0934cf8033324c8d29674ff72dca00bf5ba315d7aa8355629",
+    "doi": "10.1016/j.neuroimage.2016.12.061",
+    "field": "author",
+    "source": {
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.neuroimage.2016.12.061",
+      "retrieved_at": "2026-09-16T16:57:21.143223+00:00",
+      "source_kind": "elsevier_coredata",
+      "metadata": {
+        "citation_title": [
+          "The dynamic functional connectome: State-of-the-art and perspectives"
+        ],
+        "citation_doi": [
+          "10.1016/j.neuroimage.2016.12.061"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "2017-10-15"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811916307881</prism:url><dc:identifier>doi:10.1016/j.neuroimage.2016.12.061</dc:identifier><eid>1-s2.0-S1053811916307881</eid><prism:doi>10.1016/j.neuroimage.2016.12.061</prism:doi><pii>S1053-8119(16)30788-1</pii><dc:title>The dynamic functional connectome: State-of-the-art and perspectives </dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>2017-10-15</prism:coverDate><prism:coverDisplayDate>15 October 2017</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType>Author</openaccessSponsorType><openaccessUserLicense>http://creativecommons.org/licenses/by-nc-nd/4.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S1053811916307881\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811916307881\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "document_sha256": "f5cffa98d13128ff8d3695559658bdd16a6c6631c0691c29a7209cbdf235a2ea"
+    },
+    "proposed": false
+  },
+  {
+    "key": "Dabb90",
+    "fingerprint": "v2:176739760a84d44d050789a91b3a4bec25ba5e5a130c5283bf86d547a30295dd",
+    "doi": "10.1016/0031-9384(90)90265-6",
+    "field": "author",
+    "source": {
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0031-9384%2890%2990265-6",
+      "retrieved_at": "2026-09-16T16:57:22.466933+00:00",
+      "source_kind": "elsevier_coredata",
+      "metadata": {
+        "citation_title": [
+          "Salivary testosterone measurements: Reliability across hours, days, and weeks"
+        ],
+        "citation_doi": [
+          "10.1016/0031-9384(90)90265-6"
+        ],
+        "citation_journal_title": [
+          "Physiology & Behavior"
+        ],
+        "citation_publication_date": [
+          "1990-07-31"
+        ],
+        "citation_issn": [
+          "0031-9384"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0031938490902656</prism:url><dc:identifier>doi:10.1016/0031-9384(90)90265-6</dc:identifier><eid>1-s2.0-0031938490902656</eid><prism:doi>10.1016/0031-9384(90)90265-6</prism:doi><pii>0031-9384(90)90265-6</pii><dc:title>Salivary testosterone measurements: Reliability across hours, days, and weeks </dc:title><prism:publicationName>Physiology &amp; Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00319384</prism:issn><prism:coverDate>1990-07-31</prism:coverDate><prism:coverDisplayDate>July 1990</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0031938490902656\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0031938490902656\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "document_sha256": "49c3f80274469c279ad3b119e754d74b01008c5ba2344843d7fd0374b5618367"
+    },
+    "proposed": false
+  }
+]

@@ -1,0 +1,505 @@
+[
+  {
+    "kind": "pmc_corroborated_given_names",
+    "key": "MullEtal94",
+    "fingerprint": "v2:b44f1f4ccc4c46450a9fe4d2e5727db055a0992da7d12f6fc9dae2664b113f79",
+    "doi": "10.1523/jneurosci.14-12-07235.1994",
+    "changes": {
+      "author": {
+        "before": "R Muller and E Bostock and J Taube and J Kubie",
+        "after": "R U Muller and E Bostock and J S Taube and J L Kubie"
+      },
+      "number": {
+        "before": null,
+        "after": "12"
+      },
+      "pages": {
+        "before": "7235",
+        "after": "7235--7251"
+      }
+    },
+    "pubmed_id": "7996172",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 12"
+      ],
+      "doi": "10.1523/jneurosci.14-12-07235.1994",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "R Muller and E Bostock and J Taube and J Kubie",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Muller",
+              "given": "RU",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Bostock",
+              "given": "E",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Taube",
+              "given": "JS",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Kubie",
+              "given": "JL",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience"
+          ]
+        },
+        "pages": {
+          "local": "7235",
+          "match": false,
+          "source": [
+            "7235-7251"
+          ]
+        },
+        "publisher": {
+          "local": "Society for Neuroscience",
+          "match": true,
+          "source": [
+            "Society for Neuroscience"
+          ]
+        },
+        "title": {
+          "local": "On the directional firing properties of hippocampal place cells",
+          "match": true,
+          "source": [
+            "On the directional firing properties of hippocampal place cells"
+          ]
+        },
+        "volume": {
+          "local": "14",
+          "match": true,
+          "source": [
+            "14"
+          ]
+        },
+        "year": {
+          "local": "1994",
+          "match": true,
+          "source": [
+            "1994"
+          ]
+        }
+      },
+      "issues": [
+        "pages: missing evidence or mismatch",
+        "number: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1523/jneurosci.14-12-07235.1994",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "URL": "https://doi.org/10.1523/jneurosci.14-12-07235.1994",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Muller",
+            "given": "RU",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Bostock",
+            "given": "E",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Taube",
+            "given": "JS",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Kubie",
+            "given": "JL",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience"
+        ],
+        "issue": "12",
+        "issued": {
+          "date-parts": [
+            [
+              1994,
+              12,
+              1
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://syndication.highwire.org/content/doi/10.1523/JNEUROSCI.14-12-07235.1994",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "7235-7251",
+        "published": {
+          "date-parts": [
+            [
+              1994,
+              12,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1994,
+              12,
+              1
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1994,
+              12,
+              1
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "On the directional firing properties of hippocampal place cells"
+        ],
+        "type": "journal-article",
+        "volume": "14"
+      },
+      "retrieved_at": "2026-09-09T20:43:35.310167+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1523/jneurosci.14-12-07235.1994"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1523/jneurosci.14-12-07235.1994",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "R Muller and E Bostock and J Taube and J Kubie",
+          "match": false,
+          "source": [
+            {
+              "family": "Muller",
+              "given": "R U",
+              "suffix": ""
+            },
+            {
+              "family": "Bostock",
+              "given": "E",
+              "suffix": ""
+            },
+            {
+              "family": "Taube",
+              "given": "J S",
+              "suffix": ""
+            },
+            {
+              "family": "Kubie",
+              "given": "J L",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience",
+            "The Journal of Neuroscience",
+            "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+            "J Neurosci",
+            "J Neurosci"
+          ]
+        },
+        "pages": {
+          "local": "7235",
+          "match": false,
+          "source": [
+            "7235-7251"
+          ]
+        },
+        "publisher": {
+          "local": "Society for Neuroscience",
+          "match": true,
+          "source": [
+            "Society for Neuroscience"
+          ]
+        },
+        "title": {
+          "local": "On the directional firing properties of hippocampal place cells",
+          "match": true,
+          "source": [
+            "On the directional firing properties of hippocampal place cells"
+          ]
+        },
+        "volume": {
+          "local": "14",
+          "match": true,
+          "source": [
+            "14"
+          ]
+        },
+        "year": {
+          "local": "1994",
+          "match": true,
+          "source": [
+            "1994"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "pages: missing evidence or mismatch",
+        "number: source supplies a field absent from the citation"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Physiology, State University of New York Health Sciences Center, Brooklyn 11203."
+                  }
+                ]
+              },
+              "firstName": "R U",
+              "fullName": "Muller RU",
+              "initials": "RU",
+              "lastName": "Muller"
+            },
+            {
+              "firstName": "E",
+              "fullName": "Bostock E",
+              "initials": "E",
+              "lastName": "Bostock"
+            },
+            {
+              "firstName": "J S",
+              "fullName": "Taube JS",
+              "initials": "JS",
+              "lastName": "Taube"
+            },
+            {
+              "firstName": "J L",
+              "fullName": "Kubie JL",
+              "initials": "JL",
+              "lastName": "Kubie"
+            }
+          ]
+        },
+        "doi": "10.1523/jneurosci.14-12-07235.1994",
+        "firstPublicationDate": "1994-12-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/JNEUROSCI.14-12-07235.1994"
+            },
+            {
+              "availability": "Free after 6 months",
+              "availabilityCode": "F6",
+              "documentStyle": "pdf",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/reprint/14/12/7235.pdf"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "abs",
+              "site": "www.jneurosci.org",
+              "url": "http://www.jneurosci.org/cgi/content/abstract/14/12/7235"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6576887"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6576887?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1523/jneurosci.14-12-07235.1994"
+            }
+          ]
+        },
+        "id": "7996172",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1994 Dec",
+          "issue": "12",
+          "journal": {
+            "essn": "1529-2401",
+            "isoabbreviation": "J Neurosci",
+            "issn": "0270-6474",
+            "medlineAbbreviation": "J Neurosci",
+            "nlmid": "8102140",
+            "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+          },
+          "journalIssueId": 830194,
+          "monthOfPublication": 12,
+          "printPublicationDate": "1994-12-01",
+          "volume": "14",
+          "yearOfPublication": 1994
+        },
+        "pageInfo": "7235-7251",
+        "pmcid": "PMC6576887",
+        "pubTypeList": {
+          "pubType": [
+            "other",
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1994",
+        "source": "MED",
+        "title": "On the directional firing properties of hippocampal place cells."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"other\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6576887</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6576887.1</article-id><article-id pub-id-type=\"pmcaid\">6576887</article-id><article-id pub-id-type=\"pmcaiid\">6576887</article-id><article-id pub-id-type=\"pmid\">7996172</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.14-12-07235.1994</article-id><article-id pub-id-type=\"other\">jneuro;14/12/7235</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject></subj-group></article-categories><title-group><article-title>On the directional firing properties of hippocampal place cells</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Muller</surname><given-names initials=\"RU\">RU</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Bostock</surname><given-names initials=\"E\">E</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Taube</surname><given-names initials=\"JS\">JS</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Kubie</surname><given-names initials=\"JL\">JL</given-names></name></contrib></contrib-group><pub-date pub-type=\"ppub\"><day>1</day><month>12</month><year>1994</year></pub-date><volume>14</volume><issue>12</issue><fpage>7235</fpage><lpage>7251</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1523/jneurosci.14-12-07235.1994",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "Muller",
+            "given": "R U",
+            "suffix": ""
+          },
+          {
+            "family": "Bostock",
+            "given": "E",
+            "suffix": ""
+          },
+          {
+            "family": "Taube",
+            "given": "J S",
+            "suffix": ""
+          },
+          {
+            "family": "Kubie",
+            "given": "J L",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience",
+          "The Journal of Neuroscience",
+          "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+          "J Neurosci",
+          "J Neurosci"
+        ],
+        "issue": "12",
+        "page": "7235-7251",
+        "published": {
+          "date-parts": [
+            [
+              1994
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "On the directional firing properties of hippocampal place cells"
+        ],
+        "type": "journal-article",
+        "volume": "14"
+      },
+      "retrieved_at": "2026-09-17T04:40:53.891537+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6576887&metadataPrefix=pmc_fm",
+      "xml_sha256": "e182b505924457472ed0dea1cd0cc7c3ad9d26820b87ad35642cd7a441807e87"
+    }
+  }
+]

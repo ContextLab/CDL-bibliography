@@ -7,6 +7,7 @@ the source fingerprints, rather than reading old review rows as current approval
 from __future__ import annotations
 
 import contextlib
+from functools import lru_cache
 import hashlib
 import gzip
 import html
@@ -22,7 +23,7 @@ import time
 import unicodedata
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
-from urllib.parse import quote, unquote, urlparse
+from urllib.parse import parse_qs, quote, unquote, urljoin, urlparse
 import xml.etree.ElementTree as ET
 
 import bibtexparser
@@ -34,6 +35,7 @@ POLICY = "2"
 ACCEPTED = {"metadata_verified", "human_verified"}
 RECORD_FIELDS = {
     "DOI",
+    "alias",
     "title",
     "subtitle",
     "author",
@@ -101,7 +103,8 @@ def top_level_parts(text):
 def load_entries(filename):
     """Strict source scanner plus BibTeX parser; never silently drop entries.
 
-    Fingerprints cover raw entry bytes (including case, whitespace and key), all
+    Fingerprints cover raw entry bytes (including case and whitespace, except the
+    citation key token), all
     string/preamble definitions, and recursively inherited crossref/xdata entries.
     A definition change deliberately invalidates all entries, conservatively.
     """
@@ -154,7 +157,10 @@ def load_entries(filename):
             definitions.append(raw)
             continue
         parts = top_level_parts(body)
-        key = parts.pop(0).strip()
+        key_part = parts.pop(0)
+        key = key_part.strip()
+        key_start = body_start - start + len(key_part) - len(key_part.lstrip())
+        keyless = raw[:key_start] + raw[key_start + len(key) :]
         names = []
         for part in parts:
             if not part.strip():
@@ -165,7 +171,7 @@ def load_entries(filename):
             names.append(field[1].lower())
         if len(set(names)) != len(names):
             raise ValueError(f"Duplicate field in {key}")
-        blocks.append((key, raw, names))
+        blocks.append((key, raw, names, keyless))
     if not blocks:
         raise ValueError("No bibliography entries found")
     parser = bibtexparser.bparser.BibTexParser(
@@ -176,7 +182,7 @@ def load_entries(filename):
         raise ValueError("BibTeX parser skipped entries; refusing partial verification")
     entries = {}
     definitions_hash = digest("\n".join(definitions))
-    for (key, raw, names), fields in zip(blocks, parsed.entries):
+    for (key, raw, names, keyless), fields in zip(blocks, parsed.entries):
         if fields["ID"] != key or set(fields) - {"ID", "ENTRYTYPE"} != set(names):
             raise ValueError(f"Parser/source disagreement for {key}")
         if key in entries:
@@ -185,10 +191,12 @@ def load_entries(filename):
             "key": key,
             "raw": raw,
             "fields": fields,
-            "base_hash": digest(raw + "\0" + definitions_hash),
+            "base_hash": digest(keyless + "\0" + definitions_hash),
+            "legacy_base_hash": digest(raw + "\0" + definitions_hash),
         }
 
-    def fingerprint(key, ancestors=()):
+    @lru_cache(maxsize=None)
+    def fingerprint(key, ancestors=(), legacy=False):
         if key in ancestors:
             raise ValueError(f"Cyclic bibliography inheritance: {key}")
         entry = entries[key]
@@ -199,11 +207,14 @@ def load_entries(filename):
                 if parent:
                     if parent not in entries:
                         raise ValueError(f"Missing inherited entry {parent} for {key}")
-                    dependencies.append(fingerprint(parent, ancestors + (key,)))
-        return digest(entry["base_hash"] + dumps(dependencies))
+                    dependencies.append(fingerprint(parent, ancestors + (key,), legacy))
+        return digest(
+            entry["legacy_base_hash" if legacy else "base_hash"] + dumps(dependencies)
+        )
 
     for key, entry in entries.items():
-        entry["fingerprint"] = fingerprint(key)
+        entry["fingerprint"] = "v2:" + fingerprint(key)
+        entry["legacy_fingerprint"] = fingerprint(key, legacy=True)
     return entries
 
 
@@ -223,8 +234,27 @@ class Cache:
                 fingerprint TEXT NOT NULL, policy TEXT NOT NULL, result TEXT NOT NULL);
             CREATE INDEX IF NOT EXISTS review_lookup ON reviews
                 (bibliography, key, fingerprint, policy, id);
+            CREATE INDEX IF NOT EXISTS review_content_lookup ON reviews
+                (bibliography, fingerprint, policy, id);
             CREATE TABLE IF NOT EXISTS responses (
                 request TEXT PRIMARY KEY, fetched REAL NOT NULL, body TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS source_notices (
+                doi TEXT NOT NULL, evidence_hash TEXT NOT NULL, candidate TEXT NOT NULL,
+                PRIMARY KEY (doi, evidence_hash));
+            CREATE TABLE IF NOT EXISTS notice_checkpoint (
+                singleton INTEGER PRIMARY KEY CHECK(singleton=1), review_id INTEGER NOT NULL);
+            CREATE TABLE IF NOT EXISTS source_author_suffixes (
+                doi TEXT NOT NULL, evidence_hash TEXT NOT NULL, candidate TEXT NOT NULL,
+                PRIMARY KEY (doi, evidence_hash));
+            CREATE TABLE IF NOT EXISTS author_suffix_checkpoint (
+                singleton INTEGER PRIMARY KEY CHECK(singleton=1), review_id INTEGER NOT NULL);
+            CREATE TABLE IF NOT EXISTS jats_notice_checkpoint (
+                singleton INTEGER PRIMARY KEY CHECK(singleton=1), review_id INTEGER NOT NULL);
+            CREATE TABLE IF NOT EXISTS source_article_locators (
+                doi TEXT NOT NULL, evidence_hash TEXT NOT NULL, candidate TEXT NOT NULL,
+                PRIMARY KEY (doi, evidence_hash));
+            CREATE TABLE IF NOT EXISTS article_locator_checkpoint (
+                singleton INTEGER PRIMARY KEY CHECK(singleton=1), review_id INTEGER NOT NULL);
             PRAGMA user_version=1;
         """)
 
@@ -232,20 +262,93 @@ class Cache:
         self.db.close()
 
     def get(self, bibliography, entry, any_policy=False):
-        row = self.db.execute(
-            """SELECT result FROM reviews WHERE bibliography=?
-            AND key=? AND fingerprint=? AND (policy=? OR ?) ORDER BY id DESC LIMIT 1""",
+        # Separate indexed lookups: an OR across the two fingerprint formats
+        # makes SQLite scan a bibliography's entire audit history per entry.
+        content_row = self.db.execute(
+            """SELECT id,result FROM reviews WHERE bibliography=?
+            AND fingerprint=? AND (policy=? OR ?) ORDER BY id DESC LIMIT 1""",
             (
                 str(Path(bibliography).resolve()),
-                entry["key"],
                 entry["fingerprint"],
                 POLICY,
                 any_policy,
             ),
         ).fetchone()
-        return json.loads(row[0]) if row else None
+        legacy_row = self.db.execute(
+            """SELECT id,result FROM reviews WHERE bibliography=?
+            AND key=? AND fingerprint=? AND (policy=? OR ?) ORDER BY id DESC LIMIT 1""",
+            (
+                str(Path(bibliography).resolve()),
+                entry["key"],
+                entry.get("legacy_fingerprint", entry["fingerprint"]),
+                POLICY,
+                any_policy,
+            ),
+        ).fetchone()
+        row = max((r for r in (content_row, legacy_row) if r), default=None)
+        if not row:
+            return None
+        result = json.loads(row[1])
+        if result["fingerprint"] != entry["fingerprint"]:
+            # Upgrade only an exact legacy match. Preserve the evidence, policy,
+            # and original check time; this is bookkeeping, not a new check.
+            result = dict(
+                result,
+                fingerprint_migration={
+                    "key": result["key"],
+                    "fingerprint": result["fingerprint"],
+                },
+                fingerprint=entry["fingerprint"],
+            )
+            if not self.store(
+                bibliography, entry, result, after_id=row[0], any_policy=any_policy
+            ):
+                return self.get(bibliography, entry, any_policy=any_policy)
+        result = dict(result, key=entry["key"])
+        retained = self.retain_notices(entry, result)
+        if retained != result:
+            return self.put(bibliography, entry, retained)
+        return result
+
+    def store(self, bibliography, entry, result, after_id=None, any_policy=False):
+        """Append an audit row without changing its policy or verification time."""
+        bibliography = str(Path(bibliography).resolve())
+        values = (
+            bibliography,
+            entry["key"],
+            entry["fingerprint"],
+            result["policy"],
+            dumps(result),
+        )
+        query = """INSERT INTO reviews
+                   (bibliography,key,fingerprint,policy,result) SELECT ?,?,?,?,?"""
+        if after_id is not None:
+            # A status read may migrate concurrently with a new review. Never
+            # append stale approval over a decision written since our lookup.
+            query += """ WHERE NOT EXISTS (
+                SELECT 1 FROM reviews WHERE bibliography=? AND fingerprint=?
+                AND (policy=? OR ?) AND id>?) AND NOT EXISTS (
+                SELECT 1 FROM reviews WHERE bibliography=? AND key=? AND fingerprint=?
+                AND (policy=? OR ?) AND id>?)"""
+            values += (
+                bibliography,
+                entry["fingerprint"],
+                POLICY,
+                any_policy,
+                after_id,
+                bibliography,
+                entry["key"],
+                entry["legacy_fingerprint"],
+                POLICY,
+                any_policy,
+                after_id,
+            )
+        with self.db:
+            return self.db.execute(query, values).rowcount == 1
 
     def put(self, bibliography, entry, result):
+        self.remember_notices(result.get("candidates", []))
+        result = self.retain_notices(entry, result)
         result = dict(
             result,
             checked_at=now(),
@@ -253,18 +356,137 @@ class Cache:
             fingerprint=entry["fingerprint"],
             policy=POLICY,
         )
+        self.store(bibliography, entry, result)
+        return result
+
+    def remember_notices(self, candidates):
+        """Keep DOI-linked negative evidence independently of entry revisions."""
+        from auto_review import secondary_notice_flags, secondary_suffix_dois
+        from source_locators import locator_dois
+
+        for candidate in candidates:
+            flagged = secondary_notice_flags([candidate])
+            suffixes = secondary_suffix_dois([candidate])
+            locators = locator_dois([candidate])
+            if not flagged and not suffixes and not locators:
+                continue
+            # Positive judgments refer to the old entry and must not transfer.
+            retained = {k: candidate[k] for k in (
+                "source", "doi", "raw_record", "retrieved_at", "request_url", "url",
+                "raw_xml", "medline_record", "xml_sha256"
+            ) if k in candidate}
+            retained.update(evidence={}, issues=["Retained DOI-linked source evidence requires assessment"])
+            body = dumps(retained)
+            identity = digest(dumps(retained.get("raw_record", retained.get("raw_xml"))))
+            with self.db:
+                if flagged:
+                    self.db.execute("INSERT OR IGNORE INTO source_notices VALUES (?,?,?)",
+                                    (next(iter(flagged)), identity, body))
+                if suffixes:
+                    self.db.execute("INSERT OR IGNORE INTO source_author_suffixes VALUES (?,?,?)",
+                                    (next(iter(suffixes)), identity, body))
+                if locators:
+                    self.db.execute("INSERT OR IGNORE INTO source_article_locators VALUES (?,?,?)",
+                                    (next(iter(locators)), identity, body))
+
+    def index_notices(self):
+        """Incrementally migrate negative evidence from immutable audit history."""
+        row = self.db.execute("SELECT review_id FROM notice_checkpoint WHERE singleton=1").fetchone()
+        last = row[0] if row else 0
+        end = self.db.execute("SELECT COALESCE(MAX(id),0) FROM reviews").fetchone()[0]
+        rows = self.db.execute("""SELECT result FROM reviews WHERE id>? AND id<=?
+            AND (result LIKE '%commentCorrectionList%' OR result LIKE '%isRetracted%' OR result LIKE '%biorxiv-preprint%' OR result LIKE '%arxiv-repository%')""", (last, end))
+        for (body,) in rows:
+            self.remember_notices(json.loads(body).get("candidates", []))
         with self.db:
-            self.db.execute(
-                """INSERT INTO reviews
-                (bibliography,key,fingerprint,policy,result) VALUES (?,?,?,?,?)""",
-                (
-                    str(Path(bibliography).resolve()),
-                    entry["key"],
-                    entry["fingerprint"],
-                    POLICY,
-                    dumps(result),
-                ),
-            )
+            self.db.execute("INSERT OR REPLACE INTO notice_checkpoint VALUES (1,?)", (end,))
+        row = self.db.execute("SELECT review_id FROM author_suffix_checkpoint WHERE singleton=1").fetchone()
+        last = row[0] if row else 0
+        for (body,) in self.db.execute("SELECT result FROM reviews WHERE id>? AND id<=? AND result LIKE '%fullName%'", (last, end)):
+            self.remember_notices(json.loads(body).get("candidates", []))
+        with self.db:
+            self.db.execute("INSERT OR REPLACE INTO author_suffix_checkpoint VALUES (1,?)", (end,))
+        row = self.db.execute("SELECT review_id FROM jats_notice_checkpoint WHERE singleton=1").fetchone()
+        last = row[0] if row else 0
+        for (body,) in self.db.execute("SELECT result FROM reviews WHERE id>? AND id<=? AND result LIKE '%pmc-jats%'", (last, end)):
+            self.remember_notices(json.loads(body).get("candidates", []))
+        with self.db:
+            self.db.execute("INSERT OR REPLACE INTO jats_notice_checkpoint VALUES (1,?)", (end,))
+        row = self.db.execute("SELECT review_id FROM article_locator_checkpoint WHERE singleton=1").fetchone()
+        last = row[0] if row else 0
+        for (body,) in self.db.execute("SELECT result FROM reviews WHERE id>? AND id<=? AND result LIKE '%pmc-jats%'", (last, end)):
+            self.remember_notices(json.loads(body).get("candidates", []))
+        with self.db:
+            self.db.execute("INSERT OR REPLACE INTO article_locator_checkpoint VALUES (1,?)", (end,))
+
+    def retain_notices(self, entry, result):
+        if result.get("status") == "human_verified":
+            return result  # Explicit adjudication still requires its audit record.
+        if (result.get('status') == 'metadata_verified' and result.get('accepted_source') == 'loc-catalogue'
+                and result.get('accepted_record_id') and entry['fields'].get('ENTRYTYPE') == 'book'
+                and not entry['fields'].get('doi')):
+            # This edition is identified by a MARC record, not by any rejected
+            # Crossref search alternatives retained in its audit history.
+            return result
+        candidates = list(result.get("candidates", []))
+        # Once a DOI is uniquely verified, unrelated search alternatives must
+        # not cause evidence attachment or a fresh review timestamp. The
+        # accepted DOI and an explicitly supplied local DOI still retain all
+        # negative evidence, including notices learned after verification.
+        accepted_doi = result.get("accepted_doi")
+        if result.get("status") == "metadata_verified" and not accepted_doi:
+            # Direct Crossref approvals predate the secondary resolver's
+            # accepted_doi field. Recover only their unique clean candidate;
+            # ambiguous or malformed historical records retain all warnings.
+            direct = {c["doi"] for c in candidates
+                      if c.get("source") == "crossref" and c.get("doi")
+                      and c.get("issues") == []}
+            if len(direct) == 1:
+                accepted_doi = next(iter(direct))
+        dois = ({accepted_doi}
+                if result.get("status") == "metadata_verified" and accepted_doi
+                else {c.get("doi") for c in candidates if c.get("doi")})
+        if entry["fields"].get("doi"):
+            dois.add(entry["fields"]["doi"])
+        # Legacy repository citations also put identifiers in volume/pages.
+        # Known notices must survive edits before discovery yields candidates.
+        from arxiv_review import identifier as arxiv_identifier, doi_for
+        from preprint_review import identifier as biorxiv_identifier
+        for identify, canonical in ((arxiv_identifier, doi_for), (biorxiv_identifier, lambda x: x)):
+            try:
+                dois.add(canonical(identify(entry['fields'])[0]))
+            except (ValueError, TypeError):
+                pass
+        existing = {dumps(c.get("raw_record", c.get("raw_xml"))) for c in candidates
+                    if c.get("source") in {"europepmc", "pmc-jats", "biorxiv-preprint", "arxiv-repository"}}
+        added, known = [], False
+        for doi in dois:
+            try:
+                doi = normalize_doi(doi)
+            except (ValueError, TypeError):
+                continue
+            for (body,) in self.db.execute("SELECT candidate FROM source_notices WHERE doi=? UNION SELECT candidate FROM source_author_suffixes WHERE doi=? UNION SELECT candidate FROM source_article_locators WHERE doi=?", (doi, doi, doi)):
+                candidate = json.loads(body)
+                from source_locators import locator_dois, locator_conflicts
+                if locator_dois([candidate]) and not locator_conflicts(entry['fields'], [candidate]):
+                    from auto_review import secondary_notice_flags, secondary_suffix_dois
+                    if not secondary_notice_flags([candidate]) and not secondary_suffix_dois([candidate]):
+                        continue  # Matching locators are not transferable positive judgments.
+                known = True
+                raw = dumps(candidate.get("raw_record", candidate.get("raw_xml")))
+                if raw not in existing:
+                    added.append(candidate)
+                    existing.add(raw)
+        if not added and not known:
+            return result
+        result = dict(result, candidates=candidates + added)
+        if result.get("status") == "metadata_verified":
+            from auto_review import select_result
+            checked = select_result(entry["fields"], result["candidates"], result.get("attempts", []))
+            if checked["status"] != "metadata_verified":
+                result.update(status="needs_review", issues=checked["issues"])
+                result.pop("accepted_doi", None)
+                result.pop("accepted_source", None)
         return result
 
     def response(self, request, ttl):
@@ -305,6 +527,32 @@ class ProviderError(RuntimeError):
     pass
 
 
+def crossref_work_doi(url):
+    """Recognize only an HTTPS Crossref work endpoint, never a publisher URL."""
+    parsed = urlparse(url)
+    if (parsed.scheme != "https" or parsed.hostname != "api.crossref.org"
+            or parsed.username or parsed.password or parsed.port not in (None, 443)
+            or parsed.fragment or set(parse_qs(parsed.query)) - {"mailto"}):
+        raise ValueError("Not a Crossref work endpoint")
+    match = re.fullmatch(r"/(?:v1/)?works/(.+)", parsed.path)
+    if not match:
+        raise ValueError("Not a Crossref work endpoint")
+    return normalize_doi(unquote(match[1]))
+
+
+def valid_doi_alias(receipt, requested, prime):
+    """Validate saved transport evidence of Crossref's permanent DOI alias."""
+    try:
+        return bool(receipt and receipt["http_status"] in (301, 308)
+                    and normalize_doi(requested) != normalize_doi(prime)
+                    and normalize_doi(receipt["requested_doi"]) == normalize_doi(requested)
+                    and normalize_doi(receipt["prime_doi"]) == normalize_doi(prime)
+                    and crossref_work_doi(receipt["from_url"]) == normalize_doi(requested)
+                    and crossref_work_doi(receipt["to_url"]) == normalize_doi(prime))
+    except (ValueError, KeyError, TypeError, AttributeError):
+        return False
+
+
 class PoliteClient:
     """Serial requests, persistent connections, adaptive pacing and bounded retries.
 
@@ -340,7 +588,16 @@ class PoliteClient:
         self.host_intervals = {}
         self.requests = 0
 
-    def get(self, url, params=None, xml=False):
+    def source_request(self, *args, **kwargs):
+        """Count and pace one bounded publisher request (including redirects)."""
+        self.sleep(max(0, self.next_request - self.clock()))
+        self.requests += 1
+        try:
+            return self.session.get(*args, **kwargs)
+        finally:
+            self.next_request = self.clock() + self.interval
+
+    def get(self, url, params=None, xml=False, _alias_depth=0):
         host = urlparse(url).hostname
         params = dict(params or {})
         if host == "api.crossref.org":
@@ -398,6 +655,27 @@ class PoliteClient:
                     )
                 self.next_request = self.clock() + wait
                 continue
+            if response.status_code in (301, 308) and host == "api.crossref.org" and not xml:
+                try:
+                    requested = crossref_work_doi(url)
+                    target = urljoin(url, response.headers["Location"])
+                    prime = crossref_work_doi(target)
+                    if _alias_depth or requested == prime or urlparse(target).query:
+                        raise ValueError("Alias loop, multiple hops, or unexpected query")
+                    destination = self.get(target, _alias_depth=1)
+                    record = destination.get("body", {}).get("message", {})
+                    if destination["http_status"] != 200 or normalize_doi(record.get("DOI", "")) != prime:
+                        raise ValueError("Alias destination did not return the named DOI")
+                    receipt = {"requested_doi": requested, "prime_doi": prime,
+                               "from_url": url, "to_url": target, "http_status": response.status_code,
+                               "retrieved_at": now()}
+                    if not valid_doi_alias(receipt, requested, prime):
+                        raise ValueError("Invalid DOI alias evidence")
+                    result = dict(destination, doi_alias=receipt)
+                    self.cache.save_response(identity, result)
+                    return result
+                except (ValueError, KeyError, TypeError, AttributeError) as exc:
+                    raise ProviderError(f"Crossref alias requires review: {exc}") from exc
             if response.status_code not in (200, 404):
                 raise ProviderError(
                     f"{host}: HTTP {response.status_code} (including redirects requires review)"
@@ -448,19 +726,29 @@ class PoliteClient:
                         raise ProviderError("Europe PMC XML is not an article")
                 except ET.ParseError as exc:
                     raise ProviderError("Malformed Europe PMC XML") from exc
-            if host == "www.ebi.ac.uk" and body is not None and not xml:
-                records = (
-                    body.get("resultList", {}).get("result")
-                    if isinstance(body, dict)
-                    else None
-                )
+            if host == "www.ebi.ac.uk" and response.status_code == 200 and not xml:
+                result_list = body.get("resultList") if isinstance(body, dict) else None
+                records = result_list.get("result") if isinstance(result_list, dict) else None
                 count = body.get("hitCount") if isinstance(body, dict) else None
                 if (
                     not isinstance(records, list)
                     or type(count) is not int
                     or count != len(records)
                 ):
-                    raise ProviderError("Malformed or truncated Europe PMC response")
+                    # Search responses have occasionally been incomplete despite
+                    # HTTP 200. Retry the identical query with bounded pacing;
+                    # never cache it or interpret missing results as absence.
+                    self.next_request = self.clock() + max(delay, 2 ** (attempt + 1))
+                    size = len(records) if isinstance(records, list) else "missing"
+                    reported = count if type(count) is int else "invalid"
+                    if attempt < 3:
+                        print(f"Europe PMC incomplete response (hitCount={reported}, "
+                              f"records={size}); retry {attempt + 2}/4", flush=True)
+                        continue
+                    raise ProviderError(
+                        "Malformed or truncated Europe PMC response after 4 attempts "
+                        f"(hitCount={reported}, records={size})"
+                    )
                 if any(not isinstance(r, dict) for r in records):
                     raise ProviderError("Malformed Europe PMC record")
                 from auto_review import EPMC_FIELDS
@@ -595,24 +883,79 @@ def normalized(value):
     # API metadata is plain text, not a TeX alignment/comment. Preserve literal
     # punctuation rather than letting latex2text erase '&', '%' or '#'.
     value = re.sub(r"(?<!\\)([&%#])", r"\\\1", value)
+    # pylatexenc's default texttt handler drops its argument. Font choice is
+    # presentational; its content must survive just as it does for textrm.
+    value = re.sub(r"\\texttt\b", r"\\textrm", value)
     value = LatexNodes2Text().latex_to_text(value)
     # casefold() would conflate distinct words such as German Maße and Masse.
     value = unicodedata.normalize("NFC", value).lower()
     value = value.translate(
         str.maketrans(
-            {"’": "'", "‘": "'", "“": '"', "”": '"', "–": "-", "—": "-", "\u00a0": " "}
+            {"’": "'", "‘": "'", "“": '"', "”": '"', "–": "-", "—": "-", "‐": "-", "‑": "-", "\u00a0": " "}
         )
     )
     return " ".join(value.split()).strip()
 
 
 def normalize_pages(value):
-    return re.sub(r"\s*-+\s*", "-", normalized(value))
+    value = re.sub(r"\s*-+\s*", "-", normalized(value))
+    # A one-page range and its sole page denote the same locator. Preserve
+    # leading zeroes and never collapse distinct endpoints or mixed prefixes.
+    match = re.fullmatch(r"(\d+)-\1", value)
+    return match[1] if match else value
+
+
+def normalize_title(value):
+    """Ignore one terminal sentence period; preserve all other title content."""
+    value = normalized(value)
+    if value.endswith(".") and not value.endswith(".."):
+        return value[:-1]
+    return value
 
 
 def normalize_journal(value):
     # This equivalence is confined to venue names, never paper titles/names.
-    return re.sub(r"(?<!\w)&(?!\w)", "and", normalized(value))
+    name = re.sub(r"(?<!\w)&(?!\w)", "and", normalized(value))
+    # Exact, enumerated title variants checked in the representative source
+    # audit (verification/pilot50/manual-ledger.txt). No substring/fuzzy matching:
+    # e.g. the distinct Indian academy journal must never collapse into PNAS.
+    aliases = {
+        "proceedings of the national academy of sciences, usa": "proceedings of the national academy of sciences of the united states of america",
+        "proceedings of the national academy of sciences": "proceedings of the national academy of sciences of the united states of america",
+        "journal of neuroscience": "the journal of neuroscience",
+        "the journal of neuroscience : the official journal of the society for neuroscience": "the journal of neuroscience",
+        # Exact title variants checked against NLM/owner records; no generic
+        # removal of articles, journal sections, cities, or historical titles.
+        "journal of physiology": "the journal of physiology",
+        "lancet neurology": "the lancet neurology",
+        "the lancet. neurology": "the lancet neurology",
+        "new england journal of medicine": "the new england journal of medicine",
+        "annals of mathematical statistics": "the annals of mathematical statistics",
+        "computer journal": "the computer journal",
+        "journal of the acoustical society of america": "the journal of the acoustical society of america",
+        "journal of general psychology": "the journal of general psychology",
+        "journal of psychology": "the journal of psychology",
+        "american journal of human genetics": "the american journal of human genetics",
+        "journal of comparative neurology": "the journal of comparative neurology",
+        "international journal of robotics research": "the international journal of robotics research",
+        "european physical journal b": "the european physical journal b",
+        "journal of experimental biology": "the journal of experimental biology",
+        "british journal for the philosophy of science": "the british journal for the philosophy of science",
+        "journal of abnormal and social psychology": "the journal of abnormal and social psychology",
+        # NLM 9214304 lists Cognitive Brain Research as the other title of
+        # Brain research. Cognitive brain research. (ISSN 0926-6410).
+        # Keep the section name: Brain Research itself is a different journal.
+        "brain research. cognitive brain research": "cognitive brain research",
+        "brain research: cognitive brain research": "cognitive brain research",
+        "brain research : cognitive brain research": "cognitive brain research",
+        # Publisher-branded journal and NLM/formatter variants independently
+        # checked against published front matter (documented-journals-audit.json).
+        # These are exact names, not general trademark/subtitle removal.
+        "foundations and trends® in machine learning": "foundations and trends in machine learning",
+        "philosophical transactions of the royal society of london series b: biological sciences": "philosophical transactions of the royal society b: biological sciences",
+        "philosophical transactions of the royal society of london. series b, biological sciences": "philosophical transactions of the royal society b: biological sciences",
+    }
+    return aliases.get(name, name)
 
 
 BENIGN_RELATIONS = {"has-review", "references", "is-referenced-by"}
@@ -650,6 +993,41 @@ def split_authors(value):
     return names
 
 
+def given_name_tokens(value):
+    """Separate explicitly dotted initials without inferring undotted acronyms.
+
+    Registry deposits often omit spaces in ``A.A.`` or ``M.E. J.``. Dots
+    delimit those single-letter initials; a word such as ``Ann`` or an
+    undotted ``AA`` must remain one token. Hyphenated names retain their
+    existing comparison semantics.
+    """
+    value = normalized(value)
+    value = re.sub(
+        r"(?<!\S)(?:[^\W\d_]\.)+[^\W\d_]\.?(?=\s|$)",
+        lambda match: match.group().replace(".", " "),
+        value,
+    )
+    return value.replace(".", "").split()
+
+
+def given_token_matches(local, source):
+    """Match explicit initials, including each half of a hyphenated name."""
+    if local == source or (len(local) == 1 and source.startswith(local)):
+        return True
+    left, right = local.split("-"), source.split("-")
+    return (len(left) > 1 and len(left) == len(right)
+            and all(a and b and (a == b or (len(a) == 1 and b.startswith(a)))
+                    for a, b in zip(left, right)))
+
+
+def normalize_author_suffix(value):
+    """Ignore a single abbreviation period on explicitly recognized suffixes."""
+    value = normalized(value)
+    if re.fullmatch(r"(?:jr|sr|ii|iii|iv|v|vi|vii|viii|ix|x)\.", value):
+        return value[:-1]
+    return value
+
+
 def author_evidence(value, people):
     names = split_authors(value)
     if not value or not people or len(names) != len(people):
@@ -668,16 +1046,16 @@ def author_evidence(value, people):
         family = " ".join(parts["von"] + parts["last"])
         if normalized(family) != normalized(person.get("family", "")):
             return False, "Author surnames/order differ"
-        if normalized(" ".join(parts["jr"])) != normalized(person.get("suffix", "")):
+        if normalize_author_suffix(" ".join(parts["jr"])) != normalize_author_suffix(person.get("suffix", "")):
             return False, "Author suffix differs"
-        given = normalized(" ".join(parts["first"])).replace(".", "").split()
-        actual = normalized(person.get("given", "")).replace(".", "").split()
+        given = given_name_tokens(" ".join(parts["first"]))
+        actual = given_name_tokens(person.get("given", ""))
         if not given or len(given) != len(actual):
             return False, "Missing or incomplete given names"
         for a, b in zip(given, actual):
             # Initials are allowed only when explicitly supplied by the citation;
             # do not collapse two conflicting full names or omit middle initials.
-            if a != b and not (len(a) == 1 and b.startswith(a)):
+            if not given_token_matches(a, b):
                 return False, "Author given names differ"
     return (
         True,
@@ -685,7 +1063,71 @@ def author_evidence(value, people):
     )
 
 
-def compare_record(fields, record):
+def normalize_publisher(value):
+    """Exact corporate-name variants, never acquisitions or historical imprints.
+
+    Sources and exclusions: verification/resolution-2026-09-15/README.md.
+    Only applied to journal publishers; book editions retain literal checks.
+    """
+    value = normalized(value)
+    return {
+        "elsevier bv": "elsevier",
+        "elsevier b.v.": "elsevier",
+        "mit press - journals": "mit press",
+        "journal of neurosurgery publishing group (jnspg)": "journal of neurosurgery publishing group",
+        "american psychological association (apa)": "american psychological association",
+        "american association for the advancement of science (aaas)": "american association for the advancement of science",
+        "oxford university press (oup)": "oxford university press",
+        "public library of science (plos)": "public library of science",
+        "association for computing machinery (acm)": "association for computing machinery",
+        "institute of electrical and electronics engineers (ieee)": "institute of electrical and electronics engineers",
+        "ieee": "institute of electrical and electronics engineers",
+        "cambridge university press (cup)": "cambridge university press",
+        "american physical society (aps)": "american physical society",
+        # Same publisher's brand and legal entity; no parent/imprint mapping.
+        # https://www.frontiersin.org/about/contact
+        # https://karger.com/pages/catalogue-and-pricing
+        "frontiers media sa": "frontiers",
+        "s. karger ag": "karger",
+    }.get(value, value)
+
+
+def explicit_final_article(fields, record, evidence):
+    """A final DOI and complete journal coordinates select the article itself.
+
+    A has-preprint link is retained as provenance, never followed to replace the
+    cited work. Missing/malformed links, other version relations, and any field
+    conflict continue to block. See Crossref's posted-content markup guide.
+    """
+    relations = record.get("relation")
+    if (
+        fields.get("ENTRYTYPE", "").lower() != "article"
+        or record.get("type") != "journal-article"
+        or not isinstance(relations, dict)
+        or set(relations) - (BENIGN_RELATIONS | {"has-preprint"})
+        or not isinstance(relations.get("has-preprint"), list)
+        or not relations["has-preprint"]
+        or record.get("update-to")
+        or record.get("updated-by")
+        or not all(
+            evidence.get(f, {}).get("match")
+            for f in ("doi", "title", "author", "year", "journal", "volume", "pages")
+        )
+    ):
+        return False
+    try:
+        own_doi = normalize_doi(record["DOI"])
+        return all(
+            isinstance(link, dict)
+            and link.get("id-type") == "doi"
+            and normalize_doi(link.get("id", "")) != own_doi
+            for link in relations["has-preprint"]
+        )
+    except (ValueError, TypeError, AttributeError):
+        return False
+
+
+def compare_record(fields, record, doi_alias=None):
     """Return field evidence and blockers. Similarity scores cannot authorize."""
     evidence, issues = {}, []
 
@@ -726,7 +1168,7 @@ def compare_record(fields, record):
             for t in titles
             for s in subtitles
         ]
-    check("title", titles, True)
+    check("title", titles, True, transform=normalize_title)
     try:
         authors_ok, detail = author_evidence(
             fields.get("author", ""), record.get("author", [])
@@ -772,13 +1214,26 @@ def compare_record(fields, record):
         ("number", "issue"),
         ("publisher", "publisher"),
     ):
-        check(field, record.get(source), kind == "book" and field == "publisher")
+        check(
+            field,
+            record.get(source),
+            kind == "book" and field == "publisher",
+            transform=normalize_publisher
+            if field == "publisher" and kind == "article"
+            else normalized,
+        )
     check(
         "pages",
         record.get("page") or record.get("article-number"),
         transform=normalize_pages,
     )
-    check("doi", record.get("DOI"), transform=normalize_doi)
+    identity_fields = fields
+    if valid_doi_alias(doi_alias, fields.get("doi"), record.get("DOI")):
+        check("doi", [record.get("DOI"), fields["doi"]], transform=normalize_doi)
+        evidence["doi"]["alias_authority"] = doi_alias
+        identity_fields = dict(fields, doi=record["DOI"])
+    else:
+        check("doi", record.get("DOI"), transform=normalize_doi)
     check(
         "isbn",
         record.get("ISBN", []),
@@ -828,7 +1283,9 @@ def compare_record(fields, record):
     if record.get("update-to") or record.get("updated-by"):
         issues.append("Source flags an update/correction/retraction relationship")
     relation = record.get("relation") or {}
-    if not isinstance(relation, dict) or set(relation) - BENIGN_RELATIONS:
+    if (not isinstance(relation, dict) or set(relation) - BENIGN_RELATIONS) and not (
+        not issues and explicit_final_article(identity_fields, record, evidence)
+    ):
         issues.append("Source has related versions/works; review publication identity")
     return evidence, issues
 
@@ -850,7 +1307,7 @@ def assess_candidates(fields, response):
     candidates = []
     for record in records:
         try:
-            evidence, issues = compare_record(fields, record)
+            evidence, issues = compare_record(fields, record, response.get("doi_alias"))
         except (ValueError, TypeError, KeyError, AttributeError) as exc:
             evidence, issues = {}, [f"Unsupported source metadata: {exc}"]
         candidates.append(
@@ -863,6 +1320,7 @@ def assess_candidates(fields, response):
                 "issues": issues,
                 "advisories": record_advisories(fields, record),
                 "retrieved_at": response["retrieved_at"],
+                **({"doi_alias": response["doi_alias"]} if response.get("doi_alias") else {}),
             }
         )
     return candidates
@@ -1073,6 +1531,7 @@ def validate_output_path(filename, output, cache):
 def export_snapshot(filename, cache, output):
     """Portable, compressed JSON Lines; do not commit a changing binary SQLite DB."""
     validate_output_path(filename, output, cache)
+    cache.index_notices()
     results = current_results(filename, cache)
     path = Path(output)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1084,10 +1543,16 @@ def export_snapshot(filename, cache, output):
         stream.write(
             dumps(
                 {
-                    "schema": 1,
+                    "schema": 2,
                     "policy": POLICY,
                     "created_at": now(),
                     "entries": len(results),
+                    "source_notices": [json.loads(r[0]) for r in cache.db.execute(
+                        "SELECT candidate FROM source_notices ORDER BY doi,evidence_hash")],
+                    "source_author_suffixes": [json.loads(r[0]) for r in cache.db.execute(
+                        "SELECT candidate FROM source_author_suffixes ORDER BY doi,evidence_hash")],
+                    "source_article_locators": [json.loads(r[0]) for r in cache.db.execute(
+                        "SELECT candidate FROM source_article_locators ORDER BY doi,evidence_hash")],
                 }
             )
             + "\n"
@@ -1110,7 +1575,7 @@ def import_snapshot(filename, cache, snapshot):
         header = json.loads(next(stream))
         if (
             not isinstance(header, dict)
-            or header.get("schema") != 1
+            or header.get("schema") not in (1, 2)
             or header.get("policy") != POLICY
         ):
             raise ValueError(
@@ -1132,24 +1597,78 @@ def import_snapshot(filename, cache, snapshot):
             raise ValueError("Invalid snapshot review record")
         if result["status"] == "human_verified" and not result.get("human_review"):
             raise ValueError("Human approval is missing its audit record")
-        if result["status"] == "metadata_verified" and not any(
-            c.get("source") == "crossref"
+        from catalogue_review import valid_catalogue_approval
+        from preprint_review import valid_preprint_approval
+        from arxiv_review import valid_arxiv_approval
+        if result["status"] == "metadata_verified" and not valid_catalogue_approval(result) and not valid_preprint_approval(result) and not valid_arxiv_approval(result) and not any(
+            c.get("source") in {"crossref", "europepmc", "pmc-jats", "publisher-head", "catalogue-imprint"}
             and c.get("evidence")
             and c.get("issues") == []
+            and (
+                c.get("source") == "crossref"
+                or (
+                    result.get("accepted_source") == c.get("source")
+                    and result.get("accepted_doi") == c.get("doi")
+                    and (
+                        c.get("raw_record")
+                        if c.get("source") == "europepmc"
+                        else (
+                            c.get("raw_metadata") and c.get("document_sha256")
+                            if c.get("source") == "publisher-head"
+                            else (c.get("raw_marcxml") and c.get("document_sha256") and c.get("edition_binding")
+                                  if c.get("source") == "catalogue-imprint"
+                                  else c.get("raw_xml") and c.get("medline_record"))
+                        )
+                    )
+                )
+            )
             for c in result.get("candidates", [])
         ):
             raise ValueError("Machine approval is missing its source evidence")
         seen.add(result["key"])
+    notices = header.get("source_notices", [])
+    from auto_review import secondary_notice_flags, secondary_suffix_dois
+    if not isinstance(notices, list) or any(not isinstance(c, dict) or not secondary_notice_flags([c]) for c in notices):
+        raise ValueError("Invalid snapshot source notice")
+    suffixes = header.get("source_author_suffixes", [])
+    if not isinstance(suffixes, list) or any(not isinstance(c, dict) or not secondary_suffix_dois([c]) for c in suffixes):
+        raise ValueError("Invalid snapshot author suffix evidence")
+    from source_locators import locator_dois
+    locators = header.get("source_article_locators", [])
+    if not isinstance(locators, list) or any(not isinstance(c, dict) or not locator_dois([c]) for c in locators):
+        raise ValueError("Invalid snapshot article locator evidence")
+    # Even an edited entry must retain known warnings from the trusted baseline.
+    cache.remember_notices(notices + suffixes + locators)
+    for result in records:
+        cache.remember_notices(result.get("candidates", []))
+    # Schema 1 includes the key in its hash and can migrate only an exact match.
+    # Schema 2 is portable across key renames as well as clone paths.
+    by_fingerprint = {}
+    for entry in entries.values():
+        by_fingerprint.setdefault(entry["fingerprint"], []).append(entry)
     count = 0
     with cache.db:
         for result in records:
-            entry = entries.get(result["key"])
-            if (
-                entry
-                and entry["fingerprint"] == result["fingerprint"]
-                and result["status"] != "pending"
-                and not cache.get(filename, entry)
-            ):
+            if header["schema"] == 1:
+                entry = entries.get(result["key"])
+                matches = (
+                    [entry]
+                    if entry and entry["legacy_fingerprint"] == result["fingerprint"]
+                    else []
+                )
+            else:
+                matches = by_fingerprint.get(result["fingerprint"], [])
+            for entry in matches:
+                if result["status"] == "pending" or cache.get(filename, entry):
+                    continue
+                restored = dict(
+                    result, key=entry["key"], fingerprint=entry["fingerprint"]
+                )
+                if header["schema"] == 1:
+                    restored["fingerprint_migration"] = {
+                        "key": result["key"],
+                        "fingerprint": result["fingerprint"],
+                    }
                 cache.db.execute(
                     """INSERT INTO reviews
                     (bibliography,key,fingerprint,policy,result) VALUES (?,?,?,?,?)""",
@@ -1158,7 +1677,7 @@ def import_snapshot(filename, cache, snapshot):
                         entry["key"],
                         entry["fingerprint"],
                         POLICY,
-                        dumps(result),
+                        dumps(restored),
                     ),
                 )
                 count += 1
@@ -1197,15 +1716,24 @@ def run_verification(
     wait=False,
     snapshot=None,
     recheck_cached=False,
+    keys=None,
 ):
     validate_output_path(filename, report, cache)
     if snapshot:
         validate_output_path(filename, snapshot, cache)
     completed = 0
     with run_lock(cache, wait=wait):
+        cache.index_notices()
         entries = load_entries(filename)  # may have changed while waiting for a runner
+        if keys is not None and set(keys) - entries.keys():
+            raise ValueError(
+                "Unknown citation keys: "
+                + ", ".join(sorted(set(keys) - entries.keys()))
+            )
         try:
             for key, entry in entries.items():
+                if keys is not None and key not in keys:
+                    continue
                 previous = cache.get(filename, entry)
                 if (
                     previous

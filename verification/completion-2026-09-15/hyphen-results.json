@@ -1,0 +1,67 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "network_requests": 0,
+      "seconds": 81.4,
+      "statuses": {
+        "metadata_verified": 2929,
+        "needs_review": 3493
+      },
+      "added_review_records": 3527
+    },
+    {
+      "cycle": "repeat",
+      "network_requests": 0,
+      "seconds": 21.05,
+      "statuses": {
+        "metadata_verified": 2929,
+        "needs_review": 3493
+      },
+      "added_review_records": 0
+    }
+  ],
+  "baseline_sha256": "3089a6a09c987eceb4b32df8c6dac1a135a59988b0e816d9add6bda9baa84ea6",
+  "queue_routes": {
+    "field_adjudication": 1068,
+    "publication_version": 312,
+    "source_discovery": 1060,
+    "author_identity": 1053
+  },
+  "new_approvals": {
+    "ChowEtal16": "10.1080/23273798.2016.1160135",
+    "ChiuEtal21": "10.1016/j.neuroimage.2021.117983",
+    "KangEtal11": "10.3758/s13423-011-0126-5",
+    "ChanEtal15": "10.1249/mss.0000000000000383",
+    "FongEtal19": "10.1016/j.neuroimage.2018.11.057",
+    "GautEtal12": "10.1523/jneurosci.2467-12.2012",
+    "OssaEtal11": "10.1523/jneurosci.2483-11.2011",
+    "ParkEtal18b": "10.1016/j.neuroimage.2017.11.033",
+    "MoseEtal15": "10.1101/cshperspect.a021808",
+    "WimbEtal09": "10.1162/jocn.2009.21043",
+    "WimbEtal08": "10.1523/jneurosci.1916-08.2008",
+    "TsaoEtal18": "10.1038/s41586-018-0459-6",
+    "WuEtal15": "10.1038/srep18473",
+    "AslaBaum08": "10.3758/pbr.15.4.833",
+    "TurnEtal13": "10.1016/j.neuroimage.2013.01.048",
+    "MensRaai89": "10.1016/0022-2496(89)90029-1",
+    "BabiEtal10": "10.1016/j.neurobiolaging.2008.09.020",
+    "ZhanEtal03": "10.1016/j.neuroimage.2003.07.016",
+    "LeeEtal12": "10.1007/s11265-012-0672-8",
+    "SchoEtal05": "10.1126/science.1107027",
+    "FrieEtal02a": "10.1523/jneurosci.22-09-03739.2002",
+    "ForsEtal11": "10.1016/j.tics.2011.04.002",
+    "PastEtal11": "10.1037/a0021801",
+    "NichEtal06b": "10.1002/hipo.20190",
+    "MorrEtal22": "10.1016/j.jad.2021.10.124",
+    "NgoEtal13": "10.1016/j.neuron.2013.03.006",
+    "NgoEtal15": "10.1523/jneurosci.3133-14.2015",
+    "RaskEtal18": "10.1056/nejmoa1507598",
+    "HsieEtal21": "10.1007/s40846-021-00649-5",
+    "GaoEtal16a": "10.1021/acssensors.6b00287",
+    "GaoEtal16b": "10.1038/nature16521",
+    "EsfaEtal23": "10.1016/j.neubiorev.2023.105379",
+    "LiEtal17a": "10.1145/3130937",
+    "KrieWei21": "10.1038/s41583-021-00502-3"
+  }
+}

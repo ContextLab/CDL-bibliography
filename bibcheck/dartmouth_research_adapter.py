@@ -20,7 +20,9 @@ from search_tools import WebSearch, get_source
 from publisher_metadata import PublisherMetadata
 
 BASE = "https://chat.dartmouth.edu/api"
-DEFAULT_MODEL = "qwen.qwen3.5-122b"
+from dartmouth_models import PREFERRED_TEXT_MODEL
+
+DEFAULT_MODEL = PREFERRED_TEXT_MODEL
 
 
 def discover_sources(payload, session, results=(), fetched=None):
@@ -115,20 +117,10 @@ def configuration(environ):
 
 
 def check_model(session=None, environ=None):
+    from dartmouth_models import fetch_models, require_free
+
     key, model = configuration(os.environ if environ is None else environ)
-    response = (session or requests.Session()).get(
-        BASE + "/models",
-        headers={"Authorization": "Bearer " + key},
-        timeout=(5, 30),
-        allow_redirects=False,
-    )
-    if response.status_code != 200:
-        raise ValueError(f"Dartmouth model lookup HTTP {response.status_code}")
-    ids = [m["id"] for m in response.json()["data"]]
-    if model not in ids:
-        # Do not silently substitute a different model or commercial provider.
-        qwen = [m for m in ids if "qwen" in m.lower()]
-        raise ValueError(f"Configured model unavailable. Available Qwen IDs: {qwen}")
+    require_free(fetch_models(key, session), model)
     return model
 
 
@@ -149,6 +141,14 @@ def complete(data, schema, instructions, session, key, model, read_timeout=90):
             "top_k": 20,
             "chat_template_kwargs": {"enable_thinking": False},
         }
+    elif model.startswith("zai-org.glm-5.3"):
+        sampling = {
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "reasoning_effort": "max",
+            "chat_template_kwargs": {"clear_thinking": True, "reasoning_effort": "max"},
+        }
+        read_timeout = max(read_timeout, 240)
     time.sleep(2)
     response = session.post(
         BASE + "/chat/completions",
@@ -157,7 +157,7 @@ def complete(data, schema, instructions, session, key, model, read_timeout=90):
             "model": model,
             "stream": False,
             **sampling,
-            "max_tokens": 4000,
+            "max_tokens": 16000 if model.startswith("zai-org.glm-5.3") else 4000,
             "messages": [
                 {
                     "role": "system",
@@ -317,6 +317,9 @@ def run(payload, session=None, environ=None, searcher=None):
     session = session or requests.Session()
     if payload.get("phase") not in {"discover", "extract"}:
         raise ValueError("Unknown research phase")
+    # Every invocation checks the live catalog before any inference. Local-tagged
+    # models count as free; explicit nonzero pricing overrides the tag.
+    check_model(session, environ)
     if payload["phase"] == "discover":
         own_searcher = searcher is None
         searcher = searcher or WebSearch(

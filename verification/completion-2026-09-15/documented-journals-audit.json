@@ -1,0 +1,280 @@
+{
+  "resolver_version": 27,
+  "policy": "2",
+  "scope": "Exact journal-name variants only; no fuzzy matching, global trademark removal, title normalization change, or permission to ignore other fields/versions.",
+  "WainJord08": {
+    "pages_viewed": [
+      1
+    ],
+    "pdf_sha256": "b80bd133e23d4b9c0dca157249fc3ac9f9259e3a1de0c2e197b2039a5b87e59a",
+    "observed": "Published first-page image confirms Martin J. Wainwright and Michael I. Jordan, full title Graphical Models, Exponential Families, and Variational Inference, Foundations and Trends (registered trademark) in Machine Learning 1(1-2):1-305 (2008), and printed DOI 10.1561/2200000001. Add that journal-publication DOI. Resolver 27 recognizes the exact branded/unbranded journal names. The separately indexed 2007 monograph DOI 10.1561/9781601981851 remains a competing version unless the journal DOI is specified; the name equivalence alone does not approve this entry.",
+    "sources": [
+      "https://www.nowpublishers.com/article/DownloadSummary/MAL-001"
+    ],
+    "registry_record": {
+      "DOI": "10.1561/2200000001",
+      "ISSN": [
+        "1935-8237",
+        "1935-8245"
+      ],
+      "URL": "https://doi.org/10.1561/2200000001",
+      "author": [
+        {
+          "affiliation": [
+            {
+              "name": "Department of Statistics, and Department of Electrical Engineering and Computer Science, University of California , 94720,",
+              "place": [
+                "Berkeley, USA"
+              ]
+            }
+          ],
+          "family": "Wainwright",
+          "given": "Martin J.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Department of Statistics, and Department of Electrical Engineering and Computer Science, University of California , 94720,",
+              "place": [
+                "Berkeley, USA"
+              ]
+            }
+          ],
+          "family": "Jordan",
+          "given": "Michael I.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Foundations and Trends® in Machine Learning"
+      ],
+      "issue": "1-2",
+      "issued": {
+        "date-parts": [
+          [
+            2008,
+            12,
+            18
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "https://www.emerald.com/ftmal/article-pdf/1/1-2/1/11153930/2200000001en.pdf",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "syndication"
+        },
+        {
+          "URL": "https://www.emerald.com/ftmal/article-pdf/1/1-2/1/11153930/2200000001en.pdf",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "1-305",
+      "published": {
+        "date-parts": [
+          [
+            2008,
+            12,
+            18
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2008,
+            12,
+            18
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2008,
+            12,
+            18
+          ]
+        ]
+      },
+      "publisher": "Emerald",
+      "title": [
+        "Graphical Models, Exponential Families, and Variational Inference"
+      ],
+      "type": "journal-article",
+      "volume": "1"
+    },
+    "verification": "Source evidence only; ordinary metadata verification required."
+  },
+  "WorsEtal05": {
+    "observed": "Local published article first page (physical PDF page 2 after publisher cover) names Keith J. Worsley, Jen-I. Chen, Jason Lerch and Alan C. Evans, full matching title, Phil. Trans. R. Soc. B (2005) 360, 913-920, DOI 10.1098/rstb.2005.1637 and publication 29 May 2005. Use the complete registry journal title including Biological Sciences. NLM independently confirms DOI, authors, date and coordinates; publisher web retrieval returned 403. The repository formatter uses the full London Series B: Biological Sciences variant; resolver 27 recognizes its exact equivalence to the registry journal label. The incomplete local title without Biological Sciences is not globally aliased.",
+    "sources": [
+      "https://pubmed.ncbi.nlm.nih.gov/16087436/"
+    ],
+    "registry_record": {
+      "DOI": "10.1098/rstb.2005.1637",
+      "ISSN": [
+        "0962-8436",
+        "1471-2970"
+      ],
+      "URL": "https://doi.org/10.1098/rstb.2005.1637",
+      "author": [
+        {
+          "affiliation": [
+            {
+              "name": "Department of Mathematics and StatisticsMontreal, Canada"
+            },
+            {
+              "name": "Montreal Neurological Institute, McGill UniversityMontreal, Canada"
+            }
+          ],
+          "family": "Worsley",
+          "given": "Keith J",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Montreal Neurological Institute, McGill UniversityMontreal, Canada"
+            }
+          ],
+          "family": "Chen",
+          "given": "Jen-I",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Montreal Neurological Institute, McGill UniversityMontreal, Canada"
+            }
+          ],
+          "family": "Lerch",
+          "given": "Jason",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Montreal Neurological Institute, McGill UniversityMontreal, Canada"
+            }
+          ],
+          "family": "Evans",
+          "given": "Alan C",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Philosophical Transactions of the Royal Society B: Biological Sciences"
+      ],
+      "issue": "1457",
+      "issued": {
+        "date-parts": [
+          [
+            2005,
+            5,
+            29
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "https://royalsocietypublishing.org/doi/pdf/10.1098/rstb.2005.1637",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://royalsocietypublishing.org/doi/full-xml/10.1098/rstb.2005.1637",
+          "content-type": "application/xml",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://royalsocietypublishing.org/doi/pdf/10.1098/rstb.2005.1637",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "913-920",
+      "published": {
+        "date-parts": [
+          [
+            2005,
+            5,
+            29
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2005,
+            5,
+            29
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2005,
+            5,
+            29
+          ]
+        ]
+      },
+      "publisher": "The Royal Society",
+      "title": [
+        "Comparing functional connectivity via thresholding correlations and singular value decomposition"
+      ],
+      "type": "journal-article",
+      "volume": "360"
+    },
+    "verification": "Source evidence only; no manual approval.",
+    "pdf_sha256": "4ad4373f4e17c64ca75d43c59d398097e069f0e62dda0a6ed06006b5cca90564",
+    "pages_viewed": [
+      2
+    ]
+  }
+}

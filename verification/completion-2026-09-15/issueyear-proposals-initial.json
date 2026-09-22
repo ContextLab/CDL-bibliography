@@ -1,0 +1,2836 @@
+[
+  {
+    "kind": "corroborated_issue_year",
+    "key": "AlleEtal12b",
+    "fingerprint": "v2:53b569d9f16178ffe2c5fe4a7fdc7892119b976a068a678a1d0fdae1179ba298",
+    "doi": "10.1093/cercor/bhs352",
+    "changes": {
+      "year": {
+        "before": "2012",
+        "after": "2014"
+      }
+    },
+    "primary": {
+      "advisories": [],
+      "doi": "10.1093/cercor/bhs352",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "E A Allen and E Damaraju and S M Plis and E B Erhardt and T Eichele and V D Calhoun",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Allen",
+              "given": "Elena A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Damaraju",
+              "given": "Eswar",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Plis",
+              "given": "Sergey M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Erhardt",
+              "given": "Erik B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Eichele",
+              "given": "Tom",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Calhoun",
+              "given": "Vince D.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cerebral Cortex",
+          "match": true,
+          "source": [
+            "Cerebral Cortex"
+          ]
+        },
+        "number": {
+          "local": "3",
+          "match": true,
+          "source": [
+            "3"
+          ]
+        },
+        "pages": {
+          "local": "663--676",
+          "match": true,
+          "source": [
+            "663-676"
+          ]
+        },
+        "title": {
+          "local": "Tracking whole-brain connectivity dynamics in the resting state",
+          "match": true,
+          "source": [
+            "Tracking Whole-Brain Connectivity Dynamics in the Resting State"
+          ]
+        },
+        "volume": {
+          "local": "24",
+          "match": true,
+          "source": [
+            "24"
+          ]
+        },
+        "year": {
+          "local": "2012",
+          "match": true,
+          "source": [
+            "2012",
+            "2014"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly"
+      ],
+      "record": {
+        "DOI": "10.1093/cercor/bhs352",
+        "ISSN": [
+          "1460-2199",
+          "1047-3211"
+        ],
+        "URL": "https://doi.org/10.1093/cercor/bhs352",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Allen",
+            "given": "Elena A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Damaraju",
+            "given": "Eswar",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Plis",
+            "given": "Sergey M.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Erhardt",
+            "given": "Erik B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Eichele",
+            "given": "Tom",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Calhoun",
+            "given": "Vince D.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Cerebral Cortex"
+        ],
+        "issue": "3",
+        "issued": {
+          "date-parts": [
+            [
+              2012,
+              11,
+              11
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://academic.oup.com/cercor/article-pdf/24/3/663/14099596/bhs352.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "663-676",
+        "published": {
+          "date-parts": [
+            [
+              2012,
+              11,
+              11
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2012,
+              11,
+              11
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2014,
+              3
+            ]
+          ]
+        },
+        "publisher": "Oxford University Press (OUP)",
+        "title": [
+          "Tracking Whole-Brain Connectivity Dynamics in the Resting State"
+        ],
+        "type": "journal-article",
+        "volume": "24"
+      },
+      "retrieved_at": "2026-09-09T19:40:56.139363+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1093/cercor/bhs352"
+    },
+    "secondary": {
+      "doi": "10.1093/cercor/bhs352",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "E A Allen and E Damaraju and S M Plis and E B Erhardt and T Eichele and V D Calhoun",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Allen",
+              "given": "Elena A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Damaraju",
+              "given": "Eswar",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Plis",
+              "given": "Sergey M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Erhardt",
+              "given": "Erik B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Eichele",
+              "given": "Tom",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Calhoun",
+              "given": "Vince D.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cerebral Cortex",
+          "match": true,
+          "source": [
+            "Cerebral Cortex"
+          ]
+        },
+        "number": {
+          "local": "3",
+          "match": true,
+          "source": [
+            "3"
+          ]
+        },
+        "pages": {
+          "local": "663--676",
+          "match": true,
+          "source": [
+            "663-676"
+          ]
+        },
+        "title": {
+          "local": "Tracking whole-brain connectivity dynamics in the resting state",
+          "match": true,
+          "source": [
+            "Tracking Whole-Brain Connectivity Dynamics in the Resting State"
+          ]
+        },
+        "volume": {
+          "local": "24",
+          "match": true,
+          "source": [
+            "24"
+          ]
+        },
+        "year": {
+          "local": "2012",
+          "match": true,
+          "source": [
+            "2012",
+            "2014"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly",
+        "Secondary year: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "The Mind Research Network, Albuquerque, New Mexico 87106, USA."
+                  }
+                ]
+              },
+              "firstName": "Elena A",
+              "fullName": "Allen EA",
+              "initials": "EA",
+              "lastName": "Allen"
+            },
+            {
+              "firstName": "Eswar",
+              "fullName": "Damaraju E",
+              "initials": "E",
+              "lastName": "Damaraju"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-0040-0365"
+              },
+              "firstName": "Sergey M",
+              "fullName": "Plis SM",
+              "initials": "SM",
+              "lastName": "Plis"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-9817-4011"
+              },
+              "firstName": "Erik B",
+              "fullName": "Erhardt EB",
+              "initials": "EB",
+              "lastName": "Erhardt"
+            },
+            {
+              "firstName": "Tom",
+              "fullName": "Eichele T",
+              "initials": "T",
+              "lastName": "Eichele"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-9058-0747"
+              },
+              "firstName": "Vince D",
+              "fullName": "Calhoun VD",
+              "initials": "VD",
+              "lastName": "Calhoun"
+            }
+          ]
+        },
+        "doi": "10.1093/cercor/bhs352",
+        "firstPublicationDate": "2012-11-11",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1093/cercor/bhs352"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC3920766"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC3920766?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1093/cercor/bhs352"
+            }
+          ]
+        },
+        "id": "23146964",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2014 Mar",
+          "issue": "3",
+          "journal": {
+            "essn": "1460-2199",
+            "isoabbreviation": "Cereb Cortex",
+            "issn": "1047-3211",
+            "medlineAbbreviation": "Cereb Cortex",
+            "nlmid": "9110718",
+            "title": "Cerebral cortex (New York, N.Y. : 1991)"
+          },
+          "journalIssueId": 2126014,
+          "monthOfPublication": 3,
+          "printPublicationDate": "2014-03-01",
+          "volume": "24",
+          "yearOfPublication": 2014
+        },
+        "pageInfo": "663-676",
+        "pmcid": "PMC3920766",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Research Support, U.S. Gov't, Non-P.H.S.",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural"
+          ]
+        },
+        "pubYear": "2014",
+        "source": "MED",
+        "title": "Tracking whole-brain connectivity dynamics in the resting state."
+      },
+      "record": {
+        "DOI": "10.1093/cercor/bhs352",
+        "ISSN": [
+          "1047-3211",
+          "1460-2199"
+        ],
+        "author": [
+          {
+            "family": "Allen",
+            "given": "Elena A",
+            "suffix": ""
+          },
+          {
+            "family": "Damaraju",
+            "given": "Eswar",
+            "suffix": ""
+          },
+          {
+            "family": "Plis",
+            "given": "Sergey M",
+            "suffix": ""
+          },
+          {
+            "family": "Erhardt",
+            "given": "Erik B",
+            "suffix": ""
+          },
+          {
+            "family": "Eichele",
+            "given": "Tom",
+            "suffix": ""
+          },
+          {
+            "family": "Calhoun",
+            "given": "Vince D",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Cerebral cortex (New York, N.Y. : 1991)",
+          "Cereb Cortex",
+          "Cereb Cortex",
+          "Cerebral Cortex"
+        ],
+        "issue": "3",
+        "page": "663-676",
+        "published": {
+          "date-parts": [
+            [
+              2014
+            ]
+          ]
+        },
+        "title": [
+          "Tracking whole-brain connectivity dynamics in the resting state"
+        ],
+        "type": "journal-article",
+        "volume": "24"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1212%2Fwnl.45.9.1793-a%22+OR+DOI%3A%2210.1063%2F1.2807585%22+OR+DOI%3A%2210.1097%2F00004691-199603000-00010%22+OR+DOI%3A%2210.1002%2Fhbm.20585%22+OR+DOI%3A%2210.1073%2Fpnas.0700668104%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2013.04.062%22+OR+DOI%3A%2210.1038%2Fs41467-018-03068-4%22+OR+DOI%3A%2210.1073%2Fpnas.0609523103%22+OR+DOI%3A%2210.1214%2F18-aos1764%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2020.116687%22+OR+DOI%3A%2210.1101%2F750919%22+OR+DOI%3A%2210.3389%2Ffncom.2017.00048%22+OR+DOI%3A%2210.1007%2Fs10827-017-0672-6%22+OR+DOI%3A%2210.3389%2Ffninf.2019.00014%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2017.11.033%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2016.12.061%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhs352%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2017.06.077%22+OR+DOI%3A%2210.1016%2Fj.neuron.2020.02.013%22+OR+DOI%3A%2210.1101%2F761593%22+OR+DOI%3A%2210.1038%2Fs41467-021-25876-x%22+OR+DOI%3A%2210.1101%2F763821%22+OR+DOI%3A%2210.1137%2F1115049%22+OR+DOI%3A%2210.1016%2Fj.neuropsychologia.2013.05.027%22+OR+DOI%3A%2210.1007%2Fb98874%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T00:59:08.102731+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/23146964"
+    },
+    "pubmed_id": "23146964"
+  },
+  {
+    "kind": "corroborated_issue_year",
+    "key": "TigaEtal16",
+    "fingerprint": "v2:ba78e9f248861a318f95987c5900ac6befe34eb1c05569c58dbc35891b502f47",
+    "doi": "10.1093/cercor/bhw336",
+    "changes": {
+      "year": {
+        "before": "2016",
+        "after": "2017"
+      }
+    },
+    "primary": {
+      "advisories": [],
+      "doi": "10.1093/cercor/bhw336",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "Z Tiganj and M W Jung and J Kim and M W Howard",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Psychological and Brain Sciences, Center for Memory and Brain, Boston University, Boston, MA USA"
+                }
+              ],
+              "family": "Tiganj",
+              "given": "Zoran",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Center for Synaptic Brain Dysfunctions, Institute for Basic Science, Daejeon, Korea"
+                },
+                {
+                  "name": "Department of Biological Sciences, Korea Advanced Institute of Science and Technology, Daejeon, Korea"
+                }
+              ],
+              "family": "Jung",
+              "given": "Min Whan",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Center for Synaptic Brain Dysfunctions, Institute for Basic Science, Daejeon, Korea"
+                }
+              ],
+              "family": "Kim",
+              "given": "Jieun",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Psychological and Brain Sciences, Center for Memory and Brain, Boston University, Boston, MA USA"
+                }
+              ],
+              "family": "Howard",
+              "given": "Marc W",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cerebral Cortex",
+          "match": true,
+          "source": [
+            "Cerebral Cortex"
+          ]
+        },
+        "number": {
+          "local": "12",
+          "match": true,
+          "source": [
+            "12"
+          ]
+        },
+        "pages": {
+          "local": "5663--5671",
+          "match": true,
+          "source": [
+            "5663-5671"
+          ]
+        },
+        "title": {
+          "local": "Sequential firing codes for time in rodent medial prefrontal cortex",
+          "match": true,
+          "source": [
+            "Sequential Firing Codes for Time in Rodent Medial Prefrontal Cortex"
+          ]
+        },
+        "volume": {
+          "local": "27",
+          "match": true,
+          "source": [
+            "27"
+          ]
+        },
+        "year": {
+          "local": "2016",
+          "match": true,
+          "source": [
+            "2016",
+            "2017"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly"
+      ],
+      "record": {
+        "DOI": "10.1093/cercor/bhw336",
+        "ISSN": [
+          "1047-3211",
+          "1460-2199"
+        ],
+        "URL": "https://doi.org/10.1093/cercor/bhw336",
+        "author": [
+          {
+            "affiliation": [
+              {
+                "name": "Department of Psychological and Brain Sciences, Center for Memory and Brain, Boston University, Boston, MA USA"
+              }
+            ],
+            "family": "Tiganj",
+            "given": "Zoran",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "Center for Synaptic Brain Dysfunctions, Institute for Basic Science, Daejeon, Korea"
+              },
+              {
+                "name": "Department of Biological Sciences, Korea Advanced Institute of Science and Technology, Daejeon, Korea"
+              }
+            ],
+            "family": "Jung",
+            "given": "Min Whan",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "Center for Synaptic Brain Dysfunctions, Institute for Basic Science, Daejeon, Korea"
+              }
+            ],
+            "family": "Kim",
+            "given": "Jieun",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "Department of Psychological and Brain Sciences, Center for Memory and Brain, Boston University, Boston, MA USA"
+              }
+            ],
+            "family": "Howard",
+            "given": "Marc W",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Cerebral Cortex"
+        ],
+        "issue": "12",
+        "issued": {
+          "date-parts": [
+            [
+              2016,
+              11,
+              22
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://academic.oup.com/cercor/article-pdf/27/12/5663/28039441/bhw336.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "5663-5671",
+        "published": {
+          "date-parts": [
+            [
+              2016,
+              11,
+              22
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2016,
+              11,
+              22
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2017,
+              12,
+              1
+            ]
+          ]
+        },
+        "publisher": "Oxford University Press (OUP)",
+        "title": [
+          "Sequential Firing Codes for Time in Rodent Medial Prefrontal Cortex"
+        ],
+        "type": "journal-article",
+        "volume": "27"
+      },
+      "retrieved_at": "2026-09-09T19:42:40.257375+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1093/cercor/bhw336"
+    },
+    "secondary": {
+      "doi": "10.1093/cercor/bhw336",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "Z Tiganj and M W Jung and J Kim and M W Howard",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Psychological and Brain Sciences, Center for Memory and Brain, Boston University, Boston, MA USA"
+                }
+              ],
+              "family": "Tiganj",
+              "given": "Zoran",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Center for Synaptic Brain Dysfunctions, Institute for Basic Science, Daejeon, Korea"
+                },
+                {
+                  "name": "Department of Biological Sciences, Korea Advanced Institute of Science and Technology, Daejeon, Korea"
+                }
+              ],
+              "family": "Jung",
+              "given": "Min Whan",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Center for Synaptic Brain Dysfunctions, Institute for Basic Science, Daejeon, Korea"
+                }
+              ],
+              "family": "Kim",
+              "given": "Jieun",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Psychological and Brain Sciences, Center for Memory and Brain, Boston University, Boston, MA USA"
+                }
+              ],
+              "family": "Howard",
+              "given": "Marc W",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cerebral Cortex",
+          "match": true,
+          "source": [
+            "Cerebral Cortex"
+          ]
+        },
+        "number": {
+          "local": "12",
+          "match": true,
+          "source": [
+            "12"
+          ]
+        },
+        "pages": {
+          "local": "5663--5671",
+          "match": true,
+          "source": [
+            "5663-5671"
+          ]
+        },
+        "title": {
+          "local": "Sequential firing codes for time in rodent medial prefrontal cortex",
+          "match": true,
+          "source": [
+            "Sequential Firing Codes for Time in Rodent Medial Prefrontal Cortex"
+          ]
+        },
+        "volume": {
+          "local": "27",
+          "match": true,
+          "source": [
+            "27"
+          ]
+        },
+        "year": {
+          "local": "2016",
+          "match": true,
+          "source": [
+            "2016",
+            "2017"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly",
+        "Secondary year: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychological and Brain Sciences, Center for Memory and Brain, Boston University, Boston, MA USA."
+                  }
+                ]
+              },
+              "firstName": "Zoran",
+              "fullName": "Tiganj Z",
+              "initials": "Z",
+              "lastName": "Tiganj"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Center for Synaptic Brain Dysfunctions, Institute for Basic Science, Daejeon, Korea."
+                  },
+                  {
+                    "affiliation": "Department of Biological Sciences, Korea Advanced Institute of Science and Technology, Daejeon, Korea."
+                  }
+                ]
+              },
+              "firstName": "Min Whan",
+              "fullName": "Jung MW",
+              "initials": "MW",
+              "lastName": "Jung"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Center for Synaptic Brain Dysfunctions, Institute for Basic Science, Daejeon, Korea."
+                  }
+                ]
+              },
+              "firstName": "Jieun",
+              "fullName": "Kim J",
+              "initials": "J",
+              "lastName": "Kim"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychological and Brain Sciences, Center for Memory and Brain, Boston University, Boston, MA USA."
+                  }
+                ]
+              },
+              "firstName": "Marc W",
+              "fullName": "Howard MW",
+              "initials": "MW",
+              "lastName": "Howard"
+            }
+          ]
+        },
+        "doi": "10.1093/cercor/bhw336",
+        "firstPublicationDate": "2017-12-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1093/cercor/bhw336"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6433183"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6433183?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1093/cercor/bhw336"
+            }
+          ]
+        },
+        "id": "29145670",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2017 Dec",
+          "issue": "12",
+          "journal": {
+            "essn": "1460-2199",
+            "isoabbreviation": "Cereb Cortex",
+            "issn": "1047-3211",
+            "medlineAbbreviation": "Cereb Cortex",
+            "nlmid": "9110718",
+            "title": "Cerebral cortex (New York, N.Y. : 1991)"
+          },
+          "journalIssueId": 2619587,
+          "monthOfPublication": 12,
+          "printPublicationDate": "2017-12-01",
+          "volume": "27",
+          "yearOfPublication": 2017
+        },
+        "pageInfo": "5663-5671",
+        "pmcid": "PMC6433183",
+        "pubTypeList": {
+          "pubType": [
+            "research-article",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2017",
+        "source": "MED",
+        "title": "Sequential Firing Codes for Time in Rodent Medial Prefrontal Cortex."
+      },
+      "record": {
+        "DOI": "10.1093/cercor/bhw336",
+        "ISSN": [
+          "1047-3211",
+          "1460-2199"
+        ],
+        "author": [
+          {
+            "family": "Tiganj",
+            "given": "Zoran",
+            "suffix": ""
+          },
+          {
+            "family": "Jung",
+            "given": "Min Whan",
+            "suffix": ""
+          },
+          {
+            "family": "Kim",
+            "given": "Jieun",
+            "suffix": ""
+          },
+          {
+            "family": "Howard",
+            "given": "Marc W",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Cerebral cortex (New York, N.Y. : 1991)",
+          "Cereb Cortex",
+          "Cereb Cortex",
+          "Cerebral Cortex"
+        ],
+        "issue": "12",
+        "page": "5663-5671",
+        "published": {
+          "date-parts": [
+            [
+              2017
+            ]
+          ]
+        },
+        "title": [
+          "Sequential Firing Codes for Time in Rodent Medial Prefrontal Cortex"
+        ],
+        "type": "journal-article",
+        "volume": "27"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1038%2Fnn.4573%22+OR+DOI%3A%2210.1073%2Fpnas.1417017112%22+OR+DOI%3A%2210.2466%2Fpms.70.1.334-334%22+OR+DOI%3A%2210.2466%2Fpms.1990.70.1.334%22+OR+DOI%3A%2210.1016%2Fj.actpsy.2015.01.006%22+OR+DOI%3A%2210.1016%2Fj.concog.2015.06.005%22+OR+DOI%3A%2210.1523%2Fjneurosci.0360-19.2019%22+OR+DOI%3A%2210.1101%2F511782%22+OR+DOI%3A%2210.1016%2Fj.tics.2017.11.004%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhw336%22+OR+DOI%3A%2210.1007%2Fs12035-019-1516-3%22+OR+DOI%3A%2210.1073%2Fpnas.1308499110%22+OR+DOI%3A%2210.1093%2Fcercor%2F10.12.1211%22+OR+DOI%3A%2210.1016%2Fj.yebeh.2017.01.001%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2005.04.029%22+OR+DOI%3A%2210.1162%2F089892904970708%22+OR+DOI%3A%2210.1006%2Fnimg.2001.0940%22+OR+DOI%3A%2210.1073%2Fpnas.1214804110%22+OR+DOI%3A%2210.1073%2Fpnas.98.2.676%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhp055%22+OR+DOI%3A%2210.1126%2Fscience.1134405%22+OR+DOI%3A%2210.1126%2Fscience.%22+OR+DOI%3A%2210.1038%2Fscientificamerican0310-44%22+OR+DOI%3A%2210.1126%2Fscience.1183614%22+OR+DOI%3A%2210.1523%2Fjneurosci.0948-08.2008%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T00:59:12.505538+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/29145670"
+    },
+    "pubmed_id": "29145670"
+  },
+  {
+    "kind": "corroborated_issue_year",
+    "key": "HuanEtal01",
+    "fingerprint": "v2:4ff9e82087745597d7fefc4c82c06dafc9f1ec9afe6b21a9aca7428194e2b3ce",
+    "doi": "10.1002/hbm.1060",
+    "changes": {
+      "year": {
+        "before": "2001",
+        "after": "2002"
+      }
+    },
+    "primary": {
+      "advisories": [],
+      "doi": "10.1002/hbm.1060",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "J Huang and T H Carr and Y Cao",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Huang",
+              "given": "Jie",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Carr",
+              "given": "Thomas H.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Cao",
+              "given": "Yue",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Human Brain Mapping",
+          "match": true,
+          "source": [
+            "Human Brain Mapping"
+          ]
+        },
+        "number": {
+          "local": "1",
+          "match": true,
+          "source": [
+            "1"
+          ]
+        },
+        "pages": {
+          "local": "39--53",
+          "match": true,
+          "source": [
+            "39-53"
+          ]
+        },
+        "publisher": {
+          "local": "Wiley",
+          "match": true,
+          "source": [
+            "Wiley"
+          ]
+        },
+        "title": {
+          "local": "Comparing cortical activations for silent and overt speech using event-related {fMRI}",
+          "match": true,
+          "source": [
+            "Comparing cortical activations for silent and overt speech using event\u2010related fMRI"
+          ]
+        },
+        "volume": {
+          "local": "15",
+          "match": true,
+          "source": [
+            "15"
+          ]
+        },
+        "year": {
+          "local": "2001",
+          "match": true,
+          "source": [
+            "2001",
+            "2002"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly"
+      ],
+      "record": {
+        "DOI": "10.1002/hbm.1060",
+        "ISSN": [
+          "1065-9471",
+          "1097-0193"
+        ],
+        "URL": "https://doi.org/10.1002/hbm.1060",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Huang",
+            "given": "Jie",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Carr",
+            "given": "Thomas H.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Cao",
+            "given": "Yue",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Human Brain Mapping"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              2001,
+              10,
+              25
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fhbm.1060",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/hbm.1060",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "39-53",
+        "published": {
+          "date-parts": [
+            [
+              2001,
+              10,
+              25
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2001,
+              10,
+              25
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2002,
+              1
+            ]
+          ]
+        },
+        "publisher": "Wiley",
+        "title": [
+          "Comparing cortical activations for silent and overt speech using event\u2010related fMRI"
+        ],
+        "type": "journal-article",
+        "volume": "15"
+      },
+      "retrieved_at": "2026-09-09T20:07:49.322245+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1002/hbm.1060"
+    },
+    "secondary": {
+      "doi": "10.1002/hbm.1060",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "J Huang and T H Carr and Y Cao",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Huang",
+              "given": "Jie",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Carr",
+              "given": "Thomas H.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Cao",
+              "given": "Yue",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Human Brain Mapping",
+          "match": true,
+          "source": [
+            "Human Brain Mapping"
+          ]
+        },
+        "number": {
+          "local": "1",
+          "match": true,
+          "source": [
+            "1"
+          ]
+        },
+        "pages": {
+          "local": "39--53",
+          "match": true,
+          "source": [
+            "39-53"
+          ]
+        },
+        "publisher": {
+          "local": "Wiley",
+          "match": true,
+          "source": [
+            "Wiley"
+          ]
+        },
+        "title": {
+          "local": "Comparing cortical activations for silent and overt speech using event-related {fMRI}",
+          "match": true,
+          "source": [
+            "Comparing cortical activations for silent and overt speech using event\u2010related fMRI"
+          ]
+        },
+        "volume": {
+          "local": "15",
+          "match": true,
+          "source": [
+            "15"
+          ]
+        },
+        "year": {
+          "local": "2001",
+          "match": true,
+          "source": [
+            "2001",
+            "2002"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly",
+        "Secondary year: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Radiology, Michigan State University, 184 Radiology Building, East Lansing, MI 48824, USA."
+                  }
+                ]
+              },
+              "firstName": "Jie",
+              "fullName": "Huang J",
+              "initials": "J",
+              "lastName": "Huang"
+            },
+            {
+              "firstName": "Thomas H",
+              "fullName": "Carr TH",
+              "initials": "TH",
+              "lastName": "Carr"
+            },
+            {
+              "firstName": "Yue",
+              "fullName": "Cao Y",
+              "initials": "Y",
+              "lastName": "Cao"
+            }
+          ]
+        },
+        "doi": "10.1002/hbm.1060",
+        "firstPublicationDate": "2002-01-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/hbm.1060"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6871953"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6871953?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/hbm.1060"
+            }
+          ]
+        },
+        "id": "11747099",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2002 Jan",
+          "issue": "1",
+          "journal": {
+            "essn": "1097-0193",
+            "isoabbreviation": "Hum Brain Mapp",
+            "issn": "1065-9471",
+            "medlineAbbreviation": "Hum Brain Mapp",
+            "nlmid": "9419065",
+            "title": "Human brain mapping"
+          },
+          "journalIssueId": 1036647,
+          "monthOfPublication": 1,
+          "printPublicationDate": "2002-01-01",
+          "volume": "15",
+          "yearOfPublication": 2002
+        },
+        "pageInfo": "39-53",
+        "pmcid": "PMC6871953",
+        "pubTypeList": {
+          "pubType": [
+            "Comparative Study",
+            "Clinical Trial",
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2002",
+        "source": "MED",
+        "title": "Comparing cortical activations for silent and overt speech using event-related fMRI."
+      },
+      "record": {
+        "DOI": "10.1002/hbm.1060",
+        "ISSN": [
+          "1065-9471",
+          "1097-0193"
+        ],
+        "author": [
+          {
+            "family": "Huang",
+            "given": "Jie",
+            "suffix": ""
+          },
+          {
+            "family": "Carr",
+            "given": "Thomas H",
+            "suffix": ""
+          },
+          {
+            "family": "Cao",
+            "given": "Yue",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Human brain mapping",
+          "Hum Brain Mapp",
+          "Hum Brain Mapp",
+          "Human Brain Mapping"
+        ],
+        "issue": "1",
+        "page": "39-53",
+        "published": {
+          "date-parts": [
+            [
+              2002
+            ]
+          ]
+        },
+        "title": [
+          "Comparing cortical activations for silent and overt speech using event-related fMRI"
+        ],
+        "type": "journal-article",
+        "volume": "15"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1515%2F9781400841356.301%22+OR+DOI%3A%2210.1016%2Fs0749-596x%2802%2900501-6%22+OR+DOI%3A%2210.1093%2Fcercor%2F13.1.90%22+OR+DOI%3A%2210.21437%2Ficslp.1998-815%22+OR+DOI%3A%2210.1523%2Fjneurosci.5370-05.2006%22+OR+DOI%3A%2210.1002%2Fhbm.1060%22+OR+DOI%3A%2210.1073%2Fpnas.0809662105%22+OR+DOI%3A%2210.1037%2F%2F0033-295x.91.3.281%22+OR+DOI%3A%2210.1037%2F0033-295x.91.3.281%22+OR+DOI%3A%2210.1016%2Fs0165-0270%2801%2900372-7%22+OR+DOI%3A%2210.1037%2Fh0031355%22+OR+DOI%3A%2210.1007%2Fs002210050696%22+OR+DOI%3A%2210.1038%2Fnature02739%22+OR+DOI%3A%2210.1037%2Fh0048352%22+OR+DOI%3A%2210.1002%2Fcne.10165%22+OR+DOI%3A%2210.1152%2Fjn.90954.2008%22+OR+DOI%3A%2210.1038%2Fnrn2575%22+OR+DOI%3A%2210.1037%2F0096-3445.106.3.269%22+OR+DOI%3A%2210.1098%2Frstb.2001.0939%22+OR+DOI%3A%2210.1093%2Facprof%3Aoso%2F9780198508809.003.0003%22+OR+DOI%3A%2210.1073%2Fpnas.95.3.876%22+OR+DOI%3A%2210.1037%2F%2F0096-3445.119.2.145%22+OR+DOI%3A%2210.1037%2F0096-3445.119.2.145%22+OR+DOI%3A%2210.1037%2F0096-3445.107.4.393%22+OR+DOI%3A%2210.1109%2Ftit.2006.871582%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:00:20.455554+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/11747099"
+    },
+    "pubmed_id": "11747099"
+  },
+  {
+    "kind": "corroborated_issue_year",
+    "key": "NichHolm01",
+    "fingerprint": "v2:a44baac64f746daff50a727b15a0b8500a8fc81271a708803aa918a1abc2ea22",
+    "doi": "10.1002/hbm.1058",
+    "changes": {
+      "year": {
+        "before": "2001",
+        "after": "2002"
+      }
+    },
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1002/hbm.1058",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "Thomas E Nichols and Andrew P Holmes",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Nichols",
+              "given": "Thomas E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Holmes",
+              "given": "Andrew P.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Human Brain Mapping",
+          "match": true,
+          "source": [
+            "Human Brain Mapping"
+          ]
+        },
+        "pages": {
+          "local": "1--25",
+          "match": true,
+          "source": [
+            "1-25"
+          ]
+        },
+        "title": {
+          "local": "Nonparametric permutation tests for functional neuroimaging: a primer with examples",
+          "match": true,
+          "source": [
+            "Nonparametric permutation tests for functional neuroimaging: A primer with examples"
+          ]
+        },
+        "volume": {
+          "local": "15",
+          "match": true,
+          "source": [
+            "15"
+          ]
+        },
+        "year": {
+          "local": "2001",
+          "match": true,
+          "source": [
+            "2001",
+            "2002"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly"
+      ],
+      "record": {
+        "DOI": "10.1002/hbm.1058",
+        "ISSN": [
+          "1065-9471",
+          "1097-0193"
+        ],
+        "URL": "https://doi.org/10.1002/hbm.1058",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Nichols",
+            "given": "Thomas E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Holmes",
+            "given": "Andrew P.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Human Brain Mapping"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              2001,
+              10,
+              15
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fhbm.1058",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/hbm.1058",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "1-25",
+        "published": {
+          "date-parts": [
+            [
+              2001,
+              10,
+              15
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2001,
+              10,
+              15
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2002,
+              1
+            ]
+          ]
+        },
+        "publisher": "Wiley",
+        "title": [
+          "Nonparametric permutation tests for functional neuroimaging: A primer with examples"
+        ],
+        "type": "journal-article",
+        "volume": "15"
+      },
+      "retrieved_at": "2026-09-09T20:42:47.628102+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1002/hbm.1058"
+    },
+    "secondary": {
+      "doi": "10.1002/hbm.1058",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "Thomas E Nichols and Andrew P Holmes",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Nichols",
+              "given": "Thomas E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Holmes",
+              "given": "Andrew P.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Human Brain Mapping",
+          "match": true,
+          "source": [
+            "Human Brain Mapping"
+          ]
+        },
+        "pages": {
+          "local": "1--25",
+          "match": true,
+          "source": [
+            "1-25"
+          ]
+        },
+        "title": {
+          "local": "Nonparametric permutation tests for functional neuroimaging: a primer with examples",
+          "match": true,
+          "source": [
+            "Nonparametric permutation tests for functional neuroimaging: A primer with examples"
+          ]
+        },
+        "volume": {
+          "local": "15",
+          "match": true,
+          "source": [
+            "15"
+          ]
+        },
+        "year": {
+          "local": "2001",
+          "match": true,
+          "source": [
+            "2001",
+            "2002"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly",
+        "Secondary year: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Biostatistics, University of Michigan, Ann Arbor, Michigan, USA."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-4516-5103"
+              },
+              "firstName": "Thomas E",
+              "fullName": "Nichols TE",
+              "initials": "TE",
+              "lastName": "Nichols"
+            },
+            {
+              "firstName": "Andrew P",
+              "fullName": "Holmes AP",
+              "initials": "AP",
+              "lastName": "Holmes"
+            }
+          ]
+        },
+        "doi": "10.1002/hbm.1058",
+        "firstPublicationDate": "2002-01-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/hbm.1058"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6871862"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6871862?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/hbm.1058"
+            }
+          ]
+        },
+        "id": "11747097",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2002 Jan",
+          "issue": "1",
+          "journal": {
+            "essn": "1097-0193",
+            "isoabbreviation": "Hum Brain Mapp",
+            "issn": "1065-9471",
+            "medlineAbbreviation": "Hum Brain Mapp",
+            "nlmid": "9419065",
+            "title": "Human brain mapping"
+          },
+          "journalIssueId": 1036647,
+          "monthOfPublication": 1,
+          "printPublicationDate": "2002-01-01",
+          "volume": "15",
+          "yearOfPublication": 2002
+        },
+        "pageInfo": "1-25",
+        "pmcid": "PMC6871862",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2002",
+        "source": "MED",
+        "title": "Nonparametric permutation tests for functional neuroimaging: a primer with examples."
+      },
+      "record": {
+        "DOI": "10.1002/hbm.1058",
+        "ISSN": [
+          "1065-9471",
+          "1097-0193"
+        ],
+        "author": [
+          {
+            "family": "Nichols",
+            "given": "Thomas E",
+            "suffix": ""
+          },
+          {
+            "family": "Holmes",
+            "given": "Andrew P",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Human brain mapping",
+          "Hum Brain Mapp",
+          "Hum Brain Mapp",
+          "Human Brain Mapping"
+        ],
+        "issue": "1",
+        "page": "1-25",
+        "published": {
+          "date-parts": [
+            [
+              2002
+            ]
+          ]
+        },
+        "title": [
+          "Nonparametric permutation tests for functional neuroimaging: a primer with examples"
+        ],
+        "type": "journal-article",
+        "volume": "15"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1212%2Fwnl.49.5.1312%22+OR+DOI%3A%2210.1152%2Fphysrev.00035.2008%22+OR+DOI%3A%2210.1016%2Fs0926-6410%2898%2900043-3%22+OR+DOI%3A%2210.1038%2F35084005%22+OR+DOI%3A%2210.1038%2Fnews010712-13%22+OR+DOI%3A%2210.1162%2Fjocn.1993.5.1.1%22+OR+DOI%3A%2210.1093%2Fcercor%2F10.9.829%22+OR+DOI%3A%2210.1016%2Fj.cub.2008.03.054%22+OR+DOI%3A%2210.1006%2Febeh.2001.0163%22+OR+DOI%3A%2210.1136%2Fjnnp.74.4.433%22+OR+DOI%3A%2210.1017%2Fs1355617708080156%22+OR+DOI%3A%2210.1016%2Fj.neulet.2010.10.046%22+OR+DOI%3A%2210.1111%2Fj.2517-6161.1953.tb00135.x%22+OR+DOI%3A%2210.1016%2Fj.tins.2007.02.001%22+OR+DOI%3A%2210.1002%2Fcne.901650402%22+OR+DOI%3A%2210.1242%2Fjeb.02060%22+OR+DOI%3A%2210.1016%2Fs0006-8993%2896%2901286-3%22+OR+DOI%3A%2210.1016%2Fs0140-6736%2885%2992413-4%22+OR+DOI%3A%2210.1523%2Fjneurosci.3688-08.2009%22+OR+DOI%3A%2210.1007%2Fbf02293745%22+OR+DOI%3A%2210.1198%2Ftech.2003.s161%22+OR+DOI%3A%2210.1002%2Fhbm.1058%22+OR+DOI%3A%2210.1152%2Fphysrev.1995.75.4.689%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhl123%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.9.3.384%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:01:46.063868+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/11747097"
+    },
+    "pubmed_id": "11747097"
+  },
+  {
+    "kind": "corroborated_issue_year",
+    "key": "MorrEtal18",
+    "fingerprint": "v2:783a1e3b900ac6dc0ba341b285d8a989c92f9b174fccf5311be5b9a996ce2230",
+    "doi": "10.1002/da.22842",
+    "changes": {
+      "year": {
+        "before": "2018",
+        "after": "2019"
+      }
+    },
+    "primary": {
+      "advisories": [],
+      "doi": "10.1002/da.22842",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "I D Morres and A Hatzigeorgiadis and A Stathi and N Comoutos and C Arpin-Cribbie and C Krommidas and Y Theodorakis",
+          "match": true,
+          "source": [
+            {
+              "ORCID": "https://orcid.org/0000-0001-9103-2910",
+              "affiliation": [
+                {
+                  "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+                }
+              ],
+              "authenticated-orcid": false,
+              "family": "Morres",
+              "given": "Ioannis D.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+                }
+              ],
+              "family": "Hatzigeorgiadis",
+              "given": "Antonis",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "School of Sport, Exercise and Rehabilitation Sciences; University of Birmingham; Birmingham UK"
+                }
+              ],
+              "family": "Stathi",
+              "given": "Afroditi",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+                }
+              ],
+              "family": "Comoutos",
+              "given": "Nikos",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Psychology; Laurentian University; Sudbury Ontario Canada"
+                }
+              ],
+              "family": "Arpin-Cribbie",
+              "given": "Chantal",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+                }
+              ],
+              "family": "Krommidas",
+              "given": "Charalampos",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+                }
+              ],
+              "family": "Theodorakis",
+              "given": "Yannis",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Depression and Anxiety",
+          "match": true,
+          "source": [
+            "Depression and Anxiety"
+          ]
+        },
+        "number": {
+          "local": "1",
+          "match": true,
+          "source": [
+            "1"
+          ]
+        },
+        "pages": {
+          "local": "39--53",
+          "match": true,
+          "source": [
+            "39-53"
+          ]
+        },
+        "title": {
+          "local": "Aerobic exercise for adult patients with major depressive disorder in mental health services: a systematic review and meta-analysis",
+          "match": true,
+          "source": [
+            "Aerobic exercise for adult patients with major depressive disorder in mental health services: A systematic review and meta-analysis"
+          ]
+        },
+        "volume": {
+          "local": "36",
+          "match": true,
+          "source": [
+            "36"
+          ]
+        },
+        "year": {
+          "local": "2018",
+          "match": true,
+          "source": [
+            "2018",
+            "2019"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly"
+      ],
+      "record": {
+        "DOI": "10.1002/da.22842",
+        "ISSN": [
+          "1091-4269"
+        ],
+        "URL": "https://doi.org/10.1002/da.22842",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0001-9103-2910",
+            "affiliation": [
+              {
+                "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+              }
+            ],
+            "authenticated-orcid": false,
+            "family": "Morres",
+            "given": "Ioannis D.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+              }
+            ],
+            "family": "Hatzigeorgiadis",
+            "given": "Antonis",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "School of Sport, Exercise and Rehabilitation Sciences; University of Birmingham; Birmingham UK"
+              }
+            ],
+            "family": "Stathi",
+            "given": "Afroditi",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+              }
+            ],
+            "family": "Comoutos",
+            "given": "Nikos",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "Department of Psychology; Laurentian University; Sudbury Ontario Canada"
+              }
+            ],
+            "family": "Arpin-Cribbie",
+            "given": "Chantal",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+              }
+            ],
+            "family": "Krommidas",
+            "given": "Charalampos",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+              }
+            ],
+            "family": "Theodorakis",
+            "given": "Yannis",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Depression and Anxiety"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              2018,
+              10,
+              18
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fda.22842",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "http://onlinelibrary.wiley.com/wol1/doi/10.1002/da.22842/fullpdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "39-53",
+        "published": {
+          "date-parts": [
+            [
+              2018,
+              10,
+              18
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2018,
+              10,
+              18
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2019,
+              1
+            ]
+          ]
+        },
+        "publisher": "Wiley",
+        "title": [
+          "Aerobic exercise for adult patients with major depressive disorder in mental health services: A systematic review and meta-analysis"
+        ],
+        "type": "journal-article",
+        "volume": "36"
+      },
+      "retrieved_at": "2026-09-09T21:41:01.447340+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1002/da.22842"
+    },
+    "secondary": {
+      "doi": "10.1002/da.22842",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "I D Morres and A Hatzigeorgiadis and A Stathi and N Comoutos and C Arpin-Cribbie and C Krommidas and Y Theodorakis",
+          "match": true,
+          "source": [
+            {
+              "ORCID": "https://orcid.org/0000-0001-9103-2910",
+              "affiliation": [
+                {
+                  "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+                }
+              ],
+              "authenticated-orcid": false,
+              "family": "Morres",
+              "given": "Ioannis D.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+                }
+              ],
+              "family": "Hatzigeorgiadis",
+              "given": "Antonis",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "School of Sport, Exercise and Rehabilitation Sciences; University of Birmingham; Birmingham UK"
+                }
+              ],
+              "family": "Stathi",
+              "given": "Afroditi",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+                }
+              ],
+              "family": "Comoutos",
+              "given": "Nikos",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Psychology; Laurentian University; Sudbury Ontario Canada"
+                }
+              ],
+              "family": "Arpin-Cribbie",
+              "given": "Chantal",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+                }
+              ],
+              "family": "Krommidas",
+              "given": "Charalampos",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "School of Physical Education and Sport Science; University of Thessaly; Trikala Greece"
+                }
+              ],
+              "family": "Theodorakis",
+              "given": "Yannis",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Depression and Anxiety",
+          "match": true,
+          "source": [
+            "Depression and Anxiety"
+          ]
+        },
+        "number": {
+          "local": "1",
+          "match": true,
+          "source": [
+            "1"
+          ]
+        },
+        "pages": {
+          "local": "39--53",
+          "match": true,
+          "source": [
+            "39-53"
+          ]
+        },
+        "title": {
+          "local": "Aerobic exercise for adult patients with major depressive disorder in mental health services: a systematic review and meta-analysis",
+          "match": true,
+          "source": [
+            "Aerobic exercise for adult patients with major depressive disorder in mental health services: A systematic review and meta-analysis"
+          ]
+        },
+        "volume": {
+          "local": "36",
+          "match": true,
+          "source": [
+            "36"
+          ]
+        },
+        "year": {
+          "local": "2018",
+          "match": true,
+          "source": [
+            "2018",
+            "2019"
+          ]
+        }
+      },
+      "issues": [
+        "year: conflicting or missing publication dates; select the cited edition explicitly",
+        "Secondary year: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "School of Physical Education and Sport Science, University of Thessaly, Trikala, Greece."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-9103-2910"
+              },
+              "firstName": "Ioannis D",
+              "fullName": "Morres ID",
+              "initials": "ID",
+              "lastName": "Morres"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "School of Physical Education and Sport Science, University of Thessaly, Trikala, Greece."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-7062-479X"
+              },
+              "firstName": "Antonis",
+              "fullName": "Hatzigeorgiadis A",
+              "initials": "A",
+              "lastName": "Hatzigeorgiadis"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "School of Sport, Exercise and Rehabilitation Sciences, University of Birmingham, Birmingham, UK."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-2162-777X"
+              },
+              "firstName": "Afroditi",
+              "fullName": "Stathi A",
+              "initials": "A",
+              "lastName": "Stathi"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "School of Physical Education and Sport Science, University of Thessaly, Trikala, Greece."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-7853-9290"
+              },
+              "firstName": "Nikos",
+              "fullName": "Comoutos N",
+              "initials": "N",
+              "lastName": "Comoutos"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychology, Laurentian University, Sudbury, Ontario, Canada."
+                  }
+                ]
+              },
+              "firstName": "Chantal",
+              "fullName": "Arpin-Cribbie C",
+              "initials": "C",
+              "lastName": "Arpin-Cribbie"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "School of Physical Education and Sport Science, University of Thessaly, Trikala, Greece."
+                  }
+                ]
+              },
+              "firstName": "Charalampos",
+              "fullName": "Krommidas C",
+              "initials": "C",
+              "lastName": "Krommidas"
+            },
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "School of Physical Education and Sport Science, University of Thessaly, Trikala, Greece."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-5768-2060"
+              },
+              "firstName": "Yannis",
+              "fullName": "Theodorakis Y",
+              "initials": "Y",
+              "lastName": "Theodorakis"
+            }
+          ]
+        },
+        "doi": "10.1002/da.22842",
+        "firstPublicationDate": "2018-10-18",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/da.22842"
+            }
+          ]
+        },
+        "id": "30334597",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2019 Jan",
+          "issue": "1",
+          "journal": {
+            "essn": "1520-6394",
+            "isoabbreviation": "Depress Anxiety",
+            "issn": "1091-4269",
+            "medlineAbbreviation": "Depress Anxiety",
+            "nlmid": "9708816",
+            "title": "Depression and anxiety"
+          },
+          "journalIssueId": 2766388,
+          "monthOfPublication": 1,
+          "printPublicationDate": "2019-01-01",
+          "volume": "36",
+          "yearOfPublication": 2019
+        },
+        "pageInfo": "39-53",
+        "pubTypeList": {
+          "pubType": [
+            "Meta-Analysis",
+            "Systematic Review",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2019",
+        "source": "MED",
+        "title": "Aerobic exercise for adult patients with major depressive disorder in mental health services: A systematic review and meta-analysis."
+      },
+      "record": {
+        "DOI": "10.1002/da.22842",
+        "ISSN": [
+          "1091-4269",
+          "1520-6394"
+        ],
+        "author": [
+          {
+            "family": "Morres",
+            "given": "Ioannis D",
+            "suffix": ""
+          },
+          {
+            "family": "Hatzigeorgiadis",
+            "given": "Antonis",
+            "suffix": ""
+          },
+          {
+            "family": "Stathi",
+            "given": "Afroditi",
+            "suffix": ""
+          },
+          {
+            "family": "Comoutos",
+            "given": "Nikos",
+            "suffix": ""
+          },
+          {
+            "family": "Arpin-Cribbie",
+            "given": "Chantal",
+            "suffix": ""
+          },
+          {
+            "family": "Krommidas",
+            "given": "Charalampos",
+            "suffix": ""
+          },
+          {
+            "family": "Theodorakis",
+            "given": "Yannis",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Depression and anxiety",
+          "Depress Anxiety",
+          "Depress Anxiety",
+          "Depression and Anxiety"
+        ],
+        "issue": "1",
+        "page": "39-53",
+        "published": {
+          "date-parts": [
+            [
+              2019
+            ]
+          ]
+        },
+        "title": [
+          "Aerobic exercise for adult patients with major depressive disorder in mental health services: A systematic review and meta-analysis"
+        ],
+        "type": "journal-article",
+        "volume": "36"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.4324%2F9781315111261-7%22+OR+DOI%3A%2210.1016%2Fs0079-7421%2808%2960452-1%22+OR+DOI%3A%2210.1002%2Fhipo.20190%22+OR+DOI%3A%2210.1037%2F0096-3445.123.4.354%22+OR+DOI%3A%2210.1016%2Fj.neuroscience.2005.06.005%22+OR+DOI%3A%2210.3758%2Fs13421-012-0261-x%22+OR+DOI%3A%2210.1016%2Fs0079-7421%2808%2960041-9%22+OR+DOI%3A%2210.1176%2Fjnp.6.4.348%22+OR+DOI%3A%2210.1038%2Fnrn1201%22+OR+DOI%3A%2210.1037%2F0096-3445.130.2.199%22+OR+DOI%3A%2210.1523%2Fjneurosci.5277-08.2009%22+OR+DOI%3A%2210.1016%2Fj.brainres.2006.01.090%22+OR+DOI%3A%2210.1038%2F44134%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2012.10.053%22+OR+DOI%3A%2210.1016%2Fj.jad.2021.10.124%22+OR+DOI%3A%2210.1002%2Fda.22842%22+OR+DOI%3A%2210.1109%2Ftpami.2012.16%22+OR+DOI%3A%2210.1214%2Faos%2F1176342871%22+OR+DOI%3A%2210.2307%2F3102476%22+OR+DOI%3A%2210.4159%2F9780674988538%22+OR+DOI%3A%2210.1145%2F800025.1198404%22+OR+DOI%3A%2210.1145%2F800025.808376%22+OR+DOI%3A%2210.1145%2F3600006.3613165%22+OR+DOI%3A%2210.1109%2Fcvpr52733.2024.00686%22+OR+DOI%3A%2210.18653%2Fv1%2F2024.naacl-long.464%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:03:13.815290+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/30334597"
+    },
+    "pubmed_id": "30334597"
+  }
+]

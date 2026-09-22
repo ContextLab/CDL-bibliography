@@ -1,0 +1,88 @@
+{
+  "requested_doi": "10.1037//0882-7974.13.4.597",
+  "http_status": 301,
+  "location": "/works/10.1037/0882-7974.13.4.597",
+  "body_keys": [
+    "non_json_body"
+  ],
+  "record": {},
+  "prime_record": {
+    "publisher": "American Psychological Association (APA)",
+    "issue": "4",
+    "DOI": "10.1037/0882-7974.13.4.597",
+    "type": "journal-article",
+    "page": "597-607",
+    "title": [
+      "Aging and deficits in associative memory: What is the role of strategy production?"
+    ],
+    "volume": "13",
+    "author": [
+      {
+        "given": "John",
+        "family": "Dunlosky",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Christopher",
+        "family": "Hertzog",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published-online": {
+      "date-parts": [
+        [
+          1998,
+          12
+        ]
+      ]
+    },
+    "container-title": [
+      "Psychology and Aging"
+    ],
+    "link": [
+      {
+        "URL": "https://psycnet.apa.org/journals/pag/13/4/597.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "subtitle": [],
+    "issued": {
+      "date-parts": [
+        [
+          1998,
+          12
+        ]
+      ]
+    },
+    "URL": "https://doi.org/10.1037/0882-7974.13.4.597",
+    "relation": {},
+    "ISSN": [
+      "1939-1498",
+      "0882-7974"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1998,
+          12
+        ]
+      ]
+    }
+  }
+}

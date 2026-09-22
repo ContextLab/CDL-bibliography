@@ -1,0 +1,892 @@
+[
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "SmitEtal71",
+    "fingerprint": "v2:18ed475a281245b250b383c5bfa010953bf681ddf048cfdec2b7ea66ff21efa5",
+    "changes": {
+      "title": {
+        "before": "Imaginal versus verbal encoding and the primary-secondary memory distinction",
+        "after": "Imaginal versus verbal coding and the primary-secondary memory distinction"
+      }
+    },
+    "doi": "10.1016/s0022-5371(71)80064-6",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1016/s0022-5371(71)80064-6",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "E E Smith and J Barresi and A E Gross",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Smith",
+              "given": "Edward E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Barresi",
+              "given": "John",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Gross",
+              "given": "Alan E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Verbal Learning and Verbal Behavior",
+          "match": true,
+          "source": [
+            "Journal of Verbal Learning and Verbal Behavior"
+          ]
+        },
+        "number": {
+          "local": "6",
+          "match": true,
+          "source": [
+            "6"
+          ]
+        },
+        "pages": {
+          "local": "597--603",
+          "match": true,
+          "source": [
+            "597-603"
+          ]
+        },
+        "title": {
+          "local": "Imaginal versus verbal encoding and the primary-secondary memory distinction",
+          "match": false,
+          "source": [
+            "Imaginal versus verbal coding and the primary-secondary memory distinction"
+          ]
+        },
+        "volume": {
+          "local": "10",
+          "match": true,
+          "source": [
+            "10"
+          ]
+        },
+        "year": {
+          "local": "1971",
+          "match": true,
+          "source": [
+            "1971"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0022-5371(71)80064-6",
+        "ISSN": [
+          "0022-5371"
+        ],
+        "URL": "https://doi.org/10.1016/s0022-5371(71)80064-6",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Smith",
+            "given": "Edward E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Barresi",
+            "given": "John",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Gross",
+            "given": "Alan E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "issue": "6",
+        "issued": {
+          "date-parts": [
+            [
+              1971,
+              12
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537171800646?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537171800646?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "597-603",
+        "published": {
+          "date-parts": [
+            [
+              1971,
+              12
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1971,
+              12
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Imaginal versus verbal coding and the primary-secondary memory distinction"
+        ],
+        "type": "journal-article",
+        "volume": "10"
+      },
+      "retrieved_at": "2026-09-09T19:52:35.535740+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0022-5371%2871%2980064-6"
+    },
+    "publisher_source": {
+      "document_sha256": "00a7e55fc32d0ef02af6668be5984785b99cac61806f3d067bc862d12fbfe5fa",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(71)80064-6"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1971-12-31"
+        ],
+        "citation_title": [
+          "Imaginal versus verbal coding and the primary-secondary memory distinction"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537171800646</prism:url><dc:identifier>doi:10.1016/S0022-5371(71)80064-6</dc:identifier><eid>1-s2.0-S0022537171800646</eid><prism:doi>10.1016/S0022-5371(71)80064-6</prism:doi><pii>S0022-5371(71)80064-6</pii><dc:title>Imaginal versus verbal coding and the primary-secondary memory distinction </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1971-12-31</prism:coverDate><prism:coverDisplayDate>December 1971</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537171800646\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537171800646\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:18:59.547374+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2871%2980064-6"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "JenkEtal02",
+    "fingerprint": "v2:cb7ea1b14cc56b650fac518c2afa6880541e3633506ef30776437e232128cc27",
+    "changes": {
+      "title": {
+        "before": "Improved optimisation for the robust and accurate linear registration and motion correction of brain images",
+        "after": "Improved optimization for the robust and accurate linear registration and motion correction of brain images"
+      }
+    },
+    "doi": "10.1006/nimg.2002.1132",
+    "primary": {
+      "advisories": [
+        "Non-version source relationships retained: is-referenced-by"
+      ],
+      "doi": "10.1006/nimg.2002.1132",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "M Jenkinson and P Bannister and M Brady and S Smith",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Jenkinson",
+              "given": "Mark",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Bannister",
+              "given": "Peter",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Brady",
+              "given": "Michael",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Smith",
+              "given": "Stephen",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "{NeuroImage}",
+          "match": true,
+          "source": [
+            "NeuroImage"
+          ]
+        },
+        "number": {
+          "local": "2",
+          "match": true,
+          "source": [
+            "2"
+          ]
+        },
+        "pages": {
+          "local": "825--841",
+          "match": true,
+          "source": [
+            "825-841"
+          ]
+        },
+        "title": {
+          "local": "Improved optimisation for the robust and accurate linear registration and motion correction of brain images",
+          "match": false,
+          "source": [
+            "Improved Optimization for the Robust and Accurate Linear Registration and Motion Correction of Brain Images"
+          ]
+        },
+        "volume": {
+          "local": "17",
+          "match": true,
+          "source": [
+            "17"
+          ]
+        },
+        "year": {
+          "local": "2002",
+          "match": true,
+          "source": [
+            "2002"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1006/nimg.2002.1132",
+        "ISSN": [
+          "1053-8119"
+        ],
+        "URL": "https://doi.org/10.1006/nimg.2002.1132",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Jenkinson",
+            "given": "Mark",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Bannister",
+            "given": "Peter",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Brady",
+            "given": "Michael",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Smith",
+            "given": "Stephen",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "NeuroImage"
+        ],
+        "issue": "2",
+        "issued": {
+          "date-parts": [
+            [
+              2002,
+              10
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S1053811902911328?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S1053811902911328?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "825-841",
+        "published": {
+          "date-parts": [
+            [
+              2002,
+              10
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2002,
+              10
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "relation": {
+          "is-referenced-by": [
+            {
+              "asserted-by": "object",
+              "id": "10.1007/s10803-025-06867-z",
+              "id-type": "doi"
+            },
+            {
+              "asserted-by": "object",
+              "id": "10.1007/s00429-025-03013-4",
+              "id-type": "doi"
+            }
+          ]
+        },
+        "title": [
+          "Improved Optimization for the Robust and Accurate Linear Registration and Motion Correction of Brain Images"
+        ],
+        "type": "journal-article",
+        "volume": "17"
+      },
+      "retrieved_at": "2026-09-09T19:53:08.916895+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1006/nimg.2002.1132"
+    },
+    "publisher_source": {
+      "document_sha256": "b80e043ccb16cd7dfad64429451e73df2a0e3019b4bf47637960e54e63bae411",
+      "metadata": {
+        "citation_doi": [
+          "10.1006/nimg.2002.1132"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "2002-10-31"
+        ],
+        "citation_title": [
+          "Improved Optimization for the Robust and Accurate Linear Registration and Motion Correction of Brain Images"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811902911328</prism:url><dc:identifier>doi:10.1006/nimg.2002.1132</dc:identifier><eid>1-s2.0-S1053811902911328</eid><prism:doi>10.1006/nimg.2002.1132</prism:doi><pii>S1053-8119(02)91132-8</pii><dc:title>Improved Optimization for the Robust and Accurate Linear Registration and Motion Correction of Brain Images </dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>2002-10-31</prism:coverDate><prism:coverDisplayDate>October 2002</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1053811902911328\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811902911328\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:00.783732+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1006/nimg.2002.1132"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "SuriSchu99",
+    "fingerprint": "v2:fc2ad12f2eb5d7940b35ed9a7d43132cea4ad1544ed40999c865590f4fd1c351",
+    "changes": {
+      "title": {
+        "before": "A neural network with dopamine-like reinforcement signal that learns a spatial delayed response task",
+        "after": "A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task"
+      }
+    },
+    "doi": "10.1016/s0306-4522(98)00697-6",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 3"
+      ],
+      "doi": "10.1016/s0306-4522(98)00697-6",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "R E Suri and W Schultz",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Suri",
+              "given": "R.E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Schultz",
+              "given": "W.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Neuroscience",
+          "match": true,
+          "source": [
+            "Neuroscience"
+          ]
+        },
+        "pages": {
+          "local": "871--890",
+          "match": true,
+          "source": [
+            "871-890"
+          ]
+        },
+        "title": {
+          "local": "A neural network with dopamine-like reinforcement signal that learns a spatial delayed response task",
+          "match": false,
+          "source": [
+            "A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task"
+          ]
+        },
+        "volume": {
+          "local": "91",
+          "match": true,
+          "source": [
+            "91"
+          ]
+        },
+        "year": {
+          "local": "1999",
+          "match": true,
+          "source": [
+            "1999"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0306-4522(98)00697-6",
+        "ISSN": [
+          "0306-4522"
+        ],
+        "URL": "https://doi.org/10.1016/s0306-4522(98)00697-6",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Suri",
+            "given": "R.E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Schultz",
+            "given": "W.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Neuroscience"
+        ],
+        "issue": "3",
+        "issued": {
+          "date-parts": [
+            [
+              1999,
+              7
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0306452298006976?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0306452298006976?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "871-890",
+        "published": {
+          "date-parts": [
+            [
+              1999,
+              7
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1999,
+              7
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task"
+        ],
+        "type": "journal-article",
+        "volume": "91"
+      },
+      "retrieved_at": "2026-09-09T19:56:10.999787+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0306-4522%2898%2900697-6"
+    },
+    "publisher_source": {
+      "document_sha256": "c465332d01e31d384ae1a8008e3c20771c23425641aa3cfbcbd5e96e4e1225b2",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0306-4522(98)00697-6"
+        ],
+        "citation_issn": [
+          "0306-4522"
+        ],
+        "citation_journal_title": [
+          "Neuroscience"
+        ],
+        "citation_publication_date": [
+          "1999-07-31"
+        ],
+        "citation_title": [
+          "A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0306452298006976</prism:url><dc:identifier>doi:10.1016/S0306-4522(98)00697-6</dc:identifier><eid>1-s2.0-S0306452298006976</eid><prism:doi>10.1016/S0306-4522(98)00697-6</prism:doi><pii>S0306-4522(98)00697-6</pii><dc:title>A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task </dc:title><prism:publicationName>Neuroscience</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>03064522</prism:issn><prism:coverDate>1999-07-31</prism:coverDate><prism:coverDisplayDate>July 1999</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0306452298006976\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0306452298006976\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:02.057080+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0306-4522%2898%2900697-6"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "McKoRatc89",
+    "fingerprint": "v2:1bbfc0918e13c212c16f500c73b9b1db9dd8157587da9dbb9e922c4767c55b5f",
+    "changes": {
+      "title": {
+        "before": "Assessing the occurrence of elaborative inference with recognition: compatibility checking versus compound cue theory",
+        "after": "Assessing the occurrence of eleborative inference with recognition: compatibility checking vs compound cue theory"
+      }
+    },
+    "doi": "10.1016/0749-596x(89)90012-0",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 5"
+      ],
+      "doi": "10.1016/0749-596x(89)90012-0",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "G Mc{K}oon and R Ratcliff",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "McKoon",
+              "given": "Gail",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Ratcliff",
+              "given": "Roger",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Memory and Language",
+          "match": true,
+          "source": [
+            "Journal of Memory and Language"
+          ]
+        },
+        "pages": {
+          "local": "547--563",
+          "match": true,
+          "source": [
+            "547-563"
+          ]
+        },
+        "title": {
+          "local": "Assessing the occurrence of elaborative inference with recognition: compatibility checking versus compound cue theory",
+          "match": false,
+          "source": [
+            "Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory"
+          ]
+        },
+        "volume": {
+          "local": "28",
+          "match": true,
+          "source": [
+            "28"
+          ]
+        },
+        "year": {
+          "local": "1989",
+          "match": true,
+          "source": [
+            "1989"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/0749-596x(89)90012-0",
+        "ISSN": [
+          "0749-596X"
+        ],
+        "URL": "https://doi.org/10.1016/0749-596x(89)90012-0",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "McKoon",
+            "given": "Gail",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Ratcliff",
+            "given": "Roger",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Memory and Language"
+        ],
+        "issue": "5",
+        "issued": {
+          "date-parts": [
+            [
+              1989,
+              10
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0749596X89900120?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0749596X89900120?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "547-563",
+        "published": {
+          "date-parts": [
+            [
+              1989,
+              10
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1989,
+              10
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory"
+        ],
+        "type": "journal-article",
+        "volume": "28"
+      },
+      "retrieved_at": "2026-09-09T20:02:11.422964+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0749-596x%2889%2990012-0"
+    },
+    "publisher_source": {
+      "document_sha256": "2abb458b3af7fbf88c4b561b5df6797b0b9bf96b5c30aa00a4990d4b8f107f62",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0749-596X(89)90012-0"
+        ],
+        "citation_issn": [
+          "0749-596X"
+        ],
+        "citation_journal_title": [
+          "Journal of Memory and Language"
+        ],
+        "citation_publication_date": [
+          "1989-10-31"
+        ],
+        "citation_title": [
+          "Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0749596X89900120</prism:url><dc:identifier>doi:10.1016/0749-596X(89)90012-0</dc:identifier><eid>1-s2.0-0749596X89900120</eid><prism:doi>10.1016/0749-596X(89)90012-0</prism:doi><pii>0749-596X(89)90012-0</pii><dc:title>Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory </dc:title><prism:publicationName>Journal of Memory and Language</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>0749596X</prism:issn><prism:coverDate>1989-10-31</prism:coverDate><prism:coverDisplayDate>October 1989</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0749596X89900120\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0749596X89900120\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:06.046228+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0749-596x%2889%2990012-0"
+    }
+  }
+]

@@ -1,0 +1,472 @@
+{
+  "Brem78": {
+    "pages_viewed": [
+      1
+    ],
+    "observed": "Original page shows nine-month-old with both hyphens, J. Gavin Bremner, Developmental Psychology 14(4):346–355 (1978). Author institutional record independently supplies the complete citation and canonical single-slash DOI. Fix missing hyphen and record that DOI; double-slash registry deposit is not treated as a separate publication.",
+    "sources": [
+      "https://research.lancaster-university.uk/en/publications/egocentric-versus-allocentric-spatial-coding-in-nine-month-old-in/"
+    ],
+    "pdf_sha256": "b7075a2a78e416b95f1c1faa032d5aa0a9dffa99483d750289c2d7e67dc39753",
+    "registry_record": {
+      "DOI": "10.1037/0012-1649.14.4.346",
+      "ISSN": [
+        "1939-0599",
+        "0012-1649"
+      ],
+      "URL": "https://doi.org/10.1037/0012-1649.14.4.346",
+      "author": [
+        {
+          "ORCID": "https://orcid.org/0000-0001-8068-7057",
+          "affiliation": [],
+          "authenticated-orcid": false,
+          "family": "Bremner",
+          "given": "J. Gavin",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        }
+      ],
+      "container-title": [
+        "Developmental Psychology"
+      ],
+      "issue": "4",
+      "issued": {
+        "date-parts": [
+          [
+            1978,
+            7
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "http://psycnet.apa.org/journals/dev/14/4/346.pdf",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "346-355",
+      "published": {
+        "date-parts": [
+          [
+            1978,
+            7
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            1978,
+            7
+          ]
+        ]
+      },
+      "publisher": "American Psychological Association (APA)",
+      "title": [
+        "Egocentric versus allocentric spatial coding in nine-month-old infants: Factors influencing the choice of code."
+      ],
+      "type": "journal-article",
+      "volume": "14"
+    },
+    "verification": "Source evidence only; no manual approval."
+  },
+  "CraiLock72": {
+    "pages_viewed": [
+      1
+    ],
+    "observed": "Published page gives Levels of Processing: A Framework for Memory Research, Fergus I. M. Craik and Robert S. Lockhart, journal volume 11, 671–684 (1972). Remove only the spurious pre-colon space. Superscript 1 is an explicitly explained footnote, not part of the title; it is not inserted.",
+    "pdf_sha256": "29e6ec73e7f3804178b7d589c256d851dcefd7ed1ce9a4d99cdfa1168226a083",
+    "registry_record": {
+      "DOI": "10.1016/s0022-5371(72)80001-x",
+      "ISSN": [
+        "0022-5371"
+      ],
+      "URL": "https://doi.org/10.1016/s0022-5371(72)80001-x",
+      "author": [
+        {
+          "affiliation": [],
+          "family": "Craik",
+          "given": "Fergus I.M.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [],
+          "family": "Lockhart",
+          "given": "Robert S.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Journal of Verbal Learning and Verbal Behavior"
+      ],
+      "issue": "6",
+      "issued": {
+        "date-parts": [
+          [
+            1972,
+            12
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "https://api.elsevier.com/content/article/PII:S002253717280001X?httpAccept=text/xml",
+          "content-type": "text/xml",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://api.elsevier.com/content/article/PII:S002253717280001X?httpAccept=text/plain",
+          "content-type": "text/plain",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        }
+      ],
+      "page": "671-684",
+      "published": {
+        "date-parts": [
+          [
+            1972,
+            12
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            1972,
+            12
+          ]
+        ]
+      },
+      "publisher": "Elsevier BV",
+      "title": [
+        "Levels of processing: A framework for memory research"
+      ],
+      "type": "journal-article",
+      "volume": "11"
+    },
+    "verification": "Source evidence only; no manual approval."
+  },
+  "RobbMonr51": {
+    "pages_viewed": [
+      2,
+      9
+    ],
+    "observed": "Original paper first page gives Herbert Robbins and Sutton Monro, full title and printed page 400. Final paper page is printed 407; JSTOR cover text separately gives Annals of Mathematical Statistics 22(3):400–407 (1951), stable ID 2236626. Replace unrelated 327–495 range. Crossref journal DOI matches complete original identity and coordinates; competing DOI 10.1007/978-1-4612-5110-1_9 is an explicitly different 1985 Selected Papers reprint. Add original journal DOI to bind the cited version. Project Euclid page was not accessible; no claim of reading that page.",
+    "pdf_sha256": "bfd27a2eff59c0a990141b2e4ce35579aec54df22bf4dbd9000f250748240a7b",
+    "registry_record": {
+      "DOI": "10.1214/aoms/1177729586",
+      "ISSN": [
+        "0003-4851"
+      ],
+      "URL": "https://doi.org/10.1214/aoms/1177729586",
+      "author": [
+        {
+          "affiliation": [],
+          "family": "Robbins",
+          "given": "Herbert",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [],
+          "family": "Monro",
+          "given": "Sutton",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "The Annals of Mathematical Statistics"
+      ],
+      "issue": "3",
+      "issued": {
+        "date-parts": [
+          [
+            1951,
+            9
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "http://projecteuclid.org/download/pdf_1/euclid.aoms/1177729586",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "400-407",
+      "published": {
+        "date-parts": [
+          [
+            1951,
+            9
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            1951,
+            9
+          ]
+        ]
+      },
+      "publisher": "Institute of Mathematical Statistics",
+      "title": [
+        "A Stochastic Approximation Method"
+      ],
+      "type": "journal-article",
+      "volume": "22"
+    },
+    "verification": "Source evidence only; no manual approval."
+  },
+  "StanEtal06": {
+    "pages_viewed": [
+      1
+    ],
+    "observed": "Published page header explicitly gives Journal of Experimental Psychology: Human Perception and Performance, 32(3):688–704, 2006, DOI 10.1037/0096-1523.32.3.688. All four bylines and title agree. Correct Experiment to Experimental; no general journal alias or acceptance-policy change.",
+    "pdf_sha256": "c92a02be983eab7f4f5a42c4279522e3fe266281abd47de5450aa94ce3821c80",
+    "registry_record": {
+      "DOI": "10.1037/0096-1523.32.3.688",
+      "ISSN": [
+        "1939-1277",
+        "0096-1523"
+      ],
+      "URL": "https://doi.org/10.1037/0096-1523.32.3.688",
+      "author": [
+        {
+          "affiliation": [],
+          "family": "Stankiewicz",
+          "given": "Brian J.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [],
+          "family": "Legge",
+          "given": "Gordon E.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Mansfield",
+          "given": "J. Stephen",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Schlicht",
+          "given": "Erik J.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Journal of Experimental Psychology: Human Perception and Performance"
+      ],
+      "issue": "3",
+      "issued": {
+        "date-parts": [
+          [
+            2006,
+            6
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "http://psycnet.apa.org/journals/xhp/32/3/688.pdf",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "688-704",
+      "published": {
+        "date-parts": [
+          [
+            2006,
+            6
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2006,
+            6
+          ]
+        ]
+      },
+      "publisher": "American Psychological Association (APA)",
+      "title": [
+        "Lost in virtual space: Studies in human and ideal spatial navigation."
+      ],
+      "type": "journal-article",
+      "volume": "32"
+    },
+    "verification": "Source evidence only; no manual approval."
+  },
+  "CoheEtal16": {
+    "pages_viewed": [
+      1
+    ],
+    "observed": "The local file is an accepted-manuscript cover, explicitly naming Iris Cohen, Willem-Paul Brinkman and Mark A. Neerincx with the final article DOI. It supports the byline spelling, not final pagination. Publisher search result and author-institution record independently agree with the final Crossref record on title/byline and 91:1–12 (2016). Correct Willem-Park to Willem-Paul. Publisher page open returned 403; its indexed metadata was available. Subsequently read the final published PDF hosted by TU Delft: actual article page 1 explicitly gives all three full names including Mark A. Neerincx, the final DOI and journal 91 (2016) 1–12. The web PDF screenshot was unavailable; the rendered local manuscript cover and parsed final-paper text agree on the corrected name.",
+    "sources": [
+      "https://www.sciencedirect.com/science/article/pii/S1071581916000392",
+      "https://research.tudelft.nl/en/publications/effects-of-different-real-time-feedback-types-on-human-performanc/",
+      "https://repository.tudelft.nl/file/File_b86d1a66-14ed-4159-863f-6439d363df7d"
+    ],
+    "pdf_sha256": "a3ae1fe991e06f5326a3551aff21b5f2201463a6af7d57b784b1b2c27bcca7c1",
+    "registry_record": {
+      "DOI": "10.1016/j.ijhcs.2016.03.007",
+      "ISSN": [
+        "1071-5819"
+      ],
+      "URL": "https://doi.org/10.1016/j.ijhcs.2016.03.007",
+      "author": [
+        {
+          "ORCID": "https://orcid.org/0000-0002-3280-5642",
+          "affiliation": [],
+          "authenticated-orcid": false,
+          "family": "Cohen",
+          "given": "Iris",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [],
+          "family": "Brinkman",
+          "given": "Willem-Paul",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Neerincx",
+          "given": "Mark A.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "International Journal of Human-Computer Studies"
+      ],
+      "issued": {
+        "date-parts": [
+          [
+            2016,
+            7
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "https://api.elsevier.com/content/article/PII:S1071581916000392?httpAccept=text/xml",
+          "content-type": "text/xml",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://api.elsevier.com/content/article/PII:S1071581916000392?httpAccept=text/plain",
+          "content-type": "text/plain",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        }
+      ],
+      "page": "1-12",
+      "published": {
+        "date-parts": [
+          [
+            2016,
+            7
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2016,
+            7
+          ]
+        ]
+      },
+      "publisher": "Elsevier BV",
+      "title": [
+        "Effects of different real-time feedback types on human performance in high-demanding work conditions"
+      ],
+      "type": "journal-article",
+      "volume": "91"
+    },
+    "verification": "Source evidence only; no manual approval."
+  }
+}

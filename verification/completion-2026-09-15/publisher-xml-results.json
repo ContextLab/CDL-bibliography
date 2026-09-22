@@ -1,0 +1,120 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 62.73,
+      "network_requests": 22,
+      "added_review_records": 22,
+      "batch_statuses": {
+        "metadata_verified": 22
+      },
+      "library_statuses": {
+        "metadata_verified": 3190,
+        "needs_review": 3232
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 17.66,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 22
+      },
+      "library_statuses": {
+        "metadata_verified": 3190,
+        "needs_review": 3232
+      }
+    }
+  ],
+  "entries": {
+    "AlleEtal69": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:8dbbad0dc9eadc659d19ea9def3313a5cd13c2e50117e263f8ef858c58535cc9"
+    },
+    "BjorHeal74": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:bd6a4ad1d41b1f1d1cb2fd53ab263eb6b5a804ffd7eb86f4a47f99d30e7f8dd3"
+    },
+    "BurkEtal91": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:1f7074b7e1cb57aeec8955760152a65034040d11d590e383d6fdcd225484bf61"
+    },
+    "ChevDeni90": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:fd777a533d70953566b4b6b3b4c71ce1a42d68b6db52f6ce94aa5d203e63ae19"
+    },
+    "Cohe70": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:569a3db6b1f08b9f9e5e9b691ec62d8e8d701d41691ba8c4ed8302a900b0ee25"
+    },
+    "DEspEtal98": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:ad1be509e58f0fc2837decbd6575f6562515099f8398d07d5587d50e16f3f152"
+    },
+    "DaneCarp80": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:c66c19f2aaf3e84ce4c8baf7a520d2fa560ef88abb6f0afe6c7552ab72a94975"
+    },
+    "Delp72": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:0aad8568efec6cbf65a01a681f311a2d3684f2e15c8bc391688a5a2ec5e8dcec"
+    },
+    "HintCurr94": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:ca902b8f27a07f4275adcc1259284f511f87fdea41a38d7bac48422e0fbdfcbe"
+    },
+    "JenkEtal02": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:1a3e62fb70833b85d229b59dffb5cd7df6f9b56c33af47076c4eabec7486fae1"
+    },
+    "KariEtal84": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:da3816847b6d2a1d6f761a8ae5d14a1c5bd7cdfbf1c05bc8f505872e5aa0197f"
+    },
+    "LebeNico06": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:8b459a84fbbc0e35a551d1cfae87f0a99919831b5db7874a6f3567011f76e5d0"
+    },
+    "LindEtal03": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:59c75757d04286f16e392d6a478c5a528988786f4afb35ed4a517bdceffee97a"
+    },
+    "NormWick69": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:7401c46cf5afbe47a6e6bfaf16f010f3e84ef0dce32cd29308f3ff25b76336d2"
+    },
+    "OharEtal04": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:eb2bd0c8704b322dd01d8bb9eb270651ad233808e91b2f7c04a87dfd33660a7e"
+    },
+    "ShauEtal72": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:0b64c855fd8da4694ed96ff981c8962b63e23b92c1675e00a579680939fb02ea"
+    },
+    "SmitEtal71": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:978c92e372c115e0073799adad317737558e23832d0df5e8968edeb05ebbde41"
+    },
+    "Star68": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:dba9218efb1a623ba177b2898ffd51f3a9b779fd5523748c631b71efa8bf2a36"
+    },
+    "StewFox91": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:3c1aa65220b1193553afbee8e5b2e564eed1a84c6f4d9fc2293933057e838e9c"
+    },
+    "SuriSchu99": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:47a68cf52de4368aef320ebcd3e31acd9617f5e39a623c6344fc5893579de877"
+    },
+    "Tzen73": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:79bed402a193fcdea2ca21729427b654548ef8b0cd58981b1e2ac8edd0cbd285"
+    },
+    "Will01": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:c6381b81d6eb1fb060fb462b9484758f44d94829111b8f07deb9cce3ff76babd"
+    }
+  }
+}

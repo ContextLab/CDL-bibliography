@@ -1,0 +1,185 @@
+[
+  {
+    "status": "metadata_retrieved",
+    "url": "https://www.cambridge.org/core/journals/psychometrika/article/abs/statistical-description-of-verbal-learning/8BD33E1187A07D0DB924F32288F21AF5",
+    "retrieved_at": "2026-09-16T00:02:43.734655+00:00",
+    "sha256": "b3bb8473d2c63d771354625c0146f526875d87e3a5ca61a9a72e2ef8cb14b878",
+    "metadata": {
+      "citation_journal_title": [
+        "Psychometrika"
+      ],
+      "citation_title": [
+        "A Statistical Description of Verbal Learning"
+      ],
+      "citation_author": [
+        "George A. Miller",
+        "William J. McGill"
+      ],
+      "citation_publication_date": [
+        "1952/12"
+      ],
+      "citation_online_date": [
+        "2025/01/01"
+      ],
+      "citation_volume": [
+        "17"
+      ],
+      "citation_issue": [
+        "4"
+      ],
+      "citation_firstpage": [
+        "369"
+      ],
+      "citation_lastpage": [
+        "396"
+      ],
+      "citation_issn": [
+        "0033-3123",
+        "1860-0980"
+      ],
+      "citation_doi": [
+        "10.1007/BF02288914"
+      ]
+    },
+    "key": "MillMcGi52",
+    "expected_doi": "10.1007/bf02288914",
+    "doi_matches": true
+  },
+  {
+    "status": "metadata_retrieved",
+    "url": "https://www.cambridge.org/core/journals/psychometrika/article/abs/nonmetric-individual-differences-multidimensional-scaling-an-alternating-least-squares-method-with-optimal-scaling-features/1BEF04710C812FFBD75622D2C958A55F",
+    "retrieved_at": "2026-09-16T00:02:45.131437+00:00",
+    "sha256": "d4d4ac738b3ff93fd2eb06318199f25c513bdbde3bcd7e932a9589b2887f3032",
+    "metadata": {
+      "citation_journal_title": [
+        "Psychometrika"
+      ],
+      "citation_title": [
+        "Nonmetric Individual Differences Multidimensional Scaling: An Alternating Least Squares Method with Optimal Scaling Features"
+      ],
+      "citation_author": [
+        "Yoshio Takane",
+        "Forrest W. Young",
+        "Jan de Leeuw"
+      ],
+      "citation_publication_date": [
+        "1977/03"
+      ],
+      "citation_online_date": [
+        "2025/01/01"
+      ],
+      "citation_volume": [
+        "42"
+      ],
+      "citation_issue": [
+        "1"
+      ],
+      "citation_firstpage": [
+        "7"
+      ],
+      "citation_lastpage": [
+        "67"
+      ],
+      "citation_issn": [
+        "0033-3123",
+        "1860-0980"
+      ],
+      "citation_doi": [
+        "10.1007/BF02293745"
+      ]
+    },
+    "key": "TakaEtal77",
+    "expected_doi": "10.1007/bf02293745",
+    "doi_matches": true
+  },
+  {
+    "status": "unavailable",
+    "url": "https://bpspsychub.onlinelibrary.wiley.com/doi/abs/10.1111/j.2044-8295.1990.tb02362.x",
+    "retrieved_at": "2026-09-16T00:02:46.407714+00:00",
+    "error": "Source lookup HTTP 403",
+    "key": "Cohe90",
+    "expected_doi": "10.1111/j.2044-8295.1990.tb02362.x",
+    "doi_matches": false
+  },
+  {
+    "status": "unavailable",
+    "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/ana.21295",
+    "retrieved_at": "2026-09-16T00:02:47.580810+00:00",
+    "error": "Source lookup HTTP 403",
+    "key": "HamaEtal08",
+    "expected_doi": "10.1002/ana.21295",
+    "doi_matches": false
+  },
+  {
+    "status": "unavailable",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S016502700500083X",
+    "retrieved_at": "2026-09-16T00:02:48.777514+00:00",
+    "error": "Source lookup HTTP 403",
+    "key": "Brun04-erratum",
+    "expected_doi": "10.1016/j.jneumeth.2005.03.001",
+    "doi_matches": false
+  },
+  {
+    "status": "unavailable",
+    "url": "https://journals.sagepub.com/doi/10.2466/11.IT.3.1",
+    "retrieved_at": "2026-09-16T00:02:49.995991+00:00",
+    "error": "Source lookup HTTP 403",
+    "key": "Kerb14",
+    "expected_doi": "10.2466/11.it.3.1",
+    "doi_matches": false
+  },
+  {
+    "status": "unavailable",
+    "url": "https://www.sciencedirect.com/science/article/pii/S1071581996900609",
+    "retrieved_at": "2026-09-16T00:02:51.187238+00:00",
+    "error": "Source lookup HTTP 403",
+    "key": "WitmEtal96",
+    "expected_doi": "10.1006/ijhc.1996.0060",
+    "doi_matches": false
+  },
+  {
+    "status": "unavailable",
+    "url": "https://link.springer.com/chapter/10.1007/978-1-4684-1083-9_9",
+    "retrieved_at": "2026-09-16T00:02:52.602575+00:00",
+    "error": "PDF URL must use HTTPS on an explicitly allowed host: https://idp.springer.com/authorize?response_type=cookie&client_id=springerlink&redirect_uri=https%3A%2F%2Flink.springer.com%2Fchapter%2F10.1007%2F978-1-4684-1083-9_9",
+    "key": "AherBeat81",
+    "expected_doi": "10.1007/978-1-4684-1083-9_9",
+    "doi_matches": false
+  },
+  {
+    "status": "unavailable",
+    "url": "https://www.nature.com/articles/nn.3138",
+    "retrieved_at": "2026-09-16T00:02:53.983247+00:00",
+    "error": "PDF URL must use HTTPS on an explicitly allowed host: https://idp.nature.com/authorize?response_type=cookie&client_id=grover&redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fnn.3138",
+    "key": "GuptEtal12",
+    "expected_doi": "10.1038/nn.3138",
+    "doi_matches": false
+  },
+  {
+    "status": "unavailable",
+    "url": "https://www.nature.com/articles/nature05631",
+    "retrieved_at": "2026-09-16T00:02:55.201621+00:00",
+    "error": "PDF URL must use HTTPS on an explicitly allowed host: https://idp.nature.com/authorize?response_type=cookie&client_id=grover&redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fnature05631",
+    "key": "KoenEtal07",
+    "expected_doi": "10.1038/nature05631",
+    "doi_matches": false
+  },
+  {
+    "status": "unavailable",
+    "url": "https://www.nature.com/articles/nrn756",
+    "retrieved_at": "2026-09-16T00:02:56.634572+00:00",
+    "error": "PDF URL must use HTTPS on an explicitly allowed host: https://idp.nature.com/authorize?response_type=cookie&client_id=grover&redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fnrn756",
+    "key": "BretEtal02",
+    "expected_doi": "10.1038/nrn756",
+    "doi_matches": false
+  },
+  {
+    "status": "unavailable",
+    "url": "https://www.nature.com/articles/nrn1105",
+    "retrieved_at": "2026-09-16T00:02:57.881878+00:00",
+    "error": "PDF URL must use HTTPS on an explicitly allowed host: https://idp.nature.com/authorize?response_type=cookie&client_id=grover&redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fnrn1105",
+    "key": "Nico03",
+    "expected_doi": "10.1038/nrn1105",
+    "doi_matches": false
+  }
+]

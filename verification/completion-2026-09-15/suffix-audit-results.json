@@ -1,0 +1,83 @@
+{
+  "network_requests": 0,
+  "repeat_review_writes": 0,
+  "status_changes": [
+    {
+      "key": "DonaMurd68",
+      "before": "metadata_verified",
+      "after": "needs_review",
+      "issues": [
+        "No unambiguous, fully supported metadata match",
+        "DOI-linked PubMed author suffix conflicts with the citation"
+      ]
+    },
+    {
+      "key": "SwetEtal61",
+      "before": "metadata_verified",
+      "after": "needs_review",
+      "issues": [
+        "No unambiguous, fully supported metadata match",
+        "DOI-linked PubMed author suffix conflicts with the citation"
+      ]
+    },
+    {
+      "key": "Murd66",
+      "before": "metadata_verified",
+      "after": "needs_review",
+      "issues": [
+        "No unambiguous, fully supported metadata match",
+        "DOI-linked PubMed author suffix conflicts with the citation"
+      ]
+    },
+    {
+      "key": "Murd63c",
+      "before": "metadata_verified",
+      "after": "needs_review",
+      "issues": [
+        "No unambiguous, fully supported metadata match",
+        "DOI-linked PubMed author suffix conflicts with the citation"
+      ]
+    },
+    {
+      "key": "Murd60a",
+      "before": "metadata_verified",
+      "after": "needs_review",
+      "issues": [
+        "No unambiguous, fully supported metadata match",
+        "DOI-linked PubMed author suffix conflicts with the citation"
+      ]
+    },
+    {
+      "key": "Murd60b",
+      "before": "metadata_verified",
+      "after": "needs_review",
+      "issues": [
+        "No unambiguous, fully supported metadata match",
+        "DOI-linked PubMed author suffix conflicts with the citation"
+      ]
+    },
+    {
+      "key": "Murd61",
+      "before": "metadata_verified",
+      "after": "needs_review",
+      "issues": [
+        "No unambiguous, fully supported metadata match",
+        "DOI-linked PubMed author suffix conflicts with the citation"
+      ]
+    },
+    {
+      "key": "DrewMurd80",
+      "before": "metadata_verified",
+      "after": "needs_review",
+      "issues": [
+        "No unambiguous, fully supported metadata match",
+        "DOI-linked PubMed author suffix conflicts with the citation"
+      ]
+    }
+  ],
+  "suffix_witnesses": 46,
+  "statuses": {
+    "metadata_verified": 3310,
+    "needs_review": 3112
+  }
+}

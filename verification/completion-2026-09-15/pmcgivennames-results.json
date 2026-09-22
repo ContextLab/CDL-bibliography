@@ -1,0 +1,44 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 78.66,
+      "network_requests": 3,
+      "added_review_records": 3,
+      "batch_statuses": {
+        "metadata_verified": 3
+      },
+      "library_statuses": {
+        "metadata_verified": 3511,
+        "needs_review": 2911
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 73.1,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 3
+      },
+      "library_statuses": {
+        "metadata_verified": 3511,
+        "needs_review": 2911
+      }
+    }
+  ],
+  "entries": {
+    "BuraFiet09": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:5ce3a5eaf6ca07a714e415fd0529251bf488c1b8f7c45ff47bd6c363471748a1"
+    },
+    "DuzeEtal01": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:dc8037ee9ec8497e7006dbbec2e0e80223130a4e9e316d7aa25921f29ca968ed"
+    },
+    "KranEtal09": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:cfc9aa18dd4039971b90749c4d4f659fe3df7b804ce4111de0014958638682e5"
+    }
+  }
+}

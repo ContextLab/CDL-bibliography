@@ -1,0 +1,283 @@
+[
+  {
+    "key": "Box76",
+    "fingerprint": "v2:68c6da61f02e45aa15c833399730b7211da830e1dacfb212629a68e17f23a254",
+    "response": {
+      "body": {
+        "hitCount": 0,
+        "request": {
+          "cursorMark": "*",
+          "pageSize": 100,
+          "queryString": "TITLE:\"Science and statistics\" AND SRC:MED AND PUB_YEAR:1976",
+          "resultType": "core",
+          "sort": "",
+          "synonym": false
+        },
+        "resultList": {
+          "result": []
+        },
+        "version": "6.9"
+      },
+      "http_status": 200,
+      "retrieved_at": "2026-09-21T13:01:57.394253+00:00",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Science+and+statistics%22+AND+SRC%3AMED+AND+PUB_YEAR%3A1976&format=json&resultType=core&pageSize=100"
+    }
+  },
+  {
+    "key": "Salz59",
+    "fingerprint": "v2:46dc2a4c17a608c01c96b014faf5587d0dbde4230ba2f027ec7b6f3c651df9d4",
+    "response": {
+      "body": {
+        "hitCount": 1,
+        "request": {
+          "cursorMark": "*",
+          "pageSize": 100,
+          "queryString": "TITLE:\"Experimental manipulation of verbal behavior: a review\" AND SRC:MED AND PUB_YEAR:1959",
+          "resultType": "core",
+          "sort": "",
+          "synonym": false
+        },
+        "resultList": {
+          "result": [
+            {
+              "authorList": {
+                "author": [
+                  {
+                    "firstName": "K",
+                    "fullName": "SALZINGER K",
+                    "initials": "K",
+                    "lastName": "SALZINGER"
+                  }
+                ]
+              },
+              "doi": "10.1080/00221309.1959.9710241",
+              "firstPublicationDate": "1959-07-01",
+              "fullTextUrlList": {
+                "fullTextUrl": [
+                  {
+                    "availability": "Subscription required",
+                    "availabilityCode": "S",
+                    "documentStyle": "doi",
+                    "site": "DOI",
+                    "url": "https://doi.org/10.1080/00221309.1959.9710241"
+                  }
+                ]
+              },
+              "id": "14441175",
+              "isOpenAccess": "N",
+              "journalInfo": {
+                "dateOfPublication": "1959 Jul",
+                "journal": {
+                  "essn": "1940-0888",
+                  "isoabbreviation": "J Gen Psychol",
+                  "issn": "0022-1309",
+                  "medlineAbbreviation": "J Gen Psychol",
+                  "nlmid": "2985111R",
+                  "title": "The Journal of general psychology"
+                },
+                "journalIssueId": 1289,
+                "monthOfPublication": 7,
+                "printPublicationDate": "1959-07-01",
+                "volume": "61",
+                "yearOfPublication": 1959
+              },
+              "pageInfo": "65-94",
+              "pubTypeList": {
+                "pubType": [
+                  "Journal Article"
+                ]
+              },
+              "pubYear": "1959",
+              "source": "MED",
+              "title": "Experimental manipulation of verbal behavior: a review."
+            }
+          ]
+        },
+        "version": "6.9"
+      },
+      "http_status": 200,
+      "retrieved_at": "2026-09-21T13:01:58.593691+00:00",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Experimental+manipulation+of+verbal+behavior%3A+a+review%22+AND+SRC%3AMED+AND+PUB_YEAR%3A1959&format=json&resultType=core&pageSize=100"
+    }
+  },
+  {
+    "key": "Bous53",
+    "fingerprint": "v2:f70a5218c476d9d9e34317a08bf166139e970091c971fe100e5055176cd9beaa",
+    "response": {
+      "body": {
+        "hitCount": 0,
+        "request": {
+          "cursorMark": "*",
+          "pageSize": 100,
+          "queryString": "TITLE:\"The occurrence of clustering in the recall of randomly arranged associates\" AND SRC:MED AND PUB_YEAR:1953",
+          "resultType": "core",
+          "sort": "",
+          "synonym": false
+        },
+        "resultList": {
+          "result": []
+        },
+        "version": "6.9"
+      },
+      "http_status": 200,
+      "retrieved_at": "2026-09-21T13:01:59.792514+00:00",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22The+occurrence+of+clustering+in+the+recall+of+randomly+arranged+associates%22+AND+SRC%3AMED+AND+PUB_YEAR%3A1953&format=json&resultType=core&pageSize=100"
+    }
+  },
+  {
+    "key": "FritCarl80",
+    "fingerprint": "v2:9bc25e314dd66eb826acde2ea3fb926d166907793a15811a8ca2e3e87fff53b0",
+    "response": {
+      "body": {
+        "hitCount": 0,
+        "request": {
+          "cursorMark": "*",
+          "pageSize": 100,
+          "queryString": "TITLE:\"Monotone piecewise cubic interpolation\" AND SRC:MED AND PUB_YEAR:1980",
+          "resultType": "core",
+          "sort": "",
+          "synonym": false
+        },
+        "resultList": {
+          "result": []
+        },
+        "version": "6.9"
+      },
+      "http_status": 200,
+      "retrieved_at": "2026-09-21T13:13:23.980930+00:00",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Monotone+piecewise+cubic+interpolation%22+AND+SRC%3AMED+AND+PUB_YEAR%3A1980&format=json&resultType=core&pageSize=100"
+    }
+  },
+  {
+    "key": "PaolEtal10",
+    "fingerprint": "v2:a34d6cada388a29d7e344f9022aaecfcbe8d6a8571e0d9907e7a03536b72b1eb",
+    "response": {
+      "body": {
+        "hitCount": 0,
+        "request": {
+          "cursorMark": "*",
+          "pageSize": 100,
+          "queryString": "TITLE:\"Running experiments on Amazon Mechanical Turk\" AND SRC:MED AND PUB_YEAR:2010",
+          "resultType": "core",
+          "sort": "",
+          "synonym": false
+        },
+        "resultList": {
+          "result": []
+        },
+        "version": "6.9"
+      },
+      "http_status": 200,
+      "retrieved_at": "2026-09-21T13:13:25.111330+00:00",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Running+experiments+on+Amazon+Mechanical+Turk%22+AND+SRC%3AMED+AND+PUB_YEAR%3A2010&format=json&resultType=core&pageSize=100"
+    }
+  },
+  {
+    "key": "BiswEtal95",
+    "fingerprint": "v2:5294ab2aa3a3160861a9f41f392d9b2a351598eac9b2a7765d17b199a7e007de",
+    "response": {
+      "body": {
+        "hitCount": 1,
+        "request": {
+          "cursorMark": "*",
+          "pageSize": 100,
+          "queryString": "TITLE:\"Functional connectivity in the motor cortex of resting human brain using echo-planar MRI\" AND SRC:MED AND PUB_YEAR:1995",
+          "resultType": "core",
+          "sort": "",
+          "synonym": false
+        },
+        "resultList": {
+          "result": [
+            {
+              "authorList": {
+                "author": [
+                  {
+                    "authorAffiliationDetailsList": {
+                      "authorAffiliation": [
+                        {
+                          "affiliation": "Biophysics Research Institute, Medical College of Wisconsin, Milwaukee 53226-0509, USA."
+                        }
+                      ]
+                    },
+                    "authorId": {
+                      "type": "ORCID",
+                      "value": "0000-0002-3710-3500"
+                    },
+                    "firstName": "B",
+                    "fullName": "Biswal B",
+                    "initials": "B",
+                    "lastName": "Biswal"
+                  },
+                  {
+                    "firstName": "F Z",
+                    "fullName": "Yetkin FZ",
+                    "initials": "FZ",
+                    "lastName": "Yetkin"
+                  },
+                  {
+                    "firstName": "V M",
+                    "fullName": "Haughton VM",
+                    "initials": "VM",
+                    "lastName": "Haughton"
+                  },
+                  {
+                    "firstName": "J S",
+                    "fullName": "Hyde JS",
+                    "initials": "JS",
+                    "lastName": "Hyde"
+                  }
+                ]
+              },
+              "doi": "10.1002/mrm.1910340409",
+              "firstPublicationDate": "1995-10-01",
+              "fullTextUrlList": {
+                "fullTextUrl": [
+                  {
+                    "availability": "Subscription required",
+                    "availabilityCode": "S",
+                    "documentStyle": "doi",
+                    "site": "DOI",
+                    "url": "https://doi.org/10.1002/mrm.1910340409"
+                  }
+                ]
+              },
+              "id": "8524021",
+              "isOpenAccess": "N",
+              "journalInfo": {
+                "dateOfPublication": "1995 Oct",
+                "issue": "4",
+                "journal": {
+                  "essn": "1522-2594",
+                  "isoabbreviation": "Magn Reson Med",
+                  "issn": "0740-3194",
+                  "medlineAbbreviation": "Magn Reson Med",
+                  "nlmid": "8505245",
+                  "title": "Magnetic resonance in medicine"
+                },
+                "journalIssueId": 909236,
+                "monthOfPublication": 10,
+                "printPublicationDate": "1995-10-01",
+                "volume": "34",
+                "yearOfPublication": 1995
+              },
+              "pageInfo": "537-541",
+              "pubTypeList": {
+                "pubType": [
+                  "Research Support, U.S. Gov't, P.H.S.",
+                  "Journal Article"
+                ]
+              },
+              "pubYear": "1995",
+              "source": "MED",
+              "title": "Functional connectivity in the motor cortex of resting human brain using echo-planar MRI."
+            }
+          ]
+        },
+        "version": "6.9"
+      },
+      "http_status": 200,
+      "retrieved_at": "2026-09-21T13:13:26.333776+00:00",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Functional+connectivity+in+the+motor+cortex+of+resting+human+brain+using+echo-planar+MRI%22+AND+SRC%3AMED+AND+PUB_YEAR%3A1995&format=json&resultType=core&pageSize=100"
+    }
+  }
+]

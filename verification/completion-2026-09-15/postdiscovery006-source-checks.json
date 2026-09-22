@@ -1,0 +1,22 @@
+{
+  "JohnRugg07": {
+    "source": "https://oup.silverchair-cdn.com/article-minimal/280541",
+    "observed": "Full title and both authors; Cerebral Cortex 17(11), November 2007, 2507-2515; DOI 10.1093/cercor/bhl156. Online date January 2007 is also explicit."
+  },
+  "KleeEtal13": {
+    "source": "https://www.neurology.org/doi/abs/10.1212/wnl.0b013e318297ee50",
+    "observed": "Full title and all eight authors; Neurology 81(1), July 2 2013, 18-24. Article is online May 17 2013, in issue July 2."
+  },
+  "MarnEtal03": {
+    "source": "https://onlinelibrary.wiley.com/doi/abs/10.1002/cne.10714",
+    "observed": "Full title with footnote marker, four authors, Journal of Comparative Neurology 462(2), July 21 2003, 144-152; first online May 30 2003."
+  },
+  "MauEtal18": {
+    "source": "https://www.bu.edu/hasselmo/MauSullivanKinskyHasselmoHowardEichenbaum2018.pdf",
+    "pdf_sha256": "97f7d8c6a70361872a1bed10512f2151a6edf4c8dd40e7035fe97204f942be5a",
+    "observed": "Visually inspected published PDF physical pages 2 and 15: full title, all six authors and DOI; first article page 1499, final STAR Methods page e4 and footer 1499-1508.e1-e4, Current Biology 28, May 21 2018. Institution article record and paired registry/MED explicitly give issue 10 and 1499-1508.e4.",
+    "additional_source": "https://scholars.mssm.edu/en/publications/the-same-hippocampal-ca1-population-simultaneously-codes-temporal-2/",
+    "local_library_pdf_sha256": "77b2ef991db4193d2a92df7edc2fd33dad97abc31d10dcb12dfcbcdede0d3362",
+    "local_library_note": "Advance PDF carries temporary 1-10 pagination. It confirms title and complete byline but was not used as authority for final pages."
+  }
+}

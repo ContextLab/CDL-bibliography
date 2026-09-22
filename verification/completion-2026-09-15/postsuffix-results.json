@@ -1,0 +1,48 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 25.73,
+      "network_requests": 4,
+      "added_review_records": 4,
+      "batch_statuses": {
+        "metadata_verified": 4
+      },
+      "library_statuses": {
+        "metadata_verified": 3360,
+        "needs_review": 3062
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 17.83,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 4
+      },
+      "library_statuses": {
+        "metadata_verified": 3360,
+        "needs_review": 3062
+      }
+    }
+  ],
+  "entries": {
+    "ColdEtal96c": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:3f11a3f9f11ff9b66b79a03fd197436060cba720b22fb0a201a7323bf59fa332"
+    },
+    "NestCarl06": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:a510ee72e44bc956d97ffa8f86dee680b17867405af47649976ccdb3ff09a43d"
+    },
+    "StabEtal02a": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:d723809c765b1adafe1f213bb7eb10d5f673d69add49a8ec29bbb00336e780cb"
+    },
+    "WallEtal06": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:dd4c1c50d2b968c36ceb3cb5750f562059dfb6c43bb568e0161026345fa7a295"
+    }
+  }
+}

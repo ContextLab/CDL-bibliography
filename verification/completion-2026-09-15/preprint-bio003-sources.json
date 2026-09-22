@@ -1,0 +1,14 @@
+[
+  {
+    "key": "SilvEtal19",
+    "fingerprint": "v2:ec89828e5fdc3a4296725154ab112d339663810763955e2908184d8d0dbe0add",
+    "doi": "10.1101/511782",
+    "source": {
+      "body": "{\"messages\":[{\"status\":\"ok\",\"category\":\"all\"}], \"collection\":[{\"title\":\"Rapid memory reactivation at movie event boundaries promotes episodic encoding\",\"authors\":\"Silva, M.; Baldassano, C.; Fuentemilla, L.\",\"author_corresponding\":\"Lluis  Fuentemilla\",\"author_corresponding_institution\":\"Department of Cognition, Development and Educational Psychology, University of Barcelona\",\"doi\":\"10.1101\\/511782\",\"date\":\"2019-01-04\",\"version\":\"1\",\"type\":\"new results\",\"license\":\"cc_by\",\"category\":\"neuroscience\",\"jatsxml\":\"https:\\/\\/www.biorxiv.org\\/content\\/early\\/2019\\/01\\/04\\/511782.source.xml\",\"abstract\":\"Segmentation of continuous experience into discrete events is driven by rapid fluctuations in encoding stability at context shifts (i.e., event boundaries), yet the mechanisms underlying the online formation of event memories are poorly understood. We investigated the neural spatiotemporal similarity patterns of the scalp electrophysiological (EEG) activity of 30 participants watching a 50 min movie and found that event boundaries triggered rapid reinstatement of the just-encoded movie event EEG patterns. We also found that the onset of memory reinstatement at boundary onset (around 1500ms) was preceded by an N400-like ERP component, which likely reflects the detection of a context switch between the current and just-encoded event. A data-driven approach based on Hidden Markov Modeling allowed us to detect event boundaries as shifts between stable patterns of brain EEG activity during encoding and identify their reactivation during a free recall task. These results provide the first neurophysiological underpinnings for how the memory system segments a continuous stream of experience into episodic events.\",\"funder\":\"NA\",\"published\":\"10.1523\\/JNEUROSCI.0360-19.2019\",\"server\":\"bioRxiv\"}]}\r\n\r\n\r\n\r\n",
+      "document_sha256": "8ec86009bab0a16ec5c5870904c17c561e8c735ee6348144657a1ee85d32196a",
+      "doi": "10.1101/511782",
+      "retrieved_at": "2026-09-22T13:35:09.872427+00:00",
+      "url": "https://api.biorxiv.org/details/biorxiv/10.1101/511782/na/json"
+    }
+  }
+]

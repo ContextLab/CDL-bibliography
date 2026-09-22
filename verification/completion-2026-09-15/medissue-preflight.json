@@ -1,0 +1,447 @@
+[
+  {
+    "key": "Salz59",
+    "fingerprint": "v2:46dc2a4c17a608c01c96b014faf5587d0dbde4230ba2f027ec7b6f3c651df9d4",
+    "doi": "10.1080/00221309.1959.9710241",
+    "fields": {
+      "year": "1959",
+      "volume": "61",
+      "title": "Experimental manipulation of verbal behavior: a review",
+      "pages": "65--94",
+      "number": "1",
+      "journal": "The Journal of General Psychology",
+      "author": "K Salzinger",
+      "ENTRYTYPE": "article",
+      "ID": "Salz59"
+    },
+    "evidence": {
+      "title": {
+        "local": "Experimental manipulation of verbal behavior: a review",
+        "source": [
+          "Experimental Manipulation of Verbal Behavior: A Review"
+        ],
+        "match": true
+      },
+      "author": {
+        "local": "K Salzinger",
+        "source": [
+          {
+            "affiliation": [
+              {
+                "name": "Biometrics Research N.Y. State Dept. of Mental Hygiene",
+                "place": [
+                  "USA"
+                ]
+              }
+            ],
+            "family": "Salzinger",
+            "given": "Kurt",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "match": true,
+        "detail": "Complete author list in order; citation initials agree with source names"
+      },
+      "year": {
+        "local": "1959",
+        "source": [
+          "1959"
+        ],
+        "match": true,
+        "source_name": "europepmc"
+      },
+      "journal": {
+        "local": "The Journal of General Psychology",
+        "source": [
+          "The Journal of General Psychology"
+        ],
+        "match": true
+      },
+      "volume": {
+        "local": "61",
+        "source": [
+          "61"
+        ],
+        "match": true
+      },
+      "number": {
+        "local": "1",
+        "source": [
+          "1"
+        ],
+        "match": true,
+        "source_name": "crossref",
+        "detail": "MED omits issue; Crossref issue retained with complete DOI/ISSN/article-coordinate agreement"
+      },
+      "pages": {
+        "local": "65--94",
+        "source": [
+          "65-94"
+        ],
+        "match": true
+      }
+    },
+    "raw_medline": {
+      "authorList": {
+        "author": [
+          {
+            "firstName": "K",
+            "fullName": "SALZINGER K",
+            "initials": "K",
+            "lastName": "SALZINGER"
+          }
+        ]
+      },
+      "doi": "10.1080/00221309.1959.9710241",
+      "firstPublicationDate": "1959-07-01",
+      "fullTextUrlList": {
+        "fullTextUrl": [
+          {
+            "availability": "Subscription required",
+            "availabilityCode": "S",
+            "documentStyle": "doi",
+            "site": "DOI",
+            "url": "https://doi.org/10.1080/00221309.1959.9710241"
+          }
+        ]
+      },
+      "id": "14441175",
+      "isOpenAccess": "N",
+      "journalInfo": {
+        "dateOfPublication": "1959 Jul",
+        "journal": {
+          "essn": "1940-0888",
+          "isoabbreviation": "J Gen Psychol",
+          "issn": "0022-1309",
+          "medlineAbbreviation": "J Gen Psychol",
+          "nlmid": "2985111R",
+          "title": "The Journal of general psychology"
+        },
+        "journalIssueId": 1289,
+        "monthOfPublication": 7,
+        "printPublicationDate": "1959-07-01",
+        "volume": "61",
+        "yearOfPublication": 1959
+      },
+      "pageInfo": "65-94",
+      "pubTypeList": {
+        "pubType": [
+          "Journal Article"
+        ]
+      },
+      "pubYear": "1959",
+      "source": "MED",
+      "title": "Experimental manipulation of verbal behavior: a review."
+    }
+  },
+  {
+    "key": "FeigSimo62",
+    "fingerprint": "v2:664d643b1f14252d48bbbcdbbce7bf493c7210b17c90ad81c60232bef97a8879",
+    "doi": "10.1111/j.2044-8295.1962.tb00836.x",
+    "fields": {
+      "year": "1962",
+      "volume": "53",
+      "title": "A theory of the serial position effect",
+      "pages": "307--320",
+      "number": "3",
+      "journal": "British Journal of Psychology",
+      "author": "E A Feigenbaum and H A Simon",
+      "ENTRYTYPE": "article",
+      "ID": "FeigSimo62"
+    },
+    "evidence": {
+      "title": {
+        "local": "A theory of the serial position effect",
+        "source": [
+          "A THEORY OF THE SERIAL POSITION EFFECT"
+        ],
+        "match": true
+      },
+      "author": {
+        "local": "E A Feigenbaum and H A Simon",
+        "source": [
+          {
+            "affiliation": [],
+            "family": "FEIGENBAUM",
+            "given": "EDWARD A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "SIMON",
+            "given": "HERBERT A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "match": true,
+        "detail": "Complete author list in order; citation initials agree with source names"
+      },
+      "year": {
+        "local": "1962",
+        "source": [
+          "1962"
+        ],
+        "match": true,
+        "source_name": "europepmc"
+      },
+      "journal": {
+        "local": "British Journal of Psychology",
+        "source": [
+          "British Journal of Psychology"
+        ],
+        "match": true
+      },
+      "volume": {
+        "local": "53",
+        "source": [
+          "53"
+        ],
+        "match": true
+      },
+      "number": {
+        "local": "3",
+        "source": [
+          "3"
+        ],
+        "match": true,
+        "source_name": "crossref",
+        "detail": "MED omits issue; Crossref issue retained with complete DOI/ISSN/article-coordinate agreement"
+      },
+      "pages": {
+        "local": "307--320",
+        "source": [
+          "307-320"
+        ],
+        "match": true
+      }
+    },
+    "raw_medline": {
+      "authorList": {
+        "author": [
+          {
+            "firstName": "E A",
+            "fullName": "FEIGENBAUM EA",
+            "initials": "EA",
+            "lastName": "FEIGENBAUM"
+          },
+          {
+            "firstName": "H A",
+            "fullName": "SIMON HA",
+            "initials": "HA",
+            "lastName": "SIMON"
+          }
+        ]
+      },
+      "doi": "10.1111/j.2044-8295.1962.tb00836.x",
+      "firstPublicationDate": "1962-08-01",
+      "fullTextUrlList": {
+        "fullTextUrl": [
+          {
+            "availability": "Subscription required",
+            "availabilityCode": "S",
+            "documentStyle": "doi",
+            "site": "DOI",
+            "url": "https://doi.org/10.1111/j.2044-8295.1962.tb00836.x"
+          }
+        ]
+      },
+      "id": "13892029",
+      "isOpenAccess": "N",
+      "journalInfo": {
+        "dateOfPublication": "1962 Aug",
+        "journal": {
+          "essn": "2044-8295",
+          "isoabbreviation": "Br J Psychol",
+          "issn": "0007-1269",
+          "medlineAbbreviation": "Br J Psychol",
+          "nlmid": "0373124",
+          "title": "British journal of psychology (London, England : 1953)"
+        },
+        "journalIssueId": 292587,
+        "monthOfPublication": 8,
+        "printPublicationDate": "1962-08-01",
+        "volume": "53",
+        "yearOfPublication": 1962
+      },
+      "pageInfo": "307-320",
+      "pubTypeList": {
+        "pubType": [
+          "Journal Article"
+        ]
+      },
+      "pubYear": "1962",
+      "source": "MED",
+      "title": "A theory of the serial position effect."
+    }
+  },
+  {
+    "key": "WethLevi65",
+    "fingerprint": "v2:2925e0a4e778fda2eb2ac2da23640999132934522eca92dbcf753a6143de477a",
+    "doi": "10.1111/j.2044-8317.1965.tb00689.x",
+    "fields": {
+      "year": "1965",
+      "volume": "18",
+      "title": "Sequential estimation of points on a psychometric function",
+      "pages": "1--10",
+      "number": "1",
+      "journal": "British Journal of Mathematical and Statistical Psychology",
+      "author": "G B Wetherill and H Levitt",
+      "ENTRYTYPE": "article",
+      "ID": "WethLevi65"
+    },
+    "evidence": {
+      "title": {
+        "local": "Sequential estimation of points on a psychometric function",
+        "source": [
+          "SEQUENTIAL ESTIMATION OF POINTS ON A PSYCHOMETRIC FUNCTION"
+        ],
+        "match": true
+      },
+      "author": {
+        "local": "G B Wetherill and H Levitt",
+        "source": [
+          {
+            "affiliation": [],
+            "family": "Wetherill",
+            "given": "G. B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Levitt",
+            "given": "H.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "match": true,
+        "detail": "Complete author list in order; citation initials agree with source names"
+      },
+      "year": {
+        "local": "1965",
+        "source": [
+          "1965"
+        ],
+        "match": true,
+        "source_name": "europepmc"
+      },
+      "journal": {
+        "local": "British Journal of Mathematical and Statistical Psychology",
+        "source": [
+          "British Journal of Mathematical and Statistical Psychology"
+        ],
+        "match": true
+      },
+      "volume": {
+        "local": "18",
+        "source": [
+          "18"
+        ],
+        "match": true
+      },
+      "number": {
+        "local": "1",
+        "source": [
+          "1"
+        ],
+        "match": true,
+        "source_name": "crossref",
+        "detail": "MED omits issue; Crossref issue retained with complete DOI/ISSN/article-coordinate agreement"
+      },
+      "pages": {
+        "local": "1--10",
+        "source": [
+          "1-10"
+        ],
+        "match": true
+      }
+    },
+    "raw_medline": {
+      "authorList": {
+        "author": [
+          {
+            "firstName": "G B",
+            "fullName": "WETHERILL GB",
+            "initials": "GB",
+            "lastName": "WETHERILL"
+          },
+          {
+            "firstName": "H",
+            "fullName": "LEVITT H",
+            "initials": "H",
+            "lastName": "LEVITT"
+          }
+        ]
+      },
+      "doi": "10.1111/j.2044-8317.1965.tb00689.x",
+      "firstPublicationDate": "1965-05-01",
+      "fullTextUrlList": {
+        "fullTextUrl": [
+          {
+            "availability": "Subscription required",
+            "availabilityCode": "S",
+            "documentStyle": "doi",
+            "site": "DOI",
+            "url": "https://doi.org/10.1111/j.2044-8317.1965.tb00689.x"
+          }
+        ]
+      },
+      "id": "14324842",
+      "isOpenAccess": "N",
+      "journalInfo": {
+        "dateOfPublication": "1965 May",
+        "journal": {
+          "essn": "2044-8317",
+          "isoabbreviation": "Br J Math Stat Psychol",
+          "issn": "0007-1102",
+          "medlineAbbreviation": "Br J Math Stat Psychol",
+          "nlmid": "0004047",
+          "title": "The British journal of mathematical and statistical psychology"
+        },
+        "journalIssueId": 25448,
+        "monthOfPublication": 5,
+        "printPublicationDate": "1965-05-01",
+        "volume": "18",
+        "yearOfPublication": 1965
+      },
+      "pageInfo": "1-10",
+      "pubTypeList": {
+        "pubType": [
+          "Journal Article"
+        ]
+      },
+      "pubYear": "1965",
+      "source": "MED",
+      "title": "SEQUENTIAL ESTIMATION OF POINTS ON A PSYCHOMETRIC FUNCTION."
+    }
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 47.47,
+      "network_requests": 6,
+      "added_review_records": 16,
+      "batch_statuses": {
+        "metadata_verified": 8
+      },
+      "library_statuses": {
+        "metadata_verified": 3318,
+        "needs_review": 3104
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 35.25,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 8
+      },
+      "library_statuses": {
+        "metadata_verified": 3318,
+        "needs_review": 3104
+      }
+    }
+  ],
+  "entries": {
+    "DonaMurd68": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:fc9eceffc5d5db90558dab3f042a4035ef6302ab42ae0dcf5f1386238e0e3512"
+    },
+    "DrewMurd80": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:2351b840a5f67b3eb0c2749de2aa066360928964e89103d8f487d9710f23c200"
+    },
+    "Murd60a": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:a315bbf7e2fa58ffeb7bd8bdea010f62cf9769e383bdf41d5cc234664dac6d79"
+    },
+    "Murd60b": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:de4f491634c9cae3d7220231bc4205985153d44e5b41a592dedbf671542e04a0"
+    },
+    "Murd61": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:7a1b45c827be674e339647cf36f23daf092b7b9ed8d16b3c770ffb77a79a11b0"
+    },
+    "Murd63c": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:950595e45f795032330a498aa8be0d37f99e0837f9df1b50e08654e8a478a699"
+    },
+    "Murd66": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:de7807b6b88cc76a88e9c78e7a8f0d7610742015f7e4e44116e132fbdf2a1be8"
+    },
+    "SwetEtal61": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:75d328636e26c14f3cd58dcd59874b27164a4089475055d589350e711b815fba"
+    }
+  }
+}

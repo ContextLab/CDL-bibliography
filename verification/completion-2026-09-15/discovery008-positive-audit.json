@@ -1,0 +1,90 @@
+{
+  "WithMosc89": {
+    "observation": "Complete citation agrees with canonical DOI record: Dawn Witherspoon and Morris Moscovitch; Stochastic independence between two implicit memory tasks; Journal of Experimental Psychology: Learning, Memory, and Cognition 15:22-30 (1989), with optional issue 1. Crossref explicitly redirects the double-slash identifier to the canonical DOI; no BibTeX edit needed.",
+    "doi_alias": {
+      "from_url": "https://api.crossref.org/works/10.1037%2F%2F0278-7393.15.1.22",
+      "http_status": 301,
+      "prime_doi": "10.1037/0278-7393.15.1.22",
+      "requested_doi": "10.1037//0278-7393.15.1.22",
+      "retrieved_at": "2026-09-22T00:49:20.822460+00:00",
+      "to_url": "https://api.crossref.org/works/10.1037/0278-7393.15.1.22"
+    },
+    "record": {
+      "DOI": "10.1037/0278-7393.15.1.22",
+      "ISSN": [
+        "1939-1285",
+        "0278-7393"
+      ],
+      "URL": "https://doi.org/10.1037/0278-7393.15.1.22",
+      "author": [
+        {
+          "affiliation": [],
+          "family": "Witherspoon",
+          "given": "Dawn",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [],
+          "family": "Moscovitch",
+          "given": "Morris",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Journal of Experimental Psychology: Learning, Memory, and Cognition"
+      ],
+      "issue": "1",
+      "issued": {
+        "date-parts": [
+          [
+            1989,
+            1
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "http://psycnet.apa.org/journals/xlm/15/1/22.pdf",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "22-30",
+      "published": {
+        "date-parts": [
+          [
+            1989,
+            1
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            1989,
+            1
+          ]
+        ]
+      },
+      "publisher": "American Psychological Association (APA)",
+      "title": [
+        "Stochastic independence between two implicit memory tasks."
+      ],
+      "type": "journal-article",
+      "volume": "15"
+    }
+  }
+}

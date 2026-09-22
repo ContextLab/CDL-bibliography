@@ -1,0 +1,446 @@
+[
+  {
+    "key": "RittEtal09",
+    "doi": "10.1002/hbm.20585",
+    "fields": {
+      "year": "2009",
+      "volume": "30",
+      "title": "Rolandic alpha and beta {EEG} rhythms' strengths are inversely related to {fMRI\u2010BOLD} signal in primary somatosensory and motor cortex",
+      "pages": "1168--1187",
+      "number": "4",
+      "journal": "Human Brain Mapping",
+      "author": "P Ritter and M Moosmann and A Villringer",
+      "ENTRYTYPE": "article",
+      "ID": "RittEtal09"
+    }
+  },
+  {
+    "key": "LinEtal17",
+    "doi": "10.1002/hipo.22751",
+    "fields": {
+      "year": "2017",
+      "volume": "27",
+      "title": "Theta band power increases in the posterior hippocampus predict successful episodic memory encoding in humans",
+      "pages": "1040--1053",
+      "journal": "Hippocampus",
+      "author": "J-J Lin and M D Rugg and S Das and J Stein and D S Rizzuto and M J Kahana and B C Lega",
+      "ENTRYTYPE": "article",
+      "ID": "LinEtal17"
+    }
+  },
+  {
+    "key": "DishEtal06",
+    "doi": "10.1038/oby.2006.46",
+    "fields": {
+      "year": "2006",
+      "volume": "14",
+      "title": "Neurobiology of exercise",
+      "pages": "345--356",
+      "number": "3",
+      "journal": "Obesity",
+      "author": "Rod K Dishman and Hans-Rudolf Berthoud and Frank W Booth and Carl W Cotman and V Reggie Edgerton and Monika R Fleshner and Simon C Gandevia and Fernando Gomez-Pinilla and Benjamin N Greenwood and Charles H Hillman and Arthur F Kramer and Barry E Levin and Timothy H Moran and Amelia A Russo-Neustadt and John D Salamone and Jacqueline D {Van Hoomissen} and Charles E Wade and David A York and Michael J Zigmond",
+      "ENTRYTYPE": "article",
+      "ID": "DishEtal06"
+    }
+  },
+  {
+    "key": "VaynEtal04",
+    "doi": "10.1111/j.1460-9568.2004.03720.x",
+    "fields": {
+      "year": "2004",
+      "volume": "20",
+      "title": "Hippocampal {BDNF} mediates the efficacy of exercise on synaptic plasticity and cognition",
+      "pages": "2580--2590",
+      "number": "10",
+      "journal": "{European} Journal of Neuroscience",
+      "author": "Shoshanna Vaynman and Zhe Ying and Fernando Gomez-Pinilla",
+      "ENTRYTYPE": "article",
+      "ID": "VaynEtal04"
+    }
+  },
+  {
+    "key": "CoxEtal95",
+    "doi": "10.1002/mrm.1910330213",
+    "fields": {
+      "year": "1995",
+      "volume": "33",
+      "title": "Real-time functional magnetic resonance imaging",
+      "pages": "230--236",
+      "journal": "Magnetic Resonance in Medicine",
+      "author": "R W Cox and A Jesmanowicz and J S Hyde",
+      "ENTRYTYPE": "article",
+      "ID": "CoxEtal95"
+    }
+  },
+  {
+    "key": "CrowGrov73",
+    "doi": "10.1111/j.1476-5381.1973.tb08379.x",
+    "fields": {
+      "year": "1973",
+      "volume": "49",
+      "title": "An analysis of the learning deficit following hyoscine administration to man",
+      "pages": "322--327",
+      "journal": "British Journal of Pharmacology",
+      "author": "T J Crow and I G Grove-{W}hite",
+      "ENTRYTYPE": "article",
+      "ID": "CrowGrov73"
+    }
+  },
+  {
+    "key": "FreeEtal03a",
+    "doi": "10.1002/hbm.10120",
+    "fields": {
+      "year": "2003",
+      "volume": "19",
+      "title": "Aperiodic phase re-setting in scalp {EEG} of beta-gamma oscillations by state transitions at alpha-theta rates",
+      "pages": "248--272",
+      "number": "4",
+      "journal": "Human Brain Mapping",
+      "author": "W J Freeman and B C Burke and M D Holmes",
+      "ENTRYTYPE": "article",
+      "ID": "FreeEtal03a"
+    }
+  },
+  {
+    "key": "SekiEtal02",
+    "doi": "10.1002/hbm.10019",
+    "fields": {
+      "year": "2002",
+      "volume": "15",
+      "title": "Application of an {MEG} eigenspace beamformer to reconstructing spatio-temporal activities of neural sources",
+      "pages": "199--215",
+      "number": "4",
+      "journal": "Human Brain Mapping",
+      "author": "K Sekihara and S S Nagarajan and D Poeppel and A Marantz and Y Miyashita",
+      "ENTRYTYPE": "article",
+      "ID": "SekiEtal02"
+    }
+  },
+  {
+    "key": "HeslEtal05",
+    "doi": "10.1002/hbm.20147",
+    "fields": {
+      "year": "2005",
+      "volume": "26",
+      "title": "Cerebral mechanisms of prosodic sensory integration using low-frequency bands of connected speech",
+      "publisher": "Wiley",
+      "pages": "157--169",
+      "number": "3",
+      "journal": "Human Brain Mapping",
+      "author": "I Hesling and B Dilharreguy and S Cl{\\'e}ment and M Bordessoules and M Allard",
+      "ENTRYTYPE": "article",
+      "ID": "HeslEtal05"
+    }
+  },
+  {
+    "key": "GuilEtal96",
+    "doi": "10.1111/j.1469-8986.1996.tb02368.x",
+    "fields": {
+      "year": "1996",
+      "volume": "33",
+      "title": "Differential involvement of the human temporal lobe structures in short- and long-term memory processes assessed by intracranial {ERP}s",
+      "pages": "720--730",
+      "journal": "Psychophysiology",
+      "author": "F Guillem and B N'Kaoua and A Rougier and B Claverie",
+      "ENTRYTYPE": "article",
+      "ID": "GuilEtal96"
+    }
+  },
+  {
+    "key": "SausEtal05",
+    "doi": "10.1002/hbm.20150",
+    "fields": {
+      "year": "2005",
+      "volume": "26",
+      "title": "{EEG} alpha synchronization and functional coupling during top-down processing in a working memory task",
+      "pages": "148--155",
+      "number": "2",
+      "journal": "Human Brain Mapping",
+      "author": "P Sauseng and W Klimesch and M Doppelmayr and T Pecherstorfer and R Freunberger and S Hanslmayr",
+      "ENTRYTYPE": "article",
+      "ID": "SausEtal05"
+    }
+  },
+  {
+    "key": "SperEtal01",
+    "doi": "10.1002/hbm.1047",
+    "fields": {
+      "year": "2001",
+      "volume": "14",
+      "title": "Encoding novel face-name associations: a functional {MRI} study",
+      "pages": "129--139",
+      "journal": "Human Brain Mapping",
+      "author": "Reisa A Sperling and Julianna F Bates and Andrew J Cocchiarella and Daniel L Schacter and Bruce R Rosen and Marilyn S Albert",
+      "ENTRYTYPE": "article",
+      "ID": "SperEtal01"
+    }
+  },
+  {
+    "key": "CharEtal04",
+    "doi": "10.1111/j.1460-9568.2004.03777.x",
+    "fields": {
+      "year": "2004",
+      "volume": "20",
+      "title": "Entorhinal cortex contributes to object-in-place scene memory",
+      "pages": "3157--3164",
+      "journal": "{European} Journal of Neuroscience",
+      "author": "D P Charles and P G F Browning and D Gaffan",
+      "ENTRYTYPE": "article",
+      "ID": "CharEtal04"
+    }
+  },
+  {
+    "key": "OReiMcCl94",
+    "doi": "10.1002/hipo.450040605",
+    "fields": {
+      "year": "1994",
+      "volume": "4",
+      "title": "Hippocampal conjunctive encoding, storage, and recall: avoiding a trade-off",
+      "pages": "661--682",
+      "number": "6",
+      "journal": "Hippocampus",
+      "author": "R C O'Reilly and J L McClelland",
+      "ENTRYTYPE": "article",
+      "ID": "OReiMcCl94"
+    }
+  },
+  {
+    "key": "Vert05",
+    "doi": "10.1002/hipo.20118",
+    "fields": {
+      "year": "2005",
+      "volume": "15",
+      "title": "Hippocampal theta rhythm: a tag for short-term memory",
+      "publisher": "Wiley",
+      "pages": "923--935",
+      "number": "7",
+      "journal": "Hippocampus",
+      "author": "R P Vertes",
+      "ENTRYTYPE": "article",
+      "ID": "Vert05"
+    }
+  },
+  {
+    "key": "GudeDuze05",
+    "doi": "10.1002/hipo.20125",
+    "fields": {
+      "year": "2005",
+      "volume": "15",
+      "title": "Induced theta oscillations mediate large-scale synchrony with mediotemporal areas during recollection in humans",
+      "pages": "901--912",
+      "number": "7",
+      "journal": "Hippocampus",
+      "author": "S Guderian and E D{\\\"{u}}zel",
+      "ENTRYTYPE": "article",
+      "ID": "GudeDuze05"
+    }
+  },
+  {
+    "key": "GuilEtal95",
+    "doi": "10.1111/j.1469-8986.1995.tb01221.x",
+    "fields": {
+      "year": "1995",
+      "volume": "32",
+      "title": "Intracranial topography of event-related potentials ({N}400/{P}600) elicited during a continuous recognition memory task",
+      "pages": "382--392",
+      "journal": "Psychophysiology",
+      "author": "F Guillem and B N'Kaoua and A Rougier and B Claverie",
+      "ENTRYTYPE": "article",
+      "ID": "GuilEtal95"
+    }
+  },
+  {
+    "key": "KirwStar04",
+    "doi": "10.1002/hipo.20014",
+    "fields": {
+      "year": "2004",
+      "volume": "14",
+      "title": "Medial temporal lobe activation during encoding and retrieval of novel face-name pairs",
+      "publisher": "Wiley",
+      "pages": "919--930",
+      "number": "7",
+      "journal": "Hippocampus",
+      "author": "C Brock Kirwan and Craig E L Stark",
+      "ENTRYTYPE": "article",
+      "ID": "KirwStar04"
+    }
+  },
+  {
+    "key": "GleiEtal04",
+    "doi": "10.1111/j.0013-9580.2004.42203.x",
+    "fields": {
+      "year": "2004",
+      "volume": "45",
+      "title": "Memory outcome after selective amygdalohippocampectomy in patients with temporal lobe epilepsy: one-year follow-up",
+      "publisher": "Wiley",
+      "pages": "960--962",
+      "number": "8",
+      "journal": "Epilepsia",
+      "author": "U Gleissner and C Helmstaedter and J Schramm and C E Elger",
+      "ENTRYTYPE": "article",
+      "ID": "GleiEtal04"
+    }
+  },
+  {
+    "key": "RuggEtal94",
+    "doi": "10.1111/j.1469-8986.1994.tb01048.x",
+    "fields": {
+      "year": "1994",
+      "volume": "31",
+      "title": "Modulation of event-related brain potentials by word repetition: effects of local context",
+      "pages": "447--459",
+      "number": "5",
+      "journal": "Psychophysiology",
+      "author": "M D Rugg and M C Doyle and J S Holdstock",
+      "ENTRYTYPE": "article",
+      "ID": "RuggEtal94"
+    }
+  },
+  {
+    "key": "JackRedi07",
+    "doi": "10.1002/hipo.20359",
+    "fields": {
+      "year": "2007",
+      "volume": "17",
+      "title": "Network dynamics of hippocampal cell-assemblies resemble multiple spatial maps within single tasks",
+      "publisher": "Wiley",
+      "pages": "1209--1229",
+      "number": "12",
+      "journal": "Hippocampus",
+      "author": "Jadin Jackson and A David Redish",
+      "ENTRYTYPE": "article",
+      "ID": "JackRedi07"
+    }
+  },
+  {
+    "key": "MayeEtal02",
+    "doi": "10.1002/hipo.1111",
+    "fields": {
+      "year": "2002",
+      "volume": "12",
+      "title": "Relative sparing of item recognition memory in a patient with adult-onset damage limited to the hippocampus",
+      "pages": "325--340",
+      "journal": "Hippocampus",
+      "author": "A R Mayes and J S Holdstock and C L Isaac and N M Hunkin and N Roberts",
+      "ENTRYTYPE": "article",
+      "ID": "MayeEtal02"
+    }
+  },
+  {
+    "key": "GrubEtal06",
+    "doi": "10.1111/j.1460-9568.2006.05130.x",
+    "fields": {
+      "year": "2006",
+      "volume": "24",
+      "title": "Repetition suppression of induced gamma band responses is eliminated by task switching",
+      "pages": "2654--2660",
+      "number": "9",
+      "journal": "{European} Journal of Neuroscience",
+      "author": "Thomas Gruber and Claire-Marie Giabbiconi and Nelson J Trujillo-Barreto and Matthias M M{\\\"u}ller",
+      "ENTRYTYPE": "article",
+      "ID": "GrubEtal06"
+    }
+  },
+  {
+    "key": "JameGaut06",
+    "doi": "10.1002/hbm.20165",
+    "fields": {
+      "year": "2006",
+      "volume": "27",
+      "title": "Repetition-induced changes in {BOLD} response reflect accumulation of neural activity",
+      "pages": "37--46",
+      "number": "1",
+      "journal": "Human Brain Mapping",
+      "author": "Thomas W James and Isabel Gauthier",
+      "ENTRYTYPE": "article",
+      "ID": "JameGaut06"
+    }
+  },
+  {
+    "key": "BunsEich95",
+    "doi": "10.1002/hipo.450050606",
+    "fields": {
+      "year": "1995",
+      "volume": "5",
+      "title": "Selective damage to the hippocampal region blocks long-term retention of a natural and nonspatial stimulus-stimulus association",
+      "pages": "546--556",
+      "journal": "Hippocampus",
+      "author": "M Bunsey and H Eichenbaum",
+      "ENTRYTYPE": "article",
+      "ID": "BunsEich95"
+    }
+  },
+  {
+    "key": "EgoSWils07",
+    "doi": "10.1002/hipo.20253",
+    "fields": {
+      "year": "2007",
+      "volume": "17",
+      "title": "Spatial selectivity and theta phase precession in {CA1} interneurons",
+      "pages": "161--174",
+      "journal": "Hippocampus",
+      "author": "V Ego-Stengel and M A Wilson",
+      "ENTRYTYPE": "article",
+      "ID": "EgoSWils07"
+    }
+  },
+  {
+    "key": "PerrEtal83",
+    "doi": "10.1111/j.1471-4159.1983.tb08102.x",
+    "fields": {
+      "year": "1983",
+      "volume": "40",
+      "title": "Striatal gabaergic neuronal activity is not reduced in {Parkinson's} disease",
+      "pages": "1120--1123",
+      "number": "4",
+      "journal": "Journal of Neurochemistry",
+      "author": "T L Perry and F Javoy-Agid and Y Agid and H C Fibiger",
+      "ENTRYTYPE": "article",
+      "ID": "PerrEtal83"
+    }
+  },
+  {
+    "key": "McCaEtal04",
+    "doi": "10.1002/hipo.20019",
+    "fields": {
+      "year": "2004",
+      "volume": "14",
+      "title": "Theta reset produces optimal conditions for long-term potentiation",
+      "pages": "684--687",
+      "journal": "Hippocampus",
+      "author": "H McCartney and A D Johnson and Z M Weil and B Givens",
+      "ENTRYTYPE": "article",
+      "ID": "McCaEtal04"
+    }
+  },
+  {
+    "key": "RollOMar95",
+    "doi": "10.1002/hipo.450050504",
+    "fields": {
+      "year": "1995",
+      "volume": "5",
+      "title": "View-responsive neurons in the primate hippocampal complex",
+      "pages": "409--424",
+      "number": "5",
+      "journal": "Hippocampus",
+      "author": "E T Rolls and S M O'Mara",
+      "ENTRYTYPE": "article",
+      "ID": "RollOMar95"
+    }
+  },
+  {
+    "key": "CranMiln05",
+    "doi": "10.1002/hipo.20043",
+    "fields": {
+      "year": "2005",
+      "volume": "15",
+      "title": "What went where? {I}mpaired object-location learning in patients with right hippocampal lesions",
+      "pages": "216--231",
+      "number": "2",
+      "journal": "Hippocampus",
+      "author": "J Crane and B Milner",
+      "ENTRYTYPE": "article",
+      "ID": "CranMiln05"
+    }
+  }
+]

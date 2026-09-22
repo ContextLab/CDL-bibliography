@@ -1,0 +1,45 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "network_requests": 0,
+      "seconds": 81.15,
+      "statuses": {
+        "metadata_verified": 3286,
+        "needs_review": 3136
+      },
+      "added_review_records": 3148
+    },
+    {
+      "cycle": "repeat",
+      "network_requests": 0,
+      "seconds": 21.62,
+      "statuses": {
+        "metadata_verified": 3286,
+        "needs_review": 3136
+      },
+      "added_review_records": 0
+    }
+  ],
+  "baseline_sha256": "def6d80ca41aaca025507c9b155b6b96cb2ad8be81195c139d97b4e70a670ad9",
+  "queue_routes": {
+    "field_adjudication": 998,
+    "publication_version": 317,
+    "source_discovery": 959,
+    "author_identity": 862
+  },
+  "new_approvals": {
+    "AzevEtal09": "10.1002/cne.21974",
+    "Bart04": "10.1140/epjb/e2004-00111-4",
+    "AschLind63": "10.1080/00223980.1963.9916612",
+    "BousSedg44": "10.1080/00221309.1944.10544467",
+    "JenkRuss52": "10.1037/h0063149",
+    "Resc09": "10.1093/bjps/axp012",
+    "Benn96": "10.1242/jeb.199.1.219",
+    "PichEtal95": "10.1121/1.412282",
+    "WangEtal07": "10.1177/0278364907081229",
+    "Huan86": "10.1080/00221309.1986.9710539",
+    "LopeKodi07": "10.1177/0278364907080737",
+    "Ewen03": "10.1086/346174"
+  }
+}

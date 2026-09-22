@@ -1,0 +1,177 @@
+[
+  {
+    "key": "BateEtal15b",
+    "fingerprint": "v2:7458f380a9d3b75c02f3a0b563b23342da23ddd536181bd1e155b2de4ea02193",
+    "identifier": "1506.04967"
+  },
+  {
+    "key": "BetzEtal17b",
+    "fingerprint": "v2:6930d80702839684611ee3c35077d51734e590b20e8b8c47c890d15c52d17faa",
+    "identifier": "1706.06088"
+  },
+  {
+    "key": "BrowEtal20",
+    "fingerprint": "v2:16485707e16a74f7693b6ccb9c956a49f1f912d16d532760afc24e6677381c5b",
+    "identifier": "2005.14165"
+  },
+  {
+    "key": "CerEtal18",
+    "fingerprint": "v2:add4d1dd154e41a8907c17c361eb7fad745187d31d5cf4fcb00d2ef6da4ac53f",
+    "identifier": "1803.11175"
+  },
+  {
+    "key": "ConnEtal18",
+    "fingerprint": "v2:7a278ed6438cffffc240f005b9b8fa495bd4a9165c5285e9a80ddf501f93975e",
+    "identifier": "1705.02364"
+  },
+  {
+    "key": "DettEtal23",
+    "fingerprint": "v2:9ba4f3476d72fd1c5f2ebaba2bf551103ec93e2226e586d19b63c82ba2260128",
+    "identifier": "2305.14314"
+  },
+  {
+    "key": "DevlEtal18",
+    "fingerprint": "v2:f8765078c9812b9edce6d932689e6b39aae409be5e3cd016f941bd4b16e482cd",
+    "identifier": "1810.04805"
+  },
+  {
+    "key": "FangEtal24",
+    "fingerprint": "v2:c61bec4619d180fbd7d3091e8aa496b789bcb6ab49e8cf4299d5003a10aec438",
+    "identifier": "2411.01738"
+  },
+  {
+    "key": "FengEtal20",
+    "fingerprint": "v2:84aa5920d21f95aca5e0c2d20a855deca5826dd8fa06f37b12e63530226f4bcb",
+    "identifier": "2008.06668"
+  },
+  {
+    "key": "GongEtal25",
+    "fingerprint": "v2:2aff93a39f74b98f58dcf06744219dbc1bb1e8571eb17ba257e0fb0c8f8c0c0e",
+    "identifier": "2410.17891"
+  },
+  {
+    "key": "JainEtal24",
+    "fingerprint": "v2:f4b67aead3c94e9920130db7225e1ac9e14eab45c88c501ae7c326bac67a030a",
+    "identifier": "2403.07974"
+  },
+  {
+    "key": "JianEtal24",
+    "fingerprint": "v2:26372895ecbd1c17ab8a750002373dda1593a734601a93715229a2b4a9abce81",
+    "identifier": "2401.04088"
+  },
+  {
+    "key": "KhanEtal25",
+    "fingerprint": "v2:7cdf69e1d04e8e164dfec260b1a6e386bff09085da9480b9a14b769794a45a83",
+    "identifier": "2506.17298"
+  },
+  {
+    "key": "KharEtal21",
+    "fingerprint": "v2:570252db3efea71368e813c6ca19cfb073343865cfb4d98dd59461707d66923a",
+    "identifier": "2109.03264"
+  },
+  {
+    "key": "LiuEtal19",
+    "fingerprint": "v2:b934242ae55e2eccd065e48f56bcc6ab9700109f8e24cd7fa3bae967e4df7e0e",
+    "identifier": "1910.06508"
+  },
+  {
+    "key": "LiuEtal24",
+    "fingerprint": "v2:9c7b7975998f1a8e19993d9d4f0573c5c6a1daeed00ed0acc0846456fb5da35f",
+    "identifier": "2412.19437"
+  },
+  {
+    "key": "MadrEtal17",
+    "fingerprint": "v2:39ec772f449f63e23d36afb838f485734b07208207ed5088c9bdc1600ede5a84",
+    "identifier": "1706.06083"
+  },
+  {
+    "key": "McInEtal18a",
+    "fingerprint": "v2:0c697b0b503524b266bc9d9b4ff0c822f288c5cd6e221cd3a00f4baefd199ffe",
+    "identifier": "1802.03426"
+  },
+  {
+    "key": "MehtEtal24",
+    "fingerprint": "v2:a797f23ec77d7d06dcb9ff06e0159a8508f61e9c549bfcbc3b677468c499318f",
+    "identifier": "2404.14619"
+  },
+  {
+    "key": "MikoEtal13a",
+    "fingerprint": "v2:0494efcd0038f292580040ec1322c2b988863a2e9edf1a658db20e980f0f7d20",
+    "identifier": "1301.3781"
+  },
+  {
+    "key": "NieEtal25",
+    "fingerprint": "v2:12df4a3d0403760dca0bbae26dfb001f292e841d774bf2c1dd61b2d146d86888",
+    "identifier": "2502.09992"
+  },
+  {
+    "key": "PeteEtal18",
+    "fingerprint": "v2:3afb3a62f812fe58ee2e571bb4f2776874596c080e96f0b407e8eeb1ffe8e2f2",
+    "identifier": "1802.05365"
+  },
+  {
+    "key": "ReddEtal18",
+    "fingerprint": "v2:116a0ab2ef3a89ee3dd68f1848960c54bd59cba4f48f349b9100b53c18b7a1f7",
+    "identifier": "1809.03934"
+  },
+  {
+    "key": "TouvEtal23",
+    "fingerprint": "v2:688ff8c40e522b03f40653763988e39734db9bb2ea672ac425d8cc15328a517b",
+    "identifier": "2307.09288"
+  },
+  {
+    "key": "TrauEtal25",
+    "fingerprint": "v2:10eac91acdb29a5b1ec10c6b535476872ef8e60ae91e7eb37627ba495ea80a01",
+    "identifier": "2510.27500"
+  },
+  {
+    "key": "TulcEtal23",
+    "fingerprint": "v2:4e03271fe02a88c49e02d7cecb4c6f019b448158316b8f811a0e2881a24d11c3",
+    "identifier": "2306.04723"
+  },
+  {
+    "key": "VeraEtal25",
+    "fingerprint": "v2:36a684ac72e618ca25a30d8a35e4890cd247c049473b335d13881de7068d8380",
+    "identifier": "2509.20354"
+  },
+  {
+    "key": "VodrEtal16",
+    "fingerprint": "v2:111c0ef69c3fa4a3b2664990bac67ff00498cd63c3e489dd0bd8ca386ebfb7bb",
+    "identifier": "1610.03914"
+  },
+  {
+    "key": "WangEtal23",
+    "fingerprint": "v2:329d1fe9ae6938d7ead91b7341b149d8eb7d779a5f1235c3539f4b75e1834570",
+    "identifier": "2310.11453"
+  },
+  {
+    "key": "XieEtal25",
+    "fingerprint": "v2:3bb50d0f03fa684f2cb29e0d1f85c885b5785cb8c0371fa791cd86ea27e8d604",
+    "identifier": "2509.01142"
+  },
+  {
+    "key": "YangEtal24",
+    "fingerprint": "v2:2832c7da12d7201028900204f445c4affbb8c92570348c90e58f9aa9a5af6fb8",
+    "identifier": "2412.15115"
+  },
+  {
+    "key": "YangEtal25",
+    "fingerprint": "v2:7b19180c3a1f12b1aed5bac744aade6ffdf7e77315a3b58137c89b4b816a6efb",
+    "identifier": "2510.00183"
+  },
+  {
+    "key": "YeEtal25",
+    "fingerprint": "v2:6699b238514756db3c365a878bb50e6a7c4a179f5b1677360a92a0f0c9098eb9",
+    "identifier": "2508.15487"
+  },
+  {
+    "key": "ZhenEtal19",
+    "fingerprint": "v2:b87efe57a21d17602b7e5fa33c5763086ab7d6c82caa4a50c1545f70e2df0c39",
+    "identifier": "1904.11793"
+  },
+  {
+    "key": "ZhuEtal17",
+    "fingerprint": "v2:f98d83d1eb5cd90f06753c07cc8c27bafbdd889865eb06ff0335bf26942ddd3d",
+    "identifier": "1703.10593"
+  }
+]

@@ -1,0 +1,53 @@
+# Assistant source audit, recorded before the 50 model extractions.
+# key | year of cited volume | volume | issue | pages or locator | ordered family,initials | finding
+# An empty value means not established in the supplied source, not agreement with the bibliography.
+Brun04|2004|137|2|321-332|Bruns,A|Core metadata agrees; update relationship still requires adjudication.
+MannEtal22|2022|12|1|13822|Manning,JR;Notaro,GM;Chen,E;Fitzpatrick,PC|Published article agrees; linked preprint is a different record.
+GuesMart21|2021|16|4|789-802|Guest,O;Martin,AE|Published article agrees; preprint relationship does not itself change citation identity.
+LifaEtal21|2021|12|1|3177|Lifanov,J;Linde-Domingo,J;Wimber,M|Published article agrees; linked preprint is distinct.
+RuggCurr07|2007|11|6|251-257|Rugg,MD;Curran,T|Irvine is an author affiliation; publisher address not established.
+TianEtal16a|2016||||Tian,Z;Wright,K;Zhou,X|Author project confirms title, author order and conference/year; pages and formal proceedings title need original proceedings evidence.
+CarvEtal22a|2022|||371-374|Carver,CJ;Tian,Z;Shao,Q;Zhang,H;Odame,KM;Quattrini Li,A;Zhou,X|PDF header confirms COMmunication Systems & NETworkS (COMSNETS), seven authors and 371-374.
+AlkiEtal98|1998|95|24|14506-14510|Alkire,MT;Haier,RJ;Fallon,JH;Cahill,L|PNAS journal spelling variant; publisher not supplied in registry record.
+MeyeEtal12|2012|109|6|1883-1888|Meyer,ML;Spunt,RP;Berkman,ET;Taylor,SE;Lieberman,MD|PNAS journal spelling variant.
+GrubOtte10|2010|30|29|9793-9800|Gruber,MJ;Otten,LJ|Journal subtitle/leading article variant, no numeric discrepancy.
+LynnBass21|2021|118|32|e2023473118|Lynn,CW;Bassett,DS|PNAS spelling variant; article locator confirmed in XML.
+WickNorm66|1966|3||316-347|Wickelgren,WA;Norman,DA|Original article first page says Journal of Mathematical Psychology, not Psychobiology.
+HoneEtal09|2009|106|6|2035-2040|Honey,CJ;Sporns,O;Cammoun,L;Gigandet,X;Thiran,JP;Meuli,R;Hagmann,P|PNAS spelling variant.
+KopeEtal00|2000|97|4|1867-1872|Kopell,N;Ermentrout,GB;Whittington,MA;Traub,RD|PNAS spelling variant.
+GlovEtal05|2005|102|37|13295-13300|Gloveli,T;Dugladze,T;Rotstein,HG;Traub,RD;Monyer,H;Heinemann,U;Whittington,MA;Kopell,NJ|PNAS spelling variant; all eight authors checked.
+MonaEtal07|2007|14|3|204-213|Monaco,JD;Abbott,LF;Kahana,MJ|Issue is 3, not 2.
+WorrEtal04|2004|127|Pt 7|1496-1506|Worrell,GA;Parish,L;Cranstoun,SD;Jonas,R;Baltuch,G;Litt,B|Registry explicitly supports Pt 7; do not force a numeric-only issue.
+AherBeat81|1981|||121-128|Ahern,S;Beatty,J|Chapter. Springer is listed as publisher, not organization; original copyright names Plenum Press.
+KuhlEtal07|2007|10|7|908-914|Kuhl,BA;Dudukovic,NM;Kahn,I;Wagner,AD|Replace first-page-only 908 with 908-914.
+WaydEtal06|2006|26|40|10232-10234|Waydo,S;Kraskov,A;Quian Quiroga,R;Fried,I;Koch,C|Full page range missing; publisher remains unsupported by registry alone.
+HuebWill18|2018|9||133|Huebner,PA;Willits,JA|Pages contains DOI URL; article locator is 133, DOI is a separate field.
+VidoEtal15|2015|10|7|e0131647|Vidoni,ED;Johnson,DK;Morris,JK;Van Sciver,A;Greer,CS;Billinger,SA;Donnelly,JE;Burns,JM|Use article locator e0131647, not PDF sheet numbers 1-13; exclude academic editor.
+RoteEtal09|2009|29|32|10120-10130|Rotermund,D;Taylor,K;Ernst,UA;Kreiter,AK;Pawelzik,KR|Full page range missing; publisher remains unsupported by registry alone.
+BuscEtal08|2008|10|3|199-205|Busch,RM;Chapin,JS;Umashankar,G;Diehl,B;Harvey,D;Naugle,RI;Nair,D;Najm,IM|Replace 199 with 199-205.
+Kerb14|2014|3|||Kerby,DS|Publisher page confirms year/volume/author, but visible metadata does not establish pagination; do not infer it from DOI.
+ZekvEtal18|2018|22||2331216518777174|Zekveld,AA;Koelewijn,T;Kramer,SE|Missing article locator; XML explicitly names SAGE Publications.
+Scha03|2003|||149-171|Schapire,RE|Book chapter in Nonlinear Estimation and Classification, not journal article. Series volume 171 is not a journal volume.
+DaviEtal09|2009|63|4|497-507|Davidson,TJ;Kloosterman,F;Wilson,MA|Core metadata agrees; registry cannot adjudicate Elsevier vs Cell Press imprint.
+WitmEtal96|1996|45|4|413-428|Witmer,BG;Bailey,JH;Knerr,BW;Parsons,KC|Publisher page currently says Elsevier; original Academic Press imprint requires historical evidence.
+GuptEtal12|2012|15|7|1032-1039|Gupta,AS;van der Meer,MAA;Touretzky,DS;Redish,AD|Source title uses theta symbol; firstName gives MAA despite truncated registry initials MA. Publisher needs primary evidence.
+BernEtal01b|2001|42|1|11-34|Bernat,E;Bunce,S;Shevrin,H|Core metadata agrees; first names supplied only as initials by registry; publisher unresolved.
+CronEtal01|2001|112|4|565-582|Crone,NE;Boatman,D;Gordon,B;Hao,L|Registry appends Brazier Award-winning article, 2001 to title. Requires source-role adjudication; publisher unresolved.
+KoenEtal07|2007|446|7138|908-911|Koenigs,M;Young,L;Adolphs,R;Tranel,D;Cushman,F;Hauser,M;Damasio,A|Core metadata agrees; comments are distinct records; publisher unresolved.
+HamaEtal08|2008|63|1|119-123|Hamani,C;McAndrews,MP;Cohn,M;Oh,M;Zumsteg,D;Shapiro,CM;Wennberg,RA;Lozano,AM|Little, Brown, and Co is not supported by current registry; requires original publisher evidence.
+BretEtal02|2002|3|3|243-249|Brett,M;Johnsrude,IS;Owen,AM|Core metadata agrees; publisher unresolved.
+Nico03|2003|4|5|417-422|Nicolelis,MAL|Use all given-name initials MAL, not truncated registry initials MA; publisher unresolved.
+OlveEtal04|2004|62|5|379-384|Olvera-Cortés,E;Guevara,MA;González-Burgos,I|Accented surnames agree; 2003 in DOI is not publication year; publisher unresolved.
+PolkEtal02|2002|14|2|145-159|Polk,TA;Stallcup,M;Aguirre,GK;Alsop,DC;D'Esposito,M;Detre,JA;Farah,MJ|All seven author names and core metadata agree; publisher unresolved.
+WolfEtal93|1993|79|1|76-83|Wolf,RL;Ivnik,RJ;Hirschorn,KA;Sharbrough,FW;Cascino,GD;Marsh,WR|Core metadata agrees; publishing-group identity needs source evidence.
+HaukEtal04|2004|41|2|301-307|Hauk,O;Johnsrude,I;Pulvermüller,F|Accented surname agrees; publisher unresolved.
+AlomEtal13|2013|247||34-39|Alomari,MA;Khabour,OF;Alzoubi,KH;Alzubi,MA|Alzoubi and Alzubi are distinct surnames; preserve both; publisher unresolved.
+KuhlEtal12b|2012|50|4|458-469|Kuhl,BA;Rissman,J;Wagner,AD|2011 online date differs from 2012 issue year; supplied volume uses 2012; publisher unresolved.
+AinsEtal12|2012|75|4|572-583|Ainsworth,M;Lee,S;Cunningham,MO;Traub,RD;Kopell,NJ;Whittington,MA|Core metadata agrees; publisher unresolved.
+Lang05|2005|53|4|513-531|Lange,EB|Volume is 53, not 43; publisher page independently confirms.
+MillMcGi52|1952|17|4|369-396|Miller,GA;McGill,WJ|Original issue December 1952; 2025 is archival online date.
+WyliEtal07|2008|18|3|670-682|Wylie,GR;Foxe,JJ;Taylor,TL|2007 online date is mixed with 2008 print volume/pages; cite issue year 2008.
+Cohe90|1990|81|3|287-297|Cohen,G|Publisher page explicitly dates issue August 1990.
+TakaEtal77|1977|42|1|7-67|Takane,Y;Young,FW;de Leeuw,J|Original issue March 1977; 2025 is archival online date.
+Cowa00|2001|24|1|87-114|Cowan,N|Cambridge article issue is 2001, not 2000. PubMed discussion pages belong to a separate part.
+WiggEtal99|1999|37|1|103-118|Wiggs,CL;Weisberg,J;Martin,A|Indexed issue supports 1999; do not derive year from 98 in DOI.

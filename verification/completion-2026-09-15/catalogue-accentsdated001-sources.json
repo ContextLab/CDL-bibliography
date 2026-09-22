@@ -1,0 +1,17 @@
+[
+  {
+    "key": "Kohl47",
+    "fingerprint": "v2:2de9764ea0796fca59c4017d0efcfb146c890291eba4fcf442b4c7d198131718",
+    "query": "dc.title=\"gestalt psychology\" and dc.author=\"kohler\" and (dc.date=\"1947\" or dc.date=\"c1947\")",
+    "source": {
+      "document_sha256": "056319c100b3d75de23b0756b649a25f4e02a6e4a3bece03748c334b6b6a77b7",
+      "query": "dc.title=\"gestalt psychology\" and dc.author=\"kohler\" and (dc.date=\"1947\" or dc.date=\"c1947\")",
+      "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>dc.title=\"gestalt psychology\" and dc.author=\"kohler\" and (dc.date=\"1947\" or dc.date=\"c1947\")</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+      "records": [],
+      "retrieved_at": "2026-09-22T04:02:22.858078+00:00",
+      "total_records": 0,
+      "truncated": false,
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22gestalt+psychology%22+and+dc.author%3D%22kohler%22+and+%28dc.date%3D%221947%22+or+dc.date%3D%22c1947%22%29&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+    }
+  }
+]

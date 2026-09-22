@@ -1,0 +1,225 @@
+[
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "HallWals02",
+    "fingerprint": "v2:35e7176e7e4ff2d3536af47d369a423d6402ce7aa1a6648c8a1d15ebefbcb689",
+    "changes": {
+      "title": {
+        "before": "Teacher-student interaction and language learning",
+        "after": "10. {TEACHER-STUDENT} {INTERACTION} {AND} {LANGUAGE} {LEARNING}"
+      }
+    },
+    "doi": "10.1017/s0267190502000107",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1017/s0267190502000107",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "J K Hall and M Walsh",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Hall",
+              "given": "Joan Kelly",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Walsh",
+              "given": "Meghan",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Annual Review of Applied Linguistics",
+          "match": true,
+          "source": [
+            "Annual Review of Applied Linguistics"
+          ]
+        },
+        "pages": {
+          "local": "186--203",
+          "match": true,
+          "source": [
+            "186-203"
+          ]
+        },
+        "title": {
+          "local": "Teacher-student interaction and language learning",
+          "match": false,
+          "source": [
+            "10. TEACHER-STUDENT INTERACTION AND LANGUAGE LEARNING"
+          ]
+        },
+        "volume": {
+          "local": "22",
+          "match": true,
+          "source": [
+            "22"
+          ]
+        },
+        "year": {
+          "local": "2002",
+          "match": true,
+          "source": [
+            "2002"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1017/s0267190502000107",
+        "ISSN": [
+          "0267-1905",
+          "1471-6356"
+        ],
+        "URL": "https://doi.org/10.1017/s0267190502000107",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Hall",
+            "given": "Joan Kelly",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Walsh",
+            "given": "Meghan",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Annual Review of Applied Linguistics"
+        ],
+        "issued": {
+          "date-parts": [
+            [
+              2002,
+              3
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0267190502000107",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "186-203",
+        "published": {
+          "date-parts": [
+            [
+              2002,
+              3
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2002,
+              12,
+              12
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2002,
+              3
+            ]
+          ]
+        },
+        "publisher": "Cambridge University Press (CUP)",
+        "title": [
+          "10. TEACHER-STUDENT INTERACTION AND LANGUAGE LEARNING"
+        ],
+        "type": "journal-article",
+        "volume": "22"
+      },
+      "retrieved_at": "2026-09-09T19:34:23.276383+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1017/s0267190502000107"
+    },
+    "publisher_source": {
+      "document_sha256": "45ee51b8d6393bdf21ff067fc46f624b7833816bc5e48ecebffa70190dc5afdd",
+      "metadata": {
+        "citation_abstract": [
+          "This chapter reviews literature on recent developments in teacher-student interaction and language learning. Based on a sociocultural perspective of language and learning, the studies are drawn from three types of classrooms: first language classrooms; second language classrooms, which include contexts in which the language being learned in the classroom is also the language of the community; and foreign language classrooms. Foreign language learning contexts are those in which exposure to and opportunities for target language interaction are restricted for the most part to the language classroom. Across these three areas, attention is given to studies that investigate the specific means used in teacher-student interaction to promote language learning."
+        ],
+        "citation_author": [
+          "Joan Kelly Hall",
+          "Meghan Walsh"
+        ],
+        "citation_doi": [
+          "10.1017/S0267190502000107"
+        ],
+        "citation_firstpage": [
+          "186"
+        ],
+        "citation_issn": [
+          "1471-6356",
+          "0267-1905"
+        ],
+        "citation_journal_title": [
+          "Annual Review of Applied Linguistics"
+        ],
+        "citation_lastpage": [
+          "203"
+        ],
+        "citation_online_date": [
+          "2002/12/12"
+        ],
+        "citation_pdf_url": [
+          "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/299B43EE77047070BFE82000B91F671B/S0267190502000107a.pdf/div-class-title-10-teacher-student-interaction-and-language-learning-div.pdf"
+        ],
+        "citation_publication_date": [
+          "2002/03"
+        ],
+        "citation_publisher": [
+          "Cambridge University Press"
+        ],
+        "citation_title": [
+          "10. TEACHER-STUDENT INTERACTION AND LANGUAGE LEARNING"
+        ],
+        "citation_volume": [
+          "22"
+        ]
+      },
+      "retrieved_at": "2026-09-16T16:05:44.990157+00:00",
+      "url": "https://www.cambridge.org/core/journals/annual-review-of-applied-linguistics/article/10-teacherstudent-interaction-and-language-learning/299B43EE77047070BFE82000B91F671B"
+    }
+  }
+]

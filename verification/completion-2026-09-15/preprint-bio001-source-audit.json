@@ -1,0 +1,30 @@
+{
+  "scope": "Four-entry bioRxiv pilot, fail-closed production route; no bibliography edits.",
+  "primary_documentation": [
+    "https://api.biorxiv.org/",
+    "https://connect.biorxiv.org/news/2023/08/15/preprint_withdrawals"
+  ],
+  "negative_control": {
+    "doi": "10.1101/2020.01.30.927871",
+    "finding": "API returns v1 new results and v2 withdrawn with unchanged title. The complete version history, not title alone, detects withdrawal. Control stays outside the bibliography/main cache."
+  },
+  "source_checks": {
+    "LeeEtal19": {
+      "method": "Local PDF physical first-page image visually inspected, independently of API/HTML parsing.",
+      "pdf_sha256": "b2e443c09b81d44fdd52e57a2d681950256dae28c2a8e029fe6f08bdc023b4ae",
+      "observed": "Printed header: bioRxiv DOI 10.1101/615203, version posted April 22 2019. Complete title and Jae Sung Lee, John Briguglio, Sandro Romani, Albert K. Lee agree with API, version-page metadata and DOI registry. The later Cell paper has a different DOI and is not substituted."
+    },
+    "FoxEtal14": {
+      "method": "Independently read visible title/byline in fetched repository HTML, plus its explicit date and DOI head metadata; no local PDF available.",
+      "url": "https://www.biorxiv.org/content/10.1101/012310v1",
+      "observed": "Full title Bridging psychology and genetics using large-scale spatial analysis of neuroimaging and neurogenetic data. Andrew S. Fox, Luke J. Chang, Krzysztof J. Gorgolewski, Tal Yarkoni in order. Posted 2014-12-09, DOI 10.1101/012310, v1. All existing citation fields match. Web reader returned 403; paced CLI retrieval returned 200 and supplied the saved source."
+    },
+    "ZimaMann21": {
+      "url": "https://www.biorxiv.org/content/10.1101/2021.02.22.432360v1",
+      "finding": "Visible repository byline and Crossref both put Kirsten Ziman before Jeremy R. Manning, agreeing with the bibliography. API lists Manning first. Hold source conflict; do not change a correct bibliography to match the API."
+    },
+    "GoldEtal21": {
+      "finding": "API returns four versions spanning 2020 and 2021. Citation has no explicit version, and the registry byline differs from version metadata. Held pending source-version adjudication."
+    }
+  }
+}

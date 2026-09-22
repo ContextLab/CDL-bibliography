@@ -1,0 +1,1743 @@
+[
+  {
+    "kind": "corroborated_author",
+    "key": "IariEtal08",
+    "fingerprint": "v2:db765347bf36496e692034f01c5da2c6f064d15852633674b3b6ebbf0e854692",
+    "changes": {
+      "author": {
+        "before": "Guiuseppe Iaria and Christopher J Fox and Jen-Kai Chen and Michael Petrides and Jason J S Barton",
+        "after": "Giuseppe Iaria and Christopher J Fox and Jen‐Kai Chen and Michael Petrides and Jason J S Barton"
+      }
+    },
+    "doi": "10.1111/j.1460-9568.2008.06060.x",
+    "pubmed_id": "18279364",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 4"
+      ],
+      "doi": "10.1111/j.1460-9568.2008.06060.x",
+      "evidence": {
+        "author": {
+          "detail": "Author given names differ",
+          "local": "Guiuseppe Iaria and Christopher J Fox and Jen-Kai Chen and Michael Petrides and Jason J S Barton",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Iaria",
+              "given": "Giuseppe",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Fox",
+              "given": "Christopher J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Chen",
+              "given": "Jen‐Kai",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Petrides",
+              "given": "Michael",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Barton",
+              "given": "Jason J. S.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "{European} Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "European Journal of Neuroscience"
+          ]
+        },
+        "pages": {
+          "local": "1017--1025",
+          "match": true,
+          "source": [
+            "1017-1025"
+          ]
+        },
+        "title": {
+          "local": "Detection of unexpected events during spatial navigation in humans: bottom-up attentional system and neural mechanisms",
+          "match": true,
+          "source": [
+            "Detection of unexpected events during spatial navigation in humans: bottom‐up attentional system and neural mechanisms"
+          ]
+        },
+        "volume": {
+          "local": "27",
+          "match": true,
+          "source": [
+            "27"
+          ]
+        },
+        "year": {
+          "local": "2008",
+          "match": true,
+          "source": [
+            "2008"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author given names differ"
+      ],
+      "record": {
+        "DOI": "10.1111/j.1460-9568.2008.06060.x",
+        "ISSN": [
+          "0953-816X",
+          "1460-9568"
+        ],
+        "URL": "https://doi.org/10.1111/j.1460-9568.2008.06060.x",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Iaria",
+            "given": "Giuseppe",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Fox",
+            "given": "Christopher J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Chen",
+            "given": "Jen‐Kai",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Petrides",
+            "given": "Michael",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Barton",
+            "given": "Jason J. S.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "European Journal of Neuroscience"
+        ],
+        "issue": "4",
+        "issued": {
+          "date-parts": [
+            [
+              2008,
+              2
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1111%2Fj.1460-9568.2008.06060.x",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1460-9568.2008.06060.x",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "1017-1025",
+        "published": {
+          "date-parts": [
+            [
+              2008,
+              2
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2008,
+              2,
+              14
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2008,
+              2
+            ]
+          ]
+        },
+        "publisher": "Wiley",
+        "title": [
+          "Detection of unexpected events during spatial navigation in humans: bottom‐up attentional system and neural mechanisms"
+        ],
+        "type": "journal-article",
+        "volume": "27"
+      },
+      "retrieved_at": "2026-09-21T17:29:53.277915+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1111/j.1460-9568.2008.06060.x"
+    },
+    "secondary": {
+      "doi": "10.1111/j.1460-9568.2008.06060.x",
+      "evidence": {
+        "author": {
+          "detail": "Author given names differ",
+          "local": "Guiuseppe Iaria and Christopher J Fox and Jen-Kai Chen and Michael Petrides and Jason J S Barton",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Iaria",
+              "given": "Giuseppe",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Fox",
+              "given": "Christopher J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Chen",
+              "given": "Jen‐Kai",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Petrides",
+              "given": "Michael",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Barton",
+              "given": "Jason J. S.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "{European} Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "European Journal of Neuroscience"
+          ]
+        },
+        "pages": {
+          "local": "1017--1025",
+          "match": true,
+          "source": [
+            "1017-1025"
+          ]
+        },
+        "title": {
+          "local": "Detection of unexpected events during spatial navigation in humans: bottom-up attentional system and neural mechanisms",
+          "match": true,
+          "source": [
+            "Detection of unexpected events during spatial navigation in humans: bottom‐up attentional system and neural mechanisms"
+          ]
+        },
+        "volume": {
+          "local": "27",
+          "match": true,
+          "source": [
+            "27"
+          ]
+        },
+        "year": {
+          "local": "2008",
+          "match": true,
+          "source": [
+            "2008"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author given names differ",
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Human Vision and Eye Movement Laboratory, Faculty of Medicine, Division of Neurology, Department of Medicine, University of British Columbia, VGH Eye Care Center, Section D, 2550 Willow Street, Vancouver, BC, Canada V5Z 3N9. giaria@eyecarecentre.org"
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-5987-6491"
+              },
+              "firstName": "Giuseppe",
+              "fullName": "Iaria G",
+              "initials": "G",
+              "lastName": "Iaria"
+            },
+            {
+              "firstName": "Christopher J",
+              "fullName": "Fox CJ",
+              "initials": "CJ",
+              "lastName": "Fox"
+            },
+            {
+              "firstName": "Jen-Kai",
+              "fullName": "Chen JK",
+              "initials": "JK",
+              "lastName": "Chen"
+            },
+            {
+              "firstName": "Michael",
+              "fullName": "Petrides M",
+              "initials": "M",
+              "lastName": "Petrides"
+            },
+            {
+              "firstName": "Jason J S",
+              "fullName": "Barton JJ",
+              "initials": "JJ",
+              "lastName": "Barton"
+            }
+          ]
+        },
+        "doi": "10.1111/j.1460-9568.2008.06060.x",
+        "firstPublicationDate": "2008-02-13",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1111/j.1460-9568.2008.06060.x"
+            }
+          ]
+        },
+        "id": "18279364",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2008 Feb",
+          "issue": "4",
+          "journal": {
+            "essn": "1460-9568",
+            "isoabbreviation": "Eur J Neurosci",
+            "issn": "0953-816X",
+            "medlineAbbreviation": "Eur J Neurosci",
+            "nlmid": "8918110",
+            "title": "The European journal of neuroscience"
+          },
+          "journalIssueId": 1514356,
+          "monthOfPublication": 2,
+          "printPublicationDate": "2008-02-01",
+          "volume": "27",
+          "yearOfPublication": 2008
+        },
+        "pageInfo": "1017-1025",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, Non-U.S. Gov't",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2008",
+        "source": "MED",
+        "title": "Detection of unexpected events during spatial navigation in humans: bottom-up attentional system and neural mechanisms."
+      },
+      "record": {
+        "DOI": "10.1111/j.1460-9568.2008.06060.x",
+        "ISSN": [
+          "0953-816X",
+          "1460-9568"
+        ],
+        "author": [
+          {
+            "family": "Iaria",
+            "given": "Giuseppe",
+            "suffix": ""
+          },
+          {
+            "family": "Fox",
+            "given": "Christopher J",
+            "suffix": ""
+          },
+          {
+            "family": "Chen",
+            "given": "Jen-Kai",
+            "suffix": ""
+          },
+          {
+            "family": "Petrides",
+            "given": "Michael",
+            "suffix": ""
+          },
+          {
+            "family": "Barton",
+            "given": "Jason J S",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "The European journal of neuroscience",
+          "Eur J Neurosci",
+          "Eur J Neurosci",
+          "European Journal of Neuroscience"
+        ],
+        "issue": "4",
+        "page": "1017-1025",
+        "published": {
+          "date-parts": [
+            [
+              2008
+            ]
+          ]
+        },
+        "title": [
+          "Detection of unexpected events during spatial navigation in humans: bottom-up attentional system and neural mechanisms"
+        ],
+        "type": "journal-article",
+        "volume": "27"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1212%2Fwnl.41.6.869%22+OR+DOI%3A%2210.1017%2Fcbo9781139103992.088%22+OR+DOI%3A%2210.3171%2F2012.1.focus11334%22+OR+DOI%3A%2210.3758%2Fbf03332847%22+OR+DOI%3A%2210.1016%2F0166-2236%2892%2990346-a%22+OR+DOI%3A%2210.1016%2F0022-510x%2891%2990227-x%22+OR+DOI%3A%2210.1111%2Fj.1460-9568.2008.06060.x%22+OR+DOI%3A%2210.1038%2F152172a0%22+OR+DOI%3A%2210.1037%2Fh0049652%22+OR+DOI%3A%2210.1002%2Fhbm.20458%22+OR+DOI%3A%2210.1093%2Fbrain%2Fawh106%22+OR+DOI%3A%2210.1111%2Fj.1469-8986.1996.tb02429.x%22+OR+DOI%3A%2210.1111%2Fj.1469-8986.2005.00262.x%22+OR+DOI%3A%2210.1007%2F978-981-97-7874-4_124%22+OR+DOI%3A%2210.1007%2F978-981-99-6000-2_124-1%22+OR+DOI%3A%2210.1037%2Fh0056008%22+OR+DOI%3A%2210.1002%2F9780470479216.corpsy0386%22+OR+DOI%3A%2210.1007%2F978-94-017-5344-9_63%22+OR+DOI%3A%2210.2307%2F1414898%22+OR+DOI%3A%2210.1017%2F9781009042895.018%22+OR+DOI%3A%2210.1007%2F978-3-319-19650-3_302050%22+OR+DOI%3A%2210.1037%2Fh0066025%22+OR+DOI%3A%2210.4324%2F9781315665214-17%22+OR+DOI%3A%2210.4324%2F9780203798546-14%22+OR+DOI%3A%2210.4135%2F9781412963947.n203%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-21T17:40:41.577921+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/18279364"
+    }
+  },
+  {
+    "kind": "corroborated_combined",
+    "key": "JerbEtal09b",
+    "fingerprint": "v2:fd8360dcfc3ced3ade8be59c4d3287a043033776d45544eb43e5498d7ab6cc92",
+    "changes": {
+      "pages": {
+        "before": null,
+        "after": "1758--1771"
+      },
+      "author": {
+        "before": "K Jerbi and T Ossandon and C M Hamame and S Senova and S S Dalal and J Jung and L Minotti and O Bertrand and A Berthoz and P Kahane and others",
+        "after": "Karim Jerbi and Tomás Ossandón and Carlos M Hamamé and S Senova and Sarang S Dalal and Julien Jung and Lorella Minotti and Olivier Bertrand and Alain Berthoz and Philippe Kahane and Jean‐Philippe Lachaux"
+      }
+    },
+    "doi": "10.1002/hbm.20750",
+    "pubmed_id": "19343801",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1002/hbm.20750",
+      "evidence": {
+        "author": {
+          "detail": "Author surnames/order differ",
+          "local": "K Jerbi and T Ossandon and C M Hamame and S Senova and S S Dalal and J Jung and L Minotti and O Bertrand and A Berthoz and P Kahane and others",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Jerbi",
+              "given": "Karim",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Ossandón",
+              "given": "Tomás",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Hamamé",
+              "given": "Carlos M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Senova",
+              "given": "S.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Dalal",
+              "given": "Sarang S.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Jung",
+              "given": "Julien",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Minotti",
+              "given": "Lorella",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Bertrand",
+              "given": "Olivier",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Berthoz",
+              "given": "Alain",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Kahane",
+              "given": "Philippe",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Lachaux",
+              "given": "Jean‐Philippe",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Human Brain Mapping",
+          "match": true,
+          "source": [
+            "Human Brain Mapping"
+          ]
+        },
+        "number": {
+          "local": "6",
+          "match": true,
+          "source": [
+            "6"
+          ]
+        },
+        "publisher": {
+          "local": "Wiley",
+          "match": true,
+          "source": [
+            "Wiley"
+          ]
+        },
+        "title": {
+          "local": "Task-related gamma-band dynamics from an intracerebral perspective: review and implications for surface {EEG} and {MEG}",
+          "match": true,
+          "source": [
+            "Task‐related gamma‐band dynamics from an intracerebral perspective: Review and implications for surface EEG and MEG"
+          ]
+        },
+        "volume": {
+          "local": "30",
+          "match": true,
+          "source": [
+            "30"
+          ]
+        },
+        "year": {
+          "local": "2009",
+          "match": true,
+          "source": [
+            "2009"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author surnames/order differ",
+        "pages: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1002/hbm.20750",
+        "ISSN": [
+          "1065-9471",
+          "1097-0193"
+        ],
+        "URL": "https://doi.org/10.1002/hbm.20750",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Jerbi",
+            "given": "Karim",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Ossandón",
+            "given": "Tomás",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Hamamé",
+            "given": "Carlos M.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Senova",
+            "given": "S.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Dalal",
+            "given": "Sarang S.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Jung",
+            "given": "Julien",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Minotti",
+            "given": "Lorella",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Bertrand",
+            "given": "Olivier",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Berthoz",
+            "given": "Alain",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Kahane",
+            "given": "Philippe",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Lachaux",
+            "given": "Jean‐Philippe",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Human Brain Mapping"
+        ],
+        "issue": "6",
+        "issued": {
+          "date-parts": [
+            [
+              2009,
+              4,
+              2
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fhbm.20750",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/hbm.20750",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "1758-1771",
+        "published": {
+          "date-parts": [
+            [
+              2009,
+              4,
+              2
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2009,
+              4,
+              2
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2009,
+              6
+            ]
+          ]
+        },
+        "publisher": "Wiley",
+        "title": [
+          "Task‐related gamma‐band dynamics from an intracerebral perspective: Review and implications for surface EEG and MEG"
+        ],
+        "type": "journal-article",
+        "volume": "30"
+      },
+      "retrieved_at": "2026-09-21T17:20:17.231121+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1002/hbm.20750"
+    },
+    "secondary": {
+      "source": "europepmc",
+      "doi": "10.1002/hbm.20750",
+      "url": "https://europepmc.org/article/MED/19343801",
+      "record": {
+        "DOI": "10.1002/hbm.20750",
+        "type": "journal-article",
+        "title": [
+          "Task-related gamma-band dynamics from an intracerebral perspective: review and implications for surface EEG and MEG"
+        ],
+        "author": [
+          {
+            "given": "Karim",
+            "family": "Jerbi",
+            "suffix": ""
+          },
+          {
+            "given": "Tomás",
+            "family": "Ossandón",
+            "suffix": ""
+          },
+          {
+            "given": "Carlos M",
+            "family": "Hamamé",
+            "suffix": ""
+          },
+          {
+            "given": "S",
+            "family": "Senova",
+            "suffix": ""
+          },
+          {
+            "given": "Sarang S",
+            "family": "Dalal",
+            "suffix": ""
+          },
+          {
+            "given": "Julien",
+            "family": "Jung",
+            "suffix": ""
+          },
+          {
+            "given": "Lorella",
+            "family": "Minotti",
+            "suffix": ""
+          },
+          {
+            "given": "Olivier",
+            "family": "Bertrand",
+            "suffix": ""
+          },
+          {
+            "given": "Alain",
+            "family": "Berthoz",
+            "suffix": ""
+          },
+          {
+            "given": "Philippe",
+            "family": "Kahane",
+            "suffix": ""
+          },
+          {
+            "given": "Jean-Philippe",
+            "family": "Lachaux",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Human brain mapping",
+          "Hum Brain Mapp",
+          "Hum Brain Mapp",
+          "Human Brain Mapping"
+        ],
+        "ISSN": [
+          "1065-9471",
+          "1097-0193"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2009
+            ]
+          ]
+        },
+        "volume": "30",
+        "issue": "6",
+        "page": "1758-1771"
+      },
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "INSERM U821, Brain Dynamics and Cognition; Université Claude Bernard, Lyon 1, Lyon, France."
+                  }
+                ]
+              },
+              "firstName": "Karim",
+              "fullName": "Jerbi K",
+              "initials": "K",
+              "lastName": "Jerbi"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-7306-7754"
+              },
+              "firstName": "Tomás",
+              "fullName": "Ossandón T",
+              "initials": "T",
+              "lastName": "Ossandón"
+            },
+            {
+              "firstName": "Carlos M",
+              "fullName": "Hamamé CM",
+              "initials": "CM",
+              "lastName": "Hamamé"
+            },
+            {
+              "firstName": "S",
+              "fullName": "Senova S",
+              "initials": "S",
+              "lastName": "Senova"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-1699-7218"
+              },
+              "firstName": "Sarang S",
+              "fullName": "Dalal SS",
+              "initials": "SS",
+              "lastName": "Dalal"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-9274-0086"
+              },
+              "firstName": "Julien",
+              "fullName": "Jung J",
+              "initials": "J",
+              "lastName": "Jung"
+            },
+            {
+              "firstName": "Lorella",
+              "fullName": "Minotti L",
+              "initials": "L",
+              "lastName": "Minotti"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-0733-7979"
+              },
+              "firstName": "Olivier",
+              "fullName": "Bertrand O",
+              "initials": "O",
+              "lastName": "Bertrand"
+            },
+            {
+              "firstName": "Alain",
+              "fullName": "Berthoz A",
+              "initials": "A",
+              "lastName": "Berthoz"
+            },
+            {
+              "firstName": "Philippe",
+              "fullName": "Kahane P",
+              "initials": "P",
+              "lastName": "Kahane"
+            },
+            {
+              "firstName": "Jean-Philippe",
+              "fullName": "Lachaux JP",
+              "initials": "JP",
+              "lastName": "Lachaux"
+            }
+          ]
+        },
+        "doi": "10.1002/hbm.20750",
+        "firstPublicationDate": "2009-06-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/hbm.20750"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6870589"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6870589?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/hbm.20750"
+            }
+          ]
+        },
+        "id": "19343801",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2009 Jun",
+          "issue": "6",
+          "journal": {
+            "essn": "1097-0193",
+            "isoabbreviation": "Hum Brain Mapp",
+            "issn": "1065-9471",
+            "medlineAbbreviation": "Hum Brain Mapp",
+            "nlmid": "9419065",
+            "title": "Human brain mapping"
+          },
+          "journalIssueId": 1623304,
+          "monthOfPublication": 6,
+          "printPublicationDate": "2009-06-01",
+          "volume": "30",
+          "yearOfPublication": 2009
+        },
+        "pageInfo": "1758-1771",
+        "pmcid": "PMC6870589",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, Non-U.S. Gov't",
+            "review-article",
+            "Review",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2009",
+        "source": "MED",
+        "title": "Task-related gamma-band dynamics from an intracerebral perspective: review and implications for surface EEG and MEG."
+      },
+      "evidence": {
+        "title": {
+          "local": "Task-related gamma-band dynamics from an intracerebral perspective: review and implications for surface {EEG} and {MEG}",
+          "source": [
+            "Task‐related gamma‐band dynamics from an intracerebral perspective: Review and implications for surface EEG and MEG"
+          ],
+          "match": true
+        },
+        "author": {
+          "local": "Karim Jerbi and Tomás Ossandón and Carlos M Hamamé and S Senova and Sarang S Dalal and Julien Jung and Lorella Minotti and Olivier Bertrand and Alain Berthoz and Philippe Kahane and Jean‐Philippe Lachaux",
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Jerbi",
+              "given": "Karim",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Ossandón",
+              "given": "Tomás",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Hamamé",
+              "given": "Carlos M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Senova",
+              "given": "S.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Dalal",
+              "given": "Sarang S.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Jung",
+              "given": "Julien",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Minotti",
+              "given": "Lorella",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Bertrand",
+              "given": "Olivier",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Berthoz",
+              "given": "Alain",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Kahane",
+              "given": "Philippe",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Lachaux",
+              "given": "Jean‐Philippe",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ],
+          "match": true,
+          "detail": "Complete author list in order; citation initials agree with source names"
+        },
+        "year": {
+          "local": "2009",
+          "source": [
+            "2009"
+          ],
+          "match": true
+        },
+        "journal": {
+          "local": "Human Brain Mapping",
+          "source": [
+            "Human Brain Mapping"
+          ],
+          "match": true
+        },
+        "volume": {
+          "local": "30",
+          "source": [
+            "30"
+          ],
+          "match": true
+        },
+        "number": {
+          "local": "6",
+          "source": [
+            "6"
+          ],
+          "match": true
+        },
+        "publisher": {
+          "local": "Wiley",
+          "source": [
+            "Wiley"
+          ],
+          "match": true
+        }
+      },
+      "issues": [
+        "pages: source supplies a field absent from the citation"
+      ],
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-21T17:40:43.958455+00:00",
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2F0000318-023%22+OR+DOI%3A%2210.4337%2F9781802207736.000110%22+OR+DOI%3A%2210.1017%2F9781009512749.013%22+OR+DOI%3A%2210.1108%2Feb006536%22+OR+DOI%3A%2210.1002%2F9780470050118.ecse318%22+OR+DOI%3A%2210.1002%2Fcpa.3160480910%22+OR+DOI%3A%2210.1007%2F978-3-319-65596-3_23%22+OR+DOI%3A%2210.1016%2F1049-9660%2891%2990042-n%22+OR+DOI%3A%2210.1007%2F978-3-032-06393-9_11%22+OR+DOI%3A%2210.1017%2Fs0048577201991681%22+OR+DOI%3A%2210.2307%2F2233382%22+OR+DOI%3A%2210.1016%2Fj.yneu.2012.05.058%22+OR+DOI%3A%2210.1016%2Fj.ypsy.2012.06.046%22+OR+DOI%3A%2210.1002%2Fhbm.20750%22+OR+DOI%3A%2210.5860%2Fchoice.43-5569%22+OR+DOI%3A%2210.1111%2Fj.1467-985x.2004.298_11.x%22+OR+DOI%3A%2210.1198%2Ftech.2003.s770%22+OR+DOI%3A%2210.1007%2F978-0-387-84858-7%22+OR+DOI%3A%2210.1016%2F0022-2496%2883%2990030-5%22+OR+DOI%3A%2210.1145%2F3081016.3081027%22+OR+DOI%3A%2210.1145%2F3264877.3264885%22&format=json&resultType=core&pageSize=100"
+    }
+  },
+  {
+    "kind": "corroborated_author",
+    "key": "KiefHetr05",
+    "fingerprint": "v2:a8dd9dc21564cd9ee85f63e9800d5db6c671921dd6d482cd3fdf9ec7d55a6e21",
+    "changes": {
+      "author": {
+        "before": "P Kieffaber and W Hetrick",
+        "after": "Paul D Kieffaber and William P Hetrick"
+      }
+    },
+    "doi": "10.1111/j.1469-8986.2005.00262.x",
+    "pubmed_id": "15720581",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1111/j.1469-8986.2005.00262.x",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "P Kieffaber and W Hetrick",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Kieffaber",
+              "given": "Paul D.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Hetrick",
+              "given": "William P.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Psychophysiology",
+          "match": true,
+          "source": [
+            "Psychophysiology"
+          ]
+        },
+        "pages": {
+          "local": "56--71",
+          "match": true,
+          "source": [
+            "56-71"
+          ]
+        },
+        "title": {
+          "local": "Event-related potential correlates of task switching and switch costs",
+          "match": true,
+          "source": [
+            "Event‐related potential correlates of task switching and switch costs"
+          ]
+        },
+        "volume": {
+          "local": "42",
+          "match": true,
+          "source": [
+            "42"
+          ]
+        },
+        "year": {
+          "local": "2005",
+          "match": true,
+          "source": [
+            "2005"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names"
+      ],
+      "record": {
+        "DOI": "10.1111/j.1469-8986.2005.00262.x",
+        "ISSN": [
+          "0048-5772",
+          "1469-8986"
+        ],
+        "URL": "https://doi.org/10.1111/j.1469-8986.2005.00262.x",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Kieffaber",
+            "given": "Paul D.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Hetrick",
+            "given": "William P.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Psychophysiology"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              2005,
+              1
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1111%2Fj.1469-8986.2005.00262.x",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1469-8986.2005.00262.x",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "56-71",
+        "published": {
+          "date-parts": [
+            [
+              2005,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2005,
+              1,
+              31
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2005,
+              1
+            ]
+          ]
+        },
+        "publisher": "Wiley",
+        "title": [
+          "Event‐related potential correlates of task switching and switch costs"
+        ],
+        "type": "journal-article",
+        "volume": "42"
+      },
+      "retrieved_at": "2026-09-21T17:20:48.841997+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1111/j.1469-8986.2005.00262.x"
+    },
+    "secondary": {
+      "doi": "10.1111/j.1469-8986.2005.00262.x",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "P Kieffaber and W Hetrick",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Kieffaber",
+              "given": "Paul D.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Hetrick",
+              "given": "William P.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Psychophysiology",
+          "match": true,
+          "source": [
+            "Psychophysiology"
+          ]
+        },
+        "pages": {
+          "local": "56--71",
+          "match": true,
+          "source": [
+            "56-71"
+          ]
+        },
+        "title": {
+          "local": "Event-related potential correlates of task switching and switch costs",
+          "match": true,
+          "source": [
+            "Event‐related potential correlates of task switching and switch costs"
+          ]
+        },
+        "volume": {
+          "local": "42",
+          "match": true,
+          "source": [
+            "42"
+          ]
+        },
+        "year": {
+          "local": "2005",
+          "match": true,
+          "source": [
+            "2005"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychology, Indiana University, Bloomington, Indiana 47405, USA. whetrick@indiana.edu"
+                  }
+                ]
+              },
+              "firstName": "Paul D",
+              "fullName": "Kieffaber PD",
+              "initials": "PD",
+              "lastName": "Kieffaber"
+            },
+            {
+              "firstName": "William P",
+              "fullName": "Hetrick WP",
+              "initials": "WP",
+              "lastName": "Hetrick"
+            }
+          ]
+        },
+        "doi": "10.1111/j.1469-8986.2005.00262.x",
+        "firstPublicationDate": "2005-01-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1111/j.1469-8986.2005.00262.x"
+            }
+          ]
+        },
+        "id": "15720581",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2005 Jan",
+          "issue": "1",
+          "journal": {
+            "essn": "1540-5958",
+            "isoabbreviation": "Psychophysiology",
+            "issn": "0048-5772",
+            "medlineAbbreviation": "Psychophysiology",
+            "nlmid": "0142657",
+            "title": "Psychophysiology"
+          },
+          "journalIssueId": 1220142,
+          "monthOfPublication": 1,
+          "printPublicationDate": "2005-01-01",
+          "volume": "42",
+          "yearOfPublication": 2005
+        },
+        "pageInfo": "56-71",
+        "pubTypeList": {
+          "pubType": [
+            "Clinical Trial",
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Research Support, Non-U.S. Gov't",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2005",
+        "source": "MED",
+        "title": "Event-related potential correlates of task switching and switch costs."
+      },
+      "record": {
+        "DOI": "10.1111/j.1469-8986.2005.00262.x",
+        "ISSN": [
+          "0048-5772",
+          "1540-5958"
+        ],
+        "author": [
+          {
+            "family": "Kieffaber",
+            "given": "Paul D",
+            "suffix": ""
+          },
+          {
+            "family": "Hetrick",
+            "given": "William P",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Psychophysiology",
+          "Psychophysiology",
+          "Psychophysiology",
+          "Psychophysiology"
+        ],
+        "issue": "1",
+        "page": "56-71",
+        "published": {
+          "date-parts": [
+            [
+              2005
+            ]
+          ]
+        },
+        "title": [
+          "Event-related potential correlates of task switching and switch costs"
+        ],
+        "type": "journal-article",
+        "volume": "42"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1212%2Fwnl.41.6.869%22+OR+DOI%3A%2210.1017%2Fcbo9781139103992.088%22+OR+DOI%3A%2210.3171%2F2012.1.focus11334%22+OR+DOI%3A%2210.3758%2Fbf03332847%22+OR+DOI%3A%2210.1016%2F0166-2236%2892%2990346-a%22+OR+DOI%3A%2210.1016%2F0022-510x%2891%2990227-x%22+OR+DOI%3A%2210.1111%2Fj.1460-9568.2008.06060.x%22+OR+DOI%3A%2210.1038%2F152172a0%22+OR+DOI%3A%2210.1037%2Fh0049652%22+OR+DOI%3A%2210.1002%2Fhbm.20458%22+OR+DOI%3A%2210.1093%2Fbrain%2Fawh106%22+OR+DOI%3A%2210.1111%2Fj.1469-8986.1996.tb02429.x%22+OR+DOI%3A%2210.1111%2Fj.1469-8986.2005.00262.x%22+OR+DOI%3A%2210.1007%2F978-981-97-7874-4_124%22+OR+DOI%3A%2210.1007%2F978-981-99-6000-2_124-1%22+OR+DOI%3A%2210.1037%2Fh0056008%22+OR+DOI%3A%2210.1002%2F9780470479216.corpsy0386%22+OR+DOI%3A%2210.1007%2F978-94-017-5344-9_63%22+OR+DOI%3A%2210.2307%2F1414898%22+OR+DOI%3A%2210.1017%2F9781009042895.018%22+OR+DOI%3A%2210.1007%2F978-3-319-19650-3_302050%22+OR+DOI%3A%2210.1037%2Fh0066025%22+OR+DOI%3A%2210.4324%2F9781315665214-17%22+OR+DOI%3A%2210.4324%2F9780203798546-14%22+OR+DOI%3A%2210.4135%2F9781412963947.n203%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-21T17:40:41.577921+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/15720581"
+    }
+  }
+]

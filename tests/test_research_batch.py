@@ -159,7 +159,7 @@ def test_batch_resume_and_edits_cannot_reuse_pdf_findings(tmp_path, monkeypatch)
 def test_batch_stops_after_repeated_failures_and_saves_them(tmp_path, monkeypatch):
     bib = tmp_path / "a.bib"
     bib.write_text(
-        "\n".join("@book{" + k + ",title={Test},year={2020}}" for k in "ABCD")
+        "\n".join("@book{" + k + ",title={Test " + k + "},year={2020}}" for k in "ABCD")
     )
     cache = Cache(tmp_path / "cache.sqlite3")
     for entry in load_entries(bib).values():

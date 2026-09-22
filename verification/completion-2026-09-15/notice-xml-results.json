@@ -1,0 +1,16 @@
+[
+  {
+    "doi": "10.1016/j.brainres.2012.06.039",
+    "url": "https://api.elsevier.com/content/article/PII:S0006899312011146?httpAccept=text/xml",
+    "http_status": 200,
+    "content_type": "text/xml;charset=UTF-8",
+    "local_response": "notice-xml-1.txt"
+  },
+  {
+    "doi": "10.1016/0013-4694(96)80250-1",
+    "url": "https://api.elsevier.com/content/article/PII:0013469496802501?httpAccept=text/xml",
+    "http_status": 200,
+    "content_type": "text/xml;charset=UTF-8",
+    "local_response": "notice-xml-2.txt"
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 77.04,
+      "network_requests": 2,
+      "added_review_records": 3,
+      "batch_statuses": {
+        "metadata_verified": 1
+      },
+      "library_statuses": {
+        "metadata_verified": 3526,
+        "needs_review": 2896
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 73.75,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 1
+      },
+      "library_statuses": {
+        "metadata_verified": 3526,
+        "needs_review": 2896
+      }
+    }
+  ],
+  "entries": {
+    "MullEtal94": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:21ebba1340debe09e14a247ab73b44b653c058b788ef8f14350d07a01305bd05"
+    }
+  }
+}

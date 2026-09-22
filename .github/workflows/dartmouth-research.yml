@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       model:
-        description: Exact Dartmouth model ID (checked before inference)
-        default: qwen.qwen3.5-122b
+        description: Exact free Dartmouth model ID (availability and price checked before inference)
+        default: zai-org.glm-5.3
         required: true
       search_backend:
         description: Search provider (DuckDuckGo HTML is experimental)

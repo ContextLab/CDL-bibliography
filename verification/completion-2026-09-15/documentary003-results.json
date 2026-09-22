@@ -1,0 +1,64 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 29.54,
+      "network_requests": 8,
+      "added_review_records": 8,
+      "batch_statuses": {
+        "metadata_verified": 8
+      },
+      "library_statuses": {
+        "metadata_verified": 3610,
+        "needs_review": 2812
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 21.63,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 8
+      },
+      "library_statuses": {
+        "metadata_verified": 3610,
+        "needs_review": 2812
+      }
+    }
+  ],
+  "entries": {
+    "AlyEtal18": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:8dfdf52671e8d39c380abe670227a884462564e30f7f40465c6d5e9c6deb1488"
+    },
+    "BaldEtal18": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:378c405e0d79d2f950036175cc248974b2e613bf6d1de82eba0220866c6fade7"
+    },
+    "BornNorm17": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:c905d584d833c9adc30a781bc7266fbc5ec91a752d0f9565f70fa4d1b1009fba"
+    },
+    "ColeEtal16": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:1a18f801cb9d8647381b8b5622d66be95432432d1cff2f8b3db41c14f7c9495a"
+    },
+    "HeusEtal21": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:b209dda21bddf6b17b978f0a2d88dbba5e01b36abcc2d8ef33e5d5eedd2d673c"
+    },
+    "MannEtal18": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:79e293d0df82367d47ac82cc8bb63ce4d1e8783ae3e1fe0cb335ffdf9a256479"
+    },
+    "OwenMann24": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:dd7edf06e71a69721f2ee5fd67e7faeba595efbf2f2def8ca70ca81d9e193295"
+    },
+    "ShinEtal23": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:0aab4faf6eb7dca97ba65293f9fda2126528bc57d97ad38f7cbda22b33ad315d"
+    }
+  }
+}

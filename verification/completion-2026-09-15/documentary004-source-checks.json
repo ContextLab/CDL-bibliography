@@ -1,0 +1,1126 @@
+{
+  "ChurSejn88": {
+    "observed": "Original first-page image clearly names Patricia S. Churchland and Terrence J. Sejnowski, full matching title, 4 November 1988 and page 741. Correct the unsupported A initial to S; the complete primary metadata agrees after this single change.",
+    "sources": [],
+    "registry_record": {
+      "DOI": "10.1126/science.3055294",
+      "ISSN": [
+        "0036-8075",
+        "1095-9203"
+      ],
+      "URL": "https://doi.org/10.1126/science.3055294",
+      "author": [
+        {
+          "affiliation": [],
+          "family": "Churchland",
+          "given": "Patricia S.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [],
+          "family": "Sejnowski",
+          "given": "Terrence J.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Science"
+      ],
+      "issue": "4879",
+      "issued": {
+        "date-parts": [
+          [
+            1988,
+            11,
+            4
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "https://www.science.org/doi/pdf/10.1126/science.3055294",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "741-745",
+      "published": {
+        "date-parts": [
+          [
+            1988,
+            11,
+            4
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            1988,
+            11,
+            4
+          ]
+        ]
+      },
+      "publisher": "American Association for the Advancement of Science (AAAS)",
+      "title": [
+        "Perspectives on Cognitive Neuroscience"
+      ],
+      "type": "journal-article",
+      "volume": "242"
+    },
+    "verification": "Source evidence only; no manual approval.",
+    "pdf_sha256": "718d9e8013a441a544bda69121fba44525551611e773d07df15cb679bd7cb1fc",
+    "pages_viewed": [
+      1
+    ]
+  },
+  "Shap19": {
+    "observed": "Local advance first page visually confirms full title Time is just a memory and Matthew L. Shapiro. It has no final volume or page range. The publisher article page independently confirms Nature Neuroscience 22, 151-153 (2019), February issue and DOI 10.1038/s41593-018-0331-x. Move the DOI out of the volume field and add final coordinates matching the registry.",
+    "sources": [
+      "https://www.nature.com/articles/s41593-018-0331-x"
+    ],
+    "registry_record": {
+      "DOI": "10.1038/s41593-018-0331-x",
+      "ISSN": [
+        "1097-6256",
+        "1546-1726"
+      ],
+      "URL": "https://doi.org/10.1038/s41593-018-0331-x",
+      "author": [
+        {
+          "ORCID": "https://orcid.org/0000-0002-3350-9458",
+          "affiliation": [],
+          "authenticated-orcid": false,
+          "family": "Shapiro",
+          "given": "Matthew L.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        }
+      ],
+      "container-title": [
+        "Nature Neuroscience"
+      ],
+      "issue": "2",
+      "issued": {
+        "date-parts": [
+          [
+            2019,
+            1,
+            14
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "http://www.nature.com/articles/s41593-018-0331-x",
+          "content-type": "text/html",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "http://www.nature.com/articles/s41593-018-0331-x.pdf",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "http://www.nature.com/articles/s41593-018-0331-x.pdf",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "151-153",
+      "published": {
+        "date-parts": [
+          [
+            2019,
+            1,
+            14
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2019,
+            1,
+            14
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2019,
+            2
+          ]
+        ]
+      },
+      "publisher": "Springer Science and Business Media LLC",
+      "title": [
+        "Time is just a memory"
+      ],
+      "type": "journal-article",
+      "volume": "22"
+    },
+    "verification": "Source evidence only; no manual approval.",
+    "pdf_sha256": "7991f436703969cab28151e610855e33346237ac8fc08320907c3a16fba363ac",
+    "pages_viewed": [
+      1
+    ]
+  },
+  "WatrEtal13a": {
+    "observed": "Paired Crossref and MED records agree on all supplied fields and missing final coordinates: Hippocampus 23(8):656-661 (2013), DOI 10.1002/hipo.22124. PubMed indexed primary record independently read in web search reproduces the full title, all six ordered names and final coordinates. Direct publisher page returned 403; author-lab PDF URL now returned empty HTML, so no PDF visual confirmation is claimed.",
+    "sources": [
+      "https://pubmed.ncbi.nlm.nih.gov/23520039/"
+    ],
+    "registry_record": {
+      "DOI": "10.1002/hipo.22124",
+      "ISSN": [
+        "1050-9631",
+        "1098-1063"
+      ],
+      "URL": "https://doi.org/10.1002/hipo.22124",
+      "author": [
+        {
+          "affiliation": [
+            {
+              "name": "Center for Neuroscience University of California Davis California"
+            }
+          ],
+          "family": "Watrous",
+          "given": "Andrew J.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Center for Neuroscience University of California Davis California"
+            },
+            {
+              "name": "Department of Neurological Surgery University of California Davis California"
+            }
+          ],
+          "family": "Lee",
+          "given": "Darrin J.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Department of Neurological Surgery University of California Davis California"
+            }
+          ],
+          "family": "Izadi",
+          "given": "Ali",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Department of Neurological Surgery University of California Davis California"
+            }
+          ],
+          "family": "Gurkoff",
+          "given": "Gene G.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Department of Neurological Surgery University of California Davis California"
+            }
+          ],
+          "family": "Shahlaie",
+          "given": "Kiarash",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Center for Neuroscience University of California Davis California"
+            },
+            {
+              "name": "Department of Psychology University of California Davis California"
+            }
+          ],
+          "family": "Ekstrom",
+          "given": "Arne D.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Hippocampus"
+      ],
+      "issue": "8",
+      "issued": {
+        "date-parts": [
+          [
+            2013,
+            4,
+            29
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fhipo.22124",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/hipo.22124",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "656-661",
+      "published": {
+        "date-parts": [
+          [
+            2013,
+            4,
+            29
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2013,
+            4,
+            29
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2013,
+            8
+          ]
+        ]
+      },
+      "publisher": "Wiley",
+      "title": [
+        "A comparative study of human and rat hippocampal low‐frequency oscillations during spatial navigation"
+      ],
+      "type": "journal-article",
+      "volume": "23"
+    },
+    "verification": "Source evidence only; no manual approval."
+  },
+  "WorsEtal05": {
+    "observed": "Local published article first page (physical PDF page 2 after publisher cover) names Keith J. Worsley, Jen-I. Chen, Jason Lerch and Alan C. Evans, full matching title, Phil. Trans. R. Soc. B (2005) 360, 913-920, DOI 10.1098/rstb.2005.1637 and publication 29 May 2005. Use the complete registry journal title including Biological Sciences. NLM independently confirms DOI, authors, date and coordinates; publisher web retrieval returned 403. The repository formatter uses the full London Series B: Biological Sciences variant; resolver 27 recognizes its exact equivalence to the registry journal label. The incomplete local title without Biological Sciences is not globally aliased.",
+    "sources": [
+      "https://pubmed.ncbi.nlm.nih.gov/16087436/"
+    ],
+    "registry_record": {
+      "DOI": "10.1098/rstb.2005.1637",
+      "ISSN": [
+        "0962-8436",
+        "1471-2970"
+      ],
+      "URL": "https://doi.org/10.1098/rstb.2005.1637",
+      "author": [
+        {
+          "affiliation": [
+            {
+              "name": "Department of Mathematics and StatisticsMontreal, Canada"
+            },
+            {
+              "name": "Montreal Neurological Institute, McGill UniversityMontreal, Canada"
+            }
+          ],
+          "family": "Worsley",
+          "given": "Keith J",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Montreal Neurological Institute, McGill UniversityMontreal, Canada"
+            }
+          ],
+          "family": "Chen",
+          "given": "Jen-I",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Montreal Neurological Institute, McGill UniversityMontreal, Canada"
+            }
+          ],
+          "family": "Lerch",
+          "given": "Jason",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Montreal Neurological Institute, McGill UniversityMontreal, Canada"
+            }
+          ],
+          "family": "Evans",
+          "given": "Alan C",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Philosophical Transactions of the Royal Society B: Biological Sciences"
+      ],
+      "issue": "1457",
+      "issued": {
+        "date-parts": [
+          [
+            2005,
+            5,
+            29
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "https://royalsocietypublishing.org/doi/pdf/10.1098/rstb.2005.1637",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://royalsocietypublishing.org/doi/full-xml/10.1098/rstb.2005.1637",
+          "content-type": "application/xml",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://royalsocietypublishing.org/doi/pdf/10.1098/rstb.2005.1637",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "913-920",
+      "published": {
+        "date-parts": [
+          [
+            2005,
+            5,
+            29
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2005,
+            5,
+            29
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2005,
+            5,
+            29
+          ]
+        ]
+      },
+      "publisher": "The Royal Society",
+      "title": [
+        "Comparing functional connectivity via thresholding correlations and singular value decomposition"
+      ],
+      "type": "journal-article",
+      "volume": "360"
+    },
+    "verification": "Source evidence only; no manual approval.",
+    "pdf_sha256": "4ad4373f4e17c64ca75d43c59d398097e069f0e62dda0a6ed06006b5cca90564",
+    "pages_viewed": [
+      2
+    ]
+  },
+  "XiaoEtal05": {
+    "observed": "Publisher article page was read and confirms all seven full names in order: Zhuangwei Xiao, John X. Zhang, Xiaoyi Wang, Renhua Wu, Xiaoping Hu, Xuchu Weng, Li Hai Tan. It also confirms full title, Human Brain Mapping 25(2):212-221 (2005), DOI 10.1002/hbm.20105. Complete the names omitted from the entry; this exactly agrees with the paired Crossref/MED proposal.",
+    "sources": [
+      "https://onlinelibrary.wiley.com/doi/abs/10.1002/hbm.20105"
+    ],
+    "registry_record": {
+      "DOI": "10.1002/hbm.20105",
+      "ISSN": [
+        "1065-9471",
+        "1097-0193"
+      ],
+      "URL": "https://doi.org/10.1002/hbm.20105",
+      "author": [
+        {
+          "affiliation": [],
+          "family": "Xiao",
+          "given": "Zhuangwei",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [],
+          "family": "Zhang",
+          "given": "John X.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Wang",
+          "given": "Xiaoyi",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Wu",
+          "given": "Renhua",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Hu",
+          "given": "Xiaoping",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Weng",
+          "given": "Xuchu",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Tan",
+          "given": "Li Hai",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Human Brain Mapping"
+      ],
+      "issue": "2",
+      "issued": {
+        "date-parts": [
+          [
+            2005,
+            4,
+            21
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fhbm.20105",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/hbm.20105",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "212-221",
+      "published": {
+        "date-parts": [
+          [
+            2005,
+            4,
+            21
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2005,
+            4,
+            21
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2005,
+            6
+          ]
+        ]
+      },
+      "publisher": "Wiley",
+      "title": [
+        "Differential activity in left inferior frontal gyrus for pseudowords and real words: An event‐related fMRI study on auditory lexical decision"
+      ],
+      "type": "journal-article",
+      "volume": "25"
+    },
+    "verification": "Source evidence only; no manual approval."
+  },
+  "ZadbEtal17": {
+    "observed": "Local advance first page visually confirms the printed DOI 10.1093/cercor/bhx202, complete title and ordered byline A. Zadbood, J. Chen, Y.C. Leong, K.A. Norman, U. Hasson. Its temporary 1-13 pages are not substituted for final pagination. Author-hosted final PDF parsed text gives October 2017;27:4988-5000 with the same title, byline and DOI; PDF screenshot fetch failed. PubMed indexed article record confirms 27(10):4988-5000. Only the DOI is added.",
+    "sources": [
+      "https://ycleong.github.io/files/papers/CerebCortex2017.pdf",
+      "https://pubmed.ncbi.nlm.nih.gov/28922834/"
+    ],
+    "registry_record": {
+      "DOI": "10.1093/cercor/bhx202",
+      "ISSN": [
+        "1047-3211",
+        "1460-2199"
+      ],
+      "URL": "https://doi.org/10.1093/cercor/bhx202",
+      "author": [
+        {
+          "affiliation": [
+            {
+              "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08540, USA"
+            },
+            {
+              "name": "Department of Psychology, Princeton University, Princeton, NJ 08540, USA"
+            }
+          ],
+          "family": "Zadbood",
+          "given": "A.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Department of Psychological and Brain Sciences, Johns Hopkins University, Baltimore, MD 21218, USA"
+            }
+          ],
+          "family": "Chen",
+          "given": "J.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Department of Psychology, Stanford University, Stanford, CA 94305, USA"
+            }
+          ],
+          "family": "Leong",
+          "given": "Y.C.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08540, USA"
+            },
+            {
+              "name": "Department of Psychology, Princeton University, Princeton, NJ 08540, USA"
+            }
+          ],
+          "family": "Norman",
+          "given": "K.A.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08540, USA"
+            },
+            {
+              "name": "Department of Psychology, Princeton University, Princeton, NJ 08540, USA"
+            }
+          ],
+          "family": "Hasson",
+          "given": "U.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Cerebral Cortex"
+      ],
+      "issue": "10",
+      "issued": {
+        "date-parts": [
+          [
+            2017,
+            8,
+            11
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "http://academic.oup.com/cercor/article-pdf/27/10/4988/25331893/bhx202.pdf",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "4988-5000",
+      "published": {
+        "date-parts": [
+          [
+            2017,
+            8,
+            11
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2017,
+            8,
+            11
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2017,
+            10,
+            1
+          ]
+        ]
+      },
+      "publisher": "Oxford University Press (OUP)",
+      "relation": {
+        "has-preprint": [
+          {
+            "asserted-by": "object",
+            "id": "10.1101/081208",
+            "id-type": "doi"
+          }
+        ]
+      },
+      "title": [
+        "How We Transmit Memories to Other Brains: Constructing Shared Neural Representations Via Communication"
+      ],
+      "type": "journal-article",
+      "volume": "27"
+    },
+    "verification": "Source evidence only; no manual approval.",
+    "pdf_sha256": "d2e3b7c95f95bd09b199ca375b3ee55320cc36dea85165eecda8366b8633160b",
+    "pages_viewed": [
+      1
+    ]
+  },
+  "ZimaEtal18": {
+    "observed": "Local published first-page image supplies Behavior Research Methods (2018) 50:2597-2605 and DOI 10.3758/s13428-018-1037-4, the full title, and all five names in order: Kirsten Ziman, Andrew C. Heusser, Paxton C. Fitzpatrick, Campbell E. Field, Jeremy R. Manning. Add the printed final-publication DOI to distinguish the journal article from its separately indexed preprint. The known relationship is Preprint in, not an erratum; all other fields are retained.",
+    "sources": [],
+    "registry_record": {
+      "DOI": "10.3758/s13428-018-1037-4",
+      "ISSN": [
+        "1554-3528"
+      ],
+      "URL": "https://doi.org/10.3758/s13428-018-1037-4",
+      "author": [
+        {
+          "affiliation": [],
+          "family": "Ziman",
+          "given": "Kirsten",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [],
+          "family": "Heusser",
+          "given": "Andrew C.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Fitzpatrick",
+          "given": "Paxton C.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Field",
+          "given": "Campbell E.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Manning",
+          "given": "Jeremy R.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Behavior Research Methods"
+      ],
+      "issue": "6",
+      "issued": {
+        "date-parts": [
+          [
+            2018,
+            4,
+            23
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "http://link.springer.com/article/10.3758/s13428-018-1037-4/fulltext.html",
+          "content-type": "text/html",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "http://link.springer.com/content/pdf/10.3758/s13428-018-1037-4.pdf",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "http://link.springer.com/content/pdf/10.3758/s13428-018-1037-4.pdf",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "2597-2605",
+      "published": {
+        "date-parts": [
+          [
+            2018,
+            4,
+            23
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2018,
+            4,
+            23
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2018,
+            12
+          ]
+        ]
+      },
+      "publisher": "Springer Science and Business Media LLC",
+      "title": [
+        "Is automatic speech-to-text transcription ready for use in psychological experiments?"
+      ],
+      "type": "journal-article",
+      "volume": "50"
+    },
+    "verification": "Source evidence only; no manual approval.",
+    "pdf_sha256": "040cf728ec01f0bfa9ba2ab82e3ca4263c5729442d44c7ef02c0f2e11492f8e7",
+    "pages_viewed": [
+      1
+    ]
+  },
+  "WainJord08": {
+    "pages_viewed": [
+      1
+    ],
+    "pdf_sha256": "b80bd133e23d4b9c0dca157249fc3ac9f9259e3a1de0c2e197b2039a5b87e59a",
+    "observed": "Published first-page image confirms Martin J. Wainwright and Michael I. Jordan, full title Graphical Models, Exponential Families, and Variational Inference, Foundations and Trends (registered trademark) in Machine Learning 1(1-2):1-305 (2008), and printed DOI 10.1561/2200000001. Add that journal-publication DOI. Resolver 27 recognizes the exact branded/unbranded journal names. The separately indexed 2007 monograph DOI 10.1561/9781601981851 remains a competing version unless the journal DOI is specified; the name equivalence alone does not approve this entry.",
+    "sources": [
+      "https://www.nowpublishers.com/article/DownloadSummary/MAL-001"
+    ],
+    "registry_record": {
+      "DOI": "10.1561/2200000001",
+      "ISSN": [
+        "1935-8237",
+        "1935-8245"
+      ],
+      "URL": "https://doi.org/10.1561/2200000001",
+      "author": [
+        {
+          "affiliation": [
+            {
+              "name": "Department of Statistics, and Department of Electrical Engineering and Computer Science, University of California , 94720,",
+              "place": [
+                "Berkeley, USA"
+              ]
+            }
+          ],
+          "family": "Wainwright",
+          "given": "Martin J.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [
+            {
+              "name": "Department of Statistics, and Department of Electrical Engineering and Computer Science, University of California , 94720,",
+              "place": [
+                "Berkeley, USA"
+              ]
+            }
+          ],
+          "family": "Jordan",
+          "given": "Michael I.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Foundations and Trends® in Machine Learning"
+      ],
+      "issue": "1-2",
+      "issued": {
+        "date-parts": [
+          [
+            2008,
+            12,
+            18
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "https://www.emerald.com/ftmal/article-pdf/1/1-2/1/11153930/2200000001en.pdf",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "syndication"
+        },
+        {
+          "URL": "https://www.emerald.com/ftmal/article-pdf/1/1-2/1/11153930/2200000001en.pdf",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "1-305",
+      "published": {
+        "date-parts": [
+          [
+            2008,
+            12,
+            18
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2008,
+            12,
+            18
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2008,
+            12,
+            18
+          ]
+        ]
+      },
+      "publisher": "Emerald",
+      "title": [
+        "Graphical Models, Exponential Families, and Variational Inference"
+      ],
+      "type": "journal-article",
+      "volume": "1"
+    },
+    "verification": "Source evidence only; ordinary metadata verification required."
+  }
+}

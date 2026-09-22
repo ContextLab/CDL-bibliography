@@ -1,0 +1,40 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 26.47,
+      "network_requests": 2,
+      "added_review_records": 2,
+      "batch_statuses": {
+        "metadata_verified": 2
+      },
+      "library_statuses": {
+        "metadata_verified": 3595,
+        "needs_review": 2827
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 22.53,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 2
+      },
+      "library_statuses": {
+        "metadata_verified": 3595,
+        "needs_review": 2827
+      }
+    }
+  ],
+  "entries": {
+    "Dijk59": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:99c4a1a574a28feff2fd290176029ac776afa11888af03cf49eecf448c8823f3"
+    },
+    "Sper60": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:39bf291695b7bb51fe536de08b6e82fceef4877ac0c70aa656920243e9de9631"
+    }
+  }
+}

@@ -1,0 +1,529 @@
+[
+  {
+    "kind": "corroborated_combined",
+    "key": "CordEtal02",
+    "fingerprint": "v2:ceadc161db0ad2b88facd09063583cfc57e982ebe9b02c09a4aab54bda2995db",
+    "changes": {
+      "journal": {
+        "before": "Proceedings of the Society for Magnetic Resonance in Medicine",
+        "after": "Magnetic Resonance Imaging"
+      },
+      "author": {
+        "before": "D Cordes and V M Haughton and J D Carew and K Arfanakis and K Maravilla",
+        "after": "Dietmar Cordes and Vic Haughton and John D Carew and Konstantinos Arfanakis and Ken Maravilla"
+      }
+    },
+    "doi": "10.1016/s0730-725x(02)00503-9",
+    "pubmed_id": "12165349",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1016/s0730-725x(02)00503-9",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "D Cordes and V M Haughton and J D Carew and K Arfanakis and K Maravilla",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Cordes",
+              "given": "Dietmar",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Haughton",
+              "given": "Vic",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Carew",
+              "given": "John D.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Arfanakis",
+              "given": "Konstantinos",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Maravilla",
+              "given": "Ken",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Proceedings of the Society for Magnetic Resonance in Medicine",
+          "match": false,
+          "source": [
+            "Magnetic Resonance Imaging"
+          ]
+        },
+        "number": {
+          "local": "4",
+          "match": true,
+          "source": [
+            "4"
+          ]
+        },
+        "pages": {
+          "local": "305--317",
+          "match": true,
+          "source": [
+            "305-317"
+          ]
+        },
+        "title": {
+          "local": "Hierarchical clustering to measure connectivity in {fMRI} resting-state data",
+          "match": true,
+          "source": [
+            "Hierarchical clustering to measure connectivity in fMRI resting-state data"
+          ]
+        },
+        "volume": {
+          "local": "20",
+          "match": true,
+          "source": [
+            "20"
+          ]
+        },
+        "year": {
+          "local": "2002",
+          "match": true,
+          "source": [
+            "2002"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "journal: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0730-725x(02)00503-9",
+        "ISSN": [
+          "0730-725X"
+        ],
+        "URL": "https://doi.org/10.1016/s0730-725x(02)00503-9",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Cordes",
+            "given": "Dietmar",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Haughton",
+            "given": "Vic",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Carew",
+            "given": "John D.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Arfanakis",
+            "given": "Konstantinos",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Maravilla",
+            "given": "Ken",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Magnetic Resonance Imaging"
+        ],
+        "issue": "4",
+        "issued": {
+          "date-parts": [
+            [
+              2002,
+              5
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0730725X02005039?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0730725X02005039?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "305-317",
+        "published": {
+          "date-parts": [
+            [
+              2002,
+              5
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2002,
+              5
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Hierarchical clustering to measure connectivity in fMRI resting-state data"
+        ],
+        "type": "journal-article",
+        "volume": "20"
+      },
+      "retrieved_at": "2026-09-09T19:51:18.687787+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0730-725x%2802%2900503-9"
+    },
+    "secondary": {
+      "source": "europepmc",
+      "doi": "10.1016/s0730-725x(02)00503-9",
+      "url": "https://europepmc.org/article/MED/12165349",
+      "record": {
+        "DOI": "10.1016/s0730-725x(02)00503-9",
+        "type": "journal-article",
+        "title": [
+          "Hierarchical clustering to measure connectivity in fMRI resting-state data"
+        ],
+        "author": [
+          {
+            "given": "Dietmar",
+            "family": "Cordes",
+            "suffix": ""
+          },
+          {
+            "given": "Vic",
+            "family": "Haughton",
+            "suffix": ""
+          },
+          {
+            "given": "John D",
+            "family": "Carew",
+            "suffix": ""
+          },
+          {
+            "given": "Konstantinos",
+            "family": "Arfanakis",
+            "suffix": ""
+          },
+          {
+            "given": "Ken",
+            "family": "Maravilla",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Magnetic resonance imaging",
+          "Magn Reson Imaging",
+          "Magn Reson Imaging",
+          "Magnetic Resonance Imaging"
+        ],
+        "ISSN": [
+          "0730-725X",
+          "1873-5894"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2002
+            ]
+          ]
+        },
+        "volume": "20",
+        "issue": "4",
+        "page": "305-317"
+      },
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Radiology, University of Washington, Seattle, Washington, USA. dcordes@u.washington.edu"
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-6574-5546"
+              },
+              "firstName": "Dietmar",
+              "fullName": "Cordes D",
+              "initials": "D",
+              "lastName": "Cordes"
+            },
+            {
+              "firstName": "Vic",
+              "fullName": "Haughton V",
+              "initials": "V",
+              "lastName": "Haughton"
+            },
+            {
+              "firstName": "John D",
+              "fullName": "Carew JD",
+              "initials": "JD",
+              "lastName": "Carew"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-9705-597X"
+              },
+              "firstName": "Konstantinos",
+              "fullName": "Arfanakis K",
+              "initials": "K",
+              "lastName": "Arfanakis"
+            },
+            {
+              "firstName": "Ken",
+              "fullName": "Maravilla K",
+              "initials": "K",
+              "lastName": "Maravilla"
+            }
+          ]
+        },
+        "doi": "10.1016/s0730-725x(02)00503-9",
+        "firstPublicationDate": "2002-05-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1016/s0730-725x(02)00503-9"
+            }
+          ]
+        },
+        "id": "12165349",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2002 May",
+          "issue": "4",
+          "journal": {
+            "essn": "1873-5894",
+            "isoabbreviation": "Magn Reson Imaging",
+            "issn": "0730-725X",
+            "medlineAbbreviation": "Magn Reson Imaging",
+            "nlmid": "8214883",
+            "title": "Magnetic resonance imaging"
+          },
+          "journalIssueId": 1110676,
+          "monthOfPublication": 5,
+          "printPublicationDate": "2002-05-01",
+          "volume": "20",
+          "yearOfPublication": 2002
+        },
+        "pageInfo": "305-317",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2002",
+        "source": "MED",
+        "title": "Hierarchical clustering to measure connectivity in fMRI resting-state data."
+      },
+      "evidence": {
+        "title": {
+          "local": "Hierarchical clustering to measure connectivity in {fMRI} resting-state data",
+          "source": [
+            "Hierarchical clustering to measure connectivity in fMRI resting-state data"
+          ],
+          "match": true
+        },
+        "author": {
+          "local": "Dietmar Cordes and Vic Haughton and John D Carew and Konstantinos Arfanakis and Ken Maravilla",
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Cordes",
+              "given": "Dietmar",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Haughton",
+              "given": "Vic",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Carew",
+              "given": "John D.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Arfanakis",
+              "given": "Konstantinos",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Maravilla",
+              "given": "Ken",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ],
+          "match": true,
+          "detail": "Complete author list in order; citation initials agree with source names"
+        },
+        "year": {
+          "local": "2002",
+          "source": [
+            "2002"
+          ],
+          "match": true
+        },
+        "journal": {
+          "local": "Proceedings of the Society for Magnetic Resonance in Medicine",
+          "source": [
+            "Magnetic Resonance Imaging"
+          ],
+          "match": false
+        },
+        "volume": {
+          "local": "20",
+          "source": [
+            "20"
+          ],
+          "match": true
+        },
+        "number": {
+          "local": "4",
+          "source": [
+            "4"
+          ],
+          "match": true
+        },
+        "pages": {
+          "local": "305--317",
+          "source": [
+            "305-317"
+          ],
+          "match": true
+        }
+      },
+      "issues": [
+        "journal: missing evidence or mismatch",
+        "Secondary journal: missing evidence or mismatch"
+      ],
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T00:59:34.317418+00:00",
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2F0168-5597%2891%2990116-f%22+OR+DOI%3A%2210.1088%2F0031-9155%2F32%2F1%2F004%22+OR+DOI%3A%2210.2307%2F2265725%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2013.05.079%22+OR+DOI%3A%2210.1101%2Fgr.092759.109%22+OR+DOI%3A%2210.1111%2F1467-9868.00196%22+OR+DOI%3A%2210.1016%2Fs0730-725x%2802%2900503-9%22+OR+DOI%3A%2210.1098%2Frstb.2005.1637%22+OR+DOI%3A%2210.1073%2Fpnas.0135058100%22+OR+DOI%3A%2210.1002%2Fmrm.10354%22+OR+DOI%3A%2210.2307%2Fj.ctt9qh75r.46%22+OR+DOI%3A%2210.1038%2Fncomms12141%22+OR+DOI%3A%2210.1016%2Fj.neuron.2005.07.023%22+OR+DOI%3A%2210.1162%2Fjocn_a_00568%22+OR+DOI%3A%2210.1038%2F35082081%22+OR+DOI%3A%2210.1523%2Fjneurosci.5282-13.2014%22+OR+DOI%3A%2210.1038%2F415165a%22+OR+DOI%3A%2210.1016%2Fs0896-6273%2800%2980804-1%22+OR+DOI%3A%2210.1016%2Fs0028-3932%2802%2900129-x%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2007.01.020%22+OR+DOI%3A%2210.1038%2F31235%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhi049%22+OR+DOI%3A%2210.1016%2Fj.neuropsychologia.2011.09.002%22+OR+DOI%3A%2210.1038%2Fnature05078%22+OR+DOI%3A%2210.1016%2Fj.tics.2008.01.001%22&format=json&resultType=core&pageSize=100"
+    },
+    "reason": "Replacing V M Haughton with Vic Haughton would drop an existing middle initial. Hold for the published byline."
+  }
+]

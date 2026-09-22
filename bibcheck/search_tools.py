@@ -14,9 +14,18 @@ from research import allowed_url
 CACHE_VERSION = "2"
 
 
-def get_source(session, url, hosts, **kwargs):
+class SourceHTTPError(ValueError):
+    def __init__(self, status, retry_after=None):
+        self.status = status
+        self.retry_after = retry_after
+        super().__init__(f"Source lookup HTTP {status}")
+
+
+def get_source(session, url, hosts, https_redirect_hosts=(), max_redirects=3, **kwargs):
     """Fetch public source data without credentials, with checked redirects."""
-    for _ in range(4):
+    if not isinstance(max_redirects, int) or not 0 <= max_redirects <= 8:
+        raise ValueError("Source redirect limit must be between zero and eight")
+    for _ in range(max_redirects + 1):
         allowed_url(url, hosts)
         time.sleep(1)
         with session.get(
@@ -29,10 +38,19 @@ def get_source(session, url, hosts, **kwargs):
         ) as response:
             if response.status_code in (301, 302, 303, 307, 308):
                 url = urljoin(url, response.headers.get("Location", ""))
+                # Some DOI records still supply legacy HTTP publisher links.
+                # Request HTTPS directly on explicitly named publisher hosts;
+                # never transmit a request over HTTP or upgrade arbitrary URLs.
+                target = urlparse(url)
+                if (target.scheme == "http" and target.hostname in https_redirect_hosts
+                        and not target.username and not target.password and target.port in (None, 80)):
+                    url = target._replace(scheme="https", netloc=target.hostname).geturl()
                 kwargs = {}
                 continue
             if response.status_code != 200:
-                raise ValueError(f"Source lookup HTTP {response.status_code}")
+                raise SourceHTTPError(
+                    response.status_code, response.headers.get("Retry-After")
+                )
             chunks, size = [], 0
             for chunk in response.iter_content(65536):
                 size += len(chunk)

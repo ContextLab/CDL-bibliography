@@ -1,0 +1,42 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "network_requests": 0,
+      "seconds": 85.82,
+      "statuses": {
+        "metadata_verified": 3247,
+        "needs_review": 3175
+      },
+      "added_review_records": 3184
+    },
+    {
+      "cycle": "repeat",
+      "network_requests": 0,
+      "seconds": 21.68,
+      "statuses": {
+        "metadata_verified": 3247,
+        "needs_review": 3175
+      },
+      "added_review_records": 0
+    }
+  ],
+  "baseline_sha256": "c85284efc56ff14bb3cbff558012514af4fb0fbbc5f120f1dda2a2ce39e73a0c",
+  "queue_routes": {
+    "field_adjudication": 1012,
+    "publication_version": 317,
+    "source_discovery": 963,
+    "author_identity": 883
+  },
+  "new_approvals": {
+    "NeldMead65": "10.1093/comjnl/7.4.308",
+    "DuboAlbe04": "10.1016/s1474-4422(04)00710-0",
+    "ElgeEtal04": "10.1016/s1474-4422(04)00906-8",
+    "FujiEtal04": "10.1113/jphysiol.2004.066639",
+    "PikeEtal00": "10.1111/j.1469-7793.2000.00205.x",
+    "LianEtal03": "10.1113/jphysiol.2002.033209",
+    "SuthEtal12": "10.1056/nejmoa1107212",
+    "BaumEtal70": "10.1214/aoms/1177697196",
+    "BaumPetr66": "10.1214/aoms/1177699147"
+  }
+}

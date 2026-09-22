@@ -1,0 +1,8 @@
+{
+  "stage": "DOI-linked secondary records after all 500 discovery searches completed",
+  "error": "ProviderError: Malformed or truncated Europe PMC response",
+  "outcome": "Resumed successfully from completed cached searches. Resume used five requests for 121 DOI lookups. Completed repeat used zero requests and zero review writes.",
+  "resolver_version_on_first_attempt": 25,
+  "resolver_version_on_resume": 26,
+  "counter_scope": "discovery-006-results.json measures only the resumed attempt and its repeat, excluding work completed before the provider error."
+}

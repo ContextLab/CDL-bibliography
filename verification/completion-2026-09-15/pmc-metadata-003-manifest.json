@@ -1,0 +1,602 @@
+[
+  {
+    "key": "BetzEtal19",
+    "fingerprint": "v2:ae9f4e11cc13d9b4da1b89065f0072d115d3d6792b7ed185fd471695d2d335d3",
+    "pmcid": "PMC7165071",
+    "doi": "10.1016/j.neuroimage.2020.116687"
+  },
+  {
+    "key": "BisbBurg14",
+    "fingerprint": "v2:19b60c16f1a505df98f3825f3cfe84ab06cada4ad0e2b93ac185e67ae8b3de6c",
+    "pmcid": "PMC3867709",
+    "doi": "10.1101/lm.032409.113"
+  },
+  {
+    "key": "BogaEtal07",
+    "fingerprint": "v2:edf6acec06e994c826cd9a855d0de6a01f42178f6d88a3b64430185c57df6e1d",
+    "pmcid": "PMC2440778",
+    "doi": "10.1098/rstb.2007.2059"
+  },
+  {
+    "key": "BotvEtal04",
+    "fingerprint": "v2:2f4e06e682aa63a200fb8ce6e04c619956f08e45e496d7862998768b1f099b5a",
+    "pmcid": "PMC2783353",
+    "doi": "10.1016/j.cognition.2008.08.011"
+  },
+  {
+    "key": "BoucEtal13",
+    "fingerprint": "v2:79f88b5c59528a72dc439dd1b9c343c8ed0ca31d150fe04740ae1410730d8e92",
+    "pmcid": "PMC3606666",
+    "doi": "10.1038/nature11911"
+  },
+  {
+    "key": "BragEtal95",
+    "fingerprint": "v2:861d5bb2bdcf23f71e5fffba42a095f9c6d096e14e223e87e3ba3ebacc048dc7",
+    "pmcid": "PMC6578273",
+    "doi": "10.1523/jneurosci.15-01-00047.1995"
+  },
+  {
+    "key": "BranEtal13",
+    "fingerprint": "v2:17822d6f0c7942ff358fadca2ef63527ce512c024c25b727cf6603f75cdc8777",
+    "pmcid": "PMC3703458",
+    "doi": "10.1038/nn.3383"
+  },
+  {
+    "key": "Braz03",
+    "fingerprint": "v2:68a5cdfd987dc753a0e340d959a2e4665df6aab1511f9aca22ff21778fc9b305",
+    "pmcid": "PMC321224",
+    "doi": "10.1046/j.1535-7597.2003.03610.x"
+  },
+  {
+    "key": "Brig12",
+    "fingerprint": "v2:738b7c7297ee0d5d1904d848fe42d66f60c1b6447ef3327e50381a9110d0b869",
+    "pmcid": "PMC3498899",
+    "doi": "10.3389/fpsyg.2012.00420"
+  },
+  {
+    "key": "BrigEtal18",
+    "fingerprint": "v2:829715d92bbe872e0ea98c3b65028bb62423f62a9ac699d1788e8edd44a1a274",
+    "pmcid": "PMC6274618",
+    "doi": "10.1080/02699931.2018.1478280"
+  },
+  {
+    "key": "BuchDEsp09",
+    "fingerprint": "v2:27f6bb857d6cb4d5e9f378ead55fc8c3dda5f4f868310606c94d0e1017a30626",
+    "pmcid": "PMC2677654",
+    "doi": "10.1093/cercor/bhn186"
+  },
+  {
+    "key": "BuraFiet09",
+    "fingerprint": "v2:9b62c7b218ef4ff8d43b0d1825c9edbf4300615881dca5aa85d17f48a2eee9d8",
+    "pmcid": "PMC2632741",
+    "doi": "10.1371/journal.pcbi.1000291"
+  },
+  {
+    "key": "BurgEtal01b",
+    "fingerprint": "v2:4ed085e35d719524097a3a7986b05c3053c428a6e6687198febe5cb8469d751d",
+    "pmcid": "PMC1088531",
+    "doi": "10.1098/rstb.2001.0948"
+  },
+  {
+    "key": "BurkEtal14",
+    "fingerprint": "v2:a6abd3353f27ba2e03f34d007575b2c6ece0d4900c1a8f174232d3581fc8bac8",
+    "pmcid": "PMC4289670",
+    "doi": "10.1016/j.neuroimage.2013.06.067"
+  },
+  {
+    "key": "BurkEtal15",
+    "fingerprint": "v2:7c0152f4b4e5f3a60ab47b5a0889e7259cac32df1bc9751fb10117df4e559683",
+    "pmcid": "PMC4299435",
+    "doi": "10.3389/fnhum.2014.01055"
+  },
+  {
+    "key": "BuzsMose13",
+    "fingerprint": "v2:faecb8ab408692617ba2020e8771830545ec6089a284f5ad76844b2ebe83bf93",
+    "pmcid": "PMC4079500",
+    "doi": "10.1038/nn.3304"
+  },
+  {
+    "key": "CabeEtal08",
+    "fingerprint": "v2:158689a54782a7e9cb35ae4ca1fffa80c4b3c267b381250d227644ff7adb469e",
+    "pmcid": "PMC2692883",
+    "doi": "10.1038/nrn2459"
+  },
+  {
+    "key": "CahiEtal96",
+    "fingerprint": "v2:98b0bc57143d80440863c75b44946ac144ac517259b73c4991692931c48e8baf",
+    "pmcid": "PMC38867",
+    "doi": "10.1073/pnas.93.15.8016"
+  },
+  {
+    "key": "CalhEtal01",
+    "fingerprint": "v2:2a85652f5c5798a3e5babfa94a32d33f2d67b7a7f2989bc20329137f90e620eb",
+    "pmcid": "PMC6871956",
+    "doi": "10.1002/hbm.1024"
+  },
+  {
+    "key": "CanlEtal00",
+    "fingerprint": "v2:9d87795b267d692bbf99c9884c642b68334643fbb4d65ccb730a6c391ceb669e",
+    "pmcid": "PMC6772800",
+    "doi": "10.1523/jneurosci.20-19-j0004.2000"
+  },
+  {
+    "key": "CanoEtal07",
+    "fingerprint": "v2:6d9e5836408a368ad39f6bffb62423b702d95d4146e88e1d28db90580dbc0b22",
+    "pmcid": "PMC2518055",
+    "doi": "10.3389/neuro.01.1.1.014.2007"
+  },
+  {
+    "key": "CantEtal03",
+    "fingerprint": "v2:75b41a9d73fa17a8ea6a51c3fe95ef90a64de9f4edf2c822e3b4af7d480f34da",
+    "pmcid": "PMC6740994",
+    "doi": "10.1523/jneurosci.23-34-10897.2003"
+  },
+  {
+    "key": "CaplEtal03",
+    "fingerprint": "v2:8e0fcbad2a83c39f794cfe4db4530512a4273aa751a9b7878d9495e3ff37cffd",
+    "pmcid": "PMC6740775",
+    "doi": "10.1523/jneurosci.23-11-04726.2003"
+  },
+  {
+    "key": "CardEtal09",
+    "fingerprint": "v2:d7a05ed7a549adada05cc24f13e7041d3b4fb6e586ba40fc34f3f9bcb2a3b50f",
+    "pmcid": "PMC3655711",
+    "doi": "10.1038/nature08002"
+  },
+  {
+    "key": "CarrEtal11",
+    "fingerprint": "v2:697136e16baf1480fc660c29c224b65df36f24493d0fcbf7adee3d9e3f838ef3",
+    "pmcid": "PMC3215304",
+    "doi": "10.1038/nn.2732"
+  },
+  {
+    "key": "CartWang07",
+    "fingerprint": "v2:e94740a151b59bffd7886fec2ffae4e0a6bc5882c2e8bda98addf2de3daf11c5",
+    "pmcid": "PMC4632206",
+    "doi": "10.1093/cercor/bhg101"
+  },
+  {
+    "key": "ChadEtal10",
+    "fingerprint": "v2:83cfc794c953f968552acc410e8bd609d1c69a1cbfc0f0091f354a51fa9914ab",
+    "pmcid": "PMC3953557",
+    "doi": "10.1016/j.brainres.2010.08.049"
+  },
+  {
+    "key": "ChanEtal10",
+    "fingerprint": "v2:ea25e152de96a1c9f00d4218797249b936c132e3ed63b303d2df7101f1f2fa77",
+    "pmcid": "PMC2967728",
+    "doi": "10.1038/nn.2641"
+  },
+  {
+    "key": "ChanEtal12a",
+    "fingerprint": "v2:41244c71d40a006a63ec3b288b49218e1676ff678874d64bb5f0d4a9126c395a",
+    "pmcid": "PMC3563343",
+    "doi": "10.1093/cercor/bhs065"
+  },
+  {
+    "key": "ChanEtal12a",
+    "fingerprint": "v2:41244c71d40a006a63ec3b288b49218e1676ff678874d64bb5f0d4a9126c395a",
+    "pmcid": "PMC5015787",
+    "doi": "10.1523/jneurosci.4402-15.2016"
+  },
+  {
+    "key": "ChanEtal20",
+    "fingerprint": "v2:bcf23242b32fa5d242819f486a2361ee6343edaa172008e569a79b1fbcd61439",
+    "pmcid": "PMC5015787",
+    "doi": "10.1523/jneurosci.4402-15.2016"
+  },
+  {
+    "key": "ChanEtal21a",
+    "fingerprint": "v2:a02f79c888c3e9ee45f1a2d6e80b9ed0394a1ac3f89ce0bb43c27d27b11f41f7",
+    "pmcid": "PMC8064646",
+    "doi": "10.1126/sciadv.abf7129"
+  },
+  {
+    "key": "ChanEtal21b",
+    "fingerprint": "v2:0e609e12740b3a02e54a0d8c3d8d509d68b56cbece0d8a1ecd675d1f39f49352",
+    "pmcid": "PMC9155984",
+    "doi": "10.1162/jocn_a_01707"
+  },
+  {
+    "key": "ChenEtal17",
+    "fingerprint": "v2:37b9bbaacdd633204739be5296bb1508ebf827b34e5146389e17e0e38a7ada85",
+    "pmcid": "PMC5191958",
+    "doi": "10.1038/nn.4450"
+  },
+  {
+    "key": "ChenEtal20",
+    "fingerprint": "v2:8339aa98c9522f33da4f04282bfc07beab4aed5de456d3d356e0af9ab02c642d",
+    "pmcid": "PMC7955800",
+    "doi": "10.1016/j.neuroimage.2020.116851"
+  },
+  {
+    "key": "ChiaEtal22",
+    "fingerprint": "v2:64bb72aa4d07e20574b0396dba0e1ab7f085755554b4e9b629fd0b46c54ae5a2",
+    "pmcid": "PMC8857053",
+    "doi": "10.1016/j.neuron.2021.11.021"
+  },
+  {
+    "key": "ChieHone19",
+    "fingerprint": "v2:efadcb2663cd38256b444e76662ee1901602903cd3cc6861a408ee981de7b13e",
+    "pmcid": "PMC7244383",
+    "doi": "10.1016/j.neuron.2020.02.013"
+  },
+  {
+    "key": "ChowEtal13",
+    "fingerprint": "v2:fdd6b4ea7b46db7e1cedd9396b9053d372771e919fd56e3f172ec664d9149fda",
+    "pmcid": "PMC3672991",
+    "doi": "10.1038/nn.3364"
+  },
+  {
+    "key": "ClarEtal11",
+    "fingerprint": "v2:98a6813cefebc1aa128561379fc035c3d9a8e1138aecc3092d563790606502a7",
+    "pmcid": "PMC3049083",
+    "doi": "10.1098/rspb.2010.2211"
+  },
+  {
+    "key": "CoelEtal09",
+    "fingerprint": "v2:d17009946e05f0bbc2f06bfb2779ccf9e7d98cfee55b2f5489cd2a6e58ddb445",
+    "pmcid": "PMC2483935",
+    "doi": "10.1371/journal.pone.0002862"
+  },
+  {
+    "key": "CohnEtal21",
+    "fingerprint": "v2:c187965f9a60fd150ffb7b2cfb99a84366b93614fbbde1e9138358ad7d222609",
+    "pmcid": "PMC8546012",
+    "doi": "10.3758/s13421-021-01178-x"
+  },
+  {
+    "key": "CohnRang17",
+    "fingerprint": "v2:e90214bdd11d625b22e670357d7d067d72aa2943c34e4201e0f05f28d3db6de8",
+    "pmcid": "PMC6345531",
+    "doi": "10.1016/j.cobeha.2017.08.005"
+  },
+  {
+    "key": "ColeEtal16",
+    "fingerprint": "v2:f90c380fb8a71b8efbfb3f6e29e772a4e90579b812b533a486c8fef4c535f31f",
+    "pmcid": "PMC5127712",
+    "doi": "10.1038/nn.4406"
+  },
+  {
+    "key": "ColeEtal19",
+    "fingerprint": "v2:8ce7fcf908ba4766b3f7b5fc0b17a9e4fa4f7eb3ed3554f72e56c781eca36bca",
+    "pmcid": "PMC6422749",
+    "doi": "10.1016/j.neuroimage.2018.12.054"
+  },
+  {
+    "key": "ColiEtal18",
+    "fingerprint": "v2:2a837cdc61ae277c6f82fdb8a3917642c8dd0f86f9c62a491d9904a7d9ffe7ee",
+    "pmcid": "PMC6135755",
+    "doi": "10.1038/s41598-018-31985-3"
+  },
+  {
+    "key": "CombEtal19",
+    "fingerprint": "v2:6406c60251a10dbfaac38f03a6f4216a036df861c729a8daba1524624c05887b",
+    "pmcid": "PMC6439346",
+    "doi": "10.3389/fninf.2019.00014"
+  },
+  {
+    "key": "CookEtal16",
+    "fingerprint": "v2:09c788044c0c4bf277ba5fc629d1d4687b72b5cc71240625de0a04396ea2c9de",
+    "pmcid": "PMC5056245",
+    "doi": "10.1155/2016/8708434"
+  },
+  {
+    "key": "DaviEtal11",
+    "fingerprint": "v2:2d2d852949380a76b9a691b3fde3e235181511357fd452f12b60a15757f8e3ac",
+    "pmcid": "PMC3175300",
+    "doi": "10.1016/j.eplepsyres.2011.05.011"
+  },
+  {
+    "key": "DeadEtal13",
+    "fingerprint": "v2:c33eadc4845c94677fbcf0ad1fb802791aaf1059865236c4ecdf29ba14ddd654",
+    "pmcid": "PMC3872745",
+    "doi": "10.3389/fnsys.2013.00120"
+  },
+  {
+    "key": "DenkEtal11",
+    "fingerprint": "v2:09697b740313f50c2fc997610d01dc0abae4936a15240ef87a8282040750c93f",
+    "pmcid": "PMC3209854",
+    "doi": "10.1093/cercor/bhr040"
+  },
+  {
+    "key": "DestSejn03",
+    "fingerprint": "v2:f03c3cb662eb2096c99d3a3da9f337bbdaeaa6e3e0c460aaf64793eb35ea1722",
+    "pmcid": "PMC2927823",
+    "doi": "10.1152/physrev.00012.2003"
+  },
+  {
+    "key": "DianEtal06",
+    "fingerprint": "v2:a30b8d10f9846fb0f413ff47c050540d80f7ca413460d653caf940cde183c460",
+    "pmcid": "PMC2387212",
+    "doi": "10.3758/bf03193807"
+  },
+  {
+    "key": "DiazEtal15",
+    "fingerprint": "v2:4d49d629f71e9ef8380ac0e0c6b7670a7119f1b11c1a3301cbd68fd30eaeb7aa",
+    "pmcid": "PMC4406840",
+    "doi": "10.1016/j.ijcard.2015.03.038"
+  },
+  {
+    "key": "DoelEtal10",
+    "fingerprint": "v2:195e20a23a32b528a7d35ef28e0da744fbbd6113f19517f4b2a3603adc0be273",
+    "pmcid": "PMC3173857",
+    "doi": "10.1038/nature08704"
+  },
+  {
+    "key": "DomnEtal13",
+    "fingerprint": "v2:34f4c417b2297010d60592b5714042f72ea568fc4ce33e648bb38af35dfde5fd",
+    "pmcid": "PMC4099005",
+    "doi": "10.1038/nature11973"
+  },
+  {
+    "key": "DrevEtal08",
+    "fingerprint": "v2:c3f31024ff824df476aa918df2932148bf9b5da364cffe77add6c35d8175d820",
+    "pmcid": "PMC2522333",
+    "doi": "10.1007/s00429-008-0189-x"
+  },
+  {
+    "key": "DuzeEtal01",
+    "fingerprint": "v2:0009af2653fc3518a1a4ff622d9be1f9a6d472bff8553ea95d5f98e4b31014e4",
+    "pmcid": "PMC35474",
+    "doi": "10.1073/pnas.131205798"
+  },
+  {
+    "key": "EichFort09",
+    "fingerprint": "v2:6cd6ae762719976d85296de86659d04da8d417f041184d7adabc15ce5442b3f2",
+    "pmcid": "PMC2666706",
+    "doi": "10.1098/rstb.2008.0306"
+  },
+  {
+    "key": "Ekst10",
+    "fingerprint": "v2:69e9b00b290d9b36d203d47315f998b29dc129272d54a02ee30ffb43a0a78188",
+    "pmcid": "PMC3546820",
+    "doi": "10.1016/j.brainresrev.2009.12.004"
+  },
+  {
+    "key": "EkstEtal07",
+    "fingerprint": "v2:929387070f7c62070640e582a5a583561b7a8a0ce46031a261ab0b1832ec15c0",
+    "pmcid": "PMC3568989",
+    "doi": "10.1002/hipo.20300"
+  },
+  {
+    "key": "EkstWatr14",
+    "fingerprint": "v2:da4674632cd5c883155193b0a2b58f52d79fe84ef7fdcf7b7a5f40bf201b5713",
+    "pmcid": "PMC4099189",
+    "doi": "10.1016/j.neuroimage.2013.06.049"
+  },
+  {
+    "key": "ElHaEtal19",
+    "fingerprint": "v2:2a984897a898c400f244a4648cb5a0b230779b8ffe6dc0976466b91cb53cc841",
+    "pmcid": "PMC6943370",
+    "doi": "10.1515/tnsci-2019-0044"
+  },
+  {
+    "key": "EpstWard10",
+    "fingerprint": "v2:dcc512242b7c31563c296a6a7deb2b3fc688b59091de96c77ab365ed91cee40e",
+    "pmcid": "PMC2803731",
+    "doi": "10.1093/cercor/bhp099"
+  },
+  {
+    "key": "EricEtal13",
+    "fingerprint": "v2:bd107fdf67f90ee4702781d9b8bbd9f5e8944ff57a29647b14f8704dbbd5e88f",
+    "pmcid": "PMC3947596",
+    "doi": "10.1177/0956797613480367"
+  },
+  {
+    "key": "EuseEtal09",
+    "fingerprint": "v2:52d08eb600ff835b63100c745bf16f5d845523a8920422637c9506ba5bb6065a",
+    "pmcid": "PMC2714058",
+    "doi": "10.1093/brain/awp079"
+  },
+  {
+    "key": "EwbaEtal12",
+    "fingerprint": "v2:7f537a23a8aeac8428e86997f8ddf1573f35b1133bacdc5be745190954e7ced0",
+    "pmcid": "PMC3615345",
+    "doi": "10.1093/cercor/bhs070"
+  },
+  {
+    "key": "FallEtal20",
+    "fingerprint": "v2:3ad68f991761d4e82ab69a9e644c66544c85817ed47089131d044747ec95a758",
+    "pmcid": "PMC7888482",
+    "doi": "10.1162/netn_a_00151"
+  },
+  {
+    "key": "FedoVarl16",
+    "fingerprint": "v2:b26855db090c948a8d40a9608a5e1599e514ddafabaad6da9c15313ab8df3e52",
+    "pmcid": "PMC4874898",
+    "doi": "10.1111/nyas.13046"
+  },
+  {
+    "key": "FerrEtal12",
+    "fingerprint": "v2:fb0ba3993b7cf2bfe66eb0cfd5a14172cbe1ac3edcbc48544e6d7a431b80afab",
+    "pmcid": "PMC3327976",
+    "doi": "10.3389/fneur.2012.00057"
+  },
+  {
+    "key": "FiedGloc12",
+    "fingerprint": "v2:a7a4eb58d695bcdb8e0b884784c5a1b163ea03d18ea3de2eec0b98b7d2cdb6e2",
+    "pmcid": "PMC3498888",
+    "doi": "10.3389/fpsyg.2012.00335"
+  },
+  {
+    "key": "FinkEtal96",
+    "fingerprint": "v2:016e2af555f4f4eb49c746337b3e7f90fd39ac7c81f4c6a1f20b1b382c15672d",
+    "pmcid": "PMC6579004",
+    "doi": "10.1523/jneurosci.16-13-04275.1996"
+  },
+  {
+    "key": "Finn21",
+    "fingerprint": "v2:2d6f709709bd7ff92e86fa63f2c9779ca05f96924899882ba207081155c89bf6",
+    "pmcid": "PMC8585722",
+    "doi": "10.1016/j.tics.2021.09.005"
+  },
+  {
+    "key": "FinnBand21",
+    "fingerprint": "v2:6a97f9cd24d3b3b3483ea129a6d72438713d4979eead7ab9ae050b0c27d071f9",
+    "pmcid": "PMC8204673",
+    "doi": "10.1016/j.neuroimage.2021.117963"
+  },
+  {
+    "key": "FirtEtal17",
+    "fingerprint": "v2:032e5bdfe2528be7ccb44523fd6f38eaf451caef2441889a1bf58b3aaa16e327",
+    "pmcid": "PMC5464163",
+    "doi": "10.1093/schbul/sbw115"
+  },
+  {
+    "key": "FletEtal96",
+    "fingerprint": "v2:c2a45fcf9bb46ac549f4b9cc6bac3aabf93e2c1428d980f74b9dbf3baad6dfa3",
+    "pmcid": "PMC6419095",
+    "doi": "10.1037/xge0000480"
+  },
+  {
+    "key": "FolkEtal18",
+    "fingerprint": "v2:31209af42f2991e272820f70228c1bd09b7e42edca6300a06621751e160cba68",
+    "pmcid": "PMC5963851",
+    "doi": "10.1523/jneurosci.2312-17.2018"
+  },
+  {
+    "key": "FoucEtal03",
+    "fingerprint": "v2:587702ab4ebbb1045ab3c0442a0083a17fff67265d9031956eb449a965017f64",
+    "pmcid": "PMC222904",
+    "doi": "10.1186/1471-2202-4-22"
+  },
+  {
+    "key": "FourEtal19",
+    "fingerprint": "v2:f945b8d36e79a91b56516fe48b86bdf5045562d5106deb097010063ac665e4d4",
+    "pmcid": "PMC6551208",
+    "doi": "10.1016/j.bbr.2019.111920"
+  },
+  {
+    "key": "FoxGrei10",
+    "fingerprint": "v2:e4f4c5881a2a2e44c172c1ddc4835e5be384a4b2c92bdd5287f1aee5ca5696b2",
+    "pmcid": "PMC2893721",
+    "doi": "10.3389/fnsys.2010.00019"
+  },
+  {
+    "key": "Fred04",
+    "fingerprint": "v2:83f37f0397859da4e428eda5f76b6db00bfda84a9733eeb015630cfa17082619",
+    "pmcid": "PMC1693418",
+    "doi": "10.1098/rstb.2004.1512"
+  },
+  {
+    "key": "FreiEtal09",
+    "fingerprint": "v2:7741d8b0d7f3565579be367ee8b5f202eea43c91debf881ea7fdbb3ff09c8fe5",
+    "pmcid": "PMC2819705",
+    "doi": "10.1038/nn.2363"
+  },
+  {
+    "key": "Fris00",
+    "fingerprint": "v2:385abf03ff75223b0b77fbbdd8ee7b2b2a1f4030b6e0adc30ec5bbda4d61b852",
+    "pmcid": "PMC1692735",
+    "doi": "10.1098/rstb.2000.0560"
+  },
+  {
+    "key": "Fris05",
+    "fingerprint": "v2:12f1814b863a1ab0e8cf459372f4d536995fbb3c9c7b5b02ea00f9bf9ca6026c",
+    "pmcid": "PMC1569488",
+    "doi": "10.1098/rstb.2005.1622"
+  },
+  {
+    "key": "FujiEtal08",
+    "fingerprint": "v2:3dc20a199c8706ce7a2a301670f0e20a309035375dabf328070107d74314554e",
+    "pmcid": "PMC2562676",
+    "doi": "10.1038/nn.2134"
+  },
+  {
+    "key": "GailEtal09",
+    "fingerprint": "v2:89d7aa5e717dd1ce297c99df34284f2b8efb4d4477e94b83de8afdc3ab81d339",
+    "pmcid": "PMC2656551",
+    "doi": "10.1371/journal.pbio.1000061"
+  },
+  {
+    "key": "GaynEtal08",
+    "fingerprint": "v2:a8b7d8782b1a0ccded3a1a5acc2eeb4036f9c4fe64516772ffb36bf07c55d672",
+    "pmcid": "PMC2695156",
+    "doi": "10.1111/j.1460-9568.2008.06363.x"
+  },
+  {
+    "key": "GellEtal14",
+    "fingerprint": "v2:49369299298bbb6c7b52928ae38494f0c038c75981d2ee2c629c3535eadf8b7f",
+    "pmcid": "PMC4127381",
+    "doi": "10.1016/j.clinph.2014.01.021"
+  },
+  {
+    "key": "GhosEtal11",
+    "fingerprint": "v2:c425137678d457784dbd35dbfc1ecb326c8a7d0788212286a757187e5afb2fea",
+    "pmcid": "PMC3810311",
+    "doi": "10.1038/nmeth.1694"
+  },
+  {
+    "key": "GilbEtal10",
+    "fingerprint": "v2:b143e599b4a43b83e1bf961243d01ec1d70a686ca588dc94704a5e516e5b6528",
+    "pmcid": "PMC2868300",
+    "doi": "10.3389/fnhum.2010.00030"
+  },
+  {
+    "key": "Glim11",
+    "fingerprint": "v2:8a14a7dac0631c2bca947cd15b6334e41f92b7f3780f2fa414c75262e32e9fb2",
+    "pmcid": "PMC3176615",
+    "doi": "10.1073/pnas.1014269108"
+  },
+  {
+    "key": "GlucEtal01",
+    "fingerprint": "v2:7063096b4a3fdabd863afb7884928ff6304082ab0a114a2960cdb4550972492c",
+    "pmcid": "PMC6763796",
+    "doi": "10.1523/jneurosci.21-02-00590.2001"
+  },
+  {
+    "key": "GmazEtal18",
+    "fingerprint": "v2:ca27c7e0b6c1e4163c93b3c97565e434909ff6c341fab5682f424c4f0057ba37",
+    "pmcid": "PMC6195350",
+    "doi": "10.7554/elife.37275"
+  },
+  {
+    "key": "GoldEtal04",
+    "fingerprint": "v2:efaebe80e90929eaee242d56c62e4cb132b9e696a3f0a6167792d907c546e7f0",
+    "pmcid": "PMC6729228",
+    "doi": "10.1523/jneurosci.4848-03.2004"
+  },
+  {
+    "key": "GomeEtal96",
+    "fingerprint": "v2:4747877e32e7657d9ed4a7f9b7fc7069939c30ea23428cb5b7f6a051242aa4fc",
+    "pmcid": "PMC6578866",
+    "doi": "10.1523/jneurosci.16-14-04491.1996"
+  },
+  {
+    "key": "GoniEtal14",
+    "fingerprint": "v2:bcc3cc6f1343991ec7229175e9d1194a4a4c9f31ce22ef5d3d6585542162f8ab",
+    "pmcid": "PMC3896172",
+    "doi": "10.1073/pnas.1315529111"
+  },
+  {
+    "key": "GottEtal12",
+    "fingerprint": "v2:5182e7aec226d7d1d199cd1cea3a5f883d09c3f004a0af51900fcecf335e3a91",
+    "pmcid": "PMC3491809",
+    "doi": "10.1080/17588928.2012.670617"
+  },
+  {
+    "key": "GracBunn84",
+    "fingerprint": "v2:8898f8cf45f885d215a88bf4454d12f731809c1c210a32fd4f55d46e98a5de9b",
+    "pmcid": "PMC6564731",
+    "doi": "10.1523/jneurosci.04-11-02866.1984"
+  },
+  {
+    "key": "GracOnn89",
+    "fingerprint": "v2:dfcc8bc558fa89b4c6706860bf52fa6325b10a033d6c7833162e9f5edb458cbf",
+    "pmcid": "PMC6569889",
+    "doi": "10.1523/jneurosci.09-10-03463.1989"
+  },
+  {
+    "key": "GralFinn21",
+    "fingerprint": "v2:b11e727ac5a9427fb37a2a64206af11b597d97404235b455b121ddc686efccd4",
+    "pmcid": "PMC9164202",
+    "doi": "10.1093/scan/nsac019"
+  },
+  {
+    "key": "GraySing89",
+    "fingerprint": "v2:82e2f96b12c1dfc401a4530844be1778e3fe60ec24a5707888c42c6ee779cab7",
+    "pmcid": "PMC286768",
+    "doi": "10.1073/pnas.86.5.1698"
+  }
+]

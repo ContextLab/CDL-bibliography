@@ -1,0 +1,15 @@
+{
+  "statuses": {
+    "metadata_verified": 3167,
+    "needs_review": 3255
+  },
+  "entries": 6422,
+  "portable_restore": 6422,
+  "repeat_restore": 0,
+  "source_notices": 77,
+  "pilot50": {
+    "needs_review": 11,
+    "metadata_verified": 39
+  },
+  "seconds": 41.47
+}

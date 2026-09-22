@@ -144,6 +144,62 @@ def summary(results, require_human=False):
     return all(r["status"] in accepted for r in results.values())
 
 
+def select_keys(fname, keys=None, against=None, entries=None):
+    """Select explicit keys or all content absent from a trusted base bibliography."""
+    if keys and against:
+        raise ValueError("Use either --keys or --against, not both")
+    entries = load_entries(fname) if entries is None else entries
+    if keys:
+        selected = {
+            line.strip()
+            for line in Path(keys).read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        }
+        if not selected or selected - entries.keys():
+            raise ValueError(
+                "Key list is empty or contains citation keys absent from the bibliography"
+            )
+        return selected
+    if against:
+        old = {entry["fingerprint"] for entry in load_entries(against).values()}
+        return {
+            key for key, entry in entries.items() if entry["fingerprint"] not in old
+        }
+    return set(entries)
+
+
+class DeferredClient:
+    """Unchanged cached runs need neither credentials nor a network client."""
+
+    def __init__(self, cache, mailto, interval, refresh):
+        self.args = (cache, mailto)
+        self.options = dict(interval=interval, refresh=refresh)
+        self.client = None
+
+    @property
+    def requests(self):
+        return self.client.requests if self.client else 0
+
+    @property
+    def refresh(self):
+        return self.options["refresh"]
+
+    @property
+    def interval(self):
+        return self.client.interval if self.client else self.options["interval"]
+
+    @interval.setter
+    def interval(self, value):
+        self.options["interval"] = value
+        if self.client is not None:
+            self.client.interval = value
+
+    def __getattr__(self, name):
+        if self.client is None:
+            self.client = PoliteClient(*self.args, **self.options)
+        return getattr(self.client, name)
+
+
 @app.command()
 def verify(
     fname: str = typer.Argument("cdl.bib"),
@@ -174,12 +230,26 @@ def verify(
         "--auto-review",
         help="Follow Crossref checks with the free automatic metadata/full-text review layers.",
     ),
+    keys: Optional[str] = typer.Option(
+        None, "--keys", help="Check only keys in this file, one per line."
+    ),
+    against: Optional[str] = typer.Option(
+        None,
+        "--against",
+        help="Check new/edited content relative to this base .bib file; key-only renames are excluded.",
+    ),
 ):
     """Verify new/modified entries; save every result so interrupted runs resume."""
     database, report = paths(fname, database, report)
     cache = Cache(database)
     try:
-        client = PoliteClient(cache, mailto, interval=interval, refresh=refresh)
+        for selection_input in (keys, against):
+            if selection_input:
+                validate_output_path(selection_input, report, cache)
+                if snapshot:
+                    validate_output_path(selection_input, snapshot, cache)
+        selected = select_keys(fname, keys, against)
+        client = DeferredClient(cache, mailto, interval, refresh)
         results = run_verification(
             fname,
             cache,
@@ -191,14 +261,42 @@ def verify(
             wait=wait,
             snapshot=snapshot,
             recheck_cached=recheck_cached,
+            keys=selected,
         )
-        if auto_review:
+        if auto_review and selected:
             from auto_review import run_auto_review
             from fulltext_review import run_fulltext_review
+            from pmc_metadata import run_pmc_metadata_review
+            from publisher_year_review import run_publisher_year_review
+            from catalogue_review import run_catalogue_review
+            from preprint_review import run_preprint_review
+            from arxiv_review import run_arxiv_review
 
-            results = run_auto_review(fname, cache, report, client, limit, snapshot)
-            results = run_fulltext_review(fname, cache, client, report, limit, snapshot)
-        good = summary(results)
+            results = run_auto_review(
+                fname, cache, report, client, limit, snapshot, keys=selected
+            )
+            results = run_fulltext_review(
+                fname, cache, client, report, limit, snapshot, keys=selected
+            )
+            results = run_pmc_metadata_review(
+                fname, cache, client, report, limit, snapshot, keys=selected
+            )
+            results = run_publisher_year_review(
+                fname, cache, client, report, limit, snapshot, keys=selected
+            )
+            results = run_catalogue_review(
+                fname, cache, client, report, limit, snapshot, keys=selected
+            )
+            results = run_preprint_review(
+                fname, cache, client, report, limit, snapshot, keys=selected
+            )
+            results = run_arxiv_review(
+                fname, cache, client, report, limit, snapshot, keys=selected
+            )
+        # Reread both selection and results so concurrent edits cannot pass.
+        results = write_report(fname, cache, report)
+        selected = select_keys(fname, keys, against, entries=results)
+        good = summary({key: results[key] for key in selected})
         typer.echo(f"Report: {report}; network requests: {client.requests}")
         if not good:
             raise typer.Exit(1)
@@ -222,23 +320,22 @@ def status(
         "--keys",
         help="Check only citation keys in this UTF-8 file, one per line.",
     ),
+    against: Optional[str] = typer.Option(
+        None,
+        "--against",
+        help="Gate only new/edited content relative to this base .bib file.",
+    ),
 ):
     """Offline check: recompute fingerprints and fail on every unresolved entry."""
     database, report = paths(fname, database, report)
     cache = Cache(database)
     try:
+        for selection_input in (keys, against):
+            if selection_input:
+                validate_output_path(selection_input, report, cache)
         results = write_report(fname, cache, report)
-        if keys:
-            selected = [
-                line.strip()
-                for line in Path(keys).read_text(encoding="utf-8").splitlines()
-                if line.strip()
-            ]
-            if not selected or set(selected) - results.keys():
-                raise ValueError(
-                    "Key list is empty or contains citation keys absent from the bibliography"
-                )
-            results = {key: results[key] for key in selected}
+        selected = select_keys(fname, keys, against, entries=results)
+        results = {key: results[key] for key in selected}
         good = summary(results, require_human=require_human)
         if not good:
             raise typer.Exit(1)

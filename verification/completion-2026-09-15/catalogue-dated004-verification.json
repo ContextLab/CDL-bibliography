@@ -1,0 +1,25 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 38.92,
+      "network_requests": 0,
+      "review_writes": 101,
+      "statuses": {
+        "metadata_verified": 3626,
+        "needs_review": 2796
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 31.71,
+      "network_requests": 0,
+      "review_writes": 0,
+      "statuses": {
+        "metadata_verified": 3626,
+        "needs_review": 2796
+      }
+    }
+  ],
+  "new_approvals": {}
+}

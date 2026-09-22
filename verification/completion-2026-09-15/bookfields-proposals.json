@@ -1,0 +1,72 @@
+[
+  {
+    "kind": "assistant_reviewed_catalogue_field",
+    "key": "Rasm06",
+    "fingerprint": "v2:c40f084b64a6c7832c81f6743d20f445f691ea717b2ad1585e3c0a6d94f5a2f8",
+    "changes": {
+      "author": {
+        "before": "C E Rasmussen",
+        "after": "C E Rasmussen and C K I Williams"
+      }
+    },
+    "documentary_source": "https://gaussianprocess.org/gpml/chapters/RW0.pdf",
+    "documentary_audit": "Original title and copyright pages identify both authors; 2006 print edition, ISBN 026218253X. The online book record has a different release year.",
+    "audited_on": "2026-09-17"
+  },
+  {
+    "kind": "assistant_reviewed_catalogue_field",
+    "key": "Sear92",
+    "fingerprint": "v2:aab3a79771b6697c0ac15084a633d6fffce7432f0f354aab644a368303667d60",
+    "changes": {
+      "author": {
+        "before": "JR Searle",
+        "after": "J R Searle"
+      }
+    },
+    "documentary_source": "https://mitpress.mit.edu/9780262691543/the-rediscovery-of-the-mind/",
+    "documentary_audit": "John R. Searle is explicit in both LOC and publisher records; separate supplied initials.",
+    "audited_on": "2026-09-17"
+  },
+  {
+    "kind": "assistant_reviewed_catalogue_field",
+    "key": "ThruEtal06",
+    "fingerprint": "v2:7508829f23fede130c7b92852c9341827774930a028edb1f8321fdf0c768f1a9",
+    "changes": {
+      "year": {
+        "before": "2006",
+        "after": "2005"
+      }
+    },
+    "documentary_source": "https://mitpress.mit.edu/9780262201629/probabilistic-robotics/",
+    "documentary_audit": "Publisher dates the matching print ISBN 9780262201629 to August 19, 2005, consistent with LOC.",
+    "audited_on": "2026-09-17"
+  },
+  {
+    "kind": "assistant_reviewed_catalogue_field",
+    "key": "OReiMuna00",
+    "fingerprint": "v2:9dd37044ba189825b4b417dafcba4ad7fc53f3370531982035ff61afb8c0b9ad",
+    "changes": {
+      "title": {
+        "before": "Computational explorations in cognitive neuroscience",
+        "after": "Computational explorations in cognitive neuroscience: understanding the mind by simulating the brain"
+      }
+    },
+    "documentary_source": "https://mitpress.mit.edu/9780262650540/computational-explorations-in-cognitive-neuroscience/",
+    "documentary_audit": "Full title, subtitle, two authors and 2000 edition agree; foreword writer is not a coauthor.",
+    "audited_on": "2026-09-17"
+  },
+  {
+    "kind": "assistant_reviewed_catalogue_field",
+    "key": "Wass04",
+    "fingerprint": "v2:831732e5fd604b7cae04253fbbc059a60149e39eb77bd1d6672f987fa2d9f743",
+    "changes": {
+      "title": {
+        "before": "All of statistics",
+        "after": "All of statistics: a concise course in statistical inference"
+      }
+    },
+    "documentary_source": "https://link.springer.com/book/10.1007/978-0-387-21736-9",
+    "documentary_audit": "Full subtitle agrees with LOC for ISBN 9780387402727; 2004 copyright/edition year retained, distinct from December 2003 sales date and later electronic release.",
+    "audited_on": "2026-09-17"
+  }
+]

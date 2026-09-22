@@ -1,0 +1,1386 @@
+[
+  {
+    "kind": "pmc_corroborated_given_names",
+    "key": "BuraFiet09",
+    "fingerprint": "v2:9b62c7b218ef4ff8d43b0d1825c9edbf4300615881dca5aa85d17f48a2eee9d8",
+    "doi": "10.1371/journal.pcbi.1000291",
+    "changes": {
+      "author": {
+        "before": "Y Burak and I Fiete",
+        "after": "Yoram Burak and Ila R Fiete"
+      },
+      "number": {
+        "before": null,
+        "after": "2"
+      },
+      "pages": {
+        "before": null,
+        "after": "e1000291"
+      }
+    },
+    "pubmed_id": "19229307",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 2"
+      ],
+      "doi": "10.1371/journal.pcbi.1000291",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "Y Burak and I Fiete",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Burak",
+              "given": "Yoram",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Fiete",
+              "given": "Ila R.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "{PLoS} Computational Biology",
+          "match": true,
+          "source": [
+            "PLoS Computational Biology"
+          ]
+        },
+        "title": {
+          "local": "Accurate path integration in continuous attractor network models of grid cells",
+          "match": true,
+          "source": [
+            "Accurate Path Integration in Continuous Attractor Network Models of Grid Cells"
+          ]
+        },
+        "volume": {
+          "local": "5",
+          "match": true,
+          "source": [
+            "5"
+          ]
+        },
+        "year": {
+          "local": "2009",
+          "match": true,
+          "source": [
+            "2009"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "pages: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1371/journal.pcbi.1000291",
+        "ISSN": [
+          "1553-7358"
+        ],
+        "URL": "https://doi.org/10.1371/journal.pcbi.1000291",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Burak",
+            "given": "Yoram",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Fiete",
+            "given": "Ila R.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "PLoS Computational Biology"
+        ],
+        "editor": [
+          {
+            "affiliation": [],
+            "family": "Sporns",
+            "given": "Olaf",
+            "role": [
+              {
+                "role": "editor",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "issue": "2",
+        "issued": {
+          "date-parts": [
+            [
+              2009,
+              2,
+              20
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://dx.plos.org/10.1371/journal.pcbi.1000291",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "e1000291",
+        "published": {
+          "date-parts": [
+            [
+              2009,
+              2,
+              20
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2009,
+              2,
+              20
+            ]
+          ]
+        },
+        "publisher": "Public Library of Science (PLoS)",
+        "title": [
+          "Accurate Path Integration in Continuous Attractor Network Models of Grid Cells"
+        ],
+        "type": "journal-article",
+        "volume": "5"
+      },
+      "retrieved_at": "2026-09-09T19:58:04.208426+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1371/journal.pcbi.1000291"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1371/journal.pcbi.1000291",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "Y Burak and I Fiete",
+          "match": false,
+          "source": [
+            {
+              "family": "Burak",
+              "given": "Yoram",
+              "suffix": ""
+            },
+            {
+              "family": "Fiete",
+              "given": "Ila R.",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "{PLoS} Computational Biology",
+          "match": true,
+          "source": [
+            "PLoS Computational Biology",
+            "PLoS Computational Biology",
+            "PLoS computational biology",
+            "PLoS Comput Biol",
+            "PLoS Comput Biol"
+          ]
+        },
+        "title": {
+          "local": "Accurate path integration in continuous attractor network models of grid cells",
+          "match": true,
+          "source": [
+            "Accurate Path Integration in Continuous Attractor Network Models of\nGrid Cells"
+          ]
+        },
+        "volume": {
+          "local": "5",
+          "match": true,
+          "source": [
+            "5"
+          ]
+        },
+        "year": {
+          "local": "2009",
+          "match": true,
+          "source": [
+            "2009"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "number: source supplies a field absent from the citation",
+        "pages: source supplies an article number absent from the citation"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Center for Brain Science, Harvard University, Cambridge, Massachusetts, United States of America. yburak@fas.harvard.edu"
+                  }
+                ]
+              },
+              "firstName": "Yoram",
+              "fullName": "Burak Y",
+              "initials": "Y",
+              "lastName": "Burak"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-4738-2539"
+              },
+              "firstName": "Ila R",
+              "fullName": "Fiete IR",
+              "initials": "IR",
+              "lastName": "Fiete"
+            }
+          ]
+        },
+        "doi": "10.1371/journal.pcbi.1000291",
+        "firstPublicationDate": "2009-02-20",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1371/journal.pcbi.1000291"
+            },
+            {
+              "availability": "Open access",
+              "availabilityCode": "OA",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC2632741"
+            },
+            {
+              "availability": "Open access",
+              "availabilityCode": "OA",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC2632741?pdf=render"
+            }
+          ]
+        },
+        "id": "19229307",
+        "isOpenAccess": "Y",
+        "journalInfo": {
+          "dateOfPublication": "2009 Feb",
+          "issue": "2",
+          "journal": {
+            "essn": "1553-7358",
+            "isoabbreviation": "PLoS Comput Biol",
+            "issn": "1553-734X",
+            "medlineAbbreviation": "PLoS Comput Biol",
+            "nlmid": "101238922",
+            "title": "PLoS computational biology"
+          },
+          "journalIssueId": 1596418,
+          "monthOfPublication": 2,
+          "printPublicationDate": "2009-02-01",
+          "volume": "5",
+          "yearOfPublication": 2009
+        },
+        "pageInfo": "e1000291",
+        "pmcid": "PMC2632741",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Research Support, U.S. Gov't, Non-P.H.S.",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2009",
+        "source": "MED",
+        "title": "Accurate path integration in continuous attractor network models of grid cells."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">PLoS Comput Biol</journal-id><journal-id journal-id-type=\"iso-abbrev\">PLoS Comput. Biol</journal-id><journal-id journal-id-type=\"pmc-domain-id\">328</journal-id><journal-id journal-id-type=\"pmc-domain\">ploscomp</journal-id><journal-id journal-id-type=\"nlm-id\">101238922</journal-id><journal-id journal-id-type=\"publisher-id\">plos</journal-id><journal-title-group><journal-title>PLoS Computational Biology</journal-title></journal-title-group><issn pub-type=\"ppub\">1553-734X</issn><issn pub-type=\"epub\">1553-7358</issn><publisher><publisher-name>PLOS</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC2632741</article-id><article-id pub-id-type=\"pmcid-ver\">PMC2632741.1</article-id><article-id pub-id-type=\"pmcaid\">2632741</article-id><article-id pub-id-type=\"pmcaiid\">2632741</article-id><article-id pub-id-type=\"pmid\">19229307</article-id><article-id pub-id-type=\"doi\">10.1371/journal.pcbi.1000291</article-id><article-id pub-id-type=\"publisher-id\">08-PLCB-RA-0635R2</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Research Article</subject></subj-group><subj-group subj-group-type=\"Discipline\"><subject>Neuroscience</subject><subject>Neuroscience/Animal Cognition</subject><subject>Neuroscience/Theoretical Neuroscience</subject></subj-group></article-categories><title-group><article-title>Accurate Path Integration in Continuous Attractor Network Models of\nGrid Cells</article-title><alt-title alt-title-type=\"running-head\">Accurate Path Integration in the Grid-Cell\nSystem</alt-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Burak</surname><given-names initials=\"Y\">Yoram</given-names></name><xref ref-type=\"aff\" rid=\"aff1\">\n<sup>1</sup>\n</xref><xref ref-type=\"aff\" rid=\"aff2\">\n<sup>2</sup>\n</xref><xref ref-type=\"corresp\" rid=\"cor1\">\n<sup>*</sup>\n</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Fiete</surname><given-names initials=\"IR\">Ila R.</given-names></name><xref ref-type=\"aff\" rid=\"aff2\">\n<sup>2</sup>\n</xref><xref ref-type=\"aff\" rid=\"aff3\">\n<sup>3</sup>\n</xref></contrib></contrib-group><contrib-group><contrib contrib-type=\"editor\"><name name-style=\"western\"><surname>Sporns</surname><given-names initials=\"O\">Olaf</given-names></name><role>Editor</role><xref ref-type=\"aff\" rid=\"edit1\" /></contrib></contrib-group><pub-date pub-type=\"collection\"><month>2</month><year>2009</year></pub-date><pub-date pub-type=\"epub\"><day>20</day><month>2</month><year>2009</year></pub-date><volume>5</volume><issue>2</issue><elocation-id>e1000291</elocation-id></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1371/journal.pcbi.1000291",
+        "ISSN": [
+          "1553-734X",
+          "1553-7358"
+        ],
+        "article-number": "e1000291",
+        "author": [
+          {
+            "family": "Burak",
+            "given": "Yoram",
+            "suffix": ""
+          },
+          {
+            "family": "Fiete",
+            "given": "Ila R.",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "PLoS Computational Biology",
+          "PLoS Computational Biology",
+          "PLoS computational biology",
+          "PLoS Comput Biol",
+          "PLoS Comput Biol"
+        ],
+        "issue": "2",
+        "page": null,
+        "published": {
+          "date-parts": [
+            [
+              2009
+            ]
+          ]
+        },
+        "publisher": "PLOS",
+        "title": [
+          "Accurate Path Integration in Continuous Attractor Network Models of\nGrid Cells"
+        ],
+        "type": "journal-article",
+        "volume": "5"
+      },
+      "retrieved_at": "2026-09-17T04:01:16.497045+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A2632741&metadataPrefix=pmc_fm",
+      "xml_sha256": "8fc9025c3b756ceb3ba694efdadd909085e0880ce39b4595359789f961cd7659"
+    }
+  },
+  {
+    "kind": "pmc_corroborated_given_names",
+    "key": "DuzeEtal01",
+    "fingerprint": "v2:0009af2653fc3518a1a4ff622d9be1f9a6d472bff8553ea95d5f98e4b31014e4",
+    "doi": "10.1073/pnas.131205798",
+    "changes": {
+      "author": {
+        "before": "E D{\\\"{u}}zel and F Vargha-Khadem and H Heinze and M Mishkin",
+        "after": "E D\u00fczel and F Vargha-Khadem and H J Heinze and M Mishkin"
+      },
+      "number": {
+        "before": null,
+        "after": "14"
+      },
+      "pages": {
+        "before": "5973--5978",
+        "after": "8101--8106"
+      },
+      "volume": {
+        "before": "94",
+        "after": "98"
+      }
+    },
+    "pubmed_id": "11438748",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 14"
+      ],
+      "doi": "10.1073/pnas.131205798",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "E D{\\\"{u}}zel and F Vargha-Khadem and H Heinze and M Mishkin",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Neurology II, Otto von Guericke University, Magdeburg 39120, Germany; Developmental Cognitive Neuroscience Unit, Institute of Child Health, University College London, London WC1N 2AP, United Kingdom; and Laboratory of Neuropsychology, National Institute of Mental Health, Bethesda, MD 20892"
+                }
+              ],
+              "family": "D\u00fczel",
+              "given": "E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Neurology II, Otto von Guericke University, Magdeburg 39120, Germany; Developmental Cognitive Neuroscience Unit, Institute of Child Health, University College London, London WC1N 2AP, United Kingdom; and Laboratory of Neuropsychology, National Institute of Mental Health, Bethesda, MD 20892"
+                }
+              ],
+              "family": "Vargha-Khadem",
+              "given": "F.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Neurology II, Otto von Guericke University, Magdeburg 39120, Germany; Developmental Cognitive Neuroscience Unit, Institute of Child Health, University College London, London WC1N 2AP, United Kingdom; and Laboratory of Neuropsychology, National Institute of Mental Health, Bethesda, MD 20892"
+                }
+              ],
+              "family": "Heinze",
+              "given": "H. J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [
+                {
+                  "name": "Department of Neurology II, Otto von Guericke University, Magdeburg 39120, Germany; Developmental Cognitive Neuroscience Unit, Institute of Child Health, University College London, London WC1N 2AP, United Kingdom; and Laboratory of Neuropsychology, National Institute of Mental Health, Bethesda, MD 20892"
+                }
+              ],
+              "family": "Mishkin",
+              "given": "M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Proceedings of the National Academy of Sciences, {USA}",
+          "match": true,
+          "source": [
+            "Proceedings of the National Academy of Sciences"
+          ]
+        },
+        "pages": {
+          "local": "5973--5978",
+          "match": false,
+          "source": [
+            "8101-8106"
+          ]
+        },
+        "title": {
+          "local": "Brain activity evidence for recognition without recollection after early hippocampal damage",
+          "match": true,
+          "source": [
+            "Brain activity evidence for recognition without recollection after early hippocampal damage"
+          ]
+        },
+        "volume": {
+          "local": "94",
+          "match": false,
+          "source": [
+            "98"
+          ]
+        },
+        "year": {
+          "local": "2001",
+          "match": true,
+          "source": [
+            "2001"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "volume: missing evidence or mismatch",
+        "pages: missing evidence or mismatch",
+        "number: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1073/pnas.131205798",
+        "ISSN": [
+          "0027-8424",
+          "1091-6490"
+        ],
+        "URL": "https://doi.org/10.1073/pnas.131205798",
+        "author": [
+          {
+            "affiliation": [
+              {
+                "name": "Department of Neurology II, Otto von Guericke University, Magdeburg 39120, Germany; Developmental Cognitive Neuroscience Unit, Institute of Child Health, University College London, London WC1N 2AP, United Kingdom; and Laboratory of Neuropsychology, National Institute of Mental Health, Bethesda, MD 20892"
+              }
+            ],
+            "family": "D\u00fczel",
+            "given": "E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "Department of Neurology II, Otto von Guericke University, Magdeburg 39120, Germany; Developmental Cognitive Neuroscience Unit, Institute of Child Health, University College London, London WC1N 2AP, United Kingdom; and Laboratory of Neuropsychology, National Institute of Mental Health, Bethesda, MD 20892"
+              }
+            ],
+            "family": "Vargha-Khadem",
+            "given": "F.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "Department of Neurology II, Otto von Guericke University, Magdeburg 39120, Germany; Developmental Cognitive Neuroscience Unit, Institute of Child Health, University College London, London WC1N 2AP, United Kingdom; and Laboratory of Neuropsychology, National Institute of Mental Health, Bethesda, MD 20892"
+              }
+            ],
+            "family": "Heinze",
+            "given": "H. J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [
+              {
+                "name": "Department of Neurology II, Otto von Guericke University, Magdeburg 39120, Germany; Developmental Cognitive Neuroscience Unit, Institute of Child Health, University College London, London WC1N 2AP, United Kingdom; and Laboratory of Neuropsychology, National Institute of Mental Health, Bethesda, MD 20892"
+              }
+            ],
+            "family": "Mishkin",
+            "given": "M.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Proceedings of the National Academy of Sciences"
+        ],
+        "issue": "14",
+        "issued": {
+          "date-parts": [
+            [
+              2001,
+              7,
+              3
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://pnas.org/doi/pdf/10.1073/pnas.131205798",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "8101-8106",
+        "published": {
+          "date-parts": [
+            [
+              2001,
+              7,
+              3
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2001,
+              7,
+              3
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2001,
+              7,
+              3
+            ]
+          ]
+        },
+        "publisher": "National Academy of Sciences",
+        "title": [
+          "Brain activity evidence for recognition without recollection after early hippocampal damage"
+        ],
+        "type": "journal-article",
+        "volume": "98"
+      },
+      "retrieved_at": "2026-09-09T20:04:25.525748+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1073/pnas.131205798"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1073/pnas.131205798",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "E D{\\\"{u}}zel and F Vargha-Khadem and H Heinze and M Mishkin",
+          "match": false,
+          "source": [
+            {
+              "family": "D\u00fczel",
+              "given": "E.",
+              "suffix": ""
+            },
+            {
+              "family": "Vargha-Khadem",
+              "given": "F.",
+              "suffix": ""
+            },
+            {
+              "family": "Heinze",
+              "given": "H. J.",
+              "suffix": ""
+            },
+            {
+              "family": "Mishkin",
+              "given": "M.",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "Proceedings of the National Academy of Sciences, {USA}",
+          "match": true,
+          "source": [
+            "Proceedings of the National Academy of Sciences of the United States of America",
+            "Proceedings of the National Academy of Sciences",
+            "Proceedings of the National Academy of Sciences of the United States of America",
+            "Proc Natl Acad Sci U S A",
+            "Proc Natl Acad Sci U S A"
+          ]
+        },
+        "pages": {
+          "local": "5973--5978",
+          "match": false,
+          "source": [
+            "8101-8106"
+          ]
+        },
+        "title": {
+          "local": "Brain activity evidence for recognition without recollection after early hippocampal damage",
+          "match": true,
+          "source": [
+            "Brain activity evidence for recognition without recollection after early hippocampal damage"
+          ]
+        },
+        "volume": {
+          "local": "94",
+          "match": false,
+          "source": [
+            "98"
+          ]
+        },
+        "year": {
+          "local": "2001",
+          "match": true,
+          "source": [
+            "2001"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "volume: missing evidence or mismatch",
+        "pages: missing evidence or mismatch",
+        "number: source supplies a field absent from the citation"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Neurology II, Otto von Guericke University, Magdeburg 39120, Germany. emrah.duezel@medizin.uni-magdeburg.de"
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-0139-5388"
+              },
+              "firstName": "E",
+              "fullName": "D\u00fczel E",
+              "initials": "E",
+              "lastName": "D\u00fczel"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-4890-8379"
+              },
+              "firstName": "F",
+              "fullName": "Vargha-Khadem F",
+              "initials": "F",
+              "lastName": "Vargha-Khadem"
+            },
+            {
+              "firstName": "H J",
+              "fullName": "Heinze HJ",
+              "initials": "HJ",
+              "lastName": "Heinze"
+            },
+            {
+              "firstName": "M",
+              "fullName": "Mishkin M",
+              "initials": "M",
+              "lastName": "Mishkin"
+            }
+          ]
+        },
+        "doi": "10.1073/pnas.131205798",
+        "firstPublicationDate": "2001-07-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1073/pnas.131205798"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC35474"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC35474?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1073/pnas.131205798"
+            }
+          ]
+        },
+        "id": "11438748",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2001 Jul",
+          "issue": "14",
+          "journal": {
+            "essn": "1091-6490",
+            "isoabbreviation": "Proc Natl Acad Sci U S A",
+            "issn": "0027-8424",
+            "medlineAbbreviation": "Proc Natl Acad Sci U S A",
+            "nlmid": "7505876",
+            "title": "Proceedings of the National Academy of Sciences of the United States of America"
+          },
+          "journalIssueId": 988228,
+          "monthOfPublication": 7,
+          "printPublicationDate": "2001-07-01",
+          "volume": "98",
+          "yearOfPublication": 2001
+        },
+        "pageInfo": "8101-8106",
+        "pmcid": "PMC35474",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2001",
+        "source": "MED",
+        "title": "Brain activity evidence for recognition without recollection after early hippocampal damage."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"EN\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Proc Natl Acad Sci U S A</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2</journal-id><journal-id journal-id-type=\"pmc-domain\">pnas</journal-id><journal-id journal-id-type=\"nlm-id\">7505876</journal-id><journal-id journal-id-type=\"publisher-id\">PNAS</journal-id><journal-title-group><journal-title>Proceedings of the National Academy of Sciences of the United States of America</journal-title></journal-title-group><issn pub-type=\"ppub\">0027-8424</issn><issn pub-type=\"epub\">1091-6490</issn><publisher><publisher-name>National Academy of Sciences</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC35474</article-id><article-id pub-id-type=\"pmcid-ver\">PMC35474.1</article-id><article-id pub-id-type=\"pmcaid\">35474</article-id><article-id pub-id-type=\"pmcaiid\">35474</article-id><article-id pub-id-type=\"pmid\">11438748</article-id><article-id pub-id-type=\"doi\">10.1073/pnas.131205798</article-id><article-id pub-id-type=\"publisher-id\">131205798</article-id><article-id pub-id-type=\"publisher-id\">2057</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Biological Sciences</subject><subj-group><subject>Neurobiology</subject></subj-group></subj-group></article-categories><title-group><article-title>Brain activity evidence for recognition without recollection after early hippocampal damage</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>D\u00fczel</surname><given-names initials=\"E\">E.</given-names></name><xref ref-type=\"aff\" rid=\"N0x9940e68.0x99641c8\">*</xref><xref ref-type=\"author-notes\" rid=\"FN151\">\u2020</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Vargha-Khadem</surname><given-names initials=\"F\">F.</given-names></name><xref ref-type=\"aff\" rid=\"N0x9940e68.0x99641c8\">\u2021</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Heinze</surname><given-names initials=\"HJ\">H. J.</given-names></name><xref ref-type=\"aff\" rid=\"N0x9940e68.0x99641c8\">*</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Mishkin</surname><given-names initials=\"M\">M.</given-names></name><xref ref-type=\"aff\" rid=\"N0x9940e68.0x99641c8\">\u2021</xref><xref ref-type=\"aff\" rid=\"N0x9940e68.0x99641c8\">\u00a7</xref></contrib></contrib-group><pub-date pub-type=\"ppub\"><day>3</day><month>7</month><year>2001</year></pub-date><volume>98</volume><issue>14</issue><fpage>8101</fpage><lpage>8106</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1073/pnas.131205798",
+        "ISSN": [
+          "0027-8424",
+          "1091-6490"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "D\u00fczel",
+            "given": "E.",
+            "suffix": ""
+          },
+          {
+            "family": "Vargha-Khadem",
+            "given": "F.",
+            "suffix": ""
+          },
+          {
+            "family": "Heinze",
+            "given": "H. J.",
+            "suffix": ""
+          },
+          {
+            "family": "Mishkin",
+            "given": "M.",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Proceedings of the National Academy of Sciences of the United States of America",
+          "Proceedings of the National Academy of Sciences",
+          "Proceedings of the National Academy of Sciences of the United States of America",
+          "Proc Natl Acad Sci U S A",
+          "Proc Natl Acad Sci U S A"
+        ],
+        "issue": "14",
+        "page": "8101-8106",
+        "published": {
+          "date-parts": [
+            [
+              2001
+            ]
+          ]
+        },
+        "publisher": "National Academy of Sciences",
+        "title": [
+          "Brain activity evidence for recognition without recollection after early hippocampal damage"
+        ],
+        "type": "journal-article",
+        "volume": "98"
+      },
+      "retrieved_at": "2026-09-17T04:03:40.066063+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A35474&metadataPrefix=pmc_fm",
+      "xml_sha256": "60db59c9bc23f207f90fc69543e04a8de45e4194b51164f250762911ba712e4d"
+    }
+  },
+  {
+    "kind": "pmc_corroborated_given_names",
+    "key": "KranEtal09",
+    "fingerprint": "v2:bdae2f7fff806440ffa3f4099ceae46f0b0c023d0f71535e2eecfdac90270b1e",
+    "doi": "10.1002/hbm.20748",
+    "changes": {
+      "author": {
+        "before": "C Kranczioch and S Mathews and P Dean and A Sterr",
+        "after": "Cornelia Kranczioch and Simon Mathews and Phil J A Dean and Annette Sterr"
+      },
+      "number": {
+        "before": null,
+        "after": "10"
+      },
+      "volume": {
+        "before": null,
+        "after": "30"
+      }
+    },
+    "pubmed_id": "19253343",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 10"
+      ],
+      "doi": "10.1002/hbm.20748",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "C Kranczioch and S Mathews and P Dean and A Sterr",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Kranczioch",
+              "given": "Cornelia",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Mathews",
+              "given": "Simon",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Dean",
+              "given": "Phil J.A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Sterr",
+              "given": "Annette",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Human Brain Mapping",
+          "match": true,
+          "source": [
+            "Human Brain Mapping"
+          ]
+        },
+        "pages": {
+          "local": "3275--3286",
+          "match": true,
+          "source": [
+            "3275-3286"
+          ]
+        },
+        "title": {
+          "local": "On the equivalence of executed and imagined movements: evidence from lateralized motor and nonmotor potentials",
+          "match": true,
+          "source": [
+            "On the equivalence of executed and imagined movements: Evidence from lateralized motor and nonmotor potentials"
+          ]
+        },
+        "year": {
+          "local": "2009",
+          "match": true,
+          "source": [
+            "2009"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "volume: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "record": {
+        "DOI": "10.1002/hbm.20748",
+        "ISSN": [
+          "1065-9471",
+          "1097-0193"
+        ],
+        "URL": "https://doi.org/10.1002/hbm.20748",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Kranczioch",
+            "given": "Cornelia",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Mathews",
+            "given": "Simon",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Dean",
+            "given": "Phil J.A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Sterr",
+            "given": "Annette",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Human Brain Mapping"
+        ],
+        "issue": "10",
+        "issued": {
+          "date-parts": [
+            [
+              2009,
+              2,
+              27
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fhbm.20748",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/hbm.20748",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "3275-3286",
+        "published": {
+          "date-parts": [
+            [
+              2009,
+              2,
+              27
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2009,
+              2,
+              27
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2009,
+              10
+            ]
+          ]
+        },
+        "publisher": "Wiley",
+        "title": [
+          "On the equivalence of executed and imagined movements: Evidence from lateralized motor and nonmotor potentials"
+        ],
+        "type": "journal-article",
+        "volume": "30"
+      },
+      "retrieved_at": "2026-09-09T20:43:41.414212+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1002/hbm.20748"
+    },
+    "publisher_source": {
+      "authority": "PMC OAI article front matter",
+      "doi": "10.1002/hbm.20748",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "C Kranczioch and S Mathews and P Dean and A Sterr",
+          "match": false,
+          "source": [
+            {
+              "family": "Kranczioch",
+              "given": "Cornelia",
+              "suffix": ""
+            },
+            {
+              "family": "Mathews",
+              "given": "Simon",
+              "suffix": ""
+            },
+            {
+              "family": "Dean",
+              "given": "Phil J.A.",
+              "suffix": ""
+            },
+            {
+              "family": "Sterr",
+              "given": "Annette",
+              "suffix": ""
+            }
+          ]
+        },
+        "journal": {
+          "local": "Human Brain Mapping",
+          "match": true,
+          "source": [
+            "Human Brain Mapping",
+            "Human Brain Mapping",
+            "Human brain mapping",
+            "Hum Brain Mapp",
+            "Hum Brain Mapp"
+          ]
+        },
+        "pages": {
+          "local": "3275--3286",
+          "match": true,
+          "source": [
+            "3275-3286"
+          ]
+        },
+        "title": {
+          "local": "On the equivalence of executed and imagined movements: evidence from lateralized motor and nonmotor potentials",
+          "match": true,
+          "source": [
+            "On the equivalence of executed and imagined movements: Evidence from lateralized motor and nonmotor potentials"
+          ]
+        },
+        "year": {
+          "local": "2009",
+          "match": true,
+          "source": [
+            "2009"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names",
+        "volume: source supplies a field absent from the citation",
+        "number: source supplies a field absent from the citation"
+      ],
+      "medline_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Biomagnetic Center, Department of Neurology, University Hospital Jena, Jena, Germany."
+                  }
+                ]
+              },
+              "firstName": "Cornelia",
+              "fullName": "Kranczioch C",
+              "initials": "C",
+              "lastName": "Kranczioch"
+            },
+            {
+              "firstName": "Simon",
+              "fullName": "Mathews S",
+              "initials": "S",
+              "lastName": "Mathews"
+            },
+            {
+              "firstName": "Phil J A",
+              "fullName": "Dean PJ",
+              "initials": "PJ",
+              "lastName": "Dean"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-4490-985X"
+              },
+              "firstName": "Annette",
+              "fullName": "Sterr A",
+              "initials": "A",
+              "lastName": "Sterr"
+            }
+          ]
+        },
+        "doi": "10.1002/hbm.20748",
+        "firstPublicationDate": "2009-10-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Unpaywall",
+              "url": "https://europepmc.org/articles/pmc6871077?pdf=render"
+            },
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/hbm.20748"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6871077"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC6871077?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1002/hbm.20748"
+            }
+          ]
+        },
+        "id": "19253343",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2009 Oct",
+          "issue": "10",
+          "journal": {
+            "essn": "1097-0193",
+            "isoabbreviation": "Hum Brain Mapp",
+            "issn": "1065-9471",
+            "medlineAbbreviation": "Hum Brain Mapp",
+            "nlmid": "9419065",
+            "title": "Human brain mapping"
+          },
+          "journalIssueId": 1651952,
+          "monthOfPublication": 10,
+          "printPublicationDate": "2009-10-01",
+          "volume": "30",
+          "yearOfPublication": 2009
+        },
+        "pageInfo": "3275-3286",
+        "pmcid": "PMC6871077",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2009",
+        "source": "MED",
+        "title": "On the equivalence of executed and imagined movements: evidence from lateralized motor and nonmotor potentials."
+      },
+      "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Hum Brain Mapp</journal-id><journal-id journal-id-type=\"iso-abbrev\">Hum Brain Mapp</journal-id><journal-id journal-id-type=\"pmc-domain-id\">3754</journal-id><journal-id journal-id-type=\"pmc-domain\">humanbrain</journal-id><journal-id journal-id-type=\"nlm-id\">9419065</journal-id><journal-id journal-id-type=\"publisher-id\">HBM</journal-id><journal-title-group><journal-title>Human Brain Mapping</journal-title></journal-title-group><issn pub-type=\"ppub\">1065-9471</issn><issn pub-type=\"epub\">1097-0193</issn><publisher><publisher-name>Wiley</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6871077</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6871077.1</article-id><article-id pub-id-type=\"pmcaid\">6871077</article-id><article-id pub-id-type=\"pmcaiid\">6871077</article-id><article-id pub-id-type=\"pmid\">19253343</article-id><article-id pub-id-type=\"doi\">10.1002/hbm.20748</article-id><article-id pub-id-type=\"publisher-id\">HBM20748</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"overline\"><subject>Research Article</subject></subj-group><subj-group subj-group-type=\"heading\"><subject>Research Articles</subject></subj-group></article-categories><title-group><article-title>On the equivalence of executed and imagined movements: Evidence from lateralized motor and nonmotor potentials</article-title><alt-title alt-title-type=\"right-running-head\">Lateralized ERPs in Overt and Covert Actions</alt-title></title-group><contrib-group><contrib id=\"au1\" contrib-type=\"author\"><name name-style=\"western\"><surname>Kranczioch</surname><given-names initials=\"C\">Cornelia</given-names></name><xref ref-type=\"aff\" rid=\"af1\">\n<sup>1</sup>\n</xref><xref ref-type=\"aff\" rid=\"af2\">\n<sup>2</sup>\n</xref></contrib><contrib id=\"au2\" contrib-type=\"author\"><name name-style=\"western\"><surname>Mathews</surname><given-names initials=\"S\">Simon</given-names></name><xref ref-type=\"aff\" rid=\"af3\">\n<sup>3</sup>\n</xref></contrib><contrib id=\"au3\" contrib-type=\"author\"><name name-style=\"western\"><surname>Dean</surname><given-names initials=\"PJA\">Phil J.A.</given-names></name><xref ref-type=\"aff\" rid=\"af3\">\n<sup>3</sup>\n</xref></contrib><contrib id=\"au4\" contrib-type=\"author\" corresp=\"yes\"><name name-style=\"western\"><surname>Sterr</surname><given-names initials=\"A\">Annette</given-names></name><xref ref-type=\"aff\" rid=\"af3\">\n<sup>3</sup>\n</xref><address><email>a.sterr@surrey.ac.uk</email></address></contrib></contrib-group><pub-date pub-type=\"epub\"><day>27</day><month>2</month><year>2009</year></pub-date><pub-date pub-type=\"collection\"><month>10</month><year>2009</year></pub-date><volume>30</volume><issue>10</issue><fpage>3275</fpage><lpage>3286</lpage></article-meta></front></article>",
+      "record": {
+        "DOI": "10.1002/hbm.20748",
+        "ISSN": [
+          "1065-9471",
+          "1097-0193"
+        ],
+        "article-number": null,
+        "author": [
+          {
+            "family": "Kranczioch",
+            "given": "Cornelia",
+            "suffix": ""
+          },
+          {
+            "family": "Mathews",
+            "given": "Simon",
+            "suffix": ""
+          },
+          {
+            "family": "Dean",
+            "given": "Phil J.A.",
+            "suffix": ""
+          },
+          {
+            "family": "Sterr",
+            "given": "Annette",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Human Brain Mapping",
+          "Human Brain Mapping",
+          "Human brain mapping",
+          "Hum Brain Mapp",
+          "Hum Brain Mapp"
+        ],
+        "issue": "10",
+        "page": "3275-3286",
+        "published": {
+          "date-parts": [
+            [
+              2009
+            ]
+          ]
+        },
+        "publisher": "Wiley",
+        "title": [
+          "On the equivalence of executed and imagined movements: Evidence from lateralized motor and nonmotor potentials"
+        ],
+        "type": "journal-article",
+        "volume": "30"
+      },
+      "retrieved_at": "2026-09-17T04:15:58.348831+00:00",
+      "source": "pmc-jats",
+      "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6871077&metadataPrefix=pmc_fm",
+      "xml_sha256": "73f34f374e682e1c6a4baf063377ac75393021841c219cb5c2f06510b38e2e26"
+    }
+  }
+]

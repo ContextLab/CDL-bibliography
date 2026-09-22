@@ -1,0 +1,1435 @@
+[
+  {
+    "key": "EtniEtal06",
+    "entry": {
+      "key": "EtniEtal06",
+      "raw": "@article{EtniEtal06,\n\tAuthor = {J L Etnier and P M Nowell and D M Landers and B A Sibley},\n\tJournal = {Brain Research: Brain Research Reviews},\n\tNumber = {1},\n\tPages = {119--130},\n\tTitle = {A meta-regression to examine the relationship between aerobic fitness and cognitive performance},\n\tVolume = {52},\n\tYear = {2006}}",
+      "fields": {
+        "year": "2006",
+        "volume": "52",
+        "title": "A meta-regression to examine the relationship between aerobic fitness and cognitive performance",
+        "pages": "119--130",
+        "number": "1",
+        "journal": "Brain Research: Brain Research Reviews",
+        "author": "J L Etnier and P M Nowell and D M Landers and B A Sibley",
+        "ENTRYTYPE": "article",
+        "ID": "EtniEtal06"
+      },
+      "base_hash": "13ec568daabcd47bda1258fc28b5b29b9315b6bc51d2ee55f342c19d93c01e52",
+      "legacy_base_hash": "266898e3e2d8a253b4203b7c279c9b6472e65f30e038cebad16a4a41a0f4240a",
+      "fingerprint": "v2:3814ba779bda567c7e3e6638dbe4b130bb22251df5cf1cd130b3a20108cd4b2a",
+      "legacy_fingerprint": "4edfc181c2e491c919ee25cd2041a3c579d2025dd799423c13ba496f9211198b"
+    },
+    "previous": {
+      "auto_review": {
+        "epmc_checked": true,
+        "policy": "2",
+        "resolver_version": 25
+      },
+      "candidates": [
+        {
+          "advisories": [],
+          "doi": "10.1016/j.brainresrev.2006.01.002",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "J L Etnier and P M Nowell and D M Landers and B A Sibley",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Etnier",
+                  "given": "Jennifer L.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Nowell",
+                  "given": "Priscilla M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Landers",
+                  "given": "Daniel M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Sibley",
+                  "given": "Benjamin A.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Brain Research: Brain Research Reviews",
+              "match": false,
+              "source": [
+                "Brain Research Reviews"
+              ]
+            },
+            "number": {
+              "local": "1",
+              "match": true,
+              "source": [
+                "1"
+              ]
+            },
+            "pages": {
+              "local": "119--130",
+              "match": true,
+              "source": [
+                "119-130"
+              ]
+            },
+            "title": {
+              "local": "A meta-regression to examine the relationship between aerobic fitness and cognitive performance",
+              "match": true,
+              "source": [
+                "A meta-regression to examine the relationship between aerobic fitness and cognitive performance"
+              ]
+            },
+            "volume": {
+              "local": "52",
+              "match": true,
+              "source": [
+                "52"
+              ]
+            },
+            "year": {
+              "local": "2006",
+              "match": true,
+              "source": [
+                "2006"
+              ]
+            }
+          },
+          "issues": [
+            "journal: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1016/j.brainresrev.2006.01.002",
+            "ISSN": [
+              "0165-0173"
+            ],
+            "URL": "https://doi.org/10.1016/j.brainresrev.2006.01.002",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Etnier",
+                "given": "Jennifer L.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Nowell",
+                "given": "Priscilla M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Landers",
+                "given": "Daniel M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Sibley",
+                "given": "Benjamin A.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Brain Research Reviews"
+            ],
+            "issue": "1",
+            "issued": {
+              "date-parts": [
+                [
+                  2006,
+                  8
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://api.elsevier.com/content/article/PII:S0165017306000038?httpAccept=text/xml",
+                "content-type": "text/xml",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "https://api.elsevier.com/content/article/PII:S0165017306000038?httpAccept=text/plain",
+                "content-type": "text/plain",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              }
+            ],
+            "page": "119-130",
+            "published": {
+              "date-parts": [
+                [
+                  2006,
+                  8
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2006,
+                  8
+                ]
+              ]
+            },
+            "publisher": "Elsevier BV",
+            "title": [
+              "A meta-regression to examine the relationship between aerobic fitness and cognitive performance"
+            ],
+            "type": "journal-article",
+            "volume": "52"
+          },
+          "retrieved_at": "2026-09-09T19:37:50.113954+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1016/j.brainresrev.2006.01.002"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1016/j.brainresrev.2006.01.002",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "J L Etnier and P M Nowell and D M Landers and B A Sibley",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Etnier",
+                  "given": "Jennifer L.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Nowell",
+                  "given": "Priscilla M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Landers",
+                  "given": "Daniel M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Sibley",
+                  "given": "Benjamin A.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Brain Research: Brain Research Reviews",
+              "match": false,
+              "source": [
+                "Brain Research Reviews"
+              ]
+            },
+            "number": {
+              "local": "1",
+              "match": true,
+              "source": [
+                "1"
+              ]
+            },
+            "pages": {
+              "local": "119--130",
+              "match": true,
+              "source": [
+                "119-130"
+              ]
+            },
+            "title": {
+              "local": "A meta-regression to examine the relationship between aerobic fitness and cognitive performance",
+              "match": true,
+              "source": [
+                "A meta-regression to examine the relationship between aerobic fitness and cognitive performance"
+              ]
+            },
+            "volume": {
+              "local": "52",
+              "match": true,
+              "source": [
+                "52"
+              ]
+            },
+            "year": {
+              "local": "2006",
+              "match": true,
+              "source": [
+                "2006"
+              ]
+            }
+          },
+          "issues": [
+            "journal: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1016/j.brainresrev.2006.01.002",
+            "ISSN": [
+              "0165-0173"
+            ],
+            "URL": "https://doi.org/10.1016/j.brainresrev.2006.01.002",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Etnier",
+                "given": "Jennifer L.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Nowell",
+                "given": "Priscilla M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Landers",
+                "given": "Daniel M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Sibley",
+                "given": "Benjamin A.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Brain Research Reviews"
+            ],
+            "issue": "1",
+            "issued": {
+              "date-parts": [
+                [
+                  2006,
+                  8
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://api.elsevier.com/content/article/PII:S0165017306000038?httpAccept=text/xml",
+                "content-type": "text/xml",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "https://api.elsevier.com/content/article/PII:S0165017306000038?httpAccept=text/plain",
+                "content-type": "text/plain",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              }
+            ],
+            "page": "119-130",
+            "published": {
+              "date-parts": [
+                [
+                  2006,
+                  8
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2006,
+                  8
+                ]
+              ]
+            },
+            "publisher": "Elsevier BV",
+            "title": [
+              "A meta-regression to examine the relationship between aerobic fitness and cognitive performance"
+            ],
+            "type": "journal-article",
+            "volume": "52"
+          },
+          "retrieved_at": "2026-09-17T20:43:05.342794+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1016/j.brainresrev.2006.01.002"
+        },
+        {
+          "doi": "10.1016/j.brainresrev.2006.01.002",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "J L Etnier and P M Nowell and D M Landers and B A Sibley",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Etnier",
+                  "given": "Jennifer L.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Nowell",
+                  "given": "Priscilla M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Landers",
+                  "given": "Daniel M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Sibley",
+                  "given": "Benjamin A.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Brain Research: Brain Research Reviews",
+              "match": false,
+              "source": [
+                "Brain Research Reviews"
+              ]
+            },
+            "number": {
+              "local": "1",
+              "match": true,
+              "source": [
+                "1"
+              ]
+            },
+            "pages": {
+              "local": "119--130",
+              "match": true,
+              "source": [
+                "119-130"
+              ]
+            },
+            "title": {
+              "local": "A meta-regression to examine the relationship between aerobic fitness and cognitive performance",
+              "match": true,
+              "source": [
+                "A meta-regression to examine the relationship between aerobic fitness and cognitive performance"
+              ]
+            },
+            "volume": {
+              "local": "52",
+              "match": true,
+              "source": [
+                "52"
+              ]
+            },
+            "year": {
+              "local": "2006",
+              "match": true,
+              "source": [
+                "2006"
+              ]
+            }
+          },
+          "issues": [
+            "journal: missing evidence or mismatch",
+            "Secondary journal: missing evidence or mismatch"
+          ],
+          "raw_record": {
+            "authorList": {
+              "author": [
+                {
+                  "authorAffiliationDetailsList": {
+                    "authorAffiliation": [
+                      {
+                        "affiliation": "Department of Exercise and Sport Science, University of North Carolina, PO Box 26170, Greensboro, NC 27402-6170, USA. JLEtnier@uncg.edu"
+                      }
+                    ]
+                  },
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0002-3080-0565"
+                  },
+                  "firstName": "Jennifer L",
+                  "fullName": "Etnier JL",
+                  "initials": "JL",
+                  "lastName": "Etnier"
+                },
+                {
+                  "firstName": "Priscilla M",
+                  "fullName": "Nowell PM",
+                  "initials": "PM",
+                  "lastName": "Nowell"
+                },
+                {
+                  "firstName": "Daniel M",
+                  "fullName": "Landers DM",
+                  "initials": "DM",
+                  "lastName": "Landers"
+                },
+                {
+                  "firstName": "Benjamin A",
+                  "fullName": "Sibley BA",
+                  "initials": "BA",
+                  "lastName": "Sibley"
+                }
+              ]
+            },
+            "doi": "10.1016/j.brainresrev.2006.01.002",
+            "firstPublicationDate": "2006-02-20",
+            "fullTextUrlList": {
+              "fullTextUrl": [
+                {
+                  "availability": "Subscription required",
+                  "availabilityCode": "S",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1016/j.brainresrev.2006.01.002"
+                }
+              ]
+            },
+            "id": "16490256",
+            "isOpenAccess": "N",
+            "journalInfo": {
+              "dateOfPublication": "2006 Aug",
+              "issue": "1",
+              "journal": {
+                "essn": "1872-6321",
+                "isoabbreviation": "Brain Res Rev",
+                "issn": "0165-0173",
+                "medlineAbbreviation": "Brain Res Rev",
+                "nlmid": "101300366",
+                "title": "Brain research reviews"
+              },
+              "journalIssueId": 1380478,
+              "monthOfPublication": 8,
+              "printPublicationDate": "2006-08-01",
+              "volume": "52",
+              "yearOfPublication": 2006
+            },
+            "pageInfo": "119-130",
+            "pubTypeList": {
+              "pubType": [
+                "Meta-Analysis",
+                "Comparative Study",
+                "Journal Article"
+              ]
+            },
+            "pubYear": "2006",
+            "source": "MED",
+            "title": "A meta-regression to examine the relationship between aerobic fitness and cognitive performance."
+          },
+          "record": {
+            "DOI": "10.1016/j.brainresrev.2006.01.002",
+            "ISSN": [
+              "0165-0173",
+              "1872-6321"
+            ],
+            "author": [
+              {
+                "family": "Etnier",
+                "given": "Jennifer L",
+                "suffix": ""
+              },
+              {
+                "family": "Nowell",
+                "given": "Priscilla M",
+                "suffix": ""
+              },
+              {
+                "family": "Landers",
+                "given": "Daniel M",
+                "suffix": ""
+              },
+              {
+                "family": "Sibley",
+                "given": "Benjamin A",
+                "suffix": ""
+              }
+            ],
+            "container-title": [
+              "Brain research reviews",
+              "Brain Res Rev",
+              "Brain Res Rev",
+              "Brain Research Reviews"
+            ],
+            "issue": "1",
+            "page": "119-130",
+            "published": {
+              "date-parts": [
+                [
+                  2006
+                ]
+              ]
+            },
+            "title": [
+              "A meta-regression to examine the relationship between aerobic fitness and cognitive performance"
+            ],
+            "type": "journal-article",
+            "volume": "52"
+          },
+          "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2Ftra0000027%22+OR+DOI%3A%2210.1080%2F14999013.2007.10471257%22+OR+DOI%3A%2210.1037%2Fa0014866%22+OR+DOI%3A%2210.3758%2Fs13423-011-0126-5%22+OR+DOI%3A%2210.1016%2Fs0079-7421%2803%2944005-x%22+OR+DOI%3A%2210.1016%2Fb978-012373947-6.00381-0%22+OR+DOI%3A%2210.1037%2Fa0013343%22+OR+DOI%3A%2210.1038%2Fs41598-022-17781-0%22+OR+DOI%3A%2210.1101%2F2021.10.22.465441%22+OR+DOI%3A%2210.1037%2Fbne0000471%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fy8mxe%22+OR+DOI%3A%2210.3389%2Ffpsyt.2019.00262%22+OR+DOI%3A%2210.1249%2Fmss.0000000000000383%22+OR+DOI%3A%2210.1111%2Fj.2517-6161.1960.tb00375.x%22+OR+DOI%3A%2210.3233%2Fbpl-160040%22+OR+DOI%3A%2210.1038%2Fs41467-021-25280-5%22+OR+DOI%3A%2210.1101%2F2020.01.20.912873%22+OR+DOI%3A%2210.1152%2Fajpheart.1997.273.5.h2388%22+OR+DOI%3A%2210.2165%2F00007256-200029030-00003%22+OR+DOI%3A%2210.1016%2Fj.brainresrev.2006.01.002%22+OR+DOI%3A%2210.2165%2F00007256-200232090-00002%22+OR+DOI%3A%2210.1016%2Fj.brainres.2012.02.068%22+OR+DOI%3A%2210.1159%2F000223730%22+OR+DOI%3A%2210.2165%2F00007256-199009060-00001%22+OR+DOI%3A%2210.1111%2Fj.1365-2850.2004.00751.x%22&format=json&resultType=core&pageSize=100",
+          "resolved_findings": [],
+          "retrieved_at": "2026-09-10T00:59:01.185663+00:00",
+          "source": "europepmc",
+          "url": "https://europepmc.org/article/MED/16490256"
+        }
+      ],
+      "checked_at": "2026-09-21T13:12:09.252168+00:00",
+      "discovery_review": {
+        "checked": true,
+        "policy": "1"
+      },
+      "fingerprint": "v2:3814ba779bda567c7e3e6638dbe4b130bb22251df5cf1cd130b3a20108cd4b2a",
+      "issues": [
+        "No unambiguous, fully supported metadata match",
+        "DOI-linked source correction/retraction notice requires adjudication"
+      ],
+      "key": "EtniEtal06",
+      "policy": "2",
+      "status": "needs_review"
+    }
+  },
+  {
+    "key": "MeckEtal03",
+    "entry": {
+      "key": "MeckEtal03",
+      "raw": "@article{MeckEtal03,\n\tAuthor = {A Mecklinger and K Weber and T C Gunter and R W Engle},\n\tJournal = {Brain Research: Cognitive Brain Research},\n\tNumber = {1},\n\tPages = {26--38},\n\tTitle = {Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity},\n\tVolume = {18},\n\tYear = {2003}}",
+      "fields": {
+        "year": "2003",
+        "volume": "18",
+        "title": "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity",
+        "pages": "26--38",
+        "number": "1",
+        "journal": "Brain Research: Cognitive Brain Research",
+        "author": "A Mecklinger and K Weber and T C Gunter and R W Engle",
+        "ENTRYTYPE": "article",
+        "ID": "MeckEtal03"
+      },
+      "base_hash": "9e6c77388be33339594cbb532420fcd68883e9149b329372ade145759dac4ad9",
+      "legacy_base_hash": "191aff8514fb60a68f8576f1b9438a9c0b8065da9167a35fc4e72fdbd8a192ac",
+      "fingerprint": "v2:78e60d5fc4c4bcef071b1244e4716898807642350daf28cd953ffb39e9436204",
+      "legacy_fingerprint": "0f058ddc594f54eb2ef4aeb4f08dbfa9a1e65c0d7b3e5cda7d00f937eca62196"
+    },
+    "previous": {
+      "auto_review": {
+        "epmc_checked": true,
+        "policy": "2",
+        "resolver_version": 25
+      },
+      "candidates": [
+        {
+          "advisories": [],
+          "doi": "10.1016/j.cogbrainres.2003.08.008",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "A Mecklinger and K Weber and T C Gunter and R W Engle",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Mecklinger",
+                  "given": "A",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Weber",
+                  "given": "K",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Gunter",
+                  "given": "T.C",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Engle",
+                  "given": "R.W",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Brain Research: Cognitive Brain Research",
+              "match": false,
+              "source": [
+                "Cognitive Brain Research"
+              ]
+            },
+            "number": {
+              "local": "1",
+              "match": true,
+              "source": [
+                "1"
+              ]
+            },
+            "pages": {
+              "local": "26--38",
+              "match": true,
+              "source": [
+                "26-38"
+              ]
+            },
+            "title": {
+              "local": "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity",
+              "match": true,
+              "source": [
+                "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity"
+              ]
+            },
+            "volume": {
+              "local": "18",
+              "match": true,
+              "source": [
+                "18"
+              ]
+            },
+            "year": {
+              "local": "2003",
+              "match": true,
+              "source": [
+                "2003"
+              ]
+            }
+          },
+          "issues": [
+            "journal: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1016/j.cogbrainres.2003.08.008",
+            "ISSN": [
+              "0926-6410"
+            ],
+            "URL": "https://doi.org/10.1016/j.cogbrainres.2003.08.008",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Mecklinger",
+                "given": "A",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Weber",
+                "given": "K",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Gunter",
+                "given": "T.C",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Engle",
+                "given": "R.W",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Cognitive Brain Research"
+            ],
+            "issue": "1",
+            "issued": {
+              "date-parts": [
+                [
+                  2003,
+                  12
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://api.elsevier.com/content/article/PII:S0926641003002106?httpAccept=text/xml",
+                "content-type": "text/xml",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "https://api.elsevier.com/content/article/PII:S0926641003002106?httpAccept=text/plain",
+                "content-type": "text/plain",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              }
+            ],
+            "page": "26-38",
+            "published": {
+              "date-parts": [
+                [
+                  2003,
+                  12
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2003,
+                  12
+                ]
+              ]
+            },
+            "publisher": "Elsevier BV",
+            "title": [
+              "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity"
+            ],
+            "type": "journal-article",
+            "volume": "18"
+          },
+          "retrieved_at": "2026-09-09T20:13:31.998620+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1016/j.cogbrainres.2003.08.008"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1016/j.cogbrainres.2003.08.008",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "A Mecklinger and K Weber and T C Gunter and R W Engle",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Mecklinger",
+                  "given": "A",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Weber",
+                  "given": "K",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Gunter",
+                  "given": "T.C",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Engle",
+                  "given": "R.W",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Brain Research: Cognitive Brain Research",
+              "match": false,
+              "source": [
+                "Cognitive Brain Research"
+              ]
+            },
+            "number": {
+              "local": "1",
+              "match": true,
+              "source": [
+                "1"
+              ]
+            },
+            "pages": {
+              "local": "26--38",
+              "match": true,
+              "source": [
+                "26-38"
+              ]
+            },
+            "title": {
+              "local": "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity",
+              "match": true,
+              "source": [
+                "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity"
+              ]
+            },
+            "volume": {
+              "local": "18",
+              "match": true,
+              "source": [
+                "18"
+              ]
+            },
+            "year": {
+              "local": "2003",
+              "match": true,
+              "source": [
+                "2003"
+              ]
+            }
+          },
+          "issues": [
+            "journal: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1016/j.cogbrainres.2003.08.008",
+            "ISSN": [
+              "0926-6410"
+            ],
+            "URL": "https://doi.org/10.1016/j.cogbrainres.2003.08.008",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Mecklinger",
+                "given": "A",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Weber",
+                "given": "K",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Gunter",
+                "given": "T.C",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Engle",
+                "given": "R.W",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Cognitive Brain Research"
+            ],
+            "issue": "1",
+            "issued": {
+              "date-parts": [
+                [
+                  2003,
+                  12
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://api.elsevier.com/content/article/PII:S0926641003002106?httpAccept=text/xml",
+                "content-type": "text/xml",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "https://api.elsevier.com/content/article/PII:S0926641003002106?httpAccept=text/plain",
+                "content-type": "text/plain",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              }
+            ],
+            "page": "26-38",
+            "published": {
+              "date-parts": [
+                [
+                  2003,
+                  12
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2003,
+                  12
+                ]
+              ]
+            },
+            "publisher": "Elsevier BV",
+            "title": [
+              "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity"
+            ],
+            "type": "journal-article",
+            "volume": "18"
+          },
+          "retrieved_at": "2026-09-21T17:24:23.067413+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1016/j.cogbrainres.2003.08.008"
+        },
+        {
+          "doi": "10.1016/j.cogbrainres.2003.08.008",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "A Mecklinger and K Weber and T C Gunter and R W Engle",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Mecklinger",
+                  "given": "A",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Weber",
+                  "given": "K",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Gunter",
+                  "given": "T.C",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Engle",
+                  "given": "R.W",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Brain Research: Cognitive Brain Research",
+              "match": false,
+              "source": [
+                "Cognitive Brain Research"
+              ]
+            },
+            "number": {
+              "local": "1",
+              "match": true,
+              "source": [
+                "1"
+              ]
+            },
+            "pages": {
+              "local": "26--38",
+              "match": true,
+              "source": [
+                "26-38"
+              ]
+            },
+            "title": {
+              "local": "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity",
+              "match": true,
+              "source": [
+                "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity"
+              ]
+            },
+            "volume": {
+              "local": "18",
+              "match": true,
+              "source": [
+                "18"
+              ]
+            },
+            "year": {
+              "local": "2003",
+              "match": true,
+              "source": [
+                "2003"
+              ]
+            }
+          },
+          "issues": [
+            "journal: missing evidence or mismatch",
+            "Secondary journal: missing evidence or mismatch"
+          ],
+          "raw_record": {
+            "authorList": {
+              "author": [
+                {
+                  "authorAffiliationDetailsList": {
+                    "authorAffiliation": [
+                      {
+                        "affiliation": "Department of Psychology, Saarland University, Im Stadtwald, 66123 Saarbrücken, Germany. mecklinger@mx.uni-saarland.de"
+                      }
+                    ]
+                  },
+                  "firstName": "A",
+                  "fullName": "Mecklinger A",
+                  "initials": "A",
+                  "lastName": "Mecklinger"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0001-8192-2207"
+                  },
+                  "firstName": "K",
+                  "fullName": "Weber K",
+                  "initials": "K",
+                  "lastName": "Weber"
+                },
+                {
+                  "firstName": "T C",
+                  "fullName": "Gunter TC",
+                  "initials": "TC",
+                  "lastName": "Gunter"
+                },
+                {
+                  "firstName": "R W",
+                  "fullName": "Engle RW",
+                  "initials": "RW",
+                  "lastName": "Engle"
+                }
+              ]
+            },
+            "doi": "10.1016/j.cogbrainres.2003.08.008",
+            "firstPublicationDate": "2003-12-01",
+            "fullTextUrlList": {
+              "fullTextUrl": [
+                {
+                  "availability": "Subscription required",
+                  "availabilityCode": "S",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1016/j.cogbrainres.2003.08.008"
+                }
+              ]
+            },
+            "id": "14659494",
+            "isOpenAccess": "N",
+            "journalInfo": {
+              "dateOfPublication": "2003 Dec",
+              "issue": "1",
+              "journal": {
+                "isoabbreviation": "Brain Res Cogn Brain Res",
+                "issn": "0926-6410",
+                "medlineAbbreviation": "Brain Res Cogn Brain Res",
+                "nlmid": "9214304",
+                "title": "Brain research. Cognitive brain research"
+              },
+              "journalIssueId": 1180563,
+              "monthOfPublication": 12,
+              "printPublicationDate": "2003-12-01",
+              "volume": "18",
+              "yearOfPublication": 2003
+            },
+            "pageInfo": "26-38",
+            "pubTypeList": {
+              "pubType": [
+                "Comparative Study",
+                "Research Support, Non-U.S. Gov't",
+                "Journal Article"
+              ]
+            },
+            "pubYear": "2003",
+            "source": "MED",
+            "title": "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity."
+          },
+          "record": {
+            "DOI": "10.1016/j.cogbrainres.2003.08.008",
+            "ISSN": [
+              "0926-6410"
+            ],
+            "author": [
+              {
+                "family": "Mecklinger",
+                "given": "A",
+                "suffix": ""
+              },
+              {
+                "family": "Weber",
+                "given": "K",
+                "suffix": ""
+              },
+              {
+                "family": "Gunter",
+                "given": "T C",
+                "suffix": ""
+              },
+              {
+                "family": "Engle",
+                "given": "R W",
+                "suffix": ""
+              }
+            ],
+            "container-title": [
+              "Brain research. Cognitive brain research",
+              "Brain Res Cogn Brain Res",
+              "Brain Res Cogn Brain Res",
+              "Cognitive Brain Research"
+            ],
+            "issue": "1",
+            "page": "26-38",
+            "published": {
+              "date-parts": [
+                [
+                  2003
+                ]
+              ]
+            },
+            "title": [
+              "Dissociable brain mechanisms for inhibitory control: effects of interference content and working memory capacity"
+            ],
+            "type": "journal-article",
+            "volume": "18"
+          },
+          "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fj.neuron.2009.07.016%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.23.3.539%22+OR+DOI%3A%2210.1037%2F0278-7393.23.3.539%22+OR+DOI%3A%2210.1007%2Fs00701-009-0469-0%22+OR+DOI%3A%2210.1088%2F1741-2560%2F10%2F3%2F036021%22+OR+DOI%3A%2210.1037%2F0278-7393.19.3.603%22+OR+DOI%3A%2210.1523%2Fjneurosci.1063-07.2007%22+OR+DOI%3A%2210.1152%2Fjn.01200.2006%22+OR+DOI%3A%2210.1068%2Fp261101%22+OR+DOI%3A%2210.1037%2Fh0040678%22+OR+DOI%3A%2210.1016%2F0166-4328%2890%2990101-j%22+OR+DOI%3A%2210.1037%2F0278-7393.29.5.838%22+OR+DOI%3A%2210.1016%2Fj.cogbrainres.2003.08.008%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2011.02.033%22+OR+DOI%3A%2210.1523%2Fjneurosci.4705-04.2005%22+OR+DOI%3A%2210.1523%2Fjneurosci.20-19-07496.2000%22+OR+DOI%3A%2210.1093%2Fbrain%2F121.5.815%22+OR+DOI%3A%2210.1523%2Fjneurosci.2273-06.2006%22+OR+DOI%3A%2210.1523%2Fjneurosci.0357-12.2012%22+OR+DOI%3A%2210.1111%2Fj.1467-9280.1996.tb00662.x%22+OR+DOI%3A%2210.1093%2Fcercor%2F11.11.1003%22+OR+DOI%3A%2210.1111%2Fj.0963-7214.2006.00422.x%22+OR+DOI%3A%2210.1126%2Fscience.1100265%22+OR+DOI%3A%2210.1111%2Fj.1469-7793.2000.00205.x%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhm251%22&format=json&resultType=core&pageSize=100",
+          "resolved_findings": [],
+          "retrieved_at": "2026-09-10T01:00:39.854177+00:00",
+          "source": "europepmc",
+          "url": "https://europepmc.org/article/MED/14659494"
+        }
+      ],
+      "checked_at": "2026-09-21T17:24:23.204809+00:00",
+      "discovery_review": {
+        "checked": true,
+        "policy": "1"
+      },
+      "fingerprint": "v2:78e60d5fc4c4bcef071b1244e4716898807642350daf28cd953ffb39e9436204",
+      "issues": [
+        "No unambiguous, fully supported metadata match"
+      ],
+      "key": "MeckEtal03",
+      "policy": "2",
+      "status": "needs_review"
+    }
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "snapshot": "after catalogueimprint",
+  "statuses": {
+    "metadata_verified": 40,
+    "needs_review": 10
+  },
+  "unresolved": [
+    "Nico03",
+    "KoenEtal07",
+    "Brun04",
+    "HamaEtal08",
+    "WiggEtal99",
+    "GuptEtal12",
+    "BretEtal02",
+    "WitmEtal96",
+    "Cohe90",
+    "Kerb14"
+  ]
+}

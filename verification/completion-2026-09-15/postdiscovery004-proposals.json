@@ -1,0 +1,659 @@
+[
+  {
+    "kind": "corroborated_author",
+    "key": "YangEtal03",
+    "fingerprint": "v2:b6f8707eceff7f0fe48a3bb9f9f160f9e89bcf38d6af651b99781bc8796c4ad5",
+    "changes": {
+      "author": {
+        "before": "Nan Yang and Daniel G MacArthur and Jason P Gulbin and Allan G Hahn and Alan H Beggs and Simon Easteal and Kathryn North and K G Ardlie and L Kruglyak and M Seielstad and A Blanchard and Ohanian and D Critchley and P Chowrashi and B Mittal and J M Sanger and J W Sanger and N Frey and E N Olson and N Frey and J A Richardson and E N Olson and J Friden and R L Lieber and T Garland and A F Bennett and C B Daniels and G Gayagay and B Yu and B Hambly and T Boston and A Hahn and D S Celermajer and R J Trent and A Gizak and D Rakus and A Dzugaj and G A Huttley and Wilson and N L Kaplan and R R Hudson and C H Langley and M Mills and N Yang and R Weinberger and D L {vander Woude} and A H Beggs and S Easteal and K North and H Montgomery and R Marshall and H Hemingway and S Myerson and P Clarkson and C Dollery and M Hayward and D Holliman and M Jubb and M World and E Thomas and A Brynes and N Saeed and M Barnard and J Bell and K Prasad and M Rayson and P Talmud and S Humphries and S Myerson and H Hemingway and R Budget and J Martin and S Humphries and H Montgomery and I B Nazarov and D R Woods and H E Montgomery and O V Shneider and Kazakov and N V Tomilin and V A Rogozkin and K N North and N Yang and D Wattanasirichaigoon and M Mills and S Easteal and A H Beggs and T Rankinen and L Perusse and R Raurama and M A Rivera and B Wolfarth and C Bouchard and T Rankinen and B Wolfarth and J A Simoneau and D Maier-Lenz and R Rauramaa and M A Rivera and M R Boulay and Y C Chagnon and L Perusse and J Keul and C Bouchard and D E Reich and M Cargill and S Bolk and J Ireland and P C Sabeti and D J Richter and T Layery and R Kouyoumjian and S F Farhadian and R Ward and E S Lander and M J Rieder and S L Taylor and A G Clark and D A Nickerson and A L Serrano and M Murgia and G Pallafacchina and E Calabria and P Coniglio and T Lomo and S Schiaffino and G P Shi and R A R Bryant and R Riese and S Verhelst and C Driessen and Z Li and D Bromme and H L Ploegh and H A Chapman and J A Simoneau and C Bouchard and R R Taylor and C D S Mamotte and K Fallon and F M {van Bockxmeer} and R Van Damme and R S Wilson and B Vanhooydonck and P Aerts and B Wang and G P Shi and P M Yao and Z Li and H A Chapman and D Bromme and D Woods and M Hickman and Y Jamshidi and D Brull and Vassiliou and A Jones and S Humphries and H Montgomery",
+        "after": "Nan Yang and Daniel G MacArthur and Jason P Gulbin and Allan G Hahn and Alan H Beggs and Simon Easteal and Kathryn North"
+      }
+    },
+    "doi": "10.1086/377590",
+    "pubmed_id": "12879365",
+    "primary": {
+      "advisories": [
+        "Non-version source relationships retained: has-review"
+      ],
+      "doi": "10.1086/377590",
+      "evidence": {
+        "author": {
+          "detail": "Missing authors or different author counts",
+          "local": "Nan Yang and Daniel G MacArthur and Jason P Gulbin and Allan G Hahn and Alan H Beggs and Simon Easteal and Kathryn North and K G Ardlie and L Kruglyak and M Seielstad and A Blanchard and Ohanian and D Critchley and P Chowrashi and B Mittal and J M Sanger and J W Sanger and N Frey and E N Olson and N Frey and J A Richardson and E N Olson and J Friden and R L Lieber and T Garland and A F Bennett and C B Daniels and G Gayagay and B Yu and B Hambly and T Boston and A Hahn and D S Celermajer and R J Trent and A Gizak and D Rakus and A Dzugaj and G A Huttley and Wilson and N L Kaplan and R R Hudson and C H Langley and M Mills and N Yang and R Weinberger and D L {vander Woude} and A H Beggs and S Easteal and K North and H Montgomery and R Marshall and H Hemingway and S Myerson and P Clarkson and C Dollery and M Hayward and D Holliman and M Jubb and M World and E Thomas and A Brynes and N Saeed and M Barnard and J Bell and K Prasad and M Rayson and P Talmud and S Humphries and S Myerson and H Hemingway and R Budget and J Martin and S Humphries and H Montgomery and I B Nazarov and D R Woods and H E Montgomery and O V Shneider and Kazakov and N V Tomilin and V A Rogozkin and K N North and N Yang and D Wattanasirichaigoon and M Mills and S Easteal and A H Beggs and T Rankinen and L Perusse and R Raurama and M A Rivera and B Wolfarth and C Bouchard and T Rankinen and B Wolfarth and J A Simoneau and D Maier-Lenz and R Rauramaa and M A Rivera and M R Boulay and Y C Chagnon and L Perusse and J Keul and C Bouchard and D E Reich and M Cargill and S Bolk and J Ireland and P C Sabeti and D J Richter and T Layery and R Kouyoumjian and S F Farhadian and R Ward and E S Lander and M J Rieder and S L Taylor and A G Clark and D A Nickerson and A L Serrano and M Murgia and G Pallafacchina and E Calabria and P Coniglio and T Lomo and S Schiaffino and G P Shi and R A R Bryant and R Riese and S Verhelst and C Driessen and Z Li and D Bromme and H L Ploegh and H A Chapman and J A Simoneau and C Bouchard and R R Taylor and C D S Mamotte and K Fallon and F M {van Bockxmeer} and R Van Damme and R S Wilson and B Vanhooydonck and P Aerts and B Wang and G P Shi and P M Yao and Z Li and H A Chapman and D Bromme and D Woods and M Hickman and Y Jamshidi and D Brull and Vassiliou and A Jones and S Humphries and H Montgomery",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Yang",
+              "given": "Nan",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "MacArthur",
+              "given": "Daniel G.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Gulbin",
+              "given": "Jason P.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Hahn",
+              "given": "Allan G.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Beggs",
+              "given": "Alan H.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Easteal",
+              "given": "Simon",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "North",
+              "given": "Kathryn",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "{American} Journal of Human Genetics",
+          "match": true,
+          "source": [
+            "The American Journal of Human Genetics"
+          ]
+        },
+        "number": {
+          "local": "3",
+          "match": true,
+          "source": [
+            "3"
+          ]
+        },
+        "pages": {
+          "local": "627--631",
+          "match": true,
+          "source": [
+            "627-631"
+          ]
+        },
+        "title": {
+          "local": "{ACTN3} genotype is associated with human elite athletic performance",
+          "match": true,
+          "source": [
+            "ACTN3 Genotype Is Associated with Human Elite Athletic Performance"
+          ]
+        },
+        "volume": {
+          "local": "73",
+          "match": true,
+          "source": [
+            "73"
+          ]
+        },
+        "year": {
+          "local": "2003",
+          "match": true,
+          "source": [
+            "2003"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing authors or different author counts"
+      ],
+      "record": {
+        "DOI": "10.1086/377590",
+        "ISSN": [
+          "0002-9297"
+        ],
+        "URL": "https://doi.org/10.1086/377590",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Yang",
+            "given": "Nan",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "MacArthur",
+            "given": "Daniel G.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Gulbin",
+            "given": "Jason P.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Hahn",
+            "given": "Allan G.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Beggs",
+            "given": "Alan H.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Easteal",
+            "given": "Simon",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "North",
+            "given": "Kathryn",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "The American Journal of Human Genetics"
+        ],
+        "issue": "3",
+        "issued": {
+          "date-parts": [
+            [
+              2003,
+              9
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0002929707620242?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0002929707620242?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "627-631",
+        "published": {
+          "date-parts": [
+            [
+              2003,
+              9
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2003,
+              9
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "relation": {
+          "has-review": [
+            {
+              "asserted-by": "object",
+              "id": "10.3410/f.1015843.198803",
+              "id-type": "doi"
+            }
+          ]
+        },
+        "title": [
+          "ACTN3 Genotype Is Associated with Human Elite Athletic Performance"
+        ],
+        "type": "journal-article",
+        "volume": "73"
+      },
+      "retrieved_at": "2026-09-17T19:20:34.085676+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1086/377590"
+    },
+    "secondary": {
+      "doi": "10.1086/377590",
+      "evidence": {
+        "author": {
+          "detail": "Missing authors or different author counts",
+          "local": "Nan Yang and Daniel G MacArthur and Jason P Gulbin and Allan G Hahn and Alan H Beggs and Simon Easteal and Kathryn North and K G Ardlie and L Kruglyak and M Seielstad and A Blanchard and Ohanian and D Critchley and P Chowrashi and B Mittal and J M Sanger and J W Sanger and N Frey and E N Olson and N Frey and J A Richardson and E N Olson and J Friden and R L Lieber and T Garland and A F Bennett and C B Daniels and G Gayagay and B Yu and B Hambly and T Boston and A Hahn and D S Celermajer and R J Trent and A Gizak and D Rakus and A Dzugaj and G A Huttley and Wilson and N L Kaplan and R R Hudson and C H Langley and M Mills and N Yang and R Weinberger and D L {vander Woude} and A H Beggs and S Easteal and K North and H Montgomery and R Marshall and H Hemingway and S Myerson and P Clarkson and C Dollery and M Hayward and D Holliman and M Jubb and M World and E Thomas and A Brynes and N Saeed and M Barnard and J Bell and K Prasad and M Rayson and P Talmud and S Humphries and S Myerson and H Hemingway and R Budget and J Martin and S Humphries and H Montgomery and I B Nazarov and D R Woods and H E Montgomery and O V Shneider and Kazakov and N V Tomilin and V A Rogozkin and K N North and N Yang and D Wattanasirichaigoon and M Mills and S Easteal and A H Beggs and T Rankinen and L Perusse and R Raurama and M A Rivera and B Wolfarth and C Bouchard and T Rankinen and B Wolfarth and J A Simoneau and D Maier-Lenz and R Rauramaa and M A Rivera and M R Boulay and Y C Chagnon and L Perusse and J Keul and C Bouchard and D E Reich and M Cargill and S Bolk and J Ireland and P C Sabeti and D J Richter and T Layery and R Kouyoumjian and S F Farhadian and R Ward and E S Lander and M J Rieder and S L Taylor and A G Clark and D A Nickerson and A L Serrano and M Murgia and G Pallafacchina and E Calabria and P Coniglio and T Lomo and S Schiaffino and G P Shi and R A R Bryant and R Riese and S Verhelst and C Driessen and Z Li and D Bromme and H L Ploegh and H A Chapman and J A Simoneau and C Bouchard and R R Taylor and C D S Mamotte and K Fallon and F M {van Bockxmeer} and R Van Damme and R S Wilson and B Vanhooydonck and P Aerts and B Wang and G P Shi and P M Yao and Z Li and H A Chapman and D Bromme and D Woods and M Hickman and Y Jamshidi and D Brull and Vassiliou and A Jones and S Humphries and H Montgomery",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Yang",
+              "given": "Nan",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "MacArthur",
+              "given": "Daniel G.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Gulbin",
+              "given": "Jason P.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Hahn",
+              "given": "Allan G.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Beggs",
+              "given": "Alan H.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Easteal",
+              "given": "Simon",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "North",
+              "given": "Kathryn",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "{American} Journal of Human Genetics",
+          "match": true,
+          "source": [
+            "The American Journal of Human Genetics"
+          ]
+        },
+        "number": {
+          "local": "3",
+          "match": true,
+          "source": [
+            "3"
+          ]
+        },
+        "pages": {
+          "local": "627--631",
+          "match": true,
+          "source": [
+            "627-631"
+          ]
+        },
+        "title": {
+          "local": "{ACTN3} genotype is associated with human elite athletic performance",
+          "match": true,
+          "source": [
+            "ACTN3 Genotype Is Associated with Human Elite Athletic Performance"
+          ]
+        },
+        "volume": {
+          "local": "73",
+          "match": true,
+          "source": [
+            "73"
+          ]
+        },
+        "year": {
+          "local": "2003",
+          "match": true,
+          "source": [
+            "2003"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing authors or different author counts",
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Institute for Neuromuscular Research, Children's Hospital at Westmead, Sydney, Australia."
+                  }
+                ]
+              },
+              "firstName": "Nan",
+              "fullName": "Yang N",
+              "initials": "N",
+              "lastName": "Yang"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-5771-2290"
+              },
+              "firstName": "Daniel G",
+              "fullName": "MacArthur DG",
+              "initials": "DG",
+              "lastName": "MacArthur"
+            },
+            {
+              "firstName": "Jason P",
+              "fullName": "Gulbin JP",
+              "initials": "JP",
+              "lastName": "Gulbin"
+            },
+            {
+              "firstName": "Allan G",
+              "fullName": "Hahn AG",
+              "initials": "AG",
+              "lastName": "Hahn"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0001-8818-0568"
+              },
+              "firstName": "Alan H",
+              "fullName": "Beggs AH",
+              "initials": "AH",
+              "lastName": "Beggs"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-0462-502X"
+              },
+              "firstName": "Simon",
+              "fullName": "Easteal S",
+              "initials": "S",
+              "lastName": "Easteal"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-0841-8009"
+              },
+              "firstName": "Kathryn",
+              "fullName": "North K",
+              "initials": "K",
+              "lastName": "North"
+            }
+          ]
+        },
+        "doi": "10.1086/377590",
+        "firstPublicationDate": "2003-07-23",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1086/377590"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC1180686"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC1180686?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1086/377590"
+            }
+          ]
+        },
+        "id": "12879365",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2003 Sep",
+          "issue": "3",
+          "journal": {
+            "essn": "1537-6605",
+            "isoabbreviation": "Am J Hum Genet",
+            "issn": "0002-9297",
+            "medlineAbbreviation": "Am J Hum Genet",
+            "nlmid": "0370475",
+            "title": "American journal of human genetics"
+          },
+          "journalIssueId": 1145473,
+          "monthOfPublication": 9,
+          "printPublicationDate": "2003-09-01",
+          "volume": "73",
+          "yearOfPublication": 2003
+        },
+        "pageInfo": "627-631",
+        "pmcid": "PMC1180686",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article",
+            "case-report"
+          ]
+        },
+        "pubYear": "2003",
+        "source": "MED",
+        "title": "ACTN3 genotype is associated with human elite athletic performance."
+      },
+      "record": {
+        "DOI": "10.1086/377590",
+        "ISSN": [
+          "0002-9297",
+          "1537-6605"
+        ],
+        "author": [
+          {
+            "family": "Yang",
+            "given": "Nan",
+            "suffix": ""
+          },
+          {
+            "family": "MacArthur",
+            "given": "Daniel G",
+            "suffix": ""
+          },
+          {
+            "family": "Gulbin",
+            "given": "Jason P",
+            "suffix": ""
+          },
+          {
+            "family": "Hahn",
+            "given": "Allan G",
+            "suffix": ""
+          },
+          {
+            "family": "Beggs",
+            "given": "Alan H",
+            "suffix": ""
+          },
+          {
+            "family": "Easteal",
+            "given": "Simon",
+            "suffix": ""
+          },
+          {
+            "family": "North",
+            "given": "Kathryn",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "American journal of human genetics",
+          "Am J Hum Genet",
+          "Am J Hum Genet",
+          "The American Journal of Human Genetics"
+        ],
+        "issue": "3",
+        "page": "627-631",
+        "published": {
+          "date-parts": [
+            [
+              2003
+            ]
+          ]
+        },
+        "title": [
+          "ACTN3 genotype is associated with human elite athletic performance"
+        ],
+        "type": "journal-article",
+        "volume": "73"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080%2F027249897392035%22+OR+DOI%3A%2210.4324%2F9780203780749%22+OR+DOI%3A%2210.4135%2F9781412994149.n132%22+OR+DOI%3A%2210.1016%2Fb978-0-7506-1700-0.50019-3%22+OR+DOI%3A%2210.1007%2F978-0-230-35872-0_11%22+OR+DOI%3A%2210.1007%2F978-3-540-29807-6_4189%22+OR+DOI%3A%2210.1007%2F978-3-032-05988-8_300199%22+OR+DOI%3A%2210.1001%2Fjama.1987.03400150125046%22+OR+DOI%3A%2210.1007%2F978-3-031-68977-2%22+OR+DOI%3A%2210.5040%2F9781492595502.part-002%22+OR+DOI%3A%2210.1016%2Fj.maturitas.2017.09.003%22+OR+DOI%3A%2210.1111%2Fj.1600-0447.1987.tb02872.x%22+OR+DOI%3A%2210.4324%2F9780203824696%22+OR+DOI%3A%2210.1090%2Fpsapm%2F026%22+OR+DOI%3A%2210.1086%2F377590%22+OR+DOI%3A%2210.1007%2F978-3-540-71915-1_35%22+OR+DOI%3A%2210.1016%2Fb978-1-4832-1446-7.50016-9%22+OR+DOI%3A%2210.1093%2Facprof%3Aoso%2F9780195065169.001.0001%22+OR+DOI%3A%2210.1037%2F11603-006%22+OR+DOI%3A%2210.1007%2F978-1-4684-3800-0_2%22+OR+DOI%3A%2210.1007%2F978-3-319-24612-3_300505%22+OR+DOI%3A%2210.1007%2F978-1-4899-5139-7_11%22+OR+DOI%3A%2210.1007%2Fspringerreference_114739%22+OR+DOI%3A%2210.1037%2F13380-011%22+OR+DOI%3A%2210.1007%2F978-3-540-29678-2_1190%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-17T19:21:16.520653+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/12879365"
+    }
+  }
+]

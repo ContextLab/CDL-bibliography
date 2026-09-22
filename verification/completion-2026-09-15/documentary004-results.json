@@ -1,0 +1,64 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 32.23,
+      "network_requests": 8,
+      "added_review_records": 8,
+      "batch_statuses": {
+        "metadata_verified": 8
+      },
+      "library_statuses": {
+        "metadata_verified": 3618,
+        "needs_review": 2804
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 22.75,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 8
+      },
+      "library_statuses": {
+        "metadata_verified": 3618,
+        "needs_review": 2804
+      }
+    }
+  ],
+  "entries": {
+    "ChurSejn88": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:98b915c94ac7e849e672a897c42e152889b8089f0b6ccc2390e984d2adad5f93"
+    },
+    "Shap19": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:3ee62bfccb6974cd81adfe0ee90258e06b1f088495f16a4871510beb1e4fc319"
+    },
+    "WainJord08": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:0cf0cd13b4252aab85bd65e9256987d980cbb03452f212c967b1a8e9c1035558"
+    },
+    "WatrEtal13a": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:d6f89e5403e7ac8620496b5a1b7fcc1d449864c8298370ac571226a1b5545739"
+    },
+    "WorsEtal05": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:a744f7cd1c47a9a5920fa3c76b37b19653799a25dd3189150a9f3fbecbc3e033"
+    },
+    "XiaoEtal05": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:02bea5a8162b378149ff62976c4d9f5b26c1719c97f211ec3bdf232b636d277c"
+    },
+    "ZadbEtal17": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:c038156cd7a8cf93d1df35f56d58acab8fc5b4be214bd55e5cfcac6c950fd4e5"
+    },
+    "ZimaEtal18": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:5a2bce377e4c33794faeb29bb28b8b46f63fa76f755412072f324e40dc3e0521"
+    }
+  }
+}

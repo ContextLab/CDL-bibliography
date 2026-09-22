@@ -1,0 +1,2285 @@
+[
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "Dabb90",
+    "fingerprint": "v2:176739760a84d44d050789a91b3a4bec25ba5e5a130c5283bf86d547a30295dd",
+    "changes": {
+      "author": {
+        "before": "James M Dabbs",
+        "after": "Dabbs, Jr, James M"
+      }
+    },
+    "doi": "10.1016/0031-9384(90)90265-6",
+    "pubmed_id": "2236282",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1016/0031-9384(90)90265-6",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "James M Dabbs",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Dabbs",
+              "given": "James M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first",
+              "suffix": "Jr."
+            }
+          ]
+        },
+        "journal": {
+          "local": "Physiology and Behavior",
+          "match": true,
+          "source": [
+            "Physiology &amp; Behavior"
+          ]
+        },
+        "number": {
+          "local": "1",
+          "match": true,
+          "source": [
+            "1"
+          ]
+        },
+        "pages": {
+          "local": "83--86",
+          "match": true,
+          "source": [
+            "83-86"
+          ]
+        },
+        "title": {
+          "local": "Salivary testosterone measurements: reliability across hours, days, and weeks",
+          "match": true,
+          "source": [
+            "Salivary testosterone measurements: Reliability across hours, days, and weeks"
+          ]
+        },
+        "volume": {
+          "local": "48",
+          "match": true,
+          "source": [
+            "48"
+          ]
+        },
+        "year": {
+          "local": "1990",
+          "match": true,
+          "source": [
+            "1990"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs"
+      ],
+      "record": {
+        "DOI": "10.1016/0031-9384(90)90265-6",
+        "ISSN": [
+          "0031-9384"
+        ],
+        "URL": "https://doi.org/10.1016/0031-9384(90)90265-6",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Dabbs",
+            "given": "James M.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first",
+            "suffix": "Jr."
+          }
+        ],
+        "container-title": [
+          "Physiology &amp; Behavior"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              1990,
+              7
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0031938490902656?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0031938490902656?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "83-86",
+        "published": {
+          "date-parts": [
+            [
+              1990,
+              7
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1990,
+              7
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Salivary testosterone measurements: Reliability across hours, days, and weeks"
+        ],
+        "type": "journal-article",
+        "volume": "48"
+      },
+      "retrieved_at": "2026-09-09T19:46:47.632628+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0031-9384%2890%2990265-6"
+    },
+    "secondary": {
+      "doi": "10.1016/0031-9384(90)90265-6",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "James M Dabbs",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Dabbs",
+              "given": "James M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first",
+              "suffix": "Jr."
+            }
+          ]
+        },
+        "journal": {
+          "local": "Physiology and Behavior",
+          "match": true,
+          "source": [
+            "Physiology &amp; Behavior"
+          ]
+        },
+        "number": {
+          "local": "1",
+          "match": true,
+          "source": [
+            "1"
+          ]
+        },
+        "pages": {
+          "local": "83--86",
+          "match": true,
+          "source": [
+            "83-86"
+          ]
+        },
+        "title": {
+          "local": "Salivary testosterone measurements: reliability across hours, days, and weeks",
+          "match": true,
+          "source": [
+            "Salivary testosterone measurements: Reliability across hours, days, and weeks"
+          ]
+        },
+        "volume": {
+          "local": "48",
+          "match": true,
+          "source": [
+            "48"
+          ]
+        },
+        "year": {
+          "local": "1990",
+          "match": true,
+          "source": [
+            "1990"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs",
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Department of Psychology, Georgia State University, Atlanta 30303."
+                  }
+                ]
+              },
+              "firstName": "J M",
+              "fullName": "Dabbs JM Jr",
+              "initials": "JM",
+              "lastName": "Dabbs"
+            }
+          ]
+        },
+        "doi": "10.1016/0031-9384(90)90265-6",
+        "firstPublicationDate": "1990-07-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1016/0031-9384(90)90265-6"
+            }
+          ]
+        },
+        "id": "2236282",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1990 Jul",
+          "issue": "1",
+          "journal": {
+            "essn": "1873-507X",
+            "isoabbreviation": "Physiol Behav",
+            "issn": "0031-9384",
+            "medlineAbbreviation": "Physiol Behav",
+            "nlmid": "0151504",
+            "title": "Physiology & behavior"
+          },
+          "journalIssueId": 786597,
+          "monthOfPublication": 7,
+          "printPublicationDate": "1990-07-01",
+          "volume": "48",
+          "yearOfPublication": 1990
+        },
+        "pageInfo": "83-86",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1990",
+        "source": "MED",
+        "title": "Salivary testosterone measurements: reliability across hours, days, and weeks."
+      },
+      "record": {
+        "DOI": "10.1016/0031-9384(90)90265-6",
+        "ISSN": [
+          "0031-9384",
+          "1873-507X"
+        ],
+        "author": [
+          {
+            "family": "Dabbs",
+            "given": "J M",
+            "suffix": "Jr"
+          }
+        ],
+        "container-title": [
+          "Physiology & behavior",
+          "Physiol Behav",
+          "Physiol Behav",
+          "Physiology &amp; Behavior"
+        ],
+        "issue": "1",
+        "page": "83-86",
+        "published": {
+          "date-parts": [
+            [
+              1990
+            ]
+          ]
+        },
+        "title": [
+          "Salivary testosterone measurements: reliability across hours, days, and weeks"
+        ],
+        "type": "journal-article",
+        "volume": "48"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs1053-8119%2809%2971511-3%22+OR+DOI%3A%2210.1016%2Fj.neuroscience.2005.03.026%22+OR+DOI%3A%2210.1037%2F0882-7974.12.2.255%22+OR+DOI%3A%2210.1016%2Fj.neulet.2004.03.085%22+OR+DOI%3A%2210.1037%2Fhea0000046%22+OR+DOI%3A%2210.2466%2Fpr0.97.6.339-355%22+OR+DOI%3A%2210.2466%2Fpr0.97.2.339-355%22+OR+DOI%3A%2210.1111%2Fj.1532-5415.1993.tb01890.x%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0141393%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0150039%22+OR+DOI%3A%2210.1016%2Fj.mhpa.2009.02.001%22+OR+DOI%3A%2210.1016%2Fj.ijcard.2015.03.038%22+OR+DOI%3A%2210.1016%2Fj.bandc.2015.06.004%22+OR+DOI%3A%2210.1016%2Fj.bandc.2014.03.016%22+OR+DOI%3A%2210.1016%2F0197-4580%2890%2990545-b%22+OR+DOI%3A%2210.1007%2F978-3-319-50406-3_12%22+OR+DOI%3A%2210.1016%2Fs0079-6123%2809%2917610-0%22+OR+DOI%3A%2210.1080%2F027249800410454%22+OR+DOI%3A%2210.1080%2F713755914%22+OR+DOI%3A%2210.1039%2Fb821922b%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0044594%22+OR+DOI%3A%2210.1016%2F0031-9384%2890%2990265-6%22+OR+DOI%3A%2210.1038%2Foby.2006.46%22+OR+DOI%3A%2210.1111%2Fj.1600-0838.2006.00610_1.x%22+OR+DOI%3A%2210.1136%2Fbjsm.30.4.305%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T00:59:21.734581+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/2236282"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "JettEtal86",
+    "fingerprint": "v2:c973c11457f594b68baac44be2926057f976b26e172a44c1e3a26a4ece6dd795",
+    "changes": {
+      "author": {
+        "before": "W Jetter and U Poser and R B Freeman and H J Markowitsch",
+        "after": "W Jetter and U Poser and Freeman, Jr, R B and H J Markowitsch"
+      }
+    },
+    "doi": "10.1016/s0010-9452(86)80047-8",
+    "pubmed_id": "3731793",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1016/s0010-9452(86)80047-8",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "W Jetter and U Poser and R B Freeman and H J Markowitsch",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Jetter",
+              "given": "Wolfgang",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Poser",
+              "given": "Ulrich",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Freeman",
+              "given": "Robert B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional",
+              "suffix": "Jr."
+            },
+            {
+              "affiliation": [],
+              "family": "Markowitsch",
+              "given": "Hans J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cortex",
+          "match": true,
+          "source": [
+            "Cortex"
+          ]
+        },
+        "number": {
+          "local": "2",
+          "match": true,
+          "source": [
+            "2"
+          ]
+        },
+        "pages": {
+          "local": "229--242",
+          "match": true,
+          "source": [
+            "229-242"
+          ]
+        },
+        "title": {
+          "local": "A verbal long term memory deficit in frontal lobe damaged patients",
+          "match": true,
+          "source": [
+            "A Verbal Long Term Memory Deficit in Frontal Lobe Damaged Patients"
+          ]
+        },
+        "volume": {
+          "local": "22",
+          "match": true,
+          "source": [
+            "22"
+          ]
+        },
+        "year": {
+          "local": "1986",
+          "match": true,
+          "source": [
+            "1986"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs"
+      ],
+      "record": {
+        "DOI": "10.1016/s0010-9452(86)80047-8",
+        "ISSN": [
+          "0010-9452"
+        ],
+        "URL": "https://doi.org/10.1016/s0010-9452(86)80047-8",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Jetter",
+            "given": "Wolfgang",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Poser",
+            "given": "Ulrich",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Freeman",
+            "given": "Robert B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional",
+            "suffix": "Jr."
+          },
+          {
+            "affiliation": [],
+            "family": "Markowitsch",
+            "given": "Hans J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Cortex"
+        ],
+        "issue": "2",
+        "issued": {
+          "date-parts": [
+            [
+              1986,
+              6
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0010945286800478?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0010945286800478?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "229-242",
+        "published": {
+          "date-parts": [
+            [
+              1986,
+              6
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1986,
+              6
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "A Verbal Long Term Memory Deficit in Frontal Lobe Damaged Patients"
+        ],
+        "type": "journal-article",
+        "volume": "22"
+      },
+      "retrieved_at": "2026-09-09T19:57:53.779179+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0010-9452%2886%2980047-8"
+    },
+    "secondary": {
+      "doi": "10.1016/s0010-9452(86)80047-8",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "W Jetter and U Poser and R B Freeman and H J Markowitsch",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Jetter",
+              "given": "Wolfgang",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Poser",
+              "given": "Ulrich",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Freeman",
+              "given": "Robert B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional",
+              "suffix": "Jr."
+            },
+            {
+              "affiliation": [],
+              "family": "Markowitsch",
+              "given": "Hans J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cortex",
+          "match": true,
+          "source": [
+            "Cortex"
+          ]
+        },
+        "number": {
+          "local": "2",
+          "match": true,
+          "source": [
+            "2"
+          ]
+        },
+        "pages": {
+          "local": "229--242",
+          "match": true,
+          "source": [
+            "229-242"
+          ]
+        },
+        "title": {
+          "local": "A verbal long term memory deficit in frontal lobe damaged patients",
+          "match": true,
+          "source": [
+            "A Verbal Long Term Memory Deficit in Frontal Lobe Damaged Patients"
+          ]
+        },
+        "volume": {
+          "local": "22",
+          "match": true,
+          "source": [
+            "22"
+          ]
+        },
+        "year": {
+          "local": "1986",
+          "match": true,
+          "source": [
+            "1986"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs",
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "firstName": "W",
+              "fullName": "Jetter W",
+              "initials": "W",
+              "lastName": "Jetter"
+            },
+            {
+              "firstName": "U",
+              "fullName": "Poser U",
+              "initials": "U",
+              "lastName": "Poser"
+            },
+            {
+              "firstName": "R B",
+              "fullName": "Freeman RB Jr",
+              "initials": "RB",
+              "lastName": "Freeman"
+            },
+            {
+              "firstName": "H J",
+              "fullName": "Markowitsch HJ",
+              "initials": "HJ",
+              "lastName": "Markowitsch"
+            }
+          ]
+        },
+        "doi": "10.1016/s0010-9452(86)80047-8",
+        "firstPublicationDate": "1986-06-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1016/s0010-9452(86)80047-8"
+            }
+          ]
+        },
+        "id": "3731793",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1986 Jun",
+          "issue": "2",
+          "journal": {
+            "essn": "1973-8102",
+            "isoabbreviation": "Cortex",
+            "issn": "0010-9452",
+            "medlineAbbreviation": "Cortex",
+            "nlmid": "0100725",
+            "title": "Cortex; a journal devoted to the study of the nervous system and behavior"
+          },
+          "journalIssueId": 775459,
+          "monthOfPublication": 6,
+          "printPublicationDate": "1986-06-01",
+          "volume": "22",
+          "yearOfPublication": 1986
+        },
+        "pageInfo": "229-242",
+        "pubTypeList": {
+          "pubType": [
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1986",
+        "source": "MED",
+        "title": "A verbal long term memory deficit in frontal lobe damaged patients."
+      },
+      "record": {
+        "DOI": "10.1016/s0010-9452(86)80047-8",
+        "ISSN": [
+          "0010-9452",
+          "1973-8102"
+        ],
+        "author": [
+          {
+            "family": "Jetter",
+            "given": "W",
+            "suffix": ""
+          },
+          {
+            "family": "Poser",
+            "given": "U",
+            "suffix": ""
+          },
+          {
+            "family": "Freeman",
+            "given": "R B",
+            "suffix": "Jr"
+          },
+          {
+            "family": "Markowitsch",
+            "given": "H J",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Cortex; a journal devoted to the study of the nervous system and behavior",
+          "Cortex",
+          "Cortex",
+          "Cortex"
+        ],
+        "issue": "2",
+        "page": "229-242",
+        "published": {
+          "date-parts": [
+            [
+              1986
+            ]
+          ]
+        },
+        "title": [
+          "A verbal long term memory deficit in frontal lobe damaged patients"
+        ],
+        "type": "journal-article",
+        "volume": "22"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs0010-9452%2886%2980047-8%22+OR+DOI%3A%2210.1002%2F1531-8249%28200001%2947%3A1%3C36%3A%3Aaid-ana8%3E3.0.co%3B2-l%22+OR+DOI%3A%2210.1523%2Fjneurosci.23-19-07407.2003%22+OR+DOI%3A%2210.1037%2Fh0031349%22+OR+DOI%3A%2210.1037%2F0278-7393.28.3.411%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.25.5.1210%22+OR+DOI%3A%2210.1037%2F0278-7393.25.5.1210%22+OR+DOI%3A%2210.1523%2Fjneurosci.21-05-01635.2001%22+OR+DOI%3A%2210.1371%2Fjournal.pcbi.1000291%22+OR+DOI%3A%2210.1017%2Fs0012162200001109%22+OR+DOI%3A%2210.1111%2Fj.1469-8749.2000.tb00362.x%22+OR+DOI%3A%2210.1037%2Fh0060251%22+OR+DOI%3A%2210.1080%2F00222895.1990.10735500%22+OR+DOI%3A%2210.1073%2Fpnas.1202229109%22+OR+DOI%3A%2210.1162%2F089892903321107800%22+OR+DOI%3A%2210.1073%2Fpnas.1111304109%22+OR+DOI%3A%2210.1111%2Fj.1460-9568.1996.tb01340.x%22+OR+DOI%3A%2210.1016%2Fj.neuron.2012.02.016%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhi126%22+OR+DOI%3A%2210.1007%2Fs10994-007-5019-5%22+OR+DOI%3A%2210.1613%2Fjair.295%22+OR+DOI%3A%2210.1207%2Fs15326969eco0903_3%22+OR+DOI%3A%2210.1016%2Fj.neuron.2008.07.022%22+OR+DOI%3A%2210.1073%2Fpnas.0706015105%22+OR+DOI%3A%2210.1523%2Fjneurosci.19-13-05674.1999%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T00:59:51.817915+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/3731793"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "MitcRanc80",
+    "fingerprint": "v2:a65cef30fcc9af2d06983c127cee2a3a45f2cf152565c1ff7eac9f8549a43489",
+    "changes": {
+      "author": {
+        "before": "S J Mitchell and J B Ranck",
+        "after": "S J Mitchell and Ranck, Jr, J B"
+      }
+    },
+    "doi": "10.1016/0006-8993(80)90006-2",
+    "pubmed_id": "7363097",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1016/0006-8993(80)90006-2",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "S J Mitchell and J B Ranck",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Mitchell",
+              "given": "Susan J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Ranck",
+              "given": "James B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional",
+              "suffix": "Jr."
+            }
+          ]
+        },
+        "journal": {
+          "local": "Brain Research",
+          "match": true,
+          "source": [
+            "Brain Research"
+          ]
+        },
+        "pages": {
+          "local": "49--66",
+          "match": true,
+          "source": [
+            "49-66"
+          ]
+        },
+        "title": {
+          "local": "Generation of theta rhythm in medial entorhinal cortex of freely moving rats",
+          "match": true,
+          "source": [
+            "Generation of theta rhythm in medial entorhinal cortex of freely moving rats"
+          ]
+        },
+        "volume": {
+          "local": "189",
+          "match": true,
+          "source": [
+            "189"
+          ]
+        },
+        "year": {
+          "local": "1980",
+          "match": true,
+          "source": [
+            "1980"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs"
+      ],
+      "record": {
+        "DOI": "10.1016/0006-8993(80)90006-2",
+        "ISSN": [
+          "0006-8993"
+        ],
+        "URL": "https://doi.org/10.1016/0006-8993(80)90006-2",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Mitchell",
+            "given": "Susan J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Ranck",
+            "given": "James B.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional",
+            "suffix": "Jr."
+          }
+        ],
+        "container-title": [
+          "Brain Research"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              1980,
+              5
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0006899380900062?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0006899380900062?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "49-66",
+        "published": {
+          "date-parts": [
+            [
+              1980,
+              5
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1980,
+              5
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Generation of theta rhythm in medial entorhinal cortex of freely moving rats"
+        ],
+        "type": "journal-article",
+        "volume": "189"
+      },
+      "retrieved_at": "2026-09-09T20:23:49.673865+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0006-8993%2880%2990006-2"
+    },
+    "secondary": {
+      "doi": "10.1016/0006-8993(80)90006-2",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "S J Mitchell and J B Ranck",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Mitchell",
+              "given": "Susan J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Ranck",
+              "given": "James B.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional",
+              "suffix": "Jr."
+            }
+          ]
+        },
+        "journal": {
+          "local": "Brain Research",
+          "match": true,
+          "source": [
+            "Brain Research"
+          ]
+        },
+        "pages": {
+          "local": "49--66",
+          "match": true,
+          "source": [
+            "49-66"
+          ]
+        },
+        "title": {
+          "local": "Generation of theta rhythm in medial entorhinal cortex of freely moving rats",
+          "match": true,
+          "source": [
+            "Generation of theta rhythm in medial entorhinal cortex of freely moving rats"
+          ]
+        },
+        "volume": {
+          "local": "189",
+          "match": true,
+          "source": [
+            "189"
+          ]
+        },
+        "year": {
+          "local": "1980",
+          "match": true,
+          "source": [
+            "1980"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs",
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "firstName": "S J",
+              "fullName": "Mitchell SJ",
+              "initials": "SJ",
+              "lastName": "Mitchell"
+            },
+            {
+              "firstName": "J B",
+              "fullName": "Ranck JB Jr",
+              "initials": "JB",
+              "lastName": "Ranck"
+            }
+          ]
+        },
+        "doi": "10.1016/0006-8993(80)90006-2",
+        "firstPublicationDate": "1980-05-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1016/0006-8993(80)90006-2"
+            }
+          ]
+        },
+        "id": "7363097",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1980 May",
+          "issue": "1",
+          "journal": {
+            "essn": "1872-6240",
+            "isoabbreviation": "Brain Res",
+            "issn": "0006-8993",
+            "medlineAbbreviation": "Brain Res",
+            "nlmid": "0045503",
+            "title": "Brain research"
+          },
+          "journalIssueId": 281065,
+          "monthOfPublication": 5,
+          "printPublicationDate": "1980-05-01",
+          "volume": "189",
+          "yearOfPublication": 1980
+        },
+        "pageInfo": "49-66",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Research Support, U.S. Gov't, Non-P.H.S.",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1980",
+        "source": "MED",
+        "title": "Generation of theta rhythm in medial entorhinal cortex of freely moving rats."
+      },
+      "record": {
+        "DOI": "10.1016/0006-8993(80)90006-2",
+        "ISSN": [
+          "0006-8993",
+          "1872-6240"
+        ],
+        "author": [
+          {
+            "family": "Mitchell",
+            "given": "S J",
+            "suffix": ""
+          },
+          {
+            "family": "Ranck",
+            "given": "J B",
+            "suffix": "Jr"
+          }
+        ],
+        "container-title": [
+          "Brain research",
+          "Brain Res",
+          "Brain Res",
+          "Brain Research"
+        ],
+        "issue": "1",
+        "page": "49-66",
+        "published": {
+          "date-parts": [
+            [
+              1980
+            ]
+          ]
+        },
+        "title": [
+          "Generation of theta rhythm in medial entorhinal cortex of freely moving rats"
+        ],
+        "type": "journal-article",
+        "volume": "189"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs0167-8760%2800%2900145-8%22+OR+DOI%3A%2210.1046%2Fj.1460-9568.1998.00096.x%22+OR+DOI%3A%2210.1523%2Fjneurosci.16-20-06402.1996%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhg084%22+OR+DOI%3A%2210.1073%2Fpnas.0701826104%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0003990%22+OR+DOI%3A%2210.1073%2Fpnas.97.4.1867%22+OR+DOI%3A%2210.1523%2Fjneurosci.0640-09.2009%22+OR+DOI%3A%2210.1038%2Fnature04258%22+OR+DOI%3A%2210.1523%2Fjneurosci.1623-09.2010%22+OR+DOI%3A%2210.1523%2Fjneurosci.21-09-03175.2001%22+OR+DOI%3A%2210.1037%2F%2F1076-898x.8.4.247%22+OR+DOI%3A%2210.1037%2F1076-898x.8.4.247%22+OR+DOI%3A%2210.1037%2Fh0048336%22+OR+DOI%3A%2210.1016%2F0006-8993%2880%2990006-2%22+OR+DOI%3A%2210.1037%2Fh0076779%22+OR+DOI%3A%2210.1073%2Fpnas.0706111104%22+OR+DOI%3A%2210.1186%2F1471-2202-10-12%22+OR+DOI%3A%2210.1073%2Fpnas.0801859105%22+OR+DOI%3A%2210.1016%2Fs0001-6918%2836%2990053-7%22+OR+DOI%3A%2210.1007%2Fbf00422382%22+OR+DOI%3A%2210.1037%2F0033-295x.113.1.57%22+OR+DOI%3A%2210.31234%2Fosf.io%2F43auj%22+OR+DOI%3A%2210.1037%2F0882-7974.20.4.554%22+OR+DOI%3A%2210.1523%2Fjneurosci.2864-06.2007%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:01:03.548727+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/7363097"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "ColdEtal96a",
+    "fingerprint": "v2:edf8918b59dfa50dcdbe2eb39b6f2ded1497f4608e2787cb47f458ca0a5169c6",
+    "changes": {
+      "author": {
+        "before": "B W Colder and C L Wilson and R C Frysinger and R M Harper and J Engel",
+        "after": "B W Colder and C L Wilson and R C Frysinger and R M Harper and Engel, Jr, J"
+      }
+    },
+    "doi": "10.1016/0006-8993(96)00107-2",
+    "pubmed_id": "8782868",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1016/0006-8993(96)00107-2",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "B W Colder and C L Wilson and R C Frysinger and R M Harper and J Engel",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Colder",
+              "given": "Brian W.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Wilson",
+              "given": "Charles L.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Frysinger",
+              "given": "Robert C.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Harper",
+              "given": "Ronald M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Engel",
+              "given": "Jerome",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional",
+              "suffix": "Jr."
+            }
+          ]
+        },
+        "journal": {
+          "local": "Brain Research",
+          "match": true,
+          "source": [
+            "Brain Research"
+          ]
+        },
+        "number": {
+          "local": "1-2",
+          "match": true,
+          "source": [
+            "1-2"
+          ]
+        },
+        "pages": {
+          "local": "96--103",
+          "match": true,
+          "source": [
+            "96-103"
+          ]
+        },
+        "title": {
+          "local": "Interspike intervals during interictal periods in human temporal lobe epilepsy",
+          "match": true,
+          "source": [
+            "Interspike intervals during interictal periods in human temporal lobe epilepsy"
+          ]
+        },
+        "volume": {
+          "local": "719",
+          "match": true,
+          "source": [
+            "719"
+          ]
+        },
+        "year": {
+          "local": "1996",
+          "match": true,
+          "source": [
+            "1996"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs"
+      ],
+      "record": {
+        "DOI": "10.1016/0006-8993(96)00107-2",
+        "ISSN": [
+          "0006-8993"
+        ],
+        "URL": "https://doi.org/10.1016/0006-8993(96)00107-2",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Colder",
+            "given": "Brian W.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Wilson",
+            "given": "Charles L.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Frysinger",
+            "given": "Robert C.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Harper",
+            "given": "Ronald M.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Engel",
+            "given": "Jerome",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional",
+            "suffix": "Jr."
+          }
+        ],
+        "container-title": [
+          "Brain Research"
+        ],
+        "issue": "1-2",
+        "issued": {
+          "date-parts": [
+            [
+              1996,
+              5
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0006899396001072?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0006899396001072?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "96-103",
+        "published": {
+          "date-parts": [
+            [
+              1996,
+              5
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1996,
+              5
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Interspike intervals during interictal periods in human temporal lobe epilepsy"
+        ],
+        "type": "journal-article",
+        "volume": "719"
+      },
+      "retrieved_at": "2026-09-09T20:31:06.074673+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0006-8993%2896%2900107-2"
+    },
+    "secondary": {
+      "doi": "10.1016/0006-8993(96)00107-2",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "B W Colder and C L Wilson and R C Frysinger and R M Harper and J Engel",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Colder",
+              "given": "Brian W.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Wilson",
+              "given": "Charles L.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Frysinger",
+              "given": "Robert C.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Harper",
+              "given": "Ronald M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Engel",
+              "given": "Jerome",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional",
+              "suffix": "Jr."
+            }
+          ]
+        },
+        "journal": {
+          "local": "Brain Research",
+          "match": true,
+          "source": [
+            "Brain Research"
+          ]
+        },
+        "number": {
+          "local": "1-2",
+          "match": true,
+          "source": [
+            "1-2"
+          ]
+        },
+        "pages": {
+          "local": "96--103",
+          "match": true,
+          "source": [
+            "96-103"
+          ]
+        },
+        "title": {
+          "local": "Interspike intervals during interictal periods in human temporal lobe epilepsy",
+          "match": true,
+          "source": [
+            "Interspike intervals during interictal periods in human temporal lobe epilepsy"
+          ]
+        },
+        "volume": {
+          "local": "719",
+          "match": true,
+          "source": [
+            "719"
+          ]
+        },
+        "year": {
+          "local": "1996",
+          "match": true,
+          "source": [
+            "1996"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs",
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Center for Molecular and Behavioural Neuroscience, Rutgers University, Newark, NJ 07102, USA. bcolder@cortex.rutgers.edu"
+                  }
+                ]
+              },
+              "firstName": "B W",
+              "fullName": "Colder BW",
+              "initials": "BW",
+              "lastName": "Colder"
+            },
+            {
+              "firstName": "C L",
+              "fullName": "Wilson CL",
+              "initials": "CL",
+              "lastName": "Wilson"
+            },
+            {
+              "firstName": "R C",
+              "fullName": "Frysinger RC",
+              "initials": "RC",
+              "lastName": "Frysinger"
+            },
+            {
+              "firstName": "R M",
+              "fullName": "Harper RM",
+              "initials": "RM",
+              "lastName": "Harper"
+            },
+            {
+              "firstName": "J",
+              "fullName": "Engel J Jr",
+              "initials": "J",
+              "lastName": "Engel"
+            }
+          ]
+        },
+        "doi": "10.1016/0006-8993(96)00107-2",
+        "firstPublicationDate": "1996-05-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1016/0006-8993(96)00107-2"
+            }
+          ]
+        },
+        "id": "8782868",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1996 May",
+          "issue": "1-2",
+          "journal": {
+            "essn": "1872-6240",
+            "isoabbreviation": "Brain Res",
+            "issn": "0006-8993",
+            "medlineAbbreviation": "Brain Res",
+            "nlmid": "0045503",
+            "title": "Brain research"
+          },
+          "journalIssueId": 961305,
+          "monthOfPublication": 5,
+          "printPublicationDate": "1996-05-01",
+          "volume": "719",
+          "yearOfPublication": 1996
+        },
+        "pageInfo": "96-103",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1996",
+        "source": "MED",
+        "title": "Interspike intervals during interictal periods in human temporal lobe epilepsy."
+      },
+      "record": {
+        "DOI": "10.1016/0006-8993(96)00107-2",
+        "ISSN": [
+          "0006-8993",
+          "1872-6240"
+        ],
+        "author": [
+          {
+            "family": "Colder",
+            "given": "B W",
+            "suffix": ""
+          },
+          {
+            "family": "Wilson",
+            "given": "C L",
+            "suffix": ""
+          },
+          {
+            "family": "Frysinger",
+            "given": "R C",
+            "suffix": ""
+          },
+          {
+            "family": "Harper",
+            "given": "R M",
+            "suffix": ""
+          },
+          {
+            "family": "Engel",
+            "given": "J",
+            "suffix": "Jr"
+          }
+        ],
+        "container-title": [
+          "Brain research",
+          "Brain Res",
+          "Brain Res",
+          "Brain Research"
+        ],
+        "issue": "1-2",
+        "page": "96-103",
+        "published": {
+          "date-parts": [
+            [
+              1996
+            ]
+          ]
+        },
+        "title": [
+          "Interspike intervals during interictal periods in human temporal lobe epilepsy"
+        ],
+        "type": "journal-article",
+        "volume": "719"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs0896-6273%2804%2900289-2%22+OR+DOI%3A%2210.1016%2Fj.neuron.2004.07.009%22+OR+DOI%3A%2210.1016%2Fj.conb.2007.03.005%22+OR+DOI%3A%2210.1523%2Fjneurosci.15-11-07079.1995%22+OR+DOI%3A%2210.1152%2Fphysrev.00012.2003%22+OR+DOI%3A%2210.4324%2F9780203938966%22+OR+DOI%3A%2210.1037%2F0278-7393.30.4.778%22+OR+DOI%3A%2210.1037%2Fh0044616%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.17.5.855%22+OR+DOI%3A%2210.1037%2F0278-7393.17.5.855%22+OR+DOI%3A%2210.1037%2F0882-7974.18.2.219%22+OR+DOI%3A%2210.1037%2Fh0033901%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.7.5.326%22+OR+DOI%3A%2210.1037%2F0278-7393.7.5.326%22+OR+DOI%3A%2210.1016%2Fj.cub.2006.05.024%22+OR+DOI%3A%2210.1126%2Fscience.252.5009.1177%22+OR+DOI%3A%2210.1126%2Fscience.1164685%22+OR+DOI%3A%2210.1126%2Fscience.1188210%22+OR+DOI%3A%2210.1037%2Fh0046262%22+OR+DOI%3A%2210.1038%2Fnrn2314%22+OR+DOI%3A%2210.1037%2F0033-295x.105.2.299%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.26.5.1188%22+OR+DOI%3A%2210.1037%2F0278-7393.26.5.1188%22+OR+DOI%3A%2210.1037%2Fh0029993%22+OR+DOI%3A%2210.1016%2F0006-8993%2896%2900107-2%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:01:20.225454+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/8782868"
+    }
+  },
+  {
+    "kind": "corroborated_pubmed_suffix",
+    "key": "GordEtal90",
+    "fingerprint": "v2:7b6523469503bf8759ad7e3fa74721ca0cba3eb5352e2c3bd68f5420ac4b6397",
+    "changes": {
+      "author": {
+        "before": "B Gordon and R P Lesser and N E Rance and J Hart and R Webber and S Uematsu and R S Fisher",
+        "after": "B Gordon and R P Lesser and N E Rance and Hart, Jr, J and R Webber and S Uematsu and R S Fisher"
+      }
+    },
+    "doi": "10.1016/0013-4694(90)90082-u",
+    "pubmed_id": "1692272",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1016/0013-4694(90)90082-u",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "B Gordon and R P Lesser and N E Rance and J Hart and R Webber and S Uematsu and R S Fisher",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Gordon",
+              "given": "Barry",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Lesser",
+              "given": "Ronald P.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Rance",
+              "given": "Naomi E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Hart",
+              "given": "John",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional",
+              "suffix": "Jr."
+            },
+            {
+              "affiliation": [],
+              "family": "Webber",
+              "given": "Robert",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Uematsu",
+              "given": "Sumio",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Fisher",
+              "given": "Robert S.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Electroencephalography and Clinical Neurophysiology",
+          "match": true,
+          "source": [
+            "Electroencephalography and Clinical Neurophysiology"
+          ]
+        },
+        "number": {
+          "local": "5",
+          "match": true,
+          "source": [
+            "5"
+          ]
+        },
+        "pages": {
+          "local": "371--377",
+          "match": true,
+          "source": [
+            "371-377"
+          ]
+        },
+        "title": {
+          "local": "Parameters for direct cortical electrical stimulation in the human: histopathologic confirmation",
+          "match": true,
+          "source": [
+            "Parameters for direct cortical electrical stimulation in the human: histopathologic confirmation"
+          ]
+        },
+        "volume": {
+          "local": "75",
+          "match": true,
+          "source": [
+            "75"
+          ]
+        },
+        "year": {
+          "local": "1990",
+          "match": true,
+          "source": [
+            "1990"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs"
+      ],
+      "record": {
+        "DOI": "10.1016/0013-4694(90)90082-u",
+        "ISSN": [
+          "0013-4694"
+        ],
+        "URL": "https://doi.org/10.1016/0013-4694(90)90082-u",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Gordon",
+            "given": "Barry",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Lesser",
+            "given": "Ronald P.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Rance",
+            "given": "Naomi E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Hart",
+            "given": "John",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional",
+            "suffix": "Jr."
+          },
+          {
+            "affiliation": [],
+            "family": "Webber",
+            "given": "Robert",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Uematsu",
+            "given": "Sumio",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Fisher",
+            "given": "Robert S.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Electroencephalography and Clinical Neurophysiology"
+        ],
+        "issue": "5",
+        "issued": {
+          "date-parts": [
+            [
+              1990,
+              5
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:001346949090082U?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:001346949090082U?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "371-377",
+        "published": {
+          "date-parts": [
+            [
+              1990,
+              5
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1990,
+              5
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Parameters for direct cortical electrical stimulation in the human: histopathologic confirmation"
+        ],
+        "type": "journal-article",
+        "volume": "75"
+      },
+      "retrieved_at": "2026-09-09T20:45:33.559253+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0013-4694%2890%2990082-u"
+    },
+    "secondary": {
+      "doi": "10.1016/0013-4694(90)90082-u",
+      "evidence": {
+        "author": {
+          "detail": "Author suffix differs",
+          "local": "B Gordon and R P Lesser and N E Rance and J Hart and R Webber and S Uematsu and R S Fisher",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Gordon",
+              "given": "Barry",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Lesser",
+              "given": "Ronald P.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Rance",
+              "given": "Naomi E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Hart",
+              "given": "John",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional",
+              "suffix": "Jr."
+            },
+            {
+              "affiliation": [],
+              "family": "Webber",
+              "given": "Robert",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Uematsu",
+              "given": "Sumio",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Fisher",
+              "given": "Robert S.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Electroencephalography and Clinical Neurophysiology",
+          "match": true,
+          "source": [
+            "Electroencephalography and Clinical Neurophysiology"
+          ]
+        },
+        "number": {
+          "local": "5",
+          "match": true,
+          "source": [
+            "5"
+          ]
+        },
+        "pages": {
+          "local": "371--377",
+          "match": true,
+          "source": [
+            "371-377"
+          ]
+        },
+        "title": {
+          "local": "Parameters for direct cortical electrical stimulation in the human: histopathologic confirmation",
+          "match": true,
+          "source": [
+            "Parameters for direct cortical electrical stimulation in the human: histopathologic confirmation"
+          ]
+        },
+        "volume": {
+          "local": "75",
+          "match": true,
+          "source": [
+            "75"
+          ]
+        },
+        "year": {
+          "local": "1990",
+          "match": true,
+          "source": [
+            "1990"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author suffix differs",
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "Epilepsy Center, Johns Hopkins University School of Medicine, Baltimore, MD 21205."
+                  }
+                ]
+              },
+              "firstName": "B",
+              "fullName": "Gordon B",
+              "initials": "B",
+              "lastName": "Gordon"
+            },
+            {
+              "firstName": "R P",
+              "fullName": "Lesser RP",
+              "initials": "RP",
+              "lastName": "Lesser"
+            },
+            {
+              "firstName": "N E",
+              "fullName": "Rance NE",
+              "initials": "NE",
+              "lastName": "Rance"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-3919-8125"
+              },
+              "firstName": "J",
+              "fullName": "Hart J Jr",
+              "initials": "J",
+              "lastName": "Hart"
+            },
+            {
+              "firstName": "R",
+              "fullName": "Webber R",
+              "initials": "R",
+              "lastName": "Webber"
+            },
+            {
+              "firstName": "S",
+              "fullName": "Uematsu S",
+              "initials": "S",
+              "lastName": "Uematsu"
+            },
+            {
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0003-0287-613X"
+              },
+              "firstName": "R S",
+              "fullName": "Fisher RS",
+              "initials": "RS",
+              "lastName": "Fisher"
+            }
+          ]
+        },
+        "doi": "10.1016/0013-4694(90)90082-u",
+        "firstPublicationDate": "1990-05-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1016/0013-4694(90)90082-u"
+            }
+          ]
+        },
+        "id": "1692272",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "1990 May",
+          "issue": "5",
+          "journal": {
+            "isoabbreviation": "Electroencephalogr Clin Neurophysiol",
+            "issn": "0013-4694",
+            "medlineAbbreviation": "Electroencephalogr Clin Neurophysiol",
+            "nlmid": "0375035",
+            "title": "Electroencephalography and clinical neurophysiology"
+          },
+          "journalIssueId": 742662,
+          "monthOfPublication": 5,
+          "printPublicationDate": "1990-05-01",
+          "volume": "75",
+          "yearOfPublication": 1990
+        },
+        "pageInfo": "371-377",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "1990",
+        "source": "MED",
+        "title": "Parameters for direct cortical electrical stimulation in the human: histopathologic confirmation."
+      },
+      "record": {
+        "DOI": "10.1016/0013-4694(90)90082-u",
+        "ISSN": [
+          "0013-4694"
+        ],
+        "author": [
+          {
+            "family": "Gordon",
+            "given": "B",
+            "suffix": ""
+          },
+          {
+            "family": "Lesser",
+            "given": "R P",
+            "suffix": ""
+          },
+          {
+            "family": "Rance",
+            "given": "N E",
+            "suffix": ""
+          },
+          {
+            "family": "Hart",
+            "given": "J",
+            "suffix": "Jr"
+          },
+          {
+            "family": "Webber",
+            "given": "R",
+            "suffix": ""
+          },
+          {
+            "family": "Uematsu",
+            "given": "S",
+            "suffix": ""
+          },
+          {
+            "family": "Fisher",
+            "given": "R S",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Electroencephalography and clinical neurophysiology",
+          "Electroencephalogr Clin Neurophysiol",
+          "Electroencephalogr Clin Neurophysiol",
+          "Electroencephalography and Clinical Neurophysiology"
+        ],
+        "issue": "5",
+        "page": "371-377",
+        "published": {
+          "date-parts": [
+            [
+              1990
+            ]
+          ]
+        },
+        "title": [
+          "Parameters for direct cortical electrical stimulation in the human: histopathologic confirmation"
+        ],
+        "type": "journal-article",
+        "volume": "75"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2F0096-3445.113.4.556%22+OR+DOI%3A%2210.1016%2Fs0167-8760%2802%2900107-1%22+OR+DOI%3A%2210.1523%2Fjneurosci.22-15-06315.2002%22+OR+DOI%3A%2210.1073%2Fpnas.162485599%22+OR+DOI%3A%2210.1073%2Fpnas.0801489105%22+OR+DOI%3A%2210.3758%2Fbf03194987%22+OR+DOI%3A%2210.1016%2F0013-4694%2890%2990082-u%22+OR+DOI%3A%2210.1037%2Fa0033669%22+OR+DOI%3A%2210.1098%2Frstb.1997.0130%22+OR+DOI%3A%2210.1016%2Fj.tics.2005.07.001%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2008.03.063%22+OR+DOI%3A%2210.1002%2Fmds.21873%22+OR+DOI%3A%2210.3758%2Fpbr.15.2.296%22+OR+DOI%3A%2210.1038%2Fnrn1932%22+OR+DOI%3A%2210.1016%2Fs0028-3932%2800%2900140-8%22+OR+DOI%3A%2210.1073%2Fpnas.85.14.5287%22+OR+DOI%3A%2210.1016%2Fs0959-4388%2800%2900150-1%22+OR+DOI%3A%2210.1007%2Fs00422-010-0400-z%22+OR+DOI%3A%2210.1016%2Fj.tins.2007.05.004%22+OR+DOI%3A%2210.1002%2Fhipo.20808%22+OR+DOI%3A%2210.1126%2Fscience.1135801%22+OR+DOI%3A%2210.1016%2Fj.tins.2011.06.006%22+OR+DOI%3A%2210.1093%2Fbrain%2Fawg267%22+OR+DOI%3A%2210.1002%2F%28sici%291096-9861%2819961223%29376%3A4%3C614%3A%3Aaid-cne9%3E3.0.co%3B2-4%22+OR+DOI%3A%2210.1037%2F0882-7974.2.1.79%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T01:01:53.295805+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/1692272"
+    }
+  }
+]

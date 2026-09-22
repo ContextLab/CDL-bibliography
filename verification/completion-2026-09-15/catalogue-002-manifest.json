@@ -1,0 +1,917 @@
+[
+  {
+    "key": "Badd86",
+    "fingerprint": "v2:a22168100a5c3a0fdbb53b1b1977a8a6faf760a0ce4d524fd04cd4ec002dfe61",
+    "query": "dc.title=\"working memory\" and dc.author=\"baddeley\""
+  },
+  {
+    "key": "Badd90",
+    "fingerprint": "v2:03a9bad86b735a57e83c8930b389870aba27d9a4788c6879a42fee36ffe53351",
+    "query": "dc.title=\"human memory theory and practice\" and dc.author=\"baddeley\""
+  },
+  {
+    "key": "BancEtal65",
+    "fingerprint": "v2:297a662262513e44ad37409a010f15904c54281cf690c0214526f681b05ad3de",
+    "query": "dc.title=\"la st\u00e9r\u00e9o \u00e9lectroenc\u00e9phalographie dans l epilepsie\" and dc.author=\"bancaud\""
+  },
+  {
+    "key": "Bart32",
+    "fingerprint": "v2:0425d237cda5406460671fc0a42699828c990e72b0bfaac5dc181a236d0a4241",
+    "query": "dc.title=\"remembering a study in experimental and social psychology\" and dc.author=\"bartlett\""
+  },
+  {
+    "key": "BendPier01",
+    "fingerprint": "v2:d6a430cc8e68c23c0269222dfb074cd018e0eabf7d2fd00ec88d4db663f1e31c",
+    "query": "dc.title=\"random data analysis and measurement procedures\" and dc.author=\"bendat\""
+  },
+  {
+    "key": "BirdEtal09",
+    "fingerprint": "v2:0ef6b64b424e64161b3419a87c32b71f804a8561e745b3d8d2cf317f0de5b419",
+    "query": "dc.title=\"nature language processing with python analyzing text with the natural language toolkit\" and dc.author=\"bird\""
+  },
+  {
+    "key": "Bish06",
+    "fingerprint": "v2:c234362227c19b429a5944526aa35f0f7058b4e01bb7086d0352c7dec7615da3",
+    "query": "dc.title=\"pattern recognition and machine learning\" and dc.author=\"bishop\""
+  },
+  {
+    "key": "BishEtal75",
+    "fingerprint": "v2:89bcc7de7c14c46ba672a8c42ab4246f0e6c9ad2298226eda052fb075793946d",
+    "query": "dc.title=\"discrete multivariate analysis theory and practice\" and dc.author=\"bishop\""
+  },
+  {
+    "key": "Boll98",
+    "fingerprint": "v2:bbecd2fec615fa045c00b44550afde5c34c5613d3f6e1aa094fdb334c175cacc",
+    "query": "dc.title=\"structural equation models\" and dc.author=\"bollen\""
+  },
+  {
+    "key": "BorgGroe05",
+    "fingerprint": "v2:5331b03c3f9b4d14243e8db566ccdebd8f9589a79cd921b2e09175764c980b47",
+    "query": "dc.title=\"modern multidimensional scaling theory and applications\" and dc.author=\"borg\""
+  },
+  {
+    "key": "BraiReyn05",
+    "fingerprint": "v2:5f71baea6b25e9f98f73311e82cb00c7c28544365973e63f65c72f0baf9d92ee",
+    "query": "dc.title=\"the science of false memory\" and dc.author=\"brainerd\""
+  },
+  {
+    "key": "Broa58",
+    "fingerprint": "v2:8c6fcfeeeacd7177d8e0f1777bffd64d0db35a068708a1b4e6a0d6443c7d1ee5",
+    "query": "dc.title=\"perception and communication\" and dc.author=\"broadbent\""
+  },
+  {
+    "key": "Brow24",
+    "fingerprint": "v2:d357aa580b9573cfbc4efbbf97ed0d43e59439e1a2dc9096b28eb11cd7594dc5",
+    "query": "dc.title=\"lectures on the philosophy of the human mind\" and dc.author=\"brown\""
+  },
+  {
+    "key": "BrunEtal02b",
+    "fingerprint": "v2:55b4ddbb26011dff1384f81f9d021025cf04f8fa35e5da52bf6a6ca1664cdb11",
+    "query": "dc.title=\"nonparametric analysis of longitudinal data in factorial experiments\" and dc.author=\"brunner\""
+  },
+  {
+    "key": "Buzs06",
+    "fingerprint": "v2:3cc59bab79c434d429e0b0fe13c04cd9cd02a76ffcf521874de863b7d01493b0",
+    "query": "dc.title=\"rhythms of the brain\" and dc.author=\"buzs\u00e1ki\""
+  },
+  {
+    "key": "Carr10",
+    "fingerprint": "v2:6d859828b739c0d5f163a56e7441068ab3caa9f7a875e23d1fb680db366ff101",
+    "query": "dc.title=\"from eternity to here the quest for the ultimate theory of time\" and dc.author=\"carroll\""
+  },
+  {
+    "key": "Carr16",
+    "fingerprint": "v2:342ff60161a4213dff9bf5edc534a14a0ea6119dd29a28686ac797379707ea83",
+    "query": "dc.title=\"the big picture on the origins of life meaning and the universe itself\" and dc.author=\"carroll\""
+  },
+  {
+    "key": "Carr93",
+    "fingerprint": "v2:21932a880f997311ba85e2cc45c3edfc9ace3419ce78ca650077b8cc3000b636",
+    "query": "dc.title=\"human cognitive abilities a survey of factor analytic studies\" and dc.author=\"carroll\""
+  },
+  {
+    "key": "Chem09",
+    "fingerprint": "v2:53a00a3261cd572ced3fb636b5668a125d4d23964f13ac6ce19129730b15e436",
+    "query": "dc.title=\"radical embodied cognitive science\" and dc.author=\"chemero\""
+  },
+  {
+    "key": "Chos05",
+    "fingerprint": "v2:0cfe02efb0b0dc54a6cb81460dab406078a1cd37bd500187887d3a0a84e957ad",
+    "query": "dc.title=\"principles of robot motion theory algorithms and implementation\" and dc.author=\"choset\""
+  },
+  {
+    "key": "Chri92",
+    "fingerprint": "v2:41b8d08c9488be22c7a88e898d27bd13f9dd00b1497490dfd2e00a648211df34",
+    "query": "dc.title=\"the handbook of emotion and memory research and theory\" and dc.author=\"christianson\""
+  },
+  {
+    "key": "Clee93",
+    "fingerprint": "v2:3ab78b759e4dd841526e7e5a6ffa8f1f9d479edc019df2d6014811f392872b28",
+    "query": "dc.title=\"mechanisms of implicit learning connectionist models of sequence processing\" and dc.author=\"cleeremans\""
+  },
+  {
+    "key": "ClifOrd73",
+    "fingerprint": "v2:43bfaece0994697e409d6356709afeb2b5c49a4aa8b6686bca39b7fc18c17eb0",
+    "query": "dc.title=\"spatial autocorrelation\" and dc.author=\"cliff\""
+  },
+  {
+    "key": "Cohe88",
+    "fingerprint": "v2:6a6ea1768e385138250d111c2c7ad44d881005573ddaea6fb4ebbeb8e8759cff",
+    "query": "dc.title=\"statistical power analysis for the behavioral sciences 2nd ed\" and dc.author=\"cohen\""
+  },
+  {
+    "key": "CoheEich93",
+    "fingerprint": "v2:823820dc39aeeea8a93afa67faaa7437330e27e0311d45f47d8619d771ced265",
+    "query": "dc.title=\"memory amnesia and the hippocampal system\" and dc.author=\"cohen\""
+  },
+  {
+    "key": "ConwEtal07",
+    "fingerprint": "v2:4c0bf4edbd7412f260b013028d3dd5c95e1e8c6ddc31390f9eb54f6053c23bc3",
+    "query": "dc.title=\"variation in working memory\" and dc.author=\"conway\""
+  },
+  {
+    "key": "Cowa97",
+    "fingerprint": "v2:957919896e00971a9c85f689e7031ea090d0a1f09ecd2d988c356a5205c6f611",
+    "query": "dc.title=\"attention and memory an integrated framework\" and dc.author=\"cowan\""
+  },
+  {
+    "key": "Crow76",
+    "fingerprint": "v2:ee57d981149395a36ff7e015de4cd184d0fa38fd517f72b173017ef42e74a79f",
+    "query": "dc.title=\"principles of learning and memory\" and dc.author=\"crowder\""
+  },
+  {
+    "key": "Daub92",
+    "fingerprint": "v2:4eaa9b466e2edebadb2c75b3120ee5ca714bafa8ce57cceb5a915cad5472e0f6",
+    "query": "dc.title=\"ten lectures on wavelets\" and dc.author=\"daubechies\""
+  },
+  {
+    "key": "DaviHink97",
+    "fingerprint": "v2:392b431fafba79e115e7552475bf1710557d432f7d190bb88efb0dceb4d22d5a",
+    "query": "dc.title=\"bootstrap methods and their application\" and dc.author=\"davison\""
+  },
+  {
+    "key": "DayaAbbo01",
+    "fingerprint": "v2:13f050a44321ed3cefba7ab73209272c11394be14268d6f715b849e4699f3580",
+    "query": "dc.title=\"theoretical neuroscience computational and mathematical modeling of neural systems\" and dc.author=\"dayan\""
+  },
+  {
+    "key": "DeVaDeVa88",
+    "fingerprint": "v2:5bbb3ebc524adaa6dbfd34db8004eeb3953609a6893a3338ec702c5f8cb25378",
+    "query": "dc.title=\"spatial vision\" and dc.author=\"de valois\""
+  },
+  {
+    "key": "DeliEtal00",
+    "fingerprint": "v2:212a8bbebc842851f1e39b61d4ea46b12c6edde9de3f63608d8f02a2e29b0681",
+    "query": "dc.title=\"california verbal learning test\" and dc.author=\"delis\""
+  },
+  {
+    "key": "DrydMard98",
+    "fingerprint": "v2:46edb6176895216bfcac0fc9e2d444da50089ea83282f1551098d8ce7ea82860",
+    "query": "dc.title=\"statistical shape analysis\" and dc.author=\"dryden\""
+  },
+  {
+    "key": "DudaEtal01",
+    "fingerprint": "v2:cae370e3ac3ca49aa3e22664d2f515408d0130c8ee1188a122a27b3bd6b76af9",
+    "query": "dc.title=\"pattern classification second edition\" and dc.author=\"duda\""
+  },
+  {
+    "key": "Ebbi85",
+    "fingerprint": "v2:27c2fba3f410f1eb03047ba8e5c2a5b21b2d7b9fe13a401d601fd069b1fcefdb",
+    "query": "dc.title=\"on memory a contribution to experimental psychology\" and dc.author=\"ebbinghaus\""
+  },
+  {
+    "key": "Edel99",
+    "fingerprint": "v2:ce13a4f332432a36cf2a794c5292694a65ed5ad035545cae2d69a5cabb346d4b",
+    "query": "dc.title=\"representation and recognition in vision\" and dc.author=\"edelman\""
+  },
+  {
+    "key": "EfroTibs93",
+    "fingerprint": "v2:3cbbeb140bc175d4949c8b00a060bbc05286498f7d52271a0267b7259effff97",
+    "query": "dc.title=\"an introduction to the bootstrap\" and dc.author=\"efron\""
+  },
+  {
+    "key": "Este59",
+    "fingerprint": "v2:f14b436bd7537305d5bc110fd9e569e52f2a7ef899e59cca1234dd0a39661b45",
+    "query": "dc.title=\"component and pattern models with markovian interpretations studies in mathematical learning theory\" and dc.author=\"estes\""
+  },
+  {
+    "key": "Este82",
+    "fingerprint": "v2:5e2049297f038b1b5fd7c1cc9b67c6fc8cd478e3d5305864acc87cf44b44257e",
+    "query": "dc.title=\"models of learning memory and choice selected papers\" and dc.author=\"estes\""
+  },
+  {
+    "key": "Este94",
+    "fingerprint": "v2:19a2f1e7d860e942663509d5108f0a576898fa23e3aa8f72e90ee6956281737d",
+    "query": "dc.title=\"classification and cognition\" and dc.author=\"estes\""
+  },
+  {
+    "key": "Feyn65",
+    "fingerprint": "v2:1050a10f19d9a6e08260a33707c036dad2a0a0055cffce90802662b3b45493f3",
+    "query": "dc.title=\"the character of physical law\" and dc.author=\"feynman\""
+  },
+  {
+    "key": "Fish25",
+    "fingerprint": "v2:e66ebd6a34692351e3d716deb1de5c42c9fbbf9f2445f23bb3e2539fc7831854",
+    "query": "dc.title=\"statistical methods for research workers\" and dc.author=\"fisher\""
+  },
+  {
+    "key": "Fish93",
+    "fingerprint": "v2:542341545df096e03e9c241479d8dde46f7d696bb125a6cfe2b5e626d639ea5b",
+    "query": "dc.title=\"statistical analysis of circular data\" and dc.author=\"fisher\""
+  },
+  {
+    "key": "Fodo75",
+    "fingerprint": "v2:d8e52d32c36e34f2302dd6575f81a5a175d9cdd35793f7fe33da4395b1932c9f",
+    "query": "dc.title=\"the language of thought\" and dc.author=\"fodor\""
+  },
+  {
+    "key": "Fodo83",
+    "fingerprint": "v2:023e60e0bda04a80a6eeecb30c93a7a93d1cdad0f732a30b3b8fc9871639bd53",
+    "query": "dc.title=\"the modularity of mind\" and dc.author=\"fodor\""
+  },
+  {
+    "key": "Free00",
+    "fingerprint": "v2:48a4b26baefef6fa85f3a159de7a2d9c9d2a1265b06fe2e335875626246c4a5d",
+    "query": "dc.title=\"how brain make up their minds\" and dc.author=\"freeman\""
+  },
+  {
+    "key": "Free75",
+    "fingerprint": "v2:5475bc57a820be224dfabfcc2c5eb0430787ecbeb875e8baae4e1ed8f9129859",
+    "query": "dc.title=\"mass action in the nervous system\" and dc.author=\"freeman\""
+  },
+  {
+    "key": "Fust05",
+    "fingerprint": "v2:1901efc1dbc30ba38c81bdc8df7f080705557b9b172560b8874354193e3a1ea0",
+    "query": "dc.title=\"cortex and mind unifying cognition\" and dc.author=\"fuster\""
+  },
+  {
+    "key": "Fust95",
+    "fingerprint": "v2:8c75a8750d2f1372d6f370cb11780b982fca7369fe1068ca32ebac6dbc0c671f",
+    "query": "dc.title=\"memory in the cerebral cortex\" and dc.author=\"fuster\""
+  },
+  {
+    "key": "Gall06",
+    "fingerprint": "v2:e9cabe131009c2c5333d5133c19145c25c6824f215cb1fbeed58d0ea9e955b6b",
+    "query": "dc.title=\"associative illusions of memory false memory research in drm and related tasks\" and dc.author=\"gallo\""
+  },
+  {
+    "key": "GallKing09",
+    "fingerprint": "v2:ab2380c7698527f20322e372472fac744aed0d459bcd718afe91f9734a46eb47",
+    "query": "dc.title=\"memory and the computational brain why cognitive science will transform neuroscience\" and dc.author=\"gallistel\""
+  },
+  {
+    "key": "Galt83",
+    "fingerprint": "v2:b2e9398c22898a5acb34ab561eba8dcca47c42278bb2d7e6d6b73ac9472b5cb9",
+    "query": "dc.title=\"inquiries into human faculty and its development\" and dc.author=\"galton\""
+  },
+  {
+    "key": "Gard00",
+    "fingerprint": "v2:db9d746e52a8ed639583fe71d4408394f2af569e7ac48c2dcec20302d4092201",
+    "query": "dc.title=\"conceptual spaces the geometry of thought\" and dc.author=\"g\u00e4rdenfors\""
+  },
+  {
+    "key": "GelmEtal13",
+    "fingerprint": "v2:974d6da3a39336450bad5adad647fc6f14fd86355b6f2d482024d732dd63e6e0",
+    "query": "dc.title=\"bayesian data analysis third edition\" and dc.author=\"gelman\""
+  },
+  {
+    "key": "GelmHill07",
+    "fingerprint": "v2:b8cb83515b94e4486ccf28b20551aa74480062a824f3725fbab1c3dbca8a80f9",
+    "query": "dc.title=\"data analysis using regression and multilevel hierarchical models\" and dc.author=\"gelman\""
+  },
+  {
+    "key": "Gibs84",
+    "fingerprint": "v2:4f804dae3763b7d149b50c2ad7ecd3730ce7756d679ac5912eb16087de54c0d7",
+    "query": "dc.title=\"neuromancer\" and dc.author=\"gibson\""
+  },
+  {
+    "key": "GorfHoff87",
+    "fingerprint": "v2:7096f881ffae7a9b12a6e22fffdbc64313b392d8101b596593c54b45f745f126",
+    "query": "dc.title=\"memory and learning the ebbinghaus centennial conference\" and dc.author=\"gorfein\""
+  },
+  {
+    "key": "Grah89",
+    "fingerprint": "v2:5a5e5ed258a28c6e63a4ee53dd4034c55cbd8667eb7e6c47a17a9e7468b6f2ae",
+    "query": "dc.title=\"visual pattern analyzers\" and dc.author=\"graham\""
+  },
+  {
+    "key": "Gree92",
+    "fingerprint": "v2:8c5662e9bb793dfbc726130a28fe7ac6d2b762dfd7cbadb21a09328ab3f7e3d2",
+    "query": "dc.title=\"human memory paradigms and paradoxes\" and dc.author=\"greene\""
+  },
+  {
+    "key": "GreeSwet66",
+    "fingerprint": "v2:84c51f399158d02c164a3eeec1108a8267bf809fd56b66cc0539f9899140df1f",
+    "query": "dc.title=\"signal detection theory and psychophysics\" and dc.author=\"green\""
+  },
+  {
+    "key": "Guth35",
+    "fingerprint": "v2:67cc770ceebaf4d9992297d7856e2f9e43e6a76bf368980c77a0fcb3dddb659a",
+    "query": "dc.title=\"the psychology of learning\" and dc.author=\"guthrie\""
+  },
+  {
+    "key": "Harc75",
+    "fingerprint": "v2:dd21a38ac7eb63e2663e47df5f05362ed1dd6642421866b1040ec0ac07c1ad54",
+    "query": "dc.title=\"serial learning and paralearning control processes in serial acquisition\" and dc.author=\"harcum\""
+  },
+  {
+    "key": "Hass12",
+    "fingerprint": "v2:d26b531ccef3ed35552477f4ed222492145cace21ed11623412b46ee17aad8cc",
+    "query": "dc.title=\"how we remember brain mechanisms of episodic memory\" and dc.author=\"hasselmo\""
+  },
+  {
+    "key": "HastEtal01",
+    "fingerprint": "v2:f89fd6a8f3afd04a65801efc6569252859c16f19e921c3bf6d91980787912cbd",
+    "query": "dc.title=\"the elements of statistical learning\" and dc.author=\"hastie\""
+  },
+  {
+    "key": "HawkBlak05",
+    "fingerprint": "v2:8bdd2c1a31745f9b14b5eb5df5568035cbacc2f0dad02ca28bd17d196cc2789d",
+    "query": "dc.title=\"on intelligence\" and dc.author=\"hawkins\""
+  },
+  {
+    "key": "Hebb49",
+    "fingerprint": "v2:a87c3bd1ee3aa5173f855a39bcf37e08eec45550872a052b6adeb62620c7d920",
+    "query": "dc.title=\"organization of behavior\" and dc.author=\"hebb\""
+  },
+  {
+    "key": "HertEtal91",
+    "fingerprint": "v2:1546ff42d3334f66bcc97e84a883d55d1afa1eb735ce7f92292e0c04e1cadf12",
+    "query": "dc.title=\"introduction to the theory of neural computation\" and dc.author=\"hertz\""
+  },
+  {
+    "key": "HestEtal05",
+    "fingerprint": "v2:893603110effb0681da179d17d0d49a1120516694f501c8c790b824e55736cf7",
+    "query": "dc.title=\"bootstrap methods and permutation tests\" and dc.author=\"hesterberg\""
+  },
+  {
+    "key": "Holl28",
+    "fingerprint": "v2:756a5fdabdc5673db3f5ed433125799148bdf16762fda830838332dd12985e44",
+    "query": "dc.title=\"psychology its facts and principles\" and dc.author=\"hollingsworth\""
+  },
+  {
+    "key": "Hook69",
+    "fingerprint": "v2:7c3ec73b074d4d155d4c69c8b3fcf37d9ed962e33b05176f880e5f94762efd18",
+    "query": "dc.title=\"the posthumous works of robert hooke with a new introduction by richard s westfall\" and dc.author=\"hooke\""
+  },
+  {
+    "key": "HorcDhil04",
+    "fingerprint": "v2:257189db577da0120c3ac6f00904929fe42c363ba40ee16b663868e45f793f5b",
+    "query": "dc.title=\"neuroprosthetics theory and practice\" and dc.author=\"horch\""
+  },
+  {
+    "key": "Horw87",
+    "fingerprint": "v2:a5dd952e3c2d380b7e65e361655bde21cace5f921cbba57ddde8d41d2ef24ae7",
+    "query": "dc.title=\"asymmetries in time problems in the philosophy of science\" and dc.author=\"horwich\""
+  },
+  {
+    "key": "Howe97",
+    "fingerprint": "v2:84166d435ed02d6ebab5f4f93ebc2c40dbd929b19e8b02c6eba8b31f5c5cddda",
+    "query": "dc.title=\"statistical methods for psychology\" and dc.author=\"howell\""
+  },
+  {
+    "key": "Hull43",
+    "fingerprint": "v2:9348c89d5a97d04d5a43830a3380ce36295397d7da9d1a25f8f312ac8ad329f4",
+    "query": "dc.title=\"principals of behavior an introduction to behavior theory\" and dc.author=\"hull\""
+  },
+  {
+    "key": "Hume07",
+    "fingerprint": "v2:4138faecb0005b54a14fde736bdc4a957b2d38093b9c2439bdb6a8be70596e5e",
+    "query": "dc.title=\"a treatise of human nature\" and dc.author=\"hume\""
+  },
+  {
+    "key": "Huth13",
+    "fingerprint": "v2:2e0059f724ef6aa679766851d7ab58c4320945521f7d07c8e93ba56301db0679",
+    "query": "dc.title=\"lost art of finding our way\" and dc.author=\"huth\""
+  },
+  {
+    "key": "Jame90",
+    "fingerprint": "v2:53435f021cb619879cad35d18e0a9152cd7ce14376d7f1a0ea1904cc57b76b45",
+    "query": "dc.title=\"the principles of psychology\" and dc.author=\"james\""
+  },
+  {
+    "key": "Jens80",
+    "fingerprint": "v2:d309879f990225a8cb09b1891b4c02c55919fff9163bd36526f201f2715269f5",
+    "query": "dc.title=\"bias in mental testing\" and dc.author=\"jensen\""
+  },
+  {
+    "key": "Kaha12",
+    "fingerprint": "v2:89a5b697cb1ba02d7ed1c65a78b9a64c98f30f4c5ad676b5c56655f8435202d1",
+    "query": "dc.title=\"foundations of human memory\" and dc.author=\"kahana\""
+  },
+  {
+    "key": "KandEtal00",
+    "fingerprint": "v2:22d3df771646524c7268f2c59d6d95c4a8390785349a6b5eb27cffdcef9f2c68",
+    "query": "dc.title=\"principles of neural science\" and dc.author=\"kandel\""
+  },
+  {
+    "key": "Kani79",
+    "fingerprint": "v2:e9abe27b32a24c2f094369deb7746a25847d1c72f2af8f6e8cc4312566e56101",
+    "query": "dc.title=\"the organization of vision\" and dc.author=\"kanisza\""
+  },
+  {
+    "key": "Kato40",
+    "fingerprint": "v2:9bb7ebed23b614ef03be43b3434e539a9647fb0810aab1f24c440ee07c76d7f7",
+    "query": "dc.title=\"organizing and memorizing studies in the psychology of learning and teaching\" and dc.author=\"katona\""
+  },
+  {
+    "key": "Kaus94",
+    "fingerprint": "v2:abbf46b791e6ce890b65c1b691f03e18b4c57c10d6a361a82bfa597d768a2d97",
+    "query": "dc.title=\"learning and memory in normal aging\" and dc.author=\"kausler\""
+  },
+  {
+    "key": "Kele99",
+    "fingerprint": "v2:bfa423caae22df3b1c39f39f12de99b0ebd05b4b671b0155a6513ae4ec2fa9c6",
+    "query": "dc.title=\"diploma thesis hippocampal theta rythm during place recognition in rats that are moved passively\" and dc.author=\"kelemen\""
+  },
+  {
+    "key": "Keme72",
+    "fingerprint": "v2:ca2e9723af9268b6ffdb736f9de62c6c72cbced79851223d1b4ae53149211f0d",
+    "query": "dc.title=\"man and the computer\" and dc.author=\"kemeny\""
+  },
+  {
+    "key": "Khan04",
+    "fingerprint": "v2:58651ae7587945791ae4cfa3373351da2ac235b50341bba47b61c0aa5ed40e94",
+    "query": "dc.title=\"the khan academy\" and dc.author=\"khan\""
+  },
+  {
+    "key": "Kint70",
+    "fingerprint": "v2:188b2935226651007a5b2740bbf3740bf1f248700b8d0b1ddfb46854cd607a15",
+    "query": "dc.title=\"learning memory and conceptual processes\" and dc.author=\"kintsch\""
+  },
+  {
+    "key": "Klin05",
+    "fingerprint": "v2:a316f8239a92ed2fc08cd41c3345fd3f3ab46176f73d6b566fb6af22ea59f3c3",
+    "query": "dc.title=\"principles and practice of structural equation modeling\" and dc.author=\"kline\""
+  },
+  {
+    "key": "Koff35",
+    "fingerprint": "v2:9de083f9aa8bbdfddf56f6dbf26312d35e374ed35d1801e0de593328b793bec2",
+    "query": "dc.title=\"principles of gestalt psychology\" and dc.author=\"koffka\""
+  },
+  {
+    "key": "Kohl40",
+    "fingerprint": "v2:63cd78c66145ebc6cea2253ee58ea4a4980f7aa2bf7bec68daab30293752e329",
+    "query": "dc.title=\"dynamics in psychology\" and dc.author=\"kohler\""
+  },
+  {
+    "key": "Kohl47",
+    "fingerprint": "v2:2de9764ea0796fca59c4017d0efcfb146c890291eba4fcf442b4c7d198131718",
+    "query": "dc.title=\"gestalt psychology\" and dc.author=\"k\u00f6hler\""
+  },
+  {
+    "key": "KuceFran67",
+    "fingerprint": "v2:7015fc3501d1bbc6f0393f9fc2bca3a7bc51f316cbb318a86e1a08abe0a9cc83",
+    "query": "dc.title=\"computational analysis of present day american english\" and dc.author=\"ku\u010dera\""
+  },
+  {
+    "key": "KurzEtal90",
+    "fingerprint": "v2:ff646b5186edd0d52398620297af2d3c7f6b0ec8b2fa32ca603e43c04cf3c306",
+    "query": "dc.title=\"the age of intelligent machines\" and dc.author=\"kurzweil\""
+  },
+  {
+    "key": "LaddWood11",
+    "fingerprint": "v2:dfd2a44334d84d4fe051abb365da4372e0cea3ddc71b73b08188b936f0f82352",
+    "query": "dc.title=\"elements of physiological psychology a treatise of the activities and nature of the mind from the physical and experimental point of view\" and dc.author=\"ladd\""
+  },
+  {
+    "key": "Lato91",
+    "fingerprint": "v2:be346208b81db596775cd7e4ee4282eaab8ffb9ce4284180f7fe9b16f07a5687",
+    "query": "dc.title=\"robot motion planning\" and dc.author=\"latombe\""
+  },
+  {
+    "key": "LemoPiet12",
+    "fingerprint": "v2:efcea65847c48f8f5906b2937b79cb58ff6026a43032e624c6417f03841813b4",
+    "query": "dc.title=\"data driven methods for adaptive spoken dialogue systems computational learning for conversational interfaces\" and dc.author=\"lemon\""
+  },
+  {
+    "key": "LincNati81",
+    "fingerprint": "v2:9c174f1ea2f218706dbbc060e895e30bd80cda5966de0050b653479a41e67736",
+    "query": "dc.title=\"the audubon society field guide to north american mushrooms\" and dc.author=\"lincoff\""
+  },
+  {
+    "key": "Luca83",
+    "fingerprint": "v2:5fcc789a35279d57dd1fa7d138a4da5b3c70e41d55aada2915bf0f6412f7e534",
+    "query": "dc.title=\"studies in business cycle theory\" and dc.author=\"lucas\""
+  },
+  {
+    "key": "Luce86",
+    "fingerprint": "v2:4adb732f71cf2a8d18653bbb6f82578005f98bd024e9f6b7c06ddf4135c8a1ac",
+    "query": "dc.title=\"response times\" and dc.author=\"luce\""
+  },
+  {
+    "key": "Luck05",
+    "fingerprint": "v2:cf4824dfd564333509801ffca80fa544f21f384c467f9ffbcd350ea33d54ae6e",
+    "query": "dc.title=\"an introduction to the event related potential technique\" and dc.author=\"luck\""
+  },
+  {
+    "key": "Mall98",
+    "fingerprint": "v2:618b31c9b6bf951ddf1220d079cd9e8f5b300fbe71089eb2a74acbb1d46d783f",
+    "query": "dc.title=\"a wavelet tour of signal processing\" and dc.author=\"mallat\""
+  },
+  {
+    "key": "Marr82",
+    "fingerprint": "v2:48d367622e2af34fef88156195a08c4b08213d9059f10f146180d444d2c2f9e3",
+    "query": "dc.title=\"vision a computational investigation into the human representation and processing of visual information\" and dc.author=\"marr\""
+  },
+  {
+    "key": "Mart98",
+    "fingerprint": "v2:82bf70b0da715a6f4f2b3960fc6a915cc7594079a6e6e547b2e7f9496f8d75c8",
+    "query": "dc.title=\"a clash of kings\" and dc.author=\"martin\""
+  },
+  {
+    "key": "McClEtal86",
+    "fingerprint": "v2:59019f3407924f206a8b50b44d920a1cedde096b6962a19d2e9cf20dc1fce27b",
+    "query": "dc.title=\"parallel distributed processing explorations in the microstructure of cognition volume 2 psychological and biological models\" and dc.author=\"mcclelland\""
+  },
+  {
+    "key": "McGe42",
+    "fingerprint": "v2:3a6f404bef0f6b77f555d45c8a12802a7da39a2e01c4553c6d3d93f722a4e944",
+    "query": "dc.title=\"the psychology of human learning an introduction\" and dc.author=\"mcgeoch\""
+  },
+  {
+    "key": "McGeIrio52",
+    "fingerprint": "v2:fcef7542c9543ecfb085a39d070b51683436d731a8dc482cfbc3f622e06f630f",
+    "query": "dc.title=\"the psychology of human learning 2nd edition\" and dc.author=\"mcgeoch\""
+  },
+  {
+    "key": "MeltMart72",
+    "fingerprint": "v2:f27322b569d92a801fef7a81e59f71320ba092cc170a76ffd3f6f4175b48f33b",
+    "query": "dc.title=\"coding processes in human memory\" and dc.author=\"melton\""
+  },
+  {
+    "key": "Mill91",
+    "fingerprint": "v2:f3e29a53038f33365f5476e2281852773d6df45d23c76d0b93844b3faac3cea1",
+    "query": "dc.title=\"cortico hippocampal interplay and the representation of contexts in the brain\" and dc.author=\"miller\""
+  },
+  {
+    "key": "Mill96",
+    "fingerprint": "v2:3c92cbde426f08695377aa49abe1640e5dbb15d7ea0a8567d779a3d153a8a202",
+    "query": "dc.title=\"axonal conduction time and human cerebral laterality a psychobiological theory\" and dc.author=\"miller\""
+  },
+  {
+    "key": "MillEtal60",
+    "fingerprint": "v2:689c59b7f326a9237821f0a90380dcc8aa885ab03fc273857536f8c062027d50",
+    "query": "dc.title=\"plans and the structure of behavior\" and dc.author=\"miller\""
+  },
+  {
+    "key": "Mitc96",
+    "fingerprint": "v2:92b75bd74b7dc222fb5c193644054ca0daba7db69a7670b3bb9315ba094815d9",
+    "query": "dc.title=\"an introduction to genetic algorithms\" and dc.author=\"mitchell\""
+  },
+  {
+    "key": "MiyaShah99",
+    "fingerprint": "v2:d234876ff2c7b9ddfbfecd10dc2b73d53dbdc49c06bf9976baafa7644b6d0cd3",
+    "query": "dc.title=\"models of working memory mechanisms of active maintenance and executive control\" and dc.author=\"miyake\""
+  },
+  {
+    "key": "Munn50",
+    "fingerprint": "v2:3e322a2b1f59f06249e594e320ed35c3e4fd0560ad4860ef06558da5cd6d0285",
+    "query": "dc.title=\"handbook of psychological research on the rat an introduction to animal psychology\" and dc.author=\"munn\""
+  },
+  {
+    "key": "Murd74",
+    "fingerprint": "v2:a7bf8c4a2b917e6a99de2c588ad5fa58387c0d856cf827fb09be42eb65f263fd",
+    "query": "dc.title=\"human memory theory and data\" and dc.author=\"murdock\""
+  },
+  {
+    "key": "Murp12",
+    "fingerprint": "v2:1768b5610a57b1818bc11d32ce2a4650bede5913f215fa2552cf4d8c69231cfa",
+    "query": "dc.title=\"machine learning a probabilistic perspective\" and dc.author=\"murphy\""
+  },
+  {
+    "key": "Newe90",
+    "fingerprint": "v2:461d63d5d4c7016fef9ce12bbd58f58c7ce9ca319a2a3767ca406a83e4c0e623",
+    "query": "dc.title=\"unified theories of cognition\" and dc.author=\"newell\""
+  },
+  {
+    "key": "NoceWrig06",
+    "fingerprint": "v2:060bbff3b051d816f8886b2b42c50518828431dd2651274397c0bca67059efd2",
+    "query": "dc.title=\"numerical optimization\" and dc.author=\"nocedal\""
+  },
+  {
+    "key": "Nune95",
+    "fingerprint": "v2:69c0d7315eff97e535ef49c259292e726205088fe95f0e3062ecde8f15d87059",
+    "query": "dc.title=\"neocortical dynamics and human eeg rhythms\" and dc.author=\"nunez\""
+  },
+  {
+    "key": "NuneSrin06",
+    "fingerprint": "v2:45d577a0e3bab82bed09580ab2a054888b4ea44f9f5d481e1dcc74e9e7983679",
+    "query": "dc.title=\"electric fields of the brain\" and dc.author=\"nunez\""
+  },
+  {
+    "key": "OKeeNade78",
+    "fingerprint": "v2:9b5c180fd99cdd750fada693bc5130ad04e62c006d89302969fa0e0d8334fdbc",
+    "query": "dc.title=\"the hippocampus as a cognitive map\" and dc.author=\"o keefe\""
+  },
+  {
+    "key": "OReiMuna00",
+    "fingerprint": "v2:9dd37044ba189825b4b417dafcba4ad7fc53f3370531982035ff61afb8c0b9ad",
+    "query": "dc.title=\"computational explorations in cognitive neuroscience\" and dc.author=\"o reilly\""
+  },
+  {
+    "key": "Odla88",
+    "fingerprint": "v2:04135383013c6fb83ebf34f0363b240ab94ca5c770ea92babccb1d7da413f8ac",
+    "query": "dc.title=\"spatial autocorrelation\" and dc.author=\"odland\""
+  },
+  {
+    "key": "Paiv71",
+    "fingerprint": "v2:0a4696ce4030e4f47f3c4cc2d886d9486f95803da96bfddd13f301e262a2f09e",
+    "query": "dc.title=\"imagery and verbal processes\" and dc.author=\"paivio\""
+  },
+  {
+    "key": "Paiv86",
+    "fingerprint": "v2:470ef6d3be8195ed333d360f554f802ef3bbc18f8fda02265b304468caa9d7e1",
+    "query": "dc.title=\"mental representations a dual coding approach\" and dc.author=\"paivio\""
+  },
+  {
+    "key": "Pavl27",
+    "fingerprint": "v2:2053eb8628e64e1c86b03e2c3a72ac0ac16d041972cf0c2f0d8b7edf59282b47",
+    "query": "dc.title=\"conditioned reflexes\" and dc.author=\"pavlov\""
+  },
+  {
+    "key": "Penf58b",
+    "fingerprint": "v2:ef5330cae6f87742bf0c9dac82dfe27e24e7463fa5846dde0d05101c8d09bd22",
+    "query": "dc.title=\"the excitable cortex in conscious man\" and dc.author=\"penfield\""
+  },
+  {
+    "key": "Penf75",
+    "fingerprint": "v2:d0c4335cd211a072ff557ff2c650a9f1ad96b81e2d45d1120d22892d33914222",
+    "query": "dc.title=\"the mystery of the mind\" and dc.author=\"penfield\""
+  },
+  {
+    "key": "PercWald93",
+    "fingerprint": "v2:a2cb522837b9397437b199fb686fc231df68cf5f45836767cc9d0edcad6a1311",
+    "query": "dc.title=\"spectral analysis for physical applications\" and dc.author=\"percival\""
+  },
+  {
+    "key": "Plat99",
+    "fingerprint": "v2:c4f25a8b48b2da21cb5d4f42b41b2e286a0ff2e42cc76e5ac9e4c06cfd1b7e8d",
+    "query": "dc.title=\"sequential minimal optimization a fast algorithm for training support vector machines\" and dc.author=\"platt\""
+  },
+  {
+    "key": "PresEtal93",
+    "fingerprint": "v2:9475d8e9b98390813914d0f018a23438d12de8982176c19b0e86f928fa52d3b3",
+    "query": "dc.title=\"numerical recipes in c the art of scientific computing\" and dc.author=\"press\""
+  },
+  {
+    "key": "Prib91",
+    "fingerprint": "v2:149a4c5c70f0619342a74c72e04c8e4533c6ef296a104af83c04c24a9b3ebbe1",
+    "query": "dc.title=\"brain and perception holonomy and structure in figural processing\" and dc.author=\"p\u0159ibram\""
+  },
+  {
+    "key": "Prie81",
+    "fingerprint": "v2:cdb81312e32df31d6626d007cce4ccece64b398706866bfd5c820be9d880c38b",
+    "query": "dc.title=\"spectral analysis and time series\" and dc.author=\"priestley\""
+  },
+  {
+    "key": "Rams07",
+    "fingerprint": "v2:3875a53fc4bb5051e6ec8ef41eccd995046a1fe08587d73dfab7ca646c8a7a35",
+    "query": "dc.title=\"representation reconsidered\" and dc.author=\"ramsey\""
+  },
+  {
+    "key": "Rank18",
+    "fingerprint": "v2:50284dd14605421a157b58f272599a73566b73809bfb66ace274c85cc353c875",
+    "query": "dc.title=\"a people s history of computing in the united states\" and dc.author=\"rankin\""
+  },
+  {
+    "key": "Rasm06",
+    "fingerprint": "v2:c40f084b64a6c7832c81f6743d20f445f691ea717b2ad1585e3c0a6d94f5a2f8",
+    "query": "dc.title=\"gaussian processes for machine learning\" and dc.author=\"rasmussen\""
+  },
+  {
+    "key": "RaveEtal98",
+    "fingerprint": "v2:93311552b360a6a5a484fe44ae594e730d1d8e37c44102e5bdd7451e412b783a",
+    "query": "dc.title=\"progressive matrices\" and dc.author=\"raven\""
+  },
+  {
+    "key": "Rayp68",
+    "fingerprint": "v2:6033af9c367583033f259b92a3bbb7837644f0fc140283fd5f79416c68887093",
+    "query": "dc.title=\"the jacksonian hypothesis an appraisal in the light of single unit recording in focal epileptogenic gray matter of man\" and dc.author=\"rayport\""
+  },
+  {
+    "key": "RiekEtal97",
+    "fingerprint": "v2:3fa402ae3d91e396681575a67932019bec8dcd658ca0f365c86f9b7f20a37b81",
+    "query": "dc.title=\"spikes exploring the neural code\" and dc.author=\"rieke\""
+  },
+  {
+    "key": "Ripl81",
+    "fingerprint": "v2:00ee62a0fdcd39f276e0c79b09bdff2bb41d48d7465feec45720b70dc32bcf33",
+    "query": "dc.title=\"spatial statistics\" and dc.author=\"ripley\""
+  },
+  {
+    "key": "Robi32",
+    "fingerprint": "v2:b6e55e3309d84c6121790ce5e90524996780daa3e68413f760ea7d8e879aadca",
+    "query": "dc.title=\"association theory to day an essay in systematic psychology\" and dc.author=\"robinson\""
+  },
+  {
+    "key": "RogeMcCl04",
+    "fingerprint": "v2:247678df430c4f8c8eda50a7ffcfd3d1392f13bb516088dd0df79174b4353861",
+    "query": "dc.title=\"semantic cognition a parallel distributed processing approach\" and dc.author=\"rogers\""
+  },
+  {
+    "key": "RoseRosn91",
+    "fingerprint": "v2:a4c2dc41977c7253d772c648ddc8efc45b22e70ed2b68c156aa93b037407b946",
+    "query": "dc.title=\"essentials of behavioral research methods and data analysis\" and dc.author=\"rosenthal\""
+  },
+  {
+    "key": "RumeEtal86a",
+    "fingerprint": "v2:147fca6f283c868b91c04c8368388bed556aadcaa53da6e09fe1906f062e8353",
+    "query": "dc.title=\"parallel distributed processing explorations in the microstructure of cognition volume 1 foundations\" and dc.author=\"rumelhart\""
+  },
+  {
+    "key": "RussNorv95",
+    "fingerprint": "v2:8e4668c7ebd37225f0418baf3e6aa5d802623a1d1f664054ab323ba135864307",
+    "query": "dc.title=\"artificial intelligence a modern approach\" and dc.author=\"russell\""
+  },
+  {
+    "key": "Salt91",
+    "fingerprint": "v2:c1d76af8bebd512f7bbc27a33c468847b8cb36c783c8446e8c00e95d6b6d82af",
+    "query": "dc.title=\"theoretical perspectives on cognitive aging\" and dc.author=\"salthouse\""
+  },
+  {
+    "key": "SaltEtal04",
+    "fingerprint": "v2:57ff8ca5d916b290032c0271aaf5fb1bc49885c7f63ba03d5e79f1299cd5836d",
+    "query": "dc.title=\"sensitivity analysis in practice a guide to assessing scientific models\" and dc.author=\"saltelli\""
+  },
+  {
+    "key": "Sawy95",
+    "fingerprint": "v2:c82f991dd57a3e5b828225088d6993358f52d148975e4cc4ebd4f2af06f76604",
+    "query": "dc.title=\"the terminal experiment\" and dc.author=\"sawyer\""
+  },
+  {
+    "key": "Scha01",
+    "fingerprint": "v2:df510f42b4ee90100b3c46759246e0a883148479b8712ee0ec42647cbe007572",
+    "query": "dc.title=\"forgotten ideas neglected pioneers richard semon and the story of memory\" and dc.author=\"schacter\""
+  },
+  {
+    "key": "SchaTulv94",
+    "fingerprint": "v2:e2a5f59322916cf610bb1a3b3b0d6099b55dc05074733f699076fcf8e0a507f2",
+    "query": "dc.title=\"memory systems 1994\" and dc.author=\"schacter\""
+  },
+  {
+    "key": "Sear92",
+    "fingerprint": "v2:aab3a79771b6697c0ac15084a633d6fffce7432f0f354aab644a368303667d60",
+    "query": "dc.title=\"the rediscovery of the mind\" and dc.author=\"searle\""
+  },
+  {
+    "key": "Semo21",
+    "fingerprint": "v2:e80e755511ca05f56c1b13a07ccd81d3bff683b72fdfa3f6d0c720c4aa24169c",
+    "query": "dc.title=\"the mneme\" and dc.author=\"semon\""
+  },
+  {
+    "key": "Semo23",
+    "fingerprint": "v2:196da5c335beacec4fe5889da624dd87f0aaf8c3c12cd401dfc09ebf0caab567",
+    "query": "dc.title=\"mnemic psychology\" and dc.author=\"semon\""
+  },
+  {
+    "key": "Ship46",
+    "fingerprint": "v2:49ecfef83774a4c6b5c871b7ebc5cba979f5da496350c5a04d94e6de3c4db076",
+    "query": "dc.title=\"shipley institute of living scale\" and dc.author=\"shipley\""
+  },
+  {
+    "key": "Spea27",
+    "fingerprint": "v2:83559536fedfaf27a3f26850d17a0ffe668c8fd521a04dfced305c9c07090331",
+    "query": "dc.title=\"the abilities of man\" and dc.author=\"spearman\""
+  },
+  {
+    "key": "SquiEtal04a",
+    "fingerprint": "v2:1044d479874273a714bc7a4ae5201fff5f0abc82212278ed8cbab294bb441e84",
+    "query": "dc.title=\"the cognitive neurosciences\" and dc.author=\"squire\""
+  },
+  {
+    "key": "SuttBart98",
+    "fingerprint": "v2:be1a2400accc60081b60187eb8bcbd76508cddf55007c7fef5200d43781434a3",
+    "query": "dc.title=\"reinforcement learning an introduction\" and dc.author=\"sutton\""
+  },
+  {
+    "key": "TalaTour88",
+    "fingerprint": "v2:8b76b2fb9c70da590c2c4dc7ac73e0a371c7d920d7a3b8cbd2e0c5cb7e25716f",
+    "query": "dc.title=\"co planar stereotaxic atlas of the human brain\" and dc.author=\"talairach\""
+  },
+  {
+    "key": "TellPalm98",
+    "fingerprint": "v2:bb0ecc45abc7ada2977d1e9bd05291f3011eef6de153d40ab040e304693f7b70",
+    "query": "dc.title=\"psychophysics mit encyclopedia of cognitive science\" and dc.author=\"teller\""
+  },
+  {
+    "key": "Thor13",
+    "fingerprint": "v2:77a7c17e185d68b3f2ce2b1931f0f3a7d40147290fb661796bbe80be1c57b83a",
+    "query": "dc.title=\"educational psychology the psychology of learning\" and dc.author=\"thorndike\""
+  },
+  {
+    "key": "Thor32",
+    "fingerprint": "v2:3b13a8c97ecf4d0d3ffd4ef4d8491e056b8536a1b7f2b5d3aaa2ead7cbb79a85",
+    "query": "dc.title=\"the fundamentals of learning\" and dc.author=\"thorndike\""
+  },
+  {
+    "key": "ThruEtal06",
+    "fingerprint": "v2:7508829f23fede130c7b92852c9341827774930a028edb1f8321fdf0c768f1a9",
+    "query": "dc.title=\"probabilistic robotics\" and dc.author=\"thrun\""
+  },
+  {
+    "key": "Titc16",
+    "fingerprint": "v2:42c8685e0af32307934bd2d8bf30403c2704499d8573b244ed5651f31774c15a",
+    "query": "dc.title=\"a beginner s psychology\" and dc.author=\"titchener\""
+  },
+  {
+    "key": "Torg58",
+    "fingerprint": "v2:6b1657910f1a22a6af0e84ff41441bc17b4c40d21c5e9186751656d689749d31",
+    "query": "dc.title=\"theory and methods of scaling\" and dc.author=\"torgerson\""
+  },
+  {
+    "key": "TuftGrav83",
+    "fingerprint": "v2:06fc1109985aadd99e86136ee5033f258efc10d2ccf0763e6b62b86a63a921e2",
+    "query": "dc.title=\"the visual display of quantitative information\" and dc.author=\"tufte\""
+  },
+  {
+    "key": "Tulv83",
+    "fingerprint": "v2:fb9f991fde0654dffb9cd1731c42724ae885ff07da4fad1cee72a3b950351625",
+    "query": "dc.title=\"elements of episodic memory\" and dc.author=\"tulving\""
+  },
+  {
+    "key": "TulvDona72",
+    "fingerprint": "v2:63cca71f941873f57bf9460e50418b19ae90bb0cba664ba01f6aca797d3f7185",
+    "query": "dc.title=\"organization of memory\" and dc.author=\"tulving\""
+  },
+  {
+    "key": "Unde83",
+    "fingerprint": "v2:c94c933b3f6c6adf8e272d93e7784ec2c127accd8cd8e754453d98e7980ac948",
+    "query": "dc.title=\"attributes of memory\" and dc.author=\"underwood\""
+  },
+  {
+    "key": "UndeShul60",
+    "fingerprint": "v2:f0a2be6a9121e61b7dfe70899d2828f3028407915e75530974fc2d8d6ab6d09a",
+    "query": "dc.title=\"meaningfulness and verbal learning\" and dc.author=\"underwood\""
+  },
+  {
+    "key": "Vapn95",
+    "fingerprint": "v2:af8065347248506c2f78f40c66b2212917d58b8f462043fb9f732501bbd9f39b",
+    "query": "dc.title=\"the nature of statistical learning theory\" and dc.author=\"vapnick\""
+  },
+  {
+    "key": "VenaRipl02",
+    "fingerprint": "v2:00b58f73cdff47671654ea0a5d9ac838d039803d87be5daf9ece034cab5e16a4",
+    "query": "dc.title=\"modern applied statistics with s\" and dc.author=\"venables\""
+  },
+  {
+    "key": "Warr19",
+    "fingerprint": "v2:e7fb976b420fb0b766c89ea0600a4b535ebe83640054bc8d4303e8493e7e2a79",
+    "query": "dc.title=\"human psychology\" and dc.author=\"warren\""
+  },
+  {
+    "key": "Wass04",
+    "fingerprint": "v2:831732e5fd604b7cae04253fbbc059a60149e39eb77bd1d6672f987fa2d9f743",
+    "query": "dc.title=\"all of statistics\" and dc.author=\"wasserman\""
+  },
+  {
+    "key": "Wear16",
+    "fingerprint": "v2:35d5c81ce98a8147b7d95c7c56278382d08f265eb722a7e5a20d38315b657b72",
+    "query": "dc.title=\"the psychology of time perception\" and dc.author=\"wearden\""
+  },
+  {
+    "key": "Wech08",
+    "fingerprint": "v2:77201bd0853213de00469771e9765708068cabb25581486394db3397d89cd191",
+    "query": "dc.title=\"wechsler adult intelligence scale\" and dc.author=\"wechsler\""
+  },
+  {
+    "key": "Wern84",
+    "fingerprint": "v2:41b4b21afaf678cb3c9cf090dce36ca3a914150dcc6981b5e7369053f0d5aa84",
+    "query": "dc.title=\"grundriss der psychiatrie\" and dc.author=\"wernicke\""
+  },
+  {
+    "key": "Whor56",
+    "fingerprint": "v2:744dd935ad7911551fb4eb2ee7a2d1fbffd51d798892274f154d9aa2d0c5af05",
+    "query": "dc.title=\"language thought and reality selected writings of benjamin lee whorf\" and dc.author=\"whorf\""
+  },
+  {
+    "key": "Wick02",
+    "fingerprint": "v2:049f6506be32ecc821a1fc5797ef71d24d9afecff04cb85dbcd774a9db84b0f9",
+    "query": "dc.title=\"elementary signal detection theory\" and dc.author=\"wickens\""
+  },
+  {
+    "key": "Wood38",
+    "fingerprint": "v2:8445a2f3100fdaf27f8a0d4617642323cd78877ded2153afa10f3c7377d9a2de",
+    "query": "dc.title=\"experimental psychology\" and dc.author=\"woodworth\""
+  },
+  {
+    "key": "Yate66",
+    "fingerprint": "v2:7c3d4699b4bcff0141a8e005da38c1609d4339c43cd3087d41efc9b25ff29cb5",
+    "query": "dc.title=\"the art of memory\" and dc.author=\"yates\""
+  },
+  {
+    "key": "Zar10",
+    "fingerprint": "v2:2184b7efb175180353aa2cd13470ff6b9f94c51416c4951a999b852a88aa61bb",
+    "query": "dc.title=\"biostatistical analysis\" and dc.author=\"zar\""
+  },
+  {
+    "key": "vandGlas00",
+    "fingerprint": "v2:61e4150dcd2ca083f02fdfebc2bd68f5622c7c77e7146a7a4597abda798a4881",
+    "query": "dc.title=\"computerized adaptive testing theory and practice\" and dc.author=\"van der linden\""
+  },
+  {
+    "key": "yCaj91",
+    "fingerprint": "v2:2b7b77a48a047b7ba3854c089de8d8974fc3bc853c5cae090ea16fb16a539a7d",
+    "query": "dc.title=\"cajal s degeneration and regeneration of the nervous system\" and dc.author=\"y cajal\""
+  }
+]

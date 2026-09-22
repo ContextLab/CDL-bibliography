@@ -1,0 +1,32 @@
+[
+  {
+    "key": "Badd90",
+    "fingerprint": "v2:03a9bad86b735a57e83c8930b389870aba27d9a4788c6879a42fee36ffe53351",
+    "query": "dc.title=\"human memory theory and practice\" and dc.author=\"baddeley\" and (dc.date=\"1990\" or dc.date=\"c1990\")"
+  },
+  {
+    "key": "BorgGroe05",
+    "fingerprint": "v2:5331b03c3f9b4d14243e8db566ccdebd8f9589a79cd921b2e09175764c980b47",
+    "query": "dc.title=\"modern multidimensional scaling theory and applications\" and dc.author=\"borg\" and (dc.date=\"2005\" or dc.date=\"c2005\")"
+  },
+  {
+    "key": "Fust05",
+    "fingerprint": "v2:1901efc1dbc30ba38c81bdc8df7f080705557b9b172560b8874354193e3a1ea0",
+    "query": "dc.title=\"cortex and mind unifying cognition\" and dc.author=\"fuster\" and (dc.date=\"2005\" or dc.date=\"c2005\")"
+  },
+  {
+    "key": "Luck05",
+    "fingerprint": "v2:cf4824dfd564333509801ffca80fa544f21f384c467f9ffbcd350ea33d54ae6e",
+    "query": "dc.title=\"an introduction to the event related potential technique\" and dc.author=\"luck\" and (dc.date=\"2005\" or dc.date=\"c2005\")"
+  },
+  {
+    "key": "NoceWrig06",
+    "fingerprint": "v2:060bbff3b051d816f8886b2b42c50518828431dd2651274397c0bca67059efd2",
+    "query": "dc.title=\"numerical optimization\" and dc.author=\"nocedal\" and (dc.date=\"2006\" or dc.date=\"c2006\")"
+  },
+  {
+    "key": "SuttBart98",
+    "fingerprint": "v2:be1a2400accc60081b60187eb8bcbd76508cddf55007c7fef5200d43781434a3",
+    "query": "dc.title=\"reinforcement learning an introduction\" and dc.author=\"sutton\" and (dc.date=\"1998\" or dc.date=\"c1998\")"
+  }
+]

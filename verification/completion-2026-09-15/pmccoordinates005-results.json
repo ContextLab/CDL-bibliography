@@ -1,0 +1,68 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 95.1,
+      "network_requests": 10,
+      "added_review_records": 22,
+      "batch_statuses": {
+        "metadata_verified": 9
+      },
+      "library_statuses": {
+        "metadata_verified": 3525,
+        "needs_review": 2897
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 71.42,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 9
+      },
+      "library_statuses": {
+        "metadata_verified": 3525,
+        "needs_review": 2897
+      }
+    }
+  ],
+  "entries": {
+    "HabeKnut09": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:a0f829d5473994d0fa5850b5661a631e34ebfa0c7c0fd474bf99b6ffccbcbb0c"
+    },
+    "JenkRang10": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:170bb5159dff006743c7d1f82a68476c19567655dd8f11a8c85265c38e318baf"
+    },
+    "KimEtal14": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:5bbd061552bf75e0564f7499140552a50f63d59e0b4b780fe726341fbb3e2d65"
+    },
+    "LianEtal12": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:32706f500141c77bf1df3c094fee4a96f4d4039e544640cad5f671267c4f05cf"
+    },
+    "LiviHube87": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:06d4f9ea7f41458bc6c693e8ade2470dc6e9ba8dc4f486d5b02e4e1f5de769f4"
+    },
+    "Ojem91": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:3d32ad1cb008f6c48182a5ea4fae9b70c84f68f86727cc85d6c5b150768a6446"
+    },
+    "SpieEtal13": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:ed97c7538c29d29a5c2f27f74798ef2019a03c5fe53dc8f5a6d4f1f67891f299"
+    },
+    "YeunEtal06": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:187b5e0983ee9b586d8ef19c16f8853b734b0f9771ce6c68f2a140901662b015"
+    },
+    "deGaEtal12": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:3b0c75f39e50d9a682e2502681b2a120393459790583f7d994aed3d20ea5cc1a"
+    }
+  }
+}

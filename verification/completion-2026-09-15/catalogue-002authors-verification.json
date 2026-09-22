@@ -1,0 +1,31 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 24.26,
+      "network_requests": 0,
+      "review_writes": 167,
+      "statuses": {
+        "metadata_verified": 3548,
+        "needs_review": 2874
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 23.99,
+      "network_requests": 0,
+      "review_writes": 0,
+      "statuses": {
+        "metadata_verified": 3548,
+        "needs_review": 2874
+      }
+    }
+  ],
+  "new_approvals": {
+    "GelmHill07": "14341096",
+    "CoheEich93": "4869585",
+    "GallKing09": "15486448",
+    "BraiReyn05": "13610242",
+    "RogeMcCl04": "13430657"
+  }
+}

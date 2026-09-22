@@ -4,7 +4,7 @@ import hashlib
 import re
 import xml.etree.ElementTree as ET
 
-from auto_review import safe_compare, select_result
+from auto_review import blocking_pubmed_relationships, safe_compare, select_result
 from verification import (
     POLICY,
     normalize_doi,
@@ -33,7 +33,21 @@ def front_record(xml, primary, medline):
     if len(xml) > 20_000_000:
         raise ValueError("Article XML exceeds 20 MB")
     root = ET.fromstring(xml)
-    if root.tag != "article" or root.get("article-type") not in {
+    # Historical J Neurosci deposits use "other" plus the explicit section
+    # heading "Articles". The DOI-linked registry and MED publication type
+    # must independently establish the journal-article type in that case.
+    legacy_jneurosci = (
+        root.get("article-type") == "other"
+        and primary.get("type") == "journal-article"
+        and normalize_doi(primary.get("DOI", "")).startswith("10.1523/jneurosci.")
+        and "0270-6474" in primary.get("ISSN", [])
+        and "0270-6474" in [element_text(x) for x in root.findall("./front/journal-meta/issn")]
+        and [element_text(x) for x in root.findall("./front/article-meta/article-categories/subj-group/subject")] == ["Articles"]
+        and "Journal Article" in medline.get("pubTypeList", {}).get("pubType", [])
+        and not any(word in str(medline.get("pubTypeList", {})).lower()
+                    for word in ("errat", "retract", "correct", "preprint", "expression of concern"))
+    )
+    if root.tag != "article" or (root.get("article-type") not in {
         "research-article",
         "review-article",
         "brief-report",
@@ -42,14 +56,16 @@ def front_record(xml, primary, medline):
         "editorial",
         "commentary",
         "methods-article",
-    }:
+    } and not legacy_jneurosci):
         raise ValueError("Unrecognized or non-journal full-text publication type")
     meta, journal = root.find("./front/article-meta"), root.find("./front/journal-meta")
     if meta is None or journal is None:
         raise ValueError("Full text lacks article front matter")
     identifiers = meta.findall("./article-id")
     if any(
-        x.get("pub-id-type") in {"manuscript", "archive", "arxiv"} for x in identifiers
+        x.get("pub-id-type") in {
+            "manuscript", "manuscript-id", "manuscript-id-alternative", "archive", "arxiv"
+        } for x in identifiers
     ):
         raise ValueError("Author manuscript/preprint requires explicit version review")
     versions = meta.findall("./article-version")
@@ -86,10 +102,17 @@ def front_record(xml, primary, medline):
             name = person.find("./name")
             collab = person.find("./collab")
             if name is not None:
+                given_node = name.find("./given-names")
+                given = element_text(given_node)
+                # Split packed initials only when the source itself explicitly
+                # labels this exact string as initials; never guess from caps.
+                if (given_node is not None and given_node.get("initials") == given
+                        and re.fullmatch(r"[A-Z]{1,5}", given)):
+                    given = " ".join(given)
                 people.append(
                     {
                         "family": element_text(name.find("./surname")),
-                        "given": element_text(name.find("./given-names")),
+                        "given": given,
                         "suffix": element_text(name.find("./suffix")),
                     }
                 )
@@ -201,8 +224,8 @@ def assess_fulltext(fields, primary, medline, response):
             issues.append(
                 "Full-text and PubMed pagination do not establish the same article"
             )
-        if medline.get("commentCorrectionList") or medline.get("isRetracted") == "Y":
-            issues.append("PubMed reports a comment/correction/retraction relationship")
+        if blocking_pubmed_relationships(medline) or medline.get("isRetracted") == "Y":
+            issues.append("PubMed reports a correction/retraction/version or unrecognized relationship")
     except (ValueError, TypeError, KeyError, AttributeError, ET.ParseError) as exc:
         issues.append(f"Full-text evidence unresolved: {exc}")
     # Portable evidence contains front-matter metadata only. The full downloaded
@@ -218,6 +241,7 @@ def assess_fulltext(fields, primary, medline, response):
                 if child.tag not in {
                     "article-id",
                     "article-version",
+                    "article-categories",
                     "related-article",
                     "title-group",
                     "contrib-group",
@@ -241,13 +265,16 @@ def assess_fulltext(fields, primary, medline, response):
         "issues": issues,
         "retrieved_at": response["retrieved_at"],
         "xml_sha256": sha,
-        "authority": "Publisher article front matter via Europe PMC",
+        "authority": ("PMC OAI article front matter" if response["url"].startswith("https://pmc.ncbi.nlm.nih.gov/api/oai/")
+                      else "Publisher article front matter via Europe PMC"),
         "raw_xml": xml,
         "medline_record": medline,
     }
 
 
-def run_fulltext_review(filename, cache, client, report, limit=None, snapshot=None):
+def run_fulltext_review(
+    filename, cache, client, report, limit=None, snapshot=None, keys=None
+):
     validate_output_path(filename, report, cache)
     if snapshot:
         validate_output_path(filename, snapshot, cache)
@@ -256,6 +283,8 @@ def run_fulltext_review(filename, cache, client, report, limit=None, snapshot=No
         entries = load_entries(filename)
         try:
             for key, entry in entries.items():
+                if keys is not None and key not in keys:
+                    continue
                 previous = cache.get(filename, entry)
                 if (
                     not previous
@@ -263,11 +292,18 @@ def run_fulltext_review(filename, cache, client, report, limit=None, snapshot=No
                     or previous.get("external_evidence")
                 ):
                     continue
-                if (
-                    previous.get("auto_review", {}).get("fulltext_checked")
-                    and previous.get("auto_review", {}).get("fulltext_policy") == "1"
-                ):
-                    continue
+                # Discovery may add another DOI-linked PMC article after an
+                # earlier full-text pass. Remember individual source queries,
+                # including negative responses, instead of skipping the entry.
+                checked_pmcids = set(previous.get("auto_review", {}).get("fulltext_checked_pmcids", []))
+                for attempt in previous.get("attempts", []):
+                    if attempt.get("source") == "pmc-jats":
+                        match = re.fullmatch(
+                            r"https://www\.ebi\.ac\.uk/europepmc/webservices/rest/(PMC\d+)/fullTextXML",
+                            attempt.get("url", ""),
+                        )
+                        if match and isinstance(attempt.get("http_status"), int):
+                            checked_pmcids.add(match[1])
                 targets = {}
                 for candidate in previous.get("candidates", []):
                     raw = candidate.get("raw_record", {})
@@ -276,6 +312,7 @@ def run_fulltext_review(filename, cache, client, report, limit=None, snapshot=No
                         candidate.get("source") == "europepmc"
                         and raw.get("isOpenAccess") == "Y"
                         and re.fullmatch(r"PMC\d+", pmcid)
+                        and pmcid not in checked_pmcids
                     ):
                         primary = next(
                             (
@@ -301,6 +338,7 @@ def run_fulltext_review(filename, cache, client, report, limit=None, snapshot=No
                         + "/fullTextXML"
                     )
                     response = client.get(url, xml=True)
+                    checked_pmcids.add(pmcid)
                     attempts.append(
                         {
                             "source": "pmc-jats",
@@ -313,11 +351,15 @@ def run_fulltext_review(filename, cache, client, report, limit=None, snapshot=No
                             assess_fulltext(entry["fields"], primary, raw, response)
                         )
                 result = select_result(entry["fields"], candidates, attempts)
+                for name in ("research_attempt", "discovery_review"):
+                    if name in previous:
+                        result[name] = previous[name]
                 result["auto_review"] = dict(
                     previous.get("auto_review", {}),
                     policy=POLICY,
                     fulltext_checked=True,
                     fulltext_policy="1",
+                    fulltext_checked_pmcids=sorted(checked_pmcids),
                 )
                 cache.put(filename, entry, result)
                 checked += 1

@@ -22,6 +22,7 @@ from verification import (
     compare_record,
     load_entries,
     normalized,
+    normalize_journal,
 )
 from test_verification import response
 
@@ -80,11 +81,59 @@ def secondary(fields, record, raw):
     )
 
 
+@pytest.mark.parametrize("notice", ["Erratum in", "Retraction in", "Corrected and republished in", "Expression of concern in"])
+def test_registry_match_cannot_hide_secondary_correction_notice(sample, notice):
+    fields, record, raw = sample
+    record["published"] = record["published-print"]
+    primary = candidate(fields, record)
+    assert not primary["issues"]
+    raw["commentCorrectionList"] = {"commentCorrection": [{"type": notice, "reference": "Notice"}]}
+    source = secondary(fields, record, raw)
+    for local in (fields, dict(fields, doi=record["DOI"])):
+        result = select_result(local, [primary, source], [])
+        assert result["status"] == "needs_review"
+        assert any("notice" in issue for issue in result["issues"])
+
+
+def test_correction_notice_does_not_block_another_doi(sample):
+    fields, record, raw = sample
+    record["published"] = record["published-print"]
+    primary = candidate(fields, record)
+    source = secondary(fields, record, raw)
+    source["doi"] = source["raw_record"]["doi"] = "10.1234/unrelated"
+    source["raw_record"]["isRetracted"] = "Y"
+    assert select_result(dict(fields, doi=record["DOI"]), [primary, source], [])["status"] == "metadata_verified"
+
+
 def test_literal_punctuation_never_disappears():
     for punctuation in ("&", "%", "#"):
         assert punctuation in normalized("A " + punctuation + " B")
         assert normalized("A " + punctuation + " B") != normalized("A B")
     assert normalized("A &amp; B") == normalized(r"A \& B")
+
+
+def test_audited_journal_variants_are_exact_and_confined_to_venues():
+    short = "Proceedings of the National Academy of Sciences, {USA}"
+    full = "Proceedings of the National Academy of Sciences of the United States of America"
+    assert normalize_journal(short) == normalize_journal(full)
+    assert normalized(short) != normalized(full)
+    assert normalize_journal(
+        "Proceedings of the National Academy of Sciences, India"
+    ) != normalize_journal(full)
+    assert normalize_journal("The Journal of Neuroscience") == normalize_journal(
+        "Journal of Neuroscience"
+    )
+    assert normalize_journal("Journal of Mathematical Psychology") != normalize_journal(
+        "Journal of Mathematical Psychobiology"
+    )
+
+
+def test_formatting_force_does_not_override_source_disagreement(sample):
+    fields, record, _ = sample
+    fields = dict(fields, force="True", year="1900")
+    evidence, issues = compare_record(fields, record)
+    assert not evidence["year"]["match"]
+    assert any(issue.startswith("year:") for issue in issues)
 
 
 def test_optional_issue_is_advisory_but_wrong_issue_blocks(sample):

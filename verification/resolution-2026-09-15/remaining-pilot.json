@@ -1,0 +1,57 @@
+{
+  "Brun04": {
+    "finding": "The publisher identifies a separate 2005 erratum, volume 143 issue 2 page 237. Its effect on the 2004 article has not been established; the original citation remains unchanged.",
+    "source": "https://www.sciencedirect.com/science/article/abs/pii/S016502700500083X",
+    "next_evidence": "Read the erratum text for DOI 10.1016/j.jneumeth.2005.03.001 and record which bibliographic or substantive information it corrects. Scripted retrieval returned 403."
+  },
+  "Kerb14": {
+    "finding": "Crossref supplies locator 11.IT.3.1, but the accessible publisher excerpt does not independently label that value as pagination. No locator was inferred from the DOI.",
+    "source": "https://journals.sagepub.com/doi/10.2466/11.IT.3.1",
+    "next_evidence": "Original article or official citation export explicitly naming the locator; scripted publisher request returned 403."
+  },
+  "WitmEtal96": {
+    "finding": "Academic Press is a historical imprint, distinct from current registry publisher Elsevier BV. The exact corporate-name rule intentionally does not merge them.",
+    "source": "https://www.sciencedirect.com/science/article/pii/S1071581996900609",
+    "next_evidence": "Original 1996 issue/article publisher statement or dated imprint authority; scripted publisher request returned 403."
+  },
+  "GuptEtal12": {
+    "finding": "Nature Publishing Group cannot be certified by equating it with present registry name Springer Science and Business Media LLC.",
+    "source": "https://www.nature.com/articles/nn.3138",
+    "next_evidence": "Original 2012 publisher statement or dated imprint authority. The scripted request redirected to a host outside the collector allowlist."
+  },
+  "KoenEtal07": {
+    "finding": "Article identity and 2007 coordinates agree, but the Nature Publishing Group imprint is not corroborated by present Springer registry branding.",
+    "source": "https://www.nature.com/articles/nature05631",
+    "next_evidence": "Original 2007 publisher statement or dated imprint authority. No acquisition-based alias was added."
+  },
+  "BretEtal02": {
+    "finding": "Nature Publishing Group and the current registry publisher are historically distinct labels.",
+    "source": "https://www.nature.com/articles/nrn756",
+    "next_evidence": "Original 2002 publisher statement or dated imprint authority; current hosting does not resolve the field."
+  },
+  "Nico03": {
+    "finding": "The article metadata agrees apart from the historical Nature Publishing Group publisher field.",
+    "source": "https://www.nature.com/articles/nrn1105",
+    "next_evidence": "Original 2003 publisher statement or dated imprint authority; current hosting does not resolve the field."
+  },
+  "HamaEtal08": {
+    "finding": "Little, Brown, and Co is unsupported by the article's Wiley registry/landing page. That page mentions Little, Brown only inside a 1954 reference; it cannot establish this article's publisher.",
+    "source": "https://onlinelibrary.wiley.com/doi/abs/10.1002/ana.21295",
+    "next_evidence": "The 2008 article or issue front matter naming the original Wiley entity/imprint. Retained as unresolved rather than guessing an exact replacement."
+  },
+  "AherBeat81": {
+    "finding": "Changed the misused organization=Springer field to publisher=Plenum Press. The chapter page identifies the 1981 Plenum Press copyright, while its current citation block names Springer US. This historical distinction remains explicit.",
+    "source": "https://link.springer.com/chapter/10.1007/978-1-4684-1083-9_9",
+    "next_evidence": "Original book title/verso page identifying the 1981 publisher, then a narrowly scoped historical-imprint verifier."
+  },
+  "Cohe90": {
+    "finding": "The publisher page explicitly dates the issue August 1990, volume 81 issue 3 pages 287-297. Crossref also carries an online date in 2011. The new automated date parser is limited to Cambridge, so this remains unresolved in automation.",
+    "source": "https://bpspsychub.onlinelibrary.wiley.com/doi/abs/10.1111/j.2044-8295.1990.tb02362.x",
+    "next_evidence": "A machine-readable Wiley issue-date source with matching DOI/author/volume/pages; scripted retrieval returned 403."
+  },
+  "WiggEtal99": {
+    "finding": "Crossref supplies October 1998 while PubMed supplies 1999 for volume 37 issue 1 pages 103-118. Neither date was selected solely by majority or by DOI digits.",
+    "source": "https://doi.org/10.1016/S0028-3932(98)00044-X",
+    "next_evidence": "Original issue cover/front matter or article PDF that settles the journal issue date. Publisher page retrieval was unavailable."
+  }
+}

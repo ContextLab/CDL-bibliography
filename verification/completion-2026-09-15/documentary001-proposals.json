@@ -1,0 +1,38 @@
+[
+  {
+    "key": "Dijk59",
+    "fingerprint": "v2:81571dcb4159ede9e37374f2f86efb63ca05ca2230caa746bafd46797be94608",
+    "changes": {
+      "doi": {
+        "before": null,
+        "after": "10.1007/BF01386390"
+      }
+    },
+    "source_audit": "local-ocr-audit.json",
+    "reason": "Documentary correction only; no manual approval. Reverify complete edited entry via normal DOI metadata route."
+  },
+  {
+    "key": "Sper60",
+    "fingerprint": "v2:027cbad39cbe82be249885a71bf81c04a1d633c805466d5ad52618fa6325321e",
+    "changes": {
+      "title": {
+        "before": "The information available in brief visual presentation",
+        "after": "The information available in brief visual presentations"
+      },
+      "journal": {
+        "before": "Pyschological Monographs",
+        "after": "Psychological Monographs: General and Applied"
+      },
+      "pages": {
+        "before": "22",
+        "after": "1--29"
+      },
+      "doi": {
+        "before": null,
+        "after": "10.1037/h0093759"
+      }
+    },
+    "source_audit": "local-ocr-audit.json",
+    "reason": "Documentary correction only; no manual approval. Reverify complete edited entry via normal DOI metadata route."
+  }
+]

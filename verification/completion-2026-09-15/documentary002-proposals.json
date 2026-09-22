@@ -1,0 +1,70 @@
+[
+  {
+    "key": "Brem78",
+    "fingerprint": "v2:4a527336c0e5c0cdf20c446d9b2f115b4ecea03ec561ff87bd6662fa31628076",
+    "changes": {
+      "title": {
+        "before": "Egocentric versus allocentric spatial coding in nine-month old infants: factors influencing the choice of code",
+        "after": "Egocentric versus allocentric spatial coding in nine-month-old infants: factors influencing the choice of code"
+      },
+      "doi": {
+        "before": null,
+        "after": "10.1037/0012-1649.14.4.346"
+      }
+    },
+    "source_audit": "documentary002-source-checks.json",
+    "reason": "Individually source-audited correction; ordinary metadata verification still required."
+  },
+  {
+    "key": "CraiLock72",
+    "fingerprint": "v2:cbf2029dbf20d321ba86b8b66303bcd5f072a459bceb9034c4cf4d45fd3322ce",
+    "changes": {
+      "title": {
+        "before": "Levels of processing : a framework for memory research",
+        "after": "Levels of processing: a framework for memory research"
+      }
+    },
+    "source_audit": "documentary002-source-checks.json",
+    "reason": "Individually source-audited correction; ordinary metadata verification still required."
+  },
+  {
+    "key": "RobbMonr51",
+    "fingerprint": "v2:df2e8e2c5f2b58fd0336ec358839ea387f84b820fb869e423fa2de98401d8007",
+    "changes": {
+      "pages": {
+        "before": "327--495",
+        "after": "400--407"
+      },
+      "doi": {
+        "before": null,
+        "after": "10.1214/aoms/1177729586"
+      }
+    },
+    "source_audit": "documentary002-source-checks.json",
+    "reason": "Individually source-audited correction; ordinary metadata verification still required."
+  },
+  {
+    "key": "StanEtal06",
+    "fingerprint": "v2:5405285b45353aaa93e2638c92d0aefe53b8b0753d54d34de5b418120889d930",
+    "changes": {
+      "journal": {
+        "before": "Journal of Experiment Psychology: Human Perception and Performance",
+        "after": "Journal of Experimental Psychology: Human Perception and Performance"
+      }
+    },
+    "source_audit": "documentary002-source-checks.json",
+    "reason": "Individually source-audited correction; ordinary metadata verification still required."
+  },
+  {
+    "key": "CoheEtal16",
+    "fingerprint": "v2:dc3411fcca046eff7d058c3aae87cc639bd18feacba35a8b075b82448a20835e",
+    "changes": {
+      "author": {
+        "before": "Iris Cohen and Willem-Park Brinkman and Mark A Neerincx",
+        "after": "Iris Cohen and Willem-Paul Brinkman and Mark A Neerincx"
+      }
+    },
+    "source_audit": "documentary002-source-checks.json",
+    "reason": "Individually source-audited correction; ordinary metadata verification still required."
+  }
+]

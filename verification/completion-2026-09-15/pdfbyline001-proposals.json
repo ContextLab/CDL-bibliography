@@ -1,0 +1,405 @@
+[
+  {
+    "kind": "corroborated_author",
+    "key": "GuimAmar05",
+    "fingerprint": "v2:57517ee7a22d948dbb76d06d51b3e268a0a608d4e21502be4fd0d5a455e3d497",
+    "changes": {
+      "author": {
+        "before": "R Guimer\\`{a} and L A N Amaral",
+        "after": "Roger Guimer\u00e0 and Lu\u00eds A {Nunes Amaral}"
+      }
+    },
+    "doi": "10.1038/nature03288",
+    "pubmed_id": "15729348",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 7028"
+      ],
+      "doi": "10.1038/nature03288",
+      "evidence": {
+        "author": {
+          "detail": "Author surnames/order differ",
+          "local": "R Guimer\\`{a} and L A N Amaral",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Guimer\u00e0",
+              "given": "Roger",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Nunes Amaral",
+              "given": "Lu\u00eds A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Nature",
+          "match": true,
+          "source": [
+            "Nature"
+          ]
+        },
+        "pages": {
+          "local": "895--900",
+          "match": true,
+          "source": [
+            "895-900"
+          ]
+        },
+        "title": {
+          "local": "Functional cartography of complex metabolic networks",
+          "match": true,
+          "source": [
+            "Functional cartography of complex metabolic networks"
+          ]
+        },
+        "volume": {
+          "local": "433",
+          "match": true,
+          "source": [
+            "433"
+          ]
+        },
+        "year": {
+          "local": "2005",
+          "match": true,
+          "source": [
+            "2005"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author surnames/order differ"
+      ],
+      "record": {
+        "DOI": "10.1038/nature03288",
+        "ISSN": [
+          "0028-0836",
+          "1476-4687"
+        ],
+        "URL": "https://doi.org/10.1038/nature03288",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Guimer\u00e0",
+            "given": "Roger",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Nunes Amaral",
+            "given": "Lu\u00eds A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Nature"
+        ],
+        "issue": "7028",
+        "issued": {
+          "date-parts": [
+            [
+              2005,
+              2
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "http://www.nature.com/articles/nature03288.pdf",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "http://www.nature.com/articles/nature03288",
+            "content-type": "text/html",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "http://www.nature.com/articles/nature03288.pdf",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "895-900",
+        "published": {
+          "date-parts": [
+            [
+              2005,
+              2
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2005,
+              2
+            ]
+          ]
+        },
+        "publisher": "Springer Science and Business Media LLC",
+        "title": [
+          "Functional cartography of complex metabolic networks"
+        ],
+        "type": "journal-article",
+        "volume": "433"
+      },
+      "retrieved_at": "2026-09-17T20:37:27.632603+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1038/nature03288"
+    },
+    "secondary": {
+      "doi": "10.1038/nature03288",
+      "evidence": {
+        "author": {
+          "detail": "Author surnames/order differ",
+          "local": "R Guimer\\`{a} and L A N Amaral",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Guimer\u00e0",
+              "given": "Roger",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Nunes Amaral",
+              "given": "Lu\u00eds A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Nature",
+          "match": true,
+          "source": [
+            "Nature"
+          ]
+        },
+        "pages": {
+          "local": "895--900",
+          "match": true,
+          "source": [
+            "895-900"
+          ]
+        },
+        "title": {
+          "local": "Functional cartography of complex metabolic networks",
+          "match": true,
+          "source": [
+            "Functional cartography of complex metabolic networks"
+          ]
+        },
+        "volume": {
+          "local": "433",
+          "match": true,
+          "source": [
+            "433"
+          ]
+        },
+        "year": {
+          "local": "2005",
+          "match": true,
+          "source": [
+            "2005"
+          ]
+        }
+      },
+      "issues": [
+        "author: Author surnames/order differ",
+        "Secondary author: missing evidence or mismatch"
+      ],
+      "raw_record": {
+        "authorList": {
+          "author": [
+            {
+              "authorAffiliationDetailsList": {
+                "authorAffiliation": [
+                  {
+                    "affiliation": "NICO and Department of Chemical and Biological Engineering, Northwestern University, Evanston, Illinois 60208, USA."
+                  }
+                ]
+              },
+              "authorId": {
+                "type": "ORCID",
+                "value": "0000-0002-3597-4310"
+              },
+              "firstName": "Roger",
+              "fullName": "Guimer\u00e0 R",
+              "initials": "R",
+              "lastName": "Guimer\u00e0"
+            },
+            {
+              "firstName": "Lu\u00eds A",
+              "fullName": "Nunes Amaral LA",
+              "initials": "LA",
+              "lastName": "Nunes Amaral"
+            }
+          ]
+        },
+        "doi": "10.1038/nature03288",
+        "firstPublicationDate": "2005-02-01",
+        "fullTextUrlList": {
+          "fullTextUrl": [
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Unpaywall",
+              "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2175124"
+            },
+            {
+              "availability": "Subscription required",
+              "availabilityCode": "S",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1038/nature03288"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "html",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC2175124"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "pdf",
+              "site": "Europe_PMC",
+              "url": "https://europepmc.org/articles/PMC2175124?pdf=render"
+            },
+            {
+              "availability": "Free",
+              "availabilityCode": "F",
+              "documentStyle": "doi",
+              "site": "DOI",
+              "url": "https://doi.org/10.1038/nature03288"
+            }
+          ]
+        },
+        "id": "15729348",
+        "isOpenAccess": "N",
+        "journalInfo": {
+          "dateOfPublication": "2005 Feb",
+          "issue": "7028",
+          "journal": {
+            "essn": "1476-4687",
+            "isoabbreviation": "Nature",
+            "issn": "0028-0836",
+            "medlineAbbreviation": "Nature",
+            "nlmid": "0410462",
+            "title": "Nature"
+          },
+          "journalIssueId": 1220534,
+          "monthOfPublication": 2,
+          "printPublicationDate": "2005-02-01",
+          "volume": "433",
+          "yearOfPublication": 2005
+        },
+        "pageInfo": "895-900",
+        "pmcid": "PMC2175124",
+        "pubTypeList": {
+          "pubType": [
+            "Research Support, U.S. Gov't, P.H.S.",
+            "Research Support, Non-U.S. Gov't",
+            "research-article",
+            "Journal Article"
+          ]
+        },
+        "pubYear": "2005",
+        "source": "MED",
+        "title": "Functional cartography of complex metabolic networks."
+      },
+      "record": {
+        "DOI": "10.1038/nature03288",
+        "ISSN": [
+          "0028-0836",
+          "1476-4687"
+        ],
+        "author": [
+          {
+            "family": "Guimer\u00e0",
+            "given": "Roger",
+            "suffix": ""
+          },
+          {
+            "family": "Nunes Amaral",
+            "given": "Lu\u00eds A",
+            "suffix": ""
+          }
+        ],
+        "container-title": [
+          "Nature",
+          "Nature",
+          "Nature",
+          "Nature"
+        ],
+        "issue": "7028",
+        "page": "895-900",
+        "published": {
+          "date-parts": [
+            [
+              2005
+            ]
+          ]
+        },
+        "title": [
+          "Functional cartography of complex metabolic networks"
+        ],
+        "type": "journal-article",
+        "volume": "433"
+      },
+      "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.31234%2Fosf.io%2Fxbmyn%22+OR+DOI%3A%2210.1073%2Fpnas.1814843115%22+OR+DOI%3A%2210.1002%2Fhipo.23007%22+OR+DOI%3A%2210.31234%2Fosf.io%2F9tcrp%22+OR+DOI%3A%2210.1080%2F02699931.2018.1478280%22+OR+DOI%3A%2210.1101%2F327601%22+OR+DOI%3A%2210.1016%2Fj.cub.2018.03.051%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhy071%22+OR+DOI%3A%2210.31219%2Fosf.io%2Fh7pwt%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fzdrfg_v1%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fzdrfg%22+OR+DOI%3A%2210.1037%2F0278-7393.6.3.225%22+OR+DOI%3A%2210.1103%2Fphysreve.71.056103%22+OR+DOI%3A%2210.1038%2Fnature03288%22+OR+DOI%3A%2210.1073%2Fpnas.0701519104%22+OR+DOI%3A%2210.1038%2Fs41593-018-0148-7%22+OR+DOI%3A%2210.1109%2F18.61115%22+OR+DOI%3A%2210.2307%2F3033543%22+OR+DOI%3A%2210.3758%2Fs13423-017-1309-5%22+OR+DOI%3A%2210.1137%2F1.9781611972887.9%22+OR+DOI%3A%2210.1140%2Fepjb%2Fe2004-00111-4%22+OR+DOI%3A%2210.1016%2Fj.socnet.2004.11.009%22+OR+DOI%3A%2210.1002%2Face.5%22+OR+DOI%3A%2210.1145%2F1553374.1553463%22+OR+DOI%3A%2210.1038%2Fnn.4406%22&format=json&resultType=core&pageSize=100",
+      "resolved_findings": [],
+      "retrieved_at": "2026-09-10T00:59:17.219411+00:00",
+      "source": "europepmc",
+      "url": "https://europepmc.org/article/MED/15729348"
+    }
+  }
+]

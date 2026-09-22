@@ -1,6 +1,6 @@
 """Broaden source discovery without relaxing existing metadata acceptance rules."""
 
-from auto_review import reassess
+from auto_review import reassess, target_dois
 from verification import (
     assess_candidates,
     current_results,
@@ -63,6 +63,20 @@ def run_discovery_review(filename, cache, client, report, limit=10, keys=None):
                 result = reassess(
                     entry, combined
                 )  # Recompute from documentary records.
+                # New title-search candidates need their own secondary lookup.
+                # Retain the DOI checkpoint for old candidates rather than
+                # letting a prior entry-wide flag suppress the new evidence.
+                if set(target_dois(result)) - set(target_dois(previous)):
+                    checkpoint = dict(result.get("auto_review", {}))
+                    checked_dois = set(checkpoint.get("epmc_checked_dois", []))
+                    if checkpoint.get("epmc_checked"):
+                        checked_dois.update(target_dois(previous))
+                    checkpoint.update(
+                        epmc_checked=False, epmc_checked_dois=sorted(checked_dois)
+                    )
+                    checkpoint.pop("fulltext_checked", None)
+                    checkpoint.pop("publisher_year_policy", None)
+                    result["auto_review"] = checkpoint
                 result["discovery_review"] = {"policy": "1", "checked": True}
                 cache.put(filename, entry, result)
                 checked += 1

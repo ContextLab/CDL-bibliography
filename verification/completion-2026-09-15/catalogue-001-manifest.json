@@ -1,0 +1,52 @@
+[
+  {
+    "key": "Addi02",
+    "fingerprint": "v2:3f1bfcf02e887d74f9543d5f61f5e88a7a8bb755a5512dfad53711207208ddfd",
+    "query": "dc.title=\"the illustrated wavelet transform handbook introductory theory and applications in science engineering medicine and finance\" and dc.author=\"addison\""
+  },
+  {
+    "key": "Albe00",
+    "fingerprint": "v2:64e4c7ec17a774d5ff01812bf824abf020bd89aa11d69f4c95128ebf9ecfab89",
+    "query": "dc.title=\"time and chance\" and dc.author=\"albert\""
+  },
+  {
+    "key": "Altm99",
+    "fingerprint": "v2:d0c4f8cd740ff5480f2c871bb524e49477c6574c4fe0c86ba206fc64fcf7070e",
+    "query": "dc.title=\"constrained markov decision processes\" and dc.author=\"altman\""
+  },
+  {
+    "key": "Amer23a",
+    "fingerprint": "v2:765262d0078f82b2b2e2ef37847e8ec141bb8b4ebd40a8cc7749be7cd328d76b",
+    "query": "dc.title=\"the aasm manual for the scoring of sleep and associated events rules terminology and technical specifications version 3\" and dc.author=\"american academy of sleep medicine\""
+  },
+  {
+    "key": "Amer23b",
+    "fingerprint": "v2:c8c3647c3e6abc1f982a8e4431f140184d2db8c6f24d71c159ad09d82563622e",
+    "query": "dc.title=\"international classification of sleep disorders icsd 3 tr\" and dc.author=\"american academy of sleep medicine\""
+  },
+  {
+    "key": "Ande76",
+    "fingerprint": "v2:452eb09b492c288e872b7ec22d3a7291b9a00d76a5c28b671db16654aa9c115a",
+    "query": "dc.title=\"language memory and thought\" and dc.author=\"anderson\""
+  },
+  {
+    "key": "Ande95",
+    "fingerprint": "v2:d83a3303557d2d9cb773d0064f06740e875668397dc23ffb9e20a193d9f2a5ad",
+    "query": "dc.title=\"learning and memory an integrated approach\" and dc.author=\"anderson\""
+  },
+  {
+    "key": "AndeAnde68",
+    "fingerprint": "v2:5fe0f64ce3a8eedd0420a427bf18563f4257b291e18332baf4f6ac2d40ae28be",
+    "query": "dc.title=\"physiological basis of the alpha rhythm\" and dc.author=\"andersen\""
+  },
+  {
+    "key": "Aust14",
+    "fingerprint": "v2:c85f13c9e26edae13dc214c2501ebb676995da06139396b9a09eb03b5dddb573",
+    "query": "dc.title=\"mansfield park\" and dc.author=\"austen\""
+  },
+  {
+    "key": "BaayEtal95",
+    "fingerprint": "v2:9d13cd91575b5b44ee5471618277a6f3822984c9e82c0118ceb828550fa1f3e2",
+    "query": "dc.title=\"the celex lexical database\" and dc.author=\"baayen\""
+  }
+]

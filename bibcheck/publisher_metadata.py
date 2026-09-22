@@ -22,7 +22,7 @@ class PublisherMetadata(HTMLParser):
             if (
                 name.startswith("citation_")
                 and value
-                and value not in self.values[name]
+                and (name == "citation_author" or value not in self.values[name])
             ):
                 self.values[name].append(value)
 

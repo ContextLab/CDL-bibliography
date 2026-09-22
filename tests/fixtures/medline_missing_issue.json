@@ -1,0 +1,356 @@
+{
+  "entry": {
+    "key": "Salz59",
+    "raw": "@article{Salz59,\n\tAuthor = {K Salzinger},\n\tJournal = {The Journal of General Psychology},\n\tNumber = {1},\n\tPages = {65--94},\n\tTitle = {Experimental manipulation of verbal behavior: a review},\n\tVolume = {61},\n\tYear = {1959}}",
+    "fields": {
+      "year": "1959",
+      "volume": "61",
+      "title": "Experimental manipulation of verbal behavior: a review",
+      "pages": "65--94",
+      "number": "1",
+      "journal": "The Journal of General Psychology",
+      "author": "K Salzinger",
+      "ENTRYTYPE": "article",
+      "ID": "Salz59"
+    },
+    "base_hash": "5cbb48760ddc6256489782e909be7e3b7759d197dcfebdb12baa3a7eff85fea3",
+    "legacy_base_hash": "654270af85559c97cd618e7d9903129c7d657325e2f9eff3e40397fc4f8e5b85",
+    "fingerprint": "v2:46dc2a4c17a608c01c96b014faf5587d0dbde4230ba2f027ec7b6f3c651df9d4",
+    "legacy_fingerprint": "0c321a3d564db4f81db926ee0fd779421da2f2f7fb997a6eb4557c11ed52d365"
+  },
+  "primary": {
+    "advisories": [],
+    "doi": "10.1080/00221309.1959.9710241",
+    "evidence": {
+      "author": {
+        "detail": "Complete author list in order; citation initials agree with source names",
+        "local": "K Salzinger",
+        "match": true,
+        "source": [
+          {
+            "affiliation": [
+              {
+                "name": "Biometrics Research N.Y. State Dept. of Mental Hygiene",
+                "place": [
+                  "USA"
+                ]
+              }
+            ],
+            "family": "Salzinger",
+            "given": "Kurt",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ]
+      },
+      "journal": {
+        "local": "The Journal of General Psychology",
+        "match": true,
+        "source": [
+          "The Journal of General Psychology"
+        ]
+      },
+      "number": {
+        "local": "1",
+        "match": true,
+        "source": [
+          "1"
+        ]
+      },
+      "pages": {
+        "local": "65--94",
+        "match": true,
+        "source": [
+          "65-94"
+        ]
+      },
+      "title": {
+        "local": "Experimental manipulation of verbal behavior: a review",
+        "match": true,
+        "source": [
+          "Experimental Manipulation of Verbal Behavior: A Review"
+        ]
+      },
+      "volume": {
+        "local": "61",
+        "match": true,
+        "source": [
+          "61"
+        ]
+      },
+      "year": {
+        "local": "1959",
+        "match": true,
+        "source": [
+          "1959",
+          "2010"
+        ]
+      }
+    },
+    "issues": [
+      "year: conflicting or missing publication dates; select the cited edition explicitly"
+    ],
+    "record": {
+      "DOI": "10.1080/00221309.1959.9710241",
+      "ISSN": [
+        "0022-1309",
+        "1940-0888"
+      ],
+      "URL": "https://doi.org/10.1080/00221309.1959.9710241",
+      "author": [
+        {
+          "affiliation": [
+            {
+              "name": "Biometrics Research N.Y. State Dept. of Mental Hygiene",
+              "place": [
+                "USA"
+              ]
+            }
+          ],
+          "family": "Salzinger",
+          "given": "Kurt",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        }
+      ],
+      "container-title": [
+        "The Journal of General Psychology"
+      ],
+      "issue": "1",
+      "issued": {
+        "date-parts": [
+          [
+            1959,
+            7
+          ]
+        ]
+      },
+      "link": [
+        {
+          "URL": "https://www.tandfonline.com/doi/pdf/10.1080/00221309.1959.9710241",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "page": "65-94",
+      "published": {
+        "date-parts": [
+          [
+            1959,
+            7
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2010,
+            7,
+            6
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            1959,
+            7
+          ]
+        ]
+      },
+      "publisher": "Informa UK Limited",
+      "title": [
+        "Experimental Manipulation of Verbal Behavior: A Review"
+      ],
+      "type": "journal-article",
+      "volume": "61"
+    },
+    "retrieved_at": "2026-09-09T19:49:43.960425+00:00",
+    "source": "crossref",
+    "url": "https://doi.org/10.1080/00221309.1959.9710241"
+  },
+  "secondary": {
+    "doi": "10.1080/00221309.1959.9710241",
+    "evidence": {
+      "author": {
+        "detail": "Complete author list in order; citation initials agree with source names",
+        "local": "K Salzinger",
+        "match": true,
+        "source": [
+          {
+            "affiliation": [
+              {
+                "name": "Biometrics Research N.Y. State Dept. of Mental Hygiene",
+                "place": [
+                  "USA"
+                ]
+              }
+            ],
+            "family": "Salzinger",
+            "given": "Kurt",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ]
+      },
+      "journal": {
+        "local": "The Journal of General Psychology",
+        "match": true,
+        "source": [
+          "The Journal of General Psychology"
+        ]
+      },
+      "number": {
+        "local": "1",
+        "match": true,
+        "source": [
+          "1"
+        ]
+      },
+      "pages": {
+        "local": "65--94",
+        "match": true,
+        "source": [
+          "65-94"
+        ]
+      },
+      "title": {
+        "local": "Experimental manipulation of verbal behavior: a review",
+        "match": true,
+        "source": [
+          "Experimental Manipulation of Verbal Behavior: A Review"
+        ]
+      },
+      "volume": {
+        "local": "61",
+        "match": true,
+        "source": [
+          "61"
+        ]
+      },
+      "year": {
+        "local": "1959",
+        "match": true,
+        "source": [
+          "1959"
+        ],
+        "source_name": "europepmc"
+      }
+    },
+    "issues": [
+      "Secondary number: missing evidence or mismatch"
+    ],
+    "raw_record": {
+      "authorList": {
+        "author": [
+          {
+            "firstName": "K",
+            "fullName": "SALZINGER K",
+            "initials": "K",
+            "lastName": "SALZINGER"
+          }
+        ]
+      },
+      "doi": "10.1080/00221309.1959.9710241",
+      "firstPublicationDate": "1959-07-01",
+      "fullTextUrlList": {
+        "fullTextUrl": [
+          {
+            "availability": "Subscription required",
+            "availabilityCode": "S",
+            "documentStyle": "doi",
+            "site": "DOI",
+            "url": "https://doi.org/10.1080/00221309.1959.9710241"
+          }
+        ]
+      },
+      "id": "14441175",
+      "isOpenAccess": "N",
+      "journalInfo": {
+        "dateOfPublication": "1959 Jul",
+        "journal": {
+          "essn": "1940-0888",
+          "isoabbreviation": "J Gen Psychol",
+          "issn": "0022-1309",
+          "medlineAbbreviation": "J Gen Psychol",
+          "nlmid": "2985111R",
+          "title": "The Journal of general psychology"
+        },
+        "journalIssueId": 1289,
+        "monthOfPublication": 7,
+        "printPublicationDate": "1959-07-01",
+        "volume": "61",
+        "yearOfPublication": 1959
+      },
+      "pageInfo": "65-94",
+      "pubTypeList": {
+        "pubType": [
+          "Journal Article"
+        ]
+      },
+      "pubYear": "1959",
+      "source": "MED",
+      "title": "Experimental manipulation of verbal behavior: a review."
+    },
+    "record": {
+      "DOI": "10.1080/00221309.1959.9710241",
+      "ISSN": [
+        "0022-1309",
+        "1940-0888"
+      ],
+      "author": [
+        {
+          "family": "SALZINGER",
+          "given": "K",
+          "suffix": ""
+        }
+      ],
+      "container-title": [
+        "The Journal of general psychology",
+        "J Gen Psychol",
+        "J Gen Psychol",
+        "The Journal of General Psychology"
+      ],
+      "issue": null,
+      "page": "65-94",
+      "published": {
+        "date-parts": [
+          [
+            1959
+          ]
+        ]
+      },
+      "title": [
+        "Experimental manipulation of verbal behavior: a review"
+      ],
+      "type": "journal-article",
+      "volume": "61"
+    },
+    "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.2307%2F1419876%22+OR+DOI%3A%2210.1017%2Fs1930297500002205%22+OR+DOI%3A%2210.21105%2Fjoss.00424%22+OR+DOI%3A%2210.1080%2F00221309.1959.9710241%22+OR+DOI%3A%2210.1073%2Fpnas.1507110112%22+OR+DOI%3A%2210.1038%2Fnmeth.2434%22+OR+DOI%3A%2210.3758%2Fs13428-015-0642-8%22+OR+DOI%3A%2210.1007%2F978-1-4614-4803-7%22+OR+DOI%3A%2210.1109%2Ficassp.2013.6639345%22+OR+DOI%3A%2210.3115%2F116580.116610%22+OR+DOI%3A%2210.1080%2F001401399185441%22+OR+DOI%3A%2210.3758%2Fs13428-014-0458-y%22+OR+DOI%3A%2210.21437%2Finterspeech.2016-1358%22+OR+DOI%3A%2210.1109%2Ficcv.2017.244%22+OR+DOI%3A%2210.1145%2F800186.810616%22+OR+DOI%3A%2210.7551%2Fmitpress%2F3206.001.0001%22+OR+DOI%3A%2210.1137%2F0717021%22+OR+DOI%3A%2210.2307%2F3792705%22+OR+DOI%3A%2210.2307%2F2346830%22+OR+DOI%3A%2210.1007%2Fbf02289451%22+OR+DOI%3A%2210.1080%2F00031305.1973.10478966%22+OR+DOI%3A%2210.1007%2F978-3-540-33037-0_2%22+OR+DOI%3A%2210.25080%2Fmajora-92bf1922-00a%22+OR+DOI%3A%2210.1109%2Fmcse.2007.55%22+OR+DOI%3A%2210.1038%2Fnn.4450%22&format=json&resultType=core&pageSize=100",
+    "resolved_findings": [
+      {
+        "authority": "PubMed via Europe PMC",
+        "finding": "year: conflicting or missing publication dates; select the cited edition explicitly"
+      }
+    ],
+    "retrieved_at": "2026-09-10T00:59:31.171493+00:00",
+    "source": "europepmc",
+    "url": "https://europepmc.org/article/MED/14441175"
+  }
+}

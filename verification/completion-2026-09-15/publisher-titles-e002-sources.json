@@ -1,0 +1,1682 @@
+[
+  {
+    "key": "DroiWear15",
+    "fingerprint": "v2:679115922a44dccf1dfb1f5092a19ce2625733df9e39e00e87aa7bd31546a85d",
+    "doi": "10.1016/j.actpsy.2015.01.006",
+    "source": {
+      "document_sha256": "d45a964992d652ee8f5fd411c564b1bf5e25914cb9e3913d6317f129d5355655",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.actpsy.2015.01.006"
+        ],
+        "citation_issn": [
+          "0001-6918"
+        ],
+        "citation_journal_title": [
+          "Acta Psychologica"
+        ],
+        "citation_publication_date": [
+          "2015-03-31"
+        ],
+        "citation_title": [
+          "Experience Sampling Methodology reveals similarities in the experience of passage of time in young and elderly adults"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0001691815000220</prism:url><dc:identifier>doi:10.1016/j.actpsy.2015.01.006</dc:identifier><eid>1-s2.0-S0001691815000220</eid><prism:doi>10.1016/j.actpsy.2015.01.006</prism:doi><pii>S0001-6918(15)00022-0</pii><dc:title>Experience Sampling Methodology reveals similarities in the experience of passage of time in young and elderly adults </dc:title><prism:publicationName>Acta Psychologica</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00016918</prism:issn><prism:coverDate>2015-03-31</prism:coverDate><prism:coverDisplayDate>March 2015</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0001691815000220\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0001691815000220\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:18:53.290184+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.actpsy.2015.01.006"
+    },
+    "proposed": false
+  },
+  {
+    "key": "KivlGran06",
+    "fingerprint": "v2:679a820258ad8b95daf96e0f49a5211121f0ec03ba5fc96b052dc6e9167a20c6",
+    "doi": "10.1016/j.psyneuen.2006.01.007",
+    "source": {
+      "document_sha256": "e842a5f81ed015cce75436194e6f83111413b1a4b037561d9155e68821eac883",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.psyneuen.2006.01.007"
+        ],
+        "citation_issn": [
+          "0306-4530"
+        ],
+        "citation_journal_title": [
+          "Psychoneuroendocrinology"
+        ],
+        "citation_publication_date": [
+          "2006-07-31"
+        ],
+        "citation_title": [
+          "Salivary \u03b1-amylase response to competition: Relation to gender, previous experience, and attitudes"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0306453006000230</prism:url><dc:identifier>doi:10.1016/j.psyneuen.2006.01.007</dc:identifier><eid>1-s2.0-S0306453006000230</eid><prism:doi>10.1016/j.psyneuen.2006.01.007</prism:doi><pii>S0306-4530(06)00023-0</pii><dc:title>Salivary \u03b1-amylase response to competition: Relation to gender, previous experience, and attitudes </dc:title><prism:publicationName>Psychoneuroendocrinology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>03064530</prism:issn><prism:coverDate>2006-07-31</prism:coverDate><prism:coverDisplayDate>July 2006</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0306453006000230\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0306453006000230\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:18:55.805700+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.psyneuen.2006.01.007"
+    },
+    "proposed": false
+  },
+  {
+    "key": "NateEtal06",
+    "fingerprint": "v2:8763e8dd47f3df93bc6aa0377052e4898539375b6ce99336fd070c3cfd2fcfd1",
+    "doi": "10.1016/j.psyneuen.2005.05.010",
+    "source": {
+      "document_sha256": "c604cfc2528bf59360377895ef29662e2dd75f8e5981fc0d3c38347541c50d21",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.psyneuen.2005.05.010"
+        ],
+        "citation_issn": [
+          "0306-4530"
+        ],
+        "citation_journal_title": [
+          "Psychoneuroendocrinology"
+        ],
+        "citation_publication_date": [
+          "2006-01-31"
+        ],
+        "citation_title": [
+          "Stress-induced changes in human salivary alpha-amylase activity\u2014associations with adrenergic activity"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0306453005001265</prism:url><dc:identifier>doi:10.1016/j.psyneuen.2005.05.010</dc:identifier><eid>1-s2.0-S0306453005001265</eid><prism:doi>10.1016/j.psyneuen.2005.05.010</prism:doi><pii>S0306-4530(05)00126-5</pii><dc:title>Stress-induced changes in human salivary alpha-amylase activity\u2014associations with adrenergic activity </dc:title><prism:publicationName>Psychoneuroendocrinology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>03064530</prism:issn><prism:coverDate>2006-01-31</prism:coverDate><prism:coverDisplayDate>January 2006</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0306453005001265\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0306453005001265\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:18:57.046432+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.psyneuen.2005.05.010"
+    },
+    "proposed": false
+  },
+  {
+    "key": "PastEtal08a",
+    "fingerprint": "v2:7d46ccc18be5475a34d339134a80ade28a99c3f17c3426f342155b73b2a04957",
+    "doi": "10.1016/j.neuroimage.2008.07.005",
+    "source": {
+      "document_sha256": "e7dfde2ac96ddb95982b3a7f27aaaeacf795afefbcf3852498d28956c7f987e7",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.neuroimage.2008.07.005"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "2008-10-15"
+        ],
+        "citation_title": [
+          "Oscillatory brain activity before and after an internal context change \u2014 Evidence for a reset of encoding processes"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811908008276</prism:url><dc:identifier>doi:10.1016/j.neuroimage.2008.07.005</dc:identifier><eid>1-s2.0-S1053811908008276</eid><prism:doi>10.1016/j.neuroimage.2008.07.005</prism:doi><pii>S1053-8119(08)00827-6</pii><dc:title>Oscillatory brain activity before and after an internal context change \u2014 Evidence for a reset of encoding processes </dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>2008-10-15</prism:coverDate><prism:coverDisplayDate>15 October 2008</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1053811908008276\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811908008276\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:18:58.301304+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.neuroimage.2008.07.005"
+    },
+    "proposed": false
+  },
+  {
+    "key": "SmitEtal71",
+    "fingerprint": "v2:18ed475a281245b250b383c5bfa010953bf681ddf048cfdec2b7ea66ff21efa5",
+    "doi": "10.1016/s0022-5371(71)80064-6",
+    "source": {
+      "document_sha256": "00a7e55fc32d0ef02af6668be5984785b99cac61806f3d067bc862d12fbfe5fa",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(71)80064-6"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1971-12-31"
+        ],
+        "citation_title": [
+          "Imaginal versus verbal coding and the primary-secondary memory distinction"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537171800646</prism:url><dc:identifier>doi:10.1016/S0022-5371(71)80064-6</dc:identifier><eid>1-s2.0-S0022537171800646</eid><prism:doi>10.1016/S0022-5371(71)80064-6</prism:doi><pii>S0022-5371(71)80064-6</pii><dc:title>Imaginal versus verbal coding and the primary-secondary memory distinction </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1971-12-31</prism:coverDate><prism:coverDisplayDate>December 1971</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537171800646\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537171800646\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:18:59.547374+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2871%2980064-6"
+    },
+    "proposed": true
+  },
+  {
+    "key": "JenkEtal02",
+    "fingerprint": "v2:cb7ea1b14cc56b650fac518c2afa6880541e3633506ef30776437e232128cc27",
+    "doi": "10.1006/nimg.2002.1132",
+    "source": {
+      "document_sha256": "b80e043ccb16cd7dfad64429451e73df2a0e3019b4bf47637960e54e63bae411",
+      "metadata": {
+        "citation_doi": [
+          "10.1006/nimg.2002.1132"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "2002-10-31"
+        ],
+        "citation_title": [
+          "Improved Optimization for the Robust and Accurate Linear Registration and Motion Correction of Brain Images"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811902911328</prism:url><dc:identifier>doi:10.1006/nimg.2002.1132</dc:identifier><eid>1-s2.0-S1053811902911328</eid><prism:doi>10.1006/nimg.2002.1132</prism:doi><pii>S1053-8119(02)91132-8</pii><dc:title>Improved Optimization for the Robust and Accurate Linear Registration and Motion Correction of Brain Images </dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>2002-10-31</prism:coverDate><prism:coverDisplayDate>October 2002</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1053811902911328\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811902911328\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:00.783732+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1006/nimg.2002.1132"
+    },
+    "proposed": true
+  },
+  {
+    "key": "SuriSchu99",
+    "fingerprint": "v2:fc2ad12f2eb5d7940b35ed9a7d43132cea4ad1544ed40999c865590f4fd1c351",
+    "doi": "10.1016/s0306-4522(98)00697-6",
+    "source": {
+      "document_sha256": "c465332d01e31d384ae1a8008e3c20771c23425641aa3cfbcbd5e96e4e1225b2",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0306-4522(98)00697-6"
+        ],
+        "citation_issn": [
+          "0306-4522"
+        ],
+        "citation_journal_title": [
+          "Neuroscience"
+        ],
+        "citation_publication_date": [
+          "1999-07-31"
+        ],
+        "citation_title": [
+          "A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0306452298006976</prism:url><dc:identifier>doi:10.1016/S0306-4522(98)00697-6</dc:identifier><eid>1-s2.0-S0306452298006976</eid><prism:doi>10.1016/S0306-4522(98)00697-6</prism:doi><pii>S0306-4522(98)00697-6</pii><dc:title>A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task </dc:title><prism:publicationName>Neuroscience</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>03064522</prism:issn><prism:coverDate>1999-07-31</prism:coverDate><prism:coverDisplayDate>July 1999</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0306452298006976\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0306452298006976\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:02.057080+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0306-4522%2898%2900697-6"
+    },
+    "proposed": true
+  },
+  {
+    "key": "BravEtal97",
+    "fingerprint": "v2:b3f438ebe268222572ac196393f6bb257c7b8976a9676940dd7bcf465d3a24ca",
+    "doi": "10.1006/nimg.1996.0247",
+    "source": {
+      "document_sha256": "a4eda7f93dd463b5cef634fc0fa4e4d67c318b568fcff3e3ad8983f6bc630577",
+      "metadata": {
+        "citation_doi": [
+          "10.1006/nimg.1996.0247"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "1997-01-31"
+        ],
+        "citation_title": [
+          "A Parametric Study of Prefrontal Cortex Involvement in Human Working Memory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811996902475</prism:url><dc:identifier>doi:10.1006/nimg.1996.0247</dc:identifier><eid>1-s2.0-S1053811996902475</eid><prism:doi>10.1006/nimg.1996.0247</prism:doi><pii>S1053-8119(96)90247-5</pii><dc:title>A Parametric Study of Prefrontal Cortex Involvement in Human Working Memory </dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>1997-01-31</prism:coverDate><prism:coverDisplayDate>January 1997</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1053811996902475\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811996902475\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:03.383700+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1006/nimg.1996.0247"
+    },
+    "proposed": false
+  },
+  {
+    "key": "HumaEtal12",
+    "fingerprint": "v2:c2e7d9cc66517782b17e726e6ae069bd331d096e607bd239d19936911558cf03",
+    "doi": "10.1016/j.ophtha.2011.09.028",
+    "source": {
+      "document_sha256": "e3adf6e9a31c8c7bad888c7847213e8b4901573e48dd2875857fbd87d6152ade",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.ophtha.2011.09.028"
+        ],
+        "citation_issn": [
+          "0161-6420"
+        ],
+        "citation_journal_title": [
+          "Ophthalmology"
+        ],
+        "citation_publication_date": [
+          "2012-04-30"
+        ],
+        "citation_title": [
+          "Interim Results from the International Trial of Second Sight's Visual Prosthesis"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0161642011008840</prism:url><dc:identifier>doi:10.1016/j.ophtha.2011.09.028</dc:identifier><eid>1-s2.0-S0161642011008840</eid><prism:doi>10.1016/j.ophtha.2011.09.028</prism:doi><pii>S0161-6420(11)00884-0</pii><dc:title>Interim Results from the International Trial of Second Sight's Visual Prosthesis </dc:title><prism:publicationName>Ophthalmology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>01616420</prism:issn><prism:coverDate>2012-04-30</prism:coverDate><prism:coverDisplayDate>April 2012</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0161642011008840\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0161642011008840\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:04.777194+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.ophtha.2011.09.028"
+    },
+    "proposed": false
+  },
+  {
+    "key": "McKoRatc89",
+    "fingerprint": "v2:1bbfc0918e13c212c16f500c73b9b1db9dd8157587da9dbb9e922c4767c55b5f",
+    "doi": "10.1016/0749-596x(89)90012-0",
+    "source": {
+      "document_sha256": "2abb458b3af7fbf88c4b561b5df6797b0b9bf96b5c30aa00a4990d4b8f107f62",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0749-596X(89)90012-0"
+        ],
+        "citation_issn": [
+          "0749-596X"
+        ],
+        "citation_journal_title": [
+          "Journal of Memory and Language"
+        ],
+        "citation_publication_date": [
+          "1989-10-31"
+        ],
+        "citation_title": [
+          "Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0749596X89900120</prism:url><dc:identifier>doi:10.1016/0749-596X(89)90012-0</dc:identifier><eid>1-s2.0-0749596X89900120</eid><prism:doi>10.1016/0749-596X(89)90012-0</prism:doi><pii>0749-596X(89)90012-0</pii><dc:title>Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory </dc:title><prism:publicationName>Journal of Memory and Language</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>0749596X</prism:issn><prism:coverDate>1989-10-31</prism:coverDate><prism:coverDisplayDate>October 1989</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0749596X89900120\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0749596X89900120\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:06.046228+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0749-596x%2889%2990012-0"
+    },
+    "proposed": true
+  },
+  {
+    "key": "OharEtal04",
+    "fingerprint": "v2:4aef68391bb12b71af1529c9a6464c6d09c991fd28d713b7b7b220fb9b7a78d0",
+    "doi": "10.1016/j.clinph.2004.02.023",
+    "source": {
+      "document_sha256": "46b423958459669316612a5d748c02f4c9a72f350f87589940c2eba9807f3e09",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.clinph.2004.02.023"
+        ],
+        "citation_issn": [
+          "1388-2457"
+        ],
+        "citation_journal_title": [
+          "Clinical Neurophysiology"
+        ],
+        "citation_publication_date": [
+          "2004-07-31"
+        ],
+        "citation_title": [
+          "Attention to a painful cutaneous laser stimulus modulates electrocorticographic event-related desynchronization in humans"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1388245704000689</prism:url><dc:identifier>doi:10.1016/j.clinph.2004.02.023</dc:identifier><eid>1-s2.0-S1388245704000689</eid><prism:doi>10.1016/j.clinph.2004.02.023</prism:doi><pii>S1388-2457(04)00068-9</pii><dc:title>Attention to a painful cutaneous laser stimulus modulates electrocorticographic event-related desynchronization in humans </dc:title><prism:publicationName>Clinical Neurophysiology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>13882457</prism:issn><prism:coverDate>2004-07-31</prism:coverDate><prism:coverDisplayDate>July 2004</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1388245704000689\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1388245704000689\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:25.465595+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.clinph.2004.02.023"
+    },
+    "proposed": true
+  },
+  {
+    "key": "AharEtal01",
+    "fingerprint": "v2:ec707657bd3cf1c434f35fe76cc17adbb2409cd579ba33be087210df9b6a306b",
+    "doi": "10.1016/s0896-6273(01)00491-3",
+    "source": {
+      "document_sha256": "0d01f0c5ab2848d77853040f820e9a3143a9b3cbc631ed9fba1e1231e2ac9851",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0896-6273(01)00491-3"
+        ],
+        "citation_issn": [
+          "0896-6273"
+        ],
+        "citation_journal_title": [
+          "Neuron"
+        ],
+        "citation_publication_date": [
+          "2001-11-08"
+        ],
+        "citation_title": [
+          "Beautiful Faces Have Variable Reward Value fMRI and Behavioral Evidence"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0896627301004913</prism:url><dc:identifier>doi:10.1016/S0896-6273(01)00491-3</dc:identifier><eid>1-s2.0-S0896627301004913</eid><prism:doi>10.1016/S0896-6273(01)00491-3</prism:doi><pii>S0896-6273(01)00491-3</pii><dc:title>Beautiful Faces Have Variable Reward Value fMRI and Behavioral Evidence</dc:title><prism:publicationName>Neuron</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>08966273</prism:issn><prism:coverDate>2001-11-08</prism:coverDate><prism:coverDisplayDate>8 November 2001</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType>ElsevierBranded</openaccessSponsorType><openaccessUserLicense>http://www.elsevier.com/open-access/userlicense/1.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S0896627301004913\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0896627301004913\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:26.873005+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0896-6273%2801%2900491-3"
+    },
+    "proposed": false
+  },
+  {
+    "key": "Gros78",
+    "fingerprint": "v2:3183598032100f048e7d5de6be007de6a12f92591993799e880b3ca3c83174e1",
+    "doi": "10.1016/0022-2496(78)90016-0",
+    "source": {
+      "document_sha256": "5d780d57e137ae85fd5746756bd909a469045e70bdbc9a743a676fed13be86d3",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0022-2496(78)90016-0"
+        ],
+        "citation_issn": [
+          "0022-2496"
+        ],
+        "citation_journal_title": [
+          "Journal of Mathematical Psychology"
+        ],
+        "citation_publication_date": [
+          "1978-06-30"
+        ],
+        "citation_title": [
+          "Behavioral contrast in short term memory: Serial binary memory models or parallel continuous memory models?"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0022249678900160</prism:url><dc:identifier>doi:10.1016/0022-2496(78)90016-0</dc:identifier><eid>1-s2.0-0022249678900160</eid><prism:doi>10.1016/0022-2496(78)90016-0</prism:doi><pii>0022-2496(78)90016-0</pii><dc:title>Behavioral contrast in short term memory: Serial binary memory models or parallel continuous memory models? </dc:title><prism:publicationName>Journal of Mathematical Psychology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00222496</prism:issn><prism:coverDate>1978-06-30</prism:coverDate><prism:coverDisplayDate>June 1978</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0022249678900160\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0022249678900160\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:28.134507+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0022-2496%2878%2990016-0"
+    },
+    "proposed": false
+  },
+  {
+    "key": "LebeNico06",
+    "fingerprint": "v2:9b8a646d78a0199629b805bae290db9dad0f3f58756cb2521c49b58fd3b4bc7b",
+    "doi": "10.1016/j.tins.2006.07.004",
+    "source": {
+      "document_sha256": "19d2fd60f4f6a570243e48b63b5ee004e02a6329d7574ed345fb10fee1988f52",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.tins.2006.07.004"
+        ],
+        "citation_issn": [
+          "0166-2236"
+        ],
+        "citation_journal_title": [
+          "Trends in Neurosciences"
+        ],
+        "citation_publication_date": [
+          "2006-09-30"
+        ],
+        "citation_title": [
+          "Brain\u2013machine interfaces: past, present and future"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0166223606001470</prism:url><dc:identifier>doi:10.1016/j.tins.2006.07.004</dc:identifier><eid>1-s2.0-S0166223606001470</eid><prism:doi>10.1016/j.tins.2006.07.004</prism:doi><pii>S0166-2236(06)00147-0</pii><dc:title>Brain\u2013machine interfaces: past, present and future </dc:title><prism:publicationName>Trends in Neurosciences</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>01662236</prism:issn><prism:coverDate>2006-09-30</prism:coverDate><prism:coverDisplayDate>September 2006</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0166223606001470\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0166223606001470\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:29.450084+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.tins.2006.07.004"
+    },
+    "proposed": true
+  },
+  {
+    "key": "LindEtal03",
+    "fingerprint": "v2:2926e3517d77c3d1673d57b2a5987f4c575e9c34bf7e4ea13f93afeec48a117c",
+    "doi": "10.1016/j.neuroimage.2003.07.021",
+    "source": {
+      "document_sha256": "d760e861a0f7aaa0a9bb24e64df032b441fadfdde0f5efcd4dd522fddacf054f",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.neuroimage.2003.07.021"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "2003-11-30"
+        ],
+        "citation_title": [
+          "Cortical capacity constraints for visual working memory: dissociation of fMRI load effects in a fronto-parietal network"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811903004725</prism:url><dc:identifier>doi:10.1016/j.neuroimage.2003.07.021</dc:identifier><eid>1-s2.0-S1053811903004725</eid><prism:doi>10.1016/j.neuroimage.2003.07.021</prism:doi><pii>S1053-8119(03)00472-5</pii><dc:title>Cortical capacity constraints for visual working memory: dissociation of fMRI load effects in a fronto-parietal network </dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>2003-11-30</prism:coverDate><prism:coverDisplayDate>November 2003</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1053811903004725\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811903004725\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:30.814255+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.neuroimage.2003.07.021"
+    },
+    "proposed": true
+  },
+  {
+    "key": "MaybEtal05",
+    "fingerprint": "v2:d62ede4f660368fc8b7bd0319cda0174050a23bbe0bd9c24617bae9ce8f43b70",
+    "doi": "10.1016/j.neuron.2005.02.014",
+    "source": {
+      "document_sha256": "987746f8ae4c8dccfa80f80684aa3c3d2bf3458f8d7096fbe60737e5b65d9ade",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.neuron.2005.02.014"
+        ],
+        "citation_issn": [
+          "0896-6273"
+        ],
+        "citation_journal_title": [
+          "Neuron"
+        ],
+        "citation_publication_date": [
+          "2005-03-03"
+        ],
+        "citation_title": [
+          "Deep Brain Stimulation for Treatment-Resistant Depression"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S089662730500156X</prism:url><dc:identifier>doi:10.1016/j.neuron.2005.02.014</dc:identifier><eid>1-s2.0-S089662730500156X</eid><prism:doi>10.1016/j.neuron.2005.02.014</prism:doi><pii>S0896-6273(05)00156-X</pii><dc:title>Deep Brain Stimulation for Treatment-Resistant Depression </dc:title><prism:publicationName>Neuron</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>08966273</prism:issn><prism:coverDate>2005-03-03</prism:coverDate><prism:coverDisplayDate>3 March 2005</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType>ElsevierBranded</openaccessSponsorType><openaccessUserLicense>http://www.elsevier.com/open-access/userlicense/1.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S089662730500156X\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S089662730500156X\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:32.163014+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.neuron.2005.02.014"
+    },
+    "proposed": false
+  },
+  {
+    "key": "SkraChiu03",
+    "fingerprint": "v2:733aa919cbfe2005e466a4201088cb21dc612a01b8d89dbf5a7335cc4fffc15f",
+    "doi": "10.1016/s0304-3940(03)00137-x",
+    "source": {
+      "document_sha256": "f6ad77560092da4fc3b5dc387449b857dc5fcc8dbc2f0fada1e3c81e1e9781ac",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0304-3940(03)00137-X"
+        ],
+        "citation_issn": [
+          "0304-3940"
+        ],
+        "citation_journal_title": [
+          "Neuroscience Letters"
+        ],
+        "citation_publication_date": [
+          "2003-04-24"
+        ],
+        "citation_title": [
+          "Dimensions of affective semantic meaning \u2014 behavioral and evoked potential correlates in Chinese subjects"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S030439400300137X</prism:url><dc:identifier>doi:10.1016/S0304-3940(03)00137-X</dc:identifier><eid>1-s2.0-S030439400300137X</eid><prism:doi>10.1016/S0304-3940(03)00137-X</prism:doi><pii>S0304-3940(03)00137-X</pii><dc:title>Dimensions of affective semantic meaning \u2014 behavioral and evoked potential correlates in Chinese subjects </dc:title><prism:publicationName>Neuroscience Letters</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>03043940</prism:issn><prism:coverDate>2003-04-24</prism:coverDate><prism:coverDisplayDate>24 April 2003</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S030439400300137X\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S030439400300137X\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:33.485339+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0304-3940%2803%2900137-x"
+    },
+    "proposed": false
+  },
+  {
+    "key": "ChevDeni90",
+    "fingerprint": "v2:acb3c5635ebe6c9b68543ff41b71366b9b0db07cf976164c4ce395194eacbefa",
+    "doi": "10.1016/0166-2236(90)90109-n",
+    "source": {
+      "document_sha256": "a4e9e4f3924f7f9735dcdceed35a177cfd05940a3eb4e1affb5d4602d10393eb",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0166-2236(90)90109-N"
+        ],
+        "citation_issn": [
+          "0166-2236"
+        ],
+        "citation_journal_title": [
+          "Trends in Neurosciences"
+        ],
+        "citation_publication_date": [
+          "1990-07-31"
+        ],
+        "citation_title": [
+          "Disinhibition as a basic process in the expression of striatal functions"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/016622369090109N</prism:url><dc:identifier>doi:10.1016/0166-2236(90)90109-N</dc:identifier><eid>1-s2.0-016622369090109N</eid><prism:doi>10.1016/0166-2236(90)90109-N</prism:doi><pii>0166-2236(90)90109-N</pii><dc:title>Disinhibition as a basic process in the expression of striatal functions </dc:title><prism:publicationName>Trends in Neurosciences</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>01662236</prism:issn><prism:coverDate>1990-07-31</prism:coverDate><prism:coverDisplayDate>July 1990</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/016622369090109N\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/016622369090109N\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:34.737666+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0166-2236%2890%2990109-n"
+    },
+    "proposed": true
+  },
+  {
+    "key": "DaleEtal00",
+    "fingerprint": "v2:b8395e9a6f2e3b1769d46f3c16b91c34cfbf2d1a782846d8acd37b90c365e7ef",
+    "doi": "10.1016/s0896-6273(00)81138-1",
+    "source": {
+      "document_sha256": "70d02f092662764d6c37707003056ef093a0ee58ea3d970b00a3efd3b133115f",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0896-6273(00)81138-1"
+        ],
+        "citation_issn": [
+          "0896-6273"
+        ],
+        "citation_journal_title": [
+          "Neuron"
+        ],
+        "citation_publication_date": [
+          "2000-04-30"
+        ],
+        "citation_title": [
+          "Dynamic Statistical Parametric Mapping Combining fMRI and MEG for High-Resolution Imaging of Cortical Activity"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0896627300811381</prism:url><dc:identifier>doi:10.1016/S0896-6273(00)81138-1</dc:identifier><eid>1-s2.0-S0896627300811381</eid><prism:doi>10.1016/S0896-6273(00)81138-1</prism:doi><pii>S0896-6273(00)81138-1</pii><dc:title>Dynamic Statistical Parametric Mapping Combining fMRI and MEG for High-Resolution Imaging of Cortical Activity</dc:title><prism:publicationName>Neuron</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>08966273</prism:issn><prism:coverDate>2000-04-30</prism:coverDate><prism:coverDisplayDate>April 2000</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType>ElsevierBranded</openaccessSponsorType><openaccessUserLicense>http://www.elsevier.com/open-access/userlicense/1.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S0896627300811381\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0896627300811381\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:36.090434+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0896-6273%2800%2981138-1"
+    },
+    "proposed": false
+  },
+  {
+    "key": "LegeEtal69",
+    "fingerprint": "v2:8fe54b2ca512246001788749e6b2cd71c9b86e3c70946e29982770fbdf2d8e83",
+    "doi": "10.1016/0013-4694(69)90187-4",
+    "source": {
+      "document_sha256": "733aa148010267b684178258a636dfc0f1362d7c9c988e7d175e7eb3d0893a0d",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0013-4694(69)90187-4"
+        ],
+        "citation_issn": [
+          "0013-4694"
+        ],
+        "citation_journal_title": [
+          "Electroencephalography and Clinical Neurophysiology"
+        ],
+        "citation_publication_date": [
+          "1969-11-30"
+        ],
+        "citation_title": [
+          "EEG changes during performance of various tasks under open- and closed-eyed conditions"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0013469469901874</prism:url><dc:identifier>doi:10.1016/0013-4694(69)90187-4</dc:identifier><eid>1-s2.0-0013469469901874</eid><prism:doi>10.1016/0013-4694(69)90187-4</prism:doi><pii>0013-4694(69)90187-4</pii><dc:title>EEG changes during performance of various tasks under open- and closed-eyed conditions </dc:title><prism:publicationName>Electroencephalography and Clinical Neurophysiology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00134694</prism:issn><prism:coverDate>1969-11-30</prism:coverDate><prism:coverDisplayDate>November 1969</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0013469469901874\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0013469469901874\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:37.374524+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0013-4694%2869%2990187-4"
+    },
+    "proposed": false
+  },
+  {
+    "key": "NuneEtal97",
+    "fingerprint": "v2:57314ff2d823b6f8a04144f90b1b5cad9e234d6b96c3ae307084200ffe152e07",
+    "doi": "10.1016/s0013-4694(97)00066-7",
+    "source": {
+      "document_sha256": "d305ab434b88ece3f14cde671ae1d6c91f0cfaac7b3a6061927bcfe9f68d7dc5",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0013-4694(97)00066-7"
+        ],
+        "citation_issn": [
+          "0013-4694"
+        ],
+        "citation_journal_title": [
+          "Electroencephalography and Clinical Neurophysiology"
+        ],
+        "citation_publication_date": [
+          "1997-11-30"
+        ],
+        "citation_title": [
+          "EEG coherency I: statistics, reference electrode, volume conduction, Laplacians, cortical imaging, and interpretation at multiple scales"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0013469497000667</prism:url><dc:identifier>doi:10.1016/S0013-4694(97)00066-7</dc:identifier><eid>1-s2.0-S0013469497000667</eid><prism:doi>10.1016/S0013-4694(97)00066-7</prism:doi><pii>S0013-4694(97)00066-7</pii><dc:title>EEG coherency I: statistics, reference electrode, volume conduction, Laplacians, cortical imaging, and interpretation at multiple scales</dc:title><prism:publicationName>Electroencephalography and Clinical Neurophysiology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00134694</prism:issn><prism:coverDate>1997-11-30</prism:coverDate><prism:coverDisplayDate>November 1997</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0013469497000667\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0013469497000667\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:38.628132+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0013-4694%2897%2900066-7"
+    },
+    "proposed": false
+  },
+  {
+    "key": "AlleEtal69",
+    "fingerprint": "v2:b2c839382fe5fbe39fb78ea864f89401b76108c18ef6cc0c59defc7c348c1b69",
+    "doi": "10.1016/s0022-5371(69)80090-3",
+    "source": {
+      "document_sha256": "0830f94d484b0556b40be8c6ea8f88c90bfa93b711a8085cca4e12bb282d035f",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(69)80090-3"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1969-08-31"
+        ],
+        "citation_title": [
+          "Effects of recall tests on long-term retention of paired associates"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537169800903</prism:url><dc:identifier>doi:10.1016/S0022-5371(69)80090-3</dc:identifier><eid>1-s2.0-S0022537169800903</eid><prism:doi>10.1016/S0022-5371(69)80090-3</prism:doi><pii>S0022-5371(69)80090-3</pii><dc:title>Effects of recall tests on long-term retention of paired associates </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1969-08-31</prism:coverDate><prism:coverDisplayDate>August 1969</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537169800903\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537169800903\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:39.869678+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2869%2980090-3"
+    },
+    "proposed": true
+  },
+  {
+    "key": "LittEtal01",
+    "fingerprint": "v2:af8bbc6ed9d4e6e028110a11d72319a40d0057d71d8830e89cd7f4cf47f4f609",
+    "doi": "10.1016/s0896-6273(01)00262-8",
+    "source": {
+      "document_sha256": "586e07c5b75e3f9fc86193e41923c1cc62488feadacd045655968a7a82a20074",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0896-6273(01)00262-8"
+        ],
+        "citation_issn": [
+          "0896-6273"
+        ],
+        "citation_journal_title": [
+          "Neuron"
+        ],
+        "citation_publication_date": [
+          "2001-04-30"
+        ],
+        "citation_title": [
+          "Epileptic Seizures May Begin Hours in Advance of Clinical Onset A Report of Five Patients"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0896627301002628</prism:url><dc:identifier>doi:10.1016/S0896-6273(01)00262-8</dc:identifier><eid>1-s2.0-S0896627301002628</eid><prism:doi>10.1016/S0896-6273(01)00262-8</prism:doi><pii>S0896-6273(01)00262-8</pii><dc:title>Epileptic Seizures May Begin Hours in Advance of Clinical Onset A Report of Five Patients</dc:title><prism:publicationName>Neuron</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>08966273</prism:issn><prism:coverDate>2001-04-30</prism:coverDate><prism:coverDisplayDate>April 2001</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType>ElsevierBranded</openaccessSponsorType><openaccessUserLicense>http://www.elsevier.com/open-access/userlicense/1.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S0896627301002628\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0896627301002628\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:41.233377+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0896-6273%2801%2900262-8"
+    },
+    "proposed": false
+  },
+  {
+    "key": "BertEtal00",
+    "fingerprint": "v2:b3011ac0c4c20c62377b1133ab9e40cc25043be4b2eca545c126dc3301207abc",
+    "doi": "10.1016/s0926-6410(99)00051-8",
+    "source": {
+      "document_sha256": "c42478636d764f88285cddfcb677e3e5a2845fde676b016a29c32c4036cb5239",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0926-6410(99)00051-8"
+        ],
+        "citation_issn": [
+          "0926-6410"
+        ],
+        "citation_journal_title": [
+          "Cognitive Brain Research"
+        ],
+        "citation_publication_date": [
+          "2000-03-31"
+        ],
+        "citation_title": [
+          "Event-related brain potentials dissociate visual working memory processes under categorial and identical comparison conditions"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0926641099000518</prism:url><dc:identifier>doi:10.1016/S0926-6410(99)00051-8</dc:identifier><eid>1-s2.0-S0926641099000518</eid><prism:doi>10.1016/S0926-6410(99)00051-8</prism:doi><pii>S0926-6410(99)00051-8</pii><dc:title>Event-related brain potentials dissociate visual working memory processes under categorial and identical comparison conditions </dc:title><prism:publicationName>Cognitive Brain Research</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>09266410</prism:issn><prism:coverDate>2000-03-31</prism:coverDate><prism:coverDisplayDate>March 2000</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0926641099000518\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0926641099000518\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:42.499955+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0926-6410%2899%2900051-8"
+    },
+    "proposed": false
+  },
+  {
+    "key": "DobbEtal02",
+    "fingerprint": "v2:ef2e502e83ab155bc0f5dfb7f670d3a64dd8d2ddfbc2484fc8b41cfc1fa44c22",
+    "doi": "10.1016/s0896-6273(02)00858-9",
+    "source": {
+      "document_sha256": "fce22b088b0196690edc6bd741729aedbb5c6c7531d1b86d76d34f803fa21621",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0896-6273(02)00858-9"
+        ],
+        "citation_issn": [
+          "0896-6273"
+        ],
+        "citation_journal_title": [
+          "Neuron"
+        ],
+        "citation_publication_date": [
+          "2002-08-29"
+        ],
+        "citation_title": [
+          "Executive Control during Episodic Retrieval Multiple Prefrontal Processes Subserve Source Memory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0896627302008589</prism:url><dc:identifier>doi:10.1016/S0896-6273(02)00858-9</dc:identifier><eid>1-s2.0-S0896627302008589</eid><prism:doi>10.1016/S0896-6273(02)00858-9</prism:doi><pii>S0896-6273(02)00858-9</pii><dc:title>Executive Control during Episodic Retrieval Multiple Prefrontal Processes Subserve Source Memory</dc:title><prism:publicationName>Neuron</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>08966273</prism:issn><prism:coverDate>2002-08-29</prism:coverDate><prism:coverDisplayDate>29 August 2002</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType>ElsevierBranded</openaccessSponsorType><openaccessUserLicense>http://www.elsevier.com/open-access/userlicense/1.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S0896627302008589\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0896627302008589\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:43.755479+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0896-6273%2802%2900858-9"
+    },
+    "proposed": false
+  },
+  {
+    "key": "Unsw08",
+    "fingerprint": "v2:ff2848908285cba494a2c55decc55654920e70a877809a1972cc9f26434ba168",
+    "doi": "10.1016/j.jml.2008.04.002",
+    "source": {
+      "document_sha256": "09213ba120a684a321db1d1e1a73a96cff42316dd1109970de4c12de1d4bcaaa",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.jml.2008.04.002"
+        ],
+        "citation_issn": [
+          "0749-596X"
+        ],
+        "citation_journal_title": [
+          "Journal of Memory and Language"
+        ],
+        "citation_publication_date": [
+          "2008-08-31"
+        ],
+        "citation_title": [
+          "Exploring the retrieval dynamics of delayed and final free recall: Further evidence for temporal-contextual search"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0749596X08000405</prism:url><dc:identifier>doi:10.1016/j.jml.2008.04.002</dc:identifier><eid>1-s2.0-S0749596X08000405</eid><prism:doi>10.1016/j.jml.2008.04.002</prism:doi><pii>S0749-596X(08)00040-5</pii><dc:title>Exploring the retrieval dynamics of delayed and final free recall: Further evidence for temporal-contextual search </dc:title><prism:publicationName>Journal of Memory and Language</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>0749596X</prism:issn><prism:coverDate>2008-08-31</prism:coverDate><prism:coverDisplayDate>August 2008</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0749596X08000405\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0749596X08000405\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:45.098167+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.jml.2008.04.002"
+    },
+    "proposed": false
+  },
+  {
+    "key": "Will01",
+    "fingerprint": "v2:5f64fa8a4b6cda9c1dc3a1ed75533a7341b656d2ae926910fd9b0d1c160898ab",
+    "doi": "10.1016/s0306-4522(00)00579-0",
+    "source": {
+      "document_sha256": "ae3685afdea00e8c6839ddcfc1976172e68fba7e68fc3046f49ac03adf493854",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0306-4522(00)00579-0"
+        ],
+        "citation_issn": [
+          "0306-4522"
+        ],
+        "citation_journal_title": [
+          "Neuroscience"
+        ],
+        "citation_publication_date": [
+          "2001-05-10"
+        ],
+        "citation_title": [
+          "Frequency-specific effects of flicker on recognition memory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0306452200005790</prism:url><dc:identifier>doi:10.1016/S0306-4522(00)00579-0</dc:identifier><eid>1-s2.0-S0306452200005790</eid><prism:doi>10.1016/S0306-4522(00)00579-0</prism:doi><pii>S0306-4522(00)00579-0</pii><dc:title>Frequency-specific effects of flicker on recognition memory </dc:title><prism:publicationName>Neuroscience</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>03064522</prism:issn><prism:coverDate>2001-05-10</prism:coverDate><prism:coverDisplayDate>10 May 2001</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0306452200005790\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0306452200005790\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:46.341230+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0306-4522%2800%2900579-0"
+    },
+    "proposed": true
+  },
+  {
+    "key": "DEspEtal98",
+    "fingerprint": "v2:df7a9b66ca00399e552ff28efcf9ce7d7b0199a5e63ebedbebaf858b3d865876",
+    "doi": "10.1016/s0926-6410(98)00004-4",
+    "source": {
+      "document_sha256": "ddea19c47b8e1723605cedf7a625bf2787843edb8bc03512c240e5068f7de582",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0926-6410(98)00004-4"
+        ],
+        "citation_issn": [
+          "0926-6410"
+        ],
+        "citation_journal_title": [
+          "Cognitive Brain Research"
+        ],
+        "citation_publication_date": [
+          "1998-07-31"
+        ],
+        "citation_title": [
+          "Functional MRI studies of spatial and nonspatial working memory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0926641098000044</prism:url><dc:identifier>doi:10.1016/S0926-6410(98)00004-4</dc:identifier><eid>1-s2.0-S0926641098000044</eid><prism:doi>10.1016/S0926-6410(98)00004-4</prism:doi><pii>S0926-6410(98)00004-4</pii><dc:title>Functional MRI studies of spatial and nonspatial working memory </dc:title><prism:publicationName>Cognitive Brain Research</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>09266410</prism:issn><prism:coverDate>1998-07-31</prism:coverDate><prism:coverDisplayDate>July 1998</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName>NERL</openaccessSponsorName><openaccessSponsorType>FundingPartnerOpenArchive</openaccessSponsorType><openaccessUserLicense>http://creativecommons.org/licenses/by-nc-nd/4.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S0926641098000044\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0926641098000044\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:47.618857+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0926-6410%2898%2900004-4"
+    },
+    "proposed": true
+  },
+  {
+    "key": "BuckEtal98b",
+    "fingerprint": "v2:780dd03bf30910a079a7b15ccdafa9834ba9b720e9a655d907def5dad6aa4bf0",
+    "doi": "10.1006/nimg.1998.0328",
+    "source": {
+      "document_sha256": "d3f54d0b9d9aeab5920df5e34cf0f71f5afefcbf9441138a65973fa18cbb63d9",
+      "metadata": {
+        "citation_doi": [
+          "10.1006/nimg.1998.0328"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "1998-04-30"
+        ],
+        "citation_title": [
+          "Functional\u2013Anatomic Study of Episodic Retrieval II. Selective Averaging of Event-Related fMRI Trials to Test the Retrieval Success Hypothesis"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811998903287</prism:url><dc:identifier>doi:10.1006/nimg.1998.0328</dc:identifier><eid>1-s2.0-S1053811998903287</eid><prism:doi>10.1006/nimg.1998.0328</prism:doi><pii>S1053-8119(98)90328-7</pii><dc:title>Functional\u2013Anatomic Study of Episodic Retrieval II. Selective Averaging of Event-Related fMRI Trials to Test the Retrieval Success Hypothesis</dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>1998-04-30</prism:coverDate><prism:coverDisplayDate>April 1998</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1053811998903287\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811998903287\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:49.125722+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1006/nimg.1998.0328"
+    },
+    "proposed": false
+  },
+  {
+    "key": "BuckEtal98a",
+    "fingerprint": "v2:bf06cde71ddd0f7f1f220286a24f361e545010f7e831726387098ffa8452d9a4",
+    "doi": "10.1006/nimg.1998.0327",
+    "source": {
+      "document_sha256": "ba23da4224e7cdae83db9b00dfeb2dabee2defabedb5ae37474bc68e5893753d",
+      "metadata": {
+        "citation_doi": [
+          "10.1006/nimg.1998.0327"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "1998-04-30"
+        ],
+        "citation_title": [
+          "Functional\u2013Anatomic Study of Episodic Retrieval Using fMRI I. Retrieval Effort versus Retrieval Success"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811998903275</prism:url><dc:identifier>doi:10.1006/nimg.1998.0327</dc:identifier><eid>1-s2.0-S1053811998903275</eid><prism:doi>10.1006/nimg.1998.0327</prism:doi><pii>S1053-8119(98)90327-5</pii><dc:title>Functional\u2013Anatomic Study of Episodic Retrieval Using fMRI I. Retrieval Effort versus Retrieval Success</dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>1998-04-30</prism:coverDate><prism:coverDisplayDate>April 1998</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1053811998903275\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811998903275\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:50.374627+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1006/nimg.1998.0327"
+    },
+    "proposed": false
+  },
+  {
+    "key": "ShauEtal72",
+    "fingerprint": "v2:3d9db05f34d634c634c45fc416719b86b631585e01dbad7663350e7b67d01f24",
+    "doi": "10.1016/s0022-5371(72)80053-7",
+    "source": {
+      "document_sha256": "4c97a53178997e4f83b9dfa9582c91f42d8e8bde99db82478e1b7ac10df37549",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(72)80053-7"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1972-02-29"
+        ],
+        "citation_title": [
+          "Further evidence on the MP-DP effect in free-recall learning"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537172800537</prism:url><dc:identifier>doi:10.1016/S0022-5371(72)80053-7</dc:identifier><eid>1-s2.0-S0022537172800537</eid><prism:doi>10.1016/S0022-5371(72)80053-7</prism:doi><pii>S0022-5371(72)80053-7</pii><dc:title>Further evidence on the MP-DP effect in free-recall learning </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1972-02-29</prism:coverDate><prism:coverDisplayDate>February 1972</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537172800537\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537172800537\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:51.616890+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2872%2980053-7"
+    },
+    "proposed": true
+  },
+  {
+    "key": "SaliThie00",
+    "fingerprint": "v2:e4f10a598e5f21d7196398137e93d7e04b9239e90e1312ca970cdc1df5b5bbe1",
+    "doi": "10.1016/s0896-6273(00)00004-0",
+    "source": {
+      "document_sha256": "1c4a5cada6b8ff46e1eaf3c8b3deaa148296a6f650c21f0594e15f7e7a96cee2",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0896-6273(00)00004-0"
+        ],
+        "citation_issn": [
+          "0896-6273"
+        ],
+        "citation_journal_title": [
+          "Neuron"
+        ],
+        "citation_publication_date": [
+          "2000-07-31"
+        ],
+        "citation_title": [
+          "Gain Modulation A Major Computational Principle of the Central Nervous System"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0896627300000040</prism:url><dc:identifier>doi:10.1016/S0896-6273(00)00004-0</dc:identifier><eid>1-s2.0-S0896627300000040</eid><prism:doi>10.1016/S0896-6273(00)00004-0</prism:doi><pii>S0896-6273(00)00004-0</pii><dc:title>Gain Modulation A Major Computational Principle of the Central Nervous System</dc:title><prism:publicationName>Neuron</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>08966273</prism:issn><prism:coverDate>2000-07-31</prism:coverDate><prism:coverDisplayDate>July 2000</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType>ElsevierBranded</openaccessSponsorType><openaccessUserLicense>http://www.elsevier.com/open-access/userlicense/1.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S0896627300000040\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0896627300000040\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:53.074638+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0896-6273%2800%2900004-0"
+    },
+    "proposed": false
+  },
+  {
+    "key": "StewFox91",
+    "fingerprint": "v2:be8ebafc9e719888e5d646592c1308fe700b69d16f63b2c09b9e201e53984bfe",
+    "doi": "10.1016/0006-8993(91)90376-7",
+    "source": {
+      "document_sha256": "2cf3230c20712ce2c6f368c0d72414d8306ed03a362afe7a5c0c6ea8602eae49",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0006-8993(91)90376-7"
+        ],
+        "citation_issn": [
+          "0006-8993"
+        ],
+        "citation_journal_title": [
+          "Brain Research"
+        ],
+        "citation_publication_date": [
+          "1991-01-04"
+        ],
+        "citation_title": [
+          "Hippocampal theta activity in monkeys"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0006899391903767</prism:url><dc:identifier>doi:10.1016/0006-8993(91)90376-7</dc:identifier><eid>1-s2.0-0006899391903767</eid><prism:doi>10.1016/0006-8993(91)90376-7</prism:doi><pii>0006-8993(91)90376-7</pii><dc:title>Hippocampal theta activity in monkeys </dc:title><prism:publicationName>Brain Research</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00068993</prism:issn><prism:coverDate>1991-01-04</prism:coverDate><prism:coverDisplayDate>4 January 1991</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0006899391903767\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0006899391903767\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:54.333964+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0006-8993%2891%2990376-7"
+    },
+    "proposed": true
+  },
+  {
+    "key": "DaneCarp80",
+    "fingerprint": "v2:7f7dd68d23eda684424456af6f1fa4e4c1fd16673f89f4df8c61347fce27d16b",
+    "doi": "10.1016/s0022-5371(80)90312-6",
+    "source": {
+      "document_sha256": "80907929050dce6fd414a19ba5ff454f16c8e0da4e7a8285528f073d7ae9245b",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(80)90312-6"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1980-08-31"
+        ],
+        "citation_title": [
+          "Individual differences in working memory and reading"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537180903126</prism:url><dc:identifier>doi:10.1016/S0022-5371(80)90312-6</dc:identifier><eid>1-s2.0-S0022537180903126</eid><prism:doi>10.1016/S0022-5371(80)90312-6</prism:doi><pii>S0022-5371(80)90312-6</pii><dc:title>Individual differences in working memory and reading </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1980-08-31</prism:coverDate><prism:coverDisplayDate>August 1980</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537180903126\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537180903126\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:55.642298+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2880%2990312-6"
+    },
+    "proposed": true
+  },
+  {
+    "key": "Eich96",
+    "fingerprint": "v2:e50b7777286ac25088e5a0fc85898f2093e13275dfef3e13b70bb2507130d5b7",
+    "doi": "10.1016/s0959-4388(96)80072-9",
+    "source": {
+      "document_sha256": "2cf65eea611526b9a8c4d1eb354a3adc881e72d6ba0f28ba00d0e29cfd5a6e35",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0959-4388(96)80072-9"
+        ],
+        "citation_issn": [
+          "0959-4388"
+        ],
+        "citation_journal_title": [
+          "Current Opinion in Neurobiology"
+        ],
+        "citation_publication_date": [
+          "1996-04-30"
+        ],
+        "citation_title": [
+          "Is the rodent hippocampus just for \u2018place\u2019?"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0959438896800729</prism:url><dc:identifier>doi:10.1016/S0959-4388(96)80072-9</dc:identifier><eid>1-s2.0-S0959438896800729</eid><prism:doi>10.1016/S0959-4388(96)80072-9</prism:doi><pii>S0959-4388(96)80072-9</pii><dc:title>Is the rodent hippocampus just for \u2018place\u2019? </dc:title><prism:publicationName>Current Opinion in Neurobiology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>09594388</prism:issn><prism:coverDate>1996-04-30</prism:coverDate><prism:coverDisplayDate>April 1996</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0959438896800729\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0959438896800729\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:56.975697+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0959-4388%2896%2980072-9"
+    },
+    "proposed": false
+  },
+  {
+    "key": "PavlEtal88",
+    "fingerprint": "v2:b63f90af809c8ef76db9f62bef5b7a0b34c53f172f5ceea72ed3e196cd55422a",
+    "doi": "10.1016/0006-8993(88)91499-0",
+    "source": {
+      "document_sha256": "5db88f36e17f6957a3e961ceec957aa785933e1b18376a4f93a5925c509512ab",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0006-8993(88)91499-0"
+        ],
+        "citation_issn": [
+          "0006-8993"
+        ],
+        "citation_journal_title": [
+          "Brain Research"
+        ],
+        "citation_publication_date": [
+          "1988-01-26"
+        ],
+        "citation_title": [
+          "Long-term potentiation in the dentate gyrus is induced preferentially on the positive phase of \u03b8-rhythm"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0006899388914990</prism:url><dc:identifier>doi:10.1016/0006-8993(88)91499-0</dc:identifier><eid>1-s2.0-0006899388914990</eid><prism:doi>10.1016/0006-8993(88)91499-0</prism:doi><pii>0006-8993(88)91499-0</pii><dc:title>Long-term potentiation in the dentate gyrus is induced preferentially on the positive phase of \u03b8-rhythm </dc:title><prism:publicationName>Brain Research</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00068993</prism:issn><prism:coverDate>1988-01-26</prism:coverDate><prism:coverDisplayDate>26 January 1988</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0006899388914990\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0006899388914990\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:58.205445+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0006-8993%2888%2991499-0"
+    },
+    "proposed": false
+  },
+  {
+    "key": "PessEtal02",
+    "fingerprint": "v2:6920449e348220dbe3459a865268777a64a65a5d2781da7c9043b13e87157deb",
+    "doi": "10.1016/s0896-6273(02)00817-6",
+    "source": {
+      "document_sha256": "06db94c96c32f8d2c16af75535bebc8c25218ff423ccb9de3a28114f95a141ae",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0896-6273(02)00817-6"
+        ],
+        "citation_issn": [
+          "0896-6273"
+        ],
+        "citation_journal_title": [
+          "Neuron"
+        ],
+        "citation_publication_date": [
+          "2002-08-29"
+        ],
+        "citation_title": [
+          "Neural Correlates of Visual Working Memory fMRI Amplitude Predicts Task Performance"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0896627302008176</prism:url><dc:identifier>doi:10.1016/S0896-6273(02)00817-6</dc:identifier><eid>1-s2.0-S0896627302008176</eid><prism:doi>10.1016/S0896-6273(02)00817-6</prism:doi><pii>S0896-6273(02)00817-6</pii><dc:title>Neural Correlates of Visual Working Memory fMRI Amplitude Predicts Task Performance</dc:title><prism:publicationName>Neuron</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>08966273</prism:issn><prism:coverDate>2002-08-29</prism:coverDate><prism:coverDisplayDate>29 August 2002</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType>ElsevierBranded</openaccessSponsorType><openaccessUserLicense>http://www.elsevier.com/open-access/userlicense/1.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S0896627302008176\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0896627302008176\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:59.517189+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0896-6273%2802%2900817-6"
+    },
+    "proposed": false
+  },
+  {
+    "key": "BurkEtal91",
+    "fingerprint": "v2:6444ddafe649b81703bb533d07a61c6334c8d9bebfe6ea072f31867d95e1a342",
+    "doi": "10.1016/0749-596x(91)90026-g",
+    "source": {
+      "document_sha256": "03f8c36234232874a380ea1c2ab3f3cdaf14f03a763791fd632b740a65c28fa0",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0749-596X(91)90026-G"
+        ],
+        "citation_issn": [
+          "0749-596X"
+        ],
+        "citation_journal_title": [
+          "Journal of Memory and Language"
+        ],
+        "citation_publication_date": [
+          "1991-10-31"
+        ],
+        "citation_title": [
+          "On the tip of the tongue: What causes word finding failures in young and older adults?"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0749596X9190026G</prism:url><dc:identifier>doi:10.1016/0749-596X(91)90026-G</dc:identifier><eid>1-s2.0-0749596X9190026G</eid><prism:doi>10.1016/0749-596X(91)90026-G</prism:doi><pii>0749-596X(91)90026-G</pii><dc:title>On the tip of the tongue: What causes word finding failures in young and older adults? </dc:title><prism:publicationName>Journal of Memory and Language</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>0749596X</prism:issn><prism:coverDate>1991-10-31</prism:coverDate><prism:coverDisplayDate>October 1991</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0749596X9190026G\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0749596X9190026G\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:00.842920+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0749-596x%2891%2990026-g"
+    },
+    "proposed": true
+  },
+  {
+    "key": "KariEtal84",
+    "fingerprint": "v2:06010718b50e2b45d7cfcd7ef7fdd14c9187a13caec5e009576b5cf2c4dacb0b",
+    "doi": "10.1016/0010-0285(84)90007-0",
+    "source": {
+      "document_sha256": "8b21b27233ea87393e87501f3ec45d238c49a78440da826c54b3bd9383b4fa09",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0010-0285(84)90007-0"
+        ],
+        "citation_issn": [
+          "0010-0285"
+        ],
+        "citation_journal_title": [
+          "Cognitive Psychology"
+        ],
+        "citation_publication_date": [
+          "1984-04-30"
+        ],
+        "citation_title": [
+          "\u201cP300\u201d and memory: Individual differences in the von Restorff effect"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0010028584900070</prism:url><dc:identifier>doi:10.1016/0010-0285(84)90007-0</dc:identifier><eid>1-s2.0-0010028584900070</eid><prism:doi>10.1016/0010-0285(84)90007-0</prism:doi><pii>0010-0285(84)90007-0</pii><dc:title>\u201cP300\u201d and memory: Individual differences in the von Restorff effect </dc:title><prism:publicationName>Cognitive Psychology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00100285</prism:issn><prism:coverDate>1984-04-30</prism:coverDate><prism:coverDisplayDate>April 1984</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0010028584900070\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0010028584900070\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:02.382855+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0010-0285%2884%2990007-0"
+    },
+    "proposed": true
+  },
+  {
+    "key": "Delp72",
+    "fingerprint": "v2:cfd1871d6f69a2428b48e5b79935cc7d136ca702aa9e275bb35ee6e31fdef393",
+    "doi": "10.1016/s0022-5371(72)80040-9",
+    "source": {
+      "document_sha256": "79ee4d5eefc9bcb480946790cebe59e5e05f00b5a63b75f4bc606840181f53c7",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(72)80040-9"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1972-10-31"
+        ],
+        "citation_title": [
+          "Pair-specific effects in retroactive inhibition"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537172800409</prism:url><dc:identifier>doi:10.1016/S0022-5371(72)80040-9</dc:identifier><eid>1-s2.0-S0022537172800409</eid><prism:doi>10.1016/S0022-5371(72)80040-9</prism:doi><pii>S0022-5371(72)80040-9</pii><dc:title>Pair-specific effects in retroactive inhibition </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1972-10-31</prism:coverDate><prism:coverDisplayDate>October 1972</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537172800409\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537172800409\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:03.717684+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2872%2980040-9"
+    },
+    "proposed": true
+  },
+  {
+    "key": "Tzen73",
+    "fingerprint": "v2:e4975b2b47f02170ba7bfe88eafe87ada92bc5461c2574121d2b102e62d6bb64",
+    "doi": "10.1016/s0022-5371(73)80023-4",
+    "source": {
+      "document_sha256": "1e8210400464cd35ae73ed24edd40fdffdf475fd736379d2db9c570c5315cd39",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(73)80023-4"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1973-08-31"
+        ],
+        "citation_title": [
+          "Positive recency effect in a delayed free recall"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537173800234</prism:url><dc:identifier>doi:10.1016/S0022-5371(73)80023-4</dc:identifier><eid>1-s2.0-S0022537173800234</eid><prism:doi>10.1016/S0022-5371(73)80023-4</prism:doi><pii>S0022-5371(73)80023-4</pii><dc:title>Positive recency effect in a delayed free recall </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1973-08-31</prism:coverDate><prism:coverDisplayDate>August 1973</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537173800234\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537173800234\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:05.107299+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2873%2980023-4"
+    },
+    "proposed": true
+  },
+  {
+    "key": "Cohe70",
+    "fingerprint": "v2:c48163b501637856c8981366bb3d85aaf825d3e8f1297a0f4fb88fd947885418",
+    "doi": "10.1016/s0022-5371(70)80031-7",
+    "source": {
+      "document_sha256": "cc8d1a781c015d717f38f9e205e7ead654f5851648a93705d667eefa2fc21780",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(70)80031-7"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1970-12-31"
+        ],
+        "citation_title": [
+          "Recency effects in long-term recall and recognition"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537170800317</prism:url><dc:identifier>doi:10.1016/S0022-5371(70)80031-7</dc:identifier><eid>1-s2.0-S0022537170800317</eid><prism:doi>10.1016/S0022-5371(70)80031-7</prism:doi><pii>S0022-5371(70)80031-7</pii><dc:title>Recency effects in long-term recall and recognition </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1970-12-31</prism:coverDate><prism:coverDisplayDate>December 1970</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537170800317\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537170800317\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:06.429068+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2870%2980031-7"
+    },
+    "proposed": true
+  },
+  {
+    "key": "HintCurr94",
+    "fingerprint": "v2:72b1a463db2c8fc866f483acc51ef2fca38f1b13de04ec2cd4d3e5dd66a25cea",
+    "doi": "10.1006/jmla.1994.1001",
+    "source": {
+      "document_sha256": "12bbd98ee4adad63f5ea199f640c42f4d7e4d7939a15b76d4dacfa0e503303d3",
+      "metadata": {
+        "citation_doi": [
+          "10.1006/jmla.1994.1001"
+        ],
+        "citation_issn": [
+          "0749-596X"
+        ],
+        "citation_journal_title": [
+          "Journal of Memory and Language"
+        ],
+        "citation_publication_date": [
+          "1994-02-28"
+        ],
+        "citation_title": [
+          "Retrieval Dynamics of Recognition and Frequency Judgments: Evidence for Separate Processes of Familiarity and Recall"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0749596X84710011</prism:url><dc:identifier>doi:10.1006/jmla.1994.1001</dc:identifier><eid>1-s2.0-S0749596X84710011</eid><prism:doi>10.1006/jmla.1994.1001</prism:doi><pii>S0749-596X(84)71001-1</pii><dc:title>Retrieval Dynamics of Recognition and Frequency Judgments: Evidence for Separate Processes of Familiarity and Recall </dc:title><prism:publicationName>Journal of Memory and Language</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>0749596X</prism:issn><prism:coverDate>1994-02-28</prism:coverDate><prism:coverDisplayDate>February 1994</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0749596X84710011\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0749596X84710011\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:07.789983+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1006/jmla.1994.1001"
+    },
+    "proposed": true
+  },
+  {
+    "key": "SaltEtal93",
+    "fingerprint": "v2:9261b1cec6c41e7c05fad58d8bee8ffae81daa1c08df9b63243276aebd832774",
+    "doi": "10.1016/0167-9473(93)90193-w",
+    "source": {
+      "document_sha256": "170f9edc5a0d573f9a30c9c8b8490f1d9a24d9b91af477193b9f904e2de528a1",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0167-9473(93)90193-W"
+        ],
+        "citation_issn": [
+          "0167-9473"
+        ],
+        "citation_journal_title": [
+          "Computational Statistics & Data Analysis"
+        ],
+        "citation_publication_date": [
+          "1993-02-28"
+        ],
+        "citation_title": [
+          "Sensitivity analysis of model output An investigation of new techniques"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/016794739390193W</prism:url><dc:identifier>doi:10.1016/0167-9473(93)90193-W</dc:identifier><eid>1-s2.0-016794739390193W</eid><prism:doi>10.1016/0167-9473(93)90193-W</prism:doi><pii>0167-9473(93)90193-W</pii><dc:title>Sensitivity analysis of model output An investigation of new techniques</dc:title><prism:publicationName>Computational Statistics &amp; Data Analysis</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>01679473</prism:issn><prism:coverDate>1993-02-28</prism:coverDate><prism:coverDisplayDate>February 1993</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/016794739390193W\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/016794739390193W\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:09.030909+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0167-9473%2893%2990193-w"
+    },
+    "proposed": false
+  },
+  {
+    "key": "RosbEtal09",
+    "fingerprint": "v2:3ac58f93bca5ec52e1769be62b3ad3834bffd61a6592d989540b0de9d53f4014",
+    "doi": "10.1016/j.neuroimage.2008.09.035",
+    "source": {
+      "document_sha256": "1ca88804dace4135fedb14ff7eef347787471a1ca945fc90504e1f0f2e087091",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.neuroimage.2008.09.035"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "2009-02-01"
+        ],
+        "citation_title": [
+          "Sensory gating in intracranial recordings \u2014 The role of phase locking"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811908010410</prism:url><dc:identifier>doi:10.1016/j.neuroimage.2008.09.035</dc:identifier><eid>1-s2.0-S1053811908010410</eid><prism:doi>10.1016/j.neuroimage.2008.09.035</prism:doi><pii>S1053-8119(08)01041-0</pii><dc:title>Sensory gating in intracranial recordings \u2014 The role of phase locking </dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>2009-02-01</prism:coverDate><prism:coverDisplayDate>1 February 2009</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1053811908010410\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811908010410\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:10.246459+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.neuroimage.2008.09.035"
+    },
+    "proposed": false
+  },
+  {
+    "key": "BjorHeal74",
+    "fingerprint": "v2:9b313856bdca551000fa61706ee6194441d78128c54409226406d2d3a63979df",
+    "doi": "10.1016/s0022-5371(74)80033-2",
+    "source": {
+      "document_sha256": "c3f149ae7f427fdfb70496ff9a9aecd0ba3d65e5b51ff15c8e049e3f0f3ac63a",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(74)80033-2"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1974-02-28"
+        ],
+        "citation_title": [
+          "Short-term order and item retention"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537174800332</prism:url><dc:identifier>doi:10.1016/S0022-5371(74)80033-2</dc:identifier><eid>1-s2.0-S0022537174800332</eid><prism:doi>10.1016/S0022-5371(74)80033-2</prism:doi><pii>S0022-5371(74)80033-2</pii><dc:title>Short-term order and item retention </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1974-02-28</prism:coverDate><prism:coverDisplayDate>February 1974</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537174800332\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537174800332\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:11.502664+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2874%2980033-2"
+    },
+    "proposed": true
+  },
+  {
+    "key": "Wick68",
+    "fingerprint": "v2:388ea1c4fc87cb9fa4f922921ddfdb52c641b3fcb6d8264459bca36c7baea0df",
+    "doi": "10.1016/0028-3932(68)90022-5",
+    "source": {
+      "document_sha256": "3670826d71a6a259d26ee9cedbf160057ba0f18ab324359892196ab01880d219",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0028-3932(68)90022-5"
+        ],
+        "citation_issn": [
+          "0028-3932"
+        ],
+        "citation_journal_title": [
+          "Neuropsychologia"
+        ],
+        "citation_publication_date": [
+          "1968-09-30"
+        ],
+        "citation_title": [
+          "Sparing of short-term memory in an amnesic patient: Implications for strength theory of memory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0028393268900225</prism:url><dc:identifier>doi:10.1016/0028-3932(68)90022-5</dc:identifier><eid>1-s2.0-0028393268900225</eid><prism:doi>10.1016/0028-3932(68)90022-5</prism:doi><pii>0028-3932(68)90022-5</pii><dc:title>Sparing of short-term memory in an amnesic patient: Implications for strength theory of memory </dc:title><prism:publicationName>Neuropsychologia</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00283932</prism:issn><prism:coverDate>1968-09-30</prism:coverDate><prism:coverDisplayDate>September 1968</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0028393268900225\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0028393268900225\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:12.938000+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0028-3932%2868%2990022-5"
+    },
+    "proposed": false
+  },
+  {
+    "key": "NormWick69",
+    "fingerprint": "v2:a375ef5f0c15e5031cccdbb561aad41403e754305bff3687900c295c4c1f9abc",
+    "doi": "10.1016/0022-2496(69)90002-9",
+    "source": {
+      "document_sha256": "f89179009407c7fd9fa57d86dbcfc57c9965a2fad4f4976911c0a03809727291",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0022-2496(69)90002-9"
+        ],
+        "citation_issn": [
+          "0022-2496"
+        ],
+        "citation_journal_title": [
+          "Journal of Mathematical Psychology"
+        ],
+        "citation_publication_date": [
+          "1969-06-30"
+        ],
+        "citation_title": [
+          "Strength theory of decision rules and latency in retrieval from short-term memory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0022249669900029</prism:url><dc:identifier>doi:10.1016/0022-2496(69)90002-9</dc:identifier><eid>1-s2.0-0022249669900029</eid><prism:doi>10.1016/0022-2496(69)90002-9</prism:doi><pii>0022-2496(69)90002-9</pii><dc:title>Strength theory of decision rules and latency in retrieval from short-term memory </dc:title><prism:publicationName>Journal of Mathematical Psychology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00222496</prism:issn><prism:coverDate>1969-06-30</prism:coverDate><prism:coverDisplayDate>June 1969</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0022249669900029\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0022249669900029\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:14.137552+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0022-2496%2869%2990002-9"
+    },
+    "proposed": true
+  },
+  {
+    "key": "EichEtal99",
+    "fingerprint": "v2:c20736d010d37828a6a7e07b42c4a687dd17f040a194c869e60c0f05bc3f7f12",
+    "doi": "10.1016/s0896-6273(00)80773-4",
+    "source": {
+      "document_sha256": "8526baf0f4faec85ed0515e217069e548fb0f7a90b57365c4cde8c4678f86686",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0896-6273(00)80773-4"
+        ],
+        "citation_issn": [
+          "0896-6273"
+        ],
+        "citation_journal_title": [
+          "Neuron"
+        ],
+        "citation_publication_date": [
+          "1999-06-30"
+        ],
+        "citation_title": [
+          "The Hippocampus, Memory, and Place Cells Is It Spatial Memory or a Memory Space?"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0896627300807734</prism:url><dc:identifier>doi:10.1016/S0896-6273(00)80773-4</dc:identifier><eid>1-s2.0-S0896627300807734</eid><prism:doi>10.1016/S0896-6273(00)80773-4</prism:doi><pii>S0896-6273(00)80773-4</pii><dc:title>The Hippocampus, Memory, and Place Cells Is It Spatial Memory or a Memory Space?</dc:title><prism:publicationName>Neuron</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>08966273</prism:issn><prism:coverDate>1999-06-30</prism:coverDate><prism:coverDisplayDate>June 1999</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName>NERL</openaccessSponsorName><openaccessSponsorType>FundingPartnerOpenArchive</openaccessSponsorType><openaccessUserLicense>http://creativecommons.org/licenses/by-nc-nd/4.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S0896627300807734\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0896627300807734\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:15.390965+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0896-6273%2800%2980773-4"
+    },
+    "proposed": false
+  },
+  {
+    "key": "Gray99",
+    "fingerprint": "v2:7af04ea035da7ebb39f1537e0d9ded72ee57cef8c5a7f45bf7e37e023b0912c8",
+    "doi": "10.1016/s0896-6273(00)80820-x",
+    "source": {
+      "document_sha256": "3fde8f7498832eb7d1f0304477e912c16136573970386a040db3e9db7b6d21fd",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0896-6273(00)80820-X"
+        ],
+        "citation_issn": [
+          "0896-6273"
+        ],
+        "citation_journal_title": [
+          "Neuron"
+        ],
+        "citation_publication_date": [
+          "1999-09-30"
+        ],
+        "citation_title": [
+          "The Temporal Correlation Hypothesis of Visual Feature Integration Still Alive and Well"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S089662730080820X</prism:url><dc:identifier>doi:10.1016/S0896-6273(00)80820-X</dc:identifier><eid>1-s2.0-S089662730080820X</eid><prism:doi>10.1016/S0896-6273(00)80820-X</prism:doi><pii>S0896-6273(00)80820-X</pii><dc:title>The Temporal Correlation Hypothesis of Visual Feature Integration Still Alive and Well</dc:title><prism:publicationName>Neuron</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>08966273</prism:issn><prism:coverDate>1999-09-30</prism:coverDate><prism:coverDisplayDate>September 1999</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType>ElsevierBranded</openaccessSponsorType><openaccessUserLicense>http://www.elsevier.com/open-access/userlicense/1.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S089662730080820X\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S089662730080820X\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:16.692482+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0896-6273%2800%2980820-x"
+    },
+    "proposed": false
+  },
+  {
+    "key": "HartEtal03",
+    "fingerprint": "v2:c701802692b17bfb3b33977d870b97d3e06fd83797ac8d14d89bdd6e38fd124c",
+    "doi": "10.1016/s0896-6273(03)00095-3",
+    "source": {
+      "document_sha256": "7d55bf444c3c3137ee7e5d4a4c4a7ba1c45a4cfd5dbae836df4594a455506b53",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0896-6273(03)00095-3"
+        ],
+        "citation_issn": [
+          "0896-6273"
+        ],
+        "citation_journal_title": [
+          "Neuron"
+        ],
+        "citation_publication_date": [
+          "2003-03-06"
+        ],
+        "citation_title": [
+          "The Well-Worn Route and the Path Less Traveled Distinct Neural Bases of Route Following and Wayfinding in Humans"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0896627303000953</prism:url><dc:identifier>doi:10.1016/S0896-6273(03)00095-3</dc:identifier><eid>1-s2.0-S0896627303000953</eid><prism:doi>10.1016/S0896-6273(03)00095-3</prism:doi><pii>S0896-6273(03)00095-3</pii><dc:title>The Well-Worn Route and the Path Less Traveled Distinct Neural Bases of Route Following and Wayfinding in Humans</dc:title><prism:publicationName>Neuron</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>08966273</prism:issn><prism:coverDate>2003-03-06</prism:coverDate><prism:coverDisplayDate>6 March 2003</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType>ElsevierBranded</openaccessSponsorType><openaccessUserLicense>http://www.elsevier.com/open-access/userlicense/1.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S0896627303000953\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0896627303000953\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:18.214575+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0896-6273%2803%2900095-3"
+    },
+    "proposed": false
+  },
+  {
+    "key": "Star68",
+    "fingerprint": "v2:1aaca2664d226bcfee84a43507d5f511cf16df7bc791b6119393c4c612693319",
+    "doi": "10.1016/s0022-5371(68)80158-6",
+    "source": {
+      "document_sha256": "9c8ae5881440d8e1d52adc67386052349644860fac448b8f2a6bbeec2da32827",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(68)80158-6"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1968-02-29"
+        ],
+        "citation_title": [
+          "Transfer from serial to paired-associate learning: A reappraisal"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537168801586</prism:url><dc:identifier>doi:10.1016/S0022-5371(68)80158-6</dc:identifier><eid>1-s2.0-S0022537168801586</eid><prism:doi>10.1016/S0022-5371(68)80158-6</prism:doi><pii>S0022-5371(68)80158-6</pii><dc:title>Transfer from serial to paired-associate learning: A reappraisal </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1968-02-29</prism:coverDate><prism:coverDisplayDate>February 1968</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537168801586\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537168801586\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:19.457419+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2868%2980158-6"
+    },
+    "proposed": true
+  },
+  {
+    "key": "KahaEtal99b",
+    "fingerprint": "v2:cad95aa46d80d79df15577a2fdb290d39732414a0e648326bdc7f993b351e9e4",
+    "doi": "10.1016/s1364-6613(99)01395-9",
+    "source": {
+      "document_sha256": "ca05a8f2c9d7e612e0924ae291300a77d503901b82a67ba51555ba073c7bbe02",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S1364-6613(99)01395-9"
+        ],
+        "citation_issn": [
+          "1364-6613"
+        ],
+        "citation_journal_title": [
+          "Trends in Cognitive Sciences"
+        ],
+        "citation_publication_date": [
+          "1999-11-01"
+        ],
+        "citation_title": [
+          "Using intracranial recordings to study theta Response to J. O\u2019Keefe and N. Burgess (1999)"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1364661399013959</prism:url><dc:identifier>doi:10.1016/S1364-6613(99)01395-9</dc:identifier><eid>1-s2.0-S1364661399013959</eid><prism:doi>10.1016/S1364-6613(99)01395-9</prism:doi><pii>S1364-6613(99)01395-9</pii><dc:title>Using intracranial recordings to study theta Response to J. O\u2019Keefe and N. Burgess (1999)</dc:title><prism:publicationName>Trends in Cognitive Sciences</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>13646613</prism:issn><prism:coverDate>1999-11-01</prism:coverDate><prism:coverDisplayDate>1 November 1999</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1364661399013959\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1364661399013959\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:20.694576+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s1364-6613%2899%2901395-9"
+    },
+    "proposed": false
+  },
+  {
+    "key": "MartFedi83",
+    "fingerprint": "v2:f2e2629660bb3eef916bbf6414ad46b0f35fc870b9c9688911479a292a44e1a5",
+    "doi": "10.1016/0093-934x(83)90059-7",
+    "source": {
+      "document_sha256": "076e5fc6daa24c63043d011384de51aa3eaa143657e8d2be817391924318dd0d",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0093-934X(83)90059-7"
+        ],
+        "citation_issn": [
+          "0093-934X"
+        ],
+        "citation_journal_title": [
+          "Brain and Language"
+        ],
+        "citation_publication_date": [
+          "1983-05-31"
+        ],
+        "citation_title": [
+          "Word production and comprehension in Alzheimer's dise\u00e1se: The breakdown of semantic knowledge"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0093934X83900597</prism:url><dc:identifier>doi:10.1016/0093-934X(83)90059-7</dc:identifier><eid>1-s2.0-0093934X83900597</eid><prism:doi>10.1016/0093-934X(83)90059-7</prism:doi><pii>0093-934X(83)90059-7</pii><dc:title>Word production and comprehension in Alzheimer's dise\u00e1se: The breakdown of semantic knowledge </dc:title><prism:publicationName>Brain and Language</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>0093934X</prism:issn><prism:coverDate>1983-05-31</prism:coverDate><prism:coverDisplayDate>May 1983</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0093934X83900597\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0093934X83900597\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:21.905359+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0093-934x%2883%2990059-7"
+    },
+    "proposed": false
+  },
+  {
+    "key": "WoodEtal00b",
+    "fingerprint": "v2:a5fde92037f6d32a5b2cd18a78976df183239bd2e4b44f2e345ba3487169a933",
+    "doi": "10.1016/s0006-3223(00)00917-3",
+    "source": {
+      "document_sha256": "4bcf1b6e4232be67f3ee638508eea96ad245fc47c2c8f795aa5781d298119311",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0006-3223(00)00917-3"
+        ],
+        "citation_issn": [
+          "0006-3223"
+        ],
+        "citation_journal_title": [
+          "Biological Psychiatry"
+        ],
+        "citation_publication_date": [
+          "2000-12-01"
+        ],
+        "citation_title": [
+          "Laboratory sleep correlates of nightmare complaint in PTSD inpatients\n                  1\n               \n               \n                  1\n                  The percentage of nights with nightmare reports across these four studies could rise to 41% if indeterminate numbers of nightmares and nights observed were set to their respective upper and lower bounds."
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0006322300009173</prism:url><dc:identifier>doi:10.1016/S0006-3223(00)00917-3</dc:identifier><eid>1-s2.0-S0006322300009173</eid><prism:doi>10.1016/S0006-3223(00)00917-3</prism:doi><pii>S0006-3223(00)00917-3</pii><dc:title>Laboratory sleep correlates of nightmare complaint in PTSD inpatients\n                  1\n               \n               \n                  1\n                  The percentage of nights with nightmare reports across these four studies could rise to 41% if indeterminate numbers of nightmares and nights observed were set to their respective upper and lower bounds.\n               \n             </dc:title><prism:publicationName>Biological Psychiatry</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00063223</prism:issn><prism:coverDate>2000-12-01</prism:coverDate><prism:coverDisplayDate>1 December 2000</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0006322300009173\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0006322300009173\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:23.151731+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0006-3223%2800%2900917-3"
+    },
+    "proposed": false
+  },
+  {
+    "key": "Boro01",
+    "fingerprint": "v2:6bdbe4ed6c1bd6455e205a9124de8805c5948ac26a4c5536c695db33c8b9b41f",
+    "doi": "10.1006/cogp.2001.0748",
+    "source": {
+      "document_sha256": "da9b6a33467078a64fb3472e76a74411bc54a27a7b3de25de9ebe5c219b9c900",
+      "metadata": {
+        "citation_doi": [
+          "10.1006/cogp.2001.0748"
+        ],
+        "citation_issn": [
+          "0010-0285"
+        ],
+        "citation_journal_title": [
+          "Cognitive Psychology"
+        ],
+        "citation_publication_date": [
+          "2001-08-31"
+        ],
+        "citation_title": [
+          "Does Language Shape Thought?: Mandarin and English Speakers' Conceptions of Time"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0010028501907480</prism:url><dc:identifier>doi:10.1006/cogp.2001.0748</dc:identifier><eid>1-s2.0-S0010028501907480</eid><prism:doi>10.1006/cogp.2001.0748</prism:doi><pii>S0010-0285(01)90748-0</pii><dc:title>Does Language Shape Thought?: Mandarin and English Speakers' Conceptions of Time </dc:title><prism:publicationName>Cognitive Psychology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00100285</prism:issn><prism:coverDate>2001-08-31</prism:coverDate><prism:coverDisplayDate>August 2001</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0010028501907480\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0010028501907480\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:24.368525+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1006/cogp.2001.0748"
+    },
+    "proposed": false
+  }
+]

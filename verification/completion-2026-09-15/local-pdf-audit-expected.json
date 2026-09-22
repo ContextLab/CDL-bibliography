@@ -1,0 +1,33 @@
+{
+  "basis": "Assistant visual inspection of the publisher cover and original first article page for each paper; source publisher is not a historical imprint approval.",
+  "entries": {
+    "Box76": {
+      "title": "Science and Statistics",
+      "authors": [
+        "Box,GEP"
+      ],
+      "year": "1976",
+      "volume": "71",
+      "issue": "356",
+      "pages": "791-799",
+      "container": "Journal of the American Statistical Association",
+      "type": "article",
+      "doi": "10.1080/01621459.1976.10480949",
+      "publisher": null
+    },
+    "Salz59": {
+      "title": "Experimental Manipulation of Verbal Behavior: A Review",
+      "authors": [
+        "Salzinger,K"
+      ],
+      "year": "1959",
+      "volume": "61",
+      "issue": "1",
+      "pages": "65-94",
+      "container": "The Journal of General Psychology",
+      "type": "article",
+      "doi": "10.1080/00221309.1959.9710241",
+      "publisher": "Routledge"
+    }
+  }
+}

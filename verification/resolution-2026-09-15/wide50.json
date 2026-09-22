@@ -1,0 +1,839 @@
+{
+  "selection": "10 per mutually exclusive stratum, priority books/chapters, other types, weak identity, multiple conflicts, single conflict; SHA256 wide50-v1:key within stratum. Excludes original pilot. Stress sample, not prevalence estimate.",
+  "eligible_counts": {
+    "books_chapters": 384,
+    "weak_or_missing_identity": 2696,
+    "single_conflict": 732,
+    "multiple_conflicts": 495,
+    "other_types": 128
+  },
+  "entries": [
+    {
+      "key": "Shal75",
+      "fingerprint": "v2:07e54c2fe61c6737c0f5d56511fa59675ef2773955e54c0ec473bcffcebc3214",
+      "entry": {
+        "ENTRYTYPE": "incollection",
+        "ID": "Shal75",
+        "address": "London, {UK}",
+        "author": "T Shallice",
+        "booktitle": "Attention and Performance",
+        "editor": "P M A Rabbitt and S Dornic",
+        "pages": "269--280",
+        "publisher": "Academic Press",
+        "title": "On the contents of primary memory",
+        "volume": "5",
+        "year": "1975"
+      },
+      "group": "books_chapters",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "AtkiJuol74",
+      "fingerprint": "v2:fbf33b691c964977ceda9b785e9d06b11ff9d7862fca9ff79df7b124e76db24f",
+      "entry": {
+        "ENTRYTYPE": "incollection",
+        "ID": "AtkiJuol74",
+        "address": "San Francisco, {CA}",
+        "author": "R C Atkinson and J F Juola",
+        "booktitle": "Contemporary Developments in Mathematical Psychology",
+        "editor": "D H Krantz and R C Atkinson and P Suppes",
+        "publisher": "Freeman",
+        "title": "Search and decision processes in recognition memory",
+        "year": "1974"
+      },
+      "group": "books_chapters",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "RescWagn72",
+      "fingerprint": "v2:ac4536c97c339a4c1142184daf0f36d41c013e6db3dee085781724582fc0e266",
+      "entry": {
+        "ENTRYTYPE": "incollection",
+        "ID": "RescWagn72",
+        "address": "New York, {NY}",
+        "author": "R A Rescorla and A R Wagner",
+        "booktitle": "Classical Conditioning {II}: Current Research and Theory",
+        "editor": "A H Black and W F Prokasy",
+        "pages": "64--99",
+        "publisher": "Appleton-Century",
+        "title": "A theory of pavolvian conditioning: variations in the effectiveness of reinforcement and nonreinforcement",
+        "year": "1972"
+      },
+      "group": "books_chapters",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "AingEtal08",
+      "fingerprint": "v2:8a9193b2e61eb64fbecdf0e17f6aa0cd562e9c0354cc912620ac5f7f6ba280f9",
+      "entry": {
+        "ENTRYTYPE": "incollection",
+        "ID": "AingEtal08",
+        "address": "Oxford, {UK}",
+        "author": "J A Ainge and P A Dudchenko and E R Wood",
+        "booktitle": "Hippocampal Place Fields: Relevance to Learning and Memory",
+        "chapter": "3",
+        "editor": "Sheri J Y Mizumori",
+        "pages": "44--58",
+        "publisher": "{Oxford} {University} Press",
+        "title": "Context-dependent firing of hippocampal place cells: does it underlie memory?",
+        "year": "2008"
+      },
+      "group": "books_chapters",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "Glan72",
+      "fingerprint": "v2:aab1873e0b982e0e4a43dff47e49b5bcebebce9d1c4683542c1649bb5854e840",
+      "entry": {
+        "ENTRYTYPE": "incollection",
+        "ID": "Glan72",
+        "address": "New York, {NY}",
+        "author": "M Glanzer",
+        "booktitle": "The Psychology of Learning and Motivation",
+        "editor": "K W Spence and J T Spence",
+        "pages": "129--193",
+        "publisher": "Academic Press",
+        "title": "Storage mechanisms in recall",
+        "year": "1972"
+      },
+      "group": "books_chapters",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "Carr10",
+      "fingerprint": "v2:6d859828b739c0d5f163a56e7441068ab3caa9f7a875e23d1fb680db366ff101",
+      "entry": {
+        "ENTRYTYPE": "book",
+        "ID": "Carr10",
+        "author": "Sean Carroll",
+        "publisher": "Penguin",
+        "title": "From eternity to here: the quest for the ultimate theory of time",
+        "year": "2010"
+      },
+      "group": "books_chapters",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "BranEtal79",
+      "fingerprint": "v2:9fe65ff071ae250e5bb2ebd7e2a0ee6d10a3efa090b66d024685f324f75c025f",
+      "entry": {
+        "ENTRYTYPE": "incollection",
+        "ID": "BranEtal79",
+        "author": "J D Bransford and J J Franks and C D Morris and B S Stein",
+        "booktitle": "Levels of Processing in Human Memory",
+        "chapter": "15",
+        "editor": "L S Cermak and F I M Craik",
+        "pages": "331--354",
+        "publisher": "Erlbaum",
+        "title": "Some general constraints on learning and memory research",
+        "year": "1979"
+      },
+      "group": "books_chapters",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "RussNorv95",
+      "fingerprint": "v2:8e4668c7ebd37225f0418baf3e6aa5d802623a1d1f664054ab323ba135864307",
+      "entry": {
+        "ENTRYTYPE": "book",
+        "ID": "RussNorv95",
+        "address": "Englewood Cliffs, {NJ}",
+        "author": "S J Russell and P Norvig",
+        "publisher": "Prentice-Hall",
+        "title": "Artificial intelligence: a modern approach",
+        "year": "1995"
+      },
+      "group": "books_chapters",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "Tulv79",
+      "fingerprint": "v2:94a25951e6fd81f44442d681155f0ea49c0826e733e635247207df6336221987",
+      "entry": {
+        "ENTRYTYPE": "incollection",
+        "ID": "Tulv79",
+        "author": "E Tulving",
+        "booktitle": "Levels of Processing in Human Memory",
+        "chapter": "19",
+        "editor": "L S Cermak and F I M Craik",
+        "pages": "405--428",
+        "publisher": "Erlbaum",
+        "title": "Relation between encoding specificity and levels of processing",
+        "year": "1979"
+      },
+      "group": "books_chapters",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "BoydEtal14",
+      "fingerprint": "v2:75e1215a9324ec7f90c13db0f0db171b359910722ddbf1f60e9d34820d4be35e",
+      "entry": {
+        "ENTRYTYPE": "incollection",
+        "ID": "BoydEtal14",
+        "author": "J Boyd-Graber and D Mimno and D Newman",
+        "booktitle": "Handbook of Mixed Membership Models and Their Applications",
+        "editor": "E M Airoldi and D M Blei and E A Erosheva and S E Fienberg",
+        "publisher": "{CRC} Press",
+        "title": "Care and feeding of topic models: problems, diagnostics, and improvements",
+        "year": "2014"
+      },
+      "group": "books_chapters",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "WoerEtal03",
+      "fingerprint": "v2:26013f2d15348bc9b34f0c1e49cab27bd2cabc380c2e21d199e02606fc622f78",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "WoerEtal03",
+        "author": "F G Woermann and H Jokeit and R Luerding and H Freitag and R Schulz and S Guertler and M Okujava and P Wolf and I Tuxhorn and A Ebner",
+        "journal": "Neurology",
+        "number": "5",
+        "pages": "699",
+        "publisher": "{American} Academy of Neurology Enterprises",
+        "title": "Language lateralization by wada test and {fMRI} in 100 patients with epilepsy",
+        "volume": "61",
+        "year": "2003"
+      },
+      "group": "multiple_conflicts",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "ZackHash97",
+      "fingerprint": "v2:954374b6f83f7a95e9cd458cfc6d87f0d18ba1c91459e06ad54ba968c9d9598e",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "ZackHash97",
+        "author": "R Zacks and L Hasher",
+        "journal": "Journal of Gerontology",
+        "pages": "274--283",
+        "title": "Cognitive gerontology and attentional inhibition: a reply to {B}urke and {M}c{D}owd",
+        "volume": "52B",
+        "year": "1997"
+      },
+      "group": "multiple_conflicts",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "BogaEtal07",
+      "fingerprint": "v2:edf6acec06e994c826cd9a855d0de6a01f42178f6d88a3b64430185c57df6e1d",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "BogaEtal07",
+        "author": "Rafal Bogacz and Marius Usher and Jiaxiang Zhang and James L McClelland",
+        "journal": "Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences",
+        "title": "Extending a biologically inspired model of choice: multi-alternatives, nonlinearity and value-based multidimensional choice",
+        "year": "2007"
+      },
+      "group": "multiple_conflicts",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "YueEtal11",
+      "fingerprint": "v2:9f5534da6574cf4d6b1ef7fc1fe939d3fa9e996718893804320c27afc8d3132d",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "YueEtal11",
+        "author": "X Yue and B S Cassidy and K J Devaney and D J Holt and R B H Tootell",
+        "journal": "Cerebral Cortex",
+        "number": "1",
+        "pages": "35",
+        "publisher": "{Oxford} {University} Press",
+        "title": "Lower-level stimulus features strongly influence responses in the fusiform face area",
+        "volume": "21",
+        "year": "2011"
+      },
+      "group": "multiple_conflicts",
+      "previous_route": "publication_version"
+    },
+    {
+      "key": "GersvanH92",
+      "fingerprint": "v2:7faa3e27d56b78af2f7e47042a9ae990f1d4f83ef34b39006e23f7c8709cee5b",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "GersvanH92",
+        "author": "W Gerstner and J L {van Hemmen}",
+        "journal": "Network",
+        "pages": "139--164",
+        "title": "Associative memory in a network of 'spiking' neurons",
+        "volume": "3",
+        "year": "1992"
+      },
+      "group": "multiple_conflicts",
+      "previous_route": "publication_version"
+    },
+    {
+      "key": "MartLeve91",
+      "fingerprint": "v2:1574270b2b68e6e151886f53c05f4c0bb5385ac23aecfdf8bd6db6bccb716095",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "MartLeve91",
+        "author": "I Martin and A B Levey",
+        "journal": "Quarterly Journal of Experimental Psychology",
+        "pages": "233--255",
+        "title": "Blocking observed in human eyelid conditioning",
+        "volume": "43B",
+        "year": "1991"
+      },
+      "group": "multiple_conflicts",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "AltsEtal99",
+      "fingerprint": "v2:0b555f92a3190bb2965e79e3604c0be6b168bdc0364c483a505dc0299fb81b31",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "AltsEtal99",
+        "author": "L Altshuler and R Rausch and S Delrahim and J Kay and P Crandall",
+        "journal": "Journal of Neuropsychiatry and Clinical Neurosciences",
+        "number": "4",
+        "pages": "436",
+        "publisher": "{American} Neuropsychiatric Association",
+        "title": "Temporal lobe epilepsy, temporal lobectomy, and major depression",
+        "volume": "11",
+        "year": "1999"
+      },
+      "group": "multiple_conflicts",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "TonoEdel98",
+      "fingerprint": "v2:7affc57b48e68952ded151e799d47394999279c4c729ba2890c45d775041b348",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "TonoEdel98",
+        "author": "G Tononi and G M Edelman",
+        "journal": "Science",
+        "number": "5395",
+        "pages": "1846--1851",
+        "title": "Consciousness and complexity",
+        "volume": "282",
+        "year": "1998"
+      },
+      "group": "multiple_conflicts",
+      "previous_route": "publication_version"
+    },
+    {
+      "key": "ChenNewc05",
+      "fingerprint": "v2:76a0e4945b0a805bd4d8dc1cf4eea6ab666f510f4bb66e61e88bddda8594d0a7",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "ChenNewc05",
+        "author": "K Cheng and N S Newcombe",
+        "journal": "Psychonomic Bulletin and Review",
+        "number": "1",
+        "pages": "1",
+        "title": "Is there a geometric module for spatial orientation? Squaring theory and evidence",
+        "volume": "12",
+        "year": "2005"
+      },
+      "group": "multiple_conflicts",
+      "previous_route": "publication_version"
+    },
+    {
+      "key": "ImanHelt88",
+      "fingerprint": "v2:ee6a71204df8447e97c1882edc496ca266082fdf863e21c39677f271573a9778",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "ImanHelt88",
+        "author": "R L Iman and J C Helton",
+        "journal": "Risk Analysis",
+        "number": "1",
+        "pages": "71--90",
+        "publisher": "Blackwell",
+        "title": "An investigation of uncertainty and sensitivity analysis techniques for computer models",
+        "volume": "8",
+        "year": "1988"
+      },
+      "group": "multiple_conflicts",
+      "previous_route": "publication_version"
+    },
+    {
+      "key": "CoopEtal04",
+      "fingerprint": "v2:fcb3eb7333301a0aed121e98bf8767285c624f744be6bc630b20e690c95f5766",
+      "entry": {
+        "ENTRYTYPE": "misc",
+        "ID": "CoopEtal04",
+        "author": "R S Cooper and J F McElroy and W Rolandi and D Sanders and R M Ulmer and E Peebles",
+        "publisher": "Us Patent",
+        "title": "Personal virtual assistant",
+        "year": "2004"
+      },
+      "group": "other_types",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "KinsWood75",
+      "fingerprint": "v2:d83985c055c2c012d5bb6606586b57685234588c319a91939ccba2373f7ed290",
+      "entry": {
+        "ENTRYTYPE": "inbook",
+        "ID": "KinsWood75",
+        "address": "New York, {NY}",
+        "author": "M Kinsbourne and F Wood",
+        "booktitle": "Short-Term Memory",
+        "editor": "D D Deutsch and J A Deutsch",
+        "pages": "258--291",
+        "publisher": "Academic Press",
+        "title": "Short-term memory and the amnesic syndrom",
+        "year": "1975"
+      },
+      "group": "other_types",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "Jenk79",
+      "fingerprint": "v2:2396f130416135c2a6294df9962c069f97dc80ad00daf46333011a14a08ce886",
+      "entry": {
+        "ENTRYTYPE": "inbook",
+        "ID": "Jenk79",
+        "address": "Hillsdale, {NJ}",
+        "author": "J J Jenkins",
+        "chapter": "Four points to remember: A tetrahedral model of memory experiments",
+        "editor": "L S Cermak and F I M Craik",
+        "pages": "429--446",
+        "publisher": "Erlbaum",
+        "title": "Levels of processing in human memory",
+        "year": "1979"
+      },
+      "group": "other_types",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "deCa05b",
+      "fingerprint": "v2:e91ab183609c76042213903e5e73d3277a8ab13e2f9b500c6670cfc7f0914e6e",
+      "entry": {
+        "ENTRYTYPE": "misc",
+        "ID": "deCa05b",
+        "author": "E {de Castro Lopo}",
+        "title": "{libsndfile}",
+        "year": "2005"
+      },
+      "group": "other_types",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "LittEtal98",
+      "fingerprint": "v2:42399d9a388f8de4b48a8730f9ba75d53155920657c0ac33f6d44a474c86bcc1",
+      "entry": {
+        "ENTRYTYPE": "misc",
+        "ID": "LittEtal98",
+        "author": "B Litt and G Vachtsevanos and J Echauz and R Esteller",
+        "title": "Method and apparatus for predicting the onset of seizures based on features derived from brain activity signals",
+        "year": "1998"
+      },
+      "group": "other_types",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "DengEtal09",
+      "fingerprint": "v2:000a489724b0c0a224780d716441f6b38b6f693eb40252456a491a6ad59637f2",
+      "entry": {
+        "ENTRYTYPE": "conference",
+        "ID": "DengEtal09",
+        "author": "J Deng and W Dong and R Socher and L J Li and K Li and L Fei-Fei",
+        "booktitle": "{IEEE} Conference on Computer Vision and Pattern Recognition",
+        "pages": "710--719",
+        "title": "{ImageNet}: a large-scale hierarchical image database",
+        "year": "2009"
+      },
+      "group": "other_types",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "Yama08",
+      "fingerprint": "v2:5607e86e54279d111c5856c61a750ce87b9b17cbea104a0a8441942a87797760",
+      "entry": {
+        "ENTRYTYPE": "misc",
+        "ID": "Yama08",
+        "author": "Y Yamaguchi",
+        "title": "The brain computation based on synchronization of nonlinear oscillations: on theta rhythms in rat hippocampus and human scalp {EEG}",
+        "year": "2008"
+      },
+      "group": "other_types",
+      "previous_route": "publication_version"
+    },
+    {
+      "key": "Baas05",
+      "fingerprint": "v2:74b1f53e0a21722d02788eba9b193bb6ca9049633209d1fe0179417e62deb0fe",
+      "entry": {
+        "ENTRYTYPE": "misc",
+        "ID": "Baas05",
+        "author": "M Baas",
+        "title": "Py{ODE}: {Python} bindings for the {O}pen {D}ynamics {E}ngine",
+        "year": "2005"
+      },
+      "group": "other_types",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "PolyEtal05b",
+      "fingerprint": "v2:808c40c05261596f8debe4038a0e2f9d6f3a81679da2377794cd1ee3a7b457c8",
+      "entry": {
+        "ENTRYTYPE": "conference",
+        "ID": "PolyEtal05b",
+        "author": "S M Polyn and G Detre and S Takerkart and V Natu and M Benharrosh and B Singer and J D Cohen and J V Haxby and K A Norman",
+        "publisher": "Organization for Human Brain Mapping",
+        "title": "A {MATLAB-based} toolbox to facilitate multi-voxel pattern classification of {fMRI} data",
+        "year": "2005"
+      },
+      "group": "other_types",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "DiazEtal15",
+      "fingerprint": "v2:4d49d629f71e9ef8380ac0e0c6b7670a7119f1b11c1a3301cbd68fd30eaeb7aa",
+      "entry": {
+        "ENTRYTYPE": "misc",
+        "ID": "DiazEtal15",
+        "author": "Keith M Diaz and David J Krupka and Melinda J Chang and James Peacock and Yao Ma and Jeff Goldsmith and Joseph E Schwartz and Karina W Davidson",
+        "booktitle": "International Journal of Cardiology",
+        "pages": "138--140",
+        "title": "Fitbit: an accurate and reliable device for wireless physical activity tracking",
+        "volume": "185",
+        "year": "2015"
+      },
+      "group": "other_types",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "Smol88",
+      "fingerprint": "v2:1edc0c7f02941e2e8497319466de7cf88d24d9b0b12973b1355accd8e13ea823",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "Smol88",
+        "author": "P Smolensky",
+        "journal": "Behavioral and Brain Sciences",
+        "number": "1",
+        "pages": "1--23",
+        "title": "On the proper treatment of connectionism",
+        "volume": "11",
+        "year": "1988"
+      },
+      "group": "single_conflict",
+      "previous_route": "publication_version"
+    },
+    {
+      "key": "SlawKasi98",
+      "fingerprint": "v2:413b537a0cd86bafbc9423607815a696b05a5fe6a4f959da61f3a85992ef88b5",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "SlawKasi98",
+        "author": "U S{\\l}awi{\\'n}ska and S Kasicki",
+        "journal": "Brain Research",
+        "number": "1-2",
+        "pages": "327--331",
+        "publisher": "Elsevier",
+        "title": "The frequency of rat's hippocampal theta rhythm is related to the speed of locomotion",
+        "volume": "796",
+        "year": "1998"
+      },
+      "group": "single_conflict",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "GrobEtal07",
+      "fingerprint": "v2:ae863cbba874ff89d7d326a15ae8109980c904985f929abde7583729570c3598",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "GrobEtal07",
+        "author": "E Grober and C Hall and M McGinn and T Nicholls and S Stanford and A Ehrlich and L G Jacobs and G Kennedy and A Sanders and R B Lipton",
+        "journal": "Journal of the International Neuropsychological Society",
+        "pages": "130--142",
+        "title": "Neuropsychological strategies for detecting early dementia",
+        "volume": "14",
+        "year": "2007"
+      },
+      "group": "single_conflict",
+      "previous_route": "publication_version"
+    },
+    {
+      "key": "DesgEtal02",
+      "fingerprint": "v2:dbd4154010f1d23518726063e78ec4b13d1fbad5bd46ae2ecc06110f36967bf6",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "DesgEtal02",
+        "author": "B{\\'e}atrice Desgranges and Jean-Claude Baron and B{\\'e}n{\\'e}dicte Giffard and Ga{\\\"e}l Ch{\\'e}telat and Catherine Lalev{\\'e}e and Fausto Viader and Vincent {de la Sayette} and Francis Eustache",
+        "journal": "{NeuroImage}",
+        "number": "3",
+        "pages": "1658--1664",
+        "publisher": "Elsevier",
+        "title": "The neural basis of intrusions in free recall and cued recall: a {PET} study in {Alzheimer's} disease",
+        "volume": "17",
+        "year": "2002"
+      },
+      "group": "single_conflict",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "CoopKnut08",
+      "fingerprint": "v2:efb97c2d93efd07e5b9d24b58aa75b23e06a495240efebacdd5deae3e933deb6",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "CoopKnut08",
+        "author": "J C Cooper and B Knutson",
+        "journal": "{NeuroImage}",
+        "number": "1",
+        "pages": "538--547",
+        "publisher": "Elsevier",
+        "title": "Valence and salience contribute to nucleus accumbens activation",
+        "volume": "39",
+        "year": "2008"
+      },
+      "group": "single_conflict",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "EkstEtal09b",
+      "fingerprint": "v2:151656521c2fb97f3a3b0fa72917c26430d83a1df2f0a6b0d466b791cd14b180",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "EkstEtal09b",
+        "author": "A D Ekstrom and A J Bazih and N A Suthana and R Al-Hakim and K Ogura and M Zeineh and A C Burggren and S Y Bookheimer",
+        "journal": "{NeuroImage}",
+        "number": "1",
+        "pages": "42--49",
+        "publisher": "Elsevier",
+        "title": "Advances in high-resolution imaging and computational unfolding of the human hippocampus",
+        "volume": "47",
+        "year": "2009"
+      },
+      "group": "single_conflict",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "FerbShap03",
+      "fingerprint": "v2:3f0e1421b6ccad217524dab658ec593fc35ccec085cc6147d1c27c390509cf5e",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "FerbShap03",
+        "author": "Janina Ferbinteanu and Matthew L Shapiro",
+        "journal": "Neuron",
+        "number": "6",
+        "pages": "1227--1239",
+        "publisher": "Elsevier",
+        "title": "Prospective and retrospective memory coding in the hippocampus",
+        "volume": "40",
+        "year": "2003"
+      },
+      "group": "single_conflict",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "HassSter06",
+      "fingerprint": "v2:58d693504749abf94c0ceac65b35c1f9836a0391df1d65575d0aa7968edd5b04",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "HassSter06",
+        "author": "M E Hasselmo and C E Stern",
+        "journal": "Trends in Cognitive Sciences",
+        "number": "11",
+        "pages": "487--493",
+        "publisher": "Elsevier",
+        "title": "Mechanisms underlying working memory for novel information",
+        "volume": "10",
+        "year": "2006"
+      },
+      "group": "single_conflict",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "HintEtal92",
+      "fingerprint": "v2:ab83b94199d7132f7d80655dcb4807da10a48095adfd3039ffc0c5b5109275e9",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "HintEtal92",
+        "author": "D L Hintzman and T Curran and B Oppy",
+        "journal": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+        "pages": "667--680",
+        "title": "Effects of similarity and repetition on memory: registration without learning?",
+        "volume": "18",
+        "year": "1992"
+      },
+      "group": "single_conflict",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "RumeEtal86b",
+      "fingerprint": "v2:da620b6b0a08029d189530aa39f8c0532c14d11cc69a7223c03883fc588b30d5",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "RumeEtal86b",
+        "author": "D E Rumelhart and G E Hinton and R J Williams",
+        "journal": "Nature",
+        "number": "6088",
+        "pages": "533--536",
+        "title": "Learning representations by back-propagating errors",
+        "volume": "323",
+        "year": "1986"
+      },
+      "group": "single_conflict",
+      "previous_route": "field_adjudication"
+    },
+    {
+      "key": "PeirEtal19",
+      "fingerprint": "v2:3f1c6da8ffb3b46789a098852612558014a7f832fa5827846db9236a690d33b1",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "PeirEtal19",
+        "author": "J W Peirce and JR Gray and S Simpson and M R MacAskill and R H{\\\"o}chenberger and H Sogo and E Kastman and J Lindel{\\o}v",
+        "journal": "Behavior Research Methods",
+        "number": "1",
+        "pages": "195--203",
+        "title": "{PsychoPy2}: experiments in behavior made easy",
+        "volume": "51",
+        "year": "2019"
+      },
+      "group": "weak_or_missing_identity",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "WallEtal04",
+      "fingerprint": "v2:71c43c983d577327ab6b39fd6d30ae1a112365daf551b118ddfbe125adc984db",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "WallEtal04",
+        "author": "G L Wallstrom and R E Kass and A Miller and J E Cohn and N A Fox",
+        "journal": "International Journal of Psychophysiology",
+        "pages": "105--119",
+        "title": "Automatic correction of ocular artifacts in the {EEG}: {A} comparison of regression-based and component-based methods",
+        "volume": "53",
+        "year": "2004"
+      },
+      "group": "weak_or_missing_identity",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "GonzEtal19",
+      "fingerprint": "v2:524cf2533caf9b852cceeba9c9fe1c0850e9d532602b5fe4d291395b61c28e47",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "GonzEtal19",
+        "author": "J Gonzalez-Castillo and C Caballero-Gaudes and N Topolski and D A Handwerker and F Pereira and P A Bandettini",
+        "journal": "{NeuroImage}",
+        "number": "116129",
+        "title": "Imaging the spontaneous flow of thought: distinct periods of cognition contribute to dynamic functional connectivity during test",
+        "volume": "202",
+        "year": "2019"
+      },
+      "group": "weak_or_missing_identity",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "Land77",
+      "fingerprint": "v2:0d036307fe69fc7e7b583c7ec501d196a411bcf78f84a9da0d69d8704565880b",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "Land77",
+        "author": "P W Landfield",
+        "journal": "Physiology and Behavior",
+        "pages": "439--445",
+        "title": "Different effects of posttrial driving or blocking of the theta rhythm on avoidance learning in rats",
+        "volume": "18",
+        "year": "1977"
+      },
+      "group": "weak_or_missing_identity",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "GrosPear08",
+      "fingerprint": "v2:d1b29ce6ffd2c1710c43c9b6d982d7a58cfa7949580a6235aa04cbbbbf8807a3",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "GrosPear08",
+        "author": "S Grossberg and L R Pearson",
+        "journal": "Psychological Review",
+        "number": "3",
+        "pages": "677--732",
+        "title": "Laminar cortical dynamics of cognitive and motor working memory, sequence learning and performance: toward a unified theory of how the cerebral cortex works",
+        "volume": "115",
+        "year": "2008"
+      },
+      "group": "weak_or_missing_identity",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "HolsEtal97",
+      "fingerprint": "v2:3b3b0a45a3c26526441cdadf945243cb3eda6bd82c40ea72dec52905fb514509",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "HolsEtal97",
+        "author": "C H{\\\"o}lscher and R Anwyl and M J Rowan",
+        "journal": "The Journal of Neuroscience",
+        "pages": "6470--6477",
+        "title": "Stimulation on the positive phase of hippocampal theta rhythm induces long-term potentiation that can be depotentiated by stimulation on the negative phase in area {CA}1 \\emph{in vivo}",
+        "volume": "17",
+        "year": "1997"
+      },
+      "group": "weak_or_missing_identity",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "YoneJaco97",
+      "fingerprint": "v2:bdb6ec91dc1e9c2b7f3a402f64a3b705848e74d18c3da47663cb38ff2d5048db",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "YoneJaco97",
+        "author": "A P Yonelinas and L L Jacoby",
+        "journal": "Journal of Experimental Psychology: General",
+        "pages": "18",
+        "title": "Response bias and the process-dissociation procedure: correction to {Yonelinas} and {Jacoby} (1996)",
+        "volume": "126",
+        "year": "1997"
+      },
+      "group": "weak_or_missing_identity",
+      "previous_route": "source_discovery"
+    },
+    {
+      "key": "LiuEtal03",
+      "fingerprint": "v2:011cff4baa45f46c38a47b67d525ae7721cf09f474d44d198dbf4af90de5be77",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "LiuEtal03",
+        "author": "X Liu and R U Muller and L T Huang and J L Kubie and A Rotenberg and B Rivard and M R Cilio and G L Holmes",
+        "journal": "The Journal of Neuroscience",
+        "number": "37",
+        "pages": "11505--11515",
+        "publisher": "Society for Neuroscience",
+        "title": "Seizure-induced changes in place cell physiology: relationship to spatial memory",
+        "volume": "23",
+        "year": "2003"
+      },
+      "group": "weak_or_missing_identity",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "VidaEtal06",
+      "fingerprint": "v2:6157284a1bfc14ed50ce59396a3cc487fcf6335e770cda9bf805d789a5363469",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "VidaEtal06",
+        "author": "JR Vidal and M Chaumon and J K O'Regan and C Tallon-Baudry",
+        "journal": "Journal of Cognitive Neuroscience",
+        "number": "11",
+        "pages": "1850--1862",
+        "publisher": "{MIT} Press",
+        "title": "Visual grouping and the focusing of attention induce gamma-band oscillations at different frequencies in human magnetoencephalogram signals",
+        "volume": "18",
+        "year": "2006"
+      },
+      "group": "weak_or_missing_identity",
+      "previous_route": "author_identity"
+    },
+    {
+      "key": "Good76",
+      "fingerprint": "v2:04a9b5870e74c1d0036a0274c3c28f9a6e4aa3c059fcec3ec14b9f15b45d3d0f",
+      "entry": {
+        "ENTRYTYPE": "article",
+        "ID": "Good76",
+        "author": "J C Goodwin",
+        "journal": "Journal of Verbal Learning and Verbal Behavior",
+        "pages": "119--132",
+        "title": "Changes in primacy and recency with practice in single-trial free recall",
+        "volume": "15",
+        "year": "1976"
+      },
+      "group": "weak_or_missing_identity",
+      "previous_route": "author_identity"
+    }
+  ]
+}

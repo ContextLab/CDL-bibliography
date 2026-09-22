@@ -1,0 +1,47 @@
+{
+  "manual_comparisons": [
+    {
+      "key": "GonzEtal19",
+      "checks": {
+        "doi": true,
+        "title": true,
+        "year": true,
+        "volume": true,
+        "pages": true,
+        "ordered_authors": true
+      },
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/31461679/"
+    },
+    {
+      "key": "PeirEtal19",
+      "checks": {
+        "doi": true,
+        "title": true,
+        "year": true,
+        "volume": true,
+        "pages": true,
+        "ordered_authors": true
+      },
+      "source_url": "https://link.springer.com/article/10.3758/s13428-018-01193-y"
+    },
+    {
+      "key": "WallEtal04",
+      "checks": {
+        "doi": true,
+        "title": true,
+        "year": true,
+        "volume": true,
+        "pages": true,
+        "ordered_authors": true
+      },
+      "source_url": "https://sites.pitt.edu/~emotion/fulltext/2004/Wallstrom_Automatic.pdf"
+    }
+  ],
+  "full_baseline_restore": "pass",
+  "restored_entries": 6422,
+  "statuses": {
+    "metadata_verified": 2257,
+    "needs_review": 4165
+  },
+  "sammon_conflict_hold_restored": true
+}

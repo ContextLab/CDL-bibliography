@@ -1,0 +1,205 @@
+[
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "Zanz19",
+    "fingerprint": "v2:800d1c6608eb97488931ec9873181178af089cb97a732556befdf56f538291be",
+    "changes": {
+      "title": {
+        "before": "Human-in-the-loop artificial intelligence",
+        "after": "Viewpoint: human-in-the-loop artificial intelligence"
+      }
+    },
+    "doi": "10.1613/jair.1.11345",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1613/jair.1.11345",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "F M Zanzotto",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Zanzotto",
+              "given": "Fabio Massimo",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Artificial Intelligence Research",
+          "match": true,
+          "source": [
+            "Journal of Artificial Intelligence Research"
+          ]
+        },
+        "pages": {
+          "local": "243--252",
+          "match": true,
+          "source": [
+            "243-252"
+          ]
+        },
+        "title": {
+          "local": "Human-in-the-loop artificial intelligence",
+          "match": false,
+          "source": [
+            "Viewpoint: Human-in-the-loop Artificial Intelligence"
+          ]
+        },
+        "volume": {
+          "local": "64",
+          "match": true,
+          "source": [
+            "64"
+          ]
+        },
+        "year": {
+          "local": "2019",
+          "match": true,
+          "source": [
+            "2019"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1613/jair.1.11345",
+        "ISSN": [
+          "1076-9757"
+        ],
+        "URL": "https://doi.org/10.1613/jair.1.11345",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Zanzotto",
+            "given": "Fabio Massimo",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Journal of Artificial Intelligence Research"
+        ],
+        "issued": {
+          "date-parts": [
+            [
+              2019,
+              2,
+              10
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://jair.org/index.php/jair/article/download/11345/26472",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://jair.org/index.php/jair/article/download/11345/26472",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "243-252",
+        "published": {
+          "date-parts": [
+            [
+              2019,
+              2,
+              10
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2019,
+              2,
+              10
+            ]
+          ]
+        },
+        "publisher": "AI Access Foundation",
+        "title": [
+          "Viewpoint: Human-in-the-loop Artificial Intelligence"
+        ],
+        "type": "journal-article",
+        "volume": "64"
+      },
+      "retrieved_at": "2026-09-09T19:36:06.186705+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1613/jair.1.11345"
+    },
+    "publisher_source": {
+      "document_sha256": "f4adb37fa75a2336c0b50dd79d34e857b82bbac0df6993ae8e7d20c3dff882b9",
+      "metadata": {
+        "citation_abstract_html_url": [
+          "https://jair.org/index.php/jair/article/view/11345"
+        ],
+        "citation_author": [
+          "Fabio Massimo Zanzotto"
+        ],
+        "citation_date": [
+          "2019/02/10"
+        ],
+        "citation_doi": [
+          "10.1613/jair.1.11345"
+        ],
+        "citation_firstpage": [
+          "243"
+        ],
+        "citation_issn": [
+          "1076-9757"
+        ],
+        "citation_journal_abbrev": [
+          "jair"
+        ],
+        "citation_journal_title": [
+          "Journal of Artificial Intelligence Research"
+        ],
+        "citation_language": [
+          "en"
+        ],
+        "citation_lastpage": [
+          "252"
+        ],
+        "citation_pdf_url": [
+          "https://jair.org/index.php/jair/article/download/11345/26472"
+        ],
+        "citation_title": [
+          "Viewpoint: Human-in-the-loop Artificial Intelligence"
+        ],
+        "citation_volume": [
+          "64"
+        ]
+      },
+      "redirects": [
+        {
+          "location": "https://jair.org/index.php/jair/article/view/11345",
+          "status": 302,
+          "url": "https://doi.org/10.1613/jair.1.11345"
+        }
+      ],
+      "retrieved_at": "2026-09-16T16:07:54.561826+00:00",
+      "url": "https://jair.org/index.php/jair/article/view/11345"
+    }
+  }
+]

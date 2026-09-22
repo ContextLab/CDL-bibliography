@@ -1,0 +1,52 @@
+{
+  "stages": [
+    {
+      "cycle": "run",
+      "seconds": 30.49,
+      "network_requests": 5,
+      "added_review_records": 5,
+      "batch_statuses": {
+        "metadata_verified": 5
+      },
+      "library_statuses": {
+        "metadata_verified": 3601,
+        "needs_review": 2821
+      }
+    },
+    {
+      "cycle": "repeat",
+      "seconds": 22.88,
+      "network_requests": 0,
+      "added_review_records": 0,
+      "batch_statuses": {
+        "metadata_verified": 5
+      },
+      "library_statuses": {
+        "metadata_verified": 3601,
+        "needs_review": 2821
+      }
+    }
+  ],
+  "entries": {
+    "Brem78": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:ab9ca646bfd2a08e1c9bcb9c084f09451d15dfd26f7e94768f598e1d29d248f2"
+    },
+    "CoheEtal16": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:d6a30b440077887ceb983c6b4f2a57210e9e6d8586d87b42ca8b92893ce9597e"
+    },
+    "CraiLock72": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:40436ea2099ee8335cd8cc6173f0fc47c451e708895eb6720c5ee8fedf150365"
+    },
+    "RobbMonr51": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:30852598ba155292a10965a268d2bc39621633bde8aec669b7cd0bf032b2f7fd"
+    },
+    "StanEtal06": {
+      "status": "metadata_verified",
+      "fingerprint": "v2:d89b08a714f3c499012a19787f77fbb6a6c5f05799dd59265ddcf8a032c8a5d5"
+    }
+  }
+}

@@ -1,0 +1,3482 @@
+[
+  {
+    "entry": {
+      "key": "KuhlEtal11",
+      "raw": "@article{KuhlEtal11,\n\tAuthor = {B A Kuhl and J Rissman and M M Chun and A D Wagner},\n\tJournal = {Proceedings of the National Academy of Sciences, {USA}},\n\tNumber = {14},\n\tPages = {5903--5908},\n\tPublisher = {Elsevier},\n\tTitle = {Fidelity of neural reactivation reveals competition between memories},\n\tVolume = {108},\n\tYear = {2011}}",
+      "fields": {
+        "year": "2011",
+        "volume": "108",
+        "title": "Fidelity of neural reactivation reveals competition between memories",
+        "publisher": "Elsevier",
+        "pages": "5903--5908",
+        "number": "14",
+        "journal": "Proceedings of the National Academy of Sciences, {USA}",
+        "author": "B A Kuhl and J Rissman and M M Chun and A D Wagner",
+        "ENTRYTYPE": "article",
+        "ID": "KuhlEtal11"
+      },
+      "base_hash": "f6b8b24f2b26daf6d5592e736839a7b1ac581c12539f426bd13644dd32c17894",
+      "legacy_base_hash": "ca53d6a898fa4898c4dfa30f49116e89c8dc4fa30e69f2cbc634eaa8760a7980",
+      "fingerprint": "v2:997a7f04f2b52880372f02573de7e5850f8a53313c62d05256639134176e75b1",
+      "legacy_fingerprint": "9b6bc4d9ee42b1538ef6d2b3c309c4427b379c6c99afd8eeac95391ff17ad0a2"
+    },
+    "previous": {
+      "attempts": [
+        {
+          "http_status": 200,
+          "source": "crossref-search",
+          "url": "https://api.crossref.org/works?query.bibliographic=Fidelity+of+neural+reactivation+reveals+competition+between+memories+B+A+Kuhl+and+J+Rissman+and+M+M+Chun+and+A+D+Wagner+2011+Proceedings+of+the+National+Academy+of+Sciences%2C+%7BUSA%7D+&rows=5&mailto=jeremy.r.manning%40dartmouth.edu"
+        },
+        {
+          "doi": "10.1073/pnas.1016939108",
+          "matches": 1,
+          "retrieved_at": "2026-09-10T01:01:39.856139+00:00",
+          "source": "europepmc",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523%2Fjneurosci.09-10-03463.1989%22+OR+DOI%3A%2210.1007%2F1-4020-4266-3%22+OR+DOI%3A%2210.1037%2F0278-7393.33.6.1108%22+OR+DOI%3A%2210.1016%2Fs0166-4328%2802%2900282-6%22+OR+DOI%3A%2210.1016%2Fs0166-2236%2802%2902235-x%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2008.02.032%22+OR+DOI%3A%2210.1371%2Fjournal.pbio.1001267%22+OR+DOI%3A%2210.1212%2Fwnl.43.9.1800%22+OR+DOI%3A%2210.1002%2F0470018860.s00585%22+OR+DOI%3A%2210.1017%2Fcbo9780511618222.009%22+OR+DOI%3A%2210.1002%2F9781118887486.ch5%22+OR+DOI%3A%2210.4135%2F9781412985130%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2013.06.049%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2010.06.069%22+OR+DOI%3A%2210.1038%2Fnn839%22+OR+DOI%3A%2210.1016%2Fs0165-0270%2801%2900330-2%22+OR+DOI%3A%2210.1038%2Fnn1228%22+OR+DOI%3A%2210.1037%2F0278-7393.34.1.128%22+OR+DOI%3A%2210.1073%2Fpnas.0337195100%22+OR+DOI%3A%2210.1037%2Fa0017040%22+OR+DOI%3A%2210.3758%2Fbf03210780%22+OR+DOI%3A%2210.1152%2Fjn.1999.81.5.2046%22+OR+DOI%3A%2210.1073%2Fpnas.1016939108%22+OR+DOI%3A%2210.1037%2F0735-7044.114.1.32%22+OR+DOI%3A%2210.1152%2Fjn.1997.77.4.1813%22&format=json&resultType=core&pageSize=100"
+        },
+        {
+          "http_status": 200,
+          "source": "pmc-oai",
+          "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A3078372&metadataPrefix=pmc_fm"
+        }
+      ],
+      "auto_review": {
+        "epmc_checked": true,
+        "pmc_metadata_checked": [
+          "PMC3078372"
+        ],
+        "pmc_metadata_policy": "2",
+        "policy": "2",
+        "resolver_version": 24
+      },
+      "candidates": [
+        {
+          "advisories": [],
+          "doi": "10.1073/pnas.1016939108",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "B A Kuhl and J Rissman and M M Chun and A D Wagner",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychology and"
+                    },
+                    {
+                      "name": "Department of Psychology, Yale University, New Haven, CT 06511"
+                    }
+                  ],
+                  "family": "Kuhl",
+                  "given": "Brice A.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychology and"
+                    }
+                  ],
+                  "family": "Rissman",
+                  "given": "Jesse",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychology, Yale University, New Haven, CT 06511"
+                    }
+                  ],
+                  "family": "Chun",
+                  "given": "Marvin M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychology and"
+                    },
+                    {
+                      "name": "Neurosciences Program, Stanford University, Stanford, CA 94305; and"
+                    }
+                  ],
+                  "family": "Wagner",
+                  "given": "Anthony D.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": true,
+              "source": [
+                "Proceedings of the National Academy of Sciences"
+              ]
+            },
+            "number": {
+              "local": "14",
+              "match": true,
+              "source": [
+                "14"
+              ]
+            },
+            "pages": {
+              "local": "5903--5908",
+              "match": true,
+              "source": [
+                "5903-5908"
+              ]
+            },
+            "publisher": {
+              "local": "Elsevier",
+              "match": false,
+              "source": [
+                "National Academy of Sciences"
+              ]
+            },
+            "title": {
+              "local": "Fidelity of neural reactivation reveals competition between memories",
+              "match": true,
+              "source": [
+                "Fidelity of neural reactivation reveals competition between memories"
+              ]
+            },
+            "volume": {
+              "local": "108",
+              "match": true,
+              "source": [
+                "108"
+              ]
+            },
+            "year": {
+              "local": "2011",
+              "match": true,
+              "source": [
+                "2011"
+              ]
+            }
+          },
+          "issues": [
+            "publisher: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1073/pnas.1016939108",
+            "ISSN": [
+              "0027-8424",
+              "1091-6490"
+            ],
+            "URL": "https://doi.org/10.1073/pnas.1016939108",
+            "author": [
+              {
+                "affiliation": [
+                  {
+                    "name": "Department of Psychology and"
+                  },
+                  {
+                    "name": "Department of Psychology, Yale University, New Haven, CT 06511"
+                  }
+                ],
+                "family": "Kuhl",
+                "given": "Brice A.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [
+                  {
+                    "name": "Department of Psychology and"
+                  }
+                ],
+                "family": "Rissman",
+                "given": "Jesse",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [
+                  {
+                    "name": "Department of Psychology, Yale University, New Haven, CT 06511"
+                  }
+                ],
+                "family": "Chun",
+                "given": "Marvin M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [
+                  {
+                    "name": "Department of Psychology and"
+                  },
+                  {
+                    "name": "Neurosciences Program, Stanford University, Stanford, CA 94305; and"
+                  }
+                ],
+                "family": "Wagner",
+                "given": "Anthony D.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Proceedings of the National Academy of Sciences"
+            ],
+            "issue": "14",
+            "issued": {
+              "date-parts": [
+                [
+                  2011,
+                  3,
+                  21
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://pnas.org/doi/pdf/10.1073/pnas.1016939108",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "5903-5908",
+            "published": {
+              "date-parts": [
+                [
+                  2011,
+                  3,
+                  21
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2011,
+                  3,
+                  21
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2011,
+                  4,
+                  5
+                ]
+              ]
+            },
+            "publisher": "National Academy of Sciences",
+            "title": [
+              "Fidelity of neural reactivation reveals competition between memories"
+            ],
+            "type": "journal-article",
+            "volume": "108"
+          },
+          "retrieved_at": "2026-09-09T20:39:45.577642+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1073/pnas.1016939108"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1167/11.11.1240",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "B A Kuhl and J Rissman and M M Chun and A D Wagner",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Kuhl",
+                  "given": "B.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Bainbridge",
+                  "given": "W.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Chun",
+                  "given": "M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": false,
+              "source": [
+                "Journal of Vision"
+              ]
+            },
+            "number": {
+              "local": "14",
+              "match": false,
+              "source": [
+                "11"
+              ]
+            },
+            "pages": {
+              "local": "5903--5908",
+              "match": false,
+              "source": [
+                "1240-1240"
+              ]
+            },
+            "publisher": {
+              "local": "Elsevier",
+              "match": false,
+              "source": [
+                "Association for Research in Vision and Ophthalmology (ARVO)"
+              ]
+            },
+            "title": {
+              "local": "Fidelity of neural reactivation reveals competition between memories",
+              "match": false,
+              "source": [
+                "Decoding retrieval of competing visual memories from neural reactivation"
+              ]
+            },
+            "volume": {
+              "local": "108",
+              "match": false,
+              "source": [
+                "11"
+              ]
+            },
+            "year": {
+              "local": "2011",
+              "match": true,
+              "source": [
+                "2011"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "publisher: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1167/11.11.1240",
+            "ISSN": [
+              "1534-7362"
+            ],
+            "URL": "https://doi.org/10.1167/11.11.1240",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Kuhl",
+                "given": "B.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Bainbridge",
+                "given": "W.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Chun",
+                "given": "M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Journal of Vision"
+            ],
+            "issue": "11",
+            "issued": {
+              "date-parts": [
+                [
+                  2011,
+                  9,
+                  23
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://jov.arvojournals.org/Article.aspx?doi=10.1167/11.11.1240",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "1240-1240",
+            "published": {
+              "date-parts": [
+                [
+                  2011,
+                  9,
+                  23
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2011,
+                  9,
+                  23
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2011,
+                  9,
+                  23
+                ]
+              ]
+            },
+            "publisher": "Association for Research in Vision and Ophthalmology (ARVO)",
+            "title": [
+              "Decoding retrieval of competing visual memories from neural reactivation"
+            ],
+            "type": "journal-article",
+            "volume": "11"
+          },
+          "retrieved_at": "2026-09-09T20:39:45.577642+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1167/11.11.1240"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1167/10.7.739",
+          "evidence": {
+            "author": {
+              "detail": "Missing or incomplete given names",
+              "local": "B A Kuhl and J Rissman and M M Chun and A D Wagner",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Kuhl",
+                  "given": "B.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Rissman",
+                  "given": "J.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Chun",
+                  "given": "M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Wagner",
+                  "given": "A.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": false,
+              "source": [
+                "Journal of Vision"
+              ]
+            },
+            "number": {
+              "local": "14",
+              "match": false,
+              "source": [
+                "7"
+              ]
+            },
+            "pages": {
+              "local": "5903--5908",
+              "match": false,
+              "source": [
+                "739-739"
+              ]
+            },
+            "publisher": {
+              "local": "Elsevier",
+              "match": false,
+              "source": [
+                "Association for Research in Vision and Ophthalmology (ARVO)"
+              ]
+            },
+            "title": {
+              "local": "Fidelity of neural reactivation reveals competition between memories",
+              "match": false,
+              "source": [
+                "Selective Remembering: Multivoxel Pattern Analysis of Cortical Reactivation During Retrieval of Visual Images"
+              ]
+            },
+            "volume": {
+              "local": "108",
+              "match": false,
+              "source": [
+                "10"
+              ]
+            },
+            "year": {
+              "local": "2011",
+              "match": false,
+              "source": [
+                "2010"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing or incomplete given names",
+            "year: missing evidence or mismatch",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "publisher: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1167/10.7.739",
+            "ISSN": [
+              "1534-7362"
+            ],
+            "URL": "https://doi.org/10.1167/10.7.739",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Kuhl",
+                "given": "B.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Rissman",
+                "given": "J.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Chun",
+                "given": "M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Wagner",
+                "given": "A.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Journal of Vision"
+            ],
+            "issue": "7",
+            "issued": {
+              "date-parts": [
+                [
+                  2010,
+                  8,
+                  11
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://jov.arvojournals.org/Article.aspx?doi=10.1167/10.7.739",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "739-739",
+            "published": {
+              "date-parts": [
+                [
+                  2010,
+                  8,
+                  11
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2010,
+                  8,
+                  11
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2010,
+                  8,
+                  11
+                ]
+              ]
+            },
+            "publisher": "Association for Research in Vision and Ophthalmology (ARVO)",
+            "title": [
+              "Selective Remembering: Multivoxel Pattern Analysis of Cortical Reactivation During Retrieval of Visual Images"
+            ],
+            "type": "journal-article",
+            "volume": "10"
+          },
+          "retrieved_at": "2026-09-09T20:39:45.577642+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1167/10.7.739"
+        },
+        {
+          "advisories": [
+            "Non-version source relationships retained: has-review"
+          ],
+          "doi": "10.1073/pnas.1001028107",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "B A Kuhl and J Rissman and M M Chun and A D Wagner",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychology,"
+                    }
+                  ],
+                  "family": "Rissman",
+                  "given": "Jesse",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Law School, and"
+                    }
+                  ],
+                  "family": "Greely",
+                  "given": "Henry T.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychology,"
+                    },
+                    {
+                      "name": "Neurosciences Program, Stanford University, Stanford, CA 94305"
+                    }
+                  ],
+                  "family": "Wagner",
+                  "given": "Anthony D.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": true,
+              "source": [
+                "Proceedings of the National Academy of Sciences"
+              ]
+            },
+            "number": {
+              "local": "14",
+              "match": false,
+              "source": [
+                "21"
+              ]
+            },
+            "pages": {
+              "local": "5903--5908",
+              "match": false,
+              "source": [
+                "9849-9854"
+              ]
+            },
+            "publisher": {
+              "local": "Elsevier",
+              "match": false,
+              "source": [
+                "National Academy of Sciences"
+              ]
+            },
+            "title": {
+              "local": "Fidelity of neural reactivation reveals competition between memories",
+              "match": false,
+              "source": [
+                "Detecting individual memories through the neural decoding of memory states and past experience"
+              ]
+            },
+            "volume": {
+              "local": "108",
+              "match": false,
+              "source": [
+                "107"
+              ]
+            },
+            "year": {
+              "local": "2011",
+              "match": false,
+              "source": [
+                "2010"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "publisher: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1073/pnas.1001028107",
+            "ISSN": [
+              "0027-8424",
+              "1091-6490"
+            ],
+            "URL": "https://doi.org/10.1073/pnas.1001028107",
+            "author": [
+              {
+                "affiliation": [
+                  {
+                    "name": "Department of Psychology,"
+                  }
+                ],
+                "family": "Rissman",
+                "given": "Jesse",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [
+                  {
+                    "name": "Law School, and"
+                  }
+                ],
+                "family": "Greely",
+                "given": "Henry T.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [
+                  {
+                    "name": "Department of Psychology,"
+                  },
+                  {
+                    "name": "Neurosciences Program, Stanford University, Stanford, CA 94305"
+                  }
+                ],
+                "family": "Wagner",
+                "given": "Anthony D.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Proceedings of the National Academy of Sciences"
+            ],
+            "issue": "21",
+            "issued": {
+              "date-parts": [
+                [
+                  2010,
+                  5,
+                  10
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://pnas.org/doi/pdf/10.1073/pnas.1001028107",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "9849-9854",
+            "published": {
+              "date-parts": [
+                [
+                  2010,
+                  5,
+                  10
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2010,
+                  5,
+                  10
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2010,
+                  5,
+                  25
+                ]
+              ]
+            },
+            "publisher": "National Academy of Sciences",
+            "relation": {
+              "has-review": [
+                {
+                  "asserted-by": "object",
+                  "id": "10.3410/f.5793970.5776079",
+                  "id-type": "doi"
+                }
+              ]
+            },
+            "title": [
+              "Detecting individual memories through the neural decoding of memory states and past experience"
+            ],
+            "type": "journal-article",
+            "volume": "107"
+          },
+          "retrieved_at": "2026-09-09T20:39:45.577642+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1073/pnas.1001028107"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1523/jneurosci.5846-11.2012",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "B A Kuhl and J Rissman and M M Chun and A D Wagner",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Kuhl",
+                  "given": "Brice A.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Bainbridge",
+                  "given": "Wilma A.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Chun",
+                  "given": "Marvin M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": false,
+              "source": [
+                "The Journal of Neuroscience"
+              ]
+            },
+            "number": {
+              "local": "14",
+              "match": false,
+              "source": [
+                "10"
+              ]
+            },
+            "pages": {
+              "local": "5903--5908",
+              "match": false,
+              "source": [
+                "3453-3461"
+              ]
+            },
+            "publisher": {
+              "local": "Elsevier",
+              "match": false,
+              "source": [
+                "Society for Neuroscience"
+              ]
+            },
+            "title": {
+              "local": "Fidelity of neural reactivation reveals competition between memories",
+              "match": false,
+              "source": [
+                "Neural Reactivation Reveals Mechanisms for Updating Memory"
+              ]
+            },
+            "volume": {
+              "local": "108",
+              "match": false,
+              "source": [
+                "32"
+              ]
+            },
+            "year": {
+              "local": "2011",
+              "match": false,
+              "source": [
+                "2012"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "publisher: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1523/jneurosci.5846-11.2012",
+            "ISSN": [
+              "0270-6474",
+              "1529-2401"
+            ],
+            "URL": "https://doi.org/10.1523/jneurosci.5846-11.2012",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Kuhl",
+                "given": "Brice A.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Bainbridge",
+                "given": "Wilma A.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Chun",
+                "given": "Marvin M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "The Journal of Neuroscience"
+            ],
+            "issue": "10",
+            "issued": {
+              "date-parts": [
+                [
+                  2012,
+                  3,
+                  7
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://syndication.highwire.org/content/doi/10.1523/JNEUROSCI.5846-11.2012",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "3453-3461",
+            "published": {
+              "date-parts": [
+                [
+                  2012,
+                  3,
+                  7
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2012,
+                  3,
+                  7
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2012,
+                  3,
+                  7
+                ]
+              ]
+            },
+            "publisher": "Society for Neuroscience",
+            "title": [
+              "Neural Reactivation Reveals Mechanisms for Updating Memory"
+            ],
+            "type": "journal-article",
+            "volume": "32"
+          },
+          "retrieved_at": "2026-09-09T20:39:45.577642+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1523/jneurosci.5846-11.2012"
+        },
+        {
+          "doi": "10.1073/pnas.1016939108",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "B A Kuhl and J Rissman and M M Chun and A D Wagner",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychology and"
+                    },
+                    {
+                      "name": "Department of Psychology, Yale University, New Haven, CT 06511"
+                    }
+                  ],
+                  "family": "Kuhl",
+                  "given": "Brice A.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychology and"
+                    }
+                  ],
+                  "family": "Rissman",
+                  "given": "Jesse",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychology, Yale University, New Haven, CT 06511"
+                    }
+                  ],
+                  "family": "Chun",
+                  "given": "Marvin M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychology and"
+                    },
+                    {
+                      "name": "Neurosciences Program, Stanford University, Stanford, CA 94305; and"
+                    }
+                  ],
+                  "family": "Wagner",
+                  "given": "Anthony D.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": true,
+              "source": [
+                "Proceedings of the National Academy of Sciences"
+              ]
+            },
+            "number": {
+              "local": "14",
+              "match": true,
+              "source": [
+                "14"
+              ]
+            },
+            "pages": {
+              "local": "5903--5908",
+              "match": true,
+              "source": [
+                "5903-5908"
+              ]
+            },
+            "publisher": {
+              "local": "Elsevier",
+              "match": false,
+              "source": [
+                "National Academy of Sciences"
+              ]
+            },
+            "title": {
+              "local": "Fidelity of neural reactivation reveals competition between memories",
+              "match": true,
+              "source": [
+                "Fidelity of neural reactivation reveals competition between memories"
+              ]
+            },
+            "volume": {
+              "local": "108",
+              "match": true,
+              "source": [
+                "108"
+              ]
+            },
+            "year": {
+              "local": "2011",
+              "match": true,
+              "source": [
+                "2011"
+              ]
+            }
+          },
+          "issues": [
+            "publisher: missing evidence or mismatch"
+          ],
+          "raw_record": {
+            "authorList": {
+              "author": [
+                {
+                  "authorAffiliationDetailsList": {
+                    "authorAffiliation": [
+                      {
+                        "affiliation": "Department of Psychology, Stanford University, Stanford, CA 94305, USA. brice.kuhl@yale.edu"
+                      }
+                    ]
+                  },
+                  "firstName": "Brice A",
+                  "fullName": "Kuhl BA",
+                  "initials": "BA",
+                  "lastName": "Kuhl"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0001-8889-5539"
+                  },
+                  "firstName": "Jesse",
+                  "fullName": "Rissman J",
+                  "initials": "J",
+                  "lastName": "Rissman"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0003-1070-7993"
+                  },
+                  "firstName": "Marvin M",
+                  "fullName": "Chun MM",
+                  "initials": "MM",
+                  "lastName": "Chun"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0003-0624-4543"
+                  },
+                  "firstName": "Anthony D",
+                  "fullName": "Wagner AD",
+                  "initials": "AD",
+                  "lastName": "Wagner"
+                }
+              ]
+            },
+            "doi": "10.1073/pnas.1016939108",
+            "firstPublicationDate": "2011-03-21",
+            "fullTextUrlList": {
+              "fullTextUrl": [
+                {
+                  "availability": "Free after 6 months",
+                  "availabilityCode": "F6",
+                  "documentStyle": "pdf",
+                  "site": "www.pnas.org",
+                  "url": "http://www.pnas.org/cgi/reprint/108/14/5903.pdf"
+                },
+                {
+                  "availability": "Free after 6 months",
+                  "availabilityCode": "F6",
+                  "documentStyle": "abs",
+                  "site": "www.pnas.org",
+                  "url": "http://www.pnas.org/cgi/content/abstract/108/14/5903"
+                },
+                {
+                  "availability": "Free after 6 months",
+                  "availabilityCode": "F6",
+                  "documentStyle": "html",
+                  "site": "www.pnas.org",
+                  "url": "http://www.pnas.org/cgi/content/full/108/14/5903"
+                },
+                {
+                  "availability": "Subscription required",
+                  "availabilityCode": "S",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1073/pnas.1016939108"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "html",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC3078372"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "pdf",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC3078372?pdf=render"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1073/pnas.1016939108"
+                }
+              ]
+            },
+            "id": "21436044",
+            "isOpenAccess": "N",
+            "journalInfo": {
+              "dateOfPublication": "2011 Apr",
+              "issue": "14",
+              "journal": {
+                "essn": "1091-6490",
+                "isoabbreviation": "Proc Natl Acad Sci U S A",
+                "issn": "0027-8424",
+                "medlineAbbreviation": "Proc Natl Acad Sci U S A",
+                "nlmid": "7505876",
+                "title": "Proceedings of the National Academy of Sciences of the United States of America"
+              },
+              "journalIssueId": 1822080,
+              "monthOfPublication": 4,
+              "printPublicationDate": "2011-04-01",
+              "volume": "108",
+              "yearOfPublication": 2011
+            },
+            "pageInfo": "5903-5908",
+            "pmcid": "PMC3078372",
+            "pubTypeList": {
+              "pubType": [
+                "research-article",
+                "Journal Article",
+                "Research Support, N.I.H., Extramural"
+              ]
+            },
+            "pubYear": "2011",
+            "source": "MED",
+            "title": "Fidelity of neural reactivation reveals competition between memories."
+          },
+          "record": {
+            "DOI": "10.1073/pnas.1016939108",
+            "ISSN": [
+              "0027-8424",
+              "1091-6490"
+            ],
+            "author": [
+              {
+                "family": "Kuhl",
+                "given": "Brice A",
+                "suffix": ""
+              },
+              {
+                "family": "Rissman",
+                "given": "Jesse",
+                "suffix": ""
+              },
+              {
+                "family": "Chun",
+                "given": "Marvin M",
+                "suffix": ""
+              },
+              {
+                "family": "Wagner",
+                "given": "Anthony D",
+                "suffix": ""
+              }
+            ],
+            "container-title": [
+              "Proceedings of the National Academy of Sciences of the United States of America",
+              "Proc Natl Acad Sci U S A",
+              "Proc Natl Acad Sci U S A",
+              "Proceedings of the National Academy of Sciences"
+            ],
+            "issue": "14",
+            "page": "5903-5908",
+            "published": {
+              "date-parts": [
+                [
+                  2011
+                ]
+              ]
+            },
+            "title": [
+              "Fidelity of neural reactivation reveals competition between memories"
+            ],
+            "type": "journal-article",
+            "volume": "108"
+          },
+          "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523%2Fjneurosci.09-10-03463.1989%22+OR+DOI%3A%2210.1007%2F1-4020-4266-3%22+OR+DOI%3A%2210.1037%2F0278-7393.33.6.1108%22+OR+DOI%3A%2210.1016%2Fs0166-4328%2802%2900282-6%22+OR+DOI%3A%2210.1016%2Fs0166-2236%2802%2902235-x%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2008.02.032%22+OR+DOI%3A%2210.1371%2Fjournal.pbio.1001267%22+OR+DOI%3A%2210.1212%2Fwnl.43.9.1800%22+OR+DOI%3A%2210.1002%2F0470018860.s00585%22+OR+DOI%3A%2210.1017%2Fcbo9780511618222.009%22+OR+DOI%3A%2210.1002%2F9781118887486.ch5%22+OR+DOI%3A%2210.4135%2F9781412985130%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2013.06.049%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2010.06.069%22+OR+DOI%3A%2210.1038%2Fnn839%22+OR+DOI%3A%2210.1016%2Fs0165-0270%2801%2900330-2%22+OR+DOI%3A%2210.1038%2Fnn1228%22+OR+DOI%3A%2210.1037%2F0278-7393.34.1.128%22+OR+DOI%3A%2210.1073%2Fpnas.0337195100%22+OR+DOI%3A%2210.1037%2Fa0017040%22+OR+DOI%3A%2210.3758%2Fbf03210780%22+OR+DOI%3A%2210.1152%2Fjn.1999.81.5.2046%22+OR+DOI%3A%2210.1073%2Fpnas.1016939108%22+OR+DOI%3A%2210.1037%2F0735-7044.114.1.32%22+OR+DOI%3A%2210.1152%2Fjn.1997.77.4.1813%22&format=json&resultType=core&pageSize=100",
+          "resolved_findings": [],
+          "retrieved_at": "2026-09-10T01:01:39.856139+00:00",
+          "source": "europepmc",
+          "url": "https://europepmc.org/article/MED/21436044"
+        },
+        {
+          "authority": "PMC OAI article front matter",
+          "doi": "10.1073/pnas.1016939108",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "B A Kuhl and J Rissman and M M Chun and A D Wagner",
+              "match": true,
+              "source": [
+                {
+                  "family": "Kuhl",
+                  "given": "Brice A.",
+                  "suffix": ""
+                },
+                {
+                  "family": "Rissman",
+                  "given": "Jesse",
+                  "suffix": ""
+                },
+                {
+                  "family": "Chun",
+                  "given": "Marvin M.",
+                  "suffix": ""
+                },
+                {
+                  "family": "Wagner",
+                  "given": "Anthony D.",
+                  "suffix": ""
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": true,
+              "source": [
+                "Proceedings of the National Academy of Sciences of the United States of America",
+                "Proceedings of the National Academy of Sciences",
+                "Proceedings of the National Academy of Sciences of the United States of America",
+                "Proc Natl Acad Sci U S A",
+                "Proc Natl Acad Sci U S A"
+              ]
+            },
+            "number": {
+              "local": "14",
+              "match": true,
+              "source": [
+                "14"
+              ]
+            },
+            "pages": {
+              "local": "5903--5908",
+              "match": true,
+              "source": [
+                "5903-5908"
+              ]
+            },
+            "publisher": {
+              "local": "Elsevier",
+              "match": false,
+              "source": [
+                "National Academy of Sciences"
+              ]
+            },
+            "title": {
+              "local": "Fidelity of neural reactivation reveals competition between memories",
+              "match": true,
+              "source": [
+                "Fidelity of neural reactivation reveals competition between memories"
+              ]
+            },
+            "volume": {
+              "local": "108",
+              "match": true,
+              "source": [
+                "108"
+              ]
+            },
+            "year": {
+              "local": "2011",
+              "match": true,
+              "source": [
+                "2011"
+              ]
+            }
+          },
+          "issues": [
+            "publisher: missing evidence or mismatch"
+          ],
+          "medline_record": {
+            "authorList": {
+              "author": [
+                {
+                  "authorAffiliationDetailsList": {
+                    "authorAffiliation": [
+                      {
+                        "affiliation": "Department of Psychology, Stanford University, Stanford, CA 94305, USA. brice.kuhl@yale.edu"
+                      }
+                    ]
+                  },
+                  "firstName": "Brice A",
+                  "fullName": "Kuhl BA",
+                  "initials": "BA",
+                  "lastName": "Kuhl"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0001-8889-5539"
+                  },
+                  "firstName": "Jesse",
+                  "fullName": "Rissman J",
+                  "initials": "J",
+                  "lastName": "Rissman"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0003-1070-7993"
+                  },
+                  "firstName": "Marvin M",
+                  "fullName": "Chun MM",
+                  "initials": "MM",
+                  "lastName": "Chun"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0003-0624-4543"
+                  },
+                  "firstName": "Anthony D",
+                  "fullName": "Wagner AD",
+                  "initials": "AD",
+                  "lastName": "Wagner"
+                }
+              ]
+            },
+            "doi": "10.1073/pnas.1016939108",
+            "firstPublicationDate": "2011-03-21",
+            "fullTextUrlList": {
+              "fullTextUrl": [
+                {
+                  "availability": "Free after 6 months",
+                  "availabilityCode": "F6",
+                  "documentStyle": "pdf",
+                  "site": "www.pnas.org",
+                  "url": "http://www.pnas.org/cgi/reprint/108/14/5903.pdf"
+                },
+                {
+                  "availability": "Free after 6 months",
+                  "availabilityCode": "F6",
+                  "documentStyle": "abs",
+                  "site": "www.pnas.org",
+                  "url": "http://www.pnas.org/cgi/content/abstract/108/14/5903"
+                },
+                {
+                  "availability": "Free after 6 months",
+                  "availabilityCode": "F6",
+                  "documentStyle": "html",
+                  "site": "www.pnas.org",
+                  "url": "http://www.pnas.org/cgi/content/full/108/14/5903"
+                },
+                {
+                  "availability": "Subscription required",
+                  "availabilityCode": "S",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1073/pnas.1016939108"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "html",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC3078372"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "pdf",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC3078372?pdf=render"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1073/pnas.1016939108"
+                }
+              ]
+            },
+            "id": "21436044",
+            "isOpenAccess": "N",
+            "journalInfo": {
+              "dateOfPublication": "2011 Apr",
+              "issue": "14",
+              "journal": {
+                "essn": "1091-6490",
+                "isoabbreviation": "Proc Natl Acad Sci U S A",
+                "issn": "0027-8424",
+                "medlineAbbreviation": "Proc Natl Acad Sci U S A",
+                "nlmid": "7505876",
+                "title": "Proceedings of the National Academy of Sciences of the United States of America"
+              },
+              "journalIssueId": 1822080,
+              "monthOfPublication": 4,
+              "printPublicationDate": "2011-04-01",
+              "volume": "108",
+              "yearOfPublication": 2011
+            },
+            "pageInfo": "5903-5908",
+            "pmcid": "PMC3078372",
+            "pubTypeList": {
+              "pubType": [
+                "research-article",
+                "Journal Article",
+                "Research Support, N.I.H., Extramural"
+              ]
+            },
+            "pubYear": "2011",
+            "source": "MED",
+            "title": "Fidelity of neural reactivation reveals competition between memories."
+          },
+          "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Proc Natl Acad Sci U S A</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2</journal-id><journal-id journal-id-type=\"pmc-domain\">pnas</journal-id><journal-id journal-id-type=\"nlm-id\">7505876</journal-id><journal-id journal-id-type=\"publisher-id\">PNAS</journal-id><journal-title-group><journal-title xml:lang=\"en\">Proceedings of the National Academy of Sciences of the United States of America</journal-title></journal-title-group><issn pub-type=\"ppub\">0027-8424</issn><issn pub-type=\"epub\">1091-6490</issn><publisher><publisher-name>National Academy of Sciences</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC3078372</article-id><article-id pub-id-type=\"pmcid-ver\">PMC3078372.1</article-id><article-id pub-id-type=\"pmcaid\">3078372</article-id><article-id pub-id-type=\"pmcaiid\">3078372</article-id><article-id pub-id-type=\"pmid\">21436044</article-id><article-id pub-id-type=\"doi\">10.1073/pnas.1016939108</article-id><article-id pub-id-type=\"publisher-id\">201016939</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Biological Sciences</subject><subj-group><subject>Psychological and Cognitive Sciences</subject></subj-group></subj-group></article-categories><title-group><article-title>Fidelity of neural reactivation reveals competition between memories</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Kuhl</surname><given-names initials=\"BA\">Brice A.</given-names></name><xref ref-type=\"aff\" rid=\"aff1\"><sup>a</sup></xref><xref ref-type=\"aff\" rid=\"aff3\"><sup>b</sup></xref><xref ref-type=\"corresp\" rid=\"cor1\"><sup>1</sup></xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Rissman</surname><given-names initials=\"J\">Jesse</given-names></name><xref ref-type=\"aff\" rid=\"aff1\"><sup>a</sup></xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Chun</surname><given-names initials=\"MM\">Marvin M.</given-names></name><xref ref-type=\"aff\" rid=\"aff3\"><sup>b</sup></xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Wagner</surname><given-names initials=\"AD\">Anthony D.</given-names></name><xref ref-type=\"aff\" rid=\"aff1\"><sup>a</sup></xref><xref ref-type=\"aff\" rid=\"aff2\"><sup>c</sup></xref></contrib><aff id=\"aff1\"><sup>a</sup>Department of Psychology and</aff><aff id=\"aff2\"><sup>c</sup>Neurosciences Program, <institution>Stanford University</institution>, Stanford, CA 94305; and</aff><aff id=\"aff3\"><sup>b</sup>Department of Psychology, <institution>Yale University</institution>, New Haven, CT 06511</aff></contrib-group><pub-date pub-type=\"ppub\"><day>5</day><month>4</month><year>2011</year></pub-date><pub-date pub-type=\"epub\"><day>21</day><month>3</month><year>2011</year></pub-date><volume>108</volume><issue>14</issue><fpage>5903</fpage><lpage>5908</lpage></article-meta></front></article>",
+          "record": {
+            "DOI": "10.1073/pnas.1016939108",
+            "ISSN": [
+              "0027-8424",
+              "1091-6490"
+            ],
+            "article-number": null,
+            "author": [
+              {
+                "family": "Kuhl",
+                "given": "Brice A.",
+                "suffix": ""
+              },
+              {
+                "family": "Rissman",
+                "given": "Jesse",
+                "suffix": ""
+              },
+              {
+                "family": "Chun",
+                "given": "Marvin M.",
+                "suffix": ""
+              },
+              {
+                "family": "Wagner",
+                "given": "Anthony D.",
+                "suffix": ""
+              }
+            ],
+            "container-title": [
+              "Proceedings of the National Academy of Sciences of the United States of America",
+              "Proceedings of the National Academy of Sciences",
+              "Proceedings of the National Academy of Sciences of the United States of America",
+              "Proc Natl Acad Sci U S A",
+              "Proc Natl Acad Sci U S A"
+            ],
+            "issue": "14",
+            "page": "5903-5908",
+            "published": {
+              "date-parts": [
+                [
+                  2011
+                ]
+              ]
+            },
+            "publisher": "National Academy of Sciences",
+            "title": [
+              "Fidelity of neural reactivation reveals competition between memories"
+            ],
+            "type": "journal-article",
+            "volume": "108"
+          },
+          "retrieved_at": "2026-09-17T04:16:11.430410+00:00",
+          "source": "pmc-jats",
+          "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A3078372&metadataPrefix=pmc_fm",
+          "xml_sha256": "7523e17c094ba9680ddd3b4a2bd14b2d4b2c5b3d398515d5a44153aed9f1353f"
+        }
+      ],
+      "checked_at": "2026-09-17T18:51:00.928596+00:00",
+      "fingerprint": "v2:997a7f04f2b52880372f02573de7e5850f8a53313c62d05256639134176e75b1",
+      "issues": [
+        "No unambiguous, fully supported metadata match"
+      ],
+      "key": "KuhlEtal11",
+      "policy": "2",
+      "status": "needs_review"
+    }
+  },
+  {
+    "entry": {
+      "key": "GraySing89",
+      "raw": "@article{GraySing89,\n\tAuthor = {C M Gray and W Singer},\n\tJournal = {Proceedings of the National Academy of Sciences, {USA}},\n\tNumber = {5},\n\tPages = {1698--1702},\n\tPublisher = {{JSTOR}},\n\tTitle = {Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex},\n\tVolume = {86},\n\tYear = {1989}}",
+      "fields": {
+        "year": "1989",
+        "volume": "86",
+        "title": "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex",
+        "publisher": "{JSTOR}",
+        "pages": "1698--1702",
+        "number": "5",
+        "journal": "Proceedings of the National Academy of Sciences, {USA}",
+        "author": "C M Gray and W Singer",
+        "ENTRYTYPE": "article",
+        "ID": "GraySing89"
+      },
+      "base_hash": "58ad23b464ffbc1ac4d3ac53c3345e7b10b0cfbded4f5dd5597af23e74d8c572",
+      "legacy_base_hash": "654e262b74ef99ba3b127f735ad1e5cd8cc1b8c5289417582c4c5ca33dae7634",
+      "fingerprint": "v2:82e2f96b12c1dfc401a4530844be1778e3fe60ec24a5707888c42c6ee779cab7",
+      "legacy_fingerprint": "6cbf64530c1cfee8f1c69362f8175ce60ff3de71b6945171801d87045f07d30a"
+    },
+    "previous": {
+      "attempts": [
+        {
+          "http_status": 200,
+          "source": "crossref-search",
+          "url": "https://api.crossref.org/works?query.bibliographic=Stimulus-specific+neuronal+oscillations+in+orientation+columns+of+cat+visual+cortex+C+M+Gray+and+W+Singer+1989+Proceedings+of+the+National+Academy+of+Sciences%2C+%7BUSA%7D+&rows=5&mailto=jeremy.r.manning%40dartmouth.edu"
+        },
+        {
+          "doi": "10.1073/pnas.86.5.1698",
+          "matches": 1,
+          "retrieved_at": "2026-09-10T01:02:27.976961+00:00",
+          "source": "europepmc",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2Fh0043276%22+OR+DOI%3A%2210.1523%2Fjneurosci.1402-09.2009%22+OR+DOI%3A%2210.1523%2Fjneurosci.04-08-02051.1984%22+OR+DOI%3A%2210.1073%2Fpnas.86.5.1698%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.15.1.22%22+OR+DOI%3A%2210.1037%2F0278-7393.15.1.22%22+OR+DOI%3A%2210.1126%2Fscience.283.5408.1657%22+OR+DOI%3A%2210.7551%2Fmitpress%2F3077.003.0014%22+OR+DOI%3A%2210.7551%2Fmitpress%2F2834.003.0033%22+OR+DOI%3A%2210.1016%2Fs0079-7421%2808%2960441-7%22+OR+DOI%3A%2210.1016%2Fb978-0-12-121050-2.50008-9%22+OR+DOI%3A%2210.1016%2Fs0749-596x%2803%2900095-0%22+OR+DOI%3A%2210.1016%2F0022-2496%2866%2990018-6%22+OR+DOI%3A%2210.1037%2Fh0032795%22+OR+DOI%3A%2210.1016%2F0022-2496%2869%2990002-9%22+OR+DOI%3A%2210.1007%2Fs00221-009-2060-6%22+OR+DOI%3A%2210.1111%2Fj.1471-4159.1983.tb08102.x%22+OR+DOI%3A%2210.1073%2Fpnas.0805903105%22+OR+DOI%3A%2210.1076%2Fanec.10.2.85.14463%22+OR+DOI%3A%2210.1038%2Fnn.3048%22+OR+DOI%3A%2210.1002%2F0470011815.b2a13089%22+OR+DOI%3A%2210.1073%2Fpnas.93.24.13515%22+OR+DOI%3A%2210.1037%2F0278-7393.9.3.462%22+OR+DOI%3A%2210.2307%2F1992252%22+OR+DOI%3A%2210.1037%2Fh0043781%22&format=json&resultType=core&pageSize=100"
+        },
+        {
+          "http_status": 200,
+          "source": "pmc-oai",
+          "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A286768&metadataPrefix=pmc_fm"
+        }
+      ],
+      "auto_review": {
+        "epmc_checked": true,
+        "pmc_metadata_checked": [
+          "PMC286768"
+        ],
+        "pmc_metadata_policy": "2",
+        "policy": "2",
+        "resolver_version": 24
+      },
+      "candidates": [
+        {
+          "advisories": [],
+          "doi": "10.1073/pnas.86.5.1698",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "C M Gray and W Singer",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [
+                    {
+                      "name": "Max Planck Institute for Brain Research, Frankfurt am Main, Federal Republic of Germany."
+                    }
+                  ],
+                  "family": "Gray",
+                  "given": "C M",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Max Planck Institute for Brain Research, Frankfurt am Main, Federal Republic of Germany."
+                    }
+                  ],
+                  "family": "Singer",
+                  "given": "W",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": true,
+              "source": [
+                "Proceedings of the National Academy of Sciences"
+              ]
+            },
+            "number": {
+              "local": "5",
+              "match": true,
+              "source": [
+                "5"
+              ]
+            },
+            "pages": {
+              "local": "1698--1702",
+              "match": true,
+              "source": [
+                "1698-1702"
+              ]
+            },
+            "publisher": {
+              "local": "{JSTOR}",
+              "match": false,
+              "source": [
+                "National Academy of Sciences"
+              ]
+            },
+            "title": {
+              "local": "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex",
+              "match": true,
+              "source": [
+                "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex."
+              ]
+            },
+            "volume": {
+              "local": "86",
+              "match": true,
+              "source": [
+                "86"
+              ]
+            },
+            "year": {
+              "local": "1989",
+              "match": true,
+              "source": [
+                "1989"
+              ]
+            }
+          },
+          "issues": [
+            "publisher: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1073/pnas.86.5.1698",
+            "ISSN": [
+              "0027-8424",
+              "1091-6490"
+            ],
+            "URL": "https://doi.org/10.1073/pnas.86.5.1698",
+            "author": [
+              {
+                "affiliation": [
+                  {
+                    "name": "Max Planck Institute for Brain Research, Frankfurt am Main, Federal Republic of Germany."
+                  }
+                ],
+                "family": "Gray",
+                "given": "C M",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [
+                  {
+                    "name": "Max Planck Institute for Brain Research, Frankfurt am Main, Federal Republic of Germany."
+                  }
+                ],
+                "family": "Singer",
+                "given": "W",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Proceedings of the National Academy of Sciences"
+            ],
+            "issue": "5",
+            "issued": {
+              "date-parts": [
+                [
+                  1989,
+                  3
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://pnas.org/doi/pdf/10.1073/pnas.86.5.1698",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "1698-1702",
+            "published": {
+              "date-parts": [
+                [
+                  1989,
+                  3
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  1989,
+                  3
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  1989,
+                  3
+                ]
+              ]
+            },
+            "publisher": "National Academy of Sciences",
+            "title": [
+              "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex."
+            ],
+            "type": "journal-article",
+            "volume": "86"
+          },
+          "retrieved_at": "2026-09-09T20:59:52.717130+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1073/pnas.86.5.1698"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1111/j.1460-9568.1990.tb00450.x",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "C M Gray and W Singer",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Gray",
+                  "given": "Charles M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Engel",
+                  "given": "Andreas K.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "K\u00f6nig",
+                  "given": "Peter",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Singer",
+                  "given": "Wolf",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": false,
+              "source": [
+                "European Journal of Neuroscience"
+              ]
+            },
+            "number": {
+              "local": "5",
+              "match": false,
+              "source": [
+                "7"
+              ]
+            },
+            "pages": {
+              "local": "1698--1702",
+              "match": false,
+              "source": [
+                "607-619"
+              ]
+            },
+            "publisher": {
+              "local": "{JSTOR}",
+              "match": false,
+              "source": [
+                "Wiley"
+              ]
+            },
+            "title": {
+              "local": "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex",
+              "match": false,
+              "source": [
+                "Stimulus\u2010Dependent Neuronal Oscillations in Cat Visual Cortex: Receptive Field Properties and Feature Dependence"
+              ]
+            },
+            "volume": {
+              "local": "86",
+              "match": false,
+              "source": [
+                "2"
+              ]
+            },
+            "year": {
+              "local": "1989",
+              "match": false,
+              "source": [
+                "1990",
+                "2006"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "year: conflicting or missing publication dates; select the cited edition explicitly",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "publisher: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1111/j.1460-9568.1990.tb00450.x",
+            "ISSN": [
+              "0953-816X",
+              "1460-9568"
+            ],
+            "URL": "https://doi.org/10.1111/j.1460-9568.1990.tb00450.x",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Gray",
+                "given": "Charles M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Engel",
+                "given": "Andreas K.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "K\u00f6nig",
+                "given": "Peter",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Singer",
+                "given": "Wolf",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "European Journal of Neuroscience"
+            ],
+            "issue": "7",
+            "issued": {
+              "date-parts": [
+                [
+                  1990,
+                  7
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1111%2Fj.1460-9568.1990.tb00450.x",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1460-9568.1990.tb00450.x",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "607-619",
+            "published": {
+              "date-parts": [
+                [
+                  1990,
+                  7
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2006,
+                  4,
+                  7
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  1990,
+                  7
+                ]
+              ]
+            },
+            "publisher": "Wiley",
+            "title": [
+              "Stimulus\u2010Dependent Neuronal Oscillations in Cat Visual Cortex: Receptive Field Properties and Feature Dependence"
+            ],
+            "type": "journal-article",
+            "volume": "2"
+          },
+          "retrieved_at": "2026-09-09T20:59:52.717130+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1111/j.1460-9568.1990.tb00450.x"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1111/j.1460-9568.1990.tb00449.x",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "C M Gray and W Singer",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Engel",
+                  "given": "Andreas K.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "K\u00f6nig",
+                  "given": "Peter",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Gray",
+                  "given": "Charles M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Singer",
+                  "given": "Wolf",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": false,
+              "source": [
+                "European Journal of Neuroscience"
+              ]
+            },
+            "number": {
+              "local": "5",
+              "match": false,
+              "source": [
+                "7"
+              ]
+            },
+            "pages": {
+              "local": "1698--1702",
+              "match": false,
+              "source": [
+                "588-606"
+              ]
+            },
+            "publisher": {
+              "local": "{JSTOR}",
+              "match": false,
+              "source": [
+                "Wiley"
+              ]
+            },
+            "title": {
+              "local": "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex",
+              "match": false,
+              "source": [
+                "Stimulus\u2010Dependent Neuronal Oscillations in Cat Visual Cortex: Inter\u2010Columnar Interaction as Determined by Cross\u2010Correlation Analysis"
+              ]
+            },
+            "volume": {
+              "local": "86",
+              "match": false,
+              "source": [
+                "2"
+              ]
+            },
+            "year": {
+              "local": "1989",
+              "match": false,
+              "source": [
+                "1990",
+                "2006"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "year: conflicting or missing publication dates; select the cited edition explicitly",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "publisher: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1111/j.1460-9568.1990.tb00449.x",
+            "ISSN": [
+              "0953-816X",
+              "1460-9568"
+            ],
+            "URL": "https://doi.org/10.1111/j.1460-9568.1990.tb00449.x",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Engel",
+                "given": "Andreas K.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "K\u00f6nig",
+                "given": "Peter",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Gray",
+                "given": "Charles M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Singer",
+                "given": "Wolf",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "European Journal of Neuroscience"
+            ],
+            "issue": "7",
+            "issued": {
+              "date-parts": [
+                [
+                  1990,
+                  7
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1111%2Fj.1460-9568.1990.tb00449.x",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1460-9568.1990.tb00449.x",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "588-606",
+            "published": {
+              "date-parts": [
+                [
+                  1990,
+                  7
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2006,
+                  4,
+                  7
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  1990,
+                  7
+                ]
+              ]
+            },
+            "publisher": "Wiley",
+            "title": [
+              "Stimulus\u2010Dependent Neuronal Oscillations in Cat Visual Cortex: Inter\u2010Columnar Interaction as Determined by Cross\u2010Correlation Analysis"
+            ],
+            "type": "journal-article",
+            "volume": "2"
+          },
+          "retrieved_at": "2026-09-09T20:59:52.717130+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1111/j.1460-9568.1990.tb00449.x"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1007/978-1-4757-1281-0_2",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "C M Gray and W Singer",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Gray",
+                  "given": "Charles M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Engel",
+                  "given": "Andreas K.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "K\u00f6nig",
+                  "given": "Peter",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Singer",
+                  "given": "Wolf",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": false,
+              "source": [
+                "Induced Rhythms in the Brain"
+              ]
+            },
+            "number": {
+              "local": "5",
+              "match": false,
+              "source": []
+            },
+            "pages": {
+              "local": "1698--1702",
+              "match": false,
+              "source": [
+                "29-45"
+              ]
+            },
+            "publisher": {
+              "local": "{JSTOR}",
+              "match": false,
+              "source": [
+                "Birkh\u00e4user Boston"
+              ]
+            },
+            "title": {
+              "local": "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex",
+              "match": false,
+              "source": [
+                "Mechanisms Underlying the Generation of Neuronal Oscillations in Cat Visual Cortex"
+              ]
+            },
+            "volume": {
+              "local": "86",
+              "match": false,
+              "source": []
+            },
+            "year": {
+              "local": "1989",
+              "match": false,
+              "source": [
+                "1992"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "publication type/version is unsupported or differs",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "publisher: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1007/978-1-4757-1281-0_2",
+            "ISBN": [
+              "9781475712834",
+              "9781475712810"
+            ],
+            "URL": "https://doi.org/10.1007/978-1-4757-1281-0_2",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Gray",
+                "given": "Charles M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Engel",
+                "given": "Andreas K.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "K\u00f6nig",
+                "given": "Peter",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Singer",
+                "given": "Wolf",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Induced Rhythms in the Brain"
+            ],
+            "issued": {
+              "date-parts": [
+                [
+                  1992
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "http://link.springer.com/content/pdf/10.1007/978-1-4757-1281-0_2.pdf",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "29-45",
+            "published": {
+              "date-parts": [
+                [
+                  1992
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  1992
+                ]
+              ]
+            },
+            "publisher": "Birkh\u00e4user Boston",
+            "title": [
+              "Mechanisms Underlying the Generation of Neuronal Oscillations in Cat Visual Cortex"
+            ],
+            "type": "book-chapter"
+          },
+          "retrieved_at": "2026-09-09T20:59:52.717130+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1007/978-1-4757-1281-0_2"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1038/338334a0",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "C M Gray and W Singer",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Gray",
+                  "given": "Charles M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "K\u00f6nig",
+                  "given": "Peter",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Engel",
+                  "given": "Andreas K.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Singer",
+                  "given": "Wolf",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": false,
+              "source": [
+                "Nature"
+              ]
+            },
+            "number": {
+              "local": "5",
+              "match": false,
+              "source": [
+                "6213"
+              ]
+            },
+            "pages": {
+              "local": "1698--1702",
+              "match": false,
+              "source": [
+                "334-337"
+              ]
+            },
+            "publisher": {
+              "local": "{JSTOR}",
+              "match": false,
+              "source": [
+                "Springer Science and Business Media LLC"
+              ]
+            },
+            "title": {
+              "local": "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex",
+              "match": false,
+              "source": [
+                "Oscillatory responses in cat visual cortex exhibit inter-columnar synchronization which reflects global stimulus properties"
+              ]
+            },
+            "volume": {
+              "local": "86",
+              "match": false,
+              "source": [
+                "338"
+              ]
+            },
+            "year": {
+              "local": "1989",
+              "match": true,
+              "source": [
+                "1989"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "publisher: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1038/338334a0",
+            "ISSN": [
+              "0028-0836",
+              "1476-4687"
+            ],
+            "URL": "https://doi.org/10.1038/338334a0",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Gray",
+                "given": "Charles M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "K\u00f6nig",
+                "given": "Peter",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Engel",
+                "given": "Andreas K.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Singer",
+                "given": "Wolf",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Nature"
+            ],
+            "issue": "6213",
+            "issued": {
+              "date-parts": [
+                [
+                  1989,
+                  3
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "http://www.nature.com/articles/338334a0",
+                "content-type": "text/html",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "http://www.nature.com/articles/338334a0.pdf",
+                "content-type": "application/pdf",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "http://www.nature.com/articles/338334a0.pdf",
+                "content-type": "application/pdf",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "334-337",
+            "published": {
+              "date-parts": [
+                [
+                  1989,
+                  3
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  1989,
+                  3
+                ]
+              ]
+            },
+            "publisher": "Springer Science and Business Media LLC",
+            "title": [
+              "Oscillatory responses in cat visual cortex exhibit inter-columnar synchronization which reflects global stimulus properties"
+            ],
+            "type": "journal-article",
+            "volume": "338"
+          },
+          "retrieved_at": "2026-09-09T20:59:52.717130+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1038/338334a0"
+        },
+        {
+          "doi": "10.1073/pnas.86.5.1698",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "C M Gray and W Singer",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [
+                    {
+                      "name": "Max Planck Institute for Brain Research, Frankfurt am Main, Federal Republic of Germany."
+                    }
+                  ],
+                  "family": "Gray",
+                  "given": "C M",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Max Planck Institute for Brain Research, Frankfurt am Main, Federal Republic of Germany."
+                    }
+                  ],
+                  "family": "Singer",
+                  "given": "W",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": true,
+              "source": [
+                "Proceedings of the National Academy of Sciences"
+              ]
+            },
+            "number": {
+              "local": "5",
+              "match": true,
+              "source": [
+                "5"
+              ]
+            },
+            "pages": {
+              "local": "1698--1702",
+              "match": true,
+              "source": [
+                "1698-1702"
+              ]
+            },
+            "publisher": {
+              "local": "{JSTOR}",
+              "match": false,
+              "source": [
+                "National Academy of Sciences"
+              ]
+            },
+            "title": {
+              "local": "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex",
+              "match": true,
+              "source": [
+                "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex."
+              ]
+            },
+            "volume": {
+              "local": "86",
+              "match": true,
+              "source": [
+                "86"
+              ]
+            },
+            "year": {
+              "local": "1989",
+              "match": true,
+              "source": [
+                "1989"
+              ]
+            }
+          },
+          "issues": [
+            "publisher: missing evidence or mismatch"
+          ],
+          "raw_record": {
+            "authorList": {
+              "author": [
+                {
+                  "authorAffiliationDetailsList": {
+                    "authorAffiliation": [
+                      {
+                        "affiliation": "Max Planck Institute for Brain Research, Frankfurt am Main, Federal Republic of Germany."
+                      }
+                    ]
+                  },
+                  "firstName": "C M",
+                  "fullName": "Gray CM",
+                  "initials": "CM",
+                  "lastName": "Gray"
+                },
+                {
+                  "firstName": "W",
+                  "fullName": "Singer W",
+                  "initials": "W",
+                  "lastName": "Singer"
+                }
+              ]
+            },
+            "doi": "10.1073/pnas.86.5.1698",
+            "firstPublicationDate": "1989-03-01",
+            "fullTextUrlList": {
+              "fullTextUrl": [
+                {
+                  "availability": "Subscription required",
+                  "availabilityCode": "S",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1073/pnas.86.5.1698"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "html",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC286768"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "pdf",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC286768?pdf=render"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1073/pnas.86.5.1698"
+                }
+              ]
+            },
+            "id": "2922407",
+            "isOpenAccess": "N",
+            "journalInfo": {
+              "dateOfPublication": "1989 Mar",
+              "issue": "5",
+              "journal": {
+                "essn": "1091-6490",
+                "isoabbreviation": "Proc Natl Acad Sci U S A",
+                "issn": "0027-8424",
+                "medlineAbbreviation": "Proc Natl Acad Sci U S A",
+                "nlmid": "7505876",
+                "title": "Proceedings of the National Academy of Sciences of the United States of America"
+              },
+              "journalIssueId": 633671,
+              "monthOfPublication": 3,
+              "printPublicationDate": "1989-03-01",
+              "volume": "86",
+              "yearOfPublication": 1989
+            },
+            "pageInfo": "1698-1702",
+            "pmcid": "PMC286768",
+            "pubTypeList": {
+              "pubType": [
+                "research-article",
+                "Journal Article"
+              ]
+            },
+            "pubYear": "1989",
+            "source": "MED",
+            "title": "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex."
+          },
+          "record": {
+            "DOI": "10.1073/pnas.86.5.1698",
+            "ISSN": [
+              "0027-8424",
+              "1091-6490"
+            ],
+            "author": [
+              {
+                "family": "Gray",
+                "given": "C M",
+                "suffix": ""
+              },
+              {
+                "family": "Singer",
+                "given": "W",
+                "suffix": ""
+              }
+            ],
+            "container-title": [
+              "Proceedings of the National Academy of Sciences of the United States of America",
+              "Proc Natl Acad Sci U S A",
+              "Proc Natl Acad Sci U S A",
+              "Proceedings of the National Academy of Sciences"
+            ],
+            "issue": "5",
+            "page": "1698-1702",
+            "published": {
+              "date-parts": [
+                [
+                  1989
+                ]
+              ]
+            },
+            "title": [
+              "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex"
+            ],
+            "type": "journal-article",
+            "volume": "86"
+          },
+          "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2Fh0043276%22+OR+DOI%3A%2210.1523%2Fjneurosci.1402-09.2009%22+OR+DOI%3A%2210.1523%2Fjneurosci.04-08-02051.1984%22+OR+DOI%3A%2210.1073%2Fpnas.86.5.1698%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.15.1.22%22+OR+DOI%3A%2210.1037%2F0278-7393.15.1.22%22+OR+DOI%3A%2210.1126%2Fscience.283.5408.1657%22+OR+DOI%3A%2210.7551%2Fmitpress%2F3077.003.0014%22+OR+DOI%3A%2210.7551%2Fmitpress%2F2834.003.0033%22+OR+DOI%3A%2210.1016%2Fs0079-7421%2808%2960441-7%22+OR+DOI%3A%2210.1016%2Fb978-0-12-121050-2.50008-9%22+OR+DOI%3A%2210.1016%2Fs0749-596x%2803%2900095-0%22+OR+DOI%3A%2210.1016%2F0022-2496%2866%2990018-6%22+OR+DOI%3A%2210.1037%2Fh0032795%22+OR+DOI%3A%2210.1016%2F0022-2496%2869%2990002-9%22+OR+DOI%3A%2210.1007%2Fs00221-009-2060-6%22+OR+DOI%3A%2210.1111%2Fj.1471-4159.1983.tb08102.x%22+OR+DOI%3A%2210.1073%2Fpnas.0805903105%22+OR+DOI%3A%2210.1076%2Fanec.10.2.85.14463%22+OR+DOI%3A%2210.1038%2Fnn.3048%22+OR+DOI%3A%2210.1002%2F0470011815.b2a13089%22+OR+DOI%3A%2210.1073%2Fpnas.93.24.13515%22+OR+DOI%3A%2210.1037%2F0278-7393.9.3.462%22+OR+DOI%3A%2210.2307%2F1992252%22+OR+DOI%3A%2210.1037%2Fh0043781%22&format=json&resultType=core&pageSize=100",
+          "resolved_findings": [],
+          "retrieved_at": "2026-09-10T01:02:27.976961+00:00",
+          "source": "europepmc",
+          "url": "https://europepmc.org/article/MED/2922407"
+        },
+        {
+          "authority": "PMC OAI article front matter",
+          "doi": "10.1073/pnas.86.5.1698",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "C M Gray and W Singer",
+              "match": true,
+              "source": [
+                {
+                  "family": "Gray",
+                  "given": "C M",
+                  "suffix": ""
+                },
+                {
+                  "family": "Singer",
+                  "given": "W",
+                  "suffix": ""
+                }
+              ]
+            },
+            "journal": {
+              "local": "Proceedings of the National Academy of Sciences, {USA}",
+              "match": true,
+              "source": [
+                "Proceedings of the National Academy of Sciences of the United States of America",
+                "Proceedings of the National Academy of Sciences",
+                "Proceedings of the National Academy of Sciences of the United States of America",
+                "Proc Natl Acad Sci U S A",
+                "Proc Natl Acad Sci U S A"
+              ]
+            },
+            "number": {
+              "local": "5",
+              "match": true,
+              "source": [
+                "5"
+              ]
+            },
+            "pages": {
+              "local": "1698--1702",
+              "match": true,
+              "source": [
+                "1698-1702"
+              ]
+            },
+            "publisher": {
+              "local": "{JSTOR}",
+              "match": false,
+              "source": [
+                "National Academy of Sciences"
+              ]
+            },
+            "title": {
+              "local": "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex",
+              "match": true,
+              "source": [
+                "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex."
+              ]
+            },
+            "volume": {
+              "local": "86",
+              "match": true,
+              "source": [
+                "86"
+              ]
+            },
+            "year": {
+              "local": "1989",
+              "match": true,
+              "source": [
+                "1989"
+              ]
+            }
+          },
+          "issues": [
+            "publisher: missing evidence or mismatch"
+          ],
+          "medline_record": {
+            "authorList": {
+              "author": [
+                {
+                  "authorAffiliationDetailsList": {
+                    "authorAffiliation": [
+                      {
+                        "affiliation": "Max Planck Institute for Brain Research, Frankfurt am Main, Federal Republic of Germany."
+                      }
+                    ]
+                  },
+                  "firstName": "C M",
+                  "fullName": "Gray CM",
+                  "initials": "CM",
+                  "lastName": "Gray"
+                },
+                {
+                  "firstName": "W",
+                  "fullName": "Singer W",
+                  "initials": "W",
+                  "lastName": "Singer"
+                }
+              ]
+            },
+            "doi": "10.1073/pnas.86.5.1698",
+            "firstPublicationDate": "1989-03-01",
+            "fullTextUrlList": {
+              "fullTextUrl": [
+                {
+                  "availability": "Subscription required",
+                  "availabilityCode": "S",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1073/pnas.86.5.1698"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "html",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC286768"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "pdf",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC286768?pdf=render"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1073/pnas.86.5.1698"
+                }
+              ]
+            },
+            "id": "2922407",
+            "isOpenAccess": "N",
+            "journalInfo": {
+              "dateOfPublication": "1989 Mar",
+              "issue": "5",
+              "journal": {
+                "essn": "1091-6490",
+                "isoabbreviation": "Proc Natl Acad Sci U S A",
+                "issn": "0027-8424",
+                "medlineAbbreviation": "Proc Natl Acad Sci U S A",
+                "nlmid": "7505876",
+                "title": "Proceedings of the National Academy of Sciences of the United States of America"
+              },
+              "journalIssueId": 633671,
+              "monthOfPublication": 3,
+              "printPublicationDate": "1989-03-01",
+              "volume": "86",
+              "yearOfPublication": 1989
+            },
+            "pageInfo": "1698-1702",
+            "pmcid": "PMC286768",
+            "pubTypeList": {
+              "pubType": [
+                "research-article",
+                "Journal Article"
+              ]
+            },
+            "pubYear": "1989",
+            "source": "MED",
+            "title": "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex."
+          },
+          "raw_xml": "<article xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"research-article\" xml:lang=\"EN\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Proc Natl Acad Sci U S A</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2</journal-id><journal-id journal-id-type=\"pmc-domain\">pnas</journal-id><journal-id journal-id-type=\"nlm-id\">7505876</journal-id><journal-title-group><journal-title>Proceedings of the National Academy of Sciences of the United States of America</journal-title></journal-title-group><issn pub-type=\"ppub\">0027-8424</issn><issn pub-type=\"epub\">1091-6490</issn><publisher><publisher-name>National Academy of Sciences</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC286768</article-id><article-id pub-id-type=\"pmcid-ver\">PMC286768.1</article-id><article-id pub-id-type=\"pmcaid\">286768</article-id><article-id pub-id-type=\"pmcaiid\">286768</article-id><article-id pub-id-type=\"pmid\">2922407</article-id><article-id pub-id-type=\"doi\">10.1073/pnas.86.5.1698</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Research Article</subject></subj-group></article-categories><title-group><article-title>Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex.</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Gray</surname><given-names initials=\"CM\">C M</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Singer</surname><given-names initials=\"W\">W</given-names></name></contrib></contrib-group><pub-date pub-type=\"ppub\"><month>3</month><year>1989</year></pub-date><volume>86</volume><issue>5</issue><fpage>1698</fpage><lpage>1702</lpage></article-meta></front></article>",
+          "record": {
+            "DOI": "10.1073/pnas.86.5.1698",
+            "ISSN": [
+              "0027-8424",
+              "1091-6490"
+            ],
+            "article-number": null,
+            "author": [
+              {
+                "family": "Gray",
+                "given": "C M",
+                "suffix": ""
+              },
+              {
+                "family": "Singer",
+                "given": "W",
+                "suffix": ""
+              }
+            ],
+            "container-title": [
+              "Proceedings of the National Academy of Sciences of the United States of America",
+              "Proceedings of the National Academy of Sciences",
+              "Proceedings of the National Academy of Sciences of the United States of America",
+              "Proc Natl Acad Sci U S A",
+              "Proc Natl Acad Sci U S A"
+            ],
+            "issue": "5",
+            "page": "1698-1702",
+            "published": {
+              "date-parts": [
+                [
+                  1989
+                ]
+              ]
+            },
+            "publisher": "National Academy of Sciences",
+            "title": [
+              "Stimulus-specific neuronal oscillations in orientation columns of cat visual cortex."
+            ],
+            "type": "journal-article",
+            "volume": "86"
+          },
+          "retrieved_at": "2026-09-17T04:05:59.806716+00:00",
+          "source": "pmc-jats",
+          "url": "https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A286768&metadataPrefix=pmc_fm",
+          "xml_sha256": "a3b557bcb3cbc5fe12250f15848c8b9f4de26361693c5530135f1a8f24ad7a67"
+        }
+      ],
+      "checked_at": "2026-09-17T18:51:18.504003+00:00",
+      "fingerprint": "v2:82e2f96b12c1dfc401a4530844be1778e3fe60ec24a5707888c42c6ee779cab7",
+      "issues": [
+        "No unambiguous, fully supported metadata match"
+      ],
+      "key": "GraySing89",
+      "policy": "2",
+      "status": "needs_review"
+    }
+  }
+]

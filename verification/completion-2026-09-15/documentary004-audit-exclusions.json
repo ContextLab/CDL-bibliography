@@ -1,0 +1,6 @@
+{
+  "CollColl00": "Published first page text names Thomas S Collett and Matthew Collett and gives Current Opinion in Neurobiology 2000, 10:757-762. The registry only lists T Collett. Retain both local authors; do not change the entry to match that incomplete registry.",
+  "DianEtal07": "The DOI embedded in volume is wrong as a volume value, and the local published paper supports volume 11 issue 9. A known 2008 corrigendum is linked by MED. Keep unresolved until the notice content and full coordinates are adjudicated; adding the original DOI must not bypass the notice.",
+  "ViemWake91": "First-page visual check supports correcting Acoustic to Acoustical, but also explicitly prints 90(2), Pt. 1, August 1991. PubMed records issue 2 Pt 1 whereas Crossref records 2. Defer the journal-only edit until complete issue-part treatment is documented.",
+  "YeoEtal11": "Registry family name Thomas Yeo differs from citation Yeo and source byline B. T. Thomas Yeo. Do not force the bibliography into the registry surname split without full name-identity corroboration."
+}

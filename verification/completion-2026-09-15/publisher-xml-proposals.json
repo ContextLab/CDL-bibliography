@@ -1,0 +1,4768 @@
+[
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "SmitEtal71",
+    "fingerprint": "v2:18ed475a281245b250b383c5bfa010953bf681ddf048cfdec2b7ea66ff21efa5",
+    "changes": {
+      "title": {
+        "before": "Imaginal versus verbal encoding and the primary-secondary memory distinction",
+        "after": "Imaginal versus verbal coding and the primary-secondary memory distinction"
+      }
+    },
+    "doi": "10.1016/s0022-5371(71)80064-6",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1016/s0022-5371(71)80064-6",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "E E Smith and J Barresi and A E Gross",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Smith",
+              "given": "Edward E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Barresi",
+              "given": "John",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Gross",
+              "given": "Alan E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Verbal Learning and Verbal Behavior",
+          "match": true,
+          "source": [
+            "Journal of Verbal Learning and Verbal Behavior"
+          ]
+        },
+        "number": {
+          "local": "6",
+          "match": true,
+          "source": [
+            "6"
+          ]
+        },
+        "pages": {
+          "local": "597--603",
+          "match": true,
+          "source": [
+            "597-603"
+          ]
+        },
+        "title": {
+          "local": "Imaginal versus verbal encoding and the primary-secondary memory distinction",
+          "match": false,
+          "source": [
+            "Imaginal versus verbal coding and the primary-secondary memory distinction"
+          ]
+        },
+        "volume": {
+          "local": "10",
+          "match": true,
+          "source": [
+            "10"
+          ]
+        },
+        "year": {
+          "local": "1971",
+          "match": true,
+          "source": [
+            "1971"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0022-5371(71)80064-6",
+        "ISSN": [
+          "0022-5371"
+        ],
+        "URL": "https://doi.org/10.1016/s0022-5371(71)80064-6",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Smith",
+            "given": "Edward E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Barresi",
+            "given": "John",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Gross",
+            "given": "Alan E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "issue": "6",
+        "issued": {
+          "date-parts": [
+            [
+              1971,
+              12
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537171800646?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537171800646?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "597-603",
+        "published": {
+          "date-parts": [
+            [
+              1971,
+              12
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1971,
+              12
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Imaginal versus verbal coding and the primary-secondary memory distinction"
+        ],
+        "type": "journal-article",
+        "volume": "10"
+      },
+      "retrieved_at": "2026-09-09T19:52:35.535740+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0022-5371%2871%2980064-6"
+    },
+    "publisher_source": {
+      "document_sha256": "00a7e55fc32d0ef02af6668be5984785b99cac61806f3d067bc862d12fbfe5fa",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(71)80064-6"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1971-12-31"
+        ],
+        "citation_title": [
+          "Imaginal versus verbal coding and the primary-secondary memory distinction"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537171800646</prism:url><dc:identifier>doi:10.1016/S0022-5371(71)80064-6</dc:identifier><eid>1-s2.0-S0022537171800646</eid><prism:doi>10.1016/S0022-5371(71)80064-6</prism:doi><pii>S0022-5371(71)80064-6</pii><dc:title>Imaginal versus verbal coding and the primary-secondary memory distinction </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1971-12-31</prism:coverDate><prism:coverDisplayDate>December 1971</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537171800646\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537171800646\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:18:59.547374+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2871%2980064-6"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "JenkEtal02",
+    "fingerprint": "v2:cb7ea1b14cc56b650fac518c2afa6880541e3633506ef30776437e232128cc27",
+    "changes": {
+      "title": {
+        "before": "Improved optimisation for the robust and accurate linear registration and motion correction of brain images",
+        "after": "Improved optimization for the robust and accurate linear registration and motion correction of brain images"
+      }
+    },
+    "doi": "10.1006/nimg.2002.1132",
+    "primary": {
+      "advisories": [
+        "Non-version source relationships retained: is-referenced-by"
+      ],
+      "doi": "10.1006/nimg.2002.1132",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "M Jenkinson and P Bannister and M Brady and S Smith",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Jenkinson",
+              "given": "Mark",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Bannister",
+              "given": "Peter",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Brady",
+              "given": "Michael",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Smith",
+              "given": "Stephen",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "{NeuroImage}",
+          "match": true,
+          "source": [
+            "NeuroImage"
+          ]
+        },
+        "number": {
+          "local": "2",
+          "match": true,
+          "source": [
+            "2"
+          ]
+        },
+        "pages": {
+          "local": "825--841",
+          "match": true,
+          "source": [
+            "825-841"
+          ]
+        },
+        "title": {
+          "local": "Improved optimisation for the robust and accurate linear registration and motion correction of brain images",
+          "match": false,
+          "source": [
+            "Improved Optimization for the Robust and Accurate Linear Registration and Motion Correction of Brain Images"
+          ]
+        },
+        "volume": {
+          "local": "17",
+          "match": true,
+          "source": [
+            "17"
+          ]
+        },
+        "year": {
+          "local": "2002",
+          "match": true,
+          "source": [
+            "2002"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1006/nimg.2002.1132",
+        "ISSN": [
+          "1053-8119"
+        ],
+        "URL": "https://doi.org/10.1006/nimg.2002.1132",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Jenkinson",
+            "given": "Mark",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Bannister",
+            "given": "Peter",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Brady",
+            "given": "Michael",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Smith",
+            "given": "Stephen",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "NeuroImage"
+        ],
+        "issue": "2",
+        "issued": {
+          "date-parts": [
+            [
+              2002,
+              10
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S1053811902911328?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S1053811902911328?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "825-841",
+        "published": {
+          "date-parts": [
+            [
+              2002,
+              10
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2002,
+              10
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "relation": {
+          "is-referenced-by": [
+            {
+              "asserted-by": "object",
+              "id": "10.1007/s10803-025-06867-z",
+              "id-type": "doi"
+            },
+            {
+              "asserted-by": "object",
+              "id": "10.1007/s00429-025-03013-4",
+              "id-type": "doi"
+            }
+          ]
+        },
+        "title": [
+          "Improved Optimization for the Robust and Accurate Linear Registration and Motion Correction of Brain Images"
+        ],
+        "type": "journal-article",
+        "volume": "17"
+      },
+      "retrieved_at": "2026-09-09T19:53:08.916895+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1006/nimg.2002.1132"
+    },
+    "publisher_source": {
+      "document_sha256": "b80e043ccb16cd7dfad64429451e73df2a0e3019b4bf47637960e54e63bae411",
+      "metadata": {
+        "citation_doi": [
+          "10.1006/nimg.2002.1132"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "2002-10-31"
+        ],
+        "citation_title": [
+          "Improved Optimization for the Robust and Accurate Linear Registration and Motion Correction of Brain Images"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811902911328</prism:url><dc:identifier>doi:10.1006/nimg.2002.1132</dc:identifier><eid>1-s2.0-S1053811902911328</eid><prism:doi>10.1006/nimg.2002.1132</prism:doi><pii>S1053-8119(02)91132-8</pii><dc:title>Improved Optimization for the Robust and Accurate Linear Registration and Motion Correction of Brain Images </dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>2002-10-31</prism:coverDate><prism:coverDisplayDate>October 2002</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1053811902911328\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811902911328\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:00.783732+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1006/nimg.2002.1132"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "SuriSchu99",
+    "fingerprint": "v2:fc2ad12f2eb5d7940b35ed9a7d43132cea4ad1544ed40999c865590f4fd1c351",
+    "changes": {
+      "title": {
+        "before": "A neural network with dopamine-like reinforcement signal that learns a spatial delayed response task",
+        "after": "A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task"
+      }
+    },
+    "doi": "10.1016/s0306-4522(98)00697-6",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 3"
+      ],
+      "doi": "10.1016/s0306-4522(98)00697-6",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "R E Suri and W Schultz",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Suri",
+              "given": "R.E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Schultz",
+              "given": "W.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Neuroscience",
+          "match": true,
+          "source": [
+            "Neuroscience"
+          ]
+        },
+        "pages": {
+          "local": "871--890",
+          "match": true,
+          "source": [
+            "871-890"
+          ]
+        },
+        "title": {
+          "local": "A neural network with dopamine-like reinforcement signal that learns a spatial delayed response task",
+          "match": false,
+          "source": [
+            "A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task"
+          ]
+        },
+        "volume": {
+          "local": "91",
+          "match": true,
+          "source": [
+            "91"
+          ]
+        },
+        "year": {
+          "local": "1999",
+          "match": true,
+          "source": [
+            "1999"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0306-4522(98)00697-6",
+        "ISSN": [
+          "0306-4522"
+        ],
+        "URL": "https://doi.org/10.1016/s0306-4522(98)00697-6",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Suri",
+            "given": "R.E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Schultz",
+            "given": "W.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Neuroscience"
+        ],
+        "issue": "3",
+        "issued": {
+          "date-parts": [
+            [
+              1999,
+              7
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0306452298006976?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0306452298006976?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "871-890",
+        "published": {
+          "date-parts": [
+            [
+              1999,
+              7
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1999,
+              7
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task"
+        ],
+        "type": "journal-article",
+        "volume": "91"
+      },
+      "retrieved_at": "2026-09-09T19:56:10.999787+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0306-4522%2898%2900697-6"
+    },
+    "publisher_source": {
+      "document_sha256": "c465332d01e31d384ae1a8008e3c20771c23425641aa3cfbcbd5e96e4e1225b2",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0306-4522(98)00697-6"
+        ],
+        "citation_issn": [
+          "0306-4522"
+        ],
+        "citation_journal_title": [
+          "Neuroscience"
+        ],
+        "citation_publication_date": [
+          "1999-07-31"
+        ],
+        "citation_title": [
+          "A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0306452298006976</prism:url><dc:identifier>doi:10.1016/S0306-4522(98)00697-6</dc:identifier><eid>1-s2.0-S0306452298006976</eid><prism:doi>10.1016/S0306-4522(98)00697-6</prism:doi><pii>S0306-4522(98)00697-6</pii><dc:title>A neural network model with dopamine-like reinforcement signal that learns a spatial delayed response task </dc:title><prism:publicationName>Neuroscience</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>03064522</prism:issn><prism:coverDate>1999-07-31</prism:coverDate><prism:coverDisplayDate>July 1999</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0306452298006976\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0306452298006976\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:19:02.057080+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0306-4522%2898%2900697-6"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "OharEtal04",
+    "fingerprint": "v2:4aef68391bb12b71af1529c9a6464c6d09c991fd28d713b7b7b220fb9b7a78d0",
+    "changes": {
+      "title": {
+        "before": "Attention to pain modulates electrocorticographic event-related desynchronization during cutaneous laser stimulation in humans",
+        "after": "Attention to a painful cutaneous laser stimulus modulates electrocorticographic event-related desynchronization in humans"
+      }
+    },
+    "doi": "10.1016/j.clinph.2004.02.023",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 7"
+      ],
+      "doi": "10.1016/j.clinph.2004.02.023",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "S Ohara and N E Crone and N Weiss and F A Lenz",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Ohara",
+              "given": "S",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Crone",
+              "given": "N.E",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Weiss",
+              "given": "N",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Lenz",
+              "given": "F.A",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Clinical Neurophysiology",
+          "match": true,
+          "source": [
+            "Clinical Neurophysiology"
+          ]
+        },
+        "pages": {
+          "local": "1641--1652",
+          "match": true,
+          "source": [
+            "1641-1652"
+          ]
+        },
+        "title": {
+          "local": "Attention to pain modulates electrocorticographic event-related desynchronization during cutaneous laser stimulation in humans",
+          "match": false,
+          "source": [
+            "Attention to a painful cutaneous laser stimulus modulates electrocorticographic event-related desynchronization in humans"
+          ]
+        },
+        "volume": {
+          "local": "115",
+          "match": true,
+          "source": [
+            "115"
+          ]
+        },
+        "year": {
+          "local": "2004",
+          "match": true,
+          "source": [
+            "2004"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/j.clinph.2004.02.023",
+        "ISSN": [
+          "1388-2457"
+        ],
+        "URL": "https://doi.org/10.1016/j.clinph.2004.02.023",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Ohara",
+            "given": "S",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Crone",
+            "given": "N.E",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Weiss",
+            "given": "N",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Lenz",
+            "given": "F.A",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Clinical Neurophysiology"
+        ],
+        "issue": "7",
+        "issued": {
+          "date-parts": [
+            [
+              2004,
+              7
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S1388245704000689?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S1388245704000689?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "1641-1652",
+        "published": {
+          "date-parts": [
+            [
+              2004,
+              7
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2004,
+              7
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Attention to a painful cutaneous laser stimulus modulates electrocorticographic event-related desynchronization in humans"
+        ],
+        "type": "journal-article",
+        "volume": "115"
+      },
+      "retrieved_at": "2026-09-09T20:02:52.292590+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/j.clinph.2004.02.023"
+    },
+    "publisher_source": {
+      "document_sha256": "46b423958459669316612a5d748c02f4c9a72f350f87589940c2eba9807f3e09",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.clinph.2004.02.023"
+        ],
+        "citation_issn": [
+          "1388-2457"
+        ],
+        "citation_journal_title": [
+          "Clinical Neurophysiology"
+        ],
+        "citation_publication_date": [
+          "2004-07-31"
+        ],
+        "citation_title": [
+          "Attention to a painful cutaneous laser stimulus modulates electrocorticographic event-related desynchronization in humans"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1388245704000689</prism:url><dc:identifier>doi:10.1016/j.clinph.2004.02.023</dc:identifier><eid>1-s2.0-S1388245704000689</eid><prism:doi>10.1016/j.clinph.2004.02.023</prism:doi><pii>S1388-2457(04)00068-9</pii><dc:title>Attention to a painful cutaneous laser stimulus modulates electrocorticographic event-related desynchronization in humans </dc:title><prism:publicationName>Clinical Neurophysiology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>13882457</prism:issn><prism:coverDate>2004-07-31</prism:coverDate><prism:coverDisplayDate>July 2004</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1388245704000689\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1388245704000689\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:25.465595+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.clinph.2004.02.023"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "LebeNico06",
+    "fingerprint": "v2:9b8a646d78a0199629b805bae290db9dad0f3f58756cb2521c49b58fd3b4bc7b",
+    "changes": {
+      "title": {
+        "before": "Brain-machine interfaces: past, present, and future",
+        "after": "Brain\u2013machine interfaces: past, present and future"
+      }
+    },
+    "doi": "10.1016/j.tins.2006.07.004",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1016/j.tins.2006.07.004",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "M A Lebedev and M A L Nicolelis",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Lebedev",
+              "given": "Mikhail A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Nicolelis",
+              "given": "Miguel A.L.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Trends in Neurosciences",
+          "match": true,
+          "source": [
+            "Trends in Neurosciences"
+          ]
+        },
+        "number": {
+          "local": "9",
+          "match": true,
+          "source": [
+            "9"
+          ]
+        },
+        "pages": {
+          "local": "536--546",
+          "match": true,
+          "source": [
+            "536-546"
+          ]
+        },
+        "publisher": {
+          "local": "Elsevier",
+          "match": true,
+          "source": [
+            "Elsevier BV"
+          ]
+        },
+        "title": {
+          "local": "Brain-machine interfaces: past, present, and future",
+          "match": false,
+          "source": [
+            "Brain\u2013machine interfaces: past, present and future"
+          ]
+        },
+        "volume": {
+          "local": "29",
+          "match": true,
+          "source": [
+            "29"
+          ]
+        },
+        "year": {
+          "local": "2006",
+          "match": true,
+          "source": [
+            "2006"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/j.tins.2006.07.004",
+        "ISSN": [
+          "0166-2236"
+        ],
+        "URL": "https://doi.org/10.1016/j.tins.2006.07.004",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Lebedev",
+            "given": "Mikhail A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Nicolelis",
+            "given": "Miguel A.L.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Trends in Neurosciences"
+        ],
+        "issue": "9",
+        "issued": {
+          "date-parts": [
+            [
+              2006,
+              9
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0166223606001470?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0166223606001470?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "536-546",
+        "published": {
+          "date-parts": [
+            [
+              2006,
+              9
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2006,
+              9
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Brain\u2013machine interfaces: past, present and future"
+        ],
+        "type": "journal-article",
+        "volume": "29"
+      },
+      "retrieved_at": "2026-09-09T20:04:45.546610+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/j.tins.2006.07.004"
+    },
+    "publisher_source": {
+      "document_sha256": "19d2fd60f4f6a570243e48b63b5ee004e02a6329d7574ed345fb10fee1988f52",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.tins.2006.07.004"
+        ],
+        "citation_issn": [
+          "0166-2236"
+        ],
+        "citation_journal_title": [
+          "Trends in Neurosciences"
+        ],
+        "citation_publication_date": [
+          "2006-09-30"
+        ],
+        "citation_title": [
+          "Brain\u2013machine interfaces: past, present and future"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0166223606001470</prism:url><dc:identifier>doi:10.1016/j.tins.2006.07.004</dc:identifier><eid>1-s2.0-S0166223606001470</eid><prism:doi>10.1016/j.tins.2006.07.004</prism:doi><pii>S0166-2236(06)00147-0</pii><dc:title>Brain\u2013machine interfaces: past, present and future </dc:title><prism:publicationName>Trends in Neurosciences</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>01662236</prism:issn><prism:coverDate>2006-09-30</prism:coverDate><prism:coverDisplayDate>September 2006</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0166223606001470\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0166223606001470\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:29.450084+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.tins.2006.07.004"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "LindEtal03",
+    "fingerprint": "v2:2926e3517d77c3d1673d57b2a5987f4c575e9c34bf7e4ea13f93afeec48a117c",
+    "changes": {
+      "title": {
+        "before": "Cortical capacity constraints for visual working memory: dissociation of {fMRI} load effects in a front-parietal network",
+        "after": "Cortical capacity constraints for visual working memory: dissociation of {fMRI} load effects in a fronto-parietal network"
+      }
+    },
+    "doi": "10.1016/j.neuroimage.2003.07.021",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 3"
+      ],
+      "doi": "10.1016/j.neuroimage.2003.07.021",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "D E J Linden and R A Bittner and L Muckli and J A Waltz and N Kriegeskorte and R Goebel and W Singer and M H J Munk",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Linden",
+              "given": "David E.J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Bittner",
+              "given": "Robert A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Muckli",
+              "given": "Lars",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Waltz",
+              "given": "James A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Kriegeskorte",
+              "given": "Nikolaus",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Goebel",
+              "given": "Rainer",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Singer",
+              "given": "Wolf",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Munk",
+              "given": "Matthias H.J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "{NeuroImage}",
+          "match": true,
+          "source": [
+            "NeuroImage"
+          ]
+        },
+        "pages": {
+          "local": "1518--1530",
+          "match": true,
+          "source": [
+            "1518-1530"
+          ]
+        },
+        "title": {
+          "local": "Cortical capacity constraints for visual working memory: dissociation of {fMRI} load effects in a front-parietal network",
+          "match": false,
+          "source": [
+            "Cortical capacity constraints for visual working memory: dissociation of fMRI load effects in a fronto-parietal network"
+          ]
+        },
+        "volume": {
+          "local": "20",
+          "match": true,
+          "source": [
+            "20"
+          ]
+        },
+        "year": {
+          "local": "2003",
+          "match": true,
+          "source": [
+            "2003"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/j.neuroimage.2003.07.021",
+        "ISSN": [
+          "1053-8119"
+        ],
+        "URL": "https://doi.org/10.1016/j.neuroimage.2003.07.021",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Linden",
+            "given": "David E.J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Bittner",
+            "given": "Robert A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Muckli",
+            "given": "Lars",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Waltz",
+            "given": "James A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Kriegeskorte",
+            "given": "Nikolaus",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Goebel",
+            "given": "Rainer",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Singer",
+            "given": "Wolf",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Munk",
+            "given": "Matthias H.J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "NeuroImage"
+        ],
+        "issue": "3",
+        "issued": {
+          "date-parts": [
+            [
+              2003,
+              11
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S1053811903004725?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S1053811903004725?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "1518-1530",
+        "published": {
+          "date-parts": [
+            [
+              2003,
+              11
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2003,
+              11
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Cortical capacity constraints for visual working memory: dissociation of fMRI load effects in a fronto-parietal network"
+        ],
+        "type": "journal-article",
+        "volume": "20"
+      },
+      "retrieved_at": "2026-09-09T20:10:22.664861+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/j.neuroimage.2003.07.021"
+    },
+    "publisher_source": {
+      "document_sha256": "d760e861a0f7aaa0a9bb24e64df032b441fadfdde0f5efcd4dd522fddacf054f",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/j.neuroimage.2003.07.021"
+        ],
+        "citation_issn": [
+          "1053-8119"
+        ],
+        "citation_journal_title": [
+          "NeuroImage"
+        ],
+        "citation_publication_date": [
+          "2003-11-30"
+        ],
+        "citation_title": [
+          "Cortical capacity constraints for visual working memory: dissociation of fMRI load effects in a fronto-parietal network"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S1053811903004725</prism:url><dc:identifier>doi:10.1016/j.neuroimage.2003.07.021</dc:identifier><eid>1-s2.0-S1053811903004725</eid><prism:doi>10.1016/j.neuroimage.2003.07.021</prism:doi><pii>S1053-8119(03)00472-5</pii><dc:title>Cortical capacity constraints for visual working memory: dissociation of fMRI load effects in a fronto-parietal network </dc:title><prism:publicationName>NeuroImage</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>10538119</prism:issn><prism:coverDate>2003-11-30</prism:coverDate><prism:coverDisplayDate>November 2003</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S1053811903004725\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S1053811903004725\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:30.814255+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.neuroimage.2003.07.021"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "ChevDeni90",
+    "fingerprint": "v2:acb3c5635ebe6c9b68543ff41b71366b9b0db07cf976164c4ce395194eacbefa",
+    "changes": {
+      "title": {
+        "before": "Disinhibition as a basic process in the expression of striatal function",
+        "after": "Disinhibition as a basic process in the expression of striatal functions"
+      }
+    },
+    "doi": "10.1016/0166-2236(90)90109-n",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 7"
+      ],
+      "doi": "10.1016/0166-2236(90)90109-n",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "G Chevalier and J M Deniau",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Chevalier",
+              "given": "G.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Deniau",
+              "given": "J.M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Trends in Neurosciences",
+          "match": true,
+          "source": [
+            "Trends in Neurosciences"
+          ]
+        },
+        "pages": {
+          "local": "277--280",
+          "match": true,
+          "source": [
+            "277-280"
+          ]
+        },
+        "title": {
+          "local": "Disinhibition as a basic process in the expression of striatal function",
+          "match": false,
+          "source": [
+            "Disinhibition as a basic process in the expression of striatal functions"
+          ]
+        },
+        "volume": {
+          "local": "13",
+          "match": true,
+          "source": [
+            "13"
+          ]
+        },
+        "year": {
+          "local": "1990",
+          "match": true,
+          "source": [
+            "1990"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/0166-2236(90)90109-n",
+        "ISSN": [
+          "0166-2236"
+        ],
+        "URL": "https://doi.org/10.1016/0166-2236(90)90109-n",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Chevalier",
+            "given": "G.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Deniau",
+            "given": "J.M.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Trends in Neurosciences"
+        ],
+        "issue": "7",
+        "issued": {
+          "date-parts": [
+            [
+              1990,
+              7
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:016622369090109N?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:016622369090109N?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "277-280",
+        "published": {
+          "date-parts": [
+            [
+              1990,
+              7
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1990,
+              7
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Disinhibition as a basic process in the expression of striatal functions"
+        ],
+        "type": "journal-article",
+        "volume": "13"
+      },
+      "retrieved_at": "2026-09-16T01:55:14.646255+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0166-2236%2890%2990109-n"
+    },
+    "publisher_source": {
+      "document_sha256": "a4e9e4f3924f7f9735dcdceed35a177cfd05940a3eb4e1affb5d4602d10393eb",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0166-2236(90)90109-N"
+        ],
+        "citation_issn": [
+          "0166-2236"
+        ],
+        "citation_journal_title": [
+          "Trends in Neurosciences"
+        ],
+        "citation_publication_date": [
+          "1990-07-31"
+        ],
+        "citation_title": [
+          "Disinhibition as a basic process in the expression of striatal functions"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/016622369090109N</prism:url><dc:identifier>doi:10.1016/0166-2236(90)90109-N</dc:identifier><eid>1-s2.0-016622369090109N</eid><prism:doi>10.1016/0166-2236(90)90109-N</prism:doi><pii>0166-2236(90)90109-N</pii><dc:title>Disinhibition as a basic process in the expression of striatal functions </dc:title><prism:publicationName>Trends in Neurosciences</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>01662236</prism:issn><prism:coverDate>1990-07-31</prism:coverDate><prism:coverDisplayDate>July 1990</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/016622369090109N\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/016622369090109N\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:34.737666+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0166-2236%2890%2990109-n"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "AlleEtal69",
+    "fingerprint": "v2:b2c839382fe5fbe39fb78ea864f89401b76108c18ef6cc0c59defc7c348c1b69",
+    "changes": {
+      "title": {
+        "before": "Effects of recall tests on long-term retention of paired associate",
+        "after": "Effects of recall tests on long-term retention of paired associates"
+      }
+    },
+    "doi": "10.1016/s0022-5371(69)80090-3",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 4"
+      ],
+      "doi": "10.1016/s0022-5371(69)80090-3",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "G A Allen and W A Mahler and W K Estes",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Allen",
+              "given": "Gordon A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Mahler",
+              "given": "William A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Estes",
+              "given": "W.K.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Verbal Learning and Verbal Behavior",
+          "match": true,
+          "source": [
+            "Journal of Verbal Learning and Verbal Behavior"
+          ]
+        },
+        "pages": {
+          "local": "463--470",
+          "match": true,
+          "source": [
+            "463-470"
+          ]
+        },
+        "title": {
+          "local": "Effects of recall tests on long-term retention of paired associate",
+          "match": false,
+          "source": [
+            "Effects of recall tests on long-term retention of paired associates"
+          ]
+        },
+        "volume": {
+          "local": "8",
+          "match": true,
+          "source": [
+            "8"
+          ]
+        },
+        "year": {
+          "local": "1969",
+          "match": true,
+          "source": [
+            "1969"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0022-5371(69)80090-3",
+        "ISSN": [
+          "0022-5371"
+        ],
+        "URL": "https://doi.org/10.1016/s0022-5371(69)80090-3",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Allen",
+            "given": "Gordon A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Mahler",
+            "given": "William A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Estes",
+            "given": "W.K.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "issue": "4",
+        "issued": {
+          "date-parts": [
+            [
+              1969,
+              8
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537169800903?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537169800903?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "463-470",
+        "published": {
+          "date-parts": [
+            [
+              1969,
+              8
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1969,
+              8
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Effects of recall tests on long-term retention of paired associates"
+        ],
+        "type": "journal-article",
+        "volume": "8"
+      },
+      "retrieved_at": "2026-09-16T14:51:48.973551+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0022-5371%2869%2980090-3"
+    },
+    "publisher_source": {
+      "document_sha256": "0830f94d484b0556b40be8c6ea8f88c90bfa93b711a8085cca4e12bb282d035f",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(69)80090-3"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1969-08-31"
+        ],
+        "citation_title": [
+          "Effects of recall tests on long-term retention of paired associates"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537169800903</prism:url><dc:identifier>doi:10.1016/S0022-5371(69)80090-3</dc:identifier><eid>1-s2.0-S0022537169800903</eid><prism:doi>10.1016/S0022-5371(69)80090-3</prism:doi><pii>S0022-5371(69)80090-3</pii><dc:title>Effects of recall tests on long-term retention of paired associates </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1969-08-31</prism:coverDate><prism:coverDisplayDate>August 1969</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537169800903\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537169800903\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:39.869678+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2869%2980090-3"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "Will01",
+    "fingerprint": "v2:5f64fa8a4b6cda9c1dc3a1ed75533a7341b656d2ae926910fd9b0d1c160898ab",
+    "changes": {
+      "title": {
+        "before": "Frequency-specific effects of flicker on recognitionmemory",
+        "after": "Frequency-specific effects of flicker on recognition memory"
+      }
+    },
+    "doi": "10.1016/s0306-4522(00)00579-0",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 2"
+      ],
+      "doi": "10.1016/s0306-4522(00)00579-0",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "J H Williams",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Williams",
+              "given": "J.H",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Neuroscience",
+          "match": true,
+          "source": [
+            "Neuroscience"
+          ]
+        },
+        "pages": {
+          "local": "283--286",
+          "match": true,
+          "source": [
+            "283-286"
+          ]
+        },
+        "title": {
+          "local": "Frequency-specific effects of flicker on recognitionmemory",
+          "match": false,
+          "source": [
+            "Frequency-specific effects of flicker on recognition memory"
+          ]
+        },
+        "volume": {
+          "local": "104",
+          "match": true,
+          "source": [
+            "104"
+          ]
+        },
+        "year": {
+          "local": "2001",
+          "match": true,
+          "source": [
+            "2001"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0306-4522(00)00579-0",
+        "ISSN": [
+          "0306-4522"
+        ],
+        "URL": "https://doi.org/10.1016/s0306-4522(00)00579-0",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Williams",
+            "given": "J.H",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Neuroscience"
+        ],
+        "issue": "2",
+        "issued": {
+          "date-parts": [
+            [
+              2001,
+              5
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0306452200005790?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0306452200005790?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "283-286",
+        "published": {
+          "date-parts": [
+            [
+              2001,
+              5
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2001,
+              5
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Frequency-specific effects of flicker on recognition memory"
+        ],
+        "type": "journal-article",
+        "volume": "104"
+      },
+      "retrieved_at": "2026-09-09T20:21:56.638201+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0306-4522%2800%2900579-0"
+    },
+    "publisher_source": {
+      "document_sha256": "ae3685afdea00e8c6839ddcfc1976172e68fba7e68fc3046f49ac03adf493854",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0306-4522(00)00579-0"
+        ],
+        "citation_issn": [
+          "0306-4522"
+        ],
+        "citation_journal_title": [
+          "Neuroscience"
+        ],
+        "citation_publication_date": [
+          "2001-05-10"
+        ],
+        "citation_title": [
+          "Frequency-specific effects of flicker on recognition memory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0306452200005790</prism:url><dc:identifier>doi:10.1016/S0306-4522(00)00579-0</dc:identifier><eid>1-s2.0-S0306452200005790</eid><prism:doi>10.1016/S0306-4522(00)00579-0</prism:doi><pii>S0306-4522(00)00579-0</pii><dc:title>Frequency-specific effects of flicker on recognition memory </dc:title><prism:publicationName>Neuroscience</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>03064522</prism:issn><prism:coverDate>2001-05-10</prism:coverDate><prism:coverDisplayDate>10 May 2001</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0306452200005790\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0306452200005790\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:46.341230+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0306-4522%2800%2900579-0"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "DEspEtal98",
+    "fingerprint": "v2:df7a9b66ca00399e552ff28efcf9ce7d7b0199a5e63ebedbebaf858b3d865876",
+    "changes": {
+      "title": {
+        "before": "Function {MRI} studies of spatial and nonspatial working memory",
+        "after": "Functional {MRI} studies of spatial and nonspatial working memory"
+      }
+    },
+    "doi": "10.1016/s0926-6410(98)00004-4",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1016/s0926-6410(98)00004-4",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "M D'{E}sposito and G K Aguirre and E Zarahn and D Ballard and R K Shin and J Lease",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "D'Esposito",
+              "given": "M",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Aguirre",
+              "given": "G.K",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Zarahn",
+              "given": "E",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Ballard",
+              "given": "D",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Shin",
+              "given": "R.K",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Lease",
+              "given": "J",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cognitive Brain Research",
+          "match": true,
+          "source": [
+            "Cognitive Brain Research"
+          ]
+        },
+        "pages": {
+          "local": "1--13",
+          "match": true,
+          "source": [
+            "1-13"
+          ]
+        },
+        "title": {
+          "local": "Function {MRI} studies of spatial and nonspatial working memory",
+          "match": false,
+          "source": [
+            "Functional MRI studies of spatial and nonspatial working memory"
+          ]
+        },
+        "volume": {
+          "local": "7",
+          "match": true,
+          "source": [
+            "7"
+          ]
+        },
+        "year": {
+          "local": "1998",
+          "match": true,
+          "source": [
+            "1998"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0926-6410(98)00004-4",
+        "ISSN": [
+          "0926-6410"
+        ],
+        "URL": "https://doi.org/10.1016/s0926-6410(98)00004-4",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "D'Esposito",
+            "given": "M",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Aguirre",
+            "given": "G.K",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Zarahn",
+            "given": "E",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Ballard",
+            "given": "D",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Shin",
+            "given": "R.K",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Lease",
+            "given": "J",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Cognitive Brain Research"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              1998,
+              7
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0926641098000044?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0926641098000044?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "1-13",
+        "published": {
+          "date-parts": [
+            [
+              1998,
+              7
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1998,
+              7
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Functional MRI studies of spatial and nonspatial working memory"
+        ],
+        "type": "journal-article",
+        "volume": "7"
+      },
+      "retrieved_at": "2026-09-16T14:49:58.860376+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0926-6410%2898%2900004-4"
+    },
+    "publisher_source": {
+      "document_sha256": "ddea19c47b8e1723605cedf7a625bf2787843edb8bc03512c240e5068f7de582",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0926-6410(98)00004-4"
+        ],
+        "citation_issn": [
+          "0926-6410"
+        ],
+        "citation_journal_title": [
+          "Cognitive Brain Research"
+        ],
+        "citation_publication_date": [
+          "1998-07-31"
+        ],
+        "citation_title": [
+          "Functional MRI studies of spatial and nonspatial working memory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0926641098000044</prism:url><dc:identifier>doi:10.1016/S0926-6410(98)00004-4</dc:identifier><eid>1-s2.0-S0926641098000044</eid><prism:doi>10.1016/S0926-6410(98)00004-4</prism:doi><pii>S0926-6410(98)00004-4</pii><dc:title>Functional MRI studies of spatial and nonspatial working memory </dc:title><prism:publicationName>Cognitive Brain Research</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>09266410</prism:issn><prism:coverDate>1998-07-31</prism:coverDate><prism:coverDisplayDate>July 1998</prism:coverDisplayDate><openaccess>1</openaccess><openaccessArticle>true</openaccessArticle><openaccessType>Full</openaccessType><openArchiveArticle>true</openArchiveArticle><openaccessSponsorName>NERL</openaccessSponsorName><openaccessSponsorType>FundingPartnerOpenArchive</openaccessSponsorType><openaccessUserLicense>http://creativecommons.org/licenses/by-nc-nd/4.0/</openaccessUserLicense><link href=\"https://api.elsevier.com/content/article/pii/S0926641098000044\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0926641098000044\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:47.618857+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0926-6410%2898%2900004-4"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "ShauEtal72",
+    "fingerprint": "v2:3d9db05f34d634c634c45fc416719b86b631585e01dbad7663350e7b67d01f24",
+    "changes": {
+      "title": {
+        "before": "Further evidence on the mp-dp effect in free recall learning",
+        "after": "Further evidence on the {MP-DP} effect in free-recall learning"
+      }
+    },
+    "doi": "10.1016/s0022-5371(72)80053-7",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1016/s0022-5371(72)80053-7",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "J J Shaughnessy and J Zimmerman and B J Underwood",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Shaughnessy",
+              "given": "John J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Zimmerman",
+              "given": "Joel",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Underwood",
+              "given": "Benton J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Verbal Learning and Verbal Behavior",
+          "match": true,
+          "source": [
+            "Journal of Verbal Learning and Verbal Behavior"
+          ]
+        },
+        "pages": {
+          "local": "1--12",
+          "match": true,
+          "source": [
+            "1-12"
+          ]
+        },
+        "title": {
+          "local": "Further evidence on the mp-dp effect in free recall learning",
+          "match": false,
+          "source": [
+            "Further evidence on the MP-DP effect in free-recall learning"
+          ]
+        },
+        "volume": {
+          "local": "11",
+          "match": true,
+          "source": [
+            "11"
+          ]
+        },
+        "year": {
+          "local": "1972",
+          "match": true,
+          "source": [
+            "1972"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0022-5371(72)80053-7",
+        "ISSN": [
+          "0022-5371"
+        ],
+        "URL": "https://doi.org/10.1016/s0022-5371(72)80053-7",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Shaughnessy",
+            "given": "John J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Zimmerman",
+            "given": "Joel",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Underwood",
+            "given": "Benton J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              1972,
+              2
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537172800537?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537172800537?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "1-12",
+        "published": {
+          "date-parts": [
+            [
+              1972,
+              2
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1972,
+              2
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Further evidence on the MP-DP effect in free-recall learning"
+        ],
+        "type": "journal-article",
+        "volume": "11"
+      },
+      "retrieved_at": "2026-09-16T01:55:21.872621+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0022-5371%2872%2980053-7"
+    },
+    "publisher_source": {
+      "document_sha256": "4c97a53178997e4f83b9dfa9582c91f42d8e8bde99db82478e1b7ac10df37549",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(72)80053-7"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1972-02-29"
+        ],
+        "citation_title": [
+          "Further evidence on the MP-DP effect in free-recall learning"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537172800537</prism:url><dc:identifier>doi:10.1016/S0022-5371(72)80053-7</dc:identifier><eid>1-s2.0-S0022537172800537</eid><prism:doi>10.1016/S0022-5371(72)80053-7</prism:doi><pii>S0022-5371(72)80053-7</pii><dc:title>Further evidence on the MP-DP effect in free-recall learning </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1972-02-29</prism:coverDate><prism:coverDisplayDate>February 1972</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537172800537\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537172800537\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:51.616890+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2872%2980053-7"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "StewFox91",
+    "fingerprint": "v2:be8ebafc9e719888e5d646592c1308fe700b69d16f63b2c09b9e201e53984bfe",
+    "changes": {
+      "title": {
+        "before": "Hippocampal theta activities in monkeys",
+        "after": "Hippocampal theta activity in monkeys"
+      }
+    },
+    "doi": "10.1016/0006-8993(91)90376-7",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1016/0006-8993(91)90376-7",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "M Stewart and S E Fox",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Stewart",
+              "given": "M.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Fox",
+              "given": "S.E.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Brain Research",
+          "match": true,
+          "source": [
+            "Brain Research"
+          ]
+        },
+        "pages": {
+          "local": "59--63",
+          "match": true,
+          "source": [
+            "59-63"
+          ]
+        },
+        "title": {
+          "local": "Hippocampal theta activities in monkeys",
+          "match": false,
+          "source": [
+            "Hippocampal theta activity in monkeys"
+          ]
+        },
+        "volume": {
+          "local": "538",
+          "match": true,
+          "source": [
+            "538"
+          ]
+        },
+        "year": {
+          "local": "1991",
+          "match": true,
+          "source": [
+            "1991"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/0006-8993(91)90376-7",
+        "ISSN": [
+          "0006-8993"
+        ],
+        "URL": "https://doi.org/10.1016/0006-8993(91)90376-7",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Stewart",
+            "given": "M.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Fox",
+            "given": "S.E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Brain Research"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              1991,
+              1
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0006899391903767?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0006899391903767?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "59-63",
+        "published": {
+          "date-parts": [
+            [
+              1991,
+              1
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1991,
+              1
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Hippocampal theta activity in monkeys"
+        ],
+        "type": "journal-article",
+        "volume": "538"
+      },
+      "retrieved_at": "2026-09-09T20:26:13.460267+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0006-8993%2891%2990376-7"
+    },
+    "publisher_source": {
+      "document_sha256": "2cf3230c20712ce2c6f368c0d72414d8306ed03a362afe7a5c0c6ea8602eae49",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0006-8993(91)90376-7"
+        ],
+        "citation_issn": [
+          "0006-8993"
+        ],
+        "citation_journal_title": [
+          "Brain Research"
+        ],
+        "citation_publication_date": [
+          "1991-01-04"
+        ],
+        "citation_title": [
+          "Hippocampal theta activity in monkeys"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0006899391903767</prism:url><dc:identifier>doi:10.1016/0006-8993(91)90376-7</dc:identifier><eid>1-s2.0-0006899391903767</eid><prism:doi>10.1016/0006-8993(91)90376-7</prism:doi><pii>0006-8993(91)90376-7</pii><dc:title>Hippocampal theta activity in monkeys </dc:title><prism:publicationName>Brain Research</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00068993</prism:issn><prism:coverDate>1991-01-04</prism:coverDate><prism:coverDisplayDate>4 January 1991</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0006899391903767\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0006899391903767\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:54.333964+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0006-8993%2891%2990376-7"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "DaneCarp80",
+    "fingerprint": "v2:7f7dd68d23eda684424456af6f1fa4e4c1fd16673f89f4df8c61347fce27d16b",
+    "changes": {
+      "title": {
+        "before": "Individual difference in working memory and reading",
+        "after": "Individual differences in working memory and reading"
+      }
+    },
+    "doi": "10.1016/s0022-5371(80)90312-6",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 4"
+      ],
+      "doi": "10.1016/s0022-5371(80)90312-6",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "M Daneman and P A Carpenter",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Daneman",
+              "given": "Meredyth",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Carpenter",
+              "given": "Patricia A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Verbal Learning and Verbal Behavior",
+          "match": true,
+          "source": [
+            "Journal of Verbal Learning and Verbal Behavior"
+          ]
+        },
+        "pages": {
+          "local": "450--466",
+          "match": true,
+          "source": [
+            "450-466"
+          ]
+        },
+        "title": {
+          "local": "Individual difference in working memory and reading",
+          "match": false,
+          "source": [
+            "Individual differences in working memory and reading"
+          ]
+        },
+        "volume": {
+          "local": "19",
+          "match": true,
+          "source": [
+            "19"
+          ]
+        },
+        "year": {
+          "local": "1980",
+          "match": true,
+          "source": [
+            "1980"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0022-5371(80)90312-6",
+        "ISSN": [
+          "0022-5371"
+        ],
+        "URL": "https://doi.org/10.1016/s0022-5371(80)90312-6",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Daneman",
+            "given": "Meredyth",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Carpenter",
+            "given": "Patricia A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "issue": "4",
+        "issued": {
+          "date-parts": [
+            [
+              1980,
+              8
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537180903126?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537180903126?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "450-466",
+        "published": {
+          "date-parts": [
+            [
+              1980,
+              8
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1980,
+              8
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Individual differences in working memory and reading"
+        ],
+        "type": "journal-article",
+        "volume": "19"
+      },
+      "retrieved_at": "2026-09-16T14:52:27.925970+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0022-5371%2880%2990312-6"
+    },
+    "publisher_source": {
+      "document_sha256": "80907929050dce6fd414a19ba5ff454f16c8e0da4e7a8285528f073d7ae9245b",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(80)90312-6"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1980-08-31"
+        ],
+        "citation_title": [
+          "Individual differences in working memory and reading"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537180903126</prism:url><dc:identifier>doi:10.1016/S0022-5371(80)90312-6</dc:identifier><eid>1-s2.0-S0022537180903126</eid><prism:doi>10.1016/S0022-5371(80)90312-6</prism:doi><pii>S0022-5371(80)90312-6</pii><dc:title>Individual differences in working memory and reading </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1980-08-31</prism:coverDate><prism:coverDisplayDate>August 1980</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537180903126\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537180903126\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:20:55.642298+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2880%2990312-6"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "BurkEtal91",
+    "fingerprint": "v2:6444ddafe649b81703bb533d07a61c6334c8d9bebfe6ea072f31867d95e1a342",
+    "changes": {
+      "title": {
+        "before": "On the tip of the tongue: what causes word-finding failures in young and older adults",
+        "after": "On the tip of the tongue: what causes word finding failures in young and older adults?"
+      }
+    },
+    "doi": "10.1016/0749-596x(91)90026-g",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 5"
+      ],
+      "doi": "10.1016/0749-596x(91)90026-g",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "D M Burke and D G MacKay and J S Worthley and E Wade",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Burke",
+              "given": "Deborah M",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "MacKay",
+              "given": "Donald G",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Worthley",
+              "given": "Joanna S",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Wade",
+              "given": "Elizabeth",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Memory and Language",
+          "match": true,
+          "source": [
+            "Journal of Memory and Language"
+          ]
+        },
+        "pages": {
+          "local": "542--579",
+          "match": true,
+          "source": [
+            "542-579"
+          ]
+        },
+        "title": {
+          "local": "On the tip of the tongue: what causes word-finding failures in young and older adults",
+          "match": false,
+          "source": [
+            "On the tip of the tongue: What causes word finding failures in young and older adults?"
+          ]
+        },
+        "volume": {
+          "local": "30",
+          "match": true,
+          "source": [
+            "30"
+          ]
+        },
+        "year": {
+          "local": "1991",
+          "match": true,
+          "source": [
+            "1991"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/0749-596x(91)90026-g",
+        "ISSN": [
+          "0749-596X"
+        ],
+        "URL": "https://doi.org/10.1016/0749-596x(91)90026-g",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Burke",
+            "given": "Deborah M",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "MacKay",
+            "given": "Donald G",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Worthley",
+            "given": "Joanna S",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Wade",
+            "given": "Elizabeth",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Memory and Language"
+        ],
+        "issue": "5",
+        "issued": {
+          "date-parts": [
+            [
+              1991,
+              10
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0749596X9190026G?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0749596X9190026G?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "542-579",
+        "published": {
+          "date-parts": [
+            [
+              1991,
+              10
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1991,
+              10
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "On the tip of the tongue: What causes word finding failures in young and older adults?"
+        ],
+        "type": "journal-article",
+        "volume": "30"
+      },
+      "retrieved_at": "2026-09-16T14:55:41.020834+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0749-596x%2891%2990026-g"
+    },
+    "publisher_source": {
+      "document_sha256": "03f8c36234232874a380ea1c2ab3f3cdaf14f03a763791fd632b740a65c28fa0",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0749-596X(91)90026-G"
+        ],
+        "citation_issn": [
+          "0749-596X"
+        ],
+        "citation_journal_title": [
+          "Journal of Memory and Language"
+        ],
+        "citation_publication_date": [
+          "1991-10-31"
+        ],
+        "citation_title": [
+          "On the tip of the tongue: What causes word finding failures in young and older adults?"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0749596X9190026G</prism:url><dc:identifier>doi:10.1016/0749-596X(91)90026-G</dc:identifier><eid>1-s2.0-0749596X9190026G</eid><prism:doi>10.1016/0749-596X(91)90026-G</prism:doi><pii>0749-596X(91)90026-G</pii><dc:title>On the tip of the tongue: What causes word finding failures in young and older adults? </dc:title><prism:publicationName>Journal of Memory and Language</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>0749596X</prism:issn><prism:coverDate>1991-10-31</prism:coverDate><prism:coverDisplayDate>October 1991</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0749596X9190026G\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0749596X9190026G\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:00.842920+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0749-596x%2891%2990026-g"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "KariEtal84",
+    "fingerprint": "v2:06010718b50e2b45d7cfcd7ef7fdd14c9187a13caec5e009576b5cf2c4dacb0b",
+    "changes": {
+      "title": {
+        "before": "{P300} and memory: individual differences in the {V}on {R}estorff effect",
+        "after": "\u201c{P300}\u201d and memory: individual differences in the von {Restorff} effect"
+      }
+    },
+    "doi": "10.1016/0010-0285(84)90007-0",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 2"
+      ],
+      "doi": "10.1016/0010-0285(84)90007-0",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "D Karis and M Fabiani and E Donchin",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Karis",
+              "given": "Demetrios",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Fabiani",
+              "given": "Monica",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Donchin",
+              "given": "Emanuel",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Cognitive Psychology",
+          "match": true,
+          "source": [
+            "Cognitive Psychology"
+          ]
+        },
+        "pages": {
+          "local": "177--216",
+          "match": true,
+          "source": [
+            "177-216"
+          ]
+        },
+        "title": {
+          "local": "{P300} and memory: individual differences in the {V}on {R}estorff effect",
+          "match": false,
+          "source": [
+            "\u201cP300\u201d and memory: Individual differences in the von Restorff effect"
+          ]
+        },
+        "volume": {
+          "local": "16",
+          "match": true,
+          "source": [
+            "16"
+          ]
+        },
+        "year": {
+          "local": "1984",
+          "match": true,
+          "source": [
+            "1984"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/0010-0285(84)90007-0",
+        "ISSN": [
+          "0010-0285"
+        ],
+        "URL": "https://doi.org/10.1016/0010-0285(84)90007-0",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Karis",
+            "given": "Demetrios",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Fabiani",
+            "given": "Monica",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Donchin",
+            "given": "Emanuel",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Cognitive Psychology"
+        ],
+        "issue": "2",
+        "issued": {
+          "date-parts": [
+            [
+              1984,
+              4
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0010028584900070?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0010028584900070?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "177-216",
+        "published": {
+          "date-parts": [
+            [
+              1984,
+              4
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1984,
+              4
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "\u201cP300\u201d and memory: Individual differences in the von Restorff effect"
+        ],
+        "type": "journal-article",
+        "volume": "16"
+      },
+      "retrieved_at": "2026-09-09T20:45:17.252589+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0010-0285%2884%2990007-0"
+    },
+    "publisher_source": {
+      "document_sha256": "8b21b27233ea87393e87501f3ec45d238c49a78440da826c54b3bd9383b4fa09",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0010-0285(84)90007-0"
+        ],
+        "citation_issn": [
+          "0010-0285"
+        ],
+        "citation_journal_title": [
+          "Cognitive Psychology"
+        ],
+        "citation_publication_date": [
+          "1984-04-30"
+        ],
+        "citation_title": [
+          "\u201cP300\u201d and memory: Individual differences in the von Restorff effect"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0010028584900070</prism:url><dc:identifier>doi:10.1016/0010-0285(84)90007-0</dc:identifier><eid>1-s2.0-0010028584900070</eid><prism:doi>10.1016/0010-0285(84)90007-0</prism:doi><pii>0010-0285(84)90007-0</pii><dc:title>\u201cP300\u201d and memory: Individual differences in the von Restorff effect </dc:title><prism:publicationName>Cognitive Psychology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00100285</prism:issn><prism:coverDate>1984-04-30</prism:coverDate><prism:coverDisplayDate>April 1984</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0010028584900070\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0010028584900070\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:02.382855+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0010-0285%2884%2990007-0"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "Delp72",
+    "fingerprint": "v2:cfd1871d6f69a2428b48e5b79935cc7d136ca702aa9e275bb35ee6e31fdef393",
+    "changes": {
+      "title": {
+        "before": "Pair specific effects in retroactive inhibition",
+        "after": "Pair-specific effects in retroactive inhibition"
+      }
+    },
+    "doi": "10.1016/s0022-5371(72)80040-9",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 5"
+      ],
+      "doi": "10.1016/s0022-5371(72)80040-9",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "D J Delprato",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Delprato",
+              "given": "Dennis J.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Verbal Learning and Verbal Behavior",
+          "match": true,
+          "source": [
+            "Journal of Verbal Learning and Verbal Behavior"
+          ]
+        },
+        "pages": {
+          "local": "566--572",
+          "match": true,
+          "source": [
+            "566-572"
+          ]
+        },
+        "title": {
+          "local": "Pair specific effects in retroactive inhibition",
+          "match": false,
+          "source": [
+            "Pair-specific effects in retroactive inhibition"
+          ]
+        },
+        "volume": {
+          "local": "11",
+          "match": true,
+          "source": [
+            "11"
+          ]
+        },
+        "year": {
+          "local": "1972",
+          "match": true,
+          "source": [
+            "1972"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0022-5371(72)80040-9",
+        "ISSN": [
+          "0022-5371"
+        ],
+        "URL": "https://doi.org/10.1016/s0022-5371(72)80040-9",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Delprato",
+            "given": "Dennis J.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "issue": "5",
+        "issued": {
+          "date-parts": [
+            [
+              1972,
+              10
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537172800409?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537172800409?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "566-572",
+        "published": {
+          "date-parts": [
+            [
+              1972,
+              10
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1972,
+              10
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Pair-specific effects in retroactive inhibition"
+        ],
+        "type": "journal-article",
+        "volume": "11"
+      },
+      "retrieved_at": "2026-09-16T14:50:58.637055+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0022-5371%2872%2980040-9"
+    },
+    "publisher_source": {
+      "document_sha256": "79ee4d5eefc9bcb480946790cebe59e5e05f00b5a63b75f4bc606840181f53c7",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(72)80040-9"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1972-10-31"
+        ],
+        "citation_title": [
+          "Pair-specific effects in retroactive inhibition"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537172800409</prism:url><dc:identifier>doi:10.1016/S0022-5371(72)80040-9</dc:identifier><eid>1-s2.0-S0022537172800409</eid><prism:doi>10.1016/S0022-5371(72)80040-9</prism:doi><pii>S0022-5371(72)80040-9</pii><dc:title>Pair-specific effects in retroactive inhibition </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1972-10-31</prism:coverDate><prism:coverDisplayDate>October 1972</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537172800409\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537172800409\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:03.717684+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2872%2980040-9"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "Tzen73",
+    "fingerprint": "v2:e4975b2b47f02170ba7bfe88eafe87ada92bc5461c2574121d2b102e62d6bb64",
+    "changes": {
+      "title": {
+        "before": "Positive recency in delayed free recall",
+        "after": "Positive recency effect in a delayed free recall"
+      }
+    },
+    "doi": "10.1016/s0022-5371(73)80023-4",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 4"
+      ],
+      "doi": "10.1016/s0022-5371(73)80023-4",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "O J L Tzeng",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Tzeng",
+              "given": "Ovid J.L.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Verbal Learning and Verbal Behavior",
+          "match": true,
+          "source": [
+            "Journal of Verbal Learning and Verbal Behavior"
+          ]
+        },
+        "pages": {
+          "local": "436--439",
+          "match": true,
+          "source": [
+            "436-439"
+          ]
+        },
+        "title": {
+          "local": "Positive recency in delayed free recall",
+          "match": false,
+          "source": [
+            "Positive recency effect in a delayed free recall"
+          ]
+        },
+        "volume": {
+          "local": "12",
+          "match": true,
+          "source": [
+            "12"
+          ]
+        },
+        "year": {
+          "local": "1973",
+          "match": true,
+          "source": [
+            "1973"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0022-5371(73)80023-4",
+        "ISSN": [
+          "0022-5371"
+        ],
+        "URL": "https://doi.org/10.1016/s0022-5371(73)80023-4",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Tzeng",
+            "given": "Ovid J.L.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "issue": "4",
+        "issued": {
+          "date-parts": [
+            [
+              1973,
+              8
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537173800234?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537173800234?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "436-439",
+        "published": {
+          "date-parts": [
+            [
+              1973,
+              8
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1973,
+              8
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Positive recency effect in a delayed free recall"
+        ],
+        "type": "journal-article",
+        "volume": "12"
+      },
+      "retrieved_at": "2026-09-09T20:47:08.406473+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0022-5371%2873%2980023-4"
+    },
+    "publisher_source": {
+      "document_sha256": "1e8210400464cd35ae73ed24edd40fdffdf475fd736379d2db9c570c5315cd39",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(73)80023-4"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1973-08-31"
+        ],
+        "citation_title": [
+          "Positive recency effect in a delayed free recall"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537173800234</prism:url><dc:identifier>doi:10.1016/S0022-5371(73)80023-4</dc:identifier><eid>1-s2.0-S0022537173800234</eid><prism:doi>10.1016/S0022-5371(73)80023-4</prism:doi><pii>S0022-5371(73)80023-4</pii><dc:title>Positive recency effect in a delayed free recall </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1973-08-31</prism:coverDate><prism:coverDisplayDate>August 1973</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537173800234\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537173800234\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:05.107299+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2873%2980023-4"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "Cohe70",
+    "fingerprint": "v2:c48163b501637856c8981366bb3d85aaf825d3e8f1297a0f4fb88fd947885418",
+    "changes": {
+      "title": {
+        "before": "Recency effecs in long-term recall and recognition",
+        "after": "Recency effects in long-term recall and recognition"
+      }
+    },
+    "doi": "10.1016/s0022-5371(70)80031-7",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 6"
+      ],
+      "doi": "10.1016/s0022-5371(70)80031-7",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "R L Cohen",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Cohen",
+              "given": "Ronald L.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Verbal Learning and Verbal Behavior",
+          "match": true,
+          "source": [
+            "Journal of Verbal Learning and Verbal Behavior"
+          ]
+        },
+        "pages": {
+          "local": "672--678",
+          "match": true,
+          "source": [
+            "672-678"
+          ]
+        },
+        "title": {
+          "local": "Recency effecs in long-term recall and recognition",
+          "match": false,
+          "source": [
+            "Recency effects in long-term recall and recognition"
+          ]
+        },
+        "volume": {
+          "local": "9",
+          "match": true,
+          "source": [
+            "9"
+          ]
+        },
+        "year": {
+          "local": "1970",
+          "match": true,
+          "source": [
+            "1970"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0022-5371(70)80031-7",
+        "ISSN": [
+          "0022-5371"
+        ],
+        "URL": "https://doi.org/10.1016/s0022-5371(70)80031-7",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Cohen",
+            "given": "Ronald L.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "issue": "6",
+        "issued": {
+          "date-parts": [
+            [
+              1970,
+              12
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537170800317?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537170800317?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "672-678",
+        "published": {
+          "date-parts": [
+            [
+              1970,
+              12
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1970,
+              12
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Recency effects in long-term recall and recognition"
+        ],
+        "type": "journal-article",
+        "volume": "9"
+      },
+      "retrieved_at": "2026-09-16T14:55:30.976096+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0022-5371%2870%2980031-7"
+    },
+    "publisher_source": {
+      "document_sha256": "cc8d1a781c015d717f38f9e205e7ead654f5851648a93705d667eefa2fc21780",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(70)80031-7"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1970-12-31"
+        ],
+        "citation_title": [
+          "Recency effects in long-term recall and recognition"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537170800317</prism:url><dc:identifier>doi:10.1016/S0022-5371(70)80031-7</dc:identifier><eid>1-s2.0-S0022537170800317</eid><prism:doi>10.1016/S0022-5371(70)80031-7</prism:doi><pii>S0022-5371(70)80031-7</pii><dc:title>Recency effects in long-term recall and recognition </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1970-12-31</prism:coverDate><prism:coverDisplayDate>December 1970</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537170800317\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537170800317\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:06.429068+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2870%2980031-7"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "HintCurr94",
+    "fingerprint": "v2:72b1a463db2c8fc866f483acc51ef2fca38f1b13de04ec2cd4d3e5dd66a25cea",
+    "changes": {
+      "title": {
+        "before": "Retieval dynamics of recognition and frequency judgements: evidence for separate processes of famaliarity and recall",
+        "after": "Retrieval dynamics of recognition and frequency judgments: evidence for separate processes of familiarity and recall"
+      }
+    },
+    "doi": "10.1006/jmla.1994.1001",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1006/jmla.1994.1001",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "D L Hintzman and T Curran",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Hintzman",
+              "given": "D.L.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Curran",
+              "given": "T.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Memory and Language",
+          "match": true,
+          "source": [
+            "Journal of Memory and Language"
+          ]
+        },
+        "pages": {
+          "local": "1--18",
+          "match": true,
+          "source": [
+            "1-18"
+          ]
+        },
+        "title": {
+          "local": "Retieval dynamics of recognition and frequency judgements: evidence for separate processes of famaliarity and recall",
+          "match": false,
+          "source": [
+            "Retrieval Dynamics of Recognition and Frequency Judgments: Evidence for Separate Processes of Familiarity and Recall"
+          ]
+        },
+        "volume": {
+          "local": "33",
+          "match": true,
+          "source": [
+            "33"
+          ]
+        },
+        "year": {
+          "local": "1994",
+          "match": true,
+          "source": [
+            "1994"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1006/jmla.1994.1001",
+        "ISSN": [
+          "0749-596X"
+        ],
+        "URL": "https://doi.org/10.1006/jmla.1994.1001",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Hintzman",
+            "given": "D.L.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Curran",
+            "given": "T.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Memory and Language"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              1994,
+              2
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0749596X84710011?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0749596X84710011?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "1-18",
+        "published": {
+          "date-parts": [
+            [
+              1994,
+              2
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1994,
+              2
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Retrieval Dynamics of Recognition and Frequency Judgments: Evidence for Separate Processes of Familiarity and Recall"
+        ],
+        "type": "journal-article",
+        "volume": "33"
+      },
+      "retrieved_at": "2026-09-09T20:53:06.088547+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1006/jmla.1994.1001"
+    },
+    "publisher_source": {
+      "document_sha256": "12bbd98ee4adad63f5ea199f640c42f4d7e4d7939a15b76d4dacfa0e503303d3",
+      "metadata": {
+        "citation_doi": [
+          "10.1006/jmla.1994.1001"
+        ],
+        "citation_issn": [
+          "0749-596X"
+        ],
+        "citation_journal_title": [
+          "Journal of Memory and Language"
+        ],
+        "citation_publication_date": [
+          "1994-02-28"
+        ],
+        "citation_title": [
+          "Retrieval Dynamics of Recognition and Frequency Judgments: Evidence for Separate Processes of Familiarity and Recall"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0749596X84710011</prism:url><dc:identifier>doi:10.1006/jmla.1994.1001</dc:identifier><eid>1-s2.0-S0749596X84710011</eid><prism:doi>10.1006/jmla.1994.1001</prism:doi><pii>S0749-596X(84)71001-1</pii><dc:title>Retrieval Dynamics of Recognition and Frequency Judgments: Evidence for Separate Processes of Familiarity and Recall </dc:title><prism:publicationName>Journal of Memory and Language</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>0749596X</prism:issn><prism:coverDate>1994-02-28</prism:coverDate><prism:coverDisplayDate>February 1994</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0749596X84710011\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0749596X84710011\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:07.789983+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1006/jmla.1994.1001"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "BjorHeal74",
+    "fingerprint": "v2:9b313856bdca551000fa61706ee6194441d78128c54409226406d2d3a63979df",
+    "changes": {
+      "title": {
+        "before": "Short-term order and item retention1",
+        "after": "Short-term order and item retention"
+      }
+    },
+    "doi": "10.1016/s0022-5371(74)80033-2",
+    "primary": {
+      "advisories": [],
+      "doi": "10.1016/s0022-5371(74)80033-2",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "E L Bjork and A F Healy",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Bjork",
+              "given": "Elizabeth L.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Healy",
+              "given": "Alice F.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Verbal Learning and Verbal Behavior",
+          "match": true,
+          "source": [
+            "Journal of Verbal Learning and Verbal Behavior"
+          ]
+        },
+        "number": {
+          "local": "1",
+          "match": true,
+          "source": [
+            "1"
+          ]
+        },
+        "pages": {
+          "local": "80--97",
+          "match": true,
+          "source": [
+            "80-97"
+          ]
+        },
+        "publisher": {
+          "local": "Elsevier",
+          "match": true,
+          "source": [
+            "Elsevier BV"
+          ]
+        },
+        "title": {
+          "local": "Short-term order and item retention1",
+          "match": false,
+          "source": [
+            "Short-term order and item retention"
+          ]
+        },
+        "volume": {
+          "local": "13",
+          "match": true,
+          "source": [
+            "13"
+          ]
+        },
+        "year": {
+          "local": "1974",
+          "match": true,
+          "source": [
+            "1974"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0022-5371(74)80033-2",
+        "ISSN": [
+          "0022-5371"
+        ],
+        "URL": "https://doi.org/10.1016/s0022-5371(74)80033-2",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Bjork",
+            "given": "Elizabeth L.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Healy",
+            "given": "Alice F.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              1974,
+              2
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537174800332?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537174800332?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "80-97",
+        "published": {
+          "date-parts": [
+            [
+              1974,
+              2
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1974,
+              2
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Short-term order and item retention"
+        ],
+        "type": "journal-article",
+        "volume": "13"
+      },
+      "retrieved_at": "2026-09-16T14:53:19.211970+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0022-5371%2874%2980033-2"
+    },
+    "publisher_source": {
+      "document_sha256": "c3f149ae7f427fdfb70496ff9a9aecd0ba3d65e5b51ff15c8e049e3f0f3ac63a",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(74)80033-2"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1974-02-28"
+        ],
+        "citation_title": [
+          "Short-term order and item retention"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537174800332</prism:url><dc:identifier>doi:10.1016/S0022-5371(74)80033-2</dc:identifier><eid>1-s2.0-S0022537174800332</eid><prism:doi>10.1016/S0022-5371(74)80033-2</prism:doi><pii>S0022-5371(74)80033-2</pii><dc:title>Short-term order and item retention </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1974-02-28</prism:coverDate><prism:coverDisplayDate>February 1974</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537174800332\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537174800332\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:11.502664+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2874%2980033-2"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "NormWick69",
+    "fingerprint": "v2:a375ef5f0c15e5031cccdbb561aad41403e754305bff3687900c295c4c1f9abc",
+    "changes": {
+      "title": {
+        "before": "Strength theory of decision rules and latency in short-term memory",
+        "after": "Strength theory of decision rules and latency in retrieval from short-term memory"
+      }
+    },
+    "doi": "10.1016/0022-2496(69)90002-9",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 2"
+      ],
+      "doi": "10.1016/0022-2496(69)90002-9",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "D A Norman and W A Wickelgren",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Norman",
+              "given": "Donald A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Wickelgren",
+              "given": "Wayne A.",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Mathematical Psychology",
+          "match": true,
+          "source": [
+            "Journal of Mathematical Psychology"
+          ]
+        },
+        "pages": {
+          "local": "192--208",
+          "match": true,
+          "source": [
+            "192-208"
+          ]
+        },
+        "title": {
+          "local": "Strength theory of decision rules and latency in short-term memory",
+          "match": false,
+          "source": [
+            "Strength theory of decision rules and latency in retrieval from short-term memory"
+          ]
+        },
+        "volume": {
+          "local": "6",
+          "match": true,
+          "source": [
+            "6"
+          ]
+        },
+        "year": {
+          "local": "1969",
+          "match": true,
+          "source": [
+            "1969"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/0022-2496(69)90002-9",
+        "ISSN": [
+          "0022-2496"
+        ],
+        "URL": "https://doi.org/10.1016/0022-2496(69)90002-9",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Norman",
+            "given": "Donald A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Wickelgren",
+            "given": "Wayne A.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "Journal of Mathematical Psychology"
+        ],
+        "issue": "2",
+        "issued": {
+          "date-parts": [
+            [
+              1969,
+              6
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0022249669900029?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:0022249669900029?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "192-208",
+        "published": {
+          "date-parts": [
+            [
+              1969,
+              6
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1969,
+              6
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Strength theory of decision rules and latency in retrieval from short-term memory"
+        ],
+        "type": "journal-article",
+        "volume": "6"
+      },
+      "retrieved_at": "2026-09-09T21:00:05.868420+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/0022-2496%2869%2990002-9"
+    },
+    "publisher_source": {
+      "document_sha256": "f89179009407c7fd9fa57d86dbcfc57c9965a2fad4f4976911c0a03809727291",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/0022-2496(69)90002-9"
+        ],
+        "citation_issn": [
+          "0022-2496"
+        ],
+        "citation_journal_title": [
+          "Journal of Mathematical Psychology"
+        ],
+        "citation_publication_date": [
+          "1969-06-30"
+        ],
+        "citation_title": [
+          "Strength theory of decision rules and latency in retrieval from short-term memory"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/0022249669900029</prism:url><dc:identifier>doi:10.1016/0022-2496(69)90002-9</dc:identifier><eid>1-s2.0-0022249669900029</eid><prism:doi>10.1016/0022-2496(69)90002-9</prism:doi><pii>0022-2496(69)90002-9</pii><dc:title>Strength theory of decision rules and latency in retrieval from short-term memory </dc:title><prism:publicationName>Journal of Mathematical Psychology</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00222496</prism:issn><prism:coverDate>1969-06-30</prism:coverDate><prism:coverDisplayDate>June 1969</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/0022249669900029\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/0022249669900029\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:14.137552+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/0022-2496%2869%2990002-9"
+    }
+  },
+  {
+    "kind": "publisher_corroborated_title",
+    "key": "Star68",
+    "fingerprint": "v2:1aaca2664d226bcfee84a43507d5f511cf16df7bc791b6119393c4c612693319",
+    "changes": {
+      "title": {
+        "before": "Transfer from serial to paired-associate learning: a reapraisal",
+        "after": "Transfer from serial to paired-associate learning: A reappraisal"
+      }
+    },
+    "doi": "10.1016/s0022-5371(68)80158-6",
+    "primary": {
+      "advisories": [
+        "Optional issue number available from source: 1"
+      ],
+      "doi": "10.1016/s0022-5371(68)80158-6",
+      "evidence": {
+        "author": {
+          "detail": "Complete author list in order; citation initials agree with source names",
+          "local": "K Stark",
+          "match": true,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Stark",
+              "given": "Karen",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            }
+          ]
+        },
+        "journal": {
+          "local": "Journal of Verbal Learning and Verbal Behavior",
+          "match": true,
+          "source": [
+            "Journal of Verbal Learning and Verbal Behavior"
+          ]
+        },
+        "pages": {
+          "local": "20--30",
+          "match": true,
+          "source": [
+            "20-30"
+          ]
+        },
+        "title": {
+          "local": "Transfer from serial to paired-associate learning: a reapraisal",
+          "match": false,
+          "source": [
+            "Transfer from serial to paired-associate learning: A reappraisal"
+          ]
+        },
+        "volume": {
+          "local": "7",
+          "match": true,
+          "source": [
+            "7"
+          ]
+        },
+        "year": {
+          "local": "1968",
+          "match": true,
+          "source": [
+            "1968"
+          ]
+        }
+      },
+      "issues": [
+        "title: missing evidence or mismatch"
+      ],
+      "record": {
+        "DOI": "10.1016/s0022-5371(68)80158-6",
+        "ISSN": [
+          "0022-5371"
+        ],
+        "URL": "https://doi.org/10.1016/s0022-5371(68)80158-6",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Stark",
+            "given": "Karen",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          }
+        ],
+        "container-title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "issue": "1",
+        "issued": {
+          "date-parts": [
+            [
+              1968,
+              2
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537168801586?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S0022537168801586?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "page": "20-30",
+        "published": {
+          "date-parts": [
+            [
+              1968,
+              2
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1968,
+              2
+            ]
+          ]
+        },
+        "publisher": "Elsevier BV",
+        "title": [
+          "Transfer from serial to paired-associate learning: A reappraisal"
+        ],
+        "type": "journal-article",
+        "volume": "7"
+      },
+      "retrieved_at": "2026-09-09T21:36:15.746217+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1016/s0022-5371%2868%2980158-6"
+    },
+    "publisher_source": {
+      "document_sha256": "9c8ae5881440d8e1d52adc67386052349644860fac448b8f2a6bbeec2da32827",
+      "metadata": {
+        "citation_doi": [
+          "10.1016/S0022-5371(68)80158-6"
+        ],
+        "citation_issn": [
+          "0022-5371"
+        ],
+        "citation_journal_title": [
+          "Journal of Verbal Learning and Verbal Behavior"
+        ],
+        "citation_publication_date": [
+          "1968-02-29"
+        ],
+        "citation_title": [
+          "Transfer from serial to paired-associate learning: A reappraisal"
+        ]
+      },
+      "raw_xml": "<full-text-retrieval-response xmlns=\"http://www.elsevier.com/xml/svapi/article/dtd\" xmlns:bk=\"http://www.elsevier.com/xml/bk/dtd\" xmlns:cals=\"http://www.elsevier.com/xml/common/cals/dtd\" xmlns:ce=\"http://www.elsevier.com/xml/common/dtd\" xmlns:ja=\"http://www.elsevier.com/xml/ja/dtd\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:sa=\"http://www.elsevier.com/xml/common/struct-aff/dtd\" xmlns:sb=\"http://www.elsevier.com/xml/common/struct-bib/dtd\" xmlns:tb=\"http://www.elsevier.com/xml/common/table/dtd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xocs=\"http://www.elsevier.com/xml/xocs/dtd\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:prism=\"http://prismstandard.org/namespaces/basic/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><coredata><prism:url>https://api.elsevier.com/content/article/pii/S0022537168801586</prism:url><dc:identifier>doi:10.1016/S0022-5371(68)80158-6</dc:identifier><eid>1-s2.0-S0022537168801586</eid><prism:doi>10.1016/S0022-5371(68)80158-6</prism:doi><pii>S0022-5371(68)80158-6</pii><dc:title>Transfer from serial to paired-associate learning: A reappraisal </dc:title><prism:publicationName>Journal of Verbal Learning and Verbal Behavior</prism:publicationName><prism:aggregationType>Journal</prism:aggregationType><prism:issn>00225371</prism:issn><prism:coverDate>1968-02-29</prism:coverDate><prism:coverDisplayDate>February 1968</prism:coverDisplayDate><openaccess>0</openaccess><openaccessArticle>false</openaccessArticle><openaccessType/><openArchiveArticle>false</openArchiveArticle><openaccessSponsorName/><openaccessSponsorType/><openaccessUserLicense/><link href=\"https://api.elsevier.com/content/article/pii/S0022537168801586\" rel=\"self\"/><link href=\"https://www.sciencedirect.com/science/article/pii/S0022537168801586\" rel=\"scidir\"/></coredata></full-text-retrieval-response>",
+      "retrieved_at": "2026-09-16T16:21:19.457419+00:00",
+      "source_kind": "elsevier_coredata",
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0022-5371%2868%2980158-6"
+    }
+  }
+]

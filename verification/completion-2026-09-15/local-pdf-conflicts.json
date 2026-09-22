@@ -1,0 +1,24 @@
+{
+  "CordEtal02": {
+    "source_kind": "user-provided local PDF",
+    "pdf_name": "CordEtal02.PDF",
+    "pdf_sha256": "c4b332a8b16683087b559a5dccdd2040fd7b70c1f6aacd5acc67c4e4bb963718",
+    "pages": [
+      1
+    ],
+    "reviewer": "assistant visual source inspection",
+    "reviewed_at": "2026-09-21T01:21:45.565765+00:00",
+    "entry_fingerprint": "v2:ceadc161db0ad2b88facd09063583cfc57e982ebe9b02c09a4aab54bda2995db",
+    "observed_fields": {
+      "title": "Hierarchical Clustering to Measure Connectivity in fMRI Resting-State Data",
+      "author": "D. Cordes; V. M. Haughton; K. Arfanakis; J. D. Carew; K. Maravilla",
+      "container": "Proc. Intl. Soc. Mag. Reson. Med.",
+      "volume": "10",
+      "year": "2002"
+    },
+    "uncertainties": [
+      "The bibliography mixes the proceedings title with journal-article volume/pages and journal author order. The local source is the conference abstract; the journal record has a different author order. Publication identity must be settled before any repair."
+    ],
+    "approval": false
+  }
+}
