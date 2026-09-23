@@ -78,3 +78,27 @@ phases 0–3; ~1,200–1,450 reach the user (roughly 800–950 articles, 190–2
 ~70 proceedings/misc, ~25 coordinate cases, 79 errata). The human share is the
 biggest uncertainty and shrinks with each route that works; it is reported after
 each phase.
+
+## Revision after user feedback (2026-09-22, later)
+
+The user can make at most ~100 decisions, not ~1,200. Revised rules:
+
+- **One authoritative source is enough.** If *either* Crossref or PubMed holds the
+  record for the cited work, the citation may be verified or corrected from it (no
+  second, agreeing source required). Identity must still be pinned by the work's own
+  DOI/PMID, or by exact title, first author, year and venue, so the rule changes where
+  field values come from, not how loosely identity is matched.
+- **Local-PDF acceptance, after a hard benchmark.** Code-extracted text only, with the
+  LLM limited to locating lines. The benchmark must use *subtle* planted errors, e.g. a
+  wrong page or issue number that also appears elsewhere in the PDF (a statistic, a
+  figure number, a reference-list entry, a received date, a running header of another
+  article). Matching must be position/role-aware: bibliographic header/footer/citation
+  line of the cited version, never body text or references. Zero false accepts
+  required before enabling.
+- **Class approvals by 10-entry random samples** (20 for multi-field fixes); an error in
+  a sample reopens the rule, not just the entry.
+- **Everything reaching the user is grouped by pattern** so one response covers a
+  group (e.g., "accept all 40 'digitized-later year' cases"); individual review only
+  for true one-offs.
+- **Leftovers:** count them first, then decide data-driven; the goal is to find another
+  verification mechanism, not to remove them by default.
