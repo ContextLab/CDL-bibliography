@@ -1,0 +1,210 @@
+== Scha12 residual: ['Secondary journal', 'journal', 'year']
+   bib: ['D L Schacter']
+   cr : ['Daniel L. Schacter']
+   med: ['Schacter DL']
+   journal bib/cr/med: Dialogues in Clinical Neurosciences | ['Dialogues in Clinical Neuroscience'] | Dialogues in clinical neuroscience | year 2012 [[2012, 3, 31]] [[2022, 4, 1]] 2012 | pub None Informa UK Limited
+== Brig12 residual: ['Secondary author', 'author', 'pages']
+   bib: ['F D Brigard']
+   cr : ['Felipe De Brigard']
+   med: ['De Brigard F']
+   journal bib/cr/med: Frontiers in Psychology | ['Frontiers in Psychology'] | Frontiers in psychology | year 2012 None [[2012]] 2012 | pub None Frontiers Media SA
+== KhosEtal21 residual: ['PubMed reports a correction/retraction/version or unrecognized relationship', 'Source has related versions/works; review publication identity', 'Unsupported secondary evidence', 'author']
+   bib: ['M Khosla', 'G H Ngo', 'K Jamison', 'A Kuceveski', 'M R Sabuncu']
+   cr : ['Meenakshi Khosla', 'Gia H. Ngo', 'Keith Jamison', 'Amy Kuceyeski', 'Mert R. Sabuncu']
+   med: ['Khosla M', 'Ngo GH', 'Jamison K', 'Kuceyeski A', 'Sabuncu MR']
+   journal bib/cr/med: Science Advances | ['Science Advances'] | Science advances | year 2021 [[2021, 5, 28]] None 2021 | pub None American Association for the Advancement of Science (AAAS)
+== GralFinn21 residual: ['PubMed reports a correction/retraction/version or unrecognized relationship', 'Source has related versions/works; review publication identity', 'Unsupported secondary evidence', 'journal', 'year']
+   bib: ['C Grall', 'E S Finn']
+   cr : ['Clare Grall', 'Emily S Finn']
+   med: ['Grall C', 'Finn ES']
+   journal bib/cr/med: {PsyArXiv} | ['Social Cognitive and Affective Neuroscience'] | Social cognitive and affective neuroscience | year 2021 [[2022, 6, 3]] [[2022, 3, 8]] 2022 | pub None Oxford University Press (OUP)
+== CookEtal16 residual: ['Secondary author', 'author', 'pages']
+   bib: ['B J Cook', 'A M Progovac', 'P Chen', 'B Mullin', 'S Hou', 'E Baca-Garcia']
+   cr : ['Benjamin L. Cook', 'Ana M. Progovac', 'Pei Chen', 'Brian Mullin', 'Sherry Hou', 'Enrique Baca-Garcia']
+   med: ['Cook BL', 'Progovac AM', 'Chen P', 'Mullin B', 'Hou S', 'Baca-Garcia E']
+   journal bib/cr/med: Computational and Mathematical Methods in Medicine | ['Computational and Mathematical Methods in Medicine'] | Computational and mathematical methods in medicine | year 2016 [[2016]] None 2016 | pub None Wiley
+== Fris00 residual: ['Secondary journal', 'journal']
+   bib: ['K J Friston']
+   cr : ['Karl J. Friston']
+   med: ['Friston KJ']
+   journal bib/cr/med: Philosophical Transactions of the Royal Society of London | ['Philosophical Transactions of the Royal Society of London. Series B: Biological Sciences'] | Philosophical transactions of the Royal Society of London. Series B, Biological sciences | year 2000 [[2000, 2, 29]] [[2000, 2, 29]] 2000 | pub None The Royal Society
+== OwenEtal21 residual: ['PubMed reports a correction/retraction/version or unrecognized relationship', 'Source has related versions/works; review publication identity', 'Unsupported secondary evidence', 'number']
+   bib: ['L L W Owen', 'T H Chang', 'J R Manning']
+   cr : ['Lucy L. W. Owen', 'Thomas H. Chang', 'Jeremy R. Manning']
+   med: ['Owen LLW', 'Chang TH', 'Manning JR']
+   journal bib/cr/med: Nature Communications | ['Nature Communications'] | Nature communications | year 2021 None [[2021, 9, 30]] 2021 | pub None Springer Science and Business Media LLC
+== McInJirs19 residual: ['PubMed reports a correction/retraction/version or unrecognized relationship', 'Source has related versions/works; review publication identity', 'Unsupported secondary evidence']
+   bib: ['A R Mc{I}ntosh', 'V K Jirsa']
+   cr : ['Anthony R. McIntosh', 'Viktor K. Jirsa']
+   med: ['McIntosh AR', 'Jirsa VK']
+   journal bib/cr/med: Network Neuroscience | ['Network Neuroscience'] | Network neuroscience (Cambridge, Mass.) | year 2019 [[2019, 1]] None 2019 | pub None MIT Press
+== RegeEtal18 residual: ['PubMed reports a correction/retraction/version or unrecognized relationship', 'Source has related versions/works; review publication identity', 'Unsupported secondary evidence', 'year']
+   bib: ['Mor Regev', 'Erez Simony', 'Katherine Lee', 'Kean Ming Tan', 'Janice Chen', 'Uri Hasson']
+   cr : ['Mor Regev', 'Erez Simony', 'Katherine Lee', 'Kean Ming Tan', 'Janice Chen', 'Uri Hasson']
+   med: ['Regev M', 'Simony E', 'Lee K', 'Tan KM', 'Chen J', 'Hasson U']
+   journal bib/cr/med: Cerebral Cortex | ['Cerebral Cortex'] | Cerebral cortex (New York, N.Y. : 1991) | year 2018 [[2019, 9, 13]] [[2018, 11, 3]] 2019 | pub None Oxford University Press (OUP)
+== LindEtal19 residual: ['PubMed reports a correction/retraction/version or unrecognized relationship', 'Source has related versions/works; review publication identity', 'Unsupported secondary evidence', 'number']
+   bib: ['J Linde-Domingo', 'M S Treder', "C Kerr\\'{e}n", 'M Wimber']
+   cr : ['Juan Linde-Domingo', 'Matthias S. Treder', 'Casper Kerrén', 'Maria Wimber']
+   med: ['Linde-Domingo J', 'Treder MS', 'Kerrén C', 'Wimber M']
+   journal bib/cr/med: Nature Communications | ['Nature Communications'] | Nature communications | year 2019 None [[2019, 1, 14]] 2019 | pub None Springer Science and Business Media LLC
+== ChanEtal21a residual: ['PubMed reports a correction/retraction/version or unrecognized relationship', 'Source has related versions/works; review publication identity', 'Unsupported secondary evidence', 'author']
+   bib: ['L J Chang', 'E Jolly', 'J H Cheong', 'K Rapuano', 'N Greenstein', 'P-H A Chen', 'J R Manning']
+   cr : ['Luke J. Chang', 'Eshin Jolly', 'Jin Hyun Cheong', 'Kristina M. Rapuano', 'Nathan Greenstein', 'Pin-Hao A. Chen', 'Jeremy R. Manning']
+   med: ['Chang LJ', 'Jolly E', 'Cheong JH', 'Rapuano KM', 'Greenstein N', 'Chen PA', 'Manning JR']
+   journal bib/cr/med: Science Advances | ['Science Advances'] | Science advances | year 2021 [[2021, 4, 23]] None 2021 | pub None American Association for the Advancement of Science (AAAS)
+== SimoEtal16 residual: ['Secondary author', 'Secondary number', 'author', 'number']
+   bib: ['E Simony', 'C J Honey', 'J Chen', 'U Hasson']
+   cr : ['Erez Simony', 'Christopher J Honey', 'Janice Chen', 'Olga Lositsky', 'Yaara Yeshurun', 'Ami Wiesel', 'Uri Hasson']
+   med: ['Simony E', 'Honey CJ', 'Chen J', 'Lositsky O', 'Yeshurun Y', 'Wiesel A', 'Hasson U']
+   journal bib/cr/med: Nature Communications | ['Nature Communications'] | Nature communications | year 2016 None [[2016, 7, 18]] 2016 | pub None Springer Science and Business Media LLC
+== LismBuzs08 residual: ['Secondary author', 'author', 'publisher']
+   bib: ['J Lisman', 'G Buzsaki']
+   cr : ['J. Lisman', 'G. Buzsaki']
+   med: ['Lisman J', 'Buzsáki G']
+   journal bib/cr/med: Schizophrenia Bulletin | ['Schizophrenia Bulletin'] | Schizophrenia bulletin | year 2008 None [[2008, 7, 21]] 2008 | pub {MPRC} Oxford University Press (OUP)
+== AfshEtal13 residual: ['Secondary author', 'Secondary year', 'author', 'pages', 'year']
+   bib: ['P Afshar', 'A Khambhati', 'S Stanslaski', 'D Carlson', 'R Jensen', 'S Dani', 'M Lazarewicz', 'J Giftakis', 'P Stypulkowski', 'T Denison']
+   cr : ['Pedram Afshar', 'Ankit Khambhati', 'Scott Stanslaski', 'David Carlson', 'Randy Jensen', 'Dave Linde', 'Siddharth Dani', 'Maciej Lazarewicz', 'Peng Cong', 'Jon Giftakis', 'Paul Stypulkowski', 'Tim Denison']
+   med: ['Afshar P', 'Khambhati A', 'Stanslaski S', 'Carlson D', 'Jensen R', 'Linde D', 'Dani S', 'Lazarewicz M', 'Cong P', 'Giftakis J', 'Stypulkowski P', 'Denison T']
+   journal bib/cr/med: Frontiers in Neural Circuits | ['Frontiers in Neural Circuits'] | Frontiers in neural circuits | year 2013 None [[2013]] 2012 | pub None Frontiers Media SA
+== LadoEtal02 residual: ['Secondary journal', 'author', 'journal', 'publisher']
+   bib: ['F A Lado', 'A D Legatt', 'P A LaSala', 'S Shinnar']
+   cr : ['F A Lado']
+   med: ['Lado FA', 'Legatt AD', 'LaSala PA', 'Shinnar S']
+   journal bib/cr/med: British Medical Journal | ['Journal of Neurology, Neurosurgery &amp; Psychiatry'] | Journal of neurology, neurosurgery, and psychiatry | year 2002 [[2002, 6, 1]] None 2002 | pub {BMJ} BMJ
+== Hass07 residual: ['publisher']
+   bib: ['M E Hasselmo']
+   cr : ['M. E. Hasselmo']
+   med: ['Hasselmo ME']
+   journal bib/cr/med: Learning and Memory | ['Learning &amp; Memory'] | Learning & memory (Cold Spring Harbor, N.Y.) | year 2007 [[2007, 11, 14]] None 2007 | pub Cold Spring Harbor Lab Cold Spring Harbor Laboratory
+== MainEtal08 residual: ['Secondary author', 'author', 'year']
+   bib: ['N Mainy', 'J Jung', 'M Baciu', 'P Kahane', 'B Schoendorff', 'L Minotti', 'D Hoffmann', 'O Bertrand', 'J P Lachaux']
+   cr : ['Nelly Mainy', 'Julien Jung', 'Monica Baciu', 'Philippe Kahane', 'Benjamin Schoendorff', 'Lorella Minotti', 'Dominique Hoffmann', 'Olivier Bertrand', 'Jean‐Philippe Lachaux']
+   med: ['Mainy N', 'Jung J', 'Baciu M', 'Kahane P', 'Schoendorff B', 'Minotti L', 'Hoffmann D', 'Bertrand O', 'Lachaux JP']
+   journal bib/cr/med: Human Brain Mapping | ['Human Brain Mapping'] | Human brain mapping | year 2008 [[2008, 11]] [[2007, 8, 21]] 2008 | pub None Wiley
+== Holm18 residual: ['Secondary journal', 'journal', 'publisher']
+   bib: ['G Holmes']
+   cr : ['G. Holmes']
+   med: ['Holmes G']
+   journal bib/cr/med: British Medical Journal | ['British Journal of Ophthalmology'] | The British journal of ophthalmology | year 1918 [[1918, 7, 1]] None 1918 | pub {BMJ} BMJ
+== DeadEtal13 residual: ['Secondary author', 'author', 'pages']
+   bib: ['S A Deadwyler', 'T W Berger', 'A J Sweatt', 'D Song', 'R H M Chan', 'I Opris', 'G A Gerhard', 'V Z Marmarelis', 'R E Hampson']
+   cr : ['Sam A. Deadwyler', 'Theodore W. Berger', 'Andrew J. Sweatt', 'Dong Song', 'Rosa H. M. Chan', 'Ioan Opris', 'Greg A. Gerhardt', 'Vasilis Z. Marmarelis', 'Robert E. Hampson']
+   med: ['Deadwyler SA', 'Berger TW', 'Sweatt AJ', 'Song D', 'Chan RH', 'Opris I', 'Gerhardt GA', 'Marmarelis VZ', 'Hampson RE']
+   journal bib/cr/med: Frontiers in Systems Neuroscience | ['Frontiers in Systems Neuroscience'] | Frontiers in systems neuroscience | year 2013 None [[2013]] 2013 | pub None Frontiers Media SA
+== TowlEtal08 residual: ['Secondary author', 'Secondary number', 'author']
+   bib: ['V L Towle', 'H A Yoon', 'M Castelle', 'J C Edgar', 'N M Biassou', 'D M Frim', 'J P Spire', 'M H Kohrman']
+   cr : ['V. L. Towle', 'H.-A. Yoon', 'M. Castelle', 'J. C. Edgar', 'N. M. Biassou', 'D. M. Frim', 'J.-P. Spire', 'M. H. Kohrman']
+   med: ['Towle VL', 'Yoon HA', 'Castelle M', 'Edgar JC', 'Biassou NM', 'Frim DM', 'Spire JP', 'Kohrman MH']
+   journal bib/cr/med: Brain | ['Brain'] | Brain : a journal of neurology | year 2008 None [[2008, 1, 10]] 2008 | pub {Oxford} {University} Press Oxford University Press (OUP)
+== WangEtal09 residual: ['Secondary author', 'Secondary number', 'author', 'number']
+   bib: ['X Wang', 'A Zaidi', 'R Pal', 'A S Garrett', 'R Braceras', 'X W Chen', 'M L Michaelis', 'E K Michaelis']
+   cr : ['Xinkun Wang', 'Asma Zaidi', 'Ranu Pal', 'Alexander S Garrett', 'Rogelio Braceras', 'Xue-wen Chen', 'Mary L Michaelis', 'Elias K Michaelis']
+   med: ['Wang X', 'Zaidi A', 'Pal R', 'Garrett AS', 'Braceras R', 'Chen XW', 'Michaelis ML', 'Michaelis EK']
+   journal bib/cr/med: {BMC} Neuroscience | ['BMC Neuroscience'] | BMC neuroscience | year 2009 [[2009, 12]] [[2009, 2, 19]] 2009 | pub None Springer Science and Business Media LLC
+== LevyEtal00 residual: ['Secondary author', 'author']
+   bib: ['R Levy', 'W D Hutchinson', 'A M Lozano', 'J O Dostrovsky']
+   cr : ['Ron Levy', 'William D. Hutchison', 'Andres M. Lozano', 'Jonathan O. Dostrovsky']
+   med: ['Levy R', 'Hutchison WD', 'Lozano AM', 'Dostrovsky JO']
+   journal bib/cr/med: The Journal of Neuroscience | ['The Journal of Neuroscience'] | The Journal of neuroscience : the official journal of the Society for Neuroscience | year 2000 [[2000, 10, 15]] [[2000, 10, 15]] 2000 | pub None Society for Neuroscience
+== FerrEtal12 residual: ['Secondary author', 'author', 'pages']
+   bib: ['Michele Ferrara', 'Fabio Moroni', 'Luigi {De Gennaro}', 'Lino Nobili', ' others']
+   cr : ['Michele Ferrara', 'Fabio Moroni', 'Luigi De Gennaro', 'Lino Nobili']
+   med: ['Ferrara M', 'Moroni F', 'De Gennaro L', 'Nobili L']
+   journal bib/cr/med: Frontiers in Neurology | ['Frontiers in Neurology'] | Frontiers in neurology | year 2012 None [[2012]] 2012 | pub Frontiers Frontiers Media SA
+== SaulEtal09 residual: ['Secondary author', 'author', 'publisher']
+   bib: ['P Sauleau', 'A Eusebio', 'W Thevathasan', 'K Yarrow', 'A Pogosyan', 'L Zrinzo', 'K Ashkan', 'T Aziz', 'W Vandenberghe', 'B Nuttin', ' others']
+   cr : ['Paul Sauleau', 'Alexandre Eusebio', 'Wesley Thevathasan', 'Kielan Yarrow', 'Alek Pogosyan', 'Ludvic Zrinzo', 'Keyoumars Ashkan', 'Tipu Aziz', 'Wim Vandenberghe', 'Bart Nuttin', 'Peter Brown']
+   med: ['Sauleau P', 'Eusebio A', 'Thevathasan W', 'Yarrow K', 'Pogosyan A', 'Zrinzo L', 'Ashkan K', 'Aziz T', 'Vandenberghe W', 'Nuttin B', 'Brown P']
+   journal bib/cr/med: {European} Journal of Neuroscience | ['European Journal of Neuroscience'] | The European journal of neuroscience | year 2009 [[2009, 3]] [[2009, 3, 2]] 2009 | pub Blackwell Wiley
+== MatsEtal13 residual: ['Secondary author', 'Secondary number', 'author']
+   bib: ['Joseph Y Matsumoto', 'Matt Stead', 'Michal T Kucewicz', 'Andrew J Matsumoto', 'Pierce A Peters', 'Benjamin H Brinkmann', 'Jane C Danstrom', 'Stephan J Goerss', 'W Richard Marsh', 'Fred B Meyer', ' others']
+   cr : ['Joseph Y. Matsumoto', 'Matt Stead', 'Michal T. Kucewicz', 'Andrew J. Matsumoto', 'Pierce A. Peters', 'Benjamin H. Brinkmann', 'Jane C. Danstrom', 'Stephan J. Goerss', 'W. Richard Marsh', 'Fred B. Meyer', 'Gregory A. Worrell']
+   med: ['Matsumoto JY', 'Stead M', 'Kucewicz MT', 'Matsumoto AJ', 'Peters PA', 'Brinkmann BH', 'Danstrom JC', 'Goerss SJ', 'Marsh WR', 'Meyer FB', 'Worrell GA']
+   journal bib/cr/med: Brain | ['Brain'] | Brain : a journal of neurology | year 2013 [[2013, 8]] [[2013, 6, 25]] 2013 | pub {Oxford} {University} Press Oxford University Press (OUP)
+== OjemEtal09 residual: ['Secondary number', 'Secondary year', 'year']
+   bib: ['G A Ojemann', 'D P Corina', 'N Corrigan', 'J Schoenfield-McNeill', 'A Poliakov', 'L Zamora', 'S Zanos']
+   cr : ['George A. Ojemann', 'David P. Corina', 'Neva Corrigan', 'Julie Schoenfield-McNeill', 'Andrew Poliakov', 'Leona Zamora', 'Stavros Zanos']
+   med: ['Ojemann GA', 'Corina DP', 'Corrigan N', 'Schoenfield-McNeill J', 'Poliakov A', 'Zamora L', 'Zanos S']
+   journal bib/cr/med: Brain | ['Brain'] | Brain : a journal of neurology | year 2009 [[2010, 1]] [[2009, 9, 22]] 2010 | pub {Oxford} {University} Press Oxford University Press (OUP)
+== TianEtal03 residual: ['author', 'journal']
+   bib: ['J Tian', 'R S Bucks', 'J Haworth', 'G Wilcock']
+   cr : ['J Tian']
+   med: ['Tian J', 'Bucks RS', 'Haworth J', 'Wilcock G']
+   journal bib/cr/med: Journal of Neurology, Neurosurgery, and Psychiatry | ['Journal of Neurology, Neurosurgery &amp; Psychiatry'] | Journal of neurology, neurosurgery, and psychiatry | year 2003 [[2003, 4, 1]] None 2003 | pub None BMJ
+== MuntEtal07 residual: ['Secondary author', 'author', 'pages', 'year']
+   bib: ['T F Munte', 'M Heldmann', 'H Hinrichs', 'J Marco-Pallares', 'U M Kramer', 'V Sturm', 'H J Heinze']
+   cr : ['Thomas F. Münte']
+   med: ['Münte TF', 'Heldmann M', 'Hinrichs H', 'Marco-Pallares J', 'Krämer UM', 'Sturm V', 'Heinze HJ']
+   journal bib/cr/med: Frontiers in Human Neuroscience | ['Frontiers in Human Neuroscience'] | Frontiers in human neuroscience | year 2007 [[2008]] None 2007 | pub None Frontiers Media SA
+== GilbEtal10 residual: ['Secondary author', 'author', 'pages', 'volume']
+   bib: ['JR Gilbert', 'S J Gotts', 'F W Carver', 'A Martin']
+   cr : ['None Gilbert']
+   med: ['Gilbert JR', 'Gotts SJ', 'Carver FW', 'Martin A']
+   journal bib/cr/med: Frontiers in Human Neuroscience | ['Frontiers in Human Neuroscience'] | Frontiers in human neuroscience | year 2010 None [[2010]] 2010 | pub Frontiers Frontiers Media SA
+== HansEtal12a residual: ['Secondary author', 'author', 'pages']
+   bib: ['S Hanslmayr', 'T Staudigl', 'M C Fellner']
+   cr : ['Simon Hanslmayr', 'Tobias Staudigl', 'Marie-Christin Fellner']
+   med: ['Hanslmayr S', 'Staudigl T', 'Fellner MC']
+   journal bib/cr/med: Frontiers in Human Neuroscience | ['Frontiers in Human Neuroscience'] | Frontiers in human neuroscience | year 2012 None [[2012]] 2012 | pub Frontiers Frontiers Media SA
+== ClarEtal11 residual: ['Secondary journal', 'journal', 'publisher']
+   bib: ['K L Clark', 'K M Armstrong', 'T Moore']
+   cr : ['Kelsey L. Clark', 'Katherine M. Armstrong', 'Tirin Moore']
+   med: ['Clark KL', 'Armstrong KM', 'Moore T']
+   journal bib/cr/med: Proceedings of the Royal Society of London Series {B}: Biological Sciences | ['Proceedings of the Royal Society B: Biological Sciences'] | Proceedings. Biological sciences | year 2011 [[2011, 4, 22]] [[2011, 1, 19]] 2011 | pub Royal Society The Royal Society
+== HankEtal09 residual: ['Secondary author', 'author', 'pages']
+   bib: ['M Hanke', 'Y O Halchenko', 'P B Sederberg', 'E Olivetti', 'I Frund', 'J W Rieger', 'C S Herrmann', 'S J Hanson', 'J V Haxby', 'S Pollmann']
+   cr : ['Michael Hanke']
+   med: ['Hanke M', 'Halchenko YO', 'Sederberg PB', 'Olivetti E', 'Fründ I', 'Rieger JW', 'Herrmann CS', 'Haxby JV', 'Hanson SJ', 'Pollmann S']
+   journal bib/cr/med: Frontiers in Neuroinformatics | ['Frontiers in Neuroinformatics'] | Frontiers in neuroinformatics | year 2009 [[2009]] None 2009 | pub None Frontiers Media SA
+== NybeEtal00 residual: ['Secondary author', 'author']
+   bib: ['Lars Nyberg', 'Reza Habib', 'Endel Tulving']
+   cr : ['Lars Nyberg', 'Reza Habib', 'Anthony R. McIntosh', 'Endel Tulving']
+   med: ['Nyberg L', 'Habib R', 'McIntosh AR', 'Tulving E']
+   journal bib/cr/med: Proceedings of the National Academy of Sciences, {USA} | ['Proceedings of the National Academy of Sciences'] | Proceedings of the National Academy of Sciences of the United States of America | year 2000 [[2000, 9, 26]] [[2000, 9, 26]] 2000 | pub None National Academy of Sciences
+== HamiEtal09 residual: ['Secondary journal', 'author', 'journal', 'pages']
+   bib: ['M Hamidi', 'H A Slagter', 'G Tononi', 'B R Postle']
+   cr : ['Massihullah Hamidi']
+   med: ['Hamidi M', 'Slagter HA', 'Tononi G', 'Postle BR']
+   journal bib/cr/med: None | ['Frontiers in Integrative Neuroscience'] | Frontiers in integrative neuroscience | year 2009 [[2009]] None 2009 | pub Frontiers Frontiers Media SA
+== YlinEtal95 residual: ['Secondary author', 'Secondary number', 'author']
+   bib: ['A Ylinen', 'A Bragin', 'Z Nadasdy', 'G Jando', 'I Szabo', 'A Sik', "G Buzs\\'aki"]
+   cr : ['A Ylinen', 'A Bragin', 'Z Nadasdy', 'G Jando', 'I Szabo', 'A Sik', 'G Buzsaki']
+   med: ['Ylinen A', 'Bragin A', 'Nádasdy Z', 'Jandó G', 'Szabó I', 'Sik A', 'Buzsáki G']
+   journal bib/cr/med: The Journal of Neuroscience | ['The Journal of Neuroscience'] | The Journal of neuroscience : the official journal of the Society for Neuroscience | year 1995 [[1995, 1, 1]] [[1995, 1, 1]] 1995 | pub None Society for Neuroscience
+== MoseEtal93 residual: ['Secondary author', 'author']
+   bib: ['E I Moser', 'M B Moser', 'P Andersen']
+   cr : ['E Moser', 'MB Moser', 'P Andersen']
+   med: ['Moser E', 'Moser MB', 'Andersen P']
+   journal bib/cr/med: The Journal of Neuroscience | ['The Journal of Neuroscience'] | The Journal of neuroscience : the official journal of the Society for Neuroscience | year 1993 [[1993, 9, 1]] [[1993, 9, 1]] 1993 | pub Society for Neuroscience Society for Neuroscience
+== GaynEtal08 residual: ['Secondary author', 'author', 'publisher']
+   bib: ['L M F D Gaynor', 'A A K{\\\\"u}hn', 'M Dileone', 'V Litvak', 'A Eusebio', 'A Pogosyan', 'A G Androulidakis', 'S Tisch', 'P Limousin', 'A Insola', ' others']
+   cr : ['L. M. F. Doyle Gaynor', 'A. A. Kühn', 'M. Dileone', 'V. Litvak', 'A. Eusebio', 'A. Pogosyan', 'A. G. Androulidakis', 'S. Tisch', 'P. Limousin', 'A. Insola', 'P. Mazzone', 'V. Di Lazzaro', 'P. Brown']
+   med: ['Gaynor LM', 'Kühn AA', 'Dileone M', 'Litvak V', 'Eusebio A', 'Pogosyan A', 'Androulidakis AG', 'Tisch S', 'Limousin P', 'Insola A', 'Mazzone P', 'Di Lazzaro V', 'Brown P']
+   journal bib/cr/med: {European} Journal of Neuroscience | ['European Journal of Neuroscience'] | The European journal of neuroscience | year 2008 [[2008, 10]] [[2008, 10, 14]] 2008 | pub Blackwell Wiley
+== Fred04 residual: ['journal', 'pages']
+   bib: ['Barbara L Fredrickson']
+   cr : ['Barbara L. Fredrickson']
+   med: ['Fredrickson BL']
+   journal bib/cr/med: Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences | ['Philosophical Transactions of the Royal Society of London. Series B: Biological Sciences'] | Philosophical transactions of the Royal Society of London. Series B, Biological sciences | year 2004 [[2004, 9, 29]] [[2004, 9, 29]] 2004 | pub None The Royal Society
+== KanwEtal97 residual: ['Secondary author']
+   bib: ['Nancy Kanwisher', 'Josh McDermott', 'Marvin M Chun']
+   cr : ['Nancy Kanwisher', 'Josh McDermott', 'Marvin M. Chun']
+   med: ['Kanwisher N', 'McDermott J', 'Chun MM']
+   journal bib/cr/med: The Journal of Neuroscience | ['The Journal of Neuroscience'] | The Journal of neuroscience : the official journal of the Society for Neuroscience | year 1997 [[1997, 6, 1]] [[1997, 6, 1]] 1997 | pub None Society for Neuroscience
+== DenkEtal11 residual: ['Secondary author', 'author']
+   bib: ['M Denker', 'S Roux', 'H Linden', 'M Diesmann', 'A Riehle', 'S Grun']
+   cr : ['Michael Denker', 'Sébastien Roux', 'Henrik Lindén', 'Markus Diesmann', 'Alexa Riehle', 'Sonja Grün']
+   med: ['Denker M', 'Roux S', 'Lindén H', 'Diesmann M', 'Riehle A', 'Grün S']
+   journal bib/cr/med: Cerebral Cortex | ['Cerebral Cortex'] | Cerebral cortex (New York, N.Y. : 1991) | year 2011 [[2011, 12]] [[2011, 4, 20]] 2011 | pub None Oxford University Press (OUP)
+== JungEtal08 residual: ['Secondary author', 'author', 'year']
+   bib: ['J Jung', 'N Mainy', 'P Kahane', 'L Minotti', 'D Hoffmann', 'O Bertrand', 'J P Lachaux']
+   cr : ['Julien Jung', 'Nelly Mainy', 'Philippe Kahane', 'Lorella Minotti', 'Dominique Hoffmann', 'Olivier Bertrand', 'Jean‐Philippe Lachaux']
+   med: ['Jung J', 'Mainy N', 'Kahane P', 'Minotti L', 'Hoffmann D', 'Bertrand O', 'Lachaux JP']
+   journal bib/cr/med: Human Brain Mapping | ['Human Brain Mapping'] | Human brain mapping | year 2008 [[2008, 10]] [[2007, 9, 25]] 2008 | pub None Wiley
+== HeniEtal19 residual: ['Secondary author', 'author']
+   bib: ['S Henin', 'H Borges', 'A Shankar', 'C Sarac', 'L Melloni', 'D Friedman', 'A Flinker', 'L C Parra', "G Buzs{\\'a}ki", 'O Devinsky', 'A Liu']
+   cr : ['Simon Henin', 'Helen Borges', 'Anita Shankar', 'Cansu Sarac', 'Lucia Melloni', 'Daniel Friedman', 'Adeen Flinker', 'Lucas C. Parra', 'Gyorgy Buzsaki', 'Orrin Devinsky', 'Anli Liu']
+   med: ['Henin S', 'Borges H', 'Shankar A', 'Sarac C', 'Melloni L', 'Friedman D', 'Flinker A', 'Parra LC', 'Buzsaki G', 'Devinsky O', 'Liu A']
+   journal bib/cr/med: Eneuro | ['eneuro'] | eNeuro | year 2019 [[2019, 11]] [[2019, 10, 11]] 2019 | pub None Society for Neuroscience

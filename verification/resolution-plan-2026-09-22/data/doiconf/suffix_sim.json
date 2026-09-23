@@ -1,0 +1,172 @@
+{
+ "ColdEtal96b": {
+  "status": "metadata_verified",
+  "residual": {
+   "crossref": [
+    "year: conflicting or missing publication dates; select "
+   ],
+   "europepmc": []
+  }
+ },
+ "MullEtal96": {
+  "status": "needs_review",
+  "residual": {
+   "crossref": [
+    "author: Missing or incomplete given names"
+   ],
+   "europepmc": [
+    "author: Missing or incomplete given names",
+    "Secondary author: missing evidence or mismatch"
+   ]
+  }
+ },
+ "TaubEtal90": {
+  "status": "metadata_verified",
+  "residual": {
+   "crossref": [
+    "author: Missing or incomplete given names"
+   ],
+   "europepmc": [],
+   "pmc-jats": []
+  }
+ },
+ "McDoEtal10": {
+  "status": "needs_review",
+  "residual": {
+   "crossref": [
+    "author: Missing authors or different author counts"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts"
+   ],
+   "pmc-jats": [
+    "Full-text evidence unresolved: Author manuscript/prepri"
+   ]
+  }
+ },
+ "WyleEtal82": {
+  "status": "metadata_verified",
+  "residual": {
+   "crossref": [
+    "year: conflicting or missing publication dates; select "
+   ],
+   "europepmc": []
+  }
+ },
+ "WoodMurd68": {
+  "status": "needs_review",
+  "residual": {
+   "crossref": [
+    "author: Author suffix differs",
+    "journal: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Author suffix differs",
+    "Secondary author: missing evidence or mismatch"
+   ]
+  }
+ },
+ "Murd67": {
+  "status": "metadata_verified",
+  "residual": {
+   "crossref": [
+    "year: conflicting or missing publication dates; select "
+   ],
+   "europepmc": []
+  }
+ },
+ "Murd68": {
+  "status": "needs_review",
+  "residual": {
+   "crossref": [
+    "author: Author suffix differs",
+    "journal: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Author suffix differs",
+    "journal: missing evidence or mismatch",
+    "Secondary journal: missing evidence or mismatch",
+    "Secondary pages: missing evidence or mismatch"
+   ]
+  }
+ },
+ "MullEtal87": {
+  "status": "needs_review",
+  "residual": {
+   "crossref": [
+    "author: Missing or incomplete given names"
+   ],
+   "europepmc": [
+    "author: Missing or incomplete given names",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names"
+   ]
+  }
+ },
+ "DiazEtal06": {
+  "status": "needs_review",
+  "residual": {
+   "crossref": [
+    "year: conflicting or missing publication dates; select ",
+    "journal: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "journal: missing evidence or mismatch",
+    "Secondary journal: missing evidence or mismatch"
+   ]
+  }
+ },
+ "BrunHaus03": {
+  "status": "needs_review",
+  "residual": {
+   "crossref": [
+    "number: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "number: missing evidence or mismatch",
+    "Secondary number: missing evidence or mismatch"
+   ]
+  }
+ },
+ "Ward61": {
+  "status": "metadata_verified",
+  "residual": {
+   "crossref": [
+    "year: conflicting or missing publication dates; select "
+   ],
+   "europepmc": []
+  }
+ },
+ "QuirEtal92": {
+  "status": "needs_review",
+  "residual": {
+   "crossref": [
+    "author: Missing or incomplete given names"
+   ],
+   "europepmc": [
+    "author: Missing or incomplete given names",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author given names differ"
+   ]
+  }
+ },
+ "MurdVomS67": {
+  "status": "needs_review",
+  "residual": {
+   "crossref": [
+    "author: Author suffix differs",
+    "journal: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Author suffix differs",
+    "journal: missing evidence or mismatch",
+    "Secondary author: missing evidence or mismatch",
+    "Secondary journal: missing evidence or mismatch"
+   ]
+  }
+ }
+}

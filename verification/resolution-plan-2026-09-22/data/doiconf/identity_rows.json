@@ -1,0 +1,1753 @@
+[
+ {
+  "key": "Scha12",
+  "doi": "10.31887/dcns.2012.14.1/dschacter",
+  "cls": "vol-differs",
+  "bib": [
+   "1",
+   null,
+   "7--18",
+   "2012"
+  ],
+  "jats": [
+   "14",
+   "7-18"
+  ],
+  "cr": [
+   "14",
+   "1",
+   "7-18",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2012-3-31",
+  "cr_online": "2022-4-1",
+  "other_cr_mismatch": [
+   "journal"
+  ]
+ },
+ {
+  "key": "MorrEtal14",
+  "doi": "10.3389/fnhum.2014.00006",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "8",
+   "6",
+   "1--14",
+   "2014"
+  ],
+  "jats": [
+   "8",
+   "6"
+  ],
+  "cr": [
+   "8",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2014",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "Brig12",
+  "doi": "10.3389/fpsyg.2012.00420",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "3",
+   "420",
+   "1--3",
+   "2012"
+  ],
+  "jats": [
+   "3",
+   "420"
+  ],
+  "cr": [
+   "3",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2012",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "KoelEtal16",
+  "doi": "10.1038/srep19741",
+  "cls": "pages=doi-url",
+  "bib": [
+   "6",
+   "19741",
+   "doi.org/10.1038/srep19741",
+   "2016"
+  ],
+  "jats": [
+   "6",
+   "19741"
+  ],
+  "cr": [
+   "6",
+   "1",
+   null,
+   "19741"
+  ],
+  "cr_agree": true,
+  "cr_print": null,
+  "cr_online": "2016-2-2",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "KhosEtal21",
+  "doi": "10.1126/sciadv.abe7547",
+  "cls": "vol-differs+pages=doi-url",
+  "bib": [
+   "8",
+   "22",
+   "doi.org/10.1126/sciad.abe7547",
+   "2021"
+  ],
+  "jats": [
+   "7",
+   "eabe7547"
+  ],
+  "cr": [
+   "7",
+   "22",
+   null,
+   "eabe7547"
+  ],
+  "cr_agree": true,
+  "cr_print": "2021-5-28",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "Roll13",
+  "doi": "10.3389/fnsys.2013.00074",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "7",
+   "74",
+   "1--21",
+   "2013"
+  ],
+  "jats": [
+   "7",
+   "74"
+  ],
+  "cr": [
+   "7",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2013",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "MotaHerc14",
+  "doi": "10.3389/fnana.2014.00127",
+  "cls": "pages=doi-url",
+  "bib": [
+   "8",
+   "127",
+   "doi.org/10.3389/fnana.2014.00127",
+   "2014"
+  ],
+  "jats": [
+   "8",
+   "127"
+  ],
+  "cr": [
+   "8",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2014-11-12",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "Herc09",
+  "doi": "10.3389/neuro.09.031.2009",
+  "cls": "pages=doi-url",
+  "bib": [
+   "3",
+   "31",
+   "doi.org/10.3389/neuro.09.031.2009",
+   "2009"
+  ],
+  "jats": [
+   "3",
+   "31"
+  ],
+  "cr": [
+   "3",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": "2009",
+  "cr_online": null,
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "GralFinn21",
+  "doi": "10.1093/scan/nsac019",
+  "cls": "vol-differs+pages-missing",
+  "bib": [
+   "doi.org/10.31234/osf.io/c8z9t",
+   null,
+   null,
+   "2021"
+  ],
+  "jats": [
+   "17",
+   "598-608"
+  ],
+  "cr": [
+   "17",
+   "6",
+   "598-608",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2022-6-3",
+  "cr_online": "2022-3-8",
+  "other_cr_mismatch": [
+   "journal",
+   "year"
+  ]
+ },
+ {
+  "key": "CookEtal16",
+  "doi": "10.1155/2016/8708434",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "2016",
+   "8708434",
+   "1--9",
+   "2016"
+  ],
+  "jats": [
+   "2016",
+   "8708434"
+  ],
+  "cr": [
+   "2016",
+   null,
+   "1-8",
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": "2016",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "ImboEtal19",
+  "doi": "10.3389/fpsyt.2019.00262",
+  "cls": "pages=doi-url",
+  "bib": [
+   "10",
+   "262",
+   "doi.org/10.3389/fpsyt.2019.00262",
+   "2019"
+  ],
+  "jats": [
+   "10",
+   "262"
+  ],
+  "cr": [
+   "10",
+   null,
+   null,
+   "262"
+  ],
+  "cr_agree": true,
+  "cr_print": null,
+  "cr_online": "2019-4-25",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "PreuEtal11",
+  "doi": "10.3389/fnins.2011.00115",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "5",
+   "115",
+   "1--12",
+   "2011"
+  ],
+  "jats": [
+   "5",
+   "115"
+  ],
+  "cr": [
+   "5",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2011",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "Fris00",
+  "doi": "10.1098/rstb.2000.0560",
+  "cls": "vol-differs",
+  "bib": [
+   "355B",
+   null,
+   "215--236",
+   "2000"
+  ],
+  "jats": [
+   "355",
+   "215-236"
+  ],
+  "cr": [
+   "355",
+   "1394",
+   "215-236",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2000-2-29",
+  "cr_online": "2000-2-29",
+  "other_cr_mismatch": [
+   "journal"
+  ]
+ },
+ {
+  "key": "ReimEtal17",
+  "doi": "10.3389/fncom.2017.00048",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "11",
+   "48",
+   "1--16",
+   "2017"
+  ],
+  "jats": [
+   "11",
+   "48"
+  ],
+  "cr": [
+   "11",
+   null,
+   null,
+   "48"
+  ],
+  "cr_agree": true,
+  "cr_print": null,
+  "cr_online": "2017-6-12",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "CombEtal19",
+  "doi": "10.3389/fninf.2019.00014",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "13",
+   "14",
+   "1--14",
+   "2019"
+  ],
+  "jats": [
+   "13",
+   "14"
+  ],
+  "cr": [
+   "13",
+   null,
+   null,
+   "14"
+  ],
+  "cr_agree": true,
+  "cr_print": null,
+  "cr_online": "2019-3-22",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "OwenEtal21",
+  "doi": "10.1038/s41467-021-25876-x",
+  "cls": "pages=doi-url",
+  "bib": [
+   "12",
+   "5728",
+   "doi.org/10.1038/s41467-021-25876-x",
+   "2021"
+  ],
+  "jats": [
+   "12",
+   "5728"
+  ],
+  "cr": [
+   "12",
+   "1",
+   null,
+   "5728"
+  ],
+  "cr_agree": true,
+  "cr_print": null,
+  "cr_online": "2021-9-30",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "McInJirs19",
+  "doi": "10.1162/netn_a_00107",
+  "cls": "vol-differs+pages-missing",
+  "bib": [
+   "doi.org/10.1162/netn\\_a\\_00107",
+   null,
+   null,
+   "2019"
+  ],
+  "jats": [
+   "3",
+   "994-1008"
+  ],
+  "cr": [
+   "3",
+   "4",
+   "994-1008",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2019-1",
+  "cr_online": null,
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "RegeEtal18",
+  "doi": "10.1093/cercor/bhy282",
+  "cls": "vol-missing+pages-missing",
+  "bib": [
+   null,
+   null,
+   null,
+   "2018"
+  ],
+  "jats": [
+   "29",
+   "4017-4034"
+  ],
+  "cr": [
+   "29",
+   "10",
+   "4017-4034",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2019-9-13",
+  "cr_online": "2018-11-3",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "LindEtal19",
+  "doi": "10.1038/s41467-018-08080-2",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "10",
+   "179",
+   "1--13",
+   "2019"
+  ],
+  "jats": [
+   "10",
+   "179"
+  ],
+  "cr": [
+   "10",
+   "1",
+   null,
+   "179"
+  ],
+  "cr_agree": true,
+  "cr_print": null,
+  "cr_online": "2019-1-14",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "ChanEtal21a",
+  "doi": "10.1126/sciadv.abf7129",
+  "cls": "pages=doi-url",
+  "bib": [
+   "7",
+   "17",
+   "doi.org/10.1126/sciadv.abf7129",
+   "2021"
+  ],
+  "jats": [
+   "7",
+   "eabf7129"
+  ],
+  "cr": [
+   "7",
+   "17",
+   null,
+   "eabf7129"
+  ],
+  "cr_agree": true,
+  "cr_print": "2021-4-23",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "JankOMar15",
+  "doi": "10.3389/fnbeh.2015.00250",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "9",
+   "250",
+   "1--19",
+   "2015"
+  ],
+  "jats": [
+   "9",
+   "250"
+  ],
+  "cr": [
+   "9",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2015-10-14",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "FoxGrei10",
+  "doi": "10.3389/fnsys.2010.00019",
+  "cls": "e-locator-vs-pages",
+  "bib": [
+   "4",
+   "10",
+   "1--13",
+   "2010"
+  ],
+  "jats": [
+   "4",
+   "19"
+  ],
+  "cr": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2010",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "SimoEtal16",
+  "doi": "10.1038/ncomms12141",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "7",
+   "12141",
+   "1--13",
+   "2016"
+  ],
+  "jats": [
+   "7",
+   "12141"
+  ],
+  "cr": [
+   "7",
+   "1",
+   null,
+   "12141"
+  ],
+  "cr_agree": true,
+  "cr_print": null,
+  "cr_online": "2016-7-18",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "ZackEtal10",
+  "doi": "10.3389/fnhum.2010.00168",
+  "cls": "artno-in-number,pages=1-N",
+  "bib": [
+   "4",
+   "168",
+   "1--15",
+   "2010"
+  ],
+  "jats": [
+   "4",
+   "168"
+  ],
+  "cr": [
+   "4",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2010",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "StarSqui01",
+  "doi": "10.1101/lm.40701",
+  "cls": "vol-missing",
+  "bib": [
+   null,
+   "8",
+   "190--197",
+   "2001"
+  ],
+  "jats": [
+   "8",
+   "190-197"
+  ],
+  "cr": [
+   "8",
+   "4",
+   "190-197",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2001-7-1",
+  "cr_online": "2001-7-1",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "FiedGloc12",
+  "doi": "10.3389/fpsyg.2012.00335",
+  "cls": "e-locator-vs-pages",
+  "bib": [
+   "3",
+   "OCT",
+   "1--18",
+   "2012"
+  ],
+  "jats": [
+   "3",
+   "335"
+  ],
+  "cr": [
+   "3",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2012",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "LismBuzs08",
+  "doi": "10.1093/schbul/sbn060",
+  "cls": "vol-missing+pages-missing",
+  "bib": [
+   null,
+   null,
+   null,
+   "2008"
+  ],
+  "jats": [
+   "34",
+   "974-980"
+  ],
+  "cr": [
+   "34",
+   "5",
+   "974-980",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": null,
+  "cr_online": "2008-7-21",
+  "other_cr_mismatch": [
+   "publisher"
+  ]
+ },
+ {
+  "key": "AfshEtal13",
+  "doi": "10.3389/fncir.2012.00117",
+  "cls": "pages-missing",
+  "bib": [
+   "6",
+   "117",
+   null,
+   "2013"
+  ],
+  "jats": [
+   "6",
+   "117"
+  ],
+  "cr": [
+   "6",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2013",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "LadoEtal02",
+  "doi": "10.1136/jnnp.72.6.812",
+  "cls": "start-page-only",
+  "bib": [
+   "72",
+   "6",
+   "812",
+   "2002"
+  ],
+  "jats": [
+   "72",
+   "812-815"
+  ],
+  "cr": [
+   "72",
+   "6",
+   "812-815",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2002-6-1",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author",
+   "journal"
+  ]
+ },
+ {
+  "key": "Hass07",
+  "doi": "10.1101/lm.686607",
+  "cls": "start-page-only",
+  "bib": [
+   "14",
+   "11",
+   "782",
+   "2007"
+  ],
+  "jats": [
+   "14",
+   "782-794"
+  ],
+  "cr": [
+   "14",
+   "11",
+   "782-794",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2007-11-14",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "publisher"
+  ]
+ },
+ {
+  "key": "FinkEtal96",
+  "doi": "10.1523/jneurosci.16-13-04275.1996",
+  "cls": "start-page-only",
+  "bib": [
+   "16",
+   "13",
+   "4275",
+   "1996"
+  ],
+  "jats": [
+   "16",
+   "4275-4282"
+  ],
+  "cr": [
+   "16",
+   "13",
+   "4275-4282",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "1996-7-1",
+  "cr_online": "1996-7-1",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "MainEtal08",
+  "doi": "10.1002/hbm.20457",
+  "cls": "start-page-only",
+  "bib": [
+   "29",
+   "11",
+   "1215",
+   "2008"
+  ],
+  "jats": [
+   "29",
+   "1215-1230"
+  ],
+  "cr": [
+   "29",
+   "11",
+   "1215-1230",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2008-11",
+  "cr_online": "2007-8-21",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "vandRedi09",
+  "doi": "10.3389/neuro.07.001.2009",
+  "cls": "pages-missing",
+  "bib": [
+   "3",
+   null,
+   null,
+   "2009"
+  ],
+  "jats": [
+   "3",
+   "1"
+  ],
+  "cr": [
+   "3",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": "2009",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "HardEtal13",
+  "doi": "10.3389/fpsyt.2013.00159",
+  "cls": "pages-missing",
+  "bib": [
+   "4",
+   "159",
+   null,
+   "2013"
+  ],
+  "jats": [
+   "4",
+   "159"
+  ],
+  "cr": [
+   "4",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2013",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "Holm18",
+  "doi": "10.1136/bjo.2.7.353",
+  "cls": "start-page-only",
+  "bib": [
+   "2",
+   "7",
+   "353",
+   "1918"
+  ],
+  "jats": [
+   "2",
+   "353-384"
+  ],
+  "cr": [
+   "2",
+   "7",
+   "353-384",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "1918-7-1",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "journal"
+  ]
+ },
+ {
+  "key": "DeadEtal13",
+  "doi": "10.3389/fnsys.2013.00120",
+  "cls": "vol-missing+pages-missing",
+  "bib": [
+   null,
+   null,
+   null,
+   "2013"
+  ],
+  "jats": [
+   "7",
+   "120"
+  ],
+  "cr": [
+   "7",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2013",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "TowlEtal08",
+  "doi": "10.1093/brain/awn147",
+  "cls": "start-page-only",
+  "bib": [
+   "131",
+   "8",
+   "2013",
+   "2008"
+  ],
+  "jats": [
+   "131",
+   "2013-2027"
+  ],
+  "cr": [
+   "131",
+   "8",
+   "2013-2027",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": null,
+  "cr_online": "2008-1-10",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "SeliParv10",
+  "doi": "10.3389/fnhum.2010.00046",
+  "cls": "pages-missing",
+  "bib": [
+   "4",
+   "46",
+   null,
+   "2010"
+  ],
+  "jats": [
+   "4",
+   "46"
+  ],
+  "cr": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2010",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "BogaEtal07",
+  "doi": "10.1098/rstb.2007.2059",
+  "cls": "vol-missing+pages-missing",
+  "bib": [
+   null,
+   null,
+   null,
+   "2007"
+  ],
+  "jats": [
+   "362",
+   "1655-1670"
+  ],
+  "cr": [
+   "362",
+   "1485",
+   "1655-1670",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2007-9-29",
+  "cr_online": "2007-4-11",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "WangEtal09",
+  "doi": "10.1186/1471-2202-10-12",
+  "cls": "vol-missing+e-locator-vs-pages",
+  "bib": [
+   null,
+   null,
+   "10--12",
+   "2009"
+  ],
+  "jats": [
+   "10",
+   "12"
+  ],
+  "cr": [
+   "10",
+   "1",
+   null,
+   "12"
+  ],
+  "cr_agree": true,
+  "cr_print": "2009-12",
+  "cr_online": "2009-2-19",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "GuggEtal07",
+  "doi": "10.3389/neuro.09.014.2007",
+  "cls": "pages-missing",
+  "bib": [
+   "1",
+   null,
+   null,
+   "2007"
+  ],
+  "jats": [
+   "1",
+   "14"
+  ],
+  "cr": [
+   "1",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": "2008",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author",
+   "year"
+  ]
+ },
+ {
+  "key": "LevyEtal00",
+  "doi": "10.1523/jneurosci.20-20-07766.2000",
+  "cls": "start-page-only",
+  "bib": [
+   "20",
+   null,
+   "7766",
+   "2000"
+  ],
+  "jats": [
+   "20",
+   "7766-7775"
+  ],
+  "cr": [
+   "20",
+   "20",
+   "7766-7775",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2000-10-15",
+  "cr_online": "2000-10-15",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "FerrEtal12",
+  "doi": "10.3389/fneur.2012.00057",
+  "cls": "pages-missing",
+  "bib": [
+   "3",
+   null,
+   null,
+   "2012"
+  ],
+  "jats": [
+   "3",
+   "57"
+  ],
+  "cr": [
+   "3",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2012",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "SaulEtal09",
+  "doi": "10.1111/j.1460-9568.2009.06635.x",
+  "cls": "start-page-only",
+  "bib": [
+   "29",
+   "5",
+   "931",
+   "2009"
+  ],
+  "jats": [
+   "29",
+   "931-942"
+  ],
+  "cr": [
+   "29",
+   "5",
+   "931-942",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2009-3",
+  "cr_online": "2009-3-2",
+  "other_cr_mismatch": [
+   "author",
+   "publisher"
+  ]
+ },
+ {
+  "key": "YueEtal11",
+  "doi": "10.1093/cercor/bhq050",
+  "cls": "start-page-only",
+  "bib": [
+   "21",
+   "1",
+   "35",
+   "2011"
+  ],
+  "jats": [
+   "21",
+   "35-47"
+  ],
+  "cr": [
+   "21",
+   "1",
+   "35-47",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2011-1-1",
+  "cr_online": "2010-4-7",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "MatsEtal13",
+  "doi": "10.1093/brain/awt159",
+  "cls": "pages-missing",
+  "bib": [
+   "136",
+   "8",
+   null,
+   "2013"
+  ],
+  "jats": [
+   "136",
+   "2444-2456"
+  ],
+  "cr": [
+   "136",
+   "8",
+   "2444-2456",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2013-8",
+  "cr_online": "2013-6-25",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "OjemEtal09",
+  "doi": "10.1093/brain/awp227",
+  "cls": "vol-missing+pages-missing",
+  "bib": [
+   null,
+   null,
+   null,
+   "2009"
+  ],
+  "jats": [
+   "133",
+   "46-59"
+  ],
+  "cr": [
+   "133",
+   "1",
+   "46-59",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2010-1",
+  "cr_online": "2009-9-22",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "TianEtal03",
+  "doi": "10.1136/jnnp.74.4.433",
+  "cls": "start-page-only",
+  "bib": [
+   "74",
+   "4",
+   "433",
+   "2003"
+  ],
+  "jats": [
+   "74",
+   "433-438"
+  ],
+  "cr": [
+   "74",
+   "4",
+   "433-438",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2003-4-1",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author",
+   "journal"
+  ]
+ },
+ {
+  "key": "MuntEtal07",
+  "doi": "10.3389/neuro.09.011.2007",
+  "cls": "pages-missing",
+  "bib": [
+   "1",
+   null,
+   null,
+   "2007"
+  ],
+  "jats": [
+   "1",
+   "11"
+  ],
+  "cr": [
+   "1",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": "2008",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author",
+   "year"
+  ]
+ },
+ {
+  "key": "GilbEtal10",
+  "doi": "10.3389/fnhum.2010.00030",
+  "cls": "pages-missing",
+  "bib": [
+   "4",
+   null,
+   null,
+   "2010"
+  ],
+  "jats": [
+   "4",
+   "30"
+  ],
+  "cr": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2010",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "HansEtal12a",
+  "doi": "10.3389/fnhum.2012.00074",
+  "cls": "pages-missing",
+  "bib": [
+   "6",
+   null,
+   null,
+   "2012"
+  ],
+  "jats": [
+   "6",
+   "74"
+  ],
+  "cr": [
+   "6",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2012",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "ClarEtal11",
+  "doi": "10.1098/rspb.2010.2211",
+  "cls": "vol-missing+pages-missing",
+  "bib": [
+   null,
+   null,
+   null,
+   "2011"
+  ],
+  "jats": [
+   "278",
+   "1121-1130"
+  ],
+  "cr": [
+   "278",
+   "1709",
+   "1121-1130",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2011-4-22",
+  "cr_online": "2011-1-19",
+  "other_cr_mismatch": [
+   "journal",
+   "publisher"
+  ]
+ },
+ {
+  "key": "HankEtal09",
+  "doi": "10.3389/neuro.11.003.2009",
+  "cls": "vol-missing+pages-missing",
+  "bib": [
+   null,
+   null,
+   null,
+   "2009"
+  ],
+  "jats": [
+   "3",
+   "3"
+  ],
+  "cr": [
+   "3",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": "2009",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "NybeEtal00",
+  "doi": "10.1073/pnas.97.20.11120",
+  "cls": "start-page-only",
+  "bib": [
+   "97",
+   null,
+   "11120",
+   "2000"
+  ],
+  "jats": [
+   "97",
+   "11120-11124"
+  ],
+  "cr": [
+   "97",
+   "20",
+   "11120-11124",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2000-9-26",
+  "cr_online": "2000-9-26",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "HamiEtal09",
+  "doi": "10.3389/neuro.07.014.2009",
+  "cls": "vol-missing+pages-missing",
+  "bib": [
+   null,
+   null,
+   null,
+   "2009"
+  ],
+  "jats": [
+   "3",
+   "14"
+  ],
+  "cr": [
+   "3",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": "2009",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author",
+   "journal"
+  ]
+ },
+ {
+  "key": "YlinEtal95",
+  "doi": "10.1523/jneurosci.15-01-00030.1995",
+  "cls": "vol-differs",
+  "bib": [
+   "17",
+   null,
+   "30--46",
+   "1995"
+  ],
+  "jats": [
+   "15",
+   "30-46"
+  ],
+  "cr": [
+   "15",
+   "1",
+   "30-46",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "1995-1-1",
+  "cr_online": "1995-1-1",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "VoytEtal10a",
+  "doi": "10.3389/fnhum.2010.00191",
+  "cls": "pages-missing",
+  "bib": [
+   "4",
+   null,
+   null,
+   "2010"
+  ],
+  "jats": [
+   "4",
+   "191"
+  ],
+  "cr": [
+   "4",
+   null,
+   null,
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": null,
+  "cr_online": "2010",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "MoseEtal93",
+  "doi": "10.1523/jneurosci.13-09-03916.1993",
+  "cls": "start-page-only",
+  "bib": [
+   "13",
+   "9",
+   "3916",
+   "1993"
+  ],
+  "jats": [
+   "13",
+   "3916-3925"
+  ],
+  "cr": [
+   "13",
+   "9",
+   "3916-3925",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "1993-9-1",
+  "cr_online": "1993-9-1",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "CanoEtal07",
+  "doi": "10.3389/neuro.01.1.1.014.2007",
+  "cls": "start-page-only",
+  "bib": [
+   "1",
+   "1",
+   "185",
+   "2007"
+  ],
+  "jats": [
+   "1",
+   "185-196"
+  ],
+  "cr": [
+   "1",
+   "1",
+   "185-196",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2007-11-1",
+  "cr_online": null,
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "GoldEtal04",
+  "doi": "10.1523/jneurosci.4848-03.2004",
+  "cls": "start-page-only",
+  "bib": [
+   "24",
+   "26",
+   "6003",
+   "2004"
+  ],
+  "jats": [
+   "24",
+   "6003-6010"
+  ],
+  "cr": [
+   "24",
+   "26",
+   "6003-6010",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2004-6-30",
+  "cr_online": "2004-6-30",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "GaynEtal08",
+  "doi": "10.1111/j.1460-9568.2008.06363.x",
+  "cls": "start-page-only",
+  "bib": [
+   "28",
+   "8",
+   "1686",
+   "2008"
+  ],
+  "jats": [
+   "28",
+   "1686-1695"
+  ],
+  "cr": [
+   "28",
+   "8",
+   "1686-1695",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2008-10",
+  "cr_online": "2008-10-14",
+  "other_cr_mismatch": [
+   "author",
+   "publisher"
+  ]
+ },
+ {
+  "key": "Fred04",
+  "doi": "10.1098/rstb.2004.1512",
+  "cls": "pages-missing",
+  "bib": [
+   "359",
+   "1449",
+   null,
+   "2004"
+  ],
+  "jats": [
+   "359",
+   "1367-1378"
+  ],
+  "cr": [
+   "359",
+   "1449",
+   "1367-1377",
+   null
+  ],
+  "cr_agree": false,
+  "cr_print": "2004-9-29",
+  "cr_online": "2004-9-29",
+  "other_cr_mismatch": [
+   "journal"
+  ]
+ },
+ {
+  "key": "KanwEtal97",
+  "doi": "10.1523/jneurosci.17-11-04302.1997",
+  "cls": "start-page-only",
+  "bib": [
+   "17",
+   null,
+   "4302",
+   "1997"
+  ],
+  "jats": [
+   "17",
+   "4302-4311"
+  ],
+  "cr": [
+   "17",
+   "11",
+   "4302-4311",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "1997-6-1",
+  "cr_online": "1997-6-1",
+  "other_cr_mismatch": []
+ },
+ {
+  "key": "DenkEtal11",
+  "doi": "10.1093/cercor/bhr040",
+  "cls": "vol-differs",
+  "bib": [
+   "12",
+   null,
+   "2681--2695",
+   "2011"
+  ],
+  "jats": [
+   "21",
+   "2681-2695"
+  ],
+  "cr": [
+   "21",
+   "12",
+   "2681-2695",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2011-12",
+  "cr_online": "2011-4-20",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "JungEtal08",
+  "doi": "10.1002/hbm.20454",
+  "cls": "pages-missing",
+  "bib": [
+   "29",
+   "1193-1206",
+   null,
+   "2008"
+  ],
+  "jats": [
+   "29",
+   "1193-1206"
+  ],
+  "cr": [
+   "29",
+   "10",
+   "1193-1206",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2008-10",
+  "cr_online": "2007-9-25",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ },
+ {
+  "key": "HeniEtal19",
+  "doi": "10.1523/eneuro.0306-19.2019",
+  "cls": "pages-missing",
+  "bib": [
+   "6",
+   "6",
+   null,
+   "2019"
+  ],
+  "jats": [
+   "6",
+   "eneuro.0306-19.2019"
+  ],
+  "cr": [
+   "6",
+   "6",
+   "ENEURO.0306-19.2019",
+   null
+  ],
+  "cr_agree": true,
+  "cr_print": "2019-11",
+  "cr_online": "2019-10-11",
+  "other_cr_mismatch": [
+   "author"
+  ]
+ }
+]

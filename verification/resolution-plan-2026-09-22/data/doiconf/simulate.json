@@ -1,0 +1,1492 @@
+{
+ "Scha12": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "year: conflicting or missing publication dates; select the cited edition explicitly",
+    "journal: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "journal: missing evidence or mismatch",
+    "Secondary journal: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "journal: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "14",
+   "number": "1",
+   "pages": "7--18"
+  }
+ },
+ "MorrEtal14": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fnhum.2014.00006",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "8",
+   "number": null,
+   "pages": "6"
+  }
+ },
+ "Brig12": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Author surnames/order differ",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Author surnames/order differ",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ"
+   ]
+  },
+  "proposed": {
+   "volume": "3",
+   "number": null,
+   "pages": "420"
+  }
+ },
+ "KoelEtal16": {
+  "status": "metadata_verified",
+  "accepted": "10.1038/srep19741",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [],
+   "europepmc": [
+    "Secondary number: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "number: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "6",
+   "number": "1",
+   "pages": "19741"
+  }
+ },
+ "KhosEtal21": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Author surnames/order differ",
+    "Source has related versions/works; review publication identity"
+   ],
+   "europepmc": [
+    "Unsupported secondary evidence: Secondary publication type or correction relationship requires review"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ",
+    "PubMed reports a correction/retraction/version or unrecognized relationship"
+   ]
+  },
+  "proposed": {
+   "volume": "7",
+   "number": "22",
+   "pages": "eabe7547"
+  }
+ },
+ "Roll13": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fnsys.2013.00074",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "7",
+   "number": null,
+   "pages": "74"
+  }
+ },
+ "MotaHerc14": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fnana.2014.00127",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "8",
+   "number": null,
+   "pages": "127"
+  }
+ },
+ "Herc09": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/neuro.09.031.2009",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "3",
+   "number": null,
+   "pages": "31"
+  }
+ },
+ "GralFinn21": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "year: missing evidence or mismatch",
+    "journal: missing evidence or mismatch",
+    "Source has related versions/works; review publication identity"
+   ],
+   "europepmc": [
+    "Unsupported secondary evidence: Secondary publication type or correction relationship requires review"
+   ],
+   "pmc-jats": [
+    "year: missing evidence or mismatch",
+    "journal: missing evidence or mismatch",
+    "PubMed reports a correction/retraction/version or unrecognized relationship"
+   ]
+  },
+  "proposed": {
+   "volume": "17",
+   "number": "6",
+   "pages": "598--608"
+  }
+ },
+ "CookEtal16": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Author given names differ",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Author given names differ",
+    "pages: missing evidence or mismatch",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author given names differ"
+   ]
+  },
+  "proposed": {
+   "volume": "2016",
+   "number": null,
+   "pages": "8708434"
+  }
+ },
+ "ImboEtal19": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fpsyt.2019.00262",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "10",
+   "number": null,
+   "pages": "262"
+  }
+ },
+ "PreuEtal11": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fnins.2011.00115",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "5",
+   "number": null,
+   "pages": "115"
+  }
+ },
+ "Fris00": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "journal: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "journal: missing evidence or mismatch",
+    "Secondary journal: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "journal: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "355",
+   "number": "1394",
+   "pages": "215--236"
+  }
+ },
+ "ReimEtal17": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fncom.2017.00048",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "11",
+   "number": null,
+   "pages": "48"
+  }
+ },
+ "CombEtal19": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fninf.2019.00014",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "13",
+   "number": null,
+   "pages": "14"
+  }
+ },
+ "OwenEtal21": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match",
+   "DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "Source has related versions/works; review publication identity"
+   ],
+   "europepmc": [
+    "Unsupported secondary evidence: Secondary publication type or correction relationship requires review"
+   ],
+   "pmc-jats": [
+    "number: missing evidence or mismatch",
+    "PubMed reports a correction/retraction/version or unrecognized relationship"
+   ]
+  },
+  "proposed": {
+   "volume": "12",
+   "number": "1",
+   "pages": "5728"
+  }
+ },
+ "McInJirs19": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "Source has related versions/works; review publication identity"
+   ],
+   "europepmc": [
+    "Unsupported secondary evidence: Secondary publication type or correction relationship requires review"
+   ],
+   "pmc-jats": [
+    "PubMed reports a correction/retraction/version or unrecognized relationship"
+   ]
+  },
+  "proposed": {
+   "volume": "3",
+   "number": "4",
+   "pages": "994--1008"
+  }
+ },
+ "RegeEtal18": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "year: conflicting or missing publication dates; select the cited edition explicitly",
+    "Source has related versions/works; review publication identity"
+   ],
+   "europepmc": [
+    "Unsupported secondary evidence: Secondary publication type or correction relationship requires review"
+   ],
+   "pmc-jats": [
+    "year: missing evidence or mismatch",
+    "PubMed reports a correction/retraction/version or unrecognized relationship"
+   ]
+  },
+  "proposed": {
+   "volume": "29",
+   "number": "10",
+   "pages": "4017--4034"
+  }
+ },
+ "LindEtal19": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "Source has related versions/works; review publication identity"
+   ],
+   "europepmc": [
+    "Unsupported secondary evidence: Secondary publication type or correction relationship requires review"
+   ],
+   "pmc-jats": [
+    "number: missing evidence or mismatch",
+    "PubMed reports a correction/retraction/version or unrecognized relationship"
+   ]
+  },
+  "proposed": {
+   "volume": "10",
+   "number": "1",
+   "pages": "179"
+  }
+ },
+ "ChanEtal21a": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing or incomplete given names",
+    "Source has related versions/works; review publication identity"
+   ],
+   "europepmc": [
+    "Unsupported secondary evidence: Secondary publication type or correction relationship requires review"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names",
+    "PubMed reports a correction/retraction/version or unrecognized relationship"
+   ]
+  },
+  "proposed": {
+   "volume": "7",
+   "number": "17",
+   "pages": "eabf7129"
+  }
+ },
+ "JankOMar15": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fnbeh.2015.00250",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "9",
+   "number": null,
+   "pages": "250"
+  }
+ },
+ "FoxGrei10": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fnsys.2010.00019",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "volume: missing evidence or mismatch",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "volume: missing evidence or mismatch"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "4",
+   "number": null,
+   "pages": "19"
+  }
+ },
+ "SimoEtal16": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "Secondary author: missing evidence or mismatch",
+    "Secondary number: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing authors or different author counts",
+    "number: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "7",
+   "number": "1",
+   "pages": "12141"
+  }
+ },
+ "ZackEtal10": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fnhum.2010.00168",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "4",
+   "number": null,
+   "pages": "168"
+  }
+ },
+ "StarSqui01": {
+  "status": "metadata_verified",
+  "accepted": "10.1101/lm.40701",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing or incomplete given names"
+   ],
+   "europepmc": [],
+   "pmc-jats": [
+    "author: Missing or incomplete given names"
+   ]
+  },
+  "proposed": {
+   "volume": "8",
+   "number": "4",
+   "pages": "190--197"
+  }
+ },
+ "FiedGloc12": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fpsyg.2012.00335",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "3",
+   "number": null,
+   "pages": "335"
+  }
+ },
+ "LismBuzs08": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "publisher: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "publisher: missing evidence or mismatch",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ",
+    "publisher: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "34",
+   "number": "5",
+   "pages": "974--980"
+  }
+ },
+ "AfshEtal13": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "Secondary author: missing evidence or mismatch",
+    "Secondary year: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing authors or different author counts",
+    "year: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "6",
+   "number": null,
+   "pages": "117"
+  }
+ },
+ "LadoEtal02": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "journal: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "journal: missing evidence or mismatch",
+    "Secondary journal: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names",
+    "journal: missing evidence or mismatch",
+    "publisher: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "72",
+   "number": "6",
+   "pages": "812--815"
+  }
+ },
+ "Hass07": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "publisher: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "publisher: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "publisher: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "14",
+   "number": "11",
+   "pages": "782--794"
+  }
+ },
+ "FinkEtal96": {
+  "status": "metadata_verified",
+  "accepted": "10.1523/jneurosci.16-13-04275.1996",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing or incomplete given names"
+   ],
+   "europepmc": [],
+   "pmc-jats": [
+    "author: Missing or incomplete given names"
+   ]
+  },
+  "proposed": {
+   "volume": "16",
+   "number": "13",
+   "pages": "4275--4282"
+  }
+ },
+ "MainEtal08": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match",
+   "DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing or incomplete given names",
+    "year: conflicting or missing publication dates; select the cited edition explicitly"
+   ],
+   "europepmc": [
+    "author: Missing or incomplete given names",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names"
+   ]
+  },
+  "proposed": {
+   "volume": "29",
+   "number": "11",
+   "pages": "1215--1230"
+  }
+ },
+ "vandRedi09": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/neuro.07.001.2009",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "3",
+   "number": null,
+   "pages": "1"
+  }
+ },
+ "HardEtal13": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fpsyt.2013.00159",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "4",
+   "number": null,
+   "pages": "159"
+  }
+ },
+ "Holm18": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "journal: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "journal: missing evidence or mismatch",
+    "Secondary journal: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "journal: missing evidence or mismatch",
+    "publisher: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "2",
+   "number": "7",
+   "pages": "353--384"
+  }
+ },
+ "DeadEtal13": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Author surnames/order differ",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Author surnames/order differ",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ"
+   ]
+  },
+  "proposed": {
+   "volume": "7",
+   "number": null,
+   "pages": "120"
+  }
+ },
+ "TowlEtal08": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing or incomplete given names"
+   ],
+   "europepmc": [
+    "author: Missing or incomplete given names",
+    "Secondary author: missing evidence or mismatch",
+    "Secondary number: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names"
+   ]
+  },
+  "proposed": {
+   "volume": "131",
+   "number": "8",
+   "pages": "2013--2027"
+  }
+ },
+ "SeliParv10": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fnhum.2010.00046",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "volume: missing evidence or mismatch",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "volume: missing evidence or mismatch"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "4",
+   "number": null,
+   "pages": "46"
+  }
+ },
+ "BogaEtal07": {
+  "status": "metadata_verified",
+  "accepted": "10.1098/rstb.2007.2059",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "362",
+   "number": "1485",
+   "pages": "1655--1670"
+  }
+ },
+ "WangEtal09": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing or incomplete given names"
+   ],
+   "europepmc": [
+    "author: Missing or incomplete given names",
+    "Secondary author: missing evidence or mismatch",
+    "Secondary number: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names",
+    "number: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "10",
+   "number": "1",
+   "pages": "12"
+  }
+ },
+ "GuggEtal07": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/neuro.09.014.2007",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "year: missing evidence or mismatch",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "year: missing evidence or mismatch"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "1",
+   "number": null,
+   "pages": "14"
+  }
+ },
+ "LevyEtal00": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Author surnames/order differ"
+   ],
+   "europepmc": [
+    "author: Author surnames/order differ",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ"
+   ]
+  },
+  "proposed": {
+   "volume": "20",
+   "number": "20",
+   "pages": "7766--7775"
+  }
+ },
+ "FerrEtal12": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing authors or different author counts"
+   ]
+  },
+  "proposed": {
+   "volume": "3",
+   "number": null,
+   "pages": "57"
+  }
+ },
+ "SaulEtal09": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Author surnames/order differ",
+    "publisher: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Author surnames/order differ",
+    "publisher: missing evidence or mismatch",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ",
+    "publisher: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "29",
+   "number": "5",
+   "pages": "931--942"
+  }
+ },
+ "YueEtal11": {
+  "status": "metadata_verified",
+  "accepted": "10.1093/cercor/bhq050",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "year: conflicting or missing publication dates; select the cited edition explicitly"
+   ],
+   "europepmc": [],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "21",
+   "number": "1",
+   "pages": "35--47"
+  }
+ },
+ "MatsEtal13": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match",
+   "DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Author surnames/order differ"
+   ],
+   "europepmc": [
+    "author: Author surnames/order differ",
+    "Secondary author: missing evidence or mismatch",
+    "Secondary number: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ"
+   ]
+  },
+  "proposed": {
+   "volume": "136",
+   "number": "8",
+   "pages": "2444--2456"
+  }
+ },
+ "OjemEtal09": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "year: conflicting or missing publication dates; select the cited edition explicitly"
+   ],
+   "europepmc": [
+    "year: conflicting or missing publication dates; select the cited edition explicitly",
+    "Secondary year: missing evidence or mismatch",
+    "Secondary number: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "year: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "133",
+   "number": "1",
+   "pages": "46--59"
+  }
+ },
+ "TianEtal03": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "journal: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names"
+   ]
+  },
+  "proposed": {
+   "volume": "74",
+   "number": "4",
+   "pages": "433--438"
+  }
+ },
+ "MuntEtal07": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "year: missing evidence or mismatch",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "year: missing evidence or mismatch",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ"
+   ]
+  },
+  "proposed": {
+   "volume": "1",
+   "number": null,
+   "pages": "11"
+  }
+ },
+ "GilbEtal10": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "volume: missing evidence or mismatch",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "volume: missing evidence or mismatch",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names"
+   ]
+  },
+  "proposed": {
+   "volume": "4",
+   "number": null,
+   "pages": "30"
+  }
+ },
+ "HansEtal12a": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing or incomplete given names",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing or incomplete given names",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names"
+   ]
+  },
+  "proposed": {
+   "volume": "6",
+   "number": null,
+   "pages": "74"
+  }
+ },
+ "ClarEtal11": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "journal: missing evidence or mismatch",
+    "publisher: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "journal: missing evidence or mismatch",
+    "publisher: missing evidence or mismatch",
+    "Secondary journal: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "journal: missing evidence or mismatch",
+    "publisher: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "278",
+   "number": "1709",
+   "pages": "1121--1130"
+  }
+ },
+ "HankEtal09": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ"
+   ]
+  },
+  "proposed": {
+   "volume": "3",
+   "number": null,
+   "pages": "3"
+  }
+ },
+ "NybeEtal00": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing authors or different author counts"
+   ]
+  },
+  "proposed": {
+   "volume": "97",
+   "number": "20",
+   "pages": "11120--11124"
+  }
+ },
+ "HamiEtal09": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "journal: missing evidence or mismatch",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "journal: missing evidence or mismatch",
+    "Secondary journal: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "journal: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "3",
+   "number": null,
+   "pages": "14"
+  }
+ },
+ "YlinEtal95": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match",
+   "DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Author surnames/order differ"
+   ],
+   "europepmc": [
+    "author: Author surnames/order differ",
+    "Secondary author: missing evidence or mismatch",
+    "Secondary number: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ"
+   ]
+  },
+  "proposed": {
+   "volume": "15",
+   "number": "1",
+   "pages": "30--46"
+  }
+ },
+ "VoytEtal10a": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/fnhum.2010.00191",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "4",
+   "number": null,
+   "pages": "191"
+  }
+ },
+ "MoseEtal93": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing or incomplete given names"
+   ],
+   "europepmc": [
+    "author: Missing or incomplete given names",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names"
+   ]
+  },
+  "proposed": {
+   "volume": "13",
+   "number": "9",
+   "pages": "3916--3925"
+  }
+ },
+ "CanoEtal07": {
+  "status": "metadata_verified",
+  "accepted": "10.3389/neuro.01.1.1.014.2007",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "1",
+   "number": "1",
+   "pages": "185--196"
+  }
+ },
+ "GoldEtal04": {
+  "status": "metadata_verified",
+  "accepted": "10.1523/jneurosci.4848-03.2004",
+  "issues": [],
+  "cand_issues": {
+   "crossref": [],
+   "europepmc": [
+    "Secondary title: missing evidence or mismatch"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "24",
+   "number": "26",
+   "pages": "6003--6010"
+  }
+ },
+ "GaynEtal08": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing authors or different author counts",
+    "publisher: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "author: Missing authors or different author counts",
+    "publisher: missing evidence or mismatch",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing authors or different author counts",
+    "publisher: missing evidence or mismatch"
+   ]
+  },
+  "proposed": {
+   "volume": "28",
+   "number": "8",
+   "pages": "1686--1695"
+  }
+ },
+ "Fred04": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "journal: missing evidence or mismatch",
+    "pages: missing evidence or mismatch"
+   ],
+   "europepmc": [
+    "pages: missing evidence or mismatch"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "359",
+   "number": "1449",
+   "pages": "1367--1378"
+  }
+ },
+ "KanwEtal97": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match",
+   "DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation"
+  ],
+  "cand_issues": {
+   "crossref": [],
+   "europepmc": [
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": []
+  },
+  "proposed": {
+   "volume": "17",
+   "number": "11",
+   "pages": "4302--4311"
+  }
+ },
+ "DenkEtal11": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Author surnames/order differ"
+   ],
+   "europepmc": [
+    "author: Author surnames/order differ",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ"
+   ]
+  },
+  "proposed": {
+   "volume": "21",
+   "number": "12",
+   "pages": "2681--2695"
+  }
+ },
+ "JungEtal08": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Missing or incomplete given names",
+    "year: conflicting or missing publication dates; select the cited edition explicitly"
+   ],
+   "europepmc": [
+    "author: Missing or incomplete given names",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Missing or incomplete given names"
+   ]
+  },
+  "proposed": {
+   "volume": "29",
+   "number": "10",
+   "pages": "1193--1206"
+  }
+ },
+ "HeniEtal19": {
+  "status": "needs_review",
+  "accepted": null,
+  "issues": [
+   "No unambiguous, fully supported metadata match"
+  ],
+  "cand_issues": {
+   "crossref": [
+    "author: Author surnames/order differ"
+   ],
+   "europepmc": [
+    "author: Author surnames/order differ",
+    "Secondary author: missing evidence or mismatch"
+   ],
+   "pmc-jats": [
+    "author: Author surnames/order differ"
+   ]
+  },
+  "proposed": {
+   "volume": "6",
+   "number": "6",
+   "pages": "eneuro.0306--19.2019"
+  }
+ }
+}

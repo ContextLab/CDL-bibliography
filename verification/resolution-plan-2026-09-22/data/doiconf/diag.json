@@ -1,0 +1,815 @@
+{
+ "Scha12": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: journal: missing evidence or mismatch"
+  ],
+  "jats_issues": [
+   "journal: missing evidence or mismatch",
+   "volume: missing evidence or mismatch",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "MorrEtal14": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '6')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "Brig12": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ",
+   "number would be emptied (source has none; bib has '420')",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "KoelEtal16": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '19741')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "KhosEtal21": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ; PubMed reports a correction/retraction/version or ",
+   "pages regex rejects eabe7547",
+   "MED: Secondary publication type or correction relationship requir",
+   "MED title mismatch",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "volume: missing evidence or mismatch",
+   "pages: missing evidence or mismatch",
+   "PubMed reports a correction/retraction/version or unrecognized relationship"
+  ]
+ },
+ "Roll13": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '74')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "MotaHerc14": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '127')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "Herc09": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '31')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "GralFinn21": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: journal: missing evidence or mismatch; Full-text and PubMed pagination do not establish t; PubMed reports a correction/retraction/version or ",
+   "MED: Secondary publication type or correction relationship requir",
+   "MED title mismatch",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "year: missing evidence or mismatch",
+   "journal: missing evidence or mismatch",
+   "volume: missing evidence or mismatch",
+   "pages: source supplies a field absent from the citation",
+   "number: source supplies a field absent from the citation",
+   "Full-text and PubMed pagination do not establish the same article",
+   "PubMed reports a correction/retraction/version or unrecognized relationship"
+  ]
+ },
+ "CookEtal16": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author given names differ",
+   "number would be emptied (source has none; bib has '8708434')",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author given names differ",
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "ImboEtal19": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '262')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "PreuEtal11": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '115')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "Fris00": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: journal: missing evidence or mismatch"
+  ],
+  "jats_issues": [
+   "journal: missing evidence or mismatch",
+   "volume: missing evidence or mismatch",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "ReimEtal17": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '48')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "CombEtal19": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '14')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "OwenEtal21": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: PubMed reports a correction/retraction/version or ",
+   "number would be emptied (source has none; bib has '5728')",
+   "MED: Secondary publication type or correction relationship requir",
+   "MED title mismatch",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch",
+   "PubMed reports a correction/retraction/version or unrecognized relationship"
+  ]
+ },
+ "McInJirs19": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: PubMed reports a correction/retraction/version or ",
+   "MED: Secondary publication type or correction relationship requir",
+   "MED title mismatch",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "volume: missing evidence or mismatch",
+   "pages: source supplies a field absent from the citation",
+   "number: source supplies a field absent from the citation",
+   "PubMed reports a correction/retraction/version or unrecognized relationship"
+  ]
+ },
+ "RegeEtal18": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: PubMed reports a correction/retraction/version or ",
+   "MED: Secondary publication type or correction relationship requir",
+   "MED title mismatch",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "year: missing evidence or mismatch",
+   "volume: source supplies a field absent from the citation",
+   "pages: source supplies a field absent from the citation",
+   "number: source supplies a field absent from the citation",
+   "PubMed reports a correction/retraction/version or unrecognized relationship"
+  ]
+ },
+ "LindEtal19": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: PubMed reports a correction/retraction/version or ",
+   "number would be emptied (source has none; bib has '179')",
+   "MED: Secondary publication type or correction relationship requir",
+   "MED title mismatch",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch",
+   "PubMed reports a correction/retraction/version or unrecognized relationship"
+  ]
+ },
+ "ChanEtal21a": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names; PubMed reports a correction/retraction/version or ",
+   "pages regex rejects eabf7129",
+   "MED: Secondary publication type or correction relationship requir",
+   "MED title mismatch",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "pages: missing evidence or mismatch",
+   "PubMed reports a correction/retraction/version or unrecognized relationship"
+  ]
+ },
+ "JankOMar15": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '250')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "FoxGrei10": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '10')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "SimoEtal16": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing authors or different author counts",
+   "number would be emptied (source has none; bib has '12141')",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing authors or different author counts",
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "ZackEtal10": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '168')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "StarSqui01": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "number: missing evidence or mismatch",
+   "volume: source supplies a field absent from the citation"
+  ]
+ },
+ "FiedGloc12": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has 'OCT')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "LismBuzs08": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ; publisher: missing evidence or mismatch",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "publisher: missing evidence or mismatch",
+   "volume: source supplies a field absent from the citation",
+   "pages: source supplies a field absent from the citation",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "AfshEtal13": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: Full-text evidence unresolved: Full-text publicati",
+   "pages regex rejects ",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "Full-text evidence unresolved: Full-text publication dates do not support the indexed issue year"
+  ]
+ },
+ "LadoEtal02": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names; journal: missing evidence or mismatch; publisher: missing evidence or mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "journal: missing evidence or mismatch",
+   "publisher: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "Hass07": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: publisher: missing evidence or mismatch"
+  ],
+  "jats_issues": [
+   "publisher: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "FinkEtal96": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "MainEtal08": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "vandRedi09": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1"
+  ],
+  "jats_issues": [
+   "pages: source supplies an article number absent from the citation"
+  ]
+ },
+ "HardEtal13": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '159')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: source supplies a field absent from the citation"
+  ]
+ },
+ "Holm18": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: journal: missing evidence or mismatch; publisher: missing evidence or mismatch"
+  ],
+  "jats_issues": [
+   "journal: missing evidence or mismatch",
+   "publisher: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "DeadEtal13": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "volume: source supplies a field absent from the citation",
+   "pages: source supplies an article number absent from the citation"
+  ]
+ },
+ "TowlEtal08": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "SeliParv10": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "number would be emptied (source has none; bib has '46')"
+  ],
+  "jats_issues": [
+   "number: missing evidence or mismatch",
+   "pages: source supplies a field absent from the citation"
+  ]
+ },
+ "BogaEtal07": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1"
+  ],
+  "jats_issues": [
+   "volume: source supplies a field absent from the citation",
+   "pages: source supplies a field absent from the citation",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "WangEtal09": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "pages: missing evidence or mismatch",
+   "volume: source supplies a field absent from the citation"
+  ]
+ },
+ "GuggEtal07": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: Full-text evidence unresolved: Full-text publicati",
+   "pages regex rejects "
+  ],
+  "jats_issues": [
+   "Full-text evidence unresolved: Full-text publication dates do not support the indexed issue year"
+  ]
+ },
+ "LevyEtal00": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "pages: missing evidence or mismatch",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "FerrEtal12": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing authors or different author counts",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing authors or different author counts",
+   "pages: source supplies an article number absent from the citation"
+  ]
+ },
+ "SaulEtal09": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ; publisher: missing evidence or mismatch",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "publisher: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "YueEtal11": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: Full-text evidence unresolved: Full-text publicati",
+   "pages regex rejects "
+  ],
+  "jats_issues": [
+   "Full-text evidence unresolved: Full-text publication dates do not support the indexed issue year"
+  ]
+ },
+ "MatsEtal13": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "pages: source supplies a field absent from the citation"
+  ]
+ },
+ "OjemEtal09": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1"
+  ],
+  "jats_issues": [
+   "year: missing evidence or mismatch",
+   "volume: source supplies a field absent from the citation",
+   "pages: source supplies a field absent from the citation",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "TianEtal03": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "MuntEtal07": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "pages: source supplies an article number absent from the citation"
+  ]
+ },
+ "GilbEtal10": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "pages: source supplies an article number absent from the citation"
+  ]
+ },
+ "HansEtal12a": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "pages: source supplies an article number absent from the citation"
+  ]
+ },
+ "ClarEtal11": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: journal: missing evidence or mismatch; publisher: missing evidence or mismatch"
+  ],
+  "jats_issues": [
+   "journal: missing evidence or mismatch",
+   "publisher: missing evidence or mismatch",
+   "volume: source supplies a field absent from the citation",
+   "pages: source supplies a field absent from the citation",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "HankEtal09": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "volume: source supplies a field absent from the citation",
+   "pages: source supplies an article number absent from the citation"
+  ]
+ },
+ "NybeEtal00": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing authors or different author counts",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing authors or different author counts",
+   "pages: missing evidence or mismatch",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "HamiEtal09": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: journal: missing evidence or mismatch"
+  ],
+  "jats_issues": [
+   "journal: missing evidence or mismatch",
+   "volume: source supplies a field absent from the citation",
+   "pages: source supplies a field absent from the citation"
+  ]
+ },
+ "YlinEtal95": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "volume: missing evidence or mismatch",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "VoytEtal10a": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1"
+  ],
+  "jats_issues": [
+   "pages: source supplies a field absent from the citation"
+  ]
+ },
+ "MoseEtal93": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "CanoEtal07": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: Full-text and PubMed pagination do not establish t"
+  ],
+  "jats_issues": [
+   "Full-text and PubMed pagination do not establish the same article"
+  ]
+ },
+ "GoldEtal04": {
+  "sim": "metadata_verified",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "MED title mismatch"
+  ],
+  "jats_issues": [
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "GaynEtal08": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing authors or different author counts; publisher: missing evidence or mismatch",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing authors or different author counts",
+   "publisher: missing evidence or mismatch",
+   "pages: missing evidence or mismatch"
+  ]
+ },
+ "Fred04": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1"
+  ],
+  "jats_issues": [
+   "pages: source supplies a field absent from the citation"
+  ]
+ },
+ "KanwEtal97": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "pages: missing evidence or mismatch",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "DenkEtal11": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "volume: missing evidence or mismatch",
+   "number: source supplies a field absent from the citation"
+  ]
+ },
+ "JungEtal08": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Missing or incomplete given names",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Missing or incomplete given names",
+   "number: missing evidence or mismatch",
+   "pages: source supplies a field absent from the citation"
+  ]
+ },
+ "HeniEtal19": {
+  "sim": "needs_review",
+  "reasons": [
+   "2 crossref primaries, distinct records=1",
+   "non-coord jats issues: author: Author surnames/order differ",
+   "pages regex rejects eneuro.0306--19.2019",
+   "MED author mismatch"
+  ],
+  "jats_issues": [
+   "author: Author surnames/order differ",
+   "pages: source supplies an article number absent from the citation"
+  ]
+ }
+}

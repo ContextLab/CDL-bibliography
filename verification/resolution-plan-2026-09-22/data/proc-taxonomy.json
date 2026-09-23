@@ -1,0 +1,212 @@
+{
+ "A1 Crossref proceedings: IEEE": [
+  "CoppEtal17",
+  "DengEtal13",
+  "Subb13",
+  "NaroEtal11",
+  "KellEtal10a",
+  "BlakEtal08",
+  "WangEtal10b",
+  "AndeEtal16",
+  "XiaoEtal10",
+  "RosePaul90",
+  "Kais90",
+  "TardEtal08",
+  "HuggEtal06",
+  "MakaEtal06",
+  "YingEtal92",
+  "HaonEtal16",
+  "DengEtal09"
+ ],
+ "A2 Crossref proceedings: ACM": [
+  "BleiLaff06",
+  "ScheEtal02",
+  "NguyEtal16b",
+  "LiEtal16",
+  "TianEtal16b",
+  "LiEtal17b",
+  "TianEtal17",
+  "TianEtal18",
+  "LiEtal18",
+  "LiZhou18",
+  "TianEtal20b",
+  "LiEtal20",
+  "CarvEtal22b",
+  "StonEtal25"
+ ],
+ "A3 Crossref proceedings: ACL-hosted DOI": [
+  "WolfEtal20",
+  "PennEtal14",
+  "IyyeEtal15",
+  "ChenEtal22",
+  "Etha19",
+  "HewiMann19",
+  "BambEtal90"
+ ],
+ "A4 Crossref proceedings: ISCA": [
+  "Kipp01",
+  "HalpEtal16",
+  "DolfWend98"
+ ],
+ "A5 Crossref proceedings: SciPy": [
+  "RagaWill18",
+  "McKi10"
+ ],
+ "A6 Crossref proceedings: Springer LNCS chapter": [
+  "FiscMode03",
+  "dBakEtal08"
+ ],
+ "A7 Crossref proceedings: other (IOS, CCN, CogSci reprint)": [
+  "KluyEtal16",
+  "HeusMann18",
+  "AltmSchu02"
+ ],
+ "B1 No-DOI: NeurIPS (incl. workshop)": [
+  "VaswEtal17",
+  "ParkPill12",
+  "RaoHowa08",
+  "LiuEtal18",
+  "LiuWang16",
+  "YangEtal13"
+ ],
+ "B2 No-DOI: PMLR (ICML/AISTATS)": [
+  "AchiEtal17",
+  "JianLi16",
+  "FaraEtal18",
+  "ParkEtal24",
+  "RangEtal14"
+ ],
+ "B3 No-DOI: ACL Anthology": [
+  "ZengEtal14"
+ ],
+ "B4 No-DOI: CogSci": [
+  "ShafGood08",
+  "MozeEtal04",
+  "Plau95"
+ ],
+ "B5 No-DOI: other old proceedings": [
+  "PellMoor00",
+  "BernClif94",
+  "BartEtal04c",
+  "MuelShif06",
+  "DeloEtal01",
+  "MallEtal97"
+ ],
+ "C1 Abstract: SfN": [
+  "RamaEtal12a",
+  "WatrEtal09",
+  "DerdEtal06",
+  "vanVEtal05",
+  "GratEtal11",
+  "KrauEtal12",
+  "MannEtal09b",
+  "LongKaha13",
+  "RamaEtal12b",
+  "LongEtal11",
+  "DetrEtal07",
+  "BurkEtal12",
+  "RamaEtal10",
+  "HartEtal05",
+  "LongKaha12b",
+  "SommEtal12",
+  "ReccOKee89",
+  "PolyEtal07",
+  "MortEtal07",
+  "SedeNorm07"
+ ],
+ "C2 Abstract: Psychonomic": [
+  "LohnEtal10",
+  "LohnEtal09",
+  "PolyEtal06"
+ ],
+ "C3 Abstract: SMP": [
+  "MillEtal07e",
+  "vanVEtal06",
+  "CrutEtal12"
+ ],
+ "C4 Abstract: Cosyne": [
+  "RamaEtal13",
+  "BurkKaha13"
+ ],
+ "C5 Abstract: OHBM/CNS/CAC/ISMRM": [
+  "PolyEtal05b",
+  "BranEtal04",
+  "HealEtal12b",
+  "CordEtal02"
+ ],
+ "D1 Misc: software": [
+  "Depo18",
+  "MannEtal23b",
+  "Varo10",
+  "Eust19",
+  "Gaut08",
+  "Mann21d",
+  "TorvHama05",
+  "CapoEtal17",
+  "Keck07",
+  "LeSa99",
+  "deCa05a",
+  "deCa05b",
+  "ChanLin01",
+  "Smit05",
+  "Baas05",
+  "Scav05",
+  "Beaz05",
+  "Schl07",
+  "Stra06",
+  "FitzEtal25"
+ ],
+ "D2 Misc: AI model/service": [
+  "SingEtal24",
+  "ChatGPT",
+  "Qwen26"
+ ],
+ "D3 Misc: web page / grey literature": [
+  "ContPrev23",
+  "FoodAdmi20a",
+  "FoodAdmi20b",
+  "ContPrev24",
+  "Nati24a",
+  "Nati24b",
+  "Amer23c",
+  "NetwLab25",
+  "Gede24"
+ ],
+ "D4 Misc: patent": [
+  "CoopEtal04",
+  "LittEtal98",
+  "EchaEtal00"
+ ],
+ "D5 Misc: journal article/chapter mistyped as misc": [
+  "DiazEtal15",
+  "SpenEtal03",
+  "FellEtal01a",
+  "WilsEmmo03",
+  "Yama08"
+ ],
+ "D6 Misc/other: lecture, report, test, story, quotation": [
+  "Hawk99",
+  "Laks01",
+  "WallEtal57",
+  "Wech97",
+  "OGra11",
+  "HeraCE"
+ ],
+ "E1 Preprint: arXiv": [
+  "JianEtal24",
+  "LiuEtal24",
+  "YangEtal24",
+  "AlvaEtal05"
+ ],
+ "E2 Preprint: bioRxiv": [
+  "GoldEtal21",
+  "XieEtal21",
+  "JainHuth18",
+  "TsitEtal19",
+  "ZimaMann21",
+  "BetzEtal19"
+ ],
+ "F Journal article with external-evidence hold": [
+  "Samm69"
+ ]
+}

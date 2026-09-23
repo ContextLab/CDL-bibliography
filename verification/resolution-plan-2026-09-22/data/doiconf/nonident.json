@@ -1,0 +1,1057 @@
+{
+ "SchaEtal18": {
+  "identity": [
+   [
+    "10.1093/cercor/bhx179",
+    [
+     "author: Author surnames/order differ",
+     "year: conflicting or missing publication dates; select ",
+     "Source has related versions/works; review publication i"
+    ]
+   ],
+   [
+    "10.1101/135632",
+    [
+     "author: Author surnames/order differ",
+     "year: missing evidence or mismatch",
+     "publication type/version is unsupported or differs",
+     "journal: missing evidence or mismatch",
+     "volume: missing evidence or mismatch",
+     "pages: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Cerebral Cortex",
+   "year": "2018",
+   "volume": "28",
+   "pages": "3095--3114"
+  },
+  "ext": false
+ },
+ "AlyTurk16": {
+  "identity": [
+   [
+    "10.1073/pnas.1518931113",
+    [
+     "author: Missing or incomplete given names",
+     "pages: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Proceedings of the National Academy of Sciences, {USA}",
+   "year": "2016",
+   "volume": "113",
+   "pages": "420--429"
+  },
+  "ext": false
+ },
+ "LiEtal19": {
+  "identity": [
+   [
+    "10.1016/j.neuroimage.2019.04.016",
+    [
+     "Source has related versions/works; review publication i"
+    ]
+   ],
+   [
+    "10.1101/548644",
+    [
+     "author: Author surnames/order differ",
+     "publication type/version is unsupported or differs",
+     "journal: missing evidence or mismatch",
+     "volume: missing evidence or mismatch",
+     "pages: missing evidence or mismatch",
+     "Source has related versions/works; review publication i"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "{NeuroImage}",
+   "year": "2019",
+   "volume": "196",
+   "pages": "126--141"
+  },
+  "ext": false
+ },
+ "MeshEtal21": {
+  "identity": [
+   [
+    "10.1038/s41467-021-22202-3",
+    [
+     "author: Missing or incomplete given names",
+     "Source has related versions/works; review publication i"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Nature Communications",
+   "year": "2021",
+   "volume": "12",
+   "pages": "1922"
+  },
+  "ext": false
+ },
+ "MasiEtal22": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "{eLife}",
+   "year": "2022",
+   "volume": "11",
+   "pages": "e70445"
+  },
+  "ext": false
+ },
+ "MackEtal20": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Nature Communications",
+   "year": "2020",
+   "volume": "11",
+   "pages": "doi.org/10.1038/s41467-019-13930-8"
+  },
+  "ext": false
+ },
+ "RubiEtal17": {
+  "identity": [
+   [
+    "10.1371/journal.pcbi.1005649",
+    [
+     "author: Author surnames/order differ",
+     "Source flags an update/correction/retraction relationsh",
+     "Source has related versions/works; review publication i"
+    ]
+   ],
+   [
+    "10.1101/059618",
+    [
+     "author: Author surnames/order differ",
+     "year: missing evidence or mismatch",
+     "publication type/version is unsupported or differs",
+     "journal: missing evidence or mismatch",
+     "volume: missing evidence or mismatch",
+     "number: missing evidence or mismatch",
+     "pages: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "{PLoS} Computational Biology",
+   "year": "2017",
+   "volume": "13",
+   "pages": "e1005649"
+  },
+  "ext": false
+ },
+ "KragEtal17": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "{NeuroImage}",
+   "year": "2017",
+   "volume": "155",
+   "pages": "70--71"
+  },
+  "ext": false
+ },
+ "NateEtal06": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Psychoneuroendocrinology",
+   "year": "2006",
+   "volume": "31",
+   "pages": "49--58"
+  },
+  "ext": false
+ },
+ "ChenEtal17": {
+  "identity": [
+   [
+    "10.1038/nn.4450",
+    [
+     "year: conflicting or missing publication dates; select ",
+     "pages: missing evidence or mismatch",
+     "Source has related versions/works; review publication i"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Nature Neuroscience",
+   "year": "2017",
+   "volume": "20",
+   "pages": "115"
+  },
+  "ext": false
+ },
+ "YeoEtal11": {
+  "identity": [
+   [
+    "10.1152/jn.00338.2011",
+    [
+     "author: Author surnames/order differ"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Journal of Neurophysiology",
+   "year": "2011",
+   "volume": "106",
+   "pages": "1125--1165"
+  },
+  "ext": false
+ },
+ "TothAssa02": {
+  "identity": [
+   [
+    "10.1038/415165a",
+    [
+     "publisher: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Nature",
+   "year": "2002",
+   "volume": "415",
+   "pages": "165--168"
+  },
+  "ext": false
+ },
+ "KafkMont15": {
+  "identity": [
+   [
+    "10.1111/psyp.12471",
+    [
+     "publisher: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Psychophysiology",
+   "year": "2015",
+   "volume": "52",
+   "pages": "1305--1316"
+  },
+  "ext": false
+ },
+ "AshbEtal96": {
+  "identity": [
+   [
+    "10.1037//0033-295x.103.1.165",
+    [
+     "publisher: missing evidence or mismatch"
+    ]
+   ],
+   [
+    "10.1037/0033-295x.103.1.165",
+    [
+     "publisher: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Psychological Review",
+   "year": "1996",
+   "volume": "103",
+   "pages": "165--192"
+  },
+  "ext": false
+ },
+ "Murd56": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Journal of Experimental Psychology: General",
+   "year": "1956",
+   "volume": "51",
+   "pages": "213--215"
+  },
+  "ext": false
+ },
+ "SmitEtal98": {
+  "identity": [
+   [
+    "10.1073/pnas.95.3.876",
+    [
+     "author: Missing or incomplete given names"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Proceedings of the National Academy of Sciences, {USA}",
+   "year": "1998",
+   "volume": "95",
+   "pages": "876--882"
+  },
+  "ext": false
+ },
+ "Sing98": {
+  "identity": [
+   [
+    "10.1098/rstb.1998.0335",
+    [
+     "author: Missing authors or different author counts",
+     "journal: missing evidence or mismatch",
+     "publisher: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences",
+   "year": "1998",
+   "volume": "353",
+   "pages": "1829--1840"
+  },
+  "ext": false
+ },
+ "Schu05": {
+  "identity": [
+   [
+    "10.1016/j.ijdevneu.2004.12.012",
+    [
+     "publisher: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "International Journal of Developmental Neuroscience",
+   "year": "2005",
+   "volume": "23",
+   "pages": "125--141"
+  },
+  "ext": false
+ },
+ "Murd62b": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Journal of Verbal Learning and Verbal Behavior",
+   "year": "1962",
+   "volume": "1",
+   "pages": "119--124"
+  },
+  "ext": false
+ },
+ "Yone96": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Dissertation Abstracts International",
+   "year": "1996",
+   "volume": "57",
+   "pages": "2193"
+  },
+  "ext": false
+ },
+ "MannEtal97": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Sleep Research",
+   "year": "1997",
+   "volume": "26",
+   "pages": "27"
+  },
+  "ext": false
+ },
+ "BostEtal91": {
+  "identity": [
+   [
+    "10.1002/hipo.450010207",
+    [
+     "year: conflicting or missing publication dates; select "
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Hippocampus",
+   "year": "1991",
+   "volume": "1",
+   "pages": "193--205"
+  },
+  "ext": false
+ },
+ "GellEtal14": {
+  "identity": [
+   [
+    "10.1016/j.clinph.2014.01.021",
+    [
+     "author: Author suffix differs",
+     "volume: source supplies a field absent from the citatio",
+     "pages: source supplies a field absent from the citation",
+     "number: source supplies a field absent from the citatio"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Clinical Neurophysiology",
+   "year": "2014",
+   "volume": null,
+   "pages": null
+  },
+  "ext": false
+ },
+ "GreeEtal13": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": null,
+   "year": "2013",
+   "volume": null,
+   "pages": null
+  },
+  "ext": false
+ },
+ "BragEtal95": {
+  "identity": [
+   [
+    "10.1523/jneurosci.15-01-00047.1995",
+    [
+     "author: Author surnames/order differ"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "The Journal of Neuroscience",
+   "year": "1995",
+   "volume": "15",
+   "pages": "47--60"
+  },
+  "ext": false
+ },
+ "PentEtal98": {
+  "identity": [
+   [
+    "10.1046/j.1460-9568.1998.00096.x",
+    [
+     "author: Author surnames/order differ",
+     "year: conflicting or missing publication dates; select ",
+     "publisher: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "{European} Journal of Neuroscience",
+   "year": "1998",
+   "volume": "10",
+   "pages": "718--728"
+  },
+  "ext": false
+ },
+ "HowaEtal03": {
+  "identity": [
+   [
+    "10.1093/cercor/bhg084",
+    [
+     "author: Missing authors or different author counts"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Cerebral Cortex",
+   "year": "2003",
+   "volume": "13",
+   "pages": "1369--1374"
+  },
+  "ext": false
+ },
+ "HerrEtal09": {
+  "identity": [
+   [
+    "10.1016/j.neubiorev.2009.09.001",
+    [
+     "year: missing evidence or mismatch",
+     "volume: source supplies a field absent from the citatio",
+     "pages: source supplies a field absent from the citation",
+     "number: source supplies a field absent from the citatio"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Neuroscience and Biobehavioral Reviews",
+   "year": "2009",
+   "volume": null,
+   "pages": null
+  },
+  "ext": false
+ },
+ "LachEtal03": {
+  "identity": [
+   [
+    "10.1016/j.jphysparis.2004.01.018",
+    [
+     "author: Missing or incomplete given names",
+     "journal: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Journal of Physiology",
+   "year": "2003",
+   "volume": "97",
+   "pages": "613--628"
+  },
+  "ext": false
+ },
+ "Murd76": {
+  "identity": [
+   [
+    "10.1037//0096-3445.105.2.191",
+    []
+   ],
+   [
+    "10.1037/0096-3445.105.2.191",
+    []
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Journal of Experimental Psychology: General",
+   "year": "1976",
+   "volume": "105",
+   "pages": "191--216"
+  },
+  "ext": false
+ },
+ "RangDEsp01": {
+  "identity": [
+   [
+    "10.1016/s0896-6273(01)00411-1",
+    [
+     "author: Missing or incomplete given names"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Neuron",
+   "year": "2001",
+   "volume": "31",
+   "pages": "865--873"
+  },
+  "ext": false
+ },
+ "BurgEtal01b": {
+  "identity": [
+   [
+    "10.1098/rstb.2001.0948",
+    [
+     "author: Missing or incomplete given names",
+     "journal: missing evidence or mismatch"
+    ]
+   ],
+   [
+    "10.1093/acprof:oso/9780198508809.003.0014",
+    [
+     "author: Missing or incomplete given names",
+     "year: missing evidence or mismatch",
+     "publication type/version is unsupported or differs",
+     "journal: missing evidence or mismatch",
+     "volume: missing evidence or mismatch",
+     "pages: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences",
+   "year": "2001",
+   "volume": "356",
+   "pages": "1493--1503"
+  },
+  "ext": false
+ },
+ "BarrEtal12b": {
+  "identity": [
+   [
+    "10.1038/nature11276",
+    [
+     "publisher: missing evidence or mismatch",
+     "pages: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Nature",
+   "year": "2012",
+   "volume": "488",
+   "pages": "E1"
+  },
+  "ext": false
+ },
+ "vanGEtal13": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "{NeuroImage}",
+   "year": "2013",
+   "volume": null,
+   "pages": null
+  },
+  "ext": false
+ },
+ "MaguEtal00": {
+  "identity": [
+   [
+    "10.1073/pnas.070039597",
+    [
+     "pages: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Proceedings of the National Academy of Sciences, {USA}",
+   "year": "2000",
+   "volume": "97",
+   "pages": "4398"
+  },
+  "ext": false
+ },
+ "SmitJoni98": {
+  "identity": [
+   [
+    "10.1073/pnas.95.20.12061",
+    [
+     "author: Missing or incomplete given names"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Proceedings of the National Academy of Sciences, {USA}",
+   "year": "1998",
+   "volume": "95",
+   "pages": "12061--12068"
+  },
+  "ext": false
+ },
+ "WageSmit03": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Cognitive, Affective, and Behavioral Neuroscience",
+   "year": "2003",
+   "volume": "3",
+   "pages": "255--274"
+  },
+  "ext": false
+ },
+ "BurgOKee96": {
+  "identity": [
+   [
+    "10.1002/(sici)1098-1063(1996)6:6<749::aid-hipo16>3.0.co;2-0",
+    [
+     "volume: missing evidence or mismatch",
+     "number: source supplies a field absent from the citatio"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Hippocampus",
+   "year": "1996",
+   "volume": "7",
+   "pages": "749--762"
+  },
+  "ext": false
+ },
+ "TallEtal97": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "The Journal of Neuroscience",
+   "year": "1997",
+   "volume": "17",
+   "pages": "722--734"
+  },
+  "ext": false
+ },
+ "TallEtal01": {
+  "identity": [
+   [
+    "10.1523/jneurosci.21-20-j0008.2001",
+    [
+     "pages: missing evidence or mismatch",
+     "number: source supplies a field absent from the citatio"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "The Journal of Neuroscience",
+   "year": "2001",
+   "volume": "21",
+   "pages": "RC177"
+  },
+  "ext": false
+ },
+ "BrunEtal02a": {
+  "identity": [
+   [
+    "10.1126/science.1071089",
+    [
+     "author: Missing or incomplete given names",
+     "pages: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Science",
+   "year": "2002",
+   "volume": "296",
+   "pages": "2243"
+  },
+  "ext": false
+ },
+ "FaboEtal08": {
+  "identity": [
+   [
+    "10.1093/brain/awm297",
+    [
+     "author: Author surnames/order differ"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Brain",
+   "year": "2008",
+   "volume": "131",
+   "pages": "485--499"
+  },
+  "ext": false
+ },
+ "HankEtal08": {
+  "identity": [
+   [
+    "10.1007/s12021-008-9041-y",
+    [
+     "year: missing evidence or mismatch",
+     "volume: source supplies a field absent from the citatio",
+     "pages: source supplies a field absent from the citation",
+     "number: source supplies a field absent from the citatio"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Neuroinformatics",
+   "year": "2008",
+   "volume": null,
+   "pages": null
+  },
+  "ext": false
+ },
+ "WiebStau01": {
+  "identity": [
+   [
+    "10.1523/jneurosci.21-11-03955.2001",
+    [
+     "author: Author surnames/order differ",
+     "number: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "The Journal of Neuroscience",
+   "year": "2001",
+   "volume": "21",
+   "pages": "3955--3967"
+  },
+  "ext": false
+ },
+ "LachEtal07a": {
+  "identity": [
+   [
+    "10.1002/hbm.20352",
+    [
+     "author: Missing or incomplete given names",
+     "volume: source supplies a field absent from the citatio",
+     "pages: source supplies a field absent from the citation",
+     "number: source supplies a field absent from the citatio"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Human Brain Mapping",
+   "year": "2007",
+   "volume": null,
+   "pages": null
+  },
+  "ext": false
+ },
+ "LongEtal10": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "The Journal of Neuroscience",
+   "year": "2010",
+   "volume": "30",
+   "pages": "10967--10976"
+  },
+  "ext": false
+ },
+ "CaplEtal00": {
+  "identity": [
+   [
+    "10.1016/s0925-2312(00)00229-0",
+    [
+     "author: Missing or incomplete given names",
+     "volume: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Neurocomputing",
+   "year": "2000",
+   "volume": "32",
+   "pages": "659--665"
+  },
+  "ext": false
+ },
+ "BarrEtal06": {
+  "identity": [
+   [
+    "10.1515/revneuro.2006.17.1-2.71",
+    [
+     "author: Author given names differ",
+     "pages: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Reviews in the Neurosciences",
+   "year": "2006",
+   "volume": "17",
+   "pages": "71--97"
+  },
+  "ext": false
+ },
+ "KanwYove06": {
+  "identity": [
+   [
+    "10.1098/rstb.2006.1934",
+    [
+     "journal: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Philosophical Transactions of the Royal Society of London Series {B}",
+   "year": "2006",
+   "volume": "361",
+   "pages": "2109--2128"
+  },
+  "ext": false
+ },
+ "LlinEtal98": {
+  "identity": [
+   [
+    "10.1098/rstb.1998.0336",
+    [
+     "author: Missing authors or different author counts",
+     "journal: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences",
+   "year": "1998",
+   "volume": "353",
+   "pages": "1841--1849"
+  },
+  "ext": false
+ },
+ "BlasEtal96": {
+  "identity": [
+   [
+    "10.55782/ane-1996-1116",
+    [
+     "author: Author surnames/order differ"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Acta Neurobiologiae Experimentalis",
+   "year": "1996",
+   "volume": "56",
+   "pages": "161--164"
+  },
+  "ext": false
+ },
+ "RaghEtal99": {
+  "identity": [],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Society for Neuroscience Abstracts",
+   "year": "1999",
+   "volume": "25",
+   "pages": "1143"
+  },
+  "ext": false
+ },
+ "SedeEtal10": {
+  "identity": [
+   [
+    "10.3758/mc.38.6.689",
+    [
+     "author: Author surnames/order differ"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Memory and Cognition",
+   "year": "2010",
+   "volume": "38",
+   "pages": "689--699"
+  },
+  "ext": false
+ },
+ "WeisEtal00": {
+  "identity": [
+   [
+    "10.1097/00001756-200008030-00005",
+    [
+     "author: Author surnames/order differ"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "{NeuroReport}",
+   "year": "2000",
+   "volume": "11",
+   "pages": "2357--2361"
+  },
+  "ext": false
+ },
+ "NguyEtal23": {
+  "identity": [
+   [
+    "10.1038/s41598-023-43975-1",
+    [
+     "author: Missing authors or different author counts"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "Scientific Reports",
+   "year": "2023",
+   "volume": "13",
+   "pages": "17515"
+  },
+  "ext": false
+ },
+ "AbdeEtal21": {
+  "identity": [
+   [
+    "10.2139/ssrn.4044117",
+    [
+     "year: missing evidence or mismatch",
+     "publication type/version is unsupported or differs",
+     "journal: missing evidence or mismatch"
+    ]
+   ]
+  ],
+  "other_sources": [],
+  "fields": {
+   "ENTRYTYPE": "article",
+   "journal": "bioRxiv",
+   "year": "2021",
+   "volume": null,
+   "pages": null
+  },
+  "ext": false
+ }
+}
