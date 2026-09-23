@@ -1,0 +1,4134 @@
+{
+ "note": "Offline dry run; no approvals were written.",
+ "counts": {
+  "no_local_pdf": 2521,
+  "with_local_pdf": 232,
+  "would_not_accept": 228,
+  "type:techreport:no": 1,
+  "type:article:no": 155,
+  "type:inproceedings:no": 6,
+  "type:incollection:no": 32,
+  "type:book:no": 24,
+  "type:inbook:no": 5,
+  "would_accept": 4,
+  "type:article:accept": 4,
+  "type:conference:no": 3,
+  "type:misc:no": 1,
+  "type:manual:no": 1
+ },
+ "entries": [
+  {
+   "key": "AdamEtal10",
+   "fingerprint": "v2:53fb8ac92460242f5768ed340dca477e84340047992f8e722436d058d1e8d531",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AdamEtal10.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "AlvaEtal05",
+   "fingerprint": "v2:76d57850ffcb937c950fa6d32202634b05a2b4099d8fc397c302caf446545019",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AlvaEtal05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "arXiv stamp"
+   ]
+  },
+  {
+   "key": "Ande03",
+   "fingerprint": "v2:461635a0ebe83fe3a42e31db2ea86f9004da60774acdc6159ea371a7a11ada0b",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Ande03.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "AndeEtal16",
+   "fingerprint": "v2:3ffbdf522843503a8626069d2a41580b69131cf0326e49e344f981cf029a71c8",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AndeEtal16.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "AshbMadd98",
+   "fingerprint": "v2:69a7f8a486a590a6df51f9e7fac84303c3de2ea59e4a8556f23146372d3e690a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ZaunEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "AtkiShif68",
+   "fingerprint": "v2:7786e6a3cd22cde8b743abea63797ce76c970efea06c7a905bed3becd8e29203",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AtkiShif68.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Badd86",
+   "fingerprint": "v2:a22168100a5c3a0fdbb53b1b1977a8a6faf760a0ce4d524fd04cd4ec002dfe61",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AgamEtal05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "BaddHitc74",
+   "fingerprint": "v2:ea2781db44bf9304bd1254a08fef2f14d1ee9fbc9d93a96f8d46aa8229140b47",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AgamEtal05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "volume": "contradicted",
+    "year": "contradicted",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "BairNoma78",
+   "fingerprint": "v2:c1e61290ed3ff835d58cdd7c8131b77651efba94646d00cc4244edd0077b1269",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Abdi09.pdf",
+   "pass": false,
+   "fields": {
+    "title": "contradicted",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "chapter"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "BaloEtal07",
+   "fingerprint": "v2:1c3a5ece92bc5f6979e09e70ac194d766d325021ace90214a57b5d110c1f2775",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "JonePyc14.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "contradicted",
+    "number": "contradicted",
+    "year": "contradicted",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Bar04",
+   "fingerprint": "v2:9c79d306355d6efa100894fbdc207f77650a1a1c004401412e36367674d83f9c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Bar04.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "BattBell79",
+   "fingerprint": "v2:4b619034e861a93501332e4d9e6633dc5f503ef8fd91bcd49ffd82e267ce30a8",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChurSejn88.pdf",
+   "pass": false,
+   "fields": {
+    "title": "contradicted",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "chapter",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Baum08",
+   "fingerprint": "v2:b47dd0794ef696b98c2d7b85b3321d0ee6e424fe48ccca0f7c32f6add324fded",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AndeGree01.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "BellEtal18",
+   "fingerprint": "v2:f5ec389067e085b9f7519ade3457dab73230ae75ee495b3a9e70edb2abe2c6a5",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BellEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "BellEtal20",
+   "fingerprint": "v2:7219259937fe2da8dce8250202f8bb8881c677da8f51e05411e8208534a3f35c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BellEtal20.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "BengEtal03",
+   "fingerprint": "v2:496d72116ad70a8bdf6c8d94142a7280a48e6208d38d8237b9a457ae77eb5da7",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BengEtal03.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "BiswEtal95",
+   "fingerprint": "v2:5294ab2aa3a3160861a9f41f392d9b2a351598eac9b2a7765d17b199a7e007de",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BiswEtal95.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "BleiEtal03",
+   "fingerprint": "v2:c50310278489371da190ed42fbbd3b4531d971e6641e8c131b4ef1b13a318373",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AiroldiBleiFienbergXing2008.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "absent",
+    "year": "contradicted",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "BleiLaff06",
+   "fingerprint": "v2:ea140626b56f104952be7c6d0a50f77909acbf892a0684dbd2affd86c6994f4e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BleiLaff06.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "BlisColl93",
+   "fingerprint": "v2:2554847c66f53ffe564ee2b0e388f3f8e4464ac54dc37e69c88f7d651786b40c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "FisahnEtal98.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Bous53",
+   "fingerprint": "v2:f70a5218c476d9d9e34317a08bf166139e970091c971fe100e5055176cd9beaa",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Bous53.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "absent",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Box76",
+   "fingerprint": "v2:68c6da61f02e45aa15c833399730b7211da830e1dacfb212629a68e17f23a254",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Bish06.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Bran01",
+   "fingerprint": "v2:7440df56fca56b0b5957588d0fcb2545fa9d16c74faada15fbf8986b01f1cb1f",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Bran01.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "BravEtal01",
+   "fingerprint": "v2:e4f592250f2d5d98c9255a35040b871459cc0853d7aa74b81ca02d75e22cfe6e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BravEtal01.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Brig12",
+   "fingerprint": "v2:738b7c7297ee0d5d1904d848fe42d66f60c1b6447ef3327e50381a9110d0b869",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Brig12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "BrowChat95",
+   "fingerprint": "v2:99643f7be79f5916b0c16801c3f9ef93043a92346f98fa202776b539b4ec43f6",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "LansEtal11__FOR REVIEW.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "BrowEtal92",
+   "fingerprint": "v2:392c58b38929c75368cabf9889dac344b77837095acfba6bb9b3ffc5e1a0a074",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BrowEtal92.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "BurkEtal14",
+   "fingerprint": "v2:a6abd3353f27ba2e03f34d007575b2c6ece0d4900c1a8f174232d3581fc8bac8",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BurkEtal14.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "BurkEtal15",
+   "fingerprint": "v2:7c0152f4b4e5f3a60ab47b5a0889e7259cac32df1bc9751fb10117df4e559683",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BurkEtal15.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Buzs06",
+   "fingerprint": "v2:3cc59bab79c434d429e0b0fe13c04cd9cd02a76ffcf521874de863b7d01493b0",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Busz06.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "CalhEtal01",
+   "fingerprint": "v2:2a85652f5c5798a3e5babfa94a32d33f2d67b7a7f2989bc20329137f90e620eb",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "CalhEtal01.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "placeholder pagination (proof)"
+   ]
+  },
+  {
+   "key": "CaoWors99",
+   "fingerprint": "v2:1742360d7ae1f61c6d0d8ef7ea07fd5e196d0a8ba19481d7b2ee9fe2d010d7c8",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "CaoWors99.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "CarlEtal05",
+   "fingerprint": "v2:c1fa287835d3456d161d3f690d46bcf66fa8fe3c83ad7a1982c338be166a1bcc",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "CarlEtal05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "CerEtal18",
+   "fingerprint": "v2:add4d1dd154e41a8907c17c361eb7fad745187d31d5cf4fcb00d2ef6da4ac53f",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "CerEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "arXiv stamp"
+   ]
+  },
+  {
+   "key": "ChanEtal09a",
+   "fingerprint": "v2:9d8e4a4594a5876656fb71adaf84140979385c5a326046c739f4f7b133fb7f6d",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChangEtal08.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "ChanEtal10",
+   "fingerprint": "v2:ea25e152de96a1c9f00d4218797249b936c132e3ed63b303d2df7101f1f2fa77",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChanEtal10.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "ChanEtal20",
+   "fingerprint": "v2:bcf23242b32fa5d242819f486a2361ee6343edaa172008e569a79b1fbcd61439",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChanEtal21b.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "ChanEtal21a",
+   "fingerprint": "v2:a02f79c888c3e9ee45f1a2d6e80b9ed0394a1ac3f89ce0bb43c27d27b11f41f7",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChanEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "preprint server",
+    "preprint wording"
+   ]
+  },
+  {
+   "key": "ChanEtal21b",
+   "fingerprint": "v2:0e609e12740b3a02e54a0d8c3d8d509d68b56cbece0d8a1ecd675d1f39f49352",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChanEtal21b.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "ChenEtal15a",
+   "fingerprint": "v2:9304f7265bee15be77ef6bd875d2b7e2f73744fefa76e88a094a61e63867833d",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChenEtal15.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "ChenEtal17",
+   "fingerprint": "v2:37b9bbaacdd633204739be5296bb1508ebf827b34e5146389e17e0e38a7ada85",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChenEtal16.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "online-first version"
+   ]
+  },
+  {
+   "key": "ChenEtal20",
+   "fingerprint": "v2:8339aa98c9522f33da4f04282bfc07beab4aed5de456d3d356e0af9ab02c642d",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChenEtal20.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "preprint server",
+    "preprint wording"
+   ]
+  },
+  {
+   "key": "ChenEtal21",
+   "fingerprint": "v2:bcc8b8bd3d637e61973d8858262334a7dae07573b8ff7d3ef24ecc65f9db19ae",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChenEtal20.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "preprint server",
+    "preprint wording"
+   ]
+  },
+  {
+   "key": "CollColl00",
+   "fingerprint": "v2:c52df1815e7625d7d640cf9842d67261ad32cec4d8820c7b8239198533e7c7ac",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "CollColl00.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "CollRees97",
+   "fingerprint": "v2:23ab583841dc8c73c2cf8eb308779aec9f0c6bc903d798e1571ada3c597d29fc",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "CollRees97.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Colt83",
+   "fingerprint": "v2:a8d688105a3d78a185f1104f76287f472c49a60c748b71a596df42ed62775693",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Foug08.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "CombEtal19",
+   "fingerprint": "v2:6406c60251a10dbfaac38f03a6f4216a036df861c729a8daba1524624c05887b",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "CombEtal19.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "CordEtal02",
+   "fingerprint": "v2:ceadc161db0ad2b88facd09063583cfc57e982ebe9b02c09a4aab54bda2995db",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "CordEtal02.PDF",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Corn62",
+   "fingerprint": "v2:a36d9ad131dc243cb78a9fa0e37f9050065161057798facb6bc4c817f69d1669",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Corn62.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "CraiJenn92",
+   "fingerprint": "v2:d3f6fc487660ca37536931585f9ea2154a017c84212f491ed29573cc4bcbc1d5",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AbboEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "DalgCox00",
+   "fingerprint": "v2:0953dc161a767200b41a1184530f200a87c19d31a12c78fa512cb8ed67662e33",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Bowe81.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted",
+    "pages": "contradicted"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "chapter",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "DeliEtal00",
+   "fingerprint": "v2:212a8bbebc842851f1e39b61d4ea46b12c6edde9de3f63608d8f02a2e29b0681",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SuthEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "DianEtal07",
+   "fingerprint": "v2:fcd2afeda4317b57e677b3d1872528d78d4ef8b6b1ab72ae97aca4a688cb99c7",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "DianEtal07.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "contradicted",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "DuchEtal11",
+   "fingerprint": "v2:e9443fa7c1b1803806ac13faf2dcaeb025989d789c66123d94e453cb364031a4",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "DuchEtal10.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "EfroTibs93",
+   "fingerprint": "v2:3cbbeb140bc175d4949c8b00a060bbc05286498f7d52271a0267b7259effff97",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HastEtal13.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "EichEtal99",
+   "fingerprint": "v2:c20736d010d37828a6a7e07b42c4a687dd17f040a194c869e60c0f05bc3f7f12",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "EichEtal99.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "EkstEtal07",
+   "fingerprint": "v2:929387070f7c62070640e582a5a583561b7a8a0ce46031a261ab0b1832ec15c0",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "EkstromEtal07.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "contradicted",
+    "number": "absent",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "EkstWatr14",
+   "fingerprint": "v2:da4674632cd5c883155193b0a2b58f52d79fe84ef7fdcf7b7a5f40bf201b5713",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "EkstWatr14.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Este76",
+   "fingerprint": "v2:c61279a97b9f44df441d89f1ec114a9f9acd6a1f15b1bd2a8c538fbf7471918d",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AbboEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "chapter"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "EstrRodr05",
+   "fingerprint": "v2:8ea69b6a20337d0bb1df6b0669eb8a45261b76c47d0a9e86aa0d8bdf79271f6e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "EstrRodr05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Fish22",
+   "fingerprint": "v2:9490b8c25f391ffe7a9d52fc9b3a1ebd225b73155de8650009995a6ebcb7323e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Fish21.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Fish93",
+   "fingerprint": "v2:542341545df096e03e9c241479d8dde46f7d696bb125a6cfe2b5e626d639ea5b",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Fish96.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Free77",
+   "fingerprint": "v2:24a42b2011873c764418e957f20fefb87cb1f2f46b39818047ffe020d88e9c76",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Free77.pdf",
+   "pass": true,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "FritCarl80",
+   "fingerprint": "v2:9bc25e314dd66eb826acde2ea3fb926d166907793a15811a8ca2e3e87fff53b0",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "FritCarl80.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "GagnEtal20",
+   "fingerprint": "v2:b4162c3afaa8a01abe1665f18b4197bd66f6d91d93480ef7e47aab2876d2ae48",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "GagnEtal20.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "GautEtal18",
+   "fingerprint": "v2:209b0a327b78c0ef4dea6320bc18f2d5dff312079e7e6c68e02b80ed64b29a8f",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "GautEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "GeisEtal08",
+   "fingerprint": "v2:52eeaca7ae587802312750955aa6e7d4d2e73792d025a46a15fc69ae6bf28d72",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "GeisEtal08.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "GerfWils96",
+   "fingerprint": "v2:476af08415cb9b37f03f513d3bc926108b04daaa11aeebe96210981246559aaa",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HireEtal13.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "GoddBadd75",
+   "fingerprint": "v2:99ff150cad9bc21909aaa6922ee30eaa67ae67f0b92dce78f8284d8ec46a1619",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "GoddBadd75.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "year": "absent",
+    "volume": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "GrabEtal06",
+   "fingerprint": "v2:cd9fb91f078650354937a5cd416f21be7a17be5b44478b8929f0a66006b3c3a3",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "GrabEtal06.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "HanEtal12",
+   "fingerprint": "v2:07098128a2f5bef308b86633fb8c92263a8ef19376c80d99830432ac7ffb74a0",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HanEtal10.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Hara96",
+   "fingerprint": "v2:d865d4a964d6eb5e9d3b6f1a73472f9a37cd80d1d4a97852a82e28da2ce8538e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "CoheEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "HartEtal03",
+   "fingerprint": "v2:c701802692b17bfb3b33977d870b97d3e06fd83797ac8d14d89bdd6e38fd124c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HartEtal03.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Hash73",
+   "fingerprint": "v2:319fcba1b91a12490c45b177cbe2eab6d4e8559e2baa18fa7b6d2a586f6f8fa6",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HowaKaha99.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "contradicted",
+    "number": "contradicted",
+    "year": "contradicted",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "HastEtal01",
+   "fingerprint": "v2:f89fd6a8f3afd04a65801efc6569252859c16f19e921c3bf6d91980787912cbd",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Blei Lecture Notes/2010-10-04.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "HawkBlak05",
+   "fingerprint": "v2:8bdd2c1a31745f9b14b5eb5df5568035cbacc2f0dad02ca28bd17d196cc2789d",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HambEtal14.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "publisher"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Heal14",
+   "fingerprint": "v2:ad6ccc70d969d07de1f53db9e32016daca7a25a4be06250e2a953cc48e391aff",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Ala-Laurila_etal_07.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "HeusEtal16",
+   "fingerprint": "v2:6c50624b443d4c134590e846d348bff8a122a8787fa3a559611f9ef59a5f3d4d",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HeusEtal16.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "online-first version"
+   ]
+  },
+  {
+   "key": "HeusEtal18a",
+   "fingerprint": "v2:a9c332a4fbf616fef1543d39f123a7365893d71d34e99352d656cdd71dbab675",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HeusEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "HintEtal12",
+   "fingerprint": "v2:5eb6fe7aa3e0c78ea9a9d4d56096e9cd064e09f424f4182955bc8c1dea8fe917",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HintEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "HirsAly22",
+   "fingerprint": "v2:194a29a5915fab7ca1ff06f6d8cfa8756168c31ed9db76b92a641ba18612b88d",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HirsAly22.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "HoffEtal13",
+   "fingerprint": "v2:e9a1b44acfda6ed1af827e7520ad2e723e04ac5fce0e9e6da02ba444fe4f2c27",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Blei11b.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "HoneEtal12a",
+   "fingerprint": "v2:b311ba6a78c3ef1cd10f6cd12bebaa98b31d4a8031d7cf62f0bc118757e2171f",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HoneEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Hote53",
+   "fingerprint": "v2:55f3b666f86bff6c74b0f30ca03ffe001f5099bd16905ab065aee0698f691a57",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Hote53.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "HowaEtal14",
+   "fingerprint": "v2:c094ab67ecf810cb45914b6636ed650670859821462e995f4c61120c416d07b0",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HowaEtal12b.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "HubeWies62",
+   "fingerprint": "v2:de879b932dc9e19422163c57a01676a0b3dc83d13c23776f5232b85d03a20d70",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HubeWeis62.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "HuggEtal06",
+   "fingerprint": "v2:5d1446e17f078c418f87ebbc2d6516fee1ac03f5633a4c4452dd04d94c765823",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HuggEtal06.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "organization",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Huth13",
+   "fingerprint": "v2:2e0059f724ef6aa679766851d7ab58c4320945521f7d07c8e93ba56301db0679",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MannEtal13a.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "publisher"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "IyyeEtal15",
+   "fingerprint": "v2:8570335fe1cc4aca8fecf405e1c71642cc09a3c5e2dccd26b6778fa6fc9fa190",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "IyyeEtal15.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "year": "absent"
+   },
+   "unchecked": [
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "JacoEtal10b",
+   "fingerprint": "v2:35786bce02be1aa7f0929370bba821abc624a565893b3819ecdc822b8125d9a0",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "JacoEtal10b.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "JahaEtal13",
+   "fingerprint": "v2:ea06e211777ea18f3f90a89e1e5139ad1a51c47df4d6b8f45b1fda88026af993",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "JahaEtal13.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Jame90",
+   "fingerprint": "v2:53435f021cb619879cad35d18e0a9152cd7ce14376d7f1a0ea1904cc57b76b45",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HowaEich13.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "JankOMar15",
+   "fingerprint": "v2:1ef393e14f5b0f2d16ab55a983c8da194df0ae0524ab39ec011043558f8c7512",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "JankOMar15.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "JezeEtal11",
+   "fingerprint": "v2:719a8272b9c73a3cf59cdd1b0e9374e33f020df17f254c129fab097407c931d9",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "JezeEtal11.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "contradicted",
+    "number": "absent",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "JordEtal99",
+   "fingerprint": "v2:17d144ebf9858e01f62e83804a3492f4a0561c0b27a91ddc58b1fbd78ffb8d4a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "JordEtal98.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Kaha09",
+   "fingerprint": "v2:f57428b6bca790dc1e9cd56a9afba8213897c6c4f2296b3d610dd153dfd1cd5e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Kaha02.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Kaha12",
+   "fingerprint": "v2:89a5b697cb1ba02d7ed1c65a78b9a64c98f30f4c5ad676b5c56655f8435202d1",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Kaha12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Kaha17",
+   "fingerprint": "v2:27b53ba537ad01c9c1494c68825d66685be2d0b3564f9944130e1ac7a3d77c67",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AbboEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "KahaJaco00",
+   "fingerprint": "v2:30fef6f8eda4629464c77925fc7ff368c255690b7b8bf767a9a7a12a08bfa664",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "KahaJaco00.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "KahaMill10",
+   "fingerprint": "v2:826c6e036b0eb772e12b936d8481dd5dac8423a35f21078592cbde3af4406ee0",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HealUitv19.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "KahaMill13",
+   "fingerprint": "v2:2f87bb94a838be0310040a471ab493e96b440cda9d1791dbb0407ffdd58cf651",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "KahaMill10.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "KaneHash95",
+   "fingerprint": "v2:3486a8d7bd468c1289523df54dfc8c6263a067c434da70133e3a1921fb9bfd4e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Ala-Laurila_etal_07.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "KassRaft95",
+   "fingerprint": "v2:deab19e4443c77342a63d6905dd55c4cb82bac6aa20bfb5c02c03ea5fd22da08",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BealGhah02.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "KellEtal07a",
+   "fingerprint": "v2:deeb28c9bb8f11738f3fe7c00e8a308eb295303003d1476f65da4b951595c36a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AvraamidesM2007.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "KiEtal16",
+   "fingerprint": "v2:26ecad7cc87c8be507c1205b6da37c8d98a77eda172d1a1abf500b15f33e723f",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "KiEtal16.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "KiroEtal15",
+   "fingerprint": "v2:247c3810e3c17f9d4568b7b02fd10f8aa19af6d7ada372e0be7308f2189699ae",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "KiroEtal15.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "absent",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "arXiv stamp"
+   ]
+  },
+  {
+   "key": "Klim99",
+   "fingerprint": "v2:4d31fdeb913430b52fe25420d4410f3c4724ce3d348f8534264b41d53ce18668",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Klimesch1999.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "KoriGold94",
+   "fingerprint": "v2:047d348696dd4c1a00adde4340e6209f853a40e1fa11d880368d310835a9e68e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "KoriGold94.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "KragEtal17",
+   "fingerprint": "v2:2960564e1e1e7a0e0d67d111c7dcd29bdc54911a7d39f783ff105b5367a979f4",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "KragEtal17.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "KrieEtal08b",
+   "fingerprint": "v2:8b97c55cc3f5d26277e6b84810ba459512ac73010ccc3ba92f02ae5e32ea7da2",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "KrieEtal08.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "KrzyEtal09",
+   "fingerprint": "v2:e095f2863e742f5cd21983074269af05a110585419d02933950e4a8d70f70319",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "KrzyEtal09.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "KuneEtal05",
+   "fingerprint": "v2:cd1d8ba2fdba8f0c9270f600b73ff6e4bb932e937a1f9d7520c883327fd3d6c6",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "KunecEtal05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "LegaEtal11b",
+   "fingerprint": "v2:6136b6d77665c152de0095fd4954e6d6b2e9f422c0363a180bd47ad73e87b263",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "LegaEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "contradicted",
+    "number": "absent",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Lin09",
+   "fingerprint": "v2:c708e7c23ad5224f18dce5170c3d658e46eb867e60eb08a7f53034708dbc47df",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Lin09.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "contradicted",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "LindEtal19",
+   "fingerprint": "v2:fe8bc5b6f3402f0b4635a50cebac0048d6845d47395b90634817db8a859c1ca3",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "LindEtal19.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "LohnEtal10",
+   "fingerprint": "v2:6b27ac5545d188fb7f5a19dcf939b76eb2fcc74bd1694ffdb2118cb0a3541662",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "LohnEtal15.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "LohnEtal18",
+   "fingerprint": "v2:6f8feaa06960930c6b14d4faef93fbbf93d9c1569371cf72f2f0eab2b8cd368d",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "LohnEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "contradicted",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Luce86",
+   "fingerprint": "v2:4adb732f71cf2a8d18653bbb6f82578005f98bd024e9f6b7c06ddf4135c8a1ac",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AbboEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "LyonEtal06",
+   "fingerprint": "v2:1a8d2acab1f8749f0b56aee4c7301e58905a00007913f2f3aa4ef0905c3cd31e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "LyonEtal06.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "MacL98",
+   "fingerprint": "v2:cfe0a9d780c827648f0574b65af19e2e20b7bff069c49de19d0dbecac987d26e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AndeGree01.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "MackEtal20",
+   "fingerprint": "v2:88442534d20714ee72c86879aad12c9c2aa7f0459787ecf57d708199656f3017",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MackEtal20.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "MaguEtal00",
+   "fingerprint": "v2:180f41878d945ff7cbb03ed9a1674ff188efd93fa59465913705d86bb1b7e1c4",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MaguEtal99.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "MairEtal09a",
+   "fingerprint": "v2:920f4bb2571da5cf0cd3b751efc08e0a88877dbbd9f2d49cf7819005b4640faa",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MairEtal09a.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "MairEtal09b",
+   "fingerprint": "v2:73c84e0ce5241c8b8c7f5969e090511cf691610fb9907ee9a3f9212758764c3d",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MairEtal09b.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "MankEtal12",
+   "fingerprint": "v2:ec57e2e19793e935d2da29b4ba31a3312fc2aa3f5060ecadfb7ed099290fc4dd",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MankEtal12.pdf",
+   "pass": true,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Mann21d",
+   "fingerprint": "v2:2bfddc3504f42565c627492c6e24c7cd955d4664768a80603c73516915826309",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "FitzMann22.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "howpublished"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Mann23",
+   "fingerprint": "v2:789c264571c6a84add65a6594ea4b0de16cee364f264e43df08b7755fa5df69c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Mann23.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "force",
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": [
+    "proof / in press"
+   ]
+  },
+  {
+   "key": "Mann24",
+   "fingerprint": "v2:0345f7081bd65a74f24bf07c70a9d759f028738a009c94bcb0b0df6220a8f94a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BornNorm17.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "MannEtal07",
+   "fingerprint": "v2:5b28eda90b8a8567525479b69d8baf735edd4d7479030d78647ff720c8178546",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MannEtal07.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "MannEtal15",
+   "fingerprint": "v2:7e47772d46ad7bcc0cba4b59c5af8c1e079f00880d55b812a256ef793f7dd292",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MannEtal14d.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "McKeBuzs16",
+   "fingerprint": "v2:f91151ec32b8a82378d50c4ce38953cbbf1916280d156b1de7679b7ebba38316",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "McKeBuzs16.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "chapter"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "MeyeEtal18",
+   "fingerprint": "v2:2138fc137bbb9d3db98130a7aa2b852662b8e5e2e4583c530b986ff086522490",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MeyeEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "MikoEtal13b",
+   "fingerprint": "v2:c80d217fabbaf172d087cf66830a21a9eb9e6cff156fac5e98dc20019c49c57a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MikoEtal13b.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "absent",
+    "year": "absent",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Mill10",
+   "fingerprint": "v2:4e0088220ffce0a770ee42c9c0e0ab9d73af1e0f15d9d16163ea2dfe939fab07",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Mill12.pdf",
+   "pass": true,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "MillEtal12a",
+   "fingerprint": "v2:0836248ed91d6a8db2d8b8441ffdc3e85e99bb4b378d3336da4aca3bcb98fb37",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MillEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "MilnWitt08",
+   "fingerprint": "v2:b6e375f0c6e66edbd198a19dc8f7439cf11e3b69d07c6e811b7602c22d0d25e2",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MilnWitt08.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "MnihHint09",
+   "fingerprint": "v2:fb29525e22b800ea762c600f56fb132ce6b68b42e1e578dfec6e95a5e41c3a90",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MnihHint09.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "MorrEtal14",
+   "fingerprint": "v2:08177c2423294d77d1c57115d918ecdcb034904e94842120f3bdb5ce5984893c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MorrEtal14.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "MortEtal13",
+   "fingerprint": "v2:24b55035f7a930675b23533dcf3b50f16e4dcf8fc25098bc009201e5c2313e49",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MortEtal11.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Murd68",
+   "fingerprint": "v2:4f5e5c22ed5cce154408530df2539d7a52d364b9739afe3b75a5ed7893032ca2",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Murd68.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Murd72",
+   "fingerprint": "v2:c178ded18100cb1c594ea011876f4f742e621ca7c3de363c31505132fb509e24",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AartEtal84.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Murd74",
+   "fingerprint": "v2:a7bf8c4a2b917e6a99de2c588ad5fa58387c0d856cf827fb09be42eb65f263fd",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Kaha12_SAM_model_excerpt.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "NeldWedd72",
+   "fingerprint": "v2:0e32f24a1535029b72ccf14d40bd7cf778b8877c32c458e90607954f57b3479e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Blei Lecture Notes/2010-11-10.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Newm08",
+   "fingerprint": "v2:177cfe2fd610ac7aada37d1f4d5250e5ff797170346865b5e0d2aab29090f7b0",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Newm08.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "NishEtal11",
+   "fingerprint": "v2:1da9b9a5b457929ddfccc00c43f95063c9c2267a0afc5cd38fad7aa398307331",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "NishEtal11.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Niv21",
+   "fingerprint": "v2:f113e96f5d80f774fec927146669930059c023b641abbd7e6e6d7e04324872dc",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Niv20.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "NormEtal08",
+   "fingerprint": "v2:de9fac5d5371923dddd8a349aa773b9ede01113ebd5dc4b26acacd069425a397",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "FolkEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "NussEtal18",
+   "fingerprint": "v2:4043ab7c77847fe4227222a6e1c94dcefbc386a296b72b9f55de66e9acd966a2",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "NussEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "OKeeNade78",
+   "fingerprint": "v2:9b5c180fd99cdd750fada693bc5130ad04e62c006d89302969fa0e0d8334fdbc",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "CollEtal15.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "OwenEtal20",
+   "fingerprint": "v2:92b9ef6c215041e27314fe821816c56ac2f4d943a5e6c45b19c67e432621f640",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "OwenEtal20.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "contradicted",
+    "number": "contradicted",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "placeholder pagination (proof)"
+   ]
+  },
+  {
+   "key": "OwenEtal21",
+   "fingerprint": "v2:f2df170e3f69cd09a5301580c2682de47e64207574e8fe9091dc6e139d5dcf50",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "OwenEtal21.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "PaolEtal10",
+   "fingerprint": "v2:a34d6cada388a29d7e344f9022aaecfcbe8d6a8571e0d9907e7a03536b72b1eb",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "PaolEtal10.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "ParkEtal13",
+   "fingerprint": "v2:bb6e9c3ae08a4826fb4059f9c811eb492346fe07440d0ccbe507215c696d9ffd",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ParkEtal13.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "absent",
+    "volume": "supported",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "ParkPill12",
+   "fingerprint": "v2:d4f8f7f19988e4f4036bd2d44bf17f3c06ad427992cf891c1ef8f54d7bda1cb5",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ParkPill.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "PashEtal08",
+   "fingerprint": "v2:b782b14325b6c1e396274fdc5ca812eccaae277cdd901a4ed98622d9441f2ff5",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "PashEtal08.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "absent",
+    "volume": "supported",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Pavl27",
+   "fingerprint": "v2:2053eb8628e64e1c86b03e2c3a72ac0ac16d041972cf0c2f0d8b7edf59282b47",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "EichEtal99.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "publisher"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Pear01",
+   "fingerprint": "v2:ac282cfd12f8a37ec80e5a2563969b24915d959b0570c883ff60e56477614653",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Pear01.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "PennEtal14",
+   "fingerprint": "v2:ae6b767139d2c7ef85fb63bfdc1693acf5bedfb300eb58822101f75df2ff0d32",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "PennEtal14.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "year": "absent"
+   },
+   "unchecked": [
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "PlauMcCl10",
+   "fingerprint": "v2:235466e07e404776a8190b16d3391997003fff8060782e5c779522ff86f6c83c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "PlauMcCl10.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Prof06",
+   "fingerprint": "v2:aca32bcc684d5fe65f53123093f04c86a976633e968c0207ac293fc9631a86e2",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "roodaWilliamsNature99.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "contradicted",
+    "number": "absent",
+    "year": "contradicted",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "RaaiShif81a",
+   "fingerprint": "v2:90f93e6ec7f4b506a8c9d96f8961a4f8033fd6c448f68ae403343a1f09052958",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HealUitv19.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "RakiEtal98",
+   "fingerprint": "v2:bfa886fdf0b4ffd4b663b83ec33ba462045e694db478ad2a3f2b719b35297eeb",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "RakiEtal98.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Rang19",
+   "fingerprint": "v2:550f2950f031dca7f91502fee2221867df441b14eddeb88acd351071c3775270",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Rang18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "RangEtal14",
+   "fingerprint": "v2:be3a213185ab52e6827b324d717fc4acee79bff6fcac9a38d81019cdcbaa34ee",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "KucuEtal16.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Rao82",
+   "fingerprint": "v2:92fadf373f9d03e752788f95e51ba5a1ee902cbd8512ed153bc329a4dd2fa52c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Rao82.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Rapc19",
+   "fingerprint": "v2:33e4ccb15ba6ffe42a8048c2c83f12717861a28ae902924414adb39c9ff4856c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ConnEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "arXiv stamp"
+   ]
+  },
+  {
+   "key": "RatcMurd76",
+   "fingerprint": "v2:c87d83196abc22efa9858f6f4d439cce7308d2d47aad08ac07a1d4b1b4d4f673",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MonaEtal07.pdf",
+   "pass": false,
+   "fields": {
+    "title": "contradicted",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "RaveEtal98",
+   "fingerprint": "v2:93311552b360a6a5a484fe44ae594e730d1d8e37c44102e5bdd7451e412b783a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ShinEtal19.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "RegeEtal18",
+   "fingerprint": "v2:41f43c3ba528e81330da1dafc14dcb00d38e5fa2af39eb685a9ea73a5f0b399f",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "RegeEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "RichEtal14b",
+   "fingerprint": "v2:b59ec07bb6039c358aca8ae63b0998a0acef853cdd73a73845de4d0456d368f7",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "RichEtal14b.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "RichEtal99",
+   "fingerprint": "v2:bf3b3933f6f3c9cfe4058256ce6541f308837997ad986a6b4b5834302d9eac8c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "RichEtal99.pdf",
+   "pass": true,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "RigoEtal13",
+   "fingerprint": "v2:89cd4d748ed124a5886c7687346369b18f32c083371346eac3ca67b46288531a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "RigoEtal13.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Ripl81",
+   "fingerprint": "v2:00ee62a0fdcd39f276e0c79b09bdff2bb41d48d7465feec45720b70dc32bcf33",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Blei Lecture Notes/Jordan2004.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "publisher"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Rock57",
+   "fingerprint": "v2:b81b25bceea77c2782dd6d82c89a43b5be141270faabc536c86151b59701838f",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Rock57.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "SahaDela05",
+   "fingerprint": "v2:0ef0499790b7f425f4de914e4b28a58ed271a0a2b9c3d1569cfd62c0e4297449",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SahaDela05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "SahaEtal13",
+   "fingerprint": "v2:f617ee0d86d48de10e14e19a0a2c9a92186a03c6d1aeb26a8bb9532698b087da",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SahaEtal13.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Sawy95",
+   "fingerprint": "v2:c82f991dd57a3e5b828225088d6993358f52d148975e4cc4ebd4f2af06f76604",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "OwenEtal20.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "publisher"
+   ],
+   "version_flags": [
+    "placeholder pagination (proof)"
+   ]
+  },
+  {
+   "key": "ScanEtal21",
+   "fingerprint": "v2:371969046fa6ee2265aeef2ecb9d77505fdd35c3cd90bcac43f91acf57dfc3a9",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ScanEtal20.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "preprint server",
+    "preprint wording"
+   ]
+  },
+  {
+   "key": "SchaEtal18",
+   "fingerprint": "v2:b35e67db6ef3a250bd0760b42a367534c448bab26124a4e07a7d58e745fcf8ce",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SchaEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "SchaSing00",
+   "fingerprint": "v2:ae3b3db6ce639e4b8ddc32793268e525db216df58fa66c486226b66530af8196",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "JEREMY_MANNING_SPECIFIC_AIMS.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "SchaTurk15",
+   "fingerprint": "v2:c91791a38e9b3addc4687951bcfa95097df42b587f7eef0f216d59e8a8a82e6e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Bish06.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "SchnEtal06",
+   "fingerprint": "v2:d19997ba9b4e9511b3453a9629967ebf8c0c4190297d63f608eb4a217fa428e8",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SchneidmanEtal2006.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "SeliKaha09",
+   "fingerprint": "v2:902bb13de59c431b8d0c8cd896a88976117dd898a067d67b93c39f9ab50375d0",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SeligKaha09.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "absent",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "SerrEtal03",
+   "fingerprint": "v2:a379cc8c3abd4a126d6c24b23ca3057ffb6d759ce644b46b4246b4644bfbf457",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SerrEtal03.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Shan48",
+   "fingerprint": "v2:10c7bba69c6b3cf500b77dff3e34ec133ea02012a89ac2541d127880996e27c8",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Shannon48.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "reprint"
+   ]
+  },
+  {
+   "key": "ShapOlto95",
+   "fingerprint": "v2:21e19ceec87cc34569dbbd085ee573dd6cc910e92a7f2aba148148d2b83e6524",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ArzyEtal09.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "chapter"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Shif70b",
+   "fingerprint": "v2:8a175b01669ed276ffc7a17a13e0ac8274a777b132b2324049c4743078729c0e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AbboEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "SiapEtal00",
+   "fingerprint": "v2:3ff1dc1e2b19f63cae86ad625d98333952af3ec53350b9033c79b46a529b4a9f",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SiapasEtal05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "contradicted",
+    "year": "contradicted",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "SimoEtal16",
+   "fingerprint": "v2:93b48a97d20618ce5448963666109d7bd5c8f4fffb049c9c289f9badcced32e7",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SimoEtal16.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Smit88",
+   "fingerprint": "v2:f41d48d3fa91efaaf1ce03c5389911a1d5cc81c98230eb3fef6dbfe8a5302efd",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SahaKell02.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted",
+    "pages": "contradicted"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "SochEtal09",
+   "fingerprint": "v2:e0189b48e915cd5a666a16161c7eb3768148b76c515ab98ec6efcf3027acbd0d",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SochEtal09.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "SoloEtal18",
+   "fingerprint": "v2:82c90e60487a3789641d74848faaaf4b0772f3aa02171c501987af824e1762ee",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SoloEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "SquiEtal04a",
+   "fingerprint": "v2:1044d479874273a714bc7a4ae5201fff5f0abc82212278ed8cbab294bb441e84",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Cognitive_Neurosciences_4th_edition.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Stan13",
+   "fingerprint": "v2:67678253e123354f12c74985fae394bedad1e426e5442402e71a0f4c903893b6",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "stan-reference-2.1.0.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Stey01",
+   "fingerprint": "v2:26b72a6ba3fb54ae32b7ea6e79410ff325520a8fb1ad9e84e2d1a86452a1915b",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Abdi09.pdf",
+   "pass": false,
+   "fields": {
+    "title": "contradicted",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "chapter",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "SteyEtal04",
+   "fingerprint": "v2:2626c8ed7e6da4e31d5ef706c70d2b7e764517f5567612505ad8d206ce0baa04",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SteyEtal00.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "SwalEtal09",
+   "fingerprint": "v2:f91357abb9bbee2b60343c77110f3bdf3e9814ba2521ee1c35c77215b1305a5f",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SwalEtal09.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "author manuscript"
+   ]
+  },
+  {
+   "key": "SzpuTulv11",
+   "fingerprint": "v2:4f47b91cd9bebe86d97f3cdeba45c1dfc4d4e69ec7f61d258b20500f7bc6aa3a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SzpuTulv11.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "ThomEtal18",
+   "fingerprint": "v2:0b8be4c2ea7bf04e92c894d79ab5d82e4df6e1d9594fb13df674b09ca23abd7e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ThomEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "TippBish99",
+   "fingerprint": "v2:b98217ef551f390ae5761d8be72f486e8eb62362b5572fe70d35e751693fd04b",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "TippBish99.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Tulv02b",
+   "fingerprint": "v2:8023c82ad7d7a73d36a891075efc77ca46a6bf8912f69a975bce7626e46b68df",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Tulv02a.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Tulv72",
+   "fingerprint": "v2:d14c696f7b458b27c6e44b16528a1063436d97470148a6bae8fdd18d597b5218",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Tulv72.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Tulv83",
+   "fingerprint": "v2:fb9f991fde0654dffb9cd1731c42724ae885ff07da4fad1cee72a3b950351625",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Tulv83.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "TulvDona72",
+   "fingerprint": "v2:63cca71f941873f57bf9460e50418b19ae90bb0cba664ba01f6aca797d3f7185",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HealUitv19.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Turi50",
+   "fingerprint": "v2:8c4874c6a1c5940512abc0de888cd8edfec9c33aa1d6650dbda877053c63129a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Turi50.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "ValdEtal05",
+   "fingerprint": "v2:b34e88a138d74cf42f8b6d15e1367f9c36e766c30650d46a3546eb6760e36723",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ValdEtal05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Vapn95",
+   "fingerprint": "v2:af8065347248506c2f78f40c66b2212917d58b8f462043fb9f732501bbd9f39b",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Bish06.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "VaswEtal17",
+   "fingerprint": "v2:ba4404983fab2700981cbfbf698d6f962ac2ea109b8fb4e66ea9e02210bbf019",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ViswEtal17.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "booktitle"
+   ],
+   "version_flags": [
+    "arXiv stamp"
+   ]
+  },
+  {
+   "key": "ViemWake91",
+   "fingerprint": "v2:b25a292fb1da22fc5635fb59d749cb9d9ab564a604243fa29a2e89dc02398aeb",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ViemWake91.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "absent",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "ViveEtal10",
+   "fingerprint": "v2:70470cf55aded74478b863e2abd617f262e21e7eccb48f45feea2882096b1459",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ViveEtal10a.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "WangEtal13",
+   "fingerprint": "v2:f39f96d3c0a782e73ccb961752693e8d49da49256b685a96ebdec55e784a4a7f",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "WangEtal13.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Warr19",
+   "fingerprint": "v2:e7fb976b420fb0b766c89ea0600a4b535ebe83640054bc8d4303e8493e7e2a79",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "MathEtal13.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "WatrEtal13b",
+   "fingerprint": "v2:ab25b6e478ca6e780370017aaf6c21fcee717011baaac6467b6c3b64a6ee6369",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "WatrEtal13.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "WaugNorm65",
+   "fingerprint": "v2:e33ea5231d10e14c8c33a45c90cc275dc098b2866c68dfcffb036946662c906a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "BroaEngl11.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "contradicted",
+    "year": "contradicted",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Wech08",
+   "fingerprint": "v2:77201bd0853213de00469771e9765708068cabb25581486394db3397d89cd191",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "HoraEtal16.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Wech45",
+   "fingerprint": "v2:961bb375669fd5cd2a018c7908a845e2d5be2d6214607c5f999ecf3815cb3446",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "SuthEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "WehnSrin81",
+   "fingerprint": "v2:64641ab3cf4b58d1489bcda021a88cf5ccb3e833aa5845aa903e50ba0a7800cf",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "WehnSrin81.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "WeidEtal19",
+   "fingerprint": "v2:ec7ae537952cef56a166e92a04e95d868c3098e83441a3abe83842d39c431dbc",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "WeidEtal18.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": [
+    "proof / in press"
+   ]
+  },
+  {
+   "key": "Weiz66",
+   "fingerprint": "v2:93114538f9e658316c0f6051ed9f18b2e87cb19210e957647f593e35ec8d784c",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Weiz66.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "WelcEtal89",
+   "fingerprint": "v2:5712a5a24dcf49968dd5b24c878e86856a8519a0a77f9594dec3faed5b0dacf5",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "WelcEtal89.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "WingKaha02",
+   "fingerprint": "v2:42bbc3c52fb5849e2cc690d980b66858356800a181120f4cbad85f18cdf173b5",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "WingKaha02.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Wolf98",
+   "fingerprint": "v2:bae4e89f588ccfe16209fd5f73b2dfa2b8e6a30e78a5e359959a0550b97c6ecf",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ChunEtal11.pdf",
+   "pass": false,
+   "fields": {
+    "title": "contradicted",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Wood38",
+   "fingerprint": "v2:8445a2f3100fdaf27f8a0d4617642323cd78877ded2153afa10f3c7377d9a2de",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AvraKell10.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "contradicted"
+   },
+   "unchecked": [
+    "publisher",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "YeoEtal11",
+   "fingerprint": "v2:1cac274b7989fdb69cc8a421ff886efe1b01f2e799197923d71fba6f14f5c428",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "YeoEtal11.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "contradicted",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "YoneEtal05",
+   "fingerprint": "v2:dba6ae1de9b86ccf77d50ec4f97ecba90915b3d86a587556f13afe7581f46279",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "YoneEtal05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "supported",
+    "year": "supported",
+    "pages": "supported"
+   },
+   "unchecked": [
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "Youn68",
+   "fingerprint": "v2:73a74eed3bce0c0096c0e02a421322a7e865d3a20c1d8c9d7a36cb9ff964b34a",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AddiKaha04b.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "ZackEtal00",
+   "fingerprint": "v2:75dfd520643bba59860818fac6be50f9b638ee99b4a6b8cbbbb629b21e0480ff",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "AbboEtal12.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [
+    "publisher",
+    "editor",
+    "booktitle",
+    "address"
+   ],
+   "version_flags": []
+  },
+  {
+   "key": "ZackEtal10",
+   "fingerprint": "v2:a7b9409fd1fa4464235b8febd39722c4d6329e8c0ab366c892103172bcb36926",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ZackEtal10.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "supported",
+    "number": "absent",
+    "year": "supported",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "ZhanEtal23",
+   "fingerprint": "v2:09ddca06a7994cb2693c9bdf087c6f5a5bba23e2d372774d697f8bb58b4cf98e",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ZhanEtal23.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "contradicted"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "ZouEtal06",
+   "fingerprint": "v2:8b9e38fd4d40eb4cd15bdd624de76f07b7406ffa7fd46e61a4f781dc44429a80",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "ArchBach09.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "absent",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "Zyda05",
+   "fingerprint": "v2:cf89c377f265fd90114a0d8deb6aaef8e19bb26b4433db3a2f951f4cf78d98fe",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "Zyda05.pdf",
+   "pass": false,
+   "fields": {
+    "title": "absent",
+    "author": "absent",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  },
+  {
+   "key": "vanOEtal04",
+   "fingerprint": "v2:8f8f16b51b39295345dcca08d77a884c77d6e45d3e47f0bb9ca182543ddb8de1",
+   "snapshot_fingerprint_matches": true,
+   "pdf": "VanOEtal04.pdf",
+   "pass": false,
+   "fields": {
+    "title": "supported",
+    "author": "supported",
+    "journal": "supported",
+    "volume": "absent",
+    "number": "absent",
+    "year": "absent",
+    "pages": "absent"
+   },
+   "unchecked": [],
+   "version_flags": []
+  }
+ ]
+}

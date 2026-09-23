@@ -3,7 +3,7 @@
 from copy import deepcopy
 import re
 
-from auto_review import epmc_record, expanded_pages, reassess, safe_compare
+from auto_review import epmc_record, expanded_pages, reassess, safe_compare, unique_crossref_primaries
 from fulltext_review import assess_fulltext
 from verification import normalize_doi, normalize_publisher, normalized, split_authors, given_name_tokens, given_token_matches, normalize_author_suffix
 
@@ -22,6 +22,8 @@ def pmc_publisher_proposal(entry, previous):
             doi = normalize_doi(source["doi"])
             if fields.get("doi") and normalize_doi(fields["doi"]) != doi:
                 continue
+            # Publisher repairs keep the original rule: any duplicate primary holds
+            # (tests/test_pmc_publisher_corrections.py 'duplicateprimary').
             primaries = [c for c in previous["candidates"] if c.get("source") == "crossref" and c.get("doi") == doi]
             if len(primaries) != 1:
                 continue
@@ -89,7 +91,8 @@ def pmc_coordinate_proposal(entry, previous, *, include_authors=False):
             doi = normalize_doi(source["doi"])
             if fields.get("doi") and normalize_doi(fields["doi"]) != doi:
                 continue
-            primaries = [c for c in previous["candidates"] if c.get("source") == "crossref" and c.get("doi") == doi]
+            # Byte-identical duplicate deposits collapse; differing records stay ambiguous.
+            primaries = unique_crossref_primaries(previous["candidates"], doi)
             if len(primaries) != 1:
                 continue
             primary = primaries[0]
@@ -148,6 +151,105 @@ def pmc_coordinate_proposal(entry, previous, *, include_authors=False):
                                  "fingerprint": entry["fingerprint"], "doi": doi,
                                  "changes": changes, "pubmed_id": med["id"],
                                  "primary": deepcopy(primary), "publisher_source": deepcopy(source)}
+        except (KeyError, ValueError, TypeError, AttributeError, IndexError):
+            continue
+    return next(iter(choices.values())) if len(choices) == 1 else None
+
+
+def pmc_article_number_proposal(entry, previous):
+    """Article-number journals: pages = article number, drop a spurious number.
+
+    Rule A1b (verification/resolution-plan-2026-09-22/plan-doi-conflicts.md),
+    resolver 28. All of the following must hold:
+    1. exactly one DOI-linked JATS front matter whose article number equals the
+       DOI-linked PubMed pageInfo (source_locators coordinates), and one
+       Crossref record for that DOI after collapsing identical copies;
+    2. JATS, PubMed and (when present) Crossref volumes equal the proposed volume;
+    3. the issue is taken only when JATS, PubMed and Crossref agree or are all
+       silent; with all silent, ``number`` is deleted; any other shape is held;
+    4. the current ``pages`` is empty, ``1--N``, a doi.org URL of this same DOI,
+       or already the article number; the current ``number`` is empty, the
+       article number, or the agreed issue (anything else is held for a human);
+    5. title and ordered byline already match JATS and Crossref;
+    6. the full proposal passes JATS front-matter comparison with no issue and
+       reassessment verifies the same DOI.
+    """
+    from source_locators import source_coordinates
+    fields = entry["fields"]
+    if (fields.get("ENTRYTYPE") != "article" or previous.get("status") != "needs_review"
+            or previous.get("external_evidence")):
+        return None
+    sources = {}
+    for source in previous.get("candidates", []):
+        coords = source_coordinates(source)
+        if coords:
+            sources.setdefault(coords[0], []).append((source, coords))
+    choices = {}
+    for doi, found in sources.items():
+        try:
+            if fields.get("doi") and normalize_doi(fields["doi"]) != doi:
+                continue
+            # Repeated retrievals of the same front matter must all state the
+            # same coordinates; each copy is checked again below.
+            if len({coords for _, coords in found}) != 1:
+                continue
+            source, (_, volume, page) = found[0]
+            if not re.fullmatch(r"[a-z]{0,3}\d+", page):
+                continue  # an article number, not a page range
+            primaries = unique_crossref_primaries(previous["candidates"], doi)
+            if len(primaries) != 1:
+                continue
+            primary = primaries[0]
+            record = primary["record"]
+            med = source["medline_record"]
+            response = {"body": source["raw_xml"], "url": source["url"],
+                        "retrieved_at": source["retrieved_at"], "document_sha256": source.get("xml_sha256")}
+            front = assess_fulltext(fields, primary, med, response)
+            jats = front["record"]
+            if record.get("volume") and normalized(str(record["volume"])) != volume:
+                continue
+            issues = {str(v) for v in (jats.get("issue"), med.get("journalInfo", {}).get("issue"),
+                                       record.get("issue")) if v}
+            if len(issues) > 1:
+                continue
+            if issues and not (jats.get("issue") and med.get("journalInfo", {}).get("issue")):
+                continue  # one source's issue alone does not decide the number
+            issue = next(iter(issues)) if issues else None
+            pages = fields.get("pages")
+            if pages:
+                url = re.fullmatch(r"(?:https?://)?(?:dx\.)?doi\.org/(.+)", pages.strip())
+                span = re.fullmatch(r"1\s*-+\s*(\d+)", pages.strip())
+                if not (span or pages.strip() == page
+                        or (url and normalize_doi(url[1]) == doi)):
+                    continue
+            number = fields.get("number")
+            if number and number not in {page, issue}:
+                continue
+            if not all(front["evidence"].get(f, {}).get("match") for f in ("title", "author")):
+                continue
+            if not safe_compare(fields, record)[0].get("title", {}).get("match"):
+                continue
+            proposed = dict(fields, volume=volume, pages=page)
+            if issue:
+                proposed["number"] = issue
+            else:
+                proposed.pop("number", None)
+            if proposed == fields:
+                continue
+            if any(assess_fulltext(proposed, primary, copy["medline_record"],
+                                   {"body": copy["raw_xml"], "url": copy["url"], "retrieved_at": copy["retrieved_at"],
+                                    "document_sha256": copy.get("xml_sha256")})["issues"]
+                   for copy, _ in found):
+                continue
+            checked = reassess(dict(entry, fields=proposed), previous)
+            if checked["status"] != "metadata_verified" or checked.get("accepted_doi") != doi:
+                continue
+            changes = {f: {"before": fields.get(f), "after": proposed.get(f)}
+                       for f in ("volume", "number", "pages") if fields.get(f) != proposed.get(f)}
+            choices[doi] = {"kind": "pmc_article_number", "rule": "A1b", "key": entry["key"],
+                            "fingerprint": entry["fingerprint"], "doi": doi, "changes": changes,
+                            "pubmed_id": med["id"], "primary": deepcopy(primary),
+                            "publisher_source": deepcopy(source)}
         except (KeyError, ValueError, TypeError, AttributeError, IndexError):
             continue
     return next(iter(choices.values())) if len(choices) == 1 else None

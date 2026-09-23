@@ -11,9 +11,13 @@ from verification import (
     ACCEPTED,
     author_evidence,
     assess_candidates,
+    collapse_apa_twins,
+    dumps,
     POLICY,
     ProviderError,
     compare_record,
+    print_year_route,
+    rival_blocks,
     export_snapshot,
     given_name_tokens,
     given_token_matches,
@@ -35,7 +39,7 @@ from bibtexparser.customization import splitname
 EPMC_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 # Resolver upgrades revisit unresolved saved evidence once. Previously accepted
 # entries retain their approval and original checked_at without reassessment.
-RESOLVER_VERSION = 27
+RESOLVER_VERSION = 28  # 28: verification/phase0-2026-09-22 rules
 EPMC_FIELDS = {
     "id",
     "source",
@@ -201,7 +205,9 @@ def select_result(fields, candidates, attempts):
             "catalogue-imprint",
         }:
             continue
-        if candidate.get("issues") or not candidate.get("evidence"):
+        if not candidate.get("evidence"):
+            continue
+        if candidate.get("issues") and not print_year_route(fields, candidate, candidates):
             continue
         doi = normalize_doi(candidate["doi"])
         if doi in aliases:
@@ -213,15 +219,27 @@ def select_result(fields, candidates, attempts):
         if supplied and doi != supplied:
             continue
         good[doi] = candidate
+    twins = set()
+    if len(good) == 2 and not supplied:
+        # Resolver 28: two clean APA DOI forms of one work are one choice.
+        primaries = {doi: unique_crossref_primaries(candidates, doi) for doi in good}
+        if all(len(p) == 1 for p in primaries.values()):
+            kept = collapse_apa_twins({doi: p[0] for doi, p in primaries.items()})
+            if len(kept) == 1:
+                twins = set(good)
+                good = {doi: good[doi] for doi in kept}
     if len(good) == 1:
         selected = next(iter(good))
+        chosen = (unique_crossref_primaries(candidates, selected) or [good[selected]])[0]
         rivals = [
             c
             for c in candidates
             if c.get("doi")
             and aliases.get(normalize_doi(c["doi"]), normalize_doi(c["doi"])) != selected
+            and normalize_doi(c["doi"]) not in twins
             and c.get("evidence", {}).get("title", {}).get("match")
             and c.get("evidence", {}).get("author", {}).get("match")
+            and rival_blocks(fields, chosen, c)
         ]
         if supplied or not rivals:
             return dict(
@@ -229,15 +247,86 @@ def select_result(fields, candidates, attempts):
                 accepted_doi=selected,
                 accepted_source=good[selected]["source"],
             )
+    # Resolver 28: report negative DOI-linked evidence only when it belongs to
+    # the cited work (supplied DOI, or a DOI whose record is plausibly the work).
+    # The exclusions from `good` above are unchanged and apply to every DOI.
+    cited = cited_work_dois(fields, candidates, supplied, aliases)
     return outcome(
         "needs_review",
         ["No unambiguous, fully supported metadata match"]
-        + (["DOI-linked source correction/retraction notice requires adjudication"] if flagged else [])
-        + (["DOI-linked PubMed author suffix conflicts with the citation"] if suffix_conflicts else [])
-        + (["DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation"] if coordinates else []),
+        + (["DOI-linked source correction/retraction notice requires adjudication"] if flagged & cited else [])
+        + (["DOI-linked PubMed author suffix conflicts with the citation"] if suffix_conflicts & cited else [])
+        + (["DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation"] if coordinates & cited else []),
         candidates,
         attempts,
     )
+
+
+def unique_crossref_primaries(candidates, doi):
+    """Crossref candidates for one DOI, with byte-identical records collapsed.
+
+    Discovery reruns can append an identical copy of a record. Records that
+    differ in any way remain separate (and so remain ambiguous to callers).
+    """
+    found, seen = [], set()
+    for candidate in candidates:
+        if candidate.get("source") != "crossref":
+            continue
+        try:
+            if normalize_doi(candidate.get("doi", "")) != normalize_doi(doi):
+                continue
+        except ValueError:
+            continue
+        body = dumps(candidate.get("record"))
+        if body not in seen:
+            seen.add(body)
+            found.append(candidate)
+    return found
+
+
+CITED_TITLE_SIMILARITY = 0.8
+
+
+def cited_work_dois(fields, candidates, supplied, aliases=None):
+    """DOIs whose negative evidence is reported against this citation.
+
+    With a supplied DOI only that DOI counts. Otherwise a DOI counts unless
+    every Crossref record for it has comparison evidence showing a clearly
+    different title (no title match and similarity below 0.8). A DOI with no
+    Crossref record or no title evidence is kept (fail closed).
+    """
+    aliases = aliases or {}
+    if supplied:
+        return {supplied}
+    from difflib import SequenceMatcher
+    dois = set()
+    for candidate in candidates:
+        try:
+            dois.add(aliases.get(normalize_doi(candidate["doi"]), normalize_doi(candidate["doi"])))
+        except (ValueError, KeyError, TypeError, AttributeError):
+            continue
+    cited = set()
+    for doi in dois:
+        primaries = [c for c in candidates if c.get("source") == "crossref" and c.get("doi")
+                     and aliases.get(normalize_doi(c["doi"]), normalize_doi(c["doi"])) == doi]
+        unrelated = bool(primaries)
+        for primary in primaries:
+            title = primary.get("evidence", {}).get("title")
+            if not title or title.get("match") or not title.get("source"):
+                unrelated = False
+                break
+            try:
+                local = normalized(title.get("local", ""))
+                best = max(SequenceMatcher(None, local, normalized(s)).ratio() for s in title["source"])
+            except (ValueError, TypeError):
+                unrelated = False
+                break
+            if best >= CITED_TITLE_SIMILARITY:
+                unrelated = False
+                break
+        if not unrelated:
+            cited.add(doi)
+    return cited
 
 
 def reassess(entry, previous):

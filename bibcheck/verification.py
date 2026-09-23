@@ -954,6 +954,22 @@ def normalize_journal(value):
         "foundations and trends® in machine learning": "foundations and trends in machine learning",
         "philosophical transactions of the royal society of london series b: biological sciences": "philosophical transactions of the royal society b: biological sciences",
         "philosophical transactions of the royal society of london. series b, biological sciences": "philosophical transactions of the royal society b: biological sciences",
+        # Resolver 28 (verification/phase0-2026-09-22/README.md). Leading
+        # article or bilingual subtitle only, each pinned by one ISSN whose
+        # cached Crossref and PubMed titles are quoted there. No year, section,
+        # or successor-title aliasing.
+        # ISSN 0002-9556: Crossref "The American Journal of Psychology";
+        # PubMed MED 14488234 "The American journal of psychology".
+        "american journal of psychology": "the american journal of psychology",
+        # ISSN 0008-4255: PubMed MED 519544 "Canadian journal of psychology";
+        # Crossref "Canadian Journal of Psychology / Revue canadienne de psychologie".
+        "canadian journal of psychology / revue canadienne de psychologie": "canadian journal of psychology",
+        # ISSN 0140-6736: Crossref "The Lancet"; PubMed MED 2860322
+        # "Lancet (London, England)", abbreviation "Lancet".
+        "lancet": "the lancet",
+        # ISSN 0090-5364: Crossref "The Annals of Statistics" (same pattern as
+        # the Annals of Mathematical Statistics entry above).
+        "annals of statistics": "the annals of statistics",
     }
     return aliases.get(name, name)
 
@@ -1125,6 +1141,206 @@ def explicit_final_article(fields, record, evidence):
         )
     except (ValueError, TypeError, AttributeError):
         return False
+
+
+def print_year_selects_cited(fields, record):
+    """Crossref's own print and earliest (issued) dates name the cited year.
+
+    Used by print_year_route (select_result); compare_record is unchanged and
+    still reports the conflict. Resolver 28 (verification/phase0-2026-09-22).
+    Retro-digitized backfiles
+    deposit a much later ``published-online`` date. When ``published-print``
+    and ``issued`` are each one date in the cited year, any ``published`` date
+    agrees, and every online date is strictly later, the record states that the
+    work first appeared in that year. Volume and full pagination must agree.
+    Online-first shapes (online earlier than print, or cited = online year with
+    a later print year) remain conflicts. Journal articles only.
+    """
+    try:
+        cited = str(fields.get("year", ""))
+        if (fields.get("ENTRYTYPE", "").lower() != "article"
+                or record.get("type") != "journal-article"
+                or not re.fullmatch(r"[1-9]\d{3}", cited)):
+            return False
+
+        def years_of(name):
+            return [str(parts[0]) for parts in record.get(name, {}).get("date-parts", [])
+                    if parts and parts[0] is not None]
+
+        prints, issued = years_of("published-print"), years_of("issued")
+        if prints != [cited] or issued != [cited]:
+            return False
+        if any(y != cited for y in years_of("published")):
+            return False
+        online = years_of("published-online")
+        if not online or any(not re.fullmatch(r"[1-9]\d{3}", y) or int(y) <= int(cited) for y in online):
+            return False
+        pages = record.get("page") or record.get("article-number")
+        return bool(
+            fields.get("volume") and record.get("volume") and fields.get("pages") and pages
+            and normalized(fields["volume"]) == normalized(str(record["volume"]))
+            and normalize_pages(fields["pages"]) == normalize_pages(str(pages))
+        )
+    except (ValueError, TypeError, AttributeError, KeyError):
+        return False
+
+
+YEAR_CONFLICT = "year: conflicting or missing publication dates; select the cited edition explicitly"
+COORDINATE_WORDS = ("year", "volume", "number", "pages", "pagination", "issue", "date",
+                    "relationship", "correction", "retraction", "version")
+
+
+def print_year_route(fields, candidate, candidates):
+    """Resolver 28 print-year route for a Crossref candidate (select_result).
+
+    compare_record still reports the conflicting-dates finding; this route
+    accepts a Crossref candidate whose ONLY finding is that conflict when
+    print_year_selects_cited holds and no DOI-linked secondary record
+    (PubMed, JATS front matter, publisher metadata) for the same DOI reports a
+    year, coordinate, or relationship problem with the citation.
+    """
+    try:
+        if (candidate.get("source") != "crossref" or candidate.get("issues") != [YEAR_CONFLICT]
+                or not candidate.get("evidence")
+                or not print_year_selects_cited(fields, candidate.get("record") or {})):
+            return False
+        doi = normalize_doi(candidate["doi"])
+        for other in candidates:
+            if other.get("source") not in {"europepmc", "pmc-jats", "publisher-head"}:
+                continue
+            try:
+                if normalize_doi(other.get("doi", "")) != doi:
+                    continue
+            except ValueError:
+                continue
+            for issue in other.get("issues", []):
+                if issue == YEAR_CONFLICT:
+                    continue  # the registry finding copied onto the secondary, not a PubMed/JATS value
+                text = issue.lower()
+                if any(word in text for word in COORDINATE_WORDS):
+                    return False
+        return True
+    except (ValueError, TypeError, KeyError, AttributeError):
+        return False
+
+
+def apa_twin_key(doi):
+    """APA registered many articles under both 10.1037// and 10.1037/ forms."""
+    doi = normalize_doi(doi)
+    return "10.1037/" + doi[len("10.1037//"):] if doi.startswith("10.1037//") else doi
+
+
+CORRECTION_FLAG = "Source flags an update/correction/retraction relationship"
+
+
+def same_clean_apa_work(first, second):
+    """Two clean records under the two APA DOI forms describe one work.
+
+    Both must be journal articles with no issues against the citation, no
+    update/correction relation, and identical title, byline, venue, volume,
+    issue and pages. A single differing or missing coordinate keeps them apart.
+    """
+    try:
+        a, b = first["record"], second["record"]
+        da, db = normalize_doi(first["doi"]), normalize_doi(second["doi"])
+        if da == db or apa_twin_key(da) != apa_twin_key(db) or not da.startswith("10.1037/"):
+            return False
+        if first.get("issues") or second.get("issues"):
+            return False
+        for rec in (a, b):
+            if rec.get("type") != "journal-article" or rec.get("update-to") or rec.get("updated-by"):
+                return False
+        def people(rec):
+            return [(normalized(p.get("family", "")), normalized(p.get("given", "")),
+                     normalized(p.get("suffix", "")), normalized(p.get("name", "")))
+                    for p in rec.get("author", [])]
+        return (
+            [normalize_title(t) for t in a.get("title", [])] == [normalize_title(t) for t in b.get("title", [])]
+            and people(a) == people(b) and people(a)
+            and [normalize_journal(t) for t in a.get("container-title", [])]
+            == [normalize_journal(t) for t in b.get("container-title", [])]
+            and str(a.get("volume") or "") == str(b.get("volume") or "")
+            and str(a.get("issue") or "") == str(b.get("issue") or "")
+            and normalize_pages(str(a.get("page") or "")) == normalize_pages(str(b.get("page") or ""))
+        )
+    except (ValueError, TypeError, KeyError, AttributeError):
+        return False
+
+
+def collapse_apa_twins(good):
+    """Collapse exactly two clean APA DOI forms of one work into one choice.
+
+    The single-slash form is kept as the selected DOI. Any other combination
+    (three or more clean DOIs, differing records, a correction flag) is left
+    unchanged so the usual ambiguity rules apply.
+    """
+    if len(good) != 2:
+        return good
+    (d1, c1), (d2, c2) = good.items()
+    if not same_clean_apa_work(c1, c2):
+        return good
+    keep = d1 if "//" not in normalize_doi(d1) else d2
+    return {keep: good[keep]}
+
+
+def _record_years(record):
+    years = set()
+    for date in ("published", "published-print", "published-online", "issued"):
+        for parts in record.get(date, {}).get("date-parts", []) or []:
+            if parts and re.fullmatch(r"[1-9]\d{3}", str(parts[0])):
+                years.add(str(parts[0]))
+    return years
+
+
+def rival_blocks(fields, selected, rival):
+    """Whether a second title+author match makes the selected work ambiguous.
+
+    Resolver 28 (verification/phase0-2026-09-22). A rival does not block only
+    when it is demonstrably a different publication of a cited journal article:
+    (a) a book chapter, posted preprint or technical report while the citation and selected
+    record are a journal article whose venue, volume and pages all match; or
+    (b) it is another journal-article record whose own present year, volume
+    or first page contradicts the citation (a reprint or a different article). A missing or partial coordinate never counts
+    as a contradiction, and a rival carrying a correction relationship blocks.
+    APA DOI twins are handled separately (same_clean_apa_work).
+    """
+    try:
+        record = rival.get("record") or {}
+        chosen = selected.get("record") or {}
+        if not record or not chosen:
+            return True
+        if (record.get("update-to") or record.get("updated-by")
+                or CORRECTION_FLAG in rival.get("issues", [])):
+            return True
+        if fields.get("ENTRYTYPE", "").lower() != "article" or chosen.get("type") != "journal-article":
+            return True
+        # APA twins of the selected DOI clear only as identical clean records.
+        if apa_twin_key(rival.get("doi", "")) == apa_twin_key(selected.get("doi", "")):
+            return True
+        evidence = selected.get("evidence", {})
+        if not all(evidence.get(f, {}).get("match") for f in ("journal", "volume", "pages")):
+            return True
+        # Posted content and technical reports are earlier (preprint) versions.
+        if rival.get("source") == "crossref" and record.get("type") in {"book-chapter", "posted-content", "report"}:
+            return False
+        # Contradicting coordinates clear only another journal-article record
+        # (a reprint or a different article); a monograph/book reissue keeps
+        # blocking (tests/test_documented_journal_brands.py WainJord08).
+        if record.get("type") != "journal-article":
+            return True
+        years = _record_years(record)
+        if years and fields.get("year") and str(fields["year"]) not in years:
+            return False
+        if record.get("volume") and fields.get("volume") and normalized(str(record["volume"])) != normalized(fields["volume"]):
+            return False
+        pages = str(record.get("page") or record.get("article-number") or "")
+        first = normalize_pages(pages).split("-")[0] if pages else ""
+        local = normalize_pages(fields.get("pages", "")).split("-")[0] if fields.get("pages") else ""
+        if first and local and first != local:
+            return False
+        return True
+    except (ValueError, TypeError, KeyError, AttributeError):
+        return True
 
 
 def compare_record(fields, record, doi_alias=None):
@@ -1467,7 +1683,7 @@ def verify_entry(entry, client):
         )
         found = assess_candidates(fields, response)
         candidates += found
-        good = {c["doi"]: c for c in found if not c["issues"]}
+        good = collapse_apa_twins({c["doi"]: c for c in found if not c["issues"]})
         if len(good) == 1 and not doi:
             # A truncated result list cannot prove uniqueness. A strict match is
             # evidence of consistency; also retain competing exact title matches.
@@ -1478,6 +1694,8 @@ def verify_entry(entry, client):
                 if c["doi"] != selected["doi"]
                 and c["evidence"].get("title", {}).get("match")
                 and c["evidence"].get("author", {}).get("match")
+                and not same_clean_apa_work(selected, c)
+                and rival_blocks(fields, selected, c)
             ]
             if not rivals:
                 return outcome("metadata_verified", [], candidates, attempts)

@@ -139,7 +139,7 @@ A human should check the publication's identity and edition, all cited authors a
 - Automatic journal checks support `article`, `inproceedings`, `book`, and `incollection` only when the Crossref type agrees. Other types and additional fields require review.
 - A finite candidate set cannot establish global uniqueness. Exact title/author competitors among retrieved records block approval.
 - Initials agree with given names but do not establish personal identity. Use human source review for the stronger gate.
-- Direct Crossref publication dates must collapse to a single year. A separately identified PubMed issue record can resolve an online/print split only when it confirms the print year plus the same volume and pages. The Cambridge publisher-head layer can also corroborate that print year, requiring matching DOI, ISSN, title, ordered authors, venue, volume and pages. It reads explicit publication metadata and retains archival online dates separately. No automatic ±1-year tolerance is used.
+- Direct Crossref publication dates must collapse to a single year, with one exception (resolver 28): when Crossref's print date and its issued date both equal the cited year, a later online/digitization date does not block, provided no linked PubMed, JATS or publisher record contradicts the print year. A separately identified PubMed issue record can resolve an online/print split only when it confirms the print year plus the same volume and pages. The Cambridge publisher-head layer can also corroborate that print year, requiring matching DOI, ISSN, title, ordered authors, venue, volume and pages. It reads explicit publication metadata and retains archival online dates separately. No automatic ±1-year tolerance is used.
 - Review status does not expire on a timer. Use `--refresh` for an intentional fresh-source audit, including newly deposited corrections and relationships.
 - Run `status` on the actual manuscript keys and inspect the rendered bibliography before submission. Neither the formatter nor cached metadata certifies the rendered artifact.
 
@@ -447,3 +447,18 @@ checks an unchanged, zero-request/zero-write repeat. Raw sources are embedded in
 portable snapshots and approvals are reconstructed during import. Direct PDF
 source conflicts can be attached as explicit holds; PDF or LLM output does not
 independently approve an entry.
+
+## Phase 0 rules and new evidence modules (2026-09-22)
+
+Resolver 28 scopes correction/retraction notices, coordinate conflicts and PubMed
+suffix conflicts to the cited work's own DOI (or a DOI whose title matches), treats
+byte-identical Crossref records as one, applies the print-year rule above, treats
+clean APA `10.1037//` twins as one work, stops chapter/preprint/report rivals and
+contradicting journal rivals from creating ambiguity, and adds four documented
+ISSN-pinned journal-name variants. Correction proposals may come from a single
+authoritative source (Crossref or PubMed) when identity is established; see
+`verification/phase0-2026-09-22/README.md`. Catalogue policy 7 widens the Library of
+Congress record parser (`verification/catalogue-phase0-2026-09-22/README.md`).
+`bibcheck/pdf_evidence.py` is a position-aware local-PDF verifier with a
+subtle-error benchmark (`verification/pdf-benchmark/README.md`); it is **not** wired
+into any approval path.

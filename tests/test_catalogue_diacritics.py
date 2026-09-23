@@ -7,6 +7,8 @@ import sys
 import unicodedata
 import xml.etree.ElementTree as ET
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'bibcheck'))
 import catalogue_review as cr
 from catalogue_discovery import M, S, search_query
@@ -37,12 +39,44 @@ def test_folded_query_preserves_citation_and_unicode_normalization():
     assert fields == original
 
 
-def test_real_recovered_record_keeps_incomplete_author_heading_unverified():
+def test_real_recovered_record_pairs_initial_heading_with_printed_byline():
+    # Policy 6 rejected this record: heading 'Buzsaki, G.' vs 245c 'György
+    # Buzsáki'. Policy 7 relates the two LC fields (initial G = György) and
+    # compares the citation with the printed byline, accents intact.
     fields = CASE['entry']['fields']
     assert CASE['broad_response']['total_records'] == 0
     result = cr.assess_catalogue(fields, CASE['folded_response'])
-    assert result['status'] == 'needs_review' and len(result['candidates']) == 1
-    assert 'Transcribed responsibility differs' in result['candidates'][0]['issues'][0]
+    assert len(result['candidates']) == 1
+    candidate = result['candidates'][0]
+    assert candidate['record']['catalogue_grammar'] == cr.WIDENED_GRAMMAR
+    # Verbatim transcription (LC sends decomposed accents); compared as NFC.
+    assert [{k: unicodedata.normalize('NFC', x) for k, x in p.items()} for p in candidate['record']['author']] \
+        == [{'given': 'György', 'family': 'Buzsáki', 'suffix': ''}]
+    assert candidate['evidence']['author']['match']
+    # The cited place is New York, but LC's first place is Oxford (008 enk):
+    # the address remains the only blocker and is not guessed.
+    assert result['status'] == 'needs_review'
+    assert candidate['issues'] == ['address: missing evidence or mismatch']
+    without = {k: x for k, x in fields.items() if k != 'address'}
+    assert cr.assess_catalogue(without, CASE['folded_response'])['status'] == 'metadata_verified'
+    for author in ('Gyorgy Buzsaki', 'G Buzsaki', r"Gyorgy Buzs{\'a}ki", r"G A Buzs{\'a}ki"):
+        assert cr.assess_catalogue(dict(without, author=author), CASE['folded_response'])['status'] == 'needs_review', author
+    assert cr.assess_catalogue(dict(without, author=r"G Buzs{\'a}ki"), CASE['folded_response'])['status'] == 'metadata_verified'
+
+
+@pytest.mark.parametrize('heading', ['Buzsáki, Z.', 'Buzsaky, G.', 'Buzsáki, G., $ceditor'])
+def test_conflicting_heading_initial_or_surname_still_rejects(heading):
+    response = deepcopy(CASE['folded_response'])
+    root = ET.fromstring(response['raw_xml'])
+    node = root.find('.//'+M+"datafield[@tag='100']")
+    name, _, extra = heading.partition(', $c')
+    node.find(M+"subfield[@code='a']").text = name
+    if extra:
+        ET.SubElement(node, M+'subfield', code='e').text = extra
+    response['raw_xml'] = ET.tostring(root, encoding='unicode')
+    response['document_sha256'] = hashlib.sha256(response['raw_xml'].encode()).hexdigest()
+    without = {k: x for k, x in CASE['entry']['fields'].items() if k != 'address'}
+    assert cr.assess_catalogue(without, response)['status'] == 'needs_review'
 
 
 def test_folded_search_is_bound_to_the_original_full_citation():

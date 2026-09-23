@@ -28,8 +28,10 @@ def search_query(fields, *, include_year=False, fold_diacritics=False):
                            if not unicodedata.combining(c))
         return " ".join(re.findall(r"\w+", text))
     title = search_text(fields["title"])
-    names = split_authors(fields.get("author", ""))
-    if not title or not names:
+    # An edited volume without an author is discovered by its first editor;
+    # the assessment still compares the complete ordered editor list.
+    names = split_authors(fields.get("author") or fields.get("editor") or "")
+    if not title or not names or not names[0]:
         raise ValueError("Catalogue discovery requires a title and named author")
     name = splitname(names[0], strict_mode=True)
     surname = search_text(" ".join(name["von"] + name["last"]))

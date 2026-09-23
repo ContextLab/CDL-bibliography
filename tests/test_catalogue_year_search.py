@@ -26,9 +26,33 @@ def changed(response, action):
     return result
 
 
+def competing_broad_response(case):
+    """The real broad search with its later edition made an unparseable
+    same-year rival (a second publication statement and 008 date 2005).
+
+    Policy 7 parses the real 2014 record and sees that it is another year,
+    so the real broad search no longer needs refinement. This derived rival
+    still cannot be excluded, so it keeps the refinement path exercised."""
+    def edit(root):
+        record = root.findall('.//' + M + 'record')[1]
+        node = record.find(M+"controlfield[@tag='008']"); node.text = node.text[:7]+'2005'+node.text[11:]
+        imprint = record.find(M+"datafield[@tag='264'][@ind2='1']")
+        record.append(deepcopy(imprint))
+    return changed(case['broad_response'], edit)
+
+
 def test_actual_first_edition_is_not_blocked_by_unparsed_later_edition():
     case = CASES['Luck05']; fields = case['entry']['fields']
-    assert cr.assess_catalogue(fields, case['broad_response'])['status'] == 'needs_review'
+    # Policy 7: the later (2014, RDA 264) edition now parses and is rejected
+    # on its own year, publisher and edition, so the first edition is unique.
+    broad = cr.assess_catalogue(fields, case['broad_response'])
+    assert broad['status'] == 'metadata_verified' and broad['accepted_record_id'] == '13859415'
+    later = next(c for c in broad['candidates'] if c['record_id'] == '17917778')
+    assert later['record']['catalogue_grammar'] == cr.WIDENED_GRAMMAR
+    assert {'year: missing evidence or mismatch', 'edition: missing evidence or mismatch'} <= set(later['issues'])
+    assert cr.valid_catalogue_approval(broad)
+    # An unparseable rival of the SAME year still blocks the broad search.
+    assert cr.assess_catalogue(fields, competing_broad_response(case))['status'] == 'needs_review'
     result = cr.assess_catalogue(fields, case['response'])
     assert result['status'] == 'metadata_verified' and result['accepted_record_id'] == '13859415'
     assert cr.valid_catalogue_approval(result)
@@ -36,10 +60,25 @@ def test_actual_first_edition_is_not_blocked_by_unparsed_later_edition():
     assert cr.assess_catalogue(dict(fields, year='2014'), case['response'])['status'] == 'needs_review'
 
 
-@pytest.mark.parametrize('key', ['Badd90', 'BorgGroe05', 'Fust05', 'NoceWrig06', 'SuttBart98'])
+@pytest.mark.parametrize('key', ['Badd90', 'BorgGroe05', 'NoceWrig06', 'SuttBart98'])
 def test_narrowing_does_not_fix_missing_editions_or_author_details(key):
     case = CASES[key]
     assert cr.assess_catalogue(case['entry']['fields'], case['response'])['status'] == 'needs_review'
+
+
+def test_fust05_accented_title_page_confirms_initials_without_losing_the_accent():
+    # Diagnosis (plan-books.md R2 f): the LC heading 'Fuster, Joaquin M.' lacks
+    # the accent that the title-page transcription 'Joaquín M. Fuster' (NFD)
+    # carries. Policy 7 relates the two LC fields diacritic-insensitively and
+    # takes the printed form, accent intact, as the byline to compare.
+    case = CASES['Fust05']; fields = case['entry']['fields']
+    result = cr.assess_catalogue(fields, case['response'])
+    assert result['status'] == 'metadata_verified' and cr.valid_catalogue_approval(result)
+    person = result['candidates'][0]['record']['author'][0]
+    assert v.normalized(person['given']) == 'joaquín m.' and person['family'] == 'Fuster'
+    for author in ('Joaquin M Fuster', 'Joaquím M Fuster', 'J Fuster', 'J M A Fuster', 'M J Fuster', 'J M Foster'):
+        assert cr.assess_catalogue(dict(fields, author=author), case['response'])['status'] == 'needs_review', author
+    assert cr.assess_catalogue(dict(fields, author='Joaquín M Fuster'), case['response'])['status'] == 'metadata_verified'
 
 
 @pytest.mark.parametrize('key', ['BorgGroe05', 'NoceWrig06'])
@@ -100,7 +139,7 @@ def test_cached_refinement_runs_once_and_restores_without_network(tmp_path):
     case = CASES['Luck05']; bib = tmp_path/'library.bib'; bib.write_text(case['entry']['raw'])
     cache = v.Cache(tmp_path/'live.sqlite3'); entry = v.load_entries(bib)['Luck05']
     cache.put(bib, entry, v.outcome('needs_review', ['No registry approval']))
-    for response in (case['broad_response'], case['response']):
+    for response in (competing_broad_response(case), case['response']):
         cache.save_response('loc-sru-v1:10:'+response['query'], response)
     client = DeferredClient(cache, None, 1.0, False)
     result = cr.run_catalogue_review(bib, cache, client, tmp_path/'report')
@@ -127,7 +166,7 @@ def test_empty_refinement_preserves_broader_source_evidence(tmp_path, monkeypatc
     calls = []
     def fetch(cache, client, fields, *, include_year=False):
         calls.append(include_year)
-        return narrowed if include_year else case['broad_response']
+        return narrowed if include_year else competing_broad_response(case)
     monkeypatch.setattr(cr, 'fetch_search', fetch)
     cache = v.Cache(tmp_path/'live.sqlite3'); entry = v.load_entries(bib)['Luck05']
     cache.put(bib, entry, v.outcome('needs_review', ['No registry approval']))
