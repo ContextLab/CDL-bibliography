@@ -82,6 +82,10 @@ td.v{font:13px/1.45 var(--mono);word-break:break-word}
 .decide button[data-v="unsure"][aria-pressed="true"]{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
 .decide input{flex:1 1 220px;min-width:0;font:13px var(--sans);padding:6px 10px;border:1px solid var(--rule);border-radius:4px;background:var(--ground);color:var(--ink)}
 .saved{font-size:12px;color:var(--muted)}
+.revised{font-size:13px;background:var(--warn-soft);color:var(--ink);border-radius:4px;padding:8px 10px}
+.revised b{color:var(--warn)}
+td.src{font-size:12px;color:var(--muted);white-space:nowrap}
+td.src a{color:var(--accent)}
 details summary{cursor:pointer;font-size:13px;color:var(--muted)}
 @media (max-width:520px){ .cite{font-size:14px} .entry{padding:14px} }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -103,7 +107,7 @@ details summary{cursor:pointer;font-size:13px;color:var(--muted)}
 </header>
 
 <main class="wrap">
-  <p class="intro">Each entry below is a <strong>random sample</strong> from one class of proposed <code>cdl.bib</code> corrections. Check that the <span class="ins">proposed</span> value is what the cited work really says, and that nothing the citation already had is lost. <strong>Correct</strong> approves the entry; <strong>Wrong</strong> sends the whole class back for a rule fix before anything in it is applied. Links open the source record.</p>
+  <p class="intro">Each entry below is a <strong>random sample</strong> from one class of proposed <code>cdl.bib</code> corrections. Check that the <span class="ins">proposed</span> value is what the cited work really says, and that nothing the citation already had is lost. <strong>Correct</strong> approves the entry; <strong>Wrong</strong> sends the whole class back for a rule fix before anything in it is applied. Links open the source record. <strong>Stated by</strong> names the record that gives each new value; a DOI’s visible “cite this article” line can omit an issue that its metadata still states.</p>
   <p class="status" id="status">Connecting to the decision store…</p>
   <div id="list"></div>
 </main>
@@ -147,16 +151,26 @@ function links(s){
   if (!s.doi && !s.pubmed_id && s.fields && s.fields.title) out.push(`<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(s.fields.title)}" target="_blank" rel="noopener">Search title</a>`);
   return out.length ? `<div class="links">${out.join("")}</div>` : "";
 }
-function changesTable(ch){
+function statedBy(list){
+  if (!list || !list.length) return '<span class="none">—</span>';
+  return list.map(x => { const m = /^pubmed:(\d+)$/.exec(x); return m ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${m[1]}/" target="_blank" rel="noopener">PubMed ${m[1]}</a>` : esc(x); }).join(", ");
+}
+function changesTable(ch, stated){
   const rows = Object.entries(ch).map(([f, c]) =>
-    `<tr><td class="f">${esc(f)}</td><td class="v">${c.before == null ? '<span class="none">absent</span>' : `<span class="del">${esc(c.before)}</span>`}</td><td class="v">${c.after == null ? '<span class="none">removed</span>' : `<span class="ins">${esc(c.after)}</span>`}</td></tr>`).join("");
-  return `<div><div class="label">Proposed change</div><div class="scroll"><table><thead><tr><th>Field</th><th>Now</th><th>Proposed</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+    `<tr><td class="f">${esc(f)}</td><td class="v">${c.before == null ? '<span class="none">absent</span>' : `<span class="del">${esc(c.before)}</span>`}</td><td class="v">${c.after == null ? '<span class="none">removed</span>' : `<span class="ins">${esc(c.after)}</span>`}</td>${stated ? `<td class="src">${statedBy(stated[f])}</td>` : ""}</tr>`).join("");
+  return `<div><div class="label">Proposed change</div><div class="scroll"><table><thead><tr><th>Field</th><th>Now</th><th>Proposed</th>${stated ? "<th>Stated by</th>" : ""}</tr></thead><tbody>${rows}</tbody></table></div></div>`;
+}
+function revisedNote(s, d){
+  if (!s.revised) return "";
+  const prev = Object.entries(s.previous_changes || {}).map(([f, c]) => `${esc(f)}: ${esc(c.after ?? "removed")}`).join("; ");
+  const was = d.previous_verdict ? ` You marked the earlier version <b>${esc(d.previous_verdict)}</b>${d.previous_note ? ` (“${esc(d.previous_note)}”)` : ""}.` : "";
+  return `<div class="revised"><b>Revised after the rule fixes.</b> Earlier proposal: ${prev}.${was} Please judge the new version.</div>`;
 }
 function evidenceTable(ev){
   if (!ev) return "";
   const rows = Object.entries(ev.fields).map(([f, e]) =>
     `<tr><td class="f">${esc(f)}</td><td class="v">${show(e.cited)}</td><td class="v">${show(e.source)}</td><td class="m ${e.match ? "yes" : "no"}">${e.match ? "match" : "differs"}</td></tr>`).join("");
-  return `<details><summary>Source record (${esc(ev.source)}): every field compared</summary><div class="scroll"><table><thead><tr><th>Field</th><th>Citation</th><th>Source</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
+  return `<details><summary>Fields the citation already has, compared with ${esc(ev.source)}</summary><div class="scroll"><table><thead><tr><th>Field</th><th>Citation</th><th>Source</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
 }
 function entryHtml(s){
   const d = decisions[s.key] || {};
@@ -164,7 +178,8 @@ function entryHtml(s){
   return `<article class="entry ${d.verdict ? "v-" + d.verdict : ""}" data-key="${esc(s.key)}">
     <div class="top"><span class="key">${esc(s.key)}</span><span class="num">#${esc(s.id)} · source: ${esc(s.source || s.origin)}</span></div>
     ${citation(s.fields)}
-    ${changesTable(s.changes)}
+    ${revisedNote(s, d)}
+    ${changesTable(s.changes, s.stated_by)}
     ${evidenceTable(s.evidence)}
     ${links(s)}
     <div class="decide">${btn("correct","Correct")}${btn("wrong","Wrong")}${btn("unsure","Unsure")}
@@ -206,7 +221,7 @@ async function save(key){
   if (!db) { try { localStorage.setItem("spotcheck:" + key, JSON.stringify(d)); } catch (e) {} if (tag) tag.textContent = "saved in this browser only"; return; }
   try {
     const s = DATA.sample.find(x => x.key === key);
-    await db.doc("decisions/" + key).set({key, class: s.class, verdict: d.verdict || null, note: d.note || "", updatedAt: new Date().toISOString()});
+    await db.doc("decisions/" + key).set({key, class: s.class, verdict: d.verdict || null, note: d.note || "", previous_verdict: d.previous_verdict || null, previous_note: d.previous_note || "", updatedAt: new Date().toISOString()});
     if (tag) tag.textContent = "saved";
   } catch (e) {
     if (e && e.code === "invalid_argument") { canWrite = false; setStatus("You can view these decisions but not change them.", true); }
@@ -248,7 +263,7 @@ render();
   } catch (e) {}
   db.collection("decisions").onSnapshot(snap => {
     const focused = document.activeElement && document.activeElement.id;
-    for (const doc of snap.docs) { const d = doc.data(); if (d && d.key) decisions[d.key] = {verdict: d.verdict || null, note: d.note || ""}; }
+    for (const doc of snap.docs) { const d = doc.data(); if (d && d.key) decisions[d.key] = {verdict: d.verdict || null, note: d.note || "", previous_verdict: d.previous_verdict || null, previous_note: d.previous_note || ""}; }
     if (canWrite) setStatus("Decisions save automatically and Claude reads them from here.");
     if (!(focused && focused.startsWith("note-"))) render(); else tally();
   }, err => setStatus("Decisions couldn't load (" + (err && err.code) + "). Reload the page to try again.", true));

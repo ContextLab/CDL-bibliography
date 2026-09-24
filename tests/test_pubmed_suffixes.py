@@ -169,7 +169,7 @@ def test_suffix_correction_can_use_suffix_present_in_both_sources(tmp_path):
     entry['fields']['author'] = 'Alice Smith'
     secondary['raw_record']['authorList']['author'][0]['firstName'] = 'A'
     proposal = suffix_proposal(entry, dict(clean, status='needs_review', candidates=[primary, secondary]))
-    assert proposal['changes'] == {'author': {'before': 'Alice Smith', 'after': 'Smith, Jr, Alice'}}
+    assert proposal['changes'] == {'author': {'before': 'Alice Smith', 'after': 'Smith, Jr, A'}}  # house format: initials
     secondary['raw_record']['authorList']['author'][0]['firstName'] = 'Bob'
     assert suffix_proposal(entry, dict(clean, status='needs_review', candidates=[primary, secondary])) is None
 

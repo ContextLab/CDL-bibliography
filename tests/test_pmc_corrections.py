@@ -77,7 +77,7 @@ def test_missing_given_name_is_added_only_when_both_sources_supply_it(tmp_path, 
     entry = load_entries(path)['A']
     proposal = pmc_coordinate_proposal(entry, previous, include_authors=True)
     assert proposal and proposal['kind'] == 'pmc_corroborated_given_names'
-    assert proposal['changes']['author']['after'] == 'Alice B Smith'
+    assert proposal['changes']['author']['after'] == 'A B Smith'  # house format: initials, no periods
     from pmc_corrections import replace_pmc_given_names
     path.write_text(replace_pmc_given_names(path.read_text(), entry, proposal))
     assert reassess(load_entries(path)['A'], previous)['status'] == 'metadata_verified'

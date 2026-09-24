@@ -1,17 +1,38 @@
 {
  "seed": 20260923,
- "reseed": 20260924,
- "design": "Rebuild the spot-check sample after the 2026-09-24 rule fixes.\n\nKeeps every sampled key. An entry whose proposal is unchanged keeps its verdict;\none whose proposal changed is marked \"revised\" (its earlier verdict is shown but\nno longer counts); one with no proposal any more is dropped. Adds five seeded\ndraws from the TWO-SOURCE proposals that are new since the fixes (they reorder or\nadd authors). Each changed field lists the sources that state its new value.\nWrites sample.json (the previous one is kept as sample-v1.json).",
- "dropped": [
-  "PoldEtal99"
- ],
+ "commit": "964405a",
+ "design": "Draw the pooled spot-check sample for the Phase 0 correction proposals.\n\nDesign (user decisions, 2026-09-22/23): the user reviews ~50 entries in total.\n- 10 random entries from S1-TWO-FIELDS-RISKY and 10 from S1-AUTHOR-NAMES\n  (the two riskiest article classes);\n- 30 pooled draws across every other article and catalogue class: one per\n  class, the remainder proportional to class size.\nA wrong proposal in a sample reopens its whole class's rule.\n\nReads proposals from the phase0 and catalogue folders, entry fields from the\nbibliography at the commit the proposals were generated against, and source\nevidence from the main cache opened read-only. Writes sample.json only.",
+ "class_sizes": {
+  "A1b-ARTICLE-NUMBER": 15,
+  "CAT A1 byline: given names/suffix/surname from the title page": 8,
+  "CAT A2 byline: drop initials the title page does not print": 2,
+  "CAT D edition: add the edition the catalogue states": 4,
+  "CAT E edited volume: move names from author to editor": 8,
+  "CAT L place: catalogue place form": 8,
+  "CAT P1 publisher: catalogue form of the same firm": 30,
+  "CAT P2 publisher: a different firm (cited distributor/later owner/imprint)": 6,
+  "CAT T title: complete from the catalogue": 12,
+  "CAT Y year: the only catalogue edition's year (same publisher)": 2,
+  "S1-AUTHOR-NAMES": 62,
+  "S1-AUTHOR-SURNAME": 10,
+  "S1-COORDINATES": 13,
+  "S1-JOURNAL-HISTORY-OR-TYPO": 33,
+  "S1-JOURNAL-REPLACEMENT": 6,
+  "S1-PAGES-COMPLETE": 47,
+  "S1-TITLE-CORROBORATED": 12,
+  "S1-TITLE-CROSSREF-ONLY": 31,
+  "S1-TWO-FIELDS": 31,
+  "S1-TWO-FIELDS-RISKY": 80,
+  "STALE-APPROVAL-REPAIR": 10,
+  "TWO-SOURCE": 47
+ },
  "sample": [
   {
    "id": "01",
    "key": "Murd71",
    "class": "S1-TWO-FIELDS-RISKY",
    "stratum": "risky",
-   "class_size": 87,
+   "class_size": 80,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -88,25 +109,14 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS-RISKY",
-   "stated_by": {
-    "number": [
-     "crossref"
-    ],
-    "volume": [
-     "crossref"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "02",
    "key": "HydeJenk73",
    "class": "S1-TWO-FIELDS-RISKY",
    "stratum": "risky",
-   "class_size": 87,
+   "class_size": 80,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -183,25 +193,14 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS-RISKY",
-   "stated_by": {
-    "number": [
-     "crossref"
-    ],
-    "volume": [
-     "crossref"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "03",
    "key": "KragEtal17",
    "class": "S1-TWO-FIELDS-RISKY",
    "stratum": "risky",
-   "class_size": 87,
+   "class_size": 80,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -278,25 +277,14 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS-RISKY",
-   "stated_by": {
-    "pages": [
-     "crossref"
-    ],
-    "title": [
-     "crossref"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "04",
    "key": "NelsEtal01",
    "class": "S1-TWO-FIELDS-RISKY",
    "stratum": "risky",
-   "class_size": 87,
+   "class_size": 80,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -373,25 +361,14 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS-RISKY",
-   "stated_by": {
-    "number": [
-     "crossref"
-    ],
-    "volume": [
-     "crossref"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "05",
    "key": "Youn79",
    "class": "S1-TWO-FIELDS-RISKY",
    "stratum": "risky",
-   "class_size": 87,
+   "class_size": 80,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -410,11 +387,7 @@
    "changes": {
     "author": {
      "before": "David Young",
-     "after": "D C Young"
-    },
-    "number": {
-     "before": null,
-     "after": "6"
+     "after": "David C Young"
     },
     "title": {
      "before": "The effectof repetition on search through active memory",
@@ -472,29 +445,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS-RISKY",
-   "stated_by": {
-    "author": [
-     "crossref"
-    ],
-    "number": [
-     "crossref"
-    ],
-    "title": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "David Young",
-     "after": "David C Young"
-    },
-    "title": {
-     "before": "The effectof repetition on search through active memory",
-     "after": "The effect of repetition on search through active memory"
-    }
    }
   },
   {
@@ -502,7 +452,7 @@
    "key": "Post78",
    "class": "S1-TWO-FIELDS-RISKY",
    "stratum": "risky",
-   "class_size": 87,
+   "class_size": 80,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref; pubmed holds the record and does not contradict",
@@ -579,27 +529,14 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS-RISKY",
-   "stated_by": {
-    "number": [
-     "crossref",
-     "pubmed:632757"
-    ],
-    "volume": [
-     "crossref",
-     "pubmed:632757"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "07",
    "key": "SmitHalg89",
    "class": "S1-TWO-FIELDS-RISKY",
    "stratum": "risky",
-   "class_size": 87,
+   "class_size": 80,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -618,11 +555,7 @@
    "changes": {
     "author": {
      "before": "M Smith and E Halgren",
-     "after": "M E Smith and E Halgren"
-    },
-    "number": {
-     "before": null,
-     "after": "1"
+     "after": "Michael E Smith and Eric Halgren"
     },
     "title": {
      "before": "Dissociation of recognition memory components following temporal lob lesions",
@@ -680,29 +613,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS-RISKY",
-   "stated_by": {
-    "author": [
-     "crossref"
-    ],
-    "number": [
-     "crossref"
-    ],
-    "title": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "M Smith and E Halgren",
-     "after": "Michael E Smith and Eric Halgren"
-    },
-    "title": {
-     "before": "Dissociation of recognition memory components following temporal lob lesions",
-     "after": "Dissociation of recognition memory components following temporal lobe lesions"
-    }
    }
   },
   {
@@ -710,7 +620,7 @@
    "key": "Hint03",
    "class": "S1-TWO-FIELDS-RISKY",
    "stratum": "risky",
-   "class_size": 87,
+   "class_size": 80,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref; pubmed holds the record and does not contradict",
@@ -787,27 +697,14 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS-RISKY",
-   "stated_by": {
-    "number": [
-     "crossref",
-     "pubmed:12747488"
-    ],
-    "volume": [
-     "crossref",
-     "pubmed:12747488"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "09",
    "key": "AlyTurk16",
    "class": "S1-TWO-FIELDS-RISKY",
    "stratum": "risky",
-   "class_size": 87,
+   "class_size": 80,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref+pubmed",
@@ -827,7 +724,7 @@
    "changes": {
     "author": {
      "before": "M Aly and N Turk-Browne",
-     "after": "M Aly and N B Turk-Browne"
+     "after": "Mariam Aly and Nicholas B Turk-Browne"
     },
     "pages": {
      "before": "420--429",
@@ -891,27 +788,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS-RISKY",
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:26755611"
-    ],
-    "pages": [
-     "pubmed:26755611"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "M Aly and N Turk-Browne",
-     "after": "Mariam Aly and Nicholas B Turk-Browne"
-    },
-    "pages": {
-     "before": "420--429",
-     "after": "e420--e429"
-    }
    }
   },
   {
@@ -919,7 +795,7 @@
    "key": "Ande74",
    "class": "S1-TWO-FIELDS-RISKY",
    "stratum": "risky",
-   "class_size": 87,
+   "class_size": 80,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -996,25 +872,14 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS-RISKY",
-   "stated_by": {
-    "number": [
-     "crossref"
-    ],
-    "volume": [
-     "crossref"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "11",
    "key": "MeisEtal06",
    "class": "S1-AUTHOR-NAMES",
    "stratum": "risky",
-   "class_size": 39,
+   "class_size": 62,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref; pubmed holds the record and does not contradict",
@@ -1025,6 +890,7 @@
     "year": "2006",
     "volume": "22",
     "title": "Increased slow oscillatory activity in substantia nigra pars reticulata triggers abnormal involuntary movements in the {6-OHDA-lesioned} rat in the presence of excessive extracelullar striatal dopamine",
+    "publisher": "Elsevier",
     "pages": "586--598",
     "number": "3",
     "journal": "Neurobiology of Disease",
@@ -1034,7 +900,7 @@
    "changes": {
     "author": {
      "before": "W Meissner and P Ravenscroft and R Reese and D Harnack and R Morgenstern and A Kupsch and H Klitgaard and B Bioulac and C E Gross and E Bezard and others",
-     "after": "W Meissner and P Ravenscroft and R Reese and D Harnack and R Morgenstern and A Kupsch and H Klitgaard and B Bioulac and C E Gross and E Bezard and T Boraud"
+     "after": "Wassilios Meissner and Paula Ravenscroft and René Reese and Daniel Harnack and Rudolf Morgenstern and Andreas Kupsch and Henrik Klitgaard and Bernard Bioulac and Christian E Gross and Erwan Bezard and Thomas Boraud"
     }
    },
    "evidence": {
@@ -1104,20 +970,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-NAMES",
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:16531050"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "W Meissner and P Ravenscroft and R Reese and D Harnack and R Morgenstern and A Kupsch and H Klitgaard and B Bioulac and C E Gross and E Bezard and others",
-     "after": "Wassilios Meissner and Paula Ravenscroft and René Reese and Daniel Harnack and Rudolf Morgenstern and Andreas Kupsch and Henrik Klitgaard and Bernard Bioulac and Christian E Gross and Erwan Bezard and Thomas Boraud"
-    }
    }
   },
   {
@@ -1125,7 +977,7 @@
    "key": "Wall78",
    "class": "S1-AUTHOR-NAMES",
    "stratum": "risky",
-   "class_size": 39,
+   "class_size": 62,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -1144,11 +996,7 @@
    "changes": {
     "author": {
      "before": "W Wallace",
-     "after": "W P Wallace"
-    },
-    "number": {
-     "before": null,
-     "after": "5"
+     "after": "William P Wallace"
     }
    },
    "evidence": {
@@ -1202,22 +1050,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-NAMES",
-   "stated_by": {
-    "author": [
-     "crossref"
-    ],
-    "number": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "W Wallace",
-     "after": "William P Wallace"
-    }
    }
   },
   {
@@ -1225,7 +1057,7 @@
    "key": "TallEtal05",
    "class": "S1-AUTHOR-NAMES",
    "stratum": "risky",
-   "class_size": 39,
+   "class_size": 62,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref; pubmed holds the record and does not contradict",
@@ -1245,7 +1077,7 @@
    "changes": {
     "author": {
      "before": "Catherine Tallon-Baudry and Olivier Bertrand and Marie-Anne Henaff and Jean Isnard and Catherine Fischer",
-     "after": "C Tallon-Baudry and O Bertrand and M-A Hénaff and J Isnard and C Fischer"
+     "after": "Catherine Tallon-Baudry and Olivier Bertrand and Marie-Anne Hénaff and Jean Isnard and Catherine Fischer"
     }
    },
    "evidence": {
@@ -1308,20 +1140,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-NAMES",
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:15371290"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "Catherine Tallon-Baudry and Olivier Bertrand and Marie-Anne Henaff and Jean Isnard and Catherine Fischer",
-     "after": "Catherine Tallon-Baudry and Olivier Bertrand and Marie-Anne Hénaff and Jean Isnard and Catherine Fischer"
-    }
    }
   },
   {
@@ -1329,7 +1147,7 @@
    "key": "GerfKeef94",
    "class": "S1-AUTHOR-NAMES",
    "stratum": "risky",
-   "class_size": 39,
+   "class_size": 62,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -1348,11 +1166,7 @@
    "changes": {
     "author": {
      "before": "C Gerfen and K Keefe",
-     "after": "C R Gerfen and K A Keefe"
-    },
-    "number": {
-     "before": null,
-     "after": "1"
+     "after": "Charles R Gerfen and Kristen A Keefe"
     }
    },
    "evidence": {
@@ -1406,22 +1220,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-NAMES",
-   "stated_by": {
-    "author": [
-     "crossref"
-    ],
-    "number": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "C Gerfen and K Keefe",
-     "after": "Charles R Gerfen and Kristen A Keefe"
-    }
    }
   },
   {
@@ -1429,7 +1227,7 @@
    "key": "WyleEtal82",
    "class": "S1-AUTHOR-NAMES",
    "stratum": "risky",
-   "class_size": 39,
+   "class_size": 62,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref; pubmed holds the record and does not contradict",
@@ -1449,7 +1247,7 @@
    "changes": {
     "author": {
      "before": "A R Wyler and G A Ojemann and A A Ward",
-     "after": "A R Wyler and G A Ojemann and Ward, Jr, A A"
+     "after": "Allen R Wyler and George A Ojemann and Ward, Jr, Arthur A"
     }
    },
    "evidence": {
@@ -1512,20 +1310,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-NAMES",
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:7092182"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "A R Wyler and G A Ojemann and A A Ward",
-     "after": "Allen R Wyler and George A Ojemann and Ward, Jr, Arthur A"
-    }
    }
   },
   {
@@ -1533,7 +1317,7 @@
    "key": "MurdWalk69",
    "class": "S1-AUTHOR-NAMES",
    "stratum": "risky",
-   "class_size": 39,
+   "class_size": 62,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -1552,11 +1336,7 @@
    "changes": {
     "author": {
      "before": "B B Murdock and K D Walker",
-     "after": "Murdock, Jr, B B and K D Walker"
-    },
-    "number": {
-     "before": null,
-     "after": "5"
+     "after": "Murdock, Jr, Bennet B and Keith D Walker"
     }
    },
    "evidence": {
@@ -1610,22 +1390,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-NAMES",
-   "stated_by": {
-    "author": [
-     "crossref"
-    ],
-    "number": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "B B Murdock and K D Walker",
-     "after": "Murdock, Jr, Bennet B and Keith D Walker"
-    }
    }
   },
   {
@@ -1633,7 +1397,7 @@
    "key": "Box76",
    "class": "S1-AUTHOR-NAMES",
    "stratum": "risky",
-   "class_size": 39,
+   "class_size": 62,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -1653,7 +1417,7 @@
    "changes": {
     "author": {
      "before": "G Box",
-     "after": "G E P Box"
+     "after": "George E P Box"
     }
    },
    "evidence": {
@@ -1716,27 +1480,14 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-NAMES",
-   "stated_by": {
-    "author": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "G Box",
-     "after": "George E P Box"
-    }
    }
   },
   {
    "id": "18",
    "key": "MagnGree99",
-   "class": "TWO-SOURCE",
+   "class": "S1-AUTHOR-NAMES",
    "stratum": "risky",
-   "class_size": 113,
+   "class_size": 62,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref; pubmed holds the record and does not contradict",
@@ -1755,7 +1506,7 @@
    "changes": {
     "author": {
      "before": "S Magnussen and M Greenlee",
-     "after": "S Magnussen and M W Greenlee"
+     "after": "Svein Magnussen and Mark W Greenlee"
     }
    },
    "evidence": {
@@ -1809,20 +1560,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-NAMES",
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:10472196"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "S Magnussen and M Greenlee",
-     "after": "Svein Magnussen and Mark W Greenlee"
-    }
    }
   },
   {
@@ -1830,7 +1567,7 @@
    "key": "PentEtal98",
    "class": "S1-AUTHOR-NAMES",
    "stratum": "risky",
-   "class_size": 39,
+   "class_size": 62,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref; pubmed holds the record and does not contradict",
@@ -1841,6 +1578,7 @@
     "year": "1998",
     "volume": "10",
     "title": "Gamma frequency oscillation in the hippocampus of the rat: intracellular analysis in vivo",
+    "publisher": "Blackwell",
     "pages": "718--728",
     "number": "2",
     "journal": "{European} Journal of Neuroscience",
@@ -1850,7 +1588,7 @@
    "changes": {
     "author": {
      "before": "M Penttonen and A Kamondi and L Acsady and G Buzsaki",
-     "after": "M Penttonen and A Kamondi and L Acsády and G Buzsáki"
+     "after": "Markku Penttonen and Anita Kamondi and László Acsády and György Buzsáki"
     }
    },
    "evidence": {
@@ -1921,20 +1659,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-NAMES",
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:9749733"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "M Penttonen and A Kamondi and L Acsady and G Buzsaki",
-     "after": "Markku Penttonen and Anita Kamondi and László Acsády and György Buzsáki"
-    }
    }
   },
   {
@@ -1942,7 +1666,7 @@
    "key": "Roed73",
    "class": "S1-AUTHOR-NAMES",
    "stratum": "risky",
-   "class_size": 39,
+   "class_size": 62,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -1961,11 +1685,7 @@
    "changes": {
     "author": {
      "before": "H L Roediger",
-     "after": "Roediger, III, H L"
-    },
-    "number": {
-     "before": null,
-     "after": "6"
+     "after": "Roediger, III, Henry L"
     }
    },
    "evidence": {
@@ -2019,22 +1739,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-NAMES",
-   "stated_by": {
-    "author": [
-     "crossref"
-    ],
-    "number": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "H L Roediger",
-     "after": "Roediger, III, Henry L"
-    }
    }
   },
   {
@@ -2053,6 +1757,7 @@
     "year": "2007",
     "volume": "1",
     "title": "High-frequency oscillations in distributed neural networks reveal the dynamics of human decision making",
+    "publisher": "Frontiers",
     "journal": "Frontiers in Human Neuroscience",
     "author": "A G Guggisberg and S S Dalal and A M Findlay and S S Nagarajan",
     "ENTRYTYPE": "article"
@@ -2114,17 +1819,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "A1b-ARTICLE-NUMBER",
-   "stated_by": {
-    "pages": [
-     "pubmed:18958227",
-     "pmc-jats",
-     "pmc-jats"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "22",
@@ -2142,6 +1837,7 @@
     "year": "2010",
     "volume": "4",
     "title": "Shifts in gamma phase-amplitude coupling frequency from theta to alpha over posterior cortex during visual tasks",
+    "publisher": "Frontiers",
     "journal": "Frontiers in Human Neuroscience",
     "author": "B Voytek and R T Canolty and A Shestyuk and N E Crone and J Parvizi and R T Knight",
     "ENTRYTYPE": "article"
@@ -2203,18 +1899,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "A1b-ARTICLE-NUMBER",
-   "stated_by": {
-    "pages": [
-     "pubmed:21060716",
-     "pmc-jats",
-     "pmc-jats",
-     "pmc-jats"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "23",
@@ -2242,8 +1927,7 @@
      "after": "J B Carroll"
     }
    },
-   "evidence": null,
-   "revised": false
+   "evidence": null
   },
   {
    "id": "24",
@@ -2271,8 +1955,7 @@
      "after": "A Baddeley"
     }
    },
-   "evidence": null,
-   "revised": false
+   "evidence": null
   },
   {
    "id": "25",
@@ -2300,8 +1983,7 @@
      "after": "2"
     }
    },
-   "evidence": null,
-   "revised": false
+   "evidence": null
   },
   {
    "id": "26",
@@ -2333,8 +2015,7 @@
      "after": "D S Gorfein and R R Hoffman"
     }
    },
-   "evidence": null,
-   "revised": false
+   "evidence": null
   },
   {
    "id": "27",
@@ -2362,8 +2043,7 @@
      "after": "New York"
     }
    },
-   "evidence": null,
-   "revised": false
+   "evidence": null
   },
   {
    "id": "28",
@@ -2391,8 +2071,7 @@
      "after": "Addison-Wesley Pub. Co"
     }
    },
-   "evidence": null,
-   "revised": false
+   "evidence": null
   },
   {
    "id": "29",
@@ -2419,8 +2098,7 @@
      "after": "Dutton"
     }
    },
-   "evidence": null,
-   "revised": false
+   "evidence": null
   },
   {
    "id": "30",
@@ -2448,8 +2126,7 @@
      "after": "Spectral analysis for physical applications: multitaper and conventional univariate techniques"
     }
    },
-   "evidence": null,
-   "revised": false
+   "evidence": null
   },
   {
    "id": "31",
@@ -2477,15 +2154,14 @@
      "after": "1995"
     }
    },
-   "evidence": null,
-   "revised": false
+   "evidence": null
   },
   {
    "id": "32",
    "key": "SuppEtal66",
    "class": "S1-AUTHOR-SURNAME",
    "stratum": "pooled",
-   "class_size": 6,
+   "class_size": 10,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref",
@@ -2504,11 +2180,7 @@
    "changes": {
     "author": {
      "before": "P Suppes and G Grown and M Schlag-Rey",
-     "after": "P Suppes and G Groen and M Schlag-Rey"
-    },
-    "number": {
-     "before": null,
-     "after": "1"
+     "after": "Patrick Suppes and Guy Groen and Madeleine Schlag-Rey"
     }
    },
    "evidence": {
@@ -2562,22 +2234,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-AUTHOR-SURNAME",
-   "stated_by": {
-    "author": [
-     "crossref"
-    ],
-    "number": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "P Suppes and G Grown and M Schlag-Rey",
-     "after": "Patrick Suppes and Guy Groen and Madeleine Schlag-Rey"
-    }
    }
   },
   {
@@ -2585,7 +2241,7 @@
    "key": "RichEtal14b",
    "class": "S1-COORDINATES",
    "stratum": "pooled",
-   "class_size": 21,
+   "class_size": 13,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref; pubmed holds the record and does not contradict",
@@ -2667,16 +2323,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-COORDINATES",
-   "stated_by": {
-    "pages": [
-     "crossref",
-     "pubmed:25124440"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "34",
@@ -2703,10 +2350,6 @@
     "journal": {
      "before": "Journal of Experimental Psychology: General",
      "after": "Journal of Experimental Psychology"
-    },
-    "number": {
-     "before": null,
-     "after": "2"
     }
    },
    "evidence": {
@@ -2759,24 +2402,6 @@
       "match": true,
       "detail": null
      }
-    }
-   },
-   "cls_before": "S1-JOURNAL-HISTORY-OR-TYPO",
-   "stated_by": {
-    "journal": [
-     "crossref",
-     "pubmed:13406188"
-    ],
-    "number": [
-     "crossref",
-     "pubmed:13406188"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "journal": {
-     "before": "Journal of Experimental Psychology: General",
-     "after": "Journal of Experimental Psychology"
     }
    }
   },
@@ -2867,16 +2492,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-JOURNAL-HISTORY-OR-TYPO",
-   "stated_by": {
-    "journal": [
-     "crossref",
-     "pubmed:13896567"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "36",
@@ -2965,16 +2581,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-JOURNAL-REPLACEMENT",
-   "stated_by": {
-    "journal": [
-     "crossref",
-     "pubmed:14516216"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "37",
@@ -2992,6 +2599,7 @@
     "year": "2007",
     "volume": "130",
     "title": "Evidence for cortical reorganization of language in patients with hippocampal sclerosis",
+    "publisher": "{Oxford} {University} Press",
     "pages": "2942",
     "number": "11",
     "journal": "Brain",
@@ -3071,16 +2679,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-PAGES-COMPLETE",
-   "stated_by": {
-    "pages": [
-     "crossref",
-     "pubmed:17704527"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "38",
@@ -3098,6 +2697,7 @@
     "year": "2002",
     "volume": "116",
     "title": "The role of the hippocampus in memory for the temporal order of a sequence of odors",
+    "publisher": "{American} Psychological Association",
     "pages": "286",
     "number": "2",
     "journal": "Behavioral Neuroscience",
@@ -3177,16 +2777,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-PAGES-COMPLETE",
-   "stated_by": {
-    "pages": [
-     "crossref",
-     "crossref"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "39",
@@ -3204,6 +2795,7 @@
     "year": "2007",
     "volume": "17",
     "title": "Sub-exemplar shape tuning in human face-related areas",
+    "publisher": "{Oxford} {University} Press",
     "pages": "325",
     "number": "2",
     "journal": "Cerebral Cortex",
@@ -3284,16 +2876,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-PAGES-COMPLETE",
-   "stated_by": {
-    "pages": [
-     "crossref",
-     "pubmed:16525131"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "40",
@@ -3382,15 +2965,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-PAGES-COMPLETE",
-   "stated_by": {
-    "pages": [
-     "crossref"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "41",
@@ -3414,10 +2989,6 @@
     "ENTRYTYPE": "article"
    },
    "changes": {
-    "number": {
-     "before": null,
-     "after": "2"
-    },
     "title": {
      "before": "Poststimulus {EEG} spectral analysis and the {P}300: attention, task, and probability",
      "after": "Poststimulus {EEG} spectral analysis and {P}300: attention, task, and probability"
@@ -3474,24 +3045,6 @@
       "match": true,
       "detail": null
      }
-    }
-   },
-   "cls_before": "S1-TITLE-CORROBORATED",
-   "stated_by": {
-    "number": [
-     "crossref",
-     "pubmed:10194969"
-    ],
-    "title": [
-     "crossref",
-     "pubmed:10194969"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "title": {
-     "before": "Poststimulus {EEG} spectral analysis and the {P}300: attention, task, and probability",
-     "after": "Poststimulus {EEG} spectral analysis and {P}300: attention, task, and probability"
     }
    }
   },
@@ -3582,15 +3135,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TITLE-CROSSREF-ONLY",
-   "stated_by": {
-    "title": [
-     "crossref"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "43",
@@ -3614,10 +3159,6 @@
     "ENTRYTYPE": "article"
    },
    "changes": {
-    "number": {
-     "before": null,
-     "after": "4"
-    },
     "title": {
      "before": "Judgments of frequency and recognition memory in multiple-trace memory model",
      "after": "Judgments of frequency and recognition memory in a multiple-trace memory model"
@@ -3674,22 +3215,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TITLE-CROSSREF-ONLY",
-   "stated_by": {
-    "number": [
-     "crossref"
-    ],
-    "title": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "title": {
-     "before": "Judgments of frequency and recognition memory in multiple-trace memory model",
-     "after": "Judgments of frequency and recognition memory in a multiple-trace memory model"
-    }
    }
   },
   {
@@ -3714,10 +3239,6 @@
     "ENTRYTYPE": "article"
    },
    "changes": {
-    "number": {
-     "before": null,
-     "after": "5"
-    },
     "title": {
      "before": "Inter-response times in serial recall: effects of intraserial repetition",
      "after": "Interresponse times in serial recall: effects of intraserial repetition"
@@ -3774,22 +3295,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TITLE-CROSSREF-ONLY",
-   "stated_by": {
-    "number": [
-     "crossref"
-    ],
-    "title": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "title": {
-     "before": "Inter-response times in serial recall: effects of intraserial repetition",
-     "after": "Interresponse times in serial recall: effects of intraserial repetition"
-    }
    }
   },
   {
@@ -3814,10 +3319,6 @@
     "ENTRYTYPE": "article"
    },
    "changes": {
-    "number": {
-     "before": null,
-     "after": "2"
-    },
     "title": {
      "before": "Two operation in character-recognition:some evidence from reaction time measurements",
      "after": "Two operations in character recognition: some evidence from reaction-time measurements"
@@ -3874,22 +3375,6 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TITLE-CROSSREF-ONLY",
-   "stated_by": {
-    "number": [
-     "crossref"
-    ],
-    "title": [
-     "crossref"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "title": {
-     "before": "Two operation in character-recognition:some evidence from reaction time measurements",
-     "after": "Two operations in character recognition: some evidence from reaction-time measurements"
-    }
    }
   },
   {
@@ -3897,7 +3382,7 @@
    "key": "KanwEtal97",
    "class": "S1-TWO-FIELDS",
    "stratum": "pooled",
-   "class_size": 30,
+   "class_size": 31,
    "origin": "article",
    "rule": "S1-I1",
    "source": "crossref; pubmed holds the record and does not contradict",
@@ -3974,29 +3459,14 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "S1-TWO-FIELDS",
-   "stated_by": {
-    "number": [
-     "crossref",
-     "pubmed:9151747",
-     "pmc-jats"
-    ],
-    "pages": [
-     "crossref",
-     "pubmed:9151747",
-     "pmc-jats"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "47",
    "key": "Vand00",
-   "class": "TWO-SOURCE",
+   "class": "STALE-APPROVAL-REPAIR",
    "stratum": "pooled",
-   "class_size": 113,
+   "class_size": 10,
    "origin": "article",
    "rule": "C-AUTHOR",
    "source": "Crossref + PubMed",
@@ -4007,6 +3477,7 @@
     "year": "2000",
     "volume": "855",
     "title": "Are neocortical gamma waves related to consciousness?",
+    "publisher": "Elsevier",
     "pages": "217--224",
     "number": "2",
     "journal": "Brain Research",
@@ -4086,23 +3557,94 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "STALE-APPROVAL-REPAIR",
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:10677593"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
+   }
   },
   {
    "id": "48",
+   "key": "PoldEtal99",
+   "class": "STALE-APPROVAL-REPAIR",
+   "stratum": "pooled",
+   "class_size": 10,
+   "origin": "article",
+   "rule": "S1-I1",
+   "source": "crossref",
+   "doi": "10.1006/nimg.1999.0441",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1999",
+    "volume": "10",
+    "title": "Functional specialization for semantic and phonological processing in the left inferior prefrontal cortex",
+    "pages": "15--35",
+    "journal": "{NeuroImage}",
+    "author": "R A Poldrack and A D Wagner and M W Prull and J E Desmond and G H Glover and J D Gabrieli",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "author": {
+     "before": "R A Poldrack and A D Wagner and M W Prull and J E Desmond and G H Glover and J D Gabrieli",
+     "after": "Russell A Poldrack and Anthony D Wagner and Matthew W Prull and John E Desmond and Gary H Glover and John D E Gabrieli"
+    }
+   },
+   "evidence": {
+    "source": "crossref",
+    "doi": "10.1006/nimg.1999.0441",
+    "fields": {
+     "author": {
+      "cited": "R A Poldrack and A D Wagner and M W Prull and J E Desmond and G H Glover and J D Gabrieli",
+      "source": "Russell A. Poldrack; Anthony D. Wagner; Matthew W. Prull; John E. Desmond; Gary H. Glover; John D.E. Gabrieli",
+      "match": true,
+      "detail": "Complete author list in order; citation initials agree with source names"
+     },
+     "journal": {
+      "cited": "{NeuroImage}",
+      "source": [
+       "NeuroImage"
+      ],
+      "match": true,
+      "detail": null
+     },
+     "pages": {
+      "cited": "15--35",
+      "source": [
+       "15-35"
+      ],
+      "match": true,
+      "detail": null
+     },
+     "title": {
+      "cited": "Functional specialization for semantic and phonological processing in the left inferior prefrontal cortex",
+      "source": [
+       "Functional Specialization for Semantic and Phonological Processing in the Left Inferior Prefrontal Cortex"
+      ],
+      "match": true,
+      "detail": null
+     },
+     "volume": {
+      "cited": "10",
+      "source": [
+       "10"
+      ],
+      "match": true,
+      "detail": null
+     },
+     "year": {
+      "cited": "1999",
+      "source": [
+       "1999"
+      ],
+      "match": true,
+      "detail": null
+     }
+    }
+   }
+  },
+  {
+   "id": "49",
    "key": "DerdMose10",
    "class": "TWO-SOURCE",
    "stratum": "pooled",
-   "class_size": 113,
+   "class_size": 47,
    "origin": "article",
    "rule": "C-AUTHOR",
    "source": "Crossref + PubMed",
@@ -4122,7 +3664,7 @@
    "changes": {
     "author": {
      "before": "D Derdikman and E Moser",
-     "after": "D Derdikman and E I Moser"
+     "after": "Dori Derdikman and Edvard I Moser"
     }
    },
    "evidence": {
@@ -4184,28 +3726,14 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "TWO-SOURCE",
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:20951631"
-    ]
-   },
-   "revised": true,
-   "previous_changes": {
-    "author": {
-     "before": "D Derdikman and E Moser",
-     "after": "Dori Derdikman and Edvard I Moser"
-    }
    }
   },
   {
-   "id": "49",
+   "id": "50",
    "key": "WyarTall08",
    "class": "TWO-SOURCE",
    "stratum": "pooled",
-   "class_size": 113,
+   "class_size": 47,
    "origin": "article",
    "rule": "C-PAGES",
    "source": "Crossref + PubMed",
@@ -4216,6 +3744,7 @@
     "year": "2008",
     "volume": "28",
     "title": "Neural dissociation between visual awareness and spatial attention",
+    "publisher": "Society for Neuroscience",
     "pages": "2667",
     "number": "10",
     "journal": "The Journal of Neuroscience",
@@ -4295,218 +3824,7 @@
       "detail": null
      }
     }
-   },
-   "cls_before": "TWO-SOURCE",
-   "stated_by": {
-    "pages": [
-     "crossref",
-     "pubmed:18322110"
-    ]
-   },
-   "revised": false,
-   "previous_changes": null
-  },
-  {
-   "id": "50",
-   "key": "AshbEtal98",
-   "class": "TWO-SOURCE",
-   "stratum": "new-two-source",
-   "class_size": 113,
-   "origin": "article",
-   "rule": "C-AUTHOR",
-   "source": "Crossref + PubMed",
-   "doi": "10.1037/0033-295x.105.3.442",
-   "pubmed_id": "9697427",
-   "catalogue_record": null,
-   "fields": {
-    "year": "1998",
-    "volume": "105",
-    "title": "A neuropsychological theory of multiple systems in category learning",
-    "pages": "442--481",
-    "number": "3",
-    "journal": "Psychological Review",
-    "author": "F G Ashby and L A Alfonso-Reese and U Turken and E M Waldron",
-    "ENTRYTYPE": "article"
-   },
-   "changes": {
-    "author": {
-     "before": "F G Ashby and L A Alfonso-Reese and U Turken and E M Waldron",
-     "after": "F G Ashby and L A Alfonso-Reese and A U Turken and E M Waldron"
-    }
-   },
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:9697427"
-    ]
-   },
-   "evidence": null,
-   "revised": false
-  },
-  {
-   "id": "51",
-   "key": "WhitWang83",
-   "class": "TWO-SOURCE",
-   "stratum": "new-two-source",
-   "class_size": 113,
-   "origin": "article",
-   "rule": "C-AUTHOR",
-   "source": "Crossref + PubMed",
-   "doi": "10.1126/science.6136093",
-   "pubmed_id": "6136093",
-   "catalogue_record": null,
-   "fields": {
-    "year": "1983",
-    "volume": "221",
-    "title": "Differential effects of classical and atypical antipsychotic drugs on {A9} and {A10} dopamine neurons",
-    "pages": "1054--1057",
-    "number": "4615",
-    "journal": "Science",
-    "author": "R Y White and F J Wang",
-    "ENTRYTYPE": "article"
-   },
-   "changes": {
-    "author": {
-     "before": "R Y White and F J Wang",
-     "after": "F J White and R Y Wang"
-    }
-   },
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:6136093"
-    ]
-   },
-   "evidence": null,
-   "revised": false
-  },
-  {
-   "id": "52",
-   "key": "RuskEtal99",
-   "class": "TWO-SOURCE",
-   "stratum": "new-two-source",
-   "class_size": 113,
-   "origin": "article",
-   "rule": "C-COMB",
-   "source": "Crossref + PubMed",
-   "doi": "10.1152/jn.1999.81.5.2046",
-   "pubmed_id": "10322046",
-   "catalogue_record": null,
-   "fields": {
-    "year": "1999",
-    "volume": "81",
-    "title": "Multisecond oscillations in firing rate in the basal ganglia: robust modulation by dopamine receptor activation and anesthesia",
-    "pages": "2046",
-    "number": "5",
-    "journal": "Journal of Neurophysiology",
-    "author": "D N Ruskin and D A Bergstrom and Y Kaneoke and B N Patel and M J Twery and JR Walters",
-    "ENTRYTYPE": "article"
-   },
-   "changes": {
-    "pages": {
-     "before": "2046",
-     "after": "2046--2055"
-    },
-    "author": {
-     "before": "D N Ruskin and D A Bergstrom and Y Kaneoke and B N Patel and M J Twery and JR Walters",
-     "after": "D N Ruskin and D A Bergstrom and Y Kaneoke and B N Patel and M J Twery and J R Walters"
-    }
-   },
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:10322046"
-    ],
-    "pages": [
-     "crossref",
-     "pubmed:10322046"
-    ]
-   },
-   "evidence": null,
-   "revised": false
-  },
-  {
-   "id": "53",
-   "key": "RaghEtal01",
-   "class": "TWO-SOURCE",
-   "stratum": "new-two-source",
-   "class_size": 113,
-   "origin": "article",
-   "rule": "C-AUTHOR",
-   "source": "Crossref + PubMed",
-   "doi": "10.1523/jneurosci.21-09-03175.2001",
-   "pubmed_id": "11312302",
-   "catalogue_record": null,
-   "fields": {
-    "year": "2001",
-    "volume": "21",
-    "title": "Gating of human theta oscillations by a working memory task",
-    "pages": "3175--3183",
-    "journal": "The Journal of Neuroscience",
-    "author": "S Raghavachari and D S Rizzuto and J B Caplan and M P Kirschen and B Bourgeois and J R Madsen and M J Kahana and J E Lisman",
-    "ENTRYTYPE": "article"
-   },
-   "changes": {
-    "author": {
-     "before": "S Raghavachari and D S Rizzuto and J B Caplan and M P Kirschen and B Bourgeois and J R Madsen and M J Kahana and J E Lisman",
-     "after": "S Raghavachari and M J Kahana and D S Rizzuto and J B Caplan and M P Kirschen and B Bourgeois and J R Madsen and J E Lisman"
-    },
-    "number": {
-     "before": null,
-     "after": "9"
-    }
-   },
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:11312302",
-     "pmc-jats"
-    ],
-    "number": [
-     "crossref",
-     "pubmed:11312302",
-     "pmc-jats"
-    ]
-   },
-   "evidence": null,
-   "revised": false
-  },
-  {
-   "id": "54",
-   "key": "RuggWild00",
-   "class": "TWO-SOURCE",
-   "stratum": "new-two-source",
-   "class_size": 113,
-   "origin": "article",
-   "rule": "C-AUTHOR",
-   "source": "Crossref + PubMed",
-   "doi": "10.1016/s1364-6613(00)01445-5",
-   "pubmed_id": "10689345",
-   "catalogue_record": null,
-   "fields": {
-    "year": "2000",
-    "volume": "4",
-    "title": "{R}etrieval processing and episodic memory",
-    "pages": "108--115",
-    "number": "3",
-    "journal": "Trends in Cognitive Sciences",
-    "author": "Rugg and Wilding",
-    "ENTRYTYPE": "article"
-   },
-   "changes": {
-    "author": {
-     "before": "Rugg and Wilding",
-     "after": "M D Rugg and E L Wilding"
-    }
-   },
-   "stated_by": {
-    "author": [
-     "crossref",
-     "pubmed:10689345"
-    ]
-   },
-   "evidence": null,
-   "revised": false
+   }
   }
  ]
 }
