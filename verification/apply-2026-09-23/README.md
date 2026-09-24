@@ -20,6 +20,8 @@ check (`.bibcheck/validate-current-checkpoint.py`) also had to pass.
 | reassess001 | 0 (no BibTeX edit) | stale approvals 12 / 2 | 2 | 0 requests, 0 writes | 3,780 / 2,642 | d72d7c0 |
 | droppub001 | 1,027 (`publisher` dropped) | 572 / 708 | 751 + 5 | 0 requests, 0 writes | 3,916 / 2,506 | daea76c |
 | adddoi001 | 3,022 (`Doi` added) | 3,022 / 3,022 | 3,039 | 0 requests, 0 writes | 3,916 / 2,506 | 5754a71 |
+| risky001 | 85 (S1-TWO-FIELDS-RISKY) | 0 / 85 | 71 | 0 requests, 0 writes | 4,001 / 2,421 | see git log |
+| risky001-nosuffix | 4 (`author` suffix removed) | 4 / 0 | 7 | 0 requests, 0 writes | 3,997 / 2,425 | see git log |
 
 Library counts are metadata_verified / needs_review, out of 6,422 entries.
 The starting point was 3,669 / 2,753. Per-entry statuses are in
@@ -103,11 +105,42 @@ the fixes described below.
   `verify_entry`'s own approvals omit. The pipeline now ends with a recheck. On
   the resumed run and its repeat, both cycles made 0 requests and 0 writes.
 
+## risky001: approved S1-TWO-FIELDS-RISKY proposals
+
+- **Approval.** The class passed a 10-entry random spot-check (10/10 marked
+  correct by the user, 2026-09-24), which approved all 87 proposals in
+  `verification/fixes-2026-09-24/proposals.json`.
+- **Fingerprints.** All 87 proposal fingerprints matched the current entries,
+  and every `before` value matched the current field value.
+- **Held (2).** GautEtal18 and HayeEtal14 change `year` (to 2019 and 2016).
+  The cite key encodes the year, so `helpers.check_bib` asks for GautEtal19
+  and HayeEtal16. This batch never renames keys, so both proposals were held
+  whole (listed under `skipped` in `risky001-proposals.json`) for a user
+  decision.
+- **Edits (85).** These edited existing fields and added fields (60 `number`, 1
+  `volume`, 1 `pages`, at the house formatter's alphabetical position). Five
+  `number` fields were removed.
+- **Result.** All 85 entries became metadata_verified. No accepted result
+  outside the batch changed.
+
+## risky001-nosuffix: no name suffixes in author fields
+
+- **User decision (2026-09-24).** Author and editor fields carry no Jr, Sr,
+  II, III or IV ("B B Murdock was correct; don't list Jr").
+- **Change.** Four risky001 proposals had added a suffix to `author`: BrodMurd77
+  and CalvEtal73 (Jr), and RoedKarp06a and RoedKarp06b (III). This follow-up
+  batch put back each author field as it was before risky001. Every other
+  risky001 change to these entries stays.
+- **Result.** All four are needs_review ("No unambiguous, fully supported
+  metadata match"). CalvEtal73 also has "DOI-linked PubMed author suffix
+  conflicts with the citation". The verifier still treats a missing suffix
+  as an author mismatch. They were not forced or hand-approved.
+
 ## Checks
 
 - **Fresh restore.** After every batch it restored all 6,422 records exactly;
   a repeat import added 0 and SQLite `quick_check` returned ok. The staging
-  expectation is now `.bibcheck/apply-2026-09-23/adddoi001-staged.bib`.
+  expectation is now `.bibcheck/apply-2026-09-23/risky001-nosuffix-staged.bib`.
   `.bibcheck/` is git-ignored, so the validator change is local only.
 - **Benchmark** (`verification/benchmark/run.py`, called through `run()` so
   that `results.json` is not rewritten): 60/60, with 0 false acceptances and

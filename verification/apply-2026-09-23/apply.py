@@ -11,6 +11,16 @@ Batches (run in this order):
   droppub001   Drop ``publisher`` from every @article (user decision 2026-09-22).
   adddoi001    Add the accepted DOI to entries that are metadata_verified, lack a
                DOI, and whose accepted candidate is the cited work itself.
+  risky001     The 87 user-approved S1-TWO-FIELDS-RISKY proposals from
+               verification/fixes-2026-09-24/proposals.json (spot-check 10/10,
+               2026-09-24): field edits, added fields (e.g. ``number``) and
+               removals. Every proposal fingerprint must equal the entry's current
+               fingerprint; a mismatch stops the batch (no silent regeneration).
+               Proposals that change ``year`` are held (listed under "skipped"):
+               the cite key encodes the year, and keys are never renamed here.
+  risky001-nosuffix  Follow-up to risky001 (user decision 2026-09-24: no Jr, Sr,
+               II, III, IV in author/editor fields): restore the pre-batch author
+               of the risky001 entries whose author change added a suffix.
 
 Edit batches freeze their proposals (key, fingerprint, before/after) in this
 folder, stage a copy under .bibcheck/apply-2026-09-23/, assert that only the
@@ -120,12 +130,50 @@ def insert_doi(raw, doi):
     return raw[:prefix.end()] + ",".join(parts) + "}"
 
 
+def set_field(raw, field, before, after):
+    """Replace the simple braced value of a unique field, checking the old value."""
+    prefix, parts = field_parts(raw)
+    matching = [i for i, part in enumerate(parts[1:], 1) if part_name(part) == field]
+    if len(matching) != 1:
+        raise ValueError(f"{field} is not a unique field")
+    i = matching[0]
+    value = re.match(r"(\s*[A-Za-z]+\s*=\s*\{)(.*)(\}\s*)$", parts[i], re.S)
+    if not value or value[2] != before or part_name(parts[i]) != field:
+        raise ValueError(f"{field} is not the expected simple braced value")
+    parts[i] = value[1] + after + value[3]
+    return raw[:prefix.end()] + ",".join(parts) + "}"
+
+
+def insert_field(raw, field, after):
+    """Insert ``Field = {..}`` at its alphabetical position (the house formatter's order)."""
+    if "\n" in after or after != after.strip():
+        raise ValueError(f"{field} value needs manual formatting: {after!r}")
+    prefix, parts = field_parts(raw)
+    names = [part_name(p) for p in parts[1:]]
+    if field in names or None in names:
+        raise ValueError(f"{field} exists or unparsable field")
+    position = next((i for i, n in enumerate(names, 1) if n > field), len(parts))
+    new = "\n\t" + field.capitalize() + " = {" + after + "}"
+    if position == len(parts):
+        last = parts[-1]
+        stripped = last.rstrip()
+        parts[-1] = stripped
+        parts.append(new + last[len(stripped):])
+    else:
+        parts.insert(position, new)
+    return raw[:prefix.end()] + ",".join(parts) + "}"
+
+
 def apply_change(raw, field, change):
     if field == "publisher" and change["after"] is None:
         return drop_field(raw, "publisher", change["before"])
     if field == "doi" and change["before"] is None:
         return insert_doi(raw, change["after"])
-    raise ValueError(f"Unsupported change: {field}")
+    if change["after"] is None:
+        return drop_field(raw, field, change["before"])
+    if change["before"] is None:
+        return insert_field(raw, field, change["after"])
+    return set_field(raw, field, change["before"], change["after"])
 
 
 # ---------------------------------------------------------- proposals --
@@ -198,6 +246,55 @@ def propose_adddoi(entries, results):
                      "accepted_source": result.get("accepted_source"), "status_before": result["status"],
                      "changes": {"doi": {"before": None, "after": doi}}})
     return rows, dict(skipped)
+
+
+RISKY_CLASS = "S1-TWO-FIELDS-RISKY"
+FIXES = ROOT / "verification/fixes-2026-09-24/proposals.json"
+
+
+def propose_risky(entries, results):
+    """The approved class, verbatim; every fingerprint must match the current entry."""
+    source = [p for p in json.loads(FIXES.read_text())["proposals"] if p.get("class") == RISKY_CLASS]
+    mismatched = sorted(p["key"] for p in source
+                        if p["key"] not in entries or entries[p["key"]]["fingerprint"] != p["fingerprint"])
+    if mismatched:
+        raise SystemExit(f"STOP: {len(mismatched)} {RISKY_CLASS} proposals no longer match the current "
+                         f"entry fingerprint: {mismatched}")
+    rows, held = [], {}
+    for p in source:
+        for field, change in p["changes"].items():
+            current = entries[p["key"]]["fields"].get(field)
+            if current != change["before"]:
+                raise SystemExit(f"STOP: {p['key']} {field} is {current!r}, proposal expects {change['before']!r}")
+        if "year" in p["changes"]:
+            # The cite key encodes the year, so helpers.check_bib demands a new key; the
+            # batch discipline keeps every cite key. Held whole for a user decision.
+            held[p["key"]] = "year change requires a cite-key rename (check_bib ID rule)"
+            continue
+        rows.append({**p, "status_before": results[p["key"]]["status"]})
+    return rows, held
+
+
+SUFFIX = re.compile(r"(^|\s|,)(Jr|Sr|II|III|IV)\.?(,|\s|$)")
+
+
+def propose_nosuffix(entries, results):
+    """risky001-nosuffix: user decision 2026-09-24, no name suffixes (Jr, Sr, II, III, IV)
+    in author/editor fields. Restore the pre-risky001 author wherever risky001 added a
+    suffix; every other risky001 change stays."""
+    frozen = json.loads((HERE / "risky001-proposals.json").read_text())["proposals"]
+    rows = []
+    for p in frozen:
+        change = p["changes"].get("author")
+        if not change or not SUFFIX.search(change["after"]) or SUFFIX.search(change["before"]):
+            continue
+        entry = entries[p["key"]]
+        if entry["fields"].get("author") != change["after"]:
+            raise SystemExit(f"STOP: {p['key']} author is not the risky001 value")
+        rows.append({"key": p["key"], "fingerprint": entry["fingerprint"], "kind": "restore_author_no_suffix",
+                     "rule": "user-2026-09-24-no-suffix", "status_before": results[p["key"]]["status"],
+                     "changes": {"author": {"before": change["after"], "after": change["before"]}}})
+    return rows, {}
 
 
 # ----------------------------------------------------------- pipeline --
@@ -293,7 +390,7 @@ def apply_change_all(raw, p):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("batch", choices=["reassess001", "droppub001", "adddoi001"])
+    parser.add_argument("batch", choices=["reassess001", "droppub001", "adddoi001", "risky001", "risky001-nosuffix"])
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
     batch = args.batch
@@ -323,6 +420,10 @@ def main():
             else:
                 if batch == "droppub001":
                     proposals, skipped = propose_droppub(entries, before), {}
+                elif batch == "risky001":
+                    proposals, skipped = propose_risky(entries, before)
+                elif batch == "risky001-nosuffix":
+                    proposals, skipped = propose_nosuffix(entries, before)
                 else:
                     proposals, skipped = propose_adddoi(entries, before)
                 frozen = {"batch": batch, "generated": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -331,6 +432,10 @@ def main():
                 proposals_path.write_text(json.dumps(frozen, indent=1, ensure_ascii=False) + "\n")
             keys = {p["key"] for p in proposals}
             assert len(keys) == len(proposals)
+            if batch == "risky001" and not resuming:
+                stale = sorted(p["key"] for p in proposals if entries[p["key"]]["fingerprint"] != p["fingerprint"])
+                if stale:
+                    raise SystemExit(f"STOP: frozen risky001 proposals are stale: {stale}")
             print(json.dumps({k: v for k, v in frozen.items() if k != "proposals"}), flush=True)
             if not resuming:
                 text, modified = stage_batch(batch, entries, before, proposals)

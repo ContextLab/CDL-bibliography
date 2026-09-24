@@ -1,0 +1,109 @@
+{
+ "stages": [
+  {
+   "cycle": "run",
+   "seconds": 520.79,
+   "network_requests": 7,
+   "added_review_records": 16,
+   "batch_statuses_before": {
+    "metadata_verified": 4
+   },
+   "batch_statuses_after": {
+    "needs_review": 4
+   },
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [],
+   "previously_accepted_now_unresolved": [
+    "BrodMurd77",
+    "CalvEtal73",
+    "RoedKarp06a",
+    "RoedKarp06b"
+   ],
+   "newly_verified_outside_batch": [],
+   "library_statuses_before": {
+    "metadata_verified": 4001,
+    "needs_review": 2421
+   },
+   "library_statuses": {
+    "metadata_verified": 3997,
+    "needs_review": 2425
+   }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 509.15,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch_statuses_before": {
+    "metadata_verified": 4
+   },
+   "batch_statuses_after": {
+    "needs_review": 4
+   },
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [],
+   "previously_accepted_now_unresolved": [
+    "BrodMurd77",
+    "CalvEtal73",
+    "RoedKarp06a",
+    "RoedKarp06b"
+   ],
+   "newly_verified_outside_batch": [],
+   "library_statuses_before": {
+    "metadata_verified": 4001,
+    "needs_review": 2421
+   },
+   "library_statuses": {
+    "metadata_verified": 3997,
+    "needs_review": 2425
+   }
+  }
+ ],
+ "entries": {
+  "BrodMurd77": {
+   "status_before": "metadata_verified",
+   "status": "needs_review",
+   "fingerprint_before": "v2:1812db960effe39b72e76b7fe49f2275d79cd8843c262ea9eeae9d4fc23df985",
+   "fingerprint": "v2:4a3ef020e6816dacee1f05947e266906e614d0749bad82872af5681b0450d434",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "CalvEtal73": {
+   "status_before": "metadata_verified",
+   "status": "needs_review",
+   "fingerprint_before": "v2:edb81966b1aea5304e87eb3f77a8788f5e0ca246ea79745df51c7849570713d2",
+   "fingerprint": "v2:239f4571afa05e272b7532079bd32dff336a9a286236bf4b2e30a8452db78190",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked PubMed author suffix conflicts with the citation"
+   ]
+  },
+  "RoedKarp06a": {
+   "status_before": "metadata_verified",
+   "status": "needs_review",
+   "fingerprint_before": "v2:072b8f40984602bf8093d307622b22b20d7c52ce77f66e1922d73008281b9fb9",
+   "fingerprint": "v2:4b734c31979138d3634816af49ab4e39eb7992aca118dd6c43eb1a9f1acd529a",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "RoedKarp06b": {
+   "status_before": "metadata_verified",
+   "status": "needs_review",
+   "fingerprint_before": "v2:e4d2441ee405a222ea3ef9a09170ecd0ce7145ccc77e7e01ce114aad5e0d629b",
+   "fingerprint": "v2:8a9b614c4a1977ccd9688f5eaa96b5cccd23ebab7f24c5cf94ee4ddca8c085ea",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  }
+ }
+}

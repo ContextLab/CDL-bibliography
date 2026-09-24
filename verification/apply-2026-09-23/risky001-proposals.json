@@ -1,0 +1,4014 @@
+{
+ "batch": "risky001",
+ "generated": "2026-09-24 18:09:56",
+ "count": 85,
+ "status_before": {
+  "needs_review": 85
+ },
+ "skipped": {
+  "GautEtal18": "year change requires a cite-key rename (check_bib ID rule)",
+  "HayeEtal14": "year change requires a cite-key rename (check_bib ID rule)"
+ },
+ "proposals": [
+  {
+   "key": "AlyTurk16",
+   "fingerprint": "v2:a7c0b88f7e2d5e27188ace26458f09760044c9b2fc86e72679fa0f38a33d69b8",
+   "kind": "single_source_author+pages",
+   "rule": "S1-I1",
+   "doi": "10.1073/pnas.1518931113",
+   "pubmed_id": null,
+   "source": "crossref+pubmed",
+   "changes": {
+    "author": {
+     "before": "M Aly and N Turk-Browne",
+     "after": "M Aly and N B Turk-Browne"
+    },
+    "pages": {
+     "before": "420--429",
+     "after": "e420--e429"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "pages": "pubmed"
+   },
+   "stated_by": {
+    "author": [
+     "crossref",
+     "pubmed:26755611"
+    ],
+    "pages": [
+     "pubmed:26755611"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "StopEtal07",
+   "fingerprint": "v2:135ce1bedc30eba1b9aaf9df91e831259bf434b766d1bb92d64e016283194c71",
+   "kind": "single_source_author+number",
+   "rule": "S1-I1",
+   "doi": "10.1016/j.brainres.2007.07.019",
+   "pubmed_id": null,
+   "source": "crossref+no-source-states-an-issue",
+   "changes": {
+    "author": {
+     "before": "C M Stoppel and C N Boehler and C Sabelhaus and H-J Heinze and J M Hopf and M A Shoenfeld",
+     "after": "C M Stoppel and C N Boehler and C Sabelhaus and H-J Heinze and J M Hopf and M A Schoenfeld"
+    },
+    "number": {
+     "before": "21",
+     "after": null
+    }
+   },
+   "subclasses": {
+    "author": "author-surname-spelling",
+    "number": "number-dropped-unconfirmed"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "number": "no-source-states-an-issue"
+   },
+   "issue_evidence": {
+    "issue": null,
+    "sources": [],
+    "lookup": {
+     "pubmed": {
+      "query": "doi",
+      "pmids": [
+       "17961522"
+      ],
+      "error": null
+     },
+     "publisher": {
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.brainres.2007.07.019",
+      "doi_confirmed": true,
+      "citation_issue": [],
+      "error": null
+     }
+    }
+   },
+   "stated_by": {
+    "author": [
+     "crossref",
+     "pubmed:17961522"
+    ],
+    "number": [
+     "deleted; consulted: crossref, pubmed:17961522, pubmed-eutils:17961522, pubmed-eutils lookup (doi; PMIDs ['17961522']), publisher page https://api.elsevier.com/content/article/doi/10.1016/j.brainres.2007.07.019 (DOI confirmed: True; citation_issue none)"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "AldrEtal22",
+   "fingerprint": "v2:b060cb77b65b69956e32757e450fee79e23f4153b37c34c81a7cdda52b04bede",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.1007/s10648-021-09649-y",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "pages": {
+     "before": "1177001216",
+     "after": "1177--1216"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "pages": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "3",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "pages": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "KoelEtal16",
+   "fingerprint": "v2:abd6481df8ff64183cb232c133c5083787b3ec62d98606e6c3e406127fc46072",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.1038/srep19741",
+   "pubmed_id": null,
+   "source": "crossref; pubmed holds the record and does not contradict",
+   "changes": {
+    "number": {
+     "before": "19741",
+     "after": "1"
+    },
+    "pages": {
+     "before": "doi.org/10.1038/srep19741",
+     "after": "19741"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "pages": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "1",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:26830652",
+     "pmc-jats",
+     "pmc-jats"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "ElliEtal09",
+   "fingerprint": "v2:6b895d72bf3de7bbe4e32062ec6ef65705cf5809e0373fadad4db98ee819870a",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.1007/s10955-009-9808-z",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": "1005",
+     "after": "6"
+    },
+    "pages": {
+     "before": "doi.org/10.1007/s10955-009-9808-z",
+     "after": "1005--1034"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "pages": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "6",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "pages": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "WangGuo19",
+   "fingerprint": "v2:f6d510e046b0a682571286ad8374e68ad07bd89dfa971b63c0ca5a84814216d4",
+   "kind": "single_source_number+title",
+   "rule": "S1-I1",
+   "doi": "10.1016/j.neuroimage.2018.12.024",
+   "pubmed_id": null,
+   "source": "crossref+no-source-states-an-issue",
+   "changes": {
+    "number": {
+     "before": "1",
+     "after": null
+    },
+    "title": {
+     "before": "A hierarchical independent component anlysis model for longitudinal neuroimaging studies",
+     "after": "A hierarchical independent component analysis model for longitudinal neuroimaging studies"
+    }
+   },
+   "subclasses": {
+    "number": "number-dropped-unconfirmed",
+    "title": "title-crossref+pubmed"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "no-source-states-an-issue",
+    "title": "crossref"
+   },
+   "issue_evidence": {
+    "issue": null,
+    "sources": [],
+    "lookup": {
+     "pubmed": {
+      "query": "doi",
+      "pmids": [
+       "30639837"
+      ],
+      "error": null
+     },
+     "publisher": {
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.neuroimage.2018.12.024",
+      "doi_confirmed": true,
+      "citation_issue": [],
+      "error": null
+     }
+    }
+   },
+   "stated_by": {
+    "number": [
+     "deleted; consulted: crossref, pubmed:30639837, pmc-jats, pubmed-eutils:30639837, pubmed-eutils lookup (doi; PMIDs ['30639837']), publisher page https://api.elsevier.com/content/article/doi/10.1016/j.neuroimage.2018.12.024 (DOI confirmed: True; citation_issue none)"
+    ],
+    "title": [
+     "crossref",
+     "pubmed:30639837"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "EtzeEtal09",
+   "fingerprint": "v2:ffbced2c9c1f9c2a57df42c68448177f72eeea74149b38bfc28f5ecfa79a5b23",
+   "kind": "single_source_title+volume",
+   "rule": "S1-I1",
+   "doi": "10.1016/j.brainres.2009.05.090",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "title": {
+     "before": "An introduction to anatomical {ROI}-based {fMRI} classification",
+     "after": "An introduction to anatomical {ROI-based} {fMRI} classification analysis"
+    },
+    "volume": {
+     "before": "1281",
+     "after": "1282"
+    }
+   },
+   "subclasses": {
+    "title": "title-crossref-only",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "title": "crossref",
+    "volume": "crossref"
+   },
+   "stated_by": {
+    "title": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "KragEtal17",
+   "fingerprint": "v2:2960564e1e1e7a0e0d67d111c7dcd29bdc54911a7d39f783ff105b5367a979f4",
+   "kind": "single_source_pages+title",
+   "rule": "S1-I1",
+   "doi": "10.1016/j.neuroimage.2017.03.042",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "pages": {
+     "before": "70--71",
+     "after": "60--71"
+    },
+    "title": {
+     "before": "Similar patterns of neural activity predict memory formation during encoding and retrieval",
+     "after": "Similar patterns of neural activity predict memory function during encoding and retrieval"
+    }
+   },
+   "subclasses": {
+    "pages": "pages-different-start",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "pages": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "pages": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "RacsEtal08",
+   "fingerprint": "v2:b8ea7a0c54d3059c75c6060ed3499610fffbc80c66804ca2ed17c06e76df4352",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1080/17470210701728750",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "M Racsm\\'{a}ny and M A Conway and E A Garab and G Magym\\'{a}t\\'{e}",
+     "after": "M Racsm\\'{a}ny and M A Conway and E A Garab and G Nagymáté"
+    },
+    "title": {
+     "before": "Memory awareness following episodic inhibition",
+     "after": "Short article: memory awareness following episodic inhibition"
+    }
+   },
+   "subclasses": {
+    "author": "author-surname-spelling",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "FiedGloc12",
+   "fingerprint": "v2:40f64577bd527aac266fabcf7227d103347bcba1c216e28c6ab74e93d0005e7b",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.3389/fpsyg.2012.00335",
+   "pubmed_id": null,
+   "source": "no-source-states-an-issue+pubmed",
+   "changes": {
+    "number": {
+     "before": "OCT",
+     "after": null
+    },
+    "pages": {
+     "before": "1--18",
+     "after": "335"
+    }
+   },
+   "subclasses": {
+    "number": "number-dropped-unconfirmed",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "no-source-states-an-issue",
+    "pages": "pubmed"
+   },
+   "issue_evidence": {
+    "issue": null,
+    "sources": [],
+    "lookup": {
+     "pubmed": {
+      "query": "doi",
+      "pmids": [
+       "23162481"
+      ],
+      "error": null
+     },
+     "publisher": {
+      "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2012.00335/full",
+      "doi_confirmed": true,
+      "citation_issue": [],
+      "error": null
+     }
+    }
+   },
+   "stated_by": {
+    "number": [
+     "deleted; consulted: crossref, pubmed:23162481, pmc-jats, pmc-jats, pmc-jats, pmc-jats, pubmed-eutils:23162481, pubmed-eutils lookup (doi; PMIDs ['23162481']), publisher page https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2012.00335/full (DOI confirmed: True; citation_issue none)"
+    ],
+    "pages": [
+     "pubmed:23162481",
+     "pmc-jats",
+     "pmc-jats",
+     "pmc-jats",
+     "pmc-jats",
+     "pubmed-eutils:23162481"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "TideTull76",
+   "fingerprint": "v2:a4bf408d33594c6fa2c162622bdf4ee35fda59a69e486ffb895e7f52cbecdbbe",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1086/260505",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": null,
+     "after": "84"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "6",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Akai74",
+   "fingerprint": "v2:bb13e68bed61e3f6733f55ccabacba9ee2f319f8d9be884d87788386a9295840",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.1109/tac.1974.1100705",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "pages": {
+     "before": "6",
+     "after": "716--723"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "pages": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "6",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "pages": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Murd71",
+   "fingerprint": "v2:ccc4b8c4090e90514b6598379eea37cb3fd5ddc0f4b552c2ad7ec84c35070478",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03212827",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "10(4-B)",
+     "after": "10"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Proc81",
+   "fingerprint": "v2:6c39a8f37dbb0e6e5b78f61dd9cf1c5a5d0577f5674999984758691d7b738869",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0033-295x.88.4.291",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "88(4)",
+     "after": "88"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "ShenEtal92",
+   "fingerprint": "v2:a4b9277892fa2a9c13ba84d56db9aa508dbbda432fb914592ae6cea561f2e8b4",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1056/nejm199208273270905",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "M E Shenton and R Kikinis and F A Jolesz and S D Pollak and M LeMay and C G Wible and H Hokama and J Martin and D Metcalf and M Coleman and others",
+     "after": "M E Shenton and R Kikinis and F A Jolesz and S D Pollak and M LeMay and C G Wible and H Hokama and J Martin and D Metcalf and M Coleman and R W McCarley"
+    },
+    "title": {
+     "before": "Abnormalities of the left temporal lobe and thought disorder in schizophrenia",
+     "after": "Abnormalities of the left temporal lobe and thought disorder in schizophrenia: a quantitative magnetic resonance imaging study"
+    }
+   },
+   "subclasses": {
+    "author": "author-byline-completion",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "SchaEtal94",
+   "fingerprint": "v2:ded5593df9e2ddfd4afeb421d4cd463ff659abd81371485dfa4c291c9678c2c1",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.20.1.236",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "pages": {
+     "before": "234--244",
+     "after": "236--244"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "pages": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "1",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "pages": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "ChapHump94",
+   "fingerprint": "v2:d416566f9811ce2822339bf555b8b6fc89a6cabaf3f41049b789b805d51b8536",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1037/0033-295x.101.1.103",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "M Chappell and M Humphreys",
+     "after": "M Chappell and M S Humphreys"
+    },
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "title": {
+     "before": "An autoassociative neural network for sparse representations: analysis and application to models of recognition and cued recall",
+     "after": "An auto-associative neural network for sparse representations: analysis and application to models of recognition and cued recall"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "issue_completion": {
+    "issue": "1",
+    "sources": [
+     "crossref"
+    ]
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "number": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "RizzKaha00",
+   "fingerprint": "v2:ad3212acf7d3a170a49588e6a513f15492bbcc4f55d9ae2f1e65dc4320301808",
+   "kind": "single_source_number+title",
+   "rule": "S1-I1",
+   "doi": "10.1016/s0925-2312(00)00268-x",
+   "pubmed_id": null,
+   "source": "crossref+no-source-states-an-issue",
+   "changes": {
+    "number": {
+     "before": "2000",
+     "after": null
+    },
+    "title": {
+     "before": "Associative symmetry versus independent associations",
+     "after": "Associative symmetry vs. independent associations"
+    }
+   },
+   "subclasses": {
+    "number": "number-dropped-unconfirmed",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "no-source-states-an-issue",
+    "title": "crossref"
+   },
+   "issue_evidence": {
+    "issue": null,
+    "sources": [],
+    "lookup": {
+     "pubmed": {
+      "query": "doi, then ecitmatch Neurocomputing|2000|32-33|973|Rizzuto|k1|",
+      "pmids": [],
+      "error": null
+     },
+     "publisher": {
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/s0925-2312%2800%2900268-x",
+      "doi_confirmed": true,
+      "citation_issue": [],
+      "error": null
+     }
+    }
+   },
+   "stated_by": {
+    "number": [
+     "deleted; consulted: crossref, pubmed-eutils lookup (doi, then ecitmatch Neurocomputing|2000|32-33|973|Rizzuto|k1|; PMIDs none), publisher page https://api.elsevier.com/content/article/doi/10.1016/s0925-2312%2800%2900268-x (DOI confirmed: True; citation_issue none)"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "LaxpGros10",
+   "fingerprint": "v2:c6cb3e0a6d5025f88de11923bc14ff89087817ae673e1f7cea9e7127a5550415",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1227/01.neu.0000375277.68908.92",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "N Laxpati and R E Gross",
+     "after": "N G Laxpati and R E Gross"
+    },
+    "title": {
+     "before": "Axons in the neuropil are activated by electrical stimulation of the cortex: some surprises, some clinical implications",
+     "after": "Axons in the neuropil are activated by electrical stimulation of the cortex: some surpises, some clinical implications"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "HensEtal00b",
+   "fingerprint": "v2:5ea452e653016be149c00bc94068c0049ad1064440ede7c8857072d279a86eec",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1162/08989290051137468",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "R Henson and M D Rugg and T Shallice and R J Dolan",
+     "after": "R N A Henson and M D Rugg and T Shallice and R J Dolan"
+    },
+    "title": {
+     "before": "Confidence in recognition memory for words: dissociating right prefrontal rolesin episodic retrieval",
+     "after": "Confidence in recognition memory for words: dissociating right prefrontal roles in episodic retrieval"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "StreWixt98b",
+   "fingerprint": "v2:df4387ec86697805b67771875755e336da71c41a56504b23c611dea8cdb7549b",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.24.6.1397",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": "24(6)",
+     "after": "24"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "6",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "HirsArnd97",
+   "fingerprint": "v2:3d8708d2a1bbe1ad517d55d78a36e11f44089f550d4ef83b7573f57eac4327ed",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.23.6.1306",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": "23(6)",
+     "after": "23"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "6",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "crossref"
+    ],
+    "volume": [
+     "crossref",
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "SmitHalg89",
+   "fingerprint": "v2:839a612f821f06ac057a940bce5d3a82f9d5583e34ff8dc533989b758128f3b4",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.15.1.50",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "M Smith and E Halgren",
+     "after": "M E Smith and E Halgren"
+    },
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "title": {
+     "before": "Dissociation of recognition memory components following temporal lob lesions",
+     "after": "Dissociation of recognition memory components following temporal lobe lesions"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "issue_completion": {
+    "issue": "1",
+    "sources": [
+     "crossref"
+    ]
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "number": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Holm18",
+   "fingerprint": "v2:4fa61e1f9de2ea832a09cb51a6fe7af12d70ba42ad2a9b0a350af3f2010aebc2",
+   "kind": "single_source_journal+pages",
+   "rule": "S1-I2",
+   "doi": "10.1136/bjo.2.7.353",
+   "pubmed_id": null,
+   "source": "crossref; pubmed holds the record and does not contradict",
+   "changes": {
+    "journal": {
+     "before": "British Medical Journal",
+     "after": "British Journal of Ophthalmology"
+    },
+    "pages": {
+     "before": "353",
+     "after": "353--384"
+    }
+   },
+   "subclasses": {
+    "journal": "journal-other-venue",
+    "pages": "pages-complete-range"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "journal": "crossref",
+    "pages": "crossref"
+   },
+   "stated_by": {
+    "journal": [
+     "crossref",
+     "pubmed:18167806",
+     "pmc-jats",
+     "pmc-jats"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:18167806",
+     "pmc-jats",
+     "pmc-jats"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "HardEtal84",
+   "fingerprint": "v2:2aba9aad57deeea4ddbcd77a049547ac58a7afbd21fe9210c7f2148dd541cf00",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1016/0301-0511(84)90002-4",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "W Hardle and T Gasser and P Bacher",
+     "after": "W Härdle and T Gasser and P Bächer"
+    },
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "title": {
+     "before": "{EEG} responsiveness to eye opening and closing in mildy retarded children compared to a control group",
+     "after": "{EEG-responsiveness} to eye opening and closing in mildly retarded children compared to a control group"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "issue_completion": {
+    "issue": "3",
+    "sources": [
+     "crossref"
+    ]
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "number": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "BrodMurd77",
+   "fingerprint": "v2:5a5f0018e998a3c8d587c2079c3f1af3f1f12471e2349b9b263203efc609da84",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1016/s0022-5371(77)80046-7",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "D A Brodie and B B Murdock",
+     "after": "D A Brodie and Murdock, Jr, B B"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "title": {
+     "before": "Effects of presentation time on nominal and functional serial position curves in free recall",
+     "after": "Effect of presentation time on nominal and functional serial-position curves of free recall"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "issue_completion": {
+    "issue": "2",
+    "sources": [
+     "crossref"
+    ]
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "number": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "MathEtal97",
+   "fingerprint": "v2:7acd70908b5dd155a4e63c966ebfe02e11ebc6ffd3452f1a4f87873a178b4b79",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03211327",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": "25(6)",
+     "after": "25"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "6",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:9421569"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:9421569"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "WilsWilk97",
+   "fingerprint": "v2:2b76774d56e6a5e3c7ce093cfd453ea1c33f255a4cb4afb566c5010a4ec7716a",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1068/p260939",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "8"
+    },
+    "volume": {
+     "before": "26(8)",
+     "after": "26"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "8",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:9509156"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:9509156"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "YounEtal86",
+   "fingerprint": "v2:90578bbbbb72308a9a17f92b6848be7a15fe86d6a4e3939a575965dffd6d125f",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0096-1523.12.4.466",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "12(4)",
+     "after": "12"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "GoldLiu01",
+   "fingerprint": "v2:ad323b31303e0d4462e56632a81a6f61201c0be6d3e58f944a6181a514301ae4",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1076/noph.25.4.177.8057",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "25(4)",
+     "after": "25"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "WongEtal09",
+   "fingerprint": "v2:a89c726a679d7debf149b70f776e4ecbf72084e36eca4e35b15f85f3a55234c9",
+   "kind": "single_source_pages+title",
+   "rule": "S1-I1",
+   "doi": "10.1088/1741-2560/6/2/026006",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "pages": {
+     "before": "1--11",
+     "after": "026006"
+    },
+    "title": {
+     "before": "Functional localization and visualization of the subthalamic nucleus from microelectrode recording acquired during dbs surgery with unsupervised machine learning",
+     "after": "Functional localization and visualization of the subthalamic nucleus from microelectrode recordings acquired during {DBS} surgery with unsupervised machine learning"
+    }
+   },
+   "subclasses": {
+    "pages": "pages-different-start",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "pages": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "pages": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "CalvEtal73",
+   "fingerprint": "v2:aebed10adf80b13715aed6260cf6c62bad0a404c4e53fc43ef91d3ba6fe1bdda",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1016/0013-4694(73)90086-2",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "W H Calvin and G A Ojemann and A A Ward",
+     "after": "W H Calvin and G A Ojemann and Ward, Jr, A A"
+    },
+    "title": {
+     "before": "Human cortical neurons in epileptogenic foci: comparison of interictal firing patterns to those of ``epileptic'' neurons in animals",
+     "after": "Human cortical neurons in epileptogenic foci: comparison of inter-ictal firing patterns to those of “epileptic” neurons in animals"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "StopEtal97",
+   "fingerprint": "v2:796b83a0acf7ec368b22200ea4849284be68ad73c47f6bb1ba6570a4d24d5cea",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1038/36335",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "M Stopfer and S Bhagavan and B Smith and G Laurent",
+     "after": "M Stopfer and S Bhagavan and B H Smith and G Laurent"
+    },
+    "number": {
+     "before": null,
+     "after": "6655"
+    },
+    "title": {
+     "before": "Impaired odor discrimination on desynchronization of odor-encoding neural assemblies",
+     "after": "Impaired odour discrimination on desynchronization of odour-encoding neural assemblies"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "issue_completion": {
+    "issue": "6655",
+    "sources": [
+     "crossref"
+    ]
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "number": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "MuseSqui93",
+   "fingerprint": "v2:340796cb3bba0be28276aab9f2b4bfda66fdde7c16333431b602e6c6979b916b",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.19.4.789",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "19(July)",
+     "after": "19"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "NelsEtal93",
+   "fingerprint": "v2:fd5c293c8aabd2bf1d5a357cb1c7e983179b34bc162dea28fcefcfa8d5481274",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.19.4.747",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "19(4)",
+     "after": "19"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "WixtStre04",
+   "fingerprint": "v2:d9579b62f24a94b6b242d9e5f0faa06f5699684ec746588f8a7518c5591e008c",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03196616",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "11(4)",
+     "after": "11"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:15581116"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:15581116"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "HintHart90",
+   "fingerprint": "v2:90ca773bb01cd594632f6952a1b98f0e752c714d29ca6f515fa5c6e2313b1665",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.16.6.955",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "pages": {
+     "before": "965--969",
+     "after": "955--969"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "pages": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "6",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "pages": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "CaplEtal06",
+   "fingerprint": "v2:f4e84f7211311bac22521911433acaa2722d24d7da5bbe632e7644836ac0aaa6",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.32.6.1244",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "J B Caplan and M Glaholt and A R Mc{I}ntosh",
+     "after": "J B Caplan and M G Glaholt and A R Mc{I}ntosh"
+    },
+    "title": {
+     "before": "Linking associative and list memory: pairs versus triples",
+     "after": "Linking associative and serial list memory: pairs versus triples"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "RockStei63",
+   "fingerprint": "v2:a2004caac425574dd52b0ff509b969c5440f175d5bccb93aaa6292c8e35bfc6a",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1126/science.140.3568.822",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "3568"
+    },
+    "volume": {
+     "before": "140(Whole No. 3568)",
+     "after": "140"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "3568",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:13974582"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:13974582"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "DianEtal06",
+   "fingerprint": "v2:a30b8d10f9846fb0f413ff47c050540d80f7ca413460d653caf940cde183c460",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03193807",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "volume": {
+     "before": "13(1)",
+     "after": "13"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "1",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:16724763"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:16724763"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "BurgOKee96",
+   "fingerprint": "v2:410f38bef9282b16bab2d35f3ccca9530f0c3a6ddadbae7f64091fc401daaecd",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1002/(sici)1098-1063(1996)6:6<749::aid-hipo16>3.0.co;2-0",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": "7",
+     "after": "6"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "6",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:9034860"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:9034860"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "ToppSchn99",
+   "fingerprint": "v2:9d150ac7aaa8adcb5f977ecb5355848633c6910d0dfda2aad5678f95814f5946",
+   "kind": "single_source_number+title",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.25.4.1071",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": "24",
+     "after": "4"
+    },
+    "title": {
+     "before": "Observation: the mix-up regarding mixed and unmixed lists in spacing-effect research",
+     "after": "The mix-up regarding mixed and unmixed lists in spacing-effect research"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "title": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "KellWixt01",
+   "fingerprint": "v2:adf5e868f64c7f7e8d73d469cbf94ebc357037f073d57ea38918b7f7a06026b5",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.27.3.701",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "volume": {
+     "before": "27(3)",
+     "after": "27"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "3",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:11394675"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:11394675"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "TallEtal97",
+   "fingerprint": "v2:9d87ef841a0f5667c5f867926bb1c511e1de52c9eb4ff65761db8c42cfed5314",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1523/jneurosci.17-02-00722.1997",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "C Tallon-Baudry and O Bertrand and C Delpuech and J Permier",
+     "after": "C Tallon-Baudry and O Bertrand and C Delpuech and J Pernier"
+    },
+    "title": {
+     "before": "Oscillatory gamma-band (30--70 {Hz}) activity induced by a visual search task in humans",
+     "after": "Oscillatory γ-band (30–70 {Hz}) activity induced by a visual search task in humans"
+    }
+   },
+   "subclasses": {
+    "author": "author-surname-spelling",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "MagnEtal96",
+   "fingerprint": "v2:0a1d1ef3eea322e21b4e67cbde673d43060995ffac3752b5bbab8905303e48bc",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0096-1523.22.1.202",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "volume": {
+     "before": "22(1)",
+     "after": "22"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "1",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Post78",
+   "fingerprint": "v2:142ca1d908dda1a9372425960424f784b5726841cb3d40512732eb22d99e64c1",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.4.2.146",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "4(2)",
+     "after": "4"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:632757"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:632757"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "MaskBrow74",
+   "fingerprint": "v2:c28bc01fce5cbab9251dae11f817abaf901c2113cc01c6696062bc0cd12ae564",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1016/s0022-5371(74)80070-8",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "volume": {
+     "before": "16",
+     "after": "13"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "3",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "TanaEtal04",
+   "fingerprint": "v2:17ede13361cd6143fb43f7f5b0b97fff52b42a72b212ae95917097e3854683ba",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1038/nn1279",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "S C Tanaka and K Doya and G Okada and K Ueda and Y Okamota and S Yamawaki",
+     "after": "S C Tanaka and K Doya and G Okada and K Ueda and Y Okamoto and S Yamawaki"
+    },
+    "number": {
+     "before": null,
+     "after": "8"
+    },
+    "title": {
+     "before": "Prediction of immediate and future rewards differentialy recruits cortico-basal ganglia loops",
+     "after": "Prediction of immediate and future rewards differentially recruits cortico-basal ganglia loops"
+    }
+   },
+   "subclasses": {
+    "author": "author-surname-spelling",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "issue_completion": {
+    "issue": "8",
+    "sources": [
+     "crossref"
+    ]
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "number": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "SavaEtal01",
+   "fingerprint": "v2:5f84dfda184b32630813eeb6509286da960e318f63ad24e86481735c78c29b18",
+   "kind": "single_source_pages+title",
+   "rule": "S1-I1",
+   "doi": "10.1093/brain/124.1.219",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "pages": {
+     "before": "219",
+     "after": "219--231"
+    },
+    "title": {
+     "before": "Prefrontal regions supporting spontaneous and directed application of verbal learning strategies",
+     "after": "Prefrontal regions supporting spontaneous and directed application of verbal learning strategies: evidence from {PET}"
+    }
+   },
+   "subclasses": {
+    "pages": "pages-complete-range",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "pages": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "pages": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "DeLo90",
+   "fingerprint": "v2:0b518ee9889aa74b3a2ae5e0162adf77fb09cd5bcb0f1b33aba91792e4ca99f8",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1016/0166-2236(90)90110-v",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "M DeLong",
+     "after": "M R DeLong"
+    },
+    "number": {
+     "before": null,
+     "after": "7"
+    },
+    "title": {
+     "before": "Primate models of movement disorders of the basal ganglia",
+     "after": "Primate models of movement disorders of basal ganglia origin"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "issue_completion": {
+    "issue": "7",
+    "sources": [
+     "crossref"
+    ]
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "number": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "NelsEtal89",
+   "fingerprint": "v2:47c7d34a19ea55aae2eb945d0f605c1e29f12e62b3cdc99e2f5c4e900f4948ab",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.15.5.957",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "5"
+    },
+    "volume": {
+     "before": "15(5)",
+     "after": "15"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "5",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Benn75",
+   "fingerprint": "v2:9b5392d1a8ee5800703f7962f68f50da53b859a739e1db3ebd2b9ba03c004824",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.1016/s0022-5371(75)80060-0",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "pages": {
+     "before": "573--584",
+     "after": "123--144"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "pages": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "pages": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "NelsEtal92",
+   "fingerprint": "v2:62e9a2e04c324f0769e873219c39affedbf76bac80f0c902c7f67d0bf6c68468",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0033-295x.99.2.322",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "95",
+     "after": "99"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:1594728"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:1594728"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "HydeJenk73",
+   "fingerprint": "v2:0337e852a075faa7b545729f982694a455695d42f1fba8c11cea28ea252a0407",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1016/s0022-5371(73)80027-1",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "5"
+    },
+    "volume": {
+     "before": "12(5)",
+     "after": "12"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "5",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "YoneEtal99",
+   "fingerprint": "v2:15cbcbc817989d7e60890326c7a6d363d211ce71f46c0f5cbe9375995862a3a1",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03212975",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "6(4)",
+     "after": "6"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:10682209"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:10682209"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "KnapEtal06",
+   "fingerprint": "v2:5d3cd1d519a551709d3a373860998b76afe17a01b01fb285e4bb36a9c3ed8f1a",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03193434",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "34(4)",
+     "after": "34"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:17063918"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:17063918"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "HilfEtal02",
+   "fingerprint": "v2:c5be313965077a6df8ab120567b1eb656c7491d0f20ce6747ba2fb4fa0aff3cf",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0096-3445.131.4.494",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "131(4)",
+     "after": "131"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "crossref"
+    ],
+    "volume": [
+     "crossref",
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "WellKirs74",
+   "fingerprint": "v2:56fa43877ef50d0cb96db320ac5836e4cfb90152ba104c7b215992348b7a6751",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03336730",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": "4B",
+     "after": "4"
+    },
+    "volume": {
+     "before": "2",
+     "after": "4"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "GoshGane00",
+   "fingerprint": "v2:174fcea81a7e9e163160d06f704ab70bb2a5c6b0bd74ccc09ab01672b3ebea94",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.26.5.1198",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "5"
+    },
+    "volume": {
+     "before": "26(5)",
+     "after": "26"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "5",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "IzauBoni06",
+   "fingerprint": "v2:bfcd3163e40f661ef724726da5d5dc7bbad1574f7b3cd7762fa7245fedb3a47f",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1080/09658210500419966",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "14(4)",
+     "after": "14"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:16766444"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:16766444"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Ande74",
+   "fingerprint": "v2:1a698868e2673a303b22ba45e9141daea0ef5dcdf14cf22d9a96805d078e6ec6",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1016/0010-0285(74)90021-8",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "6(4)",
+     "after": "6"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "AdamMont67",
+   "fingerprint": "v2:b27c035e65e1411695dd5a569a2c2540c9fa8f1a395b09064368a4ecac59ea42",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.1016/s0022-5371(67)80012-4",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "pages": {
+     "before": "525--535",
+     "after": "528--535"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "pages": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "pages": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Hint03",
+   "fingerprint": "v2:18ae9c4f31aa5c2abbc565e92f7d4ddbf8f90efd54f6b755239fa10ce8dceae6",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03196465",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "volume": {
+     "before": "10(1)",
+     "after": "10"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "1",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:12747488"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:12747488"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "GlanEtal04",
+   "fingerprint": "v2:184df18b5777241401a0f573ea3cb167e6bea57ba40e49d1a26eb7efdcd7616b",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.30.6.1176",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": "30(6)",
+     "after": "30"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "6",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:15521797"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:15521797"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "HuEtal06",
+   "fingerprint": "v2:3bcacd99ca851b3269375ae4ee14b58890c95acdf729e3a3eb6ede04fb282962",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1111/j.1467-9280.2006.01799.x",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "10"
+    },
+    "volume": {
+     "before": "17(10)",
+     "after": "17"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "10",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:17100790"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:17100790"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "GlanEtal99",
+   "fingerprint": "v2:b1988036650f3ec921a60a92db6ebf3990fb4752947fb288a019d6975738a302",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.25.2.500",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "25(2)",
+     "after": "25"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Mont91",
+   "fingerprint": "v2:49754281db3b592f43351d8430c0f6a04f726edff2cbe3562bf36c97845f8d93",
+   "kind": "single_source_pages+title",
+   "rule": "S1-I1",
+   "doi": "10.1177/0013916591231003",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "pages": {
+     "before": "47",
+     "after": "47--69"
+    },
+    "title": {
+     "before": "Spatial orientation and the angularity of urban routes",
+     "after": "Spatial orientation and the angularity of urban routes: a field study"
+    }
+   },
+   "subclasses": {
+    "pages": "pages-complete-range",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "pages": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "pages": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Tulv66",
+   "fingerprint": "v2:5c3d7fec315c6496d3c55d8e21748dc287b6a8ac10a97d148922af91535af481",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1016/s0022-5371(66)80016-6",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "5 (2)",
+     "after": "5"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "RoedKarp06a",
+   "fingerprint": "v2:e7a0b4491c10592f08c50780e48fb0de8589e445cb70856a5792375c80289bdb",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1111/j.1467-9280.2006.01693.x",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "H L Roediger and J D Karpicke",
+     "after": "Roediger, III, H L and J D Karpicke"
+    },
+    "title": {
+     "before": "Test-enhanced learning",
+     "after": "{Test-Enhanced} learning: taking memory tests improves {Long-Term} retention"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "WixtStre00",
+   "fingerprint": "v2:031ca7b12bd5abc5e01ec26008404384a76e35c0db5521c15c72f0ce37d1a78d",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0033-295x.107.2.368",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "107(2)",
+     "after": "107"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:10789201"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:10789201"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Eich80",
+   "fingerprint": "v2:f8a65aedf4fbee7ec3bb88486bfcf1a04a0185cc0ad3c0bdb9aafda99420f024",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03213419",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "8(2)",
+     "after": "8"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:7382817"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:7382817"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "MeyeEtal88",
+   "fingerprint": "v2:68c50b05f85d7cde75985e233dafcf4d0025fb5938b1d3bcab1ad7534c712e55",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1037/0033-295x.95.2.183",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "D E Meyer and D E Irwin and A M Osman and J Kounios",
+     "after": "D E Meyer and D E Irwin and A M Osman and J Kounois"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "title": {
+     "before": "The dynamics of cognition and action: mental processes inferres from speed-accuracy decomposition",
+     "after": "The dynamics of cognition and action: mental processes inferred from speed-accuracy decomposition"
+    }
+   },
+   "subclasses": {
+    "author": "author-surname-spelling",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "issue_completion": {
+    "issue": "2",
+    "sources": [
+     "crossref"
+    ]
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "number": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Youn79",
+   "fingerprint": "v2:7c5cfdbbe37c6a9ffdfaaefc9e290b84d8122a14db4f54409bb8561814186d14",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1016/0001-6918(79)90005-2",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "David Young",
+     "after": "D C Young"
+    },
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "title": {
+     "before": "The effectof repetition on search through active memory",
+     "after": "The effect of repetition on search through active memory"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "issue_completion": {
+    "issue": "6",
+    "sources": [
+     "crossref"
+    ]
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "number": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Crai70",
+   "fingerprint": "v2:f28fc761f773b2997b225c90df079c476df88bea387e4da42db25899bd28c665",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.1016/s0022-5371(70)80042-1",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "pages": {
+     "before": "658--664",
+     "after": "143--148"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "pages": "pages-different-start"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "pages": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "pages": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Murd98",
+   "fingerprint": "v2:9c2cd688072a289e4038f466a8993f7e07d944fb8e24b8e96dc0619cf2827bd3",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.24.2.524",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "24(2)",
+     "after": "24"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "KleiCohe06",
+   "fingerprint": "v2:8fea0b0cf6b31da062a50c56a990bdd8f62b3451e41b8689bd225eb53bf47157",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1097/01.wco.0000236619.89710.ee",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "19(4)",
+     "after": "19"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:16914978"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:16914978"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "RoedKarp06b",
+   "fingerprint": "v2:26ae32d548962d8607059b2955bfed03bbcf1ddb6a16d35fefaff451edd2d5e2",
+   "kind": "single_source_author+title",
+   "rule": "S1-I1",
+   "doi": "10.1111/j.1745-6916.2006.00012.x",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "author": {
+     "before": "H L Roediger and J D Karpicke",
+     "after": "Roediger, III, H L and J D Karpicke"
+    },
+    "title": {
+     "before": "The power of testing memory: basic research and implications for educational",
+     "after": "The power of testing memory: basic research and implications for educational practice"
+    }
+   },
+   "subclasses": {
+    "author": "author-given-names-accents-suffix",
+    "title": "title-crossref-only"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "author": "crossref",
+    "title": "crossref"
+   },
+   "stated_by": {
+    "author": [
+     "crossref"
+    ],
+    "title": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "RubiEtal99",
+   "fingerprint": "v2:c99c32d9e1cf2f9709ab7dc65adb81d275a18af2ac8881c8c3e94eb19c4e261e",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.25.5.1161",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "5"
+    },
+    "volume": {
+     "before": "25(5)",
+     "after": "25"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "5",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "NelsZhan00",
+   "fingerprint": "v2:3255b63182041d9ec0ecf084c30243a271a0ea29f4cd53405df8a3bb5c4d5ebc",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03212998",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "7(4)",
+     "after": "7"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:11206201"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:11206201"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "NelsEtal01",
+   "fingerprint": "v2:d1a0277d83bd2dbc02dc6155dbff1d9c11d71ae5ebd4708cbcd104e81df0cb4c",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1037/0278-7393.27.5.1147",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "5"
+    },
+    "volume": {
+     "before": "27(5)",
+     "after": "27"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "5",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "NelsEtal04",
+   "fingerprint": "v2:540c41cfe42e128f17650a0b91a140bb666256b24a6065137ff632a9017cc5db",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03195588",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "volume": {
+     "before": "36(3)",
+     "after": "36"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "3",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:15641430"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:15641430"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "LennEtal97",
+   "fingerprint": "v2:ffc38983eea101e7ad0020983d6e761cd63cf46b22355cd5d064b3885c40bfb1",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1016/s0001-4575(97)00022-5",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "29(4)",
+     "after": "29"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:9248501"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:9248501"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "ShanHowa10",
+   "fingerprint": "v2:a61d9d9d56e285f6bd7deb9c40d3a48c0e090327b5d81aa704d62b03660008f0",
+   "kind": "single_source_number+pages",
+   "rule": "S1-I1",
+   "doi": "10.1016/j.brainres.2010.07.045",
+   "pubmed_id": null,
+   "source": "crossref+no-source-states-an-issue",
+   "changes": {
+    "number": {
+     "before": "3-17",
+     "after": null
+    },
+    "pages": {
+     "before": null,
+     "after": "3--17"
+    }
+   },
+   "subclasses": {
+    "number": "number-dropped-unconfirmed",
+    "pages": "pages-added"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "no-source-states-an-issue",
+    "pages": "crossref"
+   },
+   "issue_evidence": {
+    "issue": null,
+    "sources": [],
+    "lookup": {
+     "pubmed": {
+      "query": "doi",
+      "pmids": [
+       "20654587"
+      ],
+      "error": null
+     },
+     "publisher": {
+      "url": "https://api.elsevier.com/content/article/doi/10.1016/j.brainres.2010.07.045",
+      "doi_confirmed": true,
+      "citation_issue": [],
+      "error": null
+     }
+    }
+   },
+   "stated_by": {
+    "number": [
+     "deleted; consulted: crossref, pubmed:20654587, pmc-jats, pubmed-eutils:20654587, pubmed-eutils lookup (doi; PMIDs ['20654587']), publisher page https://api.elsevier.com/content/article/doi/10.1016/j.brainres.2010.07.045 (DOI confirmed: True; citation_issue none)"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:20654587",
+     "pubmed-eutils:20654587"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Town84",
+   "fingerprint": "v2:e31b3c3db654e79cb06b4d83ce32b7267b3c9808c565e5fa60535e13e50162e6",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.1016/0022-2496(84)90007-5",
+   "pubmed_id": null,
+   "source": "crossref",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "28(4)",
+     "after": "28"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref"
+    ],
+    "volume": [
+     "crossref"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Clar92",
+   "fingerprint": "v2:c869862caf930b7b0fd6dd1fd0ac5d7045679e56da4961a38b135d15afb3e7ac",
+   "kind": "single_source_number+volume",
+   "rule": "S1-I1",
+   "doi": "10.3758/bf03199660",
+   "pubmed_id": null,
+   "source": "crossref+crossref+pubmed",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "volume": {
+     "before": "20(3)",
+     "after": "20"
+    }
+   },
+   "subclasses": {
+    "number": "number",
+    "volume": "volume"
+   },
+   "generator": "single_source",
+   "requires_publisher_drop": false,
+   "field_sources": {
+    "number": "crossref+pubmed",
+    "volume": "crossref"
+   },
+   "issue_evidence": {
+    "issue": "3",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:1508049"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:1508049"
+    ]
+   },
+   "class": "S1-TWO-FIELDS-RISKY",
+   "status_before": "needs_review"
+  }
+ ]
+}
