@@ -221,6 +221,9 @@ def pipeline(cache, client, keys, report):
     run_discovery_review(BIB, cache, client, report, limit=len(keys) + 1, keys=keys)
     for layer in layers:
         layer()
+    # verify_entry's own approvals omit accepted_doi/auto_review bookkeeping that a
+    # recheck adds; recheck once more so the next identical run writes nothing.
+    run_verification(BIB, cache, client, report, keys=keys, recheck_cached=True)
     return current_results(BIB, cache)
 
 
