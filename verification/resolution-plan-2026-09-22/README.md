@@ -113,3 +113,10 @@ The user can make at most ~100 decisions, not ~1,200. Revised rules:
   The first proposals carried the citation's own issue number as if it had been checked.
 - Both rules are fixed before any proposal from an affected class is applied; affected
   spot-check samples are redrawn under the fixed rules.
+
+## Preprint versions (user decision, 2026-09-24)
+
+Preprints always cite their **latest** version (year = that version's date; pin the
+version where the server supports it). A preprint that has been **published** is replaced
+by the published version (new key; old entry removed). Replacements are prepared as one
+list for the user to approve, per the earlier decision.

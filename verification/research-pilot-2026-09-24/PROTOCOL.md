@@ -48,6 +48,9 @@ Rules:
   with a booktitle is `@incollection`, not `@inbook`.
 - Never drop an initial the citation already has only because a source omits it; drop
   it only when a source prints a different initial or name.
+- Preprints: cite the latest version (its date is the year). If the preprint has been
+  published, report the published version (DOI, venue, year) in `notes` as a
+  replacement candidate; do not silently convert the entry.
 - Issue numbers only if a source states them. Never carry a value over from the
   citation and call it confirmed.
 - `no_source` only after a genuine search (say where you looked in `notes`).
