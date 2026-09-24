@@ -139,10 +139,19 @@ def test_pages_and_issue_normalisation():
 
 # ---------------------------------------------------------------- real PDFs
 
-def _verify(key, fields=None):
+def _frozen(key):
+    """Entry fields as frozen in the benchmark, so later cdl.bib edits (for example an
+    added DOI) do not change what these tests check; live fields for keys not frozen."""
+    cases = json.loads((ROOT / "verification/pdf-benchmark/cases.json").read_text())["cases"]
+    for case in cases:
+        if case["key"] == key and case.get("variant") == "control":
+            return dict(case["fields"])
     from verification import load_entries
-    entries = load_entries(ROOT / "cdl.bib")
-    fields = fields or entries[key]["fields"]
+    return dict(load_entries(ROOT / "cdl.bib")[key]["fields"])
+
+
+def _verify(key, fields=None):
+    fields = fields or _frozen(key)
     return P.verify_pdf_path(fields, LIBRARY / f"{key}.pdf", CACHE)
 
 
@@ -167,8 +176,7 @@ def test_published_elsevier_article_passes_with_roles():
 
 @needs_library
 def test_off_by_one_and_decoy_pages_are_contradicted():
-    from verification import load_entries
-    fields = dict(load_entries(ROOT / "cdl.bib")["HoldEtal00"]["fields"])
+    fields = _frozen("HoldEtal00")
     for wrong in ("410--426", "410--424", "411--425"):
         r = _verify("HoldEtal00", dict(fields, pages=wrong))
         assert not r["pass"] and r["fields"]["pages"]["status"] == "contradicted"
@@ -211,8 +219,7 @@ def test_byline_continuing_past_unrecognised_affiliation_is_not_accepted():
 
 @needs_library
 def test_title_missing_word_in_separate_block_is_not_supported():
-    from verification import load_entries
-    fields = dict(load_entries(ROOT / "cdl.bib")["SwalEtal09"]["fields"])
+    fields = _frozen("SwalEtal09")
     fields["title"] = "Event boundaries in perception affect memory encoding and"
     r = _verify("SwalEtal09", fields)
     assert r["fields"]["title"]["status"] != "supported"
