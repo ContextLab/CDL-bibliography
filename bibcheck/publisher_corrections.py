@@ -261,7 +261,7 @@ def publisher_field_proposal(entry, previous, response, field):
                 continue
             if field == "author" and not metadata.get("citation_author"):
                 continue
-            value = source_title(titles[0], fields["title"]) if field == "title" else source_authors(record)
+            value = source_title(titles[0], fields["title"]) if field == "title" else source_authors(record, fields.get("author"))
             if fields.get(field) == value:
                 continue
             proposed = dict(entry, fields=dict(fields, **{field: value}))
@@ -290,3 +290,128 @@ def publisher_field_proposal(entry, previous, response, field):
         return next(iter(choices.values())) if len(choices) == 1 else None
     except (ValueError, KeyError, TypeError, AttributeError, ET.ParseError):
         return None
+
+
+# ---------------------------------------------------------------------------
+# Issue lookups (user decision 2026-09-24, spot-check findings). A proposal may
+# write an issue number only when a source states it. When neither Crossref
+# nor the DOI-linked PubMed record states it, look it up: PubMed E-utilities
+# (by DOI, then by citation match), then the publisher page's citation_issue.
+# The stored lookup is evidence for correction_proposals.confirm_issue.
+# ---------------------------------------------------------------------------
+
+EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+ISSUE_HEAD_HOSTS = HOSTS | {"idp.springer.com"}  # Springer sets a cookie through its IdP, then returns
+
+
+def _summary_matches(summary, doi, record):
+    """A PubMed summary is the work when it names this DOI, or, lacking any DOI,
+    has the registry title, volume and first page."""
+    from verification import normalized
+    dois = [a.get("value", "") for a in summary.get("articleids", []) if a.get("idtype") == "doi"]
+    if dois:
+        try:
+            return any(normalize_doi(d) == normalize_doi(doi) for d in dois)
+        except ValueError:
+            return False
+    try:
+        title = (record.get("title") or [""])[0]
+        page = normalize_pages(str(record.get("page") or "")).split("-")[0]
+        return bool(title and page
+                    and normalize_title(summary.get("title", "").rstrip(".")) == normalize_title(title)
+                    and normalized(str(summary.get("volume", ""))) == normalized(str(record.get("volume", "")))
+                    and normalize_pages(summary.get("pages", "")).split("-")[0] == page)
+    except ValueError:
+        return False
+
+
+def pubmed_issue_lookup(client, doi, record):
+    """PubMed E-utilities: search by DOI, else ecitmatch on journal, year,
+    volume, first page and first-author surname; summaries must match the work."""
+    from verification import normalized
+    # The contact travels in the User-Agent; request identities stay free of it.
+    base = {"tool": "bibcheck"}
+    out = {"query": None, "pmids": [], "matched": []}
+    search = client.get(EUTILS + "esearch.fcgi", dict(base, db="pubmed", term=f"{doi}[doi]", retmode="json"))
+    ids = ((search.get("body") or {}).get("esearchresult") or {}).get("idlist", []) if search["http_status"] == 200 else []
+    out["query"] = "doi"
+    if not ids:
+        venues = record.get("container-title") or []
+        people = record.get("author") or []
+        years = sorted({str(p[0]) for d in ("published-print", "issued") for p in record.get(d, {}).get("date-parts", []) if p and p[0]})
+        page = normalize_pages(str(record.get("page") or "")).split("-")[0]
+        if len(venues) == 1 and people and people[0].get("family") and years and record.get("volume") and page:
+            key = "k1"
+            bdata = "|".join([venues[0].replace("&amp;", "&").replace("|", " "), years[0], str(record["volume"]), page,
+                              people[0]["family"], key, ""])
+            match = client.get(EUTILS + "ecitmatch.cgi", dict(base, db="pubmed", retmode="xml", bdata=bdata), xml=True)
+            out["query"] = "doi, then ecitmatch " + bdata
+            text = (match.get("body") or "") if match["http_status"] == 200 else ""
+            for line in text.splitlines():
+                cells = line.strip().split("|")
+                if len(cells) >= 7 and cells[5] == key and re.fullmatch(r"\d+", cells[6].strip()):
+                    ids.append(cells[6].strip())
+    out["pmids"] = ids
+    if ids:
+        summary = client.get(EUTILS + "esummary.fcgi", dict(base, db="pubmed", id=",".join(ids), retmode="json"))
+        result = (summary.get("body") or {}).get("result", {}) if summary["http_status"] == 200 else {}
+        for pmid in ids:
+            item = result.get(pmid) or {}
+            if item and _summary_matches(item, doi, record):
+                out["matched"].append({"pmid": pmid, "issue": item.get("issue", ""), "volume": item.get("volume", ""),
+                                       "pages": item.get("pages", ""), "title": item.get("title", ""),
+                                       "journal": item.get("fulljournalname", "")})
+    return out
+
+
+def fetch_issue_head(cache, client, doi):
+    """The publisher landing page's citation_* head (cached; own identity)."""
+    doi = normalize_doi(doi)
+    identity = "issue-head-v1:" + doi
+    cached = cache.response(identity, 30 * 86400)
+    if cached is not None and not client.refresh:
+        return cached
+    class CountedSession:
+        def get(self, *args, **kwargs):
+            return client.source_request(*args, **kwargs)
+    try:
+        html, url = get_source(CountedSession(), "https://doi.org/" + quote(doi, safe="/"), ISSUE_HEAD_HOSTS,
+                               max_redirects=6, https_redirect_hosts=ISSUE_HEAD_HOSTS - {"doi.org", "dx.doi.org"})
+        parser = PublisherMetadata()
+        parser.feed(html)
+        result = {"url": url, "retrieved_at": now(), "document_sha256": hashlib.sha256(html.encode()).hexdigest(),
+                  "metadata": parser.source_metadata()}
+    except requests.RequestException as exc:
+        raise ProviderError("Publisher retrieval failed: " + str(exc)) from exc
+    except SourceHTTPError as exc:
+        if exc.status == 429 or exc.status >= 500:
+            raise ProviderError(f"Publisher HTTP {exc.status}; retry later (Retry-After: {exc.retry_after})") from exc
+        result = {"url": "https://doi.org/" + doi, "retrieved_at": now(), "metadata": {}, "error": str(exc)}
+    except (ValueError, UnicodeDecodeError) as exc:
+        result = {"url": "https://doi.org/" + doi, "retrieved_at": now(), "metadata": {}, "error": str(exc)}
+    cache.save_response(identity, result)
+    return result
+
+
+def issue_lookup(cache, client, doi, record):
+    """PubMed then publisher page; ``complete`` once both were consulted."""
+    doi = normalize_doi(doi)
+    lookup = {"doi": doi, "pubmed": pubmed_issue_lookup(client, doi, record)}
+    if doi.startswith(("10.1016/", "10.1006/")):
+        # ScienceDirect landing pages carry no citation_* head for scripts; the
+        # publisher's own article API states prism:issueIdentifier.
+        head = fetch_elsevier_metadata(cache, client, doi)
+    else:
+        head = fetch_issue_head(cache, client, doi)
+    meta = head.get("metadata") or {}
+    if not head.get("error") and not meta:
+        head = dict(head, error="page has no citation metadata")
+    page_dois = meta.get("citation_doi", []) or [v for v in meta.get("dc.identifier", []) if "10." in v]
+    try:
+        confirmed = len(page_dois) == 1 and normalize_doi(re.sub(r"^(?:doi:|https?://(?:dx\.)?doi\.org/)", "", page_dois[0].strip(), flags=re.I)) == doi
+    except ValueError:
+        confirmed = False
+    lookup["publisher"] = {"url": head.get("url"), "error": head.get("error"), "doi_confirmed": confirmed,
+                           "citation_issue": meta.get("citation_issue", [])}
+    lookup["complete"] = True
+    return lookup

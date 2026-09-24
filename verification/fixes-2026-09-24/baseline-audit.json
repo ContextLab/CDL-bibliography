@@ -1,0 +1,1159 @@
+{
+ "proposals": 395,
+ "stale_fingerprints": 0,
+ "principle_violations": [],
+ "author_format_defects": 106,
+ "issue_rows": [
+  {
+   "key": "MorrEtal14",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:24478672, pmc-jats, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "AldrEtal22",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "KoelEtal16",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "1",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "ElliEtal09",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Roll13",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:24198767, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "MotaHerc14",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:25429260, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "Herc09",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:19915731, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "ImboEtal19",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:31073292, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "MaioEtal00",
+   "class": "TWO-SOURCE",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "5",
+    "stated_by": [
+     "crossref",
+     "pubmed:10797113"
+    ]
+   }
+  },
+  {
+   "key": "PreuEtal11",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:21994487, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "ReimEtal17",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:28659782, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "CombEtal19",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:30967769, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "JankOMar15",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:26557060, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "ZackEtal10",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:20953234, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "ElmeEtal70",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "1",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "TideTull76",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Akai74",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Murd71",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "TanWard00",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Proc81",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "BradLang00",
+   "class": "S1-COORDINATES",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref",
+     "pubmed:10731770"
+    ]
+   }
+  },
+  {
+   "key": "SchaEtal94",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "1",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "MurnEtal99",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "CraiEtal94",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "StreWixt98b",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "HardEtal13",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:24363647, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "NunnEtal99",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "1",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "HirsArnd97",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref",
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "GreeCrow84",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "SeliParv10",
+   "class": "A1b-ARTICLE-NUMBER",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": null,
+    "stated_by": [
+     "deleted; consulted: crossref, pubmed:20577584, pmc-jats, pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "SawrEtal96",
+   "class": "S1-COORDINATES",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref",
+     "pubmed:9375160"
+    ]
+   }
+  },
+  {
+   "key": "NieuEtal01",
+   "class": "S1-COORDINATES",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "5",
+    "stated_by": [
+     "crossref",
+     "pubmed:11577898"
+    ]
+   }
+  },
+  {
+   "key": "MathEtal97",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref",
+     "pubmed:9421569"
+    ]
+   }
+  },
+  {
+   "key": "Scho06",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "1",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "WilsWilk97",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "8",
+    "stated_by": [
+     "crossref",
+     "pubmed:9509156"
+    ]
+   }
+  },
+  {
+   "key": "BogaEtal07",
+   "class": "TWO-SOURCE",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "1485",
+    "stated_by": [
+     "crossref",
+     "pubmed:17428774",
+     "pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "YounEtal86",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "GoldLiu01",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "CronHao02",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "9",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "BonnEtal13",
+   "class": "TWO-SOURCE",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3",
+    "stated_by": [
+     "crossref",
+     "pubmed:23334581"
+    ]
+   }
+  },
+  {
+   "key": "MuseSqui93",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "NelsEtal93",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "BoweMann92",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "WixtStre04",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref",
+     "pubmed:15581116"
+    ]
+   }
+  },
+  {
+   "key": "WelcBurn24",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "HintHart90",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "RockStei63",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3568",
+    "stated_by": [
+     "crossref",
+     "pubmed:13974582"
+    ]
+   }
+  },
+  {
+   "key": "DianEtal06",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "1",
+    "stated_by": [
+     "crossref",
+     "pubmed:16724763"
+    ]
+   }
+  },
+  {
+   "key": "BurgOKee96",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref",
+     "pubmed:9034860"
+    ]
+   }
+  },
+  {
+   "key": "ToppSchn99",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "KellWixt01",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3",
+    "stated_by": [
+     "crossref",
+     "pubmed:11394675"
+    ]
+   }
+  },
+  {
+   "key": "MagnEtal96",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "1",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "KlavKodi02",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Post78",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref",
+     "pubmed:632757"
+    ]
+   }
+  },
+  {
+   "key": "MaskBrow74",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "NelsEtal89",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "5",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Benn75",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "NelsEtal92",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref",
+     "pubmed:1594728"
+    ]
+   }
+  },
+  {
+   "key": "HydeJenk73",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "5",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "YoneEtal99",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref",
+     "pubmed:10682209"
+    ]
+   }
+  },
+  {
+   "key": "KnapEtal06",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref",
+     "pubmed:17063918"
+    ]
+   }
+  },
+  {
+   "key": "HilfEtal02",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref",
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "WellKirs74",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "GoshGane00",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "5",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "IzauBoni06",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref",
+     "pubmed:16766444"
+    ]
+   }
+  },
+  {
+   "key": "Ande74",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "MeltvonL41",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "AdamMont67",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Hint03",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "1",
+    "stated_by": [
+     "crossref",
+     "pubmed:12747488"
+    ]
+   }
+  },
+  {
+   "key": "GlanEtal04",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "6",
+    "stated_by": [
+     "crossref",
+     "pubmed:15521797"
+    ]
+   }
+  },
+  {
+   "key": "HuEtal06",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "10",
+    "stated_by": [
+     "crossref",
+     "pubmed:17100790"
+    ]
+   }
+  },
+  {
+   "key": "GlanEtal99",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "ViniNels79",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Brow76",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Tulv66",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "PennEtal93",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref",
+     "pubmed:7903183"
+    ]
+   }
+  },
+  {
+   "key": "WixtStre00",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref",
+     "pubmed:10789201"
+    ]
+   }
+  },
+  {
+   "key": "Eich80",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref",
+     "pubmed:7382817"
+    ]
+   }
+  },
+  {
+   "key": "Crai70",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "KanwEtal97",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "11",
+    "stated_by": [
+     "crossref",
+     "pubmed:9151747",
+     "pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "RigoEtal13",
+   "class": "TWO-SOURCE",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "7451",
+    "stated_by": [
+     "crossref",
+     "pubmed:23685452"
+    ]
+   }
+  },
+  {
+   "key": "MeltIrwi40",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Murd98",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "2",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "KleiCohe06",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref",
+     "pubmed:16914978"
+    ]
+   }
+  },
+  {
+   "key": "RubiEtal99",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "5",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "NelsZhan00",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref",
+     "pubmed:11206201"
+    ]
+   }
+  },
+  {
+   "key": "NelsEtal01",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "5",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "NelsEtal04",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3",
+    "stated_by": [
+     "crossref",
+     "pubmed:15641430"
+    ]
+   }
+  },
+  {
+   "key": "LennEtal97",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref",
+     "pubmed:9248501"
+    ]
+   }
+  },
+  {
+   "key": "EichEtal94b",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Town84",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "4",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Farg92",
+   "class": "S1-TWO-FIELDS",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "1",
+    "stated_by": [
+     "crossref"
+    ]
+   }
+  },
+  {
+   "key": "Clar92",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "violations": {},
+   "format": {},
+   "issue": {
+    "after": "3",
+    "stated_by": [
+     "crossref",
+     "pubmed:1508049"
+    ]
+   }
+  }
+ ]
+}

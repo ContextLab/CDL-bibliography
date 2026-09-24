@@ -275,7 +275,7 @@ def test_article_number_refuses_other_page_shapes():
         "before": "Attention stronly modulates reliability of neural responses to naturalistic narrative stimuli",
         "after": "Attention strongly modulates reliability of neural responses to naturalistic narrative stimuli"}}),
     ("CleeMcCl91", "S1-I1", {"author": {"before": "A Cleeremans and J L McCleeland",
-                                         "after": "Axel Cleeremans and James L McClelland"}}),
+                                         "after": "A Cleeremans and J L McClelland"}}),  # house form (2026-09-24)
     ("Game62", "S1-I2", {"journal": {"before": "Journal of Experimental Psychology: General",
                                       "after": "Journal of Experimental Psychology"}}),
 ])
@@ -288,11 +288,13 @@ def test_single_source_corrections(key, rule, changes):
     assert reassess(edited, result)["status"] == "metadata_verified"
 
 
-def test_single_source_preserves_accents_and_full_names():
+def test_single_source_preserves_accents_in_house_form():
+    # House form (user decision 2026-09-24): initials without periods; the
+    # source's surname accents are kept.
     entry, result = reviewed("GronEtal00")
     proposal = single_source_proposal(entry, result)
     after = proposal["changes"]["author"]["after"]
-    assert "Grön" in after and after.startswith("Georg Grön")
+    assert "Grön" in after and after.startswith("G Grön")
 
 
 @pytest.mark.parametrize("key,reason", [
@@ -454,3 +456,235 @@ def test_print_year_approval_is_a_valid_snapshot_envelope():
                       "PubMed never looked up": dict(result, attempts=[a for a in result["attempts"]
                                                                         if a.get("source") != "europepmc"])}.items():
         assert not valid_print_year_approval(bad), name
+
+
+# 7. Spot-check fixes (2026-09-24) ------------------------------------------------
+# verification/fixes-2026-09-24/: real cached review rows frozen by build_cases.py
+# (unmodified), plus the stored PubMed / publisher issue lookups.
+
+FIX = json.loads(gzip.open(ROOT / "verification/fixes-2026-09-24/cases.json.gz", "rt").read())
+
+
+def fix_case(key):
+    data = deepcopy(FIX["cases"][key])
+    entry = data["entry"]
+    return entry, reassess(entry, data["previous"])
+
+
+def crossref_record(result, doi):
+    return next(c["record"] for c in result["candidates"]
+                if c.get("source") == "crossref" and c.get("doi") and normalize_doi(c["doi"]) == doi)
+
+
+@pytest.mark.parametrize("key,after", [
+    ("AlyTurk16", "M Aly and N B Turk-Browne"),  # was "Mariam Aly and Nicholas B Turk-Browne"
+    ("SmitHalg89", "M E Smith and E Halgren"),   # was "Michael E Smith and Eric Halgren"
+    ("Youn79", "D C Young"),                     # was "David C Young"
+])
+def test_spotcheck_author_after_values_are_house_initials(key, after):
+    entry, result = fix_case(key)
+    proposal = single_source_proposal(entry, result)
+    assert proposal["changes"]["author"]["after"] == after
+    edited = dict(entry, fields=dict(entry["fields"], **{f: c["after"] for f, c in proposal["changes"].items()}))
+    assert reassess(edited, result)["status"] == "metadata_verified"
+
+
+def test_spotcheck_smithalg89_gets_the_source_issue():
+    from correction_proposals import after_value_statements, complete_issue
+    entry, result = fix_case("SmitHalg89")
+    proposal = complete_issue(entry, result, single_source_proposal(entry, result))
+    assert proposal["changes"]["number"] == {"before": None, "after": "1"}
+    assert proposal["issue_completion"] == {"issue": "1", "sources": ["crossref"]}
+    assert after_value_statements(entry, result, proposal)[1] == {}
+    # Already has a number, or no source states one: nothing is added.
+    entry2, result2 = fix_case("AlyTurk16")
+    assert complete_issue(entry2, result2, single_source_proposal(entry2, result2)) is None
+
+
+@pytest.mark.parametrize("key,sources", [("Murd71", ["crossref"]), ("Hint03", ["crossref", "pubmed"])])
+def test_spotcheck_split_issue_is_kept_only_because_a_source_states_it(key, sources):
+    # The user did not see the issue in Springer's visible citation line; Crossref
+    # (and PubMed for Hint03) state it, and so does the page's citation_issue meta.
+    entry, result = fix_case(key)
+    proposal = single_source_proposal(entry, result)
+    assert proposal["changes"]["volume"]["after"] == "10"
+    assert proposal["changes"]["number"]["after"] == ("4" if key == "Murd71" else "1")
+    assert proposal["issue_evidence"]["sources"] == sources
+    assert proposal["field_sources"]["number"] == "+".join(sources)
+
+
+def test_split_issue_no_source_states_needs_lookup_then_drops():
+    # Derived from Hint03: remove the issue from its Crossref and PubMed records.
+    entry, result = fix_case("Hint03")
+    for c in result["candidates"]:
+        if c.get("source") == "crossref":
+            c["record"].pop("issue", None)
+            c["issues"] = [i for i in c.get("issues", []) if not i.startswith("number:")]
+        if c.get("source") == "europepmc":
+            c["raw_record"].get("journalInfo", {}).pop("issue", None)
+    explain = {}
+    assert single_source_proposal(entry, result, explain) is None
+    assert explain["reason"] == "issue-lookup-required" and explain["cited_issue"] == "1"
+    empty = {"complete": True, "pubmed": {"query": "doi", "pmids": [], "matched": []},
+             "publisher": {"url": "https://link.springer.com/article/10.3758/BF03196465",
+                           "doi_confirmed": True, "citation_issue": []}}
+    proposal = single_source_proposal(entry, result, issue_lookups={"10.3758/bf03196465": empty})
+    assert proposal["changes"] == {"volume": {"before": "10(1)", "after": "10"}}
+    assert proposal["issue_evidence"]["issue"] is None
+    # A publisher page stating the issue confirms it: it is never dropped, and
+    # since the resolver cannot verify an issue Crossref lacks, the entry is held.
+    stated = dict(empty, publisher=dict(empty["publisher"], citation_issue=["1"]))
+    explain = {}
+    assert single_source_proposal(entry, result, explain, issue_lookups={"10.3758/bf03196465": stated}) is None
+    assert explain["reason"] == "issue-confirmed-outside-resolver"
+    assert explain["issue_evidence"]["sources"] == ["publisher-citation_issue"]
+    # A page for another DOI is not evidence.
+    other = dict(empty, publisher=dict(stated["publisher"], doi_confirmed=False))
+    assert "number" not in single_source_proposal(entry, result, issue_lookups={"10.3758/bf03196465": other})["changes"]
+
+
+@pytest.mark.parametrize("key", ["ScudEtal14", "CohnEtal96"])
+def test_issue_only_in_the_citation_is_dropped_after_real_lookups(key):
+    from correction_proposals import after_value_statements
+    entry, result = fix_case(key)
+    explain = {}
+    assert single_source_proposal(entry, result, explain) is None
+    assert explain["reason"] == "issue-lookup-required"
+    lookups = {d: v for d, v in FIX["lookups"].items() if v["key"] == key}
+    assert len(lookups) == 1 and next(iter(lookups.values()))["complete"]
+    proposal = single_source_proposal(entry, result, issue_lookups=lookups)
+    assert proposal["changes"] == {"number": {"before": "1", "after": None}}
+    assert proposal["subclasses"] == {"number": "number-dropped-unconfirmed"}
+    stated_by, violations = after_value_statements(entry, result, proposal, next(iter(lookups.values())))
+    assert violations == {} and "pubmed-eutils lookup" in stated_by["number"][0]
+
+
+def test_nonplain_stated_issue_is_held():
+    entry, result = fix_case("EkstWatr14")
+    lookups = {d: v for d, v in FIX["lookups"].items() if v["key"] == "EkstWatr14"}
+    explain = {}
+    assert single_source_proposal(entry, result, explain, issue_lookups=lookups) is None
+    assert "not a plain number: 0 2" in explain["detail"]
+
+
+def test_house_given_names():
+    from correction_proposals import house_given
+    # Real registry given names from the fixture records.
+    assert house_given("M.-Marsel") == "M-M"            # RebeEtal02 (Mesulam)
+    assert house_given("Matthijs A.A.") == "M A A"      # PezzEtal17
+    assert house_given("Nicholas B.") == "N B"          # AlyTurk16
+    assert house_given("Krešimir") == "K"               # delaEtal07
+    assert house_given("Éadaoin W.") == "É W"           # GrifEtal11
+    assert house_given("Y-C") == "Y-C"
+    assert house_given("R.Mark") == "R M"               # WuEtal01
+    for held in ("JR", "de", "Alice Jr.", "María de las", "2nd"):
+        with pytest.raises(ValueError):
+            house_given(held)
+
+
+def test_particles_case_and_accents_are_kept():
+    from correction_proposals import house_byline, source_authors
+    entry, result = fix_case("PezzEtal17")
+    assert single_source_proposal(entry, result)["changes"]["author"]["after"] == \
+        "G Pezzulo and C Kemere and M A A {van der Meer}"
+    entry, result = fix_case("delaEtal07")
+    record = crossref_record(result, "10.1038/nature06028")
+    assert source_authors(record, entry["fields"]["author"]) == \
+        "J {de la Rocha} and B Doiron and E Shea-Brown and K Josić and A Reyes"
+    entry, result = fix_case("WillEtal05b")
+    record = crossref_record(result, "10.1111/j.1460-9568.2004.03817.x")
+    assert "G {van Bruggen}" in source_authors(record, entry["fields"]["author"])  # not "Van Bruggen"
+    assert "G {Van Bruggen}" in source_authors(record)  # no citation: the source text, braced
+    assert house_byline([{"given": "Jaime", "family": "de la Rocha"}]) == "J de la Rocha"
+    assert house_byline([{"given": "R B", "family": "Freeman", "suffix": "Jr."}]) == "Freeman, Jr, R B"
+
+
+def test_corporate_and_brace_led_bylines_are_never_rewritten():
+    from correction_proposals import source_authors
+    entry, result = fix_case("VirtEtal20")  # Crossref lists "SciPy 1.0 Contributors"
+    with pytest.raises(ValueError):
+        source_authors(crossref_record(result, "10.1038/s41592-020-0772-5"))
+    for key in ("VirtEtal20", "GrifEtal11"):
+        entry, result = fix_case(key)
+        proposal = single_source_proposal(entry, result)
+        assert not proposal or "author" not in proposal["changes"]
+        assert not field_proposal(entry, result, "author")
+
+
+def test_all_capital_or_ambiguous_source_names_are_held():
+    entry, result = fix_case("KotcEtal96")  # Crossref "GRÖZINGER"
+    explain = {}
+    assert single_source_proposal(entry, result, explain) is None
+    assert explain["detail"] == "All-capital source surname: case is not evidence"
+    entry, result = fix_case("WuEtal01")  # Crossref "R.Mark": no longer proposed as "RMark"
+    assert single_source_proposal(entry, result) is None
+
+
+def test_accent_commands_are_not_case_protection():
+    from correction_proposals import loses_characters
+    entry, result = fix_case("RacsEtal08")
+    proposal = single_source_proposal(entry, result)
+    assert proposal["changes"]["author"]["after"] == \
+        "M Racsm\\'{a}ny and M A Conway and E A Garab and G Nagymáté"
+    assert not loses_characters("J Garc\\'{i}a", "J García", "author")
+    assert not loses_characters("José García", "J García", "author")  # initials drop given-name letters only
+    assert loses_characters("José García", "J Garcia", "author")      # a surname accent is lost
+
+
+def test_after_values_must_be_stated_by_a_source():
+    from correction_proposals import after_value_statements
+    entry, result = fix_case("Hint03")
+    proposal = single_source_proposal(entry, result)
+    stated_by, violations = after_value_statements(entry, result, proposal)
+    assert violations == {} and stated_by["number"] == ["crossref", "pubmed:12747488"]
+    # Negative controls: a value only the citation (or nobody) has.
+    wrong = deepcopy(proposal)
+    wrong["changes"]["number"]["after"] = "2"
+    assert "number" in after_value_statements(entry, result, wrong)[1]
+    dropped = deepcopy(proposal)
+    dropped["changes"]["number"]["after"] = None
+    assert after_value_statements(entry, result, dropped)[1]["number"].startswith("deleted although stated")
+    entry, result = fix_case("Youn79")
+    proposal = single_source_proposal(entry, result)
+    carried = deepcopy(proposal)
+    carried["changes"]["title"]["after"] = entry["fields"]["title"]  # the citation's own typo
+    assert "title" in after_value_statements(entry, result, carried)[1]
+
+
+def test_issue_lookup_replays_stored_responses_with_zero_requests(tmp_path):
+    """The real lookup code over stored PubMed/publisher responses (no network)."""
+    import sqlite3
+    from publisher_corrections import _summary_matches, issue_lookup
+    from verification import Cache, PoliteClient
+    cache = Cache(tmp_path / "lookups.sqlite3")
+    for request, fetched, body in FIX["replay"]["responses"]:
+        cache.db.execute("INSERT INTO responses VALUES (?, ?, ?)", (request, fetched, body))
+    cache.db.commit()
+
+    class NoNetwork:
+        headers = {}
+
+        def get(self, *args, **kwargs):
+            raise AssertionError("a stored lookup must not reach the network")
+    client = PoliteClient(cache, "tests@example.org", session=NoNetwork())
+    entry, result = fix_case("Hint03")
+    hint = issue_lookup(cache, client, "10.3758/bf03196465", crossref_record(result, "10.3758/bf03196465"))
+    assert [(h["pmid"], h["issue"]) for h in hint["pubmed"]["matched"]] == [("12747488", "1")]
+    assert hint["publisher"]["doi_confirmed"] and hint["publisher"]["citation_issue"] == ["1"]
+    entry, result = fix_case("ScudEtal14")
+    scud = issue_lookup(cache, client, "10.1016/j.bandc.2014.03.016",
+                        crossref_record(result, "10.1016/j.bandc.2014.03.016"))
+    assert scud["complete"] and scud["pubmed"]["pmids"] == ["24747513"]
+    assert [h["issue"] for h in scud["pubmed"]["matched"]] == [""]  # PubMed has the work, no issue
+    assert scud["publisher"]["doi_confirmed"] and scud["publisher"]["citation_issue"] == []  # Elsevier API
+    entry, result = fix_case("CohnEtal96")
+    cohn = issue_lookup(cache, client, "10.1613/jair.295", crossref_record(result, "10.1613/jair.295"))
+    assert cohn["pubmed"]["query"].startswith("doi, then ecitmatch") and cohn["pubmed"]["matched"] == []
+    assert cohn["publisher"]["error"] and not cohn["publisher"]["doi_confirmed"]
+    assert client.requests == 0
+    # A summary naming another DOI is not the work.
+    summary = json.loads(next(b for r, _, b in FIX["replay"]["responses"] if "esummary" in r and "12747488" in r))
+    item = summary["body"]["result"]["12747488"]
+    record = crossref_record(fix_case("Hint03")[1], "10.3758/bf03196465")
+    assert _summary_matches(item, "10.3758/bf03196465", record)
+    assert not _summary_matches(item, "10.3758/bf03212827", record)

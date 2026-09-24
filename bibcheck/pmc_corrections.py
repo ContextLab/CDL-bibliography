@@ -128,7 +128,7 @@ def pmc_coordinate_proposal(entry, previous, *, include_authors=False):
                 if "author" not in changed or not preserves_byline_details(fields.get("author", ""), record["author"]):
                     continue
                 from correction_proposals import source_authors
-                values["author"] = source_authors(record)
+                values["author"] = source_authors(record, fields.get("author"))
             if any(not values[f] or values[f] == fields.get(f) for f in changed):
                 continue
             if (not re.fullmatch(r"[1-9]\d{3}", values["year"])

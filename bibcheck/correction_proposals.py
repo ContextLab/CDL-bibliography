@@ -219,24 +219,127 @@ def journal_text(venue):
     return re.sub(r"\s*&\s*", " and ", html.unescape(venue))
 
 
-def source_authors(record):
-    """Format a complete source byline without inventing or deduplicating people."""
+_SUFFIX_WORDS = {"jr", "sr", "ii", "iii", "iv", "v", "vi"}
+
+
+def house_given(given):
+    """House form of source given names: initials without periods, one per
+    given name, every initial the source gives, hyphenated initials kept
+    (``Nicholas B.`` -> ``N B``; ``Harry W.M.`` -> ``H W M``; ``Yu-Chen`` ->
+    ``Y-C``). User decision 2026-09-24 (spot-check findings).
+
+    Raises ValueError for shapes whose initials are not certain: a lower-case
+    token (a particle such as "de" belongs to the surname), a suffix word, an
+    undotted all-capital token of two or three letters ("JR" may be two
+    initials or a name), or anything that is not a letter.
+    """
+    import unicodedata
+    text = unicodedata.normalize("NFC", given or "").strip()
+    text = re.sub(r"\.(?=[^\s-])", ". ", text)
+    out = []
+    for token in text.split():
+        token = token.strip(".,")
+        if not token:
+            continue
+        if token.lower().rstrip(".") in _SUFFIX_WORDS - {"v"} or (token.lower() == "v" and not out):
+            raise ValueError("Suffix inside the source given names")
+        parts = token.split("-")
+        if any(not p or not p[0].isalpha() or not p[0].isupper() for p in parts):
+            raise ValueError("Given-name token is not a capitalized name or initial: " + token)
+        if len(parts) == 1 and 2 <= len(token) <= 3 and token.isupper():
+            raise ValueError("Undotted capital initials are ambiguous: " + token)
+        out.append("-".join(p[0] for p in parts))
+    if not out:
+        raise ValueError("No given names")
+    return " ".join(out)
+
+
+def _family_text(source_family, citation_name):
+    """Keep the citation's own surname text when it differs from the source's
+    only by case or braces (surnames, particles and accents are never altered
+    here); otherwise write the source surname, braced when it has several
+    words and no lower-case particle, so BibTeX parses it as one surname."""
+    from bibtexparser.customization import splitname
+    if citation_name and not citation_name.startswith("{"):
+        parts = splitname(citation_name, strict_mode=True)
+        cited = " ".join(parts["von"] + parts["last"])
+        try:
+            if cited and normalized(cited) == normalized(source_family):
+                return cited
+        except ValueError:
+            pass
+    if sum(c.isalpha() for c in source_family) > 1 and source_family.isupper():
+        raise ValueError("All-capital source surname: case is not evidence")
+    words = source_family.split()
+    if len(words) > 1 and words[0][:1].isupper():
+        return "{" + source_family + "}"
+    return source_family
+
+
+def house_byline(people, citation=None):
+    """A complete source byline in house form (see ``house_given``).
+
+    ``citation`` (the cited byline, optional) only supplies surname text that
+    is equal to the source's up to case/braces. Every name is round-tripped
+    through the BibTeX name parser: the parsed surname must be the source
+    surname and the parsed given names the house initials, or it raises.
+    """
+    from bibtexparser.customization import splitname
+    from verification import split_authors
+    cited = [n for n in split_authors(citation)] if citation else []
+    cited = [n for n in cited if normalized(n) != "others"]
+    names = []
+    for i, person in enumerate(people):
+        family = person["family"].strip()
+        if family.split()[-1].lower().rstrip(".") in _SUFFIX_WORDS:
+            raise ValueError("Suffix inside the source surname")
+        initials = house_given(person["given"])
+        text = _family_text(family, cited[i] if len(cited) == len(people) else None)
+        suffix = (person.get("suffix") or "").replace(".", "").strip()
+        name = f"{text}, {suffix}, {initials}" if suffix else f"{initials} {text}"
+        parsed = splitname(name, strict_mode=True)
+        if (normalized(" ".join(parsed["von"] + parsed["last"])) != normalized(family)
+                or " ".join(parsed["first"]) != initials
+                or normalized(" ".join(parsed["jr"])) != normalized(suffix)):
+            raise ValueError("Source name does not round-trip in house form: " + name)
+        names.append(name)
+    return " and ".join(names)
+
+
+def source_authors(record, citation=None):
+    """Format a complete source byline in house form (initials without
+    periods, all the source's initials) without inventing or deduplicating
+    people. ``citation`` only lends surname text equal up to case/braces."""
     people = record.get("author", [])
     if not people or any(not p.get("given") or not p.get("family") or p.get("name") for p in people):
         raise ValueError("Incomplete or corporate source byline")
-    if any(re.search(r"[<>{}\\$\n\r]", p.get(f, "")) for p in people for f in ("given", "family", "suffix")):
+    if any(re.search(r"[<>{}\\$\n\r]", p.get(f) or "") for p in people for f in ("given", "family", "suffix")):
         raise ValueError("Unsupported source author markup")
     names = [p["family"] + ", " + (p["suffix"] + ", " if p.get("suffix") else "") + p["given"] for p in people]
     if len({normalized(n) for n in names}) != len(names):
         raise ValueError("Duplicate people in source byline")
-    from helpers import reformat_author
-    return reformat_author(" and ".join(names))
+    return house_byline(people, citation)
+
+
+def _house_marks_text(byline):
+    """Surnames plus given-name initials of a byline: the characters a house
+    byline keeps. Accents on dropped given-name letters are not a loss."""
+    from bibtexparser.customization import splitname
+    from verification import split_authors
+    out = []
+    for name in split_authors(byline or ""):
+        if name.startswith("{"):
+            out.append(name)
+            continue
+        parts = splitname(name, strict_mode=True)
+        out.append(" ".join(parts["von"] + parts["last"] + parts["jr"]))
+        out.extend(t[:1] if not t.startswith("{") else t for t in parts["first"])
+    return " ".join(out)
 
 
 def suffix_proposal(entry, previous):
-    """Add a documented suffix while preserving every existing given name."""
-    from bibtexparser.customization import splitname
-    from helpers import reformat_author
+    """Add a documented suffix without losing any citation initial; the byline
+    is written in house form (initials without periods) from the source."""
     from verification import split_authors
     fields = entry["fields"]
     if (fields.get("ENTRYTYPE") != "article" or previous.get("status") != "needs_review"
@@ -263,14 +366,13 @@ def suffix_proposal(entry, previous):
                 names = split_authors(fields["author"])
                 if not people or len(names) != len(people):
                     continue
-                changed = []
-                for name, person in zip(names, people):
-                    parts = splitname(name, strict_mode=True)
-                    if person.get("suffix") and not parts["jr"]:
-                        name = reformat_author(" ".join(parts["von"] + parts["last"]) + ", "
-                                               + person["suffix"] + ", " + " ".join(parts["first"]))
-                    changed.append(name)
-                author = " and ".join(changed)
+                # House form (2026-09-24): the whole byline is written from the
+                # source people as initials without periods, never losing a
+                # citation initial or person; surnames keep the citation text
+                # when equal up to case/braces.
+                if byline_loses_detail(fields["author"], people):
+                    continue
+                author = source_authors({"author": people}, fields["author"])
                 if author == fields["author"]:
                     continue
                 result = reassess(dict(entry, fields=dict(fields, author=author)), previous)
@@ -386,7 +488,7 @@ def field_proposal(entry, previous, field):
                 # no inferred initials, author omissions, or reordering to fit.
                 # Shared upstream errors can occur in both feeds. Identical
                 # people repeated in a byline require source adjudication.
-                value = source_authors(record)
+                value = source_authors(record, fields.get("author"))
                 # Never discard given-name detail or people the citation has
                 # (audit rule: e.g. full names must not become initials).
                 if byline_loses_detail(fields.get("author", ""), record.get("author", [])):
@@ -412,7 +514,7 @@ def field_proposal(entry, previous, field):
                     continue
             if fields.get(field) == value:
                 continue
-            if field in {"title", "journal", "author"} and loses_characters(fields.get(field), value):
+            if field in {"title", "journal", "author"} and loses_characters(fields.get(field), value, field):
                 continue  # never drop the citation's accents or insert U+FFFD
             proposed = dict(fields, **{field: value})
             primary_evidence, primary_issues = safe_compare(proposed, record)
@@ -597,11 +699,13 @@ def publication_proposal(entry, previous, *, include_identity_fields=False):
                 if len(titles) == 1 and "title" not in matched:
                     values["title"] = source_title(titles[0], fields.get("title", ""))
                 if "author" not in matched:
-                    from helpers import reformat_author
                     people = record.get("author", [])
                     if (people and all(p.get("given") and p.get("family") and not p.get("name") for p in people)
                             and not byline_loses_detail(fields.get("author", ""), people)):
-                        values["author"] =reformat_author(" and ".join(p["family"] + ", " + (p["suffix"] + ", " if p.get("suffix") else "") + p["given"] for p in people))
+                        try:  # house form: initials without periods (2026-09-24)
+                            values["author"] = source_authors({"author": people}, fields.get("author"))
+                        except ValueError:
+                            pass
             changes = {f: {"before": fields.get(f), "after": value} for f, value in values.items()
                        if not primary.get("evidence", {}).get(f, {}).get("match") and fields.get(f) != value}
             if (not 2 <= len(changes) <= 4
@@ -679,7 +783,9 @@ def _marks(value):
 def _braced_words(text):
     """Lower-case words carrying case-protecting braces (not {\\'a} accents)."""
     words = set()
-    for token in re.findall(r"\S*\{(?!\\)[^{}]*\}\S*", text or ""):
+    # An accent command's argument (\'{e}, \v{r}) is not case protection.
+    text = re.sub(r"(?<!\{)\\(?:[\'\"`^~=.]|[A-Za-z](?![A-Za-z]))\s*\{([^{}\\]?)\}", r"\1", text or "")
+    for token in re.findall(r"\S*\{(?!\\)[^{}]*\}\S*", text):
         for word in re.findall(r"[^\W\d_]+", re.sub(r"[{}]", "", token)):
             words.add(word.lower())
     return words
@@ -689,10 +795,21 @@ def _plain_words(text):
     return {w.lower() for w in re.findall(r"[^\W\d_]+", re.sub(r"\\[A-Za-z]+|[{}\\]", "", text or ""))}
 
 
-def loses_characters(before, after):
+def loses_characters(before, after, field=None):
     """The replacement drops diacritics, case-protecting braces on a word it
-    keeps (e.g. {B}owers -> bowers), or contains a replacement character."""
-    if "\ufffd" in (after or "") or _marks(after) < _marks(before):
+    keeps (e.g. {B}owers -> bowers), or contains a replacement character.
+
+    For ``author`` only surnames and initials are compared: house form keeps
+    initials, so an accent on a dropped given-name letter is not a loss."""
+    if "\ufffd" in (after or ""):
+        return True
+    if field == "author":
+        try:
+            if _marks(_house_marks_text(after)) < _marks(_house_marks_text(before)):
+                return True
+        except (ValueError, TypeError, KeyError):
+            return True
+    elif _marks(after) < _marks(before):
         return True
     kept = (_braced_words(before) & _plain_words(after)) - _braced_words(after)
     return bool(kept)
@@ -911,6 +1028,69 @@ def _issue_fields(issues):
     return fields, blockers
 
 
+class IssueLookupRequired(Exception):
+    """No source record at hand states the issue and no lookup was made."""
+
+
+def cited_issue_label(volume):
+    """``10(4-B)`` -> ("10", "4-B"); None unless the volume embeds an issue."""
+    m = re.fullmatch(r"\s*(\d+)\s*\(\s*([^()]+?)\s*\)\s*", volume or "")
+    return (m[1], m[2]) if m else None
+
+
+def issue_statements(record=None, mapped=None, lookup=None):
+    """Every source statement of the work's issue, as [(source, value)].
+
+    ``record`` is the Crossref record, ``mapped`` the DOI-linked PubMed record
+    (``epmc_record``), ``lookup`` the stored result of ``issue lookups``
+    (PubMed E-utilities records matched to the work, and the publisher page's
+    citation_issue meta tag when the page states the same DOI).
+    """
+    out = []
+    if record and str(record.get("issue") or "").strip():
+        out.append(("crossref", str(record["issue"]).strip()))
+    if mapped and str(mapped.get("issue") or "").strip():
+        out.append(("pubmed", str(mapped["issue"]).strip()))
+    for hit in (lookup or {}).get("pubmed", {}).get("matched", []):
+        if str(hit.get("issue") or "").strip():
+            out.append(("pubmed-eutils:" + str(hit["pmid"]), str(hit["issue"]).strip()))
+    publisher = (lookup or {}).get("publisher") or {}
+    if publisher.get("doi_confirmed"):
+        for value in publisher.get("citation_issue", []):
+            if str(value).strip():
+                out.append(("publisher-citation_issue", str(value).strip()))
+    return out
+
+
+def confirm_issue(record=None, mapped=None, lookup=None):
+    """The issue a proposal may write, with the sources that state it.
+
+    Returns {"issue": value-or-None, "sources": [...], "lookup": summary}. A
+    value is returned only when at least one source states it and all stating
+    sources agree on one plain number; None (drop the issue) only after a
+    complete lookup (``lookup["complete"]``) found no statement. Raises
+    ``IssueLookupRequired`` when nothing states it and no lookup was made, and
+    ValueError when sources disagree or the stated issue is not a plain number.
+    """
+    statements = issue_statements(record, mapped, lookup)
+    summary = None
+    if lookup:
+        summary = {"pubmed": {k: lookup.get("pubmed", {}).get(k) for k in ("query", "pmids", "error")},
+                   "publisher": {k: (lookup.get("publisher") or {}).get(k)
+                                 for k in ("url", "doi_confirmed", "citation_issue", "error")}}
+    if statements:
+        found = {normalized(v) for _, v in statements}
+        if len(found) != 1:
+            raise ValueError("number: sources disagree on the issue: " + "; ".join(f"{s}={v}" for s, v in statements))
+        value = statements[0][1]
+        if not re.fullmatch(r"[1-9]\d*", value):
+            raise ValueError("number: stated issue is not a plain number: " + value)
+        return {"issue": value, "sources": sorted({s for s, _ in statements}), "lookup": summary}
+    if not lookup or not lookup.get("complete"):
+        raise IssueLookupRequired()
+    return {"issue": None, "sources": [], "lookup": summary}
+
+
 def _pubmed_for(previous, doi):
     raws = {}
     for c in previous.get("candidates", []):
@@ -923,7 +1103,7 @@ def _pubmed_for(previous, doi):
     return raws
 
 
-def single_source_proposal(entry, previous, explain=None):
+def single_source_proposal(entry, previous, explain=None, issue_lookups=None):
     """Correct up to two fields from the one source holding the cited record.
 
     Returns a proposal or None; ``explain`` (a dict) receives the hold reason.
@@ -932,6 +1112,13 @@ def single_source_proposal(entry, previous, explain=None):
     Every value is copied from the source record; the other source, when it
     holds the same field, must agree or the entry is held. The edited entry
     must then verify through the ordinary resolver on the same DOI.
+
+    Issue numbers (user decision 2026-09-24): when a cited ``volume(issue)`` is
+    split or ``number`` changes, the issue must be stated by a source record
+    (Crossref, the DOI-linked PubMed record, or ``issue_lookups[doi]``: a
+    PubMed E-utilities record or the publisher page's citation_issue). With no
+    statement after a complete lookup the issue is dropped; without a lookup
+    the entry is held as ``issue-lookup-required``.
     """
     from auto_review import unique_crossref_primaries
     from verification import apa_twin_key
@@ -1019,6 +1206,18 @@ def single_source_proposal(entry, previous, explain=None):
         explain["reason"] = "too-many-fields"
         explain["fields"] = sorted(changed)
         return None
+    split = cited_issue_label(fields.get("volume")) if "volume" in changed else None
+    decision = None
+    if "number" in changed or split:
+        try:
+            decision = confirm_issue(record, mapped, (issue_lookups or {}).get(doi))
+        except IssueLookupRequired:
+            explain.update(reason="issue-lookup-required", fields=sorted(changed),
+                           cited_issue=split[1] if split else fields.get("number"))
+            return None
+        except ValueError as exc:
+            explain.update(reason="value-held", detail=str(exc), fields=sorted(changed))
+            return None
     values, sources = {}, {}
     try:
         from helpers import format_journal_name
@@ -1040,7 +1239,7 @@ def single_source_proposal(entry, previous, explain=None):
                     people, origin = mapped["author"], "pubmed"
                 if not byline_adds_information(fields.get("author", ""), people):
                     raise ValueError("author: citation byline has detail the source lacks")
-                value = source_authors({"author": people})
+                value = source_authors({"author": people}, fields.get("author"))
                 if mapped and origin == "crossref" and not compatible_authors({"author": people}, mapped):
                     raise ValueError("author: sources disagree")
             elif field == "year":
@@ -1058,14 +1257,15 @@ def single_source_proposal(entry, previous, explain=None):
                 value = format_journal_name(journal_text(venues[0]))
                 if normalize_journal(value) != normalize_journal(venues[0]):
                     raise ValueError("journal: formatter changes the venue")
-            elif field in {"volume", "number"}:
-                key = "issue" if field == "number" else "volume"
-                value = str(record.get(key) or "")
+            elif field == "number":
+                value, origin = decision["issue"], "+".join(decision["sources"]) or "no-source-states-an-issue"
+            elif field == "volume":
+                value = str(record.get("volume") or "")
                 if not value and mapped:
-                    value, origin = str(mapped.get(key) or ""), "pubmed"
+                    value, origin = str(mapped.get("volume") or ""), "pubmed"
                 if not re.fullmatch(r"[1-9]\d*", value):
                     raise ValueError(field + ": no plain numeric source value")
-                if mapped and mapped.get(key) and origin == "crossref" and str(mapped[key]) != value:
+                if mapped and mapped.get("volume") and origin == "crossref" and str(mapped["volume"]) != value:
                     raise ValueError(field + ": sources disagree")
             elif field == "pages":
                 raw = record.get("page") or record.get("article-number") or ""
@@ -1078,6 +1278,10 @@ def single_source_proposal(entry, previous, explain=None):
                     raise ValueError("pages: sources disagree")
                 value = pages.replace("-", "--")
             values[field], sources[field] = value, origin
+        if split and "number" not in values:
+            # The split label leaves the volume; the issue is what a source states.
+            values["number"] = decision["issue"]
+            sources["number"] = "+".join(decision["sources"]) or "no-source-states-an-issue"
     except (ValueError, KeyError, TypeError, AttributeError, IndexError) as exc:
         explain["reason"] = "value-held"
         explain["detail"] = str(exc)
@@ -1088,7 +1292,7 @@ def single_source_proposal(entry, previous, explain=None):
         explain["reason"] = "no-change-possible"
         explain["fields"] = sorted(changed)
         return None
-    lossy = sorted(f for f, v in values.items() if loses_characters(fields.get(f), v))
+    lossy = sorted(f for f, v in values.items() if v is not None and loses_characters(fields.get(f), v, f))
     if lossy:
         explain["reason"] = "value-held"
         explain["detail"] = "; ".join(f"{f}: source value drops accents or has a replacement character" for f in lossy)
@@ -1097,6 +1301,8 @@ def single_source_proposal(entry, previous, explain=None):
     subclasses = {f: change_subclass(f, fields.get(f), v, year=fields.get("year"),
                                      corroborated=mapped is not None and sources[f] == "crossref")
                   for f, v in values.items()}
+    if "number" in values:
+        subclasses["number"] = "number-dropped-unconfirmed" if values["number"] is None else "number"
     held = sorted(f for f, sub in subclasses.items() if sub in HELD_SUBCLASSES)
     if subclasses.get("journal") in {"journal-other-venue", "journal-section"}:
         # Crossref carries a journal's CURRENT title (e.g. Psychiatric Services
@@ -1113,12 +1319,18 @@ def single_source_proposal(entry, previous, explain=None):
         explain["detail"] = "; ".join(f"{f}: {subclasses[f]}" for f in held)
         explain["fields"] = sorted(changed)
         return None
-    proposed = dict(evaluated, **values)
+    proposed = {k: v for k, v in dict(evaluated, **values).items() if v is not None}
     remaining = safe_compare(proposed, record)[1]
     if remaining == [YEAR_CONFLICT] and print_year_selects_cited(proposed, record):
         remaining = []
     if remaining and not (mapped and not [
             i for i in safe_compare(proposed, mapped)[1] if i.split(":", 1)[0] not in {"publisher", "isbn"}]):
+        if decision and decision["issue"] and {i.split(":", 1)[0] for i in remaining} == {"number"}:
+            # Stated by a looked-up source the resolver cannot accept from; the
+            # issue is neither invented nor dropped against that statement.
+            explain.update(reason="issue-confirmed-outside-resolver", issue_evidence=decision,
+                           fields=sorted(changed))
+            return None
         explain["reason"] = "would-not-match-source"
         explain["fields"] = sorted(changed)
         return None
@@ -1136,6 +1348,8 @@ def single_source_proposal(entry, previous, explain=None):
             "source": "+".join(origin) + ("; pubmed holds the record and does not contradict" if both and origin == ["crossref"] else ""),
             "changes": {f: {"before": fields.get(f), "after": v} for f, v in sorted(values.items())},
             "subclasses": subclasses,
+            "field_sources": {f: sources[f] for f in sorted(values)},
+            **({"issue_evidence": decision} if decision else {}),
             "requires_publisher_drop": bool(fields.get("publisher")),
             "primary": deepcopy(primary)}
 
@@ -1146,7 +1360,8 @@ def single_source_proposal(entry, previous, explain=None):
 # renamed journal rather than its title at publication).
 HELD_SUBCLASSES = {"title-typography-only", "journal-extension"}
 RISKY_SUBCLASSES = {"author-surname-spelling", "title-crossref-only", "pages-different-start",
-                    "journal-section", "journal-other-venue", "volume", "year-print-year"}
+                    "journal-section", "journal-other-venue", "volume", "year-print-year",
+                    "number-dropped-unconfirmed"}
 
 
 def change_subclass(field, before, after, year=None, corroborated=False):
@@ -1217,3 +1432,153 @@ def add_doi_proposal(entry, result):
     return {"kind": "add_doi", "rule": "D1", "key": entry["key"], "fingerprint": entry["fingerprint"],
             "changes": {"doi": {"before": None, "after": normalize_doi(doi)}},
             "accepted_source": result.get("accepted_source")}
+
+
+# ---------------------------------------------------------------------------
+# General principle (user, 2026-09-24): every proposed after-value must be
+# stated by an authoritative source record for the proposal's DOI; a value
+# carried over from the citation itself is never presented as source-backed.
+# ---------------------------------------------------------------------------
+
+def source_records(entry, previous, doi, lookup=None):
+    """[(label, record)] of the source records held for one DOI: Crossref,
+    the DOI-linked PubMed record, PMC JATS front matter, and an issue lookup
+    (PubMed E-utilities summaries matched to the work; the publisher page's
+    citation_issue when that page states the same DOI)."""
+    doi = normalize_doi(doi)
+    out, crossref = [], []
+    for c in previous.get("candidates", []):
+        try:
+            same = c.get("doi") and normalize_doi(c["doi"]) == doi
+        except ValueError:
+            continue
+        if same and c.get("source") == "crossref" and c.get("record"):
+            if c["record"] not in crossref:
+                crossref.append(c["record"])
+    out += [("crossref", r) for r in crossref]
+    base = crossref[0] if crossref else {"DOI": doi}
+    for pmid, raw in sorted(_pubmed_for(previous, doi).items()):
+        try:
+            out.append(("pubmed:" + pmid, epmc_record(raw, base)))
+        except (ValueError, KeyError, TypeError, AttributeError):
+            continue
+    for c in previous.get("candidates", []):
+        if c.get("source") != "pmc-jats" or not c.get("raw_xml") or not crossref:
+            continue
+        try:
+            if normalize_doi(c["doi"]) != doi:
+                continue
+            from fulltext_review import assess_fulltext
+            response = {"body": c["raw_xml"], "url": c["url"], "retrieved_at": c["retrieved_at"],
+                        "document_sha256": c.get("xml_sha256")}
+            primary = {"source": "crossref", "doi": doi, "record": crossref[0]}
+            out.append(("pmc-jats", assess_fulltext(entry["fields"], primary, c["medline_record"], response)["record"]))
+        except (ValueError, KeyError, TypeError, AttributeError, IndexError):
+            continue
+    for hit in (lookup or {}).get("pubmed", {}).get("matched", []):
+        out.append(("pubmed-eutils:" + str(hit["pmid"]),
+                    {"issue": hit.get("issue"), "volume": hit.get("volume"), "page": hit.get("pages"), "partial": True}))
+    publisher = (lookup or {}).get("publisher") or {}
+    if publisher.get("doi_confirmed") and len(publisher.get("citation_issue", [])) == 1:
+        out.append(("publisher-citation_issue", {"issue": publisher["citation_issue"][0], "partial": True}))
+    return out
+
+
+def _stated(field, value, fields, record):
+    """Whether one source record states ``value`` for ``field``."""
+    from verification import normalize_pages
+    if record.get("partial"):
+        key = {"number": "issue", "volume": "volume", "pages": "page"}.get(field)
+        source = str(record.get(key) or "") if key else ""
+        if not source:
+            return False
+        if field == "pages":
+            return normalize_pages(expanded_pages(source)) == normalize_pages(value)
+        return normalized(source) == normalized(value)
+    evidence = safe_compare(dict(fields, **{field: value}), record)[0]
+    return bool(evidence.get(field, {}).get("match"))
+
+
+def _states_field(field, record):
+    key = {"number": "issue", "volume": "volume", "pages": "page", "title": "title", "author": "author",
+           "journal": "container-title"}.get(field, field)
+    value = record.get(key) or (record.get("article-number") if field == "pages" else None)
+    return bool(value if not isinstance(value, str) else value.strip())
+
+
+def after_value_statements(entry, previous, proposal, lookup=None):
+    """Which source records state each proposed after-value.
+
+    Returns (stated_by, violations): ``stated_by`` maps each changed field to
+    the labels of the records that state its after-value (a deletion lists the
+    records consulted, none of which may state a value); ``violations`` maps a
+    field to the reason it breaks the principle. The after-state of the whole
+    entry is compared, so a value must match a record in context.
+    """
+    fields = {k: v for k, v in entry["fields"].items() if k != "publisher"}
+    after = dict(fields)
+    for field, change in proposal["changes"].items():
+        if field == "publisher":
+            continue
+        if change.get("after") is None:
+            after.pop(field, None)
+        else:
+            after[field] = change["after"]
+    records = source_records(entry, previous, proposal["doi"], lookup) if proposal.get("doi") else []
+    stated_by, violations = {}, {}
+    for field, change in sorted(proposal["changes"].items()):
+        if field in {"publisher", "doi"}:
+            continue  # policy lists (P1 drop, D1 add the accepted DOI) are not field corrections
+        value = change.get("after")
+        if value is None:
+            stating = [label for label, record in records if _states_field(field, record)]
+            consulted = [label for label, _ in records]
+            if lookup:
+                pubmed = (lookup.get("pubmed") or {})
+                publisher = (lookup.get("publisher") or {})
+                consulted.append(f"pubmed-eutils lookup ({pubmed.get('query')}; PMIDs {pubmed.get('pmids') or 'none'})")
+                consulted.append(f"publisher page {publisher.get('url')} (" + (
+                    "error: " + str(publisher["error"]) if publisher.get("error")
+                    else f"DOI confirmed: {publisher.get('doi_confirmed')}; citation_issue {publisher.get('citation_issue') or 'none'}") + ")")
+            stated_by[field] = ["deleted; consulted: " + ", ".join(consulted)]
+            if stating:
+                violations[field] = "deleted although stated by " + ", ".join(stating)
+            continue
+        try:
+            labels = [label for label, record in records if _stated(field, value, after, record)]
+        except (ValueError, TypeError, KeyError, AttributeError):
+            labels = []
+        stated_by[field] = labels
+        if not labels:
+            violations[field] = "no source record states the after-value"
+    return stated_by, violations
+
+
+def complete_issue(entry, previous, proposal):
+    """Add the issue a source states when the corrected citation lacks one
+    (spot-check SmitHalg89, 2026-09-24: 'add number (1)'). Only Crossref and the
+    DOI-linked PubMed record are consulted, they must agree, and the completed
+    entry must still verify on the same DOI. Returns a new proposal or None."""
+    from verification import apa_twin_key
+    fields = {k: v for k, v in entry["fields"].items() if k != "publisher"}
+    change = proposal["changes"].get("number")
+    if fields.get("number") or change or not proposal.get("doi"):
+        return None
+    records = [(label, r) for label, r in source_records(entry, previous, proposal["doi"])
+               if label == "crossref" or label.startswith("pubmed:")]
+    stated = {normalized(str(r.get("issue"))) for _, r in records if str(r.get("issue") or "").strip()}
+    if len(stated) != 1:
+        return None
+    issue = next(iter(stated))
+    if not re.fullmatch(r"[1-9]\d*", issue):
+        return None
+    after = {k: v for k, v in dict(fields, **{f: c["after"] for f, c in proposal["changes"].items()}).items()
+             if v is not None}
+    after["number"] = issue
+    checked = reassess(dict(entry, fields=after), previous)
+    if (checked["status"] != "metadata_verified" or not checked.get("accepted_doi")
+            or apa_twin_key(checked["accepted_doi"]) != apa_twin_key(proposal["doi"])):
+        return None
+    changes = dict(proposal["changes"], number={"before": None, "after": issue})
+    return dict(proposal, changes=dict(sorted(changes.items())), issue_completion={
+        "issue": issue, "sources": sorted(label for label, r in records if str(r.get("issue") or "").strip())})
