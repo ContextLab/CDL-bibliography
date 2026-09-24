@@ -402,6 +402,29 @@ def test_cached_evidence_can_be_reassessed_without_network(entry, record, tmp_pa
     assert result["Test20"]["status"] == "needs_review"
 
 
+def test_recheck_that_reproduces_an_approval_writes_nothing(entry, record, tmp_path):
+    from auto_review import reassess
+
+    path, e = entry
+    cache = Cache(tmp_path / "cache.sqlite3")
+    stored = reassess(e, {"status": "metadata_verified", "candidates": [
+        {"source": "crossref", "doi": record["DOI"], "record": record}]})
+    assert stored["status"] == "metadata_verified"
+    cache.put(path, e, stored)
+    count = cache.db.execute("SELECT count(*) FROM reviews").fetchone()[0]
+
+    class NoNetwork:
+        def __getattr__(self, name):
+            raise AssertionError("Reassessment must use saved evidence")
+
+    for _ in range(2):
+        result = run_verification(
+            path, cache, NoNetwork(), tmp_path / "report.jsonl", recheck_cached=True
+        )
+        assert result["Test20"]["status"] == "metadata_verified"
+        assert cache.db.execute("SELECT count(*) FROM reviews").fetchone()[0] == count
+
+
 def test_empty_rendered_metadata_is_not_evidence(entry, record):
     entry[1]["fields"]["title"] = "{ }"
     record["title"] = [" "]

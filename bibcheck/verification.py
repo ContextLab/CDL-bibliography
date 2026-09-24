@@ -1781,6 +1781,36 @@ def export_snapshot(filename, cache, output):
     return results
 
 
+def valid_print_year_approval(result):
+    """A resolver-28 print-year approval carries its evidence envelope.
+
+    compare_record keeps reporting the conflicting-dates finding on such a
+    Crossref candidate, so it never has ``issues == []``. Accept it only when
+    the accepted Crossref candidate of the accepted DOI passes print_year_route
+    again, rebuilt from the cited fields saved in its own evidence (a journal
+    citation: the evidence must include ``journal``).
+    """
+    try:
+        if result.get("accepted_source") != "crossref" or not result.get("accepted_doi"):
+            return False
+        doi = normalize_doi(result["accepted_doi"])
+        own = [c for c in result.get("candidates", []) if c.get("source") == "crossref"
+               and c.get("doi") and normalize_doi(c["doi"]) == doi and c.get("evidence")]
+        if not own:
+            return False
+        for candidate in own:
+            fields = {k: e["local"] for k, e in candidate["evidence"].items()
+                      if isinstance(e, dict) and isinstance(e.get("local"), str)}
+            if not fields.get("journal"):
+                continue
+            fields["ENTRYTYPE"] = "article"
+            if print_year_route(fields, candidate, result["candidates"]):
+                return True
+        return False
+    except (ValueError, TypeError, KeyError, AttributeError):
+        return False
+
+
 def import_snapshot(filename, cache, snapshot):
     """Restore only matching fingerprints/policy from a trusted local snapshot.
 
@@ -1818,7 +1848,7 @@ def import_snapshot(filename, cache, snapshot):
         from catalogue_review import valid_catalogue_approval
         from preprint_review import valid_preprint_approval
         from arxiv_review import valid_arxiv_approval
-        if result["status"] == "metadata_verified" and not valid_catalogue_approval(result) and not valid_preprint_approval(result) and not valid_arxiv_approval(result) and not any(
+        if result["status"] == "metadata_verified" and not valid_catalogue_approval(result) and not valid_preprint_approval(result) and not valid_arxiv_approval(result) and not valid_print_year_approval(result) and not any(
             c.get("source") in {"crossref", "europepmc", "pmc-jats", "publisher-head", "catalogue-imprint"}
             and c.get("evidence")
             and c.get("issues") == []
@@ -1960,7 +1990,16 @@ def run_verification(
                 ):
                     from auto_review import reassess
 
-                    previous = cache.put(filename, entry, reassess(entry, previous))
+                    # A recheck that reproduces the saved result is not a new
+                    # review: appending it would only restamp checked_at.
+                    reassessed = reassess(entry, previous)
+                    saved = {
+                        k: v
+                        for k, v in previous.items()
+                        if k not in {"key", "fingerprint", "checked_at", "policy"}
+                    }
+                    if reassessed != saved:
+                        previous = cache.put(filename, entry, reassessed)
                 if (
                     previous
                     and previous["status"] != "provider_error"

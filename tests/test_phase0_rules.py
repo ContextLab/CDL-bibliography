@@ -422,3 +422,28 @@ def test_surname_fix_refuses_a_source_that_only_drops_letters():
                                        [{"given": "Michael J", "family": "Watkins"},
                                         {"given": "Zehra F", "family": "Peynrcoğlu"}])
     assert byline_adds_information("J M Parish", [{"given": "J M", "family": "Parrish"}])
+
+
+def test_print_year_approval_is_a_valid_snapshot_envelope():
+    """A restored R1 approval keeps its evidence check (verification/apply-2026-09-23)."""
+    from verification import valid_print_year_approval
+    entry, result = reviewed("Zoll90")
+    assert result["status"] == "metadata_verified" and valid_print_year_approval(result)
+    doi = "10.1002/tea.3660271011"
+
+    def altered(change):
+        changed = deepcopy(result)
+        for c in changed["candidates"]:
+            if c.get("source") == "crossref" and normalize_doi(c["doi"]) == doi:
+                change(c)
+        return changed
+
+    online_first = altered(lambda c: c["record"].update({"published-online": {"date-parts": [[1989, 5]]}}))
+    other_year = altered(lambda c: c["evidence"]["year"].update(local="2011"))
+    second_issue = altered(lambda c: c.update(issues=[YEAR, "number: missing evidence or mismatch"]))
+    no_journal = altered(lambda c: c["evidence"].pop("journal"))
+    for name, bad in {"online first": online_first, "cited online year": other_year,
+                      "second finding": second_issue, "not a journal citation": no_journal,
+                      "other accepted source": dict(result, accepted_source="europepmc"),
+                      "other DOI": dict(result, accepted_doi="10.1002/tea.3660271012")}.items():
+        assert not valid_print_year_approval(bad), name
