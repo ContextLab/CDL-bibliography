@@ -102,3 +102,14 @@ The user can make at most ~100 decisions, not ~1,200. Revised rules:
   for true one-offs.
 - **Leftovers:** count them first, then decide data-driven; the goal is to find another
   verification mechanism, not to remove them by default.
+
+## Spot-check findings (2026-09-24, first 9 verdicts)
+
+- Author corrections must use the house format: initials without periods, one per given
+  name, **all initials the source gives** (M E Smith, D C Young, N B Turk-Browne); full
+  given names are converted to initials. The first proposals copied full given names.
+- A cited `volume(issue)` split may keep the issue only when a source states it. Look it up
+  (PubMed, publisher page); if nothing confirms it, drop it (volume `10(1)` becomes `10`).
+  The first proposals carried the citation's own issue number as if it had been checked.
+- Both rules are fixed before any proposal from an affected class is applied; affected
+  spot-check samples are redrawn under the fixed rules.
