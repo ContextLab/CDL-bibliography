@@ -1,0 +1,882 @@
+[
+ {
+  "key": "BiswEtal95",
+  "verdict": "verified",
+  "identity": {
+   "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/BiswEtal95.pdf#page=1",
+   "quote": "Human Brain Using Echo-Planar MRI",
+   "why": "Local PDF of the Magnetic Resonance in Medicine article shows the same title, the four authors, and the MRM 34 (1995) running line; Crossref DOI 10.1002/mrm.1910340409 matches journal/volume/issue/pages."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B Biswal and F Z Yetkin and V M Haughton and J S Hyde",
+    "evidence": [
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/BiswEtal95.pdf#page=1",
+      "quote": "Bharat Biswal, F. Zerrin Yetkin, Victor M. Haughton, James S. Hyde"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=8524021",
+      "quote": "FAU - Yetkin, F Z"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Functional connectivity in the motor cortex of resting human brain using echo-planar {MRI}",
+    "evidence": [
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/BiswEtal95.pdf#page=1",
+      "quote": "Functional Connectivity in the Motor Cortex of Resting"
+     },
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/BiswEtal95.pdf#page=1",
+      "quote": "Human Brain Using Echo-Planar MRI"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Magnetic Resonance in Medicine",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mrm.1910340409",
+      "quote": "\"container-title\":[\"Magnetic Resonance in Medicine\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "34",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mrm.1910340409",
+      "quote": "\"volume\":\"34\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mrm.1910340409",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "537--541",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mrm.1910340409",
+      "quote": "\"page\":\"537-541\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mrm.1910340409",
+      "quote": "\"published-print\":{\"date-parts\":[[1995,10]]}"
+     },
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/BiswEtal95.pdf#page=1",
+      "quote": "Copyright 0 1995 by Williams & Wilkins"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref splits the second author as given 'F.' family 'Zerrin Yetkin'; the PDF byline 'F. Zerrin Yetkin' supports the house form F Z Yetkin (Zerrin is a given name). That split is the only Crossref mismatch. PDF text layer renders the running line as 'MRM 34.537541 (1995)'."
+ },
+ {
+  "key": "HogeEtal99",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10496113",
+   "quote": "TI  - Caffeine improves cognitive performance after strenuous physical exercise.",
+   "why": "PubMed 10496113 (DOI 10.1055/s-2007-971144) has the same title, five authors, Int J Sports Med 20(6):354-61, 1999."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E Hogervorst and W J Riedel and E Kovacs and F Brouns and J Jolles",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10496113",
+      "quote": "FAU - Riedel, W J"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10496113",
+      "quote": "FAU - Hogervorst, E"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10496113",
+      "quote": "FAU - Kovacs, E"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10496113",
+      "quote": "FAU - Brouns, F"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10496113",
+      "quote": "FAU - Jolles, J"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Caffeine improves cognitive performance after strenuous physical exercise",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1055/s-2007-971144",
+      "quote": "\"title\":[\"Caffeine Improves Cognitive Performance After Strenuous Physical Exercise\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "International Journal of Sports Medicine",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1055/s-2007-971144",
+      "quote": "\"container-title\":[\"International Journal of Sports Medicine\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "20",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1055/s-2007-971144",
+      "quote": "\"volume\":\"20\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10496113",
+      "quote": "VI  - 20"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10496113",
+      "quote": "IP  - 6"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1055/s-2007-971144",
+      "quote": "\"issue\":\"06\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "354--361",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1055/s-2007-971144",
+      "quote": "\"page\":\"354-361\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10496113",
+      "quote": "DP  - 1999 Aug"
+     }
+    ]
+   }
+  },
+  "notes": "The two Crossref 'mismatches' are artifacts: Crossref gives 'W.' for Riedel (PubMed gives W J) and issue '06' (= 6)."
+ },
+ {
+  "key": "PuceEtal99",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/cercor/9.5.445",
+   "quote": "\"title\":[\"Electrophysiological Studies of Human Face Perception. III: Effects of Top-down Processing on Face-specific Potentials\"]",
+   "why": "Crossref and PubMed 10450890 give the same title, Cerebral Cortex 9(5):445-458, 1999; PubMed lists Puce, Allison, McCarthy."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A Puce and T Allison and G McCarthy",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10450890",
+      "quote": "FAU - Puce, A"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10450890",
+      "quote": "FAU - Allison, T"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10450890",
+      "quote": "FAU - McCarthy, G"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Electrophysiological studies of human face perception. {III}: effects of top-down processing on face-specific potentials",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/9.5.445",
+      "quote": "\"title\":[\"Electrophysiological Studies of Human Face Perception. III: Effects of Top-down Processing on Face-specific Potentials\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/9.5.445",
+      "quote": "\"container-title\":[\"Cerebral Cortex\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/9.5.445",
+      "quote": "\"volume\":\"9\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10450890",
+      "quote": "VI  - 9"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/9.5.445",
+      "quote": "\"issue\":\"5\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10450890",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "445--458",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/9.5.445",
+      "quote": "\"page\":\"445-458\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=10450890",
+      "quote": "DP  - 1999 Jul-Aug"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref's record lists only the first author (A. Puce); PubMed gives all three. Part III of a three-paper series (parts I and II are cercor/9.5.415 and 9.5.431, different works)."
+ },
+ {
+  "key": "ZrenEtal11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1098/rspb.2010.1747",
+   "quote": "\"title\":[\"Subretinal electronic chips allow blind patients to read letters and combine them to words\"]",
+   "why": "Crossref DOI 10.1098/rspb.2010.1747 and PubMed 21047851: same title, Zrenner first author, Proc R Soc B 278(1711):1489-1497, print 2011."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "E Zrenner and K U Bartz-Schmidt and H Benav and D Besch and A Bruckmann and V-P Gabel and F Gekeler and U Greppmaier and A Harscher and S Kibbel and J Koch and A Kusnyerik and T Peters and K Stingl and H Sachs and A Stett and P Szurman and B Wilhelm and R Wilke",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Zrenner, Eberhart"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Bartz-Schmidt, Karl Ulrich"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Gabel, Veit-Peter"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Kusnyerik, Akos"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Wilke, Robert"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Benav, Heval"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Besch, Dorothea"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Bruckmann, Anna"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Gekeler, Florian"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Greppmaier, Udo"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Harscher, Alex"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Kibbel, Steffen"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Koch, Johannes"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Peters, Tobias"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Stingl, Katarina"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Sachs, Helmut"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Stett, Alfred"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Szurman, Peter"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "FAU - Wilhelm, Barbara"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Subretinal electronic chips allow blind patients to read letters and combine them to words",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1098/rspb.2010.1747",
+      "quote": "\"title\":[\"Subretinal electronic chips allow blind patients to read letters and combine them to words\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Proceedings of the Royal Society {B}: Biological Sciences",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1098/rspb.2010.1747",
+      "quote": "\"container-title\":[\"Proceedings of the Royal Society B: Biological Sciences\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "278",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1098/rspb.2010.1747",
+      "quote": "\"volume\":\"278\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1711",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1098/rspb.2010.1747",
+      "quote": "\"issue\":\"1711\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "IP  - 1711"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1489--1497",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1098/rspb.2010.1747",
+      "quote": "\"page\":\"1489-1497\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1098/rspb.2010.1747",
+      "quote": "\"published-print\":{\"date-parts\":[[2011,5,22]]}"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+      "quote": "DP  - 2011 May 22"
+     }
+    ]
+   }
+  },
+  "notes": "Current author list stops at 10 names + 'others'; source lists 19 (Zrenner ... Wilke). House initials for Veit-Peter Gabel written 'V-P Gabel' (hyphenated given name; PubMed abbreviates as 'Gabel VP') -- reviewer may prefer 'V P Gabel'. Published online 2010-11-03, print 2011-05-22. Journal: Crossref's current title drops 'of London Series'."
+ },
+ {
+  "key": "Weiz66",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1145/365153.365168",
+   "quote": "a computer program for the study of natural language communication between man and machine",
+   "why": "Crossref DOI 10.1145/365153.365168: Joseph Weizenbaum, Communications of the ACM 9(1):36-45, January 1966, same title."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Weizenbaum",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/365153.365168",
+      "quote": "{\"given\":\"Joseph\",\"family\":\"Weizenbaum\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "{ELIZA}---a computer program for the study of natural language communication between man and machine",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/365153.365168",
+      "quote": "\"title\":[\"ELIZA"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/365153.365168",
+      "quote": "a computer program for the study of natural language communication between man and machine"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Communications of the {ACM}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/365153.365168",
+      "quote": "\"container-title\":[\"Communications of the ACM\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/365153.365168",
+      "quote": "\"volume\":\"9\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/365153.365168",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "36--45",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/365153.365168",
+      "quote": "\"page\":\"36-45\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1966",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/365153.365168",
+      "quote": "\"published-print\":{\"date-parts\":[[1966,1]]}"
+     }
+    ]
+   }
+  },
+  "notes": "Only change is cosmetic: the title joins ELIZA and 'a' with an em dash and no space (Crossref raw JSON 'ELIZA\\u2014a computer program'); cdl.bib has '{ELIZA}--- a'. If the house prefers leaving it, verdict is effectively verified. Local PDF Weiz66.pdf is an image scan with no usable text layer. Do not confuse with 10.1145/357980.357991 (a different later item)."
+ },
+ {
+  "key": "ZimaEtal23",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+   "quote": "\"title\":[\"Category-based and location-based volitional covert attention affect memory at different timescales\"]",
+   "why": "Crossref record for PsyArXiv DOI 10.31234/osf.io/2ps6e has the identical title and the five authors Ziman, Lee, Martinez, Adner, Manning."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K Ziman and M R Lee and A R Martinez and E D Adner and J R Manning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "\"given\":\"Kirsten\",\"family\":\"Ziman\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "{\"given\":\"Madeline R.\",\"family\":\"Lee\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "{\"given\":\"Alejandro R.\",\"family\":\"Martinez\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "{\"given\":\"Ethan D.\",\"family\":\"Adner\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "\"given\":\"Jeremy R.\",\"family\":\"Manning\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Category-based and location-based volitional covert attention affect memory at different timescales",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "\"title\":[\"Category-based and location-based volitional covert attention affect memory at different timescales\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PsyArXiv}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "\"group-title\":\"PsyArXiv\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "doi.org/10.31234/osf.io/2ps6e",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "\"DOI\":\"10.31234\\/osf.io\\/2ps6e\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2023",
+    "evidence": [
+     {
+      "url": "https://api.osf.io/v2/files/5d4790e790489f001c49f7d6/versions/",
+      "quote": "\"date_created\":\"2023-04-10T18:57:55.281650\",\"name\":\"main.pdf\""
+     }
+    ]
+   }
+  },
+  "notes": "Year is the one judgment call. The DOI was posted 2019-08-05 (Crossref: '\"posted\":{\"date-parts\":[[2019,8,5]]}'), and OSF lists only one preprint version (2ps6e_v1). But the preprint's primary file main.pdf has three revisions (2019-08-05, 2020-08-21, 2023-04-10), so 2023 matches the latest manuscript text under the same DOI. Crossref's year mismatch is therefore expected. If the house rule is 'year of DOI posting', change year to 2019 (and key would suggest ZimaEtal19). No journal version found in a Crossref bibliographic search (2026-09-24). The other candidate DOIs (osf.io/tcjhn, bioRxiv 2023.12.08.570779 'Category-based attention facilitates memory search' by Shang et al., osf.io/5d73r) are different works."
+ },
+ {
+  "key": "Mink07",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://lccn.loc.gov/2006018969/mods",
+   "quote": "Functional organization of the basal ganglia -- Neurophysiology of motor control and movement disorders",
+   "why": "LoC record for the 5th ed. (2007, LCCN 2006018969) of Jankovic & Tolosa's book lists a chapter with this exact title as the first chapter, but neither LoC record nor the LoC TOC names chapter authors; the only source naming Jonathan W. Mink as its author is the publisher page for the 6th edition (a different edition)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Functional organization of the basal ganglia",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "Functional organization of the basal ganglia -- Neurophysiology of motor control"
+     },
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0615/2006018969.html",
+      "quote": "Functional Organization of the Basal Ganglia"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "{Parkinson's} Disease and Movement Disorders",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "Parkinson's disease and movement disorders"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "J Jankovic and E Tolosa",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "Jankovic, Joseph."
+     },
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "Tolosa, Eduardo."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Lippincott Williams \\& Wilkins",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "Lippincott Williams &amp; Wilkins"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Philadelphia, {PA}",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "Philadelphia"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "c2007"
+     },
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "5th ed."
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "J W Mink",
+    "evidence": []
+   },
+   "edition": {
+    "status": "confirmed",
+    "value": "5th",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "5th ed."
+     }
+    ]
+   }
+  },
+  "notes": "Author is unconfirmed FOR THE 2007 (5th) EDITION: LoC MODS/MARC and the LoC TOC (catdir ecip0615/2006018969) list chapter titles only. The LWW shop page for the 6th edition (ISBN 9781608311767, 2015) lists '1. Functional Organization of the Basal Ganglia' by 'Jonathan W. Mink', which makes Mink very likely but is a different edition. Chapter pages not found. Editor/publisher changes are format only (initials; LoC gives 'Lippincott Williams & Wilkins' without commas). Crossref candidates are all unrelated. A physical/PDF copy of the 5th ed. would settle author and pages. Suggest adding edition = {5th}. Address 'PA' not stated by LoC (only 'Philadelphia'; country code pau)."
+ },
+ {
+  "key": "Hook69",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://lccn.loc.gov/68026912/mods",
+   "quote": "With a new introd. by Richard S. Westfall.",
+   "why": "LoC record LCCN 68026912: The posthumous works of Robert Hooke, New York: Johnson Reprint Corp., 1969 (Sources of science, no. 73), with a new introduction by Richard S. Westfall -- exactly the cited reprint."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R Hooke",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/68026912/mods",
+      "quote": "Hooke, Robert,"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The posthumous works of {R}obert {H}ooke: with a new introduction by {R}ichard {S.} {W}estfall",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/68026912/mods",
+      "quote": "posthumous works of Robert Hooke"
+     },
+     {
+      "url": "https://lccn.loc.gov/68026912/mods",
+      "quote": "With a new introd. by Richard S. Westfall."
+     },
+     {
+      "url": "https://lccn.loc.gov/68026912/mods",
+      "quote": "<nonSort xml:space=\"preserve\">The </nonSort> <title>posthumous works of Robert Hooke</title>"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL21113026M.json",
+      "quote": "\"by_statement\": \"with a new introduction by Richard S. Westfall.\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Johnson Reprint Corporation",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/68026912/mods",
+      "quote": "Johnson Reprint Corp."
+     },
+     {
+      "url": "https://openlibrary.org/books/OL21113026M.json",
+      "quote": "\"publish_date\": \"1969\", \"publishers\": [\"Johnson Reprint Corporation\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1969",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/68026912/mods",
+      "quote": "1969"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/68026912/mods",
+      "quote": "New York"
+     }
+    ]
+   }
+  },
+  "notes": "LoC gives the title proper as 'The posthumous works of Robert Hooke'; 'With a new introd. by Richard S. Westfall' is the statement of responsibility, so the cdl.bib subtitle is descriptive rather than title text (reviewer may prefer title 'The posthumous works of {R}obert {H}ooke' plus a note). address is missing from cdl.bib; LoC gives New York (suggested addition). Series: The Sources of science, no. 73. This is a facsimile of the 1705 London edition ('This edition reproduces the original publication of London, 1705.'); the 1971 Cass 2nd ed. and 2019 Routledge/Taylor & Francis reissue (10.4324/9780429060717) are different editions. Completion 2026-09-24: 'introduction' in the title value is supported by the Talis union-catalogue record in Open Library (OL21113026M: by_statement 'with a new introduction by Richard S. Westfall.', publisher 'Johnson Reprint Corporation', 1969, Sources of science no. 73); LoC abbreviates it 'introd.'. It remains a statement of responsibility, not title text."
+ },
+ {
+  "key": "NetwLab25",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://dartnets.cs.dartmouth.edu/career",
+   "quote": "CAREER: Ubiquitous Sensing Using Computational Light (CNS-1552924)",
+   "why": "The cited URL resolves (http redirects to https) to the DartNets Lab CAREER project page (LightSense, NSF grant CNS-1552924); it is the page the citation points to."
+  },
+  "fields": {
+   "howpublished": {
+    "status": "confirmed",
+    "value": "\\url{http://dartnets.cs.dartmouth.edu/career}",
+    "evidence": [
+     {
+      "url": "https://dartnets.cs.dartmouth.edu/career",
+      "quote": "This work is supported by the National Science Foundation under grant CNS-1552924."
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "{CAREER}: ubiquitous sensing using computational light ({CNS}-1552924)",
+    "evidence": [
+     {
+      "url": "https://dartnets.cs.dartmouth.edu/career",
+      "quote": "CAREER: Ubiquitous Sensing Using Computational Light (CNS-1552924)"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "{DartNets Lab}",
+    "evidence": [
+     {
+      "url": "https://dartnets.cs.dartmouth.edu/career",
+      "quote": "alt=\"DartNets Lab\""
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2025",
+    "evidence": []
+   }
+  },
+  "notes": "Page is undated; 2025 is presumably the access year (no date stated on page or lab homepage). The expansion 'Dartmouth Networking and Systems' does not appear on the CAREER page or the lab homepage (https://dartnets.cs.dartmouth.edu/, <title> 'DartNets Lab'), so the author string is proposed as '{DartNets Lab}'; keep the long form only if the house accepts an unstated expansion. The cdl.bib title is a descriptive label, not the page's title; the page's heading is the grant title (page <title> is 'LightSense'). Publications listed run to 2020 (PI Xia Zhou). Title/author changes are optional if the entry is meant as a descriptive web citation; flag for reviewer. Crossref candidates are irrelevant."
+ },
+ {
+  "key": "SommEtal12",
+  "verdict": "no_source",
+  "identity": {
+   "url": "",
+   "quote": "",
+   "why": "No record of an SfN 2012 abstract with this title was found."
+  },
+  "fields": {
+   "title": {
+    "status": "not_found",
+    "value": "The spatial structure of hippocampal theta rhythms reflects behavioral state",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "F T Sommer and G Buzsaki and G Agarwal",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2012",
+    "evidence": []
+   },
+   "publisher": {
+    "status": "not_found",
+    "value": "Society for Neuroscience",
+    "evidence": []
+   }
+  },
+  "notes": "Searched 2026-09-24: web searches for the exact title and phrase ('theta rhythms reflects behavioral state'), author + SfN 2012 (New Orleans) + program-number queries; Redwood Center publication list (redwood.berkeley.edu/publications/), Redwood people pages for Sommer and Agarwal, rctn.org wiki page for Fritz Sommer -- none mention the abstract. SfN's 2012 abstract archive (abstractsonline / Neuroscience Meeting Planner) is not reachable by search. Crossref candidates (Behavioral Neuroscience papers) are unrelated. Plausibly a Neuroscience 2012 poster from the Agarwal/Sommer/Buzsaki collaboration that led to Agarwal et al. 2014 Science ('Spatially distributed local fields in the hippocampus encode rat position', 10.1126/science.1250444), but that paper is a different work. Author order in cdl.bib (Sommer first, Agarwal last) is unverified; SfN abstracts usually list the presenting trainee first, so order is suspect. The entry also lacks the program/poster number and 'Neuroscience Meeting Planner' howpublished that SfN abstracts need. Diacritic: Buzs{\\'a}ki if confirmed."
+ }
+]

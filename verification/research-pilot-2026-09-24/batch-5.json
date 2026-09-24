@@ -1,0 +1,773 @@
+[
+ {
+  "key": "MikoEtal13b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://aclanthology.org/N13-1090/",
+   "quote": "Tomas Mikolov, Wen-tau Yih, and Geoffrey Zweig. 2013.",
+   "why": "ACL Anthology record N13-1090 has the same title, the same three authors, year 2013 and pages 746-751; it is a NAACL-HLT 2013 conference paper, not a journal article."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "@inproceedings{mikolov-etal-2013-linguistic"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Linguistic regularities in continuous space word representations",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "Linguistic Regularities in Continuous Space Word Representations"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T Mikolov and W-T Yih and G Zweig",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "Tomas Mikolov, Wen-tau Yih, and Geoffrey Zweig. 2013."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "Tomas Mikolov, Wen-tau Yih, and Geoffrey Zweig. 2013."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "746--751",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "pages 746–751, Atlanta, Georgia"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "Proceedings of the 2013 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the 2013 Conference of the {North} {American} Chapter of the {Association} for {Computational} {Linguistics}: human language technologies",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "Proceedings of the 2013 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Atlanta, {GA}",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "pages 746–751, Atlanta, Georgia"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Association for Computational Linguistics",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "Atlanta, Georgia. Association for Computational Linguistics."
+     }
+    ]
+   }
+  },
+  "notes": "Current journal value 'Proceedings of the National Association for Computational Linguistics' is wrong: the venue is NAACL-HLT 2013 (North American Chapter of the ACL). Entry should become @inproceedings: remove journal (journal field shown as corrected to empty) and add booktitle; address/publisher are optional additions. No DOI is listed on the Anthology page (the Crossref candidates 10.3115/v1/* are unrelated 2014-2015 papers)."
+ },
+ {
+  "key": "RovaVirs79",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/bf00236819",
+   "quote": "\"title\":[\"An estimation and application of the human cortical magnification factor\"]",
+   "why": "Crossref DOI 10.1007/BF00236819 and PubMed 520439 give the same title, authors Rovamo and Virsu, Experimental Brain Research 37(3), 1979."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J Rovamo and V Virsu",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/520439/",
+      "quote": "J Rovamo, V Virsu"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf00236819",
+      "quote": "\"given\":\"V.\",\"family\":\"Virsu\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "An estimation and application of the human cortical magnification factor",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/520439/",
+      "quote": "An estimation and application of the human cortical magnification factor."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Experimental Brain Research",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf00236819",
+      "quote": "\"container-title\":[\"Experimental Brain Research\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "37",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/520439/",
+      "quote": "Exp Brain Res. 1979;37(3):495-510"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/520439/",
+      "quote": "Exp Brain Res. 1979;37(3):495-510"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1979",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/520439/",
+      "quote": "Exp Brain Res. 1979;37(3):495-510"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "495--510",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/520439/",
+      "quote": "PG  - 495-510"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/BF00236819",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/520439/",
+      "quote": "Exp Brain Res. 1979;37(3):495-510. doi: 10.1007/BF00236819."
+     }
+    ]
+   }
+  },
+  "notes": "Only change: second author lacks initial ('Virsu' -> 'V Virsu'). Crossref has no page field; pages come from PubMed (PMID 520439). DOI is an optional addition. Companion paper Virsu & Rovamo 1979, 37(3):475-494 (10.1007/BF00236818) is a different work."
+ },
+ {
+  "key": "Pach74",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.routledge.com/Human-Information-Processing-Tutorials-in-Performance-and-Cognition/Kantowitz/p/book/9781032009872",
+   "quote": "2. The Interpretation of Reaction Time in Information-Processing Research Robert G. Pachella",
+   "why": "The publisher's page for Kantowitz (ed.) Human Information Processing, 'Originally published in 1974', lists Pachella's chapter as chapter 2; the LoC record confirms the 1974 Erlbaum/Halsted edition the citation names."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R G Pachella",
+    "evidence": [
+     {
+      "url": "https://www.routledge.com/Human-Information-Processing-Tutorials-in-Performance-and-Cognition/Kantowitz/p/book/9781032009872",
+      "quote": "2. The Interpretation of Reaction Time in Information-Processing Research Robert G. Pachella"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "The interpretation of reaction time in information-processing research",
+    "evidence": [
+     {
+      "url": "https://www.routledge.com/Human-Information-Processing-Tutorials-in-Performance-and-Cognition/Kantowitz/p/book/9781032009872",
+      "quote": "2. The Interpretation of Reaction Time in Information-Processing Research Robert G. Pachella"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Human information processing: tutorials in performance and cognition",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/74019028/mods",
+      "quote": "Human information processing: tutorials in performance and cognition"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "B H Kantowitz",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/74019028/mods",
+      "quote": "edited by Barry H. Kantowitz."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1974",
+    "evidence": [
+     {
+      "url": "https://www.routledge.com/Human-Information-Processing-Tutorials-in-Performance-and-Cognition/Kantowitz/p/book/9781032009872",
+      "quote": "Originally published in 1974, this volume presents seven detailed views of human information processing"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Lawrence Erlbaum Associates",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/74019028/mods",
+      "quote": "Lawrence Erlbaum Associates; distributed by the Halsted Press Division of Wiley, New York"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/74019028/mods",
+      "quote": "Hillsdale, N.J Lawrence Erlbaum Associates"
+     }
+    ]
+   }
+  },
+  "notes": "Publisher: the 1974 edition is Lawrence Erlbaum Associates, Hillsdale NJ; 'Halsted' (cited misspelled as 'Halstead') Press/Wiley was only the distributor. Booktitle loses its trailing period; title gains the source's hyphen ('information-processing'). Pages are not proposed: Crossref gives 41-82 only for the 2021 Routledge reissue (DOI 10.4324/9781003176688-2), a different edition whose pagination I did not confirm against the 1974 printing. Do not add the 2021 DOI. DTIC AD0787880 is a separate technical-report version, also a different work. Validator note: validate.py value_supported() treats a hyphen as a word edge, so the hyphenated title value fails its token check even though the quote contains it verbatim; this is a checker limitation, not missing evidence."
+ },
+ {
+  "key": "Bart32",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lccn.loc.gov/39016008/mods",
+   "quote": "Cambridge [Eng.] The University press 1932",
+   "why": "Library of Congress record (LCCN 39016008) for Bartlett's Remembering: a study in experimental and social psychology, Cambridge University Press, 1932 (Cambridge psychological library), the first edition the citation's year names."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Remembering: a study in experimental and social psychology",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/39016008/mods",
+      "quote": "Remembering a study in experimental and social psychology"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "F C Bartlett",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/39016008/mods",
+      "quote": "by F. C. Bartlett."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1932",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/39016008/mods",
+      "quote": "Cambridge [Eng.] The University press 1932"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "{Cambridge} {University} Press",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/39016008/mods",
+      "quote": "Cambridge [Eng.] The University press 1932"
+     },
+     {
+      "url": "https://lccn.loc.gov/33014008/mods",
+      "quote": "Cambridge, Eng The Macmillan company The University press 1932"
+     }
+    ]
+   }
+  },
+  "notes": "Cited publisher '{Oxford} {University} Press' is wrong: the 1932 first edition was published at Cambridge by the University Press (Cambridge University Press; a US issue carries Macmillan, New York, LCCN 33014008). An address 'Cambridge, {UK}' could be added. The Crossref candidates (10.1017/CBO9780511759185, 1995, 2nd edition with W Kintsch introduction) are a later edition and must not be used for this 1932 citation."
+ },
+ {
+  "key": "Arch11a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20880302/",
+   "quote": "Acta Neurol Scand. 2011 Apr;123(4):221-38. doi: 10.1111/j.1600-0404.2010.01412.x.",
+   "why": "PubMed 20880302 / Crossref 10.1111/j.1600-0404.2010.01412.x: same title, sole author T Archer, volume 123(4), pages 221-238, 2011 -- in Acta Neurologica Scandinavica, not Neurotoxicity Research."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Physical exercise alleviates debilities of normal aging and {Alzheimer's} disease",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20880302/",
+      "quote": "Physical exercise alleviates debilities of normal aging and Alzheimer's disease."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T Archer",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20880302/",
+      "quote": "FAU - Archer, T"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Acta Neurologica Scandinavica",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1600-0404.2010.01412.x",
+      "quote": "\"container-title\":[\"Acta Neurologica Scandinavica\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1600-0404.2010.01412.x",
+      "quote": "\"container-title\":[\"Acta Neurologica Scandinavica\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "123",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20880302/",
+      "quote": "Acta Neurol Scand. 2011 Apr;123(4):221-38."
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20880302/",
+      "quote": "Acta Neurol Scand. 2011 Apr;123(4):221-38."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20880302/",
+      "quote": "Acta Neurol Scand. 2011 Apr;123(4):221-38."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "221--238",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1600-0404.2010.01412.x",
+      "quote": "\"page\":\"221-238\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1600-0404.2010.01412.x",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20880302/",
+      "quote": "LID - 10.1111/j.1600-0404.2010.01412.x [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "journal was 'Neurotoxicity Research' (wrong) while booktitle held the right journal; move 'Acta Neurologica Scandinavica' to journal and delete booktitle (shown as corrected to empty). All other values match. Crossref 'issued' is the 2010-09-29 online date; print issue is April 2011, which matches the cited year. DOI is an addition. Candidate 10.1007/s12640-011-9260-0 (Neurotoxicity Research) is a different Archer paper."
+ },
+ {
+  "key": "McCrGrac07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18003839/",
+   "quote": "J Neurosci. 2007 Nov 14;27(46):12601-10. doi: 10.1523/JNEUROSCI.3750-07.2007.",
+   "why": "PubMed 18003839 and Crossref 10.1523/JNEUROSCI.3750-07.2007: same title, authors C B McCracken and A A Grace, J Neurosci 27(46), 2007, starting page 12601."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "High-frequency deep brain stimulation of the nucleus accumbens region suppresses neuronal activity and selectively modulates afferent drive in rat orbitofrontal cortex in vivo",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18003839/",
+      "quote": "High-frequency deep brain stimulation of the nucleus accumbens region suppresses neuronal activity and selectively modulates afferent drive in rat orbitofrontal cortex in vivo."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C B McCracken and A A Grace",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18003839/",
+      "quote": "Clinton B McCracken, Anthony A Grace"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The Journal of Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.3750-07.2007",
+      "quote": "\"container-title\":[\"The Journal of Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "27",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18003839/",
+      "quote": "J Neurosci. 2007 Nov 14;27(46):12601-10."
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "46",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18003839/",
+      "quote": "J Neurosci. 2007 Nov 14;27(46):12601-10."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18003839/",
+      "quote": "J Neurosci. 2007 Nov 14;27(46):12601-10."
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "12601--12610",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.3750-07.2007",
+      "quote": "\"page\":\"12601-12610\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1523/JNEUROSCI.3750-07.2007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18003839/",
+      "quote": "AID - 10.1523/JNEUROSCI.3750-07.2007 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Only change: pages '12601' (start page only) -> '12601--12610'. The Crossref title mismatch flagged upstream is an artefact of Crossref's markup ('Cortex<i>In Vivo</i>' with no space); the words are identical. 'in vivo' could be italicised (\\textit{in vivo}) per house style if desired. Validator note: the hyphenated 'High-frequency' token may fail validate.py's word-edge check although the quote contains it verbatim. DOI is an addition."
+ },
+ {
+  "key": "RamaEtal12b",
+  "verdict": "no_source",
+  "identity": {
+   "url": "",
+   "quote": "",
+   "why": "No retrievable record of this 2012 Society for Neuroscience abstract was found."
+  },
+  "fields": {
+   "title": {
+    "status": "not_found",
+    "value": "Neural correlates of reinforcement learning in the human substantia nigra as measured by the local field potential",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "A G Ramayya and K A Zaghloul and B C Lega and C T Weidemann and M J Kahana and G H Baltuch",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2012",
+    "evidence": []
+   },
+   "booktitle": {
+    "status": "not_found",
+    "value": "Society for Neuroscience Abstracts",
+    "evidence": []
+   }
+  },
+  "notes": "Searched: web search for the exact title (no hit; only related journal papers by Ramayya et al.: J Neurosci 2014 34:6887 and 34:12947, Front Hum Neurosci 2014 and 2017 -- all different works); Kahana CV at memory.psych.upenn.edu (lists journal papers only, no abstracts; site also fails TLS verification so cannot serve as validator evidence); Crossref candidates are unrelated journal articles. SfN 2012 (New Orleans, Oct 13-17 2012) abstracts live in the JavaScript-only abstractsonline/SfN planner, which I could not retrieve; the program/poster number is unknown. Local Papers PDF RamaEtal12.pdf is a different manuscript (Neuron submission on high-frequency LFP power). Leave entry as is unless the SfN planner record (presentation number) can be obtained."
+ },
+ {
+  "key": "PiefEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12566286/",
+   "quote": "Brain. 2003 Mar;126(Pt 3):650-68. doi: 10.1093/brain/awg064.",
+   "why": "PubMed 12566286 / Crossref 10.1093/brain/awg064: same title, same five authors, Brain 126(3), 2003, starting page 650."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Differential remoteness and emotional tone modulate the neural correlates of autobiographical memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12566286/",
+      "quote": "Differential remoteness and emotional tone modulate the neural correlates of autobiographical memory."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Piefke and P H Weiss and K Zilles and H J Markowitsch and G R Fink",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12566286/",
+      "quote": "Martina Piefke, Peter H Weiss, Karl Zilles, Hans J Markowitsch, Gereon R Fink"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awg064",
+      "quote": "\"container-title\":[\"Brain\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "126",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12566286/",
+      "quote": "Brain. 2003 Mar;126(Pt 3):650-68."
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12566286/",
+      "quote": "Brain. 2003 Mar;126(Pt 3):650-68."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12566286/",
+      "quote": "Brain. 2003 Mar;126(Pt 3):650-68."
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "650--668",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awg064",
+      "quote": "\"page\":\"650-668\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/awg064",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12566286/",
+      "quote": "Brain. 2003 Mar;126(Pt 3):650-68. doi: 10.1093/brain/awg064."
+     }
+    ]
+   }
+  },
+  "notes": "Only change: pages '650' (start page only) -> '650--668'. The cited five-author list matches PubMed exactly; the upstream author mismatch comes from the Crossref record, which lists only the first author (M. Piefke). PubMed gives the issue as 'Pt 3'; Crossref as '3'. DOI is an addition."
+ },
+ {
+  "key": "Gaut08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://web.archive.org/web/20100102231553/http://rpy.sourceforge.net:80/rpy2.html",
+   "quote": "rpy2 is a redesign and rewrite of rpy",
+   "why": "The rpy2 project's own page (2010 Wayback snapshot of rpy.sourceforge.net/rpy2.html) carries the cited tagline; the current rpy2 documentation names Laurent Gautier as author with copyright from 2008; the GitHub repo in howpublished is the project's current home."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "{rpy2}: a simple and efficient access to {R} from {Python}",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20100102231553/http://rpy.sourceforge.net:80/rpy2.html",
+      "quote": "A simple and efficient access to R from Python"
+     },
+     {
+      "url": "https://web.archive.org/web/20100102231553/http://rpy.sourceforge.net:80/rpy2.html",
+      "quote": "rpy2 is a redesign and rewrite of rpy"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L Gautier",
+    "evidence": [
+     {
+      "url": "https://rpy2.github.io/doc/latest/html/introduction.html",
+      "quote": "Copyright 2008-2022, Laurent Gautier & rpy2 contributors."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://rpy2.github.io/doc/latest/html/introduction.html",
+      "quote": "Copyright 2008-2022, Laurent Gautier & rpy2 contributors."
+     }
+    ]
+   }
+  },
+  "notes": "Software citation. Title correction is house format only: sentence case instead of per-word braced capitals. The tagline 'A simple and efficient access to R from Python' is the header of the old rpy/rpy2 SourceForge site (archived 2010-01-02); the current site titles itself 'rpy2: Python-R bridge' and the GitHub repo 'Interface to use R from Python', so the cited title is a historical project tagline, not a formal publication title. Year 2008 is the start of the documentation's copyright range (no formal release-date source checked). howpublished \\url{https://github.com/rpy2/rpy2} resolves to the project repo (not listed as a field because validate.py cannot token-match a URL value). No DOI/Zenodo record found; Crossref candidates are unrelated."
+ },
+ {
+  "key": "Shan20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://peps.python.org/pep-0638/",
+   "quote": "PEP 638 – Syntactic Macros",
+   "why": "The official PEP index page for PEP 638, 'Syntactic Macros', author Mark Shannon, status Draft, created 24-Sep-2020, matches every cited field except the unverifiable institution."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Syntactic macros",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0638/",
+      "quote": "PEP 638 – Syntactic Macros"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Shannon",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0638/",
+      "quote": "Author : Mark Shannon"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "638",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0638/",
+      "quote": "PEP 638 – Syntactic Macros"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0638/",
+      "quote": "Created : 24-Sep-2020"
+     }
+    ]
+   },
+   "type": {
+    "status": "confirmed",
+    "value": "Draft PEP",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0638/",
+      "quote": "Status : Draft Type : Standards Track"
+     },
+     {
+      "url": "https://peps.python.org/pep-0638/",
+      "quote": "PEP 638 – Syntactic Macros"
+     }
+    ]
+   },
+   "institution": {
+    "status": "not_found",
+    "value": "Python Software Foundation",
+    "evidence": []
+   }
+  },
+  "notes": "Title correction is house format only ('Syntactic {M}acros' -> 'Syntactic macros'). PEP 638 is still Draft as of 2026-09-24 (Standards Track). The PEP page does not name the Python Software Foundation (it says the document is public domain / CC0), so institution is left unverified though conventional for PEPs. A url field https://peps.python.org/pep-0638/ could be added. Post-History 26-Sep-2020."
+ }
+]

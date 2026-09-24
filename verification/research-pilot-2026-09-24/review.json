@@ -1,0 +1,801 @@
+[
+ {
+  "key": "AndeEtal66",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "pages": "agree",
+   "number": "disagree",
+   "doi": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1111/j.1748-1716.1966.tb03317.x states issue '3-4' (PubMed https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=5967596 says '3'); publisher's double issue is right, but cdl.bib writes double issues with a single hyphen (53 entries 'N-M' vs 6 'N--M'), so use 3-4."
+  ],
+  "suggested_value": {
+   "number": "3-4"
+  }
+ },
+ {
+  "key": "PhelEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1093/sleep/zsx188: title ends 'Post-traumatic Stress Disorder', vol 41 issue 1, print 2018-01-01; PubMed 29182727 agrees."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "LeVaEtal10",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1523/JNEUROSCI.5049-09.2010 and PubMed 20534826 give 'C. Dickson'/'Dickson C'. Dropping T follows the house rule, but note it removes an initial that is probably correct for the person (Clayton T. Dickson); the user may prefer to keep it."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "KahaEtal22",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "editor": "agree",
+   "booktitle": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.013.2: 'Laws of Human Memory', Kahana/Diamond/Aka, pp 29-63; parent book https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.001.0001 published-print 2024-06-25, editors Kahana, Wagner. Year 2024 correct for the chapter. Key will no longer match the year."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Hume07",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "editor": "agree",
+   "year": "agree",
+   "publisher": "agree"
+  },
+  "problems": [
+   "LoC https://lccn.loc.gov/2007274576/mods (researcher said LoC was unreachable) confirms 'Oxford : Clarendon Press ; New York : Oxford University Press', 2007, 'edited by David Fate Norton and Mary J. Norton', 2 v. So publisher 'Clarendon Press' IS source-stated (not just plausible). LoC title proper is 'A treatise of human nature: a critical edition' (subtitle absent from entry; optional)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "BiddMarl87",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.2307/1130287: Child Development vol 58 issue 1, first page 4, published 1987-02."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Youn61",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.2307/1419662: 'The American Journal of Psychology', vol 74 issue 4, 1961-12; PubMed 14009367 pp 517-28."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Kais90",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1109/icassp.1990.115702 container 'International Conference on Acoustics, Speech, and Signal Processing', pp 381-384; parent proceedings https://api.crossref.org/works/10.1109/icassp.1990 issued 1990, event Albuquerque 1990-04-03..06, which settles the year."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "ParaEtal04",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed 15329354: Brain 2004 Dec 127(Pt 12):2717-31, seven authors as cited."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Unde48a",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1037/h0062470: Journal of Experimental Psychology, vol 38 issue 1, pp 29-38, 1948."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "SchwHump73",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1037/h0035511: 'Similarity judgments and free recall of unrelated words.', J Exp Psychol 101(1):10-15, 1973."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "NilsEtal75",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.3758/bf03212937: Lars-Göran Nilsson, Memory & Cognition 3(4):427-433, 1975."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "KahaMill13",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "disagree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.4135/9781452257044.n183 (SAGE's own deposit for this entry of Encyclopedia of the Mind, 2013) titles it 'Memory Recall, Dynamics' (inverted encyclopedia headword: comma after 'Recall'). The entry cites the published encyclopedia version (volume, pages, editor), so the title should follow SAGE, not the authors' manuscript form 'Memory, recall dynamics'. Volume/pages rest only on the lab page (SAGE landing page is behind SSO for me too)."
+  ],
+  "suggested_value": {
+   "title": "Memory recall, dynamics"
+  }
+ },
+ {
+  "key": "GelmEtal13",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "edition": "unsure",
+   "publisher": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Routledge page https://www.routledge.com/Bayesian-Data-Analysis/Gelman-Carlin-Stern-Dunson-Vehtari-Rubin/p/book/9781439840955 says '3rd Edition', 'Copyright 2013', Chapman & Hall/CRC Texts in Statistical Science. Note LoC https://lccn.loc.gov/2013039507/mods gives imprint 'Boca Raton : CRC Press', dateIssued 2014, 'Third edition.' -- a print-year conflict (2013 publisher vs 2014 LoC imprint); 2013 is defensible. Edition value: the only two existing cdl.bib edition fields use a numeral ('2'), so '3' may be the house form."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "NastEtal20",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "pages": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1016/j.neuroimage.2020.117254: volume 222, article-number 117254, no issue, print 2020-11."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "LegeEtal69",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1016/0013-4694(69)90187-4: 'open- and closed-eyed conditions', 27(5):470-479; PubMed 4187033 has 'closed-eye'. Publisher deposit is the better choice."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "RosePaul90",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "booktitle": "agree",
+   "pages": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1109/icassp.1990.115555 pp 129-132; parent https://api.crossref.org/works/10.1109/icassp.1990 issued 1990."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "LiEtal19",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1016/j.neuroimage.2019.04.016: ten authors incl. 'Raphaël Liégeois', 'B.T. Thomas Yeo', NeuroImage 196:126-141, 2019-08; has-preprint relation only."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "ScotEtal07",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "chapter": "agree",
+   "title": "agree",
+   "editor": "agree",
+   "publisher": "disagree",
+   "address": "disagree",
+   "year": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "LoC https://lccn.loc.gov/2006031809/mods confirms 'edited by Sandra K. Abell and Norman G. Lederman', 'Mahwah, N.J', Lawrence Erlbaum Associates, 2007 -- identity and editor fix are right. T&F page https://www.taylorfrancis.com/chapters/edit/10.4324/9780203824696-3/... meta citation_firstpage 31 / citation_lastpage 56. House form: every Erlbaum entry in cdl.bib (49) uses Publisher = {Erlbaum}, and Mahwah addresses are 'Mahwah, {NJ}' (9 entries); proposed 'Lawrence Erlbaum Associates' / 'Mahwah, NJ' break both conventions."
+  ],
+  "suggested_value": {
+   "publisher": "Erlbaum",
+   "address": "Mahwah, {NJ}"
+  }
+ },
+ {
+  "key": "CalvEtal97",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "author": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1139/h97-035: container 'Canadian Journal of Applied Physiology', 22(6):553-561, 1997; author 'Julián Álvarez' supports J {\\'{A}}lvarez."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Curr04",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "author": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1016/j.neuropsychologia.2003.12.011: 'hypothesized ERP correlates', Neuropsychologia 42(8):1088-1106, 2004."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "HowaEtal08b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "author": "agree"
+  },
+  "problems": [
+   "PubMed 18605480 and https://api.crossref.org/works/10.3758/pbr.15.1.58: 'Venkatadass VS' / 'V. S.', 15(1):58-63."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "XiaoEtal10",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "booktitle": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "author": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1109/cvpr.2010.5539970: 'Krista A. Ehinger', pp 3485-3492, container '2010 IEEE Computer Society Conference on Computer Vision and Pattern Recognition', 2010-06."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "vanEEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "author": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.7554/elife.36928: 'Daniel Marten van Es', eLife 7, e36928, 2018-12-07."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Palm78",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.4324/9781032633275-13 (2024 Routledge reissue) pp 259-303, Stephen E. Palmer; relies on reissue keeping 1978 pagination, which matches the widely cited 1978 range. Not independently confirmed against a 1978 printing."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "EichMaca06",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "pages": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "ENTRYTYPE": "disagree"
+  },
+  "problems": [
+   "T&F https://www.taylorfrancis.com/chapters/edit/10.4324/9780203720752-9/... meta: citation_inbook_title 'Affect in Social Thinking and Behavior', citation_firstpage 105, citation_lastpage 122, authors Eric Eich, Dawn Macaulay -- values right. But the entry stays @inbook with Title = chapter and a new Booktitle: standard BibTeX styles ignore booktitle on @inbook, and cdl.bib's @inbook convention is Title = book + Chapter = chapter (36 of 44 @inbook have chapter; 4 have booktitle). Convert to @incollection (as the proposed field set implies) or the booktitle will not print."
+  ],
+  "suggested_value": {
+   "ENTRYTYPE": "incollection"
+  }
+ },
+ {
+  "key": "Jame90",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1037/10538-000: 'The principles of psychology, Vol I.', William James, Henry Holt and Co, 1890."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "SilbEtal01",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "pages": "unsure",
+   "address": "disagree"
+  },
+  "problems": [
+   "Open Library https://openlibrary.org/works/OL12215542W/editions.json (record sourced from the Internet Archive scan ia:proceedingstwent00moor) gives 'Proceedings of the twenty-third annual conference of the Cognitive Science Society', Erlbaum, 'Mahwah, N.J', 2001. Erlbaum's 2001 imprint was Mahwah, not Hillsdale; the researcher suspected this but left Hillsdale. Open Library is not on the protocol's list, so confirm with LoC before applying."
+  ],
+  "suggested_value": {
+   "address": "Mahwah, {NJ}"
+  }
+ },
+ {
+  "key": "RaypWall67",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=4165778: 'Electroencephalogr Clin Neurophysiol 1967', pages 'Suppl 25:143+', Rayport M, Waller HJ. 'Suppl 25' is right; cdl.bib has no settled supplement form (existing braced '{Suppl 1}')."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "BiswEtal95",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1002/mrm.1910340409: MRM 34(4):537-541, 1995-10."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "HogeEtal99",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "PubMed 10496113: Hogervorst E, Riedel WJ, Kovacs E, Brouns F, Jolles J; Int J Sports Med 1999 20(6):354-61."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "PuceEtal99",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "PubMed 10450890: Puce A, Allison T, McCarthy G; Cereb Cortex 9(5):445-58, 1999."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "ZrenEtal11",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1098/rspb.2010.1747 lists all 19 authors (Zrenner..Wilke), 278(1711):1489-1497, print 2011-05-22; PubMed 21047851 agrees."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Weiz66",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1145/365153.365168: 'ELIZA—a computer program ...', CACM 9(1):36-45, 1966-01."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "ZimaEtal23",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "year": "unsure"
+  },
+  "problems": [
+   "OSF API https://api.osf.io/v2/preprints/2ps6e/ : one version (2ps6e_v1) date_published 2019-08-05, date_modified 2023-04-10; Crossref posted 2019-08-05. Under 'preprint version year' the only registered version is 2019, but the manuscript file was revised in 2023 under that version. Leave to the user; 2019 is equally defensible. 'doi.org/...' in Volume is the prevailing cdl.bib PsyArXiv form (27 entries)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Hook69",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "address": "disagree"
+  },
+  "problems": [
+   "LoC https://lccn.loc.gov/68026912/mods: 'New York', Johnson Reprint Corp., 1969; 'With a new introd. by Richard S. Westfall.' is a note, not part of the title proper. House address form is 'New York, {NY}' (105 entries, 0 bare 'New York')."
+  ],
+  "suggested_value": {
+   "address": "New York, {NY}"
+  }
+ },
+ {
+  "key": "NetwLab25",
+  "agree": "yes",
+  "field_verdicts": {
+   "howpublished": "agree",
+   "title": "agree",
+   "author": "agree",
+   "year": "unsure"
+  },
+  "problems": [
+   "https://dartnets.cs.dartmouth.edu/career: page <title> 'LightSense', heading 'CAREER: Ubiquitous Sensing Using Computational Light (CNS-1552924)'; undated. Proposed title matches the heading. Year 2025 is presumably an access year."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "MikoEtal13b",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "journal": "agree",
+   "booktitle": "disagree",
+   "address": "agree",
+   "publisher": "agree"
+  },
+  "problems": [
+   "ACL Anthology https://aclanthology.org/N13-1090.bib: booktitle 'Proceedings of the 2013 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies', Atlanta, Georgia, pp 746--751, editors Vanderwende, Daum{\\'e} III, Kirchhoff. Proposed booktitle lowercases after the colon; cdl.bib booktitles are title case (51 of 59 with a colon keep caps; bibcheck formats booktitle with format_journal_name, title case), and the existing NAACL 2022 entry uses '...Linguistics: Human Language Technologies'. Needless braces on North/Association/Computational/Linguistics too."
+  ],
+  "suggested_value": {
+   "booktitle": "Proceedings of the 2013 Conference of the North {American} Chapter of the Association for Computational Linguistics: Human Language Technologies"
+  }
+ },
+ {
+  "key": "RovaVirs79",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 520439: Rovamo J, Virsu V; Exp Brain Res 37(3):495-510, 1979."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Pach74",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "booktitle": "disagree",
+   "editor": "agree",
+   "year": "agree",
+   "publisher": "disagree",
+   "address": "agree"
+  },
+  "problems": [
+   "LoC https://lccn.loc.gov/74019028/mods: 'Human information processing: tutorials in performance and cognition', 'edited by Barry H. Kantowitz', 'Hillsdale, N.J', 'Lawrence Erlbaum Associates; distributed by the Halsted Press Division of Wiley', 1974 -- identity, editor, address, publisher identity correct. House form: booktitles are title case (bibcheck's format_journal_name title-cases them), so the lowercased booktitle is wrong; publisher is 'Erlbaum' in all 49 cdl.bib Erlbaum entries. Pages 41-82 (Crossref 10.4324/9781003176688-2, 2021 reissue) correctly not proposed."
+  ],
+  "suggested_value": {
+   "booktitle": "Human Information Processing: Tutorials in Performance and Cognition",
+   "publisher": "Erlbaum"
+  }
+ },
+ {
+  "key": "Bart32",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "publisher": "agree"
+  },
+  "problems": [
+   "LoC https://lccn.loc.gov/39016008/mods: 'Remembering: a study in experimental and social psychology', Cambridge [Eng.], The University press, 1932."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Arch11a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "booktitle": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1111/j.1600-0404.2010.01412.x: Acta Neurologica Scandinavica 123(4):221-238, print 2011-04."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "McCrGrac07",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1523/JNEUROSCI.3750-07.2007: pp 12601-12610; PubMed 18003839 12601-10."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "PiefEtal03",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1093/brain/awg064: pp 650-668; PubMed 12566286 five authors as cited."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Gaut08",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "unsure"
+  },
+  "problems": [
+   "Software citation; title change is formatting only. Year 2008 rests on a documentation copyright range, weakly supported."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Shan20",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "number": "agree",
+   "year": "agree",
+   "type": "agree",
+   "institution": "agree"
+  },
+  "problems": [
+   "https://peps.python.org/pep-0638/: 'PEP 638 – Syntactic Macros', Author: Mark Shannon, Status: Draft, Created: 24-Sep-2020."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "_unreviewed_ambiguous_no_source",
+  "agree": "n/a",
+  "field_verdicts": {},
+  "problems": [
+   "Beaz05, SommEtal12, RamaEtal12b: agree not resolvable from open sources.",
+   "Mink07: probably resolvable with a copy of the 5th edition (e.g. Google Books preview or LWW TOC); author J W Mink is very likely, but not confirmed for 2007."
+  ],
+  "suggested_value": {}
+ }
+]

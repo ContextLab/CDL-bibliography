@@ -41,6 +41,13 @@ Rules:
 - Evidence must cover the WHOLE value, not just the part that changed: every author
   surname in an author list, every word of a title, both page numbers. Use several
   quotes if needed (the validator joins them).
+- House conventions (check how cdl.bib already writes a value before proposing one):
+  booktitles in title case (only `title` is sentence case); double issues `3-4`, not
+  `3--4`; publisher short house forms (`Erlbaum`, not "Lawrence Erlbaum Associates");
+  US addresses with braced state codes (`New York, {NY}`, `Mahwah, {NJ}`); a chapter
+  with a booktitle is `@incollection`, not `@inbook`.
+- Never drop an initial the citation already has only because a source omits it; drop
+  it only when a source prints a different initial or name.
 - Issue numbers only if a source states them. Never carry a value over from the
   citation and call it confirmed.
 - `no_source` only after a genuine search (say where you looked in `notes`).

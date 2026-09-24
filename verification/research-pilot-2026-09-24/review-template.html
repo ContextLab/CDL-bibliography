@@ -1,0 +1,223 @@
+<title>Research Pilot Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+:root{
+  --ground:#F3F5F6; --surface:#FFFFFF; --ink:#172026; --muted:#5E6B74; --rule:#D9DFE3;
+  --accent:#1F5F8B; --accent-soft:#E3EEF6;
+  --ok:#2F7D4E; --ok-soft:#E4F2E9; --bad:#B42318; --bad-soft:#FBE7E5; --warn:#A15C07; --warn-soft:#FBEFDC;
+  --del:#9B2C22; --ins:#1E6B41;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#0F1519; --surface:#161E23; --ink:#E4EAEE; --muted:#93A1AB; --rule:#28343C;
+    --accent:#6FB3E0; --accent-soft:#1A2C38;
+    --ok:#5CC28A; --ok-soft:#16291F; --bad:#F0766B; --bad-soft:#341B19; --warn:#E3A548; --warn-soft:#33260F;
+    --del:#F19A91; --ins:#7FD3A4;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#0F1519; --surface:#161E23; --ink:#E4EAEE; --muted:#93A1AB; --rule:#28343C;
+  --accent:#6FB3E0; --accent-soft:#1A2C38;
+  --ok:#5CC28A; --ok-soft:#16291F; --bad:#F0766B; --bad-soft:#341B19; --warn:#E3A548; --warn-soft:#33260F;
+  --del:#F19A91; --ins:#7FD3A4;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.5 var(--sans);padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:980px;margin:0 auto}
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--rule);padding-block:14px 12px;margin-inline:-16px;padding-inline:16px}
+.bar-inner{max-width:980px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+h1{font:600 22px/1.2 var(--serif);margin:0;text-wrap:balance}
+.progress{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
+.meter{width:160px;max-width:40vw;height:6px;border-radius:3px;background:var(--rule);overflow:hidden;display:flex}
+.meter span{display:block;height:100%}
+.tally b{color:var(--ink);font-weight:600}
+.filters{display:flex;gap:4px}
+.filters button{font:500 12px var(--sans);letter-spacing:.02em;border:1px solid var(--rule);background:var(--surface);color:var(--muted);padding:5px 10px;border-radius:4px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.intro{max-width:68ch;color:var(--muted);margin:22px 0 8px}
+.intro strong{color:var(--ink);font-weight:600}
+.status{font-size:13px;margin:0 0 18px;color:var(--muted)}
+.status.warn{color:var(--warn)}
+section.cls{margin-top:30px}
+.cls-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:14px}
+.cls-head h2{font:600 17px/1.3 var(--serif);margin:0;text-wrap:balance}
+.cls-head .meta{font-size:12px;color:var(--muted);letter-spacing:.03em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.cls-head .risky{color:var(--warn)}
+.entry{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;margin-bottom:14px;display:grid;gap:12px}
+.entry.v-correct{border-left:4px solid var(--ok)}
+.entry.v-wrong{border-left:4px solid var(--bad)}
+.entry.v-unsure{border-left:4px solid var(--warn)}
+.top{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.key{font:500 13px var(--mono);color:var(--accent)}
+.num{font:500 12px var(--mono);color:var(--muted)}
+.cite{font:15px/1.45 var(--serif)}
+.cite .t{font-style:italic}
+.links{display:flex;gap:12px;flex-wrap:wrap;font-size:13px}
+.links a{color:var(--accent)}
+.label{font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;vertical-align:top;padding:5px 8px;border-bottom:1px solid var(--rule)}
+th{font:600 11px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.f{font:500 12px var(--mono);color:var(--muted);white-space:nowrap}
+td.v{font:13px/1.45 var(--mono);word-break:break-word}
+.del{color:var(--del);text-decoration:line-through;text-decoration-thickness:1px}
+.ins{color:var(--ins);font-weight:500}
+.none{color:var(--muted);font-style:italic;font-family:var(--sans)}
+.m{font:600 12px var(--sans);white-space:nowrap}
+.m.yes{color:var(--ok)} .m.no{color:var(--bad)}
+.decide{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.decide button{font:500 13px var(--sans);padding:6px 14px;border-radius:4px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);cursor:pointer}
+.decide button:hover{border-color:var(--muted)}
+.decide button:focus-visible,.filters button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.decide button[data-v="correct"][aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.decide button[data-v="wrong"][aria-pressed="true"]{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.decide button[data-v="unsure"][aria-pressed="true"]{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.decide input{flex:1 1 220px;min-width:0;font:13px var(--sans);padding:6px 10px;border:1px solid var(--rule);border-radius:4px;background:var(--ground);color:var(--ink)}
+.saved{font-size:12px;color:var(--muted)}
+.revised{font-size:13px;background:var(--warn-soft);color:var(--ink);border-radius:4px;padding:8px 10px}
+.revised b{color:var(--warn)}
+td.src{font-size:12px;color:var(--muted);white-space:nowrap}
+td.src a{color:var(--accent)}
+details summary{cursor:pointer;font-size:13px;color:var(--muted)}
+@media (max-width:520px){ .cite{font-size:14px} .entry{padding:14px} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.grp-desc{max-width:70ch;color:var(--muted);font-size:14px;margin:-6px 0 12px}
+.bulk{font:500 12px var(--sans);border:1px solid var(--ok);color:var(--ok);background:var(--surface);padding:4px 10px;border-radius:4px;cursor:pointer}
+.bulk:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ev{font-size:12.5px;color:var(--muted);display:grid;gap:4px}
+.ev q{font-family:var(--mono);color:var(--ink);quotes:"“" "”"}
+.ev a{color:var(--accent)}
+.rev{font-size:13px;border-radius:4px;padding:8px 10px;background:var(--accent-soft)}
+.rev.partly{background:var(--warn-soft)}
+.rev b{color:var(--accent)} .rev.partly b{color:var(--warn)}
+.tag{font:600 10px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--warn);margin-left:6px}
+.notes{font-size:13px;color:var(--muted);max-width:75ch}
+</style>
+<header class="bar"><div class="bar-inner">
+  <h1>Research Pilot Review</h1>
+  <div class="progress">
+    <div class="meter" aria-hidden="true"><span id="m-ok" style="background:var(--ok)"></span><span id="m-bad" style="background:var(--bad)"></span><span id="m-warn" style="background:var(--warn)"></span></div>
+    <span class="tally" id="tally"></span>
+    <div class="filters" role="group" aria-label="Show">
+      <button id="f-all" aria-pressed="true" data-f="all">All</button>
+      <button id="f-open" aria-pressed="false" data-f="open">Undecided</button>
+      <button id="f-flag" aria-pressed="false" data-f="flag">Wrong / unsure</button>
+    </div>
+  </div>
+</div></header>
+<main class="wrap">
+  <p class="intro">Fifty held entries were researched by agents, every quote below was <strong>confirmed verbatim at its link</strong> by code, and a separate reviewer re-checked each result against sources it fetched itself. Entries are grouped by the kind of change. Check a few in each group; if they hold up, <strong>Approve rest of group</strong> marks every undecided entry in it correct. <strong>Wrong</strong> on any entry holds its whole group back.</p>
+  <p class="status" id="status">Connecting to the decision store…</p>
+  <div id="list"></div>
+</main>
+<script>
+const DATA = /*DATA*/null;
+const GROUPS = [
+  ["no-change","Already correct","Research confirmed every field; no edit."],
+  ["numbers-doi","Numbers and DOI","Volume, issue, pages, year or DOI added or corrected."],
+  ["authors","Author lists","Missing authors, initials or spellings corrected (house initials format)."],
+  ["title","Titles","Typos, missing words or garbled titles corrected."],
+  ["book-details","Book details","Editors, publisher, place or edition corrected for the edition actually cited."],
+  ["venue-or-type","Journal, proceedings or entry type","Wrong journal, proceedings title, or entry type (e.g. a conference paper filed as an article)."],
+  ["needs-you","Needs your judgment","No source found, identity ambiguous, or weaker evidence. Decide each individually."]];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let decisions = {}, filter = "all", db = null, canWrite = true;
+function citation(f){
+  const venue = f.journal || f.booktitle || f.publisher || f.howpublished || "";
+  const bits = [f.volume && `vol. ${f.volume}`, f.number && `no. ${f.number}`, f.pages && `pp. ${f.pages}`].filter(Boolean).join(", ");
+  return `<div class="cite">${esc(f.author || f.editor || "")} (${esc(f.year || "n.d.")}). <span class="t">${esc(f.title || "")}</span>. ${esc(venue)}${bits ? ". " + esc(bits) : ""}.</div>`;
+}
+function link(u){ return u.startsWith("file:") ? `<span>${esc(decodeURIComponent(u.split("/").pop()))} (local PDF)</span>` : `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").slice(0,70))}</a>`; }
+function changes(s){
+  const ch = Object.entries(s.changes);
+  if (!ch.length) return '<div class="notes">No change proposed.</div>';
+  return `<div><div class="label">Proposed change</div><div class="scroll"><table><thead><tr><th>Field</th><th>Now</th><th>Proposed</th></tr></thead><tbody>${ch.map(([f,c]) =>
+    `<tr><td class="f">${esc(f)}${c.reviewer_corrected ? '<span class="tag">reviewer</span>' : ""}</td><td class="v">${c.before == null ? '<span class="none">absent</span>' : `<span class="del">${esc(c.before)}</span>`}</td><td class="v"><span class="ins">${esc(c.after)}</span>${c.reviewer_corrected && c.researcher_after ? `<div class="none">researcher had: ${esc(c.researcher_after)}</div>` : ""}</td></tr>`).join("")}</tbody></table></div></div>`;
+}
+function evidence(s){
+  const items = [];
+  if (s.identity && s.identity.url) items.push(`<div>identity: <q>${esc(s.identity.quote)}</q> — ${link(s.identity.url)}</div>`);
+  for (const [f,c] of Object.entries(s.changes)) for (const e of (c.evidence || [])) items.push(`<div>${esc(f)}: <q>${esc(e.quote)}</q> — ${link(e.url)}</div>`);
+  return items.length ? `<details><summary>Evidence (${items.length} quotes, each confirmed at its link)</summary><div class="ev">${items.join("")}</div></details>` : "";
+}
+function reviewer(s){
+  const r = s.reviewer || {};
+  if (!r.agree) return "";
+  const probs = (r.problems || []).map(esc).join(" ");
+  return `<div class="rev ${r.agree === "yes" ? "" : "partly"}"><b>Independent reviewer: ${r.agree === "yes" ? "agrees" : "partly agrees"}.</b> ${probs}</div>`;
+}
+function entryHtml(s){
+  const d = decisions[s.key] || {};
+  const btn = (v,l) => `<button type="button" data-v="${v}" aria-pressed="${d.verdict === v}">${l}</button>`;
+  const withheld = s.withheld ? `<div class="notes">Withheld: ${Object.entries(s.withheld).map(([f,w]) => `${esc(f)} → ${esc(w.proposed)} (${esc(w.why)})`).join("; ")}</div>` : "";
+  return `<article class="entry ${d.verdict ? "v-" + d.verdict : ""}" data-key="${esc(s.key)}">
+    <div class="top"><span class="key">${esc(s.key)}</span><span class="num">researcher: ${esc(s.verdict)}</span></div>
+    ${citation(s.fields)}${changes(s)}${reviewer(s)}${s.notes ? `<div class="notes">${esc(s.notes)}</div>` : ""}${withheld}${evidence(s)}
+    <div class="decide">${btn("correct","Correct")}${btn("wrong","Wrong")}${btn("unsure","Unsure")}
+      <input id="note-${esc(s.key)}" type="text" placeholder="Note (what is wrong, or the right value)" value="${esc(d.note || "")}">
+      <span class="saved" id="saved-${esc(s.key)}"></span></div></article>`;
+}
+const visible = s => { const v = (decisions[s.key]||{}).verdict; return filter === "all" || (filter === "open" && !v) || (filter === "flag" && (v === "wrong" || v === "unsure")); };
+function render(){
+  let html = "";
+  for (const [g, name, desc] of GROUPS) {
+    const items = DATA.filter(s => s.group === g); if (!items.length) continue;
+    const shown = items.filter(visible); if (!shown.length) continue;
+    const open = items.filter(s => !(decisions[s.key]||{}).verdict).length;
+    html += `<section class="cls"><div class="cls-head"><h2>${esc(name)}</h2><span class="meta">${items.length} entries</span>${g !== "needs-you" && open ? `<button class="bulk" data-g="${g}">Approve rest of group (${open})</button>` : ""}</div><p class="grp-desc">${esc(desc)}</p>${shown.map(entryHtml).join("")}</section>`;
+  }
+  document.getElementById("list").innerHTML = html || '<p class="intro">Nothing matches this filter.</p>';
+  tally();
+}
+function tally(){
+  const n = DATA.length, c = {correct:0, wrong:0, unsure:0};
+  for (const s of DATA) { const v = (decisions[s.key]||{}).verdict; if (v) c[v]++; }
+  document.getElementById("tally").innerHTML = `<b>${c.correct+c.wrong+c.unsure}</b>/${n} decided · ${c.correct} correct · ${c.wrong} wrong · ${c.unsure} unsure`;
+  document.getElementById("m-ok").style.width = (100*c.correct/n)+"%"; document.getElementById("m-bad").style.width = (100*c.wrong/n)+"%"; document.getElementById("m-warn").style.width = (100*c.unsure/n)+"%";
+}
+const setStatus = (t,w) => { const el = document.getElementById("status"); el.textContent = t; el.className = "status" + (w ? " warn" : ""); };
+async function save(key, how){
+  const d = decisions[key] || {}, tag = document.getElementById("saved-" + key);
+  if (!db) { try { localStorage.setItem("pilot:" + key, JSON.stringify(d)); } catch (e) {} if (tag) tag.textContent = "saved in this browser only"; return; }
+  try { const s = DATA.find(x => x.key === key);
+    await db.doc("pilot/" + key).set({key, group: s.group, verdict: d.verdict || null, note: d.note || "", how: how || "individual", updatedAt: new Date().toISOString()});
+    if (tag) tag.textContent = "saved";
+  } catch (e) { if (tag) tag.textContent = "not saved — " + (e && e.message || "try again"); }
+}
+document.addEventListener("click", async ev => {
+  const f = ev.target.closest(".filters button");
+  if (f) { filter = f.dataset.f; document.querySelectorAll(".filters button").forEach(b => b.setAttribute("aria-pressed", b === f)); render(); return; }
+  const bulk = ev.target.closest(".bulk");
+  if (bulk) { const keys = DATA.filter(s => s.group === bulk.dataset.g && !(decisions[s.key]||{}).verdict).map(s => s.key);
+    for (const k of keys) decisions[k] = {...(decisions[k]||{}), verdict: "correct"};
+    render(); for (const k of keys) await save(k, "group"); return; }
+  const b = ev.target.closest(".decide button"); if (!b || !canWrite) return;
+  const key = b.closest(".entry").dataset.key, cur = decisions[key] || {};
+  decisions[key] = {...cur, verdict: cur.verdict === b.dataset.v ? null : b.dataset.v, note: document.getElementById("note-" + key).value};
+  render(); save(key);
+});
+const timers = {};
+document.addEventListener("input", ev => { if (!ev.target.id || !ev.target.id.startsWith("note-")) return;
+  const key = ev.target.id.slice(5); decisions[key] = {...(decisions[key]||{}), note: ev.target.value};
+  clearTimeout(timers[key]); timers[key] = setTimeout(() => save(key), 700); });
+render();
+(async () => {
+  db = window.claude && window.claude.use ? await window.claude.use("db") : null;
+  if (!db) { for (const s of DATA) { try { const v = localStorage.getItem("pilot:" + s.key); if (v) decisions[s.key] = JSON.parse(v); } catch (e) {} }
+    setStatus("The shared decision store isn't available here, so decisions stay in this browser and Claude can't read them. Open the page on claude.ai to record them.", true); render(); return; }
+  db.collection("pilot").onSnapshot(snap => {
+    const focused = document.activeElement && document.activeElement.id;
+    for (const doc of snap.docs) { const d = doc.data(); if (d && d.key) decisions[d.key] = {verdict: d.verdict || null, note: d.note || ""}; }
+    setStatus("Decisions save automatically and Claude reads them from here.");
+    if (!(focused && focused.startsWith("note-"))) render(); else tally();
+  }, err => setStatus("Decisions couldn't load (" + (err && err.code) + "). Reload the page to try again.", true));
+})();
+</script>

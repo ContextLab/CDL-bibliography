@@ -1,0 +1,2501 @@
+{
+ "network_requests": 0,
+ "entries": 50,
+ "passing": 46,
+ "by_verdict": {
+  "ambiguous": 2,
+  "correction": 36,
+  "no_source": 2,
+  "verified": 10
+ },
+ "report": [
+  {
+   "key": "AndeEtal66",
+   "verdict": "correction",
+   "batch": "batch-1",
+   "fields": {
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "PhelEtal18",
+   "verdict": "correction",
+   "batch": "batch-1",
+   "fields": {
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "LeVaEtal10",
+   "verdict": "correction",
+   "batch": "batch-1",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "KahaEtal22",
+   "verdict": "correction",
+   "batch": "batch-1",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "editor": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Hume07",
+   "verdict": "correction",
+   "batch": "batch-1",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "editor": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "BiddMarl87",
+   "verdict": "correction",
+   "batch": "batch-1",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Youn61",
+   "verdict": "correction",
+   "batch": "batch-1",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Kais90",
+   "verdict": "correction",
+   "batch": "batch-1",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "ParaEtal04",
+   "verdict": "verified",
+   "batch": "batch-1",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Beaz05",
+   "verdict": "ambiguous",
+   "batch": "batch-1",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": false,
+     "value_missing_from_quotes": [
+      "swig"
+     ],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": false
+  },
+  {
+   "key": "Unde48a",
+   "verdict": "correction",
+   "batch": "batch-2",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "SchwHump73",
+   "verdict": "correction",
+   "batch": "batch-2",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "NilsEtal75",
+   "verdict": "correction",
+   "batch": "batch-2",
+   "fields": {
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "KahaMill13",
+   "verdict": "verified",
+   "batch": "batch-2",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": [
+      "fetch failed: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
+     ]
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": [
+      "fetch failed: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
+     ]
+    },
+    "booktitle": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "editor": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": [
+      "fetch failed: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
+     ]
+    },
+    "publisher": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": [
+      "fetch failed: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
+     ]
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": [
+      "fetch failed: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
+     ]
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "GelmEtal13",
+   "verdict": "correction",
+   "batch": "batch-2",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "edition": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "NastEtal20",
+   "verdict": "correction",
+   "batch": "batch-2",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "LegeEtal69",
+   "verdict": "correction",
+   "batch": "batch-2",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "RosePaul90",
+   "verdict": "correction",
+   "batch": "batch-2",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "LiEtal19",
+   "verdict": "verified",
+   "batch": "batch-2",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "ScotEtal07",
+   "verdict": "correction",
+   "batch": "batch-2",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "chapter": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "editor": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "address": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "CalvEtal97",
+   "verdict": "correction",
+   "batch": "batch-3",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Curr04",
+   "verdict": "correction",
+   "batch": "batch-3",
+   "fields": {
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "HowaEtal08b",
+   "verdict": "correction",
+   "batch": "batch-3",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "XiaoEtal10",
+   "verdict": "correction",
+   "batch": "batch-3",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "vanEEtal18",
+   "verdict": "verified",
+   "batch": "batch-3",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Palm78",
+   "verdict": "verified",
+   "batch": "batch-3",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "editor": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "address": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "EichMaca06",
+   "verdict": "correction",
+   "batch": "batch-3",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "editor": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Jame90",
+   "verdict": "correction",
+   "batch": "batch-3",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "address": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "SilbEtal01",
+   "verdict": "correction",
+   "batch": "batch-3",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": [
+      "fetch failed: HTTPError: HTTP Error 403: Forbidden"
+     ]
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": [
+      "fetch failed: HTTPError: HTTP Error 403: Forbidden"
+     ]
+    },
+    "editor": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": [
+      "fetch failed: HTTPError: HTTP Error 403: Forbidden"
+     ]
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "RaypWall67",
+   "verdict": "correction",
+   "batch": "batch-3",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "BiswEtal95",
+   "verdict": "verified",
+   "batch": "batch-4",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "HogeEtal99",
+   "verdict": "verified",
+   "batch": "batch-4",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "PuceEtal99",
+   "verdict": "verified",
+   "batch": "batch-4",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "ZrenEtal11",
+   "verdict": "correction",
+   "batch": "batch-4",
+   "fields": {
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Weiz66",
+   "verdict": "correction",
+   "batch": "batch-4",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "ZimaEtal23",
+   "verdict": "verified",
+   "batch": "batch-4",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Mink07",
+   "verdict": "ambiguous",
+   "batch": "batch-4",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "editor": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "address": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "edition": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": false
+  },
+  {
+   "key": "Hook69",
+   "verdict": "verified",
+   "batch": "batch-4",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "address": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "NetwLab25",
+   "verdict": "correction",
+   "batch": "batch-4",
+   "fields": {
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "judgment_fields": [
+    "howpublished"
+   ],
+   "passes": true
+  },
+  {
+   "key": "SommEtal12",
+   "verdict": "no_source",
+   "batch": "batch-4",
+   "fields": {},
+   "identity": {
+    "ok": false,
+    "why": "no identity evidence"
+   },
+   "passes": false
+  },
+  {
+   "key": "MikoEtal13b",
+   "verdict": "correction",
+   "batch": "batch-5",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "address": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "judgment_fields": [
+    "ENTRYTYPE"
+   ],
+   "passes": true
+  },
+  {
+   "key": "RovaVirs79",
+   "verdict": "correction",
+   "batch": "batch-5",
+   "fields": {
+    "author": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Pach74",
+   "verdict": "correction",
+   "batch": "batch-5",
+   "fields": {
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "editor": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "address": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Bart32",
+   "verdict": "correction",
+   "batch": "batch-5",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "publisher": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Arch11a",
+   "verdict": "correction",
+   "batch": "batch-5",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "booktitle": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "McCrGrac07",
+   "verdict": "correction",
+   "batch": "batch-5",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "RamaEtal12b",
+   "verdict": "no_source",
+   "batch": "batch-5",
+   "fields": {},
+   "identity": {
+    "ok": false,
+    "why": "no identity evidence"
+   },
+   "passes": false
+  },
+  {
+   "key": "PiefEtal03",
+   "verdict": "correction",
+   "batch": "batch-5",
+   "fields": {
+    "title": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "journal": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "volume": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "pages": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "doi": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Gaut08",
+   "verdict": "correction",
+   "batch": "batch-5",
+   "fields": {
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  },
+  {
+   "key": "Shan20",
+   "verdict": "correction",
+   "batch": "batch-5",
+   "fields": {
+    "title": {
+     "status": "corrected",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "author": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "number": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "year": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    },
+    "type": {
+     "status": "confirmed",
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
+    }
+   },
+   "identity": {
+    "ok": true,
+    "why": null
+   },
+   "passes": true
+  }
+ ]
+}
