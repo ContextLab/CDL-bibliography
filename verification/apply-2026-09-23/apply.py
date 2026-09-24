@@ -205,7 +205,8 @@ def propose_adddoi(entries, results):
 def pipeline(cache, client, keys, report):
     """The production verify --auto-review sequence, expanded discovery, then the layers again."""
     keys = sorted(keys)
-    run_verification(BIB, cache, client, report, keys=keys)
+    # Recheck saved approvals of the batch so a rule tightened after the run applies.
+    run_verification(BIB, cache, client, report, keys=keys, recheck_cached=True)
     layers = [
         lambda: run_auto_review(BIB, cache, report, client, keys=keys),
         lambda: run_fulltext_review(BIB, cache, client, report, keys=keys),

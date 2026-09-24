@@ -157,16 +157,21 @@ def test_print_year_route_blocked_by_contradicting_linked_source():
     entry, result = reviewed("Zoll90")
     primary = next(c for c in result["candidates"] if c.get("source") == "crossref"
                    and normalize_doi(c["doi"]) == "10.1002/tea.3660271011")
-    assert print_year_route(entry["fields"], primary, result["candidates"])
+    assert print_year_route(entry["fields"], primary, result["candidates"], result["attempts"])
+    # The DOI-linked PubMed lookup must have been made before absence counts.
+    assert not print_year_route(entry["fields"], primary, result["candidates"])
+    unlooked = [a for a in result["attempts"] if a.get("source") != "europepmc"]
+    assert not print_year_route(entry["fields"], primary, result["candidates"], unlooked)
+    assert select_result(entry["fields"], result["candidates"], unlooked)["status"] == "needs_review"
     for issue in ("Secondary pages: missing evidence or mismatch", "Secondary year: missing evidence or mismatch",
                   "Full-text and PubMed volumes do not establish the same issue"):
         linked = dict(deepcopy(primary), source="europepmc", issues=[issue])
         candidates = result["candidates"] + [linked]
-        assert not print_year_route(entry["fields"], primary, candidates), issue
+        assert not print_year_route(entry["fields"], primary, candidates, result["attempts"]), issue
         assert select_result(entry["fields"], candidates, [])["status"] == "needs_review", issue
     # A second finding on the registry record itself is never waived.
     assert not print_year_route(entry["fields"], dict(primary, issues=[YEAR, "number: missing evidence or mismatch"]),
-                                result["candidates"])
+                                result["candidates"], result["attempts"])
 
 
 # 4. Duplicate DOIs ----------------------------------------------------------------
@@ -445,5 +450,7 @@ def test_print_year_approval_is_a_valid_snapshot_envelope():
     for name, bad in {"online first": online_first, "cited online year": other_year,
                       "second finding": second_issue, "not a journal citation": no_journal,
                       "other accepted source": dict(result, accepted_source="europepmc"),
-                      "other DOI": dict(result, accepted_doi="10.1002/tea.3660271012")}.items():
+                      "other DOI": dict(result, accepted_doi="10.1002/tea.3660271012"),
+                      "PubMed never looked up": dict(result, attempts=[a for a in result["attempts"]
+                                                                        if a.get("source") != "europepmc"])}.items():
         assert not valid_print_year_approval(bad), name

@@ -1190,7 +1190,7 @@ COORDINATE_WORDS = ("year", "volume", "number", "pages", "pagination", "issue", 
                     "relationship", "correction", "retraction", "version")
 
 
-def print_year_route(fields, candidate, candidates):
+def print_year_route(fields, candidate, candidates, attempts=None):
     """Resolver 28 print-year route for a Crossref candidate (select_result).
 
     compare_record still reports the conflicting-dates finding; this route
@@ -1198,6 +1198,12 @@ def print_year_route(fields, candidate, candidates):
     print_year_selects_cited holds and no DOI-linked secondary record
     (PubMed, JATS front matter, publisher metadata) for the same DOI reports a
     year, coordinate, or relationship problem with the citation.
+
+    The DOI-linked PubMed lookup must have been made (a ``europepmc`` attempt
+    for this DOI in ``attempts``): an absent PubMed record only counts as "no
+    contradiction" once it was looked for. Without this, a freshly re-verified
+    entry would pass before the second source was consulted
+    (verification/apply-2026-09-23: Shim95, Burw00).
     """
     try:
         if (candidate.get("source") != "crossref" or candidate.get("issues") != [YEAR_CONFLICT]
@@ -1205,6 +1211,15 @@ def print_year_route(fields, candidate, candidates):
                 or not print_year_selects_cited(fields, candidate.get("record") or {})):
             return False
         doi = normalize_doi(candidate["doi"])
+        looked_up = False
+        for attempt in attempts or []:
+            try:
+                looked_up |= (attempt.get("source") == "europepmc"
+                              and normalize_doi(attempt.get("doi", "")) == doi)
+            except ValueError:
+                continue
+        if not looked_up:
+            return False
         for other in candidates:
             if other.get("source") not in {"europepmc", "pmc-jats", "publisher-head"}:
                 continue
@@ -1804,7 +1819,7 @@ def valid_print_year_approval(result):
             if not fields.get("journal"):
                 continue
             fields["ENTRYTYPE"] = "article"
-            if print_year_route(fields, candidate, result["candidates"]):
+            if print_year_route(fields, candidate, result["candidates"], result.get("attempts")):
                 return True
         return False
     except (ValueError, TypeError, KeyError, AttributeError):

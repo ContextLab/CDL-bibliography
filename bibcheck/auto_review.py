@@ -207,7 +207,7 @@ def select_result(fields, candidates, attempts):
             continue
         if not candidate.get("evidence"):
             continue
-        if candidate.get("issues") and not print_year_route(fields, candidate, candidates):
+        if candidate.get("issues") and not print_year_route(fields, candidate, candidates, attempts):
             continue
         doi = normalize_doi(candidate["doi"])
         if doi in aliases:
