@@ -1,0 +1,80 @@
+{
+ "stages": [
+  {
+   "cycle": "run",
+   "seconds": 825.27,
+   "network_requests": 0,
+   "added_review_records": 2,
+   "batch_statuses_before": {
+    "needs_review": 2
+   },
+   "batch_statuses_after": {
+    "metadata_verified": 2
+   },
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [
+    "RamaEtal12b",
+    "SommEtal12"
+   ],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [],
+   "library_statuses_before": {
+    "metadata_verified": 4471,
+    "needs_review": 2010
+   },
+   "library_statuses": {
+    "metadata_verified": 4473,
+    "needs_review": 2008
+   }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 789.74,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch_statuses_before": {
+    "needs_review": 2
+   },
+   "batch_statuses_after": {
+    "metadata_verified": 2
+   },
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [
+    "RamaEtal12b",
+    "SommEtal12"
+   ],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [],
+   "library_statuses_before": {
+    "metadata_verified": 4471,
+    "needs_review": 2010
+   },
+   "library_statuses": {
+    "metadata_verified": 4473,
+    "needs_review": 2008
+   }
+  }
+ ],
+ "entries": {
+  "RamaEtal12b": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:272156a14c46ce787f260cd502875f10f610e1df16a56a6b8472e527ebb266a6",
+   "fingerprint": "v2:f8ee71aedf058ccbfb25a189b9bb4abf30e1b37e08657e328bb45426a7974397",
+   "accepted_doi": null,
+   "accepted_source": "sfn-abstract-planner",
+   "issues": []
+  },
+  "SommEtal12": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:feea11113a58131dd562a6e609beca0c162411d31f1bc080d2793e19b533a999",
+   "fingerprint": "v2:d0c9d101917d3c7bb20fc46ea5a2b55704f0ea5029a8726a0d2ec5f2ee079f54",
+   "accepted_doi": null,
+   "accepted_source": "sfn-abstract-planner",
+   "issues": []
+  }
+ }
+}
