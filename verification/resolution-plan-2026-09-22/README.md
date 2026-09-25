@@ -173,3 +173,7 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - **`bibcheck.py commit` gates on verification** (user, 2026-09-26): it verifies added/edited
   entries against GitHub master with `crossref verify --auto-review` and refuses to commit
   unresolved ones; it commits only the bib file (no `git commit -a`).
+- **`bibcheck.py verify` checks citations too** (user, 2026-09-26): format check + citation
+  verification of added/edited entries vs GitHub master + an offline library-wide status line;
+  fails on any changed entry that is unresolved. `--no-citations` for format-only, `--all` for
+  the whole library. `commit` shares the same check.
