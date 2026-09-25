@@ -22,3 +22,20 @@ scratch folder. Before finishing, run
 `.venv/bin/python verification/research-pilot-2026-09-24/validate.py <your wave folder>` is NOT
 required; instead self-check each quote by fetching. Accuracy over coverage: `ambiguous` or
 `no_source` with notes beats a guess. About 5-10 tool calls per entry.
+
+## Lessons from wave 1 (independent review: 24% random-sample error rate) — MANDATORY
+
+1. **Every DOI you propose must resolve**: check `https://doi.org/api/handles/<doi>` returns 200
+   and that the DOI's Crossref/DataCite record is this work. Never build a DOI from a
+   taylorfrancis.com (or any) URL path.
+2. **Keys**: if your correction changes the year, first author or author count, compute the new
+   key and check it against `git show HEAD:cdl.bib`. If it exists and is the same work, say
+   "duplicate of <key>"; if it is a different work, say "key collision".
+3. **Patents**: the year is the grant/issue year, never the filing or priority date.
+4. **Apply house rules yourself**: no name suffixes (Jr, III), hyphenated initials (J-P), initials
+   without periods, US addresses `City, {ST}`, ordinals `N\textsuperscript{..}`, issue ranges
+   `3--4`, booktitles without year, @book without pages, keep accents.
+5. **Never propose an empty value.** A field you could not confirm is `not_found` and is left alone.
+6. **Print year beats online-first year.**
+7. Verdict `ambiguous`/`no_source` only after checking library catalogues (LoC, Harvard, WorldCat
+   records) and the obvious alternatives; the reviewer found several resolvable ones.
