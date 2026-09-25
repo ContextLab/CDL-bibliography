@@ -1,0 +1,404 @@
+{
+ "generated": "2026-09-25 08:25:48",
+ "batch": "suffix-strip",
+ "count": 33,
+ "skipped": {},
+ "proposals": [
+  {
+   "key": "Dabb90",
+   "fingerprint": "v2:2f78b19b11625140e5a8bf86471a0113d413840ef459d672cbfc8a53c697021b",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Dabbs, Jr, James M",
+     "after": "James M Dabbs"
+    }
+   }
+  },
+  {
+   "key": "GoldEtal07",
+   "fingerprint": "v2:393dd18bc9a4590dd5d43fdeb2bc6f69b3ccfe9c5e651132a27a7cec8b74978c",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Jill M Goldstein and Larry J Seidman and Nikos Makris and Todd Ahern and Liam M O’Brien and Caviness, Jr, Verne S and David N Kennedy and Stephen V Faraone and Ming T Tsuang",
+     "after": "Jill M Goldstein and Larry J Seidman and Nikos Makris and Todd Ahern and Liam M O’Brien and Verne S Caviness and David N Kennedy and Stephen V Faraone and Ming T Tsuang"
+    }
+   }
+  },
+  {
+   "key": "JettEtal86",
+   "fingerprint": "v2:0b60533983b5c18399c30808aa126b2fde6979a9fecaf9361c24c8d2b2f0579d",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "W Jetter and U Poser and Freeman, Jr, R B and H J Markowitsch",
+     "after": "W Jetter and U Poser and R B Freeman and H J Markowitsch"
+    }
+   }
+  },
+  {
+   "key": "Sauf67",
+   "fingerprint": "v2:bc9c84f87af4648275ec28c3969f8bcf479a78cc46463276928a9ab5c2b177be",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "William H Saufley Jr",
+     "after": "William H Saufley"
+    }
+   }
+  },
+  {
+   "key": "KahaEtal08a",
+   "fingerprint": "v2:59828dd9a509329b1a6b322014ecc10a869edd03d74d667a1874ccc13b59c24f",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "editor": {
+     "before": "H L Roediger III",
+     "after": "H L Roediger"
+    }
+   }
+  },
+  {
+   "key": "FrieEtal99",
+   "fingerprint": "v2:a20adab7feafe16b79ad14bce427c33bff5f461c650694e2adbb82e0697fcae4",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "I Fried and C L Wilson and N T Maidment and J Jr Engel and E Behnke and T A Fields and K A MacDonald and J W Morrow and L Ackerson",
+     "after": "I Fried and C L Wilson and N T Maidment and J Engel and E Behnke and T A Fields and K A MacDonald and J W Morrow and L Ackerson"
+    }
+   }
+  },
+  {
+   "key": "DonaMurd68",
+   "fingerprint": "v2:c71ae7d120dc7644eee56c9b3683273d4e2a2cb8e892e37a32fa8eb67f2c5c2d",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "W Donaldson and Murdock, Jr, B B",
+     "after": "W Donaldson and B B Murdock"
+    }
+   }
+  },
+  {
+   "key": "SwetEtal61",
+   "fingerprint": "v2:bf07e0c8ec105031cd1d5705374ee0da793dd542ea8ca537c5e71adb816411f9",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "John A Swets and Tanner, Jr, Wilson P and Theodore G Birdsall",
+     "after": "John A Swets and Wilson P Tanner and Theodore G Birdsall"
+    }
+   }
+  },
+  {
+   "key": "PfurEtal96",
+   "fingerprint": "v2:cca7079fa3de96ddaf99945c171f5d28c98e005621b165da6a5e029fba67b75d",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "G Pfurtscheller and A Jr Stanc\\^ak and C Neuper",
+     "after": "G Pfurtscheller and A Stanc\\^ak and C Neuper"
+    }
+   }
+  },
+  {
+   "key": "Murd66",
+   "fingerprint": "v2:c5322c6de447b5dfd085d8a3753f91a32378918cf5575e891d25a72fab91f6ba",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Murdock, Jr, B B",
+     "after": "B B Murdock"
+    }
+   }
+  },
+  {
+   "key": "MitcRanc80",
+   "fingerprint": "v2:f30dddf032f4e25d23cb582479e6e20435be6e7af0ff1ba8dfe2a122b98b3f91",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "S J Mitchell and Ranck, Jr, J B",
+     "after": "S J Mitchell and J B Ranck"
+    }
+   }
+  },
+  {
+   "key": "RudeEtal80",
+   "fingerprint": "v2:d95e2a83d1376b36bc54def9fdb4433c1a83b30dcb1b564dc0828600aa970b71",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "A P Rudell and S E Fox and Ranck, Jr, J B",
+     "after": "A P Rudell and S E Fox and J B Ranck"
+    }
+   }
+  },
+  {
+   "key": "FoxEtal86",
+   "fingerprint": "v2:3cd15515f0f5f4eee9810fa322decff9fa8a3db0f26418ed104e96f6b246f260",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "S E Fox and S Wolfson and Ranck, Jr, J B",
+     "after": "S E Fox and S Wolfson and J B Ranck"
+    }
+   }
+  },
+  {
+   "key": "Murd63c",
+   "fingerprint": "v2:e8826e4961f8d1f6c4de0c243d9b96018d7abfeedc332b633fe84def5d863393",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Murdock, Jr, B B",
+     "after": "B B Murdock"
+    }
+   }
+  },
+  {
+   "key": "ColdEtal96a",
+   "fingerprint": "v2:53bf7a079d682fccb097d9aa0d09db90a21217eafce93df3cb554d4affe2e7df",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "B W Colder and C L Wilson and R C Frysinger and R M Harper and Engel, Jr, J",
+     "after": "B W Colder and C L Wilson and R C Frysinger and R M Harper and J Engel"
+    }
+   }
+  },
+  {
+   "key": "NuneEtal87",
+   "fingerprint": "v2:c7610ccf22ffe0f132415dadbd9cddcd18bd69c7012bd3b64a3a1b62f9c72eb1",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "A N\\'{u}\\~{n}ez and E Garc\\'{i}a-Austt and W Jr Bu{\\~n}o",
+     "after": "A N\\'{u}\\~{n}ez and E Garc\\'{i}a-Austt and W Bu{\\~n}o"
+    }
+   }
+  },
+  {
+   "key": "Sauf75",
+   "fingerprint": "v2:89254ad192b053176f3fa97a4690c44caa878ca4211cf252760bea5c76fabfe7",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "William H Saufley Jr",
+     "after": "William H Saufley"
+    }
+   }
+  },
+  {
+   "key": "ColdEtal96c",
+   "fingerprint": "v2:3f11a3f9f11ff9b66b79a03fd197436060cba720b22fb0a201a7323bf59fa332",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "B W Colder and C L Wilson and R C Frysinger and L C Chao and R M Harper and Engel, Jr, J",
+     "after": "B W Colder and C L Wilson and R C Frysinger and L C Chao and R M Harper and J Engel"
+    }
+   }
+  },
+  {
+   "key": "GordEtal90",
+   "fingerprint": "v2:c4020167d265cef15115ab46ae193d9516f78a1f7be59544a34476ecb61c1fa7",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "B Gordon and R P Lesser and N E Rance and Hart, Jr, J and R Webber and S Uematsu and R S Fisher",
+     "after": "B Gordon and R P Lesser and N E Rance and J Hart and R Webber and S Uematsu and R S Fisher"
+    }
+   }
+  },
+  {
+   "key": "PavlAnde05",
+   "fingerprint": "v2:9f7d8a2351cc2f70e571e5a312ee19254770a15da1330475fed5a49b42eb2259",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Pavlik, Jr, Philip I and John R Anderson",
+     "after": "Philip I Pavlik and John R Anderson"
+    }
+   }
+  },
+  {
+   "key": "WatsPell83",
+   "fingerprint": "v2:936004a1b54ae7962db22c7c0b66c8dcbf361e4908be28091f5deea3b03511da",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "A B Jr Watson and D G Pelli",
+     "after": "A B Watson and D G Pelli"
+    }
+   }
+  },
+  {
+   "key": "BunoVell77",
+   "fingerprint": "v2:4aa18ddde28f9e4d4e2c490886b645a2f6a247708782926212ff77078c36700d",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Buño, Jr, W and J C Velluti",
+     "after": "W Buño and J C Velluti"
+    }
+   }
+  },
+  {
+   "key": "McFaEtal79",
+   "fingerprint": "v2:600145063619fed394c3085196b030cd505254cf69aecbe4427bf4e1a6c11907",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "C E Jr McFarland and D D Rhodes and T J Frey",
+     "after": "C E McFarland and D D Rhodes and T J Frey"
+    }
+   }
+  },
+  {
+   "key": "StabEtal02b",
+   "fingerprint": "v2:022f4a3a446753980f24aee901ec314f95d2da63902d9ef991f4dbc98d77bea9",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Richard J Staba and Charles L Wilson and Itzhak Fried and Engel, Jr, Jerome",
+     "after": "Richard J Staba and Charles L Wilson and Itzhak Fried and Jerome Engel"
+    }
+   }
+  },
+  {
+   "key": "StabEtal02a",
+   "fingerprint": "v2:d723809c765b1adafe1f213bb7eb10d5f673d69add49a8ec29bbb00336e780cb",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Richard J Staba and Charles L Wilson and Anatol Bragin and Itzhak Fried and Engel, Jr, Jerome",
+     "after": "Richard J Staba and Charles L Wilson and Anatol Bragin and Itzhak Fried and Jerome Engel"
+    }
+   }
+  },
+  {
+   "key": "WallEtal06",
+   "fingerprint": "v2:cd96b78edb2253965f1a361d9da8a35ec76066ef6794d249fce75b666ec33408",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Mark T Wallace and Brian N Carriere and Perrault, Jr, Thomas J and J William Vaughan and Barry E Stein",
+     "after": "Mark T Wallace and Brian N Carriere and Thomas J Perrault and J William Vaughan and Barry E Stein"
+    }
+   }
+  },
+  {
+   "key": "Murd60a",
+   "fingerprint": "v2:1e64ed302b59d04fd4b97bf9969c1eaba8d43800bae229998aeef34a0d20d2ba",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Murdock, Jr, B B",
+     "after": "B B Murdock"
+    }
+   }
+  },
+  {
+   "key": "Stro12",
+   "fingerprint": "v2:fc861e96fe4816158ad33d962ec900b7417013ce7c2cb4b49a15f10bd217736d",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "E K Strong Jr",
+     "after": "E K Strong"
+    }
+   }
+  },
+  {
+   "key": "Murd60b",
+   "fingerprint": "v2:ec687625b0c10bef0808b3a8101fd1d780396ecc3d77a46ab0e89f22bf301908",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Murdock, Jr, B B",
+     "after": "B B Murdock"
+    }
+   }
+  },
+  {
+   "key": "NestCarl06",
+   "fingerprint": "v2:a510ee72e44bc956d97ffa8f86dee680b17867405af47649976ccdb3ff09a43d",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Eric J Nestler and Carlezon, Jr, William A",
+     "after": "Eric J Nestler and William A Carlezon"
+    }
+   }
+  },
+  {
+   "key": "Murd61",
+   "fingerprint": "v2:f910d6c5fd60849fea0cc6c8eca1242092b3d718a9651caae4f53668a4571c48",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "Murdock, Jr, B B",
+     "after": "B B Murdock"
+    }
+   }
+  },
+  {
+   "key": "DrewMurd80",
+   "fingerprint": "v2:c30a02c43ea6242edcdbca5526a7194f92479aa8b01a666740ff2942f2235811",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "A Drewnowski and Murdock, Jr, B B",
+     "after": "A Drewnowski and B B Murdock"
+    }
+   }
+  },
+  {
+   "key": "Warr98",
+   "fingerprint": "v2:9bbce0d06cc8d89dd961fbdc2141cbf02da13fb67f9a319643c428282c030280",
+   "kind": "strip_name_suffix",
+   "rule": "user-2026-09-24/25 no name suffixes",
+   "changes": {
+    "author": {
+     "before": "W H Jr Warren",
+     "after": "W H Warren"
+    }
+   }
+  }
+ ]
+}
