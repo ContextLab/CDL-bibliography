@@ -343,7 +343,7 @@ def merge(previous, result, source, attempt_url):
     result['candidates'] = [c for c in previous.get('candidates', []) if c.get('source') != source] + result['candidates']
     result['attempts'] = previous.get('attempts', []) + [{'source': source, 'url': attempt_url}]
     if result['status'] == 'metadata_verified':
-        issues = context_issues(result['candidates'][-1]['checked_fields'], result['candidates'], result['accepted_doi'])
+        issues = context_issues(result['candidates'][-1]['checked_fields'], result['candidates'], result.get('accepted_doi'))
         if issues:
             result.update(status='needs_review', issues=issues)
             for name in ('accepted_doi', 'accepted_source', 'accepted_version'):

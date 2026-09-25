@@ -141,3 +141,16 @@ def test_2009_page_layout_and_one_digit_program_number():
     # The cited undotted "JR" is not the planner's "J. R.": held, never rewritten.
     result = assess(c)
     assert result['candidates'][0]['category'] == 'held' and any('less detail' in i for i in result['issues'])
+
+
+def test_route_merge_accepts_an_approval_without_a_doi():
+    # SfN abstracts have no DOI; the shared route merge used to read result['accepted_doi']
+    # and raised KeyError for a verified SfN result (stage 2C, RamaEtal12b).
+    from osf_review import merge
+    c = case('RamaEtal12b')
+    cand = assess(c)['candidates'][0]
+    after = s.assess_sfn(apply(c['fields'], cand['proposal']), c['raw'])
+    assert after['status'] == 'metadata_verified' and 'accepted_doi' not in after
+    merged = merge({'candidates': [], 'attempts': []}, after, s.SOURCE, 'https://www.abstractsonline.com/')
+    assert merged['status'] == 'metadata_verified'
+    assert s.valid_sfn_approval(merged)
