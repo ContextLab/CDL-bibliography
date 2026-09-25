@@ -2,7 +2,8 @@
   "restored": 6481,
   "statuses": {
     "metadata_verified": 4476,
-    "needs_review": 2005
+    "needs_review": 1974,
+    "human_verified": 31
   },
   "repeat_imports": 0,
   "original_keys_preserved": 6481,
