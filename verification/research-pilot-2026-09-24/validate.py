@@ -223,7 +223,9 @@ def fold(text):
 def value_supported(field, value, texts, urls=()):
     if field == "doi" and value and any(str(value).lower() in unquote(u).lower() for u in urls):
         return True, []  # the evidence URL is the DOI's own record
-    joined = expand_ranges(fold(ordinals_to_digits(" ".join(norm(t) for t in texts))))
+    joined = fold(ordinals_to_digits(" ".join(norm(t) for t in texts)))
+    if field == "pages":
+        joined = expand_ranges(joined)  # only page values: a DOI suffix like 2001-354 is not a range
     # German umlauts are also written ae/oe/ue in some sources: accept either form (see present_any).
     def present(t):
         edge = (r"(?<!\d)", r"(?!\d)") if t.isdigit() else (r"(?<!\w)", r"(?!\w)")
