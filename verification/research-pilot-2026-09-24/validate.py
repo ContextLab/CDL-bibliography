@@ -159,10 +159,11 @@ def value_supported(field, value, texts):
     return not missing, missing
 
 
-def main():
+def main(folder=None):
+    folder = Path(folder) if folder else HERE
     requests = [0]
     report = []
-    for batch in sorted(HERE.glob("batch-*.json")):
+    for batch in sorted(folder.glob("batch-*.json")):
         for row in json.loads(batch.read_text()):
             entry = {"key": row["key"], "verdict": row.get("verdict"), "batch": batch.stem, "fields": {}}
             ident = row.get("identity") or {}
@@ -187,7 +188,7 @@ def main():
            "passing": sum(e["passes"] for e in report),
            "by_verdict": {v: sum(e["verdict"] == v for e in report) for v in sorted({e["verdict"] for e in report})},
            "report": report}
-    (HERE / "validation.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
+    (folder / "validation.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
     print(json.dumps({k: v for k, v in out.items() if k != "report"}))
     for e in report:
         bad = [f for f, v in e["fields"].items() if not v["ok"]]
@@ -196,4 +197,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(sys.argv[1] if len(sys.argv) > 1 else None))
