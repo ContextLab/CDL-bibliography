@@ -130,3 +130,14 @@ def test_collect_from_saved_documents_makes_no_requests(tmp_path):
 def test_tampered_page_is_rejected():
     c = case('SommEtal12'); c['raw']['view']['body'] = c['raw']['view']['body'].replace('746.04', '746.05')
     assert assess(c)['candidates'][0]['category'] == 'held'
+
+
+def test_2009_page_layout_and_one_digit_program_number():
+    """SfN 2009 pages label "Title", print "<b>J.R. Manning</b>, None;" and number posters 279.3."""
+    c = case('MannEtal09b')
+    item = s.abstract(c['raw']['view'], c['raw']['view']['url'], 2009)
+    assert item['program'] == '279.3' and item['city'] == 'Chicago, IL'
+    assert [p['family'] for p in item['authors']] == ['Manning', 'Polyn', 'Kahana']
+    # The cited undotted "JR" is not the planner's "J. R.": held, never rewritten.
+    result = assess(c)
+    assert result['candidates'][0]['category'] == 'held' and any('less detail' in i for i in result['issues'])

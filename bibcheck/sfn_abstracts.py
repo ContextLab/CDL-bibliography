@@ -225,11 +225,15 @@ def text(value):
 def abstract(source, url, year):
     page = checked_body(source, url)
     data = rows(page)
+    # 2009 pages label the title "Title" and the time "Presentation Time".
+    for new, old in (('Presentation Title', 'Title'), ('Presentation time', 'Presentation Time')):
+        if new not in data and old in data:
+            data[new] = data[old]
     for label in ('Program#/Poster#', 'Presentation Title', 'Authors', 'Disclosures'):
         if label not in data:
             raise ValueError('SfN abstract page lacks ' + label)
     program = text(data['Program#/Poster#']).split('/')[0].strip()
-    if not re.fullmatch(r'\d{1,4}\.\d{2}', program):
+    if not re.fullmatch(r'\d{1,4}\.\d{1,2}', program):
         raise ValueError('SfN program number is not a poster/slide number: ' + program)
     footer = re.search(r'(\d{4}) Neuroscience Meeting Planner\.\s+(.+?): Society for Neuroscience, (\d{4})', text(page))
     when = re.search(r'\b(\d{4})\b', text(data.get('Presentation time', '')))
@@ -245,7 +249,9 @@ def abstract(source, url, year):
     capitals = [n.strip().lstrip('*').strip() for n in text(byline).split(',') if n.strip()]
     # "R. J. ROBINSON, II": a name suffix is its own comma item; suffixes are never cited (user rule).
     capitals = [n for n in capitals if n.rstrip('.').upper() not in ('JR', 'SR', 'II', 'III', 'IV')]
-    disclosed = [text(n) for n in re.findall(r'<b>\s*([^<]+?):\s*</b>', data['Disclosures'])]
+    # "<b>A.G. Ramayya:</b> None." (2010-) or "<b>J.R. Manning</b>, None;" (2009)
+    disclosed = [text(n) for n in re.findall(r'<b>\s*([^<]+?)\s*:?\s*</b>', data['Disclosures'])]
+    disclosed = [n.rstrip(':').strip() for n in disclosed]
     if not capitals or len(capitals) != len(disclosed):
         raise ValueError('SfN Authors and Disclosures lines disagree on the byline')
     authors = []
@@ -283,7 +289,7 @@ def assess_sfn(fields, raw):
         wanted = normalize_title(unicodedata.normalize('NFKC', fields.get('title', '')))
         matches = []
         for s, c, label in hits(raw['search'], key):
-            title = re.sub(r'^.*?\d{1,4}\.\d{2}(?:/\S+)?\s+-\s+', '', label)
+            title = re.sub(r'^.*?\d{1,4}\.\d{1,2}(?:/\S+)?\s+-\s+', '', label)
             try:
                 if normalize_title(title) == wanted:
                     matches.append(view_url(s, c, MEETINGS[year][0]))
@@ -379,7 +385,7 @@ def collect(cache, client, fields):
     urls = set()
     for s, c, label in hits(raw['search'], raw['search']['url']):
         try:
-            if normalize_title(re.sub(r'^.*?\d{1,4}\.\d{2}(?:/\S+)?\s+-\s+', '', label)) == wanted:
+            if normalize_title(re.sub(r'^.*?\d{1,4}\.\d{1,2}(?:/\S+)?\s+-\s+', '', label)) == wanted:
                 urls.add(view_url(s, c, MEETINGS[year][0]))
         except ValueError:
             continue

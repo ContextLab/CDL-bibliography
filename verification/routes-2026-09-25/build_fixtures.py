@@ -63,7 +63,7 @@ def spec(F):
         (datacite_review, 'ControlDataciteVersion', dc_v), (datacite_review, 'ControlDataciteOtherWork', dc_t)] + [
         (acl_review, k, F[k]) for k in ('ReimGure19', 'MikoEtal13b', 'Etha19')] + [
         (acl_review, 'ControlAclCrossrefPages', acl_p), (acl_review, 'ControlAclOtherWork', acl_t)] + [
-        (sfn_abstracts, k, F[k]) for k in ('RamaEtal12b', 'SommEtal12', 'KrauEtal12', 'DerdEtal06')]
+        (sfn_abstracts, k, F[k]) for k in ('RamaEtal12b', 'SommEtal12', 'KrauEtal12', 'DerdEtal06', 'MannEtal09b')]
 
 
 def main():
