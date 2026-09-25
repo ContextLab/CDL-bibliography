@@ -1,0 +1,124 @@
+{
+ "generated": "2026-09-25 00:14:22",
+ "count": 0,
+ "batch": "suffix-reassess",
+ "proposals": [],
+ "skipped": {},
+ "keys": [
+  {
+   "key": "BrodMurd77",
+   "fingerprint": "v2:4a3ef020e6816dacee1f05947e266906e614d0749bad82872af5681b0450d434",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "CalvEtal73",
+   "fingerprint": "v2:239f4571afa05e272b7532079bd32dff336a9a286236bf4b2e30a8452db78190",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "ColdEtal96b",
+   "fingerprint": "v2:cddc35c814667a95310949f42062187bef0d20090ab12b07d81fa86e0e8f0ca8",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "EricEtal13",
+   "fingerprint": "v2:bd107fdf67f90ee4702781d9b8bbd9f5e8944ff57a29647b14f8704dbbd5e88f",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "JensRohw65",
+   "fingerprint": "v2:bf53e6e3a89f68a51386f30613e46f216a5d875976966f2382c000cd89f80eb1",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "KarpRoed08",
+   "fingerprint": "v2:90128146c1b0f6586b158fce501592d3c37bf4e498907663ca52d193a4cbd106",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "KoleRoed84",
+   "fingerprint": "v2:11fc4e9e4fe703e71b6edff6a57c1a373356d2b7f74549c3dbafa67f9b4d6303",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "KovaEtal11",
+   "fingerprint": "v2:296e9430b3effad329b1ec81c59d164d80962ea594ebb0f938e203d77e77b162",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "McDeEtal00",
+   "fingerprint": "v2:57b891c2d22ab7e49da9751e44678f6f585788282e86316d43e08388a1df6550",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "McFaEtal79",
+   "fingerprint": "v2:600145063619fed394c3085196b030cd505254cf69aecbe4427bf4e1a6c11907",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Murd63a",
+   "fingerprint": "v2:3a66122156319d7a06a7f757866eda510ae4fe2d2cf2faa546598337837b0ba7",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Murd65",
+   "fingerprint": "v2:92788d97c1f5ced42897adee07d6ce94aec7702211d9965dee1d53f1653faa25",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Murd67",
+   "fingerprint": "v2:7048ab4a65819357f6976d4a5caa20dd44b8d947c0bca7933e56fdeebef5f5fd",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Murd74",
+   "fingerprint": "v2:a7bf8c4a2b917e6a99de2c588ad5fa58387c0d856cf827fb09be42eb65f263fd",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "MurdWalk69",
+   "fingerprint": "v2:158a50c9e46a6ed292539777fbb7fdcad9033dd58f6d8501bb4479acf84f36cb",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Roed73",
+   "fingerprint": "v2:10b0d14a2dedeb631565fa39c52d03c6b5d2ffdf0f2e419628b874f7bccdcab0",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "RoedCrow76",
+   "fingerprint": "v2:283777d9c48b79770b0ac62d57e9e9ebc426af76a0e0e205501482d3eb4c50e1",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "RoedKarp06a",
+   "fingerprint": "v2:4b734c31979138d3634816af49ab4e39eb7992aca118dd6c43eb1a9f1acd529a",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "RoedKarp06b",
+   "fingerprint": "v2:8a9b614c4a1977ccd9688f5eaa96b5cccd23ebab7f24c5cf94ee4ddca8c085ea",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "SchnEtal06",
+   "fingerprint": "v2:d19997ba9b4e9511b3453a9629967ebf8c0c4190297d63f608eb4a217fa428e8",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "TaubEtal90",
+   "fingerprint": "v2:5e3c64db67eff4e7090eb03ffa5d9a444dcaa63362730f5d4c11745f3d9855f6",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Ward61",
+   "fingerprint": "v2:bc20c84fac170386ad26544e30cd41a4cca02d3206a9561ef663a9f4873951b4",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "WyleEtal82",
+   "fingerprint": "v2:7e306486eafbed62caece6b52027bf401df45fbba1f192987774a72af98f6538",
+   "status_before": "needs_review"
+  }
+ ]
+}
