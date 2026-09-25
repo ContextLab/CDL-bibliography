@@ -1,0 +1,84 @@
+{
+ "generated": "2026-09-25 00:35:53",
+ "count": 0,
+ "batch": "publisher-variants",
+ "proposals": [],
+ "skipped": {},
+ "keys": [
+  {
+   "key": "BrunEtal02b",
+   "fingerprint": "v2:55b4ddbb26011dff1384f81f9d021025cf04f8fa35e5da52bf6a6ca1664cdb11",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Carr16",
+   "fingerprint": "v2:342ff60161a4213dff9bf5edc534a14a0ea6119dd29a28686ac797379707ea83",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Crow76",
+   "fingerprint": "v2:ee57d981149395a36ff7e015de4cd184d0fa38fd517f72b173017ef42e74a79f",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "DayaAbbo01",
+   "fingerprint": "v2:13f050a44321ed3cefba7ab73209272c11394be14268d6f715b849e4699f3580",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "EfroTibs93",
+   "fingerprint": "v2:3cbbeb140bc175d4949c8b00a060bbc05286498f7d52271a0267b7259effff97",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Gree92",
+   "fingerprint": "v2:8c5662e9bb793dfbc726130a28fe7ac6d2b762dfd7cbadb21a09328ab3f7e3d2",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Guth35",
+   "fingerprint": "v2:67cc770ceebaf4d9992297d7856e2f9e43e6a76bf368980c77a0fcb3dddb659a",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "HertEtal91",
+   "fingerprint": "v2:1546ff42d3334f66bcc97e84a883d55d1afa1eb735ce7f92292e0c04e1cadf12",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Mill91",
+   "fingerprint": "v2:f3e29a53038f33365f5476e2281852773d6df45d23c76d0b93844b3faac3cea1",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Paiv71",
+   "fingerprint": "v2:0a4696ce4030e4f47f3c4cc2d886d9486f95803da96bfddd13f301e262a2f09e",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "RussNorv95",
+   "fingerprint": "v2:8e4668c7ebd37225f0418baf3e6aa5d802623a1d1f664054ab323ba135864307",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Salt91",
+   "fingerprint": "v2:c1d76af8bebd512f7bbc27a33c468847b8cb36c783c8446e8c00e95d6b6d82af",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Sawy95",
+   "fingerprint": "v2:c82f991dd57a3e5b828225088d6993358f52d148975e4cc4ebd4f2af06f76604",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Unde83",
+   "fingerprint": "v2:c94c933b3f6c6adf8e272d93e7784ec2c127accd8cd8e754453d98e7980ac948",
+   "status_before": "needs_review"
+  },
+  {
+   "key": "Warr19",
+   "fingerprint": "v2:e7fb976b420fb0b766c89ea0600a4b535ebe83640054bc8d4303e8493e7e2a79",
+   "status_before": "needs_review"
+  }
+ ]
+}
