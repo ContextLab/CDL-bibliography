@@ -203,6 +203,18 @@ NONDECOMPOSING = str.maketrans({"ł": "l", "Ł": "L", "ø": "o", "Ø": "O", "đ"
                                 "ß": "ss", "æ": "ae", "Æ": "AE", "œ": "oe", "Œ": "OE"})
 
 
+UMLAUT_TRANSLIT = str.maketrans({"ä": "ae", "ö": "oe", "ü": "ue"})
+TRANSLIT_BACK = {}
+
+
+def expand_ranges(text):
+    """Abbreviated page ranges as PubMed writes them: 'b153-64' -> 'b153-164', '1188-97' -> '1188-1197'."""
+    def full(m):
+        a, b = m[2], m[3]
+        return f"{m[1]}{a}-{m[1]}{a[:len(a) - len(b)] + b}" if len(b) < len(a) else m[0]
+    return re.sub(r"(?<![\w-])([a-z]?)(\d+)-(\d+)(?![\w-])", full, text)
+
+
 def fold(text):
     text = text.translate(NONDECOMPOSING)
     return "".join(c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn")
@@ -211,15 +223,20 @@ def fold(text):
 def value_supported(field, value, texts, urls=()):
     if field == "doi" and value and any(str(value).lower() in unquote(u).lower() for u in urls):
         return True, []  # the evidence URL is the DOI's own record
-    joined = fold(ordinals_to_digits(" ".join(norm(t) for t in texts)))
+    joined = expand_ranges(fold(ordinals_to_digits(" ".join(norm(t) for t in texts))))
+    # German umlauts are also written ae/oe/ue in some sources: accept either form (see present_any).
     def present(t):
         edge = (r"(?<!\d)", r"(?!\d)") if t.isdigit() else (r"(?<!\w)", r"(?!\w)")
         return re.search(edge[0] + re.escape(t) + edge[1], joined)
     # Normalise the value exactly like the quotes: ordinal words become digits on both sides.
-    tokens = [fold(t) for t in value_tokens(field, ordinals_to_digits(norm(delatex(str(value or "")))))]
+    raw_tokens = value_tokens(field, ordinals_to_digits(norm(delatex(str(value or "")))))
     if field not in ("author", "editor"):
-        tokens = [t for t in tokens if t not in STOP]
-    missing = [t for t in tokens if not present(t)]
+        raw_tokens = [t for t in raw_tokens if fold(t) not in STOP]
+    translit = {fold(t): fold(t.translate(UMLAUT_TRANSLIT)) for t in raw_tokens}
+    tokens = [fold(t) for t in raw_tokens]
+    def present_any(t):
+        return present(t) or re.search(r"(?<!\w)" + re.escape(translit.get(t, t)) + r"(?!\w)", joined)
+    missing = [t for t in tokens if not present_any(t)]
     return not missing, missing
 
 
