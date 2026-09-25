@@ -120,3 +120,16 @@ Preprints always cite their **latest** version (year = that version's date; pin 
 version where the server supports it). A preprint that has been **published** is replaced
 by the published version (new key; old entry removed). Replacements are prepared as one
 list for the user to approve, per the earlier decision.
+
+## Spot-check completed (2026-09-24/25) and resulting decisions
+
+All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
+- **No name suffixes** (Jr, Sr, II, III, IV): never added; the 27 existing ones are stripped;
+  the comparator ignores suffixes.
+- **Initials everywhere:** full given names are converted to initials; compound or unbraced
+  surnames are held and checked against a source first.
+- **Catalogue publisher names:** a same-firm longer form is a match; keep the house form.
+- **Page ranges are never shortened** by a correction.
+- **Single-source surname changes need corroboration** (a second source, or they are held
+  when other cdl.bib entries spell the same author the cited way). Found after risky001
+  applied Crossref's "Kounois" to MeyeEtal88 (reverted); the 10-entry spot-check missed it.
