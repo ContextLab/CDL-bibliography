@@ -20,6 +20,7 @@ import subprocess
 import sys
 import time
 import unicodedata
+import urllib.error
 import urllib.request
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -30,6 +31,7 @@ CACHE = ROOT / ".bibcheck/research-pilot"
 import ssl
 import certifi
 SSL = ssl.create_default_context(cafile=certifi.where())
+BROWSER_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
 UA = "CDL-bibliography citation checker (research pilot; contact via repository owner)"
 FOLD = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"', "–": "-",
                       "—": "-", "−": "-", " ": " ", "­": ""})
@@ -46,6 +48,7 @@ def delatex(text):
     text = re.sub(r"\\(['`^\"~=.])\s*\{?([A-Za-z])\}?", repl, text)
     text = re.sub(r"\\([cvuHkr])\s*\{([A-Za-z])\}", repl, text)
     text = re.sub(r"\\([cvuHkr]) ([A-Za-z])", repl, text)
+    text = re.sub(r"(\d+)\\textsuperscript\{([a-z]+)\}", r"\1\2", text)  # 30\textsuperscript{th} -> 30th
     return text.replace("{", "").replace("}", "")
 
 
@@ -101,10 +104,17 @@ def fetch(url):
         text = subprocess.run(args + [str(pdf), "-"], check=True, capture_output=True, text=True).stdout
         network = False
     else:
-        req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
-        with urllib.request.urlopen(req, timeout=60, context=SSL) as resp:
-            raw = resp.read()
-            ctype = resp.headers.get("Content-Type", "")
+        def get(agent):
+            req = urllib.request.Request(url, headers={"User-Agent": agent, "Accept": "*/*"})
+            with urllib.request.urlopen(req, timeout=60, context=SSL) as resp:
+                return resp.read(), resp.headers.get("Content-Type", "")
+        try:
+            raw, ctype = get(UA)
+        except urllib.error.HTTPError as exc:
+            if exc.code != 403:
+                raise
+            # Some publishers refuse non-browser agents; the content is the same page.
+            raw, ctype = get(BROWSER_UA)
         if "pdf" in ctype or raw[:4] == b"%PDF":
             tmp = path.with_suffix(".pdf")
             tmp.write_bytes(raw)
