@@ -10,18 +10,24 @@ app = typer.Typer()
 app.add_typer(crossref_app, name='crossref')
 bibfile = 'cdl.bib'
 
-@app.command()
-def verify(fname: str='cdl.bib', autofix: bool=False, outfile: str=None, verbose: bool=False):
+def run_check(fname, **kwargs):
+    """check_bib, with any failure shown and turned into a nonzero exit.
+
+    A bare ``except`` used to print only 'errors found' and return success,
+    which hid e.g. 'page numbers are ambiguous or incorrect: KothEtal25'.
+    """
     from helpers import check_bib
     try:
-        errors, corrected = check_bib(fname, autofix=autofix, outfile=outfile, verbose=verbose)
-    except:
-        if verbose:
-            typer.echo('errors found; see log for details')
-        else:
-            typer.echo('errors found; run with verbose flag for details')
-        return
-        
+        return check_bib(fname, **kwargs)
+    except Exception as exc:
+        typer.echo(f'errors found: {type(exc).__name__}: {exc}', err=True)
+        raise typer.Exit(code=1) from exc
+
+
+@app.command()
+def verify(fname: str='cdl.bib', autofix: bool=False, outfile: str=None, verbose: bool=False):
+    errors, corrected = run_check(fname, autofix=autofix, outfile=outfile, verbose=verbose)
+
     if outfile:
         typer.echo(f'saved updated bibliography to {outfile}')
     
@@ -38,6 +44,8 @@ def verify(fname: str='cdl.bib', autofix: bool=False, outfile: str=None, verbose
             typer.echo('errors found; see log for details')
         else:
             typer.echo('errors found; run with verbose flag for details')
+        if not (autofix and outfile):
+            raise typer.Exit(code=1)
 
 
 @app.command()
@@ -47,15 +55,8 @@ def magic(fname: str='cdl.bib', verbose: bool=True):
     
     outfile = 'cleaned.bib'
     
-    try:
-        errors, corrected = check_bib(fname, autofix=True, outfile=outfile, verbose=verbose)
-    except:
-        if verbose:
-            typer.echo('errors found; see log for details')
-        else:
-            typer.echo('errors found; run with verbose flag for details')
-        return
-    
+    errors, corrected = run_check(fname, autofix=True, outfile=outfile, verbose=verbose)
+
     
     os.system(f'mv {outfile} {fname}')
     
@@ -90,15 +91,11 @@ def commit(fname=bibfile, reference='github', verbose: bool=False, outfile=None)
         return basename + '.log'
     
     #check integrity of fname
-    try:
-        errors, corrected = check_bib(fname, autofix=False, outfile=outfile, verbose=verbose)
-    except:
-        typer.echo('errors found; run verify to view and/or correct.')
-        return
-    
+    errors, corrected = run_check(fname, autofix=False, outfile=outfile, verbose=verbose)
+
     if len(errors) > 0:
         typer.echo('errors found; run verify to view and/or correct.')
-        return
+        raise typer.Exit(code=1)
     else:
         typer.echo('checks passed; generating commit message...')
     

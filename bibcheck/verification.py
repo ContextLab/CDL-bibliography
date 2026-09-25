@@ -974,6 +974,139 @@ def normalize_journal(value):
     return aliases.get(name, name)
 
 
+def without_leading_article(name):
+    """A normalized venue name without one leading whole word "the"."""
+    return re.sub(r"^the\s+(?=\S)", "", name)
+
+
+def registry_journal_match(local, record):
+    """Cited journal = the DOI record's journal up to a leading "The".
+
+    Machinery fix 2026-09-25 (PigeEtal12: Crossref "The Journal of Clinical
+    Psychiatry"). Confined to comparing a citation with the record of the
+    cited DOI or search hit, which carries an ISSN; normalize_journal itself
+    keeps "A Journal" and "The A Journal" apart for every other use.
+    """
+    if not local or not record.get("ISSN"):
+        return False
+    try:
+        cited = without_leading_article(normalize_journal(local))
+        return any(cited == without_leading_article(normalize_journal(str(t)))
+                   for t in record.get("container-title") or [] if t)
+    except ValueError:
+        return False
+
+
+def normalize_issue(value):
+    """Issue numbers compare numerically: '09' = '9', '01--02' = '1--2'.
+
+    Only an all-digit issue or digit range is changed; supplements, parts and
+    any other text keep their exact form (machinery fix 2026-09-25, PigeEtal12).
+    """
+    text = re.sub(r"\s*-+\s*", "-", normalized(value))
+    if re.fullmatch(r"\d+(?:-\d+)?", text):
+        return "-".join(str(int(part)) for part in text.split("-"))
+    return text
+
+
+# Documented journal title histories (machinery fix 2026-09-25, Chom56). Each
+# row is pinned by the ISSN that Crossref deposits for the whole run and by the
+# years and volumes during which the historical title was printed. A citation
+# that uses the historical title inside that window matches the record's
+# current title; outside it, or with another ISSN, it does not. No fuzzy match.
+JOURNAL_HISTORY = (
+    {
+        "issn": "0018-9448",
+        "current": "IEEE Transactions on Information Theory",
+        "historical": "IRE Transactions on Information Theory",
+        "years": (1955, 1962),
+        "volumes": (1, 8),
+        # LC record 11278887 (LCCN sn79018898, ISSN 0096-1000): 245 "IRE
+        # transactions on information theory."; 362 "Vol. IT-1, no. 1 (Mar.
+        # 1955)-v. IT-8, no. 6 (Oct. 1962)."; 785 "IEEE transactions on
+        # information theory 0018-9448". Crossref deposits every 1955-1962
+        # issue under ISSN 0018-9448 (api.crossref.org/journals/0018-9448).
+        "sources": ["https://lccn.loc.gov/sn79018898",
+                    "https://api.crossref.org/journals/0018-9448"],
+    },
+)
+
+
+def journal_history_match(fields, record):
+    """The documented historical title of the record's own journal, or None."""
+    try:
+        year, volume = str(fields.get("year", "")), str(fields.get("volume", ""))
+        if not re.fullmatch(r"[1-9]\d{3}", year) or not re.fullmatch(r"[1-9]\d*", volume):
+            return None
+        if str(record.get("volume") or "") != volume:
+            return None
+        cited = normalize_journal(fields.get("journal", ""))
+        for row in JOURNAL_HISTORY:
+            if (row["issn"] in (record.get("ISSN") or [])
+                    and normalize_journal(row["current"]) in [normalize_journal(t) for t in record.get("container-title") or []]
+                    and cited == normalize_journal(row["historical"])
+                    and row["years"][0] <= int(year) <= row["years"][1]
+                    and row["volumes"][0] <= int(volume) <= row["volumes"][1]):
+                return row
+    except (ValueError, TypeError, AttributeError):
+        return None
+    return None
+
+
+YEAR_WORD = re.compile(r"(?<![\w'])(?:1[89]|20)\d{2}(?![\w'])")
+ACRONYM_TAIL = re.compile(r"\s*\((?=[^()]*[A-Z][^()]*[A-Z])[A-Z][A-Za-z&/-]*(?:\s*'?\d{2,4})?\)\s*$")
+SERIES_NUMBER_TAIL = re.compile(r"\.?\s*\([A-Z]{1,4}-\d{1,4}\)\s*$")
+PACKAGING_TAIL = re.compile(
+    r"\s*[,:-]\s*(?:two|three|four|five|2|3|4|5)[ -]volume (?:pack|set)\s*$", re.I)
+
+
+def proceedings_name_forms(value):
+    """Source proceedings name without its year and trailing acronym.
+
+    House rule (resolution-plan-2026-09-22, "Proceedings names omit the
+    year"): '2017 IEEE Conference on Computer Vision and Pattern Recognition
+    (CVPR)' -> 'IEEE Conference on Computer Vision and Pattern Recognition'.
+    Only four-digit years (1800-2099) as whole words and one final
+    parenthetical acronym (two or more capitals, optional 2/4-digit year) are
+    removed. Ordinals, words and every other parenthetical are kept.
+    """
+    text = ACRONYM_TAIL.sub("", value)
+    text = YEAR_WORD.sub("", text)
+    text = re.sub(r"\s+([,.:;])", r"\1", " ".join(text.split()))
+    return re.sub(r"^[,.:;]\s*|[,.:;]\s*$", "", text).strip()
+
+
+def book_title_forms(value):
+    """Book title without a series number or a multi-volume packaging tail.
+
+    'Automata Studies. (AM-34)' -> 'Automata Studies' (Annals of Mathematics
+    Studies 34, Klee56); 'The Oxford Handbook of Human Memory, Two Volume
+    Pack' -> 'The Oxford Handbook of Human Memory' (Mann24). Only these two
+    final designations are removed, never edition statements or subtitles.
+    """
+    return PACKAGING_TAIL.sub("", SERIES_NUMBER_TAIL.sub("", value)).strip()
+
+
+def venue_variant_match(fields, record, field):
+    """Why the cited venue matches a documented source variant, or None."""
+    local = fields.get(field, "")
+    if not local:
+        return None
+    try:
+        target = normalized(local)
+        for value in record.get("container-title") or []:
+            value = str(value)
+            if record.get("type") == "proceedings-article" and field == "booktitle":
+                if normalized(proceedings_name_forms(value)) == target:
+                    return "Source proceedings name without its year/acronym (house form omits them)"
+            if record.get("type") in {"book-chapter", "book"} and field == "booktitle":
+                if book_title_forms(value) != value and normalized(book_title_forms(value)) == target:
+                    return "Source book title without its series number or volume-pack designation"
+    except ValueError:
+        return None
+    return None
+
+
 BENIGN_RELATIONS = {"has-review", "references", "is-referenced-by"}
 
 
@@ -1071,6 +1204,66 @@ def without_suffix_tokens(tokens):
     return kept if kept else tokens
 
 
+# Machinery fix 2026-09-25 (FeliEtal98, Schr03): Crossref deposits academic
+# degrees and professional titles in the author ``suffix`` field ("MD, FACP",
+# "Ph. D.", "MS, MPH", "BA"). They are not part of the name. A suffix counts as
+# a degree only when EVERY comma/space-separated part is one of these words.
+DEGREE_WORDS = frozenset({
+    "md", "phd", "dphil", "ms", "msc", "mph", "ma", "ba", "bs", "bsc", "bsn", "msn", "rn",
+    "facp", "facs", "frcp", "frcpc", "frcs", "facc", "faan", "faha", "fmedsci", "frs", "mbbs",
+    "mbchb", "mb", "bch", "chb", "bm", "do", "psyd", "edd", "dds", "dmd", "dvm", "jd", "mba",
+    "mres", "mphil", "mfa", "scd", "dsc", "abpp", "pharmd", "dr", "prof", "mrcp", "mrcpsych",
+})
+
+
+def degree_suffix(value):
+    """True when a source suffix lists only academic degrees or titles."""
+    text = html.unescape(str(value or "")).lower().replace(".", " ")
+    parts = [" ".join(p.split()) for p in re.split(r"[,;]", text)]
+    parts = [p for p in parts if p]
+    if not parts:
+        return False
+    for part in parts:
+        # "Ph. D." -> "ph d" -> "phd"; "MD PhD" without a comma: each word.
+        if part.replace(" ", "") in DEGREE_WORDS:
+            continue
+        if not all(word in DEGREE_WORDS for word in part.split()):
+            return False
+    return True
+
+
+def source_name_suffix(value):
+    """A source suffix as a name part: degrees/titles are not name parts."""
+    return "" if degree_suffix(value) else (value or "")
+
+
+REPEATED_BYLINE = "Source byline is listed twice verbatim; counted once"
+
+
+def collapse_repeated_byline(people):
+    """(people, detail): a byline repeated exactly twice counts once.
+
+    Machinery fix 2026-09-25. Only an exact repetition of a sequence of at
+    least two names is collapsed; family, given, organization name and suffix
+    must all be identical in each position (affiliations and the ``sequence``
+    marker are deposit metadata). Any difference (LantEtal26's second copy has
+    "Micheal-Christopher" and drops the consortium) keeps the list as it is.
+    """
+    if not isinstance(people, list) or len(people) < 4 or len(people) % 2:
+        return people, None
+    half = len(people) // 2
+
+    def ident(person):
+        if not isinstance(person, dict):
+            return None
+        return tuple(str(person.get(k) or "") for k in ("family", "given", "name", "suffix"))
+
+    first, second = [ident(p) for p in people[:half]], [ident(p) for p in people[half:]]
+    if None in first or first != second or len(set(first)) != half:
+        return people, None
+    return people[:half], REPEATED_BYLINE
+
+
 def author_evidence(value, people):
     names = split_authors(value)
     if not value or not people or len(names) != len(people):
@@ -1089,7 +1282,7 @@ def author_evidence(value, people):
         family = " ".join(parts["von"] + parts["last"])
         if normalized(family) != normalized(person.get("family", "")):
             return False, "Author surnames/order differ"
-        if not same_suffix(" ".join(parts["jr"]), person.get("suffix", "")):
+        if not same_suffix(" ".join(parts["jr"]), source_name_suffix(person.get("suffix", ""))):
             return False, "Author suffix differs"
         given = without_suffix_tokens(given_name_tokens(" ".join(parts["first"])))
         actual = without_suffix_tokens(given_name_tokens(person.get("given", "")))
@@ -1427,10 +1620,23 @@ def compare_record(fields, record, doi_alias=None):
             for s in subtitles
         ]
     check("title", titles, True, transform=normalize_title)
+    kind = fields["ENTRYTYPE"].lower()
+    if (kind == "book" and record.get("type") in {"book", "monograph", "edited-book"}
+            and not evidence["title"]["match"]):
+        # A series number printed after a book's own title ('Automata
+        # Studies. (AM-34)') is not part of the title (book_title_forms).
+        try:
+            target = normalize_title(fields.get("title", ""))
+            variant = any(book_title_forms(t) != t and normalize_title(book_title_forms(t)) == target
+                          for t in titles)
+        except ValueError:
+            variant = False
+        if variant:
+            evidence["title"].update(match=True, detail="Source title without its series number")
+            issues.remove("title: missing evidence or mismatch")
+    people, repeated = collapse_repeated_byline(record.get("author", []))
     try:
-        authors_ok, detail = author_evidence(
-            fields.get("author", ""), record.get("author", [])
-        )
+        authors_ok, detail = author_evidence(fields.get("author", ""), people)
     except (ValueError, KeyError) as exc:
         authors_ok, detail = False, str(exc)
     evidence["author"] = {
@@ -1439,6 +1645,8 @@ def compare_record(fields, record, doi_alias=None):
         "match": authors_ok,
         "detail": detail,
     }
+    if repeated:
+        evidence["author"]["source_detail"] = repeated
     if not authors_ok:
         issues.append("author: " + detail)
     years = set()
@@ -1451,7 +1659,6 @@ def compare_record(fields, record, doi_alias=None):
         issues.append(
             "year: conflicting or missing publication dates; select the cited edition explicitly"
         )
-    kind = fields["ENTRYTYPE"].lower()
     expected = {
         "article": "journal-article",
         "inproceedings": "proceedings-article",
@@ -1467,6 +1674,21 @@ def compare_record(fields, record, doi_alias=None):
         kind in {"article", "incollection", "inproceedings"},
         transform=normalize_journal if venue_field == "journal" else normalized,
     )
+    venue = evidence.get(venue_field)
+    if venue and not venue["match"] and venue_field == "journal" and registry_journal_match(fields.get("journal"), record):
+        venue.update(match=True, detail='Same journal up to a leading "The" (ISSN-bearing record)')
+        issues.remove("journal: missing evidence or mismatch")
+    if venue and not venue["match"]:
+        history = journal_history_match(fields, record) if venue_field == "journal" else None
+        variant = venue_variant_match(fields, record, venue_field) if venue_field == "booktitle" else None
+        if history or variant:
+            venue["match"] = True
+            if history:
+                venue["journal_history"] = {k: history[k] for k in ("issn", "current", "historical", "sources")}
+                venue["detail"] = "Documented historical title of the same ISSN-pinned journal"
+            else:
+                venue["detail"] = variant
+            issues.remove(f"{venue_field}: missing evidence or mismatch")
     for field, source in (
         ("volume", "volume"),
         ("number", "issue"),
@@ -1478,6 +1700,7 @@ def compare_record(fields, record, doi_alias=None):
             kind == "book" and field == "publisher",
             transform=normalize_publisher
             if field == "publisher" and kind == "article"
+            else normalize_issue if field == "number"
             else normalized,
         )
     check(
@@ -1853,6 +2076,61 @@ def valid_print_year_approval(result):
         return False
 
 
+# Route approval validators (machinery hook 2026-09-25). A source route whose
+# approvals are not Crossref/PubMed/JATS/publisher/catalogue rows registers a
+# function ``validator(result) -> bool`` that re-derives the approval from the
+# evidence saved in ``result`` (as valid_arxiv_approval does). import_snapshot
+# accepts a metadata_verified row when ANY registered validator (or one of the
+# built-in checks) accepts it. The route module must be imported, so that it
+# has registered, before a snapshot is imported; otherwise its approvals are
+# rejected loudly ("Machine approval is missing its source evidence").
+APPROVAL_VALIDATORS = []
+
+
+def register_approval_validator(validator):
+    """Register ``validator(result) -> bool`` once; returns it (decorator-safe)."""
+    if not callable(validator):
+        raise TypeError("An approval validator must be callable")
+    if validator not in APPROVAL_VALIDATORS:
+        APPROVAL_VALIDATORS.append(validator)
+    return validator
+
+
+def builtin_approval_validators():
+    from catalogue_review import valid_catalogue_approval
+    from preprint_review import valid_preprint_approval
+    from arxiv_review import valid_arxiv_approval
+    return [valid_catalogue_approval, valid_preprint_approval, valid_arxiv_approval,
+            valid_print_year_approval]
+
+
+def route_approval_valid(result):
+    """True when a built-in or registered route validator accepts ``result``."""
+    return any(validator(result) for validator in builtin_approval_validators() + list(APPROVAL_VALIDATORS))
+
+
+MISSING_DOI = "missing DOI"
+
+
+def result_advisories(fields, result):
+    """Advisory (non-blocking) findings for a current result.
+
+    Machinery fix 2026-09-25: a verified entry whose accepted record carries a
+    DOI for the cited work, while the entry has no ``doi`` field, is reported
+    as "missing DOI: <doi> (<source>)" so a batch can add it (user decision
+    2026-09-25, "DOIs everywhere"). It never changes the status.
+    """
+    notes = []
+    if (result.get("status") in ACCEPTED and result.get("accepted_doi")
+            and not str(fields.get("doi") or "").strip()):
+        try:
+            doi = normalize_doi(result["accepted_doi"])
+        except ValueError:
+            return notes
+        notes.append(f"{MISSING_DOI}: {doi} ({result.get('accepted_source') or 'unknown source'})")
+    return notes
+
+
 def import_snapshot(filename, cache, snapshot):
     """Restore only matching fingerprints/policy from a trusted local snapshot.
 
@@ -1887,10 +2165,7 @@ def import_snapshot(filename, cache, snapshot):
             raise ValueError("Invalid snapshot review record")
         if result["status"] == "human_verified" and not result.get("human_review"):
             raise ValueError("Human approval is missing its audit record")
-        from catalogue_review import valid_catalogue_approval
-        from preprint_review import valid_preprint_approval
-        from arxiv_review import valid_arxiv_approval
-        if result["status"] == "metadata_verified" and not valid_catalogue_approval(result) and not valid_preprint_approval(result) and not valid_arxiv_approval(result) and not valid_print_year_approval(result) and not any(
+        if result["status"] == "metadata_verified" and not route_approval_valid(result) and not any(
             c.get("source") in {"crossref", "europepmc", "pmc-jats", "publisher-head", "catalogue-imprint"}
             and c.get("evidence")
             and c.get("issues") == []
@@ -1990,7 +2265,11 @@ def write_report(filename, cache, report):
     ) as output:
         temporary = output.name
         for key, result in results.items():
-            output.write(dumps(dict(result, entry=entries[key]["fields"])) + "\n")
+            row = dict(result, entry=entries[key]["fields"])
+            advisories = result_advisories(entries[key]["fields"], result)
+            if advisories:
+                row["report_advisories"] = advisories
+            output.write(dumps(row) + "\n")
     os.replace(temporary, path)
     return results
 

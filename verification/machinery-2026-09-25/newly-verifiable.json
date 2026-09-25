@@ -1,0 +1,887 @@
+{
+ "by_rule": {
+  "dotted-acronym": 1,
+  "issue-numeric": 5,
+  "leading-the": 1,
+  "pubmed-preprint-link": 5,
+  "same-firm": 1,
+  "surname-typo": 6
+ },
+ "counts": {
+  "metadata_verified": 4034,
+  "needs_review": 2388
+ },
+ "currently_verified_missing_doi": {
+  "AdamMont67": [
+   "missing DOI: 10.1016/s0022-5371(67)80012-4 (crossref)"
+  ],
+  "Akai74": [
+   "missing DOI: 10.1109/tac.1974.1100705 (crossref)"
+  ],
+  "AldrEtal22": [
+   "missing DOI: 10.1007/s10648-021-09649-y (crossref)"
+  ],
+  "AlyTurk16": [
+   "missing DOI: 10.1073/pnas.1518931113 (europepmc)"
+  ],
+  "Ande74": [
+   "missing DOI: 10.1016/0010-0285(74)90021-8 (crossref)"
+  ],
+  "Ande81": [
+   "missing DOI: 10.1037/0278-7393.7.5.326 (crossref)"
+  ],
+  "AndeEtal98a": [
+   "missing DOI: 10.1006/jmla.1997.2553 (crossref)"
+  ],
+  "Ashb82": [
+   "missing DOI: 10.1037/0033-295x.89.5.599 (crossref)"
+  ],
+  "AshbEtal96": [
+   "missing DOI: 10.1037/0033-295x.103.1.165 (crossref)"
+  ],
+  "AshbPerr88": [
+   "missing DOI: 10.1037/0033-295x.95.1.124 (crossref)"
+  ],
+  "Badd82": [
+   "missing DOI: 10.1037/0033-295x.89.6.708 (crossref)"
+  ],
+  "BaloNeel80": [
+   "missing DOI: 10.1037/0278-7393.6.5.576 (crossref)"
+  ],
+  "BaloSpie99": [
+   "missing DOI: 10.1037/0096-3445.128.1.32 (crossref)"
+  ],
+  "BateEtal15b": [
+   "missing DOI: 10.48550/arxiv.1506.04967 (arxiv-repository)"
+  ],
+  "Benn75": [
+   "missing DOI: 10.1016/s0022-5371(75)80060-0 (crossref)"
+  ],
+  "BetzEtal17b": [
+   "missing DOI: 10.48550/arxiv.1706.06088 (arxiv-repository)"
+  ],
+  "Bird80": [
+   "missing DOI: 10.1037/0278-7393.6.3.267 (crossref)"
+  ],
+  "BowyHump79": [
+   "missing DOI: 10.1037/0278-7393.5.4.348 (crossref)"
+  ],
+  "BrodEtal92": [
+   "missing DOI: 10.1037/0097-7403.18.1.12 (crossref)"
+  ],
+  "BrodMurd77": [
+   "missing DOI: 10.1016/s0022-5371(77)80046-7 (crossref)"
+  ],
+  "Broo91": [
+   "missing DOI: 10.1016/0004-3702(91)90053-m (crossref)"
+  ],
+  "BrowEtal20": [
+   "missing DOI: 10.48550/arxiv.2005.14165 (arxiv-repository)"
+  ],
+  "BurgOKee96": [
+   "missing DOI: 10.1002/(sici)1098-1063(1996)6:6<749::aid-hipo16>3.0.co;2-0 (crossref)"
+  ],
+  "CalvEtal73": [
+   "missing DOI: 10.1016/0013-4694(73)90086-2 (europepmc)"
+  ],
+  "CaplEtal06": [
+   "missing DOI: 10.1037/0278-7393.32.6.1244 (crossref)"
+  ],
+  "CarlWagn18": [
+   "missing DOI: 10.48550/arxiv.1801.01944 (arxiv-repository)"
+  ],
+  "ChapHump94": [
+   "missing DOI: 10.1037/0033-295x.101.1.103 (crossref)"
+  ],
+  "ChieHone19": [
+   "missing DOI: 10.1101/761593 (biorxiv-preprint)"
+  ],
+  "Chun97": [
+   "missing DOI: 10.1037/0096-1523.23.3.738 (crossref)"
+  ],
+  "Clar92": [
+   "missing DOI: 10.3758/bf03199660 (crossref)"
+  ],
+  "ClayChat89": [
+   "missing DOI: 10.1037/0278-7393.15.3.495 (crossref)"
+  ],
+  "ColdEtal96b": [
+   "missing DOI: 10.1111/j.1528-1157.1996.tb00001.x (europepmc)"
+  ],
+  "CollLoft75": [
+   "missing DOI: 10.1037/0033-295x.82.6.407 (crossref)"
+  ],
+  "ConnEtal18": [
+   "missing DOI: 10.48550/arxiv.1705.02364 (arxiv-repository)"
+  ],
+  "Crai70": [
+   "missing DOI: 10.1016/s0022-5371(70)80042-1 (crossref)"
+  ],
+  "Cron57": [
+   "missing DOI: 10.1037/h0043943 (crossref)"
+  ],
+  "CuriRadv98": [
+   "missing DOI: 10.1037/0278-7393.24.1.202 (crossref)"
+  ],
+  "DeHaEtal25": [
+   "missing DOI: 10.1101/2025.07.25.666835 (biorxiv-preprint)"
+  ],
+  "DeLo90": [
+   "missing DOI: 10.1016/0166-2236(90)90110-v (crossref)"
+  ],
+  "DeLoMcDa96": [
+   "missing DOI: 10.1037/0278-7393.22.5.1136 (crossref)"
+  ],
+  "DettEtal23": [
+   "missing DOI: 10.48550/arxiv.2305.14314 (arxiv-repository)"
+  ],
+  "DevlEtal18": [
+   "missing DOI: 10.48550/arxiv.1810.04805 (arxiv-repository)"
+  ],
+  "DianEtal06": [
+   "missing DOI: 10.3758/bf03193807 (crossref)"
+  ],
+  "Donn88": [
+   "missing DOI: 10.1037/0278-7393.14.2.256 (crossref)"
+  ],
+  "DyneEtal90": [
+   "missing DOI: 10.1037/0278-7393.16.5.813 (crossref)"
+  ],
+  "Eich80": [
+   "missing DOI: 10.3758/bf03213419 (crossref)"
+  ],
+  "ElliEtal09": [
+   "missing DOI: 10.1007/s10955-009-9808-z (crossref)"
+  ],
+  "Elma90": [
+   "missing DOI: 10.1207/s15516709cog1402_1 (crossref)"
+  ],
+  "EricEtal13": [
+   "missing DOI: 10.1177/0956797613480367 (europepmc)"
+  ],
+  "Este50": [
+   "missing DOI: 10.1037/h0058559 (crossref)"
+  ],
+  "EtzeEtal09": [
+   "missing DOI: 10.1016/j.brainres.2009.05.090 (crossref)"
+  ],
+  "FangEtal24": [
+   "missing DOI: 10.48550/arxiv.2411.01738 (arxiv-repository)"
+  ],
+  "Farr14": [
+   "missing DOI: 10.3758/s13423-014-0600-y (crossref)"
+  ],
+  "FengEtal20": [
+   "missing DOI: 10.48550/arxiv.2008.06668 (arxiv-repository)"
+  ],
+  "FiedGloc12": [
+   "missing DOI: 10.3389/fpsyg.2012.00335 (europepmc)"
+  ],
+  "Flex91": [
+   "missing DOI: 10.1037/0278-7393.17.2.338 (crossref)"
+  ],
+  "FlexTulv78": [
+   "missing DOI: 10.1037/0033-295x.85.3.153 (crossref)"
+  ],
+  "FoxEtal14": [
+   "missing DOI: 10.1101/012310 (biorxiv-preprint)"
+  ],
+  "Gard91": [
+   "missing DOI: 10.1037/0278-7393.17.2.334 (crossref)"
+  ],
+  "GardEtal88": [
+   "missing DOI: 10.1037/0278-7393.14.4.687 (crossref)"
+  ],
+  "GlanBowl76": [
+   "missing DOI: 10.1037/0278-7393.2.1.21 (crossref)"
+  ],
+  "GlanEtal04": [
+   "missing DOI: 10.1037/0278-7393.30.6.1176 (crossref)"
+  ],
+  "GlanEtal99": [
+   "missing DOI: 10.1037/0278-7393.25.2.500 (crossref)"
+  ],
+  "Glen77": [
+   "missing DOI: 10.1037/0278-7393.3.3.282 (crossref)"
+  ],
+  "GlenBrad79": [
+   "missing DOI: 10.1037/0278-7393.5.2.88 (crossref)"
+  ],
+  "GoldLiu01": [
+   "missing DOI: 10.1076/noph.25.4.177.8057 (crossref)"
+  ],
+  "GongEtal25": [
+   "missing DOI: 10.48550/arxiv.2410.17891 (arxiv-repository)"
+  ],
+  "GoshGane00": [
+   "missing DOI: 10.1037/0278-7393.26.5.1198 (crossref)"
+  ],
+  "GothEtal96": [
+   "missing DOI: 10.1523/jneurosci.16-24-08027.1996 (crossref)"
+  ],
+  "Gree86a": [
+   "missing DOI: 10.1037/0278-7393.12.3.413 (crossref)"
+  ],
+  "Gros88": [
+   "missing DOI: 10.1016/0893-6080(88)90021-4 (crossref)"
+  ],
+  "HakiEtal20": [
+   "missing DOI: 10.3758/s13423-020-01790-z (crossref)"
+  ],
+  "Hall92": [
+   "missing DOI: 10.1037/0278-7393.18.3.608 (crossref)"
+  ],
+  "HardEtal84": [
+   "missing DOI: 10.1016/0301-0511(84)90002-4 (crossref)"
+  ],
+  "HeckEtal98": [
+   "missing DOI: 10.1038/1137 (europepmc)"
+  ],
+  "HensEtal00b": [
+   "missing DOI: 10.1162/08989290051137468 (crossref)"
+  ],
+  "HilfEtal02": [
+   "missing DOI: 10.1037/0096-3445.131.4.494 (crossref)"
+  ],
+  "Hint03": [
+   "missing DOI: 10.3758/bf03196465 (crossref)"
+  ],
+  "HintHart90": [
+   "missing DOI: 10.1037/0278-7393.16.6.955 (crossref)"
+  ],
+  "HirsArnd97": [
+   "missing DOI: 10.1037/0278-7393.23.6.1306 (crossref)"
+  ],
+  "Hock92": [
+   "missing DOI: 10.1037/0278-7393.18.6.1321 (crossref)"
+  ],
+  "HockMurd87": [
+   "missing DOI: 10.1037/0033-295x.94.3.341 (crossref)"
+  ],
+  "Holm18": [
+   "missing DOI: 10.1136/bjo.2.7.353 (crossref)"
+  ],
+  "HuEtal06": [
+   "missing DOI: 10.1111/j.1467-9280.2006.01799.x (crossref)"
+  ],
+  "HydeJenk73": [
+   "missing DOI: 10.1016/s0022-5371(73)80027-1 (crossref)"
+  ],
+  "IzauBoni06": [
+   "missing DOI: 10.1080/09658210500419966 (crossref)"
+  ],
+  "JacoEtal92": [
+   "missing DOI: 10.1037/0003-066x.47.6.802 (crossref)"
+  ],
+  "JainEtal24": [
+   "missing DOI: 10.48550/arxiv.2403.07974 (arxiv-repository)"
+  ],
+  "JensRohw65": [
+   "missing DOI: 10.1016/s0022-5371(65)80068-8 (crossref)"
+  ],
+  "John91": [
+   "missing DOI: 10.1037/0033-295x.98.2.204 (crossref)"
+  ],
+  "JordEtal99": [
+   "missing DOI: 10.1023/a:1007665907178 (crossref)"
+  ],
+  "KarpRoed08": [
+   "missing DOI: 10.1126/science.1152408 (europepmc)"
+  ],
+  "KellWixt01": [
+   "missing DOI: 10.1037/0278-7393.27.3.701 (crossref)"
+  ],
+  "KharEtal21": [
+   "missing DOI: 10.48550/arxiv.2109.03264 (arxiv-repository)"
+  ],
+  "KleiCohe06": [
+   "missing DOI: 10.1097/01.wco.0000236619.89710.ee (crossref)"
+  ],
+  "KnapEtal06": [
+   "missing DOI: 10.3758/bf03193434 (crossref)"
+  ],
+  "KoelEtal16": [
+   "missing DOI: 10.1038/srep19741 (crossref)"
+  ],
+  "KoleRoed84": [
+   "missing DOI: 10.1016/s0022-5371(84)90282-2 (crossref)"
+  ],
+  "KossEtal02": [
+   "missing DOI: 10.1037/0003-066x.57.5.341 (crossref)"
+  ],
+  "Koun93": [
+   "missing DOI: 10.1037/0278-7393.19.2.338 (crossref)"
+  ],
+  "KovaEtal11": [
+   "missing DOI: 10.1016/j.neuroimage.2010.08.002 (europepmc)"
+  ],
+  "KragEtal17": [
+   "missing DOI: 10.1016/j.neuroimage.2017.03.042 (crossref)"
+  ],
+  "Kuhn55": [
+   "missing DOI: 10.1002/nav.3800020109 (crossref)"
+  ],
+  "Lami92": [
+   "missing DOI: 10.1037/0278-7393.18.6.1342 (crossref)"
+  ],
+  "LaxpGros10": [
+   "missing DOI: 10.1227/01.neu.0000375277.68908.92 (crossref)"
+  ],
+  "LeeEste81": [
+   "missing DOI: 10.1037/0278-7393.7.3.149 (crossref)"
+  ],
+  "LeeEtal19": [
+   "missing DOI: 10.1101/615203 (biorxiv-preprint)"
+  ],
+  "LennEtal97": [
+   "missing DOI: 10.1016/s0001-4575(97)00022-5 (crossref)"
+  ],
+  "LiLewa93": [
+   "missing DOI: 10.1037/0278-7393.19.4.895 (crossref)"
+  ],
+  "LiLewa95": [
+   "missing DOI: 10.1037/0278-7393.21.4.837 (crossref)"
+  ],
+  "LiuEtal19": [
+   "missing DOI: 10.48550/arxiv.1910.06508 (arxiv-repository)"
+  ],
+  "LoewPrel93": [
+   "missing DOI: 10.1037/0033-295x.100.1.91 (crossref)"
+  ],
+  "MaddNebe80": [
+   "missing DOI: 10.1037/0012-1649.16.5.377 (crossref)"
+  ],
+  "MadrEtal17": [
+   "missing DOI: 10.48550/arxiv.1706.06083 (arxiv-repository)"
+  ],
+  "MagnEtal96": [
+   "missing DOI: 10.1037/0096-1523.22.1.202 (crossref)"
+  ],
+  "MandRitc77": [
+   "missing DOI: 10.1037/0278-7393.3.4.386 (crossref)"
+  ],
+  "MaskBrow74": [
+   "missing DOI: 10.1016/s0022-5371(74)80070-8 (crossref)"
+  ],
+  "MathEtal97": [
+   "missing DOI: 10.3758/bf03211327 (crossref)"
+  ],
+  "McDeEtal00": [
+   "missing DOI: 10.1162/08989290051137503 (europepmc)"
+  ],
+  "McFaEtal79": [
+   "missing DOI: 10.1016/s0022-5371(79)90100-2 (crossref)"
+  ],
+  "McInEtal18a": [
+   "missing DOI: 10.48550/arxiv.1802.03426 (arxiv-repository)"
+  ],
+  "McNa92": [
+   "missing DOI: 10.1037/0278-7393.18.6.1173 (crossref)"
+  ],
+  "McNa94": [
+   "missing DOI: 10.1037/0278-7393.20.3.507 (crossref)"
+  ],
+  "MehtEtal24": [
+   "missing DOI: 10.48550/arxiv.2404.14619 (arxiv-repository)"
+  ],
+  "MikoEtal13a": [
+   "missing DOI: 10.48550/arxiv.1301.3781 (arxiv-repository)"
+  ],
+  "MomeHowa18": [
+   "missing DOI: 10.1101/449470 (biorxiv-preprint)"
+  ],
+  "Mont91": [
+   "missing DOI: 10.1177/0013916591231003 (crossref)"
+  ],
+  "Murd63a": [
+   "missing DOI: 10.1016/s0022-5371(63)80100-0 (crossref)"
+  ],
+  "Murd65": [
+   "missing DOI: 10.1016/s0022-5371(65)80024-x (crossref)"
+  ],
+  "Murd67": [
+   "missing DOI: 10.1111/j.2044-8295.1967.tb01099.x (europepmc)"
+  ],
+  "Murd71": [
+   "missing DOI: 10.3758/bf03212827 (crossref)"
+  ],
+  "Murd76": [
+   "missing DOI: 10.1037/0096-3445.105.2.191 (crossref)"
+  ],
+  "Murd85a": [
+   "missing DOI: 10.1037/0033-295x.92.1.130 (crossref)"
+  ],
+  "Murd98": [
+   "missing DOI: 10.1037/0278-7393.24.2.524 (crossref)"
+  ],
+  "MurdWalk69": [
+   "missing DOI: 10.1016/s0022-5371(69)80120-9 (crossref)"
+  ],
+  "MuseSqui93": [
+   "missing DOI: 10.1037/0278-7393.19.4.789 (crossref)"
+  ],
+  "Mute79": [
+   "missing DOI: 10.1037/0278-7393.5.2.160 (crossref)"
+  ],
+  "NairWidn88": [
+   "missing DOI: 10.1037/0278-7393.14.4.694 (crossref)"
+  ],
+  "NasbYand82": [
+   "missing DOI: 10.1037/0022-3514.43.6.1244 (crossref)"
+  ],
+  "NeatEtal93": [
+   "missing DOI: 10.1037/0278-7393.19.3.698 (crossref)"
+  ],
+  "NelsEtal01": [
+   "missing DOI: 10.1037/0278-7393.27.5.1147 (crossref)"
+  ],
+  "NelsEtal04": [
+   "missing DOI: 10.3758/bf03195588 (crossref)"
+  ],
+  "NelsEtal89": [
+   "missing DOI: 10.1037/0278-7393.15.5.957 (crossref)"
+  ],
+  "NelsEtal92": [
+   "missing DOI: 10.1037/0033-295x.99.2.322 (crossref)"
+  ],
+  "NelsEtal93": [
+   "missing DOI: 10.1037/0278-7393.19.4.747 (crossref)"
+  ],
+  "NelsZhan00": [
+   "missing DOI: 10.3758/bf03212998 (crossref)"
+  ],
+  "NeweSimo76": [
+   "missing DOI: 10.1145/360018.360022 (crossref)"
+  ],
+  "NieEtal25": [
+   "missing DOI: 10.48550/arxiv.2502.09992 (arxiv-repository)"
+  ],
+  "Niv21": [
+   "missing DOI: 10.1037/bne0000471 (crossref)"
+  ],
+  "PeteEtal18": [
+   "missing DOI: 10.48550/arxiv.1802.05365 (arxiv-repository)"
+  ],
+  "PianHill22": [
+   "missing DOI: 10.48550/arxiv.2208.02957 (arxiv-repository)"
+  ],
+  "PoltMacL77": [
+   "missing DOI: 10.1037/0278-7393.3.5.560 (crossref)"
+  ],
+  "Posn80": [
+   "missing DOI: 10.1080/00335558008248231 (crossref)"
+  ],
+  "Post78": [
+   "missing DOI: 10.1037/0278-7393.4.2.146 (crossref)"
+  ],
+  "PostGray77": [
+   "missing DOI: 10.1037/0278-7393.3.3.255 (crossref)"
+  ],
+  "Proc81": [
+   "missing DOI: 10.1037/0033-295x.88.4.291 (crossref)"
+  ],
+  "Rabi89": [
+   "missing DOI: 10.1109/5.18626 (crossref)"
+  ],
+  "RacsEtal08": [
+   "missing DOI: 10.1080/17470210701728750 (crossref)"
+  ],
+  "Raic06": [
+   "missing DOI: 10.1126/science.1134405 (crossref)"
+  ],
+  "Rang19": [
+   "missing DOI: 10.1002/hipo.23007 (europepmc)"
+  ],
+  "RaoProc84": [
+   "missing DOI: 10.1037/0278-7393.10.3.386 (crossref)"
+  ],
+  "RatcEtal90": [
+   "missing DOI: 10.1037/0278-7393.16.2.163 (crossref)"
+  ],
+  "RatcMcKo81": [
+   "missing DOI: 10.1037/0033-295x.88.5.454 (crossref)"
+  ],
+  "RatcMcKo94": [
+   "missing DOI: 10.1037/0033-295x.101.1.177 (crossref)"
+  ],
+  "RatcMurd76": [
+   "missing DOI: 10.1037/0033-295x.83.3.190 (crossref)"
+  ],
+  "ReddEtal18": [
+   "missing DOI: 10.48550/arxiv.1809.03934 (arxiv-repository)"
+  ],
+  "ReppEtal79": [
+   "missing DOI: 10.1037/0096-1523.5.1.129 (crossref)"
+  ],
+  "RizzKaha00": [
+   "missing DOI: 10.1016/s0925-2312(00)00268-x (crossref)"
+  ],
+  "RockStei63": [
+   "missing DOI: 10.1126/science.140.3568.822 (crossref)"
+  ],
+  "Roed73": [
+   "missing DOI: 10.1016/s0022-5371(73)80044-1 (crossref)"
+  ],
+  "RoedCrow76": [
+   "missing DOI: 10.3758/bf03335138 (crossref)"
+  ],
+  "RoedKarp06a": [
+   "missing DOI: 10.1111/j.1467-9280.2006.01693.x (europepmc)"
+  ],
+  "RoedKarp06b": [
+   "missing DOI: 10.1111/j.1745-6916.2006.00012.x (europepmc)"
+  ],
+  "RoyEtal19": [
+   "missing DOI: 10.1101/668483 (biorxiv-preprint)"
+  ],
+  "RubiEtal99": [
+   "missing DOI: 10.1037/0278-7393.25.5.1161 (crossref)"
+  ],
+  "RumeEtal86b": [
+   "missing DOI: 10.1038/323533a0 (crossref)"
+  ],
+  "SackYang00": [
+   "missing DOI: 10.1037/0021-9010.85.1.112 (europepmc)"
+  ],
+  "SavaEtal01": [
+   "missing DOI: 10.1093/brain/124.1.219 (crossref)"
+  ],
+  "Scha99": [
+   "missing DOI: 10.1037/0003-066x.54.3.182 (crossref)"
+  ],
+  "SchaEtal94": [
+   "missing DOI: 10.1037/0278-7393.20.1.236 (crossref)"
+  ],
+  "SchnEtal06": [
+   "missing DOI: 10.1038/nature04701 (europepmc)"
+  ],
+  "SchuEtal97": [
+   "missing DOI: 10.1126/science.275.5306.1593 (crossref)"
+  ],
+  "Shan48": [
+   "missing DOI: 10.1002/j.1538-7305.1948.tb01338.x (crossref)"
+  ],
+  "ShanHowa10": [
+   "missing DOI: 10.1016/j.brainres.2010.07.045 (crossref)"
+  ],
+  "ShenEtal92": [
+   "missing DOI: 10.1056/nejm199208273270905 (crossref)"
+  ],
+  "SilvEtal19": [
+   "missing DOI: 10.1101/511782 (biorxiv-preprint)"
+  ],
+  "SlamMcEl83": [
+   "missing DOI: 10.1037/0278-7393.9.3.384 (crossref)"
+  ],
+  "SmitHalg89": [
+   "missing DOI: 10.1037/0278-7393.15.1.50 (crossref)"
+  ],
+  "Squi89": [
+   "missing DOI: 10.1037/0278-7393.15.2.241 (crossref)"
+  ],
+  "StYvNase18": [
+   "missing DOI: 10.1101/304774 (biorxiv-preprint)"
+  ],
+  "StopEtal07": [
+   "missing DOI: 10.1016/j.brainres.2007.07.019 (crossref)"
+  ],
+  "StopEtal97": [
+   "missing DOI: 10.1038/36335 (crossref)"
+  ],
+  "StreWixt98b": [
+   "missing DOI: 10.1037/0278-7393.24.6.1397 (crossref)"
+  ],
+  "TallEtal97": [
+   "missing DOI: 10.1523/jneurosci.17-02-00722.1997 (crossref)"
+  ],
+  "TanaEtal04": [
+   "missing DOI: 10.1038/nn1279 (crossref)"
+  ],
+  "TaubEtal90": [
+   "missing DOI: 10.1523/jneurosci.10-02-00420.1990 (pmc-jats)"
+  ],
+  "TideTull76": [
+   "missing DOI: 10.1086/260505 (crossref)"
+  ],
+  "ToppSchn99": [
+   "missing DOI: 10.1037/0278-7393.25.4.1071 (crossref)"
+  ],
+  "TouvEtal23": [
+   "missing DOI: 10.48550/arxiv.2307.09288 (arxiv-repository)"
+  ],
+  "Town84": [
+   "missing DOI: 10.1016/0022-2496(84)90007-5 (crossref)"
+  ],
+  "TrauEtal25": [
+   "missing DOI: 10.48550/arxiv.2510.27500 (arxiv-repository)"
+  ],
+  "TulcEtal23": [
+   "missing DOI: 10.48550/arxiv.2306.04723 (arxiv-repository)"
+  ],
+  "Tulv66": [
+   "missing DOI: 10.1016/s0022-5371(66)80016-6 (crossref)"
+  ],
+  "Tver77": [
+   "missing DOI: 10.1037/0033-295x.84.4.327 (crossref)"
+  ],
+  "TverKahn73": [
+   "missing DOI: 10.1016/0010-0285(73)90033-9 (crossref)"
+  ],
+  "WangEtal23": [
+   "missing DOI: 10.48550/arxiv.2310.11453 (arxiv-repository)"
+  ],
+  "WangGuo19": [
+   "missing DOI: 10.1016/j.neuroimage.2018.12.024 (crossref)"
+  ],
+  "Ward61": [
+   "missing DOI: 10.1111/j.1528-1167.1961.tb06248.x (europepmc)"
+  ],
+  "Warr75": [
+   "missing DOI: 10.1080/14640747508400525 (crossref)"
+  ],
+  "WellKirs74": [
+   "missing DOI: 10.3758/bf03336730 (crossref)"
+  ],
+  "Whit78": [
+   "missing DOI: 10.1037/0278-7393.4.6.685 (crossref)"
+  ],
+  "Wick98": [
+   "missing DOI: 10.1037/0033-295x.105.2.379 (crossref)"
+  ],
+  "WietKiel19": [
+   "missing DOI: 10.48550/arxiv.1901.10444 (arxiv-repository)"
+  ],
+  "WilsWilk97": [
+   "missing DOI: 10.1068/p260939 (crossref)"
+  ],
+  "WiseTulv76": [
+   "missing DOI: 10.1037/0278-7393.2.4.349 (crossref)"
+  ],
+  "WithMosc89": [
+   "missing DOI: 10.1037/0278-7393.15.1.22 (crossref)"
+  ],
+  "Wixt90": [
+   "missing DOI: 10.1037/0278-7393.16.5.927 (crossref)"
+  ],
+  "WixtStre00": [
+   "missing DOI: 10.1037/0033-295x.107.2.368 (crossref)"
+  ],
+  "WixtStre04": [
+   "missing DOI: 10.3758/bf03196616 (crossref)"
+  ],
+  "WongEtal09": [
+   "missing DOI: 10.1088/1741-2560/6/2/026006 (crossref)"
+  ],
+  "WyleEtal82": [
+   "missing DOI: 10.1002/ana.410110311 (europepmc)"
+  ],
+  "XieEtal25": [
+   "missing DOI: 10.48550/arxiv.2509.01142 (arxiv-repository)"
+  ],
+  "YangEtal25": [
+   "missing DOI: 10.48550/arxiv.2510.00183 (arxiv-repository)"
+  ],
+  "YeEtal25": [
+   "missing DOI: 10.48550/arxiv.2508.15487 (arxiv-repository)"
+  ],
+  "YoneEtal99": [
+   "missing DOI: 10.3758/bf03212975 (crossref)"
+  ],
+  "Youn79": [
+   "missing DOI: 10.1016/0001-6918(79)90005-2 (crossref)"
+  ],
+  "YounEtal86": [
+   "missing DOI: 10.1037/0096-1523.12.4.466 (crossref)"
+  ],
+  "ZhuEtal17": [
+   "missing DOI: 10.48550/arxiv.1703.10593 (arxiv-repository)"
+  ]
+ },
+ "errors": {},
+ "keys": {
+  "BradLang00": {
+   "accepted_doi": "10.1111/1469-8986.3720204",
+   "accepted_source": "europepmc",
+   "advisories": [
+    "missing DOI: 10.1111/1469-8986.3720204 (europepmc)"
+   ],
+   "rules": [
+    "issue-numeric"
+   ]
+  },
+  "DaviDavi12": {
+   "accepted_doi": "10.1080/21646821.2012.11079839",
+   "accepted_source": "crossref",
+   "advisories": [
+    "missing DOI: 10.1080/21646821.2012.11079839 (crossref)"
+   ],
+   "rules": [
+    "leading-the"
+   ]
+  },
+  "Feyn65": {
+   "accepted_doi": null,
+   "accepted_source": "loc-catalogue",
+   "advisories": [],
+   "rules": [
+    "dotted-acronym",
+    "same-firm"
+   ]
+  },
+  "GilmEtal79": {
+   "accepted_doi": "10.1055/s-0028-1095789",
+   "accepted_source": "europepmc",
+   "advisories": [
+    "missing DOI: 10.1055/s-0028-1095789 (europepmc)"
+   ],
+   "rules": [
+    "issue-numeric"
+   ]
+  },
+  "HogeEtal99": {
+   "accepted_doi": "10.1055/s-2007-971144",
+   "accepted_source": "europepmc",
+   "advisories": [
+    "missing DOI: 10.1055/s-2007-971144 (europepmc)"
+   ],
+   "rules": [
+    "issue-numeric"
+   ]
+  },
+  "JonaKord17": {
+   "accepted_doi": "10.1371/journal.pcbi.1005268",
+   "accepted_source": "pmc-jats",
+   "advisories": [
+    "missing DOI: 10.1371/journal.pcbi.1005268 (pmc-jats)"
+   ],
+   "rules": [
+    "pubmed-preprint-link"
+   ]
+  },
+  "LeeEtal21": {
+   "accepted_doi": "10.7554/elife.64972",
+   "accepted_source": "pmc-jats",
+   "advisories": [
+    "missing DOI: 10.7554/elife.64972 (pmc-jats)"
+   ],
+   "rules": [
+    "pubmed-preprint-link"
+   ]
+  },
+  "Mada21": {
+   "accepted_doi": "10.3758/s13423-020-01820-w",
+   "accepted_source": "pmc-jats",
+   "advisories": [
+    "missing DOI: 10.3758/s13423-020-01820-w (pmc-jats)"
+   ],
+   "rules": [
+    "pubmed-preprint-link"
+   ]
+  },
+  "MeyeEtal88": {
+   "accepted_doi": "10.1037/0033-295x.95.2.183",
+   "accepted_source": "europepmc",
+   "advisories": [
+    "missing DOI: 10.1037/0033-295x.95.2.183 (europepmc)"
+   ],
+   "rules": [
+    "surname-typo"
+   ]
+  },
+  "NguyEtal22": {
+   "accepted_doi": "10.1093/scan/nsab103",
+   "accepted_source": "pmc-jats",
+   "advisories": [
+    "missing DOI: 10.1093/scan/nsab103 (pmc-jats)"
+   ],
+   "rules": [
+    "pubmed-preprint-link"
+   ]
+  },
+  "NieuEtal01": {
+   "accepted_doi": "10.1111/1469-8986.3850752",
+   "accepted_source": "crossref",
+   "advisories": [
+    "missing DOI: 10.1111/1469-8986.3850752 (crossref)"
+   ],
+   "rules": [
+    "issue-numeric"
+   ]
+  },
+  "NoldEtal98": {
+   "accepted_doi": "10.1097/00001756-199810260-00032",
+   "accepted_source": "europepmc",
+   "advisories": [
+    "missing DOI: 10.1097/00001756-199810260-00032 (europepmc)"
+   ],
+   "rules": [
+    "surname-typo"
+   ]
+  },
+  "SawrEtal96": {
+   "accepted_doi": "10.1017/s1355617700001739",
+   "accepted_source": "europepmc",
+   "advisories": [
+    "missing DOI: 10.1017/s1355617700001739 (europepmc)"
+   ],
+   "rules": [
+    "issue-numeric"
+   ]
+  },
+  "SchaEtal11": {
+   "accepted_doi": "10.1016/j.tics.2011.08.004",
+   "accepted_source": "europepmc",
+   "advisories": [
+    "missing DOI: 10.1016/j.tics.2011.08.004 (europepmc)"
+   ],
+   "rules": [
+    "surname-typo"
+   ]
+  },
+  "StJaEtal08": {
+   "accepted_doi": "10.1162/jocn.2008.20091",
+   "accepted_source": "europepmc",
+   "advisories": [
+    "missing DOI: 10.1162/jocn.2008.20091 (europepmc)"
+   ],
+   "rules": [
+    "surname-typo"
+   ]
+  },
+  "StJaEtal12": {
+   "accepted_doi": "10.1016/j.neurobiolaging.2010.11.007",
+   "accepted_source": "europepmc",
+   "advisories": [
+    "missing DOI: 10.1016/j.neurobiolaging.2010.11.007 (europepmc)"
+   ],
+   "rules": [
+    "surname-typo"
+   ]
+  },
+  "StJaScha13": {
+   "accepted_doi": "10.1177/0956797612457377",
+   "accepted_source": "europepmc",
+   "advisories": [],
+   "rules": [
+    "surname-typo"
+   ]
+  },
+  "WangEtal19": {
+   "accepted_doi": "10.1523/jneurosci.2798-18.2019",
+   "accepted_source": "pmc-jats",
+   "advisories": [
+    "missing DOI: 10.1523/jneurosci.2798-18.2019 (pmc-jats)"
+   ],
+   "rules": [
+    "pubmed-preprint-link"
+   ]
+  }
+ },
+ "lost_verification": [],
+ "missing_doi_advisories": {
+  "currently_verified": 228,
+  "newly_verifiable": 16
+ },
+ "needs_review_reassessed": 2388,
+ "newly_verifiable": 18
+}

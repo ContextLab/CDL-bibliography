@@ -446,11 +446,15 @@ def valid_page(p):  # single page, no hyphens
     if len(p) == 0:  # empty string
         return True, "empty", None
 
-    try:
-        v = int(p)  # integer
-        return True, "int", v
-    except:
-        pass
+    if re.fullmatch(r"[0-9]+", p):  # integer
+        return True, "int", int(p)
+
+    # Source-backed alphanumeric article number with dot-separated parts
+    # (machinery fix 2026-09-25, KothEtal25: Crossref article-number
+    # "IMAG.a.136"). It must start with a letter, contain a digit, and have
+    # no hyphen, so it can never be read as a range.
+    if re.fullmatch(r"[A-Za-z][A-Za-z0-9]*(?:\.[A-Za-z0-9]+)+", p) and re.search(r"\d", p):
+        return True, "article-number", None
 
     # prefix of one or more letters, followed by a sequence of digits
     r1 = re.compile(r"""(?P<prefix>[a-zA-Z]+)(?P<digits>\d+)""")
@@ -648,7 +652,7 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps):
 # AA. --> A A
 # ...
 # AAA --> A A A
-def reformat_author(author):
+def reformat_author(author, fragment=False):
     if len(author.split(" and ")) > 1:
         return " and ".join([reformat_author(a) for a in author.split(" and ")])
 
@@ -666,10 +670,14 @@ def reformat_author(author):
     except (ValueError, KeyError):
         pass
 
-    try:
-        author = rearrange(author, preserve_non_letters=True)
-    except:
-        pass
+    # A hyphenated-initials fragment ('X' of 'J-X') is not a whole name and is
+    # not rearranged. A whole name that cannot be parsed is an error; it used
+    # to be swallowed by a bare except.
+    if not fragment:
+        try:
+            author = rearrange(author, preserve_non_letters=True)
+        except Exception as exc:  # rearrange raises bare Exception for malformed names
+            raise ValueError(f"cannot parse name {author!r}: {exc}") from exc
 
     unclumped = []
     names = author.split(" ")
@@ -679,7 +687,7 @@ def reformat_author(author):
         n = n.replace(".", "")
         if (remove_non_letters(n.lower()) not in suffixes) and (n == n.upper()):
             if n.find("-") >= 0:
-                n = "-".join([reformat_author(c) for c in n.split("-")])
+                n = "-".join([reformat_author(c, fragment=True) for c in n.split("-")])
             else:
                 for c in list(n):
                     unclumped.append(c)
@@ -936,7 +944,57 @@ def format_title(title):
     return " ".join([r for r in reformatted_title if len(r) > 0])
 
 
+def duplicate_fields(text):
+    """{citation key: [field names given more than once]} in raw BibTeX text.
+
+    bibtexparser keeps only one value of a repeated field, so a merge that
+    produces two ``Doi`` lines (PR #88: OwenMann24, HeusEtal21) would pass
+    silently. Scans entry bodies with the strict verification scanner's
+    brace/quote rules.
+    """
+    from verification import top_level_parts
+
+    found, pos = {}, 0
+    while True:
+        match = re.compile(r"@([A-Za-z]+)\s*([({])").search(text, pos)
+        if not match:
+            return found
+        kind, opener = match.groups()
+        closer = "}" if opener == "{" else ")"
+        depth, quoted, i = 0, False, match.end()
+        while i < len(text):
+            c = text[i]
+            if c == "\\":
+                i += 2
+                continue
+            if c == '"' and depth == 0:
+                quoted = not quoted
+            elif not quoted:
+                if c == closer and depth == 0:
+                    break
+                if c == "{":
+                    depth += 1
+                elif c == "}":
+                    depth -= 1
+            i += 1
+        body, pos = text[match.end():i], i + 1
+        if kind.lower() in {"comment", "string", "preamble"}:
+            continue
+        parts = top_level_parts(body)
+        key = parts.pop(0).strip()
+        names = [m[1].lower() for m in (re.match(r"\s*([\w-]+)\s*=", p) for p in parts) if m]
+        repeated = sorted({n for n in names if names.count(n) > 1})
+        if repeated:
+            found[key] = repeated
+
+
 def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
+    if bibfile != "github" and os.path.exists(bibfile):
+        with open(bibfile, "r", encoding="utf-8") as handle:
+            repeated = duplicate_fields(handle.read())
+        if repeated:
+            raise Exception("duplicate fields found: " + "; ".join(
+                f"{key}: {', '.join(names)}" for key, names in sorted(repeated.items())))
     bd = load_bibliography(bibfile)
 
     ids = get_vals(bd, "ID")

@@ -41,7 +41,14 @@ STATE_FORMS = {'mau': {'ma', 'mass', 'massachusetts'},
 
 
 def normalized_edition(value):
-    """Compare explicit edition numbers, retaining qualified/revised labels."""
+    """Compare explicit edition numbers, retaining qualified/revised labels.
+
+    The house form ``3\\textsuperscript{rd}`` (resolution-plan-2026-09-22,
+    "Editions") is read as ``3rd`` (machinery fix 2026-09-25, Sips13); only a
+    number followed by its own ordinal suffix is rewritten.
+    """
+    value = re.sub(r'^\s*([1-9]\d?)\s*\\textsuperscript\s*\{\s*(st|nd|rd|th)\s*\}',
+                   r'\1\2', str(value))
     text = normalized(value).rstrip('.')
     text = re.sub(r'\s+(?:ed|edition)$', '', text)
     words = {'first': 1, 'second': 2, 'third': 3, 'fourth': 4, 'fifth': 5,
@@ -734,8 +741,17 @@ def _edit_distance(a, b):
     return row[-1]
 
 
+def collapse_dotted_acronyms(value):
+    """'M.I.T. Press' -> 'MIT Press' (machinery fix 2026-09-25, Chom65).
+
+    Only runs of two or more single letters each followed by a period.
+    """
+    return re.sub(r"(?<![\w.])((?:[A-Za-z]\.){2,})",
+                  lambda m: m.group(1).replace(".", "") + " ", value or "").replace("  ", " ")
+
+
 def _publisher_tokens(value):
-    words = re.findall(r"[a-z0-9]+", folded(value).replace('&', ' and '))
+    words = re.findall(r"[a-z0-9]+", folded(collapse_dotted_acronyms(value)).replace('&', ' and '))
     return [w for w in words if w not in GENERIC_PUBLISHER_WORDS and len(w) > 1]
 
 
@@ -825,7 +841,14 @@ def propose_corrections(fields, result):
     for c in parsed:
         record, issues = c['record'], c['issues']
         diff = {i.split(':', 1)[0] for i in issues}
-        if not issues or any(':' not in i for i in issues) or diff - set(PROPOSABLE) \
+        if not issues:
+            # A record that matches the citation exactly is the cited edition
+            # itself: it is a plausible option that needs no change, and no
+            # other record may be proposed over it (machinery 2026-09-25,
+            # Feyn65 once 'M.I.T. Press' matched '{MIT} Press').
+            options.append((c, []))
+            continue
+        if any(':' not in i for i in issues) or diff - set(PROPOSABLE) \
                 or any(i.startswith('year: conflicting') for i in issues):
             continue
         cited = _surnames(fields.get('author') or fields.get('editor'))
@@ -937,6 +960,8 @@ def propose_corrections(fields, result):
             options.append((c, changes))
     if len(options) > 1:
         return {'group': 'several-plausible-editions', 'reason': 'More than one catalogue edition differs in at most two fields'}
+    if options and not options[0][1]:
+        return {'group': 'cited-edition-matches', 'reason': 'One catalogue edition matches the citation exactly'}
     if not options:
         return {'group': 'catalogue-different-edition-or-work',
                 'reason': 'No parsed catalogue record agrees with the citation on the edition identity'}

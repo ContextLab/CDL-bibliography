@@ -24,6 +24,7 @@ from verification import (
     load_entries,
     normalize_author_suffix,
     same_suffix,
+    source_name_suffix,
     without_suffix_tokens,
     normalize_doi,
     normalize_pages,
@@ -41,7 +42,7 @@ from bibtexparser.customization import splitname
 EPMC_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 # Resolver upgrades revisit unresolved saved evidence once. Previously accepted
 # entries retain their approval and original checked_at without reassessment.
-RESOLVER_VERSION = 29  # 29: verification/apply-2026-09-25 stage 1 rules (suffixes ignored; catalogue
+RESOLVER_VERSION = 30  # 30: verification/machinery-2026-09-25 PR-test fixes. 29: verification/apply-2026-09-25 stage 1 rules (suffixes ignored; catalogue
 #     publisher same-firm variants). 28: verification/phase0-2026-09-22 rules
 EPMC_FIELDS = {
     "id",
@@ -340,6 +341,25 @@ def cited_work_dois(fields, candidates, supplied, aliases=None):
     return cited
 
 
+# Route reassessment hook (machinery 2026-09-25). A source route registers
+# ``reassess_saved(fields, previous) -> result | None`` (like
+# reassess_saved_arxiv): it rebuilds its own decision from the raw evidence it
+# saved in ``previous`` and returns None when it has nothing saved for this
+# entry. ``review_key`` names the route's checkpoint field carried over from
+# ``previous`` (like 'arxiv_review'). Registered routes run after the built-in
+# ones, in registration order. Pair it with
+# verification.register_approval_validator for snapshot imports.
+SAVED_REASSESSORS = []
+
+
+def register_saved_reassessor(reassess_saved, review_key=None):
+    if not callable(reassess_saved):
+        raise TypeError("A saved-evidence reassessor must be callable")
+    if all(fn is not reassess_saved for fn, _ in SAVED_REASSESSORS):
+        SAVED_REASSESSORS.append((reassess_saved, review_key))
+    return reassess_saved
+
+
 def reassess(entry, previous):
     """Reevaluate saved evidence; an old-policy human approval is not migrated."""
     if not previous:
@@ -458,6 +478,12 @@ def reassess(entry, previous):
         result = arxiv
     if previous.get('arxiv_review'):
         result['arxiv_review'] = previous['arxiv_review']
+    for reassess_saved, review_key in SAVED_REASSESSORS:
+        routed = reassess_saved(entry['fields'], previous)
+        if routed is not None:
+            result = routed
+        if review_key and previous.get(review_key):
+            result[review_key] = previous[review_key]
     if previous["status"] == "provider_error" and not candidates:
         result = previous
     if previous.get("external_evidence"):
@@ -579,11 +605,15 @@ def blocking_pubmed_relationships(raw):
     links = container.get("commentCorrection")
     if not isinstance(links, list):
         return True
-    return any(not isinstance(link, dict)
-               or link.get("type") not in {"Comment in", "Comment on"}
-               or link.get("source") != "MED"
-               or not re.fullmatch(r"\d+", str(link.get("id", "")))
-               for link in links)
+    return any(not isinstance(link, dict) or not (
+        (link.get("type") in {"Comment in", "Comment on"} and link.get("source") == "MED"
+         and re.fullmatch(r"\d+", str(link.get("id", ""))))
+        # Machinery fix 2026-09-25 (ChenEtal21, SchwEtal22): Europe PMC's
+        # "Preprint in" link from the journal article to its own earlier
+        # preprint (source PPR) is version provenance, not a correction.
+        or (link.get("type") == "Preprint in" and link.get("source") == "PPR"
+            and re.fullmatch(r"PPR\d+", str(link.get("id", "")))))
+        for link in links)
 
 
 def epmc_record(raw, primary):
@@ -657,7 +687,7 @@ def compatible_authors(primary, secondary):
     for a, b in zip(first, second):
         if normalized(a.get("family", "")) != normalized(b.get("family", "")):
             return False
-        if not same_suffix(a.get("suffix", ""), b.get("suffix", "")):
+        if not same_suffix(source_name_suffix(a.get("suffix", "")), source_name_suffix(b.get("suffix", ""))):
             return False  # recognized suffixes are ignored (user decision 2026-09-24/25)
         aa = without_suffix_tokens(given_name_tokens(a.get("given", "")))
         bb = without_suffix_tokens(given_name_tokens(b.get("given", "")))
@@ -681,6 +711,75 @@ def authors_with_pubmed_suffixes(primary, secondary):
             first["suffix"] = second["suffix"]
             added = True
     return people if added and compatible_authors({"author": people}, secondary) else None
+
+
+def _edit_distance(a, b):
+    row = list(range(len(b) + 1))
+    for i, x in enumerate(a, 1):
+        prev, row[0] = row[0], i
+        for j, y in enumerate(b, 1):
+            prev, row[j] = row[j], min(row[j] + 1, row[j - 1] + 1, prev + (x != y))
+    return row[-1]
+
+
+def registry_surname_typo(fields, primary, mapped, secondary_evidence):
+    """A Crossref surname typo contradicted by PubMed and by library consensus.
+
+    Machinery fix 2026-09-25 (MeyeEtal88: Crossref "Kounois", DOI-linked
+    PubMed 3375400 "Kounios", cited "J Kounios", five other cdl.bib entries
+    "Kounios" and none "Kounois"). Returns the resolution record, or None.
+    Every condition must hold:
+      * the DOI-linked PubMed record shares an ISSN with the Crossref record
+        and matches the citation on title, author, year, journal, volume and
+        pages, which Crossref also matches except for the byline;
+      * Crossref and PubMed list the same number of authors with identical
+        surnames except in exactly ONE position, where the two surnames are
+        within two edits of each other (both at least four letters) and the
+        given names agree (a spelling slip, not another person);
+      * library consensus: other cdl.bib entries use the cited spelling for
+        that person (surname + first initial) and none uses Crossref's.
+    """
+    try:
+        for field in ("title", "author", "year", "journal", "volume", "pages"):
+            if not secondary_evidence.get(field, {}).get("match"):
+                return None
+            if field != "author" and not primary.get("evidence", {}).get(field, {}).get("match"):
+                return None
+        if not set(mapped.get("ISSN") or []) & set(primary["record"].get("ISSN") or []):
+            return None
+        crossref, pubmed = primary["record"].get("author") or [], mapped.get("author") or []
+        names = split_authors(fields.get("author", ""))
+        if not crossref or not (len(crossref) == len(pubmed) == len(names)):
+            return None
+        differ = [i for i, (a, b) in enumerate(zip(crossref, pubmed))
+                  if normalized(a.get("family", "")) != normalized(b.get("family", ""))]
+        if len(differ) != 1:
+            return None
+        i = differ[0]
+        from correction_proposals import _fold, _person_key, library_people
+        wrong, right = _fold(crossref[i].get("family", "")), _fold(pubmed[i].get("family", ""))
+        if min(len(wrong), len(right)) < 4 or _edit_distance(wrong, right) > 2:
+            return None
+        given_a = without_suffix_tokens(given_name_tokens(crossref[i].get("given", "")))
+        given_b = without_suffix_tokens(given_name_tokens(pubmed[i].get("given", "")))
+        if not given_a or not given_b or not all(
+                given_token_matches(x, y) or given_token_matches(y, x) for x, y in zip(given_a, given_b)):
+            return None
+        cited = _person_key(names[i])
+        if not cited or cited[0] != right:
+            return None
+    except (ValueError, TypeError, KeyError, AttributeError):
+        return None
+    # A library that cannot be read is an error, never "no consensus".
+    people = library_people()
+    key = fields.get("ID")
+    cited_elsewhere = people.get(cited, set()) - {key}
+    registry_elsewhere = people.get((wrong, cited[1]), set()) - {key}
+    if not cited_elsewhere or registry_elsewhere:
+        return None
+    return {"rule": "registry-surname-typo", "registry_surname": crossref[i].get("family", ""),
+            "pubmed_surname": pubmed[i].get("family", ""),
+            "library_consensus": sorted(cited_elsewhere)}
 
 
 def assess_epmc(fields, primary, raw, retrieved_at, request_url):
@@ -708,8 +807,12 @@ def assess_epmc(fields, primary, raw, retrieved_at, request_url):
             field = issue.split(":", 1)[0]
             supported = secondary_evidence.get(field, {}).get("match")
             can_resolve = False
+            typo = None
             if field == "author" and supported:
                 can_resolve = suffix_match or compatible_authors(primary["record"], mapped)
+                if not can_resolve and issue == "author: Author surnames/order differ":
+                    typo = registry_surname_typo(fields, primary, mapped, secondary_evidence)
+                    can_resolve = bool(typo)
             elif field == "journal" and supported:
                 can_resolve = bool(
                     set(mapped["ISSN"]) & set(primary["record"].get("ISSN", []))
@@ -762,7 +865,7 @@ def assess_epmc(fields, primary, raw, retrieved_at, request_url):
                 )
             if can_resolve:
                 resolved.append(
-                    {"finding": issue, "authority": "PubMed via Europe PMC"}
+                    dict({"finding": issue, "authority": "PubMed via Europe PMC"}, **(typo or {}))
                 )
                 evidence[field] = dict(
                     secondary_evidence[field], source_name="europepmc"
