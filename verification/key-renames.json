@@ -146,5 +146,76 @@
   "date": "2026-09-25",
   "reason": "prfix001 (PR #87 entry): DataCite 10.5281/zenodo.19094654 lists two creators (Jeremy R. Manning, Claude); author 'J R Manning and {Claude}', two-author key rule",
   "commit": "2179d34"
+ },
+ {
+  "old_key": "LeeEtal20",
+  "new_key": "LeeEtal20a",
+  "date": "2026-09-25",
+  "reason": "replace001: published version replaces preprint (user-approved 2026-09-25); suffix rule: the published version of LeeEtal19 (Lee, Briguglio, Cohen, Romani & Lee, Cell 2020) becomes LeeEtal20b, so the existing LeeEtal20 (Lee, Bellana & Chen 2020, same work, unchanged) becomes LeeEtal20a",
+  "commit": "replace001"
+ },
+ {
+  "old_key": "BetzEtal19",
+  "new_key": "BetzEtal20",
+  "date": "2026-09-25",
+  "kind": "replacement",
+  "reason": "replace001: published version replaces preprint (user-approved 2026-09-25); preprint BetzEtal19 replaced by the published version, DOI 10.1016/j.neuroimage.2020.116687",
+  "commit": "replace001"
+ },
+ {
+  "old_key": "ChieHone19",
+  "new_key": "ChieHone20",
+  "date": "2026-09-25",
+  "kind": "replacement",
+  "reason": "replace001: published version replaces preprint (user-approved 2026-09-25); preprint ChieHone19 replaced by the published version, DOI 10.1016/j.neuron.2020.02.013",
+  "commit": "replace001"
+ },
+ {
+  "old_key": "GralFinn21",
+  "new_key": "GralFinn22",
+  "date": "2026-09-25",
+  "kind": "replacement",
+  "reason": "replace001: published version replaces preprint (user-approved 2026-09-25); preprint GralFinn21 replaced by the published version, DOI 10.1093/scan/nsac019",
+  "commit": "replace001"
+ },
+ {
+  "old_key": "LeeEtal19",
+  "new_key": "LeeEtal20b",
+  "date": "2026-09-25",
+  "kind": "replacement",
+  "reason": "replace001: published version replaces preprint (user-approved 2026-09-25); preprint LeeEtal19 replaced by the published version, DOI 10.1016/j.cell.2020.09.024",
+  "commit": "replace001"
+ },
+ {
+  "old_key": "LuriEtal18",
+  "new_key": "LuriEtal20",
+  "date": "2026-09-25",
+  "kind": "replacement",
+  "reason": "replace001: published version replaces preprint (user-approved 2026-09-25); preprint LuriEtal18 replaced by the published version, DOI 10.1162/netn_a_00116",
+  "commit": "replace001"
+ },
+ {
+  "old_key": "NussEtal18",
+  "new_key": "NussEtal20",
+  "date": "2026-09-25",
+  "kind": "replacement",
+  "reason": "replace001: published version replaces preprint (user-approved 2026-09-25); preprint NussEtal18 replaced by the published version, DOI 10.1037/xge0000753",
+  "commit": "replace001"
+ },
+ {
+  "old_key": "SilvEtal19",
+  "new_key": "SilvEtal19",
+  "date": "2026-09-25",
+  "kind": "replacement",
+  "reason": "replace001: published version replaces preprint (user-approved 2026-09-25); preprint SilvEtal19 replaced by the published version, DOI 10.1523/jneurosci.0360-19.2019; key unchanged (same first author, author count and year)",
+  "commit": "replace001"
+ },
+ {
+  "old_key": "ZhenEtal19",
+  "new_key": "ZhenEtal20",
+  "date": "2026-09-25",
+  "kind": "replacement",
+  "reason": "replace001: published version replaces preprint (user-approved 2026-09-25); preprint ZhenEtal19 replaced by the published version, DOI 10.1073/pnas.1922248117",
+  "commit": "replace001"
  }
 ]
