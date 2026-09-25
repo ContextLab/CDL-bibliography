@@ -1,0 +1,770 @@
+[
+ {
+  "key": "BiswEtal95",
+  "action": "update",
+  "changes": {
+   "doi": {
+    "before": null,
+    "after": "10.1002/mrm.1910340409",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mrm.1910340409",
+      "quote": "\"DOI\":\"10.1002\\/mrm.1910340409\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1002/mrm.1910340409",
+      "quote": "\"title\":[\"Functional connectivity in the motor cortex of resting human brain using echo\\u2010planar mri\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Published peer-reviewed article (Magn Reson Med 34(4):537-541, 1995); Crossref title/volume/issue/pages match the entry. Crossref splits the 2nd author as given 'F.' family 'Zerrin Yetkin' (known Crossref quirk; entry keeps F Z Yetkin)."
+ },
+ {
+  "key": "HogeEtal99",
+  "action": "update",
+  "changes": {
+   "doi": {
+    "before": null,
+    "after": "10.1055/s-2007-971144",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1055/s-2007-971144",
+      "quote": "\"DOI\":\"10.1055\\/s-2007-971144\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1055/s-2007-971144",
+      "quote": "\"title\":[\"Caffeine Improves Cognitive Performance After Strenuous Physical Exercise\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref record: Int J Sports Med vol 20, issue 06, pages 354-361, issued 1999-08; matches the entry."
+ },
+ {
+  "key": "PuceEtal99",
+  "action": "update",
+  "changes": {
+   "doi": {
+    "before": null,
+    "after": "10.1093/cercor/9.5.445",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/9.5.445",
+      "quote": "\"DOI\":\"10.1093\\/cercor\\/9.5.445\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/9.5.445",
+      "quote": "\"title\":[\"Electrophysiological Studies of Human Face Perception. III: Effects of Top-down Processing on Face-specific Potentials\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref record: Cerebral Cortex 9(5):445-458, 1999 (part III; parts I and II are 9.5.415 and 9.5.431, different works)."
+ },
+ {
+  "key": "LiEtal19",
+  "action": "update",
+  "changes": {
+   "doi": {
+    "before": null,
+    "after": "10.1016/j.neuroimage.2019.04.016",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2019.04.016",
+      "quote": "\"DOI\":\"10.1016\\/j.neuroimage.2019.04.016\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2019.04.016",
+      "quote": "\"title\":[\"Global signal regression strengthens association between resting-state functional connectivity and behavior\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Published NeuroImage 196:126-141 (2019) version, not the bioRxiv preprint 10.1101/548644."
+ },
+ {
+  "key": "ParaEtal04",
+  "action": "update",
+  "changes": {
+   "doi": {
+    "before": null,
+    "after": "10.1093/brain/awh288",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awh288",
+      "quote": "\"DOI\":\"10.1093\\/brain\\/awh288\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awh288",
+      "quote": "\"title\":[\"Involvement of human thalamus in the preparation of self-paced movement\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref record: Brain 127(12):2717-2731; matches the entry."
+ },
+ {
+  "key": "vanEEtal18",
+  "action": "update",
+  "changes": {
+   "doi": {
+    "before": null,
+    "after": "10.7554/elife.36928",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7554/elife.36928",
+      "quote": "\"DOI\":\"10.7554\\/elife.36928\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7554/elife.36928",
+      "quote": "\"title\":[\"Spatial sampling in human visual cortex is modulated by both spatial and feature-based attention\"]"
+     }
+    ]
+   }
+  },
+  "notes": "DOI of the published, peer-reviewed eLife article (vol 7, e36928), not the bioRxiv preprint 10.1101/147223. Crossref authors: van Es, Theeuwes, Knapen (match)."
+ },
+ {
+  "key": "Palm78",
+  "action": "keep",
+  "changes": {},
+  "notes": "No DOI exists for the cited 1978 Erlbaum edition. The only DOI is the Routledge 2024 reissue chapter 10.4324/9781032633275-13 (Crossref: publisher 'Routledge', issued 2024-02-26, publisher-location London) - a different edition, so it is NOT added. Crossref bibliographic search for the chapter (2026-09-25) returns only the 2024 reissue."
+ },
+ {
+  "key": "KahaMill13",
+  "action": "update",
+  "changes": {
+   "doi": {
+    "before": null,
+    "after": "10.4135/9781452257044.n183",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+      "quote": "\"DOI\":\"10.4135\\/9781452257044.n183\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+      "quote": "\"container-title\":[\"Encyclopedia of the Mind\"]"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+      "quote": "\"published-print\":{\"date-parts\":[[2013]]}"
+     }
+    ]
+   },
+   "title": {
+    "before": "Memory, recall dynamics",
+    "after": "Memory recall, dynamics",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+      "quote": "\"title\":[\"Memory Recall, Dynamics\"]"
+     }
+    ]
+   }
+  },
+  "notes": "DOI confirmed via Crossref: reference-entry 'Memory Recall, Dynamics' in Encyclopedia of the Mind, SAGE Publications, Inc., 2013. Title changed to SAGE's published form per user. Crossref gives no authors/pages; authors, editor, volume 2 and pp. 493-497 stay as verified in the pilot (lab publication page and Kahana CV). The SAGE Knowledge landing page (sk.sagepub.com/reference/encyclopedia-of-the-mind/n183.xml) redirects scripts to an SSO login, so it cannot serve as evidence."
+ },
+ {
+  "key": "ZimaEtal23",
+  "action": "update",
+  "changes": {
+   "doi": {
+    "before": null,
+    "after": "10.31234/osf.io/2ps6e",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "\"DOI\":\"10.31234\\/osf.io\\/2ps6e\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "\"title\":[\"Category-based and location-based volitional covert attention affect memory at different timescales\"]"
+     }
+    ]
+   },
+   "volume": {
+    "before": "doi.org/10.31234/osf.io/2ps6e",
+    "after": null,
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+      "quote": "\"DOI\":\"10.31234\\/osf.io\\/2ps6e\""
+     }
+    ],
+    "why": "the DOI was stored in volume; move it to doi and drop volume, as FranLiu18 ({PsyArXiv} + Doi, no Volume) already does"
+   }
+  },
+  "notes": "Year 2023 kept per user (latest version: OSF API date_modified 2023-04-10, https://api.osf.io/v2/preprints/2ps6e/ quote '\"date_modified\":\"2023-04-10T18:58:27.956456\"'). No published journal version: OSF lists no article_doi, Crossref relation is empty and a Crossref bibliographic search (2026-09-25) finds only the preprint. Three other cdl.bib entries (GralFinn21, LuriEtal18, NussEtal18) also store PsyArXiv DOIs in volume; the same fix applies."
+ },
+ {
+  "key": "AndeEtal66",
+  "action": "update",
+  "changes": {
+   "number": {
+    "before": null,
+    "after": "3--4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1748-1716.1966.tb03317.x",
+      "quote": "\"issue\":\"3-4\""
+     }
+    ],
+    "why": "user rule: issue ranges use --"
+   },
+   "title": {
+    "before": "A quantitatve study on the nigro-striatal dopamine neurons",
+    "after": "A quantitative study on the nigro-neostriatal dopamine neuron system in the rat",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5967596&retmode=xml",
+      "quote": "A quantitative study on the nigro-neostriatal dopamine neuron system in the rat."
+     }
+    ]
+   },
+   "author": {
+    "before": "N E Anden and K Fuxe and B Hamberger and T Hokfelt",
+    "after": "N E And{\\'e}n and K Fuxe and B Hamberger and T H{\\\"o}kfelt",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5967596&retmode=xml",
+      "quote": "<LastName>And&#xe9;n</LastName><ForeName>N E</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5967596&retmode=xml",
+      "quote": "<LastName>Hamberger</LastName><ForeName>B</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5967596&retmode=xml",
+      "quote": "<LastName>H&#xf6;kfelt</LastName><ForeName>T</ForeName>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1748-1716.1966.tb03317.x",
+      "quote": "\"family\":\"Fuxe\""
+     }
+    ]
+   },
+   "doi": {
+    "before": null,
+    "after": "10.1111/j.1748-1716.1966.tb03317.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1748-1716.1966.tb03317.x",
+      "quote": "\"DOI\":\"10.1111\\/j.1748-1716.1966.tb03317.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change vs. the pilot proposal: number '3-4' -> '3--4' (user). PubMed gives issue 3; Crossref 3-4 (double issue); user chose 3--4. Title/author/doi carried over from the pilot proposal (re-checked today). Crossref misspells Hamberger as 'Hamberoer', PubMed misspells Fuxe as 'Hfuxe'; each correct form is confirmed by the other source."
+ },
+ {
+  "key": "MikoEtal13b",
+  "action": "update",
+  "changes": {
+   "ENTRYTYPE": {
+    "before": "article",
+    "after": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "@inproceedings{mikolov-etal-2013-linguistic"
+     }
+    ]
+   },
+   "journal": {
+    "before": "Proceedings of the National Association for Computational Linguistics",
+    "after": null,
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "Proceedings of the 2013 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+     }
+    ]
+   },
+   "booktitle": {
+    "before": null,
+    "after": "Proceedings of the Conference of the North {American} Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "Proceedings of the 2013 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+     }
+    ],
+    "why": "year omitted per user rule (redundant with year)"
+   },
+   "address": {
+    "before": null,
+    "after": "Atlanta, {GA}",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "Address: Atlanta, Georgia"
+     }
+    ]
+   },
+   "publisher": {
+    "before": null,
+    "after": "Association for Computational Linguistics",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N13-1090/",
+      "quote": "Publisher: Association for Computational Linguistics"
+     }
+    ]
+   }
+  },
+  "notes": "Booktitle now omits '2013' (user). No DOI: the ACL Anthology page for N13-1090 lists none, and the 10.3115/v1 Crossref candidates are unrelated 2014-2015 papers."
+ },
+ {
+  "key": "XiaoEtal10",
+  "action": "update",
+  "changes": {
+   "booktitle": {
+    "before": "{IEEE} Conference on Computer Vision and Pattern Recognition",
+    "after": "{IEEE} Computer Society Conference on Computer Vision and Pattern Recognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+      "quote": "\"container-title\":[\"2010 IEEE Computer Society Conference on Computer Vision and Pattern Recognition\"]"
+     }
+    ],
+    "why": "year omitted per user rule"
+   },
+   "pages": {
+    "before": null,
+    "after": "3485--3492",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+      "quote": "\"page\":\"3485-3492\""
+     }
+    ]
+   },
+   "author": {
+    "before": "J Xiao and J Hays and K Ehinger and A Oliva and A Torralba",
+    "after": "J Xiao and J Hays and K A Ehinger and A Oliva and A Torralba",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+      "quote": "\"given\":\"Jianxiong\",\"family\":\"Xiao\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+      "quote": "\"given\":\"James\",\"family\":\"Hays\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+      "quote": "\"given\":\"Krista A.\",\"family\":\"Ehinger\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+      "quote": "\"given\":\"Aude\",\"family\":\"Oliva\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+      "quote": "\"given\":\"Antonio\",\"family\":\"Torralba\""
+     }
+    ]
+   },
+   "doi": {
+    "before": null,
+    "after": "10.1109/cvpr.2010.5539970",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+      "quote": "\"DOI\":\"10.1109\\/cvpr.2010.5539970\""
+     }
+    ]
+   }
+  },
+  "notes": "Booktitle is Crossref's container title minus the leading '2010' (user). Not the 2016 IJCV extension (10.1007/s11263-014-0748-y), a different work."
+ },
+ {
+  "key": "ScotEtal07",
+  "action": "update",
+  "changes": {
+   "ENTRYTYPE": {
+    "before": "inbook",
+    "after": "incollection",
+    "evidence": [
+     {
+      "url": "https://catdir.loc.gov/catdir/enhancements/fy0701/2006031809-t.html",
+      "quote": "P. Scott, H. Asoko, J. Leach, Student Conceptions and Conceptual Learning in Science."
+     }
+    ],
+    "why": "a chapter by its own authors inside an edited handbook; house rule: a chapter with a booktitle is @incollection"
+   },
+   "title": {
+    "before": "Handbook of research on science education",
+    "after": "Student conceptions and conceptual learning in science",
+    "evidence": [
+     {
+      "url": "https://catdir.loc.gov/catdir/enhancements/fy0701/2006031809-t.html",
+      "quote": "P. Scott, H. Asoko, J. Leach, Student Conceptions and Conceptual Learning in Science."
+     }
+    ]
+   },
+   "chapter": {
+    "before": "Student conceptions and conceptual learning in science",
+    "after": null,
+    "evidence": [
+     {
+      "url": "https://catdir.loc.gov/catdir/enhancements/fy0701/2006031809-t.html",
+      "quote": "P. Scott, H. Asoko, J. Leach, Student Conceptions and Conceptual Learning in Science."
+     }
+    ],
+    "why": "chapter title moves to title; chapter field dropped"
+   },
+   "booktitle": {
+    "before": null,
+    "after": "Handbook of Research on Science Education",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006031809/mods",
+      "quote": "<title>Handbook of research on science education</title>"
+     }
+    ]
+   },
+   "editor": {
+    "before": "S K Abell and K Appleton and D Hanuscin",
+    "after": "S K Abell and N G Lederman",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006031809/mods",
+      "quote": "edited by Sandra K. Abell and Norman G. Lederman."
+     }
+    ]
+   },
+   "publisher": {
+    "before": "Routledge",
+    "after": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006031809/mods",
+      "quote": "<namePart>Lawrence Erlbaum Associates</namePart>"
+     }
+    ]
+   },
+   "address": {
+    "before": null,
+    "after": "Mahwah, {NJ}",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006031809/mods",
+      "quote": "<placeTerm type=\"text\">Mahwah, N.J</placeTerm>"
+     }
+    ]
+   }
+  },
+  "notes": "No pages field (user: 'shouldn't be a pages field'); the pilot's 31--56 came only from the 2013 Taylor & Francis digital reissue and is dropped. The LoC table of contents for the 2007 handbook confirms the chapter and its three authors. No DOI for the 2007 edition: the T&F chapter DOI 10.4324/9780203824696-3 does not resolve (doi.org: 404 / handle not found) and the book DOI 10.4324/9780203824696 is the Routledge reissue. NEEDS USER: if the intent is to cite the whole handbook (not the chapter), the entry would instead be @book with editors and no authors; the cited authors Scott, Asoko and Leach are chapter authors, so @incollection is proposed."
+ },
+ {
+  "key": "Hook69",
+  "action": "update",
+  "changes": {
+   "title": {
+    "before": "The posthumous works of {R}obert {H}ooke: with a new introduction by {R}ichard {S.} {W}estfall",
+    "after": "The posthumous works of {R}obert {H}ooke",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21113026M.json",
+      "quote": "\"title\": \"The posthumous works of Robert Hooke\""
+     },
+     {
+      "url": "https://lccn.loc.gov/68026912/mods",
+      "quote": "<title>posthumous works of Robert Hooke</title>"
+     }
+    ]
+   },
+   "address": {
+    "before": null,
+    "after": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/68026912/mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   }
+  },
+  "notes": "Title per user; 'With a new introd. by Richard S. Westfall' is LoC's statement of responsibility, not title text. No DOI for the 1969 Johnson Reprint edition (the 2019 Routledge reissue 10.4324/9780429060717 is a different edition). Address carried over from the pilot (LoC: New York)."
+ },
+ {
+  "key": "Jame90",
+  "action": "update",
+  "changes": {
+   "volume": {
+    "before": null,
+    "after": "I",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10538-000",
+      "quote": "\"title\":[\"The principles of psychology, Vol I.\"]"
+     }
+    ],
+    "why": "user: keep the 'volume I' designation; roman Volume = {III} form already used in cdl.bib"
+   },
+   "doi": {
+    "before": null,
+    "after": "10.1037/10538-000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10538-000",
+      "quote": "\"DOI\":\"10.1037\\/10538-000\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/10538-000",
+      "quote": "\"issued\":{\"date-parts\":[[1890]]}"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/10538-000",
+      "quote": "\"publisher\":\"Henry Holt and Co\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/10538-000",
+      "quote": "\"publisher-location\":\"New York\""
+     }
+    ]
+   },
+   "author": {
+    "before": "William James",
+    "after": "W James",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10538-000",
+      "quote": "\"given\":\"William\",\"family\":\"James\""
+     }
+    ]
+   }
+  },
+  "notes": "APA PsycBooks DOI 10.1037/10538-000 is volume I of the 1890 Henry Holt (New York) edition, which is the volume the user wants cited. Volume II's APA DOI 10.1037/11059-000 is dated 1913 (a later printing), so it is not used. Title stays 'The principles of psychology'; alternative if preferred: put the volume into the title ('The principles of psychology, vol. {I}') instead of a volume field."
+ },
+ {
+  "key": "Mink07",
+  "action": "update",
+  "changes": {
+   "edition": {
+    "before": null,
+    "after": "5\\textsuperscript{th}",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "<edition>5th ed.</edition>"
+     }
+    ]
+   },
+   "editor": {
+    "before": "Joseph Jankovic and Eduardo Tolosa",
+    "after": "J Jankovic and E Tolosa",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "<namePart>Jankovic, Joseph.</namePart>"
+     },
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "<namePart>Tolosa, Eduardo.</namePart>"
+     }
+    ]
+   },
+   "publisher": {
+    "before": "Lippincott, Williams, and Wilkins",
+    "after": "Lippincott Williams \\& Wilkins",
+    "evidence": [
+     {
+      "url": "https://lccn.loc.gov/2006018969/mods",
+      "quote": "<namePart>Lippincott Williams &amp; Wilkins</namePart>"
+     }
+    ]
+   }
+  },
+  "notes": "Chapter author for the 5th edition still NOT confirmed from a 5th-edition source. Checked 2026-09-25: LoC TOC (https://catdir.loc.gov/catdir/toc/ecip0615/2006018969.html) lists '1 Functional Organization of the Basal Ganglia' with no authors; the Internet Archive scan of this exact edition (parkinsonsdiseas0000unse_q1k2, ISBN 0781778816, LCCN 2006018969) has a MARC 505 contents note with titles only, and its text/search-inside is access-restricted; Open Library OL9410655M has no TOC; Google Books API quota exhausted. Only the 6th edition (2015) LWW page names Jonathan W. Mink as chapter 1 author. Author (and 'Jonathan W Mink' vs house 'J W Mink') left unchanged; pages not found. Resolving needs a physical/PDF copy of the 5th edition or an institutional Ovid login."
+ },
+ {
+  "key": "Beaz05",
+  "action": "update",
+  "changes": {
+   "title": {
+    "before": "{SWIG}: {S}implified {W}rapper and {I}nterface {G}enerator",
+    "after": "{SWIG}: simplified wrapper and interface generator",
+    "evidence": [
+     {
+      "url": "https://www.swig.org/",
+      "quote": "Simplified Wrapper and Interface Generator"
+     }
+    ],
+    "why": "house rule: sentence case, lowercase after colon"
+   },
+   "howpublished": {
+    "before": null,
+    "after": "\\url{https://www.swig.org}",
+    "evidence": [
+     {
+      "url": "https://www.swig.org/",
+      "quote": "Simplified Wrapper and Interface Generator"
+     }
+    ]
+   },
+   "author": {
+    "before": "D Beazley",
+    "after": "D Beazley",
+    "evidence": [
+     {
+      "url": "https://www.swig.org/guilty.html",
+      "quote": "Dave Beazley (Chicago, Illinois). SWIG core, type system, Python, Tcl, Perl."
+     }
+    ],
+    "why": "unchanged; evidence that Beazley is SWIG's (lead) developer"
+   }
+  },
+  "notes": "Source found: the SWIG project site (software, @misc). Year 2005 is consistent with three 2005 releases (https://www.swig.org/history.html: 'June 11, 2005. SWIG-1.3.25 released.', 'October 9, 2005. SWIG-1.3.26 released.', 'October 15, 2005. SWIG-1.3.27 released.') but nothing ties the citation to one version. NEEDS USER: keep as @misc with the URL (optionally a version note), or replace with the citable paper D M Beazley (1996) 'SWIG: an easy to use tool for integrating scripting languages with C and C++', 4th USENIX Tcl/Tk Workshop (a different work/year, not verified here), or remove. No DOI exists for SWIG itself."
+ },
+ {
+  "key": "RamaEtal12b",
+  "action": "update",
+  "changes": {
+   "author": {
+    "before": "A G Ramayya and K A Zaghloul and B C Lega and C T Weidemann and M J Kahana and G H Baltuch",
+    "after": "A G Ramayya and K A Zaghloul and B C Lega and C T Weidemann and G H Baltuch and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=7e782cce-865f-4776-818d-306dc2f9f8e5&cKey=1671e297-ad00-44f3-957e-81aa69af3082&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "A.G. Ramayya: None. K.A. Zaghloul: None. B.C. Lega: None. C.T. Weidemann: None. G.H. Baltuch: None. M.J. Kahana: None."
+     }
+    ],
+    "why": "SfN planner lists Baltuch before Kahana (last two swapped in cdl.bib)"
+   },
+   "number": {
+    "before": null,
+    "after": "800.09",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=7e782cce-865f-4776-818d-306dc2f9f8e5&cKey=1671e297-ad00-44f3-957e-81aa69af3082&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "Program#/Poster#: 800.09/BBB40"
+     }
+    ],
+    "why": "house form for SfN abstracts: Number = {program no.}, as in KrauEtal12"
+   },
+   "title": {
+    "before": "Neural correlates of reinforcement learning in the human substantia nigra as measured by the local field potential",
+    "after": "Neural correlates of reinforcement learning in the human substantia nigra as measured by the local field potential",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=7e782cce-865f-4776-818d-306dc2f9f8e5&cKey=1671e297-ad00-44f3-957e-81aa69af3082&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "Neural correlates of reinforcement learning in the human substantia nigra as measured by the local"
+     },
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=7e782cce-865f-4776-818d-306dc2f9f8e5&cKey=1671e297-ad00-44f3-957e-81aa69af3082&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "local field potential"
+     }
+    ],
+    "why": "unchanged; confirmed (the page title prints 'field' with an fi-ligature, so the last word is quoted from the keyword line)"
+   },
+   "address": {
+    "before": "New Orleans, {LA}",
+    "after": "New Orleans, {LA}",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=7e782cce-865f-4776-818d-306dc2f9f8e5&cKey=1671e297-ad00-44f3-957e-81aa69af3082&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "2012 Neuroscience Meeting Planner. New Orleans, LA: Society for Neuroscience, 2012."
+     }
+    ],
+    "why": "unchanged; confirmed"
+   }
+  },
+  "notes": "FOUND in the SfN 2012 Neuroscience Meeting Planner (OASIS, meeting 2964): Program 800.09, poster BBB40, Wednesday Oct 17, 2012. Keep (do not remove). The URL needs a full browser User-Agent (short UAs get HTTP 403); see SFN-SOURCE.md."
+ },
+ {
+  "key": "SommEtal12",
+  "action": "update",
+  "changes": {
+   "ENTRYTYPE": {
+    "before": "conference",
+    "after": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=bc702170-2269-4b8a-bbc5-3f72c7ec7bac&cKey=ce65da50-3fbe-4236-8a2c-9722072dd724&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "2012 Neuroscience Meeting Planner. New Orleans, LA: Society for Neuroscience, 2012."
+     }
+    ],
+    "why": "house form for SfN abstracts (RamaEtal12b, KrauEtal12)"
+   },
+   "booktitle": {
+    "before": null,
+    "after": "Society for Neuroscience Abstracts",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=bc702170-2269-4b8a-bbc5-3f72c7ec7bac&cKey=ce65da50-3fbe-4236-8a2c-9722072dd724&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "2012 Neuroscience Meeting Planner. New Orleans, LA: Society for Neuroscience, 2012."
+     }
+    ],
+    "why": "house booktitle used by 24 SfN-abstract entries"
+   },
+   "number": {
+    "before": null,
+    "after": "746.04",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=bc702170-2269-4b8a-bbc5-3f72c7ec7bac&cKey=ce65da50-3fbe-4236-8a2c-9722072dd724&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "Program#/Poster#: 746.04/D27"
+     }
+    ]
+   },
+   "address": {
+    "before": null,
+    "after": "New Orleans, {LA}",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=bc702170-2269-4b8a-bbc5-3f72c7ec7bac&cKey=ce65da50-3fbe-4236-8a2c-9722072dd724&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "2012 Neuroscience Meeting Planner. New Orleans, LA: Society for Neuroscience, 2012."
+     }
+    ]
+   },
+   "publisher": {
+    "before": "Society for Neuroscience",
+    "after": null,
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=bc702170-2269-4b8a-bbc5-3f72c7ec7bac&cKey=ce65da50-3fbe-4236-8a2c-9722072dd724&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "New Orleans, LA: Society for Neuroscience, 2012."
+     }
+    ],
+    "why": "moved to organization, as in RamaEtal12b"
+   },
+   "organization": {
+    "before": null,
+    "after": "Society for Neuroscience",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=bc702170-2269-4b8a-bbc5-3f72c7ec7bac&cKey=ce65da50-3fbe-4236-8a2c-9722072dd724&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "New Orleans, LA: Society for Neuroscience, 2012."
+     }
+    ]
+   },
+   "author": {
+    "before": "F T Sommer and G Buzsaki and G Agarwal",
+    "after": "F T Sommer and G Buzsaki and G Agarwal",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=bc702170-2269-4b8a-bbc5-3f72c7ec7bac&cKey=ce65da50-3fbe-4236-8a2c-9722072dd724&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "F.T. Sommer: None. G. Buzsaki: None. G. Agarwal: None."
+     }
+    ],
+    "why": "unchanged; order confirmed (Sommer presenting, first)"
+   },
+   "title": {
+    "before": "The spatial structure of hippocampal theta rhythms reflects behavioral state",
+    "after": "The spatial structure of hippocampal theta rhythms reflects behavioral state",
+    "evidence": [
+     {
+      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=bc702170-2269-4b8a-bbc5-3f72c7ec7bac&cKey=ce65da50-3fbe-4236-8a2c-9722072dd724&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
+      "quote": "The spatial structure of hippocampal theta rhythms reflects behavioral state"
+     }
+    ],
+    "why": "unchanged; confirmed"
+   }
+  },
+  "notes": "FOUND in the SfN 2012 Neuroscience Meeting Planner: Program 746.04, poster D27, Wednesday Oct 17, 2012. Keep (do not remove). The pilot's worry about author order is resolved: the planner lists Sommer first. The planner prints BUZSAKI without the accent; house may prefer Buzs{\\'a}ki (as printed elsewhere)."
+ }
+]
