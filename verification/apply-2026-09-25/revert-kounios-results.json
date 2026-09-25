@@ -1,0 +1,69 @@
+{
+ "stages": [
+  {
+   "cycle": "run",
+   "seconds": 520.02,
+   "network_requests": 2,
+   "added_review_records": 4,
+   "batch_statuses_before": {
+    "metadata_verified": 1
+   },
+   "batch_statuses_after": {
+    "needs_review": 1
+   },
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [],
+   "previously_accepted_now_unresolved": [
+    "MeyeEtal88"
+   ],
+   "newly_verified_outside_batch": [],
+   "library_statuses_before": {
+    "metadata_verified": 3997,
+    "needs_review": 2425
+   },
+   "library_statuses": {
+    "metadata_verified": 3996,
+    "needs_review": 2426
+   }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 511.92,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch_statuses_before": {
+    "metadata_verified": 1
+   },
+   "batch_statuses_after": {
+    "needs_review": 1
+   },
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [],
+   "previously_accepted_now_unresolved": [
+    "MeyeEtal88"
+   ],
+   "newly_verified_outside_batch": [],
+   "library_statuses_before": {
+    "metadata_verified": 3997,
+    "needs_review": 2425
+   },
+   "library_statuses": {
+    "metadata_verified": 3996,
+    "needs_review": 2426
+   }
+  }
+ ],
+ "entries": {
+  "MeyeEtal88": {
+   "status_before": "metadata_verified",
+   "status": "needs_review",
+   "fingerprint_before": "v2:2f05cb3871394eb703aa19f681e0f4057f67308aba34663f058a3fd2896b435b",
+   "fingerprint": "v2:8c52347cde079c1a28702e6f04dcc2eb8e9fcd54a2f1ceeb316cf7e755fa9972",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  }
+ }
+}
