@@ -526,11 +526,19 @@ def test_editor_keys_share_suffixes_and_authors_take_precedence(tmp_path, monkey
     assert formatter_errors(tmp_path, twins.replace("SchaTulv94b", "SchaTulv94")) != {}
 
 
-@pytest.mark.parametrize("publisher", ["W.H. Freeman", "V. H. Winston", "D.C. Heath", "{W}. {H}. Freeman",
-                                       "{D}. Appleton and Company", "Freeman"])
-def test_publisher_dotted_initials_are_preserved(publisher):
-    # Marr82 (LoC 3260955): the formatter used to rewrite "W.H. Freeman" as "W.h. Freeman".
-    assert helpers.format_journal_name(publisher, key=helpers.publisher_key, dotted_initials=True) == publisher
+@pytest.mark.parametrize("publisher,house", [
+    ("W.H. Freeman", "W H Freeman"), ("V. H. Winston", "V H Winston"), ("D.C. Heath", "D C Heath"),
+    ("{W}. {H}. Freeman", "W H Freeman"), ("{D}. Appleton and Company", "D Appleton and Company"),
+    ("W H Freeman", "W H Freeman"), ("V H Winston", "V H Winston"), ("Alfred A Knopf", "Alfred A Knopf"),
+    ("Freeman", "Freeman"),
+])
+def test_publisher_initials_use_the_house_form(publisher, house):
+    # User decision 2026-09-26 ("W.H. Freeman should be W H Freeman"), reversing stage 2B-i's
+    # dotted-initials rule: publisher initials are undotted and space-separated, like author
+    # initials. The formatter used to rewrite "W.H. Freeman" as "W.h. Freeman" (Marr82) and
+    # to brace undotted initials ("{W} {H} Freeman").
+    assert helpers.format_journal_name(publisher, key=helpers.publisher_key, dotted_initials=True) == house
+    assert helpers.format_journal_name(house, key=helpers.publisher_key, dotted_initials=True) == house
 
 
 @pytest.mark.parametrize("publisher,house", [
@@ -546,9 +554,10 @@ def test_marr82_publisher_passes_check_bib(tmp_path, monkeypatch):
     monkeypatch.chdir(ROOT)
     raw = ("@book{Marr82,\n\tAuthor = {D Marr},\n\tPublisher = {%s},\n\tTitle = {Vision: a computational "
            "investigation into the human representation and processing of visual information},\n\tYear = {1982}}")
-    assert formatter_errors(tmp_path, raw % "W.H. Freeman") == {}
+    assert formatter_errors(tmp_path, raw % "W H Freeman") == {}
+    assert formatter_errors(tmp_path, raw % "W.H. Freeman") == {"Marr82": {"publisher": "W H Freeman"}}
     assert formatter_errors(tmp_path, raw % "W.h. freeman") == {"Marr82": {"publisher": "W.h. Freeman"}}
-    # Dotted initials are a publisher rule only: journal names are formatted as before.
+    # The initials rule is a publisher rule only: journal names are formatted as before.
     assert helpers.format_journal_name("W.H. Freeman", key=helpers.publisher_key) == "W.h. Freeman"
 
 
@@ -608,3 +617,114 @@ def test_recheck_cached_keeps_arxiv_approvals(tmp_path):
     assert approval["status"] == "metadata_verified"
     result, requests, _ = recheck(tmp_path, "PianHill22", c["fields"], approval)
     assert result["status"] == "metadata_verified" and requests == 0
+
+
+# 15. Stage 2B-ii (2026-09-27): ordinals, proceedings names, publisher initials ---------
+# Real records frozen from verification/baseline.jsonl.gz (89c5b70) by
+# verification/apply-2026-09-27/build_cases.py.
+
+CASES27 = json.loads(gzip.open(ROOT / "verification/apply-2026-09-27/cases.json.gz").read())["cases"]
+
+
+def case27(key, **fields):
+    data = deepcopy(CASES27[key])
+    data["fields"].update(fields)
+    return data
+
+
+@pytest.mark.parametrize("value,text", [
+    ("Proceedings of the 30\\textsuperscript{th} Annual Conference", "proceedings of the 30th annual conference"),
+    ("2\\textsuperscript{nd}", "2nd"), ("The 21\\textsuperscript{st} century", "the 21st century"),
+])
+def test_normalized_reads_house_ordinals(value, text):
+    assert v.normalized(value) == text
+
+
+@pytest.mark.parametrize("value", ["x\\textsuperscript{2}", "\\textsuperscript{th}", "E = mc\\textsuperscript{2}"])
+def test_other_superscripts_still_need_review(value):
+    # Only a number followed by an ordinal suffix is read; any other superscript is markup.
+    with pytest.raises(ValueError):
+        v.normalized(value)
+
+
+@pytest.mark.parametrize("a,b,same", [
+    ("thirtieth annual conference", "30th annual conference", True),
+    ("proceedings of the twenty-fourth annual", "proceedings of the 24th annual", True),
+    ("twenty first annual", "21st annual", True),
+    ("the third edition", "the 3rd edition", True),
+    ("eleventh workshop", "11th workshop", True),
+    ("thirtieth annual conference", "31st annual conference", False),
+    ("thirty annual", "30th annual", False),
+    ("the 3rd edition", "the 3th edition", False),
+    ("first", "1th", False),
+])
+def test_ordinal_words_equal_numeric_ordinals(a, b, same):
+    assert (v.ordinal_form(a) == v.ordinal_form(b)) is same
+
+
+def test_house_ordinal_booktitle_still_matches_crossref():
+    # NguyEtal18 is verified from Crossref with "16th"; the house form must still match.
+    c = case27("NguyEtal18")
+    evidence, _ = v.compare_record(c["fields"], c["record"])
+    assert evidence["booktitle"]["match"]
+    booktitle = c["fields"]["booktitle"].replace("16th", "16\\textsuperscript{th}")
+    evidence, issues = v.compare_record(dict(c["fields"], booktitle=booktitle), c["record"])
+    assert evidence["booktitle"]["match"] and not any(i.startswith("booktitle") for i in issues)
+    # Negative control: a wrong ordinal does not match.
+    evidence, _ = v.compare_record(dict(c["fields"], booktitle=booktitle.replace("16", "17")), c["record"])
+    assert not evidence["booktitle"]["match"]
+
+
+def test_numeric_house_ordinal_matches_a_word_ordinal_source():
+    # AltmSchu02's Crossref chapter record names "the Twenty-Fourth Annual Conference".
+    c = case27("AltmSchu02")
+    assert "Twenty-Fourth" in c["record"]["container-title"][0]
+    cited = "Proceedings of the 24\\textsuperscript{th} Annual Conference of the Cognitive Science Society"
+    evidence, _ = v.compare_record(dict(c["fields"], booktitle=cited), c["record"])
+    assert evidence["booktitle"]["match"]
+    evidence, _ = v.compare_record(dict(c["fields"], booktitle=cited.replace("24", "25")), c["record"])
+    assert not evidence["booktitle"]["match"]
+    evidence, _ = v.compare_record(dict(c["fields"], booktitle=cited.replace("24\\textsuperscript{th} ", "")),
+                                   c["record"])
+    assert not evidence["booktitle"]["match"]
+
+
+def test_proceedings_name_without_year_keeps_its_acronym():
+    # CarvEtal22a (verified): the house form drops the year but the citation keeps "({comsnets})".
+    c = case27("CarvEtal22a")
+    assert v.compare_record(c["fields"], c["record"])[0]["booktitle"]["match"]
+    house = "14\\textsuperscript{th} International Conference on Communication Systems \\& Networks ({comsnets})"
+    evidence, issues = v.compare_record(dict(c["fields"], booktitle=house), c["record"])
+    assert evidence["booktitle"]["match"] and not any(i.startswith("booktitle") for i in issues)
+    # Without the acronym (year and acronym both dropped) still matches, as before.
+    evidence, _ = v.compare_record(dict(c["fields"], booktitle=house.replace(" ({comsnets})", "")), c["record"])
+    assert evidence["booktitle"]["match"]
+    # Negative controls: another ordinal, another acronym, a year that is not the source's.
+    for wrong in (house.replace("14", "15"), house.replace("comsnets", "infocom"),
+                  "2021 " + house.replace("\\textsuperscript{th}", "th")):
+        assert not v.compare_record(dict(c["fields"], booktitle=wrong), c["record"])[0]["booktitle"]["match"]
+
+
+@pytest.mark.parametrize("key,house", [("Marr82", "W H Freeman"), ("MeltMart72", "V H Winston")])
+def test_catalogue_publisher_initials_match_the_house_form(key, house):
+    # LoC prints "W.H. Freeman" / "V. H. Winston"; the house form is undotted.
+    c = case27(key)
+    record = catalogue_review.parse_edition(c["raw_marcxml"])
+    evidence, issues = catalogue_review.compare_edition(c["fields"], record, c["raw_marcxml"])
+    assert evidence["publisher"]["match"] and not issues
+    evidence, issues = catalogue_review.compare_edition(dict(c["fields"], publisher=house), record, c["raw_marcxml"])
+    assert evidence["publisher"]["match"] and not issues
+    assert "source_name_variant" not in evidence["publisher"]  # an exact match, not the same-firm fallback
+    # Negative control: other initials are a different publisher.
+    evidence, _ = catalogue_review.compare_edition(dict(c["fields"], publisher="J H Freeman" if key == "Marr82"
+                                                        else "V J Winston"), record, c["raw_marcxml"])
+    assert not evidence["publisher"]["match"]
+
+
+@pytest.mark.parametrize("a,b,same", [
+    ("W.H. Freeman", "W H Freeman", True), ("W. H. Freeman", "W H Freeman", True),
+    ("{W}. {H}. Freeman", "W H Freeman", True), ("D. Appleton and Company", "D Appleton and Company", True),
+    ("W.H. Freeman", "J H Freeman", False), ("W.H. Freeman", "WH Freeman", False),
+])
+def test_publisher_initials_compare_undotted(a, b, same):
+    assert (v.publisher_initials(v.normalized(a)) == v.publisher_initials(v.normalized(b))) is same

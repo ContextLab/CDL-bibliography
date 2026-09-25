@@ -587,15 +587,18 @@ def generate_correct_pages(bd):
     return target_pages, unfixable
 
 
-DOTTED_INITIALS = re.compile(r"(?:[A-Z]\.)+")
+DOTTED_INITIALS = re.compile(r"(?:\{[A-Z]\}\.|[A-Z]\.)+|\{[A-Z]\}|[A-Z]")
 
 
 def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initials=False):
     """Format a journal, booktitle, publisher or address name.
 
-    ``dotted_initials`` (publishers, stage 2B-i 2026-09-26): a word made only of
-    capital initials with periods ("W.H.", "V.", "D.C.") is kept verbatim; the
-    word-capitalizing rule used to turn "W.H. Freeman" into "W.h. Freeman" (Marr82).
+    ``dotted_initials`` (publishers): a word made only of capital initials, with or
+    without periods or braces ("W.H.", "V.", "{W}.", "W"), is written in the house
+    initials style, undotted and space-separated: "W.H. Freeman" -> "W H Freeman"
+    (user decision 2026-09-26, reversing stage 2B-i's dotted form). The
+    word-capitalizing rule used to turn "W.H. Freeman" into "W.h. Freeman" (Marr82),
+    and force_caps braced undotted initials ("{W} {H} Freeman").
     """
     # The legacy spreadsheet contains aliases that erase a historical title,
     # monograph designation, or journal section. Formatting cannot establish
@@ -623,7 +626,7 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
 
     for i, w in enumerate(words):
         if dotted_initials and DOTTED_INITIALS.fullmatch(as_given[i]):
-            words[i] = as_given[i]
+            words[i] = " ".join(re.findall(r"[A-Z]", as_given[i]))
             continue
         # Check if word is fully braced (starts and ends with braces around the whole word)
         is_fully_braced = before_letters(w, "{") and after_letters(w, "}")

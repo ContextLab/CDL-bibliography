@@ -10,7 +10,7 @@ from bibtexparser.customization import splitname
 from catalogue_discovery import M, MAX_BYTES, fetch_search, parse_search, search_query
 from verification import (author_evidence, compare_record, current_results,
                           export_snapshot, given_name_tokens, given_token_matches,
-                          load_entries, normalize_title, normalized, outcome, run_lock,
+                          load_entries, normalize_book_publisher, normalize_title, normalized, outcome, run_lock,
                           split_authors, validate_output_path, write_report)
 
 # Policy 7 re-opens unresolved books for the widened grammar (see
@@ -589,7 +589,7 @@ def compare_edition(fields, record, xml):
         # (c) A two-publisher imprint: the cited place must belong to the
         # cited publisher's own group, never to the other publisher.
         mine = [i for i, g in enumerate(imprints)
-                if normalized(g['publisher']) == normalized(fields['publisher'])]
+                if normalize_book_publisher(g['publisher']) == normalize_book_publisher(fields['publisher'])]
         if mine:
             places = [p for i in mine for p in imprints[i]['address']]
     if fields.get('publisher') and 'publisher: missing evidence or mismatch' in issues:
@@ -750,9 +750,9 @@ def collapse_dotted_acronyms(value):
                   lambda m: m.group(1).replace(".", "") + " ", value or "").replace("  ", " ")
 
 
-def _publisher_tokens(value):
+def _publisher_tokens(value, keep_initials=False):
     words = re.findall(r"[a-z0-9]+", folded(collapse_dotted_acronyms(value)).replace('&', ' and '))
-    return [w for w in words if w not in GENERIC_PUBLISHER_WORDS and len(w) > 1]
+    return [w for w in words if w not in GENERIC_PUBLISHER_WORDS and (keep_initials or len(w) > 1)]
 
 
 def publisher_name_form(cited, catalogue):
@@ -779,11 +779,18 @@ def publisher_same_firm(cited, catalogue):
     ('Harper Prism' / 'HarperPrism'), or the cited name is the catalogue
     name's acronym ('{MIT} Press'). A catalogue name that drops a cited word
     ('Harcourt, Brace, and World' / 'Harcourt, Brace and Company') is not a
-    match: that may be another firm or era.
+    match: that may be another firm or era. A cited initial is distinctive
+    (2026-09-27): 'J H Freeman' is not the firm of 'W.H. Freeman', while
+    'W H Freeman' is (the letters run together as the collapsed 'WH').
     """
     mine, theirs = _publisher_tokens(cited or ''), _publisher_tokens(catalogue or '')
     if not mine or not theirs:
         return False
+    initials = _publisher_tokens(cited or '', keep_initials=True)
+    if initials != mine:
+        # the cited name has initials: every one must be in the catalogue name
+        full = _publisher_tokens(catalogue or '', keep_initials=True)
+        return set(initials) <= set(full) or ''.join(initials) == ''.join(full)
     if set(mine) <= set(theirs) or ''.join(mine) == ''.join(theirs):
         return True
     initials = ''.join(w[0] for w in re.findall(r"[a-z]+", folded(catalogue)) if w not in {'of', 'and', 'the'})

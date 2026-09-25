@@ -833,6 +833,49 @@ def normalize_doi(value):
     return value.lower()
 
 
+HOUSE_ORDINAL = re.compile(r"(\d)\s*\\textsuperscript\s*\{\s*(st|nd|rd|th)\s*\}")
+_ORDINAL_UNITS = {"first": 1, "second": 2, "third": 3, "fourth": 4, "fifth": 5, "sixth": 6,
+                  "seventh": 7, "eighth": 8, "ninth": 9}
+_ORDINAL_WORDS = {**_ORDINAL_UNITS, "tenth": 10, "eleventh": 11, "twelfth": 12, "thirteenth": 13,
+                  "fourteenth": 14, "fifteenth": 15, "sixteenth": 16, "seventeenth": 17,
+                  "eighteenth": 18, "nineteenth": 19, "twentieth": 20, "thirtieth": 30,
+                  "fortieth": 40, "fiftieth": 50, "sixtieth": 60, "seventieth": 70,
+                  "eightieth": 80, "ninetieth": 90, "hundredth": 100}
+_ORDINAL_TENS = {"twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
+                 "seventy": 70, "eighty": 80, "ninety": 90}
+_COMPOUND_ORDINAL = re.compile(r"\b(" + "|".join(_ORDINAL_TENS) + r")[- ](" + "|".join(_ORDINAL_UNITS) + r")\b")
+_SIMPLE_ORDINAL = re.compile(r"\b(" + "|".join(sorted(_ORDINAL_WORDS, key=len, reverse=True)) + r")\b")
+
+
+def numeric_ordinal(number):
+    """30 -> '30th', 21 -> '21st', 112 -> '112th'."""
+    suffix = "th" if 11 <= number % 100 <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(number % 10, "th")
+    return f"{number}{suffix}"
+
+
+def ordinal_form(text):
+    """Ordinal words as numeric ordinals, for comparison only (user decision 2026-09-26).
+
+    Applied to already-normalized (lowercase) text: 'thirtieth' -> '30th',
+    'twenty-fourth'/'twenty fourth' -> '24th'. Numeric ordinals are left as written,
+    so a wrong suffix ('3th') never equals '3rd' or 'third'. Cardinals ('thirty')
+    are unchanged.
+    """
+    text = _COMPOUND_ORDINAL.sub(lambda m: numeric_ordinal(_ORDINAL_TENS[m[1]] + _ORDINAL_UNITS[m[2]]), text)
+    return _SIMPLE_ORDINAL.sub(lambda m: numeric_ordinal(_ORDINAL_WORDS[m[1]]), text)
+
+
+def publisher_initials(text):
+    """Publisher initials compare undotted (user decision 2026-09-26, 'W H Freeman').
+
+    Applied to normalized text: a single letter followed by a period is an initial
+    ('w.h. freeman', 'w. h. freeman' -> 'w h freeman'). Undotted run-together
+    letters ('wh freeman') are not split: that may be a name or an acronym.
+    """
+    text = re.sub(r"(?<![\w.])((?:[a-z]\.\s*)+)", lambda m: " ".join(re.findall(r"[a-z]", m[1])) + " ", text)
+    return " ".join(text.split())
+
+
 def normalized(value):
     """Conservative typography normalization; retain accents, subtitles and math.
 
@@ -873,6 +916,10 @@ def normalized(value):
         "d",
         "t",
     }
+    # House ordinals (user decision 2026-09-26): '30\\textsuperscript{th}' reads as
+    # '30th'. Only a number followed by an ordinal suffix; any other superscript
+    # stays unknown markup.
+    value = HOUSE_ORDINAL.sub(r"\1\2", value)
     if any(command not in allowed for command in re.findall(r"\\([A-Za-z]+)", value)):
         raise ValueError("Unknown LaTeX command needs source review")
     if any(
@@ -1060,7 +1107,7 @@ PACKAGING_TAIL = re.compile(
     r"\s*[,:-]\s*(?:two|three|four|five|2|3|4|5)[ -]volume (?:pack|set)\s*$", re.I)
 
 
-def proceedings_name_forms(value):
+def proceedings_name_forms(value, keep_acronym=False):
     """Source proceedings name without its year and trailing acronym.
 
     House rule (resolution-plan-2026-09-22, "Proceedings names omit the
@@ -1068,9 +1115,10 @@ def proceedings_name_forms(value):
     (CVPR)' -> 'IEEE Conference on Computer Vision and Pattern Recognition'.
     Only four-digit years (1800-2099) as whole words and one final
     parenthetical acronym (two or more capitals, optional 2/4-digit year) are
-    removed. Ordinals, words and every other parenthetical are kept.
+    removed. Ordinals, words and every other parenthetical are kept. With
+    ``keep_acronym`` only the year is removed (CarvEtal22a cites the acronym).
     """
-    text = ACRONYM_TAIL.sub("", value)
+    text = value if keep_acronym else ACRONYM_TAIL.sub("", value)
     text = YEAR_WORD.sub("", text)
     text = re.sub(r"\s+([,.:;])", r"\1", " ".join(text.split()))
     return re.sub(r"^[,.:;]\s*|[,.:;]\s*$", "", text).strip()
@@ -1093,12 +1141,14 @@ def venue_variant_match(fields, record, field):
     if not local:
         return None
     try:
-        target = normalized(local)
+        target = ordinal_form(normalized(local))
         for value in record.get("container-title") or []:
             value = str(value)
             if record.get("type") == "proceedings-article" and field == "booktitle":
-                if normalized(proceedings_name_forms(value)) == target:
+                if ordinal_form(normalized(proceedings_name_forms(value))) == target:
                     return "Source proceedings name without its year/acronym (house form omits them)"
+                if ordinal_form(normalized(proceedings_name_forms(value, keep_acronym=True))) == target:
+                    return "Source proceedings name without its year (house form omits it)"
             if record.get("type") in {"book-chapter", "book"} and field == "booktitle":
                 if book_title_forms(value) != value and normalized(book_title_forms(value)) == target:
                     return "Source book title without its series number or volume-pack designation"
@@ -1578,6 +1628,15 @@ def rival_blocks(fields, selected, rival):
         return True
 
 
+# Text fields whose ordinal words compare equal to numeric ordinals (ordinal_form).
+ORDINAL_FIELDS = {"title", "journal", "booktitle", "publisher"}
+
+
+def normalize_book_publisher(value):
+    """Book publishers: typography normalization plus undotted initials."""
+    return publisher_initials(normalized(value))
+
+
 def compare_record(fields, record, doi_alias=None):
     """Return field evidence and blockers. Similarity scores cannot authorize."""
     evidence, issues = {}, []
@@ -1588,10 +1647,13 @@ def compare_record(fields, record, doi_alias=None):
         values = [str(v) for v in values if v is not None and str(v)]
         if not local and not required:
             return
+        compare = transform
+        if field in ORDINAL_FIELDS:
+            compare = lambda value: ordinal_form(transform(value))  # noqa: E731
         try:
-            canonical = transform(local) if local else ""
+            canonical = compare(local) if local else ""
             match = bool(
-                canonical and values and any(canonical == transform(v) for v in values)
+                canonical and values and any(canonical == compare(v) for v in values)
             )
         except ValueError:
             match = False
@@ -1700,6 +1762,7 @@ def compare_record(fields, record, doi_alias=None):
             kind == "book" and field == "publisher",
             transform=normalize_publisher
             if field == "publisher" and kind == "article"
+            else normalize_book_publisher if field == "publisher"
             else normalize_issue if field == "number"
             else normalized,
         )
