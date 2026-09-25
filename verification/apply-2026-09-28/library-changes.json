@@ -1,0 +1,6 @@
+{
+ "note": "Keys that left or joined cdl.bib outside key-renames.json, read by .bibcheck/validate-current-checkpoint.py. removed: user-approved removals; added: entries added by merged pull requests (their renamed originals are logged in key-renames.json).",
+ "removed": ["NetwLab25"],
+ "added": [],
+ "last_staged": ".bibcheck/apply-2026-09-28/pilot001-staged.bib"
+}

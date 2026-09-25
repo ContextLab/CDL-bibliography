@@ -96,5 +96,27 @@
   "date": "2026-09-25",
   "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:7808282): author 'J Kounios' -> 'J Kounios and E C Montgomery and R W Smith'; key follows the corrected metadata (user decision 2026-09-26)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
+ },
+ {
+  "old_key": "KahaEtal22",
+  "new_key": "KahaEtal24",
+  "date": "2026-09-25",
+  "reason": "pilot001 (research pilot, user: correct): year 2022 -> 2024 (The Oxford Handbook of Human Memory, Crossref 10.1093/oxfordhb/9780190917982.013.2); key follows the corrected metadata (user decision 2026-09-26)",
+  "commit": "pending"
+ },
+ {
+  "old_key": "Mink07",
+  "new_key": "Mink15",
+  "date": "2026-09-25",
+  "reason": "pilot001 (user 2026-09-25): cite the 6th edition, 2015 (LoC 2015458479; LWW contents list names Jonathan W. Mink for chapter 1); key follows the corrected metadata",
+  "commit": "pending"
+ },
+ {
+  "old_key": "Beaz05",
+  "new_key": "Beaz96",
+  "date": "2026-09-25",
+  "kind": "replacement",
+  "reason": "pilot001 (user 2026-09-25): REPLACEMENT, not a rename: the undated SWIG software citation is replaced by D M Beazley (1996) 'SWIG: an easy to use tool for integrating scripting languages with C and C++', Fourth Annual USENIX Tcl/Tk Workshop (usenix.org legacy proceedings page)",
+  "commit": "pending"
  }
 ]

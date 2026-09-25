@@ -1,0 +1,1662 @@
+{
+ "batch": "pilot001",
+ "generated": "2026-09-25 11:31:31",
+ "count": 47,
+ "skipped": {
+  "HogeEtal99": "no change left: the resolution is already in cdl.bib",
+  "Palm78": "user: keep unchanged (no DOI for the cited 1978 Erlbaum edition)",
+  "RamaEtal12b": "held: SfN route KeyError 'accepted_doi' in osf_review.merge (code fix needed; see README)",
+  "SommEtal12": "held: SfN route KeyError 'accepted_doi' in osf_review.merge (code fix needed; see README)"
+ },
+ "proposals": [
+  {
+   "key": "AndeEtal66",
+   "fingerprint": "v2:47d752b9ccfe98b81708142a62fc78e9beeb0545c63e4819fd8fc2065e1523ff",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "3--4",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1111/j.1748-1716.1966.tb03317.x",
+       "quote": "\"issue\":\"3-4\""
+      }
+     ]
+    },
+    "title": {
+     "before": "A quantitatve study on the nigro-striatal dopamine neurons",
+     "after": "A quantitative study on the nigro-neostriatal dopamine neuron system in the rat",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5967596&retmode=xml",
+       "quote": "A quantitative study on the nigro-neostriatal dopamine neuron system in the rat."
+      }
+     ]
+    },
+    "author": {
+     "before": "N E Anden and K Fuxe and B Hamberger and T Hokfelt",
+     "after": "N E And{\\'e}n and K Fuxe and B Hamberger and T H{\\\"o}kfelt",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5967596&retmode=xml",
+       "quote": "<LastName>And&#xe9;n</LastName><ForeName>N E</ForeName>"
+      },
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5967596&retmode=xml",
+       "quote": "<LastName>Hamberger</LastName><ForeName>B</ForeName>"
+      },
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5967596&retmode=xml",
+       "quote": "<LastName>H&#xf6;kfelt</LastName><ForeName>T</ForeName>"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1111/j.1748-1716.1966.tb03317.x",
+       "quote": "\"family\":\"Fuxe\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1111/j.1748-1716.1966.tb03317.x",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1111/j.1748-1716.1966.tb03317.x",
+       "quote": "\"DOI\":\"10.1111\\/j.1748-1716.1966.tb03317.x\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Arch11a",
+   "fingerprint": "v2:a6d2f79d36dcc7443821e0a765ebe8b6d894ada2b97a480e2a087b2598f871c7",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "journal": {
+     "before": "Neurotoxicity Research",
+     "after": "Acta Neurologica Scandinavica",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1111/j.1600-0404.2010.01412.x",
+       "quote": "\"container-title\":[\"Acta Neurologica Scandinavica\"]"
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "Acta Neurologica Scandinavica",
+     "after": null,
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1111/j.1600-0404.2010.01412.x",
+       "quote": "\"container-title\":[\"Acta Neurologica Scandinavica\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1111/j.1600-0404.2010.01412.x",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/20880302/",
+       "quote": "LID - 10.1111/j.1600-0404.2010.01412.x [doi]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Bart32",
+   "fingerprint": "v2:0425d237cda5406460671fc0a42699828c990e72b0bfaac5dc181a236d0a4241",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "publisher": {
+     "before": "{Oxford} {University} Press",
+     "after": "Cambridge {University} Press",
+     "evidence": [
+      {
+       "url": "https://lccn.loc.gov/39016008/mods",
+       "quote": "Cambridge [Eng.] The University press 1932"
+      },
+      {
+       "url": "https://lccn.loc.gov/33014008/mods",
+       "quote": "Cambridge, Eng The Macmillan company The University press 1932"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Beaz05",
+   "fingerprint": "v2:06f45163a66fdec634f162ebcc72340d7ebaaf3f79eab1bf6e36dc01617eb9a1",
+   "kind": "replace",
+   "new_key": "Beaz96",
+   "raw": "@inproceedings{Beaz96,\n\tAddress = {Monterey, {CA}},\n\tAuthor = {D M Beazley},\n\tBooktitle = {Fourth Annual {USENIX} {Tcl/Tk} Workshop},\n\tTitle = {{SWIG}: an easy to use tool for integrating scripting languages with {C} and {C++}},\n\tYear = {1996}}",
+   "evidence": [
+    {
+     "url": "https://www.usenix.org/legacy/publications/library/proceedings/tcl96/beazley.html",
+     "quote": "Fourth Annual USENIX Tcl/Tk Workshop, 1996 SWIG : An Easy to Use Tool For Integrating Scripting Languages with C and C++ David M. Beazley Department of Computer Science University of Utah"
+    },
+    {
+     "url": "https://www.usenix.org/legacy/publications/library/proceedings/tcl96/",
+     "quote": "Fourth Annual USENIX Tcl/Tk Workshop, 1996 July 10-13, 1996 Monterey, California"
+    },
+    {
+     "url": "https://www.swig.org/doc.html",
+     "quote": "SWIG : An Easy to Use Tool for Integrating Scripting Languages with C and C++ . While a little dated, this is the first SWIG paper. Presented at the 4th Tcl/Tk Workshop, Monterey, California"
+    }
+   ],
+   "reason": "user 2026-09-25: replace the undated SWIG software citation with Beazley's 1996 USENIX Tcl/Tk Workshop paper (new key)"
+  },
+  {
+   "key": "BiddMarl87",
+   "fingerprint": "v2:1a8c60d38acc357e65b1884410a44ace966220255ba8168f17d507ab8f8549b0",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "volume": {
+     "before": null,
+     "after": "58",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.2307/1130287",
+       "quote": "\"volume\":\"58\""
+      },
+      {
+       "url": "https://api.ies.ed.gov/eric/?search=id:EJ354521&format=json&fields=id,title,author,source,sourceid,publicationdateyear",
+       "quote": "\"sourceid\":\"v58 n1 p4-17 Feb 1987\""
+      }
+     ]
+    },
+    "number": {
+     "before": null,
+     "after": "1",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.2307/1130287",
+       "quote": "\"issue\":\"1\""
+      },
+      {
+       "url": "https://api.ies.ed.gov/eric/?search=id:EJ354521&format=json&fields=id,title,author,source,sourceid,publicationdateyear",
+       "quote": "\"sourceid\":\"v58 n1 p4-17 Feb 1987\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.2307/1130287",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.2307/1130287",
+       "quote": "\"DOI\":\"10.2307\\/1130287\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "BiswEtal95",
+   "fingerprint": "v2:5294ab2aa3a3160861a9f41f392d9b2a351598eac9b2a7765d17b199a7e007de",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.1002/mrm.1910340409",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1002/mrm.1910340409",
+       "quote": "\"DOI\":\"10.1002\\/mrm.1910340409\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1002/mrm.1910340409",
+       "quote": "\"title\":[\"Functional connectivity in the motor cortex of resting human brain using echo\\u2010planar mri\"]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "CalvEtal97",
+   "fingerprint": "v2:f16ad391512edcb0d635e2debafca830d7f72b5a22b6bd6cf42ceb1004de4669",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "journal": {
+     "before": "Revue Canadienne de Physiologie Appliquee",
+     "after": "Canadian Journal of Applied Physiology",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1139/h97-035",
+       "quote": "\"container-title\":[\"Canadian Journal of Applied Physiology\"]"
+      },
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9415828&retmode=xml",
+       "quote": "Canadian journal of applied physiology = Revue canadienne de physiologie appliquee"
+      }
+     ]
+    },
+    "author": {
+     "before": "F Calvo and J L Chicharro and F Bandr{\\'{e}}s and A Luc{\\'{i}}a and M P{\\'{e}}rez and J Alvarez and L L Mojares and A F Vaquero and J C Legido",
+     "after": "F Calvo and J L Chicharro and F Bandr{\\'{e}}s and A Luc{\\'{i}}a and M P{\\'{e}}rez and J {\\'{A}}lvarez and L L Mojares and A F Vaquero and J C Legido",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1139/h97-035",
+       "quote": "\"given\":\"Juli\\u00e1n\",\"family\":\"\\u00c1lvarez\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1139/h97-035",
+       "quote": "\"given\":\"Almudena F.\",\"family\":\"Vaquero\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Curr04",
+   "fingerprint": "v2:ac9c301c15bc2828de486c00f9aefafeaa643f958d5cce1c2db860b9cfa78c10",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "title": {
+     "before": "Effects of attention and confidence on the hypothesized {ERP} correlated of recollection and familiarity",
+     "after": "Effects of attention and confidence on the hypothesized {ERP} correlates of recollection and familiarity",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neuropsychologia.2003.12.011",
+       "quote": "hypothesized ERP correlates of recollection and familiarity"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neuropsychologia.2003.12.011",
+       "quote": "\"title\":[\"Effects of attention and confidence on the hypothesized ERP correlates of recollection and familiarity\"]"
+      }
+     ]
+    },
+    "journal": {
+     "before": "Memory and Cognition",
+     "after": "Neuropsychologia",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neuropsychologia.2003.12.011",
+       "quote": "\"container-title\":[\"Neuropsychologia\"]"
+      }
+     ]
+    },
+    "number": {
+     "before": null,
+     "after": "8",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neuropsychologia.2003.12.011",
+       "quote": "\"issue\":\"8\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "EichMaca06",
+   "fingerprint": "v2:9d4f2bf61cc195c8092079784e90ed22109a1b976c8466e8f1fca6fa93533879",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "booktitle": {
+     "before": null,
+     "after": "Affect in Social Thinking and Behavior",
+     "evidence": [
+      {
+       "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203720752-9/cognitive-clinical-perspectives-mood-dependent-memory-eric-eich-dawn-macaulay",
+       "quote": "citation_inbook_title\" content=\"Affect in Social Thinking and Behavior\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.4324/9780203720752",
+       "quote": "\"title\":[\"Affect in Social Thinking and Behavior\"]"
+      }
+     ]
+    },
+    "editor": {
+     "before": "Joseph P Forgas",
+     "after": "J P Forgas",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.4324/9780203720752",
+       "quote": "\"given\":\"Joseph P.\",\"family\":\"Forgas\""
+      }
+     ]
+    },
+    "pages": {
+     "before": "105--123",
+     "after": "105--122",
+     "evidence": [
+      {
+       "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203720752-9/cognitive-clinical-perspectives-mood-dependent-memory-eric-eich-dawn-macaulay",
+       "quote": "citation_firstpage\" content=\"105\""
+      },
+      {
+       "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203720752-9/cognitive-clinical-perspectives-mood-dependent-memory-eric-eich-dawn-macaulay",
+       "quote": "citation_lastpage\" content=\"122\""
+      }
+     ]
+    },
+    "ENTRYTYPE": {
+     "before": "inbook",
+     "after": "incollection",
+     "evidence": []
+    }
+   }
+  },
+  {
+   "key": "Gaut08",
+   "fingerprint": "v2:19f7b761045bda7bec06fed8c145989a472ab18185c979f18fad8b2fac96746b",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "title": {
+     "before": "{rpy2}: a {S}imple and {E}fficient {A}ccess to {R} from {P}ython",
+     "after": "{rpy2}: a simple and efficient access to {R} from {Python}",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20100102231553/http://rpy.sourceforge.net:80/rpy2.html",
+       "quote": "A simple and efficient access to R from Python"
+      },
+      {
+       "url": "https://web.archive.org/web/20100102231553/http://rpy.sourceforge.net:80/rpy2.html",
+       "quote": "rpy2 is a redesign and rewrite of rpy"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "GelmEtal13",
+   "fingerprint": "v2:974d6da3a39336450bad5adad647fc6f14fd86355b6f2d482024d732dd63e6e0",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "title": {
+     "before": "{B}ayesian data analysis, {T}hird edition",
+     "after": "{B}ayesian data analysis",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1201/b16018",
+       "quote": "\"title\":[\"Bayesian Data Analysis\"],\"prefix\":\"10.1201\""
+      }
+     ]
+    },
+    "edition": {
+     "before": null,
+     "after": "3\\textsuperscript{rd}",
+     "evidence": [
+      {
+       "url": "https://www.routledge.com/Bayesian-Data-Analysis/Gelman-Carlin-Stern-Dunson-Vehtari-Rubin/p/book/9781439840955",
+       "quote": "Bayesian Data Analysis, Third Edition continues to take an applied approach"
+      }
+     ]
+    },
+    "publisher": {
+     "before": "Chapman and Hall",
+     "after": "Chapman and {Hall/CRC}",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1201/b16018",
+       "quote": "\"reference-count\":0,\"publisher\":\"Chapman and Hall\\/CRC\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1201/b16018",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1201/b16018",
+       "quote": "type book; title Bayesian Data Analysis; publisher Chapman and Hall/CRC; issued 2013-11-27; authors Gelman, Carlin, Stern, Dunson, Vehtari, Rubin"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Hook69",
+   "fingerprint": "v2:7c3ec73b074d4d155d4c69c8b3fcf37d9ed962e33b05176f880e5f94762efd18",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "title": {
+     "before": "The posthumous works of {R}obert {H}ooke: with a new introduction by {R}ichard {S.} {W}estfall",
+     "after": "The posthumous works of {R}obert {H}ooke",
+     "evidence": [
+      {
+       "url": "https://openlibrary.org/books/OL21113026M.json",
+       "quote": "\"title\": \"The posthumous works of Robert Hooke\""
+      },
+      {
+       "url": "https://lccn.loc.gov/68026912/mods",
+       "quote": "<title>posthumous works of Robert Hooke</title>"
+      }
+     ]
+    },
+    "address": {
+     "before": null,
+     "after": "New York, {NY}",
+     "evidence": [
+      {
+       "url": "https://lccn.loc.gov/68026912/mods",
+       "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "HowaEtal08b",
+   "fingerprint": "v2:e9992556e2572801ed3d9319cd6d5a9845ee5c241564eef0a57be4279a595b78",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "1",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18605480&retmode=xml",
+       "quote": "<Volume>15</Volume><Issue>1</Issue>"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.3758/pbr.15.1.58",
+       "quote": "\"issue\":\"1\""
+      }
+     ]
+    },
+    "author": {
+     "before": "M W Howard and T E Youker and V Venkatadass",
+     "after": "M W Howard and T E Youker and V S Venkatadass",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18605480&retmode=xml",
+       "quote": "<LastName>Venkatadass</LastName><ForeName>Vijay S</ForeName><Initials>VS</Initials>"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.3758/pbr.15.1.58",
+       "quote": "\"given\":\"V. S.\",\"family\":\"VENKATADASS\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Hume07",
+   "fingerprint": "v2:4138faecb0005b54a14fde736bdc4a957b2d38093b9c2439bdb6a8be70596e5e",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "author": {
+     "before": "David Hume",
+     "after": "D Hume",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/actrade/9780199596331.book.1",
+       "quote": "\"given\":\"David\",\"family\":\"Hume\""
+      }
+     ]
+    },
+    "editor": {
+     "before": "D F Norton and M Norton",
+     "after": "D F Norton and M J Norton",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/actrade/9780199596331.book.1",
+       "quote": "\"given\":\"David Fate\",\"family\":\"Norton\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1093/actrade/9780199596331.book.1",
+       "quote": "\"given\":\"Mary J.\",\"family\":\"Norton\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Jame90",
+   "fingerprint": "v2:53435f021cb619879cad35d18e0a9152cd7ce14376d7f1a0ea1904cc57b76b45",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "volume": {
+     "before": null,
+     "after": "I",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1037/10538-000",
+       "quote": "\"title\":[\"The principles of psychology, Vol I.\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1037/10538-000",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1037/10538-000",
+       "quote": "\"DOI\":\"10.1037\\/10538-000\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1037/10538-000",
+       "quote": "\"issued\":{\"date-parts\":[[1890]]}"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1037/10538-000",
+       "quote": "\"publisher\":\"Henry Holt and Co\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1037/10538-000",
+       "quote": "\"publisher-location\":\"New York\""
+      }
+     ]
+    },
+    "author": {
+     "before": "William James",
+     "after": "W James",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1037/10538-000",
+       "quote": "\"given\":\"William\",\"family\":\"James\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "KahaEtal22",
+   "fingerprint": "v2:77f8959fb511b40c3425d29777119dbacb2bef49762a14af5b3838b383628b81",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "booktitle": {
+     "before": "Handbook of Human Memory",
+     "after": "The {Oxford} Handbook of Human Memory",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.013.2",
+       "quote": "\"container-title\":[\"The Oxford Handbook of Human Memory, Two Volume Pack\"]"
+      }
+     ]
+    },
+    "year": {
+     "before": "2022",
+     "after": "2024",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.013.2",
+       "quote": "\"published\":{\"date-parts\":[[2024,7,18]]}"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.001.0001",
+       "quote": "\"published-print\":{\"date-parts\":[[2024,6,25]]}"
+      }
+     ]
+    },
+    "pages": {
+     "before": null,
+     "after": "29--63",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.013.2",
+       "quote": "\"page\":\"29-63\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1093/oxfordhb/9780190917982.013.2",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.013.2",
+       "quote": "\"DOI\":\"10.1093\\/oxfordhb\\/9780190917982.013.2\""
+      }
+     ]
+    }
+   },
+   "rename": "KahaEtal24"
+  },
+  {
+   "key": "KahaMill13",
+   "fingerprint": "v2:2f87bb94a838be0310040a471ab493e96b440cda9d1791dbb0407ffdd58cf651",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.4135/9781452257044.n183",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+       "quote": "\"DOI\":\"10.4135\\/9781452257044.n183\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+       "quote": "\"container-title\":[\"Encyclopedia of the Mind\"]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+       "quote": "\"published-print\":{\"date-parts\":[[2013]]}"
+      }
+     ]
+    },
+    "title": {
+     "before": "Memory, recall dynamics",
+     "after": "Memory recall, dynamics",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+       "quote": "\"title\":[\"Memory Recall, Dynamics\"]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Kais90",
+   "fingerprint": "v2:fcb94fd20eb36dd0b94d725455395564be2c968b793ff3040691f57b137866c4",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Acoustics, Speech, and Signal Processing",
+     "after": "International Conference on Acoustics, Speech, and Signal Processing",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.1990.115702",
+       "quote": "\"container-title\":[\"International Conference on Acoustics, Speech, and Signal Processing\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/icassp.1990.115702",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.1990.115702",
+       "quote": "\"DOI\":\"10.1109\\/icassp.1990.115702\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "LeVaEtal10",
+   "fingerprint": "v2:1adc84e31aa5e0ade02a158fd65f3d52fb06b35f25a8da8f57c3d35054c29c50",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.1523/jneurosci.5049-09.2010",
+     "evidence": [
+      {
+       "url": "https://www.jneurosci.org/content/30/23/7770",
+       "quote": "<meta name=\"citation_doi\" content=\"10.1523/JNEUROSCI.5049-09.2010\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "LegeEtal69",
+   "fingerprint": "v2:8fe54b2ca512246001788749e6b2cd71c9b86e3c70946e29982770fbdf2d8e83",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "title": {
+     "before": "{EEG} changes during performance of various tasks under open and closed eyes conditions",
+     "after": "{EEG} changes during performance of various tasks under open- and closed-eyed conditions",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/0013-4694(69)90187-4",
+       "quote": "\"title\":[\"EEG changes during performance of various tasks under open- and closed-eyed conditions\"]"
+      }
+     ]
+    },
+    "number": {
+     "before": null,
+     "after": "5",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/4187033/",
+       "quote": "Electroencephalogr Clin Neurophysiol. 1969 Nov;27(5):470-9."
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1016/0013-4694(69)90187-4",
+       "quote": "\"publisher\":\"Elsevier BV\",\"issue\":\"5\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "LiEtal19",
+   "fingerprint": "v2:35fa9a8e70172f5054c7a13966a98ecd1786fe2d10f09297e56a23b38e0339ff",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.1016/j.neuroimage.2019.04.016",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2019.04.016",
+       "quote": "\"DOI\":\"10.1016\\/j.neuroimage.2019.04.016\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2019.04.016",
+       "quote": "\"title\":[\"Global signal regression strengthens association between resting-state functional connectivity and behavior\"]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "McCrGrac07",
+   "fingerprint": "v2:45b03f5947975856dc93ea82263f3e32030fd8b5519c9844c612e5d6a1111ee0",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "pages": {
+     "before": "12601",
+     "after": "12601--12610",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1523/jneurosci.3750-07.2007",
+       "quote": "\"page\":\"12601-12610\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1523/jneurosci.3750-07.2007",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18003839/",
+       "quote": "AID - 10.1523/JNEUROSCI.3750-07.2007 [doi]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "MikoEtal13b",
+   "fingerprint": "v2:c80d217fabbaf172d087cf66830a21a9eb9e6cff156fac5e98dc20019c49c57a",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "article",
+     "after": "inproceedings",
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/N13-1090/",
+       "quote": "@inproceedings{mikolov-etal-2013-linguistic"
+      }
+     ]
+    },
+    "journal": {
+     "before": "Proceedings of the National Association for Computational Linguistics",
+     "after": null,
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/N13-1090/",
+       "quote": "Proceedings of the 2013 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+      }
+     ]
+    },
+    "booktitle": {
+     "before": null,
+     "after": "Proceedings of the Conference of the North {American} Chapter of the Association for Computational Linguistics: Human Language Technologies",
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/N13-1090/",
+       "quote": "Proceedings of the 2013 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+      }
+     ]
+    },
+    "address": {
+     "before": null,
+     "after": "Atlanta, {GA}",
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/N13-1090/",
+       "quote": "Address: Atlanta, Georgia"
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Association for Computational Linguistics",
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/N13-1090/",
+       "quote": "Publisher: Association for Computational Linguistics"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Mink07",
+   "fingerprint": "v2:31620bac674d1f9ff30c50bcec2396ecf1881c138cea9a33b6a6180cb26f58a1",
+   "kind": "edit",
+   "origin": "user 2026-09-25: cite the 6th edition (verified LoC + LWW)",
+   "changes": {
+    "author": {
+     "before": "Jonathan W Mink",
+     "after": "J W Mink",
+     "evidence": [
+      {
+       "url": "https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D2015458479",
+       "quote": "<edition>Sixth edition.</edition> ... <namePart>Wolters Kluwer,</namePart> ... <dateIssued>[2015]</dateIssued> ... <tableOfContents type=\"Contents\">Functional organization of the basal ganglia -- ..."
+      },
+      {
+       "url": "https://shop.lww.com/Parkinson-s-Disease-and-Movement-Disorders/p/9781608311767",
+       "quote": "CONTENTS 1. Functional Organization of the Basal Ganglia Jonathan W. Mink ... Edition 6 Publication Date May 21, 2015"
+      }
+     ]
+    },
+    "edition": {
+     "before": null,
+     "after": "6\\textsuperscript{th}",
+     "evidence": [
+      {
+       "url": "https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D2015458479",
+       "quote": "<edition>Sixth edition.</edition> ... <namePart>Wolters Kluwer,</namePart> ... <dateIssued>[2015]</dateIssued> ... <tableOfContents type=\"Contents\">Functional organization of the basal ganglia -- ..."
+      },
+      {
+       "url": "https://shop.lww.com/Parkinson-s-Disease-and-Movement-Disorders/p/9781608311767",
+       "quote": "CONTENTS 1. Functional Organization of the Basal Ganglia Jonathan W. Mink ... Edition 6 Publication Date May 21, 2015"
+      }
+     ]
+    },
+    "editor": {
+     "before": "Joseph Jankovic and Eduardo Tolosa",
+     "after": "J Jankovic and E Tolosa",
+     "evidence": [
+      {
+       "url": "https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D2015458479",
+       "quote": "<edition>Sixth edition.</edition> ... <namePart>Wolters Kluwer,</namePart> ... <dateIssued>[2015]</dateIssued> ... <tableOfContents type=\"Contents\">Functional organization of the basal ganglia -- ..."
+      },
+      {
+       "url": "https://shop.lww.com/Parkinson-s-Disease-and-Movement-Disorders/p/9781608311767",
+       "quote": "CONTENTS 1. Functional Organization of the Basal Ganglia Jonathan W. Mink ... Edition 6 Publication Date May 21, 2015"
+      }
+     ]
+    },
+    "publisher": {
+     "before": "Lippincott, Williams, and Wilkins",
+     "after": "Wolters Kluwer",
+     "evidence": [
+      {
+       "url": "https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D2015458479",
+       "quote": "<edition>Sixth edition.</edition> ... <namePart>Wolters Kluwer,</namePart> ... <dateIssued>[2015]</dateIssued> ... <tableOfContents type=\"Contents\">Functional organization of the basal ganglia -- ..."
+      },
+      {
+       "url": "https://shop.lww.com/Parkinson-s-Disease-and-Movement-Disorders/p/9781608311767",
+       "quote": "CONTENTS 1. Functional Organization of the Basal Ganglia Jonathan W. Mink ... Edition 6 Publication Date May 21, 2015"
+      }
+     ]
+    },
+    "year": {
+     "before": "2007",
+     "after": "2015",
+     "evidence": [
+      {
+       "url": "https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D2015458479",
+       "quote": "<edition>Sixth edition.</edition> ... <namePart>Wolters Kluwer,</namePart> ... <dateIssued>[2015]</dateIssued> ... <tableOfContents type=\"Contents\">Functional organization of the basal ganglia -- ..."
+      },
+      {
+       "url": "https://shop.lww.com/Parkinson-s-Disease-and-Movement-Disorders/p/9781608311767",
+       "quote": "CONTENTS 1. Functional Organization of the Basal Ganglia Jonathan W. Mink ... Edition 6 Publication Date May 21, 2015"
+      }
+     ]
+    }
+   },
+   "rename": "Mink15"
+  },
+  {
+   "key": "NastEtal20",
+   "fingerprint": "v2:8f713494bb74a4fd5387f872cf64713e8bfceb82312f63cfad36781ce938395b",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "volume": {
+     "before": "15",
+     "after": "222",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/32800992/",
+       "quote": "Neuroimage. 2020 Nov 15;222:117254. doi: 10.1016/j.neuroimage.2020.117254."
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2020.117254",
+       "quote": "\"prefix\":\"10.1016\",\"volume\":\"222\",\"author\""
+      }
+     ]
+    },
+    "pages": {
+     "before": "117254--117261",
+     "after": "117254",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/32800992/",
+       "quote": "Neuroimage. 2020 Nov 15;222:117254. doi: 10.1016/j.neuroimage.2020.117254."
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2020.117254",
+       "quote": "\"article-number\":\"117254\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "NetwLab25",
+   "fingerprint": "v2:a1b150aeae4e9599692794d1d8e3e3ac65a524241db1650e6c97fdd7f612edaf",
+   "kind": "remove",
+   "reason": "user-approved removal (research-pilot verdict, 2026-09-25)"
+  },
+  {
+   "key": "NilsEtal75",
+   "fingerprint": "v2:599dad64cffe2d5d46c93bb49649c36b46b22621fcb3d065dd090991e518904a",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "author": {
+     "before": "L -G Nilsson and E Wright and B B Murdock",
+     "after": "L-G Nilsson and E Wright and B B Murdock",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.3758/bf03212937",
+       "quote": "\"family\":\"Nilsson\",\"sequence\":\"first\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.3758/bf03212937",
+       "quote": "{\"given\":\"Edmund\",\"family\":\"Wright\",\"sequence\":\"additional\""
+      }
+     ]
+    },
+    "number": {
+     "before": null,
+     "after": "4",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.3758/bf03212937",
+       "quote": "\"publisher\":\"Springer Science and Business Media LLC\",\"issue\":\"4\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Pach74",
+   "fingerprint": "v2:cc257b25fb77ce0abf32b9d555ba14f50c7779291bf3e6dc1b286bb7919b4ba4",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "title": {
+     "before": "The interpretation of reaction time in information processing research",
+     "after": "The interpretation of reaction time in information-processing research",
+     "evidence": [
+      {
+       "url": "https://www.routledge.com/Human-Information-Processing-Tutorials-in-Performance-and-Cognition/Kantowitz/p/book/9781032009872",
+       "quote": "2. The Interpretation of Reaction Time in Information-Processing Research Robert G. Pachella"
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "Human Information Processing: Tutorials in Performance and Cognition.",
+     "after": "Human Information Processing: Tutorials in Performance and Cognition",
+     "evidence": [
+      {
+       "url": "https://lccn.loc.gov/74019028/mods",
+       "quote": "Human information processing: tutorials in performance and cognition"
+      }
+     ]
+    },
+    "editor": {
+     "before": "B Kantowitz",
+     "after": "B H Kantowitz",
+     "evidence": [
+      {
+       "url": "https://lccn.loc.gov/74019028/mods",
+       "quote": "edited by Barry H. Kantowitz."
+      }
+     ]
+    },
+    "publisher": {
+     "before": "Halstead Press",
+     "after": "Erlbaum",
+     "evidence": [
+      {
+       "url": "https://lccn.loc.gov/74019028/mods",
+       "quote": "Lawrence Erlbaum Associates; distributed by the Halsted Press Division of Wiley, New York"
+      }
+     ]
+    },
+    "address": {
+     "before": "New York, {NY}",
+     "after": "Hillsdale, {NJ}",
+     "evidence": [
+      {
+       "url": "https://lccn.loc.gov/74019028/mods",
+       "quote": "Hillsdale, N.J Lawrence Erlbaum Associates"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "ParaEtal04",
+   "fingerprint": "v2:5f218a23691b06de598c2ea74e24465eddf4fc4b559bd0c79dd268f6f23ccaf1",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.1093/brain/awh288",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/brain/awh288",
+       "quote": "\"DOI\":\"10.1093\\/brain\\/awh288\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1093/brain/awh288",
+       "quote": "\"title\":[\"Involvement of human thalamus in the preparation of self-paced movement\"]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "PhelEtal18",
+   "fingerprint": "v2:d579214bd12a626fa537d86142e1f78f638d3af45ca0f797cf7351796695d998",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "title": {
+     "before": "An ambulatory polysomnography study of the post-traumatic nightmares of {PTSD}",
+     "after": "An ambulatory polysomnography study of the post-traumatic nightmares of post-traumatic stress disorder",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29182727&retmode=xml",
+       "quote": "An Ambulatory Polysomnography Study of the Post-traumatic Nightmares of Post-traumatic Stress Disorder."
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1093/sleep/zsx188",
+       "quote": "An Ambulatory Polysomnography Study of the Post-traumatic Nightmares of Post-traumatic Stress Disorder"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1093/sleep/zsx188",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29182727&retmode=xml",
+       "quote": "<ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.1093/sleep/zsx188</ELocationID>"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "PiefEtal03",
+   "fingerprint": "v2:fe858170b40856322d10757b4e53c6daa62feb56dbe575b6e8c10e3f44939ab8",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "pages": {
+     "before": "650",
+     "after": "650--668",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/brain/awg064",
+       "quote": "\"page\":\"650-668\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1093/brain/awg064",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/12566286/",
+       "quote": "Brain. 2003 Mar;126(Pt 3):650-68. doi: 10.1093/brain/awg064."
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "PuceEtal99",
+   "fingerprint": "v2:a889c5efac9cc035276121c2067cdb8af532cfb9b4cfb8230d00a7f6ddc750e5",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.1093/cercor/9.5.445",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/cercor/9.5.445",
+       "quote": "\"DOI\":\"10.1093\\/cercor\\/9.5.445\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1093/cercor/9.5.445",
+       "quote": "\"title\":[\"Electrophysiological Studies of Human Face Perception. III: Effects of Top-down Processing on Face-specific Potentials\"]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "RaypWall67",
+   "fingerprint": "v2:154e2c8e77ee980928c267b663227081d09c50f4640043ffe117d239d40b6d41",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "volume": {
+     "before": "{Suppl. to vol. 25}",
+     "after": "Suppl 25",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=4165778&retmode=xml",
+       "quote": "<MedlinePgn>Suppl 25:143+</MedlinePgn>"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "RosePaul90",
+   "fingerprint": "v2:dec9e1d4bb112c0e72b8ca0d6619d7c7e1094eacbf1a5652ebf7654791397f9f",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Acoustics, Speech, and Signal Processing",
+     "after": "International Conference on Acoustics, Speech, and Signal Processing",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.1990.115555",
+       "quote": "\"container-title\":[\"International Conference on Acoustics, Speech, and Signal Processing\"]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "RovaVirs79",
+   "fingerprint": "v2:c0df70c6e9c7f190c2c1a7ac908c5fb645a35bb331c62d129375279d4fd90a96",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "author": {
+     "before": "J Rovamo and Virsu",
+     "after": "J Rovamo and V Virsu",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/520439/",
+       "quote": "J Rovamo, V Virsu"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1007/bf00236819",
+       "quote": "\"given\":\"V.\",\"family\":\"Virsu\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1007/bf00236819",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/520439/",
+       "quote": "Exp Brain Res. 1979;37(3):495-510. doi: 10.1007/BF00236819."
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "SchwHump73",
+   "fingerprint": "v2:6a0f086cc6b4f327f42ca5f9c79c6a9d51a82d1f45ab30e9851e9b5496dea778",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "title": {
+     "before": "Similarity judgements and free recall of unrelated words",
+     "after": "Similarity judgments and free recall of unrelated words",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1037/h0035511",
+       "quote": "\"title\":[\"Similarity judgments and free recall of unrelated words.\"]"
+      }
+     ]
+    },
+    "journal": {
+     "before": "Journal of Experimental Psychology: General",
+     "after": "Journal of Experimental Psychology",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1037/h0035511",
+       "quote": "\"container-title\":[\"Journal of Experimental Psychology\"],\"original-title\":[]"
+      }
+     ]
+    },
+    "number": {
+     "before": null,
+     "after": "1",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1037/h0035511",
+       "quote": "\"publisher\":\"American Psychological Association (APA)\",\"issue\":\"1\""
+      }
+     ]
+    },
+    "pages": {
+     "before": "10--13",
+     "after": "10--15",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1037/h0035511",
+       "quote": "\"page\":\"10-15\",\"source\":\"Crossref\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "ScotEtal07",
+   "fingerprint": "v2:cf7fead9c3d5003cd4a620df329e681edfa079d2d0c7d6de3dac710031770cb9",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "inbook",
+     "after": "incollection",
+     "evidence": [
+      {
+       "url": "https://catdir.loc.gov/catdir/enhancements/fy0701/2006031809-t.html",
+       "quote": "P. Scott, H. Asoko, J. Leach, Student Conceptions and Conceptual Learning in Science."
+      }
+     ]
+    },
+    "title": {
+     "before": "Handbook of research on science education",
+     "after": "Student conceptions and conceptual learning in science",
+     "evidence": [
+      {
+       "url": "https://catdir.loc.gov/catdir/enhancements/fy0701/2006031809-t.html",
+       "quote": "P. Scott, H. Asoko, J. Leach, Student Conceptions and Conceptual Learning in Science."
+      }
+     ]
+    },
+    "chapter": {
+     "before": "Student conceptions and conceptual learning in science",
+     "after": null,
+     "evidence": [
+      {
+       "url": "https://catdir.loc.gov/catdir/enhancements/fy0701/2006031809-t.html",
+       "quote": "P. Scott, H. Asoko, J. Leach, Student Conceptions and Conceptual Learning in Science."
+      }
+     ]
+    },
+    "booktitle": {
+     "before": null,
+     "after": "Handbook of Research on Science Education",
+     "evidence": [
+      {
+       "url": "https://lccn.loc.gov/2006031809/mods",
+       "quote": "<title>Handbook of research on science education</title>"
+      }
+     ]
+    },
+    "editor": {
+     "before": "S K Abell and K Appleton and D Hanuscin",
+     "after": "S K Abell and N G Lederman",
+     "evidence": [
+      {
+       "url": "https://lccn.loc.gov/2006031809/mods",
+       "quote": "edited by Sandra K. Abell and Norman G. Lederman."
+      }
+     ]
+    },
+    "publisher": {
+     "before": "Routledge",
+     "after": "Erlbaum",
+     "evidence": [
+      {
+       "url": "https://lccn.loc.gov/2006031809/mods",
+       "quote": "<namePart>Lawrence Erlbaum Associates</namePart>"
+      }
+     ]
+    },
+    "address": {
+     "before": null,
+     "after": "Mahwah, {NJ}",
+     "evidence": [
+      {
+       "url": "https://lccn.loc.gov/2006031809/mods",
+       "quote": "<placeTerm type=\"text\">Mahwah, N.J</placeTerm>"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Shan20",
+   "fingerprint": "v2:05c4d771409658dab3dbd2036339a698c883512ef2a95a5fb3955723fd5a2b6f",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "title": {
+     "before": "Syntactic {M}acros",
+     "after": "Syntactic macros",
+     "evidence": [
+      {
+       "url": "https://peps.python.org/pep-0638/",
+       "quote": "PEP 638 – Syntactic Macros"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "SilbEtal01",
+   "fingerprint": "v2:e3c03bbea472bc3a99f4ea7fa6d0b95741d25f1b9fbcc598268a638c6ffd4815",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the Cognitive Science Society",
+     "after": "Proceedings of the Twenty-Third Annual Conference of the Cognitive Science Society",
+     "evidence": [
+      {
+       "url": "https://openlibrary.org/books/OL7937771M.json",
+       "quote": "Proceedings of the Twenty-third Annual Conference of the Cognitive Science Society"
+      },
+      {
+       "url": "https://escholarship.org/content/qt4fn6n6pz/qt4fn6n6pz.pdf",
+       "quote": "Proceedings of the Annual Meeting of the Cognitive Science Society, 23(23)"
+      }
+     ]
+    },
+    "address": {
+     "before": "Hillsdale, {NJ}",
+     "after": "Mahwah, {NJ}",
+     "evidence": []
+    }
+   }
+  },
+  {
+   "key": "Unde48a",
+   "fingerprint": "v2:037d35e444d1e632c49a27ea1fe2854651fcd145b0cf5f26b3fc1dde6075e02e",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "journal": {
+     "before": "Experimental Psychology",
+     "after": "Journal of Experimental Psychology",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1037/h0062470",
+       "quote": "\"container-title\":[\"Journal of Experimental Psychology\"],\"original-title\":[]"
+      }
+     ]
+    },
+    "volume": {
+     "before": "23",
+     "after": "38",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1037/h0062470",
+       "quote": "\"prefix\":\"10.1037\",\"volume\":\"38\",\"author\":[{\"given\":\"Benton J.\""
+      }
+     ]
+    },
+    "number": {
+     "before": null,
+     "after": "1",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1037/h0062470",
+       "quote": "\"publisher\":\"American Psychological Association (APA)\",\"issue\":\"1\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Weiz66",
+   "fingerprint": "v2:93114538f9e658316c0f6051ed9f18b2e87cb19210e957647f593e35ec8d784c",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "title": {
+     "before": "{ELIZA}--- a computer program for the study of natural language communication between man and machine",
+     "after": "{ELIZA}---a computer program for the study of natural language communication between man and machine",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/365153.365168",
+       "quote": "\"title\":[\"ELIZA"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1145/365153.365168",
+       "quote": "a computer program for the study of natural language communication between man and machine"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "XiaoEtal10",
+   "fingerprint": "v2:203f17d08f4cafffd47ba3646098932b36bd6bd199085630094340fafd01057d",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Computer Vision and Pattern Recognition",
+     "after": "{IEEE} Computer Society Conference on Computer Vision and Pattern Recognition",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+       "quote": "\"container-title\":[\"2010 IEEE Computer Society Conference on Computer Vision and Pattern Recognition\"]"
+      }
+     ]
+    },
+    "pages": {
+     "before": null,
+     "after": "3485--3492",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+       "quote": "\"page\":\"3485-3492\""
+      }
+     ]
+    },
+    "author": {
+     "before": "J Xiao and J Hays and K Ehinger and A Oliva and A Torralba",
+     "after": "J Xiao and J Hays and K A Ehinger and A Oliva and A Torralba",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+       "quote": "\"given\":\"Jianxiong\",\"family\":\"Xiao\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+       "quote": "\"given\":\"James\",\"family\":\"Hays\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+       "quote": "\"given\":\"Krista A.\",\"family\":\"Ehinger\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+       "quote": "\"given\":\"Aude\",\"family\":\"Oliva\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+       "quote": "\"given\":\"Antonio\",\"family\":\"Torralba\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/cvpr.2010.5539970",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2010.5539970",
+       "quote": "\"DOI\":\"10.1109\\/cvpr.2010.5539970\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Youn61",
+   "fingerprint": "v2:7211d29d86d96236e6e5c9b1cd73061794336abfc93bc92d3851ab7fd162ec22",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "journal": {
+     "before": "{American} Journal of Psychology",
+     "after": "The {American} Journal of Psychology",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.2307/1419662",
+       "quote": "\"container-title\":[\"The American Journal of Psychology\"]"
+      }
+     ]
+    },
+    "number": {
+     "before": null,
+     "after": "4",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.2307/1419662",
+       "quote": "\"issue\":\"4\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.2307/1419662",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.2307/1419662",
+       "quote": "\"DOI\":\"10.2307\\/1419662\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "ZimaEtal23",
+   "fingerprint": "v2:12943739700aa2032a865db6206f418bf4dfb61868e8a3dba839f9216f95d1e7",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.31234/osf.io/2ps6e",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+       "quote": "\"DOI\":\"10.31234\\/osf.io\\/2ps6e\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+       "quote": "\"title\":[\"Category-based and location-based volitional covert attention affect memory at different timescales\"]"
+      }
+     ]
+    },
+    "volume": {
+     "before": "doi.org/10.31234/osf.io/2ps6e",
+     "after": null,
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.31234/osf.io/2ps6e",
+       "quote": "\"DOI\":\"10.31234\\/osf.io\\/2ps6e\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "ZrenEtal11",
+   "fingerprint": "v2:2b8066a20f4d00dbc8ff2b59529ff7413d2a8ff3d43060afb2a4a3439cf8e480",
+   "kind": "edit",
+   "origin": "pilot-proposals.json (user: correct)",
+   "changes": {
+    "author": {
+     "before": "Eberhart Zrenner and Karl Ulrich Bartz-Schmidt and Heval Benav and Dorothea Besch and Anna Bruckmann and Veit-Peter Gabel and Florian Gekeler and Udo Greppmaier and Alex Harscher and Steffen Kibbel and others",
+     "after": "E Zrenner and K U Bartz-Schmidt and H Benav and D Besch and A Bruckmann and V-P Gabel and F Gekeler and U Greppmaier and A Harscher and S Kibbel and J Koch and A Kusnyerik and T Peters and K Stingl and H Sachs and A Stett and P Szurman and B Wilhelm and R Wilke",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+       "quote": "FAU - Zrenner, Eberhart"
+      },
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=medline&retmode=text&id=21047851",
+       "quote": "FAU - Bartz-Schmidt, Karl Ulrich"
+      }
+     ]
+    },
+    "journal": {
+     "before": "Proceedings of the Royal Society of London Series {B}: Biological Sciences",
+     "after": "Proceedings of the Royal Society {B}: Biological Sciences",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1098/rspb.2010.1747",
+       "quote": "\"container-title\":[\"Proceedings of the Royal Society B: Biological Sciences\"]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "vanEEtal18",
+   "fingerprint": "v2:ec72236e2c0ad5d690a381e60508d7b6d8a5c66c37f25e6c0871589e12b3f49b",
+   "kind": "edit",
+   "origin": "followup.json",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.7554/elife.36928",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.7554/elife.36928",
+       "quote": "\"DOI\":\"10.7554\\/elife.36928\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.7554/elife.36928",
+       "quote": "\"title\":[\"Spatial sampling in human visual cortex is modulated by both spatial and feature-based attention\"]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Altm99",
+   "fingerprint": "v2:d0c4f8cd740ff5480f2c871bb524e49477c6574c4fe0c86ba206fc64fcf7070e",
+   "kind": "edit",
+   "origin": "house form: caps.txt HallCRC (formatter consequence of GelmEtal13's publisher)",
+   "changes": {
+    "publisher": {
+     "before": "Chapman \\& Hall/crc",
+     "after": "Chapman \\& {Hall/CRC}",
+     "evidence": []
+    }
+   }
+  }
+ ]
+}

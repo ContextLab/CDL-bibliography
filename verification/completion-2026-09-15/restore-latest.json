@@ -1,14 +1,14 @@
 {
-  "restored": 6422,
+  "restored": 6421,
   "statuses": {
-    "metadata_verified": 4398,
-    "needs_review": 2024
+    "metadata_verified": 4412,
+    "needs_review": 2009
   },
   "repeat_imports": 0,
-  "original_keys_preserved": 6422,
+  "original_keys_preserved": 6421,
   "formatted_staging_matches_current": true,
   "source_notices": 132,
   "source_author_suffixes": 50,
-  "source_article_locators": 311,
+  "source_article_locators": 314,
   "sqlite": "ok"
 }
