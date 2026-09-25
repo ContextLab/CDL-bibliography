@@ -677,6 +677,11 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
 # AA. --> A A
 # ...
 # AAA --> A A A
+# One letter of a name: a LaTeX accent group or a single character.
+LETTER_UNIT = re.compile(r"\{\\[^A-Za-z\s]\{?[A-Za-z]\}?\}|\\[^A-Za-z\s]\{?[A-Za-z]\}?"
+                         r"|\{\\[A-Za-z]+\s*\{?[A-Za-z]\}?\}|\\[A-Za-z]+\{[A-Za-z]\}|.")
+
+
 def reformat_author(author, fragment=False):
     if len(author.split(" and ")) > 1:
         return " and ".join([reformat_author(a) for a in author.split(" and ")])
@@ -714,8 +719,9 @@ def reformat_author(author, fragment=False):
             if n.find("-") >= 0:
                 n = "-".join([reformat_author(c, fragment=True) for c in n.split("-")])
             else:
-                for c in list(n):
-                    unclumped.append(c)
+                # Split clumped initials ("MA") into letters, keeping a LaTeX accent
+                # group ({\'A}, \'A, {\'{A}}) whole as one letter.
+                unclumped.extend(LETTER_UNIT.findall(n))
                 continue
         unclumped.append(n)
 

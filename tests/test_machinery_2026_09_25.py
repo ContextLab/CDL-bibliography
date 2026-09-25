@@ -847,3 +847,19 @@ def test_verify_all_checks_unchanged_entries_too(tmp_path):
     assert run.returncode == 0, run.stdout + run.stderr
     assert "citations: 1 of 1 entries verified" in run.stdout
     assert "library: 1 entries: metadata_verified=1" in run.stdout
+
+
+# --- reformat_author keeps LaTeX-accented initials whole (ZhenEtal20, 2026-09-25) ---------
+@pytest.mark.parametrize("cited, expected", [
+    ("M {\\'A} Serrano", "M {\\'A} Serrano"),        # braced accent group, the ZhenEtal20 case
+    ("M \\'A Serrano", "M \\'A Serrano"),            # unbraced accent macro
+    ("M {\\'{A}} Serrano", "M {\\'{A}} Serrano"),    # doubly braced
+    ("{\\'E} Durkheim", "{\\'E} Durkheim"),
+    ("{\\v{S}} Novak", "{\\v{S}} Novak"),            # letter-named accent macro
+    ("M{\\'A} Serrano", "M {\\'A} Serrano"),         # clumped initials still unclump by letter
+    ("MA Serrano", "M A Serrano"),                   # negative control: plain clump unchanged
+    ("É Durkheim", "É Durkheim"),
+])
+def test_reformat_author_keeps_latex_accented_initials(cited, expected):
+    from helpers import reformat_author
+    assert reformat_author(cited) == expected
