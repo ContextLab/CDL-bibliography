@@ -133,3 +133,5 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - **Single-source surname changes need corroboration** (a second source, or they are held
   when other cdl.bib entries spell the same author the cited way). Found after risky001
   applied Crossref's "Kounois" to MeyeEtal88 (reverted); the 10-entry spot-check missed it.
+- **Year corrections rename keys** (user, 2026-09-25): GautEtal18 → GautEtal19 and
+  HayeEtal14 → HayeEtal16 after their source-backed year fixes (check for collisions first).
