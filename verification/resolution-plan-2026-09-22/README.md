@@ -177,3 +177,10 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   verification of added/edited entries vs GitHub master + an offline library-wide status line;
   fails on any changed entry that is unresolved. `--no-citations` for format-only, `--all` for
   the whole library. `commit` shares the same check.
+- **Replacements approved** (user, 2026-09-25): all 8 preprints in
+  verification/apply-2026-09-28/replacement-candidates.json are replaced by their published
+  versions (LeeEtal20 → LeeEtal20a to make room for LeeEtal20b; LuriEtal20 keeps "Keilholz").
+- **Sign-off of pilot verdicts** (user, 2026-09-25): entries the user marked Correct on the
+  research-pilot page (or whose fixes the user approved there) that no automated source can
+  verify are recorded with `crossref approve`, reviewer Jeremy Manning, bound to each entry's
+  exact current text. PR #87/#88 entries were not reviewed by the user and are not included.
