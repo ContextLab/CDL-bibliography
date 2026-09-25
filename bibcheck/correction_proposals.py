@@ -7,6 +7,7 @@ edited raw-entry fingerprint through normal verification.
 """
 
 from copy import deepcopy
+from pathlib import Path
 import re
 
 from auto_review import authors_with_pubmed_suffixes, compatible_authors, epmc_record, expanded_pages, reassess, safe_compare
@@ -40,8 +41,8 @@ def pagination_proposal(entry, previous):
             if not re.fullmatch(r"[a-z]{0,3}\d+(?:-[a-z]{0,3}\d+(?:\.e\d+)?)?", pages):
                 continue
             proposed = dict(fields, pages=pages.replace("-", "--"))
-            if proposed == fields:
-                continue
+            if proposed == fields or shortens_pages(fields.get("pages"), proposed["pages"]):
+                continue  # a cited range is never shortened (2026-09-24/25)
             primary_evidence, primary_issues = safe_compare(proposed, record)
             if primary_issues:
                 continue
@@ -295,12 +296,13 @@ def house_byline(people, citation=None):
             raise ValueError("Suffix inside the source surname")
         initials = house_given(person["given"])
         text = _family_text(family, cited[i] if len(cited) == len(people) else None)
-        suffix = (person.get("suffix") or "").replace(".", "").strip()
-        name = f"{text}, {suffix}, {initials}" if suffix else f"{initials} {text}"
+        # No name suffix is ever written (user decision 2026-09-24): a source
+        # Jr/Sr/II/III/IV is dropped; the comparator ignores it on both sides.
+        name = f"{initials} {text}"
         parsed = splitname(name, strict_mode=True)
         if (normalized(" ".join(parsed["von"] + parsed["last"])) != normalized(family)
                 or " ".join(parsed["first"]) != initials
-                or normalized(" ".join(parsed["jr"])) != normalized(suffix)):
+                or parsed["jr"]):
             raise ValueError("Source name does not round-trip in house form: " + name)
         names.append(name)
     return " and ".join(names)
@@ -338,8 +340,15 @@ def _house_marks_text(byline):
 
 
 def suffix_proposal(entry, previous):
-    """Add a documented suffix without losing any citation initial; the byline
-    is written in house form (initials without periods) from the source."""
+    """Retired: no proposal ever adds a name suffix (user decision 2026-09-24).
+
+    The comparator ignores Jr, Sr, II, III and IV on both sides, so a citation
+    without the suffix verifies as it is. Always returns None."""
+    return None
+
+
+def _retired_suffix_proposal(entry, previous):
+    """The pre-2026-09-24 generator, kept for the record; never called."""
     from verification import split_authors
     fields = entry["fields"]
     if (fields.get("ENTRYTYPE") != "article" or previous.get("status") != "needs_review"
@@ -492,6 +501,9 @@ def field_proposal(entry, previous, field):
                 # Never discard given-name detail or people the citation has
                 # (audit rule: e.g. full names must not become initials).
                 if byline_loses_detail(fields.get("author", ""), record.get("author", [])):
+                    continue
+                # Crossref and PubMed both state it; library consensus still holds.
+                if surname_change_hold(entry["key"], fields.get("author"), value, corroborated=True):
                     continue
             elif field == "title":
                 # Derive the full title/subtitle with the same production parser.
@@ -923,7 +935,7 @@ def byline_adds_information(local, people):
     fix; any citation suffix is kept by the source.
     """
     from bibtexparser.customization import splitname
-    from verification import given_name_tokens, given_token_matches, normalize_author_suffix, split_authors
+    from verification import given_name_tokens, given_token_matches, same_suffix, split_authors
     names = split_authors(local)
     if names and normalized(names[-1]) == "others":
         names = names[:-1]
@@ -941,7 +953,7 @@ def byline_adds_information(local, people):
                     or surname_form_only(family, person.get("family", ""))
                     or _only_deletions(_fold(family), _fold(person.get("family", "")))):
                 return False
-        if parts["jr"] and normalize_author_suffix(" ".join(parts["jr"])) != normalize_author_suffix(person.get("suffix", "")):
+        if parts["jr"] and not same_suffix(" ".join(parts["jr"]), person.get("suffix", "")):
             return False
         if _marks(name) > _marks(person.get("family", "") + " " + person.get("given", "")):
             return False  # the source lacks the citation's accents
@@ -1277,6 +1289,8 @@ def single_source_proposal(entry, previous, explain=None, issue_lookups=None):
                 if mapped and mapped.get("page") and origin == "crossref" and expanded_pages(mapped["page"]) != pages:
                     raise ValueError("pages: sources disagree")
                 value = pages.replace("-", "--")
+                if shortens_pages(fields.get("pages"), value):
+                    raise ValueError("pages: the source would shorten the cited range")
             values[field], sources[field] = value, origin
         if split and "number" not in values:
             # The split label leaves the volume; the issue is what a source states.
@@ -1298,6 +1312,12 @@ def single_source_proposal(entry, previous, explain=None, issue_lookups=None):
         explain["detail"] = "; ".join(f"{f}: source value drops accents or has a replacement character" for f in lossy)
         explain["fields"] = sorted(changed)
         return None
+    if values.get("author"):
+        hold = surname_change_hold(entry["key"], fields.get("author"), values["author"],
+                                   corroborated=mapped is not None and sources["author"] == "crossref")
+        if hold:
+            explain.update(reason="value-held", detail=hold, fields=sorted(changed))
+            return None
     subclasses = {f: change_subclass(f, fields.get(f), v, year=fields.get("year"),
                                      corroborated=mapped is not None and sources[f] == "crossref")
                   for f, v in values.items()}
@@ -1412,6 +1432,127 @@ def change_subclass(field, before, after, year=None, corroborated=False):
         return field
     except (ValueError, TypeError, KeyError, IndexError):
         return field + "-unclassified"
+
+
+# ---------------------------------------------------------------------------
+# Spot-check decisions, 2026-09-24/25 (verification/resolution-plan-2026-09-22/
+# README.md, "Spot-check completed"; verification/apply-2026-09-25/README.md).
+# ---------------------------------------------------------------------------
+
+def shortens_pages(before, after):
+    """True when a replacement would shorten the cited page range.
+
+    The cited value is a range (first page != last page) and the replacement
+    keeps its first page but has no last page: a source giving only the first
+    page (``483--490`` -> ``483``). A source that states a different last page
+    (``434--443`` -> ``434--442``) corrects the range rather than dropping it,
+    and a replacement that starts elsewhere is a different correction
+    (``pages-different-start``); neither is judged here.
+    """
+    try:
+        old = expanded_pages(before or "").split("-")
+        new = expanded_pages(after or "").split("-")
+    except (ValueError, TypeError, AttributeError):
+        return False
+    if len(old) != 2 or not old[0] or not old[1] or old[0] == old[1] or not new[0] or new[0] != old[0]:
+        return False
+    return len(new) == 1 or not new[1]
+
+
+LIBRARY_BIB = Path(__file__).resolve().parents[1] / "cdl.bib"
+_LIBRARY = {}
+
+
+def _person_key(name):
+    """(folded surname, first given initial) of one BibTeX name, or None."""
+    from bibtexparser.customization import splitname
+    from verification import given_name_tokens, without_suffix_tokens
+    try:
+        if not name or name.startswith("{") or normalized(name) == "others":
+            return None
+        parts = splitname(name, strict_mode=True)
+        family = _fold(" ".join(parts["von"] + parts["last"]))
+        given = without_suffix_tokens(given_name_tokens(" ".join(parts["first"])))
+    except (ValueError, TypeError, KeyError, IndexError):
+        return None
+    if not family or not given or not given[0]:
+        return None
+    return family, given[0][0]
+
+
+def library_people(library=None):
+    """{(folded surname, first initial): cite keys} over every author/editor.
+
+    ``library`` is a bibliography path (default: the repository's cdl.bib),
+    re-read when its modification time changes."""
+    from verification import load_entries, split_authors
+    path = Path(library or LIBRARY_BIB)
+    stamp = (str(path.resolve()), path.stat().st_mtime_ns)
+    if stamp not in _LIBRARY:
+        people = {}
+        for key, entry in load_entries(path).items():
+            for field in ("author", "editor"):
+                for name in split_authors(entry["fields"].get(field) or ""):
+                    ident = _person_key(name)
+                    if ident:
+                        people.setdefault(ident, set()).add(key)
+        _LIBRARY.clear()
+        _LIBRARY[stamp] = people
+    return _LIBRARY[stamp]
+
+
+def surname_changes(before, after):
+    """[(cited name, proposed name)] for positions whose folded surname changes."""
+    from bibtexparser.customization import splitname
+    from verification import split_authors
+    try:
+        old = [n for n in split_authors(before or "") if normalized(n) != "others"]
+        new = [n for n in split_authors(after or "") if normalized(n) != "others"]
+    except ValueError:
+        return []
+    if not old or len(old) != len(new):
+        return []
+    changed = []
+    for a, b in zip(old, new):
+        if a.startswith("{") or b.startswith("{"):
+            continue
+        try:
+            fa = _fold(" ".join(splitname(a, strict_mode=True)["von"] + splitname(a, strict_mode=True)["last"]))
+            fb = _fold(" ".join(splitname(b, strict_mode=True)["von"] + splitname(b, strict_mode=True)["last"]))
+        except (ValueError, TypeError):
+            changed.append((a, b))
+            continue
+        if fa != fb:
+            changed.append((a, b))
+    return changed
+
+
+def surname_change_hold(key, before, after, corroborated=False, library=None):
+    """Why an author change that alters a surname must be held, or None.
+
+    User decision 2026-09-25 (after risky001 applied Crossref's "Kounois" to
+    MeyeEtal88): a surname change needs corroboration.
+      * Library consensus holds it: the cited spelling is used for the same
+        person (surname + first initial) in other cdl.bib entries and the
+        proposed spelling is not. This holds even when a second source agrees.
+      * Otherwise it proceeds when a second authoritative source states the same
+        surname (``corroborated``) or other cdl.bib entries already use the
+        proposed spelling for that person; with neither it is held.
+    """
+    changes = surname_changes(before, after)
+    if not changes:
+        return None
+    people = library_people(library)
+    for old, new in changes:
+        cited, proposed = _person_key(old), _person_key(new)
+        cited_elsewhere = people.get(cited, set()) - {key} if cited else set()
+        proposed_elsewhere = people.get(proposed, set()) - {key} if proposed else set()
+        if cited_elsewhere and not proposed_elsewhere:
+            return (f"author: library consensus keeps the cited surname {old!r} "
+                    f"(also in {', '.join(sorted(cited_elsewhere)[:5])}); proposed {new!r} is used nowhere else")
+        if not corroborated and not proposed_elsewhere:
+            return f"author: single-source surname change {old!r} -> {new!r} lacks corroboration"
+    return None
 
 
 def drop_publisher_proposal(entry):

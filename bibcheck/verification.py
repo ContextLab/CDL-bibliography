@@ -1044,6 +1044,33 @@ def normalize_author_suffix(value):
     return value
 
 
+# User decision 2026-09-24/25 (verification/resolution-plan-2026-09-22/README.md,
+# "Spot-check completed"): name suffixes are never added and the comparator
+# ignores them on both sides. Only these recognized suffixes are ignored; any
+# other ``jr`` part of a BibTeX name is still compared.
+IGNORED_SUFFIXES = frozenset({"jr", "sr", "ii", "iii", "iv"})
+
+
+def ignorable_suffix(value):
+    """True for an empty suffix or a recognized one (Jr, Sr, II, III, IV)."""
+    try:
+        return normalize_author_suffix(value or "") in IGNORED_SUFFIXES | {""}
+    except ValueError:
+        return False
+
+
+def same_suffix(left, right):
+    """Suffixes agree, or both are empty/recognized and therefore ignored."""
+    return (ignorable_suffix(left) and ignorable_suffix(right)) or (
+        normalize_author_suffix(left or "") == normalize_author_suffix(right or ""))
+
+
+def without_suffix_tokens(tokens):
+    """Drop recognized suffix words from given-name tokens (``J Jr``, ``Alice Jr.``)."""
+    kept = [t for t in tokens if t.rstrip(".,") not in IGNORED_SUFFIXES]
+    return kept if kept else tokens
+
+
 def author_evidence(value, people):
     names = split_authors(value)
     if not value or not people or len(names) != len(people):
@@ -1062,10 +1089,10 @@ def author_evidence(value, people):
         family = " ".join(parts["von"] + parts["last"])
         if normalized(family) != normalized(person.get("family", "")):
             return False, "Author surnames/order differ"
-        if normalize_author_suffix(" ".join(parts["jr"])) != normalize_author_suffix(person.get("suffix", "")):
+        if not same_suffix(" ".join(parts["jr"]), person.get("suffix", "")):
             return False, "Author suffix differs"
-        given = given_name_tokens(" ".join(parts["first"]))
-        actual = given_name_tokens(person.get("given", ""))
+        given = without_suffix_tokens(given_name_tokens(" ".join(parts["first"])))
+        actual = without_suffix_tokens(given_name_tokens(person.get("given", "")))
         if not given or len(given) != len(actual):
             return False, "Missing or incomplete given names"
         for a, b in zip(given, actual):

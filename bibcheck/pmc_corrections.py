@@ -5,7 +5,7 @@ import re
 
 from auto_review import epmc_record, expanded_pages, reassess, safe_compare, unique_crossref_primaries
 from fulltext_review import assess_fulltext
-from verification import normalize_doi, normalize_publisher, normalized, split_authors, given_name_tokens, given_token_matches, normalize_author_suffix
+from verification import normalize_doi, normalize_publisher, normalized, split_authors, given_name_tokens, given_token_matches, same_suffix
 
 
 def pmc_publisher_proposal(entry, previous):
@@ -68,7 +68,7 @@ def preserves_byline_details(local, people):
     for name, person in zip(names, people):
         parsed = splitname(name, strict_mode=True)
         if (normalized(" ".join(parsed["von"] + parsed["last"])) != normalized(person.get("family", ""))
-                or normalize_author_suffix(" ".join(parsed["jr"])) != normalize_author_suffix(person.get("suffix", ""))):
+                or not same_suffix(" ".join(parsed["jr"]), person.get("suffix", ""))):
             return False
         old = given_name_tokens(" ".join(parsed["first"]))
         new = given_name_tokens(person.get("given", ""))
@@ -130,6 +130,12 @@ def pmc_coordinate_proposal(entry, previous, *, include_authors=False):
                 from correction_proposals import source_authors
                 values["author"] = source_authors(record, fields.get("author"))
             if any(not values[f] or values[f] == fields.get(f) for f in changed):
+                continue
+            from correction_proposals import shortens_pages, surname_change_hold
+            if "pages" in changed and shortens_pages(fields.get("pages"), values["pages"]):
+                continue  # a cited range is never shortened (2026-09-24/25)
+            if "author" in changed and surname_change_hold(entry["key"], fields.get("author"), values["author"],
+                                                           corroborated=True):
                 continue
             if (not re.fullmatch(r"[1-9]\d{3}", values["year"])
                     or not re.fullmatch(r"[1-9]\d*", values["volume"])
@@ -229,6 +235,9 @@ def pmc_article_number_proposal(entry, previous):
                 continue
             if not safe_compare(fields, record)[0].get("title", {}).get("match"):
                 continue
+            from correction_proposals import shortens_pages
+            if shortens_pages(fields.get("pages"), page):
+                continue  # a cited range is never shortened (2026-09-24/25)
             proposed = dict(fields, volume=volume, pages=page)
             if issue:
                 proposed["number"] = issue

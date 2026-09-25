@@ -585,6 +585,16 @@ def compare_edition(fields, record, xml):
                 if normalized(g['publisher']) == normalized(fields['publisher'])]
         if mine:
             places = [p for i in mine for p in imprints[i]['address']]
+    if fields.get('publisher') and 'publisher: missing evidence or mismatch' in issues:
+        publishers = [g['publisher'] for g in imprints] if imprints else [record.get('publisher', '')]
+        same = [p for p in publishers if p and publisher_same_firm(fields['publisher'], p)]
+        if len(same) == 1:
+            issues = [i for i in issues if i != 'publisher: missing evidence or mismatch']
+            evidence['publisher'] = dict(evidence.get('publisher', {}), match=True, source_name_variant=same[0],
+                                         detail='Catalogue gives a longer form of the same firm; house form kept')
+            if imprints:
+                mine = [i for i, g in enumerate(imprints) if g['publisher'] == same[0]]
+                places = [p for i in mine for p in imprints[i]['address']]
     for name in ('address', 'edition'):
         local, source = fields.get(name, ''), (places if name == 'address' else record[name])
         if local or (name == 'edition' and source):
@@ -743,6 +753,28 @@ def publisher_name_form(cited, catalogue):
         and set(theirs) - set(re.findall(r"[a-z]+", folded(catalogue))) == set()
 
 
+def publisher_same_firm(cited, catalogue):
+    """The catalogue gives a longer (or equal) form of the cited firm's name.
+
+    User decision 2026-09-24/25: a same-firm longer form is a match and the
+    house form is kept (no edit). Every distinctive word of the cited name is
+    in the catalogue name ('Addison-Wesley' / 'Addison-Wesley Pub. Co',
+    'Erlbaum' / 'L. Erlbaum Associates'), the words run together
+    ('Harper Prism' / 'HarperPrism'), or the cited name is the catalogue
+    name's acronym ('{MIT} Press'). A catalogue name that drops a cited word
+    ('Harcourt, Brace, and World' / 'Harcourt, Brace and Company') is not a
+    match: that may be another firm or era.
+    """
+    mine, theirs = _publisher_tokens(cited or ''), _publisher_tokens(catalogue or '')
+    if not mine or not theirs:
+        return False
+    if set(mine) <= set(theirs) or ''.join(mine) == ''.join(theirs):
+        return True
+    initials = ''.join(w[0] for w in re.findall(r"[a-z]+", folded(catalogue)) if w not in {'of', 'and', 'the'})
+    return len(mine) == 1 and len(mine[0]) >= 2 and initials.startswith(mine[0]) \
+        and set(theirs) - set(re.findall(r"[a-z]+", folded(catalogue))) == set()
+
+
 def _surnames(value):
     names = []
     for name in split_authors(value or ''):
@@ -763,8 +795,7 @@ def _cited_name(local, person):
         given = " ".join(t.rstrip('.') for t in given.split())
     family = unicodedata.normalize('NFC', person['family'])
     given = unicodedata.normalize('NFC', given)
-    if person.get('suffix'):
-        return f"{family}, {person['suffix']}, {given}"
+    # No name suffix is ever written (user decision 2026-09-24).
     return f"{given} {family}" if ' ' not in family else f"{given} {{{family}}}"
 
 
@@ -912,6 +943,13 @@ def propose_corrections(fields, result):
     if blocking:
         return {'group': 'catalogue-unparsed-competitor', 'reason': blocking[0]['issues'][0]}
     candidate, changes = options[0]
+    if any(c['rule'] == 'byline-surname-spelling' for c in changes):
+        from correction_proposals import surname_change_hold
+        for c in changes:
+            if c['rule'] == 'byline-surname-spelling':
+                hold = surname_change_hold(fields.get('ID'), c['before'], c['after'])
+                if hold:
+                    return {'group': 'surname-change-held', 'reason': hold}
     edited = dict(fields)
     for change in changes:
         if change['after'] is None:

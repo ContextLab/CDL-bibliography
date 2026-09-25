@@ -571,7 +571,8 @@ def pubmed_only_assessment(entry, raws, crossref_records=()):
     """
     from correction_proposals import (HELD_SUBCLASSES, MAX_SINGLE_SOURCE_FIELDS, _issue_fields, _title_words,
                                       byline_adds_information, change_subclass, loses_characters,
-                                      single_source_identity, source_authors, source_title)
+                                      shortens_pages, single_source_identity, source_authors, source_title,
+                                      surname_change_hold)
     from auto_review import expanded_pages
     fields = entry["fields"]
     evaluated = {k: v for k, v in fields.items() if k != "publisher"}
@@ -642,6 +643,9 @@ def pubmed_only_assessment(entry, raws, crossref_records=()):
                 if any(p.get("family", "").isupper() and len(p.get("family", "")) > 1 for p in record["author"]):
                     raise ValueError("author: MEDLINE surname in capitals (old record style)")
                 values[field] = source_authors(record)
+                hold = surname_change_hold(entry["key"], fields.get("author"), values[field])
+                if hold:
+                    raise ValueError(hold)
             elif field == "year":
                 values[field] = str(record["published"]["date-parts"][0][0])
             elif field == "journal":
@@ -656,6 +660,8 @@ def pubmed_only_assessment(entry, raws, crossref_records=()):
                 if not re.fullmatch(r"[a-z]{0,3}\d+(?:-[a-z]{0,3}\d+)?", pages):
                     raise ValueError("pages: unsupported source locator")
                 values[field] = pages.replace("-", "--")
+                if shortens_pages(fields.get("pages"), values[field]):
+                    raise ValueError("pages: the source would shorten the cited range")
     except (ValueError, KeyError, TypeError, IndexError) as exc:
         return dict(base, outcome="held", reason="value-held", detail=str(exc), fields=sorted(changed))
     values = {f: v for f, v in values.items() if fields.get(f) != v}

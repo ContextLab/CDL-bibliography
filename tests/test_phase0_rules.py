@@ -82,9 +82,11 @@ def test_supplied_doi_scopes_flags_to_itself():
 def test_coordinate_flag_from_rival_is_dropped_but_identity_kept():
     assert COORDS not in reviewed("GreeEtal13")[1]["issues"]
     assert COORDS in reviewed("HardEtal13")[1]["issues"]
-    assert SUFFIX in reviewed("ColdEtal96b")[1]["issues"]
+    # Suffixes are ignored on both sides (user decision 2026-09-24/25): a
+    # DOI-linked PubMed suffix is no longer reported as a conflict.
+    assert SUFFIX not in reviewed("ColdEtal96b")[1]["issues"]
     # Murd56's own DOI ("Backward" learning..., similarity 0.96) carries Jr.
-    assert SUFFIX in reviewed("Murd56")[1]["issues"]
+    assert SUFFIX not in reviewed("Murd56")[1]["issues"]
 
 
 # 2. Byte-identical Crossref duplicates collapse; differing copies do not ------
@@ -301,13 +303,19 @@ def test_single_source_preserves_accents_in_house_form():
     ("HopkEtal12", "value-held"),  # citation has full names; source initials only
     ("CahiEtal96", "value-held"),
     ("FourEtal19", "too-many-fields"),
-    ("RebeEtal02", "would-not-verify"),  # the cited work's erratum stays open
+    # Crossref spells D R Gitelman "Gitleman"; PallEtal03 in cdl.bib spells him
+    # Gitelman, so library consensus holds the change (2026-09-25) before the
+    # erratum check is reached. The cited work's erratum still keeps it open.
+    ("RebeEtal02", "value-held"),
 ])
 def test_single_source_holds(key, reason):
     entry, result = reviewed(key)
     explain = {}
     assert single_source_proposal(entry, result, explain) is None
     assert explain["reason"] == reason
+    if key == "RebeEtal02":
+        assert "library consensus" in explain["detail"] and "Gitleman" in explain["detail"]
+        assert result["status"] == "needs_review"
 
 
 def test_existing_author_generator_never_discards_given_names():
@@ -596,7 +604,8 @@ def test_particles_case_and_accents_are_kept():
     assert "G {van Bruggen}" in source_authors(record, entry["fields"]["author"])  # not "Van Bruggen"
     assert "G {Van Bruggen}" in source_authors(record)  # no citation: the source text, braced
     assert house_byline([{"given": "Jaime", "family": "de la Rocha"}]) == "J de la Rocha"
-    assert house_byline([{"given": "R B", "family": "Freeman", "suffix": "Jr."}]) == "Freeman, Jr, R B"
+    # No proposal ever adds a name suffix (user decision 2026-09-24).
+    assert house_byline([{"given": "R B", "family": "Freeman", "suffix": "Jr."}]) == "R B Freeman"
 
 
 def test_corporate_and_brace_led_bylines_are_never_rewritten():
@@ -622,10 +631,17 @@ def test_all_capital_or_ambiguous_source_names_are_held():
 
 def test_accent_commands_are_not_case_protection():
     from correction_proposals import loses_characters
+    from correction_proposals import source_authors
     entry, result = fix_case("RacsEtal08")
-    proposal = single_source_proposal(entry, result)
-    assert proposal["changes"]["author"]["after"] == \
+    record = next(c["record"] for c in result["candidates"] if c.get("source") == "crossref"
+                  and c["record"].get("DOI", "").lower() == "10.1080/17470210701728750")
+    assert source_authors(record, entry["fields"]["author"]) == \
         "M Racsm\\'{a}ny and M A Conway and E A Garab and G Nagymáté"
+    # Magymáté -> Nagymáté is a single-source surname change: held without
+    # corroboration (user decision 2026-09-25), never proposed from Crossref alone.
+    explain = {}
+    assert single_source_proposal(entry, result, explain) is None
+    assert "lacks corroboration" in explain["detail"]
     assert not loses_characters("J Garc\\'{i}a", "J García", "author")
     assert not loses_characters("José García", "J García", "author")  # initials drop given-name letters only
     assert loses_characters("José García", "J Garcia", "author")      # a surname accent is lost

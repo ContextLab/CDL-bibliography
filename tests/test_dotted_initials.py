@@ -56,7 +56,9 @@ def test_tokenization_is_limited_to_explicit_initial_runs(value, expected):
 def test_dotted_initials_do_not_relax_author_order_or_suffixes():
     source = [{"family": "Meer", "given": "A.B."}, {"family": "Other", "given": "C.D."}]
     assert not author_evidence("C D Other and A B Meer", source)[0]
-    assert not author_evidence("Meer, Jr, A B and C D Other", source)[0]
+    # Suffixes are ignored on both sides (user decision 2026-09-24/25).
+    assert author_evidence("Meer, Jr, A B and C D Other", source)[0]
+    assert not author_evidence("Other, Jr, C D and A B Meer", source)[0]
 
 
 def test_resolver_reopens_only_new_secondary_targets(tmp_path):

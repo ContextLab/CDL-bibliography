@@ -23,6 +23,8 @@ from verification import (
     given_token_matches,
     load_entries,
     normalize_author_suffix,
+    same_suffix,
+    without_suffix_tokens,
     normalize_doi,
     normalize_pages,
     normalized,
@@ -39,7 +41,8 @@ from bibtexparser.customization import splitname
 EPMC_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 # Resolver upgrades revisit unresolved saved evidence once. Previously accepted
 # entries retain their approval and original checked_at without reassessment.
-RESOLVER_VERSION = 28  # 28: verification/phase0-2026-09-22 rules
+RESOLVER_VERSION = 29  # 29: verification/apply-2026-09-25 stage 1 rules (suffixes ignored; catalogue
+#     publisher same-firm variants). 28: verification/phase0-2026-09-22 rules
 EPMC_FIELDS = {
     "id",
     "source",
@@ -149,7 +152,12 @@ def secondary_suffix_dois(candidates):
 
 
 def secondary_suffix_conflicts(fields, candidates):
-    """A matching registry record cannot erase a DOI-linked explicit suffix."""
+    """A DOI-linked explicit suffix that differs from the citation's.
+
+    User decision 2026-09-24/25: recognized suffixes (Jr, Sr, II, III, IV) are
+    ignored on both sides, so they never conflict; a PubMed record whose own
+    suffix fields disagree is ignored for the same reason. Any other suffix text
+    still conflicts."""
     flagged = set()
     for candidate in candidates:
         dois = secondary_suffix_dois([candidate])
@@ -164,8 +172,11 @@ def secondary_suffix_conflicts(fields, candidates):
                 parts = splitname(name, strict_mode=True)
                 if normalized(" ".join(parts["von"] + parts["last"])) != normalized(person.get("lastName", "")):
                     continue
-                suffix = pubmed_author_suffix(person)
-                if suffix and normalize_author_suffix(" ".join(parts["jr"])) != normalize_author_suffix(suffix):
+                try:
+                    suffix = pubmed_author_suffix(person)
+                except PubmedSuffixConflict:
+                    continue
+                if suffix and not same_suffix(" ".join(parts["jr"]), suffix):
                     flagged.update(dois)
         except (ValueError, KeyError, TypeError, AttributeError):
             flagged.update(dois)
@@ -646,10 +657,10 @@ def compatible_authors(primary, secondary):
     for a, b in zip(first, second):
         if normalized(a.get("family", "")) != normalized(b.get("family", "")):
             return False
-        if normalize_author_suffix(a.get("suffix", "")) != normalize_author_suffix(b.get("suffix", "")):
-            return False
-        aa = given_name_tokens(a.get("given", ""))
-        bb = given_name_tokens(b.get("given", ""))
+        if not same_suffix(a.get("suffix", ""), b.get("suffix", "")):
+            return False  # recognized suffixes are ignored (user decision 2026-09-24/25)
+        aa = without_suffix_tokens(given_name_tokens(a.get("given", "")))
+        bb = without_suffix_tokens(given_name_tokens(b.get("given", "")))
         for x, y in zip(aa, bb):
             if not (given_token_matches(x, y) or given_token_matches(y, x)):
                 return False

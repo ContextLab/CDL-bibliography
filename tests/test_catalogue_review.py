@@ -1200,7 +1200,7 @@ def test_same_year_unparseable_reissue_still_blocks():
 def test_rda_264_publication_statement_verifies_with_the_exact_publisher():
     verified('Huth13', {'title': 'The lost art of finding our way',
                         'publisher': 'The Belknap Press of Harvard University Press'}, '17547296')
-    assert status('Huth13') == 'needs_review'  # cited 'Belknap Press' / title without 'The'
+    assert status('Huth13') == 'needs_review'  # cited title without 'The' (publisher is a same-firm match)
 
 
 @pytest.mark.parametrize('change', ['second-264-1', '264-0', 'plus-260', 'only-copyright'])
@@ -1241,7 +1241,9 @@ def test_distributor_clause_is_not_a_publisher():
     # printed 'Jr.' suffix and the coded Maryland place.
     verified('Murd74', {'author': 'Murdock, Jr., B B', 'publisher': 'Lawrence Erlbaum Associates',
                         'address': 'Potomac, MD'})
-    assert status('Murd74', {'publisher': 'Lawrence Erlbaum Associates', 'address': 'Potomac, MD'}) == 'needs_review'
+    # The citation without the suffix now verifies too: suffixes are ignored on
+    # both sides (user decision 2026-09-24/25).
+    assert status('Murd74', {'publisher': 'Lawrence Erlbaum Associates', 'address': 'Potomac, MD'}) == 'metadata_verified'
     assert status('Murd74', {'author': 'Murdock, Jr., B B', 'publisher': 'Halsted Press',
                              'address': 'Potomac, MD'}) == 'needs_review'
 
@@ -1399,7 +1401,8 @@ def test_proposals_from_one_same_edition_record():
                                   'title-add-catalogue-subtitle')}
     assert changes('Carr93') == {('author', 'J D Carroll', 'J B Carroll', 'byline-given-names'),
                                  ('address', 'New York, {NY}', 'New York', 'address-state-or-country-suffix')}
-    assert changes('Crow76') == {('publisher', 'Erlbaum', 'Lawrence Erlbaum Associates', 'publisher-name-form')}
+    # 'Erlbaum' / 'Lawrence Erlbaum Associates' is now a same-firm match with no
+    # edit (user decision 2026-09-24/25); see test_same_firm_longer_publisher_*.
     assert changes('Kint70') == {('author', 'Kintsch', 'W Kintsch', 'byline-given-names')}
 
 
@@ -1417,7 +1420,40 @@ def test_no_proposal_without_a_unique_same_edition_record(key, group):
 
 def test_proposals_never_change_both_year_and_publisher_or_more_than_two_fields():
     # Mutating the record so three fields differ removes the proposal.
+    # 'Erlbaum' is now a same-firm match (2026-09-25), so a different firm keeps
+    # three fields differing: publisher, author and address.
     fields, response = derived('Crow76', {'year': '1976', 'title': 'Principles of learning and memory',
-                                          'author': 'R Crowder', 'address': 'Boston, {MA}'})
+                                          'author': 'R Crowder', 'address': 'Boston, {MA}',
+                                          'publisher': 'Halsted Press'})
     result = cr.assess_catalogue(fields, response)
     assert 'group' in cr.propose_corrections(fields, result)
+
+
+# Same-firm publisher variants (user decision 2026-09-24/25) ------------------------
+
+@pytest.mark.parametrize('cited,catalogue,same', [
+    ('Addison-Wesley', 'Addison-Wesley Pub. Co', True), ('Erlbaum', 'L. Erlbaum Associates', True),
+    ('Erlbaum', 'Lawrence Erlbaum Associates', True), ('Springer', 'Springer-Verlag', True),
+    ('{MIT} Press', 'Massachusetts Institute of Technology Press', True), ('Harper Prism', 'HarperPrism', True),
+    ('Chapman and Hall', 'Chapman & Hall', True), ('Belknap Press', 'The Belknap Press of Harvard University Press', True),
+    # The catalogue drops a cited word: another firm or era, never a match.
+    ('Harcourt, Brace, and World', 'Harcourt, Brace and Company', False),
+    ('Holt, Rinehart, and Winston', 'Holt', False), ('Wiley-Interscience', 'Wiley', False),
+    ('Academic Press', 'Oxford University Press', False), ('Yale University Press', 'Harvard University Press', False),
+    ('Press', 'Academic Press', False),
+])
+def test_publisher_same_firm(cited, catalogue, same):
+    assert cr.publisher_same_firm(cited, catalogue) is same
+
+
+def test_same_firm_longer_publisher_form_verifies_with_no_edit():
+    result = verified('Crow76', {'address': 'Hillsdale, NJ'}, '3178550')  # cited 'Erlbaum'
+    candidate = next(c for c in result['candidates'] if c['record_id'] == '3178550')
+    assert candidate['evidence']['publisher']['match']
+    assert candidate['evidence']['publisher']['source_name_variant'] == 'Lawrence Erlbaum Associates'
+    # 'Belknap Press' / 'The Belknap Press of Harvard University Press', house form kept:
+    verified('Huth13', {'title': 'The lost art of finding our way'}, '17547296')
+    # Negative controls: another firm, or a catalogue form that drops a cited word.
+    assert status('Crow76', {'publisher': 'Halsted Press'}) == 'needs_review'
+    assert status('Koff35') == 'needs_review'  # 'Harcourt, Brace, and World'
+    assert status('Semo23') == 'needs_review'  # 'George, Allen, and Unwin' / 'G. Allen & Unwin, ltd.'

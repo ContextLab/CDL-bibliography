@@ -113,14 +113,22 @@ def test_doi_cannot_select_from_ambiguous_or_conflicting_evidence(conflict):
 
 
 def test_author_repair_requires_the_complete_ordered_second_byline():
-    for change in ("missing", "reverse", "given", "suffix"):
+    for change in ("missing", "reverse", "given"):
         entry, previous = case("author")
         authors = next(c["raw_record"]["authorList"]["author"] for c in previous["candidates"] if c["source"] == "europepmc")
         if change == "missing": authors.pop()
         elif change == "reverse": authors.reverse()
         elif change == "given": authors[0]["firstName"] = "Different"
-        else: authors[0]["suffix"] = "Jr"
         assert field_proposal(entry, previous, "author") is None
+    # A PubMed suffix alone is ignored (user decision 2026-09-24/25): it neither
+    # blocks nor changes the proposal, and no suffix is ever written.
+    entry, previous = case("author")
+    expected = field_proposal(entry, previous, "author")
+    entry, previous = case("author")
+    next(c["raw_record"]["authorList"]["author"] for c in previous["candidates"] if c["source"] == "europepmc")[0]["suffix"] = "Jr"
+    proposal = field_proposal(entry, previous, "author")
+    assert (proposal or {}).get("changes") == (expected or {}).get("changes")
+    assert not proposal or "Jr" not in proposal["changes"]["author"]["after"]
 
 
 def test_shared_duplicate_author_is_not_corroboration():
