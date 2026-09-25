@@ -102,14 +102,14 @@
   "new_key": "KahaEtal24",
   "date": "2026-09-25",
   "reason": "pilot001 (research pilot, user: correct): year 2022 -> 2024 (The Oxford Handbook of Human Memory, Crossref 10.1093/oxfordhb/9780190917982.013.2); key follows the corrected metadata (user decision 2026-09-26)",
-  "commit": "pending"
+  "commit": "689de07"
  },
  {
   "old_key": "Mink07",
   "new_key": "Mink15",
   "date": "2026-09-25",
   "reason": "pilot001 (user 2026-09-25): cite the 6th edition, 2015 (LoC 2015458479; LWW contents list names Jonathan W. Mink for chapter 1); key follows the corrected metadata",
-  "commit": "pending"
+  "commit": "689de07"
  },
  {
   "old_key": "Beaz05",
@@ -117,6 +117,34 @@
   "date": "2026-09-25",
   "kind": "replacement",
   "reason": "pilot001 (user 2026-09-25): REPLACEMENT, not a rename: the undated SWIG software citation is replaced by D M Beazley (1996) 'SWIG: an easy to use tool for integrating scripting languages with C and C++', Fourth Annual USENIX Tcl/Tk Workshop (usenix.org legacy proceedings page)",
+  "commit": "689de07"
+ },
+ {
+  "old_key": "YangEtal25",
+  "new_key": "YangEtal25a",
+  "date": "2026-09-25",
+  "reason": "PR #87 merge (ebff8e4): collision rule, YangEtal25b (Qwen3 technical report) added by the PR",
+  "commit": "ebff8e4"
+ },
+ {
+  "old_key": "FitzEtal26",
+  "new_key": "FitzEtal26b",
+  "date": "2026-09-25",
+  "reason": "PR #88 merge (4bc99ef): collision rule, FitzEtal26a (PsyArXiv preprint) added by the PR",
+  "commit": "4bc99ef"
+ },
+ {
+  "old_key": "WangEtal22",
+  "new_key": "WangEtal24",
+  "date": "2026-09-25",
+  "reason": "prfix001 (PR #87 entry): preprints cite their latest version; arXiv 2212.03533v2 updated 2024-02-22, year 2022 -> 2024; key follows the corrected metadata",
+  "commit": "pending"
+ },
+ {
+  "old_key": "Mann26",
+  "new_key": "MannClau26",
+  "date": "2026-09-25",
+  "reason": "prfix001 (PR #87 entry): DataCite 10.5281/zenodo.19094654 lists two creators (Jeremy R. Manning, Claude); author 'J R Manning and {Claude}', two-author key rule",
   "commit": "pending"
  }
 ]

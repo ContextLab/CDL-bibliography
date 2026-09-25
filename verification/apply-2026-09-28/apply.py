@@ -42,7 +42,7 @@ base.WORK = runner.WORK = WORK = ROOT / ".bibcheck" / HERE.name
 from verification import ACCEPTED, Cache, current_results, export_snapshot, load_entries, run_lock  # noqa: E402
 
 BIB = base.BIB
-BATCHES = ("pilot001", "pr87fix", "pr88fix")
+BATCHES = ("pilot001", "prfix001", "prfix002")
 TYPE_RE = re.compile(r"^@([A-Za-z]+)(\s*\{)")
 
 
