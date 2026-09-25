@@ -13,7 +13,7 @@ Library counts come from `bibcheck.py crossref status cdl.bib` (metadata_verifie
 |-|-|-|-|-|-|
 | start | | | | 4,373 / 2,049 | 1c1c13a |
 | code fixes + key-renames.json | | 1,463 tests pass | 0 | unchanged | 47f5b79 |
-| held001 | 25 edits, 12 key renames | 23 / 25 verified | 30 / 0 (83 / 0 review writes) | 4,396 / 2,026 | see git log |
+| held001 | 25 edits, 12 key renames | 23 / 25 verified | 30 / 0 (83 / 0 review writes) | 4,396 / 2,026 | 12ede17 |
 
 ## 1. Code fixes (tests first, in `tests/test_machinery_2026_09_25.py`, section 14)
 
