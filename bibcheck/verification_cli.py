@@ -24,6 +24,14 @@ from verification import (
     write_report,
 )
 
+# The 2026-09-25 source routes register their approval validators with
+# verification.register_approval_validator when imported, so offline gates
+# (status, restore, snapshot import) recognize their machine approvals.
+import osf_review  # noqa: E402,F401
+import datacite_review  # noqa: E402,F401
+import acl_review  # noqa: E402,F401
+import sfn_abstracts  # noqa: E402,F401
+
 app = typer.Typer(
     help="Check citation accuracy against external evidence. Never edits BibTeX."
 )
@@ -293,6 +301,17 @@ def verify(
             results = run_arxiv_review(
                 fname, cache, client, report, limit, snapshot, keys=selected
             )
+            # Repository/registry routes (2026-09-25): PsyArXiv via OSF,
+            # software/data via DataCite, ACL Anthology, SfN abstract planner.
+            for route in (
+                osf_review.run_osf_review,
+                datacite_review.run_datacite_review,
+                acl_review.run_acl_review,
+                sfn_abstracts.run_sfn_review,
+            ):
+                results = route(
+                    fname, cache, client, report, limit, snapshot, keys=selected
+                )
         # Reread both selection and results so concurrent edits cannot pass.
         results = write_report(fname, cache, report)
         selected = select_keys(fname, keys, against, entries=results)
