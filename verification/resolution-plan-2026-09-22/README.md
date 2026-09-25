@@ -135,3 +135,20 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   applied Crossref's "Kounois" to MeyeEtal88 (reverted); the 10-entry spot-check missed it.
 - **Year corrections rename keys** (user, 2026-09-25): GautEtal18 → GautEtal19 and
   HayeEtal14 → HayeEtal16 after their source-backed year fixes (check for collisions first).
+
+## Research-pilot feedback (user, 2026-09-25): 30 correct, 20 wrong → rules
+
+- **DOIs everywhere:** every entry gets a DOI when one exists, for the published,
+  peer-reviewed version (e.g. eLife rather than bioRxiv for vanEEtal18). 3,214 of 6,422
+  entries currently lack one. Verified entries were only given DOIs from a clean Crossref
+  record; the remaining ones need identity established first (research route).
+- **Issue ranges use `--`** (`3--4`), reversing the reviewer's majority-form reading;
+  convert the 52 single-hyphen `number` ranges.
+- **Proceedings names omit the year** (redundant with `year`); 5 existing booktitles.
+- **`@book` has no `pages` field.**
+- **Editions:** `5\textsuperscript{th}`.
+- **Removals:** NetwLab25 (user). Beaz05, RamaEtal12b, SommEtal12: remove if no source is
+  found, after searching the **SfN abstract planner** for the abstract year — add it as a
+  permanent source for conference abstracts.
+- Entry fixes: Hook69 title "The posthumous works of Robert Hooke"; Jame90 keeps
+  "volume I"; ZimaEtal23 year 2023 (latest version) is correct.

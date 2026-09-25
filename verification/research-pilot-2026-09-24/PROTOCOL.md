@@ -42,8 +42,7 @@ Rules:
   surname in an author list, every word of a title, both page numbers. Use several
   quotes if needed (the validator joins them).
 - House conventions (check how cdl.bib already writes a value before proposing one):
-  booktitles in title case (only `title` is sentence case); double issues `3-4`, not
-  `3--4`; publisher short house forms (`Erlbaum`, not "Lawrence Erlbaum Associates");
+  booktitles in title case (only `title` is sentence case); issue ranges `3--4`; publisher short house forms (`Erlbaum`, not "Lawrence Erlbaum Associates");
   US addresses with braced state codes (`New York, {NY}`, `Mahwah, {NJ}`); a chapter
   with a booktitle is `@incollection`, not `@inbook`.
 - Never drop an initial the citation already has only because a source omits it; drop
@@ -51,6 +50,13 @@ Rules:
 - Preprints: cite the latest version (its date is the year). If the preprint has been
   published, report the published version (DOI, venue, year) in `notes` as a
   replacement candidate; do not silently convert the entry.
+- Always record the DOI of the published, peer-reviewed version when one exists
+  (field `doi`, lowercase, with evidence); for a preprint that was published, report the
+  published DOI as the replacement candidate.
+- Proceedings/conference names omit the year. `@book` entries have no `pages`.
+  Editions are written `5\textsuperscript{th}`.
+- Conference abstracts: search the society's abstract planner/archive for that year
+  (e.g. SfN) before concluding `no_source`.
 - Issue numbers only if a source states them. Never carry a value over from the
   citation and call it confirmed.
 - `no_source` only after a genuine search (say where you looked in `notes`).
