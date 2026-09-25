@@ -1,0 +1,2287 @@
+{
+ "baseline": "verification/fixes-2026-09-24/proposals.json",
+ "per_class": {
+  "A1b-ARTICLE-NUMBER": {
+   "unchanged": 15
+  },
+  "S1-AUTHOR-NAMES": {
+   "unchanged": 28,
+   "withdrawn": 11
+  },
+  "S1-AUTHOR-SURNAME": {
+   "unchanged": 4,
+   "withdrawn": 2
+  },
+  "S1-COORDINATES": {
+   "unchanged": 18,
+   "withdrawn": 3
+  },
+  "S1-JOURNAL-HISTORY-OR-TYPO": {
+   "unchanged": 32,
+   "withdrawn": 1,
+   "new": 2
+  },
+  "S1-JOURNAL-REPLACEMENT": {
+   "unchanged": 6
+  },
+  "S1-PAGES-COMPLETE": {
+   "unchanged": 37,
+   "withdrawn": 10,
+   "new": 1
+  },
+  "S1-TITLE-CORROBORATED": {
+   "unchanged": 12
+  },
+  "S1-TITLE-CROSSREF-ONLY": {
+   "unchanged": 31
+  },
+  "S1-TWO-FIELDS": {
+   "new": 1,
+   "unchanged": 23,
+   "changed": 1,
+   "changed:author": 1,
+   "withdrawn": 6
+  },
+  "S1-TWO-FIELDS-RISKY": {
+   "withdrawn": 85,
+   "new": 3,
+   "unchanged": 2
+  },
+  "TWO-SOURCE": {
+   "changed": 2,
+   "changed:journal": 1,
+   "unchanged": 110,
+   "new": 6,
+   "changed:author": 1,
+   "withdrawn": 1
+  }
+ },
+ "entries": [
+  {
+   "key": "AdamMont67",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "pages": {
+     "before": "525--535",
+     "after": "528--535"
+    }
+   }
+  },
+  {
+   "key": "Akai74",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "pages": {
+     "before": "6",
+     "after": "716--723"
+    }
+   }
+  },
+  {
+   "key": "AldrEtal22",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "pages": {
+     "before": "1177001216",
+     "after": "1177--1216"
+    }
+   }
+  },
+  {
+   "key": "AltsEtal99",
+   "class_before": "TWO-SOURCE",
+   "class_after": "TWO-SOURCE",
+   "fields": [
+    "journal"
+   ],
+   "before": {
+    "pages": {
+     "before": "436",
+     "after": "436--443"
+    },
+    "journal": {
+     "before": "Journal of Neuropsychiatry and Clinical Neurosciences",
+     "after": "The Journal of Neuropsychiatry and Clinical Neurosciences"
+    }
+   },
+   "after": {
+    "pages": {
+     "before": "436",
+     "after": "436--443"
+    }
+   },
+   "issue_evidence": null,
+   "issue_completion": null,
+   "stated_by": {
+    "pages": [
+     "crossref",
+     "pubmed:10570755"
+    ]
+   }
+  },
+  {
+   "key": "AlyTurk16",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "M Aly and N Turk-Browne",
+     "after": "M Aly and N B Turk-Browne"
+    },
+    "pages": {
+     "before": "420--429",
+     "after": "e420--e429"
+    }
+   }
+  },
+  {
+   "key": "Ande74",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "6(4)",
+     "after": "6"
+    }
+   }
+  },
+  {
+   "key": "AndrEtal74",
+   "class_before": "S1-PAGES-COMPLETE",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "pages": {
+     "before": "609--628",
+     "after": "609"
+    }
+   }
+  },
+  {
+   "key": "AzizEtal91",
+   "class_after": "S1-TWO-FIELDS",
+   "after": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "pages": {
+     "before": "288--293",
+     "after": "288--292"
+    }
+   },
+   "issue_evidence": {
+    "issue": "4",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:1758446"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:1758446"
+    ]
+   }
+  },
+  {
+   "key": "Benn75",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "pages": {
+     "before": "573--584",
+     "after": "123--144"
+    }
+   }
+  },
+  {
+   "key": "BradLang00",
+   "class_before": "S1-COORDINATES",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "02",
+     "after": "2"
+    }
+   }
+  },
+  {
+   "key": "BrodMurd77",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "D A Brodie and B B Murdock",
+     "after": "D A Brodie and Murdock, Jr, B B"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "title": {
+     "before": "Effects of presentation time on nominal and functional serial position curves in free recall",
+     "after": "Effect of presentation time on nominal and functional serial-position curves of free recall"
+    }
+   }
+  },
+  {
+   "key": "BurgOKee96",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": "7",
+     "after": "6"
+    }
+   }
+  },
+  {
+   "key": "CalvEtal73",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "W H Calvin and G A Ojemann and A A Ward",
+     "after": "W H Calvin and G A Ojemann and Ward, Jr, A A"
+    },
+    "title": {
+     "before": "Human cortical neurons in epileptogenic foci: comparison of interictal firing patterns to those of ``epileptic'' neurons in animals",
+     "after": "Human cortical neurons in epileptogenic foci: comparison of inter-ictal firing patterns to those of “epileptic” neurons in animals"
+    }
+   }
+  },
+  {
+   "key": "CaplEtal06",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "J B Caplan and M Glaholt and A R Mc{I}ntosh",
+     "after": "J B Caplan and M G Glaholt and A R Mc{I}ntosh"
+    },
+    "title": {
+     "before": "Linking associative and list memory: pairs versus triples",
+     "after": "Linking associative and serial list memory: pairs versus triples"
+    }
+   }
+  },
+  {
+   "key": "ChapHump94",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "M Chappell and M Humphreys",
+     "after": "M Chappell and M S Humphreys"
+    },
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "title": {
+     "before": "An autoassociative neural network for sparse representations: analysis and application to models of recognition and cued recall",
+     "after": "An auto-associative neural network for sparse representations: analysis and application to models of recognition and cued recall"
+    }
+   }
+  },
+  {
+   "key": "Clar92",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "volume": {
+     "before": "20(3)",
+     "after": "20"
+    }
+   }
+  },
+  {
+   "key": "ColdEtal96b",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "B W Colder and R C Frysinger and C L Wilson and R M Harper and J Engel",
+     "after": "B W Colder and R C Frysinger and C L Wilson and R M Harper and Engel, Jr, J"
+    }
+   }
+  },
+  {
+   "key": "Crai70",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "pages": {
+     "before": "658--664",
+     "after": "143--148"
+    }
+   }
+  },
+  {
+   "key": "CranPari57",
+   "class_before": "S1-AUTHOR-SURNAME",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "author": {
+     "before": "C W Crannell and J M Parish",
+     "after": "C W Crannell and J M Parrish"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    }
+   }
+  },
+  {
+   "key": "DaviDavi12",
+   "class_before": "S1-JOURNAL-HISTORY-OR-TYPO",
+   "withdrawn_to_group": null,
+   "before": {
+    "journal": {
+     "before": "Neurodiagnostic Journal",
+     "after": "The Neurodiagnostic Journal"
+    }
+   }
+  },
+  {
+   "key": "DeLo90",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "M DeLong",
+     "after": "M R DeLong"
+    },
+    "number": {
+     "before": null,
+     "after": "7"
+    },
+    "title": {
+     "before": "Primate models of movement disorders of the basal ganglia",
+     "after": "Primate models of movement disorders of basal ganglia origin"
+    }
+   }
+  },
+  {
+   "key": "Denn91",
+   "class_before": "S1-PAGES-COMPLETE",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "pages": {
+     "before": "27--51",
+     "after": "27"
+    }
+   }
+  },
+  {
+   "key": "DianEtal06",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "volume": {
+     "before": "13(1)",
+     "after": "13"
+    }
+   }
+  },
+  {
+   "key": "DiazEtal06",
+   "class_before": "S1-TWO-FIELDS",
+   "class_after": "S1-JOURNAL-HISTORY-OR-TYPO",
+   "fields": [
+    "author"
+   ],
+   "before": {
+    "author": {
+     "before": "C M Diaz-Asper and S Dopkins and S J Potolicchio and A Caputy",
+     "after": "C M Diaz-Asper and S Dopkins and Potolicchio, Jr, S J and A Caputy"
+    },
+    "journal": {
+     "before": "Journal of Clinical and Experimental Neuropyschology",
+     "after": "Journal of Clinical and Experimental Neuropsychology"
+    }
+   },
+   "after": {
+    "journal": {
+     "before": "Journal of Clinical and Experimental Neuropyschology",
+     "after": "Journal of Clinical and Experimental Neuropsychology"
+    }
+   },
+   "issue_evidence": null,
+   "issue_completion": null,
+   "stated_by": {
+    "journal": [
+     "crossref",
+     "pubmed:17050270"
+    ]
+   }
+  },
+  {
+   "key": "Eich80",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "8(2)",
+     "after": "8"
+    }
+   }
+  },
+  {
+   "key": "ElliEtal09",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "1005",
+     "after": "6"
+    },
+    "pages": {
+     "before": "doi.org/10.1007/s10955-009-9808-z",
+     "after": "1005--1034"
+    }
+   }
+  },
+  {
+   "key": "EtzeEtal09",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "title": {
+     "before": "An introduction to anatomical {ROI}-based {fMRI} classification",
+     "after": "An introduction to anatomical {ROI-based} {fMRI} classification analysis"
+    },
+    "volume": {
+     "before": "1281",
+     "after": "1282"
+    }
+   }
+  },
+  {
+   "key": "Faga70",
+   "class_after": "S1-TWO-FIELDS-RISKY",
+   "after": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "9(2)",
+     "after": "9"
+    }
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:5452116"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:5452116"
+    ]
+   }
+  },
+  {
+   "key": "FiedGloc12",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "OCT",
+     "after": null
+    },
+    "pages": {
+     "before": "1--18",
+     "after": "335"
+    }
+   }
+  },
+  {
+   "key": "Fish15",
+   "class_before": "S1-PAGES-COMPLETE",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "pages": {
+     "before": "507--521",
+     "after": "507"
+    }
+   }
+  },
+  {
+   "key": "Free77",
+   "class_before": "S1-PAGES-COMPLETE",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "pages": {
+     "before": "35--41",
+     "after": "35"
+    }
+   }
+  },
+  {
+   "key": "GellEtal14",
+   "class_after": "TWO-SOURCE",
+   "after": {
+    "volume": {
+     "before": null,
+     "after": "125"
+    },
+    "number": {
+     "before": null,
+     "after": "9"
+    },
+    "pages": {
+     "before": null,
+     "after": "1764--1773"
+    }
+   },
+   "issue_evidence": null,
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:24631141"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:24631141"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:24631141"
+    ]
+   }
+  },
+  {
+   "key": "GlanEtal04",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": "30(6)",
+     "after": "30"
+    }
+   }
+  },
+  {
+   "key": "GlanEtal99",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "25(2)",
+     "after": "25"
+    }
+   }
+  },
+  {
+   "key": "GoldLiu01",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "25(4)",
+     "after": "25"
+    }
+   }
+  },
+  {
+   "key": "GoshGane00",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "5"
+    },
+    "volume": {
+     "before": "26(5)",
+     "after": "26"
+    }
+   }
+  },
+  {
+   "key": "Gran69",
+   "class_before": "S1-PAGES-COMPLETE",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "pages": {
+     "before": "424--438",
+     "after": "424"
+    }
+   }
+  },
+  {
+   "key": "GreeCrow84",
+   "class_before": "S1-TWO-FIELDS",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "pages": {
+     "before": "441--449",
+     "after": "441"
+    }
+   }
+  },
+  {
+   "key": "HambEtal05",
+   "class_after": "S1-PAGES-COMPLETE",
+   "after": {
+    "pages": {
+     "before": "2742",
+     "after": "2742--2749"
+    }
+   },
+   "issue_evidence": null,
+   "stated_by": {
+    "pages": [
+     "crossref",
+     "pubmed:16109751"
+    ]
+   }
+  },
+  {
+   "key": "HameChid08",
+   "class_after": "S1-TWO-FIELDS-RISKY",
+   "after": {
+    "pages": {
+     "before": "3",
+     "after": "3--11"
+    },
+    "year": {
+     "before": "2008",
+     "after": "2009"
+    }
+   },
+   "issue_evidence": null,
+   "stated_by": {
+    "pages": [
+     "crossref",
+     "pubmed:18570697"
+    ],
+    "year": [
+     "crossref",
+     "pubmed:18570697"
+    ]
+   }
+  },
+  {
+   "key": "HardEtal84",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "W Hardle and T Gasser and P Bacher",
+     "after": "W Härdle and T Gasser and P Bächer"
+    },
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "title": {
+     "before": "{EEG} responsiveness to eye opening and closing in mildy retarded children compared to a control group",
+     "after": "{EEG-responsiveness} to eye opening and closing in mildly retarded children compared to a control group"
+    }
+   }
+  },
+  {
+   "key": "Hash73",
+   "class_before": "S1-PAGES-COMPLETE",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "pages": {
+     "before": "389--397",
+     "after": "389"
+    }
+   }
+  },
+  {
+   "key": "HensEtal00b",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "R Henson and M D Rugg and T Shallice and R J Dolan",
+     "after": "R N A Henson and M D Rugg and T Shallice and R J Dolan"
+    },
+    "title": {
+     "before": "Confidence in recognition memory for words: dissociating right prefrontal rolesin episodic retrieval",
+     "after": "Confidence in recognition memory for words: dissociating right prefrontal roles in episodic retrieval"
+    }
+   }
+  },
+  {
+   "key": "HilfEtal02",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "131(4)",
+     "after": "131"
+    }
+   }
+  },
+  {
+   "key": "Hint03",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "volume": {
+     "before": "10(1)",
+     "after": "10"
+    }
+   }
+  },
+  {
+   "key": "HintHart90",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "pages": {
+     "before": "965--969",
+     "after": "955--969"
+    }
+   }
+  },
+  {
+   "key": "HirsArnd97",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": "23(6)",
+     "after": "23"
+    }
+   }
+  },
+  {
+   "key": "Holm18",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "journal": {
+     "before": "British Medical Journal",
+     "after": "British Journal of Ophthalmology"
+    },
+    "pages": {
+     "before": "353",
+     "after": "353--384"
+    }
+   }
+  },
+  {
+   "key": "HuEtal06",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "10"
+    },
+    "volume": {
+     "before": "17(10)",
+     "after": "17"
+    }
+   }
+  },
+  {
+   "key": "HydeJenk73",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "5"
+    },
+    "volume": {
+     "before": "12(5)",
+     "after": "12"
+    }
+   }
+  },
+  {
+   "key": "IzauBoni06",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "14(4)",
+     "after": "14"
+    }
+   }
+  },
+  {
+   "key": "JensRohw65",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "A R Jensen and W D Rohwer",
+     "after": "A R Jensen and Rohwer, Jr, W D"
+    },
+    "number": {
+     "before": null,
+     "after": "1"
+    }
+   }
+  },
+  {
+   "key": "KellWixt01",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "volume": {
+     "before": "27(3)",
+     "after": "27"
+    }
+   }
+  },
+  {
+   "key": "KleiCohe06",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "19(4)",
+     "after": "19"
+    }
+   }
+  },
+  {
+   "key": "KnapEtal06",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "34(4)",
+     "after": "34"
+    }
+   }
+  },
+  {
+   "key": "KoelEtal16",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "19741",
+     "after": "1"
+    },
+    "pages": {
+     "before": "doi.org/10.1038/srep19741",
+     "after": "19741"
+    }
+   }
+  },
+  {
+   "key": "KoleRoed84",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "P A Kolers and H L Roediger",
+     "after": "P A Kolers and Roediger, III, H L"
+    },
+    "number": {
+     "before": null,
+     "after": "4"
+    }
+   }
+  },
+  {
+   "key": "KragEtal17",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "pages": {
+     "before": "70--71",
+     "after": "60--71"
+    },
+    "title": {
+     "before": "Similar patterns of neural activity predict memory formation during encoding and retrieval",
+     "after": "Similar patterns of neural activity predict memory function during encoding and retrieval"
+    }
+   }
+  },
+  {
+   "key": "LaxpGros10",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "N Laxpati and R E Gross",
+     "after": "N G Laxpati and R E Gross"
+    },
+    "title": {
+     "before": "Axons in the neuropil are activated by electrical stimulation of the cortex: some surprises, some clinical implications",
+     "after": "Axons in the neuropil are activated by electrical stimulation of the cortex: some surpises, some clinical implications"
+    }
+   }
+  },
+  {
+   "key": "LennEtal97",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "29(4)",
+     "after": "29"
+    }
+   }
+  },
+  {
+   "key": "MagnEtal96",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "volume": {
+     "before": "22(1)",
+     "after": "22"
+    }
+   }
+  },
+  {
+   "key": "Marm83",
+   "class_before": "S1-TWO-FIELDS",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "author": {
+     "before": "Harvey H Marmurek",
+     "after": "H H C Marmurek"
+    },
+    "pages": {
+     "before": "17--35",
+     "after": "17"
+    }
+   }
+  },
+  {
+   "key": "MarmEtal78",
+   "class_before": "S1-PAGES-COMPLETE",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "pages": {
+     "before": "483--490",
+     "after": "483"
+    }
+   }
+  },
+  {
+   "key": "MaskBrow74",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "volume": {
+     "before": "16",
+     "after": "13"
+    }
+   }
+  },
+  {
+   "key": "MathEtal97",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": "25(6)",
+     "after": "25"
+    }
+   }
+  },
+  {
+   "key": "McInJirs19",
+   "class_after": "TWO-SOURCE",
+   "after": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "pages": {
+     "before": null,
+     "after": "994--1008"
+    },
+    "volume": {
+     "before": "doi.org/10.1162/netn\\_a\\_00107",
+     "after": "3"
+    }
+   },
+   "issue_evidence": null,
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:31637335",
+     "pmc-jats",
+     "pmc-jats"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:31637335",
+     "pmc-jats",
+     "pmc-jats"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:31637335",
+     "pmc-jats",
+     "pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "MeltIrwi40",
+   "class_before": "S1-TWO-FIELDS",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "pages": {
+     "before": "173--203",
+     "after": "173"
+    }
+   }
+  },
+  {
+   "key": "MeltvonL41",
+   "class_before": "S1-TWO-FIELDS",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "pages": {
+     "before": "157--173",
+     "after": "157"
+    }
+   }
+  },
+  {
+   "key": "MeyeEtal88",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "D E Meyer and D E Irwin and A M Osman and J Kounios",
+     "after": "D E Meyer and D E Irwin and A M Osman and J Kounois"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "title": {
+     "before": "The dynamics of cognition and action: mental processes inferres from speed-accuracy decomposition",
+     "after": "The dynamics of cognition and action: mental processes inferred from speed-accuracy decomposition"
+    }
+   }
+  },
+  {
+   "key": "Mont91",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "pages": {
+     "before": "47",
+     "after": "47--69"
+    },
+    "title": {
+     "before": "Spatial orientation and the angularity of urban routes",
+     "after": "Spatial orientation and the angularity of urban routes: a field study"
+    }
+   }
+  },
+  {
+   "key": "MullEtal87",
+   "class_after": "TWO-SOURCE",
+   "after": {
+    "author": {
+     "before": "R U Muller and J Kubie and J Ranck",
+     "after": "R U Muller and J L Kubie and J B Ranck"
+    },
+    "number": {
+     "before": null,
+     "after": "7"
+    }
+   },
+   "issue_evidence": null,
+   "stated_by": {
+    "author": [
+     "pubmed:3612225",
+     "pmc-jats"
+    ],
+    "number": [
+     "crossref",
+     "pubmed:3612225",
+     "pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "MullEtal96",
+   "class_before": "TWO-SOURCE",
+   "class_after": "TWO-SOURCE",
+   "fields": [
+    "author"
+   ],
+   "before": {
+    "author": {
+     "before": "R Muller and J Ranck and J Taube",
+     "after": "R U Muller and Ranck, Jr, J B and J S Taube"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    }
+   },
+   "after": {
+    "author": {
+     "before": "R Muller and J Ranck and J Taube",
+     "after": "R U Muller and J B Ranck and J S Taube"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    }
+   },
+   "issue_evidence": null,
+   "issue_completion": {
+    "issue": "2",
+    "sources": [
+     "crossref",
+     "pubmed:8725961"
+    ]
+   },
+   "stated_by": {
+    "author": [
+     "crossref",
+     "pubmed:8725961"
+    ],
+    "number": [
+     "crossref",
+     "pubmed:8725961"
+    ]
+   }
+  },
+  {
+   "key": "Murd63a",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "B B Murdock",
+     "after": "Murdock, Jr, B B"
+    },
+    "number": {
+     "before": null,
+     "after": "4"
+    }
+   }
+  },
+  {
+   "key": "Murd65",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "B B Murdock",
+     "after": "Murdock, Jr, B B"
+    },
+    "number": {
+     "before": null,
+     "after": "3"
+    }
+   }
+  },
+  {
+   "key": "Murd67",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "B B Murdock",
+     "after": "Murdock, Jr, B B"
+    }
+   }
+  },
+  {
+   "key": "Murd68",
+   "class_after": "S1-JOURNAL-HISTORY-OR-TYPO",
+   "after": {
+    "journal": {
+     "before": "Journal of Experimental Psychology: General",
+     "after": "Journal of Experimental Psychology"
+    }
+   },
+   "issue_evidence": null,
+   "stated_by": {
+    "journal": [
+     "crossref",
+     "pubmed:5654204"
+    ]
+   }
+  },
+  {
+   "key": "Murd71",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "10(4-B)",
+     "after": "10"
+    }
+   }
+  },
+  {
+   "key": "Murd98",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "24(2)",
+     "after": "24"
+    }
+   }
+  },
+  {
+   "key": "MurdVomS67",
+   "class_after": "S1-JOURNAL-HISTORY-OR-TYPO",
+   "after": {
+    "journal": {
+     "before": "Journal of Experimental Psychology: General",
+     "after": "Journal of Experimental Psychology"
+    },
+    "number": {
+     "before": null,
+     "after": "1"
+    }
+   },
+   "issue_evidence": null,
+   "stated_by": {
+    "journal": [
+     "crossref",
+     "pubmed:6032566"
+    ],
+    "number": [
+     "crossref",
+     "pubmed:6032566"
+    ]
+   }
+  },
+  {
+   "key": "MurdWalk69",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "B B Murdock and K D Walker",
+     "after": "Murdock, Jr, B B and K D Walker"
+    },
+    "number": {
+     "before": null,
+     "after": "5"
+    }
+   }
+  },
+  {
+   "key": "MuseSqui93",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "19(July)",
+     "after": "19"
+    }
+   }
+  },
+  {
+   "key": "NairEtal95",
+   "class_before": "S1-PAGES-COMPLETE",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "pages": {
+     "before": "345--358",
+     "after": "345"
+    }
+   }
+  },
+  {
+   "key": "NelsEtal01",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "5"
+    },
+    "volume": {
+     "before": "27(5)",
+     "after": "27"
+    }
+   }
+  },
+  {
+   "key": "NelsEtal04",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "volume": {
+     "before": "36(3)",
+     "after": "36"
+    }
+   }
+  },
+  {
+   "key": "NelsEtal89",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "5"
+    },
+    "volume": {
+     "before": "15(5)",
+     "after": "15"
+    }
+   }
+  },
+  {
+   "key": "NelsEtal92",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "95",
+     "after": "99"
+    }
+   }
+  },
+  {
+   "key": "NelsEtal93",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "19(4)",
+     "after": "19"
+    }
+   }
+  },
+  {
+   "key": "NelsZhan00",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "7(4)",
+     "after": "7"
+    }
+   }
+  },
+  {
+   "key": "NieuEtal01",
+   "class_before": "S1-COORDINATES",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "05",
+     "after": "5"
+    }
+   }
+  },
+  {
+   "key": "OwenEtal20",
+   "class_after": "TWO-SOURCE",
+   "after": {
+    "author": {
+     "before": "L L W Owen and T A Muntianu and A C Heusser and P Daly and K W Scangos and J R Manning",
+     "after": "L L W Owen and T A Muntianu and A C Heusser and P M Daly and K W Scangos and J R Manning"
+    }
+   },
+   "issue_evidence": null,
+   "stated_by": {
+    "author": [
+     "crossref",
+     "pubmed:32495832",
+     "pmc-jats",
+     "pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "Post78",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "4(2)",
+     "after": "4"
+    }
+   }
+  },
+  {
+   "key": "Proc81",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "88(4)",
+     "after": "88"
+    }
+   }
+  },
+  {
+   "key": "RacsEtal08",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "M Racsm\\'{a}ny and M A Conway and E A Garab and G Magym\\'{a}t\\'{e}",
+     "after": "M Racsm\\'{a}ny and M A Conway and E A Garab and G Nagymáté"
+    },
+    "title": {
+     "before": "Memory awareness following episodic inhibition",
+     "after": "Short article: memory awareness following episodic inhibition"
+    }
+   }
+  },
+  {
+   "key": "RaghEtal01",
+   "class_before": "TWO-SOURCE",
+   "withdrawn_to_group": "article-more-given-names",
+   "before": {
+    "author": {
+     "before": "S Raghavachari and D S Rizzuto and J B Caplan and M P Kirschen and B Bourgeois and J R Madsen and M J Kahana and J E Lisman",
+     "after": "S Raghavachari and M J Kahana and D S Rizzuto and J B Caplan and M P Kirschen and B Bourgeois and J R Madsen and J E Lisman"
+    },
+    "number": {
+     "before": null,
+     "after": "9"
+    }
+   }
+  },
+  {
+   "key": "RegeEtal18",
+   "class_after": "TWO-SOURCE",
+   "after": {
+    "number": {
+     "before": null,
+     "after": "10"
+    },
+    "pages": {
+     "before": null,
+     "after": "4017--4034"
+    },
+    "volume": {
+     "before": null,
+     "after": "29"
+    },
+    "year": {
+     "before": "2018",
+     "after": "2019"
+    }
+   },
+   "issue_evidence": null,
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:30395174",
+     "pmc-jats"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:30395174",
+     "pmc-jats"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:30395174",
+     "pmc-jats"
+    ],
+    "year": [
+     "crossref",
+     "pubmed:30395174",
+     "pmc-jats"
+    ]
+   }
+  },
+  {
+   "key": "RizzKaha00",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "2000",
+     "after": null
+    },
+    "title": {
+     "before": "Associative symmetry versus independent associations",
+     "after": "Associative symmetry vs. independent associations"
+    }
+   }
+  },
+  {
+   "key": "Robi27",
+   "class_before": "S1-PAGES-COMPLETE",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "pages": {
+     "before": "297--312",
+     "after": "297"
+    }
+   }
+  },
+  {
+   "key": "RockStei63",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "3568"
+    },
+    "volume": {
+     "before": "140(Whole No. 3568)",
+     "after": "140"
+    }
+   }
+  },
+  {
+   "key": "Roed73",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "H L Roediger",
+     "after": "Roediger, III, H L"
+    },
+    "number": {
+     "before": null,
+     "after": "6"
+    }
+   }
+  },
+  {
+   "key": "RoedCrow76",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "H L Roediger and R G Crowder",
+     "after": "Roediger, III, H L and R G Crowder"
+    },
+    "number": {
+     "before": null,
+     "after": "4"
+    }
+   }
+  },
+  {
+   "key": "RoedKarp06a",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "H L Roediger and J D Karpicke",
+     "after": "Roediger, III, H L and J D Karpicke"
+    },
+    "title": {
+     "before": "Test-enhanced learning",
+     "after": "{Test-Enhanced} learning: taking memory tests improves {Long-Term} retention"
+    }
+   }
+  },
+  {
+   "key": "RoedKarp06b",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "H L Roediger and J D Karpicke",
+     "after": "Roediger, III, H L and J D Karpicke"
+    },
+    "title": {
+     "before": "The power of testing memory: basic research and implications for educational",
+     "after": "The power of testing memory: basic research and implications for educational practice"
+    }
+   }
+  },
+  {
+   "key": "RubiEtal99",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "5"
+    },
+    "volume": {
+     "before": "25(5)",
+     "after": "25"
+    }
+   }
+  },
+  {
+   "key": "SavaEtal01",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "pages": {
+     "before": "219",
+     "after": "219--231"
+    },
+    "title": {
+     "before": "Prefrontal regions supporting spontaneous and directed application of verbal learning strategies",
+     "after": "Prefrontal regions supporting spontaneous and directed application of verbal learning strategies: evidence from {PET}"
+    }
+   }
+  },
+  {
+   "key": "SawrEtal96",
+   "class_before": "S1-COORDINATES",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "06",
+     "after": "6"
+    }
+   }
+  },
+  {
+   "key": "SchaEtal94",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "pages": {
+     "before": "234--244",
+     "after": "236--244"
+    }
+   }
+  },
+  {
+   "key": "ShanHowa10",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "3-17",
+     "after": null
+    },
+    "pages": {
+     "before": null,
+     "after": "3--17"
+    }
+   }
+  },
+  {
+   "key": "ShenEtal92",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "M E Shenton and R Kikinis and F A Jolesz and S D Pollak and M LeMay and C G Wible and H Hokama and J Martin and D Metcalf and M Coleman and others",
+     "after": "M E Shenton and R Kikinis and F A Jolesz and S D Pollak and M LeMay and C G Wible and H Hokama and J Martin and D Metcalf and M Coleman and R W McCarley"
+    },
+    "title": {
+     "before": "Abnormalities of the left temporal lobe and thought disorder in schizophrenia",
+     "after": "Abnormalities of the left temporal lobe and thought disorder in schizophrenia: a quantitative magnetic resonance imaging study"
+    }
+   }
+  },
+  {
+   "key": "SimoEtal04",
+   "class_before": "S1-PAGES-COMPLETE",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "pages": {
+     "before": "305--329",
+     "after": "305"
+    }
+   }
+  },
+  {
+   "key": "SmitHalg89",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "M Smith and E Halgren",
+     "after": "M E Smith and E Halgren"
+    },
+    "number": {
+     "before": null,
+     "after": "1"
+    },
+    "title": {
+     "before": "Dissociation of recognition memory components following temporal lob lesions",
+     "after": "Dissociation of recognition memory components following temporal lobe lesions"
+    }
+   }
+  },
+  {
+   "key": "StopEtal07",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "C M Stoppel and C N Boehler and C Sabelhaus and H-J Heinze and J M Hopf and M A Shoenfeld",
+     "after": "C M Stoppel and C N Boehler and C Sabelhaus and H-J Heinze and J M Hopf and M A Schoenfeld"
+    },
+    "number": {
+     "before": "21",
+     "after": null
+    }
+   }
+  },
+  {
+   "key": "StopEtal97",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "M Stopfer and S Bhagavan and B Smith and G Laurent",
+     "after": "M Stopfer and S Bhagavan and B H Smith and G Laurent"
+    },
+    "number": {
+     "before": null,
+     "after": "6655"
+    },
+    "title": {
+     "before": "Impaired odor discrimination on desynchronization of odor-encoding neural assemblies",
+     "after": "Impaired odour discrimination on desynchronization of odour-encoding neural assemblies"
+    }
+   }
+  },
+  {
+   "key": "StreWixt98b",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": "24(6)",
+     "after": "24"
+    }
+   }
+  },
+  {
+   "key": "SuppEtal66",
+   "class_before": "S1-AUTHOR-SURNAME",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "author": {
+     "before": "P Suppes and G Grown and M Schlag-Rey",
+     "after": "P Suppes and G Groen and M Schlag-Rey"
+    },
+    "number": {
+     "before": null,
+     "after": "1"
+    }
+   }
+  },
+  {
+   "key": "TallEtal97",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "C Tallon-Baudry and O Bertrand and C Delpuech and J Permier",
+     "after": "C Tallon-Baudry and O Bertrand and C Delpuech and J Pernier"
+    },
+    "title": {
+     "before": "Oscillatory gamma-band (30--70 {Hz}) activity induced by a visual search task in humans",
+     "after": "Oscillatory γ-band (30–70 {Hz}) activity induced by a visual search task in humans"
+    }
+   }
+  },
+  {
+   "key": "TanaEtal04",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "S C Tanaka and K Doya and G Okada and K Ueda and Y Okamota and S Yamawaki",
+     "after": "S C Tanaka and K Doya and G Okada and K Ueda and Y Okamoto and S Yamawaki"
+    },
+    "number": {
+     "before": null,
+     "after": "8"
+    },
+    "title": {
+     "before": "Prediction of immediate and future rewards differentialy recruits cortico-basal ganglia loops",
+     "after": "Prediction of immediate and future rewards differentially recruits cortico-basal ganglia loops"
+    }
+   }
+  },
+  {
+   "key": "TideTull76",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "volume": {
+     "before": null,
+     "after": "84"
+    }
+   }
+  },
+  {
+   "key": "ToppSchn99",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "24",
+     "after": "4"
+    },
+    "title": {
+     "before": "Observation: the mix-up regarding mixed and unmixed lists in spacing-effect research",
+     "after": "The mix-up regarding mixed and unmixed lists in spacing-effect research"
+    }
+   }
+  },
+  {
+   "key": "Town84",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "28(4)",
+     "after": "28"
+    }
+   }
+  },
+  {
+   "key": "Tulv66",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "5 (2)",
+     "after": "5"
+    }
+   }
+  },
+  {
+   "key": "ViniNels79",
+   "class_before": "S1-TWO-FIELDS",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "pages": {
+     "before": "257--276",
+     "after": "257"
+    }
+   }
+  },
+  {
+   "key": "WangGuo19",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "1",
+     "after": null
+    },
+    "title": {
+     "before": "A hierarchical independent component anlysis model for longitudinal neuroimaging studies",
+     "after": "A hierarchical independent component analysis model for longitudinal neuroimaging studies"
+    }
+   }
+  },
+  {
+   "key": "Ward61",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "A A Ward",
+     "after": "Ward, Jr, A A"
+    }
+   }
+  },
+  {
+   "key": "WatsPell83",
+   "class_after": "S1-TWO-FIELDS-RISKY",
+   "after": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "33(2)",
+     "after": "33"
+    }
+   },
+   "issue_evidence": {
+    "issue": "2",
+    "sources": [
+     "crossref",
+     "pubmed"
+    ],
+    "lookup": null
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:6844102"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:6844102"
+    ]
+   }
+  },
+  {
+   "key": "WelcBurn24",
+   "class_before": "S1-TWO-FIELDS",
+   "withdrawn_to_group": "article-value-held",
+   "before": {
+    "number": {
+     "before": null,
+     "after": "3"
+    },
+    "pages": {
+     "before": "396--401",
+     "after": "396"
+    }
+   }
+  },
+  {
+   "key": "WellKirs74",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": "4B",
+     "after": "4"
+    },
+    "volume": {
+     "before": "2",
+     "after": "4"
+    }
+   }
+  },
+  {
+   "key": "WilsWilk97",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "8"
+    },
+    "volume": {
+     "before": "26(8)",
+     "after": "26"
+    }
+   }
+  },
+  {
+   "key": "WixtStre00",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "107(2)",
+     "after": "107"
+    }
+   }
+  },
+  {
+   "key": "WixtStre04",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "11(4)",
+     "after": "11"
+    }
+   }
+  },
+  {
+   "key": "WongEtal09",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "pages": {
+     "before": "1--11",
+     "after": "026006"
+    },
+    "title": {
+     "before": "Functional localization and visualization of the subthalamic nucleus from microelectrode recording acquired during dbs surgery with unsupervised machine learning",
+     "after": "Functional localization and visualization of the subthalamic nucleus from microelectrode recordings acquired during {DBS} surgery with unsupervised machine learning"
+    }
+   }
+  },
+  {
+   "key": "WoodMurd68",
+   "class_after": "TWO-SOURCE",
+   "after": {
+    "author": {
+     "before": "A Woodward and B B Murdock",
+     "after": "A E Woodward and B B Murdock"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    }
+   },
+   "issue_evidence": null,
+   "stated_by": {
+    "author": [
+     "crossref",
+     "pubmed:5649037"
+    ],
+    "number": [
+     "crossref",
+     "pubmed:5649037"
+    ]
+   }
+  },
+  {
+   "key": "WyleEtal82",
+   "class_before": "S1-AUTHOR-NAMES",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "A R Wyler and G A Ojemann and A A Ward",
+     "after": "A R Wyler and G A Ojemann and Ward, Jr, A A"
+    }
+   }
+  },
+  {
+   "key": "YoneEtal99",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "6(4)",
+     "after": "6"
+    }
+   }
+  },
+  {
+   "key": "Youn79",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "author": {
+     "before": "David Young",
+     "after": "D C Young"
+    },
+    "number": {
+     "before": null,
+     "after": "6"
+    },
+    "title": {
+     "before": "The effectof repetition on search through active memory",
+     "after": "The effect of repetition on search through active memory"
+    }
+   }
+  },
+  {
+   "key": "YounEtal86",
+   "class_before": "S1-TWO-FIELDS-RISKY",
+   "withdrawn_to_group": null,
+   "before": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "volume": {
+     "before": "12(4)",
+     "after": "12"
+    }
+   }
+  }
+ ]
+}

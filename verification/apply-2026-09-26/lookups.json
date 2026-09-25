@@ -1,0 +1,269 @@
+{
+ "requests_this_run": 0,
+ "yield": {
+  "unconfirmed(dropped)": 9,
+  "pubmed_issue_not_plain_number(held)": 1,
+  "publisher_page_unavailable": 1
+ },
+ "lookups": {
+  "10.1016/j.bandc.2014.03.016": {
+   "doi": "10.1016/j.bandc.2014.03.016",
+   "pubmed": {
+    "query": "doi",
+    "pmids": [
+     "24747513"
+    ],
+    "matched": [
+     {
+      "pmid": "24747513",
+      "issue": "",
+      "volume": "87",
+      "pages": "140-52",
+      "title": "The association between aerobic fitness and language processing in children: implications for academic achievement.",
+      "journal": "Brain and cognition"
+     }
+    ]
+   },
+   "publisher": {
+    "url": "https://api.elsevier.com/content/article/doi/10.1016/j.bandc.2014.03.016",
+    "error": null,
+    "doi_confirmed": true,
+    "citation_issue": []
+   },
+   "complete": true,
+   "key": "ScudEtal14"
+  },
+  "10.1016/j.brainres.2010.03.040": {
+   "doi": "10.1016/j.brainres.2010.03.040",
+   "pubmed": {
+    "query": "doi",
+    "pmids": [
+     "20346926"
+    ],
+    "matched": [
+     {
+      "pmid": "20346926",
+      "issue": "",
+      "volume": "1335",
+      "pages": "41-52",
+      "title": "The amount of retrieval support modulates age effects on episodic memory: evidence from event-related potentials.",
+      "journal": "Brain research"
+     }
+    ]
+   },
+   "publisher": {
+    "url": "https://api.elsevier.com/content/article/doi/10.1016/j.brainres.2010.03.040",
+    "error": null,
+    "doi_confirmed": true,
+    "citation_issue": []
+   },
+   "complete": true,
+   "key": "AngeEtal10"
+  },
+  "10.1016/j.brainres.2010.08.049": {
+   "doi": "10.1016/j.brainres.2010.08.049",
+   "pubmed": {
+    "query": "doi",
+    "pmids": [
+     "20735996"
+    ],
+    "matched": [
+     {
+      "pmid": "20735996",
+      "issue": "",
+      "volume": "1358",
+      "pages": "172-83",
+      "title": "A neuroimaging investigation of the association between aerobic fitness, hippocampal volume, and memory performance in preadolescent children.",
+      "journal": "Brain research"
+     }
+    ]
+   },
+   "publisher": {
+    "url": "https://api.elsevier.com/content/article/doi/10.1016/j.brainres.2010.08.049",
+    "error": null,
+    "doi_confirmed": true,
+    "citation_issue": []
+   },
+   "complete": true,
+   "key": "ChadEtal10"
+  },
+  "10.1016/j.neuroimage.2013.06.049": {
+   "doi": "10.1016/j.neuroimage.2013.06.049",
+   "pubmed": {
+    "query": "doi",
+    "pmids": [
+     "23792985"
+    ],
+    "matched": [
+     {
+      "pmid": "23792985",
+      "issue": "0 2",
+      "volume": "85 Pt 2",
+      "pages": "667-77",
+      "title": "Multifaceted roles for low-frequency oscillations in bottom-up and top-down processing during navigation and memory.",
+      "journal": "NeuroImage"
+     }
+    ]
+   },
+   "publisher": {
+    "url": "https://api.elsevier.com/content/article/doi/10.1016/j.neuroimage.2013.06.049",
+    "error": null,
+    "doi_confirmed": true,
+    "citation_issue": []
+   },
+   "complete": true,
+   "key": "EkstWatr14"
+  },
+  "10.1016/j.neuroimage.2017.03.061": {
+   "doi": "10.1016/j.neuroimage.2017.03.061",
+   "pubmed": {
+    "query": "doi",
+    "pmids": [
+     "28366763"
+    ],
+    "matched": [
+     {
+      "pmid": "28366763",
+      "issue": "",
+      "volume": "153",
+      "pages": "179-188",
+      "title": "Aerobic fitness, hippocampal viscoelasticity, and relational memory performance.",
+      "journal": "NeuroImage"
+     }
+    ]
+   },
+   "publisher": {
+    "url": "https://api.elsevier.com/content/article/doi/10.1016/j.neuroimage.2017.03.061",
+    "error": null,
+    "doi_confirmed": true,
+    "citation_issue": []
+   },
+   "complete": true,
+   "key": "SchwEtal17"
+  },
+  "10.1016/j.neuroimage.2017.04.014": {
+   "doi": "10.1016/j.neuroimage.2017.04.014",
+   "pubmed": {
+    "query": "doi",
+    "pmids": [
+     "28412442"
+    ],
+    "matched": [
+     {
+      "pmid": "28412442",
+      "issue": "",
+      "volume": "170",
+      "pages": "5-30",
+      "title": "Human brain mapping: A systematic comparison of parcellation methods for the human cerebral cortex.",
+      "journal": "NeuroImage"
+     }
+    ]
+   },
+   "publisher": {
+    "url": "https://api.elsevier.com/content/article/doi/10.1016/j.neuroimage.2017.04.014",
+    "error": null,
+    "doi_confirmed": true,
+    "citation_issue": []
+   },
+   "complete": true,
+   "key": "ArslEtal18"
+  },
+  "10.1016/j.psychres.2017.04.034": {
+   "doi": "10.1016/j.psychres.2017.04.034",
+   "pubmed": {
+    "query": "doi",
+    "pmids": [
+     "28525789"
+    ],
+    "matched": [
+     {
+      "pmid": "28525789",
+      "issue": "",
+      "volume": "254",
+      "pages": "340-346",
+      "title": "Measuring BDNF in saliva using commercial ELISA: Results from a small pilot study.",
+      "journal": "Psychiatry research"
+     }
+    ]
+   },
+   "publisher": {
+    "url": "https://api.elsevier.com/content/article/doi/10.1016/j.psychres.2017.04.034",
+    "error": null,
+    "doi_confirmed": true,
+    "citation_issue": []
+   },
+   "complete": true,
+   "key": "VrijEtal17"
+  },
+  "10.1016/j.ypmed.2011.01.022": {
+   "doi": "10.1016/j.ypmed.2011.01.022",
+   "pubmed": {
+    "query": "doi",
+    "pmids": [
+     "21281664"
+    ],
+    "matched": [
+     {
+      "pmid": "21281664",
+      "issue": "",
+      "volume": "52 Suppl 1",
+      "pages": "S70-4",
+      "title": "The effects of physical activity on attention deficit hyperactivity disorder symptoms: the evidence.",
+      "journal": "Preventive medicine"
+     }
+    ]
+   },
+   "publisher": {
+    "url": "https://api.elsevier.com/content/article/doi/10.1016/j.ypmed.2011.01.022",
+    "error": null,
+    "doi_confirmed": true,
+    "citation_issue": []
+   },
+   "complete": true,
+   "key": "GapiEtal11"
+  },
+  "10.1613/jair.295": {
+   "doi": "10.1613/jair.295",
+   "pubmed": {
+    "query": "doi, then ecitmatch Journal of Artificial Intelligence Research|1996|4|129|Cohn|k1|",
+    "pmids": [],
+    "matched": []
+   },
+   "publisher": {
+    "url": "https://doi.org/10.1613/jair.295",
+    "error": "PDF URL must use HTTPS on an explicitly allowed host: https://www.jair.org/index.php/jair/article/view/10158",
+    "doi_confirmed": false,
+    "citation_issue": []
+   },
+   "complete": true,
+   "key": "CohnEtal96"
+  },
+  "10.3389/fncir.2012.00117": {
+   "doi": "10.3389/fncir.2012.00117",
+   "pubmed": {
+    "query": "doi",
+    "pmids": [
+     "23346048"
+    ],
+    "matched": [
+     {
+      "pmid": "23346048",
+      "issue": "",
+      "volume": "6",
+      "pages": "117",
+      "title": "A translational platform for prototyping closed-loop neuromodulation systems.",
+      "journal": "Frontiers in neural circuits"
+     }
+    ]
+   },
+   "publisher": {
+    "url": "https://www.frontiersin.org/journals/neural-circuits/articles/10.3389/fncir.2012.00117/full",
+    "error": null,
+    "doi_confirmed": true,
+    "citation_issue": []
+   },
+   "complete": true,
+   "key": "AfshEtal13"
+  }
+ }
+}
