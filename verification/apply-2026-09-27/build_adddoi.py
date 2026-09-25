@@ -51,6 +51,37 @@ PREPRINT_SOURCES = {"arxiv-repository", "biorxiv-preprint"}
 PUBMED_SOURCES = {"europepmc", "pmc-jats", "publisher-head"}
 
 
+def notice_title(record_title, cited_title):
+    """A notice-like word in the record title that the cited title does not share.
+
+    'Correcting the correction of conditional recency slopes' (Farr14) is the cited article
+    itself; 'Correction to: ...' for an article without that word is a notice."""
+    words = {w.lower() for w in NOTICE.findall(record_title or "")}
+    cited = {w.lower() for w in NOTICE.findall(cited_title or "")}
+    return bool(words - cited)
+
+
+def cited_work_doi(entry, result):
+    """../apply-2026-09-23/apply.py cited_work_doi, with the notice-title test refined:
+    a title word such as 'correction' that the cited title itself contains is not a notice
+    (Farr14, JenkEtal02, WallEtal04, GothEtal96). Updates/corrections relations still block."""
+    doi, reason = base.cited_work_doi(entry, result)
+    if reason != "accepted record looks like a notice":
+        return doi, reason
+    own = [c for c in result.get("candidates", []) if c.get("source") == "crossref" and c.get("doi")
+           and normalize_doi(c["doi"]) == normalize_doi(result["accepted_doi"])]
+    title = " ".join((own[0].get("record") or {}).get("title") or []) if own else ""
+    if notice_title(title, entry["fields"].get("title", "")):
+        return None, reason
+    record = own[0].get("record") or {}
+    if record.get("relation", {}).get("is-correction-of") or record.get("update-to"):
+        return None, "accepted record is an update/notice"
+    # the remaining checks of base.cited_work_doi, with the title test passed
+    patched = dict(result, candidates=[dict(c, record=dict(c.get("record") or {}, title=["article"]))
+                                       if c is own[0] else c for c in result["candidates"]])
+    return base.cited_work_doi(entry, patched)
+
+
 def full_match_candidate(result):
     """verify_entry approvals without accepted_doi: the unique issue-free Crossref candidate."""
     clean = [c for c in result.get("candidates", []) if c.get("source") == "crossref" and c.get("doi")
@@ -87,15 +118,19 @@ def same_work(fields, record):
     if record.get("type") != "journal-article":
         return f"Crossref type {record.get('type')}"
     title = " ".join(record.get("title") or [])
-    if NOTICE.search(title) or record.get("update-to") or (record.get("relation") or {}).get("is-correction-of"):
+    if (notice_title(title, fields.get("title", "")) or record.get("update-to")
+            or (record.get("relation") or {}).get("is-correction-of")):
         return "Crossref record is a notice/update"
     evidence, _ = compare_record(fields, record)
     bad = [f for f in ("title", "year", "journal") if not evidence.get(f, {}).get("match")]
     authors = record.get("author") or []
     try:
-        cited = split_authors(fields.get("author", ""))[0].split()[-1]
+        from bibtexparser.customization import splitname
+        parts = splitname(split_authors(fields.get("author", ""))[0], strict_mode=False)
+        cited = " ".join(parts["von"] + parts["last"]).replace("{", "").replace("}", "")
         first = authors[0].get("family", "") if authors else ""
-        if normalized(cited) != normalized(first):
+        letters = lambda value: re.sub(r"[^\w]", "", normalized(value))  # noqa: E731  'St Jacques' = 'St. Jacques'
+        if not first or letters(cited) != letters(first):
             bad.append(f"first author {cited!r} vs {first!r}")
     except (ValueError, IndexError, AttributeError) as exc:
         bad.append(f"first author unreadable ({exc})")
@@ -122,12 +157,12 @@ def main():
             route, doi, reason = None, None, None
             if source == "crossref":
                 route = "crossref-accepted"
-                doi, reason = base.cited_work_doi(entry, result)
+                doi, reason = cited_work_doi(entry, result)
             elif source is None and not result.get("accepted_doi"):
                 route = "crossref-full-match (no accepted_doi bookkeeping)"
                 doi, reason = full_match_candidate(result)
                 if doi:
-                    doi, reason = base.cited_work_doi(entry, dict(result, accepted_doi=doi))
+                    doi, reason = cited_work_doi(entry, dict(result, accepted_doi=doi))
             elif source in PUBMED_SOURCES and result.get("accepted_doi"):
                 route = f"{source} record DOI, Crossref-confirmed"
                 doi = normalize_doi(result["accepted_doi"])
