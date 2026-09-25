@@ -164,3 +164,7 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   rename is logged in `verification/key-renames.json` (old → new) so citing papers can be
   updated. House address form `City, {ST}` stays (catalogue "drop the state" edits are
   dropped).
+- **Proper ordinals everywhere** (user, 2026-09-26): every numeric ordinal in a text field
+  (title, booktitle, journal, edition, ...) is written `N\textsuperscript{suffix}` with the
+  correct suffix (`1\textsuperscript{st}`, `2\textsuperscript{nd}`, `30\textsuperscript{th}`);
+  the comparator treats it as equal to "30th"/"Thirtieth" in sources.
