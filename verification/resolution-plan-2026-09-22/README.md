@@ -159,3 +159,8 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   keep their accents when a source prints them unaccented (ASCII limitation); Mink07 is
   switched to the 6th edition, which names Mink and is verifiable. PsyArXiv entries that
   store the DOI in `volume` (ZimaEtal23, GralFinn21, LuriEtal18, NussEtal18) move it to `doi`.
+- **Keys always follow corrected metadata** (user, 2026-09-26): when a verified correction
+  changes the year, first author or author count, the key is renamed per the ID rule. Every
+  rename is logged in `verification/key-renames.json` (old → new) so citing papers can be
+  updated. House address form `City, {ST}` stays (catalogue "drop the state" edits are
+  dropped).
