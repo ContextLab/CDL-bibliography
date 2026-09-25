@@ -227,7 +227,12 @@ def test_title_missing_word_in_separate_block_is_not_supported():
 
 @needs_library
 def test_hyphenated_title_is_not_the_unhyphenated_print():
-    r = _verify("KahaJaco00")          # cites "Inter-response"; PDF prints "Interresponse"
+    # The citation as it stood on 2026-09-22 (since corrected to the printed form).
+    cited = {"ENTRYTYPE": "article", "ID": "KahaJaco00", "author": "M J Kahana and J Jacobs",
+             "journal": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+             "pages": "1188--1197", "volume": "26", "year": "2000",
+             "title": "Inter-response times in serial recall: effects of intraserial repetition"}
+    r = _verify("KahaJaco00", cited)   # cites "Inter-response"; PDF prints "Interresponse"
     assert not r["pass"] and r["fields"]["title"]["status"] != "supported"
 
 
