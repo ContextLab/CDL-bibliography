@@ -55,6 +55,8 @@ from preprint_review import run_preprint_review  # noqa: E402
 from arxiv_review import run_arxiv_review  # noqa: E402
 
 BIB = base.BIB
+# Batch names this runner accepts; ../apply-2026-09-26b/apply.py reuses main() for held001.
+BATCHES = ("reassess002", "classes001")
 
 
 def patient(route, attempts=6, wait=60):
@@ -165,7 +167,7 @@ def stage_classes(batch, entries, proposals):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("batch", choices=["reassess002", "classes001"])
+    parser.add_argument("batch", choices=BATCHES)
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
     batch = args.batch
