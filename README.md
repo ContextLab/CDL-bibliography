@@ -34,16 +34,18 @@ The formatter and verification runner are intended for macOS and Linux. The veri
 ## Suggested workflow
 
 1. Add or edit entries in `cdl.bib`, preserving the DOI and the exact publication version you intend to cite.
-2. Run the format checker and inspect any corrections:
-
-   ```bash
-   python bibcheck.py verify --verbose
-   ```
-
-3. Verify new or modified citations:
+2. Check the format and verify the citations of the new or edited entries:
 
    ```bash
    export CROSSREF_MAILTO='your-real-contact-address@institution.edu'
+   python bibcheck.py verify --verbose
+   ```
+
+   `verify` runs one gate, shared with `commit`: (1) the format check; (2) `crossref verify --auto-review` on the entries that are new or edited relative to the GitHub `master` bibliography (the file `compare` uses; key-only renames are excluded); (3) an offline library-wide status line (verified / unresolved). It exits **1** when the format check fails or any new/edited entry is unresolved, and prints each such key with its issues. The library-wide backlog is reported but does not fail `verify`. Options: `--no-citations` for an offline, format-only check; `--all` to verify the citations of every entry; `--reference other.bib` to compare against another base; `--database` for another verification cache.
+
+3. To run only the citation verification, with more control:
+
+   ```bash
    python bibcheck.py crossref verify cdl.bib --auto-review
    ```
 
@@ -56,9 +58,9 @@ The formatter and verification runner are intended for macOS and Linux. The veri
    python bibcheck.py crossref status cdl.bib --keys manuscript-keys.txt --require-human
    ```
 
-6. Inspect the diff, commit the bibliography/code changes you intend to share, and push or open a pull request. A portable review snapshot can accompany the changes; see below.
+6. Inspect the diff, then commit the bibliography with `python bibcheck.py commit`, or commit the bibliography/code changes you intend to share with Git directly, and push or open a pull request. A portable review snapshot can accompany the changes; see below.
 
-The legacy `commit` command checks formatting only. It does not run the accuracy gate. CI runs formatting and offline regression tests; it does not certify external metadata or approve unresolved references.
+`python bibcheck.py commit` runs the same gate as `verify` and **refuses to commit** (exit 1) while the format check fails or any new/edited entry is unresolved; it lists each unresolved key with its issues and points to `crossref review-packet` and `crossref approve`. When the gate passes, it commits only the bibliography file, with a message summarizing the added, removed and modified entries. It does not push. CI runs formatting and offline regression tests; it does not certify external metadata or approve unresolved references.
 
 ## Citation accuracy and Crossref
 
@@ -279,7 +281,7 @@ python bibcheck.py compare original.bib revised.bib --verbose
 python bibcheck.py commit --verbose
 ```
 
-Unlike `crossref verify`, the legacy formatting command takes its filename through `--fname`. Formatting checks include citation-key conventions, author/editor formatting, duplicate detection, sentence case, page ranges, and lookup-table normalization of venues, publishers, and addresses. The allowed fields are listed in [keep_fields.txt](bibcheck/keep_fields.txt); DOI is supported. The accuracy checker can read additional fields, but unsupported fields remain unresolved. The formatter may reject/prune those fields unless its `force` override is present.
+Unlike `crossref verify`, `verify` and `commit` take the filename through `--fname`. `verify` checks the format and then the citations of new/edited entries (see [Suggested workflow](#suggested-workflow)); `verify --no-citations` is the format-only check. Formatting checks include citation-key conventions, author/editor formatting, duplicate detection, sentence case, page ranges, and lookup-table normalization of venues, publishers, and addresses. The allowed fields are listed in [keep_fields.txt](bibcheck/keep_fields.txt); DOI is supported. The accuracy checker can read additional fields, but unsupported fields remain unresolved. The formatter may reject/prune those fields unless its `force` override is present.
 
 Citation keys use the first four letters of the first author's surname and the last two digits of the year, with the second surname for two-author works or `Etal` for larger author lists (for example, `Mann21`, `MannKaha21`, `MannEtal21`). Collisions receive letter suffixes. Multiword surnames should be brace-protected, and author names separated with ` and `. Page ranges use `--`.
 
@@ -290,10 +292,10 @@ The `force` field bypasses parts of legacy formatting/pruning; it does **not** c
 To inspect proposed automatic formatting corrections without overwriting the source:
 
 ```bash
-python bibcheck.py verify --fname cdl.bib --autofix --verbose --outfile cleaned.bib
+python bibcheck.py verify --fname cdl.bib --autofix --verbose --outfile cleaned.bib --no-citations
 ```
 
-Review `cleaned.bib` before replacing `cdl.bib`. The legacy `magic` command overwrites the bibliography and attempts a commit; prefer the explicit review workflow. The `commit` command compares with the remote `master` bibliography and uses `git commit -a`, which can include other tracked modifications. It does not push. Use normal Git staging/committing when you want explicit control over included files. The legacy formatting command's printed error handling is not a reliable shell exit-code gate; CI uses `bibcheck/test.py` to assert success.
+Review `cleaned.bib` before replacing `cdl.bib`. The legacy `magic` command overwrites the bibliography and attempts a commit; prefer the explicit review workflow. The `commit` command runs the `verify` gate, compares with the remote `master` bibliography for the message, and commits only the bibliography file (`git commit -- <file>`, without a shell), so other modifications are never included. It does not push. `verify` and `commit` exit nonzero on failure (1 for format or unresolved citations, 2 for a configuration or provider error).
 
 ## Using the bibliography in LaTeX
 

@@ -96,7 +96,8 @@ def test_bibcheck_verify_surfaces_errors_and_exits_nonzero(tmp_path):
     assert run.returncode == 1
     assert "page numbers are ambiguous or incorrect" in run.stderr and "KothEtal25" in run.stderr
     good = write_bib(tmp_path / "good.bib", entry["raw"])
-    run = subprocess.run([sys.executable, "bibcheck.py", "verify", "--fname", str(good)], cwd=ROOT,
+    # Format only: the citation part of the gate is tested in section 16.
+    run = subprocess.run([sys.executable, "bibcheck.py", "verify", "--fname", str(good), "--no-citations"], cwd=ROOT,
                          capture_output=True, text=True)
     assert run.returncode == 0 and "looks good!" in run.stdout
 
@@ -728,3 +729,121 @@ def test_catalogue_publisher_initials_match_the_house_form(key, house):
 ])
 def test_publisher_initials_compare_undotted(a, b, same):
     assert (v.publisher_initials(v.normalized(a)) == v.publisher_initials(v.normalized(b))) is same
+
+
+# 16. verify/commit gate: format check + citation verification of changed entries ------
+# User decision 2026-09-26: `bibcheck.py verify` and `bibcheck.py commit` share one gate
+# (bibcheck.py check_library). Real entry (cdl.bib Rame72, verified from Crossref
+# 10.1016/S0146-664X(72)80017-0); the citation check makes real Crossref requests into a
+# fresh cache in tmp_path. No mocks.
+
+RAME72 = ("@article{Rame72,\n\tAuthor = {U Ramer},\n\tDoi = {10.1016/S0146-664X(72)80017-0},\n"
+          "\tJournal = {Computer Graphics and Image Processing},\n\tNumber = {3},\n\tPages = {244--256},\n"
+          "\tTitle = {An iterative procedure for the polygonal approximation of plane curves},\n"
+          "\tVolume = {%s},\n\tYear = {1972}}")
+ZOLL90 = ("@article{Zoll90,\n\tAuthor = {U Zoller},\n\tDoi = {10.1002/tea.3660271011},\n"
+          "\tJournal = {Journal of Research in Science Teaching},\n\tNumber = {10},\n\tPages = {1053--1065},\n"
+          "\tTitle = {Students' misunderstandings and misconceptions in college freshman chemistry (general and "
+          "organic)},\n\tVolume = {27},\n\tYear = {1990}}")
+
+
+def crossref_contact():
+    """The contact the project's runs already send to Crossref (CROSSREF_MAILTO, else the
+    mailto recorded in the main cache's Crossref responses); a real address is required."""
+    import os
+    import sqlite3
+    if os.environ.get("CROSSREF_MAILTO"):
+        return os.environ["CROSSREF_MAILTO"]
+    db = sqlite3.connect(f"file:{ROOT / '.bibcheck/verification.sqlite3'}?mode=ro", uri=True)
+    try:
+        row = db.execute("SELECT body FROM responses WHERE body LIKE '%api.crossref.org%mailto=%' LIMIT 1").fetchone()
+    finally:
+        db.close()
+    from urllib.parse import parse_qs, urlparse
+    return parse_qs(urlparse(json.loads(row[0])["url"]).query)["mailto"][0]
+
+
+def gate(tmp_path, *args):
+    env = dict(__import__("os").environ, DEVELOPER_DIR="/Library/Developer/CommandLineTools",
+               CROSSREF_MAILTO=crossref_contact())
+    return subprocess.run([sys.executable, str(ROOT / "bibcheck.py"), *args], cwd=ROOT, env=env,
+                          capture_output=True, text=True, timeout=1800)
+
+
+def gate_files(tmp_path, volume):
+    base = write_bib(tmp_path / "base.bib", ZOLL90)
+    new = write_bib(tmp_path / "new.bib", ZOLL90 + "\n\n" + RAME72 % volume)
+    return base, new
+
+
+def test_verify_passes_a_correct_changed_entry(tmp_path):
+    base, new = gate_files(tmp_path, "1")
+    run = gate(tmp_path, "verify", "--fname", str(new), "--reference", str(base),
+               "--database", str(tmp_path / "db.sqlite3"))
+    assert run.returncode == 0, run.stdout + run.stderr
+    assert "citations: 1 of 1 new/edited entries verified" in run.stdout
+    assert "library: 2 entries" in run.stdout  # Zoll90 is unchanged: reported, not checked
+    assert "looks good!" in run.stdout
+
+
+def test_verify_fails_a_wrong_changed_entry_and_shows_its_issue(tmp_path):
+    base, new = gate_files(tmp_path, "2")  # Crossref: volume 1
+    run = gate(tmp_path, "verify", "--fname", str(new), "--reference", str(base),
+               "--database", str(tmp_path / "db.sqlite3"))
+    assert run.returncode == 1, run.stdout + run.stderr
+    assert "UNRESOLVED Rame72" in run.stdout and "volume" in run.stdout
+    assert "review-packet" in run.stdout and "looks good!" not in run.stdout.replace("format: looks good!", "")
+
+
+def test_verify_no_citations_is_offline_and_format_only(tmp_path):
+    base, new = gate_files(tmp_path, "2")
+    run = gate(tmp_path, "verify", "--fname", str(new), "--reference", str(base), "--no-citations",
+               "--database", str(tmp_path / "db.sqlite3"))
+    assert run.returncode == 0 and "citations:" not in run.stdout and "looks good!" in run.stdout
+    assert not (tmp_path / "db.sqlite3").exists()
+    bad = write_bib(tmp_path / "bad.bib", (RAME72 % "1").replace("244--256", "244--24"))
+    run = gate(tmp_path, "verify", "--fname", str(bad), "--no-citations")
+    assert run.returncode == 1 and "Rame72" in run.stderr
+
+
+def test_commit_refuses_an_unresolved_entry_and_commits_only_the_bib(tmp_path):
+    import os
+    env = dict(os.environ, DEVELOPER_DIR="/Library/Developer/CommandLineTools")
+    repo = tmp_path / "repo"
+    repo.mkdir()
+
+    def git(*args):
+        return subprocess.run(["git", *args], cwd=repo, env=env, capture_output=True, text=True, check=True).stdout
+
+    git("init", "-q")
+    base = write_bib(tmp_path / "base.bib", ZOLL90)
+    bib = write_bib(repo / "cdl.bib", ZOLL90)
+    (repo / "notes.txt").write_text("original\n")
+    git("add", "cdl.bib", "notes.txt")
+    git("commit", "-q", "-m", "base")
+    (repo / "notes.txt").write_text("edited, must not be committed\n")
+    db = str(tmp_path / "db.sqlite3")
+    bib.write_text(ZOLL90 + "\n\n" + RAME72 % "2" + "\n")
+    run = gate(tmp_path, "commit", "--fname", str(bib), "--reference", str(base), "--database", db)
+    assert run.returncode == 1 and "UNRESOLVED Rame72" in run.stdout and "not committed" in run.stdout
+    assert git("rev-list", "--count", "HEAD").strip() == "1"
+    bib.write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n")
+    run = gate(tmp_path, "commit", "--fname", str(bib), "--reference", str(base), "--database", db)
+    assert run.returncode == 0, run.stdout + run.stderr
+    assert git("rev-list", "--count", "HEAD").strip() == "2"
+    assert git("show", "--name-only", "--format=%s", "HEAD").split() [-1] == "cdl.bib"
+    assert "Rame72" in git("log", "-1", "--format=%B")
+    assert "notes.txt" in git("status", "--porcelain")  # the other edit stays uncommitted
+
+
+def test_verify_all_checks_unchanged_entries_too(tmp_path):
+    same = write_bib(tmp_path / "same.bib", RAME72 % "1")
+    db = str(tmp_path / "db.sqlite3")
+    run = gate(tmp_path, "verify", "--fname", str(same), "--reference", str(same), "--database", db)
+    assert run.returncode == 0, run.stdout + run.stderr
+    assert "citations: 0 of 0 new/edited entries verified; network requests: 0" in run.stdout
+    assert "library: 1 entries: pending=1" in run.stdout  # reported, not checked, not failing
+    run = gate(tmp_path, "verify", "--fname", str(same), "--reference", str(same), "--all", "--database", db)
+    assert run.returncode == 0, run.stdout + run.stderr
+    assert "citations: 1 of 1 entries verified" in run.stdout
+    assert "library: 1 entries: metadata_verified=1" in run.stdout

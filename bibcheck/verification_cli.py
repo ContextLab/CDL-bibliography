@@ -208,6 +208,101 @@ class DeferredClient:
         return getattr(self.client, name)
 
 
+def run_review_layers(fname, cache, client, report, selected, limit=None, snapshot=None):
+    """The --auto-review layers for the selected keys, in the production order."""
+    from auto_review import run_auto_review
+    from fulltext_review import run_fulltext_review
+    from pmc_metadata import run_pmc_metadata_review
+    from publisher_year_review import run_publisher_year_review
+    from catalogue_review import run_catalogue_review
+    from preprint_review import run_preprint_review
+    from arxiv_review import run_arxiv_review
+
+    results = run_auto_review(fname, cache, report, client, limit, snapshot, keys=selected)
+    for layer in (run_fulltext_review, run_pmc_metadata_review, run_publisher_year_review,
+                  run_catalogue_review, run_preprint_review, run_arxiv_review,
+                  # Repository/registry routes (2026-09-25): PsyArXiv via OSF,
+                  # software/data via DataCite, ACL Anthology, SfN abstract planner.
+                  osf_review.run_osf_review, datacite_review.run_datacite_review,
+                  acl_review.run_acl_review, sfn_abstracts.run_sfn_review):
+        results = layer(fname, cache, client, report, limit, snapshot, keys=selected)
+    return results
+
+
+def reference_bib(reference, directory):
+    """A local path for the reference bibliography; 'github' downloads the master cdl.bib
+    (the same file compare_bibs uses) into ``directory``."""
+    if reference != "github":
+        if not Path(reference).exists():
+            raise OSError(f"Reference bibliography not found: {reference}")
+        return str(reference)
+    from urllib.request import urlopen
+    from helpers import LATEST_BIBFILE
+    try:
+        text = urlopen(LATEST_BIBFILE, timeout=60).read().decode("utf-8")
+    except OSError as exc:
+        raise OSError(f"Cannot download the reference bibliography {LATEST_BIBFILE}: {exc}") from exc
+    Path(directory).mkdir(parents=True, exist_ok=True)
+    target = Path(directory) / "reference-github.bib"
+    target.write_text(text, encoding="utf-8")
+    return str(target)
+
+
+def closest_candidate(fields, result):
+    """The candidate for the entry's own DOI, else the one with the fewest issues."""
+    candidates = [c for c in result.get("candidates") or [] if c.get("issues")]
+    if not candidates:
+        return None
+    doi = str(fields.get("doi") or "").strip().lower()
+    own = [c for c in candidates if doi and str(c.get("doi") or "").lower() == doi]
+    return own[0] if own else min(candidates, key=lambda c: len(c["issues"]))
+
+
+def citation_gate(fname, reference="github", database=None, report=None, mailto=None, interval=1.0,
+                  all_entries=False, echo=typer.echo):
+    """Verify the citations of new/edited entries (or all, with ``all_entries``).
+
+    Runs ``crossref verify --auto-review --against <reference>`` (key-only renames are
+    excluded by ``select_keys``), prints every changed entry that is not accepted with
+    its issues, and an offline library-wide status line. Returns
+    ``(ok, unresolved, library_counts)``: ``ok`` is False when any changed (or, with
+    ``all_entries``, any) entry is unresolved. The library-wide backlog is reported but
+    does not make ``ok`` False unless ``all_entries`` is set.
+    """
+    database, report = paths(fname, database, report)
+    cache = Cache(database)
+    try:
+        against = None if all_entries else reference_bib(reference, Path(database).parent)
+        selected = select_keys(fname, None, against)
+        client = DeferredClient(cache, mailto, interval, False)
+        if selected:
+            run_verification(fname, cache, client, report, keys=selected)
+            run_review_layers(fname, cache, client, report, selected)
+        results = write_report(fname, cache, report)
+        selected = select_keys(fname, None, against, entries=results)
+        unresolved = {key: results[key] for key in sorted(selected) if results[key]["status"] not in ACCEPTED}
+        library = Counter(r["status"] for r in results.values())
+        scope = "entries" if all_entries else "new/edited entries"
+        echo(f"citations: {len(selected) - len(unresolved)} of {len(selected)} {scope} verified; "
+             f"network requests: {client.requests}")
+        entries = load_entries(fname)
+        for key, result in unresolved.items():
+            issues = "; ".join(result.get("issues") or []) or "no fully matching source"
+            echo(f"  UNRESOLVED {key} ({result['status']}): {issues}")
+            closest = closest_candidate(entries[key]["fields"], result)
+            if closest:
+                echo(f"    closest source {closest.get('source')} {closest.get('doi') or ''}: "
+                     + "; ".join(closest.get("issues") or []))
+        if unresolved:
+            echo("  Inspect with `bibcheck.py crossref review-packet KEY`; after checking the source, record "
+                 "a decision with `bibcheck.py crossref approve`.")
+        echo(f"library: {len(results)} entries: "
+             + ", ".join(f"{k}={v}" for k, v in sorted(library.items())))
+        return not unresolved, unresolved, dict(library)
+    finally:
+        cache.close()
+
+
 @app.command()
 def verify(
     fname: str = typer.Argument("cdl.bib"),
@@ -272,46 +367,7 @@ def verify(
             keys=selected,
         )
         if auto_review and selected:
-            from auto_review import run_auto_review
-            from fulltext_review import run_fulltext_review
-            from pmc_metadata import run_pmc_metadata_review
-            from publisher_year_review import run_publisher_year_review
-            from catalogue_review import run_catalogue_review
-            from preprint_review import run_preprint_review
-            from arxiv_review import run_arxiv_review
-
-            results = run_auto_review(
-                fname, cache, report, client, limit, snapshot, keys=selected
-            )
-            results = run_fulltext_review(
-                fname, cache, client, report, limit, snapshot, keys=selected
-            )
-            results = run_pmc_metadata_review(
-                fname, cache, client, report, limit, snapshot, keys=selected
-            )
-            results = run_publisher_year_review(
-                fname, cache, client, report, limit, snapshot, keys=selected
-            )
-            results = run_catalogue_review(
-                fname, cache, client, report, limit, snapshot, keys=selected
-            )
-            results = run_preprint_review(
-                fname, cache, client, report, limit, snapshot, keys=selected
-            )
-            results = run_arxiv_review(
-                fname, cache, client, report, limit, snapshot, keys=selected
-            )
-            # Repository/registry routes (2026-09-25): PsyArXiv via OSF,
-            # software/data via DataCite, ACL Anthology, SfN abstract planner.
-            for route in (
-                osf_review.run_osf_review,
-                datacite_review.run_datacite_review,
-                acl_review.run_acl_review,
-                sfn_abstracts.run_sfn_review,
-            ):
-                results = route(
-                    fname, cache, client, report, limit, snapshot, keys=selected
-                )
+            results = run_review_layers(fname, cache, client, report, selected, limit, snapshot)
         # Reread both selection and results so concurrent edits cannot pass.
         results = write_report(fname, cache, report)
         selected = select_keys(fname, keys, against, entries=results)
