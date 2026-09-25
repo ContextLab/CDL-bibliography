@@ -139,15 +139,106 @@ def test_pages_and_issue_normalisation():
 
 # ---------------------------------------------------------------- real PDFs
 
+# Cited fields as of 2026-09-22 (commit 964405a) for real-PDF tests whose keys have no
+# benchmark control case. Tests never read the live cdl.bib: legitimate corrections to an
+# entry (an added DOI, a fixed title) must not change what a verifier test checks.
+FROZEN_FIELDS = {
+    "FostWils06": {
+        "year": "2006",
+        "volume": "440",
+        "title": "{R}everse replay of behavioural sequences in hippocampal place cells during the awake state",
+        "pages": "680--683",
+        "number": "7084",
+        "journal": "Nature",
+        "author": "David J Foster and Matthew A Wilson",
+        "ENTRYTYPE": "article",
+        "ID": "FostWils06"
+    },
+    "RakiEtal98": {
+        "year": "1998",
+        "volume": "24",
+        "title": "Scalar expectancy theory and peak-interval timing in humans",
+        "pages": "15--33",
+        "number": "1",
+        "journal": "Journal of Experimental Psychology: Animal Behavior Processes",
+        "author": "B C Rakitin and J Gibbon and T B Penney and C Malapani",
+        "ENTRYTYPE": "article",
+        "ID": "RakiEtal98"
+    },
+    "SwalEtal09": {
+        "year": "2009",
+        "volume": "138",
+        "title": "Event boundaries in perception affect memory encoding and updating",
+        "pages": "236--257",
+        "number": "2",
+        "journal": "Journal of Experimental Psychology: General",
+        "author": "K M Swallow and J M Zacks and R A Abrams",
+        "ENTRYTYPE": "article",
+        "ID": "SwalEtal09"
+    },
+    "CronEtal11": {
+        "year": "2011",
+        "volume": "79",
+        "title": "Cortical gamma responses: searching high and low",
+        "pages": "9--15",
+        "number": "1",
+        "journal": "International Journal of Psychophysiology",
+        "author": "N E Crone and A Korzeniewska and P J Franaszczuk",
+        "ENTRYTYPE": "article",
+        "ID": "CronEtal11"
+    },
+    "EzzyEtal17": {
+        "year": "2017",
+        "volume": "27",
+        "title": "Direct brain stimulation modulates encoding states and memory performance in humans",
+        "pages": "1251--1258",
+        "journal": "Current Biology",
+        "author": "Y Ezzyat and J E Kragel and J F Burke and D F Levy and A Lyalenko and P Wanda and L O'Sullivan and K B Hurley and S Busygin and I Pedisich and M R Sperling and G A Worrell and M T Kucewicz and K A Davis and T H Lucas and C S Inman and B C Lega and B C Jobst and S A Sheth and K Zaghloul and M J Jutras and J M Stein and S R Das and R Gorniak and D S Rizzuto and M J Kahana",
+        "ENTRYTYPE": "article",
+        "ID": "EzzyEtal17"
+    },
+    "GohEtal22": {
+        "year": "2022",
+        "volume": "34",
+        "title": "Predicting the future with a scale-invariant temporal memory for the past",
+        "pages": "642--685",
+        "number": "3",
+        "journal": "Neural Computation",
+        "author": "W Z Goh and V Ursekar and M W Howard",
+        "ENTRYTYPE": "article",
+        "ID": "GohEtal22"
+    },
+    "KahaJaco00": {
+        "year": "2000",
+        "volume": "26",
+        "title": "Inter-response times in serial recall: effects of intraserial repetition",
+        "pages": "1188--1197",
+        "journal": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+        "author": "M J Kahana and J Jacobs",
+        "ENTRYTYPE": "article",
+        "ID": "KahaJaco00"
+    },
+    "SahaSmit14": {
+        "year": "2014",
+        "volume": "40",
+        "title": "“{A} long time ago, in a context far, far away”: retrospective time estimates and internal context change",
+        "pages": "86--93",
+        "number": "1",
+        "journal": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+        "author": "L Sahakyan and J R Smith",
+        "ENTRYTYPE": "article",
+        "ID": "SahaSmit14"
+    }
+}
+
+
 def _frozen(key):
-    """Entry fields as frozen in the benchmark, so later cdl.bib edits (for example an
-    added DOI) do not change what these tests check; live fields for keys not frozen."""
+    """Entry fields frozen in the benchmark (control case) or in FROZEN_FIELDS."""
     cases = json.loads((ROOT / "verification/pdf-benchmark/cases.json").read_text())["cases"]
     for case in cases:
         if case["key"] == key and case.get("variant") == "control":
             return dict(case["fields"])
-    from verification import load_entries
-    return dict(load_entries(ROOT / "cdl.bib")[key]["fields"])
+    return dict(FROZEN_FIELDS[key])
 
 
 def _verify(key, fields=None):
