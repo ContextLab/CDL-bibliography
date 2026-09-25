@@ -11,7 +11,10 @@ User decisions (verification/resolution-plan-2026-09-22/README.md):
                 PosnEtal87 byline typo 'adn' -> 'and' (Crossref 10.1016/0028-3932(87)90049-2
                 lists four authors: Posner, Walker, Friedrich, Rafal).
   formats       Issue ranges 'N-M' -> 'N--M' in `number`; proceedings booktitles omit the
-                year; bare editions in house form 'N\\textsuperscript{..}'; no `pages` on @book.
+                year; bare editions in house form 'N\\textsuperscript{..}'; no `pages` on @book;
+                publisher initials undotted ('W.H. Freeman' -> 'W H Freeman', user 2026-09-26).
+  ordinals      Every plain numeric ordinal in a text field (title, booktitle, journal,
+                series, note, ...) becomes N\\textsuperscript{suffix} (user 2026-09-26).
   adddoi002     Built by build_adddoi.py (needs the verification cache).
 
 Every proposal carries the entry fingerprint; helpers.check_bib must accept the staged
@@ -150,12 +153,50 @@ def propose_formats(entries):
         if edition and re.fullmatch(r"\d+", edition):
             changes["edition"] = {"before": edition, "after": ordinal(edition)}
             notes["edition"] = "edition in house form N\\textsuperscript{..} (user 2026-09-25)"
+        publisher = fields.get("publisher")
+        if publisher and re.search(r"(?:^|[\s{])[A-Z]\}?\.|\{[A-Z]\}", publisher):
+            house = helpers.format_journal_name(publisher, key=helpers.publisher_key, dotted_initials=True)
+            if house != publisher and re.sub(r"[.{}\s]", "", house) == re.sub(r"[.{}\s]", "", publisher):
+                changes["publisher"] = {"before": publisher, "after": house}
+                notes["publisher"] = "publisher initials undotted, space-separated (user 2026-09-26: 'W H Freeman')"
+            else:
+                held[key] = f"publisher '{publisher}': house formatter gives '{house}' (not an initials-only change)"
         if fields["ENTRYTYPE"] == "book" and "pages" in fields:
             changes["pages"] = {"before": fields["pages"], "after": None}
             notes["pages"] = "@book has no pages (user 2026-09-25)"
         if changes:
             rows.append({"key": key, "fingerprint": entry["fingerprint"], "kind": "house_forms",
                          "rule": "user-2026-09-25 formats", "changes": changes, "form_notes": notes})
+    return rows, held
+
+
+PLAIN_ORDINAL = re.compile(r"(?<![\w\\{])(\d+)(st|nd|rd|th)\b")
+NOT_TEXT = {"ID", "ENTRYTYPE", "doi", "url", "pages", "volume", "number", "author", "editor", "address", "year",
+            "isbn", "issn", "month"}
+
+
+def propose_ordinals(entries):
+    """Every plain numeric ordinal in a text field becomes N\\textsuperscript{suffix} with the
+    correct suffix (user decision 2026-09-26, "Use proper ordinals wherever present")."""
+    rows, held = [], {}
+    for key, entry in entries.items():
+        changes, notes = {}, {}
+        for field, value in entry["fields"].items():
+            if field in NOT_TEXT or not isinstance(value, str):
+                continue
+            wrong = [m[0] for m in PLAIN_ORDINAL.finditer(value) if ordinal(m[1]) != f"{int(m[1])}\\textsuperscript{{{m[2]}}}"
+                     or m[1] != str(int(m[1]))]
+            if wrong:
+                held[key] = f"{field}: ordinal suffix/number not in canonical form {wrong}; not rewritten automatically"
+                changes = {}
+                break
+            new = PLAIN_ORDINAL.sub(lambda m: ordinal(m[1]), value)
+            if new != value:
+                changes[field] = {"before": value, "after": new}
+                notes[field] = "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+        if changes:
+            rows.append({"key": key, "fingerprint": entry["fingerprint"], "kind": "house_ordinals",
+                         "rule": "user-2026-09-26 proper ordinals", "changes": changes, "form_notes": notes})
     return rows, held
 
 
@@ -190,7 +231,7 @@ def check_rows(entries, rows):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("batch", choices=("suffix-strip", "initials", "formats"))
+    parser.add_argument("batch", choices=("suffix-strip", "initials", "formats", "ordinals"))
     args = parser.parse_args()
     entries = load_entries("cdl.bib")
     extra = {}
@@ -200,6 +241,8 @@ def main():
         rows, held_names = propose_initials(entries)
         held = {}
         extra["held_names"] = len(held_names)
+    elif args.batch == "ordinals":
+        rows, held = propose_ordinals(entries)
     else:
         rows, held = propose_formats(entries)
     rows, check_held = check_rows(entries, rows)
