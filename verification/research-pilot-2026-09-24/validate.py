@@ -95,6 +95,8 @@ def fetch(url):
     CACHE.mkdir(parents=True, exist_ok=True)
     path = CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".txt")
     if path.exists():
+        if path.with_suffix(".unverified-tls").exists():
+            UNVERIFIED_TLS.add(url)
         return path.read_text(), False
     m = re.match(r"https?://(?:www\.)?(?:pubmed\.ncbi\.nlm\.nih\.gov|ncbi\.nlm\.nih\.gov/pubmed)/(\d+)", url)
     if m:
@@ -131,6 +133,7 @@ def fetch(url):
             with urllib.request.urlopen(req, timeout=60, context=ssl._create_unverified_context()) as resp:
                 raw, ctype = resp.read(), resp.headers.get("Content-Type", "")
             UNVERIFIED_TLS.add(url)
+            path.with_suffix(".unverified-tls").write_text(url)
         if "pdf" in ctype or raw[:4] == b"%PDF":
             tmp = path.with_suffix(".pdf")
             tmp.write_bytes(raw)
