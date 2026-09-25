@@ -1,0 +1,16 @@
+[
+ {
+  "old_key": "GautEtal18",
+  "new_key": "GautEtal19",
+  "date": "2026-09-25",
+  "reason": "classes001: source-backed year correction 2018 -> 2019 (and title fix); key follows the corrected year (user decision 2026-09-25)",
+  "commit": "bac94e68062c6d44d748513454f031a4b08e7a63"
+ },
+ {
+  "old_key": "HayeEtal14",
+  "new_key": "HayeEtal16",
+  "date": "2026-09-25",
+  "reason": "classes001: source-backed year correction 2014 -> 2016 (journal 'The Journals of Gerontology: Series {B}'); key follows the corrected year (user decision 2026-09-25)",
+  "commit": "bac94e68062c6d44d748513454f031a4b08e7a63"
+ }
+]

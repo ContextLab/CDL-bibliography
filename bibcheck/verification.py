@@ -2314,6 +2314,15 @@ def run_verification(
                     # A recheck that reproduces the saved result is not a new
                     # review: appending it would only restamp checked_at.
                     reassessed = reassess(entry, previous)
+                    # reassess re-derives an approval from Crossref/PubMed/JATS and the
+                    # built-in layers only. A source-route approval (OSF, DataCite, ACL,
+                    # SfN via register_approval_validator; arXiv) that its own validator
+                    # still accepts from the saved evidence is kept, not reopened: the
+                    # route would re-approve it on every run (FranLiu18, reassess002).
+                    if (reassessed.get("status") not in ACCEPTED
+                            and route_approval_valid(previous)):
+                        reassessed = {k: v for k, v in previous.items()
+                                      if k not in {"key", "fingerprint", "checked_at", "policy"}}
                     saved = {
                         k: v
                         for k, v in previous.items()

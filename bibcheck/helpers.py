@@ -387,9 +387,17 @@ def get_key_suffixes(n):
 # If keys match aside from suffix then still allow the bibtex file to "pass"
 # as long as all "matching" keys are unique and all have suffixes and the
 # suffixes span a, b, c, ..., etc. without gaps
+def key_names(bd):
+    """The names a cite key is built from: the authors, or for an edited volume
+    with no author (``editor`` only), the editors (stage 2B-i, 2026-09-26; the
+    rule used to demand a year-only key such as ``94``)."""
+    return [a if a.strip() else e
+            for a, e in zip(get_vals(bd, "author"), get_vals(bd, "editor"))]
+
+
 def check_key_suffixes(bd):
     ids = get_vals(bd, "ID")
-    authors = get_vals(bd, "author")
+    authors = key_names(bd)
     years = get_vals(bd, "year")
 
     target_ids = [authors2key(a, y) for a, y in zip(authors, years)]
@@ -579,7 +587,16 @@ def generate_correct_pages(bd):
     return target_pages, unfixable
 
 
-def format_journal_name(n, key=journal_key, force_caps=force_caps):
+DOTTED_INITIALS = re.compile(r"(?:[A-Z]\.)+")
+
+
+def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initials=False):
+    """Format a journal, booktitle, publisher or address name.
+
+    ``dotted_initials`` (publishers, stage 2B-i 2026-09-26): a word made only of
+    capital initials with periods ("W.H.", "V.", "D.C.") is kept verbatim; the
+    word-capitalizing rule used to turn "W.H. Freeman" into "W.h. Freeman" (Marr82).
+    """
     # The legacy spreadsheet contains aliases that erase a historical title,
     # monograph designation, or journal section. Formatting cannot establish
     # that publication identity; retain those words for source verification.
@@ -595,7 +612,9 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps):
     }
     if (n.lower() not in preserve_identity and n.lower() in key.keys()) and (type(key[n.lower()]) == str):
         n = key[n.lower()]
+        as_given = n.split(" ")
     else:
+        as_given = n.split(" ")  # before lowercasing: dotted initials keep their capitals
         n = n.lower()
 
     words = n.split(" ")
@@ -603,6 +622,9 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps):
     # words = ['-'.join([format_journal_name(x) for x in w.split('-')]) if len(w.split('-')) > 1 else w for w in words] #deal with hyphens
 
     for i, w in enumerate(words):
+        if dotted_initials and DOTTED_INITIALS.fullmatch(as_given[i]):
+            words[i] = as_given[i]
+            continue
         # Check if word is fully braced (starts and ends with braces around the whole word)
         is_fully_braced = before_letters(w, "{") and after_letters(w, "}")
 
@@ -1025,7 +1047,7 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     fix_dict["ID"] = check_entries(
         "ID",
         bd,
-        [authors2key(a, y) for a, y in zip(authors, years)],
+        [authors2key(a, y) for a, y in zip(key_names(bd), years)],
         same=same_id,
         verbose=verbose,
     )
@@ -1066,7 +1088,7 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     fix_dict["publisher"] = check_entries(
         "publisher",
         bd,
-        [format_journal_name(p, key=publisher_key) for p in publishers],
+        [format_journal_name(p, key=publisher_key, dotted_initials=True) for p in publishers],
         verbose=verbose,
     )
 

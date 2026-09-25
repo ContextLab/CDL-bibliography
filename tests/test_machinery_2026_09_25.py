@@ -478,3 +478,133 @@ def test_meyer88_negative_controls(library):
     no_pubmed = deepcopy(previous)
     no_pubmed["candidates"] = [c for c in no_pubmed["candidates"] if c["source"] != "europepmc"]
     assert status(entry, no_pubmed) == "needs_review"
+
+
+# 14. Stage 2B-i (2026-09-26): formatter key rule, publisher initials, route rechecks ---
+
+SCHACTER94 = """@book{%s,
+	Address = {Cambridge, {MA}},
+	%s = {D L Schacter and E Tulving},
+	Publisher = {{MIT} Press},
+	Title = {Memory systems 1994},
+	Year = {1994}}"""
+
+
+def formatter_errors(tmp_path, raw):
+    return helpers.check_bib(str(write_bib(tmp_path / "f.bib", raw)), verbose=False)[0]
+
+
+def test_edited_volume_key_uses_editor_surnames(tmp_path, monkeypatch):
+    # SchaTulv94 is an edited volume (LoC 4889423): with the author moved to editor,
+    # the ID rule used to demand the year-only key "94".
+    monkeypatch.chdir(ROOT)
+    assert formatter_errors(tmp_path, SCHACTER94 % ("SchaTulv94", "Editor")) == {}
+    assert formatter_errors(tmp_path, SCHACTER94 % ("SchaTulv94", "Author")) == {}
+    # Negative controls: a wrong key is still rejected, with the editor-based target.
+    assert formatter_errors(tmp_path, SCHACTER94 % ("Scha94", "Editor")) == {"Scha94": {"ID": "SchaTulv94"}}
+    assert formatter_errors(tmp_path, SCHACTER94 % ("94", "Editor")) == {"94": {"ID": "SchaTulv94"}}
+
+
+def test_editor_keys_share_suffixes_and_authors_take_precedence(tmp_path, monkeypatch):
+    monkeypatch.chdir(ROOT)
+    # MeltMart72 and TulvDona72 (both edited volumes, 1972) used to collide as "72a"/"72b".
+    two = ("@book{MeltMart72,\n\tEditor = {A W Melton and E Martin},\n\tPublisher = {Winston},\n"
+           "\tTitle = {Coding processes in human memory},\n\tYear = {1972}}\n\n"
+           "@book{TulvDona72,\n\tAddress = {New York, {NY}},\n\tEditor = {E Tulving and W Donaldson},\n"
+           "\tPublisher = {Academic Press},\n\tTitle = {Organization of memory},\n\tYear = {1972}}")
+    assert formatter_errors(tmp_path, two) == {}
+    # An entry with both an author and editors keys on the author (the chapter's byline).
+    chapter = ("@incollection{Tulv72,\n\tAuthor = {E Tulving},\n\tBooktitle = {Organization of Memory},\n"
+               "\tEditor = {E Tulving and W Donaldson},\n\tPages = {381--403},\n\tPublisher = {Academic Press},\n"
+               "\tTitle = {Episodic and semantic memory},\n\tYear = {1972}}")
+    assert formatter_errors(tmp_path, chapter) == {}
+    assert formatter_errors(tmp_path, chapter.replace("{Tulv72,", "{TulvDona72,")) == {"TulvDona72": {"ID": "Tulv72"}}
+    # Same editor-based base key twice: the suffix rule applies to editor keys too.
+    twins = (SCHACTER94 % ("SchaTulv94a", "Editor") + "\n\n"
+             + SCHACTER94.replace("Memory systems 1994", "Memory systems 1994, second printing") % ("SchaTulv94b", "Editor"))
+    assert formatter_errors(tmp_path, twins) == {}
+    assert formatter_errors(tmp_path, twins.replace("SchaTulv94b", "SchaTulv94")) != {}
+
+
+@pytest.mark.parametrize("publisher", ["W.H. Freeman", "V. H. Winston", "D.C. Heath", "{W}. {H}. Freeman",
+                                       "{D}. Appleton and Company", "Freeman"])
+def test_publisher_dotted_initials_are_preserved(publisher):
+    # Marr82 (LoC 3260955): the formatter used to rewrite "W.H. Freeman" as "W.h. Freeman".
+    assert helpers.format_journal_name(publisher, key=helpers.publisher_key, dotted_initials=True) == publisher
+
+
+@pytest.mark.parametrize("publisher,house", [
+    ("w.h. freeman", "W.h. Freeman"), ("Henry holt and company", "Henry Holt and Company"),
+    ("Lawrence Erlbaum Associates", "Erlbaum"), ("Wh. Freeman", "Wh. Freeman"),
+])
+def test_publisher_negative_controls_still_formatted(publisher, house):
+    # Lowercase or non-initial tokens are formatted as before; aliases still apply.
+    assert helpers.format_journal_name(publisher, key=helpers.publisher_key, dotted_initials=True) == house
+
+
+def test_marr82_publisher_passes_check_bib(tmp_path, monkeypatch):
+    monkeypatch.chdir(ROOT)
+    raw = ("@book{Marr82,\n\tAuthor = {D Marr},\n\tPublisher = {%s},\n\tTitle = {Vision: a computational "
+           "investigation into the human representation and processing of visual information},\n\tYear = {1982}}")
+    assert formatter_errors(tmp_path, raw % "W.H. Freeman") == {}
+    assert formatter_errors(tmp_path, raw % "W.h. freeman") == {"Marr82": {"publisher": "W.h. Freeman"}}
+    # Dotted initials are a publisher rule only: journal names are formatted as before.
+    assert helpers.format_journal_name("W.H. Freeman", key=helpers.publisher_key) == "W.h. Freeman"
+
+
+def route_bib(tmp_path, key, fields):
+    body = ",\n".join(f"\t{name.capitalize()} = {{{value}}}" for name, value in sorted(fields.items())
+                      if name not in {"ENTRYTYPE", "ID"})
+    return write_bib(tmp_path / "r.bib", "@%s{%s,\n%s}" % (fields.get("ENTRYTYPE", "article"), key, body))
+
+
+def recheck(tmp_path, key, fields, approval):
+    bib = route_bib(tmp_path, key, fields)
+    entry = v.load_entries(bib)[key]
+    cache = v.Cache(tmp_path / "recheck.sqlite3")
+    try:
+        cache.put(str(bib), entry, approval)
+        client = v.PoliteClient(cache, "jeremy.r.manning@dartmouth.edu")
+        results = v.run_verification(str(bib), cache, client, str(tmp_path / "report.jsonl"),
+                                     keys=[key], recheck_cached=True)
+        rows = cache.db.execute("SELECT count(*) FROM reviews").fetchone()[0]
+        return results[key], client.requests, rows
+    finally:
+        cache.close()
+
+
+def route_case(module, fixture, key):
+    import importlib
+    data = json.loads((ROOT / "verification/routes-2026-09-25/fixtures" / fixture).read_text())
+    return importlib.import_module(module), deepcopy(data[key])
+
+
+def test_recheck_cached_keeps_the_franliu18_osf_approval(tmp_path):
+    # reassess002 attempt 2: verify --recheck-cached re-derived FranLiu18's osf-repository
+    # approval from Crossref evidence only and reopened it on every run.
+    o, c = route_case("osf_review", "osf_review.json", "FranLiu18")
+    approval = o.assess_osf(c["fields"], c["raw"])
+    assert approval["status"] == "metadata_verified" and approval["accepted_source"] == "osf-repository"
+    entry = v.load_entries(route_bib(tmp_path, "FranLiu18", c["fields"]))["FranLiu18"]
+    assert auto_review.reassess(entry, approval)["status"] == "needs_review"  # the recheck path alone reopens it
+    result, requests, rows = recheck(tmp_path, "FranLiu18", c["fields"], approval)
+    assert result["status"] == "metadata_verified" and result["accepted_source"] == "osf-repository"
+    assert requests == 0 and rows == 1  # nothing written: a fixed point
+
+
+def test_recheck_cached_still_reopens_an_invalid_route_approval(tmp_path):
+    o, c = route_case("osf_review", "osf_review.json", "FranLiu18")
+    approval = o.assess_osf(c["fields"], c["raw"])
+    approval["candidates"][0]["checked_fields"]["year"] = "1999"  # tampered: the validator rejects it
+    assert not v.route_approval_valid(approval)
+    result, requests, rows = recheck(tmp_path, "FranLiu18", c["fields"], approval)
+    assert result["status"] == "needs_review" and requests == 0 and rows == 2
+
+
+def test_recheck_cached_keeps_arxiv_approvals(tmp_path):
+    import arxiv_review as a
+    c = deepcopy(json.loads((ROOT / "tests/fixtures/arxiv_preprints.json").read_text())["PianHill22"])
+    approval = a.assess_arxiv(c["fields"], c["raw"])
+    assert approval["status"] == "metadata_verified"
+    result, requests, _ = recheck(tmp_path, "PianHill22", c["fields"], approval)
+    assert result["status"] == "metadata_verified" and requests == 0
