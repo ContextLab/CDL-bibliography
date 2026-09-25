@@ -59,6 +59,15 @@ from catalogue_review import run_catalogue_review  # noqa: E402
 from preprint_review import run_preprint_review  # noqa: E402
 from arxiv_review import run_arxiv_review  # noqa: E402
 from discovery_review import run_discovery_review  # noqa: E402
+# The 2026-09-25 source routes (verify --auto-review runs them after arXiv); importing
+# them also registers their approval validators for snapshot import.
+import osf_review  # noqa: E402
+import datacite_review  # noqa: E402
+import acl_review  # noqa: E402
+import sfn_abstracts  # noqa: E402
+
+ROUTES = (osf_review.run_osf_review, datacite_review.run_datacite_review,
+          acl_review.run_acl_review, sfn_abstracts.run_sfn_review)
 
 BIB = "cdl.bib"
 STALE = ["Vand00", "MoruMago49", "Gold95", "HescEtal13b", "McAdMaun99", "GreeStil95", "JoEtal13",
@@ -300,7 +309,8 @@ def propose_nosuffix(entries, results):
 # ----------------------------------------------------------- pipeline --
 
 def pipeline(cache, client, keys, report):
-    """The production verify --auto-review sequence, expanded discovery, then the layers again."""
+    """The production verify --auto-review sequence (including the 2026-09-25 OSF, DataCite,
+    ACL Anthology and SfN routes), expanded discovery, then the layers again."""
     keys = sorted(keys)
     # Recheck saved approvals of the batch so a rule tightened after the run applies.
     run_verification(BIB, cache, client, report, keys=keys, recheck_cached=True)
@@ -312,7 +322,7 @@ def pipeline(cache, client, keys, report):
         lambda: run_catalogue_review(BIB, cache, client, report, keys=keys),
         lambda: run_preprint_review(BIB, cache, client, report, keys=keys),
         lambda: run_arxiv_review(BIB, cache, client, report, keys=keys),
-    ]
+    ] + [lambda route=route: route(BIB, cache, client, report, keys=keys) for route in ROUTES]
     for layer in layers:
         layer()
     run_discovery_review(BIB, cache, client, report, limit=len(keys) + 1, keys=keys)
