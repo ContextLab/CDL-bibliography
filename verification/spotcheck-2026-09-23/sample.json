@@ -4507,6 +4507,1138 @@
    },
    "evidence": null,
    "revised": false
+  },
+  {
+   "id": "55",
+   "key": "McInJirs19",
+   "class": "TWO-SOURCE",
+   "stratum": "fresh",
+   "class_size": 8,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1162/netn_a_00107",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "2019",
+    "volume": "doi.org/10.1162/netn\\_a\\_00107",
+    "title": "The hidden repertoire of brain dynamics and dysfunction",
+    "journal": "Network Neuroscience",
+    "author": "A R Mc{I}ntosh and V K Jirsa",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "pages": {
+     "before": null,
+     "after": "994--1008"
+    },
+    "volume": {
+     "before": "doi.org/10.1162/netn\\_a\\_00107",
+     "after": "3"
+    }
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:31637335",
+     "pmc-jats",
+     "pmc-jats"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:31637335",
+     "pmc-jats",
+     "pmc-jats"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:31637335",
+     "pmc-jats",
+     "pmc-jats"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "56",
+   "key": "RegeEtal18",
+   "class": "TWO-SOURCE",
+   "stratum": "fresh",
+   "class_size": 8,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1093/cercor/bhy282",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "2018",
+    "title": "Propagation of information along the cortical hierarchy as a function of attention while reading and listening to stories",
+    "journal": "Cerebral Cortex",
+    "author": "Mor Regev and Erez Simony and Katherine Lee and Kean Ming Tan and Janice Chen and Uri Hasson",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "10"
+    },
+    "pages": {
+     "before": null,
+     "after": "4017--4034"
+    },
+    "volume": {
+     "before": null,
+     "after": "29"
+    },
+    "year": {
+     "before": "2018",
+     "after": "2019"
+    }
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:30395174",
+     "pmc-jats"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:30395174",
+     "pmc-jats"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:30395174",
+     "pmc-jats"
+    ],
+    "year": [
+     "crossref",
+     "pubmed:30395174",
+     "pmc-jats"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "57",
+   "key": "OwenEtal20",
+   "class": "TWO-SOURCE",
+   "stratum": "fresh",
+   "class_size": 8,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1093/cercor/bhaa115",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "2020",
+    "volume": "30",
+    "title": "A {Gaussian} process model of human electrocorticographic data",
+    "pages": "5333--5345",
+    "number": "10",
+    "journal": "Cerebral Cortex",
+    "author": "L L W Owen and T A Muntianu and A C Heusser and P Daly and K W Scangos and J R Manning",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "author": {
+     "before": "L L W Owen and T A Muntianu and A C Heusser and P Daly and K W Scangos and J R Manning",
+     "after": "L L W Owen and T A Muntianu and A C Heusser and P M Daly and K W Scangos and J R Manning"
+    }
+   },
+   "stated_by": {
+    "author": [
+     "crossref",
+     "pubmed:32495832",
+     "pmc-jats",
+     "pmc-jats"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "58",
+   "key": "HameChid08",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "stratum": "fresh",
+   "class_size": 3,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1017/s0033291708003681",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "2008",
+    "volume": "39",
+    "title": "Physical activity and risk of neurodegenerative disease: a systematic review of prospective evidence",
+    "pages": "3",
+    "number": "01",
+    "journal": "Psychological Medicine",
+    "author": "M Hamer and Y Chida",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "pages": {
+     "before": "3",
+     "after": "3--11"
+    },
+    "year": {
+     "before": "2008",
+     "after": "2009"
+    }
+   },
+   "stated_by": {
+    "pages": [
+     "crossref",
+     "pubmed:18570697"
+    ],
+    "year": [
+     "crossref",
+     "pubmed:18570697"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "59",
+   "key": "HambEtal05",
+   "class": "S1-PAGES-COMPLETE",
+   "stratum": "fresh",
+   "class_size": 1,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1093/brain/awh621",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "2005",
+    "volume": "128",
+    "title": "Brain stimulation reveals critical auditory naming cortex",
+    "pages": "2742",
+    "number": "11",
+    "journal": "Brain",
+    "author": "M J Hamberger and W T Seidel and G M Mckhann and K Perrine and R R Goodman",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "pages": {
+     "before": "2742",
+     "after": "2742--2749"
+    }
+   },
+   "stated_by": {
+    "pages": [
+     "crossref",
+     "pubmed:16109751"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "60",
+   "key": "GellEtal14",
+   "class": "TWO-SOURCE",
+   "stratum": "fresh",
+   "class_size": 8,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1016/j.clinph.2014.01.021",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "2014",
+    "title": "Eye closure causes widespread low-frequency power increase and focal gamma attenuation in the human electrocorticogram",
+    "journal": "Clinical Neurophysiology",
+    "author": "A S Geller and J F Burke and M R Sperling and A D Sharan and B Litt and G H Baltuch and T H Lucas and M J Kahana",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "volume": {
+     "before": null,
+     "after": "125"
+    },
+    "number": {
+     "before": null,
+     "after": "9"
+    },
+    "pages": {
+     "before": null,
+     "after": "1764--1773"
+    }
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:24631141"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:24631141"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:24631141"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "61",
+   "key": "MullEtal96",
+   "class": "TWO-SOURCE",
+   "stratum": "fresh",
+   "class_size": 8,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1016/s0959-4388(96)80073-0",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1996",
+    "volume": "6",
+    "title": "Head direction cells: properties and functional significance",
+    "pages": "196--206",
+    "journal": "Current Opinion in Neurobiology",
+    "author": "R Muller and J Ranck and J Taube",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "author": {
+     "before": "R Muller and J Ranck and J Taube",
+     "after": "R U Muller and J B Ranck and J S Taube"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    }
+   },
+   "stated_by": {
+    "author": [
+     "crossref",
+     "pubmed:8725961"
+    ],
+    "number": [
+     "crossref",
+     "pubmed:8725961"
+    ]
+   },
+   "evidence": null,
+   "revised": true,
+   "previous_changes": {
+    "author": {
+     "before": "R Muller and J Ranck and J Taube",
+     "after": "R U Muller and Ranck, Jr, J B and J S Taube"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    }
+   },
+   "round": 3
+  },
+  {
+   "id": "62",
+   "key": "AzizEtal91",
+   "class": "S1-TWO-FIELDS",
+   "stratum": "fresh",
+   "class_size": 1,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1002/mds.870060404",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1991",
+    "volume": "6",
+    "title": "Lesion of the subthalamic nucleus for the alleviation of 1-methyl-4-phenyl-1,2,3,6-tetrahydropyridine ({MPTP})-induced {Parkinsonism} in the primate",
+    "pages": "288--293",
+    "journal": "Movement Disorders",
+    "author": "T Z Aziz and D Peggs and M A Sambrook and A R Crossman",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "4"
+    },
+    "pages": {
+     "before": "288--293",
+     "after": "288--292"
+    }
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:1758446"
+    ],
+    "pages": [
+     "crossref",
+     "pubmed:1758446"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "63",
+   "key": "Faga70",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "stratum": "fresh",
+   "class_size": 3,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1016/0022-0965(70)90087-1",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1970",
+    "volume": "9(2)",
+    "title": "Memory in the infant",
+    "pages": "217--226",
+    "journal": "Journal of Experimental Child Psychology",
+    "author": "Joseph F Fagan",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "9(2)",
+     "after": "9"
+    }
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:5452116"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:5452116"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "64",
+   "key": "WoodMurd68",
+   "class": "TWO-SOURCE",
+   "stratum": "fresh",
+   "class_size": 8,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1037/h0082750",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1968",
+    "volume": "22",
+    "title": "Positional and sequential probes in serial learning",
+    "pages": "131--138",
+    "journal": "Canadian Journal of Psychology",
+    "author": "A Woodward and B B Murdock",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "author": {
+     "before": "A Woodward and B B Murdock",
+     "after": "A E Woodward and B B Murdock"
+    },
+    "number": {
+     "before": null,
+     "after": "2"
+    }
+   },
+   "stated_by": {
+    "author": [
+     "crossref",
+     "pubmed:5649037"
+    ],
+    "number": [
+     "crossref",
+     "pubmed:5649037"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "65",
+   "key": "WatsPell83",
+   "class": "S1-TWO-FIELDS-RISKY",
+   "stratum": "fresh",
+   "class_size": 3,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.3758/bf03202828",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1983",
+    "volume": "33(2)",
+    "title": "{QUEST}: a {Bayesian} adaptive psychometric method",
+    "pages": "113--120",
+    "journal": "Perception and Psychophysics",
+    "author": "A B Jr Watson and D G Pelli",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "number": {
+     "before": null,
+     "after": "2"
+    },
+    "volume": {
+     "before": "33(2)",
+     "after": "33"
+    }
+   },
+   "stated_by": {
+    "number": [
+     "crossref",
+     "pubmed:6844102"
+    ],
+    "volume": [
+     "crossref",
+     "pubmed:6844102"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "66",
+   "key": "Murd68",
+   "class": "S1-JOURNAL-HISTORY-OR-TYPO",
+   "stratum": "fresh",
+   "class_size": 3,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1037/h0025694",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1968",
+    "volume": "76",
+    "title": "Serial order effects in short-term memory",
+    "pages": "1--15",
+    "journal": "Journal of Experimental Psychology: General",
+    "author": "B B Murdock",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "journal": {
+     "before": "Journal of Experimental Psychology: General",
+     "after": "Journal of Experimental Psychology"
+    }
+   },
+   "stated_by": {
+    "journal": [
+     "crossref",
+     "pubmed:5654204"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "67",
+   "key": "MullEtal87",
+   "class": "TWO-SOURCE",
+   "stratum": "fresh",
+   "class_size": 8,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1523/jneurosci.07-07-01935.1987",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1987",
+    "volume": "7",
+    "title": "Spatial firing patterns of hippocampal complex-spike cells in a fixed environment",
+    "pages": "1935--1950",
+    "journal": "The Journal of Neuroscience",
+    "author": "R U Muller and J Kubie and J Ranck",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "author": {
+     "before": "R U Muller and J Kubie and J Ranck",
+     "after": "R U Muller and J L Kubie and J B Ranck"
+    },
+    "number": {
+     "before": null,
+     "after": "7"
+    }
+   },
+   "stated_by": {
+    "author": [
+     "pubmed:3612225",
+     "pmc-jats"
+    ],
+    "number": [
+     "crossref",
+     "pubmed:3612225",
+     "pmc-jats"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "68",
+   "key": "DiazEtal06",
+   "class": "S1-JOURNAL-HISTORY-OR-TYPO",
+   "stratum": "fresh",
+   "class_size": 3,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1080/13803390500434359",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "2006",
+    "volume": "28",
+    "title": "Spatial memory following temporal lobe resection",
+    "pages": "1462--1481",
+    "number": "8",
+    "journal": "Journal of Clinical and Experimental Neuropyschology",
+    "author": "C M Diaz-Asper and S Dopkins and S J Potolicchio and A Caputy",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "journal": {
+     "before": "Journal of Clinical and Experimental Neuropyschology",
+     "after": "Journal of Clinical and Experimental Neuropsychology"
+    }
+   },
+   "stated_by": {
+    "journal": [
+     "crossref",
+     "pubmed:17050270"
+    ]
+   },
+   "evidence": null,
+   "revised": true,
+   "previous_changes": {
+    "author": {
+     "before": "C M Diaz-Asper and S Dopkins and S J Potolicchio and A Caputy",
+     "after": "C M Diaz-Asper and S Dopkins and Potolicchio, Jr, S J and A Caputy"
+    },
+    "journal": {
+     "before": "Journal of Clinical and Experimental Neuropyschology",
+     "after": "Journal of Clinical and Experimental Neuropsychology"
+    }
+   },
+   "round": 3
+  },
+  {
+   "id": "69",
+   "key": "AltsEtal99",
+   "class": "TWO-SOURCE",
+   "stratum": "fresh",
+   "class_size": 8,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1176/jnp.11.4.436",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1999",
+    "volume": "11",
+    "title": "Temporal lobe epilepsy, temporal lobectomy, and major depression",
+    "pages": "436",
+    "number": "4",
+    "journal": "Journal of Neuropsychiatry and Clinical Neurosciences",
+    "author": "L Altshuler and R Rausch and S Delrahim and J Kay and P Crandall",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "pages": {
+     "before": "436",
+     "after": "436--443"
+    }
+   },
+   "stated_by": {
+    "pages": [
+     "crossref",
+     "pubmed:10570755"
+    ]
+   },
+   "evidence": null,
+   "revised": true,
+   "previous_changes": {
+    "pages": {
+     "before": "436",
+     "after": "436--443"
+    },
+    "journal": {
+     "before": "Journal of Neuropsychiatry and Clinical Neurosciences",
+     "after": "The Journal of Neuropsychiatry and Clinical Neurosciences"
+    }
+   },
+   "round": 3
+  },
+  {
+   "id": "70",
+   "key": "MurdVomS67",
+   "class": "S1-JOURNAL-HISTORY-OR-TYPO",
+   "stratum": "fresh",
+   "class_size": 3,
+   "origin": "article",
+   "rule": null,
+   "source": null,
+   "doi": "10.1037/h0024507",
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1967",
+    "volume": "74",
+    "title": "Transpositions in short-term memory",
+    "pages": "137--143",
+    "journal": "Journal of Experimental Psychology: General",
+    "author": "B B Murdock and W {Vom {S}aal}",
+    "ENTRYTYPE": "article"
+   },
+   "changes": {
+    "journal": {
+     "before": "Journal of Experimental Psychology: General",
+     "after": "Journal of Experimental Psychology"
+    },
+    "number": {
+     "before": null,
+     "after": "1"
+    }
+   },
+   "stated_by": {
+    "journal": [
+     "crossref",
+     "pubmed:6032566"
+    ],
+    "number": [
+     "crossref",
+     "pubmed:6032566"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "71",
+   "key": "Ande76",
+   "class": "T",
+   "stratum": "fresh",
+   "class_size": 2,
+   "origin": "catalogue",
+   "rule": null,
+   "source": null,
+   "doi": null,
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1976",
+    "title": "Language, memory and thought",
+    "publisher": "Erlbaum",
+    "author": "J R Anderson",
+    "address": "Hillsdale, {NJ}",
+    "ENTRYTYPE": "book"
+   },
+   "changes": {
+    "title": {
+     "before": "Language, memory and thought",
+     "after": "Language, memory, and thought"
+    }
+   },
+   "stated_by": {
+    "title": [
+     "loc-catalogue:2234092"
+    ]
+   },
+   "evidence": null,
+   "revised": true,
+   "previous_changes": {
+    "publisher": {
+     "before": "Erlbaum",
+     "after": "L. Erlbaum Associates"
+    },
+    "title": {
+     "before": "Language, memory and thought",
+     "after": "Language, memory, and thought"
+    }
+   },
+   "round": 3
+  },
+  {
+   "id": "72",
+   "key": "DrydMard98",
+   "class": "A1+L",
+   "stratum": "fresh",
+   "class_size": 1,
+   "origin": "catalogue",
+   "rule": null,
+   "source": null,
+   "doi": null,
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1998",
+    "title": "Statistical shape analysis",
+    "publisher": "Wiley",
+    "author": "I L Dryden and V Mardia",
+    "address": "New York, {NY}",
+    "ENTRYTYPE": "book"
+   },
+   "changes": {
+    "address": {
+     "before": "New York, {NY}",
+     "after": "New York"
+    },
+    "author": {
+     "before": "I L Dryden and V Mardia",
+     "after": "I L Dryden and K V Mardia"
+    }
+   },
+   "stated_by": {
+    "address": [
+     "loc-catalogue:4978126"
+    ],
+    "author": [
+     "loc-catalogue:4978126"
+    ]
+   },
+   "evidence": null,
+   "revised": false,
+   "previous_changes": null,
+   "round": 3
+  },
+  {
+   "id": "73",
+   "key": "Huth13",
+   "class": "T",
+   "stratum": "fresh",
+   "class_size": 2,
+   "origin": "catalogue",
+   "rule": null,
+   "source": null,
+   "doi": null,
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "2013",
+    "title": "Lost art of finding our way",
+    "publisher": "Belknap Press",
+    "author": "John Edward Huth",
+    "ENTRYTYPE": "book"
+   },
+   "changes": {
+    "title": {
+     "before": "Lost art of finding our way",
+     "after": "The lost art of finding our way"
+    }
+   },
+   "stated_by": {
+    "title": [
+     "loc-catalogue:17547296"
+    ]
+   },
+   "evidence": null,
+   "revised": true,
+   "previous_changes": {
+    "publisher": {
+     "before": "Belknap Press",
+     "after": "The Belknap Press of Harvard University Press"
+    },
+    "title": {
+     "before": "Lost art of finding our way",
+     "after": "The lost art of finding our way"
+    }
+   },
+   "round": 3
+  },
+  {
+   "id": "74",
+   "key": "Kohl40",
+   "class": "A1",
+   "stratum": "fresh",
+   "class_size": 2,
+   "origin": "catalogue",
+   "rule": null,
+   "source": null,
+   "doi": null,
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1940",
+    "title": "Dynamics in psychology",
+    "publisher": "Liveright",
+    "author": "W Kohler",
+    "address": "New York, {NY}",
+    "ENTRYTYPE": "book"
+   },
+   "changes": {
+    "author": {
+     "before": "W Kohler",
+     "after": "W Köhler"
+    }
+   },
+   "stated_by": {
+    "author": [
+     "loc-catalogue:10187715"
+    ]
+   },
+   "evidence": null,
+   "revised": true,
+   "previous_changes": {
+    "author": {
+     "before": "W Kohler",
+     "after": "W Köhler"
+    },
+    "publisher": {
+     "before": "Liveright",
+     "after": "Liveright Publishing Corporation"
+    }
+   },
+   "round": 3
+  },
+  {
+   "id": "75",
+   "key": "LemoPiet12",
+   "class": "E",
+   "stratum": "fresh",
+   "class_size": 1,
+   "origin": "catalogue",
+   "rule": null,
+   "source": null,
+   "doi": null,
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "2012",
+    "title": "Data-driven methods for adaptive spoken dialogue systems: computational learning for conversational interfaces",
+    "publisher": "Springer",
+    "author": "O Lemon and O Pietquin",
+    "ENTRYTYPE": "book"
+   },
+   "changes": {
+    "author": {
+     "before": "O Lemon and O Pietquin",
+     "after": null
+    },
+    "editor": {
+     "before": null,
+     "after": "O Lemon and O Pietquin"
+    }
+   },
+   "stated_by": {
+    "author": [
+     "loc-catalogue:17425213"
+    ],
+    "editor": [
+     "loc-catalogue:17425213"
+    ]
+   },
+   "evidence": null,
+   "revised": true,
+   "previous_changes": {
+    "author": {
+     "before": "O Lemon and O Pietquin",
+     "after": null
+    },
+    "editor": {
+     "before": null,
+     "after": "O Lemon and O Pietquin"
+    },
+    "publisher": {
+     "before": "Springer",
+     "after": "Springer Science+Business Media"
+    }
+   },
+   "round": 3
+  },
+  {
+   "id": "76",
+   "key": "Luca83",
+   "class": "Y",
+   "stratum": "fresh",
+   "class_size": 1,
+   "origin": "catalogue",
+   "rule": null,
+   "source": null,
+   "doi": null,
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1983",
+    "title": "Studies in business-cycle theory",
+    "publisher": "{MIT} Press",
+    "author": "R E Lucas",
+    "ENTRYTYPE": "book"
+   },
+   "changes": {
+    "year": {
+     "before": "1983",
+     "after": "1981"
+    }
+   },
+   "stated_by": {
+    "year": [
+     "loc-catalogue:4678061"
+    ]
+   },
+   "evidence": null,
+   "revised": true,
+   "previous_changes": {
+    "author": {
+     "before": "R E Lucas",
+     "after": "Lucas, Jr, R E"
+    },
+    "year": {
+     "before": "1983",
+     "after": "1981"
+    }
+   },
+   "round": 3
+  },
+  {
+   "id": "77",
+   "key": "Prib91",
+   "class": "A1",
+   "stratum": "fresh",
+   "class_size": 2,
+   "origin": "catalogue",
+   "rule": null,
+   "source": null,
+   "doi": null,
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "1991",
+    "title": "Brain and perception: holonomy and structure in figural processing",
+    "publisher": "Erlbaum",
+    "author": "K H P{\\v{r}}ibram",
+    "ENTRYTYPE": "book"
+   },
+   "changes": {
+    "author": {
+     "before": "K H P{\\v{r}}ibram",
+     "after": "K H Pribram"
+    }
+   },
+   "stated_by": {
+    "author": [
+     "loc-catalogue:1983364"
+    ]
+   },
+   "evidence": null,
+   "revised": true,
+   "previous_changes": {
+    "author": {
+     "before": "K H P{\\v{r}}ibram",
+     "after": "K H Pribram"
+    },
+    "publisher": {
+     "before": "Erlbaum",
+     "after": "Lawrence Erlbaum Associates"
+    }
+   },
+   "round": 3
+  },
+  {
+   "id": "78",
+   "key": "Zar10",
+   "class": "D",
+   "stratum": "fresh",
+   "class_size": 1,
+   "origin": "catalogue",
+   "rule": null,
+   "source": null,
+   "doi": null,
+   "pubmed_id": null,
+   "catalogue_record": null,
+   "fields": {
+    "year": "2010",
+    "title": "Biostatistical analysis",
+    "publisher": "Prentice-Hall",
+    "author": "J H Zar",
+    "ENTRYTYPE": "book"
+   },
+   "changes": {
+    "edition": {
+     "before": null,
+     "after": "5"
+    }
+   },
+   "stated_by": {
+    "edition": [
+     "loc-catalogue:15406730"
+    ]
+   },
+   "evidence": null,
+   "revised": true,
+   "previous_changes": {
+    "edition": {
+     "before": null,
+     "after": "5"
+    },
+    "publisher": {
+     "before": "Prentice-Hall",
+     "after": "Prentice-Hall/Pearson"
+    }
+   },
+   "round": 3
   }
  ]
 }
