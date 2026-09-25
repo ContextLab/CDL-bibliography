@@ -41,6 +41,10 @@ ACCENTS = {"'": "\u0301", "`": "\u0300", "^": "\u0302", '"': "\u0308", "~": "\u0
            ".": "\u0307", "c": "\u0327", "v": "\u030c", "u": "\u0306", "H": "\u030b", "k": "\u0328", "r": "\u030a"}
 
 
+SPECIAL = {"l": "ł", "L": "Ł", "o": "ø", "O": "Ø", "ss": "ß", "ae": "æ", "AE": "Æ", "oe": "œ", "OE": "Œ",
+           "aa": "å", "AA": "Å", "i": "ı", "j": "ȷ"}
+
+
 def delatex(text):
     """LaTeX accent macros to Unicode: \\'{e}, \\'e, {\\'e}, \\c{c}, \\v{s} ..."""
     def repl(m):
@@ -49,6 +53,8 @@ def delatex(text):
     text = re.sub(r"\\([cvuHkr])\s*\{([A-Za-z])\}", repl, text)
     text = re.sub(r"\\([cvuHkr]) ([A-Za-z])", repl, text)
     text = re.sub(r"(\d+)\\textsuperscript\{([a-z]+)\}", r"\1\2", text)  # 30\textsuperscript{th} -> 30th
+    for macro, letter in SPECIAL.items():  # {\l}, \o, \ss ... -> ł, ø, ß
+        text = re.sub(r"\{?\\" + macro + r"(?![A-Za-z])\}?\s?", letter, text)
     return text.replace("{", "").replace("}", "")
 
 
