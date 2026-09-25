@@ -31,6 +31,7 @@ CACHE = ROOT / ".bibcheck/research-pilot"
 import ssl
 import certifi
 SSL = ssl.create_default_context(cafile=certifi.where())
+UNVERIFIED_TLS = set()
 BROWSER_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
 UA = "CDL-bibliography citation checker (research pilot; contact via repository owner)"
 FOLD = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"', "–": "-",
@@ -54,7 +55,8 @@ def delatex(text):
     text = re.sub(r"\\([cvuHkr]) ([A-Za-z])", repl, text)
     text = re.sub(r"(\d+)\\textsuperscript\{([a-z]+)\}", r"\1\2", text)  # 30\textsuperscript{th} -> 30th
     for macro, letter in SPECIAL.items():  # {\l}, \o, \ss ... -> ł, ø, ß
-        text = re.sub(r"\{?\\" + macro + r"(?![A-Za-z])\}?\s?", letter, text)
+        text = re.sub(r"\{\\" + macro + r"\}", letter, text)
+        text = re.sub(r"\\" + macro + r"(?![A-Za-z])\s?", letter, text)
     return text.replace("{", "").replace("}", "")
 
 
@@ -121,6 +123,14 @@ def fetch(url):
                 raise
             # Some publishers refuse non-browser agents; the content is the same page.
             raw, ctype = get(BROWSER_UA)
+        except urllib.error.URLError as exc:
+            if "CERTIFICATE_VERIFY_FAILED" not in str(exc):
+                raise
+            # A server with an incomplete certificate chain: fetch unverified and say so.
+            req = urllib.request.Request(url, headers={"User-Agent": BROWSER_UA, "Accept": "*/*"})
+            with urllib.request.urlopen(req, timeout=60, context=ssl._create_unverified_context()) as resp:
+                raw, ctype = resp.read(), resp.headers.get("Content-Type", "")
+            UNVERIFIED_TLS.add(url)
         if "pdf" in ctype or raw[:4] == b"%PDF":
             tmp = path.with_suffix(".pdf")
             tmp.write_bytes(raw)
@@ -166,12 +176,47 @@ def value_tokens(field, value):
     return [w for w in re.findall(r"\w{3,}", norm(value))]
 
 
-def value_supported(field, value, texts):
-    joined = " ".join(norm(t) for t in texts)
+STOP = {"the", "and", "for", "with", "from", "of", "in", "on", "an", "a", "to", "at", "by"}
+ORDINAL_WORDS = {w: n for n, w in enumerate("zeroth first second third fourth fifth sixth seventh eighth "
+                 "ninth tenth eleventh twelfth thirteenth fourteenth fifteenth sixteenth seventeenth "
+                 "eighteenth nineteenth twentieth".split())}
+TENS = {"twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70, "eighty": 80, "ninety": 90}
+
+
+def suffix(n):
+    return "th" if 10 <= n % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+
+
+def ordinals_to_digits(text):
+    """'twenty-fourth' -> '24th', 'fourth' -> '4th' (text already normalised)."""
+    def compound(m):
+        n = TENS[m[1]] + ORDINAL_WORDS[m[2]]
+        return f"{n}{suffix(n)}"
+    text = re.sub(r"\b(" + "|".join(TENS) + r")[- ](" + "|".join(list(ORDINAL_WORDS)[1:10]) + r")\b", compound, text)
+    return re.sub(r"\b(" + "|".join(ORDINAL_WORDS) + r")\b", lambda m: f"{ORDINAL_WORDS[m[1]]}{suffix(ORDINAL_WORDS[m[1]])}", text)
+
+
+NONDECOMPOSING = str.maketrans({"ł": "l", "Ł": "L", "ø": "o", "Ø": "O", "đ": "d", "Đ": "D", "ı": "i",
+                                "ß": "ss", "æ": "ae", "Æ": "AE", "œ": "oe", "Œ": "OE"})
+
+
+def fold(text):
+    text = text.translate(NONDECOMPOSING)
+    return "".join(c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn")
+
+
+def value_supported(field, value, texts, urls=()):
+    if field == "doi" and value and any(str(value).lower() in unquote(u).lower() for u in urls):
+        return True, []  # the evidence URL is the DOI's own record
+    joined = fold(ordinals_to_digits(" ".join(norm(t) for t in texts)))
     def present(t):
         edge = (r"(?<!\d)", r"(?!\d)") if t.isdigit() else (r"(?<!\w)", r"(?!\w)")
         return re.search(edge[0] + re.escape(t) + edge[1], joined)
-    missing = [t for t in value_tokens(field, value) if not present(t)]
+    # Normalise the value exactly like the quotes: ordinal words become digits on both sides.
+    tokens = [fold(t) for t in value_tokens(field, ordinals_to_digits(norm(delatex(str(value or "")))))]
+    if field not in ("author", "editor"):
+        tokens = [t for t in tokens if t not in STOP]
+    missing = [t for t in tokens if not present(t)]
     return not missing, missing
 
 
@@ -193,14 +238,15 @@ def main(folder=None):
                 items = f.get("evidence") or []
                 results = [check(e, requests) for e in items]
                 found = [e["quote"] for e, r in zip(items, results) if r["ok"]]
-                supported, missing = value_supported(field, f.get("value"), found)
+                urls = [e["url"] for e, r in zip(items, results) if r["ok"]]
+                supported, missing = value_supported(field, f.get("value"), found, urls)
                 entry["fields"][field] = {"status": f["status"], "ok": bool(found) and supported,
                                           "value_missing_from_quotes": missing,
                                           "failures": [r["why"] for r in results if not r["ok"]]}
             evidenced = entry["identity"]["ok"] and all(f["ok"] for f in entry["fields"].values())
             entry["passes"] = bool(evidenced and row.get("verdict") in ("verified", "correction"))
             report.append(entry)
-    out = {"network_requests": requests[0], "entries": len(report),
+    out = {"network_requests": requests[0], "unverified_tls_urls": sorted(UNVERIFIED_TLS), "entries": len(report),
            "passing": sum(e["passes"] for e in report),
            "by_verdict": {v: sum(e["verdict"] == v for e in report) for v in sorted({e["verdict"] for e in report})},
            "report": report}

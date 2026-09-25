@@ -1,0 +1,1969 @@
+[
+ {
+  "key": "HealEtal08",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18394486/",
+   "quote": "Cognitive aging and increased distractibility: costs and potential benefits.",
+   "why": "PubMed record (Prog Brain Res 2008;169:353-63, Healey MK, Campbell KL, Hasher L) is this chapter; the volume's own contents page lists it as chapter 22 at p. 353."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M K Healey and K L Campbell and L Hasher",
+    "evidence": [
+     {
+      "url": "https://api.pageplace.de/preview/DT0400.9780080932330_A23591958/preview-9780080932330_A23591958.pdf",
+      "quote": "22. Cognitive aging and increased distractibility: costs and potential beneﬁts M.K. Healey, K.L. Campbell and L. Hasher"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Cognitive aging and increased distractibility: costs and potential benefits",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18394486/",
+      "quote": "Cognitive aging and increased distractibility: costs and potential benefits."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18394486/",
+      "quote": "Prog Brain Res. 2008;169:353-63."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "169",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18394486/",
+      "quote": "Prog Brain Res. 2008;169:353-63."
+     },
+     {
+      "url": "https://api.pageplace.de/preview/DT0400.9780080932330_A23591958/preview-9780080932330_A23591958.pdf",
+      "quote": "PROGRESS IN BRAIN RESEARCH VOLUME 169 ESSENCE OF MEMORY"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "353--363",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-6123(07)00022-2",
+      "quote": "\"page\":\"353-363\""
+     }
+    ]
+   },
+   "chapter": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-6123(07)00022-2",
+      "quote": "\"title\":[\"Chapter 22 Cognitive aging and increased distractibility"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Progress in Brain Research",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-6123(07)00022-2",
+      "quote": "\"container-title\":[\"Progress in Brain Research\",\"Essence of Memory\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "W S Sossin and J-C Lacaille and V F Castellucci and S Belleville",
+    "evidence": [
+     {
+      "url": "https://shop.elsevier.com/books/essence-of-memory/sossin/978-0-444-53164-3",
+      "quote": "Editors: Wayne S. Sossin, Jean-Claude Lacaille, Vincent F. Castellucci, Sylvie Belleville"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Elsevier",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-6123(07)00022-2",
+      "quote": "\"publisher\":\"Elsevier\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0079-6123(07)00022-2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18394486/",
+      "quote": "10.1016/S0079-6123(07)00022-2"
+     }
+    ]
+   }
+  },
+  "notes": "All cited values confirmed; add doi. The entry carries a stray field organization = {Amsterdam: Elsevier}; the house form would be address = {Amsterdam} (Elsevier's Amsterdam imprint) and no organization field, but no source quote here states Amsterdam, so the address is left to the reviewer. Volume subtitle is 'Essence of Memory' (Elsevier shop page) if the house wants it in booktitle."
+ },
+ {
+  "key": "KleiEtal07b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203837672&type=googlepdf",
+   "quote": "11 Putting Context in Context 171 Krystal A. Klein, Richard M. Shiffrin, and Amy H. Criss",
+   "why": "The contents page of the 2007 Psychology Press volume edited by Nairne (T&F preview PDF of the same edition, copyright 2007) lists this chapter at p. 171."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K A Klein and R M Shiffrin and A H Criss",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203837672&type=googlepdf",
+      "quote": "Putting Context in Context 171 Krystal A. Klein, Richard M. Shiffrin, and Amy H. Criss"
+     }
+    ]
+   },
+   "chapter": {
+    "status": "confirmed",
+    "value": "Putting context in context",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203837672&type=googlepdf",
+      "quote": "11 Putting Context in Context 171"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The foundations of remembering: {E}ssays in honor of {H}enry {L.} {R}oediger, {III}",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203837672&type=googlepdf",
+      "quote": "The foundations of remembering : essays in honor of Henry L. Roediger III / edited by James S. Nairne."
+     },
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203837672&type=googlepdf",
+      "quote": "Essays in Honor of Henry L. Roediger, III"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "J S Nairne",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203837672&type=googlepdf",
+      "quote": "edited by James S. Nairne."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "171--189",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203837672-11/putting-context-context-krystal-klein-richard-shiffrin-amy-criss",
+      "quote": "<meta name=\"citation_firstpage\" content=\"171\">"
+     },
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203837672-11/putting-context-context-krystal-klein-richard-shiffrin-amy-criss",
+      "quote": "<meta name=\"citation_lastpage\" content=\"189\">"
+     },
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203837672&type=googlepdf",
+      "quote": "12 The Effects of Familiarity on Reconstructing the Order of Information in Semantic and Episodic Memory 191"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203837672&type=googlepdf",
+      "quote": "Copyright © 2007 by Psychology Press"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Psychology Press",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203837672&type=googlepdf",
+      "quote": "Copyright © 2007 by Psychology Press"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203837672&type=googlepdf",
+      "quote": "New York, NY 10016"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4324/9780203837672-11",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203837672-11/putting-context-context-krystal-klein-richard-shiffrin-amy-criss",
+      "quote": "<meta name=\"citation_doi\" content=\"10.4324/9780203837672-11\">"
+     }
+    ]
+   }
+  },
+  "notes": "Add editor J S Nairne (missing). Entry is @inbook with the book title in `title` and the chapter title in `chapter`; house convention for a chapter in an edited volume is @incollection with title = {Putting context in context}, booktitle = {The Foundations of Remembering: Essays in Honor of {Henry} {L}. {Roediger}, {III}}, editor = {J S Nairne}. The DOI is the Taylor & Francis e-book (2011) of the same 2007 edition; its chapter pages (171-189) match the print contents (ch. 11 at 171, ch. 12 at 191). Local PDF KleiEtal07.pdf is this chapter but a scan without a text layer (not quotable)."
+ },
+ {
+  "key": "VandEtal99",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+   "quote": "The neural correlates of updating information in verbal working memory.",
+   "why": "The paper is Memory 7(5-6):549-60 (1999); the cited book 'Neuroimaging and memory' (Foster, ed., Psychology Press 1999) is that special issue in book form, whose own pagination could not be checked."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M {Van der Linden} and F Collette and E Salmon and G Delfiore and C Degueldre and A Luxen and G Franck",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "Van der Linden M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "Collette F"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "Salmon E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "Delfiore G"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "Degueldre C"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "Luxen A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "Franck G"
+     }
+    ]
+   },
+   "chapter": {
+    "status": "confirmed",
+    "value": "The neural correlates of updating information in verbal working memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "The neural correlates of updating information in verbal working memory."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "549--560",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "Memory. 1999 Sep-Nov;7(5-6):549-60."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "Memory. 1999 Sep-Nov;7(5-6):549-60."
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "Neuroimaging and memory",
+    "evidence": []
+   },
+   "editor": {
+    "status": "not_found",
+    "value": "J K Foster",
+    "evidence": []
+   },
+   "publisher": {
+    "status": "not_found",
+    "value": "Psychology Press",
+    "evidence": []
+   },
+   "address": {
+    "status": "not_found",
+    "value": "Hove, {UK}",
+    "evidence": []
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/096582199387742",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
+      "quote": "10.1080/096582199387742"
+     }
+    ]
+   }
+  },
+  "notes": "Different form than cited: the verifiable published version is the journal article, Memory 7(5-6), 549-560, 1999, doi 10.1080/096582199387742 (Crossref gives 549-561 but PubMed gives 549-60 and the next article, Markowitsch, starts at 561). Open Library (openlibrary.org/isbn/0863776566, not quoted because it is a catalogue lead) records the book as 'Neuroimaging and memory', edited by Jonathan K. Foster, Psychology Press, Hove, 1999, 'A special issue of Memory', so book pages likely equal the journal's but that was not verified. Recommend converting to @article (journal = Memory, volume 7, number 5--6, pages 549--560). If kept as a book chapter, address should be Hove (not New York) per that record."
+ },
+ {
+  "key": "WardEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203938966&type=googlepdf",
+   "quote": "3 The roles of short-term and long-term verbal memory in free and serial recall: Towards a recency-based perspective 44 GEOFF WARD, LYDIA TAN AND PARVEEN BHATARAH",
+   "why": "Contents page of Thorn & Page (eds), Psychology Press, first published 2009, lists this chapter at p. 44."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "G Ward and L Tan and P Bhatarah",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203938966&type=googlepdf",
+      "quote": "GEOFF WARD, LYDIA TAN AND PARVEEN BHATARAH"
+     }
+    ]
+   },
+   "chapter": {
+    "status": "confirmed",
+    "value": "The roles of short-term and long-term verbal memory in free and serial recall: towards a recency-based perspective",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203938966&type=googlepdf",
+      "quote": "The roles of short-term and long-term verbal memory in free and serial recall: Towards a recency-based perspective"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Interactions between short-term and long-term memory in the verbal domain",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203938966&type=googlepdf",
+      "quote": "Interactions between short-term and long-term memory in the verbal domain / edited by Annabel Thorn and Mike Page."
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "A Thorn and M Page",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203938966&type=googlepdf",
+      "quote": "Edited by Annabel Thorn and Mike Page"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203938966&type=googlepdf",
+      "quote": "First published 2009 by Psychology Press"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Psychology Press",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203938966&type=googlepdf",
+      "quote": "First published 2009 by Psychology Press"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Hove, {UK}",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203938966&type=googlepdf",
+      "quote": "First published 2009 by Psychology Press 27 Church Road, Hove, East Sussex BN3 2FA"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "44--62",
+    "evidence": []
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4324/9780203938966-9",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203938966-9/roles-short-term-long-term-verbal-memory-free-serial-recall-towards-recency-based-perspective-geoff-ward-lydia-tan-parveen-bhatarah",
+      "quote": "<meta name=\"citation_doi\" content=\"10.4324/9780203938966-9\">"
+     }
+    ]
+   }
+  },
+  "notes": "Chapter title: lowercase 'towards' after the colon (house rule). Add editor A Thorn and M Page; address 'England, {UK}' should be Hove, {UK} (the US co-imprint is New York). Pages not cited: print contents give start p. 44 and next chapter at p. 63, and the T&F e-book metadata (56-74, offset +12) implies 44--62, but no source states the end page, so pages is not_found (suggested 44--62). The T&F e-Library edition is dated 2008, the print edition 2009."
+ },
+ {
+  "key": "Post69",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://archive.org/download/psychologyoflear0003unse/psychologyoflear0003unse_marc.xml",
+   "quote": "Chapter 6. Experimental Analysis of Learning to Learn",
+   "why": "The catalogue record (contents note) of Psychology of Learning and Motivation vol. 3, edited by Bower and Spence, New York: Academic Press, 1969, lists this chapter; Crossref's chapter record gives Postman and pp. 241-297."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L Postman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60401-6",
+      "quote": "\"given\":\"Leo\",\"family\":\"Postman\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Experimental analysis of learning to learn",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60401-6",
+      "quote": "\"title\":[\"Experimental Analysis of Learning To Learn\"]"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "241--297",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60401-6",
+      "quote": "\"page\":\"241-297\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Psychology of Learning and Motivation",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychologyoflear0003unse/psychologyoflear0003unse_marc.xml",
+      "quote": "Psychology of learning and motivation ; v. 3"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychologyoflear0003unse/psychologyoflear0003unse_marc.xml",
+      "quote": "Psychology of learning and motivation ; v. 3"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "G H Bower and J T Spence",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychologyoflear0003unse/psychologyoflear0003unse_marc.xml",
+      "quote": "edited by Gordon H. Bower and Janet Taylor Spence."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Academic Press",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychologyoflear0003unse/psychologyoflear0003unse_marc.xml",
+      "quote": "New York : Academic Press, 1969."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychologyoflear0003unse/psychologyoflear0003unse_marc.xml",
+      "quote": "New York : Academic Press, 1969."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1969",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychologyoflear0003unse/psychologyoflear0003unse_marc.xml",
+      "quote": "New York : Academic Press, 1969."
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0079-7421(08)60401-6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60401-6",
+      "quote": "\"page\":\"241-297\",\"source\":\"Crossref\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref's published-print year for the DOI is 1970, but the volume's imprint is 1969 (catalogue record: 'New York : Academic Press, 1969'); 1969 kept. Add doi."
+ },
+ {
+  "key": "PetzHaub04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410610744&type=googlepdf",
+   "quote": "3 Short-Term and Long-Term Frames of Reference in Category Judgments: A Multiple-Standards Model Peter Petzold and Gert Haubensak 45",
+   "why": "Contents page of Psychophysics Beyond Sensation (Erlbaum, 2004; T&F preview of the same edition) lists this chapter at p. 45."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "P Petzold and G Haubensak",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410610744&type=googlepdf",
+      "quote": "Peter Petzold and Gert Haubensak 45"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Short-term and long-term frames of reference in category judgments: a multiple-standards model",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410610744&type=googlepdf",
+      "quote": "Short-Term and Long-Term Frames of Reference in Category Judgments: A Multiple-Standards Model"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "45--68",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781410610744-5/short-term-long-term-frames-reference-category-judgments-peter-petzold-gert-haubensak",
+      "quote": "<meta name=\"citation_firstpage\" content=\"45\">"
+     },
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781410610744-5/short-term-long-term-frames-reference-category-judgments-peter-petzold-gert-haubensak",
+      "quote": "<meta name=\"citation_lastpage\" content=\"68\">"
+     },
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410610744&type=googlepdf",
+      "quote": "Frame of Reference Models in Psychophysics: A Perceptual-Cognitive Approach Viktor Sarris 69"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "C Kaernbach and E Schr{\\\"o}ger and H M{\\\"u}ller",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychophysicsbey0000unse/psychophysicsbey0000unse_marc.xml",
+      "quote": "edited by Christian Kaernbach, Erich Schröger, Hermann Müller."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Psychophysics Beyond Sensation: Laws and Invariants of Human Cognition",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychophysicsbey0000unse/psychophysicsbey0000unse_marc.xml",
+      "quote": "Psychophysics beyond sensation : laws and invariants of human cognition"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychophysicsbey0000unse/psychophysicsbey0000unse_marc.xml",
+      "quote": "Mahwah, N.J. : Lawrence Erlbaum, 2004."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Mahwah, {NJ}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychophysicsbey0000unse/psychophysicsbey0000unse_marc.xml",
+      "quote": "Mahwah, N.J. : Lawrence Erlbaum, 2004."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/psychophysicsbey0000unse/psychophysicsbey0000unse_marc.xml",
+      "quote": "Mahwah, N.J. : Lawrence Erlbaum, 2004."
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4324/9781410610744-5",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781410610744-5/short-term-long-term-frames-reference-category-judgments-peter-petzold-gert-haubensak",
+      "quote": "<meta name=\"citation_doi\" content=\"10.4324/9781410610744-5\">"
+     }
+    ]
+   }
+  },
+  "notes": "Editors: the volume has three editors (Kaernbach, Schröger, Müller); the entry lists two and spells Schröger without the umlaut. DOI is the T&F e-book (2011) of the same 2004 edition; its pages match print (ch. 3 at 45, ch. 4 at 69)."
+ },
+ {
+  "key": "Greg76",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+   "quote": "Recall and recognition / edited by John Brown.",
+   "why": "Only the volume is confirmed (Brown, ed., London; New York: Wiley, c1976); no acceptable source for the chapter itself (its title, author or pages) was found."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Recall and Recognition",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+      "quote": "Recall and recognition / edited by John Brown."
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "J Brown",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+      "quote": "Recall and recognition / edited by John Brown."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Wiley",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+      "quote": "London ; New York : Wiley, c1976."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1976",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+      "quote": "London ; New York : Wiley, c1976."
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "London, {UK}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+      "quote": "London ; New York : Wiley, c1976."
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "V Gregg",
+    "evidence": []
+   },
+   "title": {
+    "status": "not_found",
+    "value": "Word frequency, recognition and recall",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "183--216",
+    "evidence": []
+   }
+  },
+  "notes": "Searched Crossref (author/year filters), Internet Archive (two scans, both lending-restricted, no contents note), Open Library, LoC (Cloudflare wall). Other papers' reference lists consistently give Gregg, 'Word frequency, recognition and recall', pp. 183-216, which would add pages 183--216, but that is not acceptable evidence. Address: the imprint is London (and New York), not Oxford."
+ },
+ {
+  "key": "Post76",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+   "quote": "Recall and recognition / edited by John Brown.",
+   "why": "Only the volume is confirmed (Brown, ed., London; New York: Wiley, c1976); the chapter itself was not found in any acceptable source."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Recall and Recognition",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+      "quote": "Recall and recognition / edited by John Brown."
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "J Brown",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+      "quote": "Recall and recognition / edited by John Brown."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Wiley",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+      "quote": "London ; New York : Wiley, c1976."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1976",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+      "quote": "London ; New York : Wiley, c1976."
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "London, {UK}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/recallrecognitio0000unse/recallrecognitio0000unse_marc.xml",
+      "quote": "London ; New York : Wiley, c1976."
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "L Postman",
+    "evidence": []
+   },
+   "title": {
+    "status": "not_found",
+    "value": "Interference theory revisited",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "157--181",
+    "evidence": []
+   }
+  },
+  "notes": "Same search as Greg76 (Crossref, Internet Archive restricted scans, Open Library, LoC blocked). Chapter title and pages 157-181 are unverified. Address should be London, not Oxford."
+ },
+ {
+  "key": "Este91",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+   "quote": "9 ON TYPES OF ITEM CODING AND SOURCE OF RECALL IN SHORT-TERM MEMORY William K Estes 155",
+   "why": "Contents page of the 1991 Erlbaum volume (Hockley & Lewandowsky, eds.) lists Estes's chapter at p. 155."
+  },
+  "fields": {
+   "editor": {
+    "status": "confirmed",
+    "value": "W E Hockley and S Lewandowsky",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/relatingtheoryda0000unse/relatingtheoryda0000unse_marc.xml",
+      "quote": "edited by William E. Hockley, Stephan Lewandowsky."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Relating Theory and Data: Essays on Human Memory in Honor of {Bennet} {B}. {Murdock}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/relatingtheoryda0000unse/relatingtheoryda0000unse_marc.xml",
+      "quote": "Relating theory and data : essays on human memory in honor of Bennet B. Murdock"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W K Estes",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/relatingtheoryda0000unse/relatingtheoryda0000unse_marc.xml",
+      "quote": "Relating theory and data"
+     },
+     {
+      "url": "https://www.routledge.com/Relating-Theory-and-Data-Essays-on-Human-Memory-in-Honor-of-Bennet-B-Murdock/Lewandowsky-Hockley/p/book/9780805807325",
+      "quote": "W.K. Estes, On Types of Item Coding and Source of Recall in Short-Term Memory."
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "On types of item coding and source of recall in short-term memory",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "ON TYPES OF ITEM CODING AND SOURCE OF RECALL IN SHORT-TERM MEMORY"
+     },
+     {
+      "url": "https://www.routledge.com/Relating-Theory-and-Data-Essays-on-Human-Memory-in-Honor-of-Bennet-B-Murdock/Lewandowsky-Hockley/p/book/9780805807325",
+      "quote": "W.K. Estes, On Types of Item Coding and Source of Recall in Short-Term Memory."
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "155--174",
+    "evidence": []
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4324/9780203772331-16",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203772331-16/types-item-coding-sources-recall-short-term-memory",
+      "quote": "<meta name=\"citation_doi\" content=\"10.4324/9780203772331-16\">"
+     }
+    ]
+   }
+  },
+  "notes": "Title 'Source' (singular) as printed in the 1991 contents and on the Routledge page; the T&F e-book chapter page says 'Sources'. No pages cited: print start p. 155 and next chapter (Baddeley et al.) at p. 175, and the e-book range 169-188 minus the +14 offset gives 155--174, but no source states the end page (suggested pages 155--174). Entry is @inbook; house form for this is @incollection. The T&F e-book (2013, doi 10.4324/9780203772331) is a scan of the 1991 edition but its chapter metadata pages are offset by +14 from the printed page numbers, so its page ranges are not the print pages; print start pages come from the 1991 contents page in the preview PDF."
+ },
+ {
+  "key": "GoebLewa91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+   "quote": "26 RETRIEVAL MEASURES IN DISTRIBUTED MEMORY MODELS R. Patrick Goebel and Stephan Lewandowsky 509",
+   "why": "Contents page of the 1991 Erlbaum volume lists this chapter at p. 509."
+  },
+  "fields": {
+   "editor": {
+    "status": "confirmed",
+    "value": "W E Hockley and S Lewandowsky",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/relatingtheoryda0000unse/relatingtheoryda0000unse_marc.xml",
+      "quote": "edited by William E. Hockley, Stephan Lewandowsky."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Relating Theory and Data: Essays on Human Memory in Honor of {Bennet} {B}. {Murdock}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/relatingtheoryda0000unse/relatingtheoryda0000unse_marc.xml",
+      "quote": "Relating theory and data : essays on human memory in honor of Bennet B. Murdock"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R P Goebel and S Lewandowsky",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "R. Patrick Goebel and Stephan Lewandowsky 509"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Retrieval measures in distributed memory models",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "RETRIEVAL MEASURES IN DISTRIBUTED MEMORY MODELS"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "509--527",
+    "evidence": []
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4324/9780203772331-36",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203772331-36/retrieval-measures-distributed-memory-models-patrick-goebel-stephan-lewandowsky-509",
+      "quote": "<meta name=\"citation_doi\" content=\"10.4324/9780203772331-36\">"
+     }
+    ]
+   }
+  },
+  "notes": "Start page 509 confirmed (contents); the end page is not stated anywhere quotable. The next item (Bibliography of Bennet B. Murdock) starts at p. 529, and the e-book range 523-542 minus the +14 offset gives 509-528, so the cited end page 527 may be off by one (528, or 527 with a blank page). Pages marked not_found; only the DOI is new. The T&F e-book (2013, doi 10.4324/9780203772331) is a scan of the 1991 edition but its chapter metadata pages are offset by +14 from the printed page numbers, so its page ranges are not the print pages; print start pages come from the 1991 contents page in the preview PDF."
+ },
+ {
+  "key": "Mand91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+   "quote": "12 YOUR FACE LOOKS FAMILIAR BUT I CAN'T REMEMBER YOUR NAME: A REVIEW OF DUAL PROCESS THEORY George Mandler 207",
+   "why": "Contents page of the 1991 Erlbaum volume lists Mandler's chapter at p. 207."
+  },
+  "fields": {
+   "editor": {
+    "status": "confirmed",
+    "value": "W E Hockley and S Lewandowsky",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/relatingtheoryda0000unse/relatingtheoryda0000unse_marc.xml",
+      "quote": "edited by William E. Hockley, Stephan Lewandowsky."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Relating Theory and Data: Essays on Human Memory in Honor of {Bennet} {B}. {Murdock}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/relatingtheoryda0000unse/relatingtheoryda0000unse_marc.xml",
+      "quote": "Relating theory and data : essays on human memory in honor of Bennet B. Murdock"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "G Mandler",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "A REVIEW OF DUAL PROCESS THEORY George Mandler 207"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Your face looks familiar but {I} can't remember your name: a review of dual process theory",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "YOUR FACE LOOKS FAMILIAR BUT I CAN'T REMEMBER YOUR NAME: A REVIEW OF DUAL PROCESS THEORY"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "207--225",
+    "evidence": []
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4324/9780203772331-20",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203772331-20/face-looks-familiar-remember-name-review-dual-process-theory",
+      "quote": "<meta name=\"citation_doi\" content=\"10.4324/9780203772331-20\">"
+     }
+    ]
+   }
+  },
+  "notes": "Start page 207 confirmed (contents); next chapter (Hockley) starts at p. 227 and the e-book range 221-240 minus the +14 offset gives 207-226, so the cited end page 225 could not be confirmed (226 possible). Pages marked not_found; only the DOI is new. The T&F e-book (2013, doi 10.4324/9780203772331) is a scan of the 1991 edition but its chapter metadata pages are offset by +14 from the printed page numbers, so its page ranges are not the print pages; print start pages come from the 1991 contents page in the preview PDF."
+ },
+ {
+  "key": "NilsGard91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+   "quote": "4 MEMORY THEORY AND THE BOUNDARY CONDITIONS OF THE TUL VING-WISEMAN LAW Lars-Goran Nilsson and John M. Gardiner 57",
+   "why": "Contents page of the 1991 Erlbaum volume lists this chapter at p. 57 (OCR splits 'TULVING')."
+  },
+  "fields": {
+   "editor": {
+    "status": "confirmed",
+    "value": "W E Hockley and S Lewandowsky",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/relatingtheoryda0000unse/relatingtheoryda0000unse_marc.xml",
+      "quote": "edited by William E. Hockley, Stephan Lewandowsky."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Relating Theory and Data: Essays on Human Memory in Honor of {Bennet} {B}. {Murdock}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/relatingtheoryda0000unse/relatingtheoryda0000unse_marc.xml",
+      "quote": "Relating theory and data : essays on human memory in honor of Bennet B. Murdock"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "LAWRENCE ERLBAUM ASSOCIATES, PUBLISHERS 1991 Hillsdale, New Jersey"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "L-G Nilsson and J M Gardiner",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+      "quote": "Lars-Goran Nilsson and John M. Gardiner 57"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Memory theory and the boundary conditions of the {Tulving-Wiseman} law",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203772331-10/memory-theory-boundary-conditions-tulving-wiseman-law",
+      "quote": "<meta name=\"citation_title\" content=\"Memory Theory and the Boundary Conditions of the Tulving-Wiseman Law\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "57--74",
+    "evidence": []
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4324/9780203772331-10",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9780203772331-10/memory-theory-boundary-conditions-tulving-wiseman-law",
+      "quote": "<meta name=\"citation_doi\" content=\"10.4324/9780203772331-10\">"
+     }
+    ]
+   }
+  },
+  "notes": "Author initials: Lars-Göran is printed 'Lars-Goran', which the house writes L-G (cdl.bib already uses 'L-G Nilsson' three times). Pages 57--74 are very likely right (ch. 4 starts at 57, ch. 5 at 75; e-book 71-88 minus the +14 offset = 57-74) but no quotable source states the end page, so pages marked not_found. The T&F e-book (2013, doi 10.4324/9780203772331) is a scan of the 1991 edition but its chapter metadata pages are offset by +14 from the printed page numbers, so its page ranges are not the print pages; print start pages come from the 1991 contents page in the preview PDF."
+ },
+ {
+  "key": "Adey67b",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://archive.org/download/neurosciencesstu0000unse/neurosciencesstu0000unse_marc.xml",
+   "quote": "planned and edited by Gardner C. Quarton, Theodore Melnechuk, Francis O. Schmitt, and the associates and staff of the Neurosciences Research Program.",
+   "why": "Only the volume is confirmed (The Neurosciences: a study program, Rockefeller University Press, 1967); no acceptable source for Adey's chapter (title, pages) was found."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The neurosciences: a study program",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/neurosciencesstu0000unse/neurosciencesstu0000unse_marc.xml",
+      "quote": "The Neurosciences : a study program /"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "G C Quarton and T Melnechuk and F O Schmitt",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/neurosciencesstu0000unse/neurosciencesstu0000unse_marc.xml",
+      "quote": "planned and edited by Gardner C. Quarton, Theodore Melnechuk, Francis O. Schmitt,"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Rockefeller {University} Press",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/neurosciencesstu0000unse/neurosciencesstu0000unse_marc.xml",
+      "quote": "New York : Rockefeller University Press, 1967."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1967",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/neurosciencesstu0000unse/neurosciencesstu0000unse_marc.xml",
+      "quote": "New York : Rockefeller University Press, 1967."
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/neurosciencesstu0000unse/neurosciencesstu0000unse_marc.xml",
+      "quote": "New York : Rockefeller University Press, 1967."
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "W R Adey",
+    "evidence": []
+   },
+   "chapter": {
+    "status": "not_found",
+    "value": "Intrinsic organization of cerebral tissue in alerting, orienting, and discriminative responses",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "615--633",
+    "evidence": []
+   }
+  },
+  "notes": "Editors are wrong in the entry: the volume was edited by Quarton, Melnechuk and Schmitt, and Schmitt's initials are F O (Francis Otto), not O F; Quarton is missing. Chapter title/pages unverified: Crossref (author+year filters), Internet Archive (lending-restricted scans), LoC (blocked) searched; reference lists give pp. 615-633. The chapter field is in Title Case (house: sentence case). Entry is @inbook with the book title in `title`; house form is @incollection."
+ },
+ {
+  "key": "Bord08",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.taylorfrancis.com/content/books/mono/download?identifierName=doi&identifierValue=10.4324/9780203941898&type=googlepdf",
+   "quote": "3. Three Dimensions of Film Narrative 85",
+   "why": "Contents page of Bordwell, Poetics of Cinema (Routledge, © 2008) lists the chapter at p. 85; chapter 4 starts at p. 135."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D Bordwell",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/mono/download?identifierName=doi&identifierValue=10.4324/9780203941898&type=googlepdf",
+      "quote": "Poetics of cinema / David Bordwell."
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Poetics of cinema",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/mono/download?identifierName=doi&identifierValue=10.4324/9780203941898&type=googlepdf",
+      "quote": "Poetics of cinema / David Bordwell."
+     }
+    ]
+   },
+   "chapter": {
+    "status": "confirmed",
+    "value": "Three dimensions of film narrative",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/mono/download?identifierName=doi&identifierValue=10.4324/9780203941898&type=googlepdf",
+      "quote": "3. Three Dimensions of Film Narrative 85"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "85--134",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203941898-6",
+      "quote": "\"page\":\"85-134\""
+     },
+     {
+      "url": "https://api.taylorfrancis.com/content/books/mono/download?identifierName=doi&identifierValue=10.4324/9780203941898&type=googlepdf",
+      "quote": "4. Cognition and Comprehension Viewing and Forgetting in Mildred Pierce 135"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/mono/download?identifierName=doi&identifierValue=10.4324/9780203941898&type=googlepdf",
+      "quote": "© 2008 by Taylor & Francis Group, LLC"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Routledge",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/mono/download?identifierName=doi&identifierValue=10.4324/9780203941898&type=googlepdf",
+      "quote": "Routledge is an imprint of Taylor & Francis Group"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4324/9780203941898-6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203941898-6",
+      "quote": "\"title\":[\"Three Dimensions of Film Narrative\"]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited values confirmed. Crossref dates the DOI (T&F e-book) 2012 but the pagination is the print one; print copyright 2008 (LoC CIP 2007). Consider adding address = {New York, {NY}} (title page: 'New York London')."
+ },
+ {
+  "key": "JacoEtal97",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781315806563&type=googlepdf",
+   "quote": "2. The Relation Between Conscious and Unconscious 13 (Automatic) Influences: A Declaration of Independence Larry L. Jacoby, Andrew P. Yonelinas, and Janine M. Jennings",
+   "why": "Contents page of Cohen & Schooler (eds), Scientific Approaches to Consciousness (Erlbaum, 1997; T&F preview of that edition) lists the chapter at p. 13."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L L Jacoby and A P Yonelinas and J M Jennings",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781315806563&type=googlepdf",
+      "quote": "Larry L. Jacoby, Andrew P. Yonelinas, and Janine M. Jennings"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The relation between conscious and unconscious (automatic) influences: a declaration of independence",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315806563-4/relation-conscious-unconscious-automatic-influences-declaration-independence-larry-jacoby-andrew-yonelinas-janine-jennings",
+      "quote": "<meta name=\"citation_title\" content=\"The Relation Between Conscious and Unconscious (Automatic) Influences: A Declaration of Independence\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "13--47",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315806563-4/relation-conscious-unconscious-automatic-influences-declaration-independence-larry-jacoby-andrew-yonelinas-janine-jennings",
+      "quote": "<meta name=\"citation_firstpage\" content=\"13\">"
+     },
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315806563-4/relation-conscious-unconscious-automatic-influences-declaration-independence-larry-jacoby-andrew-yonelinas-janine-jennings",
+      "quote": "<meta name=\"citation_lastpage\" content=\"47\">"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "J D Cohen and J W Schooler",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/scientificapproa0000unse_y7g6/scientificapproa0000unse_y7g6_marc.xml",
+      "quote": "edited by Jonathan D. Cohen, Jonathan W. Schooler."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Scientific Approaches to Consciousness",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/scientificapproa0000unse_y7g6/scientificapproa0000unse_y7g6_marc.xml",
+      "quote": "Scientific approaches to consciousness /"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/scientificapproa0000unse_y7g6/scientificapproa0000unse_y7g6_marc.xml",
+      "quote": "Mahwah, N.J. : L. Erlbaum Associates, c1997."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Mahwah, {NJ}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/scientificapproa0000unse_y7g6/scientificapproa0000unse_y7g6_marc.xml",
+      "quote": "Mahwah, N.J. : L. Erlbaum Associates, c1997."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/scientificapproa0000unse_y7g6/scientificapproa0000unse_y7g6_marc.xml",
+      "quote": "Mahwah, N.J. : L. Erlbaum Associates, c1997."
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4324/9781315806563-4",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315806563-4/relation-conscious-unconscious-automatic-influences-declaration-independence-larry-jacoby-andrew-yonelinas-janine-jennings",
+      "quote": "<meta name=\"citation_doi\" content=\"10.4324/9781315806563-4\">"
+     }
+    ]
+   }
+  },
+  "notes": "All cited values confirmed; add DOI (T&F 2013/2014 reissue of the 1997 edition, same pagination: ch. 2 at 13, ch. 3 at 49)."
+ },
+ {
+  "key": "KinsWood75",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://ia801906.us.archive.org/14/items/shorttermmemory0000deut/shorttermmemory0000deut_marc.xml",
+   "quote": "Short-term memory / edited by Diana Deutsch, J. Anthony Deutsch ;",
+   "why": "Only the volume is confirmed (Deutsch & Deutsch, eds, New York: Academic Press, 1975); the chapter itself was not found in any acceptable source."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Short-Term Memory",
+    "evidence": [
+     {
+      "url": "https://ia801906.us.archive.org/14/items/shorttermmemory0000deut/shorttermmemory0000deut_marc.xml",
+      "quote": "Short-term memory / edited by Diana Deutsch, J. Anthony Deutsch ;"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "D Deutsch and J A Deutsch",
+    "evidence": [
+     {
+      "url": "https://ia801906.us.archive.org/14/items/shorttermmemory0000deut/shorttermmemory0000deut_marc.xml",
+      "quote": "edited by Diana Deutsch, J. Anthony Deutsch ;"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Academic Press",
+    "evidence": [
+     {
+      "url": "https://ia801906.us.archive.org/14/items/shorttermmemory0000deut/shorttermmemory0000deut_marc.xml",
+      "quote": "New York : Academic Press, 1975."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://ia801906.us.archive.org/14/items/shorttermmemory0000deut/shorttermmemory0000deut_marc.xml",
+      "quote": "New York : Academic Press, 1975."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1975",
+    "evidence": [
+     {
+      "url": "https://ia801906.us.archive.org/14/items/shorttermmemory0000deut/shorttermmemory0000deut_marc.xml",
+      "quote": "New York : Academic Press, 1975."
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "M Kinsbourne and F Wood",
+    "evidence": []
+   },
+   "title": {
+    "status": "not_found",
+    "value": "Short-term memory processes and the amnesic syndrome",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "258--291",
+    "evidence": []
+   }
+  },
+  "notes": "Editor 'D D Deutsch' is wrong: Diana Deutsch (no middle initial) and J. Anthony Deutsch. The cited title has a typo ('syndrom') and other papers' reference lists give the title as 'Short-term memory processes and the amnesic syndrome' (pp. 258-291); not confirmable from an acceptable source (Crossref, Internet Archive restricted scan, LoC blocked). Entry is @inbook; house form is @incollection."
+ },
+ {
+  "key": "KansEtal15",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://link.springer.com/chapter/10.1007/7854_2015_412",
+   "quote": "Kanske, P., Böckler, A., Singer, T. (2015). Models, Mechanisms and Moderators Dissociating Empathy and Theory of Mind.",
+   "why": "Springer's chapter page for doi 10.1007/7854_2015_412 in Social Behavior from Rodents to Humans (CTBN vol 30)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "P Kanske and A B\\\"{o}ckler and T Singer",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/7854_2015_412",
+      "quote": "Kanske, P., Böckler, A., Singer, T. (2015)."
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Models, mechanisms and moderators dissociating empathy and theory of mind",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/7854_2015_412",
+      "quote": "Models, Mechanisms and Moderators Dissociating Empathy and Theory of Mind. In: Wöhr, M., Krach, S. (eds)"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "193--206",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/7854_2015_412",
+      "quote": "pp 193–206"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26602249/",
+      "quote": "Curr Top Behav Neurosci. 2017;30:193-206."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Social Behavior From Rodents to Humans",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/7854_2015_412",
+      "quote": "(eds) Social Behavior from Rodents to Humans. Current Topics in Behavioral Neurosciences, vol 30."
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "M W{\\\"o}hr and S Krach",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/7854_2015_412",
+      "quote": "In: Wöhr, M., Krach, S. (eds)"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/7854_2015_412",
+      "quote": "Publisher Name : Springer, Cham"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2015",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/7854_2015_412",
+      "quote": "Published : 25 November 2015"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/7854_2015_412",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/7854_2015_412",
+      "quote": "https://doi.org/10.1007/7854_2015_412"
+     }
+    ]
+   }
+  },
+  "notes": "Add editors (Wöhr and Krach), and optionally series = Current Topics in Behavioral Neurosciences, volume = 30, address = {Cham}. Year: chapter first published online 25 Nov 2015 (Springer cites it as 2015); the printed volume 30 is dated 2017 (PubMed: 'Curr Top Behav Neurosci. 2017;30:193-206'). Reviewer choice; 2015 kept."
+ },
+ {
+  "key": "McNa03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://link.springer.com/chapter/10.1007/3-540-45004-1_11",
+   "quote": "McNamara, T.P. (2003). How Are the Locations of Objects in the Environment Represented in Memory?.",
+   "why": "Springer's chapter page for doi 10.1007/3-540-45004-1_11 in Spatial Cognition III (LNCS 2685), pp. 174-191, same author, year and pages as cited."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "T P McNamara",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/3-540-45004-1_11",
+      "quote": "McNamara, T.P. (2003)."
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "How are the locations of objects in the environment represented in memory?",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/3-540-45004-1_11",
+      "quote": "How Are the Locations of Objects in the Environment Represented in Memory?"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "174--191",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/3-540-45004-1_11",
+      "quote": "pp 174–191"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "C Freksa and W Brauer and C Habel and K F Wender",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/3-540-45004-1_11",
+      "quote": "In: Freksa, C., Brauer, W., Habel, C., Wender, K.F. (eds)"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Spatial Cognition {III}",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/3-540-45004-1_11",
+      "quote": "(eds) Spatial Cognition III. Spatial Cognition 2002."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/3-540-45004-1_11",
+      "quote": "Lecture Notes in Computer Science, vol 2685. Springer, Berlin, Heidelberg."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Berlin",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/3-540-45004-1_11",
+      "quote": "Lecture Notes in Computer Science, vol 2685. Springer, Berlin, Heidelberg."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/3-540-45004-1_11",
+      "quote": "McNamara, T.P. (2003)."
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/3-540-45004-1_11",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/3-540-45004-1_11",
+      "quote": "https://doi.org/10.1007/3-540-45004-1_11"
+     }
+    ]
+   }
+  },
+  "notes": "Title is missing 'in the environment'. First editor misspelled 'Freska' (correct: Freksa). LNCS vol 2685 could be added as series/volume."
+ },
+ {
+  "key": "GunzLyon07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://link.springer.com/chapter/10.1007/978-3-540-75666-8_17",
+   "quote": "Gunzelmann, G., Lyon, D.R. (2007). Mechanisms for Human Spatial Competence.",
+   "why": "Springer's chapter page for doi 10.1007/978-3-540-75666-8_17 in Spatial Cognition V (LNCS 4387), pp. 288-307, same authors, year and pages as cited."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "G Gunzelmann and D R Lyon",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75666-8_17",
+      "quote": "Gunzelmann, G., Lyon, D.R. (2007)."
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Mechanisms for human spatial competence",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75666-8_17",
+      "quote": "Mechanisms for Human Spatial Competence."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "288--307",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75666-8_17",
+      "quote": "pp 288–307"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "T Barkowsky and M Knauff and G Ligozat and D R Montello",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75666-8_17",
+      "quote": "In: Barkowsky, T., Knauff, M., Ligozat, G., Montello, D.R. (eds)"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Spatial Cognition {V}: Reasoning, Action, Interaction",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75666-8_17",
+      "quote": "(eds) Spatial Cognition V Reasoning, Action, Interaction."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75666-8_17",
+      "quote": "Lecture Notes in Computer Science(), vol 4387. Springer, Berlin, Heidelberg."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Berlin",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75666-8_17",
+      "quote": "Lecture Notes in Computer Science(), vol 4387. Springer, Berlin, Heidelberg."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75666-8_17",
+      "quote": "Gunzelmann, G., Lyon, D.R. (2007)."
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-3-540-75666-8_17",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75666-8_17",
+      "quote": "https://doi.org/10.1007/978-3-540-75666-8_17"
+     }
+    ]
+   }
+  },
+  "notes": "Title word 'of' should be 'for'. Editor Montello gains his middle initial R (source prints D.R.). LNCS vol 4387 could be added as series/volume."
+ },
+ {
+  "key": "Mont98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
+   "quote": "\"title\":[\"A New Framework for Understanding the Acquisition of Spatial Knowledge in Large-Scale Environments\"]",
+   "why": "Crossref chapter record (OUP, 1998) in Spatial and Temporal Reasoning in Geographic Information Systems, pp. 143-154, by Daniel R Montello."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "D R Montello",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
+      "quote": "\"given\":\"Daniel R\",\"family\":\"Montello\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A new framework for understanding the acquisition of spatial knowledge in large-scale environments",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
+      "quote": "\"title\":[\"A New Framework for Understanding the Acquisition of Spatial Knowledge in Large-Scale Environments\"]"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "143--154",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
+      "quote": "\"page\":\"143-154\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "M J Egenhofer and R G Golledge",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.001.0001",
+      "quote": "\"given\":\"Max J\",\"family\":\"Egenhofer\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.001.0001",
+      "quote": "\"given\":\"Reginald G\",\"family\":\"Golledge\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Spatial and Temporal Reasoning in Geographic Information Systems",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
+      "quote": "\"container-title\":[\"Spatial And Temporal Reasoning In Geographic Information Systems\"]"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{Oxford} {University} Press",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
+      "quote": "\"publisher\":\"Oxford University PressNew York, NY\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
+      "quote": "\"publisher\":\"Oxford University PressNew York, NY\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
+      "quote": "\"published-print\":{\"date-parts\":[[1998,3,5]]}"
+     }
+    ]
+   },
+   "chapter": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
+      "quote": "isbn-9780195103427-book-part-11.pdf"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/oso/9780195103427.003.0011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
+      "quote": "\"DOI\":\"10.1093"
+     }
+    ]
+   }
+  },
+  "notes": "Only format corrections: author and editor given names spelled out ('Daniel R Montello', 'Max J Egenhofer and Reginald G Golledge') should be initials (D R Montello; M J Egenhofer and R G Golledge). Chapter number 11 rests on Crossref's book-part-11 link and DOI suffix .003.0011 (OUP chapter page blocks scripts). Add doi."
+ }
+]

@@ -1,0 +1,1991 @@
+[
+ {
+  "key": "ConwEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+   "quote": "\"title\":[\"The Disruption and Dissolution of Directed Forgetting: Inhibitory Control of Memory\"]",
+   "why": "Crossref record for DOI 10.1006/jmla.2000.2706: same five authors, JML 43(3) 409-430, 2000."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M A Conway and K Harries and J M Noyes and M Racsm\\'{a}ny and C R Frankish",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+      "quote": "\"given\":\"Martin A\",\"family\":\"Conway\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+      "quote": "\"given\":\"Kay\",\"family\":\"Harries\""
+     },
+     {
+      "url": "https://research-information.bris.ac.uk/en/publications/0532dd32-7f8b-4be8-bee9-54e7ade90408",
+      "quote": "MA Conway and K Harries and JM Noyes and M Racsma'Ny and CR Frankish"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+      "quote": "\"given\":\"Clive R\",\"family\":\"Frankish\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The disruption and dissolution of directed forgetting: inhibitory control of memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+      "quote": "\"title\":[\"The Disruption and Dissolution of Directed Forgetting: Inhibitory Control of Memory\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "43",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+      "quote": "\"volume\":\"43\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "409--430",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+      "quote": "\"page\":\"409-430\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+      "quote": "\"published-print\":{\"date-parts\":[[2000,10]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/jmla.2000.2706",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2000.2706",
+      "quote": "\"DOI\":\"10.1006\\/jmla.2000.2706\""
+     }
+    ]
+   }
+  },
+  "notes": "Noyes gets a second initial: Bristol's Pure record (Noyes's institution) prints 'JM Noyes'; Crossref prints only 'Jan'. Racsmány keeps its accent per the user rule: every source prints a garbled/ASCII form (Crossref \"Racsma'ny\", Bristol \"Racsma'Ny\"), so the validator's surname token check will not match the accented form. DOI added."
+ },
+ {
+  "key": "Cowa92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90002-f",
+   "quote": "\"title\":[\"The role of verbal output time in the effects of word length on immediate memory",
+   "why": "Crossref record: N Cowan, JML 31(1) 1-17, 1992, same title."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "N Cowan",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90002-f",
+      "quote": "\"given\":\"N\",\"family\":\"COWAN\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The role of verbal output time in the effects of word length on immediate memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90002-f",
+      "quote": "\"title\":[\"The role of verbal output time in the effects of word length on immediate memory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90002-f",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "31",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90002-f",
+      "quote": "\"volume\":\"31\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90002-f",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--17",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90002-f",
+      "quote": "\"page\":\"1-17\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90002-f",
+      "quote": "\"published-print\":{\"date-parts\":[[1992,2]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0749-596x(92)90002-f",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90002-f",
+      "quote": "\"DOI\":\"10.1016\\/0749-596x(92)90002-f\""
+     }
+    ]
+   }
+  },
+  "notes": "Full given name converted to initial (house rule). Issue 1 and DOI added. Crossref title carries a footnote artifact \"*1\"."
+ },
+ {
+  "key": "CowaEtal02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+   "quote": "\"title\":[\"Deconfounding Serial Recall\"]",
+   "why": "Crossref: Cowan, Saults, Elliott, Moreno, JML 46(1) 153-177, 2002."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "N Cowan and J S Saults and E M Elliott and M V Moreno",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"given\":\"Nelson\",\"family\":\"Cowan\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"given\":\"J.Scott\",\"family\":\"Saults\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"given\":\"Emily M\",\"family\":\"Elliott\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"given\":\"Matthew V\",\"family\":\"Moreno\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Deconfounding serial recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"title\":[\"Deconfounding Serial Recall\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "46",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"volume\":\"46\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "153--177",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"page\":\"153-177\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"published-print\":{\"date-parts\":[[2002,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/jmla.2001.2805",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.2001.2805",
+      "quote": "\"DOI\":\"10.1006\\/jmla.2001.2805\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change: full given names converted to initials (house rule); DOI added."
+ },
+ {
+  "key": "GallRoed02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x",
+   "quote": "\"title\":[\"Variability among word lists in eliciting memory illusions: evidence for associative activation and monitoring\"]",
+   "why": "Crossref: Gallo & Roediger, JML 47(3) 469-497, 2002."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D A Gallo and H L Roediger",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x",
+      "quote": "\"given\":\"David A.\",\"family\":\"Gallo\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x",
+      "quote": "\"given\":\"Henry L.\",\"family\":\"Roediger, III\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Variability among word lists in eliciting memory illusions: evidence for associative activation and monitoring",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x",
+      "quote": "\"title\":[\"Variability among word lists in eliciting memory illusions: evidence for associative activation and monitoring\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "47",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x",
+      "quote": "\"volume\":\"47\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "469--497",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x",
+      "quote": "\"page\":\"469-497\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x",
+      "quote": "\"published-print\":{\"date-parts\":[[2002,10]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0749-596x(02)00013-x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x",
+      "quote": "\"DOI\":\"10.1016\\/s0749-596x(02)00013-x\""
+     }
+    ]
+   }
+  },
+  "notes": "Title: braced capital after colon \"{E}vidence\" lowered to \"evidence\" (house colon rule). Issue 3 and DOI added. Suffix III omitted per no-suffix rule."
+ },
+ {
+  "key": "HulmEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00096-2",
+   "quote": "\"title\":[\"High- and low-frequency words are recalled equally well in alternating lists: Evidence for associative effects in serial recall\"]",
+   "why": "Crossref + White Rose eprint 6791 (DOI 10.1016/S0749-596X(03)00096-2): Hulme, Stuart, Brown, Morin, JML 49(4) 500-518, 2003."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C Hulme and G Stuart and G D A Brown and C Morin",
+    "evidence": [
+     {
+      "url": "https://eprints.whiterose.ac.uk/6791/",
+      "quote": "<meta name=\"eprints.creators_name\" content=\"Hulme, C.\" />"
+     },
+     {
+      "url": "https://eprints.whiterose.ac.uk/6791/",
+      "quote": "<meta name=\"eprints.creators_name\" content=\"Stuart, G.\" />"
+     },
+     {
+      "url": "https://eprints.whiterose.ac.uk/6791/",
+      "quote": "<meta name=\"eprints.creators_name\" content=\"Brown, G.D.A.\" />"
+     },
+     {
+      "url": "https://eprints.whiterose.ac.uk/6791/",
+      "quote": "<meta name=\"eprints.creators_name\" content=\"Morin, C.\" />"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "High- and low-frequency words are recalled equally well in alternating lists: evidence for associative effects in serial recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00096-2",
+      "quote": "\"title\":[\"High- and low-frequency words are recalled equally well in alternating lists: Evidence for associative effects in serial recall\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00096-2",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "49",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00096-2",
+      "quote": "\"volume\":\"49\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00096-2",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "500--518",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00096-2",
+      "quote": "\"page\":\"500-518\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00096-2",
+      "quote": "\"published-print\":{\"date-parts\":[[2003,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0749-596x(03)00096-2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00096-2",
+      "quote": "\"DOI\":\"10.1016\\/s0749-596x(03)00096-2\""
+     }
+    ]
+   }
+  },
+  "notes": "Title fix: \"High-and\" -> \"High- and\" (space after suspended hyphen). Crossref lists only Hulme; full author list from White Rose Research Online eprint record. DOI added."
+ },
+ {
+  "key": "Hunt03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4",
+   "quote": "\"title\":[\"Two contributions of distinctive processing to accurate memory\"]",
+   "why": "Crossref: R Reed Hunt, JML 48(4) 811-825, 2003."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R R Hunt",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4",
+      "quote": "\"given\":\"R\",\"family\":\"Reed Hunt\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Two contributions of distinctive processing to accurate memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4",
+      "quote": "\"title\":[\"Two contributions of distinctive processing to accurate memory\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "48",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4",
+      "quote": "\"volume\":\"48\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "811--825",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4",
+      "quote": "\"page\":\"811-825\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4",
+      "quote": "\"published-print\":{\"date-parts\":[[2003,5]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0749-596x(03)00018-4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4",
+      "quote": "\"DOI\":\"10.1016\\/s0749-596x(03)00018-4\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref splits the name as given \"R\", family \"Reed Hunt\" (R. Reed Hunt); surname is Hunt, cited \"R R Hunt\" kept. Issue 4 and DOI added."
+ },
+ {
+  "key": "KarpRoed07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.jml.2006.09.004",
+   "quote": "\"title\":[\"Repeated retrieval during learning is the key to long-term retention",
+   "why": "Crossref + ERIC EJ765006 (API record): Karpicke & Roediger, JML 57(2) 151-162, Aug 2007."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J D Karpicke and H L Roediger",
+    "evidence": [
+     {
+      "url": "https://api.ies.ed.gov/eric/?search=id:EJ765006&fields=id,author,source&format=json",
+      "quote": "\"author\":[\"Karpicke, Jeffrey D.\", \"Roediger, Henry L., III\"]"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Repeated retrieval during learning is the key to long-term retention",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2006.09.004",
+      "quote": "\"title\":[\"Repeated retrieval during learning is the key to long-term retention"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2006.09.004",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "57",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2006.09.004",
+      "quote": "\"volume\":\"57\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2006.09.004",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "151--162",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2006.09.004",
+      "quote": "\"page\":\"151-162\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2006.09.004",
+      "quote": "\"published-print\":{\"date-parts\":[[2007,8]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.jml.2006.09.004",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2006.09.004",
+      "quote": "\"DOI\":\"10.1016\\/j.jml.2006.09.004\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref authors are garbled (\"KARPICKE\", \"ROEDIGERIII\"); ERIC record gives full names. Issue 2 and DOI added."
+ },
+ {
+  "key": "McKoRatc89",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/0749-596x(89)90012-0",
+   "quote": "\"title\":[\"Assessing the occurrence of eleborative inference with recognition: Compatibility checking vs compound cue theory\"]",
+   "why": "Crossref: McKoon & Ratcliff, JML 28(5) 547-563, 1989; the authors' lab publication list gives the same citation."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "G Mc{K}oon and R Ratcliff",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(89)90012-0",
+      "quote": "\"given\":\"Gail\",\"family\":\"McKoon\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(89)90012-0",
+      "quote": "\"given\":\"Roger\",\"family\":\"Ratcliff\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Assessing the occurrence of elaborative inference with recognition: compatibility checking vs compound cue theory",
+    "evidence": [
+     {
+      "url": "https://u.osu.edu/ratcliffmckoon/gail-mckoons-publications/",
+      "quote": "Assessing the occurrence of elaborative inference with recognition: Compatibility checking vs compound cue theory."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(89)90012-0",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "28",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(89)90012-0",
+      "quote": "\"volume\":\"28\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(89)90012-0",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "547--563",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(89)90012-0",
+      "quote": "\"page\":\"547-563\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1989",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(89)90012-0",
+      "quote": "\"published-print\":{\"date-parts\":[[1989,10]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0749-596x(89)90012-0",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(89)90012-0",
+      "quote": "\"DOI\":\"10.1016\\/0749-596x(89)90012-0\""
+     }
+    ]
+   }
+  },
+  "notes": "Title: \"versus\" -> \"vs\" as printed (Crossref and the McKoon/Ratcliff lab list both say \"vs\"). Crossref misspells \"eleborative\"; the lab list spells \"elaborative\", which the evidence uses. Issue 5 and DOI added."
+ },
+ {
+  "key": "ShriEtal90",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+   "quote": "\"title\":[\"Exploring the time course of lexical access in language production: Picture-word interference studies\"]",
+   "why": "Crossref + MPG PuRe item_64516: Schriefers, Meyer, Levelt, JML 29(1) 86-102, 1990."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "H Schriefers and A S Meyer and W J M Levelt",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+      "quote": "\"given\":\"H.\",\"family\":\"Schriefers\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+      "quote": "\"given\":\"A.S.\",\"family\":\"Meyer\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+      "quote": "\"given\":\"W.J.M.\",\"family\":\"Levelt\""
+     },
+     {
+      "url": "https://pure.mpg.de/rest/items/item_64516",
+      "quote": "\"givenName\":\"H.\",\"familyName\":\"Schriefers\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Exploring the time course of lexical access in language production: picture-word interference studies",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+      "quote": "\"title\":[\"Exploring the time course of lexical access in language production: Picture-word interference studies\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "29",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+      "quote": "\"volume\":\"29\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "86--102",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+      "quote": "\"page\":\"86-102\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1990",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+      "quote": "\"published-print\":{\"date-parts\":[[1990,2]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0749-596x(90)90011-n",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0749-596x(90)90011-n",
+      "quote": "\"DOI\":\"10.1016\\/0749-596x(90)90011-n\""
+     }
+    ]
+   }
+  },
+  "notes": "First author surname misspelled \"Shriefers\" -> \"Schriefers\" (corroborated by Crossref and the Max Planck PuRe record; no other cdl.bib entry spells it either way); third author written surname-first \"Levelt W J M\" -> \"W J M Levelt\". Key should follow: ShriEtal90 -> SchrEtal90 (no collision in HEAD). Title unchanged in substance (title already lowercase after colon; \"picture-word\" confirmed). Issue 1 and DOI added."
+ },
+ {
+  "key": "SommLewi99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1006/jmla.1998.2614",
+   "quote": "\"title\":[\"Who Really Lives Next Door: Creating False Memories with Phonological Neighbors\"]",
+   "why": "Crossref: Sommers & Lewis, JML 40(1) 83-108, 1999."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M S Sommers and B P Lewis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.1998.2614",
+      "quote": "\"given\":\"Mitchell S.\",\"family\":\"Sommers\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.1998.2614",
+      "quote": "\"given\":\"Bryan P.\",\"family\":\"Lewis\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Who really lives next door: creating false memories with phonological neighbors",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.1998.2614",
+      "quote": "\"title\":[\"Who Really Lives Next Door: Creating False Memories with Phonological Neighbors\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.1998.2614",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "40",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.1998.2614",
+      "quote": "\"volume\":\"40\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.1998.2614",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "83--108",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.1998.2614",
+      "quote": "\"page\":\"83-108\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.1998.2614",
+      "quote": "\"published-print\":{\"date-parts\":[[1999,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/jmla.1998.2614",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/jmla.1998.2614",
+      "quote": "\"DOI\":\"10.1006\\/jmla.1998.2614\""
+     }
+    ]
+   }
+  },
+  "notes": "Second author initial R -> P (Crossref \"Bryan P.\"; single source). Title punctuation: Crossref has a colon, not \"?\"; colon form proposed (lowercase after colon). Issue 1 and DOI added."
+ },
+ {
+  "key": "TurlWhit03",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00095-0",
+   "quote": "\"title\":[\"Strategy training and working memory task performance\"]",
+   "why": "Crossref: JML 49(4) 446-468, 2003, same title; first author Turley-Ames."
+  },
+  "fields": {
+   "author": {
+    "status": "not_found",
+    "value": "K J Turley-Ames and M M Whitfield",
+    "evidence": []
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Strategy training and working memory task performance",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00095-0",
+      "quote": "\"title\":[\"Strategy training and working memory task performance\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00095-0",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "49",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00095-0",
+      "quote": "\"volume\":\"49\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00095-0",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "446--468",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00095-0",
+      "quote": "\"page\":\"446-468\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00095-0",
+      "quote": "\"published-print\":{\"date-parts\":[[2003,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0749-596x(03)00095-0",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0749-596x(03)00095-0",
+      "quote": "\"DOI\":\"10.1016\\/s0749-596x(03)00095-0\""
+     }
+    ]
+   }
+  },
+  "notes": "Identity is certain; every field except the author list is confirmed and DOI added. Crossref lists only \"K Turley-Ames\"; ScienceDirect and PsycNET (record 2003-09768-002) block scripted fetches, ERIC has no record, so second author \"M M Whitfield\" and first-author initials \"K J\" have no fetchable source. Only open item: author list."
+ },
+ {
+  "key": "Unsw08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.jml.2008.04.002",
+   "quote": "\"title\":[\"Exploring the retrieval dynamics of delayed and final free recall: Further evidence for temporal-contextual search",
+   "why": "Crossref: Nash Unsworth, JML 59(2) 223-236, 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "N Unsworth",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2008.04.002",
+      "quote": "\"given\":\"Nash\",\"family\":\"Unsworth\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Exploring the retrieval dynamics of delayed and final free recall: further evidence for temporal-contextual search",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2008.04.002",
+      "quote": "\"title\":[\"Exploring the retrieval dynamics of delayed and final free recall: Further evidence for temporal-contextual search"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Memory and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2008.04.002",
+      "quote": "\"container-title\":[\"Journal of Memory and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "59",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2008.04.002",
+      "quote": "\"volume\":\"59\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2008.04.002",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "223--236",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2008.04.002",
+      "quote": "\"page\":\"223-236\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2008.04.002",
+      "quote": "\"published-print\":{\"date-parts\":[[2008,8]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.jml.2008.04.002",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jml.2008.04.002",
+      "quote": "\"DOI\":\"10.1016\\/j.jml.2008.04.002\""
+     }
+    ]
+   }
+  },
+  "notes": "Cited metadata correct; issue 2 and DOI added. Crossref title has a footnote star."
+ },
+ {
+  "key": "CheuChan12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22814190&retmode=xml",
+   "quote": "Real-time, time-frequency mapping of event-related cortical activation.",
+   "why": "PubMed 22814190 / DOI 10.1088/1741-2560/9/4/046018: Cheung & Chang, J Neural Eng 9(4) 046018, Aug 2012; the cited title is a garbled version of this one."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C Cheung and E F Chang",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22814190&retmode=xml",
+      "quote": "<LastName>Cheung</LastName><ForeName>Connie</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22814190&retmode=xml",
+      "quote": "<LastName>Chang</LastName><ForeName>Edward F</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Real-time, time--frequency mapping of event-related cortical activation",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22814190&retmode=xml",
+      "quote": "Real-time, time-frequency mapping of event-related cortical activation."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Neural Engineering",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/1741-2560/9/4/046018",
+      "quote": "\"container-title\":[\"Journal of Neural Engineering\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22814190&retmode=xml",
+      "quote": "<Volume>9</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22814190&retmode=xml",
+      "quote": "<Issue>4</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "046018",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22814190&retmode=xml",
+      "quote": "<MedlinePgn>046018</MedlinePgn>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22814190&retmode=xml",
+      "quote": "<PubDate><Year>2012</Year><Month>Aug</Month></PubDate>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1088/1741-2560/9/4/046018",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22814190&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1088/1741-2560/9/4/046018</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Cited title \"Real-time, single-trial mapping of cortical event-related activation\" does not match the published title; corrected (Crossref prints an en dash in \"time–frequency\"). Article number 046018 added as pages (house form for J Neural Eng). DOI added."
+ },
+ {
+  "key": "Jell02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12456078&retmode=xml",
+   "quote": "<ArticleTitle>Recent developments in the pathology of Parkinson's disease.</ArticleTitle>",
+   "why": "PubMed 12456078 (DOI 10.1007/978-3-7091-6139-5_33): K A Jellinger, J Neural Transm Suppl (62) 347-376, 2002 -- the Supplementum series, not the regular journal."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "K A Jellinger",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12456078&retmode=xml",
+      "quote": "<LastName>Jellinger</LastName><ForeName>K A</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Recent developments in the pathology of {Parkinson}'s disease",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12456078&retmode=xml",
+      "quote": "<ArticleTitle>Recent developments in the pathology of Parkinson's disease.</ArticleTitle>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Neural Transmission. Supplementum",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12456078&retmode=xml",
+      "quote": "<Title>Journal of neural transmission. Supplementum</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "62",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12456078&retmode=xml",
+      "quote": "<Issue>62</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "347--376",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12456078&retmode=xml",
+      "quote": "<StartPage>347</StartPage><EndPage>376</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12456078&retmode=xml",
+      "quote": "<PubDate><Year>2002</Year></PubDate>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-3-7091-6139-5_33",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12456078&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1007/978-3-7091-6139-5_33</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Venue is the Supplementum series (vol. 62 = \"Ageing and Dementia: Current and Future Concepts\", Springer); PubMed records the supplement number 62 as Issue, kept here as volume. Page conflict: PubMed 347-376 (as cited) vs Crossref chapter record 347-384 (may include references/end matter); Springer page blocked scripts. Reviewer may prefer @incollection for the book-series chapter."
+ },
+ {
+  "key": "TianEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+   "quote": "Neuropsychological prediction of conversion to dementia from questionable dementia: statistically significant but not yet clinically useful.",
+   "why": "PubMed 12640057 / DOI 10.1136/jnnp.74.4.433: Tian, Bucks, Haworth, Wilcock, JNNP 74(4) 433-438, 2003."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Tian and R S Bucks and J Haworth and G Wilcock",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+      "quote": "<LastName>Tian</LastName><ForeName>J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+      "quote": "<LastName>Bucks</LastName><ForeName>R S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+      "quote": "<LastName>Haworth</LastName><ForeName>J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+      "quote": "<LastName>Wilcock</LastName><ForeName>G</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Neuropsychological prediction of conversion to dementia from questionable dementia: statistically significant but not yet clinically useful",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+      "quote": "Neuropsychological prediction of conversion to dementia from questionable dementia: statistically significant but not yet clinically useful."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Neurology, Neurosurgery, and Psychiatry",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1136/jnnp.74.4.433",
+      "quote": "\"container-title\":[\"Journal of Neurology, Neurosurgery &amp; Psychiatry\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "74",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+      "quote": "<Volume>74</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+      "quote": "<Issue>4</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "433--438",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+      "quote": "<StartPage>433</StartPage><EndPage>438</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+      "quote": "<Year>2003</Year><Month>Apr</Month>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1136/jnnp.74.4.433",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12640057&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1136/jnnp.74.4.433</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Only the start page was cited; end page added (433--438). Journal kept in house form. DOI added."
+ },
+ {
+  "key": "BayeGlim07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17615124&retmode=xml",
+   "quote": "Statistics of midbrain dopamine neuron spike trains in the awake primate.",
+   "why": "PubMed 17615124 / DOI 10.1152/jn.01140.2006: Bayer, Lau, Glimcher, J Neurophysiol 98(3) 1428-1439, Sep 2007."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "H M Bayer and B Lau and P W Glimcher",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17615124&retmode=xml",
+      "quote": "<LastName>Bayer</LastName><ForeName>Hannah M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17615124&retmode=xml",
+      "quote": "<LastName>Lau</LastName><ForeName>Brian</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17615124&retmode=xml",
+      "quote": "<LastName>Glimcher</LastName><ForeName>Paul W</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Statistics of midbrain dopamine neuron spike trains in the awake primate",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17615124&retmode=xml",
+      "quote": "Statistics of midbrain dopamine neuron spike trains in the awake primate."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.01140.2006",
+      "quote": "\"container-title\":[\"Journal of Neurophysiology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "98",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17615124&retmode=xml",
+      "quote": "<Volume>98</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17615124&retmode=xml",
+      "quote": "<Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1428--1439",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17615124&retmode=xml",
+      "quote": "<StartPage>1428</StartPage><EndPage>1439</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17615124&retmode=xml",
+      "quote": "<PubDate><Year>2007</Year><Month>Sep</Month></PubDate>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1152/jn.01140.2006",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17615124&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1152/jn.01140.2006</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Missing middle author B Lau added (3 authors) -> key should become BayeEtal07 (no collision in HEAD). Title \"dopaminergic\" -> \"dopamine\". DOI added."
+ },
+ {
+  "key": "EskaEtal92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1432084&retmode=xml",
+   "quote": "Role of inferior temporal neurons in visual memory. I. Temporal encoding of information about visual images, recalled images, and behavioral context.",
+   "why": "PubMed 1432084 / DOI 10.1152/jn.1992.68.4.1277: Eskandar, Richmond, Optican, J Neurophysiol 68(4) 1277-1295, 1992 (part I)."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "E N Eskandar and B J Richmond and L M Optican",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1432084&retmode=xml",
+      "quote": "<LastName>Eskandar</LastName><ForeName>E N</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1432084&retmode=xml",
+      "quote": "<LastName>Richmond</LastName><ForeName>B J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1432084&retmode=xml",
+      "quote": "<LastName>Optican</LastName><ForeName>L M</ForeName>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1992.68.4.1277",
+      "quote": "\"given\":\"L. M.\",\"family\":\"Optican\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Role of inferior temporal neurons in visual memory. {I}. {T}emporal encoding of information about visual images, recalled images, and behavioral context",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1432084&retmode=xml",
+      "quote": "Role of inferior temporal neurons in visual memory. I. Temporal encoding of information about visual images, recalled images, and behavioral context."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1992.68.4.1277",
+      "quote": "\"container-title\":[\"Journal of Neurophysiology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "68",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1432084&retmode=xml",
+      "quote": "<Volume>68</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1432084&retmode=xml",
+      "quote": "<Issue>4</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1277--1295",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1432084&retmode=xml",
+      "quote": "<MedlinePgn>1277-95</MedlinePgn>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1992.68.4.1277",
+      "quote": "\"page\":\"1277-1295\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1992.68.4.1277",
+      "quote": "\"published-print\":{\"date-parts\":[[1992,10,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1152/jn.1992.68.4.1277",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1432084&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1152/jn.1992.68.4.1277</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Surname misspelled \"Optician\" -> \"Optican\" (PubMed and Crossref agree); full given names converted to initials. Title: period after \"memory\" restored. DOI added."
+ },
+ {
+  "key": "GreeArdu54",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1152/jn.1954.17.6.533",
+   "quote": "\"title\":[\"HIPPOCAMPAL ELECTRICAL ACTIVITY IN AROUSAL\"]",
+   "why": "Crossref + PubMed 13212425: Green & Arduini, J Neurophysiol 17(6) 533-557, Nov 1954."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J D Green and A A Arduini",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1954.17.6.533",
+      "quote": "\"given\":\"John D.\",\"family\":\"Green\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1954.17.6.533",
+      "quote": "\"given\":\"Arnaldo A.\",\"family\":\"Arduini\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Hippocampal electrical activity in arousal",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=13212425&retmode=xml",
+      "quote": "Hippocampal electrical activity in arousal."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1954.17.6.533",
+      "quote": "\"container-title\":[\"Journal of Neurophysiology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1954.17.6.533",
+      "quote": "\"volume\":\"17\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1954.17.6.533",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "533--557",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1954.17.6.533",
+      "quote": "\"page\":\"533-557\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1954",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=13212425&retmode=xml",
+      "quote": "<PubDate><Year>1954</Year><Month>Nov</Month></PubDate>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1152/jn.1954.17.6.533",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.1954.17.6.533",
+      "quote": "\"DOI\":\"10.1152\\/jn.1954.17.6.533\""
+     }
+    ]
+   }
+  },
+  "notes": "Entry lacked volume, issue and pages; added. Full given names converted to initials. DOI added."
+ },
+ {
+  "key": "KuneEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15728768&retmode=xml",
+   "quote": "Encoding and retrieval in the CA3 region of the hippocampus: a model of theta-phase separation.",
+   "why": "PubMed 15728768 / DOI 10.1152/jn.00731.2004: Kunec, Hasselmo, Kopell, J Neurophysiol 94(1) 70-82, 2005."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "S Kunec and M E Hasselmo and N Kopell",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15728768&retmode=xml",
+      "quote": "<LastName>Kunec</LastName><ForeName>Steve</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15728768&retmode=xml",
+      "quote": "<LastName>Hasselmo</LastName><ForeName>Michael E</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15728768&retmode=xml",
+      "quote": "<LastName>Kopell</LastName><ForeName>Nancy</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Encoding and retrieval in the {CA3} region of the hippocampus: a model of theta-phase separation",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15728768&retmode=xml",
+      "quote": "Encoding and retrieval in the CA3 region of the hippocampus: a model of theta-phase separation."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.00731.2004",
+      "quote": "\"container-title\":[\"Journal of Neurophysiology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "94",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15728768&retmode=xml",
+      "quote": "<Volume>94</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15728768&retmode=xml",
+      "quote": "<Issue>1</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "70--82",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15728768&retmode=xml",
+      "quote": "<MedlinePgn>70-82</MedlinePgn>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.00731.2004",
+      "quote": "\"published-print\":{\"date-parts\":[[2005,7]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1152/jn.00731.2004",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15728768&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1152/jn.00731.2004</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Third author written surname-first \"Kopell N\" -> \"N Kopell\"; title \"theta phase\" -> \"theta-phase\". Issue 1 and DOI added."
+ },
+ {
+  "key": "YeoEtal11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+   "quote": "The organization of the human cerebral cortex estimated by intrinsic functional connectivity.",
+   "why": "PubMed 21653723 / DOI 10.1152/jn.00338.2011: Yeo et al. (13 authors), J Neurophysiol 106(3) 1125-1165, Sep 2011."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "B T T Yeo and F M Krienen and J Sepulcre and M R Sabuncu and D Lashkari and M Hollinshead and J L Roffman and J W Smoller and L Z{\\\"o}llei and J R Polimeni and B Fischl and H Liu and R L Buckner",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Yeo</LastName><ForeName>B T Thomas</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Krienen</LastName><ForeName>Fenna M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Sepulcre</LastName><ForeName>Jorge</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Sabuncu</LastName><ForeName>Mert R</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Lashkari</LastName><ForeName>Danial</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Hollinshead</LastName><ForeName>Marisa</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Roffman</LastName><ForeName>Joshua L</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Smoller</LastName><ForeName>Jordan W</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Z&#xf6;llei</LastName><ForeName>Lilla</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Polimeni</LastName><ForeName>Jonathan R</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Fischl</LastName><ForeName>Bruce</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Liu</LastName><ForeName>Hesheng</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<LastName>Buckner</LastName><ForeName>Randy L</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The organization of the human cerebral cortex estimated by intrinsic functional connectivity",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "The organization of the human cerebral cortex estimated by intrinsic functional connectivity."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.00338.2011",
+      "quote": "\"container-title\":[\"Journal of Neurophysiology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "106",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<Volume>106</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1125--1165",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<MedlinePgn>1125-65</MedlinePgn>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.00338.2011",
+      "quote": "\"page\":\"1125-1165\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<PubDate><Year>2011</Year><Month>Sep</Month></PubDate>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1152/jn.00338.2011",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21653723&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1152/jn.00338.2011</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Surname fixes: \"Polimieni\" -> \"Polimeni\", \"Zollei\" -> \"Z{\\\"o}llei\" (PubMed and Crossref agree). DOI added."
+ }
+]

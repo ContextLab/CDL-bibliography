@@ -1,0 +1,975 @@
+[
+ {
+  "key": "FitzEtal25",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.datacite.org/dois/10.5281/zenodo.17783435",
+   "quote": "ContextLab/efficient-learning-khan: v1.0.0",
+   "why": "DataCite record of the cited DOI has the cited title, the four cited people, and 2025."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "P C Fitzpatrick and M Bluestone and J R Manning and W Baxley",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.17783435",
+      "quote": "Paxton Fitzpatrick"
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.17783435",
+      "quote": "Max Bluestone"
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.17783435",
+      "quote": "Jeremy R. Manning"
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.17783435",
+      "quote": "Will Baxley"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{ContextLab}/efficient-learning-khan: {v1.0.0}",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.17783435",
+      "quote": "ContextLab/efficient-learning-khan: v1.0.0"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2025",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.17783435",
+      "quote": "\"publicationYear\":2025"
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.5281/zenodo.17783435",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.17783435",
+      "quote": "10.5281/zenodo.17783435"
+     }
+    ]
+   }
+  },
+  "notes": "DataCite byline is 'Paxton Fitzpatrick' with no middle initial; the cited 'P C' kept per the never-drop-an-initial rule (no source prints a different initial). Version DOI; concept DOI is 10.5281/zenodo.17783434. Issued 2025-12-01."
+ },
+ {
+  "key": "Depo18",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.github.com/repos/jdepoix/youtube-transcript-api",
+   "quote": "\"full_name\":\"jdepoix/youtube-transcript-api\"",
+   "why": "GitHub repository at the cited URL, owned by jdepoix (Jonas Depoix), created 2018."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Depoix",
+    "evidence": [
+     {
+      "url": "https://api.github.com/users/jdepoix",
+      "quote": "\"name\":\"Jonas Depoix\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{YouTube} transcript {API}",
+    "evidence": [
+     {
+      "url": "https://github.com/jdepoix/youtube-transcript-api",
+      "quote": "YouTube Transcript API"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://api.github.com/repos/jdepoix/youtube-transcript-api",
+      "quote": "\"created_at\":\"2018-04-20T13:55:04Z\""
+     }
+    ]
+   }
+  },
+  "notes": "Repository created 2018-04-20; first PyPI release 0.1.0 uploaded 2018-07-03. No DOI/Zenodo record found. Software has had many later releases; 2018 is the project's first-release year."
+ },
+ {
+  "key": "Eust19",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://github.com/python-poetry/poetry",
+   "quote": "python-poetry/poetry: Python packaging and dependency management made easy",
+   "why": "The cited GitHub repository, whose tagline is the cited title; PyPI names Sebastien Eustace as author."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S{\\'{e}}bastien Eustace",
+    "evidence": [
+     {
+      "url": "https://api.github.com/users/sdispater",
+      "quote": "\"name\":\"Sébastien Eustace\""
+     },
+     {
+      "url": "https://pypi.org/pypi/poetry/1.0.0/json",
+      "quote": "\"author\":\"Sébastien Eustace\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Poetry: {Python} packaging and dependency management made easy",
+    "evidence": [
+     {
+      "url": "https://github.com/python-poetry/poetry",
+      "quote": "python-poetry/poetry: Python packaging and dependency management made easy"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://pypi.org/pypi/poetry/1.0.0/json",
+      "quote": "\"upload_time\":\"2019-12-12T20:12:24\""
+     }
+    ]
+   }
+  },
+  "notes": "Year 2019 is the release year of Poetry 1.0.0 (PyPI upload 2019-12-12); the repository itself was created 2018-02-28 (originally sdispater/poetry). Reviewer may prefer a version-specific form; no DOI exists."
+ },
+ {
+  "key": "MannEtal23b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://zenodo.org/records/8175681",
+   "quote": "ContextLab/chatify: v0.1.1 (July, 2023)",
+   "why": "Zenodo archive of the cited GitHub repository (ContextLab/chatify), 2023, creators Jeremy Manning, Hemu (Georgia Tech), Konrad Kording."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J R Manning and H Manjunatha and K Kording",
+    "evidence": [
+     {
+      "url": "https://zenodo.org/records/8175681",
+      "quote": "Jeremy Manning"
+     },
+     {
+      "url": "https://zenodo.org/records/8175681",
+      "quote": "Konrad Kording"
+     },
+     {
+      "url": "https://zenodo.org/records/8175681",
+      "quote": "Hemu"
+     },
+     {
+      "url": "https://api.github.com/users/HemuManju",
+      "quote": "\"blog\":\"https://hemumanju.github.io/portfolio/\""
+     },
+     {
+      "url": "https://hemumanju.github.io/portfolio/",
+      "quote": "Hemanth Manjunatha"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2023",
+    "evidence": [
+     {
+      "url": "https://zenodo.org/records/8175681",
+      "quote": "ContextLab/chatify: v0.1.1 (July, 2023)"
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "Chatify: {A} {J}upyter extension for adding {LLM}-driven chatbots to interactive notebooks",
+    "evidence": []
+   }
+  },
+  "notes": "Surname misspelled: 'Menjunatha' -> 'Manjunatha'. Zenodo lists the second creator only as 'Hemu' (Georgia Tech); he is GitHub contributor HemuManju, whose profile links hemumanju.github.io/portfolio, titled 'Hemanth Manjunatha' (a Georgia Tech postdoc 2021-24). The cited title appears in no source found (README, setup.py, Zenodo, Crossref, DataCite): the project's archived title is 'ContextLab/chatify: vX.Y.Z'. Replacement candidate in house software form: Title = {{ContextLab}/chatify: {v0.2.1}}, Doi = 10.5281/zenodo.8274025 (latest, 2023-08-22; that version adds Yaroslav Halchenko as a 4th creator), or v0.2.0 10.5281/zenodo.8198258 (3 creators, matches the cited author list); concept DOI 10.5281/zenodo.8152315. Reviewer decides."
+ },
+ {
+  "key": "Ekst04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.proquest.com/openview/83d5a6b1c4b2d24b0e9d36d531cc572e/1.pdf?cbl=18750&diss=y&pq-origsite=gscholar",
+   "quote": "Ekstrom, Arne David . Brandeis University ProQuest Dissertations and Theses, 2004. 3114420.",
+   "why": "ProQuest Dissertations record: same title, author, school and year."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The cellular networks underlying human spatial navigation",
+    "evidence": [
+     {
+      "url": "https://www.proquest.com/openview/83d5a6b1c4b2d24b0e9d36d531cc572e/1.pdf?cbl=18750&diss=y&pq-origsite=gscholar",
+      "quote": "The cellular networks underlying human spatial navigation"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A D Ekstrom",
+    "evidence": [
+     {
+      "url": "https://www.proquest.com/openview/83d5a6b1c4b2d24b0e9d36d531cc572e/1.pdf?cbl=18750&diss=y&pq-origsite=gscholar",
+      "quote": "Ekstrom, Arne David"
+     }
+    ]
+   },
+   "school": {
+    "status": "confirmed",
+    "value": "Brandeis University",
+    "evidence": [
+     {
+      "url": "https://www.proquest.com/openview/83d5a6b1c4b2d24b0e9d36d531cc572e/1.pdf?cbl=18750&diss=y&pq-origsite=gscholar",
+      "quote": "Brandeis University ProQuest Dissertations and Theses, 2004"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://www.proquest.com/openview/83d5a6b1c4b2d24b0e9d36d531cc572e/1.pdf?cbl=18750&diss=y&pq-origsite=gscholar",
+      "quote": "Brandeis University ProQuest Dissertations and Theses, 2004"
+     }
+    ]
+   }
+  },
+  "notes": "Author correction is house format only (initials without periods): 'Arne D Ekstrom' -> 'A D Ekstrom'. ProQuest document number 3114420. Related but distinct work: Ekstrom et al. 2003 Nature 'Cellular networks underlying human spatial navigation' (10.1038/nature01964) -- not the thesis. Consider adding Address = {Waltham, {MA}} as in Mann06."
+ },
+ {
+  "key": "Mann11",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://repository.upenn.edu/edissertations/993/",
+   "quote": "Acquisition, Storage, and Retrieval in Digital and Biological Brains",
+   "why": "Penn ScholarlyCommons dissertation record: same title, author, institution, 2011, PhD."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Acquisition, storage, and retrieval in digital and biological brains",
+    "evidence": [
+     {
+      "url": "https://repository.upenn.edu/edissertations/993/",
+      "quote": "Acquisition, Storage, and Retrieval in Digital and Biological Brains"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J R Manning",
+    "evidence": [
+     {
+      "url": "https://repository.upenn.edu/edissertations/993/",
+      "quote": "Manning, Jeremy R"
+     }
+    ]
+   },
+   "school": {
+    "status": "confirmed",
+    "value": "University of Pennsylvania",
+    "evidence": [
+     {
+      "url": "https://repository.upenn.edu/edissertations/993/",
+      "quote": "University of Pennsylvania"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://repository.upenn.edu/edissertations/993/",
+      "quote": "2011-05-16"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Philadelphia, {PA}",
+    "evidence": [
+     {
+      "url": "https://context-lab.com/documents/JRM_CV.html",
+      "quote": "Philadelphia, PA (2011) advisor: Michael Kahana"
+     }
+    ]
+   }
+  },
+  "notes": "Degree type 'Doctor of Philosophy (PhD)', date of degree 2011-05-16 (repository.upenn.edu/edissertations/993). Address evidence is the author's own CV."
+ },
+ {
+  "key": "Mann06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://caligari.dartmouth.edu/~jmanning/pubs/magellan_dissertation.pdf",
+   "quote": "Modeling Human Spatial Navigation Using A Degraded Ideal Navigator",
+   "why": "The thesis PDF on the author's server (Jeremy Manning, Volen Center, Brandeis), and the author's CV lists it as his 2006 Brandeis undergraduate honors dissertation."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Modeling human spatial navigation using a degraded ideal navigator",
+    "evidence": [
+     {
+      "url": "https://caligari.dartmouth.edu/~jmanning/pubs/magellan_dissertation.pdf",
+      "quote": "Modeling Human Spatial Navigation Using A Degraded Ideal Navigator"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J R Manning",
+    "evidence": [
+     {
+      "url": "https://caligari.dartmouth.edu/~jmanning/pubs/magellan_dissertation.pdf",
+      "quote": "Jeremy Manning"
+     }
+    ]
+   },
+   "school": {
+    "status": "confirmed",
+    "value": "Brandeis University",
+    "evidence": [
+     {
+      "url": "https://caligari.dartmouth.edu/~jmanning/pubs/magellan_dissertation.pdf",
+      "quote": "Volen Center for Complex Systems, Brandeis University"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://context-lab.com/documents/JRM_CV.html",
+      "quote": "Waltham, MA (2006) advisor: Robert Sekuler, Ph.D. dissertation: Modeling human spatial navigation using a degraded ideal navigator"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Waltham, {MA}",
+    "evidence": [
+     {
+      "url": "https://context-lab.com/documents/JRM_CV.html",
+      "quote": "Waltham, MA (2006) advisor: Robert Sekuler, Ph.D. dissertation: Modeling human spatial navigation using a degraded ideal navigator"
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "phdthesis with Type = {Bachelor's honors thesis} (or @misc), not mastersthesis",
+    "evidence": [
+     {
+      "url": "https://context-lab.com/documents/JRM_CV.html",
+      "quote": "in Neuroscience (High Honors, Magna cum laude"
+     }
+    ]
+   }
+  },
+  "notes": "NOT a master's thesis: the author's CV lists it under 'B.S. in Neuroscience (High Honors, magna cum laude), Brandeis University, Waltham, MA (2006) ... dissertation: Modeling human spatial navigation using a degraded ideal navigator'; the PDF calls itself 'this thesis' and gives no degree. BibTeX has no bachelor's type; cdl.bib has no precedent (no honors/bachelor thesis entries found). Suggest @mastersthesis/@phdthesis with Type = {B.S. honors thesis}, or @misc with Howpublished = {B.S. honors thesis, Brandeis University}; reviewer decides. Sources are the author's own CV and server (no library record found)."
+ },
+ {
+  "key": "LittEtal98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://patents.google.com/patent/US6658287B1/en",
+   "quote": "Method and apparatus for predicting the onset of seizures based on features derived from signals indicative of brain activity",
+   "why": "US patent 6,658,287 B1 by the same four inventors (Litt, Vachtsevanos, Echauz, Esteller), priority date 1998-08-24; the cited title is a paraphrase of its title."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Method and apparatus for predicting the onset of seizures based on features derived from signals indicative of brain activity",
+    "evidence": [
+     {
+      "url": "https://patents.google.com/patent/US6658287B1/en",
+      "quote": "Method and apparatus for predicting the onset of seizures based on features derived from signals indicative of brain activity"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B Litt and G Vachtsevanos and J Echauz and R Esteller",
+    "evidence": [
+     {
+      "url": "https://patents.google.com/patent/US6658287B1/en",
+      "quote": "Brian Litt"
+     },
+     {
+      "url": "https://patents.google.com/patent/US6658287B1/en",
+      "quote": "George Vachtsevanos"
+     },
+     {
+      "url": "https://patents.google.com/patent/US6658287B1/en",
+      "quote": "Javier Echauz"
+     },
+     {
+      "url": "https://patents.google.com/patent/US6658287B1/en",
+      "quote": "Rosana Esteller"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://patents.google.com/patent/US6658287B1/en",
+      "quote": "itemprop=\"priorityDate\" datetime=\"1998-08-24\""
+     }
+    ]
+   }
+  },
+  "notes": "Cited title 'features derived from brain activity signals' -> patent title 'features derived from signals indicative of brain activity'. Patent US 6,658,287 B1 (content=\"US:6658287\"), assignee Georgia Tech Research Corp; provisional 60/097,580 filed 1998-08-24 (the cited year), PCT filed 1999-08-24 (WO 00/10455, published 2000-03-02), granted 2003-12-02. Year 1998 is the priority year, not the grant year; reviewer may prefer 2003 with Howpublished = {U.S. Patent 6,658,287}. House precedent for patents is thin (CoopEtal04 uses Publisher = {Us Patent})."
+ },
+ {
+  "key": "EchaEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://patents.google.com/patent/US6678548B1/en",
+   "quote": "Unified probabilistic framework for predicting and detecting seizure onsets in the brain and multitherapeutic device",
+   "why": "US patent 6,678,548 B1 with the exact cited title and the four cited inventors, filed 2000-10-20."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Unified probabilistic framework for predicting and detecting seizure onsets in the brain and multitherapeutic device",
+    "evidence": [
+     {
+      "url": "https://patents.google.com/patent/US6678548B1/en",
+      "quote": "Unified probabilistic framework for predicting and detecting seizure onsets in the brain and multitherapeutic device"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J R Echauz and R Esteller and B Litt and G J Vachtsevanos",
+    "evidence": [
+     {
+      "url": "https://patents.google.com/patent/US6678548B1/en",
+      "quote": "Javier Ramón Echauz"
+     },
+     {
+      "url": "https://patents.google.com/patent/US6678548B1/en",
+      "quote": "Rosana Esteller"
+     },
+     {
+      "url": "https://patents.google.com/patent/US6678548B1/en",
+      "quote": "Brian Litt"
+     },
+     {
+      "url": "https://patents.google.com/patent/US6678548B1/en",
+      "quote": "George John Vachtsevanos"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://patents.google.com/patent/US6678548B1/en",
+      "quote": "2000-10-20 Application filed by University of Pennsylvania Penn"
+     }
+    ]
+   }
+  },
+  "notes": "Author change adds the middle initials the patent gives (Javier Ramon Echauz, George John Vachtsevanos). US 6,678,548 B1 (content=\"US:6678548\"), assignee University of Pennsylvania, filed and priority 2000-10-20, granted 2004-01-13; the cited 2000 is the filing year. Later family members with the same title (continuations/divisionals): US 7,333,851 and US 8,086,294 -- different documents. Reviewer may prefer grant year 2004 with Howpublished = {U.S. Patent 6,678,548}."
+ },
+ {
+  "key": "ContPrev24",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://web.archive.org/web/20241201084440/https://www.cdc.gov/nchs/fastats/suicide.htm",
+   "quote": "FastStats - Suicide and Self-Inflicted Injury",
+   "why": "The cited CDC/NCHS FastStats page (archived Dec 2024); but no 2024 version reports 2023 data, so '(2023)' and 2024 do not fit one version."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "{Centers for Disease Control and Prevention}",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241201084440/https://www.cdc.gov/nchs/fastats/suicide.htm",
+      "quote": "Centers for Disease Control and Prevention"
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "{FastStats}: suicide and self-inflicted injury (2023)",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20250801100208/https://www.cdc.gov/nchs/fastats/suicide.htm",
+      "quote": "FastStats - Suicide and Self-Inflicted Injury"
+     },
+     {
+      "url": "https://web.archive.org/web/20250801100208/https://www.cdc.gov/nchs/fastats/suicide.htm",
+      "quote": "Mortality Data (2023) via CDC WONDER"
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2024",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241201084440/https://www.cdc.gov/nchs/fastats/suicide.htm",
+      "quote": "Last Reviewed: October 2, 2024"
+     },
+     {
+      "url": "https://web.archive.org/web/20241201084440/https://www.cdc.gov/nchs/fastats/suicide.htm",
+      "quote": "Mortality Data (2022) via CDC WONDER"
+     }
+    ]
+   }
+  },
+  "notes": "Version conflict. Wayback snapshots: Jan 2024 page = 2021 mortality data (last reviewed Dec 5, 2023); Oct 2024 - Mar 2025 = 2022 data (last reviewed Oct 2, 2024); Aug 2025 = 2023 data (last reviewed July 21, 2025); live page (Feb 20, 2026) = 2024 data. The '(2023)' in the title matches only the 2025 version. Options: (a) Year = {2025}, keep '(2023)'; (b) Year = {2024}, title '(2022)' or no parenthetical. Author could be the page's own source line 'CDC/National Center for Health Statistics'. Reviewer decides which figures the citing paper quotes."
+ },
+ {
+  "key": "Nati24a",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://web.archive.org/web/20240710101317/https://www.nimh.nih.gov/health/statistics/post-traumatic-stress-disorder-ptsd",
+   "quote": "Post-Traumatic Stress Disorder (PTSD) - National Institute of Mental Health (NIMH)",
+   "why": "The cited NIMH statistics page (archived July 2024), whose description is an overview of PTSD statistics."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "{National Institute of Mental Health}",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20240710101317/https://www.nimh.nih.gov/health/statistics/post-traumatic-stress-disorder-ptsd",
+      "quote": "Post-Traumatic Stress Disorder (PTSD) - National Institute of Mental Health (NIMH)"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Post-traumatic stress disorder ({PTSD})---statistics",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20240710101317/https://www.nimh.nih.gov/health/statistics/post-traumatic-stress-disorder-ptsd",
+      "quote": "Post-Traumatic Stress Disorder (PTSD) - National Institute of Mental Health (NIMH)"
+     },
+     {
+      "url": "https://web.archive.org/web/20240710101317/https://www.nimh.nih.gov/health/statistics/post-traumatic-stress-disorder-ptsd",
+      "quote": "An overview of statistics on post-traumatic stress disorder"
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2024",
+    "evidence": []
+   }
+  },
+  "notes": "Page title is 'Post-Traumatic Stress Disorder (PTSD)'; '---statistics' is the section (URL /health/statistics/), a reasonable disambiguator. The page shows no date; 2024 is presumably the access year (the page existed unchanged through 2024 snapshots). Year cannot be confirmed from a source."
+ },
+ {
+  "key": "Nati24b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://web.archive.org/web/20241206003543/https://www.ptsd.va.gov/professional/treat/essentials/epidemiology.asp",
+   "quote": "Epidemiology and Impact of PTSD - PTSD: National Center for PTSD",
+   "why": "The cited VA National Center for PTSD page (archived Dec 2024), which carries a named author byline."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Epidemiology and impact of {PTSD}",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241206003543/https://www.ptsd.va.gov/professional/treat/essentials/epidemiology.asp",
+      "quote": "Epidemiology and Impact of PTSD"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "P P Schnurr",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241206003543/https://www.ptsd.va.gov/professional/treat/essentials/epidemiology.asp",
+      "quote": "Paula P. Schnurr, PhD"
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2024",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241206003543/https://www.ptsd.va.gov/professional/treat/essentials/epidemiology.asp",
+      "quote": "Last updated August 9, 2023"
+     }
+    ]
+   }
+  },
+  "notes": "The page has an author byline, Paula P. Schnurr, PhD (still on the live page); the corporate author '{National Center for PTSD (VA)}' could go to Howpublished/Organization instead. Every 2024 snapshot (Feb-Dec) says 'Last updated August 9, 2023' (footer; may be page-specific), so the version cited in 2024 is dated 2023; live page says last updated August 20, 2026. Reviewer: Year = {2023} with author P P Schnurr, or keep 2024 as access year. Key would change (Schn23) if author changes."
+ },
+ {
+  "key": "FoodAdmi20a",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://www.accessdata.fda.gov/cdrh_docs/reviews/DEN200033.pdf",
+   "quote": "De Novo Summary (DEN200033)",
+   "why": "The FDA decision summary PDF at the cited URL for DEN200033, NightWare Kit; the database record gives decision date 11/06/2020."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "{U.S. Food and Drug Administration}",
+    "evidence": [
+     {
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033",
+      "quote": "U.S. Food and Drug Administration"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{DEN200033} de novo decision summary: {NightWare} kit (digital therapy device)",
+    "evidence": [
+     {
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/reviews/DEN200033.pdf",
+      "quote": "De Novo Summary (DEN200033)"
+     },
+     {
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033",
+      "quote": "Decision Summary"
+     },
+     {
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/reviews/DEN200033.pdf",
+      "quote": "DE NOVO CLASSIFICATION REQUEST FOR NIGHTWARE KIT"
+     },
+     {
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/reviews/DEN200033.pdf",
+      "quote": "Digital therapy device to reduce sleep disturbance for psychiatric conditions"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033",
+      "quote": "Decision Date 11/06/2020"
+     }
+    ]
+   }
+  },
+  "notes": "Cited title is a descriptive composite, not the document's heading. The PDF's own heading is 'De Novo Classification Request for NightWare Kit (Apple iPhone, Apple Watch, Apple iPhone Charging Cable, Apple Watch Charging Cable)', running header 'De Novo Summary (DEN200033)'; the database links it as 'Decision Summary'. Received May 27, 2020; decision (granted) 11/06/2020. Reviewer may prefer the verbatim heading."
+ },
+ {
+  "key": "FoodAdmi20b",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033",
+   "quote": "De Novo Number DEN200033",
+   "why": "The FDA De Novo database record at the cited URL for DEN200033 (NightWare Kit), decision 11/06/2020."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "{U.S. Food and Drug Administration}",
+    "evidence": [
+     {
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033",
+      "quote": "U.S. Food and Drug Administration"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Device classification under section 513(f)(2) (de novo) --- {DEN200033}",
+    "evidence": [
+     {
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033",
+      "quote": "Device Classification Under Section 513(f)(2)(De Novo)"
+     },
+     {
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033",
+      "quote": "De Novo Number DEN200033"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033",
+      "quote": "Decision Date 11/06/2020"
+     }
+    ]
+   }
+  },
+  "notes": "Page title 'Device Classification Under Section 513(f)(2)(De Novo)'; DEN200033 is the record id. Decision granted (DENG) 11/06/2020."
+ },
+ {
+  "key": "Hass16",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://www.ted.com/talks/uri_hasson_this_is_your_brain_on_communication",
+   "quote": "Uri Hasson: This is your brain on communication | TED Talk",
+   "why": "The TED talk page at the cited URL: Uri Hasson, TED2016, February 2016."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "U Hasson",
+    "evidence": [
+     {
+      "url": "https://www.ted.com/talks/uri_hasson_this_is_your_brain_on_communication",
+      "quote": "Uri Hasson: This is your brain on communication | TED Talk"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "This is your brain on communication ({TED2016} talk)",
+    "evidence": [
+     {
+      "url": "https://www.ted.com/talks/uri_hasson_this_is_your_brain_on_communication",
+      "quote": "Uri Hasson: This is your brain on communication | TED Talk"
+     },
+     {
+      "url": "https://www.ted.com/talks/uri_hasson_this_is_your_brain_on_communication",
+      "quote": "TED2016 • February 2016"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://www.ted.com/talks/uri_hasson_this_is_your_brain_on_communication",
+      "quote": "TED2016 • February 2016"
+     }
+    ]
+   }
+  },
+  "notes": "'(TED2016 talk)' is a descriptive suffix built from the event name. Talk given February 2016."
+ },
+ {
+  "key": "Hawk99",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://www.hawking.org.uk/in-words/lectures/does-god-play-dice",
+   "quote": "Academic Lectures Does God Play Dice",
+   "why": "The official Stephen Hawking site lists 'Does God Play Dice' among his lectures, dated 1999."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Hawking",
+    "evidence": [
+     {
+      "url": "https://www.hawking.org.uk/in-words/lectures/does-god-play-dice",
+      "quote": "This lecture is the intellectual property of Professor S.W.Hawking"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Does {G}od play dice?",
+    "evidence": [
+     {
+      "url": "https://www.hawking.org.uk/in-words/lectures/does-god-play-dice",
+      "quote": "Academic Lectures Does God Play Dice"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://www.hawking.org.uk/in-words/lectures",
+      "quote": "Does God Play Dice 1999"
+     }
+    ]
+   }
+  },
+  "notes": "The site gives initials 'S.W.Hawking'; house rule says add all initials the source gives -> reviewer may prefer 'S W Hawking' (not changed here since the site is the author's estate page, not a byline). Site title has no question mark; the lecture text is widely printed as 'Does God Play Dice?'. Crossref 10.1142/9789812386434_0007 ('Does God Play Dice?', Einstein, Physics and Reality, 1999) is a different work with no Hawking byline. Suggest Howpublished = {Public lecture, \\url{https://www.hawking.org.uk/in-words/lectures/does-god-play-dice}}."
+ },
+ {
+  "key": "HeraCE",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0172%3Atext%3DCrat.%3Asection%3D402a",
+   "quote": "he likens the universe to the current of a river, saying that you cannot step twice into the same stream",
+   "why": "Plato, Cratylus 402a (Fowler tr.) is the classical attestation of the river saying; the cited English wording is a popular paraphrase with no single source of record."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "Heraclitus",
+    "evidence": [
+     {
+      "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0172%3Atext%3DCrat.%3Asection%3D402a",
+      "quote": "Heracleitus says, you know, that all things move and nothing remains still"
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "\\textit{{Y}ou cannot step twice into the same river; for other waters are continually flowing in}",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "value": "535 BCE",
+    "evidence": []
+   }
+  },
+  "notes": "A quotation attribution, not a document. The exact cited wording was not found in a source of record; close variants: Burnet, Early Greek Philosophy (fr. 41-42): 'You cannot step twice into the same rivers; for fresh waters are ever flowing in upon you'; Plato Cratylus 402a: 'you cannot step twice into the same stream'; the fragment itself is DK 22 B12 (via Arius Didymus). '535 BCE' is a conventional birth-year estimate (c. 535 - c. 475 BCE), not a date of the saying. If a verifiable citation is wanted, cite a translation (e.g. Burnet 1920, or Plato's Cratylus) instead."
+ },
+ {
+  "key": "Keck07",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://sourceforge.net/rest/p/activewire-osx/",
+   "quote": "ActiveWire Driver & Interfaces for OS X",
+   "why": "SourceForge project activewire-osx with the cited title; David Keck is one of its two developers."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D Keck",
+    "evidence": [
+     {
+      "url": "https://sourceforge.net/rest/p/activewire-osx/",
+      "quote": "\"name\": \"David Keck\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Active{W}ire driver and interfaces for {OS X}",
+    "evidence": [
+     {
+      "url": "https://sourceforge.net/rest/p/activewire-osx/",
+      "quote": "ActiveWire Driver & Interfaces for OS X"
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://sourceforge.net/rest/p/activewire-osx/",
+      "quote": "\"creation_date\": \"2006-11-29\""
+     }
+    ]
+   }
+  },
+  "notes": "SourceForge lists two developers: Aaron Geller and David Keck ('\"name\": \"Aaron Geller\"'); the reviewer may add A Geller. Project registered 2006-11-29; its only file release (activewire-osx/4.0/aw_4.0.dmg) is dated 2008-04-01. No source dates anything to 2007. Suggest Howpublished = {\\url{https://sourceforge.net/projects/activewire-osx/}}."
+ },
+ {
+  "key": "LeSa99",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://www.spatial-econometrics.com/html/mbook.pdf",
+   "quote": "Applied Econometrics using MATLAB James P. LeSage Department of Economics University of Toledo October, 1999",
+   "why": "The Econometrics Toolbox manual by J P LeSage, dated October 1999, hosted on the toolbox home page."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J P LeSage",
+    "evidence": [
+     {
+      "url": "https://www.spatial-econometrics.com/html/mbook.pdf",
+      "quote": "Applied Econometrics using MATLAB James P. LeSage Department of Economics University of Toledo October, 1999"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Econometrics toolbox",
+    "evidence": [
+     {
+      "url": "https://www.spatial-econometrics.com/",
+      "quote": "Econometrics Toolbox for MATLAB"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://www.spatial-econometrics.com/html/mbook.pdf",
+      "quote": "Applied Econometrics using MATLAB James P. LeSage Department of Economics University of Toledo October, 1999"
+     }
+    ]
+   }
+  },
+  "notes": "Software (MATLAB toolbox) at spatial-econometrics.com, whose page title is 'Econometrics Toolbox for MATLAB'; the 1999 date is the toolbox manual's ('Applied Econometrics using MATLAB', October 1999). Suggest Howpublished = {\\url{https://www.spatial-econometrics.com/}}; title could be 'Econometrics toolbox for {MATLAB}'."
+ },
+ {
+  "key": "Gede24",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://frenzband.com/pages/this-weird-ai-wearable-cured-my-insomnia-in-a-month",
+   "quote": "This Weird AI Wearable Cured My Insomnia in a Month",
+   "why": "The page at the cited URL is an unbylined FRENZ vendor page with a different title; the cited Mashable-style headline and author K Gedeon are not on it."
+  },
+  "fields": {
+   "title": {
+    "status": "not_found",
+    "value": "{CES} 2024: I used this weird {AI} 'brainband' for a month, and it cured my insomnia",
+    "evidence": [
+     {
+      "url": "https://frenzband.com/pages/this-weird-ai-wearable-cured-my-insomnia-in-a-month",
+      "quote": "This Weird AI Wearable Cured My Insomnia in a Month"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "K Gedeon",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2024",
+    "evidence": [
+     {
+      "url": "https://frenzband.com/pages/this-weird-ai-wearable-cured-my-insomnia-in-a-month",
+      "quote": "FRENZ Brainband won multiple awards at CES 2023 and 2024"
+     }
+    ]
+   }
+  },
+  "notes": "Cited URL (frenzband.com, live and in Wayback May/Sep 2024) is the manufacturer's advertorial 'This Weird AI Wearable Cured My Insomnia in a Month' (FRENZ by Earable Neuroscience), no byline. The cited headline looks like a Mashable article by Kimberly Gedeon (Mashable tech editor, quoted on frenzband marketing), but mashable.com blocks our fetchers and search did not surface the article URL, so neither the original nor its date could be verified. Reviewer: find the Mashable URL (then cite it with Howpublished = {Mashable}) or re-cite the vendor page as an unauthored page."
+ }
+]

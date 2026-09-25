@@ -1,0 +1,1528 @@
+[
+ {
+  "key": "BlisColl93",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8421494&retmode=xml",
+   "quote": "A synaptic model of memory: long-term potentiation in the hippocampus.",
+   "why": "Same title, authors Bliss and Collingridge, Nature 1993 (PMID 8421494, DOI 10.1038/361031a0)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "A synaptic model of memory: long-term potentiation in the hippocampus",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8421494&retmode=xml",
+      "quote": "A synaptic model of memory: long-term potentiation in the hippocampus."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T V P Bliss and G L Collingridge",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/361031a0",
+      "quote": "\"given\":\"T. V. P.\",\"family\":\"Bliss\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1038/361031a0",
+      "quote": "\"given\":\"G. L.\",\"family\":\"Collingridge\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Nature",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8421494&retmode=xml",
+      "quote": "<Title>Nature</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8421494&retmode=xml",
+      "quote": "<Year>1993</Year><Month>Jan</Month><Day>07</Day>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "361",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8421494&retmode=xml",
+      "quote": "<Volume>361</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6407",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8421494&retmode=xml",
+      "quote": "<Issue>6407</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "31--39",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8421494&retmode=xml",
+      "quote": "<StartPage>31</StartPage><EndPage>39</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/361031a0",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8421494&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1038/361031a0</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Missing journal/volume/number/pages/doi added. PubMed gives initials 'T V'; Crossref gives 'T. V. P.', so the cited three initials stay."
+ },
+ {
+  "key": "GreeEtal13",
+  "verdict": "no_source",
+  "identity": {},
+  "fields": {
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "No journal, abstract, or proceedings record with this title was found (searched 2026-09-25). Looked in: web search for the exact title (no hit except the Kahana lab Posters page, which lists it and whose TLS certificate fails, so it cannot be fetched or quoted); PubMed (Greenberg JA + Zaghloul KA gives only PMID 25862266); Crossref; SfN 2012 OASIS planner, author searches Greenberg and Zaghloul (no such title; Zaghloul's 2012 abstracts are 593.12 and 800.09); SfN 2013 full-abstract poster PDFs for Sat PM, Sun, Mon and Wed (Tuesday posters and nanosymposia PDFs not found on sfn.org); all SfN 2014 full-abstract PDFs (Sat PM to Wed PM). Probably a conference poster (SfN 2013 Tuesday or a nanosymposium, or another meeting). A related but DIFFERENT published work: J A Greenberg, J F Burke, R Haque, M J Kahana, K A Zaghloul (2015), 'Decreases in theta and increases in high frequency activity underlie associative memory encoding', NeuroImage 114:257-263, doi 10.1016/j.neuroimage.2015.03.077 (PMID 25862266). It has a different title and author list, so it is a candidate replacement, not a match."
+ },
+ {
+  "key": "HamiEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3389/neuro.07.014.2009",
+   "quote": "\"title\":[\"Repetitive transcranial magnetic stimulation affects behavior by biasing endogenous cortical oscillations\"]",
+   "why": "Same title and four authors (Hamidi, Slagter, Tononi, Postle), Frontiers in Integrative Neuroscience 2009 (PMID 19587850)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Repetitive transcranial magnetic stimulation affects behavior by biasing endogenous cortical oscillations",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3389/neuro.07.014.2009",
+      "quote": "\"title\":[\"Repetitive transcranial magnetic stimulation affects behavior by biasing endogenous cortical oscillations\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Hamidi and H A Slagter and G Tononi and B R Postle",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19587850&retmode=xml",
+      "quote": "<LastName>Hamidi</LastName><ForeName>Massihullah</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19587850&retmode=xml",
+      "quote": "<LastName>Slagter</LastName><ForeName>Heleen A</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19587850&retmode=xml",
+      "quote": "<LastName>Tononi</LastName><ForeName>Giulio</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19587850&retmode=xml",
+      "quote": "<LastName>Postle</LastName><ForeName>Bradley R</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Frontiers in Integrative Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3389/neuro.07.014.2009",
+      "quote": "\"container-title\":[\"Frontiers in Integrative Neuroscience\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3389/neuro.07.014.2009",
+      "quote": "\"issued\":{\"date-parts\":[[2009]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19587850&retmode=xml",
+      "quote": "<Volume>3</Volume>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3389/neuro.07.014.2009",
+      "quote": "\"volume\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19587850&retmode=xml",
+      "quote": "<MedlinePgn>14</MedlinePgn>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3389/neuro.07.014.2009",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19587850&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.3389/neuro.07.014.2009</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal, volume, article number (house puts Frontiers article numbers in pages, e.g. HargEtal12) and DOI added. No issue number stated."
+ },
+ {
+  "key": "HealKaha14b",
+  "verdict": "no_source",
+  "identity": {},
+  "fields": {
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "No record with this title found (searched 2026-09-25): exact-title web search (no hit), Crossref, PubMed, all SfN 2014 full-abstract PDFs on sfn.org (no Healey + Kahana abstract). Likely an unpublished manuscript/talk that became M K Healey and M J Kahana (2016), 'A four-component model of age-related memory change', Psychological Review 123(1):23-69, doi 10.1037/rev0000015. That has a different title and year, so it is a replacement CANDIDATE only (user decision). cdl.bib has no key for the 2016 paper under HealKaha1[4-6] besides HealKaha14a (a different JEP:General paper)."
+ },
+ {
+  "key": "HeatEtal93",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22wisconsin%20card%20sorting%20test%20manual%22",
+   "quote": "Wisconsin Card Sorting Test manual /",
+   "why": "LoC record 94100793: Wisconsin Card Sorting Test manual, Robert K. Heaton et al., rev. and expanded, Odessa FL: Psychological Assessment Resources, c1993; the cited ': {PAR}' is the publisher run into the title."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "{Wisconsin} card sorting test manual",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22wisconsin%20card%20sorting%20test%20manual%22",
+      "quote": "Wisconsin Card Sorting Test manual /"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22wisconsin%20card%20sorting%20test%20manual%22",
+      "quote": "c1993."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Psychological Assessment Resources",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22wisconsin%20card%20sorting%20test%20manual%22",
+      "quote": "Psychological Assessment Resources,"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Odessa, {FL}",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22wisconsin%20card%20sorting%20test%20manual%22",
+      "quote": "Odessa, Fla."
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "Rev. and expanded",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22wisconsin%20card%20sorting%20test%20manual%22",
+      "quote": "Rev. and expanded."
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "book",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22wisconsin%20card%20sorting%20test%20manual%22",
+      "quote": "iv, 230 p. :"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "R Heaton and G Chelune and J Talley and G Kay and G Curtiss"
+   }
+  },
+  "notes": "Entry should be @book (a test manual, 230 p.), not @article; drop ': {PAR}' from the title (PAR = the publisher). The LoC statement of responsibility is 'Robert K. Heaton ... [et al.]', which confirms only the first author (and his middle initial K); no acceptable catalogue found that lists all five authors (LoC SRU, Harvard LibraryCloud, Open Library all give Heaton only). The co-authors (Chelune, Talley, Kay, Curtiss) could not be checked, so author is not_found; if confirmed later, the first author becomes 'R K Heaton'. Title bracing follows house Wech08 ('{Wechsler} adult intelligence scale')."
+ },
+ {
+  "key": "LohnEtal14",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/a0039036",
+   "quote": "Expanding the scope of memory search: Modeling intralist and interlist effects in free recall.",
+   "why": "Same authors and near-identical title, but the published article is Psychological Review 2015 and its title adds 'Modeling'; the cited 2014 title matches no published record, so it is presumably the pre-publication manuscript."
+  },
+  "fields": {
+   "title": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "Expanding the scope of memory search: modeling intralist and interlist effects in free recall"
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L J Lohnas and S M Polyn and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0039036",
+      "quote": "\"given\":\"Lynn J.\",\"family\":\"Lohnas\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0039036",
+      "quote": "\"given\":\"Sean M.\",\"family\":\"Polyn\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0039036",
+      "quote": "\"given\":\"Michael J.\",\"family\":\"Kahana\""
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "2015"
+   }
+  },
+  "notes": "Replacement candidate (published version): L J Lohnas, S M Polyn, M J Kahana (2015), 'Expanding the scope of memory search: modeling intralist and interlist effects in free recall', Psychological Review 122(2):337-363, doi 10.1037/a0039036 (Crossref: container 'Psychological Review', volume 122, issue 2, page 337-363, issued 2015-04). The cited 2014 version (title without 'Modeling') was not found as a separate public record (no preprint server or abstract found), so the cited version itself is unverified. If replaced, key becomes LohnEtal15 (no collision in HEAD cdl.bib)."
+ },
+ {
+  "key": "LongKaha14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+   "quote": "Title: Spectral correlates of contextual processing during memory encoding",
+   "why": "SfN 2014 (Washington, DC) poster 172.07/MM14 by N M Long and M J Kahana, same title; SfN's full-abstract PDF for Sunday AM posters."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Spectral correlates of contextual processing during memory encoding",
+    "evidence": [
+     {
+      "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+      "quote": "Title: Spectral correlates of contextual processing during memory encoding"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "N M Long and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+      "quote": "Authors: *N. M. LONG, M. J. KAHANA"
+     },
+     {
+      "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+      "quote": "Disclosures: N.M. Long: None. M.J. Kahana: None."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2014",
+    "evidence": [
+     {
+      "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+      "quote": "Time: Sunday, November 16, 2014, 8:00 AM - 12:00 PM"
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+      "quote": "Program No. XXX.XX. 2014 Neuroscience Meeting Planner."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Society for Neuroscience Abstracts",
+    "evidence": [
+     {
+      "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+      "quote": "Program No. XXX.XX. 2014 Neuroscience Meeting Planner."
+     },
+     {
+      "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+      "quote": "Washington, DC: Society for Neuroscience, 2014. Online."
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "172.07",
+    "evidence": [
+     {
+      "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+      "quote": "Program#/Poster#: 172.07/MM14"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Washington, {DC}",
+    "evidence": [
+     {
+      "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+      "quote": "Washington, DC: Society for Neuroscience, 2014. Online."
+     }
+    ]
+   },
+   "organization": {
+    "status": "corrected",
+    "value": "Society for Neuroscience",
+    "evidence": [
+     {
+      "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+      "quote": "Washington, DC: Society for Neuroscience, 2014. Online."
+     }
+    ]
+   }
+  },
+  "notes": "Conference abstract, not an article. Booktitle is the house form for SfN abstracts (the PDF prints '2014 Neuroscience Meeting Planner', not the word 'Abstracts'), as in the pilot's RamaEtal12b/SommEtal12: convert to the house SfN @inproceedings form (as KrauEtal12 / SFN-SOURCE.md): Booktitle {Society for Neuroscience Abstracts}, Number {172.07}, Address {Washington, {DC}}, Organization {Society for Neuroscience}. The PDF is 7.7 MB (1677 pages); the abstract sits in session '172. Human Long-Term Memory'. Related later paper (different work): Long and Kahana 2015 NeuroImage 119:332-337, doi 10.1016/j.neuroimage.2015.06.073."
+ },
+ {
+  "key": "McGa89",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2564756&retmode=xml",
+   "quote": "Involvement of hormonal and neuromodulatory systems in the regulation of memory storage.",
+   "why": "Sole author McGaugh, 1989, Annual Review of Neuroscience 12:255-287; the cited title is a truncated form of this one."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Involvement of hormonal and neuromodulatory systems in the regulation of memory storage",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2564756&retmode=xml",
+      "quote": "Involvement of hormonal and neuromodulatory systems in the regulation of memory storage."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J L McGaugh",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2564756&retmode=xml",
+      "quote": "<LastName>McGaugh</LastName><ForeName>J L</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Annual Review of Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1146/annurev.ne.12.030189.001351",
+      "quote": "\"container-title\":[\"Annual Review of Neuroscience\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1989",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1146/annurev.ne.12.030189.001351",
+      "quote": "\"issued\":{\"date-parts\":[[1989,3]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2564756&retmode=xml",
+      "quote": "<Volume>12</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1146/annurev.ne.12.030189.001351",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "255--287",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2564756&retmode=xml",
+      "quote": "<StartPage>255</StartPage><EndPage>287</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1146/annurev.ne.12.030189.001351",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2564756&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1146/annurev.ne.12.030189.001351</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Author converted from full given name to initials (house). Crossref also holds an alias DOI 10.1146/annurev.neuro.12.1.255 for the same article; PubMed uses annurev.ne.12.030189.001351. PubMed gives no issue; the issue comes from Crossref only (drop it if a single source is not enough)."
+ },
+ {
+  "key": "MerzEtal12",
+  "verdict": "no_source",
+  "identity": {},
+  "fields": {
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "No record with this title found (searched 2026-09-25): exact-title web search, PubMed, Crossref, SfN 2012 OASIS planner (author search Merzagora: one abstract, 803.16/CCC69 'Probing the timing and amplitude of neural adaptation with human electrocorticography', a DIFFERENT title), SfN 2013 and 2014 full-abstract PDFs (no Merzagora abstract). Related published work with a different title, year and author list: A Rodriguez Merzagora, T J Coffey, M R Sperling, A Sharan, B Litt, G Baltuch, J Jacobs (2014), 'Repeated stimuli elicit diminished high-gamma electrocorticographic responses', NeuroImage 85:844-852, doi 10.1016/j.neuroimage.2013.07.006 (PMID 23867555). Replacement candidate only; the cited title may be a 2012 manuscript/preprint of it. Note Crossref prints the surname as 'Rodriguez Merzagora', not 'Merzagora-Rodriguez'."
+ },
+ {
+  "key": "MoffHamp96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
+   "quote": "Salivary testosterone levels in left- and right-handed adults.",
+   "why": "Same title, authors Moffat and Hampson, Neuropsychologia 1996, 34(3):225-233 (PMID 8868279)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Salivary testosterone levels in left- and right-handed adults",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
+      "quote": "Salivary testosterone levels in left- and right-handed adults."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "S D Moffat and E Hampson",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
+      "quote": "<LastName>Moffat</LastName><ForeName>S D</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
+      "quote": "<LastName>Hampson</LastName><ForeName>E</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Neuropsychologia",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
+      "quote": "<Title>Neuropsychologia</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
+      "quote": "<Year>1996</Year><Month>Mar</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "34",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
+      "quote": "<Volume>34</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
+      "quote": "<Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "225--233",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
+      "quote": "<StartPage>225</StartPage><EndPage>233</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0028-3932(95)00090-9",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/0028-3932(95)00090-9</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal and DOI added; full given names converted to initials (house)."
+ },
+ {
+  "key": "PeteEtal61",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0083216",
+   "quote": "\"title\":[\"Short-term retention and meaningfulness.\"]",
+   "why": "Same title, authors Peterson, Peterson and Miller, Canadian Journal of Psychology 1961, 15:143-147 (PMID 13734839)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Short-term retention and meaningfulness",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=13734839&retmode=xml",
+      "quote": "Short-term retention and meaningfulness."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "L R Peterson and M J Peterson and A Miller",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0083216",
+      "quote": "\"given\":\"Lloyd R.\",\"family\":\"Peterson\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0083216",
+      "quote": "\"given\":\"Margaret Jean\",\"family\":\"Peterson\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0083216",
+      "quote": "\"given\":\"Arthur\",\"family\":\"Miller\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Canadian Journal of Psychology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=13734839&retmode=xml",
+      "quote": "<Title>Canadian journal of psychology</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1961",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0083216",
+      "quote": "\"issued\":{\"date-parts\":[[1961]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=13734839&retmode=xml",
+      "quote": "<Volume>15</Volume>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0083216",
+      "quote": "\"volume\":\"15\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0083216",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "143--147",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0083216",
+      "quote": "\"page\":\"143-147\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0083216",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=13734839&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1037/h0083216</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal, issue and DOI added; full given names to initials. House journal name 'Canadian Journal of Psychology' (8 entries); Crossref's container adds '/ Revue canadienne de psychologie'. Issue 3 is from Crossref only (PubMed gives none)."
+ },
+ {
+  "key": "SerrDono04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1142/9789812561763_0040/transform/application/vnd.crossref.unixsd+xml",
+   "quote": "DESIGN PRINCIPLES OF A NEUROMOTOR PROSTHETIC DEVICE",
+   "why": "Serruya and Donoghue's 2004 chapter in K W Horch and G S Dhillon (eds), Neuroprosthetics: Theory and Practice (World Scientific), pp 1158-1196; the only 2004 Serruya-Donoghue design-principles work, so the cited title is taken as a variant of the chapter title."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1142/9789812561763_0040",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Design principles of a neuromotor prosthetic device",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1142/9789812561763_0040/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "DESIGN PRINCIPLES OF A NEUROMOTOR PROSTHETIC DEVICE"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M D Serruya and J P Donoghue",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1142/9789812561763_0040/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<surname>Serruya</surname>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1142/9789812561763_0040/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<surname>Donoghue</surname>"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Neuroprosthetics: Theory and Practice",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1142/9789812561763_0040/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<title>Neuroprosthetics</title>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1142/9789812561763_0040/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<subtitle>Theory and Practice</subtitle>"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "K W Horch and G S Dhillon",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1142/4987",
+      "quote": "\"given\":\"Kenneth W\",\"family\":\"Horch\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1142/4987",
+      "quote": "\"given\":\"Gurpreet S\",\"family\":\"Dhillon\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "World Scientific",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1142/9789812561763_0040/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<publisher_name>WORLD SCIENTIFIC"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1142/4987",
+      "quote": "\"issued\":{\"date-parts\":[[2004,2]]}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1158--1196",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1142/9789812561763_0040/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<first_page>1158"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1142/9789812561763_0040/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<last_page>1196"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1142/9789812561763_0040",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1142/9789812561763_0040",
+      "quote": "\"DOI\":\"10.1142\\/9789812561763_0040\""
+     }
+    ]
+   }
+  },
+  "notes": "IDENTITY JUDGMENT NEEDED: Crossref titles the chapter 'Design principles of a neuromotor prosthetic device'; the cited 'Design principles for intracortical neuromotor prosthetics' appears only in other papers' reference lists (not an acceptable source), so the published chapter title is proposed. Should be @incollection (house for chapters with a booktitle). Crossref gives given names 'Mijail'/'John' without middle initials; cited initials M D / J P kept (never drop). Last page 1196 from Crossref (<last_page>1196; JSON page '1158-1196'). Some references name Imperial College Press as publisher; Crossref says World Scientific (the book DOI 10.1142/4987). Address not stated by any source checked. The World Scientific page is behind a bot wall (403)."
+ },
+ {
+  "key": "StorEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17616909&retmode=xml",
+   "quote": "When intended remembering leads to unintended forgetting.",
+   "why": "Same title, authors Storm, Bjork and Bjork, Quarterly Journal of Experimental Psychology 2007, 60(7):909-915 (PMID 17616909)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "When intended remembering leads to unintended forgetting",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17616909&retmode=xml",
+      "quote": "When intended remembering leads to unintended forgetting."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B C Storm and E L Bjork and R A Bjork",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17616909&retmode=xml",
+      "quote": "<LastName>Storm</LastName><ForeName>Benjamin C</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17616909&retmode=xml",
+      "quote": "<LastName>Bjork</LastName><ForeName>Elizabeth L</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17616909&retmode=xml",
+      "quote": "<LastName>Bjork</LastName><ForeName>Robert A</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/17470210701288706",
+      "quote": "\"container-title\":[\"Quarterly Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17616909&retmode=xml",
+      "quote": "<Year>2007</Year><Month>Jul</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "60",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17616909&retmode=xml",
+      "quote": "<Volume>60</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17616909&retmode=xml",
+      "quote": "<Issue>7</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "909--915",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17616909&retmode=xml",
+      "quote": "<StartPage>909</StartPage><EndPage>915</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/17470210701288706",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17616909&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1080/17470210701288706</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal, volume, issue, pages and DOI added."
+ },
+ {
+  "key": "Wech45",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/t27207-000",
+   "quote": "\"title\":[\"Wechsler Memory Scale\"]",
+   "why": "APA PsycTESTS record of the test itself: Wechsler Memory Scale, David Wechsler, created 1945. The test is not a journal article; its 1945 publication is a different work with a different title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{Wechsler} memory scale",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t27207-000",
+      "quote": "\"title\":[\"Wechsler Memory Scale\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D Wechsler",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t27207-000",
+      "quote": "\"given\":\"David\",\"family\":\"Wechsler\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1945",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t27207-000",
+      "quote": "\"issued\":{\"date-parts\":[[1945]]}"
+     }
+    ]
+   }
+  },
+  "notes": "Cited as @article with no journal; the cited title names the TEST. Two options for the user: (a) keep it as the test: @misc, title '{Wechsler} memory scale', D Wechsler, 1945, doi 10.1037/t27207-000 (PsycTESTS dataset record; Crossref content-created 1945); or (b) cite the 1945 article that published it, a different title: D Wechsler (1945), 'A standardized memory scale for clinical use', The Journal of Psychology 19(1):87-95, doi 10.1080/00223980.1945.9917223 (Crossref query result: container 'The Journal of Psychology', volume 19, page 87-95). Option (b) was not checked field by field here."
+ },
+ {
+  "key": "Wech81",
+  "verdict": "no_source",
+  "identity": {},
+  "fields": {
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Cited as @article with no journal; the work is the test manual 'WAIS-R manual: Wechsler Adult Intelligence Scale-Revised' (Psychological Corporation, New York, 1981), not an article. No acceptable source found (2026-09-25): LoC SRU title searches 'WAIS-R' (861 hits, first 10 not it), 'Wechsler adult intelligence scale-revised' (2 hits, both Sprandel), creator Wechsler + title WAIS (none); Harvard LibraryCloud (WAIS 1955, WAIS-III 1997 only); Crossref/PsycTESTS (WAIS-R short form 10.1037/t04392-000 and WAIS-III/IV only, no WAIS-R 1981 record). Also fix the title typography if kept: '{Wechsler} adult intelligence scale--revised' (the cited '--- revised' has a stray em dash and space). Suggest @book, Publisher {Psychological Corporation}, Address {New York, {NY}}, once a catalogue record (e.g. WorldCat) is found."
+ },
+ {
+  "key": "BlasEtal96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+   "quote": "The rhythmic slow activity recorded from entorhinal cortex in freely moving cats.",
+   "why": "Same title, Acta Neurobiologiae Experimentalis 1996, 56(1):161-164, five authors Błaszczyk, Grabowski, Eckersdorf, Gołębiewski, Konopacki (PMID 8787169, DOI 10.55782/ane-1996-1116)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The rhythmic slow activity recorded from entorhinal cortex in freely moving cats",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+      "quote": "The rhythmic slow activity recorded from entorhinal cortex in freely moving cats."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M B{\\l}aszczyk and R Grabowski and B Eckersdorf and H Go{\\l}{\\k{e}}biewski and J Konopacki",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.55782/ane-1996-1116/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<surname>Błaszczyk</surname>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.55782/ane-1996-1116/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<surname>Grabowski</surname>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.55782/ane-1996-1116/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<surname>Eckersdorf</surname>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.55782/ane-1996-1116/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<surname>Gołębiewski</surname>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.55782/ane-1996-1116/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<surname>Konopacki</surname>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+      "quote": "<LastName>B&#x142;aszczyk</LastName><ForeName>M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+      "quote": "<LastName>Eckersdorf</LastName><ForeName>B</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+      "quote": "<LastName>Go&#x142;ebiewski</LastName><ForeName>H</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Acta Neurobiologiae Experimentalis",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+      "quote": "<Title>Acta neurobiologiae experimentalis</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+      "quote": "<PubDate><Year>1996</Year></PubDate>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "56",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+      "quote": "<Volume>56</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+      "quote": "<Issue>1</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "161--164",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+      "quote": "<StartPage>161</StartPage><EndPage>164</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.55782/ane-1996-1116",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.55782/ane-1996-1116</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Surname fixes corroborated by two sources (Crossref XML and PubMed): Blaszcyk -> B{\\l}aszczyk (missing 'z' and the l-stroke), Exckersdorf -> Eckersdorf, Golebiewski -> Go{\\l}{\\k{e}}biewski (PubMed drops the ogonek: 'Gołebiewski'; Crossref prints 'Gołębiewski'; accents kept per user rule). House LaTeX for ł is {\\l} (e.g. S{\\l}awi{\\'n}ska, Go{\\l}osz); no house precedent for ę, {\\k{e}} proposed. Full given names converted to initials. Key BlasEtal96 unchanged. The validator's delatex() does not map {\\l}, so its token check may flag these two surnames although the quotes contain them."
+ },
+ {
+  "key": "AllaEtal98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9621832&retmode=xml",
+   "quote": "Electrophysiological evidence for dissociable processes contributing to recollection.",
+   "why": "Same title, authors Allan, Wilding and Rugg, Acta Psychologica 1998, 98(2-3):231-252 (PMID 9621832)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Electrophysiological evidence for dissociable processes contributing to recollection",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9621832&retmode=xml",
+      "quote": "Electrophysiological evidence for dissociable processes contributing to recollection."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K Allan and E L Wilding and M D Rugg",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9621832&retmode=xml",
+      "quote": "<LastName>Allan</LastName><ForeName>K</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9621832&retmode=xml",
+      "quote": "<LastName>Wilding</LastName><ForeName>E L</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9621832&retmode=xml",
+      "quote": "<LastName>Rugg</LastName><ForeName>M D</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Acta Psychologica",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0001-6918(97)00044-9",
+      "quote": "\"container-title\":[\"Acta Psychologica\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0001-6918(97)00044-9",
+      "quote": "\"issued\":{\"date-parts\":[[1998,3]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "98",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9621832&retmode=xml",
+      "quote": "<Volume>98</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2--3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9621832&retmode=xml",
+      "quote": "<Issue>2-3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "231--252",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9621832&retmode=xml",
+      "quote": "<StartPage>231</StartPage><EndPage>252</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0001-6918(97)00044-9",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9621832&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/s0001-6918(97)00044-9</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields correct; only the DOI is added. Crossref's author record is mis-parsed ('given':'Edward','family':'L. Wilding'), which is why the automatic match failed; PubMed gives E L Wilding."
+ },
+ {
+  "key": "Katz36",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0001-6918(36)90053-7/transform/application/vnd.crossref.unixsd+xml",
+   "quote": "<title>Georg Elias Müller</title>",
+   "why": "D. Katz, 'Georg Elias Müller', Acta Psychologica vol 1 (1936), ending p 240 (Crossref DOI 10.1016/s0001-6918(36)90053-7)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{Georg} {Elias} {M\\\"{u}ller}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0001-6918(36)90053-7/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "<title>Georg Elias Müller</title>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D Katz",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0001-6918(36)90053-7",
+      "quote": "\"given\":\"D.\",\"family\":\"Katz\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Acta Psychologica",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0001-6918(36)90053-7",
+      "quote": "\"container-title\":[\"Acta Psychologica\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1936",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0001-6918(36)90053-7",
+      "quote": "\"issued\":{\"date-parts\":[[1936,1]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0001-6918(36)90053-7",
+      "quote": "\"volume\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "234--240"
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0001-6918(36)90053-7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0001-6918(36)90053-7",
+      "quote": "\"DOI\":\"10.1016\\/s0001-6918(36)90053-7\""
+     }
+    ]
+   }
+  },
+  "notes": "Pages unresolved: Crossref gives 'IN1-240' (first page is an unnumbered plate IN1; last page 240 matches). The preceding article in the volume (Stern, 10.1016/s0001-6918(36)90052-5) ends at 232, so the text starts at 233 or 234; ScienceDirect (which would print the range) returned 403. Keep 234--240 unless the PDF/ScienceDirect page says otherwise. DOI added."
+ },
+ {
+  "key": "SchoBekk67",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6062205&retmode=xml",
+   "quote": "Reaction time and accuracy.",
+   "why": "Same title, authors Schouten and Bekker, Acta Psychologica 1967, 27:143-153 (PMID 6062205, DOI 10.1016/0001-6918(67)90054-6)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Reaction time and accuracy",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6062205&retmode=xml",
+      "quote": "Reaction time and accuracy."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J F Schouten and J A M Bekker",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6062205&retmode=xml",
+      "quote": "<LastName>Schouten</LastName><ForeName>J F</ForeName>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(67)90054-6",
+      "quote": "\"given\":\"J.F.\",\"family\":\"Schouten\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(67)90054-6",
+      "quote": "\"given\":\"J.A.M.\",\"family\":\"Bekker\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Acta Psychologica",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(67)90054-6",
+      "quote": "\"container-title\":[\"Acta Psychologica\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1967",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6062205&retmode=xml",
+      "quote": "<PubDate><Year>1967</Year></PubDate>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "27",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6062205&retmode=xml",
+      "quote": "<Volume>27</Volume>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "143--153",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6062205&retmode=xml",
+      "quote": "<StartPage>143</StartPage><EndPage>153</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0001-6918(67)90054-6",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6062205&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/0001-6918(67)90054-6</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Surname typo Schoutten -> Schouten, corroborated by PubMed and Crossref. Bekker keeps J A M (Crossref J.A.M.; PubMed J A). DOI added. No issue number stated. Key unchanged."
+ },
+ {
+  "key": "BeckBurg01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://papers.nips.cc/paper_files/paper/2000/hash/65fc52ed8f88c81323a418ca94cec2ed-Abstract.html",
+   "quote": "Modelling Spatial Recall, Mental Imagery and Neglect",
+   "why": "NeurIPS proceedings page: Becker and Burgess, Advances in Neural Information Processing Systems 13 (NIPS 2000 conference, printed 2001 by MIT Press)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Modelling spatial recall, mental imagery and neglect",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2000/hash/65fc52ed8f88c81323a418ca94cec2ed-Abstract.html",
+      "quote": "content=\"Modelling Spatial Recall, Mental Imagery and Neglect\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S Becker and N Burgess",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2000/hash/65fc52ed8f88c81323a418ca94cec2ed-Abstract.html",
+      "quote": "content=\"Becker, Suzanna\""
+     },
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2000/hash/65fc52ed8f88c81323a418ca94cec2ed-Abstract.html",
+      "quote": "content=\"Burgess, Neil\""
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2000/file/65fc52ed8f88c81323a418ca94cec2ed-Bibtex.bib",
+      "quote": "@inproceedings{NIPS2000_65fc52ed,"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2000/file/65fc52ed8f88c81323a418ca94cec2ed-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2000/hash/65fc52ed8f88c81323a418ca94cec2ed-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"13\">"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "T Leen and T Dietterich and V Tresp",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2000/file/65fc52ed8f88c81323a418ca94cec2ed-Bibtex.bib",
+      "quote": "editor = {T. Leen and T. Dietterich and V. Tresp},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2000/file/65fc52ed8f88c81323a418ca94cec2ed-Bibtex.bib",
+      "quote": "publisher = {MIT Press},"
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "2001"
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "96--102"
+   }
+  },
+  "notes": "Should be @inproceedings like RaoHowa08 (Booktitle, Editor, Publisher {MIT} Press) with Volume 13. Year: the NeurIPS site dates it 2000 (conference year, citation_publication_date 2000); the printed volume 13 appeared in 2001, and house NIPS entries use the printed-volume year (SkagEtal93 = vol 5, GrifStey03 = vol 15), so 2001 is consistent but no fetched source states 2001; changing to 2000 would rename the key to BeckBurg00. Pages 96-102: the site's BibTeX has empty pages and the paper PDF carries no page numbers, so unverified. Editors: the site gives single initials (T. Leen, T. Dietterich); fuller forms (T K Leen, T G Dietterich) need another source."
+ }
+]

@@ -1,0 +1,1760 @@
+[
+ {
+  "key": "LiZhou18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1145/3241539.3241578",
+   "quote": "\"title\":[\"Battery-Free Eye Tracker on Glasses\"]",
+   "why": "Crossref record for the MobiCom '18 paper by Tianxing Li and Xia Zhou, pages 67-82, 2018."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Battery-free eye tracker on glasses",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3241539.3241578",
+      "quote": "\"title\":[\"Battery-Free Eye Tracker on Glasses\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T Li and X Zhou",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3241539.3241578",
+      "quote": "\"given\":\"Tianxing\",\"family\":\"Li\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3241539.3241578",
+      "quote": "\"given\":\"Xia\",\"family\":\"Zhou\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3241539.3241578",
+      "quote": "\"published-print\":{\"date-parts\":[[2018,10,15]]}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "67--82",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3241539.3241578",
+      "quote": "\"page\":\"67-82\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the 24\\textsuperscript{th} Annual International Conference on Mobile Computing and Networking",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3241539.3241578",
+      "quote": "\"container-title\":[\"Proceedings of the 24th Annual International Conference on Mobile Computing and Networking\"]"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1145/3241539.3241578",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3241539.3241578",
+      "quote": "\"DOI\":\"10.1145\\/3241539.3241578\""
+     }
+    ]
+   }
+  },
+  "notes": "Booktitle: drop the lowercase '(mobicom)' suffix (Crossref container-title has no acronym; if kept it should be '({MobiCom})'). Add DOI. Optional: publisher ACM, address New York, {NY} (Crossref \"publisher\":\"ACM\", \"publisher-location\":\"New York, NY, USA\")."
+ },
+ {
+  "key": "ShafGood08",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://web.archive.org/web/20100613205949/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/pdfs/p1632.pdf",
+   "quote": "Statistical Sampling Assumptions for Learning in Pedagogical Situations",
+   "why": "The CogSci 2008 proceedings PDF (p1632, archived csjarchive.cogsci.rpi.edu, the proceedings site of record) by Patrick Shafto and Noah Goodman, pages 1632-1637."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Teaching games: statistical sampling assumptions for learning in pedagogical situations",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100613205949/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/pdfs/p1632.pdf",
+      "quote": "Teaching Games:"
+     },
+     {
+      "url": "http://web.archive.org/web/20100613205949/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/pdfs/p1632.pdf",
+      "quote": "Statistical Sampling Assumptions for Learning in Pedagogical Situations"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "P Shafto and N Goodman",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100613205949/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/pdfs/p1632.pdf",
+      "quote": "Patrick Shafto"
+     },
+     {
+      "url": "http://web.archive.org/web/20100613205949/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/pdfs/p1632.pdf",
+      "quote": "Noah Goodman"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100611013502/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/forms/introduction.htm",
+      "quote": "CogSci 2008 is the 30th Annual Conference of the Cognitive Science Society"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1632--1637",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100613205949/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/pdfs/p1632.pdf",
+      "quote": "1632"
+     },
+     {
+      "url": "http://web.archive.org/web/20100613205949/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/pdfs/p1632.pdf",
+      "quote": "1637"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Proceedings of the 30\\textsuperscript{th} Annual Conference of the Cognitive Science Society",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100611013502/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/forms/introduction.htm",
+      "quote": "Proceedings of the 30th Annual Conference of the Cognitive Science Society (pp. 64-70)"
+     }
+    ]
+   },
+   "organization": {
+    "status": "corrected",
+    "value": "",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100611013502/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/forms/introduction.htm",
+      "quote": "Austin, TX: Cognitive Science Society"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Cognitive Science Society",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100611013502/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/forms/introduction.htm",
+      "quote": "Austin, TX: Cognitive Science Society"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Austin, {TX}",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100611013502/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/forms/introduction.htm",
+      "quote": "Austin, TX: Cognitive Science Society"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "B C Love and K McRae and V M Sloutsky",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100611013502/http://csjarchive.cogsci.rpi.edu/Proceedings/2008/forms/introduction.htm",
+      "quote": "In B. C. Love, K. McRae, & V. M. Sloutsky (Eds.), Proceedings of the 30th Annual Conference"
+     }
+    ]
+   }
+  },
+  "notes": "Replace the malformed organization 'Cognitive Science Society Austin, TX' with publisher + address, per the proceedings' own 'How to Cite' instructions (the pp. 64-70 in that quote is the template example, not this paper). Editors are optional additions. No DOI exists. Author byline prints 'Noah Goodman' (no middle initial)."
+ },
+ {
+  "key": "LiEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+   "quote": "\"title\":[\"Self-Powered Gesture Recognition with Ambient Light\"]",
+   "why": "Crossref record of the UIST '18 paper, same five authors, pages 595-608, 2018."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Self-powered gesture recognition with ambient light",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+      "quote": "\"title\":[\"Self-Powered Gesture Recognition with Ambient Light\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "Y Li and T Li and R A Patel and X-D Yang and X Zhou",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+      "quote": "\"given\":\"Yichen\",\"family\":\"Li\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+      "quote": "\"given\":\"Tianxing\",\"family\":\"Li\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+      "quote": "\"given\":\"Ruchir A.\",\"family\":\"Patel\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+      "quote": "\"given\":\"Xing-Dong\",\"family\":\"Yang\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+      "quote": "\"given\":\"Xia\",\"family\":\"Zhou\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+      "quote": "\"published-print\":{\"date-parts\":[[2018,10,11]]}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "595--608",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+      "quote": "\"page\":\"595-608\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the 31\\textsuperscript{st} Annual {ACM} Symposium on User Interface Software and Technology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+      "quote": "\"container-title\":[\"Proceedings of the 31st Annual ACM Symposium on User Interface Software and Technology\"]"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1145/3242587.3242635",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3242587.3242635",
+      "quote": "\"DOI\":\"10.1145\\/3242587.3242635\""
+     }
+    ]
+   }
+  },
+  "notes": "Author: add middle initial A for Ruchir A. Patel. Booktitle: drop lowercase '(uist)' (or write '({UIST})'). Add DOI."
+ },
+ {
+  "key": "JianLi16",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://proceedings.mlr.press/v48/jiang16.html",
+   "quote": "PMLR 48:652-661, 2016.",
+   "why": "PMLR proceedings page (site of record) with the same title, authors, year and pages."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Doubly robust off-policy value evaluation for reinforcement learning",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v48/jiang16.html",
+      "quote": "Doubly Robust Off-policy Value Evaluation for Reinforcement Learning"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "N Jiang and L Li",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v48/jiang16.html",
+      "quote": "Nan Jiang"
+     },
+     {
+      "url": "https://proceedings.mlr.press/v48/jiang16.html",
+      "quote": "Lihong Li"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v48/jiang16.html",
+      "quote": "Proceedings of The 33rd International Conference on Machine Learning"
+     },
+     {
+      "url": "https://proceedings.mlr.press/v48/jiang16.html",
+      "quote": "PMLR 48:652-661, 2016."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "652--661",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v48/jiang16.html",
+      "quote": "Proceedings of The 33rd International Conference on Machine Learning"
+     },
+     {
+      "url": "https://proceedings.mlr.press/v48/jiang16.html",
+      "quote": "PMLR 48:652-661, 2016."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Proceedings of the 33\\textsuperscript{rd} International Conference on Machine Learning",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v48/jiang16.html",
+      "quote": "Proceedings of The 33rd International Conference on Machine Learning"
+     },
+     {
+      "url": "https://proceedings.mlr.press/v48/jiang16.html",
+      "quote": "PMLR 48:652-661, 2016."
+     }
+    ]
+   },
+   "organization": {
+    "status": "confirmed",
+    "value": "PMLR",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v48/jiang16.html",
+      "quote": "publisher =    {PMLR}"
+     }
+    ]
+   }
+  },
+  "notes": "No DOI (PMLR does not issue DOIs). House keeps 'Organization = {PMLR}' (3 entries); PMLR's own BibTeX uses publisher = {PMLR}. Optional: volume/series (Proceedings of Machine Learning Research, volume given in the quote)."
+ },
+ {
+  "key": "AchiEtal17",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://proceedings.mlr.press/v70/achiam17a.html",
+   "quote": "PMLR 70:22-31, 2017.",
+   "why": "PMLR proceedings page (site of record) with the same title, authors, year and pages."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Constrained policy optimization",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v70/achiam17a.html",
+      "quote": "Constrained Policy Optimization"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Achiam and D Held and A Tamar and P Abbeel",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v70/achiam17a.html",
+      "quote": "Joshua Achiam and David Held and Aviv Tamar and Pieter Abbeel"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v70/achiam17a.html",
+      "quote": "Proceedings of the 34th International Conference on Machine Learning"
+     },
+     {
+      "url": "https://proceedings.mlr.press/v70/achiam17a.html",
+      "quote": "PMLR 70:22-31, 2017."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "22--31",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v70/achiam17a.html",
+      "quote": "Proceedings of the 34th International Conference on Machine Learning"
+     },
+     {
+      "url": "https://proceedings.mlr.press/v70/achiam17a.html",
+      "quote": "PMLR 70:22-31, 2017."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Proceedings of the 34\\textsuperscript{th} International Conference on Machine Learning",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v70/achiam17a.html",
+      "quote": "Proceedings of the 34th International Conference on Machine Learning"
+     },
+     {
+      "url": "https://proceedings.mlr.press/v70/achiam17a.html",
+      "quote": "PMLR 70:22-31, 2017."
+     }
+    ]
+   },
+   "organization": {
+    "status": "confirmed",
+    "value": "PMLR",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v70/achiam17a.html",
+      "quote": "publisher =    {PMLR}"
+     }
+    ]
+   }
+  },
+  "notes": "No DOI (PMLR does not issue DOIs). House keeps 'Organization = {PMLR}' (3 entries); PMLR's own BibTeX uses publisher = {PMLR}. Optional: volume/series (Proceedings of Machine Learning Research, volume given in the quote)."
+ },
+ {
+  "key": "FaraEtal18",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://proceedings.mlr.press/v80/farajtabar18a.html",
+   "quote": "PMLR 80:1447-1456, 2018.",
+   "why": "PMLR proceedings page (site of record) with the same title, authors, year and pages."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "More robust doubly robust off-policy evaluation",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v80/farajtabar18a.html",
+      "quote": "More Robust Doubly Robust Off-policy Evaluation"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Farajtabar and Y Chow and M Ghavamzadeh",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v80/farajtabar18a.html",
+      "quote": "Farajtabar, Mehrdad and Chow, Yinlam and Ghavamzadeh, Mohammad"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v80/farajtabar18a.html",
+      "quote": "Proceedings of the 35th International Conference on Machine Learning"
+     },
+     {
+      "url": "https://proceedings.mlr.press/v80/farajtabar18a.html",
+      "quote": "PMLR 80:1447-1456, 2018."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1447--1456",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v80/farajtabar18a.html",
+      "quote": "Proceedings of the 35th International Conference on Machine Learning"
+     },
+     {
+      "url": "https://proceedings.mlr.press/v80/farajtabar18a.html",
+      "quote": "PMLR 80:1447-1456, 2018."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Proceedings of the 35\\textsuperscript{th} International Conference on Machine Learning",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v80/farajtabar18a.html",
+      "quote": "Proceedings of the 35th International Conference on Machine Learning"
+     },
+     {
+      "url": "https://proceedings.mlr.press/v80/farajtabar18a.html",
+      "quote": "PMLR 80:1447-1456, 2018."
+     }
+    ]
+   },
+   "organization": {
+    "status": "confirmed",
+    "value": "PMLR",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v80/farajtabar18a.html",
+      "quote": "publisher =    {PMLR}"
+     }
+    ]
+   }
+  },
+  "notes": "No DOI (PMLR does not issue DOIs). House keeps 'Organization = {PMLR}' (3 entries); PMLR's own BibTeX uses publisher = {PMLR}. Optional: volume/series (Proceedings of Machine Learning Research, volume given in the quote)."
+ },
+ {
+  "key": "TianEtal17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+   "quote": "\"subtitle\":[\"Augmenting Inertial Tracking with Light\"]",
+   "why": "Crossref record of the VLCS '17 workshop paper 'Position: Augmenting Inertial Tracking with Light', same eight authors, pages 25-26, 2017 (Crossref splits the title into title 'Position' + subtitle)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Position: augmenting inertial tracking with light",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"title\":[\"Position\"]"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"subtitle\":[\"Augmenting Inertial Tracking with Light\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Z Tian and Y-L Wei and X Xiong and W-N Chang and H-M Tsai and K C-J Lin and C Zheng and X Zhou",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"given\":\"Zhao\",\"family\":\"Tian\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"given\":\"Yu-Lin\",\"family\":\"Wei\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"given\":\"Xi\",\"family\":\"Xiong\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"given\":\"Wei-Nin\",\"family\":\"Chang\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"given\":\"Hsin-Mu\",\"family\":\"Tsai\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"given\":\"Kate Ching-Ju\",\"family\":\"Lin\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"given\":\"Changxi\",\"family\":\"Zheng\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"given\":\"Xia\",\"family\":\"Zhou\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"published-print\":{\"date-parts\":[[2017,10,16]]}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "25--26",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"page\":\"25-26\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the 4\\textsuperscript{th} {ACM} Workshop on Visible Light Communication Systems",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"container-title\":[\"Proceedings of the 4th ACM Workshop on Visible Light Communication Systems\"]"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1145/3129881.3129892",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3129881.3129892",
+      "quote": "\"DOI\":\"10.1145\\/3129881.3129892\""
+     }
+    ]
+   }
+  },
+  "notes": "Booktitle: drop lowercase '(vlcs)' (or '({VLCS})'). Add DOI. Workshop was co-located with MobiCom '17."
+ },
+ {
+  "key": "McKi10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.scipy.org/articles/Majora-92bf1922-00a.pdf",
+   "quote": "PROC. OF THE 9th PYTHON IN SCIENCE CONF. (SCIPY 2010)",
+   "why": "SciPy 2010 proceedings article (site of record) by Wes McKinney, pages 56-61, DOI 10.25080/Majora-92bf1922-00a."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Data structures for statistical computing in {Python}",
+    "evidence": [
+     {
+      "url": "https://proceedings.scipy.org/articles/Majora-92bf1922-00a",
+      "quote": "Data Structures for Statistical Computing in Python"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "W McKinney",
+    "evidence": [
+     {
+      "url": "https://proceedings.scipy.org/articles/Majora-92bf1922-00a",
+      "quote": "Wes McKinney"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://proceedings.scipy.org/articles/Majora-92bf1922-00a",
+      "quote": "2010/6/28"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "56--61",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.25080/majora-92bf1922-00a",
+      "quote": "\"page\":\"56-61\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Proceedings of the 9\\textsuperscript{th} {Python} in Science Conference",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.25080/majora-92bf1922-00a",
+      "quote": "\"Proceedings of the 9th Python in Science Conference\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "S {van der Walt} and J Millman",
+    "evidence": [
+     {
+      "url": "https://proceedings.scipy.org/articles/proceedings-2010.pdf",
+      "quote": "Edited by Stéfan van der Walt and Jarrod Millman."
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.25080/majora-92bf1922-00a",
+    "evidence": [
+     {
+      "url": "https://proceedings.scipy.org/articles/Majora-92bf1922-00a",
+      "quote": "10.25080/Majora-92bf1922-00a"
+     }
+    ]
+   }
+  },
+  "notes": "Only format corrections: author and editors to house initials form (were full names 'Wes McKinney', 'St\\'efan van der Walt and Jarrod Millman'); add DOI."
+ },
+ {
+  "key": "IyyeEtal15",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://aclanthology.org/P15-1162/",
+   "quote": "Mohit Iyyer, Varun Manjunatha, Jordan Boyd-Graber, and Hal Daumé III. 2015.",
+   "why": "ACL Anthology record P15-1162 (ACL-IJCNLP 2015), same title and four authors."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/P15-1162/",
+      "quote": "@inproceedings{iyyer-etal-2015-deep,"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Deep unordered composition rivals syntactic methods for text classification",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/P15-1162/",
+      "quote": "Deep Unordered Composition Rivals Syntactic Methods for Text Classification"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Iyyer and V Manjunatha and J Boyd-Graber and H {Daum\\'{e} III}",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/P15-1162/",
+      "quote": "Mohit Iyyer, Varun Manjunatha, Jordan Boyd-Graber, and Hal Daumé III. 2015."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2015",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/P15-1162/",
+      "quote": "Mohit Iyyer, Varun Manjunatha, Jordan Boyd-Graber, and Hal Daumé III. 2015."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the 53\\textsuperscript{rd} Annual Meeting of the Association for Computational Linguistics and the 7\\textsuperscript{th} International Joint Conference on Natural Language Processing",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/P15-1162/",
+      "quote": "In Proceedings of the 53rd Annual Meeting of the Association for Computational Linguistics and the 7th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1681--1691",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/P15-1162/",
+      "quote": "pages 1681–1691, Beijing, China."
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3115/v1/p15-1162",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/P15-1162/",
+      "quote": "doi = \"10.3115/v1/P15-1162\""
+     }
+    ]
+   }
+  },
+  "notes": "@conference -> @inproceedings. Booktitle drops the '(Volume 1: Long Papers)' suffix; keep it if house prefers the full Anthology form. Optional: publisher Association for Computational Linguistics, address Beijing, China."
+ },
+ {
+  "key": "ScheEtal02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1145/564376.564421",
+   "quote": "\"title\":[\"Methods and metrics for cold-start recommendations\"]",
+   "why": "Crossref record of the SIGIR 2002 paper, same four authors, pages 253-260."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"type\":\"proceedings-article\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Methods and metrics for cold-start recommendations",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"title\":[\"Methods and metrics for cold-start recommendations\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A I Schein and A Popescul and L H Ungar and D M Pennock",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"given\":\"Andrew I.\",\"family\":\"Schein\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"given\":\"Alexandrin\",\"family\":\"Popescul\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"given\":\"Lyle H.\",\"family\":\"Ungar\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"given\":\"David M.\",\"family\":\"Pennock\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"published-print\":{\"date-parts\":[[2002,8,11]]}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "253--260",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"page\":\"253-260\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the 25\\textsuperscript{th} Annual International {ACM} {SIGIR} Conference on Research and Development in Information Retrieval",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"container-title\":[\"Proceedings of the 25th annual international ACM SIGIR conference on Research and development in information retrieval\"]"
+     }
+    ]
+   },
+   "organization": {
+    "status": "corrected",
+    "value": "",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"publisher-location\":\"New York, NY, USA\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "ACM",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"publisher\":\"ACM\""
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"publisher-location\":\"New York, NY, USA\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1145/564376.564421",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/564376.564421",
+      "quote": "\"DOI\":\"10.1145\\/564376.564421\""
+     }
+    ]
+   }
+  },
+  "notes": "@conference -> @inproceedings; booktitle to the SIGIR '02 proceedings title (title case); replace organization 'ACM New York, NY, USA' with publisher/address (house has 'Association for Computing Machinery' twice as publisher; either form is fine). Add DOI."
+ },
+ {
+  "key": "BranEtal04",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "http://www.cogneurosociety.org/wp-content/uploads/2016/06/CNS2004_Abstracts.xls",
+   "quote": "Proactive interference resolution during nonverbal working memory: Evidence for domain-general processing in LIFG.",
+   "why": "The CNS 2004 poster list (society's own archive) has this exact title, poster E51, first author Melissa Brandon; co-authors are not listed there."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Proactive interference resolution during nonverbal working memory: evidence for domain-general processing in {LIFG}",
+    "evidence": [
+     {
+      "url": "http://www.cogneurosociety.org/wp-content/uploads/2016/06/CNS2004_Abstracts.xls",
+      "quote": "Proactive interference resolution during nonverbal working memory: Evidence for domain-general processing in LIFG."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://www.cogneurosociety.org/general-information-2024/previous-meetings/",
+      "quote": "CNS 2004 Abstracts (Excel)"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "M Brandon and E A Hirshorn and A P Jha and S Fabian and S L Thompson-Schill",
+    "evidence": []
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "",
+    "evidence": [
+     {
+      "url": "https://www.cogneurosociety.org/general-information-2024/previous-meetings/",
+      "quote": "CNS 2004 Abstracts (Excel)"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "not_found",
+    "value": "Proceedings of the Cognitive Neuroscience Society",
+    "evidence": []
+   }
+  },
+  "notes": "Conference abstract (CNS 2004 annual meeting, San Francisco, poster session E, poster 51). The society's CNS2004_Abstracts.xls lists only first name 'Melissa', last name 'Brandon' and the title, so the four co-authors (Hirshorn, Jha, Fabian, Thompson-Schill) cannot be confirmed from a source of record. The title after the colon should be lowercase ('evidence'), per the colon rule. The entry carries both journal and booktitle with the same value; drop journal. No DOI. Booktitle is a house label; CNS abstracts were not published as proceedings (possibly as a JOCN meeting supplement, not found)."
+ },
+ {
+  "key": "AltmSchu02",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://web.archive.org/web/20100610103949/http://csjarchive.cogsci.rpi.edu/Proceedings/2002/CogSci02.pdf",
+   "quote": "Integrating Decay and Interference: A New Look at an Old Interaction",
+   "why": "Paper in the CogSci 2002 proceedings volume (archived csjarchive.cogsci.rpi.edu full volume) by Erik M. Altmann and Christian D. Schunn, starting p. 65."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Integrating decay and interference: a new look at an old interaction",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610103949/http://csjarchive.cogsci.rpi.edu/Proceedings/2002/CogSci02.pdf",
+      "quote": "Integrating Decay and Interference: A New Look at an Old Interaction"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E M Altmann and C D Schunn",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610103949/http://csjarchive.cogsci.rpi.edu/Proceedings/2002/CogSci02.pdf",
+      "quote": "Erik M. Altmann (ema@msu.edu)"
+     },
+     {
+      "url": "http://web.archive.org/web/20100610103949/http://csjarchive.cogsci.rpi.edu/Proceedings/2002/CogSci02.pdf",
+      "quote": "Christian D. Schunn (schunn@pitt.edu)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610103949/http://csjarchive.cogsci.rpi.edu/Proceedings/2002/CogSci02.pdf",
+      "quote": "August 7-10, 2002"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the 24\\textsuperscript{th} Annual Conference of the Cognitive Science Society",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610103949/http://csjarchive.cogsci.rpi.edu/Proceedings/2002/CogSci02.pdf",
+      "quote": "Proceedings of the Twenty-Fourth Annual Conference of the Cognitive Science Society"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "65--70",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9781315782379-49",
+      "quote": "\"page\":\"65-70\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610103949/http://csjarchive.cogsci.rpi.edu/Proceedings/2002/CogSci02.pdf",
+      "quote": "Lawrence Erlbaum Associates, Inc."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Mahwah, {NJ}",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610103949/http://csjarchive.cogsci.rpi.edu/Proceedings/2002/CogSci02.pdf",
+      "quote": "Mahwah, New Jersey 07430"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "W D Gray and C Schunn",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610103949/http://csjarchive.cogsci.rpi.edu/Proceedings/2002/CogSci02.pdf",
+      "quote": "Wayne D. Gray and Christian Schunn"
+     }
+    ]
+   }
+  },
+  "notes": "Pages 65-70: TOC of the 2002 volume lists the paper at p. 65 and the next paper at p. 71; the Routledge 2019 reissue of the same proceedings (DOI 10.4324/9781315782379-49, book chapter) gives 65-70. That DOI belongs to the 2019 reissue, not the 2002 original, so it is not proposed as the entry's DOI (reviewer may choose to add it). Editors are optional additions."
+ },
+ {
+  "key": "MozeEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+   "quote": "Using Testing to Enhance Learning: A Comparison of Two Hypotheses",
+   "why": "Paper in the CogSci 2004 proceedings volume (archived csjarchive full volume) by Michael C. Mozer, Michael Howe and Harold Pashler, pp. 975-980."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Using testing to enhance learning: a comparison of two hypotheses",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "Using Testing to Enhance Learning: A Comparison of Two Hypotheses"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M C Mozer and M Howe and H Pashler",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "Michael C. Mozer and Michael Howe, Department of Computer Science &"
+     },
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "Harold Pashler, Department of Psychology, University of California at San Diego"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "August 4-7, 2004"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the 26\\textsuperscript{th} Annual Conference of the Cognitive Science Society",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "Proceedings of the Twenty-Sixth Annual Conference of the Cognitive Science Society"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "975--980",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "Using Testing to Enhance Learning: A Comparison of Two Hypotheses....................................975"
+     },
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "Control of Response Initiation: Mechanisms of Adaptation to Recent Experience .....................981"
+     },
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "980"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "Lawrence Erlbaum Associates, Inc."
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Mahwah, {NJ}",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "Mahwah, New Jersey 07430"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "K Forbus and D Gentner and T Regier",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20100610105149/http://csjarchive.cogsci.rpi.edu/Proceedings/2004/CogSci04.pdf",
+      "quote": "Kenneth Forbus, Dedre Gentner and Terry Regier"
+     }
+    ]
+   }
+  },
+  "notes": "TITLE IS WRONG in cdl.bib: the paper is 'Using testing to enhance learning: a comparison of two hypotheses' (no 'different'). Author: add middle initial C (Michael C. Mozer). Pages 975-980 (TOC: this paper p. 975, the next paper 'Control of Response Initiation' p. 981; the paper's own page footers run 975-980). The copyright page of the volume reads 'Copyright c 2005' but the conference and volume are the 2004 meeting; year 2004 kept. PsycEXTRA holds a record with DOI 10.1037/e537052012-223 (type dataset, 2004) for the same paper; it is a grey-literature index record, not the published version, so not proposed as doi."
+ },
+ {
+  "key": "Plau95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://escholarship.org/content/qt9g64m08p/qt9g64m08p.pdf",
+   "quote": "Semantic and Associative Priming in a Distributed Attractor Network",
+   "why": "eScholarship copy of the CogSci 1995 (volume 17) proceedings paper by David C. Plaut, pages 37-42."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Semantic and associative priming in a distributed attractor network",
+    "evidence": [
+     {
+      "url": "https://escholarship.org/content/qt9g64m08p/qt9g64m08p.pdf",
+      "quote": "Semantic and Associative Priming in a Distributed Attractor Network"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D C Plaut",
+    "evidence": [
+     {
+      "url": "https://escholarship.org/content/qt9g64m08p/qt9g64m08p.pdf",
+      "quote": "Plaut, David C."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://escholarship.org/content/qt9g64m08p/qt9g64m08p.pdf",
+      "quote": "Publication Date 1995"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the Annual Meeting of the Cognitive Science Society",
+    "evidence": [
+     {
+      "url": "https://escholarship.org/content/qt9g64m08p/qt9g64m08p.pdf",
+      "quote": "Proceedings of the Annual Meeting of the Cognitive Science Society, 17(0)"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://escholarship.org/content/qt9g64m08p/qt9g64m08p.pdf",
+      "quote": "Proceedings of the Annual Meeting of the Cognitive Science Society, 17(0)"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "37--42",
+    "evidence": [
+     {
+      "url": "https://escholarship.org/content/qt9g64m08p/qt9g64m08p.pdf",
+      "quote": "37"
+     },
+     {
+      "url": "https://escholarship.org/content/qt9g64m08p/qt9g64m08p.pdf",
+      "quote": "42"
+     }
+    ]
+   }
+  },
+  "notes": "Pages 37-42 come from the page numbers printed on the scanned proceedings pages in the eScholarship PDF (first page 37, last 42). eScholarship names the series 'Proceedings of the Annual Meeting of the Cognitive Science Society', volume 17 (= 17th Annual Conference, 1995). If the house prefers the ordinal form, 'Proceedings of the 17\\textsuperscript{th} Annual Conference of the Cognitive Science Society' is equivalent but I did not find the 1995 title page to quote. Publisher (Erlbaum, Hillsdale/Mahwah) not verified. No DOI. Source access: escholarship.org returns HTTP 403 to non-browser user agents (including the validator's); the PDF opens in a browser, and the quotes were checked against it."
+ },
+ {
+  "key": "ChenEtal22",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://aclanthology.org/2022.naacl-main.60/",
+   "quote": "Angelica Chen, Vicky Zayats, Daniel Walker, and Dirk Padfield. 2022.",
+   "why": "ACL Anthology record 2022.naacl-main.60, same title, authors, pages and DOI."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Teaching {BERT} to wait: balancing accuracy and latency for streaming disfluency detection",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "Teaching BERT to Wait: Balancing Accuracy and Latency for Streaming Disfluency Detection"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Chen and V Zayats and D Walker and D Padfield",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "Angelica Chen, Vicky Zayats, Daniel Walker, and Dirk Padfield. 2022."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2022",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "Angelica Chen, Vicky Zayats, Daniel Walker, and Dirk Padfield. 2022."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "827--838",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "pages 827–838, Seattle, United States."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Proceedings of the Conference of the North {American} Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "In Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "M Carpuat and M-C {de Marneffe} and I V {Meza Ruiz}",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "Carpuat, Marine"
+     },
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "de Marneffe, Marie-Catherine"
+     },
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "Meza Ruiz, Ivan Vladimir"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Association for Computational Linguistics",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "publisher = \"Association for Computational Linguistics\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Seattle, United States",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "pages 827–838, Seattle, United States."
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.18653/v1/2022.naacl-main.60",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2022.naacl-main.60/",
+      "quote": "doi = \"10.18653/v1/2022.naacl-main.60\""
+     }
+    ]
+   }
+  },
+  "notes": "Only the editor list changes: Marie-Catherine is hyphenated (M-C, not M C) and compound surnames are braced per house particle style. Address could be written 'Seattle, {WA}' per house US form; source prints 'Seattle, United States'."
+ },
+ {
+  "key": "HewiMann19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://aclanthology.org/N19-1419/",
+   "quote": "John Hewitt and Christopher D. Manning. 2019.",
+   "why": "ACL Anthology record N19-1419 (NAACL-HLT 2019), same title, authors and pages."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N19-1419/",
+      "quote": "@inproceedings{hewitt-manning-2019-structural,"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A structural probe for finding syntax in word representations",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N19-1419/",
+      "quote": "A Structural Probe for Finding Syntax in Word Representations"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Hewitt and C D Manning",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N19-1419/",
+      "quote": "John Hewitt and Christopher D. Manning. 2019."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N19-1419/",
+      "quote": "John Hewitt and Christopher D. Manning. 2019."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "4129--4138",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N19-1419/",
+      "quote": "pages 4129–4138, Minneapolis, Minnesota."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Proceedings of the Conference of the North {American} Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N19-1419/",
+      "quote": "In Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.18653/v1/n19-1419",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/N19-1419/",
+      "quote": "doi = \"10.18653/v1/N19-1419\""
+     }
+    ]
+   }
+  },
+  "notes": "@conference -> @inproceedings; add DOI. Booktitle omits year and the ', Volume 1 (Long and Short Papers)' suffix, matching the house NAACL form."
+ },
+ {
+  "key": "HeusMann18",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://web.archive.org/web/20210512214331/https://ccneuro.org/2018/Papers/ViewPapers.asp?PaperNum=1267",
+   "quote": "Paper Title: Capturing the geometric structure of episodic memories for naturalistic experiences",
+   "why": "CCN 2018 paper-detail page (archived ccneuro.org, the conference site of record): paper PS-2B.16 by Andrew Heusser and Jeremy Manning, DOI 10.32470/CCN.2018.1267-0."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Capturing the geometric structure of episodic memories for naturalistic experiences",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20210512214331/https://ccneuro.org/2018/Papers/ViewPapers.asp?PaperNum=1267",
+      "quote": "Paper Title: Capturing the geometric structure of episodic memories for naturalistic experiences"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A C Heusser and J R Manning",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20240430060656/https://ccneuro.org/2018/proceedings/1267.pdf",
+      "quote": "Andrew C. Heusser (andrew.c.heusser@dartmouth.edu)"
+     },
+     {
+      "url": "http://web.archive.org/web/20240430060656/https://ccneuro.org/2018/proceedings/1267.pdf",
+      "quote": "Jeremy R. Manning (jeremy.r.manning@dartmouth.edu)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20210512214331/https://ccneuro.org/2018/Papers/ViewPapers.asp?PaperNum=1267",
+      "quote": "Publication: 2018 Conference on Cognitive Computational Neuroscience, 5-8 September 2018"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "PS-2B.16",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20210512214331/https://ccneuro.org/2018/Papers/ViewPapers.asp?PaperNum=1267",
+      "quote": "Paper: PS-2B.16 Session: Poster Session 2B"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Conference on Cognitive Computational Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.32470/ccn.2018.1267-0",
+      "quote": "\"container-title\":[\"2018 Conference on Cognitive Computational Neuroscience\"]"
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.32470/ccn.2018.1267-0",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20210512214331/https://ccneuro.org/2018/Papers/ViewPapers.asp?PaperNum=1267",
+      "quote": "DOI: https://doi.org/10.32470/CCN.2018.1267-0"
+     }
+    ]
+   }
+  },
+  "notes": "All cited values are right except the booktitle wording: the venue is '2018 Conference on Cognitive Computational Neuroscience' (year dropped per house rule); the cited 'Proceedings of the ...' prefix is not printed by any source. If the house prefers the 'Proceedings of the' prefix, the entry can instead be approved as verified. 'PS-2B.16' is the poster/paper ID, not page numbers. The DOI now resolves to a dead 2026.ccneuro.org URL; archived copies used. Crossref byline omits middle initials; the paper PDF prints them."
+ },
+ {
+  "key": "Etha19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://aclanthology.org/D19-1006/",
+   "quote": "Kawin Ethayarajh. 2019. How Contextual are Contextualized Word Representations?",
+   "why": "ACL Anthology record D19-1006 (EMNLP-IJCNLP 2019), same title, author, pages."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D19-1006/",
+      "quote": "@inproceedings{ethayarajh-2019-contextual,"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "How contextual are contextualized word representations? {C}omparing the geometry of {BERT}, {ELMo}, and {GPT-2} embeddings",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D19-1006/",
+      "quote": "How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K Ethayarajh",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D19-1006/",
+      "quote": "Kawin Ethayarajh. 2019."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D19-1006/",
+      "quote": "Kawin Ethayarajh. 2019."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "55--65",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D19-1006/",
+      "quote": "pages 55–65, Hong Kong, China."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the Conference on Empirical Methods in Natural Language Processing and the 9\\textsuperscript{th} International Joint Conference on Natural Language Processing",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D19-1006/",
+      "quote": "In Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.18653/v1/d19-1006",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D19-1006/",
+      "quote": "doi = \"10.18653/v1/D19-1006\""
+     }
+    ]
+   }
+  },
+  "notes": "@conference -> @inproceedings; booktitle gains 'and the 9th International Joint Conference on Natural Language Processing' (joint EMNLP-IJCNLP 2019); add DOI."
+ },
+ {
+  "key": "PennEtal14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://aclanthology.org/D14-1162/",
+   "quote": "Jeffrey Pennington, Richard Socher, and Christopher Manning. 2014.",
+   "why": "ACL Anthology record D14-1162 (EMNLP 2014), same title and three authors."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D14-1162/",
+      "quote": "@inproceedings{pennington-etal-2014-glove,"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{GloVe}: global vectors for word representation",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D14-1162/",
+      "quote": "GloVe: Global Vectors for Word Representation"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Pennington and R Socher and C D Manning",
+    "evidence": [
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/PennEtal14.pdf#page=1",
+      "quote": "Jeffrey Pennington, Richard Socher, Christopher D. Manning"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2014",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D14-1162/",
+      "quote": "Jeffrey Pennington, Richard Socher, and Christopher Manning. 2014."
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1532--1543",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D14-1162/",
+      "quote": "pages 1532–1543, Doha, Qatar."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Proceedings of the Conference on Empirical Methods in Natural Language Processing",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D14-1162/",
+      "quote": "In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3115/v1/d14-1162",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/D14-1162/",
+      "quote": "doi = \"10.3115/v1/D14-1162\""
+     }
+    ]
+   }
+  },
+  "notes": "@conference -> @inproceedings; add pages and DOI. Anthology/Crossref print 'Christopher Manning' without the D; the paper's own byline (local PDF p. 1) prints 'Christopher D. Manning', so the initial is kept."
+ },
+ {
+  "key": "Kipp01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.isca-archive.org/eurospeech_2001/kipp01_eurospeech.html",
+   "quote": "Kipp, M. (2001) ANVIL - a generic annotation tool for multimodal dialogue.",
+   "why": "ISCA Archive record (site of record) of Kipp's Eurospeech 2001 paper, pp. 1367-1370, DOI 10.21437/Eurospeech.2001-354."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "{ANVIL} -- a generic annotation tool for multimodal dialogue",
+    "evidence": [
+     {
+      "url": "https://www.isca-archive.org/eurospeech_2001/kipp01_eurospeech.html",
+      "quote": "ANVIL - a generic annotation tool for multimodal dialogue"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Kipp",
+    "evidence": [
+     {
+      "url": "https://www.isca-archive.org/eurospeech_2001/kipp01_eurospeech.html",
+      "quote": "author = {Michael Kipp}"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://www.isca-archive.org/eurospeech_2001/kipp01_eurospeech.html",
+      "quote": "Kipp, M. (2001) ANVIL - a generic annotation tool for multimodal dialogue."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "7\\textsuperscript{th} European Conference on Speech Communication and Technology ({Eurospeech})",
+    "evidence": [
+     {
+      "url": "https://www.isca-archive.org/eurospeech_2001/kipp01_eurospeech.html",
+      "quote": "booktitle = {{7th European Conference on Speech Communication and Technology (Eurospeech 2001)}}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1367--1370",
+    "evidence": [
+     {
+      "url": "https://www.isca-archive.org/eurospeech_2001/kipp01_eurospeech.html",
+      "quote": "pages = {1367--1370}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.21437/eurospeech.2001-354",
+    "evidence": [
+     {
+      "url": "https://www.isca-archive.org/eurospeech_2001/kipp01_eurospeech.html",
+      "quote": "doi = {10.21437/Eurospeech.2001-354}"
+     }
+    ]
+   }
+  },
+  "notes": "Title: 'Anvil-a' is a garbled rendering of 'ANVIL - a'; the tool name is an acronym (brace it). The dash form ('--' vs ':') is a house choice. Booktitle: the conference is Eurospeech 2001 (7th European Conference on Speech Communication and Technology); written as ISCA prints it (no 'Proceedings of the'), year dropped per house rule; house has a similar bare form 'Interspeech'. Add pages and DOI."
+ }
+]

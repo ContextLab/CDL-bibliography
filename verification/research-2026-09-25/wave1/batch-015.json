@@ -1,0 +1,1842 @@
+[
+ {
+  "key": "BarEtal20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+   "quote": "TI - Local Targeted Memory Reactivation in Human Sleep.",
+   "why": "Same title, same ten authors (Bar ... Nir), Current Biology 2020 30(8); PMID 32142693, DOI 10.1016/j.cub.2020.01.091."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Local targeted memory reactivation in human sleep",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+      "quote": "TI - Local Targeted Memory Reactivation in Human Sleep."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E Bar and A Marmelshtein and A Arzi and O Perl and E Livne and E Hizmi and R Paz and N Sobel and Y Dudai and Y Nir",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+      "quote": "Ella Bar, Amit Marmelshtein, Anat Arzi, Ofer Perl"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+      "quote": "Ethan Livne, Eyal Hizmi, Rony Paz, Noam Sobel"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+      "quote": "Yadin Dudai, Yuval Nir"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Biology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+      "quote": "JT - Current biology : CB"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+      "quote": "DP - 2020 Apr 20"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "30",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+      "quote": "VI - 30"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+      "quote": "IP - 8"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1435--1446.e5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+      "quote": "PG - 1435-1446.e5"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cub.2020.01.091",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32142693/",
+      "quote": "10.1016/j.cub.2020.01.091"
+     }
+    ]
+   }
+  },
+  "notes": "Pages carry the Cell Press STAR Methods suffix (.e5); cdl.bib already writes 9 such ranges as N--M.eK. A bioRxiv preprint (10.1101/539114) exists; the cited version is the journal article, so no replacement."
+ },
+ {
+  "key": "ElleEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
+   "quote": "Interfering with theories of sleep and memory: sleep, declarative memory, and associative interference.",
+   "why": "Same title, same five authors, Current Biology 2006 16(13) 1290-1294; PMID 16824917."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Interfering with theories of sleep and memory: sleep, declarative memory, and associative interference",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
+      "quote": "Interfering with theories of sleep and memory: sleep, declarative memory, and associative interference."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J M Ellenbogen and J C Hulbert and R Stickgold and D F Dinges and S L Thompson-Schill",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
+      "quote": "Jeffrey M Ellenbogen, Justin C Hulbert, Robert Stickgold"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
+      "quote": "David F Dinges, Sharon L Thompson-Schill"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Biology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
+      "quote": "JT - Current biology : CB"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
+      "quote": "DP - 2006 Jul 11"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
+      "quote": "VI - 16"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
+      "quote": "IP - 13"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1290--1294",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cub.2006.05.024",
+      "quote": "\"page\":\"1290-1294\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cub.2006.05.024",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
+      "quote": "10.1016/j.cub.2006.05.024"
+     }
+    ]
+   }
+  },
+  "notes": "Author correction is only the house initials format (full given names -> initials). The entry also carries Address = {Boston, {MA}}, which is not house form for an @article; suggest removing it. A dispatch commentary on this paper (Curr Biol 16(15):R596-7, 10.1016/j.cub.2006.07.008) is a different work."
+ },
+ {
+  "key": "GoenEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18439825/",
+   "quote": "TI - Neurophysiology of the BOLD fMRI signal in awake monkeys.",
+   "why": "Same title, Current Biology 2008 18(9) 631-640, first author Goense; PMID 18439825."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Neurophysiology of the {BOLD} {fMRI} signal in awake monkeys",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18439825/",
+      "quote": "TI - Neurophysiology of the BOLD fMRI signal in awake monkeys."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J B M Goense and N K Logothetis",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18439825/",
+      "quote": "Jozien B M Goense, Nikos K Logothetis"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Biology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18439825/",
+      "quote": "JT - Current biology : CB"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18439825/",
+      "quote": "DP - 2008 May 6"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18439825/",
+      "quote": "VI - 18"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18439825/",
+      "quote": "IP - 9"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "631--640",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cub.2008.03.054",
+      "quote": "\"page\":\"631-640\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cub.2008.03.054",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18439825/",
+      "quote": "10.1016/j.cub.2008.03.054"
+     }
+    ]
+   }
+  },
+  "notes": "The paper has exactly two authors (PubMed and Crossref agree); the cited 'and others' is removed."
+ },
+ {
+  "key": "McInEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10556091/",
+   "quote": "TI - Recruitment of unique neural systems to support visual memory in normal aging.",
+   "why": "Same title, same seven authors, Current Biology 1999 vol 9; PMID 10556091."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Recruitment of unique neural systems to support visual memory in normal aging",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10556091/",
+      "quote": "TI - Recruitment of unique neural systems to support visual memory in normal aging."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A R McIntosh and A B Sekuler and C Penpeci and M N Rajah and C L Grady and R Sekuler and P J Bennett",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10556091/",
+      "quote": "A R McIntosh, A B Sekuler, C Penpeci, M N Rajah"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10556091/",
+      "quote": "C L Grady, R Sekuler, P J Bennett"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Biology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10556091/",
+      "quote": "JT - Current biology : CB"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10556091/",
+      "quote": "DP - 1999 Nov 4"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10556091/",
+      "quote": "VI - 9"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10556091/",
+      "quote": "IP - 21"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1275--1278",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:10556091%20AND%20SRC:MED&resultType=core&format=json",
+      "quote": "\"pageInfo\":\"1275-1278\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0960-9822(99)80512-0",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10556091/",
+      "quote": "10.1016/s0960-9822(99)80512-0"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref gives page '1275-S2' (presumably including supplementary pages); PubMed 1275-8 and Europe PMC 1275-1278 agree on the printed range, kept as cited."
+ },
+ {
+  "key": "NishEtal11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21945275/",
+   "quote": "TI - Reconstructing visual experiences from brain activity evoked by natural movies.",
+   "why": "Same six authors (Nishimoto, Vu, Naselaris, Benjamini, Yu, Gallant), Current Biology 2011 vol 21; cited title differs only in 'experience' vs 'experiences'. PMID 21945275."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Reconstructing visual experiences from brain activity evoked by natural movies",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21945275/",
+      "quote": "TI - Reconstructing visual experiences from brain activity evoked by natural movies."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S Nishimoto and A T Vu and T Naselaris and Y Benjamini and B Yu and J L Gallant",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21945275/",
+      "quote": "Shinji Nishimoto, An T Vu, Thomas Naselaris"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21945275/",
+      "quote": "Yuval Benjamini, Bin Yu, Jack L Gallant"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Biology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21945275/",
+      "quote": "JT - Current biology : CB"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21945275/",
+      "quote": "DP - 2011 Oct 11"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21945275/",
+      "quote": "VI - 21"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21945275/",
+      "quote": "IP - 19"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1641--1646",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cub.2011.08.031",
+      "quote": "\"page\":\"1641-1646\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cub.2011.08.031",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21945275/",
+      "quote": "10.1016/j.cub.2011.08.031"
+     }
+    ]
+   }
+  },
+  "notes": "Cited pages 1--6 are wrong (likely an early-online pagination); the journal pages are 1641-1646."
+ },
+ {
+  "key": "CohnRang17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30687774/",
+   "quote": "TI - Time Regained: How the Human Brain Constructs Memory for Time.",
+   "why": "Same title, Ranganath as second author, Current Opinion in Behavioral Sciences 2017 vol 17 pp 169-177; PMID 30687774."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Time regained: how the human brain constructs memory for time",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30687774/",
+      "quote": "TI - Time Regained: How the Human Brain Constructs Memory for Time."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "B I Cohn-Sheehy and C Ranganath",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30687774/",
+      "quote": "Brendan I Cohn-Sheehy, Charan Ranganath"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cobeha.2017.08.005",
+      "quote": "\"given\":\"Brendan I\",\"family\":\"Cohn-Sheehy\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Opinion in Behavioral Sciences",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30687774/",
+      "quote": "JT - Current opinion in behavioral sciences"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30687774/",
+      "quote": "DP - 2017 Oct"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30687774/",
+      "quote": "VI - 17"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "169--177",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30687774/",
+      "quote": "PG - 169-177"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cobeha.2017.08.005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30687774/",
+      "quote": "10.1016/j.cobeha.2017.08.005"
+     }
+    ]
+   }
+  },
+  "notes": "Surname typo 'Cohn-Sheely' -> 'Cohn-Sheehy', corroborated by PubMed and Crossref; cdl.bib already spells the same author 'B I Cohn-Sheehy' in another entry. A bioRxiv preprint (10.1101/186601) exists; cited version is the journal article."
+ },
+ {
+  "key": "LeeEtal20a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007",
+   "quote": "\"title\":[\"What can narratives tell us about the neural bases of human memory?\"]",
+   "why": "Same title (plus final question mark), authors Lee, Bellana, Chen, Current Opinion in Behavioral Sciences 2020 vol 32 pp 111-119."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "What can narratives tell us about the neural bases of human memory?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007",
+      "quote": "\"title\":[\"What can narratives tell us about the neural bases of human memory?\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "H Lee and B Bellana and J Chen",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007",
+      "quote": "\"given\":\"Hongmi\",\"family\":\"Lee\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007",
+      "quote": "\"given\":\"Buddhika\",\"family\":\"Bellana\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007",
+      "quote": "\"given\":\"Janice\",\"family\":\"Chen\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Opinion in Behavioral Sciences",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007",
+      "quote": "\"container-title\":[\"Current Opinion in Behavioral Sciences\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007",
+      "quote": "\"published-print\":{\"date-parts\":[[2020,4"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "32",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007",
+      "quote": "\"volume\":\"32\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "111--119",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007",
+      "quote": "\"page\":\"111-119\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cobeha.2020.02.007",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007",
+      "quote": "\"DOI\":\"10.1016\\/j.cobeha.2020.02.007\",\"type\":\"journal-article\""
+     }
+    ]
+   }
+  },
+  "notes": "Not indexed in PubMed; Crossref (publisher deposit) only. PsyArXiv preprint 10.31234/osf.io/tz2s9 exists; the cited version is the journal article. Title keeps its question mark."
+ },
+ {
+  "key": "CollColl00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11240286/",
+   "quote": "TI - Path integration in insects.",
+   "why": "Same title, authors T S Collett and M Collett, Curr Opin Neurobiol 2000 10(6) 757-762; PMID 11240286."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Path integration in insects",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11240286/",
+      "quote": "TI - Path integration in insects."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T S Collett and M Collett",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11240286/",
+      "quote": "FAU - Collett, T S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11240286/",
+      "quote": "FAU - Collett, M"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Opinion in Neurobiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11240286/",
+      "quote": "JT - Current opinion in neurobiology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11240286/",
+      "quote": "DP - 2000 Dec"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11240286/",
+      "quote": "VI - 10"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11240286/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "757--762",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0959-4388(00)00150-1",
+      "quote": "\"page\":\"757-762\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0959-4388(00)00150-1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11240286/",
+      "quote": "10.1016/s0959-4388(00)00150-1"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref lists only 'T Collett' as author (incomplete deposit); PubMed lists both Colletts. Only change is the added DOI."
+ },
+ {
+  "key": "DawKenj06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16563737/",
+   "quote": "TI - The computational neurobiology of learning and reward.",
+   "why": "Same title, Daw and Kenji Doya, Curr Opin Neurobiol 2006 pp 199-204; the cited 'D Kenji' is Doya's given name used as a surname. PMID 16563737."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The computational neurobiology of learning and reward",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16563737/",
+      "quote": "TI - The computational neurobiology of learning and reward."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "N D Daw and K Doya",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16563737/",
+      "quote": "Nathaniel D Daw, Kenji Doya"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.conb.2006.03.006",
+      "quote": "\"given\":\"Kenji\",\"family\":\"Doya\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Opinion in Neurobiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16563737/",
+      "quote": "JT - Current opinion in neurobiology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16563737/",
+      "quote": "DP - 2006 Apr"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16563737/",
+      "quote": "VI - 16"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16563737/",
+      "quote": "IP - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "199--204",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16563737/",
+      "quote": "PG - 199-204"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.conb.2006.03.006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16563737/",
+      "quote": "10.1016/j.conb.2006.03.006"
+     }
+    ]
+   }
+  },
+  "notes": "Second author was given-name-for-surname ('D Kenji'); correct is K Doya (PubMed and Crossref). Volume 15 -> 16. The key DawKenj06 reflects the wrong surname; a rename to DawDoya06 may be wanted (check for collisions)."
+ },
+ {
+  "key": "Eich96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8725960/",
+   "quote": "TI - Is the rodent hippocampus just for 'place'?",
+   "why": "Same title, sole author H Eichenbaum, Curr Opin Neurobiol 1996 6(2) 187-195; PMID 8725960."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Is the rodent hippocampus just for `place'?",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8725960/",
+      "quote": "TI - Is the rodent hippocampus just for 'place'?"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "H Eichenbaum",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8725960/",
+      "quote": "FAU - Eichenbaum, H"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Opinion in Neurobiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8725960/",
+      "quote": "JT - Current opinion in neurobiology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8725960/",
+      "quote": "DP - 1996 Apr"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8725960/",
+      "quote": "VI - 6"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8725960/",
+      "quote": "IP - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "187--195",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0959-4388(96)80072-9",
+      "quote": "\"page\":\"187-195\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0959-4388(96)80072-9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8725960/",
+      "quote": "10.1016/s0959-4388(96)80072-9"
+     }
+    ]
+   }
+  },
+  "notes": "Cited title contains stray Windows-1252 control characters (U+0091/U+0092) around 'place'; replaced with LaTeX single quotes `place' (house form, e.g. `safe' elsewhere in cdl.bib). Author full name -> initials."
+ },
+ {
+  "key": "EngeFrie10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20359884/",
+   "quote": "TI - Beta-band oscillations--signalling the status quo?",
+   "why": "Same title, Engel and Fries, Curr Opin Neurobiol 2010 20(2) 156-165; PMID 20359884."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Beta-band oscillations---signalling the status quo?",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20359884/",
+      "quote": "TI - Beta-band oscillations--signalling the status quo?"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A K Engel and P Fries",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20359884/",
+      "quote": "Andreas K Engel, Pascal Fries"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Opinion in Neurobiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20359884/",
+      "quote": "JT - Current opinion in neurobiology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20359884/",
+      "quote": "DP - 2010 Apr"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "20",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20359884/",
+      "quote": "VI - 20"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20359884/",
+      "quote": "IP - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "156--165",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.conb.2010.02.015",
+      "quote": "\"page\":\"156-165\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.conb.2010.02.015",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20359884/",
+      "quote": "10.1016/j.conb.2010.02.015"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref prints an em dash ('oscillations — signalling'); title change is only removing the stray space after '---'. Volume, number, pages and DOI were missing and are added."
+ },
+ {
+  "key": "ShapEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17084616/",
+   "quote": "TI - Representing episodes in the mammalian brain.",
+   "why": "Same title, same three authors, Curr Opin Neurobiol 2006 16(6) 701-709; PMID 17084616."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Representing episodes in the mammalian brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17084616/",
+      "quote": "TI - Representing episodes in the mammalian brain."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M L Shapiro and P J Kennedy and J Ferbinteanu",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17084616/",
+      "quote": "Matthew L Shapiro, Pamela J Kennedy, Janina Ferbinteanu"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Opinion in Neurobiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17084616/",
+      "quote": "JT - Current opinion in neurobiology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17084616/",
+      "quote": "DP - 2006 Dec"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17084616/",
+      "quote": "VI - 16"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17084616/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "701--709",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.conb.2006.08.017",
+      "quote": "\"page\":\"701-709\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.conb.2006.08.017",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17084616/",
+      "quote": "10.1016/j.conb.2006.08.017"
+     }
+    ]
+   }
+  },
+  "notes": "The DOI-linked notice is an ERRATUM, not a retraction: PubMed 'EIN - Curr Opin Neurobiol. 2007 Jun;17(3):394' (Crossref relation 'erratum'). The article stands; cite the original. Pages 701 -> 701--709; authors to initials."
+ },
+ {
+  "key": "IzauBoni01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://journals.openedition.org/cpl/201",
+   "quote": "Proper Name Retrieval in Written Face Naming: Exploration with the Interference Paradigm",
+   "why": "Same authors (M Izaute, P Bonin), same journal (Current Psychology Letters), 2001, same subtitle; cited 'picture naming' is 'face naming' in the published title. It is their only article in the journal's 2001 issues (issue 2001/3, no. 6 contents)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Proper name retrieval in written face naming: exploration with the interference paradigm",
+    "evidence": [
+     {
+      "url": "https://journals.openedition.org/cpl/511",
+      "quote": "M. Izaute and P. Bonin Proper Name Retrieval in Written Face Naming: Exploration with the Interference Paradigm"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Izaute and P Bonin",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4000/cpl.201",
+      "quote": "\"given\":\"M.\",\"family\":\"Izaute\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4000/cpl.201",
+      "quote": "\"given\":\"P.\",\"family\":\"Bonin\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Psychology Letters",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4000/cpl.201",
+      "quote": "\"container-title\":[\"Current psychology letters\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://journals.openedition.org/cpl/201",
+      "quote": "Current psychology letters [Online], 2001/3, 6 | 2001"
+     }
+    ]
+   },
+   "volume": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4000/cpl.201",
+    "evidence": [
+     {
+      "url": "https://journals.openedition.org/cpl/201",
+      "quote": "DOI : https://doi.org/10.4000/cpl.201"
+     }
+    ]
+   }
+  },
+  "notes": "OpenEdition numbers this issue '2001/3, 6' (third issue of 2001, issue no. 6); there is no 'volume 3' (volumes start later: 'Vol. 24, Issue 1, 2008'). The cited volume 3 is probably the '2001/3' issue-of-year; the continuous issue number is 6. House choice needed (Volume = {6}? or Number = {6}); not proposed. Pages 81--95 are not shown anywhere online (online article and generated PDF have no print pagination); a print version exists (published 1 December 2001), so 81--95 may be its pagination but is unverified. Pascal-Francis has no record."
+ },
+ {
+  "key": "PeruGaun98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=2421536",
+   "quote": "Virtual environments as a promising tool for investigating human spatial cognition Author PERUCH, P 1 ; GAUNET, F 2",
+   "why": "INIST Pascal-Francis catalogue record: same authors, Cahiers de psychologie cognitive = Current psychology of cognition 1998 vol 17; cited title has 'investigation' for 'investigating' and wrong pages."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Virtual environments as a promising tool for investigating human spatial cognition",
+    "evidence": [
+     {
+      "url": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=2421536",
+      "quote": "Virtual environments as a promising tool for investigating human spatial cognition"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "P P{\\'e}ruch and F Gaunet",
+    "evidence": [
+     {
+      "url": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=2421536",
+      "quote": "Author PERUCH, P 1 ; GAUNET, F 2"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Current Psychology of Cognition",
+    "evidence": [
+     {
+      "url": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=2421536",
+      "quote": "Cahiers de psychologie cognitive . = Current psychology of cognition. 1998, Vol 17, Num 4-5, pp 881-899"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=2421536",
+      "quote": "Current psychology of cognition. 1998, Vol 17, Num 4-5"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=2421536",
+      "quote": "Current psychology of cognition. 1998, Vol 17, Num 4-5"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4--5",
+    "evidence": [
+     {
+      "url": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=2421536",
+      "quote": "1998, Vol 17, Num 4-5, pp 881-899"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "881--899",
+    "evidence": [
+     {
+      "url": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=2421536",
+      "quote": "1998, Vol 17, Num 4-5, pp 881-899"
+     }
+    ]
+   }
+  },
+  "notes": "Pages 445--463 in the citation are wrong; the catalogue gives 881-899 (issue 4-5), matching how the paper is widely cited. The issue was a meeting special issue ('Neural substrates of cognitive processes', Marseille 1997, eds Besson, Kornblum, Poucet), still a journal article. Author accent kept per the accent rule (catalogue is all-caps ASCII 'PERUCH', so the validator's surname token check cannot match 'Péruch'; Crossref spells him 'Patrick Péruch' on 10.1177/00139160021972603); full given names -> initials. No DOI exists for this journal."
+ },
+ {
+  "key": "Land95",
+  "verdict": "no_source",
+  "identity": {
+   "url": "",
+   "quote": "",
+   "why": "No primary or catalogue record of Deutsches Wochenschach 1895 (Jahrgang 11) found online."
+  },
+  "fields": {
+   "title": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "journal": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "volume": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Searched: HathiTrust (record 008697687 has Jahrg. 3-10, 18, 23, 35-36 but not 11/1895), Internet Archive (only 1889/1890 volumes), Google Books API (quota-blocked), Pascal-Francis n/a. Secondary sources conflict on pages: the common citation (and Wikipedia) gives 11:366-369, but Sinn & Ziegler, 'Landau on Chess Tournaments and Google's PageRank' (arXiv:2210.17300), cite 'Deutsches Wochenschach, 11. Jahrgang, No. 42:51-54, 1895'. Title/author/year agree across secondary sources. Needs a scan of the 1895 volume (e.g. a German library/MDZ) to settle pages."
+ },
+ {
+  "key": "NassEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+   "quote": "TI - Acquired aphasia in children after surgical resection of left-thalamic tumors.",
+   "why": "Same title, same nine authors, Dev Med Child Neurol 2000 42(9) 580-590; PMID 11034450."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Acquired aphasia in children after surgical resection of left-thalamic tumors",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "TI - Acquired aphasia in children after surgical resection of left-thalamic tumors."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R Nass and L Boyce and F Leventhal and B Levine and J Allen and C Maxfield and D Salsberg and M Sarno and A George",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "FAU - Nass, R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "FAU - Boyce, L"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "FAU - Leventhal, F"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "FAU - Levine, B"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "FAU - Allen, J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "FAU - Maxfield, C"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "FAU - Salsberg, D"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "FAU - Sarno, M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "FAU - George, A"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Developmental Medicine and Child Neurology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "JT - Developmental medicine and child neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "DP - 2000 Sep"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "42",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "VI - 42"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "IP - 9"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "580--590",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/s0012162200001109",
+      "quote": "\"page\":\"580-590\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1017/s0012162200001109",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11034450/",
+      "quote": "10.1017/s0012162200001109"
+     }
+    ]
+   }
+  },
+  "notes": "Number '09' -> '9'. Two Crossref DOIs for the same article: 10.1017/s0012162200001109 (original Cambridge UP DOI, the one PubMed lists) and 10.1111/j.1469-8749.2000.tb00362.x (Wiley re-registration, 2010). Proposed the PubMed-listed one; reviewer may prefer the current-publisher Wiley DOI."
+ },
+ {
+  "key": "KramEtal88",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+   "quote": "\"title\":[\"Verbal memory errors in Alzheimer's and Huntington's dementias\"]",
+   "why": "Same six authors (Kramer, Delis, Blusewicz, Brandt, Ober, Strauss), Developmental Neuropsychology 1988 vol 4 pp 1-15; cited title has the two disease names swapped."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Verbal memory errors in {A}lzheimer's and {Huntington's} dementias",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"title\":[\"Verbal memory errors in Alzheimer's and Huntington's dementias\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J H Kramer and D C Delis and M J Blusewicz and J Brandt and B A Ober and M Strauss",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"given\":\"Joel\",\"family\":\"Kramer\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"given\":\"Dean\",\"family\":\"Delis\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"given\":\"Matthew\",\"family\":\"Blusewicz\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"given\":\"Jason\",\"family\":\"Brandt\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"given\":\"Beth\",\"family\":\"Ober\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"given\":\"Milton\",\"family\":\"Strauss\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Developmental Neuropsychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"container-title\":[\"Developmental Neuropsychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"published-print\":{\"date-parts\":[[1988"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"volume\":\"4\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--15",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"page\":\"1-15\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/87565648809540385",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/87565648809540385",
+      "quote": "\"DOI\":\"10.1080\\/87565648809540385\""
+     }
+    ]
+   }
+  },
+  "notes": "Only source reachable is Crossref (Taylor & Francis page is behind a bot wall; not in PubMed). Crossref gives given names without middle initials; the cited middle initials (J H, D C, M J, B A) are kept per the never-drop rule. Title order corrected to 'Alzheimer's and Huntington's' (single-source, but not a surname change); bracing kept as cited."
+ },
+ {
+  "key": "ReynRich05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16060807/",
+   "quote": "Familiarization, attention, and recognition memory in infancy: an event-related potential and cortical source localization study.",
+   "why": "Same title (colon, not semicolon), Reynolds and Richards, Developmental Psychology 2005 41(4) 598-615; PMID 16060807."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Familiarization, attention, and recognition memory in infancy: an event-related potential and cortical source localization study",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060807/",
+      "quote": "Familiarization, attention, and recognition memory in infancy: an event-related potential and cortical source localization study."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "G D Reynolds and J E Richards",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060807/",
+      "quote": "Greg D Reynolds, John E Richards"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Developmental Psychology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060807/",
+      "quote": "JT - Developmental psychology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060807/",
+      "quote": "DP - 2005 Jul"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "41",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060807/",
+      "quote": "VI - 41"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060807/",
+      "quote": "IP - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "598--615",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060807/",
+      "quote": "PG - 598-615"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0012-1649.41.4.598",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060807/",
+      "quote": "10.1037/0012-1649.41.4.598"
+     }
+    ]
+   }
+  },
+  "notes": "Volume '41(4)' split into volume 41, number 4 (issue stated by PubMed and Crossref). Semicolon in title -> colon. Authors to initials."
+ },
+ {
+  "key": "RichSaxe20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/31125472/",
+   "quote": "TI - Development of predictive responses in theory of mind brain regions.",
+   "why": "Same title, Richardson and Saxe, Developmental Science 23(1) e12863, print Jan 2020; PMID 31125472."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Development of predictive responses in theory of mind brain regions",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31125472/",
+      "quote": "TI - Development of predictive responses in theory of mind brain regions."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "H Richardson and R Saxe",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31125472/",
+      "quote": "Hilary Richardson, Rebecca Saxe"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Developmental Science",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31125472/",
+      "quote": "JT - Developmental science"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31125472/",
+      "quote": "DP - 2020 Jan"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "23",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31125472/",
+      "quote": "VI - 23"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31125472/",
+      "quote": "IP - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e12863",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31125472/",
+      "quote": "PG - e12863"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/desc.12863",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31125472/",
+      "quote": "10.1111/desc.12863"
+     }
+    ]
+   }
+  },
+  "notes": "Online 18 June 2019, print issue January 2020; print year wins, so 2020 is right. Only change is the added DOI. A PsyArXiv preprint (10.31234/osf.io/gj8up) exists; cited version is the journal article."
+ },
+ {
+  "key": "TummEtal16",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/27747976/",
+   "quote": "TI - Across space and time: infants learn from backward and forward visual statistics.",
+   "why": "Same title, same four authors, Developmental Science 20(5) e12474; PMID 27747976."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Across space and time: infants learn from backward and forward visual statistics",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27747976/",
+      "quote": "TI - Across space and time: infants learn from backward and forward visual statistics."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K Tummeltshammer and D Amso and R M French and N Z Kirkham",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27747976/",
+      "quote": "Kristen Tummeltshammer, Dima Amso, Robert M French, Natasha Z Kirkham"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Developmental Science",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27747976/",
+      "quote": "JT - Developmental science"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27747976/",
+      "quote": "DP - 2017 Sep"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/desc.12474",
+      "quote": "\"issue\":\"5\",\"published-print\":{\"date-parts\":[[2017,9"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "20",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27747976/",
+      "quote": "VI - 20"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27747976/",
+      "quote": "IP - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e12474",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/desc.12474",
+      "quote": "\"article-number\":\"e12474\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/desc.12474",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27747976/",
+      "quote": "10.1111/desc.12474"
+     }
+    ]
+   }
+  },
+  "notes": "Year 2016 is the online (Early View, 16 Oct 2016) year; the print issue 20(5) is September 2017 (PubMed DP and Crossref published-print). Print year wins -> 2017, and per the user rule the key renames TummEtal16 -> TummEtal17 (check collisions)."
+ }
+]

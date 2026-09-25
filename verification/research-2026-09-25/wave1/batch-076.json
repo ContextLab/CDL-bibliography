@@ -1,0 +1,1286 @@
+[
+ {
+  "key": "LincNati81",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=81080827&maximumRecords=1&recordSchema=mods",
+   "quote": "Gary H. Lincoff ; visual key by Carol Nehring.",
+   "why": "LoC record LCCN 81080827: The Audubon Society field guide to North American mushrooms, Lincoff, New York: Knopf, c1981 (Chanticleer Press ed.), with National Audubon Society as corporate added entry."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The {Audubon} society field guide to {North American} mushrooms",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=81080827&maximumRecords=1&recordSchema=mods",
+      "quote": "Audubon Society field guide to North American mushrooms"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "G H Lincoff and {National Audubon Society}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=81080827&maximumRecords=1&recordSchema=mods",
+      "quote": "Gary H. Lincoff"
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=81080827&maximumRecords=1&recordSchema=mods",
+      "quote": "National Audubon Society."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Knopf",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=81080827&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Knopf</namePart>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1981",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=81080827&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>c1981</dateIssued>"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=81080827&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   }
+  },
+  "notes": "Adds the middle initial H from the statement of responsibility ('Gary H. Lincoff'). The National Audubon Society is a corporate added entry, not named in the statement of responsibility; reviewer may drop it from author (key would then become Linc81, no collision). address added from LoC. Edition statement 'A Chanticleer Press ed.' (the only edition). No DOI (trade book)."
+ },
+ {
+  "key": "BaayEtal95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://catalog.ldc.upenn.edu/LDC96L14",
+   "quote": "Baayen, R H., R Piepenbrock, and L Gulikers. CELEX2 LDC96L14. Web Download. Philadelphia: Linguistic Data Consortium, 1995.",
+   "why": "LDC catalogue entry LDC96L14 (CELEX2, release 2 of the CELEX lexical databases) by Baayen, Piepenbrock and Gulikers, LDC Philadelphia 1995: the resource the citation names."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "R H Baayen and R Piepenbrock and L Gulikers",
+    "evidence": [
+     {
+      "url": "https://catalog.ldc.upenn.edu/LDC96L14",
+      "quote": "R H. Baayen, R Piepenbrock, L Gulikers"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Linguistic Data Consortium",
+    "evidence": [
+     {
+      "url": "https://catalog.ldc.upenn.edu/LDC96L14",
+      "quote": "Philadelphia: Linguistic Data Consortium, 1995."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Philadelphia, {PA}",
+    "evidence": [
+     {
+      "url": "https://catalog.ldc.upenn.edu/LDC96L14",
+      "quote": "Philadelphia: Linguistic Data Consortium, 1995."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://catalog.ldc.upenn.edu/LDC96L14",
+      "quote": "Philadelphia: Linguistic Data Consortium, 1995."
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "The {CELEX} lexical database",
+    "evidence": []
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.35111/gs6s-gm48",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.35111/gs6s-gm48",
+      "quote": "\"doi\":\"10.35111/gs6s-gm48\""
+     }
+    ]
+   }
+  },
+  "notes": "Surname typo fixed: 'Piepenrbrock' -> 'Piepenbrock' (LDC catalogue and DataCite agree). LDC's item name is 'CELEX2' (DataCite title 'CELEX2'); the page describes it as containing 'updated versions of the CELEX lexical databases of English (version 2.5), Dutch (version 3.1) and German (version 2.0)'. The cited title 'The CELEX lexical database' is the conventional name of the 1995 CD-ROM (Release 2) but no acceptable source prints it verbatim, so title is not_found; reviewer may prefer 'The {CELEX} lexical database ({CELEX2})' or the LDC name. DataCite resource type is Dataset (bibtex 'misc'), so @misc may be the better entry type."
+ },
+ {
+  "key": "Kohl47",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=47005037&maximumRecords=1&recordSchema=mods",
+   "quote": "Gestalt psychology an introduction to new concepts in modern psychology",
+   "why": "LoC record LCCN 47005037: Köhler, Gestalt psychology, New York: Liveright Pub. Corp., [1947], the revised 1947 edition (distinct from the 1929 H. Liveright first edition, LCCN 29010486)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{Gestalt} psychology",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=47005037&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>Gestalt psychology</title>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W K{\\\"{o}}hler",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=47005037&maximumRecords=1&recordSchema=mods",
+      "quote": "Köhler, Wolfgang,"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Liveright",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=47005037&maximumRecords=1&recordSchema=mods",
+      "quote": "Liveright Pub. Corp."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=47005037&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1947",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=47005037&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>[1947]</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "Cited edition matches the 1947 'Completely revised and unabridged text' (Liveright). Title proper has subtitle 'an introduction to new concepts in modern psychology' (optional addition: '{Gestalt} psychology: an introduction to new concepts in modern psychology'). Later reprints 1970 and 1992 (c1947) exist; 1929 first edition is a different edition. No DOI."
+ },
+ {
+  "key": "Penf58b",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL21390344M.json",
+   "quote": "\"publishers\": [\"Liverpool Univ. Press\"]",
+   "why": "UK union catalogue (Talis) record in Open Library: The excitable cortex in conscious man, Liverpool Univ. Press, Liverpool, 1958, Sherrington lectures 5; LoC holds only the 1967 reprint, which states c1958 and names Wilder Penfield."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The excitable cortex in conscious man",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21390344M.json",
+      "quote": "\"title\": \"The excitable cortex in conscious man.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W Penfield",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=86113920&maximumRecords=1&recordSchema=mods",
+      "quote": "Penfield, Wilder,"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Liverpool {University} Press",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21200229M.json",
+      "quote": "\"publishers\": [\"Liverpool University Press\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Liverpool, {UK}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21390344M.json",
+      "quote": "\"publish_places\": [\"Liverpool\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1958",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21390344M.json",
+      "quote": "\"publish_date\": \"1958\""
+     }
+    ]
+   }
+  },
+  "notes": "Author evidence is from the LoC record of the 1967 Liverpool University Press reprint (LCCN 86113920, '1967, c1958'), same text. The US issue was Springfield, Ill.: C.C. Thomas, 1958 (LoC reprint note 'Originally published: Springfield, Ill. : C.C. Thomas, 1958'; Open Library OL15098081M, LCCN 59001578) - same edition, different imprint. Series: The Sherrington lectures, 5."
+ },
+ {
+  "key": "McGe42",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=42020553&maximumRecords=1&recordSchema=mods",
+   "quote": "by John A. McGeoch.",
+   "why": "LoC record LCCN 42020553: The psychology of human learning, an introduction, New York/London: Longmans, Green and co., 1942, 'First edition.'"
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The psychology of human learning: an introduction",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL14319119M.json",
+      "quote": "\"title\": \"The psychology of human learning\""
+     },
+     {
+      "url": "https://openlibrary.org/books/OL14319119M.json",
+      "quote": "\"subtitle\": \"an introduction\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J A McGeoch",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=42020553&maximumRecords=1&recordSchema=mods",
+      "quote": "McGeoch, John Alexander,"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Longmans",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=42020553&maximumRecords=1&recordSchema=mods",
+      "quote": "Longmans, Green and co."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=42020553&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1942",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=42020553&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>1942</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "Title quoted from Open Library OL14319119M (built from the LoC/Harvard/Columbia MARC, LCCN 42020553) because the LoC record itself misspells the subtitle 'an introducation'. Publisher house form 'Longmans' for Longmans, Green and Co. (same firm). No DOI."
+ },
+ {
+  "key": "McGeIrio52",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=52005644&maximumRecords=1&recordSchema=mods",
+   "quote": "2d ed.",
+   "why": "LoC record LCCN 52005644: McGeoch, The psychology of human learning, 2d ed. revised by Arthur L. Irion, New York: Longmans, Green, [1952]."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "The psychology of human learning",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=52005644&maximumRecords=1&recordSchema=mods",
+      "quote": "psychology of human learning"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "2\\textsuperscript{nd}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=52005644&maximumRecords=1&recordSchema=mods",
+      "quote": "<edition>2d ed.</edition>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J A McGeoch and A L Irion",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=52005644&maximumRecords=1&recordSchema=mods",
+      "quote": "McGeoch, John Alexander,"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL19507724M.json",
+      "quote": "\"contributions\": [\"Irion, Arthur L.\"]"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Longmans",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=52005644&maximumRecords=1&recordSchema=mods",
+      "quote": "Longmans, Green"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=52005644&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1952",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=52005644&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>[1952]</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "Correction is structural only: the edition statement moves out of the title ('..., 2\\textsuperscript{nd} edition') into an edition field, matching cdl.bib's Edition = {2\\textsuperscript{nd}} convention; if the reviewer prefers leaving it in the title, the entry is verified as is. Irion is the reviser ('2d ed. revised by Arthur L. Irion', Open Library OL6109747M from the LoC MARC); citing him as second author follows common practice. Later printings by D. McKay (1961, 1965) are the same edition, different publisher."
+ },
+ {
+  "key": "Galt83",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=10032396&maximumRecords=1&recordSchema=mods",
+   "quote": "Inquiries into human faculty and its development",
+   "why": "LoC record LCCN 10032396: Galton, Inquiries into human faculty and its development, London: Macmillan, 1883 (first edition; the 1907/1908 Dent and later reprints are separate records)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Inquiries into human faculty and its development",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=10032396&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>Inquiries into human faculty and its development</title>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "F Galton",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=10032396&maximumRecords=1&recordSchema=mods",
+      "quote": "Galton, Francis,"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Macmillan",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=10032396&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Macmillan</namePart>"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "London, {UK}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=10032396&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">London</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1883",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=10032396&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>1883</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref 10.1037/14178-000 is APA PsycBooks' digitized record of this work; not recorded as DOI because it is a later digitization, reviewer may choose to add it."
+ },
+ {
+  "key": "Spea27",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=27010830&maximumRecords=1&recordSchema=mods",
+   "quote": "their nature and measurement",
+   "why": "LoC record LCCN 27010830: Spearman, The abilities of man; their nature and measurement, New York: The Macmillan Company, 1927 (the US issue; London Macmillan issue is LCCN 27012056)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The abilities of man",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=27010830&maximumRecords=1&recordSchema=mods",
+      "quote": "abilities of man"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C Spearman",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=27010830&maximumRecords=1&recordSchema=mods",
+      "quote": "Spearman, C. (Charles),"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Macmillan",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=27010830&maximumRecords=1&recordSchema=mods",
+      "quote": "The Macmillan Company"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=27010830&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1927",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=27010830&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>1927</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "Optional: add subtitle 'their nature and measurement'. Crossref 10.1037/11491-021 etc. are chapter records of a later digitization, not assigned."
+ },
+ {
+  "key": "Titc16",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=15026892&maximumRecords=1&recordSchema=mods",
+   "quote": "by Edward Bradford Titchener.",
+   "why": "LoC record LCCN 15026892: A beginner's psychology, New York: The Macmillan company, [c1915]; the only Macmillan first edition record."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "A beginner's psychology",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=15026892&maximumRecords=1&recordSchema=mods",
+      "quote": "beginner's psychology"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "E B Titchener",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=15026892&maximumRecords=1&recordSchema=mods",
+      "quote": "Titchener, Edward Bradford,"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Macmillan",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=15026892&maximumRecords=1&recordSchema=mods",
+      "quote": "The Macmillan company"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=15026892&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "1915",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=15026892&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>[c1915]</dateIssued>"
+     },
+     {
+      "url": "https://catalog.hathitrust.org/api/volumes/brief/lccn/15026892.json",
+      "quote": "\"publishDates\":[\"1915\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Year 1916 not supported: LoC and HathiTrust (record 000620075, 1915) date the edition 1915; no 1916 edition/printing record found (Open Library shows 1915, 1924, 1928). Year change implies key rename Titc16 -> Titc15 (no collision in HEAD cdl.bib). Author given names converted to initials per house rule; address added."
+ },
+ {
+  "key": "BancEtal65",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL58329731M.json",
+   "quote": "par J. Bancaud, J. Talairach et [leurs collaborateurs] A. Bonis [et al.]",
+   "why": "Harvard MARC record (via Open Library) of La stéréo-électroencéphalographie dans l'épilepsie, Paris: Masson, 1965, by Bancaud and Talairach with collaborators Bonis et al.; Columbia record OL45375007M agrees."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "La st\\'{e}r\\'{e}o-\\'{e}lectroenc\\'{e}phalographie dans l'\\'{e}pilepsie",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL58329731M.json",
+      "quote": "\"title\": \"La st\\u00e9r\\u00e9o-\\u00e9lectroenc\\u00e9phalographie dans l'\\u00e9pilepsie\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Bancaud and J Talairach and A Bonis",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL45375007M.json",
+      "quote": "par J. Bancaud, J Talairach ; et A. Bonis"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Masson",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL58329731M.json",
+      "quote": "\"publishers\": [\"Masson\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Paris, {FR}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL58329731M.json",
+      "quote": "\"publish_places\": [\"Paris\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1965",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL58329731M.json",
+      "quote": "\"publish_date\": \"1965\""
+     }
+    ]
+   }
+  },
+  "notes": "Title correction: 'l'epilepsie' lacks the accent the catalogue prints ('l'épilepsie'); accent macros written in the \\'{e} form (the existing value uses \\'e, equivalent). The Open Library JSON quote shows the accents as \\u00e9 escapes (e-acute). Subtitle: 'informations neurophysiopathologiques apportées par l'investigation fonctionnelle stéréotaxique'. Bonis is the first of several collaborators ('[et al.]'); citing three names is the usual form. Not in the LoC catalogue."
+ },
+ {
+  "key": "Wech08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.pearsonassessments.com/en-us/Store/Professional-Assessments/Cognition-&-Neuro/Wechsler-Adult-Intelligence-Scale-|-Fourth-Edition/p/100000392",
+   "quote": "WAIS-IV - Wechsler Adult Intelligence Scale | Fourth Edition | Pearson Assessments US",
+   "why": "Pearson's product page for the WAIS-IV (publication date 2008), the 2008 Pearson Wechsler scale the citation names; APA PsycTests record 10.1037/t15169-000 (David Wechsler, 2008) agrees."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{Wechsler} adult intelligence scale",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t15169-000",
+      "quote": "\"title\":[\"Wechsler Adult Intelligence Scale--Fourth Edition\"]"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "4\\textsuperscript{th}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t15169-000",
+      "quote": "\"title\":[\"Wechsler Adult Intelligence Scale--Fourth Edition\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D Wechsler",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t15169-000",
+      "quote": "\"given\":\"David\",\"family\":\"Wechsler\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Pearson",
+    "evidence": [
+     {
+      "url": "https://www.pearsonassessments.com/en-us/Store/Professional-Assessments/Cognition-&-Neuro/Wechsler-Adult-Intelligence-Scale-|-Fourth-Edition/p/100000392",
+      "quote": "Get Wechsler Adult Intelligence Scale® from Pearson"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://www.pearsonassessments.com/en-us/Store/Professional-Assessments/Cognition-&-Neuro/Wechsler-Adult-Intelligence-Scale-|-Fourth-Edition/p/100000392",
+      "quote": "Publication Date: 2008"
+     }
+    ]
+   },
+   "address": {
+    "status": "not_found",
+    "value": "San Antonio, {TX}",
+    "evidence": []
+   }
+  },
+  "notes": "Adds edition 4\\textsuperscript{th} (WAIS-IV) so the 2008 test is not confused with WAIS/WAIS-R/WAIS-III/WAIS-5. San Antonio, TX (NCS Pearson) not found on an acceptable page; left as cited. APA PsycTests DOI 10.1037/t15169-000 is a database record of the test, not the publisher's; offered as a DOI candidate only. Pearson brochure: 'Copyright © 2008 Pearson Education, Inc.'."
+ },
+ {
+  "key": "Kani79",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=79011851&maximumRecords=1&recordSchema=mods",
+   "quote": "Gaetano Kanizsa ; foreword by Paolo Legrenzi and Paolo Bozzi.",
+   "why": "LoC record LCCN 79011851: Kanizsa, Organization in vision: essays on gestalt perception, New York: Praeger, 1979 - the only Kanizsa Praeger 1979 book."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Organization in vision: essays on gestalt perception",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=79011851&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>Organization in vision</title>"
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=79011851&maximumRecords=1&recordSchema=mods",
+      "quote": "<subTitle>essays on gestalt perception</subTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "G Kanizsa",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=79011851&maximumRecords=1&recordSchema=mods",
+      "quote": "Kanizsa, Gaetano."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Praeger",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=79011851&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Praeger</namePart>"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=79011851&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1979",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=79011851&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>1979</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "Two errors in the citation: title 'The organization of vision' should be 'Organization in vision' (subtitle 'essays on gestalt perception', reviewer may keep it or drop it), and surname 'Kanisza' is a misspelling of 'Kanizsa' (single catalogue source, but the name is well established; corroborate if the rule requires). Consider bracing {Gestalt} per house proper-noun style."
+ },
+ {
+  "key": "Rayp68",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL58323499M.json",
+   "quote": "Published in honor of Leo M. Davidoff. Editor, Mark Rayport; editorial committee, Joseph Ransohoff and Harry M. Zimmerman",
+   "why": "Harvard MARC record (via Open Library, LCCN 69084467) of the host volume, Proceedings of the Rudolf Virchow Medical Society in the City of New York supplement honoring Davidoff, 1968, Ferdinand Berger, Horn, Austria; the Rayport chapter itself was not found."
+  },
+  "fields": {
+   "year": {
+    "status": "confirmed",
+    "value": "1968",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL58323499M.json",
+      "quote": "\"publish_date\": \"1968\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "M Rayport",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL58323499M.json",
+      "quote": "Editor, Mark Rayport"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Ferdinand Berger",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL58323499M.json",
+      "quote": "\"publishers\": [\"Ferdinand Berger\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Horn, {AT}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL58323499M.json",
+      "quote": "\"publish_places\": [\"Horn, Austria\"]"
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "The {Jacksonian} hypothesis: an appraisal in the light of single unit recording in focal epileptogenic gray matter of man",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "M Rayport",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Host volume identified but no table of contents found, so the chapter title and pages are unverified. The citation's editor is wrong: Davidoff is the honoree; Rayport edited the volume (Harvard record; also Rayport's Epilepsia 2003 obituary, ref. 30: 'Rayport M, ed. Festschrift in Honor of Leo M. Davidoff, M.D.: Proceedings of the Rudolf Virchow Medical Society in the City of New York, 26 (suppl). Horn, Austria: Ferdinand Berger, 1968.' - reference list, corroboration only). The published place is Horn, Austria, not New York. Entry should be @incollection with booktitle 'Proceedings of the Rudolf Virchow Medical Society in the City of New York' (volume 26 supplement) or @article in that journal; the current @book with a journal field is malformed. 'Horn, {AT}' follows the {FR}/{UK} country-code pattern; reviewer to confirm house form. Searched LoC SRU, Open Library, Europe PMC (failed to respond), web."
+ },
+ {
+  "key": "DeliEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.pearsonassessments.com/en-us/Store/Professional-Assessments/Cognition-&-Neuro/California-Verbal-Learning-Test-|-Second-Edition/p/100000166",
+   "quote": "California Verbal Learning Test | Second Edition",
+   "why": "Pearson product page for the CVLT-II by Delis, Kramer, Kaplan and Ober, publication date 2000 - the 2000 CVLT the citation names; APA PsycTests record 10.1037/t15072-000 lists the same four authors."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{California} verbal learning test",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t15072-000",
+      "quote": "\"title\":[\"California Verbal Learning Test--Second Edition\"]"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "2\\textsuperscript{nd}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t15072-000",
+      "quote": "\"title\":[\"California Verbal Learning Test--Second Edition\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D C Delis and J H Kramer and E Kaplan and B A Ober",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t15072-000",
+      "quote": "\"given\":\"Dean C.\",\"family\":\"Delis\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/t15072-000",
+      "quote": "\"given\":\"Joel H.\",\"family\":\"Kramer\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/t15072-000",
+      "quote": "\"given\":\"Edith\",\"family\":\"Kaplan\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/t15072-000",
+      "quote": "\"given\":\"Beth A.\",\"family\":\"Ober\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://www.pearsonassessments.com/en-us/Store/Professional-Assessments/Cognition-&-Neuro/California-Verbal-Learning-Test-|-Second-Edition/p/100000166",
+      "quote": "Publication Date: 2000"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "not_found",
+    "value": "Psychological Corporation",
+    "evidence": []
+   }
+  },
+  "notes": "Adds edition 2\\textsuperscript{nd} (CVLT-II, 2000; the original CVLT is 1987). Publisher 'Psychological Corporation' (San Antonio, TX) is the usual imprint of the 2000 manual but no catalogue/publisher page found stating it; Pearson (current publisher, which absorbed PsychCorp) sells it now. Address (San Antonio, {TX}) could be added once sourced. PsycTests DOI 10.1037/t15072-000 is a database record (dated 1987), not assigned."
+ },
+ {
+  "key": "Chri92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=91026351&maximumRecords=1&recordSchema=mods",
+   "quote": "edited by Sven-Åke Christianson.",
+   "why": "LoC record LCCN 91026351: The handbook of emotion and memory, edited by Sven-Åke Christianson, Hillsdale, N.J.: L. Erlbaum Associates, 1992."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The handbook of emotion and memory: research and theory",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=91026351&maximumRecords=1&recordSchema=mods",
+      "quote": "handbook of emotion and memory"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "S-{\\AA} Christianson",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=91026351&maximumRecords=1&recordSchema=mods",
+      "quote": "Christianson, Sven-Åke."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=91026351&maximumRecords=1&recordSchema=mods",
+      "quote": "edited by Sven-Åke Christianson."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=91026351&maximumRecords=1&recordSchema=mods",
+      "quote": "L. Erlbaum Associates"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=91026351&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">Hillsdale, N.J</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=91026351&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>1992</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "The 1992 edition was published by Lawrence Erlbaum (Hillsdale, NJ), not Psychology Press; the Psychology Press version (Crossref 10.4324/9781315807454, 2014) is a later reissue and a different version. Christianson is the editor: move him from author to editor. Subtitle 'research and theory' is not in the LoC title (it appears on the book cover/other listings); left as cited, unverified - reviewer may drop it. Given names to initials: 'Sven-{\\AA}ke' -> hyphenated initials; check the house form for hyphenated given names (e.g. 'S-{\\AA}' vs 'S {\\AA}')."
+ },
+ {
+  "key": "Gall06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL18212486M.json",
+   "quote": "\"by_statement\": \"David A. Gallo\"",
+   "why": "Open Library record built from LoC/Columbia/Miami MARC (LCCN 2006016486): Associative illusions of memory: false memory research in DRM and related tasks, David A. Gallo, New York: Psychology Press, 2006."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Associative illusions of memory: false memory research in {DRM} and related tasks",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18212486M.json",
+      "quote": "\"title\": \"Associative illusions of memory\""
+     },
+     {
+      "url": "https://openlibrary.org/books/OL18212486M.json",
+      "quote": "\"subtitle\": \"false memory research in DRM and related tasks\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "D A Gallo",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18212486M.json",
+      "quote": "\"by_statement\": \"David A. Gallo\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Psychology Press",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18212486M.json",
+      "quote": "\"publishers\": [\"Psychology Press\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18212486M.json",
+      "quote": "\"publish_places\": [\"New York\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18212486M.json",
+      "quote": "\"publish_date\": \"2006\""
+     }
+    ]
+   }
+  },
+  "notes": "Adds middle initial A. The LoC SRU server did not return LCCN 2006016486, so the Open Library copy of that MARC record is used. Crossref 10.4324/9780203782934 (Psychology Press, 2013) is the later e-book issue of the same text; not assigned as DOI (different issue date), reviewer may choose to use it."
+ },
+ {
+  "key": "Scha01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001018920&maximumRecords=1&recordSchema=mods",
+   "quote": "Richard Semon and the story of memory",
+   "why": "LoC record LCCN 2001018920: Schacter, Forgotten ideas, neglected pioneers: Richard Semon and the story of memory, Philadelphia, PA: Psychology Press, c2001."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Forgotten ideas, neglected pioneers: {Richard} {Semon} and the story of memory",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001018920&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>Forgotten ideas, neglected pioneers</title>"
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001018920&maximumRecords=1&recordSchema=mods",
+      "quote": "<subTitle>Richard Semon and the story of memory</subTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D L Schacter",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001018920&maximumRecords=1&recordSchema=mods",
+      "quote": "Schacter, Daniel L."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Psychology Press",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL3941393M.json",
+      "quote": "\"publishers\": [\"Psycholoby Press\", \"Psychology Press\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Philadelphia, {PA}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001018920&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">Philadelphia, PA</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001018920&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>c2001</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "Address New York -> Philadelphia, PA (LoC; the 2001 Psychology Press imprint was Philadelphia). LoC misprints the publisher 'Psycholoby Press'; Open Library carries the corrected 'Psychology Press'. Crossref 10.4324/9780203720134 (2012) is the later e-book issue; not assigned."
+ },
+ {
+  "key": "BirdEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010455716&maximumRecords=1&recordSchema=mods",
+   "quote": "Steven Bird, Ewan Klein, and Edward Loper.",
+   "why": "LoC record LCCN 2010455716: Natural language processing with Python, Bird, Klein and Loper, 1st ed., Beijing; Cambridge, Mass.: O'Reilly, c2009."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Natural language processing with {Python}: analyzing text with the natural language toolkit",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010455716&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>Natural language processing with Python</title>"
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010455716&maximumRecords=1&recordSchema=mods",
+      "quote": "\"Analyzing text with the natural language toolkit\"--Cover."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S Bird and E Klein and E Loper",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010455716&maximumRecords=1&recordSchema=mods",
+      "quote": "Steven Bird, Ewan Klein, and Edward Loper."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "O'Reilly",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010455716&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>O'Reilly</namePart>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010455716&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>c2009</dateIssued>"
+     }
+    ]
+   },
+   "edition": {
+    "status": "confirmed",
+    "value": "1\\textsuperscript{st}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010455716&maximumRecords=1&recordSchema=mods",
+      "quote": "<edition>1st ed.</edition>"
+     }
+    ]
+   }
+  },
+  "notes": "Title typo 'Nature language' -> 'Natural language'. Publisher 'Reilly Media, Inc.' is a mangled 'O'Reilly Media, Inc.' (apostrophe-O lost); LoC's form 'O'Reilly' proposed (or 'O'Reilly Media' if preferred). Subtitle is the cover subtitle per LoC. Address could be added as 'Sebastopol, {CA}' (O'Reilly's US office; LoC lists 'Beijing ; Cambridge [Mass.]'), not proposed. Edition field optional (only edition)."
+ },
+ {
+  "key": "Yate66",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=66074296&maximumRecords=1&recordSchema=mods",
+   "quote": "Routledge & K. Paul",
+   "why": "LoC record LCCN 66074296: Yates, The art of memory, London: Routledge & K. Paul, 1966 (the UK first edition; Chicago UP 1966 is a separate US issue)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The art of memory",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=66074296&maximumRecords=1&recordSchema=mods",
+      "quote": "art of memory"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "F A Yates",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=66074296&maximumRecords=1&recordSchema=mods",
+      "quote": "Yates, Frances Amelia."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Routledge and Kegan Paul",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=66074296&maximumRecords=1&recordSchema=mods",
+      "quote": "Routledge & K. Paul"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "London, {UK}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=66074296&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">London</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1966",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=66074296&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>1966</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref 10.4324/9781315010960 (Routledge 2013 'Art Of Memory') is a later reissue, not assigned. 1992 Pimlico and 1999 Routledge editions are different editions."
+ },
+ {
+  "key": "Khan04",
+  "verdict": "no_source",
+  "identity": {
+   "url": "",
+   "quote": "",
+   "why": "Not a book: 'The Khan Academy' is Salman Khan's website/organization; no catalogue records a 2004 publication with this title."
+  },
+  "fields": {
+   "title": {
+    "status": "not_found",
+    "value": "The {K}han Academy",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "S Khan",
+    "evidence": []
+   },
+   "publisher": {
+    "status": "not_found",
+    "value": "Salman Khan",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2004",
+    "evidence": []
+   }
+  },
+  "notes": "Searched LoC, Open Library, web. 2004 is when Khan began remote tutoring; the Khan Academy nonprofit and website date from 2008 (YouTube channel 2006) per common accounts, not verified on an acceptable page (khanacademy.org/about is a careers page; /about/our-story refused the script). Recommend converting to @misc with Howpublished = {\\url{https://www.khanacademy.org}} and a year matching the citing context, or removal; user decision."
+ }
+]

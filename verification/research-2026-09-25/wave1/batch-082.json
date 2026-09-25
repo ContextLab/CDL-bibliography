@@ -1,0 +1,1860 @@
+[
+ {
+  "key": "Kaha09",
+  "verdict": "no_source",
+  "identity": {
+   "url": "",
+   "quote": "",
+   "why": "No published entry titled 'Associative symmetry' by Kahana was found in Encyclopedia of the Mind (SAGE, 2013)."
+  },
+  "fields": {},
+  "notes": "Searched Crossref for all 293 reference-entry DOIs under 10.4135/9781452257044 (Encyclopedia of the Mind, ed. H Pashler, SAGE 2013): no entry with 'associat' or 'symmetry' in its title (the A-entries run Access Consciousness ... Attitude Change, n1-n29). Crossref bibliographic search for 'associative symmetry Kahana encyclopedia of the mind' returned only the journal papers (Rizzuto & Kahana 2000 Neurocomputing; Kahana 2002 Memory & Cognition 10.3758/bf03195769). No local PDF. The chapter appears never to have been published in the encyclopedia; the Kahana co-authored entry that was published is 'Memory Recall, Dynamics' (10.4135/9781452257044.n183, already in cdl.bib as KahaMill13). Reviewer: consider whether Kaha09 should be retired or recited as Kahana 2002. The Kahana lab publication list (https://memory.psych.upenn.edu/files/pages/pubs.html) lists Kahana & Miller (2013) in Encyclopedia of the mind but no Associative symmetry entry."
+ },
+ {
+  "key": "KahaMill10",
+  "verdict": "correction",
+  "identity": {
+   "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/KahaMill10.pdf#page=1",
+   "quote": "Memory, Recall Dynamics Michael J. Kahana and Jonathan F. Miller",
+   "why": "The local manuscript for KahaMill10 is the Encyclopedia of the Mind entry published by SAGE in 2013 as 'Memory Recall, Dynamics' (Crossref reference-entry in container 'Encyclopedia of the Mind')."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Memory recall, dynamics",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+      "quote": "\"Memory Recall, Dynamics\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M J Kahana and J F Miller",
+    "evidence": [
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/KahaMill10.pdf#page=1",
+      "quote": "Michael J. Kahana and Jonathan F. Miller"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Encyclopedia of the Mind",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+      "quote": "\"Encyclopedia of the Mind\""
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+      "quote": "\"published-print\":{\"date-parts\":[[2013]]}"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "H Pashler",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781452257044",
+      "quote": "\"given\":\"Harold\",\"family\":\"Pashler\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "{SAGE} Publications",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+      "quote": "\"publisher\":\"SAGE Publications, Inc.\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4135/9781452257044.n183",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
+      "quote": "\"DOI\":\"10.4135\\/9781452257044.n183\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "493--497",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pages/pubs.html",
+      "quote": "Kahana, M. J. and Miller, J. F. (2013). Memory recall, dynamics."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pages/pubs.html",
+      "quote": "Encyclopedia of the mind (vol. 2, pp. 493"
+     }
+    ]
+   }
+  },
+  "notes": "DUPLICATE: cdl.bib already holds this work as KahaMill13 (Doi 10.4135/9781452257044.n183, Pages 493--497, Volume 2, Year 2013). KahaMill10 is the pre-publication citation of the same entry and should be merged into KahaMill13. Pages/volume from the author's lab publication page (SAGE Knowledge requires login): 'Encyclopedia of the mind (vol. 2, pp. 493-497)', matching KahaMill13; a search-engine snippet said Vol. 1 (not trusted). Lab page HTML may use &ndash; entities; quotes chosen to avoid the dash. Crossref lists Pashler as 'author' role of the reference book (he is its editor). Publisher form copied from KahaMill13."
+ },
+ {
+  "key": "Devl76",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL4877514M.json",
+   "quote": "edited by Gary T. Moore, Reginald G. Golledge",
+   "why": "The containing volume is confirmed; no acceptable source reachable showed the Devlin chapter itself."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Environmental Knowing: Theories, Research, and Methods",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "\"subtitle\": \"theories, research, and methods\""
+     },
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "\"title\": \"Environmental knowing\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "G T Moore and R G Golledge",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "edited by Gary T. Moore, Reginald G. Golledge"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Dowden, Hutchinson, and Ross",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "\"publishers\": [\"Dowden, Hutchinson & Ross\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Stroudsburg, {PA}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "\"publish_places\": [\"Stroudsburg, Pa\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1976",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "\"publish_date\": \"1976\""
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "chapter": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Book-level fields verified from the Open Library/LoC-derived edition record (OL4877514M, LCCN 76004942, xxii+441 p.). Chapter-level fields NOT verified: both Internet Archive scans (environmentalkno00moor, environmentalkno0000unse) are access-restricted (full text and search-inside return 401/'Item not available'); Google Books WOlJAAAAMAAJ is snippet view with only 2 TOC lines shown ('Editors Introduction' p27, 'WayFinding in the Natural Environment' p46) and blocks scripted search; HathiTrust blocked (403). Address 'Stroudsberg' is a misspelling of Stroudsburg. Editor initials: house form would be 'G T Moore and R G Golledge' (cited full given names). Publisher printed with '&'; house form 'Dowden, Hutchinson, and Ross' kept. Leads only (reference lists / search engine): Devlin, A. S., 'The \"small town\" cognitive map: adjusting to a new environment', pp. 58-66 (one secondary citation gives 58-67). The cited Google Books TOC line 'WayFinding in the Natural Environment' p. 46 is consistent with Devlin starting at p. 58."
+ },
+ {
+  "key": "Kapl76",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL4877514M.json",
+   "quote": "edited by Gary T. Moore, Reginald G. Golledge",
+   "why": "The containing volume is confirmed; no acceptable source reachable showed the Kaplan chapter itself."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Environmental Knowing: Theories, Research, and Methods",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "\"subtitle\": \"theories, research, and methods\""
+     },
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "\"title\": \"Environmental knowing\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "G T Moore and R G Golledge",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "edited by Gary T. Moore, Reginald G. Golledge"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Dowden, Hutchinson, and Ross",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "\"publishers\": [\"Dowden, Hutchinson & Ross\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Stroudsburg, {PA}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "\"publish_places\": [\"Stroudsburg, Pa\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1976",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4877514M.json",
+      "quote": "\"publish_date\": \"1976\""
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "chapter": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Book-level fields verified from the Open Library/LoC-derived edition record (OL4877514M, LCCN 76004942, xxii+441 p.). Chapter-level fields NOT verified: both Internet Archive scans (environmentalkno00moor, environmentalkno0000unse) are access-restricted (full text and search-inside return 401/'Item not available'); Google Books WOlJAAAAMAAJ is snippet view with only 2 TOC lines shown ('Editors Introduction' p27, 'WayFinding in the Natural Environment' p46) and blocks scripted search; HathiTrust blocked (403). Address 'Stroudsberg' is a misspelling of Stroudsburg. Editor initials: house form would be 'G T Moore and R G Golledge' (cited full given names). Publisher printed with '&'; house form 'Dowden, Hutchinson, and Ross' kept. Google Books snippet TOC shows an editors introduction at p. 27, consistent with (but not proof of) a chapter starting at p. 32."
+ },
+ {
+  "key": "Jenk79",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.4324/9781315796192-33",
+   "quote": "Four Points to Remember: A Tetrahedral Model of Memory Experiments",
+   "why": "Crossref chapter record in the 2014 Psychology Press reissue of Cermak & Craik (1979) Levels of Processing in Human Memory carries this exact chapter title; the 1979 Erlbaum edition is confirmed by its catalogue record."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9781315796192-33",
+      "quote": "Four Points to Remember: A Tetrahedral Model of Memory Experiments"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Four points to remember: a tetrahedral model of memory experiments",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9781315796192-33",
+      "quote": "Four Points to Remember: A Tetrahedral Model of Memory Experiments"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Levels of Processing in Human Memory",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4737653M.json",
+      "quote": "\"title\": \"Levels of processing in human memory\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "L S Cermak and F I M Craik",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4737653M.json",
+      "quote": "\"Cermak, Laird S.\""
+     },
+     {
+      "url": "https://openlibrary.org/books/OL4737653M.json",
+      "quote": "\"Craik, Fergus I. M.\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4737653M.json",
+      "quote": "\"Lawrence Erlbaum Associates\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4737653M.json",
+      "quote": "\"Hillsdale, N.J\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1979",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4737653M.json",
+      "quote": "\"publish_date\": \"1979\""
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Entry is @inbook with the book title in `title` and the chapter title in `chapter`; house form is @incollection with Title = chapter, Booktitle = book. Author J J Jenkins not verifiable from an acceptable source (Crossref chapter record has no authors; Taylor & Francis pages and IA scan blocked; T&F URL slug names 'james-jenkins'). Pages: the 2014 reissue (DOI 10.4324/9781315796192-33) gives 445-462; the reissue's neighbouring chapter 'Relation Between Encoding Specificity and Levels of Processing' is 421-444 there, i.e. a +16 offset from the familiar 1979 pagination (405-428), so 445-462 corresponds to the cited 1979 pages 429--446 - consistent but inferred, not quoted. Do NOT put the reissue DOI on the 1979 citation (different edition). Original: xii+479 p., Hillsdale NJ, Erlbaum 1979."
+ },
+ {
+  "key": "Tulv07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL18287995M.json",
+   "quote": "On the law of primacy / Endel Tulving",
+   "why": "Catalogue table of contents of Memory and Mind: A Festschrift for Gordon H. Bower (Erlbaum, eds Gluck, Anderson, Kosslyn) lists Tulving's chapter."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18287995M.json",
+      "quote": "On the law of primacy / Endel Tulving"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "On the law of primacy",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18287995M.json",
+      "quote": "On the law of primacy / Endel Tulving"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E Tulving",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18287995M.json",
+      "quote": "On the law of primacy / Endel Tulving"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Memory and Mind: A Festschrift for {Gordon} {H}. {Bower}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18287995M.json",
+      "quote": "Memory and mind"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL18287995M.json",
+      "quote": "a festschrift for Gordon H. Bower"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "M A Gluck and J R Anderson and S M Kosslyn",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203809983",
+      "quote": "\"given\":\"Mark A.\",\"family\":\"Gluck\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203809983",
+      "quote": "\"given\":\"John R.\",\"family\":\"Anderson\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203809983",
+      "quote": "\"given\":\"Stephen M.\",\"family\":\"Kosslyn\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18287995M.json",
+      "quote": "Lawrence Erlbaum Associates"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL18287995M.json",
+      "quote": "\"publish_places\": [\"New York\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL7938700M.json",
+      "quote": "September 7, 2007"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203809983",
+      "quote": "\"date-parts\":[[2007,9,7]]"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "@inbook with book title in `title` and chapter in `chapter`; house form is @incollection. Editor fix: 'JR Anderson' -> 'J R Anderson' (Crossref gives John R.). Year: publisher/Crossref date 2007-09-07, but the LoC-derived catalogue record OL18287995M gives 2008 (probably copyright year) - reviewer may prefer 2008. Chapter pages not found (Crossref has no chapter-level records for 10.4324/9780203809983; IA scan memorymindfestsc00lesg is lending-only). The 2007 T&F eBook DOI 10.4324/9780203809983 is the book, not the chapter; no chapter DOI found."
+ },
+ {
+  "key": "BjorBjor92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://bjorklab.psych.ucla.edu/robert-a-bjork-publications/",
+   "quote": "A new theory of disuse and an old theory of stimulus fluctuation",
+   "why": "Author's lab publication list (with a scan of the chapter) places this chapter in Vol. 2 of the Estes festschrift, pp. 35-67; the volume itself is confirmed by its catalogue record."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "From Learning Processes to Cognitive Processes: Essays in Honor of {William} {K}. {Estes}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "\"title\": \"From learning processes to cognitive processes\""
+     },
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "Essays in honor of William K. Estes -- v. 2"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "Essays in honor of William K. Estes -- v. 2"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "A F Healy and S M Kosslyn and R M Shiffrin",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "edited by Alice F. Healy, Stephen M. Kosslyn, Richard M. Shiffrin"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "\"publishers\": [\"L. Erlbaum\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "\"publish_places\": [\"Hillsdale, N.J\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "\"publish_date\": \"1992\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A new theory of disuse and an old theory of stimulus fluctuation",
+    "evidence": [
+     {
+      "url": "https://bjorklab.psych.ucla.edu/robert-a-bjork-publications/",
+      "quote": "A new theory of disuse and an old theory of stimulus fluctuation"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R A Bjork and E L Bjork",
+    "evidence": [
+     {
+      "url": "https://bjorklab.psych.ucla.edu/robert-a-bjork-publications/",
+      "quote": "Bjork, R. A.,"
+     },
+     {
+      "url": "https://bjorklab.psych.ucla.edu/robert-a-bjork-publications/",
+      "quote": "Bjork, E. L. (1992). A new theory of disuse"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "35--67",
+    "evidence": [
+     {
+      "url": "https://bjorklab.psych.ucla.edu/robert-a-bjork-publications/",
+      "quote": "(Vol. 2, pp. 35-67). Hillsdale, NJ: Erlbaum."
+     }
+    ]
+   }
+  },
+  "notes": "Booktitle 'Essays in Honor of William K. Estes' is the series title; the volume title is 'From Learning Processes to Cognitive Processes' (Vol. 2), eds Healy, Kosslyn & Shiffrin (cited editor list omits Shiffrin). Add Volume = {2}. Pages 35--67 also checked visually on the chapter scan https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/07/RBjork_EBjork_1992.pdf (image-only PDF; first page printed 35, chapter 2, 'Robert A. Bjork / Elizabeth Ligon Bjork', last page 67). The author lab page is used because no publisher/catalogue chapter record for Vol. 2 is reachable (no Crossref chapters; LoC catalogue is JS-only)."
+ },
+ {
+  "key": "Murd92b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.routledge.com/From-Learning-Theory-to-Connectionist-Theory-Essays-in-Honor-of-William-K-Estes-Volume-I-From-Learning-Processes-to-Cognitive-Processes-Volume-II/Healy-Kosslyn-Shiffrin/p/book/9780805810981",
+   "quote": "B.B. Murdock, Serial Organization in a Distributed Memory Model.",
+   "why": "Publisher's table of contents for Volume I (From Learning Theory to Connectionist Theory) of the Estes festschrift lists Murdock's chapter."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "From Learning Theory to Connectionist Theory: Essays in Honor of {William} {K}. {Estes}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16718746M.json",
+      "quote": "\"title\": \"From learning theory to connectionist theory\""
+     },
+     {
+      "url": "https://openlibrary.org/books/OL16718746M.json",
+      "quote": "Essays in honor of William K. Estes -- v. 1"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16718746M.json",
+      "quote": "Essays in honor of William K. Estes -- v. 1"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "A F Healy and S M Kosslyn and R M Shiffrin",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16718746M.json",
+      "quote": "edited by Alice F. Healy, Stephen M. Kosslyn, Richard M. Shiffrin"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16718746M.json",
+      "quote": "\"publishers\": [\"L. Erlbaum\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16718746M.json",
+      "quote": "\"publish_places\": [\"Hillsdale, N.J\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16718746M.json",
+      "quote": "\"publish_date\": \"1992\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Serial organization in a distributed memory model",
+    "evidence": [
+     {
+      "url": "https://www.routledge.com/From-Learning-Theory-to-Connectionist-Theory-Essays-in-Honor-of-William-K-Estes-Volume-I-From-Learning-Processes-to-Cognitive-Processes-Volume-II/Healy-Kosslyn-Shiffrin/p/book/9780805810981",
+      "quote": "B.B. Murdock, Serial Organization in a Distributed Memory Model."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B B Murdock",
+    "evidence": [
+     {
+      "url": "https://www.routledge.com/From-Learning-Theory-to-Connectionist-Theory-Essays-in-Honor-of-William-K-Estes-Volume-I-From-Learning-Processes-to-Cognitive-Processes-Volume-II/Healy-Kosslyn-Shiffrin/p/book/9780805810981",
+      "quote": "B.B. Murdock, Serial Organization in a Distributed Memory Model."
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Chapter is in Vol. 1, 'From Learning Theory to Connectionist Theory' (Routledge TOC headed 'Volume I: From Learning Theory to Connectionist Theory. Contents:'); cited booktitle is the series title only and lacks a volume. Editors should add R M Shiffrin. Pages 201--225 not verified (no chapter record: Crossref reissue 10.4324/9780203763162 has no chapter DOIs; IA scan essaysinhonorofw0000unse_f7z3 restricted). Do not add the 2013 reissue DOI to a 1992 citation."
+ },
+ {
+  "key": "ShifRaai92",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL16717034M.json",
+   "quote": "edited by Alice F. Healy, Stephen M. Kosslyn, Richard M. Shiffrin",
+   "why": "The festschrift volumes are confirmed; no acceptable source reachable prints the Shiffrin & Raaijmakers chapter itself, so its volume and pages are unverified."
+  },
+  "fields": {
+   "editor": {
+    "status": "confirmed",
+    "value": "A F Healy and S M Kosslyn and R M Shiffrin",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "edited by Alice F. Healy, Stephen M. Kosslyn, Richard M. Shiffrin"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "\"publishers\": [\"L. Erlbaum\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "\"publish_places\": [\"Hillsdale, N.J\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL16717034M.json",
+      "quote": "\"publish_date\": \"1992\""
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "volume": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "booktitle": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Address 'Potomac, {MD}' is wrong for 1992: both catalogue records for the festschrift give 'Hillsdale, N.J' (Potomac MD appears only in some secondary citations). The chapter is NOT in Vol. 1 (the publisher's Vol. I TOC at routledge.com lists 12 chapters, none by Shiffrin/Raaijmakers), so the cited Volume = {1} is almost certainly wrong. Leads (secondary citations, not acceptable evidence): Vol. 2 'From Learning Processes to Cognitive Processes', pp. 69--86 - consistent with Bjork & Bjork's chapter 2 in Vol. 2 ending at p. 67 (verified on its scan). If confirmed, correct to booktitle 'From Learning Processes to Cognitive Processes: Essays in Honor of {William} {K}. {Estes}', volume 2, pages 69--86, address Hillsdale, {NJ}. Editor list in cdl.bib already correct."
+ },
+ {
+  "key": "Cofe71",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL5757350M.json",
+   "quote": "3d ed. [by] J. W. Kling & Lorrin A. Riggs, and seventeen contributors.",
+   "why": "The 1971 3rd edition of Woodworth & Schlosberg's Experimental Psychology (Kling & Riggs) is confirmed; no reachable acceptable source prints Cofer's chapter."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "Woodworth \\& Schlosberg's Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL5757350M.json",
+      "quote": "\"title\": \"Woodworth & Schlosberg's Experimental psychology.\""
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "3\\textsuperscript{rd}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL5757350M.json",
+      "quote": "3d ed. [by] J. W. Kling & Lorrin A. Riggs"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "J W Kling and L A Riggs",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL5757350M.json",
+      "quote": "3d ed. [by] J. W. Kling & Lorrin A. Riggs, and seventeen contributors."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Holt, Rinehart, and Winston",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL5757350M.json",
+      "quote": "\"publishers\": [\"Holt, Rinehart and Winston\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL5757350M.json",
+      "quote": "\"publish_places\": [\"New York\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1971",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL5757350M.json",
+      "quote": "\"publish_date\": \"1971\""
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Book is 'Woodworth & Schlosberg's Experimental Psychology', 3rd ed. (1971, xiv+1279 p.); cited booktitle 'Experimental Psychology' omits the possessive title and the edition. Catalogue credits Kling & Riggs as authors '[by] ... and seventeen contributors' (they function as editors; keep Editor). Cofer chapter title/pages 847--903 not verifiable: IA scan isbn_9780030028069_2 restricted, no Crossref/Google Books TOC reached. A 1972 two-volume printing (2 v., xvi+1279 p.) also exists; page numbers run continuously so 847--903 would fall in vol. 2 of that printing."
+ },
+ {
+  "key": "Este76",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL4875688M.json",
+   "quote": "edited by Charles N. Cofer.",
+   "why": "The book The Structure of Human Memory (Cofer, Freeman, 1976) is confirmed; no reachable acceptable source prints Estes's chapter."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4875688M.json",
+      "quote": "\"title\": \"The structure of human memory\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "The Structure of Human Memory",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4875688M.json",
+      "quote": "\"title\": \"The structure of human memory\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "C N Cofer",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4875688M.json",
+      "quote": "edited by Charles N. Cofer."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Freeman",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4875688M.json",
+      "quote": "\"publishers\": [\"W. H. Freeman\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "San Francisco, {CA}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4875688M.json",
+      "quote": "\"publish_places\": [\"San Francisco\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1976",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL4875688M.json",
+      "quote": "\"publish_date\": \"1976\""
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "@inbook with the book title in `title` and the chapter in `chapter`; house form @incollection with Title = 'Structural aspects of associative models for memory', Booktitle = 'The Structure of Human Memory'. Chapter not verifiable (APA PsycNET record 1977-00374-000 is JS-only; IA scan structureofhuman0000unse_w2k8 restricted, and that record is dated 1975). Leads: secondary citations give pp. 31--53. Publisher house form: cdl.bib elsewhere has 'W H Freeman'."
+ },
+ {
+  "key": "Buzs01",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://buzsakilab.com/wp/publications/books/",
+   "quote": "Network oscillations in the hippocampal formation Buzsáki, G. In: Frontiers of Life.",
+   "why": "The author's lab page lists the chapter in Frontiers of Life (Academic Press), but gives Volume 4 and year 2000, conflicting with the cited volume 3 / 2001 and with catalogue dates (Oct 2001 set; 2002 imprint)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Network oscillations in the hippocampal formation",
+    "evidence": [
+     {
+      "url": "https://buzsakilab.com/wp/publications/books/",
+      "quote": "Network oscillations in the hippocampal formation Buzsáki, G."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "G Buzs\\'{a}ki",
+    "evidence": [
+     {
+      "url": "https://buzsakilab.com/wp/publications/books/",
+      "quote": "Network oscillations in the hippocampal formation Buzsáki, G."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Frontiers of Life",
+    "evidence": [
+     {
+      "url": "https://buzsakilab.com/wp/publications/books/",
+      "quote": "In: Frontiers of Life."
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "D Baltimore and R Dulbecco and F Jacob and R Levi-Montalcini",
+    "evidence": [
+     {
+      "url": "https://buzsakilab.com/wp/publications/books/",
+      "quote": "D. Baltimore, R., Dulbecco, F. Jacob, R. Levi-Montalcini (eds)."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Academic Press",
+    "evidence": [
+     {
+      "url": "https://buzsakilab.com/wp/publications/books/",
+      "quote": "Academic Press, New York. 2000."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://buzsakilab.com/wp/publications/books/",
+      "quote": "Academic Press, New York. 2000."
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://buzsakilab.com/wp/publications/books/",
+      "quote": "Volume 4. Pp 575-588."
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "575--588",
+    "evidence": [
+     {
+      "url": "https://buzsakilab.com/wp/publications/books/",
+      "quote": "Volume 4. Pp 575-588."
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Only source for the chapter is the author's lab page (no publisher/Crossref chapter record found). It says 2000, Vol. 4, pp. 575-588; cdl.bib says 2001, Vol. 3, no pages. Catalogue: the 4-volume set from Academic Press dated 'October 2001' (OL9280210M) and a 2002 Academic/Treccani imprint, San Diego/Roma (OL3957852M), whose contents put 'Brain of homo sapiens' in v. 3 (Intelligent systems) and 'Biology of behavior' in v. 4 (The living world) - a hippocampal chapter could plausibly be in v. 3, so the lab page's 'Volume 4' is not trustworthy on its own. Year: 2000 is before any catalogue date; 2001 (set release) is best supported. Editor order: lab page and catalogue lead with Baltimore; cited order leads with Dulbecco. Reviewer: needs the printed volume to settle volume/pages."
+ },
+ {
+  "key": "Kami69",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL21329747M.json",
+   "quote": "edited by N.J. Mackintosh and W.K. Honig",
+   "why": "The Dalhousie symposium volume edited by Mackintosh & Honig (1969) is confirmed, but under the title 'Fundamental issues in associative learning'; no reachable acceptable source prints Kamin's chapter."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "Fundamental Issues in Associative Learning",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21329747M.json",
+      "quote": "\"title\": \"Fundamental issues in associative learning\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "N J Mackintosh and W K Honig",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21329747M.json",
+      "quote": "edited by N.J. Mackintosh and W.K. Honig"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Dalhousie {University} Press",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21329747M.json",
+      "quote": "\"publishers\": [\"Dalhousie University Press\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Halifax, Canada",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21329747M.json",
+      "quote": "\"publish_places\": [\"Halifax\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1969",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21329747M.json",
+      "quote": "\"publish_date\": \"1969\""
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "BOOKTITLE WRONG: 'Fundamental Issues in Instrumental Learning' -> 'Fundamental Issues in Associative Learning' (proceedings of a symposium held at Dalhousie University, Halifax, June 1968; 203 p.). Kamin chapter/pages 42--64 not verifiable: IA scans fundamentalissue0000unse_s5s1 and fundamentalissue0000edit restricted; no Crossref; Google Books API over quota. Secondary citations (leads) agree on pp. 42--64."
+ },
+ {
+  "key": "RuggEtal02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://fnim.utdallas.edu/2002/11/13/rugg-md-herron-je-morcom-am-2002",
+   "quote": "Rugg MD, Herron JE, Morcom AM. (2002). Electrophysiological studies of retrieval processing.",
+   "why": "The first author's lab publication record gives this chapter in Squire & Schacter (Eds.), Neuropsychology of Memory (3rd Ed.), Guilford Press, 2002."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://fnim.utdallas.edu/2002/11/13/rugg-md-herron-je-morcom-am-2002",
+      "quote": "In LR Squire, DL Schacter (Eds.), Neuropsychology of Memory (3rd Ed.)"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Electrophysiological studies of retrieval processing",
+    "evidence": [
+     {
+      "url": "https://fnim.utdallas.edu/2002/11/13/rugg-md-herron-je-morcom-am-2002",
+      "quote": "Electrophysiological studies of retrieval processing."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M D Rugg and J E Herron and A M Morcom",
+    "evidence": [
+     {
+      "url": "https://fnim.utdallas.edu/2002/11/13/rugg-md-herron-je-morcom-am-2002",
+      "quote": "Rugg MD, Herron JE, Morcom AM. (2002)."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Neuropsychology of Memory",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL8734307M.json",
+      "quote": "Neuropsychology of Memory, Third Edition"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "3\\textsuperscript{rd}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL8734307M.json",
+      "quote": "Neuropsychology of Memory, Third Edition"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "L R Squire and D L Schacter",
+    "evidence": [
+     {
+      "url": "https://fnim.utdallas.edu/2002/11/13/rugg-md-herron-je-morcom-am-2002",
+      "quote": "In LR Squire, DL Schacter (Eds.)"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Guilford Press",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL8734307M.json",
+      "quote": "The Guilford Press"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL8734307M.json",
+      "quote": "March 6, 2002"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "@inbook with book title (plus '(3\\textsuperscript{rd} ed.)') in `title` and chapter in `chapter`; house form @incollection with Title = chapter, Booktitle = 'Neuropsychology of Memory', Edition = {3\\textsuperscript{rd}}. Pages unverified: cited 156--165, but a search-engine summary gave 154--165 - conflict, no TOC reachable (Guilford site, OL records lack contents). Address (New York, {NY}) could be added but no source quoted. Evidence for authors/title is the author's lab page (no publisher chapter record exists)."
+ },
+ {
+  "key": "GileZeli86",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/10057-008",
+   "quote": "Questionnaire assessment of memory complaints.",
+   "why": "Crossref chapter record (APA) matches title, both authors, year, pages and the Poon handbook."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Questionnaire assessment of memory complaints",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10057-008",
+      "quote": "Questionnaire assessment of memory complaints."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M J Gilewski and E M Zelinski",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10057-008",
+      "quote": "\"given\":\"Michael J.\",\"family\":\"Gilewski\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/10057-008",
+      "quote": "\"given\":\"Elizabeth M.\",\"family\":\"Zelinski\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Handbook for Clinical Memory Assessment of Older Adults",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10057-008",
+      "quote": "Handbook for clinical memory assessment of older adults."
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "L W Poon",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL2732354M.json",
+      "quote": "Leonard W. Poon, editor"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "93--107",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10057-008",
+      "quote": "\"page\":\"93-107\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1986",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10057-008",
+      "quote": "\"published-print\":{\"date-parts\":[[1986]]}"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{American} Psychological Association",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10057-008",
+      "quote": "\"publisher\":\"American Psychological Association\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Washington, {DC}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL2732354M.json",
+      "quote": "\"publish_places\": [\"Washington, DC\"]"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/10057-008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10057-008",
+      "quote": "\"DOI\":\"10.1037\\/10057-008\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; only addition is the chapter DOI 10.1037/10057-008. The known-record 'booktitle mismatch' was just capitalization/final period."
+ },
+ {
+  "key": "CraiJenn92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://books.google.com/books/about/The_Handbook_of_Aging_and_Cognition.html?id=x_fwOk6hKasC",
+   "quote": "Contents Attention 3 Human Memory 51 The Organization of Memory in Old 111",
+   "why": "Google Books contents of the 1992 Handbook of Aging and Cognition (Craik & Salthouse, 586 pp.) show the chapter 'Human Memory' at p. 51, next chapter at p. 111."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "The Handbook of Aging and Cognition",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1559632M.json",
+      "quote": "\"title\": \"The handbook of aging and cognition\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "F I M Craik and T A Salthouse",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1559632M.json",
+      "quote": "edited by Fergus I.M. Craik, Timothy A.Salthouse."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1559632M.json",
+      "quote": "\"publishers\": [\"L. Erlbaum Associates\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1559632M.json",
+      "quote": "\"publish_places\": [\"Hillsdale, N.J\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1559632M.json",
+      "quote": "\"publish_date\": \"1992\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Human memory",
+    "evidence": [
+     {
+      "url": "https://books.google.com/books/about/The_Handbook_of_Aging_and_Cognition.html?id=x_fwOk6hKasC",
+      "quote": "Attention 3 Human Memory 51"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "51--110",
+    "evidence": [
+     {
+      "url": "https://books.google.com/books/about/The_Handbook_of_Aging_and_Cognition.html?id=x_fwOk6hKasC",
+      "quote": "Human Memory 51 The Organization of Memory in Old 111"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Cited Pages = {586} is the page count of the whole book (catalogue: 'ix, 586 p.'), not the chapter. Chapter starts p. 51; end page 110 is inferred from the next chapter starting at p. 111 (confirm on the printed page if possible). Authors Craik & Jennings not shown by any reachable acceptable source (IA scan handbookofaginga00ctor restricted; no Crossref chapter records for the 1992 edition); left as cited. Booktitle gains the leading 'The'."
+ },
+ {
+  "key": "MoscWino92",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL1559632M.json",
+   "quote": "edited by Fergus I.M. Craik, Timothy A.Salthouse.",
+   "why": "The 1992 handbook is confirmed; no reachable acceptable source prints the Moscovitch & Winocur chapter record (title/authors/pages)."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "The Handbook of Aging and Cognition",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1559632M.json",
+      "quote": "\"title\": \"The handbook of aging and cognition\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "F I M Craik and T A Salthouse",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1559632M.json",
+      "quote": "edited by Fergus I.M. Craik, Timothy A.Salthouse."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1559632M.json",
+      "quote": "\"publishers\": [\"L. Erlbaum Associates\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1559632M.json",
+      "quote": "\"publish_places\": [\"Hillsdale, N.J\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1559632M.json",
+      "quote": "\"publish_date\": \"1992\""
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Book-level fields verified (booktitle should read 'The Handbook of Aging and Cognition'). Chapter not verifiable: Google Books contents show only 3 of 12 sections (Attention 3, Human Memory 51, The Organization of Memory in Old 111), though its word cloud includes 'Moscovitch' and 'Winocur'; IA scan restricted; no Crossref chapters; APA PsycNET not scriptable. Secondary citations (leads only) agree on pp. 315--372, consistent with the cited value."
+ },
+ {
+  "key": "GerfWils96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80004-2",
+   "quote": "Chapter II The basal ganglia",
+   "why": "Crossref (Elsevier) chapter record: Gerfen & Wilson, 'The basal ganglia', Handbook of Chemical Neuroanatomy, Integrated systems of the CNS part III, pp. 371-468, 1996."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The basal ganglia",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80004-2",
+      "quote": "Chapter II The basal ganglia"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "C R Gerfen and C J Wilson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80004-2",
+      "quote": "\"given\":\"Charles R.\",\"family\":\"Gerfen\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80004-2",
+      "quote": "\"given\":\"Charles J.\",\"family\":\"Wilson\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Handbook of Chemical Neuroanatomy: Integrated Systems of the {CNS}, Part {III}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL10260831M.json",
+      "quote": "Integrated Systems of the CNS, Part III (Handbook of Chemical Neuroanatomy)"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "L W Swanson and A Bj{\\\"o}rklund and T H{\\\"o}kfelt",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80002-9",
+      "quote": "\"given\":\"Larry W.\",\"family\":\"Swanson\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80002-9",
+      "quote": "\"given\":\"Anders\",\"family\":\"Bj\\u00f6rklund\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80002-9",
+      "quote": "\"given\":\"Tomas\",\"family\":\"H\\u00f6kfelt\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "371--468",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80004-2",
+      "quote": "\"page\":\"371-468\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80004-2",
+      "quote": "\"published-print\":{\"date-parts\":[[1996]]}"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Elsevier",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80004-2",
+      "quote": "\"publisher\":\"Elsevier\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0924-8196(96)80004-2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0924-8196(96)80004-2",
+      "quote": "Chapter II The basal ganglia"
+     }
+    ]
+   }
+  },
+  "notes": "Editor names misspelled in cdl.bib: 'A Bjorkland' -> Björklund, 'T Hokfelt' -> Hökfelt (umlauts), 'L Swanson' -> L W Swanson; authors gain middle initials (C R Gerfen, C J Wilson). Editors taken from the volume's Preface record (10.1016/s0924-8196(96)80002-9) whose Crossref 'authors' are the three volume editors; Crossref JSON escapes the umlauts as \\u00f6. Booktitle: the volume is 'Integrated Systems of the CNS, Part III' (Crossref misspells 'Integraded'); cited booktitle lacks 'Part III'. Volume 12 is the well-known number but no reachable source stated it (ScienceDirect 403). Address Amsterdam not checked (Elsevier; Crossref gives no location). DOI evidence: the record at the DOI URL itself."
+ },
+ {
+  "key": "Frie06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/978-3-540-33037-0_2",
+   "quote": "A Brief History of Data Visualization",
+   "why": "Crossref chapter record: Michael Friendly, 'A Brief History of Data Visualization', Handbook of Data Visualization (Springer Handbooks of Computational Statistics), pp. 15-56, 2008 - the published form of the cited forthcoming handbook chapter."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "A brief history of data visualization",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-33037-0_2",
+      "quote": "A Brief History of Data Visualization"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Friendly",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-33037-0_2",
+      "quote": "\"given\":\"Michael\",\"family\":\"Friendly\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Handbook of Data Visualization",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-33037-0_2",
+      "quote": "\"container-title\":[\"Handbook of Data Visualization\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "C Chen and W H\\\"ardle and A Unwin",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL19888411M.json",
+      "quote": "Chun-houh Chen, Wolfgang Ha"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL19888411M.json",
+      "quote": "rdle, Antony Unwin, editors."
+     }
+    ]
+   },
+   "series": {
+    "status": "corrected",
+    "value": "Springer Handbooks of Computational Statistics",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL19888411M.json",
+      "quote": "Springer handbooks of computational statistics"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-33037-0_2",
+      "quote": "\"container-title\":[\"Handbook of Data Visualization\"]"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "15--56",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-33037-0_2",
+      "quote": "\"page\":\"15-56\""
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-33037-0_2",
+      "quote": "\"published-print\":{\"date-parts\":[[2008]]}"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-33037-0_2",
+      "quote": "\"publisher\":\"Springer Berlin Heidelberg\""
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Berlin, Germany",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL19888411M.json",
+      "quote": "\"publish_places\": [\"Berlin\"]"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-3-540-33037-0_2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-33037-0_2",
+      "quote": "\"DOI\":\"10.1007\\/978-3-540-33037-0_2\""
+     }
+    ]
+   }
+  },
+  "notes": "The cited form (2006, 'Handbook of Computational Statistics: Data Visualization', vol. III, Heidelberg) is the pre-publication description of this chapter; it appeared in 2008 as 'Handbook of Data Visualization' in the series Springer Handbooks of Computational Statistics (no volume number), pp. 15-56. Drop Volume = {III} (proposed value empty = remove). A 2006 draft circulated on Friendly's site (datavis.ca); if the 2006 draft was what was meant, that is a different version - reviewer's call, but the cited venue is the handbook. OL records vary 2007/2008 (released late 2007, imprint 2008); Crossref published-print 2008. Crossref says 'Springer Berlin Heidelberg', Berlin, Heidelberg - address could be 'Berlin, Germany' or keep Heidelberg; OL imprint says Berlin. OL JSON escapes the umlaut in Härdle, so the editor quote is split around it."
+ },
+ {
+  "key": "HowaEtal07b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.4324/9780203936399.ch7",
+   "quote": "Semantic Structure and Episodic Memory",
+   "why": "Crossref chapter record in Handbook of Latent Semantic Analysis (Landauer, McNamara, Dennis, Kintsch) with the four authors; the chapter scan confirms chapter 7, pp. 121-141."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Semantic structure and episodic memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399.ch7",
+      "quote": "Semantic Structure and Episodic Memory"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M W Howard and B Jing and K M Addis and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399.ch7",
+      "quote": "\"given\":\"Marc W.\",\"family\":\"Howard\",\"sequence\":\"first\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399.ch7",
+      "quote": "\"given\":\"Bing\",\"family\":\"Jing\",\"sequence\":\"additional\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399.ch7",
+      "quote": "\"given\":\"Kelly M.\",\"family\":\"Addis\",\"sequence\":\"additional\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399.ch7",
+      "quote": "\"given\":\"Michael J.\",\"family\":\"Kahana\",\"sequence\":\"additional\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Handbook of Latent Semantic Analysis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399.ch7",
+      "quote": "\"container-title\":[\"Handbook of Latent Semantic Analysis\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "T K Landauer and D S Mc{N}amara and S Dennis and W Kintsch",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399",
+      "quote": "\"given\":\"Thomas K.\",\"family\":\"Landauer\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399",
+      "quote": "\"given\":\"Danielle S.\",\"family\":\"McNamara\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399",
+      "quote": "\"given\":\"Simon\",\"family\":\"Dennis\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399",
+      "quote": "\"given\":\"Walter\",\"family\":\"Kintsch\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399",
+      "quote": "\"issued\":{\"date-parts\":[[2007,2,15]]}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "121--141",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pages/pubs.html",
+      "quote": "Semantic structure and episodic memory."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pages/pubs.html",
+      "quote": "Mahwah, NJ: Laurence Erlbaum and Associates."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Mahwah, {NJ}",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pages/pubs.html",
+      "quote": "Mahwah, NJ: Laurence Erlbaum and Associates."
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4324/9780203936399.ch7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203936399.ch7",
+      "quote": "\"DOI\":\"10.4324\\/9780203936399.ch7\""
+     }
+    ]
+   }
+  },
+  "notes": "AUTHOR ORDER AND INITIAL WRONG in cdl.bib (and on the Kahana lab page): the printed chapter (scan at https://memory.psych.upenn.edu/files/pubs/HowaEtal07c.pdf, p. 121) lists 'Marc W. Howard, Bing Jing, Kelly M. Addis, Michael J. Kahana' - Jing second, Addis third, and Addis's middle initial is M, not A; Crossref agrees. Pages 121--141 read on the scan (first page 121, last page 141); the lab page gives '(pp. 121-141)' but its HTML uses &ndash; so the page-number quote is anchored on the title line only - reviewer: pages rest on the scan. Crossref book record issued 2007-02-15 (T&F eBook of the Erlbaum 2007 print edition; same edition, so the chapter DOI applies). memory.psych.upenn.edu has an incomplete TLS chain (curl needs -k)."
+ }
+]

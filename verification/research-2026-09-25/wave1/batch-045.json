@@ -1,0 +1,2132 @@
+[
+ {
+  "key": "YoneEtal98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+   "quote": "Recollection and familiarity deficits in amnesia: convergence of remember-know, process dissociation, and receiver operating characteristic data.",
+   "why": "PubMed 9673991 / Crossref 10.1037/0894-4105.12.3.323: same five authors, Neuropsychology 1998, 12(3), 323-339."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Recollection and familiarity deficits in amnesia: convergence of remember-know, process dissociation, and receiver operating characteristic data",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<ArticleTitle>Recollection and familiarity deficits in amnesia: convergence of remember-know, process dissociation, and receiver operating characteristic data.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A P Yonelinas and N E A Kroll and I G Dobbins and M Lazzara and R T Knight",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<LastName>Yonelinas</LastName><ForeName>A P</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<LastName>Kroll</LastName><ForeName>N E</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<LastName>Dobbins</LastName><ForeName>I</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<LastName>Lazzara</LastName><ForeName>M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<LastName>Knight</LastName><ForeName>R T</ForeName>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0894-4105.12.3.323",
+      "quote": "\"given\":\"Neal E. A.\",\"family\":\"Kroll\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuropsychology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<Title>Neuropsychology</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<PubDate><Year>1998</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<Volume>12</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<Volume>12</Volume><Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "323--339",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9673991&retmode=xml",
+      "quote": "<StartPage>323</StartPage><EndPage>339</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0894-4105.12.3.323",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0894-4105.12.3.323",
+      "quote": "\"DOI\":\"10.1037\\/0894-4105.12.3.323\""
+     }
+    ]
+   }
+  },
+  "notes": "Adds number 3 and DOI. Crossref gives \"Neal E. A.\" (supports N E A). Both sources give Dobbins only \"Ian\"/\"I\"; the cited middle initial G is kept (never drop an initial only because a source omits it). PubMed stores the old DOI form 10.1037//0894-4105.12.3.323; Crossref resolves the single-slash form."
+ },
+ {
+  "key": "StewVelu21",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32895453&retmode=xml",
+   "quote": "Applied natural language processing in mental health big data.",
+   "why": "PubMed 32895453: Stewart and Velupillai, Neuropsychopharmacology 2021, 46(1), 252-253."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Applied natural language processing in mental health big data",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32895453&retmode=xml",
+      "quote": "<ArticleTitle>Applied natural language processing in mental health big data.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R Stewart and S Velupillai",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32895453&retmode=xml",
+      "quote": "<LastName>Stewart</LastName><ForeName>Robert</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32895453&retmode=xml",
+      "quote": "<LastName>Velupillai</LastName><ForeName>Sumithra</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuropsychopharmacology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32895453&retmode=xml",
+      "quote": "<Title>Neuropsychopharmacology : official publication of the American College of Neuropsychopharmacology</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2021",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32895453&retmode=xml",
+      "quote": "<PubDate><Year>2021</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "46",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32895453&retmode=xml",
+      "quote": "<Volume>46</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32895453&retmode=xml",
+      "quote": "<Volume>46</Volume><Issue>1</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "252--253",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32895453&retmode=xml",
+      "quote": "<StartPage>252</StartPage><EndPage>253</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/s41386-020-00842-1",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32895453&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1038/s41386-020-00842-1</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "All cited values correct; adds number 1 and DOI. Short \"Hot Topics\" piece (published online 2020, issue 2021)."
+ },
+ {
+  "key": "BoddEtal97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+   "quote": "Synchronous 20 Hz rhythmic activity in hippocampal networks induced by activation of metabotropic glutamate receptors in vitro.",
+   "why": "PubMed 9135039: Boddeke HW, Best R, Boeijinga PH, Neuroscience 1997 Feb, 76(3), 653-658, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Synchronous 20 {Hz} rhythmic activity in hippocampal networks induced by activation of metabotropic glutamate receptors in vitro",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+      "quote": "<ArticleTitle>Synchronous 20 Hz rhythmic activity in hippocampal networks induced by activation of metabotropic glutamate receptors in vitro.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "H W Boddeke and R Best and P H Boeijinga",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+      "quote": "<LastName>Boddeke</LastName><ForeName>H W</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+      "quote": "<LastName>Best</LastName><ForeName>R</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+      "quote": "<LastName>Boeijinga</LastName><ForeName>P H</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+      "quote": "<Title>Neuroscience</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+      "quote": "<PubDate><Year>1997</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "76",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+      "quote": "<Volume>76</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+      "quote": "<Volume>76</Volume><Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "653--658",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+      "quote": "<StartPage>653</StartPage><EndPage>658</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0306-4522(96)00464-2",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9135039&retmode=xml",
+      "quote": "<ArticleId IdType=\"pii\">S0306452296004642</ArticleId>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0306-4522(96)00464-2",
+      "quote": "\"DOI\":\"10.1016\\/s0306-4522(96)00464-2\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0306-4522(96)00464-2",
+      "quote": "\"page\":\"653-658\""
+     }
+    ]
+   }
+  },
+  "notes": "Title typo \"rhytmic\" -> \"rhythmic\". Third author surname Beojinga -> Boeijinga (PubMed; Europe PMC authorString \"Boddeke HW, Best R, Boeijinga PH.\"; cdl.bib ArnoEtal spells \"P Boeijinga\"). First author gains W (PubMed \"H W\"). DOI derived from the PubMed PII S0306452296004642 = 10.1016/s0306-4522(96)00464-2; its Crossref record is defective (title \"Correspondence\", no authors, issued 1996-12) but vol 76(3) pp 653-658 match - reviewer should confirm the DOI resolves to this article before adding it."
+ },
+ {
+  "key": "GracBunn83",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6633863&retmode=xml",
+   "quote": "Intracellular and extracellular electrophysiology of nigral dopaminergic neurons--1. Identification and characterization.",
+   "why": "PubMed 6633863 / Crossref 10.1016/0306-4522(83)90135-5: Grace and Bunney, Neuroscience 1983, 10(2), part 1 \"Identification and characterization\"."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Intracellular and extracellular electrophysiology of nigral dopaminergic neurons---1. Identification and characterization",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6633863&retmode=xml",
+      "quote": "<ArticleTitle>Intracellular and extracellular electrophysiology of nigral dopaminergic neurons--1. Identification and characterization.</ArticleTitle>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0306-4522(83)90135-5",
+      "quote": "\"title\":[\"Intracellular and extracellular electrophysiology of nigral dopaminergic neurons\\u20141. Identification and characterization\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A A Grace and B S Bunney",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6633863&retmode=xml",
+      "quote": "<LastName>Grace</LastName><ForeName>A A</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6633863&retmode=xml",
+      "quote": "<LastName>Bunney</LastName><ForeName>B S</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6633863&retmode=xml",
+      "quote": "<Title>Neuroscience</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1983",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6633863&retmode=xml",
+      "quote": "<PubDate><Year>1983</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6633863&retmode=xml",
+      "quote": "<Volume>10</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6633863&retmode=xml",
+      "quote": "<Volume>10</Volume><Issue>2</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "301--315",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6633863&retmode=xml",
+      "quote": "<StartPage>301</StartPage><EndPage>315</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0306-4522(83)90135-5",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6633863&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/0306-4522(83)90135-5</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Pages 310--315 -> 301--315 (PubMed and Crossref). Adds number 2 and DOI. Title: source prints \"neurons—1. Identification and characterization\" (Crossref) / \"neurons--1.\" (PubMed); proposed form keeps the source numeral 1 and em dash; the cited \"neurons. {I}: identification...\" is a normalisation - reviewer may prefer to keep it (title change is cosmetic). Parts 2 (317-331, 90136-7) and 3 (333-348, 90137-9) are separate works."
+ },
+ {
+  "key": "HopkEtal12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+   "quote": "Differential effects of acute and regular physical exercise on cognition and affect.",
+   "why": "PubMed 22554780: Hopkins, Davis, Vantieghem, Whalen, Bucci, Neuroscience 2012, 215, 59-68, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Differential effects of acute and regular physical exercise on cognition and affect",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<ArticleTitle>Differential effects of acute and regular physical exercise on cognition and affect.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M E Hopkins and F C Davis and M R VanTieghem and P J Whalen and D J Bucci",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<LastName>Hopkins</LastName><ForeName>M E</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<LastName>Davis</LastName><ForeName>F C</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<LastName>Vantieghem</LastName><ForeName>M R</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<LastName>Whalen</LastName><ForeName>P J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<LastName>Bucci</LastName><ForeName>D J</ForeName>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroscience.2012.04.056",
+      "quote": "\"given\":\"M.R.\",\"family\":\"VanTieghem\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<Title>Neuroscience</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<PubDate><Year>2012</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "215",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<Volume>215</Volume>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "59--68",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<StartPage>59</StartPage><EndPage>68</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroscience.2012.04.056",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22554780&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/j.neuroscience.2012.04.056</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Author full given names converted to house initials (F Caroline -> F C). VanTieghem capitalisation per Crossref (PubMed prints Vantieghem). Adds DOI. No issue number in sources."
+ },
+ {
+  "key": "LofbEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+   "quote": "Repetition suppression in the cortical motor and auditory systems resemble each other--a combined TMS and evoked potential study.",
+   "why": "PubMed 23570793 / Crossref: same five authors, Neuroscience 2013, 243, 40-45, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Repetition suppression in the cortical motor and auditory systems resemble each other---a combined {TMS} and evoked potential study",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<ArticleTitle>Repetition suppression in the cortical motor and auditory systems resemble each other--a combined TMS and evoked potential study.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "O L{\\\"o}fberg and P Julkunen and P Tiihonen and A P{\\\"a}{\\\"a}kk{\\\"o}nen and J Karhu",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<LastName>L&#xf6;fberg</LastName><ForeName>O</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<LastName>Julkunen</LastName><ForeName>P</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<LastName>Tiihonen</LastName><ForeName>P</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<LastName>P&#xe4;&#xe4;kk&#xf6;nen</LastName><ForeName>A</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<LastName>Karhu</LastName><ForeName>J</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<Title>Neuroscience</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<PubDate><Year>2013</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "243",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<Volume>243</Volume>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "40--45",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<StartPage>40</StartPage><EndPage>45</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroscience.2013.03.060",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23570793&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/j.neuroscience.2013.03.060</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Adds volume 243, pages 40--45 and DOI. Title: cited \"each other-- A combined\" -> \"each other---a combined\" (Crossref prints an en dash, PubMed \"--a\"); lowercase after the dash per sentence case."
+ },
+ {
+  "key": "MaloEtal97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+   "quote": "High-frequency gamma electroencephalogram activity in association with sleep-wake states and spontaneous behaviors in the rat.",
+   "why": "PubMed 9015337 / Crossref: same four authors, Neuroscience 1997, 76(2), 541-555."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "High-frequency $\\gamma$ electroencephalogram activity in association with sleep-wake states and spontaneous behaviors in the rat",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<ArticleTitle>High-frequency gamma electroencephalogram activity in association with sleep-wake states and spontaneous behaviors in the rat.</ArticleTitle>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0306-4522(96)00298-9",
+      "quote": "\"title\":[\"High-frequency \\u03b3 electroencephalogram activity in association with sleep-wake states and spontaneous behaviors in the rat\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K J Maloney and E G Cape and J Gotman and B E Jones",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<LastName>Maloney</LastName><ForeName>K J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<LastName>Cape</LastName><ForeName>E G</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<LastName>Gotman</LastName><ForeName>J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<LastName>Jones</LastName><ForeName>B E</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<Title>Neuroscience</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<PubDate><Year>1997</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "76",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<Volume>76</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<Volume>76</Volume><Issue>2</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "541--555",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<StartPage>541</StartPage><EndPage>555</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0306-4522(96)00298-9",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9015337&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/s0306-4522(96)00298-9</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Title \"behaviours\" -> \"behaviors\" (both sources; Crossref prints the Greek gamma, kept as $\\gamma$). Adds DOI."
+ },
+ {
+  "key": "BasaEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+   "quote": "Are cognitive processes manifested in event-related gamma, alpha, theta and delta oscillations in the EEG?",
+   "why": "PubMed 10025584: Basar, Basar-Eroglu, Karakas, Schurmann, Neurosci Lett 1999, 259(3), 165-168, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Are cognitive processes manifested in event-related gamma, alpha, theta and delta oscillations in the {EEG}?",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<ArticleTitle>Are cognitive processes manifested in event-related gamma, alpha, theta and delta oscillations in the EEG?</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "E Ba{\\c{s}}ar and C Ba{\\c{s}}ar-Ero{\\u{g}}lu and S Karaka{\\c{s}} and M Sch{\\\"u}rmann",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<LastName>Ba&#x15f;ar</LastName><ForeName>E</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<LastName>Ba&#x15f;ar-Ero&#x11f;lu</LastName><ForeName>C</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<LastName>Karaka&#x15f;</LastName><ForeName>S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<LastName>Sch&#xfc;rmann</LastName><ForeName>M</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience Letters",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<Title>Neuroscience letters</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<PubDate><Year>1999</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "259",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<Volume>259</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<Volume>259</Volume><Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "165--168",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<StartPage>165</StartPage><EndPage>168</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0304-3940(98)00934-3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10025584&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/s0304-3940(98)00934-3</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Title: drop the comma before \"and delta\", add the final \"?\". Authors gain accents as printed (Başar, Başar-Eroğlu, Karakaş, Schürmann). Adds DOI."
+ },
+ {
+  "key": "InouEtal94",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+   "quote": "Potential flow of frontal midline theta activity during a mental task in the human electroencephalogram.",
+   "why": "PubMed 8047272: same six authors, Neurosci Lett 1994, 169(1-2), 145-148, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Potential flow of frontal midline theta activity during a mental task in the human electroencephalogram",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<ArticleTitle>Potential flow of frontal midline theta activity during a mental task in the human electroencephalogram.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T Inouye and K Shinosaki and A Iyama and Y Matsumoto and S Toi and T Ishihara",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<LastName>Inouye</LastName><ForeName>T</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<LastName>Shinosaki</LastName><ForeName>K</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<LastName>Iyama</LastName><ForeName>A</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<LastName>Matsumoto</LastName><ForeName>Y</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<LastName>Toi</LastName><ForeName>S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<LastName>Ishihara</LastName><ForeName>T</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience Letters",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<Title>Neuroscience letters</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1994",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<PubDate><Year>1994</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "169",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<Volume>169</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1--2",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<Volume>169</Volume><Issue>1-2</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "145--148",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<StartPage>145</StartPage><EndPage>148</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0304-3940(94)90377-8",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8047272&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/0304-3940(94)90377-8</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Issue 1 -> 1--2 (double issue per PubMed and Crossref). Adds DOI."
+ },
+ {
+  "key": "LopevanL77",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19605058&retmode=xml",
+   "quote": "The cortical source of the alpha rhythm.",
+   "why": "PubMed 19605058 / Crossref: Lopes Da Silva and Storm Van Leeuwen, Neurosci Lett 1977, 6(2-3), 237-241."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The cortical source of the alpha rhythm",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19605058&retmode=xml",
+      "quote": "<ArticleTitle>The cortical source of the alpha rhythm.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "F H {Lopes Da Silva} and W {Storm Van Leeuwen}",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19605058&retmode=xml",
+      "quote": "<LastName>Lopes Da Silva</LastName><ForeName>F H</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19605058&retmode=xml",
+      "quote": "<LastName>Storm Van Leeuwen</LastName><ForeName>W</ForeName>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0304-3940(77)90024-6",
+      "quote": "\"given\":\"W.\",\"family\":\"Storm Van Leeuwen\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience Letters",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19605058&retmode=xml",
+      "quote": "<Title>Neuroscience letters</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1977",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19605058&retmode=xml",
+      "quote": "<PubDate><Year>1977</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19605058&retmode=xml",
+      "quote": "<Volume>6</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2--3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19605058&retmode=xml",
+      "quote": "<Volume>6</Volume><Issue>2-3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "237--241",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19605058&retmode=xml",
+      "quote": "<StartPage>237</StartPage><EndPage>241</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0304-3940(77)90024-6",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19605058&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/0304-3940(77)90024-6</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Second author is W Storm van Leeuwen (surname \"Storm Van Leeuwen\" in PubMed and Crossref); the cited \"W S {van Leeuwen}\" misreads Storm as an initial. Capitalisation \"Van\" as printed by both sources; reviewer may prefer \"{Storm van Leeuwen}\". Key would become LopeStor77 (no collision in HEAD). Adds number 2--3 and DOI."
+ },
+ {
+  "key": "SkraChiu03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12676340&retmode=xml",
+   "quote": "Dimensions of affective semantic meaning--behavioral and evoked potential correlates in Chinese subjects.",
+   "why": "PubMed 12676340: Skrandies and Chiu, Neurosci Lett 2003, 341(1), 45-48, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Dimensions of affective semantic meaning---behavioral and evoked potential correlates in {Chinese} subjects",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12676340&retmode=xml",
+      "quote": "<ArticleTitle>Dimensions of affective semantic meaning--behavioral and evoked potential correlates in Chinese subjects.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W Skrandies and M J Chiu",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12676340&retmode=xml",
+      "quote": "<LastName>Skrandies</LastName><ForeName>W</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12676340&retmode=xml",
+      "quote": "<LastName>Chiu</LastName><ForeName>M J</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience Letters",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12676340&retmode=xml",
+      "quote": "<Title>Neuroscience letters</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12676340&retmode=xml",
+      "quote": "<PubDate><Year>2003</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "341",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12676340&retmode=xml",
+      "quote": "<Volume>341</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12676340&retmode=xml",
+      "quote": "<Volume>341</Volume><Issue>1</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "45--48",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12676340&retmode=xml",
+      "quote": "<StartPage>45</StartPage><EndPage>48</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0304-3940(03)00137-x",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12676340&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/s0304-3940(03)00137-x</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Title contains a stray control character (U+0097) where the source has a dash: fix to \"---\". Adds DOI. An erratum exists: Neurosci Lett 372(3):266 (2004), DOI 10.1016/j.neulet.2004.09.034 (PubMed CommentsCorrections ErratumIn); its content could not be read (ScienceDirect 403), so whether it changes cited metadata (e.g. an author name) is unknown - the original article citation stands."
+ },
+ {
+  "key": "ClemEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+   "quote": "Increased mesiotemporal delta activity characterizes virtual navigation in humans.",
+   "why": "PubMed 23524244: same ten authors, Neurosci Res 2013, 76(1-2), 67-75, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Increased mesiotemporal delta activity characterizes virtual navigation in humans",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<ArticleTitle>Increased mesiotemporal delta activity characterizes virtual navigation in humans.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "Z Clemens and C Borb{\\'e}ly and B Weiss and L Er{\\H{o}}ss and A Sz{\\H{u}}cs and A Kelemen and D Fab{\\'o} and G R{\\'a}sonyi and J Janszky and P Hal{\\'a}sz",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<LastName>Clemens</LastName><ForeName>Zs&#xf3;fia</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<LastName>Borb&#xe9;ly</LastName><ForeName>Csaba</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<LastName>Weiss</LastName><ForeName>B&#xe9;la</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<LastName>Er&#x151;ss</LastName><ForeName>Lor&#xe1;nd</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<LastName>Sz&#x171;cs</LastName><ForeName>Anna</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<LastName>Kelemen</LastName><ForeName>Anna</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<LastName>Fab&#xf3;</LastName><ForeName>D&#xe1;niel</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<LastName>R&#xe1;sonyi</LastName><ForeName>Gy&#xf6;rgy</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<LastName>Janszky</LastName><ForeName>J&#xf3;zsef</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<LastName>Hal&#xe1;sz</LastName><ForeName>P&#xe9;ter</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience Research",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<Title>Neuroscience research</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<PubDate><Year>2013</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "76",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<Volume>76</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1--2",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<Volume>76</Volume><Issue>1-2</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "67--75",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<StartPage>67</StartPage><EndPage>75</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neures.2013.03.004",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/j.neures.2013.03.004</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Full given names converted to initials (PubMed Initials; Zsófia -> Z). Adds volume 76, number 1--2, pages 67--75, DOI."
+ },
+ {
+  "key": "BannEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+   "quote": "Regional dissociations within the hippocampus--memory and anxiety.",
+   "why": "PubMed 15225971: same nine authors, Neurosci Biobehav Rev 2004, 28(3), 273-283, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Regional dissociations within the hippocampus---memory and anxiety",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<ArticleTitle>Regional dissociations within the hippocampus--memory and anxiety.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "D M Bannerman and J N P Rawlins and S B McHugh and R M J Deacon and B K Yee and T Bast and W-N Zhang and H H J Pothuizen and J Feldon",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<LastName>Bannerman</LastName><ForeName>D M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<LastName>Rawlins</LastName><ForeName>J N P</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<LastName>McHugh</LastName><ForeName>S B</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<LastName>Deacon</LastName><ForeName>R M J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<LastName>Yee</LastName><ForeName>B K</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<LastName>Bast</LastName><ForeName>T</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<LastName>Zhang</LastName><ForeName>W-N</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<LastName>Pothuizen</LastName><ForeName>H H J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<LastName>Feldon</LastName><ForeName>J</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience and Biobehavioral Reviews",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<Title>Neuroscience and biobehavioral reviews</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<PubDate><Year>2004</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "28",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<Volume>28</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<Volume>28</Volume><Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "273--283",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<StartPage>273</StartPage><EndPage>283</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neubiorev.2004.03.004",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15225971&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/j.neubiorev.2004.03.004</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Title: remove the stray space in \"hippocampus--- memory\". Author W N Zhang -> W-N Zhang (PubMed ForeName \"W-N\"; house hyphenated-initial form as in Y-C Chen). Adds DOI."
+ },
+ {
+  "key": "HerrEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+   "quote": "Human gamma-band activity: a review on cognitive and behavioral correlates and network models.",
+   "why": "PubMed 19744515: Herrmann, Fruend, Lenz, Neurosci Biobehav Rev 2010 Jun, 34(7), 981-992, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Human gamma-band activity: a review on cognitive and behavioral correlates and network models",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<ArticleTitle>Human gamma-band activity: a review on cognitive and behavioral correlates and network models.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C S Herrmann and I Fr{\\\"u}nd and D Lenz",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<LastName>Herrmann</LastName><ForeName>Christoph S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<LastName>Fr&#xfc;nd</LastName><ForeName>Ingo</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<LastName>Lenz</LastName><ForeName>Daniel</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience and Biobehavioral Reviews",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<Title>Neuroscience and biobehavioral reviews</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<PubDate><Year>2010</Year>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<ArticleDate DateType=\"Electronic\"><Year>2009</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "34",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<Volume>34</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<Volume>34</Volume><Issue>7</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "981--992",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<StartPage>981</StartPage><EndPage>992</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neubiorev.2009.09.001",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19744515&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/j.neubiorev.2009.09.001</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Year 2009 was the online-first date (ArticleDate 2009-09-08); the issue is 2010, 34(7). Year correction implies key rename; HerrEtal10 already exists (Herring et al.), so the new key needs a suffix (HerrEtal10a). Adds volume, number, pages, DOI."
+ },
+ {
+  "key": "ToddEtal19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31055014&retmode=xml",
+   "quote": "Retrosplenial cortex and its role in cue-specific learning and memory.",
+   "why": "PubMed 31055014: Todd, Fournier, Bucci, Neurosci Biobehav Rev 2019 Dec, 107, 713-728, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Retrosplenial cortex and its role in cue-specific learning and memory",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31055014&retmode=xml",
+      "quote": "<ArticleTitle>Retrosplenial cortex and its role in cue-specific learning and memory.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T P Todd and D I Fournier and D J Bucci",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31055014&retmode=xml",
+      "quote": "<LastName>Todd</LastName><ForeName>Travis P</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31055014&retmode=xml",
+      "quote": "<LastName>Fournier</LastName><ForeName>Danielle I</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31055014&retmode=xml",
+      "quote": "<LastName>Bucci</LastName><ForeName>David J</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuroscience and Biobehavioral Reviews",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31055014&retmode=xml",
+      "quote": "<Title>Neuroscience and biobehavioral reviews</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31055014&retmode=xml",
+      "quote": "<PubDate><Year>2019</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "107",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31055014&retmode=xml",
+      "quote": "<Volume>107</Volume>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "713--728",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31055014&retmode=xml",
+      "quote": "<StartPage>713</StartPage><EndPage>728</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neubiorev.2019.04.016",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31055014&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1016/j.neubiorev.2019.04.016</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Volume \"2019\" -> 107; adds pages 713--728 and DOI. No issue number in sources."
+ },
+ {
+  "key": "HaglEtal94",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+   "quote": "Cortical localization of temporal lobe language sites in patients with gliomas.",
+   "why": "PubMed 7516498: same five authors, Neurosurgery 1994, 34(4), 567-576, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Cortical localization of temporal lobe language sites in patients with gliomas",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<ArticleTitle>Cortical localization of temporal lobe language sites in patients with gliomas.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M M Haglund and M S Berger and M Shamseldin and E Lettich and G A Ojemann",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<LastName>Haglund</LastName><ForeName>M M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<LastName>Berger</LastName><ForeName>M S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<LastName>Shamseldin</LastName><ForeName>M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<LastName>Lettich</LastName><ForeName>E</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<LastName>Ojemann</LastName><ForeName>G A</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neurosurgery",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<Title>Neurosurgery</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1994",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<PubDate><Year>1994</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "34",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<Volume>34</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<Volume>34</Volume><Issue>4</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "567--576",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<StartPage>567</StartPage><EndPage>576</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1227/00006123-199404000-00001",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7516498&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1227/00006123-199404000-00001</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Pages 567 -> 567--576 (PubMed \"567-76; discussion 576\"; Crossref 567-576). Adds DOI 10.1227/00006123-199404000-00001 (PubMed); Crossref also has a duplicate 10.1097/00006123-199404000-00001 for the same article."
+ },
+ {
+  "key": "LeutEtal07a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+   "quote": "Electrocorticographic frequency alteration mapping: a clinical technique for mapping the motor cortex.",
+   "why": "PubMed 17415162: same eight authors, Neurosurgery 2007 Apr, 60(4 Suppl 2), 260-271, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Electrocorticographic frequency alteration mapping: a clinical technique for mapping the motor cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<ArticleTitle>Electrocorticographic frequency alteration mapping: a clinical technique for mapping the motor cortex.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E C Leuthardt and K Miller and N R Anderson and G Schalk and J Dowling and J Miller and D W Moran and J G Ojemann",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<LastName>Leuthardt</LastName><ForeName>Eric C</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<LastName>Miller</LastName><ForeName>Kai</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<LastName>Anderson</LastName><ForeName>Nicholas R</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<LastName>Schalk</LastName><ForeName>Gerwin</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<LastName>Dowling</LastName><ForeName>Joshua</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<LastName>Miller</LastName><ForeName>John</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<LastName>Moran</LastName><ForeName>Daniel W</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<LastName>Ojemann</LastName><ForeName>Jeff G</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neurosurgery",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<Title>Neurosurgery</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<PubDate><Year>2007</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "60",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<Volume>60</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4 Suppl 2",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<Volume>60</Volume><Issue>4 Suppl 2</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "260--271",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<StartPage>260</StartPage><EndPage>271</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1227/01.neu.0000255413.70807.6e",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17415162&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1227/01.NEU.0000255413.70807.6E</ArticleId>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1227/01.neu.0000255413.70807.6e",
+      "quote": "\"DOI\":\"10.1227\\/01.neu.0000255413.70807.6e\""
+     }
+    ]
+   }
+  },
+  "notes": "Pages 260 -> 260--271 (PubMed StartPage/EndPage; \"260-70; discussion 270-1\"). Issue 4 -> \"4 Suppl 2\" (Operative Neurosurgery supplement; Crossref now files the DOI under \"Operative Neurosurgery\"; cdl.bib MoyeEtal07 uses that journal name for the same supplement series - reviewer choice; PubMed journal is Neurosurgery). Adds DOI."
+ },
+ {
+  "key": "LipsEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+   "quote": "Deep brain stimulation for treatment-refractory obsessive-compulsive disorder: the search for a valid target.",
+   "why": "PubMed 17621014: same three authors, Neurosurgery 2007, 61(1), 1-13, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Deep brain stimulation for treatment-refractory obsessive-compulsive disorder: the search for a valid target",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+      "quote": "<ArticleTitle>Deep brain stimulation for treatment-refractory obsessive-compulsive disorder: the search for a valid target.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "N Lipsman and J S Neimat and A M Lozano",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+      "quote": "<LastName>Lipsman</LastName><ForeName>Nir</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+      "quote": "<LastName>Neimat</LastName><ForeName>Joseph S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+      "quote": "<LastName>Lozano</LastName><ForeName>Andres M</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neurosurgery",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+      "quote": "<Title>Neurosurgery</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+      "quote": "<PubDate><Year>2007</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "61",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+      "quote": "<Volume>61</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+      "quote": "<Volume>61</Volume><Issue>1</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1--13",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+      "quote": "<StartPage>1</StartPage><EndPage>13</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1227/01.neu.0000279719.75403.f7",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17621014&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1227/01.neu.0000279719.75403.f7</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Pages 1 -> 1--13 (PubMed \"1-11; discussion 11-3\"; Crossref 1-13). Adds DOI."
+ },
+ {
+  "key": "LucaEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+   "quote": "Language reorganization in aphasics: an electrical stimulation mapping investigation.",
+   "why": "PubMed 18812960: Lucas, Drane, Dodrill, Ojemann, Neurosurgery 2008, 63(3), 487-497, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Language reorganization in aphasics: an electrical stimulation mapping investigation",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+      "quote": "<ArticleTitle>Language reorganization in aphasics: an electrical stimulation mapping investigation.</ArticleTitle>"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "T H Lucas and D L Drane and C B Dodrill and G A Ojemann",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+      "quote": "<LastName>Lucas</LastName><ForeName>Timothy H</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+      "quote": "<LastName>Drane</LastName><ForeName>Daniel L</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+      "quote": "<LastName>Dodrill</LastName><ForeName>Carl B</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+      "quote": "<LastName>Ojemann</LastName><ForeName>George A</ForeName>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neurosurgery",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+      "quote": "<Title>Neurosurgery</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+      "quote": "<PubDate><Year>2008</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "63",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+      "quote": "<Volume>63</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+      "quote": "<Volume>63</Volume><Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "487--497",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18812960&retmode=xml",
+      "quote": "<StartPage>487</StartPage><EndPage>497</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1227/01.neu.0000324725.84854.04",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1227/01.neu.0000324725.84854.04",
+      "quote": "\"DOI\":\"10.1227\\/01.neu.0000324725.84854.04\""
+     }
+    ]
+   }
+  },
+  "notes": "Missing second author D L Drane added (PubMed and Crossref list four authors). Adds pages 487--497 and DOI. Key unchanged (3+ authors)."
+ },
+ {
+  "key": "MadsEtal95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7670331&retmode=xml",
+   "quote": "The future of pediatric epilepsy surgery. Signposts and science.",
+   "why": "PubMed 7670331 / Crossref 10.1016/s1042-3680(18)30452-2: Madsen, Adelson, Haglund, Neurosurg Clin N Am 1995, 6(3), from p 589."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "The future of pediatric epilepsy surgery: signposts and science",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7670331&retmode=xml",
+      "quote": "<ArticleTitle>The future of pediatric epilepsy surgery. Signposts and science.</ArticleTitle>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1042-3680(18)30452-2",
+      "quote": "\"title\":[\"The Future of Pediatric Epilepsy Surgery: Signposts and Science\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J R Madsen and P D Adelson and M M Haglund",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7670331&retmode=xml",
+      "quote": "<LastName>Madsen</LastName><ForeName>J R</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7670331&retmode=xml",
+      "quote": "<LastName>Adelson</LastName><ForeName>P D</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7670331&retmode=xml",
+      "quote": "<LastName>Haglund</LastName><ForeName>M M</ForeName>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1042-3680(18)30452-2",
+      "quote": "\"given\":\"Michael M.\",\"family\":\"Haglund\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neurosurgery Clinics of North America",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7670331&retmode=xml",
+      "quote": "<Title>Neurosurgery clinics of North America</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7670331&retmode=xml",
+      "quote": "<PubDate><Year>1995</Year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7670331&retmode=xml",
+      "quote": "<Volume>6</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7670331&retmode=xml",
+      "quote": "<Volume>6</Volume><Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "589--597",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7670331&retmode=xml",
+      "quote": "<StartPage>589</StartPage><EndPage>597</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s1042-3680(18)30452-2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1042-3680(18)30452-2",
+      "quote": "\"DOI\":\"10.1016\\/s1042-3680(18)30452-2\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1042-3680(18)30452-2",
+      "quote": "\"title\":[\"The Future of Pediatric Epilepsy Surgery: Signposts and Science\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Title missing \"surgery\" (\"The future of pediatric epilepsy surgery: signposts and science\"). Third author Heglund -> Haglund (PubMed and Crossref). Adds number 3 and DOI. Pages: PubMed 589-597 (cited value kept), Crossref 589-598 - conflict; page ranges are not shortened, reviewer may extend to 598."
+ }
+]
