@@ -152,3 +152,5 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   permanent source for conference abstracts.
 - Entry fixes: Hook69 title "The posthumous works of Robert Hooke"; Jame90 keeps
   "volume I"; ZimaEtal23 year 2023 (latest version) is correct.
+- **Open PRs #87 and #88** (user, 2026-09-25): merge both into `bib-crossref-verification`
+  once their references verify; they also serve as end-to-end tests of the machinery.
