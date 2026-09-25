@@ -1,0 +1,44 @@
+{
+ "batch": "prfix002",
+ "generated": "2026-09-25 12:56:25",
+ "count": 2,
+ "skipped": {},
+ "proposals": [
+  {
+   "key": "WangEtal24",
+   "fingerprint": "v2:4662a142807c6017a2b195d9800672d1408a2c70e1b626446d36e38f1868a2cc",
+   "kind": "edit",
+   "pr": "87",
+   "changes": {
+    "volume": {
+     "before": "2212.03533",
+     "after": "2212.03533v2",
+     "evidence": [
+      {
+       "url": "https://export.arxiv.org/api/query?id_list=2212.03533",
+       "quote": "<id>http://arxiv.org/abs/2212.03533v2</id> <updated>2024-02-22T06:21:51Z</updated>"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "YangEtal25a",
+   "fingerprint": "v2:b5e5d1214cae9e0f58844d0d99cde927c47bb9fec9c9b83538871247d4aa1720",
+   "kind": "edit",
+   "pr": "87",
+   "changes": {
+    "volume": {
+     "before": "2510.00183",
+     "after": "2510.00183v2",
+     "evidence": [
+      {
+       "url": "https://export.arxiv.org/api/query?id_list=2510.00183",
+       "quote": "<id>http://arxiv.org/abs/2510.00183v2</id> <updated>2025-10-02T19:22:39Z</updated>"
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

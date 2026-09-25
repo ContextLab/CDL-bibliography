@@ -1,0 +1,80 @@
+{
+ "stages": [
+  {
+   "cycle": "run",
+   "seconds": 832.49,
+   "network_requests": 4,
+   "added_review_records": 6,
+   "batch_statuses_before": {
+    "needs_review": 1,
+    "metadata_verified": 1
+   },
+   "batch_statuses_after": {
+    "metadata_verified": 2
+   },
+   "batch_verified_before_and_after": 1,
+   "batch_newly_verified": [
+    "WangEtal24"
+   ],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [],
+   "library_statuses_before": {
+    "metadata_verified": 4470,
+    "needs_review": 2011
+   },
+   "library_statuses": {
+    "metadata_verified": 4471,
+    "needs_review": 2010
+   }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 789.81,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch_statuses_before": {
+    "needs_review": 1,
+    "metadata_verified": 1
+   },
+   "batch_statuses_after": {
+    "metadata_verified": 2
+   },
+   "batch_verified_before_and_after": 1,
+   "batch_newly_verified": [
+    "WangEtal24"
+   ],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [],
+   "library_statuses_before": {
+    "metadata_verified": 4470,
+    "needs_review": 2011
+   },
+   "library_statuses": {
+    "metadata_verified": 4471,
+    "needs_review": 2010
+   }
+  }
+ ],
+ "entries": {
+  "WangEtal24": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:4662a142807c6017a2b195d9800672d1408a2c70e1b626446d36e38f1868a2cc",
+   "fingerprint": "v2:d0fbb8656f6812bce943f27e696dbc4f5c19827f430707fd31cd00fc56f917ad",
+   "accepted_doi": "10.48550/arxiv.2212.03533",
+   "accepted_source": "arxiv-repository",
+   "issues": []
+  },
+  "YangEtal25a": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:b5e5d1214cae9e0f58844d0d99cde927c47bb9fec9c9b83538871247d4aa1720",
+   "fingerprint": "v2:466cf6f450d9f8db431899fa71f17a78ecf3ad75ec61ed5e0ac88a88f690271c",
+   "accepted_doi": "10.48550/arxiv.2510.00183",
+   "accepted_source": "arxiv-repository",
+   "issues": []
+  }
+ }
+}

@@ -138,13 +138,13 @@
   "new_key": "WangEtal24",
   "date": "2026-09-25",
   "reason": "prfix001 (PR #87 entry): preprints cite their latest version; arXiv 2212.03533v2 updated 2024-02-22, year 2022 -> 2024; key follows the corrected metadata",
-  "commit": "pending"
+  "commit": "2179d34"
  },
  {
   "old_key": "Mann26",
   "new_key": "MannClau26",
   "date": "2026-09-25",
   "reason": "prfix001 (PR #87 entry): DataCite 10.5281/zenodo.19094654 lists two creators (Jeremy R. Manning, Claude); author 'J R Manning and {Claude}', two-author key rule",
-  "commit": "pending"
+  "commit": "2179d34"
  }
 ]
