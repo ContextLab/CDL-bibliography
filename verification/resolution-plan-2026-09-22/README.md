@@ -168,3 +168,5 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   (title, booktitle, journal, edition, ...) is written `N\textsuperscript{suffix}` with the
   correct suffix (`1\textsuperscript{st}`, `2\textsuperscript{nd}`, `30\textsuperscript{th}`);
   the comparator treats it as equal to "30th"/"Thirtieth" in sources.
+- **Initials in publisher names without periods** (user, 2026-09-26): `W H Freeman`,
+  `V H Winston` (reverses the 2B-i choice to keep "W.H.").
