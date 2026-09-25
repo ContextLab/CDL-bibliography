@@ -48,6 +48,12 @@ def test_strip_suffix_rejects_other_comma_forms():
     ("Y-C Chen", "Y-C Chen"),
     ("M E Smith", "M E Smith"),
     ("{Centers for Disease Control and Prevention}", "{Centers for Disease Control and Prevention}"),
+    # 2026-09-27 refinements, real cdl.bib names:
+    ("Alexander\u00a0G Huth", "A G Huth"),            # HuthEtal12: no-break space
+    ("Jean\u2010Philippe Lachaux", "J-P Lachaux"),     # MainEtal07: U+2010 hyphen
+    ("Yen-lu Chow", "Y-L Chow"),                        # BambEtal90: lowercase second part
+    ("Hans-{J}ochen Heinze", "H-J Heinze"),             # FernEtal98: braced capital
+    ("Tom O M Carter", "T O M Carter"),
 ])
 def test_to_initials(before, after):
     new, why = to_initials(before)
@@ -65,7 +71,9 @@ def test_to_initials(before, after):
     ("Shui-I Shih", "mixes"),
     ("a {van Nieuw Amerongen}", "lowercase"),
     ("Kim Y", "initial"),
-    ("Evgeny A Budygin", "accents"),
+    ("{\\L}ukasz Langa", "accents"),
+    ("Miller E K", "initial"),
+    ("J Kevin O'Regan", "compound"),
 ])
 def test_to_initials_holds(name, reason):
     new, why = to_initials(name)

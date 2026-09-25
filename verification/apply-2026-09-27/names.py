@@ -91,7 +91,12 @@ def initial_of(word):
     converted automatically."""
     if not word:
         return None
+    braced = re.match(r"\{([A-Z])\}", word)
+    if braced:  # 'Hans-{J}ochen': a braced capital, kept from BibTeX case-folding
+        word = braced[1] + word[braced.end():]
     first = word[0]
+    if first.islower():
+        first = first.upper()  # 'Yen-lu' -> 'Y-L': each part of a hyphenated given name
     if not first.isalpha() or not first.isupper():
         return None
     rest = plain_letters(word[1:])
@@ -104,7 +109,8 @@ def to_initials(name):
     """Return (new, None), (name, None) when nothing changes, or (None, reason)."""
     if "," in name:
         return None, "comma form"
-    toks = tokens(name)
+    # A no-break space (HuthEtal12 'Alexander\u00a0G') separates names like a space.
+    toks = tokens(name.replace("\u00a0", " "))
     if len(toks) == 1:
         return name, None  # single token (corporate or braced) - nothing to do
     # surname: last token plus any lowercase particles directly before it
@@ -129,7 +135,7 @@ def to_initials(name):
             continue
         if t.lower() in PARTICLES or t[0].islower():
             return None, f"lowercase/particle token '{t}' among the given names"
-        pieces = t.split("-")
+        pieces = t.replace("\u2010", "-").split("-")  # U+2010 hyphen (MainEtal07 'Jean\u2010Philippe')
         if len(pieces) > 1 and any(len(p) == 1 for p in pieces):
             return None, f"given name '{t}' mixes initials and words"
         inits = [initial_of(p) for p in pieces]
