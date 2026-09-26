@@ -196,3 +196,13 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - **BenaEtal04:** title "Youmans Neurological Surgery".
 - **Journal-alias repairs:** DiazEtal06, Murd68, MurdVomS67 approved.
 - **Duplicates:** all 9 keepers approved; KahaEtal08b→KahaEtal08a approved, and drop the "a" suffix (KahaEtal08) if it is then the only KahaEtal08.
+
+## Wave 1 decisions (user, 2026-09-26; copy in verification/research-2026-09-25/wave1/decisions/)
+- 184/200 answered: 168 correct, 13 wrong, 3 unsure.
+- **Rule (all waves): any entry without a source is dropped from cdl.bib** ("for anything without a source drop it from the current CDL.bib"). Wave 1: the 16 unanswered entries are all no_source → drop.
+- **Rule: drop *all* conference abstracts** (LongKaha14 note), including SfN abstracts verified by the planner.
+- Explicit drops: BranEtal04 (abstract), ContPrev24, Gede24, GreeEtal13 (cannot confirm), HeraCE, Keck07, Land95, MerzEtal12, Nati24a, Nati24b, LongKaha14.
+- HealKaha14b → replace with the published version HealKaha16 (Psych Rev 123:23–69, 10.1037/rev0000015).
+- Wech81: several Wechsler entries — keep ONE, drop the others.
+- Kolo13: check whether "EdX" should be "edX".
+- Unsure, no note (leave unchanged, ask): DougPeuc73, Mann06.
