@@ -618,9 +618,58 @@ def generate_correct_pages(bd):
 
 DOTTED_INITIALS = re.compile(r"(?:\{[A-Z]\}\.|[A-Z]\.)+|\{[A-Z]\}|[A-Z]")
 
+# Country forms an alias target may end in, each with the spellings that count as the
+# name already printing that country. address_key.xls maps bare cities onto a city plus
+# country ('london' -> 'london, uk', 'paris' -> 'paris, fr', 'heidleberg' ->
+# 'heidelberg, germany'); user decision 2026-09-26: a country the source does not print
+# is dropped, so the formatter must never add one. Rows that restate a country the name
+# already prints ('london, england' -> 'london, uk', 'prague, czech republic' ->
+# 'prague, cz') are the house country form and still apply. US state codes are not
+# countries and are untouched ('boston' -> 'boston, ma').
+ALIAS_COUNTRIES = {
+    "uk": ["uk", "u. k.", "u.k.", "united kingdom", "england", "great britain",
+           "britain", "scotland", "wales"],
+    "fr": ["fr", "france"],
+    "germany": ["germany", "deutschland"],
+    "ru": ["ru", "russia"],
+    "ch": ["ch", "switzerland"],
+    "it": ["it", "italy"],
+    "au": ["au", "australia"],
+    "cz": ["cz", "czech republic", "czechia"],
+    "usa": ["usa", "u.s.a.", "u. s. a.", "us", "u.s.", "united states", "america"],
+    "canada": ["canada"],
+    "sweden": ["sweden"],
+}
 
-def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initials=False):
+
+def drop_added_country(name, target):
+    """Return an alias target without a country that ``name`` does not print.
+
+    If the target's last comma component is a country and no spelling of that country
+    appears as a word in ``name``, the component is removed; the rest of the alias
+    (a spelling fix such as 'heidleberg' -> 'heidelberg') still applies. Returns None
+    when nothing of the alias is left beyond ``name`` itself.
+    """
+    parts = [p.strip() for p in target.split(",")]
+    country = remove_curlies(parts[-1]).strip().lower()
+    if len(parts) < 2 or country not in ALIAS_COUNTRIES:
+        return target
+    printed = remove_curlies(name).lower()
+    if any(re.search(r"(?<![a-z])" + re.escape(form) + r"(?![a-z])", printed)
+           for form in ALIAS_COUNTRIES[country]):
+        return target
+    kept = ", ".join(parts[:-1])
+    return None if kept.lower() == name.lower() else kept
+
+
+def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initials=False,
+                        drop_countries=None):
     """Format a journal, booktitle, publisher or address name.
+
+    ``drop_countries`` (addresses; default: on exactly when ``key`` is address_key):
+    an alias target never adds a country the name does not print (see
+    drop_added_country). Journal titles are exempt: the USA in "Proceedings of the
+    National Academy of Sciences, USA" is part of the title, not an address.
 
     ``dotted_initials`` (publishers): a word made only of capital initials, with or
     without periods or braces ("W.H.", "V.", "{W}.", "W"), is written in the house
@@ -646,11 +695,14 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
     # "journal of physiology") names a different journal, not a spelling variant of
     # the same one (LachEtal03); the name is formatted as given instead.
     alias = key.get(n.lower()) if isinstance(key.get(n.lower()), str) else None
+    if drop_countries is None:
+        drop_countries = key is address_key
+    if alias is not None and drop_countries:
+        alias = drop_added_country(n, alias)  # an alias never adds an unprinted country
     cuts_suffix = alias is not None and re.fullmatch(
         re.escape(alias.lower()) + r"-\w[\w ]*", n.lower()) is not None
-    if (n.lower() not in preserve_identity and n.lower() in key.keys()) and (type(key[n.lower()]) == str) \
-            and not cuts_suffix:
-        n = key[n.lower()]
+    if n.lower() not in preserve_identity and alias is not None and not cuts_suffix:
+        n = alias
         as_given = n.split(" ")
     else:
         as_given = n.split(" ")  # before lowercasing: dotted initials keep their capitals
@@ -696,7 +748,8 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
             # deal with hyphens
             if len(w.split("-")) > 1:
                 words[i] = "-".join(
-                    format_journal_name(c, key=key, force_caps=force_caps)
+                    format_journal_name(c, key=key, force_caps=force_caps,
+                                        drop_countries=drop_countries)
                     for c in w.split("-")
                 )
 
