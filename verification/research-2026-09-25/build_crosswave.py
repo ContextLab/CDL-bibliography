@@ -319,6 +319,10 @@ sub_between('<p class="intro">', "</p>", '<p class="intro">Decisions that span t
 start = tpl.index("const GROUPS = ["); end = tpl.index("];", start) + 2
 tpl = tpl[:start] + "const GROUPS = " + json.dumps([[g, f"{n} — suggested: {a}", d] for g, n, d, a in GROUPS], ensure_ascii=False) + \
       ";\nconst NOBULK = " + json.dumps(NOBULK) + ";" + tpl[end:]
+# Answers given while the shared store was unavailable live only in this browser; copy them up once it is.
+sub('db.collection("pilot").onSnapshot(snap => {', '''for (const s of DATA) { try { const v = localStorage.getItem("crosswave:" + s.key);
+    if (v) { const d = JSON.parse(v); if (d && (d.verdict || d.note)) { decisions[s.key] = d; await save(s.key, "browser-sync"); localStorage.removeItem("crosswave:" + s.key); } } } catch (e) {} }
+  db.collection("pilot").onSnapshot(snap => {''')
 sub('db.collection("pilot")', 'db.collection("crosswave")')
 sub('db.doc("pilot/" + key)', 'db.doc("crosswave/" + key)')
 sub('localStorage.setItem("pilot:" + key', 'localStorage.setItem("crosswave:" + key')

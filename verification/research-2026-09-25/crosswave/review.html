@@ -231,6 +231,8 @@ render();
   db = window.claude && window.claude.use ? await window.claude.use("db") : null;
   if (!db) { for (const s of DATA) { try { const v = localStorage.getItem("crosswave:" + s.key); if (v) decisions[s.key] = JSON.parse(v); } catch (e) {} }
     setStatus("The shared decision store isn't available here, so decisions stay in this browser and Claude can't read them. Open the page on claude.ai to record them.", true); render(); return; }
+  for (const s of DATA) { try { const v = localStorage.getItem("crosswave:" + s.key);
+    if (v) { const d = JSON.parse(v); if (d && (d.verdict || d.note)) { decisions[s.key] = d; await save(s.key, "browser-sync"); localStorage.removeItem("crosswave:" + s.key); } } } catch (e) {} }
   db.collection("crosswave").onSnapshot(snap => {
     const focused = document.activeElement && document.activeElement.id;
     for (const doc of snap.docs) { const d = doc.data(); if (d && d.key) decisions[d.key] = {verdict: d.verdict || null, note: d.note || ""}; }
