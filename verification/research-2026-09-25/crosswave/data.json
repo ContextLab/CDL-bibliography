@@ -3730,7 +3730,7 @@
   {
    "key": "j-BenaEtal04",
    "label": "BenaEtal04",
-   "tag": "booktitle · 2004",
+   "tag": "booktitle · 2004 · wave value differs from audit",
    "fields": {
     "year": "2004",
     "volume": "3",
@@ -3764,7 +3764,9 @@
      "youman's neurosurgical surgery, 5th edition"
     ]
    ],
-   "group": "j-unconfirmed"
+   "group": "j-handled",
+   "info": true,
+   "handled": "Handled in wave 8 (wave value differs from the audit's probable name: check it on that wave's page): booktitle: \"{Youman's} Neurosurgical Surgery\" → '{Youmans} Neurological Surgery'"
   },
   {
    "key": "j-Jost97",
@@ -7394,6 +7396,10 @@
     [
      "Key plan",
      "Shim94, wave 8: collision → Shim95b (also Shim95 → Shim95a)"
+    ],
+    [
+     "Key plan",
+     "Shim95, wave 2: rename → Shim95a"
     ]
    ],
    "long": [
