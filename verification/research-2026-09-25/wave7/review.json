@@ -1,0 +1,2010 @@
+[
+ {
+  "key": "_summary",
+  "reviewed": 130,
+  "yes": 117,
+  "partly": 13,
+  "no": 0,
+  "error_rate_random_sample": 0.0,
+  "random_sample_size": 60,
+  "random_sample_with_disagreement": [],
+  "set_a_size": 70,
+  "set_b_size": 60,
+  "error_rate_random_sample_note": "0 of 60 set-B entries have a definite disagreement. Two B entries carry uncertain notes not counted: MillEtal60 (publisher held; 1960 imprint is Henry Holt) and JianEtal24 (possible compound surnames Bou Hanna / Renard Lavaud left for review).",
+  "sampling_method": "A = every merged.json row with a key rename (26) or collision (YangEtal24), ENTRYTYPE change (20), verdict ambiguous/no_source (9), a DOI dropped by doi_title_mismatch (4), or a title/journal change naming a different wording, venue or version (23: Kell64, Laur67, MesgEtal14, Rebe10, LagaEtal98, JacoEtal05b, JensTesc00, LeCuBeng95, BeliEtal08, HowaEtal14, SchmEtal03, ShoeEtal97, MullPilz00, ChanEtal20, MuelEtal18, EckhEtal04, GuoEtal20, vanGEtal13, Plat99, GoldEtal21, TsitEtal19, Rans02, IkieHash06); no identity_quote_failed rows. That union is 74 > 70, so A = all 49 renames/collision/different-work rows + random.Random(20261001).sample of the other 25 set-A rows, 21 taken (not taken: KoroEtal05, Kroh35, Mann21b, PailEtal00) = 70. Pool = sorted keys not in A (330, includes the 4 untaken set-A rows); B = random.Random(20261001).sample(pool, 60). DOI records re-fetched from api.crossref.org (1 req/s) for 93 DOIs and api.datacite.org for 10 Zenodo/arXiv DOIs; arXiv export API for LiuEtal24/YangEtal24/VodrEtal16/CaliVita05; PubMed E-utilities for ClauEtal04, SchmEtal03; CVF open-access page for LiEtal24a; SfN abstract archive for JacoEtal05b, JensTesc00, MakeEtal00; LoC SRU for MillEtal60, Keme72, TuftGrav83. New keys checked against HEAD cdl.bib (no collisions, no duplicate titles/DOIs). Judged the FINAL merged.json values field by field.",
+  "missing": [],
+  "systematic_findings": [
+   "POST-CHECK (DOI title check) drops correct DOIs: all 4 wave-7 drops are the right record (GusmEtal14: ®/™ vs {\\textregistered}/{\\texttrademark}; HernEtal00: Crossref HTML tags glued to words, 'D<sub>2</sub>Dopamine', 'Ca<sup>2+</sup>Currents'; LismIdia95: '7 ± 2' vs '$7\\pm2$'; Rebe10: generic column title 'Ask the Brains' with volume, issue and page equal to the entry's). Suggest: strip HTML tags as separators, map \\pm/\\textregistered/\\texttrademark to their Unicode forms, and accept (or hold instead of drop) a generic registry title when first page + volume + issue + year match.",
+   "POST-CHECK (quote failure + removal): when the researcher's booktitle fails its quote check ('ieee' not in the CVF quote), the booktitle is dropped but the researcher's journal removal is still honoured, so GatyEtal16, IsolEtal17 and LiEtal24a end as @inproceedings with NO venue (the only 3 such rows among all 400). A contained type should never lose its last venue: keep the journal as booktitle, or hold the booktitle as unverified-but-kept.",
+   "POST-CHECK (surname hold) keeps obvious misspellings when a second host exists but was not quoted: CaliVita05 'Calibrasi' (Crossref and arXiv cs/0412098 both 'Cilibrasi'; the key should then be CiliVita07, not CaliVita07) and ChanEtal20 'Geerlings' (DataCite 'Geerligs'). The hold also drives the key rename, so a held misspelling gets baked into a new key.",
+   "POST-CHECK (needs_user): replacement candidates written in the researcher's notes are not surfaced when nothing else flags the row: TsitEtal19 (Crossref is-preprint-of 10.1016/j.cub.2019.11.048), LiEtal24b and JainHuth18 have needs_user=false, so the user's per-entry preprint->published decision is skipped. Suggest a flag when the notes contain 'replacement candidate' or Crossref has is-preprint-of.",
+   "RESEARCHER/POST-CHECK: junk field 'Force = {True}' noted by researchers but left in AbdeEtal21, LiEtal24b and Amer23b; LeCuBeng95 keeps pages the researcher says are wrong (should be removed or confirmed); vanGEtal13 keeps 'M {{van} Gerven}' though Crossref gives M A J."
+  ],
+  "outside_review_set_findings": [
+   "LiEtal24b and JainHuth18: replacement candidates in notes but needs_user=false.",
+   "LiEtal24b, Amer23b: 'Force = {True}' left in the final entry."
+  ]
+ },
+ {
+  "key": "AbdeEtal21",
+  "agree": "partly",
+  "field_verdicts": {
+   "force": "disagree (junk field left in place)",
+   "verdict": "agree"
+  },
+  "problems": [
+   "Set A reason: verdict ambiguous",
+   "Verdict ambiguous is reasonable (bioRxiv 10.1101/2021.12.01.470530 now titled '...elicits detectable reactivation'; eLife 12:e84324 replacement candidate raised). The researcher noted the junk field 'Force = {True}' but the final entry keeps it (also on LiEtal24b and Amer23b outside the review set)."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "force": "remove"
+  }
+ },
+ {
+  "key": "BaboEtal11",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "journal": "agree (removal)",
+   "pages": "agree"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change",
+   "Crossref 10.1109/cvpr.2011.5995727: CVPR 2011 None(None) 41-48, print 2011 / issued 2011"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "BaleEtal21",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename BaleEtal21 -> BaleEtal22",
+   "Crossref 10.1111/ejn.15264: European Journal of Neuroscience 55(11-12) 3040-3053, print 2022 / issued 2021"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "BeliEtal08",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Crossref 10.1523/jneurosci.0009-08.2008: The Journal of Neuroscience 28(22) 5696-5709, print 2008 / issued 2008"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "BennBank89",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename BennBank89 -> BurrEtal89",
+   "Crossref 10.1016/0042-6989(89)90006-0: Vision Research 29(4) 419-431, print 1989 / issued 1989"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "CaliVita05",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "disagree (surname hold keeps a misspelling)",
+   "doi": "agree",
+   "key": "disagree (should follow the corrected surname)",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename CaliVita05 -> CaliVita07",
+   "Surname hold keeps 'R L Calibrasi'. Crossref 10.1109/tkde.2007.48 gives 'Rudi L. Cilibrasi'; arXiv cs/0412098 (export.arxiv.org API, same title) gives 'Rudi Cilibrasi' - a second host, so the single-source hold should release. Key should then be CiliVita07 (free in HEAD).",
+   "Crossref 10.1109/tkde.2007.48: IEEE Transactions on Knowledge and Data Engineering 19(3) 370-383, print 2007 / issued 2007"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "author": "R L Cilibrasi and P M B Vitanyi",
+   "key": "CiliVita07"
+  }
+ },
+ {
+  "key": "ChanEtal20",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "author": "disagree (surname hold keeps a misspelling)",
+   "doi": "agree",
+   "howpublished": "agree",
+   "journal": "agree (removal)",
+   "title": "agree",
+   "volume": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+   "Surname hold keeps 'L Geerlings'; DataCite 10.5281/zenodo.3937848 creator is 'Geerligs, Linda' (the author's name is Geerligs). No other cdl.bib entry spells her name, so nothing in cdl.bib argues for 'Geerlings'.",
+   "DataCite 10.5281/zenodo.3937848: naturalistic-data-analysis/naturalistic_data_analysis: Version 1.0, 2020, version 1.0, Zenodo"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "author": "L J Chang and J R Manning and C Baldassano and A {de la Vega} and G Fleetwood and L Geerligs and J Haxby and J Lahnakoski and C Parkinson and H Shappell and W M Shim and T Wager and T Yarkoni and Y Yeshurun and E Finn"
+  }
+ },
+ {
+  "key": "ClauEtal04",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename ClauEtal04 -> BabiEtal04",
+   "PubMed 15182317 (efetch): Babiloni C, Bares M, Vecchio F, Brazdil M, Jurak P, Moretti DV, Ubaldi A, Rossini PM, Rektor I; Eur J Neurosci 2004 Jun;19(11):3088-98. Crossref still deposits the misprinted given-name-as-surname byline. BabiEtal04 free in HEAD.",
+   "Crossref 10.1111/j.0953-816x.2004.03431.x: European Journal of Neuroscience 19(11) 3088-3098, print 2004 / issued 2004"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "DeadEtal80",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename DeadEtal80 -> DeadEtal81",
+   "Crossref 10.1126/science.7466392: Science 211(4487) 1181-1183, print 1981 / issued 1981"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "DehaChan06",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "title": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename DehaChan06 -> DehaChan05",
+   "Crossref 10.1371/journal.pbio.0030141: PLoS Biology 3(5) e141, print None / issued 2005"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "EckhEtal04",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Crossref 10.1109/tnn.2004.833130: IEEE Transactions on Neural Networks 15(5) 1039-1052, print 2004 / issued 2004"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "EggeEtal07",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree"
+  },
+  "problems": [
+   "Set A reason: verdict ambiguous",
+   "Ambiguous is defensible: only the 2006 Neurosci Biobehav Rev 30(4):562-575 version (10.1016/j.neubiorev.2005.10.004) is registered; the 2007 series printing could not be found."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "GatyEtal16",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "disagree (missing: @inproceedings left with no venue)",
+   "doi": "agree",
+   "journal": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change",
+   "The researcher proposed booktitle '{IEEE} Conference on Computer Vision and Pattern Recognition'; the validator failed its quote (missing 'ieee'), so the booktitle was dropped, while the journal removal was still honoured. Final @inproceedings has neither journal nor booktitle. Crossref container: '2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)'.",
+   "Crossref 10.1109/cvpr.2016.265: 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR) None(None) 2414-2423, print 2016 / issued 2016"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "booktitle": "{IEEE} Conference on Computer Vision and Pattern Recognition"
+  }
+ },
+ {
+  "key": "GaynEtal08",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename GaynEtal08 -> DoylEtal08",
+   "Crossref 10.1111/j.1460-9568.2008.06363.x: European Journal of Neuroscience 28(8) 1686-1695, print 2008 / issued 2008"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "GoldEtal21",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree (removal)",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Crossref posted-content record carries the v4 title; researcher cites v4 (2021-09-30). Nature Neuroscience 2022 successor raised as a candidate (no registry relation) and needs_user is set.",
+   "Crossref 10.1101/2020.12.02.403477: openRxiv None(None) None, print None / issued 2020"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "GoodLee93",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename GoodLee93 -> GoodEtal93",
+   "Crossref 10.1090/s0002-9947-1993-1117215-0: Transactions of the American Mathematical Society 338(2) 639-654, print 1993 / issued 1993"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "GuoEtal20",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree",
+   "key": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename GuoEtal20 -> GuoEtal22; title/journal change naming a different wording, venue or version",
+   "Crossref 10.1109/tkde.2020.3028705: IEEE Transactions on Knowledge and Data Engineering 34(8) 3549-3568, print 2022 / issued 2022"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "GusmEtal14",
+  "agree": "partly",
+  "field_verdicts": {
+   "doi": "disagree (dropped but correct)",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: DOI dropped by doi_title_mismatch",
+   "Crossref 10.2174/1874387001408010011: 'Comparison of FitBit® Ultra to ActiGraph™ GT1M for Assessment of Physical Activity in Young Adults During Treadmill Walking', Open Sports Medicine Journal 8(1) 11-15, 2014, authors Gusmer, Bosch, Watkins, Ostrem, Dengel - identical to the entry. The title check failed only on ®/™ vs {\\textregistered}/{\\texttrademark}."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "doi": "10.2174/1874387001408010011"
+  }
+ },
+ {
+  "key": "HansSchm10",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "volume": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename HansSchm10 -> HansSchm11",
+   "Crossref 10.1016/j.neuroimage.2010.08.028: NeuroImage 54(2) 1715-1734, print 2011 / issued 2011"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "HansStau13",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename HansStau13 -> HansStau14",
+   "Crossref 10.1016/j.neuroimage.2013.05.121: NeuroImage 85(None) 648-655, print 2014 / issued 2014"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "HartDunl11",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename HartDunl11 -> HartDunl12",
+   "Crossref 10.3758/s13423-011-0181-y: Psychonomic Bulletin &amp; Review 19(1) 126-134, print 2012 / issued 2011"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "HernEtal00",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "disagree (dropped but correct)",
+   "pages": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: DOI dropped by doi_title_mismatch",
+   "Crossref 10.1523/jneurosci.20-24-08987.2000: J Neurosci 20(24) 8987-8995, 2000, first author Hernández-López, 7 authors as in the entry. The deposited title carries HTML tags glued to words ('D<sub>2</sub>Dopamine', 'Ca<sup>2+</sup>Currents'); the check should strip tags before comparing."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "doi": "10.1523/jneurosci.20-24-08987.2000"
+  }
+ },
+ {
+  "key": "HiskEtal22",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename HiskEtal22 -> HiskEtal23",
+   "Crossref 10.1007/s13164-022-00621-5: Review of Philosophy and Psychology 14(3) 1099-1124, print 2023 / issued 2022"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "HowaEtal14",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Crossref 10.1523/jneurosci.5808-12.2014: The Journal of Neuroscience 34(13) 4692-4707, print 2014 / issued 2014"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "IkieHash06",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Crossref 10.1093/geronb/61.5.p278: The Journals of Gerontology Series B: Psychological Sciences and Social Sciences 61(5) P278-P284, print 2006 / issued 2006"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "IsolEtal17",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "disagree (missing: @inproceedings left with no venue)",
+   "doi": "agree",
+   "journal": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change",
+   "Same as GatyEtal16: booktitle dropped on a quote failure ('ieee'), journal still removed; final entry has no venue. Crossref container: '2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)'.",
+   "Crossref 10.1109/cvpr.2017.632: 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR) None(None) 5967-5976, print 2017 / issued 2017"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "booktitle": "{IEEE} Conference on Computer Vision and Pattern Recognition"
+  }
+ },
+ {
+  "key": "JacoEtal05b",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "journal": "agree (removal)",
+   "number": "agree",
+   "organization": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+   "SfN abstract archive AbsYear=2005 AbsID=9688: 'Neuroscience 2005 Abstract Presentation Number: 581.4 Abstract Title: Phase locking of neuronal activity and EEG oscillations during human spatial navigation. Authors: Jacobs, J.; Kahana, M. J.; Ekstrom, A. D.; Fried, I.' Conference abstract: on the user's removal list."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "JensTesc00",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "journal": "agree (removal)",
+   "number": "agree",
+   "organization": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+   "SfN abstract archive AbsYear=2000 AbsID=4118: 'Presentation Number: 263.10 Abstract Title: Ongoing theta activity (6-8 Hz) over the frontal midline increases with load in a short-term memory task: a parametric MEG study. Authors: Jensen, O.; Tesche, C. D.'"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "JollChan18",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "volume": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename JollChan18 -> JollChan19",
+   "Crossref 10.1111/tops.12404: Topics in Cognitive Science 11(2) 433-454, print 2019 / issued 2018"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Kele99",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree"
+  },
+  "problems": [
+   "Set A reason: verdict no_source"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Kell64",
+  "agree": "yes",
+  "field_verdicts": {
+   "journal": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Researcher quotes the Psychometric Society's PDF: 'Kelley, H. P. (1964). Memory Abilities: A Factor Analysis (Psychometric Monograph No. 11).' Singular kept as printed; 'Psychometric Monographs' is the usual series name (house choice)."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Kuip08",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "editor": "agree",
+   "journal": "agree (removal)",
+   "pages": "agree",
+   "publisher": "agree",
+   "series": "agree"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change",
+   "Crossref 10.1007/978-3-540-75388-9_15: Robotics and Cognitive Approaches to Spatial Mapping None(None) 243-264, print None / issued None"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "LagaEtal98",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Journal change is to the right journal: Crossref 10.1137/s1052623496303470 container 'SIAM Journal on Optimization' 9(1) 112-147.",
+   "Crossref 10.1137/s1052623496303470: SIAM Journal on Optimization 9(1) 112-147, print 1998 / issued 1998"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Laur67",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "journal": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Crossref 10.3758/bf03330833: Psychonomic Science 9(4) 209-210, print 1967 / issued 1967"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "LeCuBeng95",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "journal": "agree (removal)",
+   "number": "agree (removal)",
+   "pages": "disagree (kept a value the researcher says is wrong; not verified by me)",
+   "publisher": "agree",
+   "title": "agree",
+   "volume": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+   "Type change, booktitle, editor, publisher and corrected chapter title agree. Pages '1--14' kept although the researcher's own notes say they are almost certainly wrong (commonly cited 255--258). I could not reach a text source either (ACM DL behind a Cloudflare challenge). Suggest removing pages or confirming 255--258 from a scan before applying."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "pages": "remove, or 255--258 once confirmed"
+  }
+ },
+ {
+  "key": "LiEtal24a",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "author": "agree",
+   "booktitle": "disagree (missing: @inproceedings left with no venue)",
+   "doi": "agree",
+   "journal": "agree (removal)",
+   "pages": "agree"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change",
+   "Same as GatyEtal16: no venue in the final entry. Crossref container '2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)'. Author change (M-Y Liu removed) confirmed: CVF open-access page lists 9 citation_author tags without Ming-Yu Liu, matching Crossref.",
+   "Crossref 10.1109/cvpr52733.2024.00686: 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) None(None) 7183-7193, print 2024 / issued 2024"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "booktitle": "{IEEE} Conference on Computer Vision and Pattern Recognition"
+  }
+ },
+ {
+  "key": "Lin09",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename Lin09 -> Lin91",
+   "Crossref 10.1109/18.61115: IEEE Transactions on Information Theory 37(1) 145-151, print 1991 / issued 1991"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "LismIdia95",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "disagree (dropped but correct)",
+   "number": "agree"
+  },
+  "problems": [
+   "Set A reason: DOI dropped by doi_title_mismatch",
+   "Crossref 10.1126/science.7878473: 'Storage of 7 ± 2 Short-Term Memories in Oscillatory Subcycles', Science 267(5203) 1512-1515, 1995, John E. Lisman and Marco A. P. Idiart - the entry's work. The check failed on '$7\\pm2$' vs '7 ± 2' (the \\pm fix in a92fd7e reached the validator, not this DOI-title check)."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "doi": "10.1126/science.7878473"
+  }
+ },
+ {
+  "key": "LiuEtal24",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "volume": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename LiuEtal24 -> LiuEtal25",
+   "arXiv API: 2412.19437v2 dated 2025-02-18, so 2025/LiuEtal25 is right (DataCite publicationYear 2024 is v1). arXiv byline begins with the corporate author 'DeepSeek-AI'; author left not_found.",
+   "DataCite 10.48550/arxiv.2412.19437: DeepSeek-V3 Technical Report, 2024, version 2, arXiv"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MakeEtal00",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "journal": "agree (removal)",
+   "number": "agree",
+   "organization": "agree"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change",
+   "SfN abstract archive AbsYear=2000 AbsID=7682: 'Presentation Number: 490.4 ... Authors: Makeig, S.; Enghoff, S.; Visser, E.; Jung, T. P.; Sejnowski, T. J.'"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Mann21c",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "doi": "agree",
+   "journal": "agree (removal)",
+   "volume": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change",
+   "DataCite 10.5281/zenodo.5136794: Introduction to Programming for Psychological Scientists, 2021, version None, Zenodo"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MannEtal97",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree"
+  },
+  "problems": [
+   "Set A reason: verdict no_source"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MaoEtal12",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename MaoEtal12 -> HughEtal12",
+   "Crossref 10.1109/tpami.2012.16: IEEE Transactions on Pattern Analysis and Machine Intelligence 34(11) 2147-2157, print 2012 / issued 2012"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MesgEtal14",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Crossref 10.1126/science.1245994: Science 343(6174) 1006-1010, print 2014 / issued 2014"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MollEtal06",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree"
+  },
+  "problems": [
+   "Set A reason: verdict no_source"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MuelEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "author": "agree",
+   "doi": "agree",
+   "howpublished": "agree",
+   "journal": "agree (removal)",
+   "title": "agree",
+   "volume": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+   "DataCite 10.5281/zenodo.1322068: amueller/word_cloud: WordCloud 1.5.0, 2018, version 1.5.0, Zenodo"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MullPilz00",
+  "agree": "yes",
+  "field_verdicts": {
+   "journal": "agree",
+   "title": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Researcher's Internet Archive OCR (b28111916) title page: 'Experimentelle Beiträge zur Lehre vom Gedächtnis', Ergänzungsband 1, Leipzig 1900: the cited English title is not a published translation, so the original is right."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "NairNeat95",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename NairNeat95 -> NeatNair95",
+   "Crossref 10.3758/bf03210981: Psychonomic Bulletin &amp; Review 2(4) 429-441, print 1995 / issued 1995"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Newm08",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree"
+  },
+  "problems": [
+   "Set A reason: verdict ambiguous",
+   "Ambiguous is defensible: three Crossref versions of the New Palgrave Dictionary entry 'Mathematics of networks' disagree on pages; the user must pick the printed version."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "NormTurk18",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename NormTurk18 -> deBeEtal18",
+   "Crossref 10.3758/s13423-017-1309-5: Psychonomic Bulletin &amp; Review 25(2) 605-611, print 2018 / issued 2017"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "PimeEtal19",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "journal": "agree (removal)",
+   "volume": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change",
+   "Crossref 10.1109/msr.2019.00077: 2019 IEEE/ACM 16th International Conference on Mining Software Repositories (MSR) None(None) 507-517, print 2019 / issued 2019"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Plat99",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "editor": "agree",
+   "journal": "agree (removal)",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+   "Accept the chapter reading: Crossref 10.7551/mitpress/1130.003.0016 is Platt's chapter 'Fast Training of Support Vector Machines Using Sequential Minimal Optimization' in Advances in Kernel Methods (MIT Press); the cited title is MSR-TR-98-14 (1998), but the cited book, editors, publisher and 1999 point to the chapter. Crossref print 1998-12 vs LoC c1999: 1999 kept, flagged for the user. Pages (usually 185--208) missing.",
+   "Crossref 10.7551/mitpress/1130.003.0016: Advances in Kernel Methods None(None) None, print 1998 / issued 1998"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "PresEtal93",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: verdict ambiguous",
+   "Ambiguous is defensible: LoC has the 1988 1st and 1992 2nd editions, no 1993 printing."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "RadfEtal19",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "institution": "agree",
+   "journal": "agree (removal)",
+   "number": "agree (removal)",
+   "volume": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Rans02",
+  "agree": "yes",
+  "field_verdicts": {
+   "journal": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Rebe10",
+  "agree": "partly",
+  "field_verdicts": {
+   "doi": "disagree (dropped but correct)",
+   "journal": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Set A reason: DOI dropped by doi_title_mismatch; title/journal change naming a different wording, venue or version",
+   "Crossref 10.1038/scientificamericanmind0510-70 is the 'Ask the Brains' item, Scientific American Mind 21(2) p 70, May 2010; the SciAm web page quoted by the researcher says this piece 'was published with the title \"Ask the Brains\" in SA Mind Vol. 21 No. 2'. Volume, issue and page equal the final entry's, so the DOI is the printed item; the generic column title should not drop it."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "doi": "10.1038/scientificamericanmind0510-70"
+  }
+ },
+ {
+  "key": "SchmEtal03",
+  "agree": "yes",
+  "field_verdicts": {
+   "journal": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "PubMed 12917744: 'Memory functions and focussed attention in middle-aged and elderly subjects are unaffected by a low, acute dose of caffeine', J Nutr Health Aging 2003;7(5):301-3, same 5 authors; no DOI."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Seid07",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename Seid07 -> SeidShav07",
+   "Crossref 10.3102/0034654307310317: Review of Educational Research 77(4) 454-499, print 2007 / issued 2007"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "ShoeEtal97",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Crossref 10.1152/ajpheart.1997.273.5.h2388: American Journal of Physiology-Heart and Circulatory Physiology 273(5) H2388-H2395, print 1997 / issued 1997"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "StonEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "journal": "agree (removal)",
+   "key": "agree",
+   "pages": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename StonEtal18 -> StonEtal08; ENTRYTYPE change",
+   "Crossref 10.1109/cvprw.2008.4562956: 2008 IEEE Computer Society Conference on Computer Vision and Pattern Recognition Workshops None(None) 1-8, print 2008 / issued 2008"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "ThorTami20",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "volume": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename ThorTami20 -> ThorTami21",
+   "Crossref 10.1093/scan/nsaa126: Social Cognitive and Affective Neuroscience 16(8) 807-815, print 2021 / issued 2020"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "TsitEtal19",
+  "agree": "partly",
+  "field_verdicts": {
+   "doi": "agree",
+   "needs_user": "disagree (published replacement not surfaced)",
+   "title": "agree",
+   "volume": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Fields agree (latest bioRxiv v2 title; Crossref posted 2019-01-17). But Crossref relation is-preprint-of 10.1016/j.cub.2019.11.048 (Current Biology 2020), the researcher named it as a replacement candidate, and merged.json has needs_user=false with no flag, so the user's per-entry preprint->published decision is never asked.",
+   "Crossref 10.1101/523753: openRxiv None(None) None, print None / issued 2019"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "needs_user": true
+  }
+ },
+ {
+  "key": "TuftGrav83",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "key": "agree",
+   "number": "agree (removal)",
+   "volume": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: key rename TuftGrav83 -> Tuft83",
+   "LoC SRU record: 'The visual display of quantitative information / Edward R. Tufte', Cheshire, Conn.: Graphics Press, c1983 (single author). Graves-Morris and volume/number were spurious. Tuft83 free in HEAD; no other entry with this title."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Tulv95",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "journal": "agree (removal)",
+   "publisher": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "TulvScha91",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename TulvScha91 -> TulvScha90",
+   "Crossref 10.1126/science.2296719: Science 247(4940) 301-306, print 1990 / issued 1990"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "VoEtal07",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "key": "agree",
+   "number": "agree",
+   "volume": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename VoEtal07 -> VoEtal08",
+   "Crossref 10.1111/j.1469-8986.2007.00606.x: Psychophysiology 45(1) 130-140, print 2008 / issued 2007"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "VodrEtal16",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree",
+   "pages": "agree (removal)",
+   "volume": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key rename VodrEtal16 -> VodrEtal17",
+   "arXiv API: latest version 1610.03914v3 updated 2017-04-10, so year 2017 and VodrEtal17 are right. NeuroImage 180:223-231 (2018) replacement candidate raised; needs_user set.",
+   "DataCite 10.48550/arxiv.1610.03914: Mapping Between fMRI Responses to Movies and their Natural Language Annotations, 2016, version 3, arXiv"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "XionEtal17",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "journal": "agree (removal)"
+  },
+  "problems": [
+   "Set A reason: ENTRYTYPE change",
+   "Crossref 10.1145/3038912.3052558: Proceedings of the 26th International Conference on World Wide Web None(None) 1271-1279, print 2017 / issued 2017"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "YangEtal24",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree",
+   "volume": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Set A reason: key collision YangEtal24 -> YangEtal25c",
+   "arXiv API: 2412.15115v2 dated 2025-01-03, so 2025 is right; YangEtal25a/b in HEAD are Lattica and Qwen3 (different works), so YangEtal25c is correct.",
+   "DataCite 10.48550/arxiv.2412.15115: Qwen2.5 Technical Report, 2024, version 2, arXiv"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "vanGEtal13",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "disagree (initials incomplete; not changed)",
+   "doi": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change naming a different wording, venue or version",
+   "Identity accepted: PubMed 23298746 / Crossref give the same 8 authors, NeuroImage 70 223-232, 2013; the cited title matches no record. First author left as 'M {{van} Gerven}': Crossref gives 'Marcel A.J. van Gerven', so by the all-initials rule it should be 'M A J {van Gerven}' (and the doubled braces normalised).",
+   "Crossref 10.1016/j.neuroimage.2012.12.059: NeuroImage 70(None) 223-232, print 2013 / issued 2013"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "author": "M A J {van Gerven} and E Maris and M Sperling and A Sharan and B Litt and C Anderson and G Baltuch and J Jacobs"
+  }
+ },
+ {
+  "key": "Attn50",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/1418869: The American Journal of Psychology 63(4) 516, print 1950 / issued 1950"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BarrEtal06",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1515/revneuro.2006.17.1-2.71: Reviews in the Neurosciences 17(1-2) None, print 2006 / issued 2006"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BellEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1126/science.aat6766: Science 362(6415) None, print 2018 / issued 2018"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BowmThur63",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/1419785: The American Journal of Psychology 76(3) 436, print 1963 / issued 1963"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BragEtal95",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.15-01-00047.1995: The Journal of Neuroscience 15(1) 47-60, print 1995 / issued 1995"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "CantEtal03",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.23-34-10897.2003: The Journal of Neuroscience 23(34) 10897-10903, print 2003 / issued 2003"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "CotmBerc07",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/j.jalz.2007.01.013: Alzheimer's &amp; Dementia 3(2S) None, print 2007 / issued 2007"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "DaleEtal99",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1006/nimg.1998.0395: NeuroImage 9(2) 179-194, print 1999 / issued 1999"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "DankEtal08",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.1111/j.1469-8986.2008.00672.x: Psychophysiology 45(5) 784-793, print 2008 / issued 2008"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "DuzeEtal03",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/s1053-8119(02)00031-9: NeuroImage 18(2) 185-197, print 2003 / issued 2003"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "EkstWatr14",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/j.neuroimage.2013.06.049: NeuroImage 85(None) 667-677, print 2014 / issued 2014"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "FeliEtal98",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/s0749-3797(98)00017-8: American Journal of Preventive Medicine 14(4) 245-258, print 1998 / issued 1998"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "GersEtal05",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/j.neuroimage.2005.06.026: NeuroImage 28(2) 342-353, print 2005 / issued 2005"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "GomeEtal96",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.16-14-04491.1996: The Journal of Neuroscience 16(14) 4491-4500, print 1996 / issued 1996"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "GotoODon01",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.21-04-j0003.2001: The Journal of Neuroscience 21(4) RC131-RC131, print 2001 / issued 2001"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "GreeCrow84",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/1422530: The American Journal of Psychology 97(3) 441, print 1984 / issued 1984"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "GregGard94",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1080/09541449408520140: European Journal of Cognitive Psychology 6(2) 131-147, print 1994 / issued 1994"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "HanEtal12",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1371/journal.pone.0035940: PLoS ONE 7(5) e35940, print None / issued 2012"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "HaufEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree (removal)"
+  },
+  "problems": [
+   "Crossref 10.1016/j.neuroimage.2018.06.016: NeuroImage 179(None) 79-91, print 2018 / issued 2018"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Holl28",
+  "agree": "yes",
+  "field_verdicts": {
+   "address": "agree",
+   "author": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1037/10940-000: D Appleton & Company None(None) None, print 1928 / issued 1928"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "HukEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.1920-17.2018: The Journal of Neuroscience 38(35) 7551-7558, print 2018 / issued 2018"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "InouEtal15",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1371/journal.pone.0128720: PLOS ONE 10(6) e0128720, print None / issued 2015"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "JahaEtal13",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree (removal)",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/j.neuroimage.2013.04.061: NeuroImage 81(None) 455-469, print 2013 / issued 2013"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "JianEtal24",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "DataCite creators match all 26 names in order. 'E B Hanna' (Emma Bou Hanna) and 'L R Lavaud' (Lélio Renard Lavaud) are probably compound surnames {Bou Hanna}/{Renard Lavaud}; the researcher left them for review. Not counted as an error.",
+   "DataCite 10.48550/arxiv.2401.04088: Mixtral of Experts, 2024, version 1, arXiv"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Jost97",
+  "agree": "yes",
+  "field_verdicts": {
+   "journal": "agree",
+   "title": "agree",
+   "volume": "agree"
+  },
+  "problems": [],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KandEtal00",
+  "agree": "yes",
+  "field_verdicts": {
+   "address": "agree",
+   "edition": "agree",
+   "publisher": "agree"
+  },
+  "problems": [],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Keme72",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree"
+  },
+  "problems": [],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KentRosa10",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.1176/ajp.67.1.37: American Journal of Psychiatry 67(1) 37-96, print 1910 / issued 1910"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KossEtal99",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.1126/science.284.5411.167: Science 284(5411) 167-170, print 1999 / issued 1999"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "LeaEtal07",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Crossref 10.3758/bf03194119: Psychonomic Bulletin &amp; Review 14(5) 901-907, print 2007 / issued 2007"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "LevyEtal00",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.20-20-07766.2000: The Journal of Neuroscience 20(20) 7766-7775, print 2000 / issued 2000"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Mann21b",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "doi": "agree",
+   "journal": "agree (removal)",
+   "volume": "agree (removal)"
+  },
+  "problems": [
+   "DataCite 10.5281/zenodo.5123310: Data Wrangler, 2021, version 0.1.1, Zenodo"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "McCaEtal89",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.09-12-04253.1989: The Journal of Neuroscience 9(12) 4253-4268, print 1989 / issued 1989"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Mill10",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.6401-09.2010: The Journal of Neuroscience 30(19) 6477-6479, print 2010 / issued 2010"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "MillEtal07b",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "DataCite 10.48550/arxiv.0712.0846: ECoG observations of power-law scaling in the human cortex, 2007, version 1, arXiv"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "MillEtal60",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "publisher": "uncertain (held, not changed)"
+  },
+  "problems": [
+   "Publisher left as cited ('Holt, Rinehart, and Winston', held field_not_found). Crossref 10.1037/10039-000 gives 'Henry Holt and Co'; LoC SRU record gives 'New York, Holt [1960]'. Later printings carry Holt, Rinehart and Winston, so this is left to the user rather than counted as an error; 'Henry Holt and Company' is the better-supported 1960 imprint.",
+   "Crossref 10.1037/10039-000: Henry Holt and Co None(None) None, print 1960 / issued 1960"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "MillEtal96",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.16-16-05154.1996: The Journal of Neuroscience 16(16) 5154-5167, print 1996 / issued 1996"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "MilsEtal09",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1371/journal.pone.0004338: PLoS ONE 4(2) e4338, print None / issued 2009"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "NayaEtal01",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1126/science.291.5504.661: Science 291(5504) 661-664, print 2001 / issued 2001"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "PailEtal00",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree"
+  },
+  "problems": [],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "PariSper91",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/0042-6989(91)90060-i: Vision Research 31(7-8) 1399-1415, print 1991 / issued 1991"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "PelzCano01",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/s0042-6989(01)00245-0: Vision Research 41(25-26) 3587-3596, print 2001 / issued 2001"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "PizzEtal09",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1176/appi.ajp.2008.08081201: American Journal of Psychiatry 166(6) 702-710, print 2009 / issued 2009"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Prie81",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree"
+  },
+  "problems": [],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "RebeEtal02",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.22-21-09541.2002: The Journal of Neuroscience 22(21) 9541-9548, print 2002 / issued 2002"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "RobbEver07",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.1007/s00213-006-0528-7: Psychopharmacology 191(3) 433-437, print 2007 / issued 2006"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "RockHeim59",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/1420207: The American Journal of Psychology 72(1) 1, print 1959 / issued 1959"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "RollXian06",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.1515/revneuro.2006.17.1-2.175: Reviews in the Neurosciences 17(1-2) None, print 2006 / issued 2006"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Rove14",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "arXiv 1407.3384 latest v2 confirmed (DataCite version 2). Style only: the title keeps single quotes 'time oriented coarse graining' while GregGard94/SongWang05 in this wave were converted to ``...''.",
+   "DataCite 10.48550/arxiv.1407.3384: Why do we remember the past and not the future? The 'time oriented coarse graining' hypothesis, 2014, version 2, arXiv"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Samm69",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1109/t-c.1969.222678: IEEE Transactions on Computers C-18(5) 401-409, print 1969 / issued 1969"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "SpecBied76",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/1421465: The American Journal of Psychology 89(4) 669, print 1976 / issued 1976"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "StarDava06",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1523/jneurosci.2877-06.2006: The Journal of Neuroscience 26(36) 9162-9172, print 2006 / issued 2006"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "ThomEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1371/journal.pcbi.1006196: PLOS Computational Biology 14(5) e1006196, print None / issued 2018"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "TulvHaym95",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1080/09541449508520154: European Journal of Cognitive Psychology 7(1) 13-18, print 1995 / issued 1995"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "VargEtal97",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.1126/science.277.5324.376: Science 277(5324) 376-380, print 1997 / issued 1997"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "ViniNels79",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/1421923: The American Journal of Psychology 92(2) 257, print 1979 / issued 1979"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "WardMayl05",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Crossref 10.1080/02724980443000223: The Quarterly Journal of Experimental Psychology Section A 58(1) 98-119, print 2005 / issued 2005"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "WatkEtal89",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/1422957: The American Journal of Psychology 102(2) 265, print 1989 / issued 1989"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "ZhanEtal13",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1126/science.1232627: Science 340(6128) None, print 2013 / issued 2013"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "vanG95",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/2941061: Journal of Philosophy 92(7) 345-381, print None / issued 1995"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ }
+]
