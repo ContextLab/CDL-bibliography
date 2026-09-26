@@ -435,3 +435,105 @@ def test_cached_sru_diagnostic_is_refetched(sru_server, tmp_path):
     (tmp_path / (hashlib.sha256(sru_server.encode()).hexdigest() + ".txt")).write_text(SRU_DIAGNOSTIC)
     text, network = V.fetch(sru_server)
     assert network and "Elements of physiological psychology" in text and _SRUHandler.hits == 1
+
+
+# --- wave 8/9 validator gaps (verbatim quotes from wave8/wave9 batch files) ------------------
+
+def test_house_proceedings_word():  # MallEtal97, ParkEtal24, DolfWend98 (batch-096)
+    assert ok("booktitle", "Proceedings of the International Conference on Artificial Neural Networks",
+              ['citation_conference_title" content="International Conference on Artificial Neural Networks"']) == (True, [])
+    assert ok("booktitle", "Proceedings of the International Conference on Machine Learning",
+              ['citation_conference_title" content="International Conference on Machine Learning"']) == (True, [])
+    assert ok("booktitle", "Proceedings of the International Conference on Spoken Language Processing",
+              ["5th International Conference on Spoken Language Processing (ICSLP 1998)"]) == (True, [])
+
+
+def test_house_proceedings_word_negative_controls():
+    # never stands in for a missing content word: the whole missing list is reported
+    assert ok("booktitle", "Proceedings of the International Conference on Machine Learning",
+              ["International Conference on Learning Representations"]) == (False, ["proceedings", "machine"])
+    # only as the opening 'Proceedings of': elsewhere it is a content word
+    assert ok("booktitle", "Annual Proceedings of Cognition", ["Annual Meeting of Cognition"])[0] is False
+    # and only in a booktitle
+    assert ok("title", "Proceedings of the Workshop", ["Workshop"])[0] is False
+
+
+SFN_FOOTER = "2009 Neuroscience Meeting Planner. Chicago, IL: Society for Neuroscience, 2009"
+
+
+def test_sfn_house_booktitle():  # MannEtal09b ... vanVEtal05 (batch-097)
+    assert ok("booktitle", "Society for Neuroscience Abstracts", [SFN_FOOTER]) == (True, [])
+    assert ok("booktitle", "Society for Neuroscience Abstracts",
+              ["Neuroscience 2005 Abstract",
+               "2005 Neuroscience Meeting Planner. Washington, DC : Society for Neuroscience, 2005"]) == (True, [])
+
+
+def test_sfn_house_booktitle_negative_controls():
+    # the organisation must be quoted as a phrase, not its words scattered
+    assert ok("booktitle", "Society for Neuroscience Abstracts",
+              ["Neuroscience 2005 Abstract", "Society meeting"])[0] is False
+    # only the SfN house form carries the added word
+    assert ok("booktitle", "Cognitive Neuroscience Society Abstracts", ["Cognitive Neuroscience Society"])[0] is False
+    assert ok("title", "Society for Neuroscience Abstracts", [SFN_FOOTER])[0] is False
+
+
+def test_affiliation_digits_on_surnames():  # ChenEtal15a (batch-079), LongKaha12a (batch-094)
+    assert ok("author", "P-H Chen and J Chen and Y Yeshurun and U Hasson and J V Haxby and P J Ramadge",
+              ["Po-Hsuan Chen1 , Janice Chen2 , Yaara Yeshurun2 , Uri Hasson2 , James V. Haxby3 , Peter J. Ramadge1"]) == (True, [])
+    assert ok("author", "N M Long and M J Kahana", ["Long1, Michael J Kahana1", "Nicole"]) == (True, [])
+
+
+def test_affiliation_digits_negative_controls():
+    # only author/editor fields, and only digits after the word, not a different name
+    assert ok("title", "Chen", ["Chen1"])[0] is False
+    assert ok("author", "J Chen", ["Janice Cheng2"]) == (False, ["chen"])
+    assert ok("author", "J Chen", ["J Che1n"]) == (False, ["chen"])
+
+
+def test_dotted_initialism():  # Whor56 (batch-078, archive.org metadata)
+    assert ok("publisher", "{MIT} Press", ['"publisher":"Cambridge, Mass. : M.I.T. Press"']) == (True, [])
+
+
+def test_dotted_initialism_negative_controls():
+    assert ok("publisher", "{MIT} Press", ["M.I. Press"])[0] is False
+    assert ok("publisher", "{MIT} Press", ["M. I. T. Press"])[0] is False  # spaced initials are not joined
+
+
+def test_single_capital_run_in():  # BrowMcCo06 (batch-080, Crossref title+subtitle joined)
+    assert ok("title", "The role of time in human memory and binding: a review of the evidence",
+              ["The role of time in human memory and bindingA review of the evidence"]) == (True, [])
+
+
+def test_single_capital_run_in_negative_control():
+    assert ok("title", "binding a review", ["bindinga review"])[0] is False
+    assert ok("author", "J Carlo", ["J J DiCarlo"]) == (False, ["carlo"])
+
+
+def test_volume_abbreviated_in_contents_note():  # McClEtal86, RumeEtal86a (batch-078, LoC 505)
+    t = "Parallel distributed processing: explorations in the microstructure of cognition, volume 2: psychological and biological models"
+    q = ["Parallel distributed processing : explorations in the microstructure of cognition /",
+         "v. 1. Foundations -- v. 2. Psychological and biological models."]
+    assert ok("title", t, q) == (True, [])
+    assert ok("title", t.replace("volume 2: psychological and biological models", "volume 1: foundations"), q) == (True, [])
+
+
+def test_volume_abbreviated_negative_controls():
+    t = "Parallel distributed processing, volume 3: foundations"
+    assert ok("title", t, ["Parallel distributed processing", "v. 1. Foundations"]) == (False, ["volume"])
+    assert ok("title", "A handbook, volume 2", ["A handbook 2"]) == (False, ["volume"])
+    assert ok("title", "The volume of the brain", ["The v. of the brain"]) == (False, ["volume"])
+
+
+def test_value_words_run_together():  # BartEtal04c (batch-096, UMass publication list)
+    assert ok("address", "La Jolla, {CA}", ["International Conference on Developmental Learning (ICDL), LaJolla, CA, USA"]) == (True, [])
+
+
+def test_value_words_run_together_negative_controls():
+    assert ok("address", "La Jolla, {CA}", ["LaJollan, CA"])[0] is False
+    assert ok("address", "New York", ["NewYorker"])[0] is False
+    assert ok("address", "Jolla", ["LaJolla"])[0] is False  # no preceding value word to join
+
+
+def test_publisher_sage_catalogue_form():  # SnijBosk12 (batch-090, LoC 260$b)
+    assert ok("publisher", "{SAGE} Publications", ['<subfield code="b">Sage,</subfield>']) == (True, [])
+    assert ok("publisher", "{SAGE} Publications", ["Sagebrush Press"])[0] is False

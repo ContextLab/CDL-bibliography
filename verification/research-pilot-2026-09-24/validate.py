@@ -468,6 +468,8 @@ PUBLISHER_FIRMS = {
     "henry holt and company": ["henry holt and company", "henry holt and co", "h holt and company", "h holt and co"],
     "institute of physics publishing": ["institute of physics publishing", "institute of physics pub",
                                         "institute of physics publ", "iop publishing"],
+    # LoC 260$b prints the firm as 'Sage,' (SnijBosk12, ISBN 9781849202008).
+    "sage publications": ["sage publications", "sage publications inc", "sage publications ltd", "sage"],
 }
 
 
@@ -488,16 +490,48 @@ def joined_word_variants(text):
     record dropped a space ('inMind', 'thetaResponse', 'denNijs' in PubMed records) is
     also read with the space, and a line-end hyphen before a lowercase continuation
     ('Be-\ndingungen', 'Dis- tribution') is also read joined. Only two or more lowercase
-    letters before the capital split, so 'McDonald' and 'DiCarlo' stay whole."""
-    text = re.sub(r"(?<=[a-z]{2})(?=[A-Z][a-z])", " ", text)
+    letters before the capital split, so 'McDonald' and 'DiCarlo' stay whole. A one-letter
+    capital word run in ('bindingA review', Crossref joining title and subtitle, BrowMcCo06)
+    splits the same way. Dotted initialisms are also read without the dots ('M.I.T.' = MIT,
+    Whor56); spaced initials ('J. R. R.') are left alone."""
+    text = re.sub(r"(?<=[a-z]{2})(?=[A-Z](?:[a-z]|\s))", " ", text)
+    text = re.sub(r"(?<![\w.])((?:[A-Za-z]\.){2,})", lambda m: m[1].replace(".", ""), text)
     return re.sub(r"(\w)-\s+([a-z])", r"\1\2", text)
+
+
+def affiliation_marks_dropped(text):
+    """Author bylines print affiliation numbers glued to the surname ('Po-Hsuan Chen1 ,'
+    in a NeurIPS PDF, ChenEtal15a; 'Long1, Michael J Kahana1' in the CNS 2012 program,
+    LongKaha12a). For author/editor fields a run of digits directly after a letter and
+    before a non-word character is dropped; digits inside a word are kept."""
+    return re.sub(r"(?<=[^\W\d_])\d+(?!\w)", "", text)
+
+
+# Words the house form adds to a booktitle that sources do not print. Each is accepted
+# as missing only when it is the ONLY missing word (never standing in for content words):
+# * 'proceedings' when the booktitle opens 'Proceedings of (the) ...' and every other word
+#   is quoted (MallEtal97, ParkEtal24: citation_conference_title omits it);
+# * 'abstracts' only in the SfN house form 'Society for Neuroscience Abstracts'
+#   (bibcheck/sfn_abstracts.py BOOKTITLE, SFN-SOURCE.md), and only when the quotes print
+#   the organisation 'Society for Neuroscience' as a phrase (the planner citation footer).
+SFN_BOOKTITLE = "society for neuroscience abstracts"
+
+
+def house_booktitle_word(value_norm, missing, joined):
+    if missing == ["proceedings"]:
+        return bool(re.match(r"proceedings of (the )?\w", value_norm))
+    if missing == ["abstracts"]:
+        return value_norm == SFN_BOOKTITLE and re.search(r"(?<!\w)society for neuroscience(?!\w)", joined) is not None
+    return False
 
 
 def value_supported(field, value, texts, urls=()):
     if field == "doi" and value and any(str(value).lower() in unquote(u).lower() for u in urls):
         return True, []  # the evidence URL is the DOI's own record
     normed = ordinals_to_digits(" ".join(norm(t) for t in texts))
-    alt = ordinals_to_digits(" ".join(norm(joined_word_variants(t)) for t in texts))
+    variant = (lambda t: affiliation_marks_dropped(joined_word_variants(t))) if field in ("author", "editor") \
+        else joined_word_variants
+    alt = ordinals_to_digits(" ".join(norm(variant(t)) for t in texts))
     if field == "volume":
         normed, alt = roman_volumes(normed), roman_volumes(alt)
     joined = fold(normed)
@@ -528,8 +562,26 @@ def value_supported(field, value, texts, urls=()):
                 return True
             if t == "series" and series_present(fold(value_norm), joined):
                 return True
+        if field in ("title", "booktitle") and t == "volume":
+            # 'volume 2' printed 'v. 2' or 'vol. 2' (LoC contents note, McClEtal86): the same
+            # number must follow the abbreviation.
+            nums = re.findall(r"(?<!\w)volume\s+(\d+)", fold(value_norm))
+            return bool(nums) and all(re.search(r"(?<!\w)v(?:ol)?\.?\s*" + n + r"(?!\d)", joined) for n in nums)
         return False
     missing = [t for t in tokens if not present_any(t)]
+    if missing and field not in ("author", "editor"):
+        # Two value words the source runs together ('La Jolla' printed 'LaJolla', BartEtal04c):
+        # the missing word joined to the value word before it must be one whole quote word,
+        # with a capital where the second word starts (an all-lowercase join is not read apart).
+        words = re.findall(r"\w+", fold(value_norm))
+        raw = fold(" ".join(texts))
+        def run_together(t):
+            return any(w == t and i and re.search(
+                r"(?<!\w)(?i:" + re.escape(words[i - 1]) + ")" + re.escape(t[0].upper()) + "(?i:" + re.escape(t[1:]) + r")(?!\w)", raw)
+                for i, w in enumerate(words))
+        missing = [t for t in missing if not run_together(t)]
+    if missing and field == "booktitle" and house_booktitle_word(fold(value_norm), missing, joined):
+        return True, []
     if missing and field == "journal" and journal_abbreviation_present(str(value or ""), joined):
         return True, []
     return not missing, missing
