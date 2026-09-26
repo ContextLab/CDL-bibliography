@@ -47,6 +47,54 @@
     "needs_review": 1955,
     "human_verified": 31
    }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 939.18,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch_statuses_before": {
+    "metadata_verified": 892,
+    "needs_review": 250
+   },
+   "batch_statuses_after": {
+    "metadata_verified": 911,
+    "needs_review": 231
+   },
+   "batch_verified_before_and_after": 892,
+   "batch_newly_verified": [
+    "AxmaEtal08",
+    "Bala98a",
+    "Bala98b",
+    "BalaMacD02",
+    "BurgGruz00",
+    "Burw00",
+    "CahiEtal96",
+    "CapaNeat95",
+    "Faw90",
+    "FoucEtal03",
+    "Gabr98",
+    "McCaEtal89",
+    "QuirEtal92",
+    "RobbEver07",
+    "SharGree94",
+    "Sing93",
+    "WehnMenz90",
+    "WelcEtal89",
+    "WienEtal89"
+   ],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "library_statuses_before": {
+    "metadata_verified": 4476,
+    "needs_review": 1974,
+    "human_verified": 31
+   },
+   "library_statuses": {
+    "metadata_verified": 4495,
+    "needs_review": 1955,
+    "human_verified": 31
+   }
   }
  ],
  "entries": {

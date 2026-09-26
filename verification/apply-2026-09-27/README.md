@@ -40,7 +40,7 @@ needs_review, out of 6,422).
 | initials, attempt 1 | 1,149 | stopped by the PMC bulk-hours guard; cdl.bib restored | | | 4,398 / 2,024 | fe36e38 |
 | ordinals | 34 | 3 verified stay verified; 31 needs_review unchanged | 32 / 0 | 125 / 0 | 4,398 / 2,024 | c2ceaec |
 | adddoi002 | 991 | 991 verified stay verified | 1,071 / 0 | 2,129 / 0 | 4,398 / 2,024 | 83d26ac |
-| initials | 1,149 | pending: runs after 9 PM US Eastern | | | | |
+| initials (2026-09-25, 21:07 ET) | 1,142 | 892 verified stay verified; +19 verified; none lost | 7 / 0 | 1,434 / 0 | 4,495 / 1,955 (+31 human_verified, of 6,481) | a4e03de + follow-up |
 
 The batches ran as formats, suffix-strip, ordinals, adddoi002, then initials. formats went
 first because the new publisher-initials formatter rejects the old dotted forms, so
@@ -150,7 +150,7 @@ already in the saved evidence.
 - Library-wide: 4,199 of 6,422 entries have a DOI. Most needs_review entries still lack one,
   because their identity has to be established first.
 
-## initials (1,149 entries; pending)
+## initials (1,142 entries; applied 2026-09-25)
 
 [`names.py`](names.py) (tests: [`test_names.py`](test_names.py), real cdl.bib names) converts
 full given names to initials, one per given name.
@@ -163,7 +163,7 @@ full given names to initials, one per given name.
   formatter, so no key changes.
 - PosnEtal87's byline typo `adn` → `and` is fixed in this batch. Crossref
   10.1016/0028-3932(87)90049-2 lists four authors: Posner, Walker, Friedrich and Rafal.
-- **Held names: 204 in 169 entries** ([`initials-held.json`](initials-held.json)). Every other name
+- **Held names at the first build: 204 in 169 entries** (rebuilt counts are under "Applied" below) ([`initials-held.json`](initials-held.json)). Every other name
   in those entries is still converted.
   - **Possible compound or unbraced surname (168).** A full word stands directly before the
     surname, e.g. `C Mejia Arenas`, `Ranxiao Frances Wang`, `A David Redish`,
@@ -198,6 +198,40 @@ Rebuild the proposals first, because adddoi002 changed the fingerprints of 991 e
 .venv/bin/python verification/apply-2026-09-27/build.py initials
 .venv/bin/python verification/apply-2026-09-27/apply.py initials --apply
 ```
+
+**Applied (2026-09-25, 21:07 ET, Friday; bulk PMC hours).** cdl.bib had changed since the first
+build (pilot, merged PRs, replacements, sign-offs, formatter fixes), so the proposals were rebuilt.
+
+- 1,142 entries changed (1,132 author fields, 19 editor fields). Every proposal's fingerprint
+  matched the current entry. The staging diff held only author/editor lines, all cite keys were
+  unchanged, and `check_bib` passed.
+- Seven entries from the first build were dropped because they no longer need a change: Aust14,
+  EichMaca06, Hume07, Jame90, MannEtal11 and ZrenEtal11 already have initials, and Mink07 is no
+  longer in cdl.bib.
+- **Held names: 201 in 166 entries**, down from 204. Two of the dropped names were fixed
+  elsewhere: ZhenEtal19's `M \ ' { A } Serrano` is now `M A Serrano` in ZhenEtal20, which replaced it (replace001), and NilsEtal75's `L -G Nilsson` is now `L-G Nilsson`. NilsGard93's `L -G Nilsson` is still held. The
+  third, ZrenEtal11's `Karl Ulrich Bartz-Schmidt`, is now `K U Bartz-Schmidt`.
+  - possible compound or unbraced surname: 166
+  - surname looks like an initial (family-first byline): 17
+  - given name the rule does not convert (accented or braced first letter, e.g. `{\'{A}}ine`, `{\L}ukasz`): 10
+  - lowercase given token: 3
+  - braced corporate name rewritten by the formatter: 3
+  - ID-rule surname would change (`Ting Wu`, `van Zessen`): 2
+- Accented initials survive the formatter (ca7454a): `reformat_author("M {\'A} Serrano")` and
+  `J {\'{A}}lvarez` come back unchanged. The rule does not take an initial from an accented given
+  name. Those names are held.
+- Production run: 7 requests and 1,434 review writes. The repeat made 0 requests and 0 review
+  writes. In the batch, 892 verified entries stayed verified and 19 needs_review entries became
+  verified: AxmaEtal08, Bala98a, Bala98b, BalaMacD02, BurgGruz00, Burw00, CahiEtal96, CapaNeat95,
+  Faw90, FoucEtal03, Gabr98, McCaEtal89, QuirEtal92, RobbEver07, SharGree94, Sing93, WehnMenz90,
+  WelcEtal89 and WienEtal89. No accepted result changed outside the batch. The library went from
+  4,476 / 1,974 to 4,495 / 1,955 metadata_verified / needs_review (31 human_verified, 6,481 entries).
+- The cdl.bib edit, the proposals and the run-cycle results were committed as a4e03de at 21:28 ET,
+  during the repeat cycle. The repeat-stage results, baseline, review queue, restore record and
+  validator update were committed after the checks passed.
+- `.bibcheck/validate-current-checkpoint.py` now also accepts the initials staging file as the last
+  applied batch. `verification/apply-2026-09-29/library-changes.json` still names replace001 as
+  `last_staged`.
 
 ## verify/commit gate (user, 2026-09-26)
 
