@@ -6,9 +6,9 @@
    "ambiguous_identity_held": 5,
    "booktitle_case": 2,
    "chapter_move_held": 3,
+   "country_dropped": 9,
    "doi_record_conflict": 6,
    "doi_title_mismatch": 2,
-   "doi_title_part_number": 1,
    "doi_title_unavailable": 1,
    "doi_unregistered": 3,
    "duplicate": 3,
@@ -21,14 +21,18 @@
    "patent_filing_year": 2,
    "patent_number_missing": 2,
    "print_year_conflict": 3,
-   "quote_check_failed": 10,
+   "quote_check_failed": 9,
    "reviewer_action": 1,
    "reviewer_disagrees": 1,
    "reviewer_dropped": 4,
+   "software_first_version": 1,
+   "software_first_version_authors": 1,
+   "software_version_removed": 2,
    "style_only_change": 2,
    "surname_corroborated": 4,
    "surname_single_source": 3,
    "unverified_suggestions": 24,
+   "user_decision": 9,
    "venue_held": 2,
    "verdict_inconsistent": 5,
    "verdict_understated": 1,
@@ -74,7 +78,75 @@
    "HerrEtal09": "HerrEtal10b",
    "Frie06": "Frie08b"
   },
-  "doi_requests_uncached": null
+  "doi_requests_uncached": null,
+  "user_decisions": {
+   "BranEtal04": [
+    "user decision (a-BranEtal04): remove BranEtal04 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "DawKenj06": [
+    "cross-wave dup-DawKenj06-DawDoya06: correct: merge DawKenj06 into DawDoya06 (approved duplicate)"
+   ],
+   "GoenEtal08": [
+    "cross-wave dup-GoenEtal08-GoenLogo08: correct: merge GoenEtal08 into GoenLogo08 (approved duplicate)"
+   ],
+   "KahaMill10": [
+    "cross-wave dup-KahaMill10-KahaMill13: correct: merge KahaMill10 into KahaMill13 (approved duplicate)"
+   ],
+   "LongKaha14": [
+    "user decision (a-LongKaha14): remove LongKaha14 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "RaghEtal99": [
+    "user decision (a-RaghEtal99): remove RaghEtal99 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "SiapEtal00": [
+    "user decision (a-SiapEtal00): remove SiapEtal00 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "WilsEtal79": [
+    "user decision (a-WilsEtal79): remove WilsEtal79 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "WilsEtal80": [
+    "user decision (a-WilsEtal80): remove WilsEtal80 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ]
+  },
+  "remove_entries": [
+   "BranEtal04",
+   "LongKaha14",
+   "RaghEtal99",
+   "SiapEtal00",
+   "WilsEtal79",
+   "WilsEtal80"
+  ],
+  "software_first_version": {
+   "FitzEtal25": {
+    "cited": "10.5281/zenodo.17783435",
+    "first": "10.5281/zenodo.17783435",
+    "first_year": "2025",
+    "error": null,
+    "year": "2025",
+    "key_plan": "keep",
+    "new_key": null
+   },
+   "MannEtal23b": {
+    "cited": "10.5281/zenodo.8274025",
+    "first": "10.5281/zenodo.8152316",
+    "first_year": "2023",
+    "error": null,
+    "year": "2023",
+    "key_plan": "keep",
+    "new_key": null
+   }
+  },
+  "country_dropped": [
+   "BancEtal65: 'Paris, {FR}': no quote prints the country '{FR}'; country dropped: 'Paris' (user rule, cross-wave q-country)",
+   "Frie06: 'Berlin, Germany': the quotes cover it except the country 'Germany', which no quote prints; country dropped: 'Berlin' (user rule, cross-wave q-country)",
+   "Galt83: 'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+   "Greg76: 'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+   "Penf58b: 'Liverpool, {UK}': no quote prints the country '{UK}'; country dropped: 'Liverpool' (user rule, cross-wave q-country)",
+   "Post76: 'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+   "VandEtal99: 'Hove, {UK}': no quote prints the country '{UK}'; country dropped: 'Hove' (user rule, cross-wave q-country)",
+   "WardEtal09: 'Hove, {UK}': no quote prints the country '{UK}'; country dropped: 'Hove' (user rule, cross-wave q-country)",
+   "Yate66: 'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)"
+  ]
  },
  "measurement": {
   "findings": 29,
@@ -295,7 +367,7 @@
     "caught": true,
     "by": {
      "address": [
-      "quote_check_failed"
+      "country_dropped"
      ],
      "key": [
       "key_collision"
@@ -309,7 +381,7 @@
       "empty_value"
      ],
      "address": [
-      "quote_check_failed"
+      "country_dropped"
      ],
      "key": [
       "key_collision"
@@ -700,6 +772,10 @@
      "doi": [
       "doi_unregistered"
      ],
+     "address": [
+      "country_dropped",
+      "normalised"
+     ],
      "ENTRYTYPE": [
       "normalised"
      ],
@@ -715,13 +791,14 @@
  },
  "review_resolution": {
   "findings": 29,
-  "resolved": 20,
+  "resolved": 19,
   "unresolved": [
    "Wech45",
    "TurlWhit03",
    "EngeEtal93",
    "Frie06",
-   "VandEtal99"
+   "VandEtal99",
+   "MannEtal23b"
   ],
   "not_checkable": [
    "BeckBurg01",
@@ -995,8 +1072,8 @@
      ],
      [
       "address",
-      true,
-      "final 'Hove, {UK}' vs reviewer 'Hove, {UK}'"
+      false,
+      "final 'Hove' vs reviewer 'Hove, {UK}'"
      ],
      [
       "pages",
@@ -1030,17 +1107,17 @@
    {
     "key": "MannEtal23b",
     "random_sample": false,
-    "resolved": true,
+    "resolved": false,
     "checks": [
      [
       "title",
-      true,
-      "final '{ContextLab}/chatify: {v0.2.1}' vs reviewer '{ContextLab}/chatify: {v0.2.1}'"
+      false,
+      "final '{ContextLab}/chatify' vs reviewer '{ContextLab}/chatify: {v0.2.1}'"
      ],
      [
       "doi",
-      true,
-      "final '10.5281/zenodo.8274025' vs reviewer '10.5281/zenodo.8274025'"
+      false,
+      "final '10.5281/zenodo.8152316' vs reviewer '10.5281/zenodo.8274025'"
      ],
      [
       "author",
@@ -1871,6 +1948,8 @@
      "Collingridge"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "GreeEtal13": {
@@ -1895,6 +1974,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "HamiEtal09": {
@@ -1985,6 +2066,8 @@
      "Hamidi"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "HealKaha14b": {
@@ -2015,6 +2098,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "HeatEtal93": {
@@ -2120,6 +2205,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "LohnEtal14": {
@@ -2159,12 +2246,21 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "LongKaha14": {
    "key": "LongKaha14",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-LongKaha14): remove LongKaha14 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -2246,7 +2342,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-001"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-001",
+   "remove_entry": "conference abstract"
   },
   "McGa89": {
    "key": "McGa89",
@@ -2356,6 +2455,8 @@
      "McGaugh"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "MerzEtal12": {
@@ -2386,6 +2487,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "MoffHamp96": {
@@ -2450,6 +2553,8 @@
      "Hampson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "PeteEtal61": {
@@ -2548,6 +2653,8 @@
      "Miller"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "SerrDono04": {
@@ -2691,6 +2798,8 @@
      "Donoghue"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "StorEtal07": {
@@ -2793,6 +2902,8 @@
      "Bjork"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "Wech45": {
@@ -2883,6 +2994,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "Wech81": {
@@ -2955,6 +3068,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "BlasEtal96": {
@@ -3081,6 +3196,8 @@
      "Konopacki"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "AllaEtal98": {
@@ -3136,6 +3253,8 @@
      "Rugg"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "Katz36": {
@@ -3200,6 +3319,8 @@
      "Katz"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "SchoBekk67": {
@@ -3274,6 +3395,8 @@
      "Bekker"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "BeckBurg01": {
@@ -3377,6 +3500,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-001"
   },
   "BarEtal20": {
@@ -3457,6 +3582,8 @@
      "Nir"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "ElleEtal06": {
@@ -3516,6 +3643,8 @@
      "Thompson-Schill"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "GoenEtal08": {
@@ -3527,6 +3656,12 @@
      "field": "key",
      "detail": "same work already in cdl.bib as GoenLogo08: merge GoenEtal08 into it",
      "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": "key",
+     "detail": "cross-wave dup-GoenEtal08-GoenLogo08: correct: merge GoenEtal08 into GoenLogo08 (approved duplicate)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -3578,7 +3713,8 @@
      "text": "GoenLogo08 (merge into existing duplicate)",
      "key": "GoenLogo08"
     },
-    "reviewer_agrees": true
+    "reviewer_agrees": true,
+    "user_decision": "cross-wave dup-GoenEtal08-GoenLogo08: correct"
    },
    "doi_status": {
     "doi": "10.1016/j.cub.2008.03.054",
@@ -3603,6 +3739,8 @@
      "Logothetis"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "McInEtal99": {
@@ -3684,6 +3822,8 @@
      "Bennett"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "NishEtal11": {
@@ -3784,6 +3924,8 @@
      "Gallant"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "CohnRang17": {
@@ -3854,6 +3996,8 @@
      "Ranganath"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "LeeEtal20a": {
@@ -3922,6 +4066,8 @@
      "Chen"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "CollColl00": {
@@ -3972,6 +4118,8 @@
      "Collett"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "DawKenj06": {
@@ -3989,6 +4137,12 @@
      "field": "key",
      "detail": "same work already in cdl.bib as DawDoya06: merge DawKenj06 into it",
      "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": "key",
+     "detail": "cross-wave dup-DawKenj06-DawDoya06: correct: merge DawKenj06 into DawDoya06 (approved duplicate)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -4065,7 +4219,8 @@
     ],
     "rename_reason": "key does not follow the corrected metadata",
     "merge_into": "DawDoya06",
-    "detail": "same work already in cdl.bib as DawDoya06: merge DawKenj06 into it"
+    "detail": "same work already in cdl.bib as DawDoya06: merge DawKenj06 into it",
+    "user_decision": "cross-wave dup-DawKenj06-DawDoya06: correct"
    },
    "doi_status": {
     "doi": "10.1016/j.conb.2006.03.006",
@@ -4090,6 +4245,8 @@
      "Doya"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "Eich96": {
@@ -4152,6 +4309,8 @@
      "Eichenbaum"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "EngeFrie10": {
@@ -4244,6 +4403,8 @@
      "Fries"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "ShapEtal06": {
@@ -4310,6 +4471,8 @@
      "Ferbinteanu"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "IzauBoni01": {
@@ -4393,6 +4556,8 @@
      "Bonin"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "PeruGaun98": {
@@ -4463,6 +4628,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "Land95": {
@@ -4487,6 +4654,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "NassEtal00": {
@@ -4565,6 +4734,8 @@
      "George"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "KramEtal88": {
@@ -4649,6 +4820,8 @@
      "Strauss"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "ReynRich05": {
@@ -4741,6 +4914,8 @@
      "Richards"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "RichSaxe20": {
@@ -4793,6 +4968,8 @@
      "Saxe"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "TummEtal16": {
@@ -4876,6 +5053,8 @@
      "Kirkham"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-015"
   },
   "ConwEtal00": {
@@ -4943,6 +5122,8 @@
      "Frankish"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "Cowa92": {
@@ -5005,6 +5186,8 @@
      "COWAN"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "CowaEtal02": {
@@ -5085,6 +5268,8 @@
      "Moreno"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "GallRoed02": {
@@ -5161,6 +5346,8 @@
      "Roediger, III"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "HulmEtal03": {
@@ -5230,6 +5417,8 @@
      "Hulme"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "Hunt03": {
@@ -5292,6 +5481,8 @@
      "Reed Hunt"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "KarpRoed07": {
@@ -5358,6 +5549,8 @@
      "ROEDIGERIII"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "McKoRatc89": {
@@ -5434,6 +5627,8 @@
      "Ratcliff"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "ShriEtal90": {
@@ -5541,6 +5736,8 @@
      "Levelt"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "SommLewi99": {
@@ -5637,6 +5834,8 @@
      "Lewis"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "TurlWhit03": {
@@ -5677,6 +5876,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "Unsw08": {
@@ -5739,6 +5940,8 @@
      "Unsworth"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "CheuChan12": {
@@ -5818,6 +6021,8 @@
      "Chang"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "Jell02": {
@@ -5902,6 +6107,8 @@
      "Jellinger"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "TianEtal03": {
@@ -5964,6 +6171,8 @@
      "Tian"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "BayeGlim07": {
@@ -6067,6 +6276,8 @@
      "Glimcher"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "EskaEtal92": {
@@ -6160,6 +6371,8 @@
      "Optican"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "GreeArdu54": {
@@ -6248,6 +6461,8 @@
      "Arduini"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "KuneEtal05": {
@@ -6346,6 +6561,8 @@
      "Kopell"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "YeoEtal11": {
@@ -6487,6 +6704,8 @@
      "Buckner"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-030"
   },
   "YoneEtal98": {
@@ -6557,6 +6776,8 @@
      "Knight"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "StewVelu21": {
@@ -6623,6 +6844,8 @@
      "Velupillai"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "BoddEtal97": {
@@ -6702,6 +6925,8 @@
     "authors": [],
     "families": []
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "GracBunn83": {
@@ -6794,6 +7019,8 @@
      "Bunney"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "HopkEtal12": {
@@ -6886,6 +7113,8 @@
      "Bucci"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "LofbEtal13": {
@@ -6980,6 +7209,8 @@
      "Karhu"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "MaloEtal97": {
@@ -7052,6 +7283,8 @@
      "Jones"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "BasaEtal99": {
@@ -7147,6 +7380,8 @@
      "Schürmann"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "InouEtal94": {
@@ -7221,6 +7456,8 @@
      "Ishihara"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "LopevanL77": {
@@ -7314,6 +7551,8 @@
      "Storm Van Leeuwen"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "SkraChiu03": {
@@ -7378,6 +7617,8 @@
      "Chiu"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "ClemEtal13": {
@@ -7482,6 +7723,8 @@
      "Halász"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "BannEtal04": {
@@ -7611,6 +7854,8 @@
      "Feldon"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "HerrEtal09": {
@@ -7738,6 +7983,8 @@
      "Lenz"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "ToddEtal19": {
@@ -7816,6 +8063,8 @@
      "Bucci"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "HaglEtal94": {
@@ -7886,6 +8135,8 @@
      "Ojemann"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "LeutEtal07a": {
@@ -7981,6 +8232,8 @@
      "Ojemann"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "LipsEtal07": {
@@ -8047,6 +8300,8 @@
      "Lozano"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "LucaEtal08": {
@@ -8142,6 +8397,8 @@
      "Ojemann"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "MadsEtal95": {
@@ -8259,6 +8516,8 @@
      "Haglund"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-045"
   },
   "RaghEtal99": {
@@ -8269,6 +8528,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-RaghEtal99): remove RaghEtal99 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -8283,7 +8548,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-060"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-060",
+   "remove_entry": "conference abstract"
   },
   "SiapEtal00": {
    "key": "SiapEtal00",
@@ -8299,6 +8567,12 @@
      "code": "field_not_found",
      "field": "volume",
      "detail": "verdict 'correction' but volume is not_found: the entry is not fully verified",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-SiapEtal00): remove SiapEtal00 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -8340,7 +8614,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-060"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-060",
+   "remove_entry": "conference abstract"
   },
   "WilsEtal79": {
    "key": "WilsEtal79",
@@ -8350,6 +8627,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-WilsEtal79): remove WilsEtal79 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -8364,7 +8647,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-060"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-060",
+   "remove_entry": "conference abstract"
   },
   "WilsEtal80": {
    "key": "WilsEtal80",
@@ -8374,6 +8660,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-WilsEtal80): remove WilsEtal80 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -8402,7 +8694,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-060"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-060",
+   "remove_entry": "conference abstract"
   },
   "Free77": {
    "key": "Free77",
@@ -8459,6 +8754,8 @@
      "Freeman"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "WernSchm99": {
@@ -8505,6 +8802,8 @@
      "Schmidt"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "BrisEtal02": {
@@ -8573,6 +8872,8 @@
      "Ren??"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "Ragl90": {
@@ -8651,6 +8952,8 @@
      "Raglin"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "BenaEtal87": {
@@ -8786,6 +9089,8 @@
      "de Rougemont"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "HowaEtal97": {
@@ -8867,6 +9172,8 @@
      "Garell"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "JaggEtal04": {
@@ -9003,6 +9310,8 @@
      "Baltuch"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "GoldEtal05": {
@@ -9095,6 +9404,8 @@
      "Giannakopoulos"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "EngeEtal93": {
@@ -9209,6 +9520,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "SaltEtal99": {
@@ -9275,6 +9588,8 @@
      "Chan"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "JensEtal09": {
@@ -9343,6 +9658,8 @@
      "Wyner"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "Anto74": {
@@ -9393,6 +9710,8 @@
      "Antoniak"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "BottEtal19": {
@@ -9447,6 +9766,8 @@
      "Schilling"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "HemmShen19": {
@@ -9566,6 +9887,8 @@
      "Shenker"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "DougPeuc73": {
@@ -9590,6 +9913,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "Kolo13": {
@@ -9633,6 +9958,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-060"
   },
   "LincNati81": {
@@ -9693,6 +10020,8 @@
     "reviewer_agrees": true
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "BaayEtal95": {
@@ -9767,6 +10096,8 @@
     "issued_year": "1995",
     "type": "Dataset"
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Kohl47": {
@@ -9784,14 +10115,43 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Penf58b": {
    "key": "Penf58b",
    "verdict": "verified",
-   "flags": [],
-   "normalisations": [],
-   "changes": [],
+   "flags": [
+    {
+     "code": "country_dropped",
+     "field": "address",
+     "detail": "'Liverpool, {UK}': no quote prints the country '{UK}'; country dropped: 'Liverpool' (user rule, cross-wave q-country)",
+     "action": "applied"
+    }
+   ],
+   "normalisations": [
+    {
+     "field": "address",
+     "note": "country '{UK}' not printed by any quote: 'Liverpool, {UK}' -> 'Liverpool'"
+    }
+   ],
+   "changes": [
+    {
+     "field": "address",
+     "current": "Liverpool, {UK}",
+     "proposed": "Liverpool",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://openlibrary.org/books/OL21390344M.json",
+       "quote": "\"publish_places\": [\"Liverpool\"]"
+      }
+     ],
+     "normalised_from": "Liverpool, {UK}",
+     "normalised_by": "postcheck"
+    }
+   ],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -9801,6 +10161,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "McGe42": {
@@ -9818,6 +10180,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "McGeIrio52": {
@@ -9858,14 +10222,43 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Galt83": {
    "key": "Galt83",
    "verdict": "verified",
-   "flags": [],
-   "normalisations": [],
-   "changes": [],
+   "flags": [
+    {
+     "code": "country_dropped",
+     "field": "address",
+     "detail": "'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+     "action": "applied"
+    }
+   ],
+   "normalisations": [
+    {
+     "field": "address",
+     "note": "country '{UK}' not printed by any quote: 'London, {UK}' -> 'London'"
+    }
+   ],
+   "changes": [
+    {
+     "field": "address",
+     "current": "London, {UK}",
+     "proposed": "London",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=10032396&maximumRecords=1&recordSchema=mods",
+       "quote": "<placeTerm type=\"text\">London</placeTerm>"
+      }
+     ],
+     "normalised_from": "London, {UK}",
+     "normalised_by": "postcheck"
+    }
+   ],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -9875,6 +10268,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Spea27": {
@@ -9892,6 +10287,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Titc16": {
@@ -9962,14 +10359,42 @@
     "new_key": "Titc15"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "BancEtal65": {
    "key": "BancEtal65",
    "verdict": "correction",
-   "flags": [],
-   "normalisations": [],
+   "flags": [
+    {
+     "code": "country_dropped",
+     "field": "address",
+     "detail": "'Paris, {FR}': no quote prints the country '{FR}'; country dropped: 'Paris' (user rule, cross-wave q-country)",
+     "action": "applied"
+    }
+   ],
+   "normalisations": [
+    {
+     "field": "address",
+     "note": "country '{FR}' not printed by any quote: 'Paris, {FR}' -> 'Paris'"
+    }
+   ],
    "changes": [
+    {
+     "field": "address",
+     "current": "Paris, {FR}",
+     "proposed": "Paris",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://openlibrary.org/books/OL58329731M.json",
+       "quote": "\"publish_places\": [\"Paris\"]"
+      }
+     ],
+     "normalised_from": "Paris, {FR}",
+     "normalised_by": "postcheck"
+    },
     {
      "field": "title",
      "current": "La st\\'er\\'eo-\\'electroenc\\'ephalographie dans l'epilepsie",
@@ -9992,6 +10417,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Wech08": {
@@ -10030,6 +10457,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Kani79": {
@@ -10088,6 +10517,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Rayp68": {
@@ -10153,6 +10584,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "DeliEtal00": {
@@ -10191,6 +10624,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Chri92": {
@@ -10263,6 +10698,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Gall06": {
@@ -10294,6 +10731,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Scha01": {
@@ -10324,6 +10763,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "BirdEtal09": {
@@ -10382,6 +10823,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Yate66": {
@@ -10393,10 +10836,36 @@
      "field": "publisher",
      "detail": "validator: publisher not covered by its quotes (missing ['kegan']; failures [])",
      "action": "held"
+    },
+    {
+     "code": "country_dropped",
+     "field": "address",
+     "detail": "'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+     "action": "applied"
     }
    ],
-   "normalisations": [],
-   "changes": [],
+   "normalisations": [
+    {
+     "field": "address",
+     "note": "country '{UK}' not printed by any quote: 'London, {UK}' -> 'London'"
+    }
+   ],
+   "changes": [
+    {
+     "field": "address",
+     "current": "London, {UK}",
+     "proposed": "London",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=66074296&maximumRecords=1&recordSchema=mods",
+       "quote": "<placeTerm type=\"text\">London</placeTerm>"
+      }
+     ],
+     "normalised_from": "London, {UK}",
+     "normalised_by": "postcheck"
+    }
+   ],
    "removals": {},
    "held": {
     "publisher": "quote check failed"
@@ -10408,6 +10877,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Khan04": {
@@ -10434,6 +10905,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-076"
   },
   "Kaha09": {
@@ -10458,6 +10931,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "KahaMill10": {
@@ -10475,6 +10950,12 @@
      "field": "key",
      "detail": "same work already in cdl.bib as KahaMill13: merge KahaMill10 into it",
      "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": "key",
+     "detail": "cross-wave dup-KahaMill10-KahaMill13: correct: merge KahaMill10 into KahaMill13 (approved duplicate)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -10567,7 +11048,8 @@
      "text": "KahaMill13 (merge)",
      "key": "KahaMill13"
     },
-    "reviewer_agrees": true
+    "reviewer_agrees": true,
+    "user_decision": "cross-wave dup-KahaMill10-KahaMill13: correct"
    },
    "doi_status": {
     "doi": "10.4135/9781452257044.n183",
@@ -10586,6 +11068,8 @@
     "authors": [],
     "families": []
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "Devl76": {
@@ -10633,6 +11117,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "Kapl76": {
@@ -10681,6 +11167,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "Jenk79": {
@@ -10753,6 +11241,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "Tulv07": {
@@ -10863,6 +11353,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "BjorBjor92": {
@@ -10921,6 +11413,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "Murd92b": {
@@ -10989,6 +11483,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "ShifRaai92": {
@@ -11036,6 +11532,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "Cofe71": {
@@ -11069,6 +11567,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "Este76": {
@@ -11165,6 +11665,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "Buzs01": {
@@ -11229,6 +11731,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "Kami69": {
@@ -11276,6 +11780,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "RuggEtal02": {
@@ -11355,6 +11861,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "GileZeli86": {
@@ -11408,6 +11916,8 @@
      "Zelinski"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "CraiJenn92": {
@@ -11453,6 +11963,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "MoscWino92": {
@@ -11485,6 +11997,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "GerfWils96": {
@@ -11592,6 +12106,8 @@
      "Wilson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "Frie06": {
@@ -11611,10 +12127,10 @@
      "action": "held"
     },
     {
-     "code": "quote_check_failed",
+     "code": "country_dropped",
      "field": "address",
-     "detail": "validator: address not covered by its quotes (missing ['germany']; failures [])",
-     "action": "held"
+     "detail": "'Berlin, Germany': the quotes cover it except the country 'Germany', which no quote prints; country dropped: 'Berlin' (user rule, cross-wave q-country)",
+     "action": "applied"
     },
     {
      "code": "key_collision",
@@ -11625,6 +12141,21 @@
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "address",
+     "current": "Heidelberg, Germany",
+     "proposed": "Berlin",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://openlibrary.org/books/OL19888411M.json",
+       "quote": "\"publish_places\": [\"Berlin\"]"
+      }
+     ],
+     "normalised_from": "Berlin, Germany",
+     "normalised_by": "postcheck",
+     "reviewer": "unsure"
+    },
     {
      "field": "booktitle",
      "current": "Handbook of Computational Statistics: Data Visualization",
@@ -11693,8 +12224,7 @@
    ],
    "removals": {},
    "held": {
-    "editor": "quote check failed",
-    "address": "quote check failed"
+    "editor": "quote check failed"
    },
    "suggestions": {},
    "key_plan": {
@@ -11737,6 +12267,8 @@
      "Friendly"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "HowaEtal07b": {
@@ -11826,6 +12358,8 @@
      "Kahana"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-082"
   },
   "HealEtal08": {
@@ -11887,6 +12421,8 @@
      "Hasher"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "KleiEtal07b": {
@@ -11973,6 +12509,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "VandEtal99": {
@@ -11998,6 +12536,12 @@
      "action": "held"
     },
     {
+     "code": "country_dropped",
+     "field": "address",
+     "detail": "'Hove, {UK}': no quote prints the country '{UK}'; country dropped: 'Hove' (user rule, cross-wave q-country)",
+     "action": "applied"
+    },
+    {
      "code": "other_version_named",
      "field": null,
      "detail": "the researcher's notes name another version ('published version'): replacement is the user's decision",
@@ -12016,12 +12560,17 @@
      "action": "flag"
     }
    ],
-   "normalisations": [],
+   "normalisations": [
+    {
+     "field": "address",
+     "note": "country '{UK}' not printed by any quote: 'Hove, {UK}' -> 'Hove'"
+    }
+   ],
    "changes": [
     {
      "field": "address",
      "current": "New York, {NY}",
-     "proposed": "Hove, {UK}",
+     "proposed": "Hove",
      "source": "reviewer",
      "evidence": [
       {
@@ -12031,6 +12580,8 @@
        ]
       }
      ],
+     "normalised_from": "Hove, {UK}",
+     "normalised_by": "postcheck",
      "reviewer": "agree"
     }
    ],
@@ -12054,6 +12605,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "WardEtal09": {
@@ -12073,6 +12626,12 @@
      "action": "dropped"
     },
     {
+     "code": "country_dropped",
+     "field": "address",
+     "detail": "'Hove, {UK}': no quote prints the country '{UK}'; country dropped: 'Hove' (user rule, cross-wave q-country)",
+     "action": "applied"
+    },
+    {
      "code": "unverified_suggestions",
      "field": null,
      "detail": "values left not_found or suggested by the rules (never applied): pages='44--62'",
@@ -12087,6 +12646,10 @@
     {
      "field": "title",
      "note": "chapter title moved to title (cited chapter field): 'The roles of short-term and long-term verbal memory in free and serial recall: towards a recency-based perspective'"
+    },
+    {
+     "field": "address",
+     "note": "country '{UK}' not printed by any quote: 'Hove, {UK}' -> 'Hove'"
     }
    ],
    "changes": [
@@ -12108,7 +12671,7 @@
     {
      "field": "address",
      "current": "England, {UK}",
-     "proposed": "Hove, {UK}",
+     "proposed": "Hove",
      "source": "researcher",
      "evidence": [
       {
@@ -12116,6 +12679,8 @@
        "quote": "First published 2009 by Psychology Press 27 Church Road, Hove, East Sussex BN3 2FA"
       }
      ],
+     "normalised_from": "Hove, {UK}",
+     "normalised_by": "postcheck",
      "reviewer": "agree"
     },
     {
@@ -12167,6 +12732,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "Post69": {
@@ -12238,6 +12805,8 @@
      "Postman"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "PetzHaub04": {
@@ -12276,12 +12845,20 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "Greg76": {
    "key": "Greg76",
    "verdict": "no_source",
    "flags": [
+    {
+     "code": "country_dropped",
+     "field": "address",
+     "detail": "'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+     "action": "applied"
+    },
     {
      "code": "unverified_suggestions",
      "field": null,
@@ -12295,12 +12872,17 @@
      "action": "flag"
     }
    ],
-   "normalisations": [],
+   "normalisations": [
+    {
+     "field": "address",
+     "note": "country '{UK}' not printed by any quote: 'London, {UK}' -> 'London'"
+    }
+   ],
    "changes": [
     {
      "field": "address",
      "current": "Oxford, {UK}",
-     "proposed": "London, {UK}",
+     "proposed": "London",
      "source": "reviewer",
      "evidence": [
       {
@@ -12309,6 +12891,8 @@
        ]
       }
      ],
+     "normalised_from": "London, {UK}",
+     "normalised_by": "postcheck",
      "reviewer": "agree"
     }
    ],
@@ -12324,12 +12908,20 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "Post76": {
    "key": "Post76",
    "verdict": "no_source",
    "flags": [
+    {
+     "code": "country_dropped",
+     "field": "address",
+     "detail": "'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+     "action": "applied"
+    },
     {
      "code": "unverified_suggestions",
      "field": null,
@@ -12343,12 +12935,17 @@
      "action": "flag"
     }
    ],
-   "normalisations": [],
+   "normalisations": [
+    {
+     "field": "address",
+     "note": "country '{UK}' not printed by any quote: 'London, {UK}' -> 'London'"
+    }
+   ],
    "changes": [
     {
      "field": "address",
      "current": "Oxford, {UK}",
-     "proposed": "London, {UK}",
+     "proposed": "London",
      "source": "reviewer",
      "evidence": [
       {
@@ -12357,6 +12954,8 @@
        ]
       }
      ],
+     "normalised_from": "London, {UK}",
+     "normalised_by": "postcheck",
      "reviewer": "agree"
     }
    ],
@@ -12371,6 +12970,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "Este91": {
@@ -12431,6 +13032,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "GoebLewa91": {
@@ -12461,6 +13064,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "Mand91": {
@@ -12495,6 +13100,8 @@
     "registered": false,
     "error": "doi.org/api/handles returned 404 (handle not found)"
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "NilsGard91": {
@@ -12542,6 +13149,8 @@
     "registered": false,
     "error": "doi.org/api/handles returned 404 (handle not found)"
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "Adey67b": {
@@ -12623,6 +13232,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "Bord08": {
@@ -12737,6 +13348,8 @@
      "Bordwell"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "JacoEtal97": {
@@ -12771,6 +13384,8 @@
     "registered": false,
     "error": "doi.org/api/handles returned 404 (handle not found)"
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "KinsWood75": {
@@ -12832,6 +13447,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "KansEtal15": {
@@ -12915,6 +13532,8 @@
      "Singer"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "McNa03": {
@@ -12989,6 +13608,8 @@
      "McNamara"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "GunzLyon07": {
@@ -13065,6 +13686,8 @@
      "Lyon"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "Mont98": {
@@ -13115,14 +13738,44 @@
      "Montello"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-086"
   },
   "FitzEtal25": {
    "key": "FitzEtal25",
    "verdict": "verified",
-   "flags": [],
-   "normalisations": [],
-   "changes": [],
+   "flags": [
+    {
+     "code": "software_version_removed",
+     "field": "title",
+     "detail": "'{ContextLab}/efficient-learning-khan: {v1.0.0}' -> '{ContextLab}/efficient-learning-khan' (user rule: no version number)",
+     "action": "applied"
+    }
+   ],
+   "normalisations": [
+    {
+     "field": "title",
+     "note": "software title without its version: '{ContextLab}/efficient-learning-khan: {v1.0.0}' -> '{ContextLab}/efficient-learning-khan'"
+    }
+   ],
+   "changes": [
+    {
+     "field": "title",
+     "current": "{ContextLab}/efficient-learning-khan: {v1.0.0}",
+     "proposed": "{ContextLab}/efficient-learning-khan",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.datacite.org/dois/10.5281/zenodo.17783435",
+       "quote": "ContextLab/efficient-learning-khan: v1.0.0"
+      }
+     ],
+     "normalised_from": "{ContextLab}/efficient-learning-khan: {v1.0.0}",
+     "normalised_by": "postcheck",
+     "reviewer": "agree"
+    }
+   ],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -13132,6 +13785,27 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": {
+    "doi": "10.5281/zenodo.17783435",
+    "first": {
+     "doi": "10.5281/zenodo.17783435",
+     "date": "2025-12-01",
+     "year": "2025",
+     "version": "v1.0.0",
+     "title": "ContextLab/efficient-learning-khan: v1.0.0",
+     "type": "software",
+     "creators": [
+      "Paxton Fitzpatrick",
+      "Max Bluestone",
+      "Jeremy R. Manning",
+      "Will Baxley"
+     ],
+     "concept": "17783434",
+     "count": 1,
+     "url": "https://zenodo.org/api/records/17783435"
+    }
+   },
    "batch": "batch-091"
   },
   "Depo18": {
@@ -13151,6 +13825,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "Eust19": {
@@ -13173,6 +13849,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "MannEtal23b": {
@@ -13186,9 +13864,21 @@
      "action": "flag"
     },
     {
-     "code": "doi_title_part_number",
+     "code": "software_first_version",
      "field": "doi",
-     "detail": "10.5281/zenodo.8274025 is registered to 'ContextLab/chatify: v0.2.1 (August, 2023)': titles agree except for part numbers ('ContextLab/chatify: v0.2.1 (August, 2023)' vs '{ContextLab}/chatify: {v0.2.1}'); applied: the reviewer confirms the DOI (reviewer value)",
+     "detail": "10.5281/zenodo.8274025 is not the first version of Zenodo release series 8152315: cite the first version 10.5281/zenodo.8152316 (2023-07-16, version 'v0.1.0'; user rule)",
+     "action": "applied"
+    },
+    {
+     "code": "software_first_version_authors",
+     "field": "author",
+     "detail": "the first version 10.5281/zenodo.8152316 lists 3 creator(s) (Jeremy Manning, Hemu, Konrad Kording); the entry's author list differs (only in the first version: ['hemu']; only in the entry: ['halchenko', 'manjunatha']); authors left as they are for the user",
+     "action": "flag"
+    },
+    {
+     "code": "software_version_removed",
+     "field": "title",
+     "detail": "'{ContextLab}/chatify: {v0.2.1}' -> '{ContextLab}/chatify' (user rule: no version number)",
      "action": "applied"
     },
     {
@@ -13198,7 +13888,12 @@
      "action": "flag"
     }
    ],
-   "normalisations": [],
+   "normalisations": [
+    {
+     "field": "title",
+     "note": "software title without its version: '{ContextLab}/chatify: {v0.2.1}' -> '{ContextLab}/chatify'"
+    }
+   ],
    "changes": [
     {
      "field": "author",
@@ -13218,21 +13913,27 @@
     {
      "field": "doi",
      "current": null,
-     "proposed": "10.5281/zenodo.8274025",
-     "source": "reviewer",
+     "proposed": "10.5281/zenodo.8152316",
+     "source": "postcheck",
      "evidence": [
       {
-       "reviewer_problems": [
-        "Zenodo API (https://zenodo.org/api/records?q=conceptrecid:8152315&all_versions=true) lists v0.1.0, v0.1.1, v0.2.0 (creators 'Jeremy Manning', 'Hemu', 'Konrad Kording') and v0.2.1 2023-08-22 (adds 'Yaroslav Halchenko'); titles are 'ContextLab/chatify: vX.Y.Z (...)'. Cited title appears nowhere (README says only 'Chatify is a python package that enables ipython magic commands...'), so title not_found and the software-form replacement are right.",
-        "Author 'Manjunatha' rests only on the GitHub profile blog link (api.github.com/users/HemuManju: name 'Hemu', blog 'https://hemumanju.github.io/portfolio/'), not an acceptable source; per the single-source surname rule this needs corroboration or the user's sign-off (he is a lab collaborator, so the user can confirm). Also: if the latest version v0.2.1 is chosen per 'latest version' rule, author list gains Y Halchenko (4 authors, key stays MannEtal23b)."
-       ]
+       "url": "https://zenodo.org/api/records/8274025/versions?size=25&page=1&allversions=true",
+       "record": {
+        "doi": "10.5281/zenodo.8152316",
+        "date": "2023-07-16",
+        "version": "v0.1.0",
+        "title": "ContextLab/chatify: v0.1.0 (July, 2023)",
+        "concept": "8152315"
+       }
       }
-     ]
+     ],
+     "normalised_from": "10.5281/zenodo.8274025",
+     "normalised_by": "postcheck"
     },
     {
      "field": "title",
      "current": "Chatify: {A} {J}upyter extension for adding {LLM}-driven chatbots to interactive notebooks",
-     "proposed": "{ContextLab}/chatify: {v0.2.1}",
+     "proposed": "{ContextLab}/chatify",
      "source": "reviewer",
      "evidence": [
       {
@@ -13242,6 +13943,8 @@
        ]
       }
      ],
+     "normalised_from": "{ContextLab}/chatify: {v0.2.1}",
+     "normalised_by": "postcheck",
      "reviewer": "agree"
     }
    ],
@@ -13254,24 +13957,42 @@
     "action": "keep"
    },
    "doi_status": {
-    "doi": "10.5281/zenodo.8274025",
+    "doi": "10.5281/zenodo.8152316",
     "registered": true,
     "ra": "DataCite",
-    "title": "ContextLab/chatify: v0.2.1 (August, 2023)",
+    "title": "ContextLab/chatify: v0.1.0 (July, 2023)",
     "authors": [
      "Manning, Jeremy",
      "Hemu",
-     "Halchenko, Yaroslav",
      "Kording, Konrad"
     ],
     "families": [
      "Manning",
      "Hemu",
-     "Halchenko",
      "Kording"
     ],
     "issued_year": "2023",
     "type": "Software"
+   },
+   "user_resolved": false,
+   "software": {
+    "doi": "10.5281/zenodo.8274025",
+    "first": {
+     "doi": "10.5281/zenodo.8152316",
+     "date": "2023-07-16",
+     "year": "2023",
+     "version": "v0.1.0",
+     "title": "ContextLab/chatify: v0.1.0 (July, 2023)",
+     "type": "software",
+     "creators": [
+      "Jeremy Manning",
+      "Hemu",
+      "Konrad Kording"
+     ],
+     "concept": "8152315",
+     "count": 4,
+     "url": "https://zenodo.org/api/records/8274025/versions?size=25&page=1&allversions=true"
+    }
    },
    "batch": "batch-091"
   },
@@ -13290,6 +14011,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "Mann11": {
@@ -13307,6 +14030,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "Mann06": {
@@ -13338,6 +14063,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "LittEtal98": {
@@ -13433,6 +14160,8 @@
     "reviewer_agrees": true
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "EchaEtal00": {
@@ -13532,6 +14261,8 @@
     "new_key": "EchaEtal04"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "ContPrev24": {
@@ -13558,6 +14289,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "Nati24a": {
@@ -13582,6 +14315,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "Nati24b": {
@@ -13631,6 +14366,8 @@
     "new_key": "Schn24"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "FoodAdmi20a": {
@@ -13650,6 +14387,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "FoodAdmi20b": {
@@ -13669,6 +14408,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "Hass16": {
@@ -13686,6 +14427,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "Hawk99": {
@@ -13732,6 +14475,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "HeraCE": {
@@ -13764,6 +14509,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "Keck07": {
@@ -13788,6 +14535,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "LeSa99": {
@@ -13819,6 +14568,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "Gede24": {
@@ -13845,6 +14596,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-091"
   },
   "LiZhou18": {
@@ -13911,6 +14664,8 @@
      "Zhou"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "ShafGood08": {
@@ -13972,6 +14727,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "LiEtal18": {
@@ -14070,6 +14827,8 @@
      "Zhou"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "JianLi16": {
@@ -14087,6 +14846,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "AchiEtal17": {
@@ -14104,6 +14865,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "FaraEtal18": {
@@ -14121,6 +14884,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "TianEtal17": {
@@ -14199,6 +14964,8 @@
      "Zhou"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "McKi10": {
@@ -14263,6 +15030,8 @@
      "McKinney"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "IyyeEtal15": {
@@ -14374,6 +15143,8 @@
      "Daumé III"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "ScheEtal02": {
@@ -14497,6 +15268,8 @@
      "Pennock"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "BranEtal04": {
@@ -14526,6 +15299,12 @@
      "field": "verdict",
      "detail": "verdict ambiguous: user decision",
      "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-BranEtal04): remove BranEtal04 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
     }
    ],
    "normalisations": [
@@ -14550,7 +15329,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-095"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-095",
+   "remove_entry": "conference abstract"
   },
   "AltmSchu02": {
    "key": "AltmSchu02",
@@ -14616,6 +15398,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "MozeEtal04": {
@@ -14730,6 +15514,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "Plau95": {
@@ -14788,6 +15574,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "ChenEtal22": {
@@ -14841,6 +15629,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "HewiMann19": {
@@ -14907,6 +15697,8 @@
      "Manning"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "HeusMann18": {
@@ -14937,6 +15729,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "Etha19": {
@@ -15014,6 +15808,8 @@
      "Ethayarajh"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "PennEtal14": {
@@ -15095,6 +15891,8 @@
      "Manning"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   },
   "Kipp01": {
@@ -15181,6 +15979,8 @@
      "Kipp"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-095"
   }
  },
@@ -15389,17 +16189,23 @@
    "surname_single_source:author"
   ],
   "Kohl47": [],
-  "Penf58b": [],
+  "Penf58b": [
+   "country_dropped:address"
+  ],
   "McGe42": [],
   "McGeIrio52": [
    "quote_check_failed:edition"
   ],
-  "Galt83": [],
+  "Galt83": [
+   "country_dropped:address"
+  ],
   "Spea27": [],
   "Titc16": [
    "key_rename:key"
   ],
-  "BancEtal65": [],
+  "BancEtal65": [
+   "country_dropped:address"
+  ],
   "Wech08": [
    "field_not_found:address"
   ],
@@ -15420,7 +16226,8 @@
   "Scha01": [],
   "BirdEtal09": [],
   "Yate66": [
-   "quote_check_failed:publisher"
+   "quote_check_failed:publisher",
+   "country_dropped:address"
   ],
   "Khan04": [
    "needs_user:verdict"
@@ -15490,7 +16297,7 @@
   "Frie06": [
    "quote_check_failed:editor",
    "empty_value:volume",
-   "quote_check_failed:address",
+   "country_dropped:address",
    "key_collision:key"
   ],
   "HowaEtal07b": [
@@ -15513,6 +16320,7 @@
   "WardEtal09": [
    "field_not_found:pages",
    "doi_unregistered:doi",
+   "country_dropped:address",
    "unverified_suggestions"
   ],
   "Post69": [
@@ -15574,7 +16382,9 @@
   "McNa03": [],
   "GunzLyon07": [],
   "Mont98": [],
-  "FitzEtal25": [],
+  "FitzEtal25": [
+   "software_version_removed:title"
+  ],
   "Depo18": [],
   "Eust19": [],
   "MannEtal23b": [

@@ -1,6 +1,7 @@
 """Deterministic post-check for the agent research route (2026-09-25).
 
 Usage: postcheck.py <wave folder> [--bib PATH|HEAD] [--review PATH] [--offline]
+       postcheck.py --write-removals
 
 Reads every batch-*.json in the wave folder (schema:
 verification/research-pilot-2026-09-24/PROTOCOL.md), the folder's validation.json
@@ -1025,6 +1026,208 @@ def deposited_witnesses(row, final, ctx, last):
     return out
 
 
+# ---------------------------------------------------------------- user decisions (cross-wave page, 2026-09-26)
+
+HERE = Path(__file__).resolve().parent
+DECISIONS = HERE / "crosswave/applied-decisions.json"
+DECISIONS_DIR = HERE / "crosswave/decisions"
+REMOVALS = HERE / "crosswave/removals.json"
+
+# Software / Zenodo releases: cite the FIRST version, its year, no version number
+# (user, q-brainiak: "always cite the *first* version (and use to get the year)-- and
+# don't specify a version number in the citation info")
+_VTOKEN = (r"\{?(?:(?:[Vv]ersion|[Rr]elease)\s*|[Vv]\.?\s?)?\d+(?:\.\d+)+[A-Za-z0-9.\-]*\}?"   # 1.5.0, v0.2, Version 1.0
+           r"|\{?(?:(?:[Vv]ersion|[Rr]elease)\s*|[Vv]\.?)\d+[A-Za-z0-9.\-]*\}?")                  # v1, Version 3
+_VERSION_TAIL = re.compile(r"\s*[:,–—-]?\s*\(?(?:" + _VTOKEN + r")\)?(?:\s*\([^()]*\d{4}\))?\s*$")
+_VERSION_BEFORE_COLON = re.compile(r"\s+(?:" + _VTOKEN + r")(?=\s*:)")
+
+
+def strip_version(text):
+    """A software title (or note) without its version number: a trailing version
+    ('{ContextLab}/chatify: {v0.2.1}', 'Kit v0.2', ': {Version 1.0}', Zenodo's
+    'v0.2.1 (August, 2023)') or one just before a colon ('{WordCloud} 1.5.0: a little
+    ...'). A number without a v/version prefix and without a dot is not a version
+    ('Llama 3'), nor is one inside the title ('{V1} alpha')."""
+    t = str(text or "")
+    prev = None
+    while prev != t:
+        prev = t
+        t = _VERSION_TAIL.sub("", t)
+    t = _VERSION_BEFORE_COLON.sub("", t)
+    return re.sub(r"\s*[:,]\s*$", "", t).strip()
+
+
+def zenodo_first_version(doi, fetch):
+    """The first version of the Zenodo release series a 10.5281/zenodo DOI belongs to
+    (a concept DOI redirects to its latest version). Reads zenodo.org/api/records/<id>
+    (conceptrecid, relations.version index) and, unless that record is index 0, pages
+    through /versions (25 per page, the anonymous limit) for the index-0 record.
+    Returns {"doi", "year", "date", "version", "title", "type", "creators", "count",
+    "concept", "url"} or {"error"}."""
+    m = ZENODO_DOI.search(str(doi or ""))
+    if not m:
+        return {"error": f"{doi} is not a Zenodo DOI"}
+    status, body = fetch(f"https://zenodo.org/api/records/{m[1]}")
+    if status != 200:
+        return {"error": f"zenodo.org/api/records/{m[1]}: HTTP {status}"}
+    try:
+        rec = json.loads(body)
+    except ValueError:
+        return {"error": f"zenodo.org/api/records/{m[1]}: not JSON"}
+
+    def summary(r, url, count):
+        md = r.get("metadata") or {}
+        date = str(md.get("publication_date") or "")
+        return {"doi": clean_doi(r.get("doi")), "date": date, "year": date[:4] if re.match(r"\d{4}", date) else None,
+                "version": md.get("version"), "title": md.get("title"),
+                "type": (md.get("resource_type") or {}).get("type"),
+                "creators": [c.get("name", "") for c in md.get("creators") or []],
+                "concept": r.get("conceptrecid"), "count": count, "url": url}
+
+    def relation(r):
+        return (((r.get("metadata") or {}).get("relations") or {}).get("version") or [{}])[0]
+
+    def index(r):
+        return relation(r).get("index")
+
+    url = f"https://zenodo.org/api/records/{m[1]}"
+    if index(rec) == 0:
+        return summary(rec, url, 1 if relation(rec).get("is_last") else None)
+    total, page = None, 1
+    while page <= 40:
+        vurl = f"https://zenodo.org/api/records/{rec['id']}/versions?size=25&page={page}&allversions=true"
+        status, body = fetch(vurl)
+        if status != 200:
+            return {"error": f"{vurl}: HTTP {status}"}
+        try:
+            hits = json.loads(body)["hits"]
+        except (ValueError, KeyError):
+            return {"error": f"{vurl}: no hits"}
+        total = hits.get("total")
+        for h in hits.get("hits") or []:
+            if index(h) == 0:
+                return summary(h, vurl, total)
+        if not hits.get("hits") or page * 25 >= (total or 0):
+            break
+        page += 1
+    return {"error": f"no index-0 version among {total} versions of Zenodo record {m[1]}"}
+
+
+def software_entry(entry):
+    """A software citation: a Zenodo DOI, @software, or a @misc that points at GitHub."""
+    et = str(entry.get("ENTRYTYPE") or "").lower()
+    return bool(ZENODO_DOI.search(str(entry.get("doi") or ""))) or et == "software" or \
+        (et == "misc" and "github.com" in str(entry.get("howpublished") or entry.get("url") or ""))
+
+
+# Countries in addresses: drop a country that no quote prints (user, q-country 'drop':
+# Herb34 'Langensalza, Germany', BuzsEtal94 '..., Germany'); an address that is only a
+# country is left out. Keys: how the country is written in an address; values: the
+# words a source may print for it (folded). Two-letter codes that are US states
+# ({DE}, {IN}, {IL}, {LA}, {CA}, ...) are never read as countries; city-states
+# (Singapore, Hong Kong alone) are cities, not countries.
+_UK = ("uk", "u k", "united kingdom", "great britain", "britain", "england", "scotland", "wales")
+COUNTRIES = {
+    "germany": ("germany", "deutschland"), "uk": _UK, "united kingdom": _UK, "england": _UK, "scotland": _UK,
+    "great britain": _UK, "gb": _UK,
+    "netherlands": ("netherlands", "holland", "nederland"), "the netherlands": ("netherlands", "holland", "nederland"),
+    "nl": ("netherlands", "holland", "nederland"),
+    "france": ("france",), "fr": ("france",), "canada": ("canada",), "sweden": ("sweden", "sverige"),
+    "se": ("sweden", "sverige"), "austria": ("austria", "osterreich"), "at": ("austria", "osterreich"),
+    "switzerland": ("switzerland", "schweiz", "suisse"), "ch": ("switzerland", "schweiz", "suisse"),
+    "italy": ("italy", "italia"), "it": ("italy", "italia"), "spain": ("spain", "espana"), "es": ("spain", "espana"),
+    "japan": ("japan",), "jp": ("japan",), "china": ("china",), "cn": ("china",),
+    "australia": ("australia",), "au": ("australia",), "russia": ("russia",), "ru": ("russia",),
+    "denmark": ("denmark",), "dk": ("denmark",), "norway": ("norway",), "no": ("norway",),
+    "finland": ("finland",), "fi": ("finland",), "belgium": ("belgium", "belgique"), "be": ("belgium", "belgique"),
+    "israel": ("israel",), "india": ("india",), "poland": ("poland", "polska"), "pl": ("poland", "polska"),
+    "czech republic": ("czech",), "cz": ("czech",), "hungary": ("hungary",), "hu": ("hungary",),
+    "portugal": ("portugal",), "pt": ("portugal",), "ireland": ("ireland",), "ie": ("ireland",),
+    "new zealand": ("new zealand",), "nz": ("new zealand",), "brazil": ("brazil", "brasil"), "br": ("brazil", "brasil"),
+    "mexico": ("mexico",), "greece": ("greece",), "korea": ("korea",), "south korea": ("korea",), "kr": ("korea",),
+    "taiwan": ("taiwan",), "tw": ("taiwan",), "bulgaria": ("bulgaria",), "iceland": ("iceland",),
+}
+
+
+def address_country(address):
+    """(rest, country as written, printed forms) when the address's last comma part is
+    a country, else None. 'Langensalza, Germany' -> ('Langensalza', 'Germany', ...);
+    'Germany' -> ('', 'Germany', ...); 'Bloomington, {IN}' -> None (a US state)."""
+    parts = [p.strip() for p in split_top(str(address or ""), ",")]
+    parts = [p for p in parts if p]
+    if not parts:
+        return None
+    last = parts[-1]
+    plain = last.replace("{", "").replace("}", "").strip().rstrip(".")
+    key = plain.lower()
+    if plain.upper() in US_CODES and len(plain) == 2:
+        return None
+    if key not in COUNTRIES or (len(key) == 2 and plain != plain.upper()):
+        return None
+    return ", ".join(parts[:-1]), last, COUNTRIES[key]
+
+
+def country_printed(forms, quotes):
+    folded = [fold(q) for q in quotes]
+    return any(re.search(r"(?<![a-z0-9])" + re.escape(f) + r"(?![a-z0-9])", q) for f in forms for q in folded)
+
+
+def address_quotes(fields):
+    """The quotes that can print an address: the address and publisher evidence (an
+    imprint line prints both)."""
+    return [e.get("quote", "") for n in ("address", "publisher")
+            for e in ((fields.get(n) or {}).get("evidence") or [])]
+
+
+def quote_found(quote, body):
+    """A quote is found in a fetched body verbatim, in its compact JSON form (so that
+    '"date":"1885"' matches an escaped JSON body), or after folding."""
+    cands = [str(body or "")]
+    try:
+        cands.append(json.dumps(json.loads(body), ensure_ascii=False, separators=(",", ":")))
+    except (ValueError, TypeError):
+        pass
+    fq = fold(quote)
+    return any(quote in c or (fq and fq in fold(c)) for c in cands)
+
+
+def load_decisions(path=None):
+    """{key: decision} from crosswave/applied-decisions.json ({} when absent)."""
+    path = Path(path) if path else DECISIONS
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text())["entries"]
+
+
+def build_removals(decisions_dir=None, bib=None):
+    """The entries the user approved for removal (cross-wave page, 2026-09-26): every
+    a-<key> decision with verdict 'correct' (conference abstracts; the six marked
+    'wrong' are real articles and stay), plus any j-<key> whose note says to remove it
+    as a conference abstract (JohnRedi07b, which is also an a- item)."""
+    d = Path(decisions_dir) if decisions_dir else DECISIONS_DIR
+    out = {}
+    for p in sorted(d.glob("a-*.json")):
+        r = json.loads(p.read_text())
+        if r.get("verdict") == "correct":
+            out[r["entry"]] = {"key": r["entry"], "reason": "conference abstract",
+                               "decisions": [f"{r['key']}: {r['verdict']}"]}
+    for p in sorted(d.glob("j-*.json")):
+        r = json.loads(p.read_text())
+        note = str(r.get("note") or "")
+        if re.search(r"\bremove\b", note, re.I) and re.search(r"conference abstract", note, re.I):
+            e = out.setdefault(r["entry"], {"key": r["entry"], "reason": "conference abstract", "decisions": []})
+            e["decisions"].append(f"{r['key']}: {r['verdict']} ({note})")
+    waves = {}
+    for p in sorted(HERE.glob("wave*/batch-*.json")):
+        for row in json.loads(p.read_text()):
+            waves.setdefault(row["key"], set()).add(p.parent.name)
+    for k, e in out.items():
+        e["waves"] = sorted(waves.get(k, ()))
+        if bib is not None:
+            e["in_head_bib"] = k in bib
+    return [out[k] for k in sorted(out, key=str.lower)]
+
+
 # ---------------------------------------------------------------- field rules
 
 def roman(n):
@@ -1446,8 +1649,10 @@ def fetch_blocked(vfield, validation):
         all(f in ("quote not found at url",) or str(f).startswith("fetch failed") for f in fails)
 
 
-def check_entry(row, current, bib, ctx, review=None, validation=None):
-    """Post-check one researcher row. Returns the per-key record."""
+def check_entry(row, current, bib, ctx, review=None, validation=None, decision=None):
+    """Post-check one researcher row. Returns the per-key record. `decision` is the
+    user's per-entry decision from crosswave/applied-decisions.json (field values it
+    sets or withdraws; source 'user')."""
     key = row["key"]
     verdict = row.get("verdict")
     fields = canonical_fields(row.get("fields"))
@@ -1499,6 +1704,20 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
         v = vfields.get(name)
         if v is not None and not v.get("ok", True):
             missing = v.get("value_missing_from_quotes") or []
+            ac = address_country(value) if name == "address" else None
+            if ac and missing and not v.get("failures") \
+                    and set(fold(" ".join(missing)).split()) <= set(fold(ac[1]).split()) \
+                    and not country_printed(ac[2], address_quotes(fields)):
+                # the quotes cover the address except the country no source prints:
+                # the country goes (user rule) and the hold with it (BuzsEtal94 'Germany')
+                if ac[0]:
+                    applied[name] = {"value": ac[0], "source": "researcher", "status": status,
+                                     "evidence": f.get("evidence") or [], "normalised_from": str(value)}
+                flag(flags, "country_dropped", name,
+                     f"{value!r}: the quotes cover it except the country {ac[1]!r}, which no quote prints; "
+                     + (f"country dropped: {ac[0]!r}" if ac[0] else "the address is only a country: not applied")
+                     + " (user rule, cross-wave q-country)", "applied")
+                continue
             flag(flags, "quote_check_failed", name,
                  f"validator: {name} not covered by its quotes (missing {missing}; failures {v.get('failures')})",
                  "held")
@@ -1610,6 +1829,43 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                  "verdict ambiguous: the identity-defining changes are one decision for the user, held together: " +
                  "; ".join(f"{n}={v!r}" for n, v in ident.items()), "held")
 
+    # --- the user's decision for this entry (cross-wave page): withdrawn proposals and
+    # values the user chose (source 'user'); holds on those fields are superseded
+    user_fields = {}
+    if decision:
+        withdraw = [field_name(n) for n in decision.get("withdraw") or []]
+        chosen = {field_name(n): s for n, s in (decision.get("set") or {}).items()}
+        fetch = ctx.get("fetch") or http_get
+        for n in withdraw:
+            applied.pop(n, None)
+            held.pop(n, None)
+            suggestions.pop(n, None)
+        for n, spec in chosen.items():
+            own = spec.get("evidence") or []
+            ev = own or (fields.get(n) or {}).get("evidence") or []
+            applied[n] = {"value": str(spec["value"]), "source": "user", "evidence": ev,
+                          "decision": decision.get("decision")}
+            held.pop(n, None)
+            suggestions.pop(n, None)
+            user_fields[n] = spec["value"]
+            for e in own:  # the user's value has its own source: its quotes are checked
+                status_, body = fetch(e["url"])
+                if status_ != 200 or not quote_found(e["quote"], body):
+                    flag(flags, "user_evidence_unverified", n,
+                         f"quote {e['quote']!r} not found at {e['url']} (HTTP {status_})")
+        decided = set(withdraw) | set(chosen)
+        for f in flags:
+            fs = {field_name(x.strip()) for x in str(f["field"] or "").split(",") if x.strip()}
+            if f["action"] == "held" and fs and fs <= decided:
+                f["action"] = "dropped"
+                f["detail"] += f"; superseded by the user's decision ({decision.get('decision')})"
+        if decided:
+            flag(flags, "user_decision", ", ".join(sorted(decided)),
+                 f"{decision.get('decision')}: " + "; ".join(
+                     [f"{n} = {v['value']!r}" for n, v in chosen.items()] +
+                     ([f"research proposals withdrawn for {', '.join(n for n in withdraw if n not in chosen)}"]
+                      if any(n not in chosen for n in withdraw) else [])), "applied")
+
     # --- DOI registration and record match
     doi_status = None
     if "doi" in applied and clean_doi(applied["doi"]["value"]) == clean_doi(current.get("doi")) \
@@ -1640,6 +1896,13 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                                  (applied.get("booktitle") or {}).get("value"), current.get("booktitle"))
                      if c]
             authors_now = split_names((applied.get("author") or {}).get("value") or current.get("author", ""))
+            if ZENODO_DOI.search(doi):
+                # a release title carries its version ('Brain Imaging Analysis Kit v0.2');
+                # software is cited without one (user rule), so versions are not part numbers
+                rec = dict(rec, title=strip_version(rec["title"]),
+                           subtitle=strip_version(rec["subtitle"]) if rec.get("subtitle") else None)
+                cands = [strip_version(c) for c in cands]
+                record_title = rec["title"]
             title_verdict, why = doi_title_verdict(
                 rec, cands, (applied.get("volume") or {}).get("value") or current.get("volume"),
                 (applied.get("pages") or {}).get("value") or current.get("pages"),
@@ -1707,8 +1970,56 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                     flag(flags, "doi_record_conflict", "year",
                          f"{rec.get('ra')} record of {doi} is dated {rec['issued_year']}, proposal {year}")
 
+    # --- software / Zenodo releases: the FIRST version's DOI and year (user rule,
+    # cross-wave q-brainiak); the version number itself is removed with the house rules
+    software = None
+    zdoi = clean_doi((applied.get("doi") or {}).get("value") if "doi" in applied else current.get("doi"))
+    if verdict != "no_source" and ZENODO_DOI.search(zdoi or "") and "doi" not in held:
+        first = zenodo_first_version(zdoi, ctx.get("fetch") or http_get)
+        software = {"doi": zdoi, "first": first}
+        if first.get("error"):
+            flag(flags, "software_first_version_unresolved", "doi",
+                 f"{zdoi}: first version not resolved ({first['error']}); DOI and year left as they are", "held")
+        else:
+            ev = [{"url": first["url"], "record": {k: first[k] for k in ("doi", "date", "version", "title", "concept")}}]
+            if first["doi"] != zdoi:
+                reg = ctx["doi"](first["doi"])
+                if reg.get("registered") is True:
+                    applied["doi"] = {"value": first["doi"], "source": "postcheck", "evidence": ev,
+                                      "normalised_from": zdoi}
+                    doi_status = reg
+                    flag(flags, "software_first_version", "doi",
+                         f"{zdoi} is " + ("the concept DOI (it resolves to the latest version)"
+                                          if zdoi.endswith("." + str(first["concept"])) else "not the first version")
+                         + f" of Zenodo release series {first['concept']}: cite the "
+                         f"first version {first['doi']} ({first['date']}, version {first['version']!r}; user rule)",
+                         "applied")
+                else:
+                    flag(flags, "software_first_version_unresolved", "doi",
+                         f"first version {first['doi']} of {zdoi} is not a registered DOI ({reg.get('error')}); held",
+                         "held")
+            year = (applied.get("year") or {}).get("value") or current.get("year")
+            if first["year"] and first["year"] != year and "software_first_version_unresolved" not in \
+                    {f["code"] for f in flags}:
+                applied["year"] = {"value": first["year"], "source": "postcheck", "evidence": ev,
+                                   **({"normalised_from": applied["year"]["value"]} if "year" in applied else {})}
+                held.pop("year", None)
+                suggestions.pop("year", None)
+                flag(flags, "software_first_version", "year",
+                     f"year {year} -> {first['year']}: the first version {first['doi']} is dated {first['date']} "
+                     "(user rule: the year comes from the first version)", "applied")
+            fams = {fold(c.split(",")[0] if "," in c else (c.split() or [""])[-1]) for c in first["creators"]}
+            cited = {fold(surname(n)) for n in split_names((applied.get("author") or {}).get("value")
+                                                           or current.get("author", "")) if n != "others"}
+            if fams and cited and fams != cited:
+                flag(flags, "software_first_version_authors", "author",
+                     f"the first version {first['doi']} lists {len(first['creators'])} creator(s) "
+                     f"({', '.join(first['creators'][:6])}{', ...' if len(first['creators']) > 6 else ''}); the entry's "
+                     f"author list differs (only in the first version: {sorted(fams - cited)[:6]}; only in the "
+                     f"entry: {sorted(cited - fams)[:6]}); authors left as they are for the user")
+
     # --- print year from notes / year evidence
-    year_now = (applied.get("year") or {}).get("value") or current.get("year")
+    year_now =(applied.get("year") or {}).get("value") or current.get("year")
     note_prints = print_years_in_notes(row.get("notes"))
     corroborated = len(quoted_print_years(fields.get("year")).get(year_now) or ()) >= 2
     # a conference paper is cited by its conference year: a later print of the
@@ -2037,9 +2348,36 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
         elif name == "edition":
             set_norm(name, *normalise_edition(v))
         elif name == "address":
+            ac = address_country(v)
+            own = [str(e.get("quote", "")) for e in a.get("evidence") or [] if isinstance(e, dict)]
+            if ac and not country_printed(ac[2], own + address_quotes(fields)):
+                if not any(f["code"] == "country_dropped" and f["detail"].startswith(repr(v)) for f in flags):
+                    flag(flags, "country_dropped", "address",
+                         f"{v!r}: no quote prints the country {ac[1]!r}; "
+                         + (f"country dropped: {ac[0]!r}" if ac[0] else "the address is only a country: left out")
+                         + " (user rule, cross-wave q-country)", "applied")
+                if not ac[0]:
+                    applied.pop(name)
+                    if current.get(name):
+                        final[name] = current[name]
+                        if fold(current[name]) == fold(v):
+                            final.pop(name)
+                            removals[name] = f"only a country ({current[name]!r}) that no quote prints"
+                    else:
+                        final.pop(name, None)
+                    continue
+                set_norm(name, ac[0], [f"country {ac[1]!r} not printed by any quote: {v!r} -> {ac[0]!r}"])
+                v = ac[0]
             new, notes, problems = normalise_address(v, ctx["cities"])
             for p in problems:
                 flag(flags, "us_address_state_unknown", "address", p)
+            added = address_country(new) if new != v else None
+            if added and added[0] and not country_printed(added[2], own + address_quotes(fields)):
+                # the house address key adds a country ('Leipzig' -> 'Leipzig, Germany'):
+                # the user rule wins, a country no quote prints is not added
+                notes = [n for n in notes if "house form" not in n] + \
+                    [f"house address form {new!r} adds the country {added[1]!r}, which no quote prints: kept {added[0]!r}"]
+                new = added[0]
             set_norm(name, new, notes)
         elif name == "doi":
             set_norm(name, clean_doi(v), ["doi lowercased"] if clean_doi(v) != v else [])
@@ -2061,6 +2399,30 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                 set_norm(name, fp, [f"publisher house form: {v!r} -> {fp!r}"])
         if name in ORDINAL_FIELDS and name not in ("booktitle", "edition") and name in applied:
             set_norm(name, *normalise_ordinals(applied[name]["value"]))
+
+    # software is cited without a version number: not in the title or note, and no
+    # version field (user rule, cross-wave q-brainiak)
+    if software_entry(final) and verdict != "no_source":
+        for name in ("title", "note"):
+            v = final.get(name)
+            if v and strip_version(v) != v:
+                new = strip_version(v)
+                if new:
+                    set_norm(name, new, [f"software {name} without its version: {v!r} -> {new!r}"])
+                    flag(flags, "software_version_removed", name, f"{v!r} -> {new!r} (user rule: no version number)",
+                         "applied")
+                elif name == "note":
+                    applied.pop(name, None)
+                    final.pop(name)
+                    norms.append({"field": name, "note": f"note {v!r} held only a version number"})
+                    if current.get(name):
+                        removals[name] = f"only a version number ({current[name]!r}; user rule)"
+        if final.get("version"):
+            v = final.pop("version")
+            applied.pop("version", None)
+            flag(flags, "software_version_removed", "version", f"version {v!r} removed (user rule)", "applied")
+            if current.get("version"):
+                removals["version"] = f"software is cited without a version number ({current['version']!r}; user rule)"
 
     etype = final.get("ENTRYTYPE")
     if etype == "book" and final.get("pages"):
@@ -2160,6 +2522,8 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
         if a.get("normalised_from"):
             change["normalised_from"] = a["normalised_from"]
             change["normalised_by"] = "postcheck"  # the value differs from the proposal by the post-check's rules
+        if a.get("decision"):
+            change["decision"] = a["decision"]  # the user's cross-wave decision (source 'user')
         if review and name in (review.get("field_verdicts") or {}):
             change["reviewer"] = review["field_verdicts"][name]
         changes.append(change)
@@ -2186,12 +2550,17 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
         flag(flags, "unverified_suggestions", None,
              "values left not_found or suggested by the rules (never applied): " +
              ", ".join(f"{k}={v!r}" for k, v in suggestions.items()))
-    if verdict in ("ambiguous", "no_source"):
+    user_resolved = bool((decision or {}).get("resolves_verdict"))
+    if verdict in ("ambiguous", "no_source") and not user_resolved:
         flag(flags, "needs_user", "verdict", f"verdict {verdict}: user decision")
+    elif verdict in ("ambiguous", "no_source"):
+        flag(flags, "user_decision", "verdict",
+             f"verdict {verdict} resolved by the user's decision ({decision.get('decision')})", "applied")
 
     return {"key": key, "verdict": verdict, "flags": flags, "normalisations": norms,
             "changes": changes, "removals": removals, "held": held,
             "suggestions": suggestions, "key_plan": plan, "doi_status": doi_status,
+            "user_resolved": user_resolved, "software": software,
             "final_entry": final}
 
 
@@ -2267,6 +2636,81 @@ def break_merge_cycles(records):
                              "the ID rule for the corrected metadata or is the earlier key)")
             records[drop]["key_plan"].update(action="duplicate", merge_into=keep)
             flag(records[keep]["flags"], "duplicate", "key", kp["detail"])
+
+def apply_entry_decisions(records, decisions, bib, taken):
+    """The user's per-entry decisions that are about the whole entry, after the key
+    plans and wave duplicates: a key the user chose (Shim94 -> Shim95b, Shim95 ->
+    Shim95a, OGra11 -> OGra08), an approved duplicate merge, the keeper of a merge and
+    whether it drops its suffix (KahaEtal08a, only when no other key with its base is
+    in cdl.bib), removal of the entry (conference abstracts), 'a real article, not an
+    abstract', and printed names kept (Hwang). Each is a 'user_decision' flag."""
+    for k in sorted(records):
+        d = decisions.get(k)
+        if not d:
+            continue
+        rec = records[k]
+        plan, flags, why = rec["key_plan"], rec["flags"], d.get("decision")
+        if d.get("key"):
+            want = d["key"]
+            have = plan.get("new_key") if plan["action"] in ("rename", "collision") else \
+                (k if plan["action"] == "keep" else None)
+            if have == want:
+                plan["user_decision"] = why
+                flag(flags, "user_decision", "key", f"{why}: key {k} -> {want}, as planned (approved)", "applied")
+            else:
+                before = f"{plan['action']} {plan.get('new_key') or plan.get('merge_into') or ''}".strip()
+                for x in ("merge_into", "existing", "also_rename"):
+                    plan.pop(x, None)
+                plan.update(action="rename", new_key=want, rename_reason=f"user decision ({why})", user_decision=why)
+                taken.add(want)
+                flag(flags, "user_decision", "key",
+                     f"{why}: key {k} -> {want} (the post-check planned {before}; the user's decision wins)", "applied")
+        if d.get("merge_into"):
+            want = d["merge_into"]
+            if plan["action"] == "duplicate" and plan.get("merge_into") == want:
+                plan["user_decision"] = why
+                flag(flags, "user_decision", "key", f"{why}: merge {k} into {want} (approved duplicate)", "applied")
+            else:
+                before = f"{plan['action']} {plan.get('new_key') or plan.get('merge_into') or ''}".strip()
+                plan.update(action="duplicate", merge_into=want, user_decision=why,
+                            detail=f"user decision ({why}): merge {k} into {want}")
+                flag(flags, "user_decision", "key",
+                     f"{why}: merge {k} into {want} (the post-check planned {before}; the user's decision wins)",
+                     "applied")
+        if d.get("keeper_of"):
+            gone = sorted(d["keeper_of"])
+            flag(flags, "user_decision", "key", f"{why}: {', '.join(gone)} merge(s) into {k} (approved duplicate)",
+                 "applied")
+            if d.get("drop_suffix_if_only"):
+                base = re.sub(r"[a-z]+$", "", k)
+                others = sorted(x for x in bib if x != k and x not in gone
+                                and re.fullmatch(re.escape(base) + r"[a-z]*", x))
+                if not others and plan["action"] == "keep":
+                    plan.update(action="rename", new_key=base, user_decision=why,
+                                rename_reason=f"user decision ({why}): the only {base} once {', '.join(gone)} is merged")
+                    taken.add(base)
+                    flag(flags, "user_decision", "key", f"{why}: {k} -> {base} (no other {base} key in cdl.bib)",
+                         "applied")
+                else:
+                    plan["suffix_kept"] = others
+                    flag(flags, "user_decision", "key",
+                         f"{why}: {k} keeps its suffix: {', '.join(others) or 'a key plan'} "
+                         f"{'is' if len(others) == 1 else 'are'} also in cdl.bib", "applied")
+        if d.get("remove_entry"):
+            rec["remove_entry"] = d["remove_entry"]
+            # worded without the user's note: the cross-wave page's abstract finder reads
+            # these flags, and must not find the entry because of its own decision
+            items = ", ".join(re.findall(r"cross-wave ((?:a|j|q|dup)-[\w-]+)", why or "")) or "cross-wave page"
+            flag(flags, "user_decision", None,
+                 f"user decision ({items}): remove {k} from cdl.bib (approved removal as an abstract; "
+                 "listed in crosswave/removals.json)", "flag")
+        if d.get("not_abstract"):
+            flag(flags, "user_decision", None,
+                 f"{why}: a real article, not a conference abstract: keep it and verify it normally", "applied")
+        if d.get("names_as_printed"):
+            flag(flags, "user_decision", "author",
+                 f"{why}: each paper keeps the author's printed name (no unification across papers)", "applied")
+
 
 def measure(review_rows, rules_only):
     """For each reviewer finding (agree != yes): is a disputed field touched by the rules?"""
@@ -2361,9 +2805,10 @@ def resolution(review_rows, merged, bib):
             "not_checkable": [o["key"] for o in out if o["resolved"] is None], "rows": out}
 
 
-def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
+def run(folder, bib="HEAD", review_path=None, offline=False, write=True, decisions_path=None):
     folder = Path(folder)
     bibd = load_bib(bib)
+    decisions = load_decisions(decisions_path)
     review_path = Path(review_path) if review_path else folder / "review.json"
     review_rows = json.loads(review_path.read_text()) if review_path.exists() else []
     reviews = {r["key"]: r for r in review_rows if r.get("key") != "_summary"}
@@ -2388,12 +2833,16 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
                "index": index, "fetch": lambda url: http_get(url, offline)}
         out = {}
         for stem, row in rows:
+            # the user's decisions are not rules: the rules-alone pass never sees them
             rec = check_entry(row, bibd.get(row["key"]), bibd, ctx,
                               review=reviews.get(row["key"]) if with_review else None,
-                              validation=validation.get(row["key"]))
+                              validation=validation.get(row["key"]),
+                              decision=decisions.get(row["key"]) if with_review else None)
             rec["batch"] = stem
             out[row["key"]] = rec
         wave_duplicates(out)
+        if with_review:
+            apply_entry_decisions(out, decisions, bibd, ctx["taken"])
         return out
 
     rules_only = pass_(False)
@@ -2415,6 +2864,18 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
         "duplicates": {p["current_key"]: p["merge_into"] for p in plans if p["action"] == "duplicate"},
         "collisions": {p["current_key"]: p["new_key"] for p in plans if p["action"] == "collision"},
         "doi_requests_uncached": None,
+        "user_decisions": {k: [f["detail"] for f in r["flags"] if f["code"] == "user_decision"]
+                           for k, r in sorted(merged.items()) if any(f["code"] == "user_decision" for f in r["flags"])},
+        "remove_entries": sorted(k for k, r in merged.items() if r.get("remove_entry")),
+        "software_first_version": {k: {"cited": r["software"]["doi"],
+                                       "first": r["software"]["first"].get("doi"),
+                                       "first_year": r["software"]["first"].get("year"),
+                                       "error": r["software"]["first"].get("error"),
+                                       "year": r["final_entry"].get("year"), "key_plan": r["key_plan"]["action"],
+                                       "new_key": r["key_plan"].get("new_key")}
+                                   for k, r in sorted(merged.items()) if r.get("software")},
+        "country_dropped": sorted(f"{k}: {f['detail']}" for k, r in merged.items() for f in r["flags"]
+                                  if f["code"] == "country_dropped"),
     }
     post = {"summary": summary, "measurement": meas,
             "review_resolution": resolution(review_rows, merged, bibd) if review_rows else None,
@@ -2432,10 +2893,12 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
             "key_plan": r["key_plan"],
             "flags": r["flags"],
             "doi_status": r["doi_status"],
+            "remove_entry": r.get("remove_entry"),
+            "user_decisions": [f["detail"] for f in r["flags"] if f["code"] == "user_decision"],
             "reviewer": ({"agree": rv.get("agree"), "sampled_as": rv.get("sampled_as"),
                           "field_verdicts": rv.get("field_verdicts"), "problems": rv.get("problems"),
                           "suggested_value": rv.get("suggested_value")} if rv else None),
-            "needs_user": bool(r["verdict"] in ("ambiguous", "no_source") or
+            "needs_user": bool((r["verdict"] in ("ambiguous", "no_source") and not r.get("user_resolved")) or
                                any(f["action"] in ("held", "flag") for f in r["flags"]) or r["key_plan"]["action"] != "keep"),
         })
     if write:
@@ -2446,11 +2909,24 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("folder")
+    ap.add_argument("folder", nargs="?")
     ap.add_argument("--bib", default="HEAD", help="cdl.bib path, or HEAD (default) for the committed file")
     ap.add_argument("--review", default=None)
     ap.add_argument("--offline", action="store_true", help="use cached network responses only")
+    ap.add_argument("--write-removals", action="store_true",
+                    help="write crosswave/removals.json (entries the user approved for removal) and exit")
     args = ap.parse_args(argv)
+    if args.write_removals:
+        rows = build_removals(bib=load_bib(args.bib))
+        REMOVALS.write_text(json.dumps({
+            "about": "Entries the user approved for removal from cdl.bib on the cross-wave decisions page "
+                     "(2026-09-26; raw answers in crosswave/decisions/). Built by postcheck.py --write-removals "
+                     "for the later apply step; cdl.bib is not edited here.",
+            "count": len(rows), "entries": rows}, indent=1, ensure_ascii=False) + "\n")
+        print(REMOVALS, len(rows))
+        return 0
+    if not args.folder:
+        ap.error("folder is required unless --write-removals is given")
     post, _, _, _ = run(args.folder, args.bib, args.review, args.offline)
     s = post["summary"]
     print(json.dumps({k: v for k, v in s.items() if k != "doi_requests_uncached"}, indent=1))

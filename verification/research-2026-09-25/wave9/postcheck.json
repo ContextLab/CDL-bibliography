@@ -11,7 +11,8 @@
    "other_version_named": 2,
    "proceedings_print_year": 3,
    "quote_check_failed": 10,
-   "unverified_suggestions": 1
+   "unverified_suggestions": 1,
+   "user_decision": 32
   },
   "dois_dropped": [],
   "dois_dropped_by_rules_alone": [],
@@ -23,7 +24,144 @@
   },
   "duplicates": {},
   "collisions": {},
-  "doi_requests_uncached": null
+  "doi_requests_uncached": null,
+  "user_decisions": {
+   "BurkEtal12": [
+    "user decision (a-BurkEtal12): remove BurkEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "BurkKaha13": [
+    "user decision (a-BurkKaha13): remove BurkKaha13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "CrutEtal12": [
+    "user decision (a-CrutEtal12): remove CrutEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "DerdEtal06": [
+    "user decision (a-DerdEtal06): remove DerdEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "DetrEtal07": [
+    "user decision (a-DetrEtal07): remove DetrEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "GratEtal11": [
+    "user decision (a-GratEtal11): remove GratEtal11 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "HartEtal05": [
+    "user decision (a-HartEtal05): remove HartEtal05 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "HealEtal12b": [
+    "user decision (a-HealEtal12b): remove HealEtal12b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "KrauEtal12": [
+    "user decision (a-KrauEtal12): remove KrauEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "LohnEtal09": [
+    "user decision (a-LohnEtal09): remove LohnEtal09 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "LohnEtal10": [
+    "user decision (a-LohnEtal10): remove LohnEtal10 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "LongEtal11": [
+    "user decision (a-LongEtal11): remove LongEtal11 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "LongKaha12a": [
+    "user decision (a-LongKaha12a): remove LongKaha12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "LongKaha12b": [
+    "user decision (a-LongKaha12b): remove LongKaha12b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "LongKaha13": [
+    "user decision (a-LongKaha13): remove LongKaha13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "MannEtal09b": [
+    "user decision (a-MannEtal09b): remove MannEtal09b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "MillEtal07e": [
+    "user decision (a-MillEtal07e): remove MillEtal07e from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "MortEtal07": [
+    "user decision (a-MortEtal07): remove MortEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "OGra11": [
+    "cross-wave q-ogrady: 2008: year = '2008'",
+    "cross-wave q-ogrady: 2008: key OGra11 -> OGra08, as planned (approved)"
+   ],
+   "PolyEtal05b": [
+    "user decision (a-PolyEtal05b): remove PolyEtal05b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "PolyEtal06": [
+    "user decision (a-PolyEtal06): remove PolyEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "PolyEtal07": [
+    "user decision (a-PolyEtal07): remove PolyEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "RamaEtal10": [
+    "user decision (a-RamaEtal10): remove RamaEtal10 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "RamaEtal12a": [
+    "user decision (a-RamaEtal12a): remove RamaEtal12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "RamaEtal13": [
+    "user decision (a-RamaEtal13): remove RamaEtal13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "ReccOKee89": [
+    "user decision (a-ReccOKee89): remove ReccOKee89 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "SedeNorm07": [
+    "user decision (a-SedeNorm07): remove SedeNorm07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "WatrEtal09": [
+    "user decision (a-WatrEtal09): remove WatrEtal09 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ],
+   "vanVEtal05": [
+    "user decision (a-vanVEtal05, q-hwang): remove vanVEtal05 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "cross-wave a-vanVEtal05: correct; cross-wave q-hwang: as-printed: each paper keeps the author's printed name (no unification across papers)"
+   ],
+   "vanVEtal06": [
+    "user decision (a-vanVEtal06): remove vanVEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+   ]
+  },
+  "remove_entries": [
+   "BurkEtal12",
+   "BurkKaha13",
+   "CrutEtal12",
+   "DerdEtal06",
+   "DetrEtal07",
+   "GratEtal11",
+   "HartEtal05",
+   "HealEtal12b",
+   "KrauEtal12",
+   "LohnEtal09",
+   "LohnEtal10",
+   "LongEtal11",
+   "LongKaha12a",
+   "LongKaha12b",
+   "LongKaha13",
+   "MannEtal09b",
+   "MillEtal07e",
+   "MortEtal07",
+   "PolyEtal05b",
+   "PolyEtal06",
+   "PolyEtal07",
+   "RamaEtal10",
+   "RamaEtal12a",
+   "RamaEtal13",
+   "ReccOKee89",
+   "SedeNorm07",
+   "WatrEtal09",
+   "vanVEtal05",
+   "vanVEtal06"
+  ],
+  "software_first_version": {
+   "Mann21d": {
+    "cited": "10.5281/zenodo.5182775",
+    "first": "10.5281/zenodo.5182775",
+    "first_year": "2021",
+    "error": null,
+    "year": "2021",
+    "key_plan": "keep",
+    "new_key": null
+   }
+  },
+  "country_dropped": []
  },
  "measurement": {
   "findings": 4,
@@ -260,6 +398,8 @@
     "issued_year": "1988",
     "type": "Text"
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Yama08": {
@@ -397,6 +537,8 @@
      "Yamaguchi"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "deBr24": {
@@ -428,6 +570,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Nola11": {
@@ -445,6 +589,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Nota17": {
@@ -476,6 +622,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Poly05": {
@@ -493,6 +641,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "RussJenk54": {
@@ -535,6 +685,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Wech97": {
@@ -595,6 +747,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "OGra11": {
@@ -602,10 +756,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "user_decision",
+     "field": "year",
+     "detail": "cross-wave q-ogrady: 2008: year = '2008'",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "OGra11 -> OGra08 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": "key",
+     "detail": "cross-wave q-ogrady: 2008: key OGra11 -> OGra08, as planned (approved)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -627,7 +793,7 @@
      "field": "year",
      "current": "2011",
      "proposed": "2008",
-     "source": "researcher",
+     "source": "user",
      "evidence": [
       {
        "url": "https://themoth.org/stories/pie-man",
@@ -638,6 +804,7 @@
        "quote": ">November 24, 2008</a>"
       }
      ],
+     "decision": "cross-wave q-ogrady: 2008",
      "reviewer": "agree"
     }
    ],
@@ -649,9 +816,12 @@
     "target_base": "OGra08",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "OGra08"
+    "new_key": "OGra08",
+    "user_decision": "cross-wave q-ogrady: 2008"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Qwen26": {
@@ -683,6 +853,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "RCor12": {
@@ -727,6 +899,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Stan13": {
@@ -762,6 +936,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "TorvHama05": {
@@ -815,6 +991,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Varo10": {
@@ -849,6 +1027,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Scav05": {
@@ -880,6 +1060,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Schl07": {
@@ -924,6 +1106,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Smit05": {
@@ -977,6 +1161,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "Stra06": {
@@ -1028,6 +1214,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "deCa05a": {
@@ -1065,6 +1253,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "SingEtal24": {
@@ -1210,6 +1400,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-092"
   },
   "deCa05b": {
@@ -1241,6 +1433,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "vanREtal14": {
@@ -1302,6 +1496,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "vond81": {
@@ -1326,6 +1522,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "Weic96": {
@@ -1350,6 +1548,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "DiazEtal15": {
@@ -1443,6 +1643,8 @@
      "Davidson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "WilsEmmo03": {
@@ -1514,6 +1716,8 @@
      "Wilson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "FellEtal01a": {
@@ -1628,6 +1832,8 @@
      "Sejnowski"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "SpenEtal03": {
@@ -1709,6 +1915,8 @@
      "McCarley"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "CoopEtal04": {
@@ -1742,6 +1950,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "Mann21d": {
@@ -1788,6 +1998,24 @@
     ],
     "issued_year": "2021",
     "type": "InteractiveResource"
+   },
+   "user_resolved": false,
+   "software": {
+    "doi": "10.5281/zenodo.5182775",
+    "first": {
+     "doi": "10.5281/zenodo.5182775",
+     "date": "2021-06-09",
+     "year": "2021",
+     "version": "Spring (2021)",
+     "title": "Storytelling with Data",
+     "type": "lesson",
+     "creators": [
+      "Jeremy R. Manning"
+     ],
+     "concept": "5182774",
+     "count": 1,
+     "url": "https://zenodo.org/api/records/5182775"
+    }
    },
    "batch": "batch-093"
   },
@@ -1864,6 +2092,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "LiuWang16": {
@@ -1947,6 +2177,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "ParkPill12": {
@@ -2019,6 +2251,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "RaoHowa08": {
@@ -2074,6 +2308,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "VaswEtal17": {
@@ -2171,6 +2407,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "YangEtal13": {
@@ -2219,6 +2457,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "RangEtal14": {
@@ -2328,6 +2568,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "WolfEtal20": {
@@ -2484,6 +2726,8 @@
      "Rush"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "Laks01": {
@@ -2570,6 +2814,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-093"
   },
   "HealEtal12b": {
@@ -2580,6 +2826,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-HealEtal12b): remove HealEtal12b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -2594,12 +2846,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-093"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-093",
+   "remove_entry": "conference abstract"
   },
   "LongKaha12a": {
    "key": "LongKaha12a",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-LongKaha12a): remove LongKaha12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -2628,12 +2890,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-094"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-094",
+   "remove_entry": "conference abstract"
   },
   "BurkKaha13": {
    "key": "BurkKaha13",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-BurkKaha13): remove BurkKaha13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -2663,7 +2935,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-094"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-094",
+   "remove_entry": "conference abstract"
   },
   "RamaEtal13": {
    "key": "RamaEtal13",
@@ -2674,6 +2949,12 @@
      "field": "author",
      "detail": "validator: author not covered by its quotes (missing ['baltuch']; failures [])",
      "action": "held"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-RamaEtal13): remove RamaEtal13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
     }
    ],
    "normalisations": [],
@@ -2718,7 +2999,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-094"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-094",
+   "remove_entry": "conference abstract"
   },
   "Beaz96": {
    "key": "Beaz96",
@@ -2744,6 +3028,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "dBakEtal08": {
@@ -2810,6 +3096,8 @@
      "Aleven"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "FiscMode03": {
@@ -2883,6 +3171,8 @@
      "Modersitzki"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "HalpEtal16": {
@@ -2946,6 +3236,8 @@
      "Bäuml"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "BernClif94": {
@@ -2995,12 +3287,21 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "PolyEtal05b": {
    "key": "PolyEtal05b",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-PolyEtal05b): remove PolyEtal05b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [
     {
      "field": "ENTRYTYPE",
@@ -3058,7 +3359,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-094"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-094",
+   "remove_entry": "conference abstract"
   },
   "KluyEtal16": {
    "key": "KluyEtal16",
@@ -3163,6 +3467,8 @@
      "Jupyter Development Team"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "StonEtal25": {
@@ -3193,6 +3499,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "LiEtal16": {
@@ -3291,6 +3599,8 @@
      "Zhou"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "NguyEtal16b": {
@@ -3379,6 +3689,8 @@
      "Vu"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "LiEtal17b": {
@@ -3477,6 +3789,8 @@
      "Zhou"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "TianEtal18": {
@@ -3585,6 +3899,8 @@
      "Zhou"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "TianEtal16b": {
@@ -3683,6 +3999,8 @@
      "Zhou"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "LiEtal20": {
@@ -3791,6 +4109,8 @@
      "Zhou"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "CarvEtal22b": {
@@ -3917,6 +4237,8 @@
      "Zhou"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "TianEtal20b": {
@@ -4021,6 +4343,8 @@
      "Zhou"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "RagaWill18": {
@@ -4191,6 +4515,8 @@
      "Willing"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-094"
   },
   "MallEtal97": {
@@ -4316,6 +4642,8 @@
      "Bülthoff"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "ZengEtal14": {
@@ -4333,6 +4661,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "BartEtal04c": {
@@ -4407,6 +4737,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "MuelShif06": {
@@ -4461,6 +4793,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "BleiLaff06": {
@@ -4520,6 +4854,8 @@
      "Lafferty"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "ParkEtal24": {
@@ -4551,6 +4887,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "PellMoor00": {
@@ -4575,6 +4913,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "DolfWend98": {
@@ -4628,6 +4968,8 @@
      "Wendemuth"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "DeloEtal01": {
@@ -4666,6 +5008,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "CrutEtal12": {
@@ -4676,6 +5020,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict ambiguous: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-CrutEtal12): remove CrutEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -4704,7 +5054,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-096"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-096",
+   "remove_entry": "conference abstract"
   },
   "vanVEtal06": {
    "key": "vanVEtal06",
@@ -4714,6 +5067,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-vanVEtal06): remove vanVEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -4728,7 +5087,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-096"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-096",
+   "remove_entry": "conference abstract"
   },
   "BambEtal90": {
    "key": "BambEtal90",
@@ -4787,6 +5149,8 @@
      "Sturtevant"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "HaonEtal16": {
@@ -4884,6 +5248,8 @@
      "Xu"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "LohnEtal09": {
@@ -4901,6 +5267,12 @@
      "field": "verdict",
      "detail": "verdict ambiguous: user decision",
      "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-LohnEtal09): remove LohnEtal09 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
     }
    ],
    "normalisations": [],
@@ -4914,7 +5286,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-096"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-096",
+   "remove_entry": "conference abstract"
   },
   "LohnEtal10": {
    "key": "LohnEtal10",
@@ -4924,6 +5299,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict ambiguous: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-LohnEtal10): remove LohnEtal10 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -4938,7 +5319,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-096"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-096",
+   "remove_entry": "conference abstract"
   },
   "PolyEtal06": {
    "key": "PolyEtal06",
@@ -4948,6 +5332,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-PolyEtal06): remove PolyEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -4962,7 +5352,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-096"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-096",
+   "remove_entry": "conference abstract"
   },
   "WallEtal57": {
    "key": "WallEtal57",
@@ -4986,6 +5379,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-096"
   },
   "MillEtal07e": {
@@ -4996,6 +5391,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-MillEtal07e): remove MillEtal07e from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -5010,7 +5411,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-096"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-096",
+   "remove_entry": "conference abstract"
   },
   "MortEtal07": {
    "key": "MortEtal07",
@@ -5020,6 +5424,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-MortEtal07): remove MortEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -5034,7 +5444,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-096"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-096",
+   "remove_entry": "conference abstract"
   },
   "PolyEtal07": {
    "key": "PolyEtal07",
@@ -5044,6 +5457,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-PolyEtal07): remove PolyEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -5058,12 +5477,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-096"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-096",
+   "remove_entry": "conference abstract"
   },
   "MannEtal09b": {
    "key": "MannEtal09b",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-MannEtal09b): remove MannEtal09b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5124,12 +5553,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "WatrEtal09": {
    "key": "WatrEtal09",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-WatrEtal09): remove WatrEtal09 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5178,12 +5617,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "RamaEtal10": {
    "key": "RamaEtal10",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-RamaEtal10): remove RamaEtal10 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5222,12 +5671,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "GratEtal11": {
    "key": "GratEtal11",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-GratEtal11): remove GratEtal11 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5279,12 +5738,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "LongEtal11": {
    "key": "LongEtal11",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-LongEtal11): remove LongEtal11 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5321,12 +5790,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "BurkEtal12": {
    "key": "BurkEtal12",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-BurkEtal12): remove BurkEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5352,12 +5831,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "KrauEtal12": {
    "key": "KrauEtal12",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-KrauEtal12): remove KrauEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5413,12 +5902,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "LongKaha12b": {
    "key": "LongKaha12b",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-LongKaha12b): remove LongKaha12b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5443,7 +5942,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "RamaEtal12a": {
    "key": "RamaEtal12a",
@@ -5454,6 +5956,12 @@
      "field": "title",
      "detail": "validator: title not covered by its quotes (missing ['field', 'potential']; failures [])",
      "action": "held"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-RamaEtal12a): remove RamaEtal12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
     }
    ],
    "normalisations": [],
@@ -5482,12 +5990,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "LongKaha13": {
    "key": "LongKaha13",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-LongKaha13): remove LongKaha13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5526,12 +6044,22 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "HartEtal05": {
    "key": "HartEtal05",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-HartEtal05): remove HartEtal05 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5580,12 +6108,28 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "vanVEtal05": {
    "key": "vanVEtal05",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-vanVEtal05, q-hwang): remove vanVEtal05 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": "author",
+     "detail": "cross-wave a-vanVEtal05: correct; cross-wave q-hwang: as-printed: each paper keeps the author's printed name (no unification across papers)",
+     "action": "applied"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -5651,7 +6195,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "DengEtal13": {
    "key": "DengEtal13",
@@ -5737,6 +6284,8 @@
      "Acero"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-097"
   },
   "HuggEtal06": {
@@ -5813,6 +6362,8 @@
      "Rudnicky"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-097"
   },
   "YingEtal92": {
@@ -5909,6 +6460,8 @@
      "Jamieson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-097"
   },
   "AndeEtal16": {
@@ -6004,6 +6557,8 @@
      "Norman"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-097"
   },
   "SedeNorm07": {
@@ -6014,6 +6569,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-SedeNorm07): remove SedeNorm07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -6028,7 +6589,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "DetrEtal07": {
    "key": "DetrEtal07",
@@ -6038,6 +6602,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-DetrEtal07): remove DetrEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -6052,7 +6622,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "DerdEtal06": {
    "key": "DerdEtal06",
@@ -6062,6 +6635,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-DerdEtal06): remove DerdEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -6076,7 +6655,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "ReccOKee89": {
    "key": "ReccOKee89",
@@ -6086,6 +6668,12 @@
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
+     "action": "flag"
+    },
+    {
+     "code": "user_decision",
+     "field": null,
+     "detail": "user decision (a-ReccOKee89): remove ReccOKee89 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
@@ -6100,7 +6688,10 @@
     "action": "keep"
    },
    "doi_status": null,
-   "batch": "batch-097"
+   "user_resolved": false,
+   "software": null,
+   "batch": "batch-097",
+   "remove_entry": "conference abstract"
   },
   "DalaTrig05": {
    "key": "DalaTrig05",
@@ -6131,6 +6722,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-098"
   },
   "DengEtal09": {
@@ -6251,6 +6844,8 @@
      "Li Fei-Fei"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-098"
   },
   "MakaEtal06": {
@@ -6319,6 +6914,8 @@
      "Daniilidis"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-098"
   },
   "BlakEtal08": {
@@ -6401,6 +6998,8 @@
      "Ojemann"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-098"
   },
   "KellEtal10a": {
@@ -6475,6 +7074,8 @@
      "Greger"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-098"
   },
   "TardEtal08": {
@@ -6547,6 +7148,8 @@
      "Daniilidis"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-098"
   },
   "NaroEtal11": {
@@ -6628,6 +7231,8 @@
      "Daniilidis"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-098"
   },
   "WangEtal10b": {
@@ -6679,6 +7284,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-098"
   },
   "CoppEtal17": {
@@ -6735,6 +7342,8 @@
      "Leary"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-098"
   },
   "Subb13": {
@@ -6804,6 +7413,8 @@
      "Subbian"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-098"
   }
  },

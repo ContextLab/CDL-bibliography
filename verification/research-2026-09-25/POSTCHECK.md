@@ -63,6 +63,10 @@ Each rule records a flag `{code, field, detail, action}`; `action` is `applied`,
 | Verdicts | `verdict_inconsistent`, `verdict_understated`, `needs_user` | `verified` with a corrected field; `correction` with none; `ambiguous`/`no_source` although identity is quoted and every field confirmed |
 | Reviewer merge | `reviewer_dropped`, `reviewer_disagrees`, `reviewer_action` | Each `suggested_value` (every wave's `review.json`: waves 1, 2 and 3) replaces the researcher's value (source `reviewer`) and releases a quote-check hold on that field; a null/empty suggestion withdraws the researcher's change (never an empty value); a field the reviewer disagrees with (`disagree`, `disagree: ...`) and gives no value for is held. A field held only because the validator could not read the source (every failure a fetch failure, or the whole page failed: identity and all fields `quote not found`, as with Project Euclid's block page) is applied with source `reviewer` when the reviewer's verdict confirms it (`agree ...`, `disagree (held but correct)`); a quote that fails on a page that was read (Hint84 volume) is not released this way. The reviewer's `key` is compared with the computed key plan (`reviewer_agrees`) A suggested value `remove` (or `delete`) is an instruction: the field is removed, never set to the word (AbdeEtal21's `force`) |
 
+| Software releases (user rule, 2026-09-26) | `software_first_version`, `software_first_version_authors`, `software_first_version_unresolved`, `software_version_removed` | Software is cited by its FIRST version, with the first version's year and no version number. For a Zenodo DOI (proposed or already in the entry), `zenodo.org/api/records/<id>` gives the release series (`conceptrecid`; a concept DOI redirects to its latest version) and the record whose `relations.version` index is 0 is the first (paged through `/versions`, 25 per page): its DOI replaces the cited one after a registration check and its `publication_date` year replaces the year, which renames the key (MuelEtal18 -> MuelEtal16). A first version whose creator list differs from the entry's is flagged, the authors are left for the user. The version number is removed from the title and note of a software entry (Zenodo DOI, `@software`, or `@misc` pointing at GitHub) and a `version` field is removed (`strip_version`: a trailing `{v0.2.1}`, `v0.2`, `: {Version 1.0}`, Zenodo's `(August, 2023)`, or a dotted version before a colon; not `Llama 3` or `{V1} alpha`). In the DOI title check of a Zenodo DOI, versions are not part numbers (CapoEtal17's `Brain Imaging Analysis Kit v0.2` is the entry's title) |
+| Countries in addresses (user rule, 2026-09-26) | `country_dropped` | A country at the end of an applied address (a name such as `Germany`, `UK`, `England`, or a braced non-US code such as `{UK}`, `{FR}`, `{AT}`; `{IN}`, `{LA}`, `{DE}` are US states) that no quote of the address or publisher prints (as the country, its English name or `England`/`Britain` for the UK) is dropped: `Langensalza, Germany` -> `Langensalza` (Herb34), `Heidelberg, Germany` -> `Heidelberg` (BuzsEtal94), `London, {UK}` -> `London`. A quote-check hold whose only missing words are that country is released without it (BuzsEtal94). An address that is only a country is left out. The house address key does not add one back (`Leipzig` stays, not `Leipzig, Germany`). A printed country stays (Rayp68 `Horn, {AT}` from `Horn, Austria`; Addi02 `Bristol, UK`; Smit88 `Chichester [England]`). Addresses nobody proposed or confirmed are not touched |
+| User decisions (2026-09-26) | `user_decision`, `user_evidence_unverified` | `crosswave/applied-decisions.json` (the user's answers on the cross-wave page, raw rows in `crosswave/decisions/`) is read in the final pass only, never the rules-alone pass. Per key: `set` values are source `user` (with their own quotes, fetched and checked, else the researcher's evidence for the same value) and supersede holds on those fields; `withdraw` drops research proposals; `resolves_verdict` clears an ambiguous verdict's `needs_user`; `key` fixes the key plan; `merge_into`/`keeper_of` confirm a duplicate (the plan is overridden, with a note, if the post-check planned otherwise); `drop_suffix_if_only` renames a keeper to its base key when no other key with that base is in HEAD cdl.bib; `remove_entry` marks the entry for removal (listed in `crosswave/removals.json`, written by `postcheck.py --write-removals`); `not_abstract` and `names_as_printed` are recorded. `postcheck.json` summary: `user_decisions`, `remove_entries`, `software_first_version`, `country_dropped`; `merged.json` rows: `remove_entry`, `user_decisions` |
+
 The rules run twice: once without the review (measurement) and once with it (final
 output). House normalisations run after the merge, so reviewer values are normalised too.
 
@@ -298,3 +302,39 @@ each with a regression test on the real row and a negative control
 - Laks01: `@conference` without a proceedings booktitle becomes `@misc`, flagged.
 
 The waves are re-run by the orchestrator, not by this change.
+
+## Cross-wave user decisions (2026-09-26)
+
+The user answered the cross-wave decisions page (`crosswave/review.html`; answers in
+`crosswave/decisions/`, summary in `verification/resolution-plan-2026-09-22/README.md`).
+The post-check now applies them, each with a regression test and a negative control
+(`tests/test_research_postcheck.py`, cross-wave section):
+
+- Software (`q-brainiak`: "always cite the *first* version (and use to get the year)-- and don't
+  specify a version number"): 8 wave entries have a Zenodo DOI. First-version DOI changes:
+  MannEtal23b 10.5281/zenodo.8274025 -> 8152316 (v0.1.0, 2023), MuelEtal18 1322068 -> 49907
+  (1.2.1, 2016; year 2018 -> 2016, key MuelEtal16), ChanEtal20 and Mann21c concept DOIs 3937848 ->
+  3937849 and 5136794 -> 5136795. CapoEtal17 keeps 59780 (v0.2 is the only and first version; now
+  applied, year 2016, key CapoEtal16). FitzEtal25, Mann21b, Mann21d are already their first
+  versions. Versions removed from titles: FitzEtal25, MannEtal23b, ChanEtal20, MuelEtal18. The first
+  version's creators differ from the entry's for MannEtal23b, MuelEtal18 and ChanEtal20
+  (`software_first_version_authors`, left for the user). GitHub-only `@misc` entries without a
+  DOI or version (Depo18, Eust19, Varo10, Scav05, deCa05a) are not dated by a first release: no
+  source for it was fetched.
+- Countries (`q-country`: drop): 26 entries lose a country no quote prints (Herb34, BuzsEtal94,
+  Frie06, BancEtal65's `{FR}`, and 22 `{UK}` addresses such as `London, {UK}` from a quote `London`).
+- Per entry: Ebbi85 is the 1885 German original (`{\"{U}}ber das {G}ed{\"{a}}chtnis: {U}ntersuchungen
+  zur experimentellen {P}sychologie`, Duncker \& Humblot, Leipzig, 1885; quotes checked at
+  archive.org record berdasgedcht00ebbi; the 1913 translation's title, DOI and year are withdrawn).
+  OGra11 year 2008, key OGra08. Shim94 -> Shim95b, Shim95 -> Shim95a (wave 2). BenaEtal04's book
+  title (booktitle) `{Youmans} Neurological Surgery`. BeckEtal09, CronEtal94, MannEtal97,
+  PailEtal00, SpieEtal18, TongEtal95 are real articles, not abstracts. The 9 approved duplicates
+  match the post-check's own merge plans. KahaEtal08b merges into KahaEtal08a, which keeps its
+  suffix because KahaEtal08c (a different 2008 paper) is in HEAD cdl.bib. Hwang: printed names
+  kept (DankEtal08, HwanEtal05, JacoEtal06, vanVEtal05; no unification).
+- Removals: `crosswave/removals.json` lists the 45 approved conference abstracts (JohnRedi07b is
+  one of them, also answered as `j-JohnRedi07b`); cdl.bib is not edited.
+- Herb34's rules-alone publisher/address hold no longer happens (its address quote check failed
+  only on the unprinted country); the held-address case is tested with a quote check that fails on
+  the city.
+

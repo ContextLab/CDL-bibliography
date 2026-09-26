@@ -35,7 +35,11 @@
   },
   "duplicates": {},
   "collisions": {},
-  "doi_requests_uncached": null
+  "doi_requests_uncached": null,
+  "user_decisions": {},
+  "remove_entries": [],
+  "software_first_version": {},
+  "country_dropped": []
  },
  "measurement": {
   "findings": 14,
@@ -716,6 +720,8 @@
      "Wang"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "Wang08": {
@@ -806,6 +812,8 @@
      "Wang"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "WoodEtal00a": {
@@ -905,6 +913,8 @@
      "Eichenbaum"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "YoveKanw04": {
@@ -958,6 +968,8 @@
      "Kanwisher"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "PeteEegO71": {
@@ -1070,6 +1082,8 @@
      "Eeg-Olofsson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "BrooBadd76": {
@@ -1147,6 +1161,8 @@
      "Brooks"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "Curr99": {
@@ -1220,6 +1236,8 @@
      "Curran"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "ElgeEtal97": {
@@ -1352,6 +1370,8 @@
      "Heinze"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "FinnEtal02": {
@@ -1402,6 +1422,8 @@
      "Finnigan"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "GersShim95": {
@@ -1464,6 +1486,8 @@
      "Gershberg"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "KessEtal02": {
@@ -1544,6 +1568,8 @@
      "Postma"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "PosnEtal87": {
@@ -1612,6 +1638,8 @@
      "Rafal"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "VargEtal19": {
@@ -1667,6 +1695,8 @@
      "Paller"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "WarrEtal71": {
@@ -1765,6 +1795,8 @@
      "Pratt"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "Wick68": {
@@ -1839,6 +1871,8 @@
      "Wickelgren"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "WiggEtal99": {
@@ -1914,6 +1948,8 @@
      "Martin"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "WorsEtal01": {
@@ -1965,6 +2001,8 @@
      "Worsley"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "BaloEtal99": {
@@ -2054,6 +2092,8 @@
      "Yerys"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "CrosEtal93": {
@@ -2154,6 +2194,8 @@
      "Moberg"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "StusEtal94": {
@@ -2254,6 +2296,8 @@
      "Pogue"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-044"
   },
   "Arch11b": {
@@ -2370,6 +2414,8 @@
      "Archer"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "DeusEtal06": {
@@ -2506,6 +2552,8 @@
      "Voges"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "BunnEtal99": {
@@ -2580,6 +2628,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "KnigEtal04": {
@@ -2654,6 +2704,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "MoyeEtal07": {
@@ -2746,6 +2798,8 @@
      "Jaggi"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "HumaEtal12": {
@@ -2844,6 +2898,8 @@
      "Greenberg"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "TurnBrai15": {
@@ -2896,6 +2952,8 @@
      "Braine"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "PalPal93": {
@@ -2988,6 +3046,8 @@
      "Pal"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "AdelEtal95": {
@@ -3120,6 +3180,8 @@
      "Holmes"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "TownFifi04": {
@@ -3190,6 +3252,8 @@
      "Fifić"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "CoheSeku10": {
@@ -3254,6 +3318,8 @@
      "Sekuler"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "SinkEtal98": {
@@ -3352,6 +3418,8 @@
      "Purcell"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "SeliKaha09": {
@@ -3404,6 +3472,8 @@
      "Kahana"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "Fris00": {
@@ -3490,6 +3560,8 @@
      "Friston"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "CoheEtal96": {
@@ -3584,6 +3656,8 @@
      "O´Reilly"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "ValdEtal05": {
@@ -3703,6 +3777,8 @@
      "Canales-Rodríguez"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "Yone01": {
@@ -3765,6 +3841,8 @@
      "Yonelinas"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "BurgEtal01b": {
@@ -3857,6 +3935,8 @@
      "O'Keefe"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "Colt83": {
@@ -3907,6 +3987,8 @@
      "Coltheart"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "Crai83": {
@@ -3969,6 +4051,8 @@
      "Craik"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-046"
   },
   "Fred04": {
@@ -4031,6 +4115,8 @@
      "Fredrickson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "LlinEtal98": {
@@ -4125,6 +4211,8 @@
      "Pedroarena"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "MishEtal97": {
@@ -4181,6 +4269,8 @@
      "Vargha–Khadem"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "Morr01": {
@@ -4231,6 +4321,8 @@
      "Morris"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "Fish22": {
@@ -4295,6 +4387,8 @@
      "Fisher"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "Kura81": {
@@ -4364,6 +4458,8 @@
      "Kuramoto"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "RiedEtal88": {
@@ -4442,6 +4538,8 @@
      "van Hemmen"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "DanPoo06": {
@@ -4534,6 +4632,8 @@
      "Poo"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "DestSejn03": {
@@ -4598,6 +4698,8 @@
      "SEJNOWSKI"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "Jeff95": {
@@ -4690,6 +4792,8 @@
      "Jefferys"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "Mitz85": {
@@ -4756,6 +4860,8 @@
      "Mitzdorf"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "Wang10": {
@@ -4848,6 +4954,8 @@
      "Wang"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "GrifEtal11": {
@@ -4920,6 +5028,8 @@
      "Kelly"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "Land77": {
@@ -4982,6 +5092,8 @@
      "LANDFIELD"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "ParkEtal13": {
@@ -5086,6 +5198,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "ChenEtal13b": {
@@ -5163,6 +5277,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "TangEtal24": {
@@ -5240,6 +5356,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "HanEtal24": {
@@ -5369,6 +5487,8 @@
      "Ghazvininejad"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "KwonEtal23": {
@@ -5469,6 +5589,8 @@
      "Stoica"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "Ande04": {
@@ -5566,6 +5688,8 @@
      "Anderson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-047"
   },
   "AmarEtal10": {
@@ -5645,6 +5769,8 @@
      "Stanley"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "BarEtal06": {
@@ -5729,6 +5855,8 @@
      "Halgren"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "CahiEtal96": {
@@ -5794,6 +5922,8 @@
      "McGaugh"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "FujiGrab05": {
@@ -5901,6 +6031,8 @@
      "Graybiel"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "Glim11": {
@@ -5963,6 +6095,8 @@
      "Glimcher"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "GoniEtal14": {
@@ -6054,6 +6188,8 @@
      "Sporns"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "GrunEtal99": {
@@ -6142,6 +6278,8 @@
      "Elger"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "HoffBerr09": {
@@ -6228,6 +6366,8 @@
      "Berry"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "BorzEtal23a": {
@@ -6352,6 +6492,8 @@
      "Raffel"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "vanPEtal21": {
@@ -6404,6 +6546,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "Shep68": {
@@ -6488,6 +6632,8 @@
      "Shepard"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "MilnWitt08": {
@@ -6582,6 +6728,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "GrifStey02": {
@@ -6663,6 +6811,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "JoneEtal03": {
@@ -6759,6 +6909,8 @@
      "Zissman"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "PhamEtal05": {
@@ -6827,6 +6979,8 @@
      "Nguyen"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "MairEtal09a": {
@@ -6944,6 +7098,8 @@
      "Sapiro"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "Sten95": {
@@ -7010,6 +7166,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "HaynEtal09": {
@@ -7224,6 +7382,8 @@
      "Koditschek"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "GeisEtal08": {
@@ -7312,6 +7472,8 @@
      "Schultes"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "Maha36": {
@@ -7366,6 +7528,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-048"
   },
   "LeBiEtal93": {
@@ -7473,6 +7637,8 @@
      "Bonnerot"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "LohnEtal18": {
@@ -7573,6 +7739,8 @@
      "Davachi"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "MankEtal12": {
@@ -7640,6 +7808,8 @@
      "Leutgeb"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "MazaJens06": {
@@ -7708,6 +7878,8 @@
      "Jensen"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "Mosc95": {
@@ -7825,6 +7997,8 @@
      "Houle"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "NguyEtal16a": {
@@ -7903,6 +8077,8 @@
      "Leifer"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "NybeEtal00": {
@@ -8007,6 +8183,8 @@
      "Tulving"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "NybeEtal03": {
@@ -8113,6 +8291,8 @@
      "Bäckman"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "PetrEtal95": {
@@ -8187,6 +8367,8 @@
      "Evans"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "RutiEtal08": {
@@ -8249,6 +8431,8 @@
      "Mamelak"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "SeagEtal02": {
@@ -8321,6 +8505,8 @@
      "Berry"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "SohnEtal00": {
@@ -8411,6 +8597,8 @@
      "Carter"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "SongEtal11": {
@@ -8506,6 +8694,8 @@
      "Squire"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "SterEtal96a": {
@@ -8624,6 +8814,8 @@
      "Rosen"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "WangEtal04": {
@@ -8732,6 +8924,8 @@
      "Goldman-Rakic"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "WheeEtal00": {
@@ -8810,6 +9004,8 @@
      "Buckner"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "ZhenEtal20": {
@@ -8857,6 +9053,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "GrunSher01": {
@@ -8930,6 +9128,8 @@
      "Sherrington"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "HuanEtal98": {
@@ -9040,6 +9240,8 @@
      "Liu"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "MaguEtal96": {
@@ -9128,6 +9330,8 @@
     "authors": [],
     "families": []
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-049"
   },
   "ClarEtal11": {
@@ -9230,6 +9434,8 @@
      "Moore"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "Holm45": {
@@ -9292,6 +9498,8 @@
      "Holmes"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "ClanEtal19": {
@@ -9407,6 +9615,8 @@
      "Lin"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "CordEtal02": {
@@ -9479,6 +9689,8 @@
      "Maravilla"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "ZhanEtal18b": {
@@ -9573,6 +9785,8 @@
      "Song"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "AschEben62": {
@@ -9603,6 +9817,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "SinhEtal06": {
@@ -9699,6 +9915,8 @@
      "Russell"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "OnslEtal11": {
@@ -9765,6 +9983,8 @@
      "Jones"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "Adey67a": {
@@ -9822,6 +10042,8 @@
      "Adey"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "CronEtal06": {
@@ -9883,6 +10105,8 @@
      "Korzeniewska"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "Dodr02": {
@@ -9940,6 +10164,8 @@
      "Dodrill"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "HardNade09": {
@@ -9992,6 +10218,8 @@
      "Nadel"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "HassMcGa04": {
@@ -10045,6 +10273,8 @@
      "McGaughy"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "Helm02": {
@@ -10102,6 +10332,8 @@
      "Helmstaedter"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "KissEtal06": {
@@ -10156,6 +10388,8 @@
      "Herbert"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "RibaDash02": {
@@ -10215,6 +10449,8 @@
      "Dashtipour"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "SrinEtal06a": {
@@ -10276,6 +10512,8 @@
      "Nunez"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "LachEtal12": {
@@ -10370,6 +10608,8 @@
      "Crone"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "MitcEtal08b": {
@@ -10453,6 +10693,8 @@
      "Kirk"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "PennEtal94": {
@@ -10527,6 +10769,8 @@
      "LOPESDASILVA"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-050"
   },
   "TrulEtal97": {
@@ -10612,6 +10856,8 @@
      "MEYER"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "FrenDoub74": {
@@ -10683,6 +10929,8 @@
      "Doubilet"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "MengEtal92": {
@@ -10769,6 +11017,8 @@
      "Rubin"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "Pyly73": {
@@ -10786,6 +11036,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "YonePark07": {
@@ -10861,6 +11113,8 @@
      "Parks"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "Bala98b": {
@@ -10928,6 +11182,8 @@
      "Balakrishnan"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "GarrEtal12": {
@@ -11088,6 +11344,8 @@
      "Ponsoda"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "ShapPale70": {
@@ -11112,6 +11370,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "GambWils16": {
@@ -11204,6 +11464,8 @@
      "Wilson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "Perr14": {
@@ -11294,6 +11556,8 @@
      "Perrin"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "Skag25": {
@@ -11325,6 +11589,8 @@
     "action": "keep"
    },
    "doi_status": null,
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "Unde45": {
@@ -11415,6 +11681,8 @@
      "Underwood"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "Ward37": {
@@ -11489,6 +11757,8 @@
      "Ward"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "Webb17": {
@@ -11575,6 +11845,8 @@
      "Webb"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "McMa65": {
@@ -11630,6 +11902,8 @@
      "McManis"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "LatiEtal10": {
@@ -11742,6 +12016,8 @@
      "Péruch"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "MeckHage84": {
@@ -11834,6 +12110,8 @@
      "Hager"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "Calk96": {
@@ -11911,6 +12189,8 @@
      "Calkins"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "East59": {
@@ -11978,6 +12258,8 @@
      "Easterbrook"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "Este60": {
@@ -12042,6 +12324,8 @@
      "Estes"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-051"
   },
   "Farr12": {
@@ -12092,6 +12376,8 @@
      "Farrell"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "Flex81": {
@@ -12156,6 +12442,8 @@
      "Flexser"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "Hint81": {
@@ -12242,6 +12530,8 @@
      "Hintzman"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "Hint86": {
@@ -12319,6 +12609,8 @@
      "Hintzman"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "HubeEtal01": {
@@ -12375,6 +12667,8 @@
      "Ruys"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "KahaEtal08c": {
@@ -12464,6 +12758,8 @@
      "Howard"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "LewaLi94": {
@@ -12547,6 +12843,8 @@
      "Li"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "Mart65": {
@@ -12662,6 +12960,8 @@
      "Martin"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "MensRaai88": {
@@ -12726,6 +13026,8 @@
      "Raaijmakers"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "Metc82": {
@@ -12812,6 +13114,8 @@
      "Eich"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "Metc85": {
@@ -12906,6 +13210,8 @@
      "Eich"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "Murd06": {
@@ -12984,6 +13290,8 @@
      "Murdock"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "NosoPalm97": {
@@ -13048,6 +13356,8 @@
      "Palmeri"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "Osgo49": {
@@ -13129,6 +13439,8 @@
      "Osgood"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "ParkYone07": {
@@ -13195,6 +13507,8 @@
      "Yonelinas"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "PearHall80": {
@@ -13295,6 +13609,8 @@
      "Hall"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "Pike84": {
@@ -13359,6 +13675,8 @@
      "Pike"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "PittEtal06": {
@@ -13415,6 +13733,8 @@
      "Myung"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "PlauMcCl10": {
@@ -13519,6 +13839,8 @@
      "McClelland"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "PurcEtal10": {
@@ -13664,6 +13986,8 @@
      "Palmeri"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-052"
   },
   "RaaiShif81a": {
@@ -13728,6 +14052,8 @@
      "Shiffrin"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "RatcStar08": {
@@ -13850,6 +14176,8 @@
      "Starns"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "Rest57": {
@@ -13916,6 +14244,8 @@
      "Restle"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "SheyEtal09": {
@@ -14034,6 +14364,8 @@
      "Gerstner"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "Squi92": {
@@ -14100,6 +14432,8 @@
      "Squire"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "TalmEtal19": {
@@ -14155,6 +14489,8 @@
      "Daw"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "Trop86": {
@@ -14221,6 +14557,8 @@
      "Trope"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "TulvThom73": {
@@ -14308,6 +14646,8 @@
      "Thomson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "UsheEtal08": {
@@ -14388,6 +14728,8 @@
      "Goshen-Gottstein"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "Wick69": {
@@ -14457,6 +14799,8 @@
      "Wickelgran"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "AlleGart68": {
@@ -14557,6 +14901,8 @@
      "Garton"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "Bank00": {
@@ -14608,6 +14954,8 @@
      "Banks"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "BjorEtal68": {
@@ -14691,6 +15039,8 @@
      "Legrand"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "Blak67": {
@@ -14796,6 +15146,8 @@
      "Blake"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "BousRosn70": {
@@ -14894,6 +15246,8 @@
      "Rosner"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "Crai68a": {
@@ -14968,6 +15322,8 @@
      "Craik"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "CrowMelt65": {
@@ -15032,6 +15388,8 @@
      "Melton"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "Dall65": {
@@ -15125,6 +15483,8 @@
      "Dallett"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "FozaWaug69": {
@@ -15217,6 +15577,8 @@
      "Waugh"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "Hinr68": {
@@ -15291,6 +15653,8 @@
      "Hinrichs"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-053"
   },
   "LiEtal05": {
@@ -15365,6 +15729,8 @@
      "Lindenberger"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "MoglEtal08": {
@@ -15433,6 +15799,8 @@
      "Sliwinski"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "Muth65": {
@@ -15509,6 +15877,8 @@
      "Muther"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "NeweEtal01": {
@@ -15589,6 +15959,8 @@
      "Bülthoff"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "PansKori03": {
@@ -15690,6 +16062,8 @@
      "Koriat"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "PashEtal08": {
@@ -15773,6 +16147,8 @@
      "Bjork"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "PeteJame67": {
@@ -15846,6 +16222,8 @@
      "James"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "Ster67a": {
@@ -15920,6 +16298,8 @@
      "Sternberg"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "GlasKwia70": {
@@ -16029,6 +16409,8 @@
      "Kwiatkowski"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "VonR33": {
@@ -16145,6 +16527,8 @@
      "von Restorff"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "Mart07": {
@@ -16222,6 +16606,8 @@
      "Martin"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "BenjEtal12": {
@@ -16295,6 +16681,8 @@
      "Johnson"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "KramEtal94": {
@@ -16351,6 +16739,8 @@
      "Logan"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "LaVoLigh92": {
@@ -16445,6 +16835,8 @@
      "Light"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "McInCrai87": {
@@ -16563,6 +16955,8 @@
      "Craik"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "RatcEtal01": {
@@ -16657,6 +17051,8 @@
      "McKoon"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "Verh03": {
@@ -16708,6 +17104,8 @@
      "Verhaeghen"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "Chun03": {
@@ -16770,6 +17168,8 @@
      "Chun"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "DelaEtal10": {
@@ -16852,6 +17252,8 @@
     "authors": [],
     "families": []
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   },
   "HuntEtal89": {
@@ -16906,6 +17308,8 @@
      "Yee"
     ]
    },
+   "user_resolved": false,
+   "software": null,
    "batch": "batch-054"
   }
  },

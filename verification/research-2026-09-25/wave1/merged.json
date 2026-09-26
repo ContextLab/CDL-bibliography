@@ -107,6 +107,8 @@
     "Collingridge"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -154,6 +156,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -262,6 +266,8 @@
     "Hamidi"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -298,6 +304,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -421,6 +429,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -482,6 +492,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -583,8 +595,19 @@
    "target_base": "LongKaha14",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-LongKaha14): remove LongKaha14 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-LongKaha14): remove LongKaha14 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -603,7 +626,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "McGa89",
@@ -718,6 +741,8 @@
     "McGaugh"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -754,6 +779,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -839,6 +866,8 @@
     "Hampson"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -945,6 +974,8 @@
     "Miller"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -1094,6 +1125,8 @@
     "Donoghue"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1220,6 +1253,8 @@
     "Bjork"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -1308,6 +1343,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -1405,6 +1442,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -1560,6 +1599,8 @@
     "Konopacki"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1642,6 +1683,8 @@
     "Rugg"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -1730,6 +1773,8 @@
     "Katz"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -1829,6 +1874,8 @@
     "Bekker"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1949,6 +1996,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -2057,6 +2106,8 @@
     "Nir"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2127,6 +2178,8 @@
     "Thompson-Schill"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2208,7 +2261,8 @@
     "text": "GoenLogo08 (merge into existing duplicate)",
     "key": "GoenLogo08"
    },
-   "reviewer_agrees": true
+   "reviewer_agrees": true,
+   "user_decision": "cross-wave dup-GoenEtal08-GoenLogo08: correct"
   },
   "flags": [
    {
@@ -2216,6 +2270,12 @@
     "field": "key",
     "detail": "same work already in cdl.bib as GoenLogo08: merge GoenEtal08 into it",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": "key",
+    "detail": "cross-wave dup-GoenEtal08-GoenLogo08: correct: merge GoenEtal08 into GoenLogo08 (approved duplicate)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -2241,6 +2301,10 @@
     "Logothetis"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [
+   "cross-wave dup-GoenEtal08-GoenLogo08: correct: merge GoenEtal08 into GoenLogo08 (approved duplicate)"
+  ],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -2351,6 +2415,8 @@
     "Bennett"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -2460,6 +2526,8 @@
     "Gallant"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2554,6 +2622,8 @@
     "Ranganath"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -2645,6 +2715,8 @@
     "Chen"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2721,6 +2793,8 @@
     "Collett"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2809,7 +2883,8 @@
    ],
    "rename_reason": "key does not follow the corrected metadata",
    "merge_into": "DawDoya06",
-   "detail": "same work already in cdl.bib as DawDoya06: merge DawKenj06 into it"
+   "detail": "same work already in cdl.bib as DawDoya06: merge DawKenj06 into it",
+   "user_decision": "cross-wave dup-DawKenj06-DawDoya06: correct"
   },
   "flags": [
    {
@@ -2823,6 +2898,12 @@
     "field": "key",
     "detail": "same work already in cdl.bib as DawDoya06: merge DawKenj06 into it",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": "key",
+    "detail": "cross-wave dup-DawKenj06-DawDoya06: correct: merge DawKenj06 into DawDoya06 (approved duplicate)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -2848,6 +2929,10 @@
     "Doya"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [
+   "cross-wave dup-DawKenj06-DawDoya06: correct: merge DawKenj06 into DawDoya06 (approved duplicate)"
+  ],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -2941,6 +3026,8 @@
     "Eichenbaum"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3040,6 +3127,8 @@
     "Fries"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -3135,6 +3224,8 @@
     "Ferbinteanu"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3227,6 +3318,8 @@
     "Bonin"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -3306,6 +3399,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3353,6 +3448,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3449,6 +3546,8 @@
     "George"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3542,6 +3641,8 @@
     "Strauss"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3643,6 +3744,8 @@
     "Richards"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3720,6 +3823,8 @@
     "Saxe"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3813,6 +3918,8 @@
     "Kirkham"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3905,6 +4012,8 @@
     "Frankish"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -3976,6 +4085,8 @@
     "COWAN"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4066,6 +4177,8 @@
     "Moreno"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4151,6 +4264,8 @@
     "Roediger, III"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4230,6 +4345,8 @@
     "Hulme"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -4301,6 +4418,8 @@
     "Reed Hunt"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4376,6 +4495,8 @@
     "ROEDIGERIII"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -4478,6 +4599,8 @@
     "Ratcliff"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4594,6 +4717,8 @@
     "Levelt"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -4717,6 +4842,8 @@
     "Lewis"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -4780,6 +4907,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -4870,6 +4999,8 @@
     "Unsworth"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4958,6 +5089,8 @@
     "Chang"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5068,6 +5201,8 @@
     "Jellinger"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -5157,6 +5292,8 @@
     "Tian"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -5270,6 +5407,8 @@
     "Glimcher"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5390,6 +5529,8 @@
     "Optican"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5500,6 +5641,8 @@
     "Arduini"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -5607,6 +5750,8 @@
     "Kopell"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -5758,6 +5903,8 @@
     "Buckner"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -5837,6 +5984,8 @@
     "Knight"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -5912,6 +6061,8 @@
     "Velupillai"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6018,6 +6169,8 @@
    "authors": [],
    "families": []
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6119,6 +6272,8 @@
     "Bunney"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6220,6 +6375,8 @@
     "Bucci"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6335,6 +6492,8 @@
     "Karhu"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6417,6 +6576,8 @@
     "Jones"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6522,6 +6683,8 @@
     "Schürmann"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6623,6 +6786,8 @@
     "Ishihara"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6742,6 +6907,8 @@
     "Storm Van Leeuwen"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -6816,6 +6983,8 @@
     "Chiu"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6927,6 +7096,8 @@
     "Halász"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7066,6 +7237,8 @@
     "Feldon"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -7200,6 +7373,8 @@
     "Lenz"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7303,6 +7478,8 @@
     "Bucci"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7383,6 +7560,8 @@
     "Ojemann"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7488,6 +7667,8 @@
     "Ojemann"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7581,6 +7762,8 @@
     "Lozano"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7685,6 +7868,8 @@
     "Ojemann"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7828,6 +8013,8 @@
     "Haglund"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -7858,9 +8045,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-RaghEtal99): remove RaghEtal99 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-RaghEtal99): remove RaghEtal99 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7932,9 +8129,19 @@
     "field": "volume",
     "detail": "verdict 'correction' but volume is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-SiapEtal00): remove SiapEtal00 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-SiapEtal00): remove SiapEtal00 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7982,9 +8189,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-WilsEtal79): remove WilsEtal79 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-WilsEtal79): remove WilsEtal79 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -8037,9 +8254,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-WilsEtal80): remove WilsEtal80 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-WilsEtal80): remove WilsEtal80 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -8117,6 +8344,8 @@
     "Freeman"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -8173,6 +8402,8 @@
     "Schmidt"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -8250,6 +8481,8 @@
     "Ren??"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8354,6 +8587,8 @@
     "Raglin"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -8498,6 +8733,8 @@
     "de Rougemont"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -8589,6 +8826,8 @@
     "Garell"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8751,6 +8990,8 @@
     "Baltuch"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -8853,6 +9094,8 @@
     "Giannakopoulos"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -8984,6 +9227,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -9087,6 +9332,8 @@
     "Chan"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9165,6 +9412,8 @@
     "Wyner"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -9242,6 +9491,8 @@
     "Antoniak"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9306,6 +9557,8 @@
     "Schilling"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9432,6 +9685,8 @@
     "Shenker"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -9486,6 +9741,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -9555,6 +9812,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -9622,6 +9881,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -9722,6 +9983,8 @@
    "issued_year": "1995",
    "type": "Dataset"
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -9763,6 +10026,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9779,15 +10044,39 @@
    "ENTRYTYPE": "book",
    "ID": "Penf58b"
   },
-  "final_changes": [],
+  "final_changes": [
+   {
+    "field": "address",
+    "current": "Liverpool, {UK}",
+    "proposed": "Liverpool",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21390344M.json",
+      "quote": "\"publish_places\": [\"Liverpool\"]"
+     }
+    ],
+    "normalised_from": "Liverpool, {UK}",
+    "normalised_by": "postcheck"
+   }
+  ],
   "removals": {},
   "key_plan": {
    "current_key": "Penf58b",
    "target_base": "Penf58",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "country_dropped",
+    "field": "address",
+    "detail": "'Liverpool, {UK}': no quote prints the country '{UK}'; country dropped: 'Liverpool' (user rule, cross-wave q-country)",
+    "action": "applied"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9813,6 +10102,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -9873,6 +10164,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -9904,15 +10197,39 @@
    "ENTRYTYPE": "book",
    "ID": "Galt83"
   },
-  "final_changes": [],
+  "final_changes": [
+   {
+    "field": "address",
+    "current": "London, {UK}",
+    "proposed": "London",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=10032396&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">London</placeTerm>"
+     }
+    ],
+    "normalised_from": "London, {UK}",
+    "normalised_by": "postcheck"
+   }
+  ],
   "removals": {},
   "key_plan": {
    "current_key": "Galt83",
    "target_base": "Galt83",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "country_dropped",
+    "field": "address",
+    "detail": "'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+    "action": "applied"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9938,6 +10255,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -10029,6 +10348,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -10061,6 +10382,20 @@
   },
   "final_changes": [
    {
+    "field": "address",
+    "current": "Paris, {FR}",
+    "proposed": "Paris",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL58329731M.json",
+      "quote": "\"publish_places\": [\"Paris\"]"
+     }
+    ],
+    "normalised_from": "Paris, {FR}",
+    "normalised_by": "postcheck"
+   },
+   {
     "field": "title",
     "current": "La st\\'er\\'eo-\\'electroenc\\'ephalographie dans l'epilepsie",
     "proposed": "La st\\'{e}r\\'{e}o-\\'{e}lectroenc\\'{e}phalographie dans l'\\'{e}pilepsie",
@@ -10079,8 +10414,17 @@
    "target_base": "BancEtal65",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "country_dropped",
+    "field": "address",
+    "detail": "'Paris, {FR}': no quote prints the country '{FR}'; country dropped: 'Paris' (user rule, cross-wave q-country)",
+    "action": "applied"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -10127,6 +10471,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -10208,6 +10554,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -10299,6 +10647,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -10362,6 +10712,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -10453,6 +10805,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -10508,6 +10862,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -10560,6 +10916,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -10625,6 +10983,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -10641,7 +11001,22 @@
    "ENTRYTYPE": "book",
    "ID": "Yate66"
   },
-  "final_changes": [],
+  "final_changes": [
+   {
+    "field": "address",
+    "current": "London, {UK}",
+    "proposed": "London",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=66074296&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">London</placeTerm>"
+     }
+    ],
+    "normalised_from": "London, {UK}",
+    "normalised_by": "postcheck"
+   }
+  ],
   "removals": {},
   "key_plan": {
    "current_key": "Yate66",
@@ -10654,9 +11029,17 @@
     "field": "publisher",
     "detail": "validator: publisher not covered by its quotes (missing ['kegan']; failures [])",
     "action": "held"
+   },
+   {
+    "code": "country_dropped",
+    "field": "address",
+    "detail": "'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+    "action": "applied"
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -10691,6 +11074,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -10731,6 +11116,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -10842,7 +11229,8 @@
     "text": "KahaMill13 (merge)",
     "key": "KahaMill13"
    },
-   "reviewer_agrees": true
+   "reviewer_agrees": true,
+   "user_decision": "cross-wave dup-KahaMill10-KahaMill13: correct"
   },
   "flags": [
    {
@@ -10856,6 +11244,12 @@
     "field": "key",
     "detail": "same work already in cdl.bib as KahaMill13: merge KahaMill10 into it",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": "key",
+    "detail": "cross-wave dup-KahaMill10-KahaMill13: correct: merge KahaMill10 into KahaMill13 (approved duplicate)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -10875,6 +11269,10 @@
    "authors": [],
    "families": []
   },
+  "remove_entry": null,
+  "user_decisions": [
+   "cross-wave dup-KahaMill10-KahaMill13: correct: merge KahaMill10 into KahaMill13 (approved duplicate)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -10952,6 +11350,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11028,6 +11428,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11134,6 +11536,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11274,6 +11678,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11361,6 +11767,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -11440,6 +11848,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -11514,6 +11924,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11575,6 +11987,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11694,6 +12108,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11789,6 +12205,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11864,6 +12282,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11972,6 +12392,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -12054,6 +12476,8 @@
     "Zelinski"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -12126,6 +12550,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -12167,6 +12593,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -12303,6 +12731,8 @@
     "Wilson"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -12323,6 +12753,21 @@
    "ID": "Frie06"
   },
   "final_changes": [
+   {
+    "field": "address",
+    "current": "Heidelberg, Germany",
+    "proposed": "Berlin",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL19888411M.json",
+      "quote": "\"publish_places\": [\"Berlin\"]"
+     }
+    ],
+    "normalised_from": "Berlin, Germany",
+    "normalised_by": "postcheck",
+    "reviewer": "unsure"
+   },
    {
     "field": "booktitle",
     "current": "Handbook of Computational Statistics: Data Visualization",
@@ -12423,10 +12868,10 @@
     "action": "held"
    },
    {
-    "code": "quote_check_failed",
+    "code": "country_dropped",
     "field": "address",
-    "detail": "validator: address not covered by its quotes (missing ['germany']; failures [])",
-    "action": "held"
+    "detail": "'Berlin, Germany': the quotes cover it except the country 'Germany', which no quote prints; country dropped: 'Berlin' (user rule, cross-wave q-country)",
+    "action": "applied"
    },
    {
     "code": "key_collision",
@@ -12456,6 +12901,8 @@
     "Friendly"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -12577,6 +13024,8 @@
     "Kahana"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -12651,6 +13100,8 @@
     "Hasher"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -12742,6 +13193,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -12788,7 +13241,7 @@
    {
     "field": "address",
     "current": "New York, {NY}",
-    "proposed": "Hove, {UK}",
+    "proposed": "Hove",
     "source": "reviewer",
     "evidence": [
      {
@@ -12798,6 +13251,8 @@
       ]
      }
     ],
+    "normalised_from": "Hove, {UK}",
+    "normalised_by": "postcheck",
     "reviewer": "agree"
    }
   ],
@@ -12827,6 +13282,12 @@
     "action": "held"
    },
    {
+    "code": "country_dropped",
+    "field": "address",
+    "detail": "'Hove, {UK}': no quote prints the country '{UK}'; country dropped: 'Hove' (user rule, cross-wave q-country)",
+    "action": "applied"
+   },
+   {
     "code": "other_version_named",
     "field": null,
     "detail": "the researcher's notes name another version ('published version'): replacement is the user's decision",
@@ -12846,6 +13307,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -12911,7 +13374,7 @@
    {
     "field": "address",
     "current": "England, {UK}",
-    "proposed": "Hove, {UK}",
+    "proposed": "Hove",
     "source": "researcher",
     "evidence": [
      {
@@ -12919,6 +13382,8 @@
       "quote": "First published 2009 by Psychology Press 27 Church Road, Hove, East Sussex BN3 2FA"
      }
     ],
+    "normalised_from": "Hove, {UK}",
+    "normalised_by": "postcheck",
     "reviewer": "agree"
    },
    {
@@ -12979,6 +13444,12 @@
     "action": "dropped"
    },
    {
+    "code": "country_dropped",
+    "field": "address",
+    "detail": "'Hove, {UK}': no quote prints the country '{UK}'; country dropped: 'Hove' (user rule, cross-wave q-country)",
+    "action": "applied"
+   },
+   {
     "code": "unverified_suggestions",
     "field": null,
     "detail": "values left not_found or suggested by the rules (never applied): pages='44--62'",
@@ -12986,6 +13457,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -13090,6 +13563,8 @@
     "Postman"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -13139,6 +13614,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -13182,7 +13659,7 @@
    {
     "field": "address",
     "current": "Oxford, {UK}",
-    "proposed": "London, {UK}",
+    "proposed": "London",
     "source": "reviewer",
     "evidence": [
      {
@@ -13191,6 +13668,8 @@
       ]
      }
     ],
+    "normalised_from": "London, {UK}",
+    "normalised_by": "postcheck",
     "reviewer": "agree"
    }
   ],
@@ -13201,6 +13680,12 @@
    "action": "keep"
   },
   "flags": [
+   {
+    "code": "country_dropped",
+    "field": "address",
+    "detail": "'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+    "action": "applied"
+   },
    {
     "code": "unverified_suggestions",
     "field": null,
@@ -13215,6 +13700,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -13257,7 +13744,7 @@
    {
     "field": "address",
     "current": "Oxford, {UK}",
-    "proposed": "London, {UK}",
+    "proposed": "London",
     "source": "reviewer",
     "evidence": [
      {
@@ -13266,6 +13753,8 @@
       ]
      }
     ],
+    "normalised_from": "London, {UK}",
+    "normalised_by": "postcheck",
     "reviewer": "agree"
    }
   ],
@@ -13276,6 +13765,12 @@
    "action": "keep"
   },
   "flags": [
+   {
+    "code": "country_dropped",
+    "field": "address",
+    "detail": "'London, {UK}': no quote prints the country '{UK}'; country dropped: 'London' (user rule, cross-wave q-country)",
+    "action": "applied"
+   },
    {
     "code": "unverified_suggestions",
     "field": null,
@@ -13290,6 +13785,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -13377,6 +13874,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -13440,6 +13939,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -13505,6 +14006,8 @@
    "registered": false,
    "error": "doi.org/api/handles returned 404 (handle not found)"
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -13563,6 +14066,8 @@
    "registered": false,
    "error": "doi.org/api/handles returned 404 (handle not found)"
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -13650,6 +14155,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -13779,6 +14286,8 @@
     "Bordwell"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -13824,6 +14333,8 @@
    "registered": false,
    "error": "doi.org/api/handles returned 404 (handle not found)"
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -13893,6 +14404,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -14003,6 +14516,8 @@
     "Singer"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -14105,6 +14620,8 @@
     "McNamara"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -14192,6 +14709,8 @@
     "Lyon"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -14254,6 +14773,8 @@
     "Montello"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -14270,15 +14791,40 @@
    "ENTRYTYPE": "misc",
    "ID": "FitzEtal25"
   },
-  "final_changes": [],
+  "final_changes": [
+   {
+    "field": "title",
+    "current": "{ContextLab}/efficient-learning-khan: {v1.0.0}",
+    "proposed": "{ContextLab}/efficient-learning-khan",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.17783435",
+      "quote": "ContextLab/efficient-learning-khan: v1.0.0"
+     }
+    ],
+    "normalised_from": "{ContextLab}/efficient-learning-khan: {v1.0.0}",
+    "normalised_by": "postcheck",
+    "reviewer": "agree"
+   }
+  ],
   "removals": {},
   "key_plan": {
    "current_key": "FitzEtal25",
    "target_base": "FitzEtal25",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "software_version_removed",
+    "field": "title",
+    "detail": "'{ContextLab}/efficient-learning-khan: {v1.0.0}' -> '{ContextLab}/efficient-learning-khan' (user rule: no version number)",
+    "action": "applied"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14317,6 +14863,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -14341,6 +14889,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -14375,21 +14925,27 @@
    {
     "field": "doi",
     "current": null,
-    "proposed": "10.5281/zenodo.8274025",
-    "source": "reviewer",
+    "proposed": "10.5281/zenodo.8152316",
+    "source": "postcheck",
     "evidence": [
      {
-      "reviewer_problems": [
-       "Zenodo API (https://zenodo.org/api/records?q=conceptrecid:8152315&all_versions=true) lists v0.1.0, v0.1.1, v0.2.0 (creators 'Jeremy Manning', 'Hemu', 'Konrad Kording') and v0.2.1 2023-08-22 (adds 'Yaroslav Halchenko'); titles are 'ContextLab/chatify: vX.Y.Z (...)'. Cited title appears nowhere (README says only 'Chatify is a python package that enables ipython magic commands...'), so title not_found and the software-form replacement are right.",
-       "Author 'Manjunatha' rests only on the GitHub profile blog link (api.github.com/users/HemuManju: name 'Hemu', blog 'https://hemumanju.github.io/portfolio/'), not an acceptable source; per the single-source surname rule this needs corroboration or the user's sign-off (he is a lab collaborator, so the user can confirm). Also: if the latest version v0.2.1 is chosen per 'latest version' rule, author list gains Y Halchenko (4 authors, key stays MannEtal23b)."
-      ]
+      "url": "https://zenodo.org/api/records/8274025/versions?size=25&page=1&allversions=true",
+      "record": {
+       "doi": "10.5281/zenodo.8152316",
+       "date": "2023-07-16",
+       "version": "v0.1.0",
+       "title": "ContextLab/chatify: v0.1.0 (July, 2023)",
+       "concept": "8152315"
+      }
      }
-    ]
+    ],
+    "normalised_from": "10.5281/zenodo.8274025",
+    "normalised_by": "postcheck"
    },
    {
     "field": "title",
     "current": "Chatify: {A} {J}upyter extension for adding {LLM}-driven chatbots to interactive notebooks",
-    "proposed": "{ContextLab}/chatify: {v0.2.1}",
+    "proposed": "{ContextLab}/chatify",
     "source": "reviewer",
     "evidence": [
      {
@@ -14399,6 +14955,8 @@
       ]
      }
     ],
+    "normalised_from": "{ContextLab}/chatify: {v0.2.1}",
+    "normalised_by": "postcheck",
     "reviewer": "agree"
    }
   ],
@@ -14416,9 +14974,21 @@
     "action": "flag"
    },
    {
-    "code": "doi_title_part_number",
+    "code": "software_first_version",
     "field": "doi",
-    "detail": "10.5281/zenodo.8274025 is registered to 'ContextLab/chatify: v0.2.1 (August, 2023)': titles agree except for part numbers ('ContextLab/chatify: v0.2.1 (August, 2023)' vs '{ContextLab}/chatify: {v0.2.1}'); applied: the reviewer confirms the DOI (reviewer value)",
+    "detail": "10.5281/zenodo.8274025 is not the first version of Zenodo release series 8152315: cite the first version 10.5281/zenodo.8152316 (2023-07-16, version 'v0.1.0'; user rule)",
+    "action": "applied"
+   },
+   {
+    "code": "software_first_version_authors",
+    "field": "author",
+    "detail": "the first version 10.5281/zenodo.8152316 lists 3 creator(s) (Jeremy Manning, Hemu, Konrad Kording); the entry's author list differs (only in the first version: ['hemu']; only in the entry: ['halchenko', 'manjunatha']); authors left as they are for the user",
+    "action": "flag"
+   },
+   {
+    "code": "software_version_removed",
+    "field": "title",
+    "detail": "'{ContextLab}/chatify: {v0.2.1}' -> '{ContextLab}/chatify' (user rule: no version number)",
     "action": "applied"
    },
    {
@@ -14429,25 +14999,25 @@
    }
   ],
   "doi_status": {
-   "doi": "10.5281/zenodo.8274025",
+   "doi": "10.5281/zenodo.8152316",
    "registered": true,
    "ra": "DataCite",
-   "title": "ContextLab/chatify: v0.2.1 (August, 2023)",
+   "title": "ContextLab/chatify: v0.1.0 (July, 2023)",
    "authors": [
     "Manning, Jeremy",
     "Hemu",
-    "Halchenko, Yaroslav",
     "Kording, Konrad"
    ],
    "families": [
     "Manning",
     "Hemu",
-    "Halchenko",
     "Kording"
    ],
    "issued_year": "2023",
    "type": "Software"
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -14490,6 +15060,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -14515,6 +15087,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14566,6 +15140,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -14683,6 +15259,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -14804,6 +15382,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -14853,6 +15433,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -14896,6 +15478,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -14953,6 +15537,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -14994,6 +15580,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -15021,6 +15609,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -15045,6 +15635,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -15098,6 +15690,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -15150,6 +15744,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -15192,6 +15788,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -15241,6 +15839,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15289,6 +15889,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -15377,6 +15979,8 @@
     "Zhou"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15460,6 +16064,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -15566,6 +16172,8 @@
     "Zhou"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -15592,6 +16200,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -15618,6 +16228,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15657,6 +16269,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15758,6 +16372,8 @@
     "Zhou"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15844,6 +16460,8 @@
     "McKinney"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15978,6 +16596,8 @@
     "Daumé III"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -16124,6 +16744,8 @@
     "Pennock"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -16192,9 +16814,19 @@
     "field": "verdict",
     "detail": "verdict ambiguous: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-BranEtal04): remove BranEtal04 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-BranEtal04): remove BranEtal04 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -16285,6 +16917,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16406,6 +17040,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16471,6 +17107,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16536,6 +17174,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -16630,6 +17270,8 @@
     "Manning"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -16685,6 +17327,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16770,6 +17414,8 @@
     "Ethayarajh"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -16872,6 +17518,8 @@
     "Manning"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -16981,6 +17629,8 @@
     "Kipp"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  }

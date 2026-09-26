@@ -1239,12 +1239,24 @@ def test_off_rule_key_kept_without_key_field_change(bib):
 
 def test_publisher_with_held_address_is_one_decision(bib):
     """Herb34: the 1891 Langensalza publisher was applied next to the held 1834 address
-    'Königsberg'. Rules alone: both are held, one flag; with the reviewer's address both apply."""
+    'Königsberg'. Rules alone: both are held, one flag; with the reviewer's address both apply.
+
+    Since the user's country rule (2026-09-26) the real Herb34 address is no longer held:
+    its quote check failed only on 'Germany', which no quote prints, so the address applies
+    as 'Langensalza' and the publisher with it. The held-address case is kept below with a
+    quote check that fails on the city itself."""
     rec = checkw(bib, "8", "Herb34")
+    assert changed(rec)["address"] == "Langensalza" and "publisher" in changed(rec)
+    assert "publisher_address_held" not in codes(rec) and "country_dropped" in codes(rec)
+    validation = copy.deepcopy(VALIDATION8["Herb34"])
+    validation["fields"]["address"]["value_missing_from_quotes"] = ["langensalza", "germany"]
+    rec = pc.check_entry(ROWS8["Herb34"], bib["Herb34"], bib, ctx_for(bib), validation=validation)
     assert "publisher" not in changed(rec) and {"publisher", "address"} <= set(rec["held"])
     assert any(f["code"] == "publisher_address_held" and f["action"] == "held" for f in rec["flags"])
     rec = checkw(bib, "8", "Herb34", review=True)
-    assert changed(rec)["address"] == "Langensalza, Germany" and "publisher" in changed(rec)
+    # the reviewer's 'Langensalza, Germany' loses the country no quote prints (user rule
+    # 2026-09-26, cross-wave q-country: drop a country the source does not print)
+    assert changed(rec)["address"] == "Langensalza" and "publisher" in changed(rec)
     assert "publisher_address_held" not in codes(rec)
     # negative controls: a rewording of the same publisher is not a different publisher
     assert not pc.different_publisher("Lawrence Erlbaum Associates", "Erlbaum")
@@ -1423,3 +1435,262 @@ def test_reviewer_remove_is_an_instruction_not_a_value(bib):
     rec = checkw(bib, "7", "AbdeEtal21", review=True)
     assert "force" not in rec["final_entry"] and all(c["proposed"] != "remove" for c in rec["changes"])
     assert pc.is_removal("remove") and pc.is_removal("(delete)") and not pc.is_removal("Removal of memories")
+
+
+# ---------------------------------------------------------------- cross-wave user decisions (2026-09-26)
+
+DECISIONS_DIR = ROOT / "verification/research-2026-09-25/crosswave/decisions"
+RAW = {json.loads(p.read_text())["key"]: json.loads(p.read_text()) for p in DECISIONS_DIR.glob("*.json")}
+APPLIED = pc.load_decisions()
+ROWS1 = ROWS
+
+
+def wave_rows(wave):
+    return {"1": ROWS1, "2": ROWS2, "3": ROWS3, "7": ROWS7, "8": ROWS8, "9": ROWS9}[wave]
+
+
+def checkd(bib, wave, key, row=None, review=True, current=None, decision=None):
+    """A row of wave 1/2/3/7/8/9 through check_entry, with its review and validation."""
+    rows_ = wave_rows(wave)
+    review_, validation_ = {"1": (REVIEW, VALIDATION), "2": (REVIEW2, VALIDATION2), "3": (REVIEW3, VALIDATION3),
+                            "7": (REVIEW7, VALIDATION7), "8": (REVIEW8, VALIDATION8), "9": (REVIEW9, VALIDATION9)}[wave]
+    return pc.check_entry(row or rows_[key], current if current is not None else bib.get(key), bib, ctx_for(bib),
+                          review=review_.get(key) if review else None, validation=validation_.get(key),
+                          decision=decision)
+
+
+_RUNS = {}
+
+
+def wave_run(n):
+    if n not in _RUNS:
+        _RUNS[n] = pc.run(ROOT / f"verification/research-2026-09-25/wave{n}", write=False, offline=True)
+    return _RUNS[n]
+
+
+# --- rule 1: software / Zenodo releases cite the first version, its year, no version number
+
+@pytest.mark.parametrize("given,expected", [
+    ("{ContextLab}/efficient-learning-khan: {v1.0.0}", "{ContextLab}/efficient-learning-khan"),
+    ("{ContextLab}/chatify: {v0.2.1}", "{ContextLab}/chatify"),
+    ("ContextLab/chatify: v0.2.1 (August, 2023)", "ContextLab/chatify"),
+    ("Brain Imaging Analysis Kit v0.2", "Brain Imaging Analysis Kit"),
+    ("{naturalistic-data-analysis/naturalistic\\_data\\_analysis}: {Version 1.0}",
+     "{naturalistic-data-analysis/naturalistic\\_data\\_analysis}"),
+    ("{amueller/word\\_cloud}: {WordCloud} 1.5.0", "{amueller/word\\_cloud}: {WordCloud}"),
+    ("{WordCloud} 1.5.0: a little word cloud generator in {Python}", "{WordCloud}: a little word cloud generator in {Python}"),
+    # negative controls: not version numbers
+    ("{Llama 3} model card", "{Llama 3} model card"),
+    ("Llama 3", "Llama 3"),
+    ("Frequency specific spatial interactions: {V1} alpha oscillations", "Frequency specific spatial interactions: {V1} alpha oscillations"),
+    ("Data wrangler", "Data wrangler"),
+    ("Brain imaging analysis kit", "Brain imaging analysis kit"),
+])
+def test_strip_version(given, expected):
+    assert pc.strip_version(given) == expected
+
+
+@pytest.mark.parametrize("doi,first,year", [
+    ("10.5281/zenodo.8274025", "10.5281/zenodo.8152316", "2023"),   # chatify v0.2.1 -> v0.1.0
+    ("10.5281/zenodo.1322068", "10.5281/zenodo.49907", "2016"),     # word_cloud 1.5.0 (2018) -> 1.2.1 (2016)
+    ("10.5281/zenodo.3937848", "10.5281/zenodo.3937849", "2020"),   # a concept DOI -> its only version
+    ("10.5281/zenodo.59780", "10.5281/zenodo.59780", "2016"),       # BrainIAK v0.2: already the first
+])
+def test_zenodo_first_version_live(doi, first, year):
+    got = pc.zenodo_first_version(doi, pc.http_get)
+    assert got.get("error") is None and got["doi"] == first and got["year"] == year
+    assert pc.zenodo_first_version("10.1038/361031a0", pc.http_get).get("error")  # not a Zenodo DOI
+
+
+def test_software_first_version_rows(bib):
+    """CapoEtal17 (the cross-wave question): the v0.2 DOI is no longer held as a part-number
+    mismatch, its year 2016 is the first version's, key CapoEtal16. MuelEtal18: the 1.5.0 DOI
+    becomes the first version 1.2.1 (2016), key MuelEtal16, no version in the title, and
+    the first version's different creator list is flagged, never applied."""
+    rec = checkw(bib, "8", "CapoEtal17")
+    assert changed(rec)["doi"] == "10.5281/zenodo.59780" and "doi_title_part_number" not in codes(rec)
+    assert rec["final_entry"]["year"] == "2016" and rec["key_plan"]["new_key"] == "CapoEtal16"
+    rec = checkw(bib, "7", "MuelEtal18")
+    ch = changed(rec)
+    assert ch["doi"] == "10.5281/zenodo.49907" and ch["year"] == "2016" and "1.5.0" not in ch["title"]
+    assert rec["key_plan"]["new_key"] == "MuelEtal16" and "software_first_version_authors" in codes(rec)
+    assert rec["final_entry"]["author"].startswith("A Mueller and J-C Fillion-Robin and R Boidol")  # not 1.2.1's list
+    rec = checkd(bib, "1", "MannEtal23b")
+    assert changed(rec)["doi"] == "10.5281/zenodo.8152316" and rec["final_entry"]["year"] == "2023"
+    assert changed(rec)["title"] == "{ContextLab}/chatify"
+    rec = check(bib, "FitzEtal25")
+    assert changed(rec)["title"] == "{ContextLab}/efficient-learning-khan" and "doi" not in changed(rec)
+    rec = checkw(bib, "7", "ChanEtal20")
+    assert changed(rec)["doi"] == "10.5281/zenodo.3937849"
+
+
+def test_software_rule_is_narrow(bib):
+    """Negative controls: a manual or an article with 'version' in its title is not software
+    (Stan13, Wils88), and a version field goes only from software."""
+    assert "software_version_removed" not in codes(checkw(bib, "9", "Stan13"))
+    assert "version 2" in checkd(bib, "2", "Wils88")["final_entry"]["title"]
+    assert not pc.software_entry({"ENTRYTYPE": "manual", "title": "Stan, version 2.1"})
+    assert pc.software_entry({"ENTRYTYPE": "misc", "howpublished": "\\url{https://github.com/x/y}"})
+    row = copy.deepcopy(ROWS8["CapoEtal17"])
+    rec = checkw(bib, "8", "CapoEtal17", row=row, current=dict(bib["CapoEtal17"], version="0.2"))
+    assert "version" not in rec["final_entry"] and "version" in rec["removals"]
+    assert not {"software_first_version", "software_version_removed"} & codes(check(bib, "BlisColl93"))
+
+
+# --- rule 2: a country no quote prints is dropped from the address
+
+def test_country_not_printed_is_dropped(bib):
+    """Herb34 (reviewer 'Langensalza, Germany') and BuzsEtal94 ('Heidelberg, Germany', held
+    only because the quotes do not print Germany: released without it)."""
+    rec = checkw(bib, "8", "Herb34", review=True)
+    assert changed(rec)["address"] == "Langensalza" and "country_dropped" in codes(rec)
+    rec = checkw(bib, "8", "BuzsEtal94")
+    assert rec["final_entry"]["address"] == "Heidelberg" and "address" not in rec["held"]
+    assert "quote_check_failed" not in {f["code"] for f in rec["flags"] if f["field"] == "address"}
+
+
+def test_country_printed_is_kept(bib):
+    """Negative controls: the quote prints the country (Rayp68 'Horn, Austria' -> {AT};
+    Addi02 'Bristol, UK'; Smit88 'Chichester [England]'); a US state is not a country."""
+    assert check(bib, "Rayp68")["final_entry"]["address"] == "Horn, {AT}"
+    assert checkw(bib, "7", "Addi02")["final_entry"]["address"] == "Bristol, {UK}"
+    assert checkw(bib, "8", "Smit88")["final_entry"]["address"] == "Chichester, {UK}"
+    assert pc.address_country("Bloomington, {IN}") is None and pc.address_country("New Orleans, {LA}") is None
+    assert pc.address_country("Langensalza, Germany")[:2] == ("Langensalza", "Germany")
+    assert pc.address_country("Germany")[:2] == ("", "Germany")
+
+
+def test_country_only_address_is_left_out(bib):
+    row = copy.deepcopy(ROWS8["Ripl81"])
+    row["fields"]["address"] = {"status": "corrected", "value": "Germany",
+                                "evidence": [{"url": "https://example.org", "quote": "Berlin"}]}
+    rec = checkw(bib, "8", "Ripl81", row=row)
+    assert "address" not in rec["final_entry"] and "country_dropped" in codes(rec)
+    # the house address key adds a country ('Leipzig' -> 'Leipzig, Germany'): not when unprinted
+    row["fields"]["address"] = {"status": "corrected", "value": "Leipzig",
+                                "evidence": [{"url": "https://example.org", "quote": "Leipzig"}]}
+    assert checkw(bib, "8", "Ripl81", row=row)["final_entry"]["address"] == "Leipzig"
+    row["fields"]["address"]["evidence"][0]["quote"] = "Leipzig, Germany"
+    assert checkw(bib, "8", "Ripl81", row=row)["final_entry"]["address"] == "Leipzig, Germany"
+
+
+# --- rule 3: per-entry decisions (crosswave/applied-decisions.json), source 'user'
+
+def test_applied_decisions_match_the_raw_answers():
+    """Every raw answer on the cross-wave page is in applied-decisions.json as the user gave it."""
+    for k, d in RAW.items():
+        if k.startswith("a-"):
+            e = APPLIED[d["entry"]]
+            if d["verdict"] == "correct":
+                assert e.get("remove_entry") == "conference abstract" and not e.get("not_abstract"), k
+            else:
+                assert d["verdict"] == "wrong" and e.get("not_abstract") and not e.get("remove_entry"), k
+        elif k.startswith("dup-"):
+            gone, keep = [x.strip() for x in d["entry"].split("\u2192")]
+            assert APPLIED[gone]["merge_into"] == keep and gone in APPLIED[keep]["keeper_of"], k
+    assert {k for k, e in APPLIED.items() if e.get("not_abstract")} == \
+        {"BeckEtal09", "CronEtal94", "MannEtal97", "PailEtal00", "SpieEtal18", "TongEtal95"}
+    assert APPLIED["Shim94"]["key"] == "Shim95b" and APPLIED["Shim95"]["key"] == "Shim95a"
+    assert APPLIED["OGra11"]["key"] == "OGra08" and APPLIED["OGra11"]["set"]["year"]["value"] == "2008"
+    assert APPLIED["KahaEtal08a"]["drop_suffix_if_only"] is True
+
+
+def test_ebbinghaus_is_the_1885_original(bib):
+    """Ebbi85: the user chose the 1885 German original; the 1913 translation's title, DOI
+    and year are withdrawn, the original's title, publisher and place are source 'user'
+    with quotes checked at archive.org; the verdict is resolved."""
+    rec = checkd(bib, "8", "Ebbi85", decision=APPLIED["Ebbi85"])
+    fin = rec["final_entry"]
+    assert pc.fold(fin["title"]) == "uber das gedachtnis untersuchungen zur experimentellen psychologie" and fin["year"] == "1885" and "doi" not in fin and fin["address"] == "Leipzig"
+    assert fin["publisher"] == "Duncker \\& Humblot"
+    assert {c["field"]: c["source"] for c in rec["changes"]} == {"title": "user", "publisher": "user", "address": "user"}
+    assert "user_evidence_unverified" not in codes(rec) and "needs_user" not in codes(rec)
+    assert not any(f["action"] == "held" for f in rec["flags"])
+    # negative control: without the decision the identity stays held for the user
+    rec = checkd(bib, "8", "Ebbi85")
+    assert "ambiguous_identity_held" in codes(rec) and "title" not in changed(rec)
+    # a wrong quote would be reported
+    bad = copy.deepcopy(APPLIED["Ebbi85"])
+    bad["set"]["title"]["evidence"][0]["quote"] = "Memory: a contribution to experimental psychology"
+    assert "user_evidence_unverified" in codes(checkd(bib, "8", "Ebbi85", decision=bad))
+
+
+def test_key_decisions_on_the_wave_pages():
+    """Shim94 -> Shim95b (wave 8) and Shim95 -> Shim95a (wave 2), OGra11 -> OGra08 (wave 9),
+    BenaEtal04's booktitle; decisions never reach the rules-alone pass."""
+    post, page, rules_only, merged = wave_run(8)
+    assert merged["Shim94"]["key_plan"]["new_key"] == "Shim95b"
+    ch = {c["field"]: c for c in merged["BenaEtal04"]["changes"]}
+    assert ch["booktitle"]["proposed"] == "{Youmans} Neurological Surgery" and ch["booktitle"]["source"] == "user"
+    assert "user_decision" not in {f["code"] for r in rules_only.values() for f in r["flags"]}
+    post, page, rules_only, merged = wave_run(2)
+    plan = merged["Shim95"]["key_plan"]
+    assert plan["action"] == "rename" and plan["new_key"] == "Shim95a"
+    assert rules_only["Shim95"]["key_plan"]["action"] == "keep"  # negative control
+    post, page, rules_only, merged = wave_run(9)
+    assert merged["OGra11"]["key_plan"]["new_key"] == "OGra08" and merged["OGra11"]["final_entry"]["year"] == "2008"
+    assert {c["field"]: c["source"] for c in merged["OGra11"]["changes"]}["year"] == "user"
+
+
+def test_approved_duplicates_agree_with_the_post_check_plans():
+    """The 9 approved duplicates: the post-check's own plan already merges each into the
+    keeper the user approved (no override needed)."""
+    merges = {k: e["merge_into"] for k, e in APPLIED.items() if e.get("merge_into")}
+    assert len(merges) == 9
+    seen = 0
+    for n in range(1, 10):
+        post, page, rules_only, merged = wave_run(n)
+        for k, into in merges.items():
+            if k in merged:
+                seen += 1
+                assert rules_only[k]["key_plan"].get("merge_into") == into, k
+                assert merged[k]["key_plan"]["merge_into"] == into and "the user's decision wins" not in \
+                    " ".join(f["detail"] for f in merged[k]["flags"]), k
+    assert seen == 9
+
+
+def test_kahana_keeper_keeps_its_suffix_while_another_kahaetal08_exists(bib):
+    """KahaEtal08b merges into KahaEtal08a; KahaEtal08c (a different 2008 paper) is in HEAD,
+    so KahaEtal08a stays. Negative control: without KahaEtal08c it becomes KahaEtal08."""
+    assert "KahaEtal08c" in bib
+    post, page, rules_only, merged = wave_run(8)
+    assert merged["KahaEtal08a"]["key_plan"]["action"] == "keep"
+    assert merged["KahaEtal08a"]["key_plan"]["suffix_kept"] == ["KahaEtal08c"]
+    assert merged["KahaEtal08b"]["key_plan"]["merge_into"] == "KahaEtal08a"
+    recs = {"KahaEtal08a": copy.deepcopy(merged["KahaEtal08a"])}
+    recs["KahaEtal08a"]["key_plan"] = {"current_key": "KahaEtal08a", "action": "keep"}
+    pc.apply_entry_decisions(recs, APPLIED, {k: v for k, v in bib.items() if k != "KahaEtal08c"}, set())
+    assert recs["KahaEtal08a"]["key_plan"]["new_key"] == "KahaEtal08"
+
+
+def test_abstract_decisions_on_the_wave_pages():
+    """The six real articles carry no removal; JohnRedi07b (wave 3) is marked for removal."""
+    flagged = {}
+    for n in range(1, 10):
+        post, page, rules_only, merged = wave_run(n)
+        for p in page:
+            flagged[p["key"]] = p
+    for k in ("BeckEtal09", "CronEtal94", "MannEtal97", "PailEtal00", "SpieEtal18", "TongEtal95"):
+        assert not flagged[k]["remove_entry"] and any("not a conference abstract" in u for u in flagged[k]["user_decisions"]), k
+    assert flagged["JohnRedi07b"]["remove_entry"] == "conference abstract"
+    # the removal flag must not feed the cross-wave page's abstract finder (build_crosswave.py
+    # ABSTRACT_RX) its own decision back as new evidence
+    import re
+    rx = re.compile(r"\b(?:conference|meeting|poster)(?: talk/| |-)abstract", re.I)
+    for p in flagged.values():
+        if p["remove_entry"]:
+            assert not any(rx.search(u) for u in p["user_decisions"]), p["key"]
+    assert sum(bool(p["remove_entry"]) for p in flagged.values()) == \
+        sum(1 for k, e in APPLIED.items() if e.get("remove_entry") and k in flagged)
+
+
+# --- rule 4: the removal list
+
+def test_removals_file_is_the_approved_abstracts(bib):
+    committed = json.loads((ROOT / "verification/research-2026-09-25/crosswave/removals.json").read_text())
+    built = pc.build_removals(bib=bib)
+    assert committed["entries"] == built and committed["count"] == len(built) == 45
+    keys = {e["key"] for e in built}
+    assert "JohnRedi07b" in keys and all(e["in_head_bib"] for e in built)
+    assert not keys & {"BeckEtal09", "CronEtal94", "MannEtal97", "PailEtal00", "SpieEtal18", "TongEtal95"}
+    assert keys == {k for k, e in APPLIED.items() if e.get("remove_entry")}

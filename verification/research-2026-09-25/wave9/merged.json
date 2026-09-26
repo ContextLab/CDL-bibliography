@@ -50,6 +50,8 @@
    "issued_year": "1988",
    "type": "Text"
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -193,6 +195,8 @@
     "Yamaguchi"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -248,6 +252,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -283,6 +289,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -331,6 +339,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -365,6 +375,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -424,6 +436,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -498,6 +512,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -543,7 +559,7 @@
     "field": "year",
     "current": "2011",
     "proposed": "2008",
-    "source": "researcher",
+    "source": "user",
     "evidence": [
      {
       "url": "https://themoth.org/stories/pie-man",
@@ -554,6 +570,7 @@
       "quote": ">November 24, 2008</a>"
      }
     ],
+    "decision": "cross-wave q-ogrady: 2008",
     "reviewer": "agree"
    }
   ],
@@ -563,17 +580,35 @@
    "target_base": "OGra08",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "OGra08"
+   "new_key": "OGra08",
+   "user_decision": "cross-wave q-ogrady: 2008"
   },
   "flags": [
+   {
+    "code": "user_decision",
+    "field": "year",
+    "detail": "cross-wave q-ogrady: 2008: year = '2008'",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "OGra11 -> OGra08 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": "key",
+    "detail": "cross-wave q-ogrady: 2008: key OGra11 -> OGra08, as planned (approved)",
+    "action": "applied"
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [
+   "cross-wave q-ogrady: 2008: year = '2008'",
+   "cross-wave q-ogrady: 2008: key OGra11 -> OGra08, as planned (approved)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -624,6 +659,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -686,6 +723,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -738,6 +777,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -808,6 +849,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -849,6 +892,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -886,6 +931,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -946,6 +993,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1016,6 +1065,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -1073,6 +1124,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1128,6 +1181,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -1280,6 +1335,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -1329,6 +1386,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -1409,6 +1468,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -1441,6 +1502,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1487,6 +1550,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1600,6 +1665,8 @@
     "Davidson"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1691,6 +1758,8 @@
     "Wilson"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1824,6 +1893,8 @@
     "Sejnowski"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1925,6 +1996,8 @@
     "McCarley"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1978,6 +2051,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2044,6 +2119,8 @@
    "issued_year": "2021",
    "type": "InteractiveResource"
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2124,6 +2201,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -2212,6 +2291,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -2290,6 +2371,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2367,6 +2450,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -2473,6 +2558,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -2543,6 +2630,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2659,6 +2748,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -2823,6 +2914,8 @@
     "Rush"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2918,6 +3011,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -2965,9 +3060,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-HealEtal12b): remove HealEtal12b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-HealEtal12b): remove HealEtal12b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3020,10 +3125,21 @@
    "target_base": "LongKaha12",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-LongKaha12a): remove LongKaha12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-LongKaha12a): remove LongKaha12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": null,
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "BurkKaha13",
@@ -3063,8 +3179,19 @@
    "target_base": "BurkKaha13",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-BurkKaha13): remove BurkKaha13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-BurkKaha13): remove BurkKaha13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3076,7 +3203,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "RamaEtal13",
@@ -3132,9 +3259,19 @@
     "field": "author",
     "detail": "validator: author not covered by its quotes (missing ['baltuch']; failures [])",
     "action": "held"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-RamaEtal13): remove RamaEtal13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-RamaEtal13): remove RamaEtal13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": null,
   "needs_user": true
  },
@@ -3167,6 +3304,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3251,6 +3390,8 @@
     "Aleven"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3333,6 +3474,8 @@
     "Modersitzki"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -3404,6 +3547,8 @@
     "Bäuml"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3469,6 +3614,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3543,8 +3690,19 @@
    "target_base": "PolyEtal05",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-PolyEtal05b): remove PolyEtal05b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-PolyEtal05b): remove PolyEtal05b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3560,7 +3718,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "KluyEtal16",
@@ -3673,6 +3831,8 @@
     "Jupyter Development Team"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -3714,6 +3874,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3820,6 +3982,8 @@
     "Zhou"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3916,6 +4080,8 @@
     "Vu"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4022,6 +4188,8 @@
     "Zhou"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4138,6 +4306,8 @@
     "Zhou"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4244,6 +4414,8 @@
     "Zhou"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4360,6 +4532,8 @@
     "Zhou"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -4507,6 +4681,8 @@
     "Zhou"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -4635,6 +4811,8 @@
     "Zhou"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4814,6 +4992,8 @@
     "Willing"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -4961,6 +5141,8 @@
     "Bülthoff"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5000,6 +5182,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -5077,6 +5261,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5153,6 +5339,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5234,6 +5422,8 @@
     "Lafferty"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -5269,6 +5459,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5314,6 +5506,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5386,6 +5580,8 @@
     "Wendemuth"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5442,6 +5638,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -5485,9 +5683,19 @@
     "field": "verdict",
     "detail": "verdict ambiguous: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-CrutEtal12): remove CrutEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-CrutEtal12): remove CrutEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5527,9 +5735,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-vanVEtal06): remove vanVEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-vanVEtal06): remove vanVEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5608,6 +5826,8 @@
     "Sturtevant"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5723,6 +5943,8 @@
     "Xu"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5770,9 +5992,19 @@
     "field": "verdict",
     "detail": "verdict ambiguous: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-LohnEtal09): remove LohnEtal09 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-LohnEtal09): remove LohnEtal09 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5813,9 +6045,19 @@
     "field": "verdict",
     "detail": "verdict ambiguous: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-LohnEtal10): remove LohnEtal10 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-LohnEtal10): remove LohnEtal10 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5855,9 +6097,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-PolyEtal06): remove PolyEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-PolyEtal06): remove PolyEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5901,6 +6153,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5940,9 +6194,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-MillEtal07e): remove MillEtal07e from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-MillEtal07e): remove MillEtal07e from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5982,9 +6246,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-MortEtal07): remove MortEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-MortEtal07): remove MortEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6024,9 +6298,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-PolyEtal07): remove PolyEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-PolyEtal07): remove PolyEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6109,10 +6393,21 @@
    "target_base": "MannEtal09",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-MannEtal09b): remove MannEtal09b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-MannEtal09b): remove MannEtal09b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": null,
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "WatrEtal09",
@@ -6171,10 +6466,21 @@
    "target_base": "WatrEtal09",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-WatrEtal09): remove WatrEtal09 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-WatrEtal09): remove WatrEtal09 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": null,
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "RamaEtal10",
@@ -6224,8 +6530,19 @@
    "target_base": "RamaEtal10",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-RamaEtal10): remove RamaEtal10 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-RamaEtal10): remove RamaEtal10 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6239,7 +6556,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "GratEtal11",
@@ -6302,8 +6619,19 @@
    "target_base": "GratEtal11",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-GratEtal11): remove GratEtal11 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-GratEtal11): remove GratEtal11 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6318,7 +6646,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "LongEtal11",
@@ -6366,10 +6694,21 @@
    "target_base": "LongEtal11",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-LongEtal11): remove LongEtal11 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-LongEtal11): remove LongEtal11 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": null,
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "BurkEtal12",
@@ -6406,8 +6745,19 @@
    "target_base": "BurkEtal12",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-BurkEtal12): remove BurkEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-BurkEtal12): remove BurkEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6419,7 +6769,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "KrauEtal12",
@@ -6485,8 +6835,19 @@
    "target_base": "KrauEtal12",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-KrauEtal12): remove KrauEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-KrauEtal12): remove KrauEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6500,7 +6861,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "LongKaha12b",
@@ -6536,10 +6897,21 @@
    "target_base": "LongKaha12",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-LongKaha12b): remove LongKaha12b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-LongKaha12b): remove LongKaha12b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": null,
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "RamaEtal12a",
@@ -6581,9 +6953,19 @@
     "field": "title",
     "detail": "validator: title not covered by its quotes (missing ['field', 'potential']; failures [])",
     "action": "held"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-RamaEtal12a): remove RamaEtal12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-RamaEtal12a): remove RamaEtal12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": null,
   "needs_user": true
  },
@@ -6634,8 +7016,19 @@
    "target_base": "LongKaha13",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-LongKaha13): remove LongKaha13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-LongKaha13): remove LongKaha13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6648,7 +7041,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "HartEtal05",
@@ -6706,10 +7099,21 @@
    "target_base": "HartEtal05",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-HartEtal05): remove HartEtal05 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-HartEtal05): remove HartEtal05 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": null,
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "vanVEtal05",
@@ -6784,8 +7188,26 @@
    "target_base": "vanVEtal05",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-vanVEtal05, q-hwang): remove vanVEtal05 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": "author",
+    "detail": "cross-wave a-vanVEtal05: correct; cross-wave q-hwang: as-printed: each paper keeps the author's printed name (no unification across papers)",
+    "action": "applied"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-vanVEtal05, q-hwang): remove vanVEtal05 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+   "cross-wave a-vanVEtal05: correct; cross-wave q-hwang: as-printed: each paper keeps the author's printed name (no unification across papers)"
+  ],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -6802,7 +7224,7 @@
     "author": "M K {van Vugt} and G Hwang-Grodzins and M J Kahana"
    }
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "DengEtal13",
@@ -6895,6 +7317,8 @@
     "Acero"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6990,6 +7414,8 @@
     "Rudnicky"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7105,6 +7531,8 @@
     "Jamieson"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7221,6 +7649,8 @@
     "Norman"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7261,9 +7691,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-SedeNorm07): remove SedeNorm07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-SedeNorm07): remove SedeNorm07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7304,9 +7744,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-DetrEtal07): remove DetrEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-DetrEtal07): remove DetrEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7348,9 +7798,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-DerdEtal06): remove DerdEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-DerdEtal06): remove DerdEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7393,9 +7853,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-ReccOKee89): remove ReccOKee89 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-ReccOKee89): remove ReccOKee89 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7448,6 +7918,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7586,6 +8058,8 @@
     "Li Fei-Fei"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7678,6 +8152,8 @@
     "Daniilidis"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7780,6 +8256,8 @@
     "Ojemann"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7863,6 +8341,8 @@
     "Greger"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7955,6 +8435,8 @@
     "Daniilidis"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8056,6 +8538,8 @@
     "Daniilidis"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8124,6 +8608,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8200,6 +8686,8 @@
     "Leary"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -8273,6 +8761,8 @@
     "Subbian"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  }

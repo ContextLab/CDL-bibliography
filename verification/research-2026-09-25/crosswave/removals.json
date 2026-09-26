@@ -1,0 +1,502 @@
+{
+ "about": "Entries the user approved for removal from cdl.bib on the cross-wave decisions page (2026-09-26; raw answers in crosswave/decisions/). Built by postcheck.py --write-removals for the later apply step; cdl.bib is not edited here.",
+ "count": 45,
+ "entries": [
+  {
+   "key": "BranEtal04",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-BranEtal04: correct"
+   ],
+   "waves": [
+    "wave1"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "BurkEtal12",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-BurkEtal12: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "BurkKaha13",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-BurkKaha13: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "CrutEtal12",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-CrutEtal12: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "DerdEtal06",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-DerdEtal06: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "DetrEtal07",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-DetrEtal07: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "EskrEtal12",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-EskrEtal12: correct"
+   ],
+   "waves": [
+    "wave3"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "GratEtal11",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-GratEtal11: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "HartEtal05",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-HartEtal05: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "HealEtal12a",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-HealEtal12a: correct"
+   ],
+   "waves": [
+    "wave3"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "HealEtal12b",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-HealEtal12b: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "HowaKaha00",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-HowaKaha00: correct"
+   ],
+   "waves": [
+    "wave8"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "JacoEtal05b",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-JacoEtal05b: correct"
+   ],
+   "waves": [
+    "wave7"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "JensTesc00",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-JensTesc00: correct"
+   ],
+   "waves": [
+    "wave7"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "JohnRedi07b",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-JohnRedi07b: correct",
+    "j-JohnRedi07b: wrong (remove-- it's a conference abstract)"
+   ],
+   "waves": [
+    "wave3"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "KahaSeku99",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-KahaSeku99: correct"
+   ],
+   "waves": [
+    "wave8"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "KoroEtal05",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-KoroEtal05: correct"
+   ],
+   "waves": [
+    "wave7"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "KrauEtal12",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-KrauEtal12: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "LohnEtal09",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-LohnEtal09: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "LohnEtal10",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-LohnEtal10: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "LongEtal11",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-LongEtal11: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "LongKaha12a",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-LongKaha12a: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "LongKaha12b",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-LongKaha12b: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "LongKaha13",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-LongKaha13: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "LongKaha14",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-LongKaha14: correct"
+   ],
+   "waves": [
+    "wave1"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "MakeEtal00",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-MakeEtal00: correct"
+   ],
+   "waves": [
+    "wave7"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "MannEtal09b",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-MannEtal09b: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "MillEtal07e",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-MillEtal07e: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "MollEtal06",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-MollEtal06: correct"
+   ],
+   "waves": [
+    "wave7"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "MortEtal07",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-MortEtal07: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "PolyEtal05b",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-PolyEtal05b: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "PolyEtal06",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-PolyEtal06: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "PolyEtal07",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-PolyEtal07: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "RaghEtal99",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-RaghEtal99: correct"
+   ],
+   "waves": [
+    "wave1"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "RamaEtal10",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-RamaEtal10: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "RamaEtal12a",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-RamaEtal12a: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "RamaEtal13",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-RamaEtal13: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "ReccOKee89",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-ReccOKee89: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "SedeNorm07",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-SedeNorm07: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "SiapEtal00",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-SiapEtal00: correct"
+   ],
+   "waves": [
+    "wave1"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "vanVEtal05",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-vanVEtal05: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "vanVEtal06",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-vanVEtal06: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "WatrEtal09",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-WatrEtal09: correct"
+   ],
+   "waves": [
+    "wave9"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "WilsEtal79",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-WilsEtal79: correct"
+   ],
+   "waves": [
+    "wave1"
+   ],
+   "in_head_bib": true
+  },
+  {
+   "key": "WilsEtal80",
+   "reason": "conference abstract",
+   "decisions": [
+    "a-WilsEtal80: correct"
+   ],
+   "waves": [
+    "wave1"
+   ],
+   "in_head_bib": true
+  }
+ ]
+}

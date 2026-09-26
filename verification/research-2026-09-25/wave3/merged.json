@@ -70,6 +70,8 @@
     "Shah"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -183,6 +185,8 @@
     "Zarahn"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -243,6 +247,8 @@
     "von Stein"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -324,6 +330,8 @@
     "Sateia"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -445,6 +453,8 @@
     "Bazzarre"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -590,6 +600,8 @@
     "Hong"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -693,6 +705,8 @@
     "Chkhenkeli"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -765,6 +779,8 @@
     "Gruber"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -864,6 +880,8 @@
     "Makeig"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -961,6 +979,8 @@
     "Tucker"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -1041,6 +1061,8 @@
     "Hudgens"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -1136,6 +1158,8 @@
     "Campbell"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -1208,6 +1232,8 @@
     "Kabat-Zinn"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -1255,6 +1281,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1338,6 +1366,8 @@
     "Niedermeyer"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -1410,6 +1440,8 @@
     "Niedermeyer"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -1486,6 +1518,8 @@
     "Nagata"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -1598,6 +1632,8 @@
     "Barto"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1707,6 +1743,8 @@
     "Dehaene"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1798,6 +1836,8 @@
     "Aly"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -1973,6 +2013,8 @@
     "Schacter"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -2051,6 +2093,8 @@
     "Kihlstrom"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2152,6 +2196,8 @@
     "Friedman"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2231,6 +2277,8 @@
     "Yves von Cramon"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2354,6 +2402,8 @@
     "Patching"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2441,6 +2491,8 @@
     "A. Huettel"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2557,6 +2609,8 @@
     "Skrandies"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -2645,6 +2699,8 @@
     "Logothetis"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2734,6 +2790,8 @@
     "Schacter"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -2826,6 +2884,8 @@
     "Baddeley"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2910,6 +2970,8 @@
     "Boroditsky"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3008,6 +3070,8 @@
     "Crowder"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3094,6 +3158,8 @@
     "RATCLIFF"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3185,6 +3251,8 @@
     "Anderson"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3213,6 +3281,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3311,6 +3381,8 @@
     "O'REILLY"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -3439,6 +3511,8 @@
     "SWICK"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3525,6 +3599,8 @@
     "Smith"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3610,6 +3686,8 @@
     "Welsch"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3682,6 +3760,8 @@
     "Miller"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3741,6 +3821,8 @@
     "Terrace"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3782,6 +3864,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -3845,6 +3929,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3897,6 +3983,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3972,6 +4060,8 @@
     "Homma"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -4085,6 +4175,8 @@
     "Baca-Garcia"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -4113,9 +4205,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-JohnRedi07b, j-JohnRedi07b): remove JohnRedi07b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
    }
   ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-JohnRedi07b, j-JohnRedi07b): remove JohnRedi07b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -4230,6 +4332,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -4280,6 +4384,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -4403,6 +4509,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -4497,6 +4605,8 @@
     "Satyam"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -4568,6 +4678,8 @@
     "Hunter"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4657,6 +4769,8 @@
     "Granger"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -4764,6 +4878,8 @@
     "King"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -4861,6 +4977,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -4977,6 +5095,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5057,8 +5177,19 @@
    "target_base": "EskrEtal12",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-EskrEtal12): remove EskrEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-EskrEtal12): remove EskrEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5073,7 +5204,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "HealEtal12a",
@@ -5136,8 +5267,19 @@
    "target_base": "HealEtal12",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "user decision (a-HealEtal12a): remove HealEtal12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
+    "action": "flag"
+   }
+  ],
   "doi_status": null,
+  "remove_entry": "conference abstract",
+  "user_decisions": [
+   "user decision (a-HealEtal12a): remove HealEtal12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5152,7 +5294,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "ConwFthe03",
@@ -5231,6 +5373,8 @@
     "FTHENAKI"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5297,6 +5441,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -5407,6 +5553,8 @@
     "Schacter"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -5440,6 +5588,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5489,6 +5639,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5575,6 +5727,8 @@
     "Darvish"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -5658,6 +5812,8 @@
     "Warren Jr."
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -5725,6 +5881,8 @@
     "Granger"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -5782,6 +5940,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5856,6 +6016,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5932,6 +6094,8 @@
     "Toven‐Lindsey"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6009,6 +6173,8 @@
     "Knight"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6111,6 +6277,8 @@
     "Donchin"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6197,6 +6365,8 @@
     "Sekino"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6270,6 +6440,8 @@
     "Lopes da Silva"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6358,6 +6530,8 @@
     "Storm van Leeuwen"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6435,6 +6609,8 @@
     "Gevins"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6524,6 +6700,8 @@
     "Cadusch"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6599,6 +6777,8 @@
     "Blumhardt"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6663,6 +6843,8 @@
     "Doyle"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6723,6 +6905,8 @@
     "Snyder"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6810,6 +6994,8 @@
     "Roubíček"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -6920,6 +7106,8 @@
     "Liu"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -7039,6 +7227,8 @@
     "Gross"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -7143,6 +7333,8 @@
     "Wilson"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7219,6 +7411,8 @@
     "Hauser"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7396,6 +7590,8 @@
     "the SANTE Study Group"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7474,6 +7670,8 @@
     "Crandall"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7563,6 +7761,8 @@
     "Roberts"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7653,6 +7853,8 @@
     "Lüders"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7713,6 +7915,8 @@
     "Spencer"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7808,6 +8012,8 @@
     "Sperling"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7888,6 +8094,8 @@
     "Halgren"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -7981,6 +8189,8 @@
     "Bazil"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -8093,6 +8303,8 @@
     "Litt"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -8188,6 +8400,8 @@
     "Ryvlin"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8301,6 +8515,8 @@
     "LONGMAN"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -8381,6 +8597,8 @@
     "EVANS"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -8476,6 +8694,8 @@
     "Van der Linden"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -8567,6 +8787,8 @@
     "Wingfield"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -8649,6 +8871,8 @@
     "Aberdeen"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -8750,6 +8974,8 @@
     "García-Austt"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -8889,6 +9115,8 @@
     "Rektor"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9000,6 +9228,8 @@
     "Kocsis"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -9077,6 +9307,8 @@
     "O'Keefe"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9161,6 +9393,8 @@
     "Aebischer"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -9243,6 +9477,8 @@
     "Subramanian"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9323,6 +9559,8 @@
     "Crandall"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -9399,6 +9637,8 @@
     "Bland"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -9479,6 +9719,8 @@
     "Kenny"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9549,6 +9791,8 @@
     "Priori"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -9713,6 +9957,8 @@
     "Vapnik"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -9834,6 +10080,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -9954,6 +10202,8 @@
     "Zaghloul"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -10063,6 +10313,8 @@
     "Gilbert"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -10172,6 +10424,8 @@
     "Fellner"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -10256,6 +10510,8 @@
     "Mormann"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -10390,6 +10646,8 @@
     "Münte"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -10455,6 +10713,8 @@
     "Coleman"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -10559,6 +10819,8 @@
     "Chang"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -10711,6 +10973,8 @@
     "Lachaux"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -10862,6 +11126,8 @@
     "Denison"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -10966,6 +11232,8 @@
     "Hanke"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -11079,6 +11347,8 @@
     "Nobili"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -11161,6 +11431,8 @@
     "Haxby"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -11265,6 +11537,8 @@
     "De Brigard"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -11401,6 +11675,8 @@
     "Hampson"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -11488,6 +11764,8 @@
     "Fox"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -11591,6 +11869,8 @@
     "Kriegeskorte"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -11678,6 +11958,8 @@
     "Marra"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -11722,6 +12004,8 @@
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11823,6 +12107,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -11877,6 +12163,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -11983,6 +12271,8 @@
     "Murphy"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -12115,6 +12405,8 @@
     "Halász"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -12211,6 +12503,8 @@
     "Buzs�ki"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -12286,6 +12580,8 @@
     "M�ller-G�rtner"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -12395,6 +12691,8 @@
     "Squire"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -12481,6 +12779,8 @@
     "Fried"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -12614,6 +12914,8 @@
     "Gabrieli"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -12704,6 +13006,8 @@
     "Hasselmo"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -12822,6 +13126,8 @@
     "Rugg"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -12924,6 +13230,8 @@
     "Buzsáki"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -13003,6 +13311,8 @@
     "O'Keefe"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -13090,6 +13400,8 @@
     "Kahana"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -13179,6 +13491,8 @@
     "Panzeri"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -13256,6 +13570,8 @@
     "Barnes"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -13326,6 +13642,8 @@
     "Hasselmo"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -13434,6 +13752,8 @@
     "Zola"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -13565,6 +13885,8 @@
     "Halgren"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -13679,6 +14001,8 @@
     "McNaughton"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -13755,6 +14079,8 @@
     "Tanaka"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -13818,6 +14144,8 @@
     "Beck"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -13937,6 +14265,8 @@
     "Eusebi"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -14016,6 +14346,8 @@
     "Pekar"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14108,6 +14440,8 @@
     "Mayberg"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14211,6 +14545,8 @@
     "Dale"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14317,6 +14653,8 @@
     "Vollenweider"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -14432,6 +14770,8 @@
     "Lachaux"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14543,6 +14883,8 @@
     "Crone"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14681,6 +15023,8 @@
     "Baciu"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14799,6 +15143,8 @@
     "Lachaux"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -14909,6 +15255,8 @@
     "N��t�nen"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15022,6 +15370,8 @@
     "Jensen"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -15147,6 +15497,8 @@
     "Sperling"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -15236,6 +15588,8 @@
     "Balakrishnan"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15275,6 +15629,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -15376,6 +15732,8 @@
     "Goshen-Gottstein"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -15467,6 +15825,8 @@
     "Rauss"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -15530,6 +15890,8 @@
     "ACKERMAN"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15600,6 +15962,8 @@
     "FREEMAN"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -15705,6 +16069,8 @@
     "JORSTEN"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -15832,6 +16198,8 @@
     "VARELA"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -15887,6 +16255,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -15952,6 +16322,8 @@
     "Zisserman"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -16026,6 +16398,8 @@
     "Yuille"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16122,7 +16496,8 @@
    ],
    "rename_reason": "key does not follow the corrected metadata",
    "merge_into": "WitmEtal96",
-   "detail": "same work already in cdl.bib as WitmEtal96: merge WhitEtal96 into it"
+   "detail": "same work already in cdl.bib as WitmEtal96: merge WhitEtal96 into it",
+   "user_decision": "cross-wave dup-WhitEtal96-WitmEtal96: correct"
   },
   "flags": [
    {
@@ -16136,6 +16511,12 @@
     "field": "key",
     "detail": "same work already in cdl.bib as WitmEtal96: merge WhitEtal96 into it",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": "key",
+    "detail": "cross-wave dup-WhitEtal96-WitmEtal96: correct: merge WhitEtal96 into WitmEtal96 (approved duplicate)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -16165,6 +16546,10 @@
     "Parsons"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [
+   "cross-wave dup-WhitEtal96-WitmEtal96: correct: merge WhitEtal96 into WitmEtal96 (approved duplicate)"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -16270,6 +16655,8 @@
     "Costa"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16376,6 +16763,8 @@
     "TAVLI"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -16465,6 +16854,8 @@
     "Greitschus"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16549,6 +16940,8 @@
     "Hardman"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16680,6 +17073,8 @@
     "Schürmann"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16758,6 +17153,8 @@
     "FRANKEN"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16836,6 +17233,8 @@
     "Hulme"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -16910,6 +17309,8 @@
     "Lewandowsky"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -17030,6 +17431,8 @@
     "Schürmann"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -17134,6 +17537,8 @@
     "Gruzelier"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -17211,6 +17616,8 @@
     "Zhu"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -17321,6 +17728,8 @@
     "Neuper"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": true
  },
@@ -17405,6 +17814,8 @@
     "GUIBAS"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -17512,6 +17923,8 @@
     "Lachaux"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -17571,6 +17984,8 @@
     "Vanderwolf"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -17601,9 +18016,19 @@
     "field": "verdict",
     "detail": "verdict no_source: user decision",
     "action": "flag"
+   },
+   {
+    "code": "user_decision",
+    "field": null,
+    "detail": "cross-wave a-TongEtal95: wrong (this is a real article NOT an abstract; should keep): a real article, not a conference abstract: keep it and verify it normally",
+    "action": "applied"
    }
   ],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [
+   "cross-wave a-TongEtal95: wrong (this is a real article NOT an abstract; should keep): a real article, not a conference abstract: keep it and verify it normally"
+  ],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -17688,6 +18113,8 @@
     "Kinzel"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -17791,6 +18218,8 @@
     "Hunt"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -17926,6 +18355,8 @@
     "Greth"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -18031,6 +18462,8 @@
     "Nadel"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -18107,6 +18540,8 @@
     "Radosevich"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -18206,6 +18641,8 @@
     "Wang"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": null,
   "needs_user": false
  },
@@ -18247,6 +18684,8 @@
   },
   "flags": [],
   "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -18346,6 +18785,8 @@
     "on behalf of the STRONG STAR Consortium"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -18423,6 +18864,8 @@
     "Matthes-von Cramon"
    ]
   },
+  "remove_entry": null,
+  "user_decisions": [],
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
