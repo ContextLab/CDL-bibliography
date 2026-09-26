@@ -1,10 +1,10 @@
 {
- "network_requests": 6,
+ "network_requests": 2,
  "unverified_tls_urls": [
   "https://www.scholarpedia.org/article/Hilbert_transform_for_brain_waves"
  ],
  "entries": 400,
- "passing": 365,
+ "passing": 387,
  "by_verdict": {
   "ambiguous": 4,
   "correction": 376,
@@ -3794,10 +3794,8 @@
     },
     "title": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "pm2"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "journal": {
@@ -3841,7 +3839,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "MaguEtal98b",
@@ -10559,10 +10557,8 @@
     },
     "title": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "mind"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "journal": {
@@ -10606,7 +10602,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "KahaEtal99b",
@@ -10621,11 +10617,8 @@
     },
     "title": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "theta",
-      "response"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "journal": {
@@ -10669,7 +10662,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "LevyAnde02",
@@ -11164,14 +11157,9 @@
     },
     "title": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "distribution",
-      "errors"
-     ],
-     "failures": [
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "journal": {
      "status": "confirmed",
@@ -11199,10 +11187,10 @@
     }
    },
    "identity": {
-    "ok": false,
-    "why": "quote not found at url"
+    "ok": true,
+    "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "GoodLee93",
@@ -11984,10 +11972,8 @@
     },
     "volume": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "6"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "year": {
@@ -12001,7 +11987,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "Rans02",
@@ -12018,10 +12004,8 @@
     },
     "title": {
      "status": "corrected",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "bedingungen"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "journal": {
@@ -12070,11 +12054,8 @@
     },
     "title": {
      "status": "corrected",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "_data",
-      "_analysis"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "year": {
@@ -12098,7 +12079,7 @@
     "ENTRYTYPE",
     "howpublished"
    ],
-   "passes": false
+   "passes": true
   },
   {
    "key": "Mann21b",
@@ -12191,11 +12172,8 @@
     },
     "title": {
      "status": "corrected",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "word",
-      "_cloud"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "year": {
@@ -12219,7 +12197,7 @@
     "ENTRYTYPE",
     "howpublished"
    ],
-   "passes": false
+   "passes": true
   },
   {
    "key": "AbdeEtal21",
@@ -15234,12 +15212,8 @@
     },
     "journal": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "european",
-      "journal",
-      "neuroscience"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "volume": {
@@ -15277,7 +15251,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "BenaEtal93",
@@ -15298,12 +15272,8 @@
     },
     "journal": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "european",
-      "journal",
-      "neuroscience"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "volume": {
@@ -15341,7 +15311,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "ClauEtal04",
@@ -15362,12 +15332,8 @@
     },
     "journal": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "european",
-      "journal",
-      "neuroscience"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "volume": {
@@ -15405,7 +15371,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "CzurEtal99",
@@ -15426,12 +15392,8 @@
     },
     "journal": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "european",
-      "journal",
-      "neuroscience"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "volume": {
@@ -15469,7 +15431,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "GaynEtal08",
@@ -15490,12 +15452,8 @@
     },
     "journal": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "european",
-      "journal",
-      "neuroscience"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "volume": {
@@ -15533,7 +15491,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "SteeEtal97",
@@ -16178,10 +16136,8 @@
     },
     "title": {
      "status": "corrected",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "ive"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "year": {
@@ -16225,7 +16181,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "DAleEtal03",
@@ -16834,10 +16790,8 @@
    "fields": {
     "author": {
      "status": "corrected",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "cad\\'ik"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "title": {
@@ -16878,7 +16832,7 @@
    "judgment_fields": [
     "ENTRYTYPE"
    ],
-   "passes": false
+   "passes": true
   },
   {
    "key": "GuoEtal20",
@@ -18162,10 +18116,8 @@
    "fields": {
     "author": {
      "status": "corrected",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "nijs"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "title": {
@@ -18215,7 +18167,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "NeggEtal06",
@@ -21311,11 +21263,8 @@
     },
     "publisher": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "charles",
-      "sons"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "address": {
@@ -21329,7 +21278,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "LaddWood11",
@@ -21338,69 +21287,33 @@
    "fields": {
     "author": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "ladd",
-      "woodworth"
-     ],
-     "failures": [
-      "quote not found at url",
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "title": {
      "status": "corrected",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "elements",
-      "physiological",
-      "psychology",
-      "treatise",
-      "activities",
-      "nature",
-      "mind",
-      "physical",
-      "experimental",
-      "points",
-      "view"
-     ],
-     "failures": [
-      "quote not found at url",
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "year": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "1911"
-     ],
-     "failures": [
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "publisher": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "charles",
-      "scribner",
-      "sons"
-     ],
-     "failures": [
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "address": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "new",
-      "york"
-     ],
-     "failures": [
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "doi": {
      "status": "corrected",
@@ -21410,10 +21323,10 @@
     }
    },
    "identity": {
-    "ok": false,
-    "why": "quote not found at url"
+    "ok": true,
+    "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "Kele99",
@@ -21475,68 +21388,40 @@
    "fields": {
     "author": {
      "status": "corrected",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "kucera",
-      "francis"
-     ],
-     "failures": [
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "title": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "computational",
-      "analysis",
-      "present",
-      "day",
-      "american",
-      "english"
-     ],
-     "failures": [
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "year": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "1967"
-     ],
-     "failures": [
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "publisher": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "brown",
-      "university",
-      "press"
-     ],
-     "failures": [
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "address": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "providence"
-     ],
-     "failures": [
-      "quote not found at url"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     }
    },
    "identity": {
-    "ok": false,
-    "why": "quote not found at url"
+    "ok": true,
+    "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "Holl28",
@@ -21659,10 +21544,8 @@
     },
     "publisher": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "george"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "address": {
@@ -21676,7 +21559,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "Semo23",
@@ -21703,10 +21586,8 @@
     },
     "publisher": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "george"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "address": {
@@ -21720,7 +21601,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "TuftGrav83",
@@ -21927,10 +21808,8 @@
     },
     "publisher": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "henry"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "address": {
@@ -21944,7 +21823,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "MillEtal60",
@@ -22055,10 +21934,8 @@
     },
     "publisher": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "publishing"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "address": {
@@ -22078,7 +21955,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "Brow24",

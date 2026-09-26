@@ -4,7 +4,7 @@
   "https://memory.psych.upenn.edu/files/pages/pubs.html"
  ],
  "entries": 200,
- "passing": 157,
+ "passing": 158,
  "by_verdict": {
   "ambiguous": 12,
   "correction": 142,
@@ -8360,18 +8360,14 @@
     },
     "publisher": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "press"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "address": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "new"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "year": {
@@ -8397,7 +8393,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "FitzEtal25",

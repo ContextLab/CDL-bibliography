@@ -37,8 +37,10 @@ UA = "CDL-bibliography citation checker (research pilot; contact via repository 
 # Apostrophe look-alikes (O´Reilly, Oʼ, O′) fold to "'" before NFKC splits U+00B4 into
 # a space and a combining accent; trademark signs are dropped (FitBit® = FitBit).
 PRE_FOLD = str.maketrans({"\u00b4": "'", "\u02bc": "'", "\u2032": "'", "\u00ae": "", "\u2122": "", "\u00a9": ""})
+# FOLD also writes the plus-minus sign (U+00B1, LaTeX \pm) the way plain-text sources
+# print it: $7\pm2$ = 7 +/- 2 (LismIdia95, PubMed title).
 FOLD = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"', "–": "-",
-                      "—": "-", "−": "-", " ": " ", "­": ""})
+                      "—": "-", "−": "-", " ": " ", "­": "", "\u00b1": "+/-"})
 
 
 ACCENTS = {"'": "\u0301", "`": "\u0300", "^": "\u0302", '"': "\u0308", "~": "\u0303", "=": "\u0304",
@@ -49,7 +51,7 @@ SPECIAL = {"l": "ł", "L": "Ł", "o": "ø", "O": "Ø", "ss": "ß", "ae": "æ", "
            "aa": "å", "AA": "Å", "i": "ı", "j": "ȷ"}
 
 
-SYMBOLS = {"times": "\u00d7", "textregistered": "\u00ae", "texttrademark": "\u2122", "textcopyright": "\u00a9"}
+SYMBOLS = {"times": "\u00d7", "pm": "\u00b1", "textregistered": "\u00ae", "texttrademark": "\u2122", "textcopyright": "\u00a9"}
 
 
 def delatex(text):
@@ -59,6 +61,11 @@ def delatex(text):
     # Math sub/superscripts keep their content: {GABA$_A$} -> GABAA, $_{2}$ -> 2.
     text = re.sub(r"\$\s*[_^]\s*\{?([A-Za-z0-9]+)\}?\s*\$", r"\1", text)
     text = re.sub(r"\\(" + "|".join(SYMBOLS) + r")(?![A-Za-z])\s?", lambda m: SYMBOLS[m[1]], text)
+    # Escaped specials are the characters themselves: amueller/word\_cloud = word_cloud.
+    text = re.sub(r"\\([_&%#$])", r"\1", text)
+    # An accent on a dotless i is an accented i: na{\"\i}ve = naïve, Cad{\'\i}k = Cadík.
+    text = re.sub(r"\\(['`^\"~=.])\s*\{?\\i(?![A-Za-z])\}?",
+                  lambda m: unicodedata.normalize("NFC", "i" + ACCENTS[m[1]]), text)
     # No space between an accent macro and its letter: in a JSON quote '\\" in' is an
     # escaped quote mark followed by a word, not an umlaut on the i.
     text = re.sub(r"\\(['`^\"~=.])\{?([A-Za-z])\}?", repl, text)
@@ -135,6 +142,18 @@ def urlopen_polite(req, context, timeout=60):
 WALL = re.compile(r"cookies must be enabled|captcha|just a moment|verify you are (a )?human|access denied|are you a robot", re.I)
 
 
+def transient_error(text):
+    """Why a fetched body is a server error reply rather than the record, or None.
+    The Library of Congress SRU server (lx2.loc.gov:210) intermittently answers a valid
+    LCCN query with numberOfRecords 1 but no record, only the diagnostic 'First record
+    position out of range' (LaddWood11, KuceFran67); the same URL returns the MARC record
+    on a retry. Such a reply is not the source, so it is neither cached nor searched."""
+    if "<zs:searchRetrieveResponse" in text and "<zs:records>" not in text and "diagnostic" in text:
+        m = re.search(r"<diag:message>(.*?)</diag:message>", text)
+        return "SRU diagnostic without a record: " + (m[1] if m else "unknown")
+    return None
+
+
 def pubmed_text(pmid):
     """The PubMed record as its web page shows it, read through E-utilities (the web
     page answers scripts with a cookie wall): title, 'Forename Lastname' authors,
@@ -150,10 +169,31 @@ def pubmed_text(pmid):
     return head + "\n" + medline + "\n" + re.sub(r"<[^>]+>", " ", xml)
 
 
+TRANSIENT_RETRIES = 3
+TRANSIENT_WAIT = 5.0
+
+
 def fetch(url):
+    """The source text at url (cached), retrying a reply that transient_error names;
+    if every attempt is such a reply the RuntimeError propagates and nothing is cached."""
+    for attempt in range(TRANSIENT_RETRIES):
+        try:
+            return fetch_once(url)
+        except TransientReply:
+            if attempt == TRANSIENT_RETRIES - 1:
+                raise
+            time.sleep(TRANSIENT_WAIT * 2 ** attempt)
+
+
+class TransientReply(RuntimeError):
+    pass
+
+
+def fetch_once(url):
     CACHE.mkdir(parents=True, exist_ok=True)
     path = CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".txt")
-    if path.exists():
+    # A cached error reply (written before transient_error existed) is refetched, not trusted.
+    if path.exists() and not transient_error(path.read_text()):
         if path.with_suffix(".unverified-tls").exists():
             UNVERIFIED_TLS.add(url)
         return path.read_text(), False
@@ -206,6 +246,9 @@ def fetch(url):
         time.sleep(1.5)
         if len(text) < 3000 and WALL.search(text):
             raise RuntimeError("blocked by a bot/cookie wall; not cached")
+        why = transient_error(text)
+        if why:
+            raise TransientReply(why + "; not cached")
     path.write_text(text)
     return text, network
 
@@ -219,7 +262,15 @@ def check(item, requests):
         requests[0] += network
     except Exception as exc:  # unreachable source: the evidence is unverified, not false
         return {"ok": False, "why": f"fetch failed: {type(exc).__name__}: {exc}"[:200]}
-    return {"ok": norm(quote) in norm(text), "why": None if norm(quote) in norm(text) else "quote not found at url"}
+    found = hyphen_joined(norm(quote)) in hyphen_joined(norm(text))
+    return {"ok": found, "why": None if found else "quote not found at url"}
+
+
+def hyphen_joined(normed):
+    """A line-end hyphen with the break written as a space ('Dis- tribution', Niph78) and
+    the same hyphen at a line break in the source (norm keeps it as 'Dis-tribution') are one
+    text: whitespace after a hyphen is dropped on both sides before the substring test."""
+    return re.sub(r"-\s+", "-", normed)
 
 
 # Fields a quote cannot settle (entry type, where a URL points): left to the spot-check.
@@ -304,7 +355,18 @@ def roman_volumes(text):
     def repl(m):
         n = roman_to_int(m[2])
         return f"{m[1]}{n}" if n else m[0]
-    return re.sub(r"\b(vols?\.?\s*|volume\s+)([ivxlcdm]+)\b", repl, text)
+    text = re.sub(r"\b(vols?\.?\s*|volume\s+)([ivxlcdm]+)\b", repl, text)
+    # German title pages spell the volume as an ordinal before 'Band': 'Sechster Band' is
+    # vol. 6 (MullSchu94). Only directly before 'band', never an ordinal on its own.
+    return re.sub(r"\b(" + "|".join(sorted(GERMAN_ORDINALS, key=len, reverse=True)) + r")(?:er|e|es|en)\s+band\b",
+                  lambda m: f"vol. {GERMAN_ORDINALS[m[1]]}", text)
+
+
+GERMAN_ORDINALS = {w: n for n, w in enumerate(
+    "erst zweit dritt viert fünft sechst siebent acht neunt zehnt elft zwölft dreizehnt vierzehnt "
+    "fünfzehnt sechzehnt siebzehnt achtzehnt neunzehnt zwanzigst".split(), 1)}
+GERMAN_ORDINALS.update({"siebt": 7, "funft": 5, "fuenft": 5, "zwolft": 12, "zwoelft": 12,
+                        "funfzehnt": 15, "fuenfzehnt": 15})
 
 
 # Journal words a quote may print in a standard abbreviated form. Each pattern must
@@ -324,13 +386,124 @@ def series_present(value_norm, joined):
                      + re.escape(m[2]) + r"(?!\w)", joined)
 
 
+def journal_abbreviations(value):
+    """Abbreviations bibcheck's journal alias table (journal_key.xls with the corrections in
+    journal_key_overrides.json, via helpers.journal_key) maps onto this journal, e.g.
+    'eur j neurosci' for European Journal of Neuroscience. Only aliases whose target is the
+    value's own journal and whose words abbreviate that name's words in order are used, so
+    a misspelled or different-journal alias in the table never counts."""
+    target = journal_name_key(value)
+    return [alias for alias, full in load_journal_key().items()
+            if isinstance(alias, str) and isinstance(full, str) and journal_name_key(full) == target
+            and abbreviates(journal_name_key(alias).split(), target.split())]
+
+
+def journal_name_key(name):
+    words = re.findall(r"\w+", fold(norm(delatex(name))))
+    return " ".join(w for w in words if w != "the")
+
+
+JOURNAL_STOP = {"of", "and", "the", "in", "for", "on", "de", "la", "et", "und", "fur"}
+
+
+def abbreviates(short, full):
+    """Every word of short abbreviates the next unmatched word of full (same first letter,
+    remaining letters in order: 'eur' european, 'natl' national); the words of full that are
+    skipped must be stopwords, so 'j neurosci' does not abbreviate 'european journal of neuroscience'."""
+    i = 0
+    for w in short:
+        while i < len(full) and not (full[i][0] == w[0] and re.fullmatch(".*?".join(map(re.escape, w)) + ".*", full[i])):
+            if full[i] not in JOURNAL_STOP:
+                return False
+            i += 1
+        if i == len(full):
+            return False
+        i += 1
+    return all(w in JOURNAL_STOP for w in full[i:]) and short != full
+
+
+def journal_abbreviation_present(value, joined):
+    """A table abbreviation of the value's journal printed in the quotes, and not as part of
+    a longer name of a different journal in the table: 'j neurosci' (The Journal of
+    Neuroscience) inside 'Eur J Neurosci' is the European journal, not a match."""
+    spaced = " " + " ".join(re.findall(r"\w+", joined)) + " "
+    target = journal_name_key(value)
+    others = [journal_name_key(n) for a, f in load_journal_key().items() if isinstance(a, str)
+              for n in (a, f) if isinstance(n, str)
+              and journal_name_key(f if isinstance(f, str) else a) != target]
+    for alias in journal_abbreviations(value):
+        words = " " + journal_name_key(alias) + " "
+        if words in spaced and not any(words in " " + o + " " and " " + o + " " in spaced for o in others):
+            return True
+    return False
+
+
+_JOURNAL_KEY = None
+
+
+def load_journal_key():
+    global _JOURNAL_KEY
+    if _JOURNAL_KEY is None:
+        import os
+        sys.path.insert(0, str(ROOT / "bibcheck"))
+        cwd = os.getcwd()
+        os.chdir(ROOT)  # helpers reads its tables relative to the repository root
+        try:
+            import helpers
+            _JOURNAL_KEY = dict(helpers.journal_key)
+        finally:
+            os.chdir(cwd)
+    return _JOURNAL_KEY
+
+
+# Same-firm publisher variants a catalogue record prints for the house full form, per the
+# rule that a catalogue's short form of the same firm is a match. Each list names one
+# firm only: 'Scribner' (LoC imprints of the 1960s-70s) is Charles Scribner's Sons, and
+# 'G. Allen & Unwin' is George Allen & Unwin; a successor or different firm (Holt,
+# Rinehart and Winston; Unwin Hyman) is never listed. Keys and variants are compared
+# after publisher_key(): punctuation dropped, '&' read as 'and'.
+PUBLISHER_FIRMS = {
+    "charles scribner's sons": ["charles scribner's sons", "c scribner's sons", "scribner's sons", "scribner"],
+    "george allen and unwin": ["george allen and unwin", "g allen and unwin", "allen and unwin"],
+    "henry holt and company": ["henry holt and company", "henry holt and co", "h holt and company", "h holt and co"],
+    "institute of physics publishing": ["institute of physics publishing", "institute of physics pub",
+                                        "institute of physics publ", "iop publishing"],
+}
+
+
+def publisher_key(name):
+    return " ".join(re.findall(r"[\w']+", fold(norm(delatex(name)))))
+
+
+def publisher_variant_present(value, joined_texts):
+    variants = PUBLISHER_FIRMS.get(publisher_key(value))
+    if not variants:
+        return False
+    text = publisher_key(joined_texts)
+    return any(re.search(r"(?<![\w'])" + re.escape(v) + r"(?![\w'])", text) for v in variants)
+
+
+def joined_word_variants(text):
+    """Two print artefacts that split or run words together: a camel-case run-in where a
+    record dropped a space ('inMind', 'thetaResponse', 'denNijs' in PubMed records) is
+    also read with the space, and a line-end hyphen before a lowercase continuation
+    ('Be-\ndingungen', 'Dis- tribution') is also read joined. Only two or more lowercase
+    letters before the capital split, so 'McDonald' and 'DiCarlo' stay whole."""
+    text = re.sub(r"(?<=[a-z]{2})(?=[A-Z][a-z])", " ", text)
+    return re.sub(r"(\w)-\s+([a-z])", r"\1\2", text)
+
+
 def value_supported(field, value, texts, urls=()):
     if field == "doi" and value and any(str(value).lower() in unquote(u).lower() for u in urls):
         return True, []  # the evidence URL is the DOI's own record
     normed = ordinals_to_digits(" ".join(norm(t) for t in texts))
+    alt = ordinals_to_digits(" ".join(norm(joined_word_variants(t)) for t in texts))
     if field == "volume":
-        normed = roman_volumes(normed)
+        normed, alt = roman_volumes(normed), roman_volumes(alt)
     joined = fold(normed)
+    joined_alt = fold(alt)
+    if field == "publisher" and publisher_variant_present(str(value or ""), " ".join(texts)):
+        return True, []
     # German umlauts are also written ae/oe/ue: the quote may use either form, and so may the value.
     joined_translit = fold(normed.translate(UMLAUT_TRANSLIT))
     if field == "pages":
@@ -348,7 +521,7 @@ def value_supported(field, value, texts, urls=()):
     translit = {fold(t): fold(t.translate(UMLAUT_TRANSLIT)) for t in raw_tokens}
     tokens = [fold(t) for t in raw_tokens]
     def present_any(t):
-        if present(t) or present(translit.get(t, t)) or present(t, joined_translit):
+        if present(t) or present(translit.get(t, t)) or present(t, joined_translit) or present(t, joined_alt):
             return True
         if field in ("journal", "booktitle"):
             if t in ABBREVIATED and re.search(ABBREVIATED[t], joined):
@@ -357,6 +530,8 @@ def value_supported(field, value, texts, urls=()):
                 return True
         return False
     missing = [t for t in tokens if not present_any(t)]
+    if missing and field == "journal" and journal_abbreviation_present(str(value or ""), joined):
+        return True, []
     return not missing, missing
 
 
