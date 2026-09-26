@@ -228,8 +228,9 @@ def value_supported(field, value, texts, urls=()):
         joined = expand_ranges(joined)  # only page values: a DOI suffix like 2001-354 is not a range
     # German umlauts are also written ae/oe/ue in some sources: accept either form (see present_any).
     def present(t):
-        edge = (r"(?<!\d)", r"(?!\d)") if t.isdigit() else (r"(?<!\w)", r"(?!\w)")
-        return re.search(edge[0] + re.escape(t) + edge[1], joined)
+        if t.isdigit():  # compare numbers numerically: an issue printed "03" is 3
+            return re.search(r"(?<!\d)0*" + re.escape(t.lstrip("0") or "0") + r"(?!\d)", joined)
+        return re.search(r"(?<!\w)" + re.escape(t) + r"(?!\w)", joined)
     # Normalise the value exactly like the quotes: ordinal words become digits on both sides.
     raw_tokens = value_tokens(field, ordinals_to_digits(norm(delatex(str(value or "")))))
     if field not in ("author", "editor"):
