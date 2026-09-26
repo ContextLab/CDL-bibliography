@@ -1092,3 +1092,334 @@ def test_journal_names_keep_their_identity(bib, key, journal):
     assert check6(bib, key)["final_entry"]["journal"] == journal
     # negative control: the other journal keeps its own name
     assert pc.H.format_journal_name("Psychological Science") == "Psychological Science"
+
+
+# ---------------------------------------------------------------- wave-7/8/9 review regressions
+
+WAVE7 = ROOT / "verification/research-2026-09-25/wave7"
+WAVE8 = ROOT / "verification/research-2026-09-25/wave8"
+WAVE9 = ROOT / "verification/research-2026-09-25/wave9"
+ROWS7, REVIEW7, VALIDATION7 = load_wave(WAVE7)
+ROWS8, REVIEW8, VALIDATION8 = load_wave(WAVE8)
+ROWS9, REVIEW9, VALIDATION9 = load_wave(WAVE9)
+WAVES789 = {"7": (ROWS7, REVIEW7, VALIDATION7), "8": (ROWS8, REVIEW8, VALIDATION8), "9": (ROWS9, REVIEW9, VALIDATION9)}
+
+
+def checkw(bib, wave, key, row=None, review=False, current=None):
+    rows_, review_, validation_ = WAVES789[wave]
+    row = row or rows_[key]
+    return pc.check_entry(row, current if current is not None else bib.get(key), bib, ctx_for(bib),
+                          review=review_.get(key) if review else None, validation=validation_.get(key))
+
+
+def sources(rec):
+    return {c["field"]: c["source"] for c in rec["changes"]}
+
+
+# --- wave 8, fix 1: the researcher's corrected chapter title wins over the cited chapter field
+
+@pytest.mark.parametrize("key,title", [
+    ("GoldEtal08", "Neural integrator models"),
+    ("Howa08", "Memory: computational models"),
+    ("BoraEtal05", "Oscillations in the basal ganglia: the good, the bad, and the unexpected"),
+])
+def test_researcher_corrected_chapter_title_wins(bib, key, title):
+    """Wave-8 review: the @inbook -> @incollection move copied the CITED chapter field over
+    the researcher's corrected title (GoldEtal08's draft 'Neural integrators: recurrent
+    mechanisms and models'; BoraEtal05 lost the serial comma)."""
+    rec = checkw(bib, "8", key)
+    assert rec["final_entry"]["title"] == title and rec["final_entry"]["ENTRYTYPE"] == "incollection"
+    assert "chapter" not in rec["final_entry"] and sources(rec)["title"] == "researcher"
+    # negative control: without the researcher's title the cited chapter field is the title,
+    # labelled as the post-check's move, not the researcher's value
+    row = copy.deepcopy(ROWS8[key])
+    row["fields"].pop("title")
+    rec = checkw(bib, "8", key, row)
+    assert pc.fold(rec["final_entry"]["title"]) == pc.fold(bib[key]["chapter"])
+    assert sources(rec)["title"] == "postcheck"
+
+
+# --- wave 8, fix 2: a chapter field holding the BOOK title; no_source rows never change
+
+def test_no_source_and_ambiguous_rows_are_not_restructured(bib):
+    """BairNoma78 (no_source) and Stey01 (ambiguous): the chapter field holds the book title;
+    the move made the book the chapter. A no_source row now never changes; an ambiguous row's
+    move is left for the user."""
+    for wave, key in (("8", "BairNoma78"), ("8", "Stey01")):
+        rec = checkw(bib, wave, key)
+        assert rec["changes"] == [] and rec["removals"] == {}, key
+        assert rec["final_entry"] == bib[key], key
+        assert "chapter_move_held" in codes(rec)
+    rec = checkw(bib, "8", "BairNoma78", review=True)  # the reviewer's own value is still applied
+    assert sources(rec) == {"booktitle": "reviewer"} and rec["final_entry"]["title"] == "Multidimensional scaling"
+
+
+def test_chapter_field_holding_the_book_title_becomes_booktitle(bib):
+    """BairNoma78's researcher booktitle is the cited chapter field (the fields are swapped).
+    On a verified row the chapter field becomes the booktitle and the title stays the
+    chapter's, never the swap. Negative control: WardEtal09's chapter field is the chapter."""
+    row = copy.deepcopy(ROWS8["BairNoma78"])
+    row["verdict"] = "correction"
+    rec = checkw(bib, "8", "BairNoma78", row)
+    fin = rec["final_entry"]
+    assert fin["title"] == "Multidimensional scaling" and fin["booktitle"] == "Fundamentals of Scaling and Psychophysics"
+    assert fin["ENTRYTYPE"] == "incollection" and "chapter" not in fin and "booktitle" in rec["removals"]["chapter"]
+    rec = check(bib, "WardEtal09")
+    assert rec["final_entry"]["title"].startswith("The roles of short-term and long-term verbal memory")
+
+
+# --- wave 8, fix 3: an ambiguous row's identity is one decision
+
+def test_ambiguous_identity_changes_are_held_together(bib):
+    """Ebbi85 (ambiguous) got the 1913 translation's title and DOI with the 1885 year. Now
+    title and DOI are held together; with the review, the reviewer's year 1913 is held too."""
+    rec = checkw(bib, "8", "Ebbi85")
+    assert rec["changes"] == [] and {"title", "doi"} <= set(rec["held"])
+    assert any(f["code"] == "ambiguous_identity_held" and f["action"] == "held" for f in rec["flags"])
+    assert rec["suggestions"]["doi"] == "10.1037/10011-000"
+    rec = checkw(bib, "8", "Ebbi85", review=True)
+    assert {"title", "year"} <= set(rec["held"]) and rec["final_entry"]["year"] == "1885"
+    assert "doi" not in changed(rec)  # the reviewer disagrees with the DOI: held by that rule
+    assert rec["key_plan"]["action"] == "keep"
+    # negative control: the same row as a correction applies title and DOI
+    row = copy.deepcopy(ROWS8["Ebbi85"])
+    row["verdict"] = "correction"
+    ch = changed(checkw(bib, "8", "Ebbi85", row))
+    assert ch.get("doi") == "10.1037/10011-000" and ch.get("title", "").startswith("Memory")
+
+
+# --- wave 8, fix 4: duplicate resolution is deterministic and never circular
+
+def test_duplicate_keeps_the_rule_conforming_key(bib):
+    """Rugg00 and RuggAlla00 (same chapter; Rugg00 lacks K Allan) were each told to merge
+    into the other. RuggAlla00 fits the ID rule for the corrected metadata and stays."""
+    assert checkw(bib, "8", "RuggAlla00")["key_plan"]["action"] == "keep"
+    assert checkw(bib, "8", "Rugg00")["key_plan"]["merge_into"] == "RuggAlla00"
+    post, page, rules_only, merged = pc.run(WAVE8, write=False, offline=True)
+    for recs in (rules_only, merged):
+        dup = {k: r["key_plan"]["merge_into"] for k, r in recs.items() if r["key_plan"]["action"] == "duplicate"}
+        assert dup.get("Rugg00") == "RuggAlla00" and "RuggAlla00" not in dup
+        assert not any(dup.get(v) == k for k, v in dup.items())  # never A -> B and B -> A
+    assert merged["RuggAlla00"]["key_plan"]["reviewer_agrees"] is True
+    # negative control: with neither key fitting the rule the earlier key stays
+    assert pc.keeper(["SmitJone01b", "SmitJone01"], "SmitJone01") == "SmitJone01"
+    assert pc.keeper(["Rugg00", "RuggAlla00"], "RuggAlla00") == "RuggAlla00"
+    assert pc.keeper(["Xa00", "Xb00"], None) == "Xa00"
+
+
+def test_circular_merge_plans_are_broken():
+    base = {"ENTRYTYPE": "incollection", "author": "M D Rugg and K Allan", "year": "2000",
+            "title": "Event-related potential studies of memory"}
+    recs = {"Rugg00": {"final_entry": dict(base), "flags": [],
+                       "key_plan": {"current_key": "Rugg00", "action": "duplicate", "merge_into": "RuggAlla00"}},
+            "RuggAlla00": {"final_entry": dict(base), "flags": [],
+                           "key_plan": {"current_key": "RuggAlla00", "action": "duplicate", "merge_into": "Rugg00"}}}
+    pc.break_merge_cycles(recs)
+    assert recs["RuggAlla00"]["key_plan"]["action"] == "keep" and "merge_into" not in recs["RuggAlla00"]["key_plan"]
+    assert recs["Rugg00"]["key_plan"]["merge_into"] == "RuggAlla00" and recs["RuggAlla00"]["flags"]
+
+
+# --- wave 8, fix 5: rename only when a key-determining field changes
+
+def test_off_rule_key_kept_without_key_field_change(bib):
+    """ChatGPT -> Open23 was renamed only because the key never followed the rule."""
+    rec = checkw(bib, "8", "ChatGPT", review=True)
+    assert rec["key_plan"]["action"] == "keep" and "key_rename" not in codes(rec)
+    assert rec["key_plan"]["reviewer_agrees"] is True
+    # negative control: a corrected year (a key-determining field) renames it
+    row = copy.deepcopy(ROWS8["ChatGPT"])
+    row["fields"]["year"] = {"status": "corrected", "value": "2022", "evidence": [
+        {"url": "http://web.archive.org/web/20230101000602/https://openai.com/blog/chatgpt/",
+         "quote": "November 30, 2022"}]}
+    rec = checkw(bib, "8", "ChatGPT", row)
+    assert rec["key_plan"]["action"] == "rename" and rec["key_plan"]["new_key"] == "Open22"
+
+
+# --- wave 8, fix 6: publisher and a held address are one decision
+
+def test_publisher_with_held_address_is_one_decision(bib):
+    """Herb34: the 1891 Langensalza publisher was applied next to the held 1834 address
+    'Königsberg'. Rules alone: both are held, one flag; with the reviewer's address both apply."""
+    rec = checkw(bib, "8", "Herb34")
+    assert "publisher" not in changed(rec) and {"publisher", "address"} <= set(rec["held"])
+    assert any(f["code"] == "publisher_address_held" and f["action"] == "held" for f in rec["flags"])
+    rec = checkw(bib, "8", "Herb34", review=True)
+    assert changed(rec)["address"] == "Langensalza, Germany" and "publisher" in changed(rec)
+    assert "publisher_address_held" not in codes(rec)
+    # negative controls: a rewording of the same publisher is not a different publisher
+    assert not pc.different_publisher("Lawrence Erlbaum Associates", "Erlbaum")
+    assert pc.different_publisher("Hermann Beyer \\& S{\\\"{o}}hne", "August Wilhelm Unzer")
+
+
+# --- wave 8, fix 7: leading chapter number; the entry's own DOI
+
+def test_leading_chapter_number_and_existing_doi(bib):
+    """Sand80: Elsevier deposits '20 Stage Analysis of Reaction Processes'. Thor13 confirms
+    its existing DOI: no 'DOI change dropped'."""
+    rec = checkw(bib, "8", "Sand80")
+    assert changed(rec).get("doi") == "10.1016/s0166-4115(08)61955-x" and "doi_title_mismatch" not in codes(rec)
+    assert not pc.registry_title_matches("20 Stage Analysis of Reaction Processes", "Stage analysis of motor programs")
+    assert not pc.registry_title_matches("3 Methods for testing serial memorization",
+                                         "Two methods for testing serial memorization")
+    rec = checkw(bib, "8", "Thor13")
+    assert "doi_title_mismatch" not in codes(rec) and "doi" not in changed(rec) and rec["doi_status"] is None
+    # negative control: the same DOI proposed for an entry without one is checked
+    current = {k: v for k, v in bib["Thor13"].items() if k != "doi"}
+    assert checkw(bib, "8", "Thor13", current=current)["doi_status"]["registered"] is True
+
+
+# --- wave 7, fix 8: DOI titles with symbols, tags and generic column titles
+
+@pytest.mark.parametrize("key,doi,code", [
+    ("GusmEtal14", "10.2174/1874387001408010011", None),          # ®/™ vs \textregistered/\texttrademark
+    ("HernEtal00", "10.1523/jneurosci.20-24-08987.2000", "doi_title_near"),  # D<sub>2</sub>Dopamine
+    ("LismIdia95", "10.1126/science.7878473", None),              # '7 ± 2' vs '$7\pm2$'
+    ("Rebe10", "10.1038/scientificamericanmind0510-70", "doi_generic_title"),  # 'Ask the Brains'
+])
+def test_wave7_correct_dois_kept(bib, key, doi, code):
+    rec = checkw(bib, "7", key)
+    assert changed(rec).get("doi") == doi and "doi_title_mismatch" not in codes(rec)
+    if code:
+        assert any(f["code"] == code and f["action"] == "applied" for f in rec["flags"])
+
+
+def test_symbol_tag_and_generic_title_rules_are_narrow(bib):
+    assert pc.fold("FitBit{\\textregistered} Ultra") == pc.fold("FitBit® Ultra") == "fitbit ultra"
+    assert pc.fold("$7\\pm2$ memories") == pc.fold("7 ± 2 Memories") and pc.fold("$7\\pm2$") != pc.fold("72")
+    assert pc.strip_tags("D<sub>2</sub>Dopamine") == "D 2 Dopamine"
+    assert pc.fold("PLCβ1") == pc.fold("{PLC}$\\beta$1")
+    rec = pc.doi_record("10.1038/scientificamericanmind0510-70")
+    args = dict(volume="21", issue="2", pages="70", year="2010", journal="Scientific {American} Mind")
+    assert pc.generic_item_agrees(rec, **args)
+    for field, other in (("volume", "22"), ("issue", "3"), ("pages", "71"), ("year", "2011"), ("journal", "Nature")):
+        assert not pc.generic_item_agrees(rec, **dict(args, **{field: other})), field
+    rec = check(bib, "BoddEtal97")  # 'Correspondence', Crossref 1996 vs 1997: still another work
+    assert "doi_title_mismatch" in codes(rec) and "doi" not in changed(rec)
+
+
+# --- wave 7, fix 9: a contained type never loses its last venue
+
+@pytest.mark.parametrize("key", ["GatyEtal16", "IsolEtal17", "LiEtal24a"])
+def test_type_change_held_with_held_booktitle(bib, key):
+    rec = checkw(bib, "7", key)
+    fin = rec["final_entry"]
+    assert fin["ENTRYTYPE"] == "article" and fin["journal"] == bib[key]["journal"] and not rec["removals"]
+    assert any(f["code"] == "venue_held" and f["action"] == "held" for f in rec["flags"])
+    # negative control: with the reviewer's booktitle the conversion goes through
+    fin = checkw(bib, "7", key, review=True)["final_entry"]
+    assert fin["ENTRYTYPE"] == "inproceedings" and fin["booktitle"] and "journal" not in fin
+
+
+# --- wave 7, fix 10: author-deposited records are a second host
+
+def test_deposited_record_releases_surname_hold(bib):
+    """CaliVita05: Crossref and arXiv cs/0412098 both print Cilibrasi (key CiliVita07);
+    ChanEtal20: DataCite and the Zenodo record print Geerligs."""
+    rec = checkw(bib, "7", "CaliVita05")
+    assert rec["final_entry"]["author"] == "R L Cilibrasi and P M B Vitanyi"
+    assert rec["key_plan"]["new_key"] == "CiliVita07"
+    assert any(f["code"] == "surname_corroborated" and "arXiv cs/0412098" in f["detail"] for f in rec["flags"])
+    rec = checkw(bib, "7", "ChanEtal20")
+    assert "L Geerligs" in pc.split_names(rec["final_entry"]["author"]) and "author" not in rec["held"]
+    # negative controls: without the arXiv id, or without the Zenodo DOI, one host: held
+    row = copy.deepcopy(ROWS7["CaliVita05"])
+    row["notes"] = row["notes"].replace("(cs/0412098)", "")
+    rec = checkw(bib, "7", "CaliVita05", row)
+    assert "surname_single_source" in codes(rec) and rec["key_plan"]["new_key"] == "CaliVita07"
+    row = copy.deepcopy(ROWS7["ChanEtal20"])
+    row["fields"].pop("doi")
+    rec = checkw(bib, "7", "ChanEtal20", row)
+    assert "surname_single_source" in codes(rec) and "L Geerlings" in pc.split_names(rec["final_entry"]["author"])
+
+
+# --- wave 7, fixes 11 and 12: another version named in the notes; junk Force field
+
+@pytest.mark.parametrize("key", ["TsitEtal19", "LiEtal24b", "JainHuth18"])
+def test_other_version_in_notes_needs_user(bib, key):
+    rec = checkw(bib, "7", key)
+    assert "other_version_named" in codes(rec)
+
+
+def test_other_version_detection_is_conservative(bib):
+    assert pc.other_version_named("No published version found in Crossref.") is None
+    assert pc.other_version_named("Crossref has no is-preprint-of relation") is None
+    assert pc.other_version_named("the 2025 re-depositions, not the published version; no DOI") is None
+    assert pc.other_version_named("A bioRxiv preprint exists; the journal version is the one cited.") is None
+    assert "other_version_named" not in codes(checkw(bib, "7", "XieEtal21"))
+    post, page, rules_only, merged = pc.run(WAVE7, write=False, offline=True)
+    needs = {p["key"]: p["needs_user"] for p in page}
+    assert needs["TsitEtal19"] and needs["LiEtal24b"] and needs["JainHuth18"]
+
+
+@pytest.mark.parametrize("wave,key", [("7", "AbdeEtal21"), ("7", "LiEtal24b"), ("7", "Amer23b"), ("8", "ChatGPT")])
+def test_junk_force_field_removed(bib, wave, key):
+    rec = checkw(bib, wave, key)
+    assert bib[key].get("force") and "force" not in rec["final_entry"] and "force" in rec["removals"]
+
+
+def test_no_force_removal_without_the_field(bib):
+    rec = check(bib, "BlisColl93")
+    assert "force" not in rec["removals"] and "force" not in bib["BlisColl93"]
+
+
+# --- wave 9, fix 13: names left as the researcher wrote them
+
+@pytest.mark.parametrize("key", ["CarvEtal22b", "TianEtal20b"])
+def test_full_word_after_initials_never_becomes_an_initial(bib, key):
+    """'A Quattrini Li' became 'A Q Li' (an added initial) under source 'researcher'."""
+    rec = checkw(bib, "9", key)
+    assert "A Quattrini Li" in pc.split_names(rec["final_entry"]["author"]) and "author" not in changed(rec)
+    # a source that prints the compound as the family name braces it
+    row = copy.deepcopy(ROWS9[key])
+    row["fields"]["author"]["evidence"].append({"url": "https://example.org/x",
+                                                "quote": '"given":"Alberto","family":"Quattrini Li"'})
+    rec = checkw(bib, "9", key, row)
+    assert "A {Quattrini Li}" in pc.split_names(rec["final_entry"]["author"])
+    assert {c["field"]: c for c in rec["changes"]}["author"]["normalised_by"] == "postcheck"
+
+
+def test_names_left_as_cited_are_not_rewritten(bib):
+    """SingEtal24: the researcher left 'K Vasuden Alwala', 'K Hou U', 'V Satish Kumar' as cited."""
+    rec = checkw(bib, "9", "SingEtal24")
+    assert rec["final_entry"]["author"] == pc.canonical_fields(ROWS9["SingEtal24"]["fields"])["author"]["value"]
+    # negative controls: full given names and a 'Family, Given' form are still abbreviated
+    assert pc.normalise_name("John Paul Smith")[0] == "J P Smith"
+    assert pc.normalise_name("Li, A Quattrini")[0] == "A Q Li"
+    assert pc.normalise_name("A Quattrini Li")[0] == "A Quattrini Li"
+
+
+# --- wave 9, fix 14: print-year false alarms
+
+def test_print_year_false_alarms(bib):
+    """ReccOKee89: 'pre-2000 SfN abstracts' is no print date. VaswEtal17 / LiuEtal18: the
+    Curran reprint year of NeurIPS is not the paper's print year when the conference year
+    is quoted."""
+    rec = checkw(bib, "9", "ReccOKee89")
+    assert "print_year_conflict" not in codes(rec) and "year" not in rec["suggestions"]
+    assert pc.print_years_in_notes("pre-2000 SfN abstracts are only in print") == set()
+    assert pc.print_years_in_notes("the volume was printed 2000") == {"2000"}  # negative control
+    for key in ("VaswEtal17", "LiuEtal18"):
+        rec = checkw(bib, "9", key)
+        assert "print_year_conflict" not in codes(rec) and "year" not in rec["suggestions"], key
+        assert "proceedings_print_year" in codes(rec)
+    # negative control: without the quoted conference year the print year is still suggested
+    row = copy.deepcopy(ROWS9["VaswEtal17"])
+    row["fields"]["year"]["evidence"] = []
+    rec = checkw(bib, "9", "VaswEtal17", row)
+    assert "print_year_conflict" in codes(rec) and rec["suggestions"].get("year") == "2018"
+
+
+# --- wave 9, fix 15: @conference without proceedings
+
+def test_conference_without_proceedings_becomes_misc(bib):
+    rec = checkw(bib, "9", "Laks01")
+    assert rec["final_entry"]["ENTRYTYPE"] == "misc" and "conference_without_proceedings" in codes(rec)
+    # negative control: a proceedings booktitle (NeurIPS) gives @inproceedings
+    assert checkw(bib, "9", "VaswEtal17")["final_entry"]["ENTRYTYPE"] == "inproceedings"
+
+
+def test_reviewer_remove_is_an_instruction_not_a_value(bib):
+    """AbdeEtal21's reviewer suggested force = 'remove': the field goes, 'remove' is never a value."""
+    rec = checkw(bib, "7", "AbdeEtal21", review=True)
+    assert "force" not in rec["final_entry"] and all(c["proposed"] != "remove" for c in rec["changes"])
+    assert pc.is_removal("remove") and pc.is_removal("(delete)") and not pc.is_removal("Removal of memories")

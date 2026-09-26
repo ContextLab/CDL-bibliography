@@ -62,6 +62,8 @@ BIBTEX_TYPES = {"article", "book", "booklet", "inbook", "incollection", "inproce
                 "manual", "mastersthesis", "misc", "phdthesis", "proceedings",
                 "techreport", "unpublished", "patent"}
 NAME_FIELDS = ("author", "editor")
+IDENTITY_FIELDS = ("title", "year", "doi", "journal", "booktitle")  # held together on an ambiguous verdict
+JUNK_FIELDS = ("force",)  # never a BibTeX field: always removed (AbdeEtal21, LiEtal24b, Amer23b 'Force = {True}')
 CONTAINED_TYPES = ("inproceedings", "incollection", "inbook")
 ORDINAL_FIELDS = ("title", "booktitle", "journal", "edition", "series", "publisher",
                   "organization", "howpublished", "note", "school", "institution")
@@ -114,6 +116,13 @@ ACCENTS = {"'": "\u0301", "`": "\u0300", "^": "\u0302", '"': "\u0308", "~": "\u0
            "H": "\u030b", "k": "\u0328", "r": "\u030a"}
 SPECIAL = {"l": "l", "L": "L", "o": "o", "O": "O", "ss": "ss", "ae": "ae", "AE": "AE",
            "oe": "oe", "OE": "OE", "aa": "a", "AA": "A", "i": "i", "j": "j"}
+SYMBOL_MACROS = {"textregistered": "®", "texttrademark": "™", "textcopyright": "©",
+                 "pm": " ± "}
+# Greek letters compare as their names: Crossref 'PLCβ1' = the entry's '{PLC}$\beta$1' (HernEtal00)
+GREEK = {c: f" {n} " for c, n in zip(
+    "αβγδεζηθικλμνξπρστυφχψω",
+    "alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi pi rho sigma tau upsilon phi chi psi "
+    "omega".split())}
 
 
 # ---------------------------------------------------------------- text folding
@@ -125,6 +134,10 @@ def delatex(text):
     text = re.sub(r"\\([cvuHkr])\s*\{([A-Za-z])\}",
                   lambda m: unicodedata.normalize("NFC", m[2] + ACCENTS[m[1]]), text)
     text = re.sub(r"(\d+)\\textsuperscript\{([a-z]+)\}", r"\1\2", text)
+    # symbol macros as the registries print them (GusmEtal14 'FitBit{\textregistered}' =
+    # Crossref 'FitBit®'; LismIdia95 '$7\pm2$' = '7 ± 2')
+    for macro, symbol in SYMBOL_MACROS.items():
+        text = re.sub(r"\{?\\" + macro + r"(?![A-Za-z])\}?\s*", symbol, text)
     # font commands keep their text: 'genus \textit{Cataglyphis}' -> 'genus Cataglyphis'
     text = re.sub(r"\\(?:textit|emph|textbf|textsc|textsl|textup|textrm|mathit|mathrm|it|em|bf)\b\s*", "", text)
     for macro, letter in SPECIAL.items():
@@ -139,7 +152,8 @@ def fold(text):
     text = delatex(html.unescape(str(text or "")))
     text = unicodedata.normalize("NFKD", text)
     text = "".join(c for c in text if not unicodedata.combining(c))
-    text = re.sub(r"[^0-9a-z]+", " ", text.casefold())
+    text = "".join(GREEK.get(c, c) for c in text.casefold())
+    text = re.sub(r"[^0-9a-z]+", " ", text)
     return re.sub(r"\s+", " ", text).strip()
 
 
@@ -289,7 +303,15 @@ def record_variants(record_title, entry_title):
     out = [record_title, unglue(record_title)]
     if SECTION_NUMERAL.match(record_title or "") and not SECTION_NUMERAL.match(entry_title or ""):
         out += [SECTION_NUMERAL.sub("", v, count=1) for v in list(out)]
+    # a bare chapter number before a capitalised word (Elsevier: '20 Stage Analysis of
+    # Reaction Processes', Sand80), unless the entry's title starts with a number too
+    first = (fold(entry_title).split() or [""])[0]
+    if CHAPTER_NUMBER.match(record_title or "") and not (first.isdigit() or first in NUMBER_WORDS):
+        out += [CHAPTER_NUMBER.sub("", v, count=1) for v in list(out)]
     return list(dict.fromkeys(out))
+
+
+CHAPTER_NUMBER = re.compile(r"^\s*\d{1,3}\s+(?=[A-Z])")
 
 
 def main_title(title):
@@ -346,7 +368,12 @@ def near_title(record_title, entry_title):
     insertion, deletion, substitution or swap: BousRosn70 'unhibited', Mart65's cited
     'paried', Curr99's run-together words and mojibake 'old\u00ee\u00bfnew'), the entry
     title has at least 20 letters, and both carry the same part numbers."""
-    numerals = lambda t: {w for w in fold_numbers(t).split() if NUMERAL.match(w)}
+    def numerals(t):
+        # digit runs whether or not glued to a word (Crossref 'IP 3' from 'IP<sub>3</sub>'
+        # is the entry's '{IP3}', HernEtal00) plus roman part numbers
+        words = fold_numbers(t).split()
+        return sorted([d for w in words for d in re.findall(r"\d+", w)] +
+                      [w for w in words if w.isalpha() and NUMERAL.match(w)])
     for variant in record_variants(record_title, entry_title):
         r, e = squash(variant), squash(entry_title)
         if len(e) >= NEAR_TITLE_MIN_LETTERS and numerals(unglue(variant)) == numerals(entry_title) \
@@ -372,7 +399,7 @@ def record_metadata_agrees(rec, first_author=None, year=None, volume=None, pages
     return out
 
 
-def doi_title_verdict(rec, cands, volume=None, pages=None, first_author=None, year=None):
+def doi_title_verdict(rec, cands, volume=None, pages=None, first_author=None, year=None, issue=None, journal=None):
     """How a DOI record's title relates to the entry: ('match', why), ('part_number', why)
     when the titles agree except for part numbers (a different part of a series or a
     registry that left the number out: held for the user, JacoEtal98), ('short', why)
@@ -420,7 +447,26 @@ def doi_title_verdict(rec, cands, volume=None, pages=None, first_author=None, ye
                     return "part_number_page", (f"titles agree except for part numbers ({t!r} vs {c!r}); "
                                                 "the record's first page is the entry's")
                 return "part_number", f"titles agree except for part numbers ({t!r} vs {c!r})"
+    if generic_item_agrees(rec, volume, issue, pages, year, journal):
+        return "generic", (f"registry title {record_title!r} is not the entry's, but volume {rec['volume']}, issue "
+                           f"{rec['issue']}, first page {first_page(rec['page'])} and year {year} all equal the "
+                           "entry's" + (f" in {rec['container']!r}" if rec.get("container") else ""))
     return None, ""
+
+
+def generic_item_agrees(rec, volume, issue, pages, year, journal):
+    """A registry record whose title is a generic column or section heading (Rebe10:
+    Scientific American Mind's 'Ask the Brains') is the entry's item only when its
+    volume, issue, first page and year (print or issued) all equal the entry's, and its
+    container, when both have one, is the entry's journal. BoddEtal97's 'Correspondence'
+    (Crossref 1996, the entry 1997) is not."""
+    same = lambda a, b: bool(a) and bool(b) and str(a).strip().lower() == str(b).strip().lower()
+    if not (same(rec.get("volume"), volume) and same(rec.get("issue"), issue)
+            and first_page(rec.get("page")) and first_page(rec.get("page")) == first_page(pages)
+            and year and year in {rec.get("print_year"), rec.get("issued_year")}):
+        return False
+    return not (rec.get("container") and journal) or fold(rec["container"]) == fold(journal) \
+        or titles_match(rec["container"], journal)
 
 
 def braced(text):
@@ -506,6 +552,13 @@ def clean_doi(doi):
     return doi.lower()
 
 
+def strip_tags(text):
+    """A registry title without its HTML/JATS tags. A tag is a word break: Crossref
+    glues 'D<sub>2</sub>Dopamine' and 'Ca<sup>2+</sup>Currents' (HernEtal00), which
+    read 'D2Dopamine' when the tags were removed without a space."""
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", text or ""))).strip()
+
+
 def date_year(msg, key):
     parts = (msg.get(key) or {}).get("date-parts") or [[None]]
     return str(parts[0][0]) if parts and parts[0] and parts[0][0] else None
@@ -550,8 +603,8 @@ def doi_record(doi, offline=False):
             title = " ".join(msg.get("title") or [])
             sub = " ".join(msg.get("subtitle") or [])
             out.update({
-                "title": html.unescape(re.sub(r"<[^>]+>", "", title)),
-                "subtitle": html.unescape(re.sub(r"<[^>]+>", "", sub)) or None,
+                "title": strip_tags(title),
+                "subtitle": strip_tags(sub) or None,
                 "container": " ".join(msg.get("container-title") or []) or None,
                 "print_year": date_year(msg, "published-print"),
                 "online_year": date_year(msg, "published-online"),
@@ -673,6 +726,39 @@ def given_initials(token):
     return " ".join(out)
 
 
+def looks_initial(tok):
+    """An initial, dotted or not ('A', 'A.', 'J.-P.', 'J-P')."""
+    return is_initial(tok) or re.fullmatch(r"(?:[A-Z]\.)+(?:-(?:[A-Z]\.?))*|[A-Z]\.?(?:-[A-Z]\.?)+", tok) is not None
+
+
+def mid_word_surname(name):
+    """(initials, words) of a house-form name whose given part is initials followed by
+    full words ('A Quattrini Li' -> ('A', 'Quattrini Li')), or None."""
+    tokens = split_top(name)
+    if len(tokens) < 3 or any("{" in t or "\\" in t for t in tokens[1:]):
+        return None
+    i = 0
+    while i < len(tokens) - 1 and looks_initial(tokens[i]):
+        i += 1
+    if i == 0 or i >= len(tokens) - 1 or not re.fullmatch(r"[A-Z][a-z]+(?:-[A-Z][a-z]+)*", tokens[i]):
+        return None
+    return " ".join(tokens[:i]), " ".join(tokens[i:])
+
+
+FAMILY_RES = (re.compile(r'"family"\s*:\s*"([^"]+)"'), re.compile(r'"(?:name|familyName)"\s*:\s*"([^",]+)[,"]'),
+              re.compile(r"<LastName>([^<]+)</LastName>"), re.compile(r"\bFAU\s+-\s+([^,\n]+),"))
+
+
+def source_families(evidence, record=None):
+    """Folded family names as the sources print them: Crossref/DataCite JSON quotes,
+    PubMed LastName, MEDLINE FAU, and the fetched DOI record's families."""
+    out = {fold(f) for f in (record or {}).get("families") or [] if f}
+    for e in evidence or []:
+        for rx in FAMILY_RES:
+            out |= {fold(m) for m in rx.findall(e.get("quote", ""))}
+    return out
+
+
 def is_initial(tok):
     if re.fullmatch(r"(?:[A-Z]|\{\\[^}]+\}|\\[^A-Za-z\s]\{?[A-Za-z]\}?)(?:-(?:[A-Z]|\{\\[^}]+\}))*", tok):
         return True
@@ -754,9 +840,16 @@ def normalise_name(name):
                 break
     given, family = tokens[:start], tokens[start:]
     new_given = []
-    for t in given:
+    for i, t in enumerate(given):
         if is_initial(t):
             new_given.append(t)
+        elif i and len(kept) == 1 and all(looks_initial(g) for g in given[:i]):
+            # a full word after the initials is part of the surname in house form
+            # ('A Quattrini Li', 'K Vasuden Alwala'): never turned into an initial
+            # (CarvEtal22b 'A Q Li' added an initial); braced only on a source's word.
+            # A 'Family, Given' form names its given part, which is abbreviated as usual
+            new_given.extend(given[i:])
+            break
         else:
             ini = given_initials(t)
             if ini != t:
@@ -894,6 +987,44 @@ def given_part(name):
     return " ".join(tokens[: len(tokens) - len(split_top(fam))])
 
 
+ARXIV_ID = re.compile(r"arxiv\D{0,20}?(\d{4}\.\d{4,5}|[a-z][a-z\-]*(?:\.[A-Z]{2})?/\d{7})", re.I)
+ZENODO_DOI = re.compile(r"10\.5281/zenodo\.(\d+)", re.I)
+
+
+def deposited_witnesses(row, final, ctx, last):
+    """[(host, description)] of author-deposited records that print the folded surname
+    `last`: the arXiv record of an arXiv id named in the row (its title must be the
+    entry's), and the Zenodo record of a 10.5281/zenodo DOI the entry carries. The
+    authors deposit these names themselves, and the post-check fetches them from
+    export.arxiv.org / zenodo.org, not the researcher's quoted host."""
+    fetch = ctx.get("fetch") or http_get
+    text = " ".join([row.get("notes", ""), (row.get("identity") or {}).get("url", "")] +
+                    [e.get("url", "") for f in (row.get("fields") or {}).values() for e in (f or {}).get("evidence") or []] +
+                    [str(final.get("doi", "")), str(final.get("volume", "")), str(final.get("journal", ""))])
+    out = []
+    for aid in dict.fromkeys(m for m in ARXIV_ID.findall(text)):
+        status, body = fetch(f"https://export.arxiv.org/api/query?id_list={aid}")
+        if status != 200:
+            continue
+        entry = (re.search(r"<entry>(.*?)</entry>", body, re.S) or [None, ""])[1]
+        title = re.sub(r"\s+", " ", html.unescape((re.search(r"<title>(.*?)</title>", entry, re.S) or [None, ""])[1]))
+        names = [html.unescape(n) for n in re.findall(r"<name>(.*?)</name>", entry)]
+        if title and titles_match(title, final.get("title", "")) and any(last in fold(n).split() for n in names):
+            out.append(("export.arxiv.org", f"arXiv {aid} ({', '.join(names[:3])})"))
+    for zid in dict.fromkeys(ZENODO_DOI.findall(str(final.get("doi", "")))):
+        status, body = fetch(f"https://zenodo.org/api/records/{zid}")
+        if status != 200:
+            continue
+        try:
+            creators = json.loads(body)["metadata"]["creators"]
+        except (ValueError, KeyError, TypeError):
+            continue
+        fams = [c.get("name", "").split(",")[0] for c in creators]
+        if any(last in fold(f).split() for f in fams):
+            out.append(("zenodo.org", f"Zenodo record {zid} of the entry's DOI"))
+    return out
+
+
 # ---------------------------------------------------------------- field rules
 
 def roman(n):
@@ -910,6 +1041,19 @@ def roman(n):
 
 VENUE_STOP = {"the", "of", "on", "in", "and", "for", "a", "an", "proceedings", "proc", "conference", "annual",
               "international", "workshop", "symposium", "meeting"}
+
+
+PUBLISHER_STOP = {"the", "and", "of", "press", "publishing", "publishers", "publisher", "verlag", "inc", "ltd", "co",
+                  "company", "sons", "son", "sohne", "university", "books", "group", "pub", "associates", "gmbh"}
+
+
+def different_publisher(new, old):
+    """Two publisher names with no content word in common (ignoring 'Press', 'Sons',
+    'Verlag', ...): another publisher, not a rewording ('Erlbaum' ~ 'Lawrence Erlbaum
+    Associates'). An empty old publisher is not 'different'."""
+    words = lambda t: {w for w in fold(t).split() if w not in PUBLISHER_STOP}
+    a, b = words(new), words(old)
+    return bool(a) and bool(b) and not (a & b)
 
 
 def same_venue(journal, booktitle):
@@ -1078,6 +1222,14 @@ def same_work_in_bib(key, final, bib, index):
     return sorted(k for k in cands if k != key and same_work(bib[k], final))
 
 
+def keeper(keys, target):
+    """Which of several keys for one work stays: the one that fits the ID rule for the
+    work's corrected metadata (RuggAlla00, not Rugg00, once K Allan is added), else the
+    earliest key. Deterministic, so two entries are never told to merge into each other."""
+    fitting = sorted(k for k in keys if target and key_fits(k, target))
+    return fitting[0] if fitting else sorted(keys)[0]
+
+
 def next_suffix(used):
     for s in H.get_key_suffixes(len(used) + 2):
         if s not in used:
@@ -1102,13 +1254,21 @@ def key_plan(key, current, final, bib, taken, reserved, index=None):
         if same_doi:
             plan["action"] = "duplicate"
             plan["merge_into"] = same_doi[0]
-        elif same and same[0] < key:
-            plan.update(action="duplicate", merge_into=same[0],
-                        detail=f"same work (title, first author, year) already in cdl.bib as {same[0]}: "
+        elif same and keeper([key] + same, target) != key:
+            into = keeper([key] + same, target)
+            plan.update(action="duplicate", merge_into=into,
+                        detail=f"same work (title, first author, year) already in cdl.bib as {into}: "
                                f"merge {key} into it")
         elif same:
             plan["detail"] = (f"same work (title, first author, year) as {', '.join(same)} in cdl.bib: "
-                              f"{same[0]} should merge into {key}")
+                              f"{', '.join(same)} should merge into {key}")
+        return plan
+    if key_target(current) == target and not same_doi and not same \
+            and not any(k in bib and same_work(bib[k], final) for k in bib if k != key and key_fits(k, target)):
+        # no key-determining field (first-author surname, author count, year) changed:
+        # a key that never followed the rule is kept (ChatGPT, not Open23)
+        plan["detail"] = (f"{key} does not follow the ID rule ({target}), but no key-determining field changed: "
+                          "kept")
         return plan
     plan["rename_reason"] = ("key does not follow the corrected metadata"
                              if key_fits(key, key_target(current) or "\0")
@@ -1150,6 +1310,24 @@ def year_evidence_quotes(f):
 NOT_PRINT_DATE = re.compile(r"online|digiti[sz]|electronic|epub|archive|scann|web|posted|deposit", re.I)
 
 
+# The batch schema (PROTOCOL.md) has no structured field for a replacement candidate:
+# the researchers write it in `notes`. These phrases name another version; a match
+# preceded in its clause by 'no'/'not'/'never'/'without' ('No published version
+# found', 'not the published version', 'Crossref has no is-preprint-of relation') does
+# not count. 'journal version' is left out: it is mostly 'the journal version is cited'.
+OTHER_VERSION = re.compile(r"replacement candidate|published version|is-preprint-of", re.I)
+NEGATION = re.compile(r"\b(?:no|not|never|without)\b", re.I)
+
+
+def other_version_named(notes):
+    """The first phrase of `notes` that names another (published) version, or None."""
+    for m in OTHER_VERSION.finditer(notes or ""):
+        clause = re.split(r"[.;:()]\s", (notes or "")[:m.start()])[-1]
+        if not NEGATION.search(clause[-30:]):
+            return m[0]
+    return None
+
+
 def print_years_in_notes(notes):
     """Years the notes give as print dates: those in a clause that says print/printed
     (not reprint), except a year whose own part of the clause (split at parentheses,
@@ -1163,7 +1341,9 @@ def print_years_in_notes(notes):
             continue
         if re.search(r"\bprint(ed)?\b|published-print|print year|print edition|print issue", c):
             for part in re.split(r"[()\[\],]|\b(?:but|while|whereas)\b", clause):
-                found = set(re.findall(r"\b(?:19|20)\d{2}\b", part))
+                # 'pre-2000 SfN abstracts' names no date (ReccOKee89): a year glued to a
+                # word by a hyphen is not read
+                found = set(re.findall(r"(?<![A-Za-z]-)\b(?:19|20)\d{2}\b", part))
                 if found and NOT_PRINT_DATE.search(part) and not re.search(r"\bprint", part, re.I):
                     continue
                 years |= found
@@ -1237,6 +1417,11 @@ def canonical_review(review):
         if review.get(part):
             review[part] = canonical_fields(review[part])
     return review
+
+
+def is_removal(value):
+    """A reviewer's suggested value that asks for the field to go ('remove', 'delete')."""
+    return str(value or "").strip().lower().strip("()[] .") in ("remove", "delete", "drop", "remove field")
 
 
 def reviewer_confirms(verdict_text):
@@ -1354,6 +1539,7 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
 
     # --- reviewer merge
     reviewer_key = None
+    reviewer_removes = set()
 
     def resolve_hold(name, why):
         for f in flags:
@@ -1367,6 +1553,9 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
         for name, value in sv.items():
             if name == "key":
                 m = re.match(r"\s*([A-Za-z][A-Za-z\-]*\d{2}[a-z]*)", str(value or ""))
+                if not m:  # a key outside the ID rule, named as it is ('ChatGPT')
+                    m = re.match(r"\s*([A-Za-z][\w\-]*)\b", str(value or ""))
+                    m = m if m and (m[1] == key or m[1] in bib) else None
                 reviewer_key = {"text": value, "key": m[1] if m else None}
                 continue
             if name == "action":
@@ -1377,6 +1566,10 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                     del applied[name]
                     flag(flags, "reviewer_dropped", name,
                          f"reviewer withdrew the proposed {name}; not applied", "dropped")
+                continue
+            if is_removal(value):  # 'remove' is an instruction, never a value (AbdeEtal21 force)
+                applied.pop(name, None)
+                reviewer_removes.add(name)
                 continue
             applied[name] = {"value": str(value), "source": "reviewer",
                              "evidence": [{"reviewer_problems": review.get("problems") or []}]}
@@ -1402,9 +1595,29 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                     resolve_hold(name, "validator could not fetch the source; reviewer confirmed "
                                        f"the value ({verdict_f})")
 
+    # --- ambiguous verdict: the identity-defining changes (title, year, DOI, venue) are
+    # one decision for the user, never applied piecemeal (Ebbi85 got the 1913
+    # translation's title and DOI with the original's year 1885)
+    if verdict == "ambiguous":
+        ident = {n: applied[n]["value"] for n in IDENTITY_FIELDS
+                 if n in applied and str(applied[n]["value"]) != str(current.get(n, ""))}
+        for n, v in ident.items():
+            applied.pop(n)
+            held[n] = "verdict ambiguous: identity-defining change held for the user"
+            suggestions[n] = v
+        if ident:
+            flag(flags, "ambiguous_identity_held", ", ".join(ident),
+                 "verdict ambiguous: the identity-defining changes are one decision for the user, held together: " +
+                 "; ".join(f"{n}={v!r}" for n, v in ident.items()), "held")
+
     # --- DOI registration and record match
     doi_status = None
-    if "doi" in applied:
+    if "doi" in applied and clean_doi(applied["doi"]["value"]) == clean_doi(current.get("doi")) \
+            and applied["doi"]["source"] == "researcher":
+        # the entry's own DOI, confirmed: no change, so nothing to check or drop (Thor13's
+        # spurious 'DOI change dropped' on its existing DOI)
+        applied["doi"]["value"] = current["doi"]
+    elif "doi" in applied:
         doi = clean_doi(applied["doi"]["value"])
         applied["doi"]["value"] = doi
         rec = ctx["doi"](doi)
@@ -1431,7 +1644,9 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                 rec, cands, (applied.get("volume") or {}).get("value") or current.get("volume"),
                 (applied.get("pages") or {}).get("value") or current.get("pages"),
                 first_author=surname(normalise_name(authors_now[0])[0]) if authors_now else None,
-                year=(applied.get("year") or {}).get("value") or current.get("year"))
+                year=(applied.get("year") or {}).get("value") or current.get("year"),
+                issue=(applied.get("number") or {}).get("value") or current.get("number"),
+                journal=(applied.get("journal") or {}).get("value") or current.get("journal"))
             rv_doi = str(((review or {}).get("field_verdicts") or {}).get("doi") or "")
             confirmed = applied["doi"]["source"] == "reviewer" or reviewer_confirms(rv_doi) \
                 or "but correct" in rv_doi.lower()
@@ -1449,6 +1664,9 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                 if title_verdict == "near":
                     flag(flags, "doi_title_near", "doi", f"{doi} is registered to {record_title!r}: {why}; applied",
                          "applied")
+                elif title_verdict == "generic":
+                    flag(flags, "doi_generic_title", "doi", f"{doi} is registered to {record_title!r}: {why}; "
+                                                            "applied", "applied")
                 elif title_verdict == "part_number_page":
                     flag(flags, "doi_title_part_number", "doi",
                          f"{doi} is registered to {record_title!r}: {why}; applied", "applied")
@@ -1493,7 +1711,19 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
     year_now = (applied.get("year") or {}).get("value") or current.get("year")
     note_prints = print_years_in_notes(row.get("notes"))
     corroborated = len(quoted_print_years(fields.get("year")).get(year_now) or ()) >= 2
-    if note_prints and year_now and year_now not in note_prints and not corroborated:
+    # a conference paper is cited by its conference year: a later print of the
+    # proceedings (Curran's NeurIPS reprints, VaswEtal17 2017 printed 2018) is not the
+    # paper's print year when the year's own evidence quotes the conference year
+    venue = str((applied.get("booktitle") or {}).get("value") or current.get("booktitle") or "")
+    etype_now = str((applied.get("ENTRYTYPE") or {}).get("value") or current.get("ENTRYTYPE") or "").lower()
+    conference_year = bool(year_now) and (etype_now in ("inproceedings", "conference") or PROCEEDINGS_RE.search(venue)) \
+        and any(re.search(r"(?<!\d)" + re.escape(year_now) + r"(?!\d)", q)
+                for q in year_evidence_quotes(fields.get("year")))
+    if note_prints and year_now and year_now not in note_prints and not corroborated and conference_year:
+        flag(flags, "proceedings_print_year", "year",
+             f"notes give a print date {sorted(note_prints)} of the proceedings; the conference year {year_now} is "
+             "quoted and stands (no year suggested)", "applied")
+    elif note_prints and year_now and year_now not in note_prints and not corroborated:
         flag(flags, "print_year_conflict", "year",
              f"notes give a print date {sorted(note_prints)} but the year is {year_now}: print year wins")
         if len(note_prints) == 1:
@@ -1504,6 +1734,20 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
             not re.search(r"published-print|print", yq):
         flag(flags, "year_from_online_date", "year",
              "year evidence is an online-publication date; the print year wins")
+
+    # --- a different publisher next to a held or unsupported address: one decision
+    # (Herb34: the 1891 Langensalza publisher applied, the 1834 'K\\"onigsberg' kept)
+    if "publisher" in applied and current.get("address") and "address" not in applied \
+            and different_publisher(applied["publisher"]["value"], current.get("publisher", "")):
+        new_pub = applied.pop("publisher")["value"]
+        held["publisher"] = "a different publisher needs its address, which is held or unsupported"
+        suggestions["publisher"] = new_pub
+        addr = (fields.get("address") or {}).get("value")
+        flag(flags, "publisher_address_held", "publisher, address",
+             f"publisher {current.get('publisher')!r} -> {new_pub!r} but the address {current['address']!r} is "
+             + (f"held ({held['address']}; proposed {addr!r})" if "address" in held else
+                f"not supported for the new publisher (proposed {addr!r})" if addr else "not supported by any source")
+             + "; publisher and address are one decision for the user, both kept as they are", "held")
 
     # --- final entry before house rules
     final = dict(current)
@@ -1521,24 +1765,59 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
         else:
             applied[name] = {"value": new, "source": "postcheck", "evidence": []}
 
-    # ENTRYTYPE
+    # ENTRYTYPE; @conference -> @inproceedings only with a proceedings booktitle,
+    # otherwise @misc for the user to check (Laks01: a speech, no proceedings)
+    def conference_to(why_from):
+        venue = final.get("booktitle") or final.get("journal") or ""
+        if venue and PROCEEDINGS_RE.search(venue):
+            return "inproceedings", [f"{why_from} -> @inproceedings"]
+        flag(flags, "conference_without_proceedings", "ENTRYTYPE",
+             f"{why_from} without a proceedings booktitle ({venue!r}): @misc, not @inproceedings "
+             "(house rule @conference -> @inproceedings needs a proceedings volume)")
+        return "misc", [f"{why_from} -> @misc (no proceedings booktitle)"]
+
     if "ENTRYTYPE" in applied:
+        raw_type = str(applied["ENTRYTYPE"]["value"] or "").strip().lower().lstrip("@")
         et, notes, bad = normalise_entrytype(applied["ENTRYTYPE"]["value"])
         if bad:
             del applied["ENTRYTYPE"]
             final["ENTRYTYPE"] = current.get("ENTRYTYPE")
             flag(flags, "invalid_entrytype", "ENTRYTYPE", bad + "; not applied", "dropped")
         else:
+            if raw_type == "conference":
+                et, notes = conference_to("@conference")
             set_norm("ENTRYTYPE", et, notes)
     elif final.get("ENTRYTYPE") == "conference" and applied:
-        set_norm("ENTRYTYPE", "inproceedings", ["@conference -> @inproceedings"])
+        set_norm("ENTRYTYPE", *conference_to("@conference"))
 
     # titled chapter: @inbook{title=book, chapter=chapter} -> @incollection
     chap = final.get("chapter", "")
-    if final.get("ENTRYTYPE") in ("inbook", "incollection") and chap and not re.fullmatch(r"[\dIVXivx]+", chap):
-        book = final.get("booktitle") or (final.get("title") if not titles_match(final.get("title", ""), chap)
-                                          else current.get("title"))
-        if book and not titles_match(book, chap):
+    if final.get("ENTRYTYPE") in ("inbook", "incollection") and chap and not re.fullmatch(r"[\dIVXivx]+", chap) \
+            and verdict in ("no_source", "ambiguous"):
+        flag(flags, "chapter_move_held", "chapter",
+             f"verdict {verdict}: the titled-chapter move (@incollection, title = chapter, booktitle = book) "
+             "is left for the user", "held")
+    elif final.get("ENTRYTYPE") in ("inbook", "incollection") and chap and not re.fullmatch(r"[\dIVXivx]+", chap):
+        bt_now = final.get("booktitle")
+        rt = (applied.get("title") or {}).get("value") \
+            if (applied.get("title") or {}).get("source") in ("researcher", "reviewer") else None
+        if rt and bt_now and titles_match(rt, bt_now):
+            rt = None  # the researcher's title is the book's
+        researcher_book = (fields.get("booktitle") or {}).get("value")
+        if researcher_book and titles_match(researcher_book, chap) and not titles_match(final.get("title", ""), chap):
+            # the chapter field holds the BOOK title (Stey01, BairNoma78): the title is
+            # already the chapter's; the chapter field becomes the booktitle, never the title
+            chapter_title, book, how = final.get("title", ""), bt_now or chap, "chapter field holds the book title"
+        elif rt and not titles_match(rt, current.get("title", "")):
+            # the researcher corrected the chapter title in title: it wins over the cited
+            # chapter field (GoldEtal08 'Neural integrator models', Howa08, BoraEtal05)
+            chapter_title, book, how = rt, bt_now or current.get("title"), "researcher's corrected title"
+        else:
+            chapter_title = chap
+            book = bt_now or (final.get("title") if not titles_match(final.get("title", ""), chap)
+                              else current.get("title"))
+            how = "cited chapter field"
+        if book and not titles_match(book, chapter_title):
             bt = guarded(book, H.format_journal_name(book))
             if bt is None:
                 bt = book
@@ -1548,20 +1827,42 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
             set_norm("ENTRYTYPE", "incollection", ["titled chapter: @inbook -> @incollection"]
                      if final.get("ENTRYTYPE") == "inbook" else ["chapter field folded into title"])
             set_norm("booktitle", bt, [f"book title moved to booktitle: {bt!r}"])
-            set_norm("title", chap, [f"chapter title moved to title: {chap!r}"])
+            if chapter_title != final.get("title"):
+                set_norm("title", chapter_title, [f"chapter title moved to title ({how}): {chapter_title!r}"])
+                if how == "cited chapter field" and "title" in applied:
+                    applied["title"]["source"] = "postcheck"  # not the researcher's value
             final.pop("chapter", None)
             applied.pop("chapter", None)
             if "chapter" in current:
-                removals["chapter"] = "moved into title (@incollection house form)"
+                removals["chapter"] = ("moved into booktitle (it held the book title)" if how.startswith("chapter field")
+                                       else "moved into title (@incollection house form)")
 
     # titled chapter already split into title + booktitle: @inbook -> @incollection
     if final.get("ENTRYTYPE") == "inbook" and not final.get("chapter") and final.get("booktitle") \
             and final.get("title") and verdict != "no_source":
         set_norm("ENTRYTYPE", "incollection", ["titled chapter with booktitle: @inbook -> @incollection"])
 
+    # a contained type never loses its last venue: when the proposed booktitle is held
+    # or dropped, the type change and the journal removal are not applied either
+    # (GatyEtal16, IsolEtal17, LiEtal24a ended as @inproceedings with no venue)
+    researcher_removes = {field_name(n) for n in row.get("remove") or []}
+    booktitle_lost = "booktitle" in held or any(f["field"] == "booktitle" and f["action"] in ("held", "dropped")
+                                                for f in flags)
+    if final.get("ENTRYTYPE") in CONTAINED_TYPES and final.get("ENTRYTYPE") != current.get("ENTRYTYPE") \
+            and not final.get("booktitle") and booktitle_lost and current.get("ENTRYTYPE"):
+        proposed = final["ENTRYTYPE"]
+        applied.pop("ENTRYTYPE", None)
+        final["ENTRYTYPE"] = current["ENTRYTYPE"]
+        held["ENTRYTYPE"] = f"@{proposed} needs the held booktitle"
+        researcher_removes.discard("journal")
+        suggestions.setdefault("ENTRYTYPE", proposed)
+        flag(flags, "venue_held", "ENTRYTYPE",
+             f"@{current['ENTRYTYPE']} -> @{proposed} with the journal removed would leave no venue: the booktitle "
+             f"is held ({held.get('booktitle', 'not applied')}); type, journal and booktitle are one decision for the "
+             "user, the entry is kept as it is", "held")
+
     # a chapter or proceedings paper has no journal: drop it, or move it to the
     # booktitle (none yet) or series (a book series given as the journal)
-    researcher_removes = {field_name(n) for n in row.get("remove") or []}
     if final.get("ENTRYTYPE") in CONTAINED_TYPES and final.get("journal"):
         journal = final["journal"]
         bt, series = final.get("booktitle", ""), final.get("series", "")
@@ -1612,6 +1913,18 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                 if note:
                     house_notes.append(note)
             set_norm(name, " and ".join(names_), house_notes)
+            # a full word after the initials is braced into the surname only when a
+            # source prints that compound as the family name (never on a guess)
+            fams = source_families((fields.get(name) or {}).get("evidence"),
+                                   doi_status if name == "author" and (doi_status or {}).get("registered") else None)
+            names_, brace_notes = [], []
+            for n in split_names(applied[name]["value"]):
+                mw = mid_word_surname(n)
+                if mw and fold(mw[1]) in fams:
+                    n = f"{mw[0]} {{{mw[1]}}}"
+                    brace_notes.append(f"compound surname braced as the source prints it: {n!r}")
+                names_.append(n)
+            set_norm(name, " and ".join(names_), brace_notes)
 
     # single-source surname change: a new surname that respells a cited one is held,
     # i.e. that author keeps the cited name, unless the reviewer confirms the author
@@ -1649,11 +1962,24 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
             last = new.split()[-1]
             quoted = {urlparse(e.get("url", "")).netloc for e in ev if last in fold(e.get("quote", "")).split()}
             hosts = set(quoted)
+            deposited = []
             if last in reg_names:
                 hosts.add(reg_host)
+            if len(hosts) < 2:
+                # an author-deposited record (arXiv, Zenodo) fetched from a host the
+                # researcher did not quote is a second host (CaliVita05: arXiv
+                # cs/0412098 'Rudi Cilibrasi'; ChanEtal20: Zenodo 'Geerligs, Linda')
+                for host, why in deposited_witnesses(row, final, ctx, last):
+                    if host not in hosts:
+                        hosts.add(host)
+                        deposited.append(why)
             if len(hosts) >= 2:
                 out.append(n)
-                if len(quoted) < 2:
+                if deposited:
+                    flag(flags, "surname_corroborated", "author",
+                         f"surname {near[0]!r} -> {new!r}: released by the deposited-record rule, "
+                         f"{'; '.join(deposited)} is the second host {sorted(hosts)}", "applied")
+                elif len(quoted) < 2:
                     flag(flags, "surname_corroborated", "author",
                          f"surname {near[0]!r} -> {new!r}: released by the DOI record rule, the {reg_host} "
                          f"record of the kept DOI is the second host {sorted(hosts)}", "applied")
@@ -1773,7 +2099,8 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                 removals[name] = why
     # the researcher's own removals (top-level "remove" list); a reviewer value wins
     for name in [field_name(n) for n in row.get("remove") or []]:
-        if (applied.get(name) or {}).get("source") == "reviewer" or name in removals:
+        if (applied.get(name) or {}).get("source") == "reviewer" or name in removals \
+                or name not in researcher_removes:
             continue
         if current.get(name) or final.get(name):
             applied.pop(name, None)
@@ -1790,6 +2117,39 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                  f"{current[name]!r} -> {a['value']!r} changes only spacing; a house-style decision "
                  "(check how cdl.bib writes it), not a source correction")
 
+    # --- a no_source row never changes: the post-check's own house rules are not applied
+    # either (BairNoma78's chapter move); only the reviewer's values remain
+    if verdict == "no_source":
+        for name in [n for n, a in applied.items() if a["source"] != "reviewer"]:
+            applied.pop(name)
+        final = dict(current)
+        for name, a in applied.items():
+            final[name] = a["value"]
+        removals = {}
+        norms = [n for n in norms if n["field"] in applied]
+
+    # --- fields the reviewer asked to remove
+    for name in sorted(reviewer_removes):
+        applied.pop(name, None)
+        final.pop(name, None)
+        if name in current:
+            removals[name] = f"reviewer asked to remove it (current {current[name]!r})"
+
+    # --- junk fields are always removed ('Force = {True}')
+    for name in JUNK_FIELDS:
+        if name in current or name in final:
+            applied.pop(name, None)
+            final.pop(name, None)
+            if name in current:
+                removals[name] = f"not a BibTeX field (junk {name} = {current[name]!r})"
+
+    # --- the notes name another version (a published version, a replacement candidate):
+    # the preprint -> published choice is the user's (TsitEtal19, LiEtal24b, JainHuth18)
+    other = other_version_named(row.get("notes"))
+    if other:
+        flag(flags, "other_version_named", None,
+             f"the researcher's notes name another version ({other!r}): replacement is the user's decision")
+
     # --- changes vs current
     changes = []
     for name, a in sorted(applied.items()):
@@ -1799,6 +2159,7 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                   "source": a["source"], "evidence": a.get("evidence") or []}
         if a.get("normalised_from"):
             change["normalised_from"] = a["normalised_from"]
+            change["normalised_by"] = "postcheck"  # the value differs from the proposal by the post-check's rules
         if review and name in (review.get("field_verdicts") or {}):
             change["reviewer"] = review["field_verdicts"][name]
         changes.append(change)
@@ -1858,6 +2219,16 @@ def wave_duplicates(records):
             for b in ks[i + 1:]:
                 if same_work(records[a]["final_entry"], records[b]["final_entry"]):
                     groups.setdefault(a, set()).add(b)
+    # the entry that stays is the keeper (the key that fits the ID rule for the work's
+    # corrected metadata, else the earliest), not simply the earliest key: Rugg00 and
+    # RuggAlla00 were each told to merge into the other
+    merged_groups = {}
+    for first, rest in groups.items():
+        members = {first} | set(rest)
+        target = key_target(records[first]["final_entry"])
+        keep = keeper(sorted(members), target)
+        merged_groups.setdefault(keep, set()).update(members - {keep})
+    groups = merged_groups
     for first, rest in groups.items():
         for k in sorted(rest):
             rec, plan = records[k], records[k]["key_plan"]
@@ -1874,6 +2245,28 @@ def wave_duplicates(records):
             plan.setdefault("same_work_in_wave", []).extend(new)
             flag(records[first]["flags"], "duplicate", "key",
                  f"{', '.join(new)} in this wave is the same work: merge into {first}")
+    break_merge_cycles(records)
+
+
+def break_merge_cycles(records):
+    """Never A -> B and B -> A: of two entries told to merge into each other, the keeper
+    (keeper()) stays, with a flag; the other merges into it."""
+    for k in sorted(records):
+        plan = records[k]["key_plan"]
+        m = plan.get("merge_into") if plan.get("action") == "duplicate" else None
+        if not m or m not in records:
+            continue
+        other = records[m]["key_plan"]
+        if other.get("action") == "duplicate" and other.get("merge_into") == k:
+            keep = keeper([k, m], key_target(records[k]["final_entry"]))
+            drop = m if keep == k else k
+            kp = records[keep]["key_plan"]
+            kp.pop("merge_into", None)
+            kp.update(action="keep",
+                      detail=f"{drop} is the same work and merges into {keep} (circular merge resolved: {keep} fits "
+                             "the ID rule for the corrected metadata or is the earlier key)")
+            records[drop]["key_plan"].update(action="duplicate", merge_into=keep)
+            flag(records[keep]["flags"], "duplicate", "key", kp["detail"])
 
 def measure(review_rows, rules_only):
     """For each reviewer finding (agree != yes): is a disputed field touched by the rules?"""
@@ -1943,6 +2336,8 @@ def resolution(review_rows, merged, bib):
             if v is None or str(v).strip() == "":
                 ok = fin.get(f) == cur.get(f)
                 checks.append([f, ok, "reviewer withdrew the change"])
+            elif is_removal(v):
+                checks.append([f, f not in fin, f"reviewer: {v}"])
             else:
                 ok = fold(fin.get(f, "")) == fold(v) if f != "ENTRYTYPE" else \
                     str(fin.get(f, "")).lower() == str(v).lower().lstrip("@")
@@ -1990,7 +2385,7 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
 
     def pass_(with_review):
         ctx = {"doi": doi, "cities": city_states(bibd), "taken": set(), "reserved": renamed_away(),
-               "index": index}
+               "index": index, "fetch": lambda url: http_get(url, offline)}
         out = {}
         for stem, row in rows:
             rec = check_entry(row, bibd.get(row["key"]), bibd, ctx,
