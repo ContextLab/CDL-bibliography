@@ -1,0 +1,9 @@
+{
+  "entry": "BrainIAK: which Zenodo version",
+  "group": "questions",
+  "how": "individual",
+  "key": "q-brainiak",
+  "note": "always cite the *first* version (and use to get the year)-- and don't specify a version number in the citation info",
+  "updatedAt": "2026-09-26T18:16:05.689Z",
+  "verdict": "other"
+}

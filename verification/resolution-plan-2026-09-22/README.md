@@ -184,3 +184,15 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   research-pilot page (or whose fixes the user approved there) that no automated source can
   verify are recorded with `crossref approve`, reviewer Jeremy Manning, bound to each entry's
   exact current text. PR #87/#88 entries were not reviewed by the user and are not included.
+
+## Cross-wave decisions (user, 2026-09-26; page https://claude.ai/artifact/5mBxCS3qzctwJdbpqcEEAY, copy in verification/research-2026-09-25/crosswave/decisions/)
+- **Software/Zenodo releases:** always cite the *first* version, take the year from it, and do not put a version number in the citation (CapoEtal17/brainiak). (Preprints still cite the latest version.)
+- **Countries in addresses:** drop a country when the source does not print it (Herb34, BuzsEtal94).
+- **Ebbi85:** cite the 1885 German original (Über das Gedächtnis), not the 1913 translation.
+- **Hwang:** keep each paper's printed name (G Hwang-Grodzins 2005, G M Hwang 2008).
+- **OGra11:** year 2008 (recorded), key OGra08.
+- **Shim94:** Shim94 → Shim95b (new), existing Shim95 → Shim95a (post-check key plan).
+- **Conference abstracts:** 45 approved for removal. NOT abstracts (real articles, keep and verify normally): BeckEtal09, CronEtal94, MannEtal97, PailEtal00, SpieEtal18, TongEtal95. JohnRedi07b is a conference abstract: remove.
+- **BenaEtal04:** title "Youmans Neurological Surgery".
+- **Journal-alias repairs:** DiazEtal06, Murd68, MurdVomS67 approved.
+- **Duplicates:** all 9 keepers approved; KahaEtal08b→KahaEtal08a approved, and drop the "a" suffix (KahaEtal08) if it is then the only KahaEtal08.

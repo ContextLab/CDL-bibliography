@@ -1,0 +1,9 @@
+{
+  "entry": "KahaEtal08b → KahaEtal08a",
+  "group": "duplicates",
+  "how": "individual",
+  "key": "dup-KahaEtal08b-KahaEtal08a",
+  "note": "drop the \"a\" at the end of the key if this is the only KahaEtal08",
+  "updatedAt": "2026-09-26T18:15:03.567Z",
+  "verdict": "unsure"
+}
