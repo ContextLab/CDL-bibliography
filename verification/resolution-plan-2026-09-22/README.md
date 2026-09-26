@@ -206,3 +206,6 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - Wech81: several Wechsler entries — keep ONE, drop the others.
 - Kolo13: check whether "EdX" should be "edX".
 - Unsure, no note (leave unchanged, ask): DougPeuc73, Mann06.
+- (user, 2026-09-26) Keys must be correct: reusing a freed suffix for a different work (KahaEtal08c→KahaEtal08b, JacoEtal05d→JacoEtal05b) is fine.
+- (user, 2026-09-26) Fix the formatter so it drops unprinted countries instead of adding them back.
+- (user, 2026-09-26) Wech45, DougPeuc73, Mann06: resolve by manual web research. Accuracy first; consistency, scalability, generalizability second.
