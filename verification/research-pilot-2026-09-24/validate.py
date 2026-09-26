@@ -34,6 +34,9 @@ SSL = ssl.create_default_context(cafile=certifi.where())
 UNVERIFIED_TLS = set()
 BROWSER_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
 UA = "CDL-bibliography citation checker (research pilot; contact via repository owner)"
+# Apostrophe look-alikes (O´Reilly, Oʼ, O′) fold to "'" before NFKC splits U+00B4 into
+# a space and a combining accent; trademark signs are dropped (FitBit® = FitBit).
+PRE_FOLD = str.maketrans({"\u00b4": "'", "\u02bc": "'", "\u2032": "'", "\u00ae": "", "\u2122": "", "\u00a9": ""})
 FOLD = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"', "–": "-",
                       "—": "-", "−": "-", " ": " ", "­": ""})
 
@@ -46,11 +49,19 @@ SPECIAL = {"l": "ł", "L": "Ł", "o": "ø", "O": "Ø", "ss": "ß", "ae": "æ", "
            "aa": "å", "AA": "Å", "i": "ı", "j": "ȷ"}
 
 
+SYMBOLS = {"times": "\u00d7", "textregistered": "\u00ae", "texttrademark": "\u2122", "textcopyright": "\u00a9"}
+
+
 def delatex(text):
     """LaTeX accent macros to Unicode: \\'{e}, \\'e, {\\'e}, \\c{c}, \\v{s} ..."""
     def repl(m):
         return unicodedata.normalize("NFC", m[2] + ACCENTS[m[1]])
-    text = re.sub(r"\\(['`^\"~=.])\s*\{?([A-Za-z])\}?", repl, text)
+    # Math sub/superscripts keep their content: {GABA$_A$} -> GABAA, $_{2}$ -> 2.
+    text = re.sub(r"\$\s*[_^]\s*\{?([A-Za-z0-9]+)\}?\s*\$", r"\1", text)
+    text = re.sub(r"\\(" + "|".join(SYMBOLS) + r")(?![A-Za-z])\s?", lambda m: SYMBOLS[m[1]], text)
+    # No space between an accent macro and its letter: in a JSON quote '\\" in' is an
+    # escaped quote mark followed by a word, not an umlaut on the i.
+    text = re.sub(r"\\(['`^\"~=.])\{?([A-Za-z])\}?", repl, text)
     text = re.sub(r"\\([cvuHkr])\s*\{([A-Za-z])\}", repl, text)
     text = re.sub(r"\\([cvuHkr]) ([A-Za-z])", repl, text)
     text = re.sub(r"(\d+)\\textsuperscript\{([a-z]+)\}", r"\1\2", text)  # 30\textsuperscript{th} -> 30th
@@ -62,9 +73,18 @@ def delatex(text):
     return text.replace("{", "").replace("}", "")
 
 
+def json_unescape(text):
+    """JSON \\uXXXX escapes (Crossref API bodies are quoted raw) to the characters they
+    stand for, surrogate pairs included. \\u followed by four hex digits is never a
+    LaTeX breve, which takes a braced or spaced letter."""
+    text = re.sub(r"\\u(d[89ab][0-9a-f]{2})\\u(d[c-f][0-9a-f]{2})",
+                  lambda m: chr(0x10000 + ((int(m[1], 16) - 0xD800) << 10) + int(m[2], 16) - 0xDC00), text, flags=re.I)
+    return re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m[1], 16)), text)
+
+
 def norm(text):
-    text = delatex(html.unescape(text)).replace("&", " and ")
-    text = unicodedata.normalize("NFKC", text).translate(FOLD)
+    text = delatex(json_unescape(html.unescape(text))).replace("&", " and ")
+    text = unicodedata.normalize("NFKC", text.translate(PRE_FOLD)).translate(FOLD)
     text = re.sub(r"-\s*\n\s*", "-", text)  # keep hyphenated line breaks as hyphens
     return re.sub(r"\s+", " ", text).strip().casefold()
 
@@ -75,6 +95,43 @@ def strip_html(body):
     return meta + " " + re.sub(r"(?s)<[^>]+>", " ", body)
 
 
+RETRY_STATUSES = (429, 503)
+MAX_RETRIES = 4
+MAX_WAIT = 120.0
+
+
+def retry_after_seconds(header, attempt, now=None):
+    """Seconds to wait before retry number attempt (0-based): the server's Retry-After
+    (delta-seconds or an HTTP date) when it gives one, else 5, 10, 20, 40 s; capped at MAX_WAIT."""
+    wait = None
+    if header:
+        header = header.strip()
+        if header.isdigit():
+            wait = float(header)
+        else:
+            try:
+                from email.utils import parsedate_to_datetime
+                when = parsedate_to_datetime(header)
+                wait = when.timestamp() - (time.time() if now is None else now)
+            except (TypeError, ValueError, IndexError):
+                wait = None
+    if wait is None or wait < 0:
+        wait = 5.0 * 2 ** attempt
+    return min(wait, MAX_WAIT)
+
+
+def urlopen_polite(req, context, timeout=60):
+    """urlopen that answers 429 Too Many Requests (and 503) by waiting as asked and
+    retrying, up to MAX_RETRIES times; the last HTTPError is raised if it never succeeds."""
+    for attempt in range(MAX_RETRIES + 1):
+        try:
+            return urllib.request.urlopen(req, timeout=timeout, context=context)
+        except urllib.error.HTTPError as exc:
+            if exc.code not in RETRY_STATUSES or attempt == MAX_RETRIES:
+                raise
+            time.sleep(retry_after_seconds(exc.headers.get("Retry-After") if exc.headers else None, attempt))
+
+
 WALL = re.compile(r"cookies must be enabled|captcha|just a moment|verify you are (a )?human|access denied|are you a robot", re.I)
 
 
@@ -83,9 +140,9 @@ def pubmed_text(pmid):
     page answers scripts with a cookie wall): title, 'Forename Lastname' authors,
     journal and citation, followed by the raw MEDLINE and XML records."""
     base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=" + pmid
-    xml = urllib.request.urlopen(urllib.request.Request(base + "&retmode=xml", headers={"User-Agent": UA}), timeout=60, context=SSL).read().decode()
+    xml = urlopen_polite(urllib.request.Request(base + "&retmode=xml", headers={"User-Agent": UA}), SSL).read().decode()
     time.sleep(0.5)
-    medline = urllib.request.urlopen(urllib.request.Request(base + "&rettype=medline&retmode=text", headers={"User-Agent": UA}), timeout=60, context=SSL).read().decode()
+    medline = urlopen_polite(urllib.request.Request(base + "&rettype=medline&retmode=text", headers={"User-Agent": UA}), SSL).read().decode()
     tag = lambda t: " ".join(re.findall(rf"<{t}[^>]*>(.*?)</{t}>", xml, re.S))
     names = [f"{f} {l}".strip() for l, f in re.findall(r"<LastName>(.*?)</LastName>\s*<ForeName>(.*?)</ForeName>", xml)]
     head = " ".join([tag("ArticleTitle"), ", ".join(names), tag("Title"), tag("ISOAbbreviation"),
@@ -118,7 +175,7 @@ def fetch(url):
     else:
         def get(agent):
             req = urllib.request.Request(url, headers={"User-Agent": agent, "Accept": "*/*"})
-            with urllib.request.urlopen(req, timeout=60, context=SSL) as resp:
+            with urlopen_polite(req, SSL) as resp:
                 return resp.read(), resp.headers.get("Content-Type", "")
         try:
             raw, ctype = get(UA)
@@ -132,7 +189,7 @@ def fetch(url):
                 raise
             # A server with an incomplete certificate chain: fetch unverified and say so.
             req = urllib.request.Request(url, headers={"User-Agent": BROWSER_UA, "Accept": "*/*"})
-            with urllib.request.urlopen(req, timeout=60, context=ssl._create_unverified_context()) as resp:
+            with urlopen_polite(req, ssl._create_unverified_context()) as resp:
                 raw, ctype = resp.read(), resp.headers.get("Content-Type", "")
             UNVERIFIED_TLS.add(url)
             path.with_suffix(".unverified-tls").write_text(url)
@@ -222,25 +279,83 @@ def fold(text):
     return "".join(c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn")
 
 
+ROMAN = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100, "d": 500, "m": 1000}
+
+
+def roman_to_int(numeral):
+    """'xxxiv' -> 34; None unless the numeral is written canonically (so 'mix' or 'civil' is not a number)."""
+    values = [ROMAN[c] for c in numeral.lower()]
+    total = sum(-v if i + 1 < len(values) and v < values[i + 1] else v for i, v in enumerate(values))
+    return total if total and int_to_roman(total) == numeral.lower() else None
+
+
+def int_to_roman(n):
+    out = ""
+    for v, r in ((1000, "m"), (900, "cm"), (500, "d"), (400, "cd"), (100, "c"), (90, "xc"), (50, "l"),
+                 (40, "xl"), (10, "x"), (9, "ix"), (5, "v"), (4, "iv"), (1, "i")):
+        while n >= v:
+            out, n = out + r, n - v
+    return out
+
+
+def roman_volumes(text):
+    """'vol. xxxiv' / 'volume xxxiv' -> 'vol. 34': a Roman numeral counts as a volume number only
+    right after the word volume, never on its own (a stray 'i' or 'v' is not a volume)."""
+    def repl(m):
+        n = roman_to_int(m[2])
+        return f"{m[1]}{n}" if n else m[0]
+    return re.sub(r"\b(vols?\.?\s*|volume\s+)([ivxlcdm]+)\b", repl, text)
+
+
+# Journal words a quote may print in a standard abbreviated form. Each pattern must
+# spell out the same thing, not merely something related: 'usa' is the United States
+# of America or U.S.A., never plain 'U.S.' or 'United States'.
+ABBREVIATED = {"usa": r"(?<!\w)(?:united states of america|u\.?\s?s\.?\s?a)(?!\w)"}
+
+
+def series_present(value_norm, joined):
+    """'... of London Series B: ...' against a quote printing 'of London. B, ...' or
+    'of London, Ser. B': the series letter must follow the same preceding word, with
+    only punctuation and an optional 'ser.'/'series' between."""
+    m = re.search(r"(\w+)\W+series\s+([a-z])\b", value_norm)
+    if not m:
+        return False
+    return re.search(r"(?<!\w)" + re.escape(fold(m[1])) + r"[\s.,;:]+(?:ser(?:ies|\.)?\s*)?"
+                     + re.escape(m[2]) + r"(?!\w)", joined)
+
+
 def value_supported(field, value, texts, urls=()):
     if field == "doi" and value and any(str(value).lower() in unquote(u).lower() for u in urls):
         return True, []  # the evidence URL is the DOI's own record
-    joined = fold(ordinals_to_digits(" ".join(norm(t) for t in texts)))
+    normed = ordinals_to_digits(" ".join(norm(t) for t in texts))
+    if field == "volume":
+        normed = roman_volumes(normed)
+    joined = fold(normed)
+    # German umlauts are also written ae/oe/ue: the quote may use either form, and so may the value.
+    joined_translit = fold(normed.translate(UMLAUT_TRANSLIT))
     if field == "pages":
         joined = expand_ranges(joined)  # only page values: a DOI suffix like 2001-354 is not a range
-    # German umlauts are also written ae/oe/ue in some sources: accept either form (see present_any).
-    def present(t):
+    def present(t, text=None):
+        text = joined if text is None else text
         if t.isdigit():  # compare numbers numerically: an issue printed "03" is 3
-            return re.search(r"(?<!\d)0*" + re.escape(t.lstrip("0") or "0") + r"(?!\d)", joined)
-        return re.search(r"(?<!\w)" + re.escape(t) + r"(?!\w)", joined)
+            return re.search(r"(?<!\d)0*" + re.escape(t.lstrip("0") or "0") + r"(?!\d)", text)
+        return re.search(r"(?<!\w)" + re.escape(t) + r"(?!\w)", text)
     # Normalise the value exactly like the quotes: ordinal words become digits on both sides.
-    raw_tokens = value_tokens(field, ordinals_to_digits(norm(delatex(str(value or "")))))
+    value_norm = ordinals_to_digits(norm(delatex(str(value or ""))))
+    raw_tokens = value_tokens(field, value_norm)
     if field not in ("author", "editor"):
         raw_tokens = [t for t in raw_tokens if fold(t) not in STOP]
     translit = {fold(t): fold(t.translate(UMLAUT_TRANSLIT)) for t in raw_tokens}
     tokens = [fold(t) for t in raw_tokens]
     def present_any(t):
-        return present(t) or re.search(r"(?<!\w)" + re.escape(translit.get(t, t)) + r"(?!\w)", joined)
+        if present(t) or present(translit.get(t, t)) or present(t, joined_translit):
+            return True
+        if field in ("journal", "booktitle"):
+            if t in ABBREVIATED and re.search(ABBREVIATED[t], joined):
+                return True
+            if t == "series" and series_present(fold(value_norm), joined):
+                return True
+        return False
     missing = [t for t in tokens if not present_any(t)]
     return not missing, missing
 

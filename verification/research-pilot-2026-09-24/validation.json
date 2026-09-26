@@ -1,5 +1,9 @@
 {
  "network_requests": 0,
+ "unverified_tls_urls": [
+  "https://memory.psych.upenn.edu/files/pages/pubs.html",
+  "https://memory.psych.upenn.edu/files/pubs/KahaMill10.pdf"
+ ],
  "entries": 50,
  "passing": 46,
  "by_verdict": {
@@ -704,17 +708,13 @@
      "status": "confirmed",
      "ok": true,
      "value_missing_from_quotes": [],
-     "failures": [
-      "fetch failed: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
-     ]
+     "failures": []
     },
     "title": {
      "status": "confirmed",
      "ok": true,
      "value_missing_from_quotes": [],
-     "failures": [
-      "fetch failed: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
-     ]
+     "failures": []
     },
     "booktitle": {
      "status": "confirmed",
@@ -726,9 +726,7 @@
      "status": "confirmed",
      "ok": true,
      "value_missing_from_quotes": [],
-     "failures": [
-      "fetch failed: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
-     ]
+     "failures": []
     },
     "publisher": {
      "status": "confirmed",
@@ -746,17 +744,13 @@
      "status": "confirmed",
      "ok": true,
      "value_missing_from_quotes": [],
-     "failures": [
-      "fetch failed: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
-     ]
+     "failures": []
     },
     "pages": {
      "status": "confirmed",
      "ok": true,
      "value_missing_from_quotes": [],
-     "failures": [
-      "fetch failed: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>"
-     ]
+     "failures": []
     }
    },
    "identity": {
@@ -1476,9 +1470,7 @@
      "status": "confirmed",
      "ok": true,
      "value_missing_from_quotes": [],
-     "failures": [
-      "fetch failed: HTTPError: HTTP Error 403: Forbidden"
-     ]
+     "failures": []
     },
     "author": {
      "status": "confirmed",
@@ -1490,9 +1482,7 @@
      "status": "corrected",
      "ok": true,
      "value_missing_from_quotes": [],
-     "failures": [
-      "fetch failed: HTTPError: HTTP Error 403: Forbidden"
-     ]
+     "failures": []
     },
     "editor": {
      "status": "confirmed",
@@ -1510,9 +1500,7 @@
      "status": "confirmed",
      "ok": true,
      "value_missing_from_quotes": [],
-     "failures": [
-      "fetch failed: HTTPError: HTTP Error 403: Forbidden"
-     ]
+     "failures": []
     }
    },
    "identity": {
