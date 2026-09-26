@@ -3001,17 +3001,12 @@
      "action": "flag"
     }
    ],
-   "normalisations": [
-    {
-     "field": "author",
-     "note": "'McL' -> 'M'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
     {
      "field": "author",
      "current": "P D Adelson and P McL Black and J R Madsen and U Kramer and M Rockoff and J J Riviello and S L Helmers and M Mikati and G L Holmes",
-     "proposed": "P D Adelson and P M Black and J R Madsen and U Kramer and M A Rockoff and J J Riviello and S L Helmers and M Mikati and G L Holmes",
+     "proposed": "P D Adelson and P McL Black and J R Madsen and U Kramer and M A Rockoff and J J Riviello and S L Helmers and M Mikati and G L Holmes",
      "source": "researcher",
      "evidence": [
       {
@@ -3051,7 +3046,6 @@
        "quote": "\"given\":\"Gregory L.\",\"family\":\"Holmes\""
       }
      ],
-     "normalised_from": "P D Adelson and P McL Black and J R Madsen and U Kramer and M A Rockoff and J J Riviello and S L Helmers and M Mikati and G L Holmes",
      "reviewer": "agree"
     },
     {
@@ -6111,7 +6105,7 @@
     "doi": "10.1073/pnas.96.21.12085",
     "registered": true,
     "ra": "Crossref",
-    "title": "Evidence relating human verbal memory to hippocampal\n                    N\n                    -methyl-\n                    d-\n                    aspartate receptors",
+    "title": "Evidence relating human verbal memory to hippocampal N -methyl- d- aspartate receptors",
     "subtitle": null,
     "container": "Proceedings of the National Academy of Sciences",
     "print_year": "1999",
@@ -6812,7 +6806,7 @@
     "doi": "10.1243/095440605x8298",
     "registered": true,
     "ra": "Crossref",
-    "title": "Selection of\n                    K\n                    in\n                    K\n                    -means clustering",
+    "title": "Selection of K in K -means clustering",
     "subtitle": null,
     "container": "Proceedings of the Institution of Mechanical Engineers, Part C: Journal of Mechanical Engineering Science",
     "print_year": "2005",
@@ -7878,7 +7872,7 @@
     "doi": "10.1073/pnas.1507110112",
     "registered": true,
     "ra": "Crossref",
-    "title": "Whole-brain calcium imaging with cellular resolution in freely behaving\n                    Caenorhabditis elegans",
+    "title": "Whole-brain calcium imaging with cellular resolution in freely behaving Caenorhabditis elegans",
     "subtitle": null,
     "container": "Proceedings of the National Academy of Sciences",
     "print_year": "2016",
@@ -8862,35 +8856,7 @@
     "target_base": "ZhenEtal20",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1073/pnas.1922248117",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Geometric renormalization unravels self-similarity of the multiscale human connectome",
-    "subtitle": null,
-    "container": "Proceedings of the National Academy of Sciences",
-    "print_year": "2020",
-    "online_year": "2020",
-    "issued_year": "2020",
-    "page": "20244-20253",
-    "volume": "117",
-    "issue": "33",
-    "type": "journal-article",
-    "authors": [
-     "Muhua Zheng",
-     "Antoine Allard",
-     "Patric Hagmann",
-     "Yasser Alemán-Gómez",
-     "M. Ángeles Serrano"
-    ],
-    "families": [
-     "Zheng",
-     "Allard",
-     "Hagmann",
-     "Alemán-Gómez",
-     "Serrano"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-049"
   },
   "GrunSher01": {
@@ -9407,7 +9373,7 @@
    ],
    "removals": {
     "journal": "@inproceedings has no journal (already given by the booktitle)",
-    "force": "researcher asked to remove it (current 'True')"
+    "force": "not a BibTeX field (junk force = 'True')"
    },
    "held": {},
    "suggestions": {},
@@ -10819,27 +10785,7 @@
     "target_base": "Pyly73",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1037/h0034650",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "What the mind's eye tells the mind's brain: A critique of mental imagery.",
-    "subtitle": null,
-    "container": "Psychological Bulletin",
-    "print_year": null,
-    "online_year": "1973",
-    "issued_year": "1973",
-    "page": "1-24",
-    "volume": "80",
-    "issue": "1",
-    "type": "journal-article",
-    "authors": [
-     "Zenon W. Pylyshyn"
-    ],
-    "families": [
-     "Pylyshyn"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-051"
   },
   "YonePark07": {
@@ -11038,6 +10984,7 @@
       }
      ],
      "normalised_from": "Luis Eduardo Garrido and Francisco Jos{\\'e} Abad and Vicente Ponsoda",
+     "normalised_by": "postcheck",
      "reviewer": "agree"
     },
     {
@@ -11171,31 +11118,8 @@
    "key": "GambWils16",
    "verdict": "correction",
    "flags": [],
-   "normalisations": [
-    {
-     "field": "author",
-     "note": "'McC' -> 'M'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
-    {
-     "field": "author",
-     "current": "E A McC Gamble and L Wilson",
-     "proposed": "E A M Gamble and L Wilson",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1037/h0093218",
-       "quote": "\"given\":\"Eleanor A. McC.\",\"family\":\"Gamble\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1037/h0093218",
-       "quote": "\"given\":\"Lucy\",\"family\":\"Wilson\""
-      }
-     ],
-     "normalised_from": "E A McC Gamble and L Wilson",
-     "reviewer": "agree"
-    },
     {
      "field": "doi",
      "current": null,
@@ -12215,7 +12139,7 @@
     "doi": "10.1037/0033-295x.88.4.327",
     "registered": true,
     "ra": "Crossref",
-    "title": "Homogenizing the 2 × 2 contingency table: A method for removing dependencies due to subject and item differences.",
+    "title": "Homogenizing the 2 × 2 contingency table: A method for removing dependencies due to subject and item differences.",
     "subtitle": null,
     "container": "Psychological Review",
     "print_year": null,

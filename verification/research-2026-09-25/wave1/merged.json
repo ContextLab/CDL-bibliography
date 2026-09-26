@@ -285,6 +285,12 @@
   },
   "flags": [
    {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('replacement CANDIDATE'): replacement is the user's decision",
+    "action": "flag"
+   },
+   {
     "code": "needs_user",
     "field": "verdict",
     "detail": "verdict no_source: user decision",
@@ -456,6 +462,12 @@
    "action": "keep"
   },
   "flags": [
+   {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('Replacement candidate'): replacement is the user's decision",
+    "action": "flag"
+   },
    {
     "code": "unverified_suggestions",
     "field": null,
@@ -728,6 +740,12 @@
    "action": "keep"
   },
   "flags": [
+   {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('Replacement candidate'): replacement is the user's decision",
+    "action": "flag"
+   },
    {
     "code": "needs_user",
     "field": "verdict",
@@ -1218,32 +1236,6 @@
   },
   "final_changes": [
    {
-    "field": "doi",
-    "current": null,
-    "proposed": "10.1080/00223980.1945.9917223",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Resolvable rather than ambiguous: cited as @article 1945, and the only 1945 article is Crossref 10.1080/00223980.1945.9917223 (type journal-article, 'A Standardized Memory Scale for Clinical Use', The Journal of Psychology 19(1):87-95, issued 1945-01, David Wechsler). The PsycTESTS 10.1037/t27207-000 is a 'dataset' record published 2014, not a citable 1945 publication. Still a title change, so user confirmation needed. cdl.bib writes the venue 'Journal of Psychology' (6 entries)."
-      ]
-     }
-    ]
-   },
-   {
-    "field": "journal",
-    "current": null,
-    "proposed": "Journal of Psychology",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Resolvable rather than ambiguous: cited as @article 1945, and the only 1945 article is Crossref 10.1080/00223980.1945.9917223 (type journal-article, 'A Standardized Memory Scale for Clinical Use', The Journal of Psychology 19(1):87-95, issued 1945-01, David Wechsler). The PsycTESTS 10.1037/t27207-000 is a 'dataset' record published 2014, not a citable 1945 publication. Still a title change, so user confirmation needed. cdl.bib writes the venue 'Journal of Psychology' (6 entries)."
-      ]
-     }
-    ]
-   },
-   {
     "field": "number",
     "current": null,
     "proposed": "1",
@@ -1268,20 +1260,6 @@
       ]
      }
     ]
-   },
-   {
-    "field": "title",
-    "current": "{Wechsler} memory scale",
-    "proposed": "A standardized memory scale for clinical use",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Resolvable rather than ambiguous: cited as @article 1945, and the only 1945 article is Crossref 10.1080/00223980.1945.9917223 (type journal-article, 'A Standardized Memory Scale for Clinical Use', The Journal of Psychology 19(1):87-95, issued 1945-01, David Wechsler). The PsycTESTS 10.1037/t27207-000 is a 'dataset' record published 2014, not a citable 1945 publication. Still a title change, so user confirmation needed. cdl.bib writes the venue 'Journal of Psychology' (6 entries)."
-      ]
-     }
-    ],
-    "reviewer": "unsure"
    },
    {
     "field": "volume",
@@ -1311,33 +1289,25 @@
     "action": "flag"
    },
    {
+    "code": "ambiguous_identity_held",
+    "field": "title, doi, journal",
+    "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: title='A standardized memory scale for clinical use'; doi='10.1080/00223980.1945.9917223'; journal='Journal of Psychology'",
+    "action": "held"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): title='A standardized memory scale for clinical use', doi='10.1080/00223980.1945.9917223', journal='Journal of Psychology'",
+    "action": "flag"
+   },
+   {
     "code": "needs_user",
     "field": "verdict",
     "detail": "verdict ambiguous: user decision",
     "action": "flag"
    }
   ],
-  "doi_status": {
-   "doi": "10.1080/00223980.1945.9917223",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "A Standardized Memory Scale for Clinical Use",
-   "subtitle": null,
-   "container": "The Journal of Psychology",
-   "print_year": "1945",
-   "online_year": null,
-   "issued_year": "1945",
-   "page": "87-95",
-   "volume": "19",
-   "issue": "1",
-   "type": "journal-article",
-   "authors": [
-    "David Wechsler"
-   ],
-   "families": [
-    "Wechsler"
-   ]
-  },
+  "doi_status": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -4782,22 +4752,7 @@
    "ENTRYTYPE": "article",
    "ID": "TurlWhit03"
   },
-  "final_changes": [
-   {
-    "field": "doi",
-    "current": null,
-    "proposed": "10.1016/s0749-596x(03)00095-0",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "All non-author fields and DOI are right (Crossref 10.1016/s0749-596x(03)00095-0: JML 49(4) 446-468, 2003). 'ambiguous' overstates it: identity is not in doubt, only the second author is missing from Crossref's deposit. OpenAlex https://api.openalex.org/works/doi:10.1016/s0749-596x(03)00095-0 gives 'Kandi Jo Turley-Ames' (supports K J) and Semantic Scholar gives 'Michelle M. Whitfield' (supports M M Whitfield), neither acceptable as sole evidence; cited author list should be kept (never drop an author because Crossref omits one) and treated as verified-with-author-hold, not ambiguous."
-      ]
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "TurlWhit03",
@@ -4806,33 +4761,25 @@
   },
   "flags": [
    {
+    "code": "ambiguous_identity_held",
+    "field": "doi",
+    "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: doi='10.1016/s0749-596x(03)00095-0'",
+    "action": "held"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): doi='10.1016/s0749-596x(03)00095-0'",
+    "action": "flag"
+   },
+   {
     "code": "needs_user",
     "field": "verdict",
     "detail": "verdict ambiguous: user decision",
     "action": "flag"
    }
   ],
-  "doi_status": {
-   "doi": "10.1016/s0749-596x(03)00095-0",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "Strategy training and working memory task performance",
-   "subtitle": null,
-   "container": "Journal of Memory and Language",
-   "print_year": "2003",
-   "online_year": null,
-   "issued_year": "2003",
-   "page": "446-468",
-   "volume": "49",
-   "issue": "4",
-   "type": "journal-article",
-   "authors": [
-    "K Turley-Ames"
-   ],
-   "families": [
-    "Turley-Ames"
-   ]
-  },
+  "doi_status": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -8944,21 +8891,6 @@
   },
   "final_changes": [
    {
-    "field": "ENTRYTYPE",
-    "current": "article",
-    "proposed": "incollection",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Host book confirmed by LoC SRU (https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&query=dc.title%3D%22surgical%20treatment%20of%20the%20epilepsies%22&recordSchema=mods): 'Surgical treatment of the epilepsies', Engel, Jerome, 'New York', 'Raven Press', 'c1993', '2nd ed.', 'xxix, 786 p.' (1987 1st ed. is a different edition). Chapter title/pages still unsourced, so 'ambiguous' is warranted.",
-       "Suggested form keeps 'J {Engel Jr}' in author and editor; house rule (README 2026-09-24/25) is no name suffixes, so it must be 'J Engel'."
-      ]
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
     "field": "address",
     "current": null,
     "proposed": "New York, {NY}",
@@ -8989,21 +8921,6 @@
     "reviewer": "disagree"
    },
    {
-    "field": "booktitle",
-    "current": null,
-    "proposed": "Surgical Treatment of the Epilepsies",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Host book confirmed by LoC SRU (https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&query=dc.title%3D%22surgical%20treatment%20of%20the%20epilepsies%22&recordSchema=mods): 'Surgical treatment of the epilepsies', Engel, Jerome, 'New York', 'Raven Press', 'c1993', '2nd ed.', 'xxix, 786 p.' (1987 1st ed. is a different edition). Chapter title/pages still unsourced, so 'ambiguous' is warranted.",
-       "Suggested form keeps 'J {Engel Jr}' in author and editor; house rule (README 2026-09-24/25) is no name suffixes, so it must be 'J Engel'."
-      ]
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
     "field": "edition",
     "current": null,
     "proposed": "2\\textsuperscript{nd}",
@@ -9032,32 +8949,33 @@
      }
     ],
     "reviewer": "disagree"
-   },
-   {
-    "field": "publisher",
-    "current": null,
-    "proposed": "Raven Press",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Host book confirmed by LoC SRU (https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&query=dc.title%3D%22surgical%20treatment%20of%20the%20epilepsies%22&recordSchema=mods): 'Surgical treatment of the epilepsies', Engel, Jerome, 'New York', 'Raven Press', 'c1993', '2nd ed.', 'xxix, 786 p.' (1987 1st ed. is a different edition). Chapter title/pages still unsourced, so 'ambiguous' is warranted.",
-       "Suggested form keeps 'J {Engel Jr}' in author and editor; house rule (README 2026-09-24/25) is no name suffixes, so it must be 'J Engel'."
-      ]
-     }
-    ],
-    "reviewer": "agree"
    }
   ],
-  "removals": {
-   "journal": "@incollection has no journal (already given by the booktitle)"
-  },
+  "removals": {},
   "key_plan": {
    "current_key": "EngeEtal93",
    "target_base": "EngeEtal93",
    "action": "keep"
   },
   "flags": [
+   {
+    "code": "ambiguous_identity_held",
+    "field": "booktitle",
+    "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: booktitle='Surgical Treatment of the Epilepsies'",
+    "action": "held"
+   },
+   {
+    "code": "venue_held",
+    "field": "ENTRYTYPE",
+    "detail": "@article -> @incollection with the journal removed would leave no venue: the booktitle is held (verdict ambiguous: identity-defining change held for the user); type, journal and booktitle are one decision for the user, the entry is kept as it is",
+    "action": "held"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): booktitle='Surgical Treatment of the Epilepsies', ENTRYTYPE='incollection'",
+    "action": "flag"
+   },
    {
     "code": "needs_user",
     "field": "verdict",
@@ -9567,29 +9485,7 @@
     "action": "flag"
    }
   ],
-  "doi_status": {
-   "doi": "10.3138/fm57-6770-u75u-7727",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "ALGORITHMS FOR THE REDUCTION OF THE NUMBER OF POINTS REQUIRED TO REPRESENT A DIGITIZED LINE OR ITS CARICATURE",
-   "subtitle": null,
-   "container": "Cartographica",
-   "print_year": "1973",
-   "online_year": null,
-   "issued_year": "1973",
-   "page": "112-122",
-   "volume": "10",
-   "issue": "2",
-   "type": "journal-article",
-   "authors": [
-    "DAVID H DOUGLAS",
-    "THOMAS K PEUCKER"
-   ],
-   "families": [
-    "DOUGLAS",
-    "PEUCKER"
-   ]
-  },
+  "doi_status": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -10778,7 +10674,9 @@
    "ID": "Khan04"
   },
   "final_changes": [],
-  "removals": {},
+  "removals": {
+   "force": "not a BibTeX field (junk force = 'True')"
+  },
   "key_plan": {
    "current_key": "Khan04",
    "target_base": "Khan04",
@@ -11202,7 +11100,7 @@
    {
     "field": "title",
     "current": "Levels of processing in human memory",
-    "proposed": "Four points to remember: A tetrahedral model of memory experiments",
+    "proposed": "Four points to remember: a tetrahedral model of memory experiments",
     "source": "researcher",
     "evidence": [
      {
@@ -11210,7 +11108,6 @@
       "quote": "Four Points to Remember: A Tetrahedral Model of Memory Experiments"
      }
     ],
-    "normalised_from": "Four points to remember: a tetrahedral model of memory experiments",
     "reviewer": "agree"
    }
   ],
@@ -11770,15 +11667,19 @@
     ]
    }
   ],
-  "removals": {
-   "chapter": "moved into title (@incollection house form)"
-  },
+  "removals": {},
   "key_plan": {
    "current_key": "Este76",
    "target_base": "Este76",
    "action": "keep"
   },
   "flags": [
+   {
+    "code": "chapter_move_held",
+    "field": "chapter",
+    "detail": "verdict no_source: the titled-chapter move (@incollection, title = chapter, booktitle = book) is left for the user",
+    "action": "held"
+   },
    {
     "code": "unverified_suggestions",
     "field": null,
@@ -12885,21 +12786,6 @@
   },
   "final_changes": [
    {
-    "field": "ENTRYTYPE",
-    "current": "inbook",
-    "proposed": "incollection",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Ambiguous is resolvable for the CITED book form: LoC record LCCN 00361028 (SRU http://lx2.loc.gov:210/LCDB?...query=bath.lccn%3D00361028) gives 'Neuroimaging and memory / edited by Jonathan K. Foster', 'Hove : Psychology Press, c1999', 'A special issue of Memory', pagination 'iv p., p. 514-744' -- the book keeps the journal's continuous pagination, so the chapter is pp. 549--560 in the book too (PubMed 10659086: Memory 7(5-6), MedlinePgn 549-60). Book title, editor J K Foster, publisher Psychology Press are catalogue-confirmed (researcher marked them not_found).",
-       "Researcher's recommendation to convert to @article changes the cited work form; not needed. Keep the book chapter as @incollection (house: titled chapter @inbook -> @incollection) with title = chapter title, booktitle 'Neuroimaging and Memory', address Hove, {UK}. The journal DOI 10.1080/096582199387742 is for the journal issue form; whether to attach it to the book form is a house decision (unsure)."
-      ]
-     }
-    ],
-    "reviewer": "disagree"
-   },
-   {
     "field": "address",
     "current": "New York, {NY}",
     "proposed": "Hove, {UK}",
@@ -12913,53 +12799,9 @@
      }
     ],
     "reviewer": "agree"
-   },
-   {
-    "field": "booktitle",
-    "current": null,
-    "proposed": "Neuroimaging and Memory",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Ambiguous is resolvable for the CITED book form: LoC record LCCN 00361028 (SRU http://lx2.loc.gov:210/LCDB?...query=bath.lccn%3D00361028) gives 'Neuroimaging and memory / edited by Jonathan K. Foster', 'Hove : Psychology Press, c1999', 'A special issue of Memory', pagination 'iv p., p. 514-744' -- the book keeps the journal's continuous pagination, so the chapter is pp. 549--560 in the book too (PubMed 10659086: Memory 7(5-6), MedlinePgn 549-60). Book title, editor J K Foster, publisher Psychology Press are catalogue-confirmed (researcher marked them not_found).",
-       "Researcher's recommendation to convert to @article changes the cited work form; not needed. Keep the book chapter as @incollection (house: titled chapter @inbook -> @incollection) with title = chapter title, booktitle 'Neuroimaging and Memory', address Hove, {UK}. The journal DOI 10.1080/096582199387742 is for the journal issue form; whether to attach it to the book form is a house decision (unsure)."
-      ]
-     }
-    ]
-   },
-   {
-    "field": "doi",
-    "current": null,
-    "proposed": "10.1080/096582199387742",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/10659086/",
-      "quote": "10.1080/096582199387742"
-     }
-    ],
-    "reviewer": "unsure"
-   },
-   {
-    "field": "title",
-    "current": "Neuroimaging and memory",
-    "proposed": "The neural correlates of updating information in verbal working memory",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Ambiguous is resolvable for the CITED book form: LoC record LCCN 00361028 (SRU http://lx2.loc.gov:210/LCDB?...query=bath.lccn%3D00361028) gives 'Neuroimaging and memory / edited by Jonathan K. Foster', 'Hove : Psychology Press, c1999', 'A special issue of Memory', pagination 'iv p., p. 514-744' -- the book keeps the journal's continuous pagination, so the chapter is pp. 549--560 in the book too (PubMed 10659086: Memory 7(5-6), MedlinePgn 549-60). Book title, editor J K Foster, publisher Psychology Press are catalogue-confirmed (researcher marked them not_found).",
-       "Researcher's recommendation to convert to @article changes the cited work form; not needed. Keep the book chapter as @incollection (house: titled chapter @inbook -> @incollection) with title = chapter title, booktitle 'Neuroimaging and Memory', address Hove, {UK}. The journal DOI 10.1080/096582199387742 is for the journal issue form; whether to attach it to the book form is a house decision (unsure)."
-      ]
-     }
-    ],
-    "reviewer": "disagree"
    }
   ],
-  "removals": {
-   "chapter": "moved into title (@incollection house form)"
-  },
+  "removals": {},
   "key_plan": {
    "current_key": "VandEtal99",
    "target_base": "VandEtal99",
@@ -12967,15 +12809,33 @@
   },
   "flags": [
    {
-    "code": "doi_record_conflict",
-    "field": "pages",
-    "detail": "Crossref record of 10.1080/096582199387742 gives pages '549-561', proposal '549--560'",
+    "code": "ambiguous_identity_held",
+    "field": "title, doi, booktitle",
+    "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: title='The neural correlates of updating information in verbal working memory'; doi='10.1080/096582199387742'; booktitle='Neuroimaging and Memory'",
+    "action": "held"
+   },
+   {
+    "code": "chapter_move_held",
+    "field": "chapter",
+    "detail": "verdict ambiguous: the titled-chapter move (@incollection, title = chapter, booktitle = book) is left for the user",
+    "action": "held"
+   },
+   {
+    "code": "venue_held",
+    "field": "ENTRYTYPE",
+    "detail": "@inbook -> @incollection with the journal removed would leave no venue: the booktitle is held (verdict ambiguous: identity-defining change held for the user); type, journal and booktitle are one decision for the user, the entry is kept as it is",
+    "action": "held"
+   },
+   {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('published version'): replacement is the user's decision",
     "action": "flag"
    },
    {
     "code": "unverified_suggestions",
     "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): address='Hove, {UK}'",
+    "detail": "values left not_found or suggested by the rules (never applied): address='Hove, {UK}', title='The neural correlates of updating information in verbal working memory', doi='10.1080/096582199387742', booktitle='Neuroimaging and Memory', ENTRYTYPE='incollection'",
     "action": "flag"
    },
    {
@@ -12985,39 +12845,7 @@
     "action": "flag"
    }
   ],
-  "doi_status": {
-   "doi": "10.1080/096582199387742",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "The Neural Correlates of Updating Information in Verbal Working Memory",
-   "subtitle": null,
-   "container": "Memory",
-   "print_year": "1999",
-   "online_year": null,
-   "issued_year": "1999",
-   "page": "549-561",
-   "volume": "7",
-   "issue": "5-6",
-   "type": "journal-article",
-   "authors": [
-    "Martial Vanr De Linden",
-    "Fabienne Collette",
-    "Eric Salmon",
-    "Guy Delfiore",
-    "Christian Degueldre",
-    "A. Luxen",
-    "G. Franck"
-   ],
-   "families": [
-    "De Linden",
-    "Collette",
-    "Salmon",
-    "Delfiore",
-    "Degueldre",
-    "Luxen",
-    "Franck"
-   ]
-  },
+  "doi_status": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -13117,7 +12945,7 @@
     "field": "title",
     "current": "Interactions between short-term and long-term memory in the verbal domain",
     "proposed": "The roles of short-term and long-term verbal memory in free and serial recall: towards a recency-based perspective",
-    "source": "researcher",
+    "source": "postcheck",
     "evidence": [
      {
       "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203938966&type=googlepdf",
@@ -13125,6 +12953,7 @@
      }
     ],
     "normalised_from": "Interactions between short-term and long-term memory in the verbal domain",
+    "normalised_by": "postcheck",
     "reviewer": "agree"
    }
   ],
@@ -13791,13 +13620,10 @@
       ]
      }
     ],
-    "normalised_from": "Intrinsic organization of cerebral tissue in alerting, orienting, and discriminative responses",
     "reviewer": "agree"
    }
   ],
-  "removals": {
-   "chapter": "moved into title (@incollection house form)"
-  },
+  "removals": {},
   "key_plan": {
    "current_key": "Adey67b",
    "target_base": "Adey67",
@@ -13805,10 +13631,10 @@
   },
   "flags": [
    {
-    "code": "booktitle_case",
-    "field": "booktitle",
-    "detail": "house title-case formatter would alter protected text in 'The Neurosciences: A Study Program'; booktitle kept as given, check its title case",
-    "action": "flag"
+    "code": "chapter_move_held",
+    "field": "chapter",
+    "detail": "verdict no_source: the titled-chapter move (@incollection, title = chapter, booktitle = book) is left for the user",
+    "action": "held"
    },
    {
     "code": "unverified_suggestions",
@@ -13893,14 +13719,15 @@
     "field": "title",
     "current": "Poetics of cinema",
     "proposed": "Three dimensions of film narrative",
-    "source": "researcher",
+    "source": "postcheck",
     "evidence": [
      {
       "url": "https://api.taylorfrancis.com/content/books/mono/download?identifierName=doi&identifierValue=10.4324/9780203941898&type=googlepdf",
       "quote": "Poetics of cinema / David Bordwell."
      }
     ],
-    "normalised_from": "Poetics of cinema"
+    "normalised_from": "Poetics of cinema",
+    "normalised_by": "postcheck"
    }
   ],
   "removals": {
@@ -14451,26 +14278,7 @@
    "action": "keep"
   },
   "flags": [],
-  "doi_status": {
-   "doi": "10.5281/zenodo.17783435",
-   "registered": true,
-   "ra": "DataCite",
-   "title": "ContextLab/efficient-learning-khan: v1.0.0",
-   "authors": [
-    "Paxton Fitzpatrick",
-    "Max Bluestone",
-    "Jeremy R. Manning",
-    "Will Baxley"
-   ],
-   "families": [
-    "Paxton Fitzpatrick",
-    "Max Bluestone",
-    "Jeremy R. Manning",
-    "Will Baxley"
-   ],
-   "issued_year": "2025",
-   "type": "Software"
-  },
+  "doi_status": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14499,7 +14307,9 @@
    "ID": "Depo18"
   },
   "final_changes": [],
-  "removals": {},
+  "removals": {
+   "force": "not a BibTeX field (junk force = 'True')"
+  },
   "key_plan": {
    "current_key": "Depo18",
    "target_base": "Depo18",
@@ -14610,6 +14420,12 @@
     "field": "doi",
     "detail": "10.5281/zenodo.8274025 is registered to 'ContextLab/chatify: v0.2.1 (August, 2023)': titles agree except for part numbers ('ContextLab/chatify: v0.2.1 (August, 2023)' vs '{ContextLab}/chatify: {v0.2.1}'); applied: the reviewer confirms the DOI (reviewer value)",
     "action": "applied"
+   },
+   {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('Replacement candidate'): replacement is the user's decision",
+    "action": "flag"
    }
   ],
   "doi_status": {
@@ -15020,7 +14836,9 @@
    "ID": "ContPrev24"
   },
   "final_changes": [],
-  "removals": {},
+  "removals": {
+   "force": "not a BibTeX field (junk force = 'True')"
+  },
   "key_plan": {
    "current_key": "ContPrev24",
    "target_base": "ContPrev24",
@@ -15110,7 +14928,9 @@
     "reviewer": "agree"
    }
   ],
-  "removals": {},
+  "removals": {
+   "force": "not a BibTeX field (junk force = 'True')"
+  },
   "key_plan": {
    "current_key": "Nati24b",
    "target_base": "Schn24",
@@ -15164,7 +14984,9 @@
    "ID": "FoodAdmi20a"
   },
   "final_changes": [],
-  "removals": {},
+  "removals": {
+   "force": "not a BibTeX field (junk force = 'True')"
+  },
   "key_plan": {
    "current_key": "FoodAdmi20a",
    "target_base": "FoodAdmi20",
@@ -15189,7 +15011,9 @@
    "ID": "FoodAdmi20b"
   },
   "final_changes": [],
-  "removals": {},
+  "removals": {
+   "force": "not a BibTeX field (junk force = 'True')"
+  },
   "key_plan": {
    "current_key": "FoodAdmi20b",
    "target_base": "FoodAdmi20",
@@ -15448,7 +15272,9 @@
    "ID": "Gede24"
   },
   "final_changes": [],
-  "removals": {},
+  "removals": {
+   "force": "not a BibTeX field (junk force = 'True')"
+  },
   "key_plan": {
    "current_key": "Gede24",
    "target_base": "Gede24",
@@ -16253,6 +16079,7 @@
      }
     ],
     "normalised_from": "ACM",
+    "normalised_by": "postcheck",
     "reviewer": "agree"
    }
   ],
@@ -16332,21 +16159,7 @@
    "ENTRYTYPE": "inproceedings",
    "ID": "BranEtal04"
   },
-  "final_changes": [
-   {
-    "field": "title",
-    "current": "Proactive interference resolution during nonverbal working memory: {E}vidence for domain-general processing in {LIFG}",
-    "proposed": "Proactive interference resolution during nonverbal working memory: evidence for domain-general processing in {LIFG}",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "http://www.cogneurosociety.org/wp-content/uploads/2016/06/CNS2004_Abstracts.xls",
-      "quote": "Proactive interference resolution during nonverbal working memory: Evidence for domain-general processing in LIFG."
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "final_changes": [],
   "removals": {
    "journal": "@inproceedings has no journal (already given by the booktitle)"
   },
@@ -16361,6 +16174,18 @@
     "field": "journal",
     "detail": "researcher proposed an empty journal (current 'Proceedings of the Cognitive Neuroscience Society'); never applied, a removal needs the user's decision",
     "action": "held"
+   },
+   {
+    "code": "ambiguous_identity_held",
+    "field": "title",
+    "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: title='Proactive interference resolution during nonverbal working memory: evidence for domain-general processing in {LIFG}'",
+    "action": "held"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): title='Proactive interference resolution during nonverbal working memory: evidence for domain-general processing in {LIFG}'",
+    "action": "flag"
    },
    {
     "code": "needs_user",
@@ -16710,33 +16535,7 @@
    "action": "keep"
   },
   "flags": [],
-  "doi_status": {
-   "doi": "10.18653/v1/2022.naacl-main.60",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "Teaching BERT to Wait: Balancing Accuracy and Latency for Streaming Disfluency Detection",
-   "subtitle": null,
-   "container": "Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
-   "print_year": "2022",
-   "online_year": null,
-   "issued_year": "2022",
-   "page": "827-838",
-   "volume": null,
-   "issue": null,
-   "type": "proceedings-article",
-   "authors": [
-    "Angelica Chen",
-    "Vicky Zayats",
-    "Daniel Walker",
-    "Dirk Padfield"
-   ],
-   "families": [
-    "Chen",
-    "Zayats",
-    "Walker",
-    "Padfield"
-   ]
-  },
+  "doi_status": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -16885,29 +16684,7 @@
    "action": "keep"
   },
   "flags": [],
-  "doi_status": {
-   "doi": "10.32470/ccn.2018.1267-0",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "Capturing the geometric structure of episodic memories for naturalistic experiences",
-   "subtitle": null,
-   "container": "2018 Conference on Cognitive Computational Neuroscience",
-   "print_year": "2018",
-   "online_year": null,
-   "issued_year": "2018",
-   "page": null,
-   "volume": null,
-   "issue": null,
-   "type": "proceedings-article",
-   "authors": [
-    "Andrew Heusser",
-    "Jeremy Manning"
-   ],
-   "families": [
-    "Heusser",
-    "Manning"
-   ]
-  },
+  "doi_status": null,
   "reviewer": null,
   "needs_user": false
  },

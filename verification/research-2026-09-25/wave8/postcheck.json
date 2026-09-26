@@ -3,31 +3,27 @@
   "entries": 240,
   "bib": "HEAD",
   "flag_counts": {
+   "ambiguous_identity_held": 3,
    "booktitle_case": 2,
+   "chapter_move_held": 2,
    "doi_record_conflict": 9,
-   "doi_title_mismatch": 2,
    "doi_title_part_number": 1,
    "doi_title_short": 1,
    "duplicate": 4,
    "field_not_found": 86,
    "key_collision": 2,
-   "key_rename": 22,
+   "key_rename": 21,
    "needs_user": 32,
-   "print_year_conflict": 16,
+   "print_year_conflict": 15,
    "quote_check_failed": 8,
+   "reviewer_disagrees": 1,
    "surname_corroborated": 2,
-   "unverified_suggestions": 22,
+   "unverified_suggestions": 23,
    "verdict_inconsistent": 4,
    "verdict_understated": 2
   },
-  "dois_dropped": [
-   "Sand80: 10.1016/s0166-4115(08)61955-x is registered to '20 Stage Analysis of Reaction Processes' (Crossref), not this entry's title; DOI change dropped",
-   "Thor13: 10.1037/13051-000 is registered to 'Educational psychology, Vol 2: The psychology of learning.' (Crossref), not this entry's title; DOI change dropped"
-  ],
-  "dois_dropped_by_rules_alone": [
-   "Sand80",
-   "Thor13"
-  ],
+  "dois_dropped": [],
+  "dois_dropped_by_rules_alone": [],
   "renames": {
    "Wern84": "Wern94",
    "BendPier01": "BendPier00",
@@ -49,13 +45,11 @@
    "CrowGree98": "CrowGree00",
    "ShapOlto95": "ShapOlto94",
    "Frie08": "Frie12",
-   "CapoEtal17": "CapoEtal16",
-   "ChatGPT": "Open23"
+   "CapoEtal17": "CapoEtal16"
   },
   "duplicates": {
    "KahaEtal08b": "KahaEtal08a",
-   "Rugg00": "RuggAlla00",
-   "RuggAlla00": "Rugg00"
+   "Rugg00": "RuggAlla00"
   },
   "collisions": {
    "Shim94": "Shim95b",
@@ -63,9 +57,408 @@
   },
   "doi_requests_uncached": null
  },
- "measurement": null,
- "review_resolution": null,
- "review_resolution_rules_alone": null,
+ "measurement": {
+  "findings": 8,
+  "caught": 2,
+  "random_sample_findings": 0,
+  "random_sample_caught": 0,
+  "rows": [
+   {
+    "key": "BairNoma78",
+    "random_sample": false,
+    "disputed": [
+     "booktitle",
+     "title"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "chapter": [
+      "chapter_move_held"
+     ]
+    }
+   },
+   {
+    "key": "ChatGPT",
+    "random_sample": false,
+    "disputed": [
+     "key"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "author": [
+      "quote_check_failed"
+     ],
+     "year": [
+      "field_not_found"
+     ]
+    }
+   },
+   {
+    "key": "Ebbi85",
+    "random_sample": false,
+    "disputed": [
+     "year"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "title, doi": [
+      "ambiguous_identity_held"
+     ]
+    }
+   },
+   {
+    "key": "GoldEtal08",
+    "random_sample": false,
+    "disputed": [
+     "title"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "key": [
+      "key_rename"
+     ]
+    }
+   },
+   {
+    "key": "Herb34",
+    "random_sample": false,
+    "disputed": [
+     "address"
+    ],
+    "caught": true,
+    "by": {
+     "address": [
+      "quote_check_failed"
+     ]
+    },
+    "rules_touched": {
+     "pages": [
+      "quote_check_failed"
+     ],
+     "address": [
+      "quote_check_failed"
+     ],
+     "publisher, address": [
+      "publisher_address_held"
+     ],
+     "key": [
+      "key_rename"
+     ]
+    }
+   },
+   {
+    "key": "Howa08",
+    "random_sample": false,
+    "disputed": [
+     "title"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "key": [
+      "key_rename"
+     ]
+    }
+   },
+   {
+    "key": "RuggAlla00",
+    "random_sample": false,
+    "disputed": [
+     "key"
+    ],
+    "caught": true,
+    "by": {
+     "key": [
+      "duplicate"
+     ]
+    },
+    "rules_touched": {
+     "key": [
+      "duplicate"
+     ]
+    }
+   },
+   {
+    "key": "Stey01",
+    "random_sample": false,
+    "disputed": [
+     "booktitle",
+     "title"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "year": [
+      "print_year_conflict"
+     ],
+     "chapter": [
+      "chapter_move_held"
+     ]
+    }
+   }
+  ]
+ },
+ "review_resolution": {
+  "findings": 8,
+  "resolved": 6,
+  "unresolved": [
+   "Ebbi85",
+   "Stey01"
+  ],
+  "not_checkable": [],
+  "rows": [
+   {
+    "key": "BairNoma78",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Multidimensional scaling' vs reviewer 'Multidimensional scaling'"
+     ],
+     [
+      "booktitle",
+      true,
+      "final 'Fundamentals of Scaling and Psychophysics' vs reviewer 'Fundamentals of Scaling and Psychophysics'"
+     ],
+     [
+      "ENTRYTYPE",
+      true,
+      "disagree (applied to a no_source entry; chapter field held the BOOK title)"
+     ]
+    ]
+   },
+   {
+    "key": "ChatGPT",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "key",
+      true,
+      "reviewer key 'ChatGPT'; plan keep"
+     ]
+    ]
+   },
+   {
+    "key": "Ebbi85",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "year",
+      false,
+      "final '1885' vs reviewer '1913'"
+     ],
+     [
+      "doi",
+      true,
+      "disagree (DOI of the 1913 translation on an entry dated 1885)"
+     ]
+    ]
+   },
+   {
+    "key": "GoldEtal08",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Neural integrator models' vs reviewer 'Neural integrator models'"
+     ]
+    ]
+   },
+   {
+    "key": "Herb34",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "address",
+      true,
+      "final 'Langensalza, Germany' vs reviewer 'Langensalza, Germany'"
+     ]
+    ]
+   },
+   {
+    "key": "Howa08",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Memory: computational models' vs reviewer 'Memory: computational models'"
+     ]
+    ]
+   },
+   {
+    "key": "RuggAlla00",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "key",
+      true,
+      "reviewer: duplicate (RuggAlla00); plan keep"
+     ]
+    ]
+   },
+   {
+    "key": "Stey01",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Multidimensional scaling' vs reviewer 'Multidimensional scaling'"
+     ],
+     [
+      "booktitle",
+      false,
+      "final None vs reviewer 'Encyclopedia of Cognitive Science'"
+     ]
+    ]
+   }
+  ]
+ },
+ "review_resolution_rules_alone": {
+  "findings": 8,
+  "resolved": 3,
+  "unresolved": [
+   "BairNoma78",
+   "ChatGPT",
+   "Ebbi85",
+   "Herb34",
+   "Stey01"
+  ],
+  "not_checkable": [],
+  "rows": [
+   {
+    "key": "BairNoma78",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Multidimensional scaling' vs reviewer 'Multidimensional scaling'"
+     ],
+     [
+      "booktitle",
+      false,
+      "final None vs reviewer 'Fundamentals of Scaling and Psychophysics'"
+     ],
+     [
+      "ENTRYTYPE",
+      true,
+      "disagree (applied to a no_source entry; chapter field held the BOOK title)"
+     ]
+    ]
+   },
+   {
+    "key": "ChatGPT",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "key",
+      false,
+      "reviewer key 'ChatGPT'; plan keep"
+     ]
+    ]
+   },
+   {
+    "key": "Ebbi85",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "year",
+      false,
+      "final '1885' vs reviewer '1913'"
+     ],
+     [
+      "doi",
+      true,
+      "disagree (DOI of the 1913 translation on an entry dated 1885)"
+     ]
+    ]
+   },
+   {
+    "key": "GoldEtal08",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Neural integrator models' vs reviewer 'Neural integrator models'"
+     ]
+    ]
+   },
+   {
+    "key": "Herb34",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "address",
+      false,
+      "final 'K{\\\\\"{o}}nigsberg, {RU}' vs reviewer 'Langensalza, Germany'"
+     ]
+    ]
+   },
+   {
+    "key": "Howa08",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Memory: computational models' vs reviewer 'Memory: computational models'"
+     ]
+    ]
+   },
+   {
+    "key": "RuggAlla00",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "key",
+      true,
+      "reviewer: duplicate (RuggAlla00); plan keep"
+     ]
+    ]
+   },
+   {
+    "key": "Stey01",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Multidimensional scaling' vs reviewer 'Multidimensional scaling'"
+     ],
+     [
+      "booktitle",
+      false,
+      "final None vs reviewer 'Encyclopedia of Cognitive Science'"
+     ]
+    ]
+   }
+  ]
+ },
  "entries": {
   "HastEtal01": {
    "key": "HastEtal01",
@@ -235,7 +628,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-0-387-21706-2",
        "quote": "\"DOI\":\"10.1007\\/978-0-387-21706-2\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "edition",
@@ -247,7 +641,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2002022925&maximumRecords=1&recordSchema=mods",
        "quote": "<edition>4th ed.</edition>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -299,7 +694,8 @@
        "url": "https://api.crossref.org/works/10.1057/978-1-137-40883-9",
        "quote": "\"publisher-location\":\"London\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -311,7 +707,8 @@
        "url": "https://api.crossref.org/works/10.1057/978-1-137-40883-9",
        "quote": "\"DOI\":\"10.1057\\/978-1-137-40883-9\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -323,7 +720,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2016938827&maximumRecords=1&recordSchema=mods",
        "quote": "Palgrave Macmillan,"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -448,15 +846,21 @@
    "verdict": "ambiguous",
    "flags": [
     {
-     "code": "print_year_conflict",
-     "field": "year",
-     "detail": "Crossref published-print 1913 vs year 1885: print year wins",
-     "action": "flag"
+     "code": "reviewer_disagrees",
+     "field": "doi",
+     "detail": "reviewer disagrees (disagree (DOI of the 1913 translation on an entry dated 1885)) and gave no replacement value; not applied",
+     "action": "held"
+    },
+    {
+     "code": "ambiguous_identity_held",
+     "field": "title, year",
+     "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: title='Memory: a contribution to experimental psychology'; year='1913'",
+     "action": "held"
     },
     {
      "code": "unverified_suggestions",
      "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): year='1913'",
+     "detail": "values left not_found or suggested by the rules (never applied): title='Memory: a contribution to experimental psychology', year='1913'",
      "action": "flag"
     },
     {
@@ -467,35 +871,14 @@
     }
    ],
    "normalisations": [],
-   "changes": [
-    {
-     "field": "doi",
-     "current": null,
-     "proposed": "10.1037/10011-000",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1037/10011-000",
-       "quote": "\"DOI\":\"10.1037\\/10011-000\""
-      }
-     ]
-    },
-    {
-     "field": "title",
-     "current": "On memory: a contribution to experimental psychology",
-     "proposed": "Memory: a contribution to experimental psychology",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1037/10011-000",
-       "quote": "\"title\":[\"Memory: A contribution to experimental psychology.\""
-      }
-     ]
-    }
-   ],
+   "changes": [],
    "removals": {},
-   "held": {},
+   "held": {
+    "title": "verdict ambiguous: identity-defining change held for the user",
+    "year": "verdict ambiguous: identity-defining change held for the user"
+   },
    "suggestions": {
+    "title": "Memory: a contribution to experimental psychology",
     "year": "1913"
    },
    "key_plan": {
@@ -503,40 +886,13 @@
     "target_base": "Ebbi85",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1037/10011-000",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Memory: A contribution to experimental psychology.",
-    "subtitle": null,
-    "container": null,
-    "print_year": "1913",
-    "online_year": null,
-    "issued_year": "1913",
-    "page": null,
-    "volume": null,
-    "issue": null,
-    "type": "book",
-    "authors": [
-     "Hermann Ebbinghaus"
-    ],
-    "families": [
-     "Ebbinghaus"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-077"
   },
   "Thor13": {
    "key": "Thor13",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "doi_title_mismatch",
-     "field": "doi",
-     "detail": "10.1037/13051-000 is registered to 'Educational psychology, Vol 2: The psychology of learning.' (Crossref), not this entry's title; DOI change dropped",
-     "action": "dropped"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
     {
@@ -553,7 +909,8 @@
        "url": "https://api.crossref.org/works/10.1037/13051-000",
        "quote": "\"publisher-location\":\"New York\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -564,27 +921,7 @@
     "target_base": "Thor13",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1037/13051-000",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Educational psychology, Vol 2: The psychology of learning.",
-    "subtitle": null,
-    "container": null,
-    "print_year": "1913",
-    "online_year": null,
-    "issued_year": "1913",
-    "page": null,
-    "volume": null,
-    "issue": null,
-    "type": "book",
-    "authors": [
-     "Edward L. Thorndike"
-    ],
-    "families": [
-     "Thorndike"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-077"
   },
   "Robi32": {
@@ -688,7 +1025,8 @@
        "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
        "quote": "Verlag  von  Georg  Thieme. \n1894."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -708,7 +1046,8 @@
        "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
        "quote": "Psycho  -  physiologische  Einleitung"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -720,7 +1059,8 @@
        "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
        "quote": "Breslau,  im  August  1894."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -814,7 +1154,8 @@
        "url": "https://www.timhesterberg.net/articles",
        "quote": "Bootstrap Methods and Permutation Tests, 2nd edition"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -875,7 +1216,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
        "quote": "<edition>3rd ed.</edition>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -891,7 +1233,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
        "quote": "analysis and measurement procedures"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -903,7 +1246,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
        "quote": "c2000"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -959,7 +1303,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029981&maximumRecords=1&recordSchema=mods",
        "quote": "<edition>2nd ed.</edition>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -971,7 +1316,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029981&maximumRecords=1&recordSchema=mods",
        "quote": "<title>Pattern classification</title>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1138,7 +1484,8 @@
        "url": "https://openlibrary.org/books/OL20050785M.json",
        "quote": "\"publish_places\": [\"Amsterdam\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -1150,7 +1497,8 @@
        "url": "https://openlibrary.org/books/OL20050785M.json",
        "quote": "\"publishers\": [\"Harwood Academic Publishers\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1204,7 +1552,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2004044906&maximumRecords=1&recordSchema=marcxml",
        "quote": "Cambridge, Mass. : MIT Press, c2005."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -1220,7 +1569,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2004044906&maximumRecords=1&recordSchema=marcxml",
        "quote": "Choset, Howie M."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1259,7 +1609,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=89013606&maximumRecords=1&recordSchema=marcxml",
        "quote": "Cambridge, Mass. : MIT Press, c1990."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -1271,7 +1622,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=89013606&maximumRecords=1&recordSchema=marcxml",
        "quote": "The age of intelligent machines / Raymond Kurzweil."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1387,7 +1739,8 @@
        "url": "http://whoville.ucsd.edu/pubs.html",
        "quote": "Medial Temporal Lobe Function and Memory. In: The Cognitive Neurosciences, 3rd Edition"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "address",
@@ -1399,7 +1752,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2004052587&maximumRecords=1&recordSchema=marcxml",
        "quote": "Cambridge, Mass. : MIT Press, c2004."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -1411,7 +1765,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2004052587&maximumRecords=1&recordSchema=marcxml",
        "quote": "The cognitive neurosciences / Michael S. Gazzaniga, editor-in-chief"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "edition",
@@ -1427,7 +1782,8 @@
        "url": "http://whoville.ucsd.edu/pubs.html",
        "quote": "The Cognitive Neurosciences, 3rd Edition"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -1439,7 +1795,8 @@
        "url": "http://whoville.ucsd.edu/pubs.html",
        "quote": "M. Gazzinaga (Ed.), 691-708, 2004."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -1451,7 +1808,8 @@
        "url": "http://whoville.ucsd.edu/pubs.html",
        "quote": "Medial Temporal Lobe Function and Memory. In: The Cognitive Neurosciences, 3rd Edition"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1759,7 +2117,8 @@
        "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195050387.001.0001",
        "quote": "\"published-print\":{\"date-parts\":[[2006,1,26]]}"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "edition",
@@ -1771,7 +2130,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2005040874&maximumRecords=1&recordSchema=marcxml",
        "quote": "2nd ed."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -1783,7 +2143,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2005040874&maximumRecords=1&recordSchema=marcxml",
        "quote": "Electric fields of the brain : the neurophysics of EEG / Paul L. Nunez, Ramesh Srinivasan."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1852,7 +2213,8 @@
        "url": "https://openlibrary.org/books/OL24869122M.json",
        "quote": "\"publish_places\": [\"[London]\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -1864,7 +2226,8 @@
        "url": "https://openlibrary.org/books/OL21207926M.json",
        "quote": "\"by_statement\": \"by I.P. Pavlov.\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -1880,7 +2243,8 @@
        "url": "https://openlibrary.org/books/OL24869122M.json",
        "quote": "\"subtitle\": \"an investigation of the physiological activity of the cerebral cortex\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1927,7 +2291,8 @@
        "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195065169.001.0001",
        "quote": "\"title\":[\"Cajal's Degeneration and Regeneration of the Nervous System\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1991,7 +2356,7 @@
     },
     {
      "field": "title",
-     "note": "chapter title moved to title: 'Mechanisms for stochastic decision making in the primate frontal cortex: single-neuron recording and circuit modeling'"
+     "note": "chapter title moved to title (cited chapter field): 'Mechanisms for stochastic decision making in the primate frontal cortex: single-neuron recording and circuit modeling'"
     }
    ],
    "changes": [
@@ -2000,7 +2365,8 @@
      "current": "inbook",
      "proposed": "incollection",
      "source": "postcheck",
-     "evidence": []
+     "evidence": [],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -2016,14 +2382,16 @@
        "url": "https://api.crossref.org/works/10.1016/b978-0-12-374176-9.00031-2",
        "quote": "\"given\":\"Xiao-Jing\",\"family\":\"Wang\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
      "current": null,
      "proposed": "Neuroeconomics: Decision Making and the Brain",
      "source": "postcheck",
-     "evidence": []
+     "evidence": [],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -2035,13 +2403,14 @@
        "url": "https://api.crossref.org/works/10.1016/b978-0-12-374176-9.00031-2",
        "quote": "\"title\":[\"Mechanisms for Stochastic Decision Making in the Primate Frontal Cortex\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
      "current": "Neuroeconomics: decision making and the brain",
      "proposed": "Mechanisms for stochastic decision making in the primate frontal cortex: single-neuron recording and circuit modeling",
-     "source": "researcher",
+     "source": "postcheck",
      "evidence": [
       {
        "url": "https://openlibrary.org/books/OL24649902M.json",
@@ -2052,7 +2421,9 @@
        "quote": "\"subtitle\": \"Decision Making and the Brain\""
       }
      ],
-     "normalised_from": "Neuroeconomics: decision making and the brain"
+     "normalised_from": "Neuroeconomics: decision making and the brain",
+     "normalised_by": "postcheck",
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -2068,7 +2439,8 @@
        "url": "https://openlibrary.org/books/OL24649902M.json",
        "quote": "\"publish_date\": \"2009\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -2480,7 +2852,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/3967.001.0001",
        "quote": "\"subtitle\":[\"Methods, Models, and Conceptual Issues\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -2492,7 +2865,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/3967.003.0016",
        "quote": "\"title\":[\"Separating Discrimination and Decision in Detection, Recognition, and Matters of Life and Death\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -2512,7 +2886,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/3967.001.0001",
        "quote": "\"given\":\"Saul\",\"family\":\"Sternberg\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -2524,7 +2899,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/3967.003.0016",
        "quote": "\"title\":[\"Separating Discrimination and Decision in Detection, Recognition, and Matters of Life and Death\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -2536,7 +2912,8 @@
        "url": "https://www.sas.upenn.edu/~saul/invite4contents.html",
        "quote": "An Invitation to Cognitive Science, Volume 4: Methods, Models, and Conceptual Issues"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2710,7 +3087,8 @@
        "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
        "quote": "\"type\":\"journal-article\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -2722,7 +3100,8 @@
        "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
        "quote": "\"DOI\":\"10.1016\\/0001-6918(69)90065-1\",\"type\":\"journal-article\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -2734,7 +3113,8 @@
        "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
        "quote": "\"container-title\":[\"Acta Psychologica\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -2746,7 +3126,8 @@
        "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
        "quote": "\"volume\":\"30\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -3170,27 +3551,7 @@
     "target_base": "Klee56",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1515/9781400882618-002",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Representation of Events in Nerve Nets and Finite Automata",
-    "subtitle": null,
-    "container": "Automata Studies. (AM-34)",
-    "print_year": "1956",
-    "online_year": null,
-    "issued_year": "1956",
-    "page": "3-42",
-    "volume": null,
-    "issue": null,
-    "type": "book-chapter",
-    "authors": [
-     "S. C. Kleene"
-    ],
-    "families": [
-     "Kleene"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-080"
   },
   "Brin65": {
@@ -3241,7 +3602,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2006298536&maximumRecords=1&recordSchema=mods",
        "quote": "<subTitle>perspectives from cognitive neuroscience</subTitle>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -3253,7 +3615,8 @@
        "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780198529675.003.0010",
        "quote": "The role of time in human memory and bindingA review of the evidence"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -3362,16 +3725,7 @@
      "action": "flag"
     }
    ],
-   "normalisations": [
-    {
-     "field": "title",
-     "note": "chapter title moved to title: 'Visual Attention'"
-    },
-    {
-     "field": "title",
-     "note": "title house form: 'Visual Attention' -> 'Visual attention'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
     {
      "field": "ENTRYTYPE",
@@ -3419,8 +3773,7 @@
        "url": "https://api.crossref.org/works/10.1002/9780470753477.ch9",
        "quote": "\"title\":[\"Visual Attention\"]"
       }
-     ],
-     "normalised_from": "Visual attention"
+     ]
     }
    ],
    "removals": {
@@ -3459,7 +3812,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511840975.004",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -3471,7 +3825,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511840975.004",
        "quote": "\"container-title\":[\"Vygotsky's Educational Theory in Cultural Context\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -3483,7 +3838,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511840975.004",
        "quote": "The Zone of Proximal Development in Vygotsky's Analysis of Learning and Instruction"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -3507,7 +3863,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511840975",
        "quote": "\"given\":\"Suzanne M.\",\"family\":\"Miller\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -3519,7 +3876,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511840975.004",
        "quote": "\"page\":\"39-64\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -3531,7 +3889,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511840975.004",
        "quote": "The Zone of Proximal Development in Vygotsky's Analysis of Learning and Instruction"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -3693,16 +4052,8 @@
    "flags": [],
    "normalisations": [
     {
-     "field": "title",
-     "note": "chapter title moved to title: 'The Timing of Information Transfer in the Visual System'"
-    },
-    {
      "field": "journal",
      "note": "@incollection has no journal: already given by the series"
-    },
-    {
-     "field": "title",
-     "note": "title house form: 'The Timing of Information Transfer in the Visual System' -> 'The timing of information transfer in the visual system'"
     }
    ],
    "changes": [
@@ -3716,7 +4067,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4757-9625-4_5",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -3728,7 +4080,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4757-9625-4_5",
        "quote": "\"container-title\":[\"Cerebral Cortex\",\"Extrastriate Cortex in Primates\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -3740,7 +4093,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4757-9625-4_5",
        "quote": "The Timing of Information Transfer in the Visual System"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -3760,7 +4114,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4757-9625-4",
        "quote": "\"given\":\"Alan\",\"family\":\"Peters\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -3772,7 +4127,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4757-9625-4_5",
        "quote": "\"page\":\"205-241\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "series",
@@ -3784,7 +4140,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4757-9625-4_5",
        "quote": "\"container-title\":[\"Cerebral Cortex\",\"Extrastriate Cortex in Primates\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -3797,7 +4154,7 @@
        "quote": "The Timing of Information Transfer in the Visual System"
       }
      ],
-     "normalised_from": "The timing of information transfer in the visual system"
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -3809,7 +4166,8 @@
        "url": "https://link.springer.com/book/10.1007/978-1-4757-9625-4",
        "quote": "Volume 12: Extrastriate Cortex in Primates"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -3881,7 +4239,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=97080319&maximumRecords=1&recordSchema=marcxml",
        "quote": "San Diego :"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -3897,7 +4256,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012099975-0.50006-3",
        "quote": "\"container-title\":[\"Measurement, Judgment and Decision Making\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -3909,7 +4269,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012099975-0.50006-3",
        "quote": "\"title\":[\"Stimulus Categorization\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -3921,7 +4282,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=97080319&maximumRecords=1&recordSchema=marcxml",
        "quote": "edited by Michael H. Birnbaum."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -3933,7 +4295,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=97080319&maximumRecords=1&recordSchema=marcxml",
        "quote": "Academic Press,"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4292,7 +4655,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99043572&maximumRecords=1&recordSchema=marcxml",
        "quote": "edited by Denise C Park and Norbert Schwarz."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4333,7 +4697,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2004008268&maximumRecords=1&recordSchema=mods",
        "quote": "<title>Experimental cognitive psychology and its applications</title>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -4345,7 +4710,8 @@
        "url": "https://api.crossref.org/works/10.1037/10895-018",
        "quote": "Word Association Spaces for Predicting Semantic Similarity Effects in Episodic Memory."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -4357,7 +4723,8 @@
        "url": "https://api.crossref.org/works/10.1037/10895-018",
        "quote": "\"page\":\"237-249\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -4373,7 +4740,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2004008268&maximumRecords=1&recordSchema=mods",
        "quote": "<dateIssued>c2005</dateIssued>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4436,7 +4804,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00155-8",
        "quote": "\"DOI\":\"10.1016\\/b978-012370509-9.00155-8\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4585,7 +4954,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00185-6",
        "quote": "\"DOI\":\"10.1016\\/b978-012370509-9.00185-6\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -4597,7 +4967,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=5&recordSchema=marcxml&query=dc.title%3D%22learning%20and%20memory%20a%20comprehensive%20reference%22",
        "quote": "v. 2. Cognitive psychology of memory / Henry L. Roediger III"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -4613,7 +4984,8 @@
        "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
        "quote": "490 Associative Retrieval Processes in Episodic Memory"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -4625,7 +4997,8 @@
        "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
        "quote": "2.26 Associative Retrieval Processes in Episodic Memory"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5211,7 +5584,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D88022597",
        "quote": "Current issues in cognitive processes / the Tulane Flowerree Symposium on Cognition ; edited by Chizuko Izawa."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5316,7 +5690,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D0198521359",
        "quote": "Electrophysiology of mind : event-related brain potentials and cognition"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5328,7 +5703,8 @@
        "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780198524168.003.0005",
        "quote": "\"DOI\":\"10.1093\\/acprof:oso\\/9780198524168.003.0005\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5385,7 +5761,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477334/",
        "quote": "JT  - Progress in brain research"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5397,7 +5774,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477334/",
        "quote": "LID - 10.1016/S0079-6123(09)01310-7 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -5409,7 +5787,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-6123(09)01310-7",
        "quote": "\"container-title\":[\"Progress in Brain Research\",\"Mind and Motion: The Bidirectional Link between Thought and Action\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -5421,7 +5800,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477334/",
        "quote": "Getting around: making fast and frugal navigation decisions."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -5433,7 +5813,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477334/",
        "quote": "VI  - 174"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -5491,7 +5872,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477343/",
        "quote": "JT  - Progress in brain research"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5503,7 +5885,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477343/",
        "quote": "LID - 10.1016/S0079-6123(09)01319-3 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -5515,7 +5898,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-6123(09)01319-3",
        "quote": "\"container-title\":[\"Progress in Brain Research\",\"Mind and Motion: The Bidirectional Link between Thought and Action\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -5527,7 +5911,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477343/",
        "quote": "The cognitive nature of action - functional links between cognitive psychology, movement science, and robotics."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -5539,7 +5924,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477343/",
        "quote": "VI  - 174"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -5599,7 +5985,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477347/",
        "quote": "JT  - Progress in brain research"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5611,7 +5998,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477347/",
        "quote": "LID - 10.1016/S0079-6123(09)01323-5 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -5623,7 +6011,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-6123(09)01323-5",
        "quote": "\"container-title\":[\"Progress in Brain Research\",\"Mind and Motion: The Bidirectional Link between Thought and Action\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -5635,7 +6024,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477347/",
        "quote": "Juggling with the brain - thought and action in the human motor system."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -5647,7 +6037,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19477347/",
        "quote": "VI  - 174"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -5730,7 +6121,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-7421(03)44005-x",
        "quote": "\"container-title\":[\"Psychology of Learning and Motivation\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5742,7 +6134,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-7421(03)44005-x",
        "quote": "\"DOI\":\"10.1016\\/s0079-7421(03)44005-x\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -5754,7 +6147,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-7421(03)44005-x",
        "quote": "\"container-title\":[\"Psychology of Learning and Motivation\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -5805,16 +6199,7 @@
      "action": "flag"
     }
    ],
-   "normalisations": [
-    {
-     "field": "title",
-     "note": "chapter title moved to title: 'Computational Models of working memory'"
-    },
-    {
-     "field": "title",
-     "note": "title house form: 'Computational Models of working memory' -> 'Computational models of working memory'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
     {
      "field": "ENTRYTYPE",
@@ -5826,7 +6211,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.00754-3",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -5838,7 +6224,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.00754-3",
        "quote": "\"container-title\":[\"Encyclopedia of Neuroscience\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5850,7 +6237,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.00754-3",
        "quote": "\"DOI\":\"10.1016\\/b978-008045046-9.00754-3\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -5862,20 +6250,25 @@
        "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.00754-3",
        "quote": "\"page\":\"771-777\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
      "current": "The new encyclopedia of neuroscience",
-     "proposed": "Computational models of working memory",
-     "source": "researcher",
+     "proposed": "Memory: computational models",
+     "source": "reviewer",
      "evidence": [
       {
-       "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.00754-3",
-       "quote": "\"title\":[\"Memory: Computational Models\"]"
+       "reviewer_problems": [
+        "Set A reason: key rename, ENTRYTYPE change",
+        "POST-CHECK: researcher's corrected title 'Memory: computational models' (Crossref 'Memory: Computational Models', Howard lab list 'Memory: Computational models ... volume 5, pp. 771-777') was overwritten by the chapter-to-title move with the cited 'Computational models of working memory'. Volume 5 agrees with LoC v.5 = Hu-M.",
+        "LoC 2009923450: Encyclopedia of neuroscience, editor-in-chief Larry R. Squire, Elsevier/Academic Press, c2009, v. 5 = Hu-M",
+        "Crossref 10.1016/b978-008045046-9.00754-3: 'Memory: Computational Models' in Encyclopedia of Neuroscience, pages 771-777, print/issued 2009, authors ['Howard']"
+       ]
       }
      ],
-     "normalised_from": "Memory: computational models"
+     "reviewer": "disagree (researcher corrected it; post-check replaced it with the cited chapter field)"
     },
     {
      "field": "volume",
@@ -5887,7 +6280,8 @@
        "url": "https://sites.bu.edu/tcn/publications/",
        "quote": "New Encyclopedia of Neuroscience , volume 5, pp. 771-777."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -5903,7 +6297,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=8&recordSchema=marcxml&query=dc.title%3D%22encyclopedia%20of%20neuroscience%22%20and%20dc.creator%3D%22squire%22",
        "quote": "c2009."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -5982,7 +6377,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=2&recordSchema=marcxml&query=bath.isbn%3D0826148417",
        "quote": "2nd ed. New York : Springer Pub. Co., c1995."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -5994,7 +6390,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=2&recordSchema=marcxml&query=bath.isbn%3D0826148417",
        "quote": "George L. Maddox, editor-in-chief ; Robert C. Atchley ... [et al.], associate editors ; Sheri W. Sussman, managing editor."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6168,7 +6565,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22handbook%20of%20mixed%20membership%20models%22",
        "quote": "<subfield code=\"a\">Boca Raton :</subfield>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -6180,7 +6578,8 @@
        "url": "https://api.crossref.org/works/10.1201/b17520-21",
        "quote": "\"DOI\":\"10.1201\\/b17520-21\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -6196,7 +6595,8 @@
        "url": "https://www.taylorfrancis.com/chapters/edit/10.1201/b17520-21",
        "quote": "<meta name=\"citation_firstpage\" content=\"259\"><meta name=\"citation_lastpage\" content=\"288\">"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -6212,7 +6612,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22handbook%20of%20mixed%20membership%20models%22",
        "quote": "<subfield code=\"c\">&#xA9;2015</subfield>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6278,7 +6679,9 @@
      ]
     }
    ],
-   "removals": {},
+   "removals": {
+    "force": "not a BibTeX field (junk force = 'True')"
+   },
    "held": {},
    "suggestions": {
     "year": "1978"
@@ -6340,7 +6743,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012264841-0/50048-2",
        "quote": "\"DOI\":\"10.1016\\/b978-012264841-0\\/50048-2\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "edition",
@@ -6352,7 +6756,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22human%20brain%20function%22%20and%20dc.creator%3D%22frackowiak%22",
        "quote": "<subfield code=\"a\">2nd ed.</subfield>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -6364,7 +6769,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012264841-0/50048-2",
        "quote": "\"page\":\"887-910\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -6376,7 +6782,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012264841-0/50048-2",
        "quote": "\"title\":[\"Nonparametric Permutation Tests for Functional Neuroimaging\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -6392,7 +6799,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22human%20brain%20function%22%20and%20dc.creator%3D%22frackowiak%22",
        "quote": "<subfield code=\"c\">c2004.</subfield>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6442,7 +6850,8 @@
        "url": "https://link.springer.com/chapter/10.1007/978-0-387-73317-3_44",
        "quote": "<meta name=\"citation_publisher\" content=\"Springer, Boston, MA\"/>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -6454,7 +6863,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-0-387-73317-3_44",
        "quote": "\"DOI\":\"10.1007\\/978-0-387-73317-3_44\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -6466,7 +6876,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-0-387-73317-3_44",
        "quote": "\"page\":\"711-722\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -6478,7 +6889,8 @@
        "url": "https://link.springer.com/chapter/10.1007/978-0-387-73317-3_44",
        "quote": "<meta name=\"citation_publisher\" content=\"Springer, Boston, MA\"/>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -6490,7 +6902,8 @@
        "url": "https://link.springer.com/chapter/10.1007/978-0-387-73317-3_44",
        "quote": "<meta name=\"citation_title\" content=\"Teacher&#8211;Student Interaction\"/>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6609,7 +7022,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=6&recordSchema=marcxml&query=dc.title%3D%22human%20memory%22%20and%20dc.creator%3D%22melton%22",
        "quote": "The experimental analysis of verbal learning and memory: evolution and innovation."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6802,7 +7216,8 @@
        "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781410609984-21",
        "quote": "property=\"citation_author\" content=\"Anthony E. Richardson\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -6814,7 +7229,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=6&recordSchema=marcxml&query=dc.title%3D%22human%20spatial%20memory%22",
        "quote": "<subfield code=\"c\">c2003.</subfield>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6919,7 +7335,8 @@
        "url": "https://archive.org/download/handbookofmathem017893mbp/handbookofmathem017893mbp_djvu.txt",
        "quote": "Chapter  3,  Vol.  1,  by  Luce"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -6931,7 +7348,8 @@
        "url": "https://api.crossref.org/works/10.1126/science.143.3612.1319.b",
        "quote": ". vol. 1. R. Duncan Luce, Robert R. Bush, and Eugene Galanter, Eds. Wiley, New York, 1963."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -7035,7 +7453,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=6&recordSchema=marcxml&query=dc.title%3D%22intentional%20forgetting%22",
        "quote": "<subfield code=\"a\">Mahwah, N.J. :</subfield>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -7098,7 +7517,9 @@
    "flags": [],
    "normalisations": [],
    "changes": [],
-   "removals": {},
+   "removals": {
+    "force": "not a BibTeX field (junk force = 'True')"
+   },
    "held": {},
    "suggestions": {},
    "key_plan": {
@@ -7106,27 +7527,7 @@
     "target_base": "Mann23",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1007/978-3-031-20910-9_48",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "How Can I Identify Stimulus-Driven Neural Activity Patterns in Multi-Patient ECoG Data?",
-    "subtitle": null,
-    "container": "Studies in Neuroscience, Psychology and Behavioral Economics Intracranial EEG",
-    "print_year": "2023",
-    "online_year": "2023",
-    "issued_year": "2023",
-    "page": "803-836",
-    "volume": null,
-    "issue": null,
-    "type": "book-chapter",
-    "authors": [
-     "Jeremy R. Manning"
-    ],
-    "families": [
-     "Manning"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-084"
   },
   "SuttBart90": {
@@ -7179,7 +7580,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00157-1",
        "quote": "\"DOI\":\"10.1016\\/b978-012370509-9.00157-1\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -7191,7 +7593,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00157-1",
        "quote": "\"page\":\"417-444\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -7245,7 +7648,8 @@
        "url": "https://memory.psych.upenn.edu/files/pubs/Kaha17.pdf",
        "quote": "http://dx.doi.org/10.1016/B978-0-12-809324-5.21038-9"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "edition",
@@ -7257,7 +7661,8 @@
        "url": "https://memory.psych.upenn.edu/files/pubs/Kaha17.pdf",
        "quote": "Learning and Memory: A Comprehensive Reference, 2nd edition, Volume 2"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -7273,7 +7678,8 @@
        "url": "https://memory.psych.upenn.edu/files/pubs/Kaha17.pdf",
        "quote": "2017 Elsevier Ltd. All rights reserved."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -7285,7 +7691,8 @@
        "url": "https://memory.psych.upenn.edu/files/pubs/Kaha17.pdf",
        "quote": "Learning and Memory: A Comprehensive Reference, 2nd edition, Volume 2"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -7446,12 +7853,7 @@
      "action": "flag"
     }
    ],
-   "normalisations": [
-    {
-     "field": "title",
-     "note": "chapter title moved to title: 'Neural integrators: recurrent mechanisms and models'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
     {
      "field": "ENTRYTYPE",
@@ -7463,7 +7865,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.01434-0",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -7483,7 +7886,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.01434-0",
        "quote": "\"given\":\"X.-J.\",\"family\":\"Wang\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -7495,7 +7899,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.01434-0",
        "quote": "\"container-title\":[\"Encyclopedia of Neuroscience\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -7507,7 +7912,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.01434-0",
        "quote": "\"DOI\":\"10.1016\\/b978-008045046-9.01434-0\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -7519,20 +7925,25 @@
        "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.01434-0",
        "quote": "\"publisher\":\"Elsevier\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
      "current": "New encyclopedia of neuroscience",
-     "proposed": "Neural integrators: recurrent mechanisms and models",
-     "source": "researcher",
+     "proposed": "Neural integrator models",
+     "source": "reviewer",
      "evidence": [
       {
-       "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.01434-0",
-       "quote": "\"title\":[\"Neural Integrator Models\"]"
+       "reviewer_problems": [
+        "Set A reason: key rename, ENTRYTYPE change",
+        "POST-CHECK: researcher's corrected title 'Neural integrator models' (Crossref 'Neural Integrator Models', pp. 165-178) was overwritten by the chapter-to-title move, which copied the cited draft title 'Neural integrators: recurrent mechanisms and models'. Other fields (Elsevier, 2009, X-J Wang, DOI) agree; Encyclopedia of Neuroscience v.6 (N).",
+        "LoC 2009923450: Encyclopedia of neuroscience, c2009 (Squire)",
+        "Crossref 10.1016/b978-008045046-9.01434-0: 'Neural Integrator Models' in Encyclopedia of Neuroscience, pages 165-178, print/issued 2009, authors ['Goldman', 'Compte', 'Wang']"
+       ]
       }
      ],
-     "normalised_from": "Neural integrator models"
+     "reviewer": "disagree (researcher corrected it; post-check replaced it with the draft chapter field)"
     },
     {
      "field": "year",
@@ -7544,7 +7955,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.01434-0",
        "quote": "\"published-print\":{\"date-parts\":[[2009]]}"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -7591,15 +8003,27 @@
    "verdict": "ambiguous",
    "flags": [
     {
+     "code": "ambiguous_identity_held",
+     "field": "booktitle",
+     "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: booktitle='Encyclopedia of Cognitive Science'",
+     "action": "held"
+    },
+    {
      "code": "print_year_conflict",
      "field": "year",
      "detail": "notes give a print date ['2003'] but the year is 2001: print year wins",
      "action": "flag"
     },
     {
+     "code": "chapter_move_held",
+     "field": "chapter",
+     "detail": "verdict ambiguous: the titled-chapter move (@incollection, title = chapter, booktitle = book) is left for the user",
+     "action": "held"
+    },
+    {
      "code": "unverified_suggestions",
      "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): year='2003'",
+     "detail": "values left not_found or suggested by the rules (never applied): booktitle='Encyclopedia of Cognitive Science', year='2003'",
      "action": "flag"
     },
     {
@@ -7609,58 +8033,14 @@
      "action": "flag"
     }
    ],
-   "normalisations": [
-    {
-     "field": "ENTRYTYPE",
-     "note": "titled chapter: @inbook -> @incollection"
-    },
-    {
-     "field": "booktitle",
-     "note": "book title moved to booktitle: 'Multidimensional Scaling'"
-    },
-    {
-     "field": "title",
-     "note": "chapter title moved to title: 'Encyclopedia of Cognitive Science'"
-    },
-    {
-     "field": "title",
-     "note": "title house form: 'Encyclopedia of Cognitive Science' -> 'Encyclopedia of cognitive science'"
-    }
-   ],
-   "changes": [
-    {
-     "field": "ENTRYTYPE",
-     "current": "inbook",
-     "proposed": "incollection",
-     "source": "postcheck",
-     "evidence": []
-    },
-    {
-     "field": "booktitle",
-     "current": null,
-     "proposed": "Multidimensional Scaling",
-     "source": "postcheck",
-     "evidence": []
-    },
-    {
-     "field": "title",
-     "current": "Multidimensional scaling",
-     "proposed": "Encyclopedia of cognitive science",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1002/0470018860.s00585",
-       "quote": "\"title\":[\"Multidimensional Scaling\"]"
-      }
-     ],
-     "normalised_from": "Multidimensional scaling"
-    }
-   ],
-   "removals": {
-    "chapter": "moved into title (@incollection house form)"
+   "normalisations": [],
+   "changes": [],
+   "removals": {},
+   "held": {
+    "booktitle": "verdict ambiguous: identity-defining change held for the user"
    },
-   "held": {},
    "suggestions": {
+    "booktitle": "Encyclopedia of Cognitive Science",
     "year": "2003"
    },
    "key_plan": {
@@ -7969,7 +8349,8 @@
        "url": "https://archive.org/download/memoryincontextc0000unse/memoryincontextc0000unse_marc.xml",
        "quote": "Chichester [England] ;"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -8198,7 +8579,8 @@
        "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315807607-17/exemplar-based-approach-relating-categorization-identification-recognition-robert-nosofsky",
        "quote": "Multidimensional Models of Perception and Cognition (pp. 363-393)."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -8340,7 +8722,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22neuronal%20mechanisms%20of%20memory%20formation%22",
        "quote": "Cambridge ; New York : Cambridge University Press"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -8352,7 +8735,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22neuronal%20mechanisms%20of%20memory%20formation%22",
        "quote": "Neuronal mechanisms of memory formation : concepts of long-term potentiation and beyond"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -8364,7 +8748,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511529818.010",
        "quote": "\"DOI\":\"10.1017\\/cbo9780511529818.010\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -8376,7 +8761,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511529818.010",
        "quote": "Toward a Physiologic Explanation of Behavioral Data on Human Memory: The Role of Theta-Gamma Oscillations and NMDAR-Dependent LTP"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -8531,7 +8917,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22neurophysiology%20studied%20in%20man%22",
        "quote": "Neurophysiology studied in man: proceedings of a symposium held in Paris"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -8543,7 +8930,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22neurophysiology%20studied%20in%20man%22",
        "quote": "Amsterdam, Excerpta Medica, 1972."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -8580,7 +8968,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22on%20human%20memory%22%20and%20dc.creator%3Dizawa",
        "quote": "Mahwah, N.J. : Lawrence Erlbaum Associates, 1999."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -8768,7 +9157,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=2&recordSchema=marcxml&query=bath.lccn%3D78023461",
        "quote": "Perspectives on memory research : essays in honor of Uppsala University's 500th anniversary"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -8780,7 +9170,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=2&recordSchema=marcxml&query=bath.lccn%3D78023461",
        "quote": "edited by Lars-Go&#x308;ran Nilsson."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -8958,7 +9349,7 @@
     },
     {
      "field": "title",
-     "note": "chapter title moved to title: 'Retroactive and proactive inhibition'"
+     "note": "chapter title moved to title (cited chapter field): 'Retroactive and proactive inhibition'"
     }
    ],
    "changes": [
@@ -8992,14 +9383,15 @@
      "field": "title",
      "current": "Verbal behavior and general behavior theory",
      "proposed": "Retroactive and proactive inhibition",
-     "source": "researcher",
+     "source": "postcheck",
      "evidence": [
       {
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=2&recordSchema=marcxml&query=dc.title%3D%22verbal%20behavior%20and%20general%20behavior%20theory%22",
        "quote": "Verbal behavior and general behavior theory. Edited by Theodore R. Dixon [and] David L. Horton."
       }
      ],
-     "normalised_from": "Verbal behavior and general behavior theory"
+     "normalised_from": "Verbal behavior and general behavior theory",
+     "normalised_by": "postcheck"
     }
    ],
    "removals": {
@@ -9191,7 +9583,9 @@
        "quote": "Missier & A. Stocco (Eds.)"
       }
      ],
-     "normalised_from": "D Fum and F Del Missier and A Stocco"
+     "normalised_from": "D Fum and F Del Missier and A Stocco",
+     "normalised_by": "postcheck",
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -9207,7 +9601,8 @@
        "url": "https://act-r.psy.cmu.edu/?s=spatial+visualization+capacity",
        "quote": "Key components of spatial visualization capacity. In Proceedings of the Seventh International Conference on Cognitive Modeling"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -9249,12 +9644,7 @@
    "key": "BoraEtal05",
    "verdict": "correction",
    "flags": [],
-   "normalisations": [
-    {
-     "field": "title",
-     "note": "chapter title moved to title: 'Oscillations in the basal ganglia: the good, the bad and the unexpected'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
     {
      "field": "ENTRYTYPE",
@@ -9339,15 +9729,14 @@
     {
      "field": "title",
      "current": "The basal ganglia {VIII}",
-     "proposed": "Oscillations in the basal ganglia: the good, the bad and the unexpected",
+     "proposed": "Oscillations in the basal ganglia: the good, the bad, and the unexpected",
      "source": "researcher",
      "evidence": [
       {
        "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
        "quote": "Oscillations in the Basal Ganglia: The good, the bad, and the unexpected"
       }
-     ],
-     "normalised_from": "Oscillations in the basal ganglia: the good, the bad, and the unexpected"
+     ]
     }
    ],
    "removals": {
@@ -9515,16 +9904,7 @@
    "key": "Gall08",
    "verdict": "correction",
    "flags": [],
-   "normalisations": [
-    {
-     "field": "title",
-     "note": "chapter title moved to title: 'Dead Reckoning, Cognitive Maps, Animal Navigation and the Representation of Space: An Introduction'"
-    },
-    {
-     "field": "title",
-     "note": "title house form: 'Dead Reckoning, Cognitive Maps, Animal Navigation and the Representation of Space: An Introduction' -> 'Dead reckoning, cognitive maps, animal navigation and the representation of space: an introduction'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
     {
      "field": "ENTRYTYPE",
@@ -9536,7 +9916,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9_8",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "address",
@@ -9548,7 +9929,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9",
        "quote": "\"publisher-location\":\"Berlin, Heidelberg\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -9560,7 +9942,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9",
        "quote": "\"title\":[\"Robotics and Cognitive Approaches to Spatial Mapping\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -9572,7 +9955,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9_8",
        "quote": "\"DOI\":\"10.1007\\/978-3-540-75388-9_8\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -9588,7 +9972,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9",
        "quote": "\"given\":\"Wai-Kiang\",\"family\":\"Yeap\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -9600,7 +9985,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9_8",
        "quote": "\"page\":\"137-143\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "series",
@@ -9612,7 +9998,8 @@
        "url": "https://link.springer.com/book/10.1007/978-3-540-75388-9",
        "quote": "Springer Tracts in Advanced Robotics (STAR, volume 38)"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -9625,7 +10012,7 @@
        "quote": "Dead Reckoning, Cognitive Maps, Animal Navigation and the Representation of Space: An Introduction"
       }
      ],
-     "normalised_from": "Dead reckoning, cognitive maps, animal navigation and the representation of space: an introduction"
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -9684,7 +10071,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2_5",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "address",
@@ -9696,7 +10084,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
        "quote": "\"publisher-location\":\"New York, NY\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -9708,7 +10097,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2_5",
        "quote": "\"given\":\"George\",\"family\":\"Mandler\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -9720,7 +10110,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
        "quote": "\"title\":[\"Memory: Interdisciplinary Approaches\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -9732,7 +10123,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2_5",
        "quote": "\"DOI\":\"10.1007\\/978-1-4612-3500-2_5\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -9756,7 +10148,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
        "quote": "\"given\":\"Benjamin R.\",\"family\":\"Stephens\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -9808,7 +10201,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4_1",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "address",
@@ -9820,7 +10214,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4",
        "quote": "\"publisher-location\":\"Cham\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -9832,7 +10227,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4",
        "quote": "\"title\":[\"Micro-, Meso- and Macro-Dynamics of the Brain\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -9844,7 +10240,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4_1",
        "quote": "\"DOI\":\"10.1007\\/978-3-319-28802-4_1\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -9856,7 +10253,8 @@
        "url": "https://link.springer.com/book/10.1007/978-3-319-28802-4",
        "quote": "Editors: György Buzsáki 0 , Yves Christen 1"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -9868,7 +10266,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4_1",
        "quote": "\"page\":\"1-21\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "series",
@@ -9880,7 +10279,8 @@
        "url": "https://link.springer.com/book/10.1007/978-3-319-28802-4",
        "quote": "Research and Perspectives in Neurosciences"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -9892,7 +10292,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4_1",
        "quote": "Hippocampal Mechanisms for the Segmentation of Space by Goals and Boundaries"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -9953,7 +10354,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
        "quote": "edited by Robert R. Bush and William K. Estes"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10028,8 +10430,8 @@
     {
      "code": "quote_check_failed",
      "field": "address",
-     "detail": "validator: address not covered by its quotes (missing ['germany']; failures [])",
-     "action": "held"
+     "detail": "validator: address not covered by its quotes (missing ['germany']; failures []); reviewer supplied the value (source reviewer)",
+     "action": "applied"
     },
     {
      "code": "key_rename",
@@ -10041,6 +10443,22 @@
    "normalisations": [],
    "changes": [
     {
+     "field": "address",
+     "current": "K{\\\"{o}}nigsberg, {RU}",
+     "proposed": "Langensalza, Germany",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "Set A reason: key rename",
+        "Year 1891 and publisher Hermann Beyer & Söhne applied, but the address (held: 'Germany' not printed) stays 'Königsberg, {RU}', the 1834 Unzer imprint. The title page reads 'LANGENSALZA, DRUCK und VERLAG von HERMANN BEYER & SÖHNE. 1891.'",
+        "IA johannfriedrichh04unse_0 title page: 'SÄMTLICHE WERKE ... HERAUSGEGEBEN KARL KEHRBACH. VIERTER BAND. LANGENSALZA, DRUCK und VERLAG von HERMANN BEYER & SÖHNE. 1891.'"
+       ]
+      }
+     ],
+     "reviewer": "disagree (held by the quote check; now inconsistent with the 1891 publisher)"
+    },
+    {
      "field": "booktitle",
      "current": "S{\\\"{a}}mtliche {w}erke",
      "proposed": "S{\\\"{a}}mtliche {W}erke",
@@ -10050,7 +10468,8 @@
        "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
        "quote": "JOH. FR. HERBART’s SÄMTLICHE WERKE. IN CHRONOLOGISCHER REIHENFOLGE"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -10062,7 +10481,8 @@
        "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
        "quote": "KARL KEHRBACH. VIERTER BAND. LANGENSALZA, DRUCK und VERLAG von HERMANN BEYER & SÖHNE. 1891."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -10074,13 +10494,13 @@
        "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
        "quote": "KARL KEHRBACH. VIERTER BAND. LANGENSALZA, DRUCK und VERLAG von HERMANN BEYER & SÖHNE. 1891."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
    "held": {
-    "pages": "quote check failed",
-    "address": "quote check failed"
+    "pages": "quote check failed"
    },
    "suggestions": {},
    "key_plan": {
@@ -10240,7 +10660,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/1251.003.0020",
        "quote": "\"DOI\":\"10.7551\\/mitpress\\/1251.003.0020\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -10252,7 +10673,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/1251.003.0020",
        "quote": "\"page\":\"499-538\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -10264,7 +10686,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/1251.003.0020",
        "quote": "Epilogue: Analogy as the Core of Cognition"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10351,7 +10774,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2007026278&maximumRecords=1&recordSchema=mods",
        "quote": "Cambridge handbook of computational psychology"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -10363,7 +10787,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511816772.011",
        "quote": "\"DOI\":\"10.1017\\/cbo9780511816772.011\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10464,7 +10889,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
        "quote": "c1995"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10516,7 +10942,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2013048606&maximumRecords=1&recordSchema=mods",
        "quote": "Cambridge, Massachusetts"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -10540,7 +10967,8 @@
        "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/MannEtal15.pdf#page=1",
        "quote": "Jeremy R. Manning, Michael J. Kahana, and Kenneth A. Norman"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -10552,7 +10980,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/9504.003.0061",
        "quote": "\"DOI\":\"10.7551\\/mitpress\\/9504.003.0061\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "edition",
@@ -10564,7 +10993,8 @@
        "url": "https://www.context-lab.com/publications",
        "quote": "Appears in Gazzaniga M, Ed. The Cognitive Neurosciences, 5th Edition."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -10576,7 +11006,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2013048606&maximumRecords=1&recordSchema=mods",
        "quote": "Michael S. Gazzaniga and George R. Mangun, editors-in-chief"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -10592,7 +11023,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/9504.003.0061",
        "quote": "\"published-print\":{\"date-parts\":[[2014,10,24]]}"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10672,7 +11104,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98039659&maximumRecords=1&recordSchema=mods",
        "quote": "London"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -10684,7 +11117,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98039659&maximumRecords=1&recordSchema=mods",
        "quote": "edited by Alan Tait and Roger Mills."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -10696,7 +11130,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98039659&maximumRecords=1&recordSchema=mods",
        "quote": "1999"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10747,7 +11182,8 @@
        "url": "https://openlibrary.org/books/OL30396906M.json",
        "quote": "Hoboken, NJ"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -10759,7 +11195,8 @@
        "url": "https://api.crossref.org/works/10.1002/9781118521373.wbeaa067",
        "quote": "\"DOI\":\"10.1002\\/9781118521373.wbeaa067\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -10771,7 +11208,8 @@
        "url": "https://openlibrary.org/books/OL30396906M.json",
        "quote": "\"publish_date\": \"2016\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10909,7 +11347,8 @@
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=94044408&maximumRecords=1&recordSchema=mods",
        "quote": "Cambridge, Mass"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10939,7 +11378,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn=2002154756",
        "quote": "Malden, MA :"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -10951,7 +11391,8 @@
        "url": "https://api.crossref.org/works/10.1002/9780470756492.ch5",
        "quote": "\"DOI\":\"10.1002\\/9780470756492.ch5\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -10963,7 +11404,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn=2002154756",
        "quote": "edited by Catherine J. Doughty and Michael H. Long."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -10975,7 +11417,8 @@
        "url": "https://api.crossref.org/works/10.1002/9780470756492.ch5",
        "quote": "\"page\":\"104-129\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -10987,7 +11430,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn=2002154756",
        "quote": "Blackwell Pub.,"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11039,7 +11483,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn=2019749147",
        "quote": "Cham :"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -11051,7 +11496,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-319-50406-3_12",
        "quote": "\"DOI\":\"10.1007\\/978-3-319-50406-3_12\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -11063,7 +11509,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn=2019749147",
        "quote": "edited by Deborah E. Hannula, Melissa C. Duff."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11173,7 +11620,8 @@
        "url": "https://api.crossref.org/works/10.1037/10394-009",
        "quote": "\"DOI\":\"10.1037\\/10394-009\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -11197,7 +11645,8 @@
        "url": "https://api.crossref.org/works/10.1037/10394-000",
        "quote": "\"given\":\"Aimée M.\",\"family\":\"Surprenant\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -11209,7 +11658,8 @@
        "url": "https://api.crossref.org/works/10.1037/10394-009",
        "quote": "Serial position effects in semantic memory: Reconstructing the order of U. S. presidents and vice presidents."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11261,7 +11711,8 @@
        "url": "https://api.crossref.org/works/10.1037/10394-006",
        "quote": "\"DOI\":\"10.1037\\/10394-006\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11336,7 +11787,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511978098.009",
        "quote": "\"given\":\"David\",\"family\":\"Goldstein\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -11348,7 +11800,8 @@
        "url": "https://api.crossref.org/works/10.1017/cbo9780511978098.009",
        "quote": "\"DOI\":\"10.1017\\/cbo9780511978098.009\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11563,7 +12016,8 @@
        "url": "https://archive.org/download/psychologyoflear0000unse_w8t3/psychologyoflear0000unse_w8t3_marc.xml",
        "quote": "advances in research and theory."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -11575,7 +12029,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60464-8",
        "quote": "\"DOI\":\"10.1016\\/s0079-7421(08)60464-8\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -11587,7 +12042,8 @@
        "url": "https://archive.org/download/psychologyoflear0000unse_w8t3/psychologyoflear0000unse_w8t3_marc.xml",
        "quote": "Volume 10 /"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11787,7 +12243,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60441-7",
        "quote": "\"DOI\":\"10.1016\\/s0079-7421(08)60441-7\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -11799,7 +12256,8 @@
        "url": "https://archive.org/download/psychologyoflear0005unse_f6s9/psychologyoflear0005unse_f6s9_marc.xml",
        "quote": "edited by Gordon H. Bower."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -11811,7 +12269,8 @@
        "url": "https://archive.org/download/psychologyoflear0005unse_f6s9/psychologyoflear0005unse_f6s9_marc.xml",
        "quote": "Volume 5 /"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11861,7 +12320,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60452-1",
        "quote": "\"DOI\":\"10.1016\\/s0079-7421(08)60452-1\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -11873,7 +12333,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60452-1",
        "quote": "\"page\":\"47-89\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11932,7 +12393,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60515-0",
        "quote": "\"DOI\":\"10.1016\\/s0079-7421(08)60515-0\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -12316,7 +12778,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn=2010003122",
        "quote": "Malden, MA :"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -12328,7 +12791,8 @@
        "url": "https://api.crossref.org/works/10.1002/9781444325485.ch2",
        "quote": "\"DOI\":\"10.1002\\/9781444325485.ch2\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "edition",
@@ -12340,7 +12804,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn=2010003122",
        "quote": "2nd ed."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -12352,7 +12817,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn=2010003122",
        "quote": "edited by Usha Goswami."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -12364,7 +12830,8 @@
        "url": "https://api.crossref.org/works/10.1002/9781444325485.ch2",
        "quote": "\"page\":\"49-75\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -12414,27 +12881,7 @@
     "target_base": "Mann24",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1093/oxfordhb/9780190917982.013.38",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Context Reinstatement",
-    "subtitle": null,
-    "container": "The Oxford Handbook of Human Memory, Two Volume Pack",
-    "print_year": null,
-    "online_year": "2024",
-    "issued_year": "2024",
-    "page": "1114-1139",
-    "volume": null,
-    "issue": null,
-    "type": "book-chapter",
-    "authors": [
-     "Jeremy R. Manning"
-    ],
-    "families": [
-     "Manning"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-089"
   },
   "Kaha00": {
@@ -12453,7 +12900,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0004",
        "quote": "\"DOI\":\"10.1093\\/oso\\/9780195122657.003.0004\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -12518,7 +12966,7 @@
     "doi": "10.1093/oso/9780195122657.003.0012",
     "registered": true,
     "ra": "Crossref",
-    "title": "Source Monitoring:\n                    Attributing Mental Experiences",
+    "title": "Source Monitoring: Attributing Mental Experiences",
     "subtitle": null,
     "container": "The Oxford Handbook of Memory",
     "print_year": "2000",
@@ -12566,7 +13014,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22oxford%20handbook%20of%20memory%22",
        "quote": "Oxford ; New York : Oxford University Press, 2000."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -12578,7 +13027,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0008",
        "quote": "\"container-title\":[\"The Oxford Handbook of Memory\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -12590,7 +13040,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0008",
        "quote": "\"DOI\":\"10.1093\\/oso\\/9780195122657.003.0008\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -12602,7 +13053,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0008",
        "quote": "\"page\":\"125-136\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -12614,7 +13066,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0008",
        "quote": "\"published-print\":{\"date-parts\":[[2000,5,4]]}"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -12631,7 +13084,7 @@
     "doi": "10.1093/oso/9780195122657.003.0008",
     "registered": true,
     "ra": "Crossref",
-    "title": "Serial Learning:\n                    Cognition and Behavior",
+    "title": "Serial Learning: Cognition and Behavior",
     "subtitle": null,
     "container": "The Oxford Handbook of Memory",
     "print_year": "2000",
@@ -12774,7 +13227,8 @@
        "url": "http://psychnet.wustl.edu/memory/publications/",
        "quote": "Theories of memory II (pp. 187-245). Hove, Sussex: Psychological Press."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -12786,7 +13240,8 @@
        "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781315804507&type=googlepdf",
        "quote": "theories of memory volume ii edited by martin a. conway"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -12802,7 +13257,8 @@
        "url": "http://psychnet.wustl.edu/memory/publications/",
        "quote": "Theories of memory II (pp. 187-245)."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -12832,7 +13288,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22current%20issues%20in%20cognitive%20processes%22",
        "quote": "Hillsdale, N.J. : L. Erlbaum, 1989."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -12844,7 +13301,8 @@
        "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781315807515&type=googlepdf",
        "quote": "current issues in cognitive processes the tulane flowerree symposium on cognition edited by chizuko izawa"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -12856,7 +13314,8 @@
        "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781315807515&type=googlepdf",
        "quote": "edited by chizuko izawa tulane university"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -12868,7 +13327,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22current%20issues%20in%20cognitive%20processes%22",
        "quote": "Hillsdale, N.J. : L. Erlbaum, 1989."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -12880,7 +13340,8 @@
        "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781315807515&type=googlepdf",
        "quote": "7 hypermnesia: improvements in recall with repeated testing 175"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -12934,7 +13395,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22topics%20in%20learning%20and%20performance%22",
        "quote": "New York, Academic Press, 1972."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -12951,16 +13413,22 @@
   "Sand80": {
    "key": "Sand80",
    "verdict": "correction",
-   "flags": [
+   "flags": [],
+   "normalisations": [],
+   "changes": [
     {
-     "code": "doi_title_mismatch",
      "field": "doi",
-     "detail": "10.1016/s0166-4115(08)61955-x is registered to '20 Stage Analysis of Reaction Processes' (Crossref), not this entry's title; DOI change dropped",
-     "action": "dropped"
+     "current": null,
+     "proposed": "10.1016/s0166-4115(08)61955-x",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)61955-x",
+       "quote": "\"DOI\":\"10.1016\\/s0166-4115(08)61955-x\""
+      }
+     ]
     }
    ],
-   "normalisations": [],
-   "changes": [],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -13200,7 +13668,8 @@
        "quote": "v. 5. (2 pts.) Higher functions of the brain / volume editor, Fred Plum."
       }
      ],
-     "normalised_from": "Handbook of Physiology, Section 1: The Nervous System, Volume {V}: Higher Functions of the Brain"
+     "normalised_from": "Handbook of Physiology, Section 1: The Nervous System, Volume {V}: Higher Functions of the Brain",
+     "normalised_by": "postcheck"
     },
     {
      "field": "doi",
@@ -13309,7 +13778,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22dynamic%20coordination%20in%20the%20brain%22",
        "quote": "Coordination in behavior and cognition / Andreas K. Engel ... [et al.]."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "address",
@@ -13321,7 +13791,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22dynamic%20coordination%20in%20the%20brain%22",
        "quote": "Cambridge, Mass. : MIT Press, c2010."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -13333,7 +13804,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/8797.003.0021/transform/application/x-bibtex",
        "quote": "author={Engel, Andreas K. and Friston, Karl and Kelso, J. A. Scott and König, Peter and Kovács, Ilona and MacDonald, Angus and Miller, Earl K. and Phillips, William A. and Silverstein, Steven M. and Tallon-Baudry, Catherine and Triesch, Jochen and Uhlhaas, Peter}"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -13346,7 +13818,9 @@
        "quote": "Dynamic coordination in the brain : from neurons to mind /"
       }
      ],
-     "normalised_from": "Dynamic Coordination in the Brain: from Neurons to Mind"
+     "normalised_from": "Dynamic Coordination in the Brain: from Neurons to Mind",
+     "normalised_by": "postcheck",
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -13358,7 +13832,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/9780262014717.003.0018",
        "quote": "\"DOI\":\"10.7551\\/mitpress\\/9780262014717.003.0018\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -13370,7 +13845,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22dynamic%20coordination%20in%20the%20brain%22",
        "quote": "edited by Christoph von der Malsburg, William A. Phillips, and Wolf Singer."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -13382,7 +13858,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/9780262014717.003.0018",
        "quote": "\"title\":[\"Coordination in Behavior and Cognition\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -13481,7 +13958,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/4545.003.0005",
        "quote": "\"container-title\":[\"Memory Systems 1994\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "address",
@@ -13493,7 +13971,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22memory%20systems%201994%22",
        "quote": "Cambridge, Mass. : MIT Press, c1994."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -13505,7 +13984,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/4545.003.0005",
        "quote": "\"container-title\":[\"Memory Systems 1994\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -13517,7 +13997,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/4545.003.0005",
        "quote": "\"DOI\":\"10.7551\\/mitpress\\/4545.003.0005\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -13529,7 +14010,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22memory%20systems%201994%22",
        "quote": "Memory systems 1994 / edited by Daniel L. Schacter and Endel Tulving."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -13541,7 +14023,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/4545.003.0005",
        "quote": "\"title\":[\"Hippocampal Function and Interference\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -13553,7 +14036,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22memory%20systems%201994%22",
        "quote": "Cambridge, Mass. : MIT Press, c1994."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -13633,7 +14117,8 @@
        "url": "https://api.crossref.org/works/10.1093/oxfordhb/9780195374148.013.0243",
        "quote": "\"DOI\":\"10.1093\\/oxfordhb\\/9780195374148.013.0243\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -13645,7 +14130,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22oxford%20handbook%20of%20event-related%20potential%20components%22",
        "quote": "Oxford : Oxford University Press, c2012."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -13690,6 +14176,12 @@
    "verdict": "no_source",
    "flags": [
     {
+     "code": "chapter_move_held",
+     "field": "chapter",
+     "detail": "verdict no_source: the titled-chapter move (@incollection, title = chapter, booktitle = book) is left for the user",
+     "action": "held"
+    },
+    {
      "code": "unverified_suggestions",
      "field": null,
      "detail": "values left not_found or suggested by the rules (never applied): booktitle='Fundamentals of Scaling and Psychophysics', address='New York, {NY}'",
@@ -13702,46 +14194,26 @@
      "action": "flag"
     }
    ],
-   "normalisations": [
-    {
-     "field": "ENTRYTYPE",
-     "note": "titled chapter: @inbook -> @incollection"
-    },
-    {
-     "field": "booktitle",
-     "note": "book title moved to booktitle: 'Multidimensional Scaling'"
-    },
-    {
-     "field": "title",
-     "note": "chapter title moved to title: 'Fundamentals of Scaling and Psychophysics'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
-    {
-     "field": "ENTRYTYPE",
-     "current": "inbook",
-     "proposed": "incollection",
-     "source": "postcheck",
-     "evidence": []
-    },
     {
      "field": "booktitle",
      "current": null,
-     "proposed": "Multidimensional Scaling",
-     "source": "postcheck",
-     "evidence": []
-    },
-    {
-     "field": "title",
-     "current": "Multidimensional scaling",
      "proposed": "Fundamentals of Scaling and Psychophysics",
-     "source": "postcheck",
-     "evidence": []
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "Set A reason: ENTRYTYPE change, verdict no_source",
+        "POST-CHECK: the @inbook->@incollection rule applied to a no_source entry and moved the chapter field (which held the BOOK title, as the researcher noted) into title, so the final entry says the chapter 'Fundamentals of Scaling and Psychophysics' is in a book 'Multidimensional Scaling'. Baird & Noma is an authored book (LoC 78006011); the chapter is 'Multidimensional scaling' (pp. 177--205 unverified).",
+        "LoC 78006011: 'Fundamentals of scaling and psychophysics / John C. Baird, Elliot Noma', New York : Wiley, c1978 (an authored book: the chapter is 'Multidimensional scaling')"
+       ]
+      }
+     ],
+     "reviewer": "disagree (swapped: final booktitle is the chapter title)"
     }
    ],
-   "removals": {
-    "chapter": "moved into title (@incollection house form)"
-   },
+   "removals": {},
    "held": {},
    "suggestions": {
     "booktitle": "Fundamentals of Scaling and Psychophysics",
@@ -13771,7 +14243,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
        "quote": "\"container-title\":[\"The Oxford Handbook of Memory\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -13783,7 +14256,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
        "quote": "\"DOI\":\"10.1093\\/oso\\/9780195122657.003.0031\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -13799,7 +14273,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.001.0001",
        "quote": "\"given\":\"Fergus I M\",\"family\":\"Craik\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -13811,7 +14286,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
        "quote": "\"page\":\"501-520\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -13874,7 +14350,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
        "quote": "\"given\":\"Kevin\",\"family\":\"Allan\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -13886,7 +14363,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
        "quote": "\"container-title\":[\"The Oxford Handbook of Memory\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -13898,7 +14376,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
        "quote": "\"DOI\":\"10.1093\\/oso\\/9780195122657.003.0032\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -13910,7 +14389,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
        "quote": "\"page\":\"521-538\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -13959,7 +14439,7 @@
     {
      "code": "duplicate",
      "field": "key",
-     "detail": "same work (title, first author, year) already in cdl.bib as Rugg00: merge RuggAlla00 into it",
+     "detail": "same work (title, first author, year) as Rugg00 in cdl.bib: Rugg00 should merge into RuggAlla00",
      "action": "flag"
     }
    ],
@@ -13975,7 +14455,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
        "quote": "\"container-title\":[\"The Oxford Handbook of Memory\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -13987,7 +14468,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
        "quote": "\"DOI\":\"10.1093\\/oso\\/9780195122657.003.0032\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -13999,7 +14481,8 @@
        "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
        "quote": "\"page\":\"521-538\""
       }
-     ]
+     ],
+     "reviewer": "agree (single source; next chapter starts at 539)"
     }
    ],
    "removals": {},
@@ -14008,12 +14491,16 @@
    "key_plan": {
     "current_key": "RuggAlla00",
     "target_base": "RuggAlla00",
-    "action": "duplicate",
+    "action": "keep",
     "same_work_as": [
      "Rugg00"
     ],
-    "merge_into": "Rugg00",
-    "detail": "same work (title, first author, year) already in cdl.bib as Rugg00: merge RuggAlla00 into it"
+    "detail": "same work (title, first author, year) as Rugg00 in cdl.bib: Rugg00 should merge into RuggAlla00",
+    "reviewer_key": {
+     "text": "RuggAlla00",
+     "key": "RuggAlla00"
+    },
+    "reviewer_agrees": true
    },
    "doi_status": {
     "doi": "10.1093/oso/9780195122657.003.0032",
@@ -14489,7 +14976,8 @@
        "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -14505,7 +14993,8 @@
        "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
        "quote": "\"given\":\"James G.\",\"family\":\"Greeno\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -14517,7 +15006,8 @@
        "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
        "quote": "\"container-title\":[\"21st Century Education: A Reference Handbook\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -14529,7 +15019,8 @@
        "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
        "quote": "\"DOI\":\"10.4135\\/9781412964012.n23\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -14541,7 +15032,8 @@
        "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
        "quote": "\"page\":\"I-212-I-224\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -14557,7 +15049,8 @@
        "url": "https://catdir.loc.gov/catdir/toc/ecip0818/2008020266.html",
        "quote": "23. Conceptual Learning"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -14619,7 +15112,7 @@
     },
     {
      "field": "title",
-     "note": "chapter title moved to title: 'Testing and model specification'"
+     "note": "chapter title moved to title (cited chapter field): 'Testing and model specification'"
     }
    ],
    "changes": [
@@ -14665,7 +15158,7 @@
      "field": "title",
      "current": "Multilevel analysis: an introduction to basic and advanced multilevel modeling, 2\\textsuperscript{nd} edition",
      "proposed": "Testing and model specification",
-     "source": "researcher",
+     "source": "postcheck",
      "evidence": [
       {
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
@@ -14676,7 +15169,8 @@
        "quote": "<subfield code=\"b\">an introduction to basic and advanced multilevel modeling /</subfield>"
       }
      ],
-     "normalised_from": "Multilevel analysis: an introduction to basic and advanced multilevel modeling"
+     "normalised_from": "Multilevel analysis: an introduction to basic and advanced multilevel modeling",
+     "normalised_by": "postcheck"
     }
    ],
    "removals": {
@@ -14697,6 +15191,18 @@
    "verdict": "ambiguous",
    "flags": [
     {
+     "code": "ambiguous_identity_held",
+     "field": "booktitle",
+     "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: booktitle='{Youmans} Neurological Surgery'",
+     "action": "held"
+    },
+    {
+     "code": "unverified_suggestions",
+     "field": null,
+     "detail": "values left not_found or suggested by the rules (never applied): booktitle='{Youmans} Neurological Surgery'",
+     "action": "flag"
+    },
+    {
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict ambiguous: user decision",
@@ -14705,18 +15211,6 @@
    ],
    "normalisations": [],
    "changes": [
-    {
-     "field": "booktitle",
-     "current": "{Youman's} Neurosurgical Surgery",
-     "proposed": "{Youmans} Neurological Surgery",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=10&recordSchema=marcxml&query=dc.title%3D%22youmans%20neurological%20surgery%22",
-       "quote": "Youmans neurological surgery /"
-      }
-     ]
-    },
     {
      "field": "edition",
      "current": null,
@@ -14731,8 +15225,12 @@
     }
    ],
    "removals": {},
-   "held": {},
-   "suggestions": {},
+   "held": {
+    "booktitle": "verdict ambiguous: identity-defining change held for the user"
+   },
+   "suggestions": {
+    "booktitle": "{Youmans} Neurological Surgery"
+   },
    "key_plan": {
     "current_key": "BenaEtal04",
     "target_base": "BenaEtal04",
@@ -14822,10 +15320,13 @@
        "url": "https://aasm.org/wp-content/uploads/2023/05/Summary-of-Updates-Scoring-Manual-v3.pdf",
        "quote": "Summary of Updates in Version 3 | February 2023"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
-   "removals": {},
+   "removals": {
+    "force": "not a BibTeX field (junk force = 'True')"
+   },
    "held": {},
    "suggestions": {},
    "key_plan": {
@@ -14888,7 +15389,8 @@
        "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
        "quote": "Psychophysiology, University of Florida."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -14900,7 +15402,8 @@
        "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
        "quote": "Technical Report C-1, The Center for Research in"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -14916,7 +15419,8 @@
        "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
        "quote": "Instruction Manual and Affective Ratings"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -14953,7 +15457,8 @@
        "url": "https://peps.python.org/api/peps.json",
        "quote": "\"authors\": \"Brett Cannon, Nathaniel J. Smith, Donald Stufft\","
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -14965,7 +15470,8 @@
        "url": "https://peps.python.org/api/peps.json",
        "quote": "\"title\": \"Specifying Minimum Build System Requirements for Python Projects\","
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -15040,7 +15546,8 @@
        "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
        "quote": "\"name\":\"Shin, Yeon Soon\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -15052,7 +15559,8 @@
        "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
        "quote": "\"publicationYear\":2016"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -15115,7 +15623,8 @@
        "url": "http://web.archive.org/web/20070204005417/http://www.csie.ntu.edu.tw:80/~cjlin/libsvm/faq.html",
        "quote": "author =\t {Chih-Chung Chang and Chih-Jen Lin},"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "howpublished",
@@ -15127,7 +15636,8 @@
        "url": "http://web.archive.org/web/20070204005417/http://www.csie.ntu.edu.tw:80/~cjlin/libsvm/faq.html",
        "quote": "Software available at http://www.csie.ntu.edu.tw/~cjlin/libsvm"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -15156,12 +15666,6 @@
      "field": "year",
      "detail": "verdict 'correction' but year is not_found: the entry is not fully verified",
      "action": "flag"
-    },
-    {
-     "code": "key_rename",
-     "field": "key",
-     "detail": "ChatGPT -> Open23 (key already differed from the rule before this correction)",
-     "action": "flag"
     }
    ],
    "normalisations": [],
@@ -15176,10 +15680,13 @@
        "url": "http://web.archive.org/web/20230101000602/https://openai.com/blog/chatgpt/",
        "quote": "Try it now at chat.openai.com"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
-   "removals": {},
+   "removals": {
+    "force": "not a BibTeX field (junk force = 'True')"
+   },
    "held": {
     "author": "quote check failed"
    },
@@ -15187,9 +15694,13 @@
    "key_plan": {
     "current_key": "ChatGPT",
     "target_base": "Open23",
-    "action": "rename",
-    "rename_reason": "key already differed from the rule before this correction",
-    "new_key": "Open23"
+    "action": "keep",
+    "detail": "ChatGPT does not follow the ID rule (Open23), but no key-determining field changed: kept",
+    "reviewer_key": {
+     "text": "ChatGPT",
+     "key": "ChatGPT"
+    },
+    "reviewer_agrees": true
    },
    "doi_status": null,
    "batch": "batch-090"
@@ -15237,7 +15748,9 @@
    "flags": [],
    "normalisations": [],
    "changes": [],
-   "removals": {},
+   "removals": {
+    "force": "not a BibTeX field (junk force = 'True')"
+   },
    "held": {},
    "suggestions": {},
    "key_plan": {
@@ -15263,13 +15776,11 @@
   ],
   "Aust14": [],
   "Ebbi85": [
-   "print_year_conflict:year",
+   "ambiguous_identity_held:title, doi",
    "unverified_suggestions",
    "needs_user:verdict"
   ],
-  "Thor13": [
-   "doi_title_mismatch:doi"
-  ],
+  "Thor13": [],
   "Robi32": [],
   "Wern84": [
    "key_rename:key"
@@ -15558,6 +16069,7 @@
   ],
   "Stey01": [
    "print_year_conflict:year",
+   "chapter_move_held:chapter",
    "unverified_suggestions",
    "needs_user:verdict"
   ],
@@ -15646,7 +16158,9 @@
   "Herb34": [
    "quote_check_failed:pages",
    "quote_check_failed:address",
-   "key_rename:key"
+   "publisher_address_held:publisher, address",
+   "key_rename:key",
+   "unverified_suggestions"
   ],
   "BuzsEtal94": [
    "quote_check_failed:address"
@@ -15752,9 +16266,7 @@
    "field_not_found:pages"
   ],
   "Thom72": [],
-  "Sand80": [
-   "doi_title_mismatch:doi"
-  ],
+  "Sand80": [],
   "HashEtal07": [
    "print_year_conflict:year",
    "unverified_suggestions"
@@ -15777,6 +16289,7 @@
    "unverified_suggestions"
   ],
   "BairNoma78": [
+   "chapter_move_held:chapter",
    "unverified_suggestions",
    "needs_user:verdict"
   ],
@@ -15805,6 +16318,8 @@
    "field_not_found:pages"
   ],
   "BenaEtal04": [
+   "ambiguous_identity_held:booktitle",
+   "unverified_suggestions",
    "needs_user:verdict"
   ],
   "AdamEtal10": [
@@ -15829,8 +16344,7 @@
   "ChanLin01": [],
   "ChatGPT": [
    "quote_check_failed:author",
-   "field_not_found:year",
-   "key_rename:key"
+   "field_not_found:year"
   ],
   "CoghStuf13": [
    "field_not_found:institution"

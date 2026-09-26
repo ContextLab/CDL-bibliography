@@ -3,12 +3,13 @@
   "entries": 200,
   "bib": "HEAD",
   "flag_counts": {
+   "doi_generic_title": 1,
    "doi_record_conflict": 9,
-   "doi_title_mismatch": 1,
    "duplicate": 1,
    "field_not_found": 7,
    "key_rename": 13,
    "needs_user": 6,
+   "other_version_named": 1,
    "print_year_conflict": 1,
    "quote_check_failed": 1,
    "style_only_change": 3,
@@ -17,12 +18,8 @@
    "unverified_suggestions": 1,
    "year_from_online_date": 1
   },
-  "dois_dropped": [
-   "NuneEtal97: 10.1016/s0013-4694(97)00066-7 is registered to 'EEG coherency' (Crossref), not this entry's title; DOI change dropped"
-  ],
-  "dois_dropped_by_rules_alone": [
-   "NuneEtal97"
-  ],
+  "dois_dropped": [],
+  "dois_dropped_by_rules_alone": [],
   "renames": {
    "BotvEtal04": "BotvEtal09",
    "DehaNacc00": "DehaNacc01",
@@ -2525,6 +2522,7 @@
       }
      ],
      "normalised_from": "Wolfgang Skrandies",
+     "normalised_by": "postcheck",
      "reviewer": "agree"
     },
     {
@@ -2919,7 +2917,8 @@
        "quote": "\"given\":\"Robert G.\",\"family\":\"Crowder\""
       }
      ],
-     "normalised_from": "Christopher J Darwin and M T Turvey and R G Crowder"
+     "normalised_from": "Christopher J Darwin and M T Turvey and R G Crowder",
+     "normalised_by": "postcheck"
     },
     {
      "field": "doi",
@@ -3145,35 +3144,7 @@
     "target_base": "ChiEtal01",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1207/s15516709cog2504_1",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Learning from human tutoring",
-    "subtitle": null,
-    "container": "Cognitive Science",
-    "print_year": "2001",
-    "online_year": "2001",
-    "issued_year": "2001",
-    "page": "471-533",
-    "volume": "25",
-    "issue": "4",
-    "type": "journal-article",
-    "authors": [
-     "Michelene T.H. Chi",
-     "Stephanie A. Siler",
-     "Heisawn Jeong",
-     "Takashi Yamauchi",
-     "Robert G. Hausmann"
-    ],
-    "families": [
-     "Chi",
-     "Siler",
-     "Jeong",
-     "Yamauchi",
-     "Hausmann"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-013"
   },
   "FranEtal01": {
@@ -3640,7 +3611,12 @@
    "key": "Kerb14",
    "verdict": "correction",
    "flags": [],
-   "normalisations": [],
+   "normalisations": [
+    {
+     "field": "doi",
+     "note": "doi lowercased"
+    }
+   ],
    "changes": [
     {
      "field": "doi",
@@ -3652,7 +3628,9 @@
        "url": "https://api.crossref.org/works/10.2466/11.it.3.1",
        "quote": "\"DOI\":\"10.2466\\/11.it.3.1\""
       }
-     ]
+     ],
+     "normalised_from": "10.2466/11.IT.3.1",
+     "normalised_by": "postcheck"
     }
    ],
    "removals": {},
@@ -3663,27 +3641,7 @@
     "target_base": "Kerb14",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.2466/11.it.3.1",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "The Simple Difference Formula: An Approach to Teaching Nonparametric Correlation",
-    "subtitle": null,
-    "container": "Comprehensive Psychology",
-    "print_year": "2014",
-    "online_year": "2014",
-    "issued_year": "2014",
-    "page": "11.IT.3.1",
-    "volume": "3",
-    "issue": null,
-    "type": "journal-article",
-    "authors": [
-     "Dave S. Kerby"
-    ],
-    "families": [
-     "Kerby"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-014"
   },
   "Brem35": {
@@ -3713,6 +3671,7 @@
       }
      ],
      "normalised_from": "Comptes Rendus des S\\'{e}ances de la Soci\\'{e}t\\'{e} de Biologie et de ses Filiales",
+     "normalised_by": "postcheck",
      "reviewer": "agree"
     },
     {
@@ -5030,6 +4989,12 @@
    "verdict": "ambiguous",
    "flags": [
     {
+     "code": "other_version_named",
+     "field": null,
+     "detail": "the researcher's notes name another version ('Replacement candidate'): replacement is the user's decision",
+     "action": "flag"
+    },
+    {
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict ambiguous: user decision",
@@ -5831,14 +5796,27 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "doi_title_mismatch",
+     "code": "doi_generic_title",
      "field": "doi",
-     "detail": "10.1016/s0013-4694(97)00066-7 is registered to 'EEG coherency' (Crossref), not this entry's title; DOI change dropped",
-     "action": "dropped"
+     "detail": "10.1016/s0013-4694(97)00066-7 is registered to 'EEG coherency': registry title 'EEG coherency' is not the entry's, but volume 103, issue 5, first page 499 and year 1997 all equal the entry's in 'Electroencephalography and Clinical Neurophysiology'; applied",
+     "action": "applied"
     }
    ],
    "normalisations": [],
-   "changes": [],
+   "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1016/s0013-4694(97)00066-7",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/s0013-4694(97)00066-7",
+       "quote": "\"DOI\":\"10.1016\\/s0013-4694(97)00066-7\""
+      }
+     ]
+    }
+   ],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -12484,7 +12462,7 @@
     "doi": "10.1002/hbm.20015",
     "registered": true,
     "ra": "Crossref",
-    "title": "Comparison of simultaneously recorded [H215O]‐PET and LORETA during cognitive and pharmacological activation",
+    "title": "Comparison of simultaneously recorded [H 2 15 O]‐PET and LORETA during cognitive and pharmacological activation",
     "subtitle": null,
     "container": "Human Brain Mapping",
     "print_year": "2004",
@@ -13433,10 +13411,6 @@
    "normalisations": [
     {
      "field": "author",
-     "note": "'Jonathon' -> 'J'"
-    },
-    {
-     "field": "author",
      "note": "'Harry' -> 'H'"
     },
     {
@@ -13449,31 +13423,6 @@
     }
    ],
    "changes": [
-    {
-     "field": "author",
-     "current": "P Jonathon Phillips and H Wechsler and J Huang and P J Rauss",
-     "proposed": "P J Phillips and H Wechsler and J Huang and P J Rauss",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1016/s0262-8856(97)00070-x",
-       "quote": "\"given\":\"P.Jonathon\",\"family\":\"Phillips\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1016/s0262-8856(97)00070-x",
-       "quote": "\"given\":\"Harry\",\"family\":\"Wechsler\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1016/s0262-8856(97)00070-x",
-       "quote": "\"given\":\"Jeffery\",\"family\":\"Huang\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1016/s0262-8856(97)00070-x",
-       "quote": "\"given\":\"Patrick J.\",\"family\":\"Rauss\""
-      }
-     ],
-     "normalised_from": "P Jonathon Phillips and Harry Wechsler and Jeffery Huang and Patrick J Rauss"
-    },
     {
      "field": "doi",
      "current": null,
@@ -14255,6 +14204,7 @@
       }
      ],
      "normalised_from": "Zeki Ari and Necip Kutlu and Bekir Sami Uyanik and Fatma Taneli and Gurbuz Buyukyazi and Talat Tavli",
+     "normalised_by": "postcheck",
      "reviewer": "agree"
     },
     {
@@ -14504,7 +14454,8 @@
        "quote": "\"given\":\"Martin\",\"family\":\"Sch\\u00fcrmann\""
       }
      ],
-     "normalised_from": "Canan Ba{\\c{s}}ar-Eroglu and Erol Ba{\\c{s}}ar and Tamer Demiralp and Martin Sch{\\\"u}rmann"
+     "normalised_from": "Canan Ba{\\c{s}}ar-Eroglu and Erol Ba{\\c{s}}ar and Tamer Demiralp and Martin Sch{\\\"u}rmann",
+     "normalised_by": "postcheck"
     },
     {
      "field": "doi",
@@ -16130,6 +16081,7 @@
    "needs_user:verdict"
   ],
   "Yone96": [
+   "other_version_named",
    "needs_user:verdict"
   ],
   "OlesEtal25": [],
@@ -16149,7 +16101,7 @@
   "LopeEtal73": [],
   "MenoEtal96": [],
   "NuneEtal97": [
-   "doi_title_mismatch:doi"
+   "doi_generic_title:doi"
   ],
   "PeloEtal95": [],
   "RuggEtal92": [],

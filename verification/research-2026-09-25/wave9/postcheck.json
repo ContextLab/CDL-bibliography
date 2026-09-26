@@ -8,9 +8,10 @@
    "identity_quote_failed": 1,
    "key_rename": 4,
    "needs_user": 18,
-   "print_year_conflict": 4,
+   "other_version_named": 2,
+   "proceedings_print_year": 3,
    "quote_check_failed": 10,
-   "unverified_suggestions": 5
+   "unverified_suggestions": 1
   },
   "dois_dropped": [],
   "dois_dropped_by_rules_alone": [],
@@ -24,9 +25,195 @@
   "collisions": {},
   "doi_requests_uncached": null
  },
- "measurement": null,
- "review_resolution": null,
- "review_resolution_rules_alone": null,
+ "measurement": {
+  "findings": 4,
+  "caught": 1,
+  "random_sample_findings": 3,
+  "random_sample_caught": 0,
+  "rows": [
+   {
+    "key": "Laks01",
+    "random_sample": false,
+    "disputed": [
+     "ENTRYTYPE",
+     "howpublished"
+    ],
+    "caught": true,
+    "by": {
+     "ENTRYTYPE": [
+      "conference_without_proceedings",
+      "normalised"
+     ]
+    },
+    "rules_touched": {
+     "ENTRYTYPE": [
+      "conference_without_proceedings",
+      "normalised"
+     ]
+    }
+   },
+   {
+    "key": "Wech97",
+    "random_sample": true,
+    "disputed": [
+     "title"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "publisher": [
+      "field_not_found"
+     ]
+    }
+   },
+   {
+    "key": "CarvEtal22b",
+    "random_sample": true,
+    "disputed": [
+     "author"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "vanVEtal05",
+    "random_sample": true,
+    "disputed": [
+     "author"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   }
+  ]
+ },
+ "review_resolution": {
+  "findings": 4,
+  "resolved": 4,
+  "unresolved": [],
+  "not_checkable": [],
+  "rows": [
+   {
+    "key": "Laks01",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'misc' vs reviewer 'misc'"
+     ],
+     [
+      "howpublished",
+      true,
+      "final \"Speech at the symposium ``Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes: The Auschwitz Connection'', Max Planck Society, Berlin, June 7, 2001, \\\\url{https://web.archive.org/web/20020222065956/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm}\" vs reviewer \"Speech at the symposium ``Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes: The Auschwitz Connection'', Max Planck Society, Berlin, June 7, 2001, \\\\url{https://web.archive.org/web/20020222065956/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm}\""
+     ]
+    ]
+   },
+   {
+    "key": "Wech97",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final '{Wechsler} adult intelligence scale--third edition ({WAIS-III})' vs reviewer '{Wechsler} adult intelligence scale--third edition ({WAIS-III})'"
+     ]
+    ]
+   },
+   {
+    "key": "CarvEtal22b",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'C J Carver and Q Shao and S Lensgraf and A Sniffen and M Perroni-Scharf and H Gallant and A {Quattrini Li} and X Zhou' vs reviewer 'C J Carver and Q Shao and S Lensgraf and A Sniffen and M Perroni-Scharf and H Gallant and A {Quattrini Li} and X Zhou'"
+     ]
+    ]
+   },
+   {
+    "key": "vanVEtal05",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'M K {van Vugt} and G Hwang-Grodzins and M J Kahana' vs reviewer 'M K {van Vugt} and G Hwang-Grodzins and M J Kahana'"
+     ]
+    ]
+   }
+  ]
+ },
+ "review_resolution_rules_alone": {
+  "findings": 4,
+  "resolved": 1,
+  "unresolved": [
+   "Laks01",
+   "Wech97",
+   "vanVEtal05"
+  ],
+  "not_checkable": [],
+  "rows": [
+   {
+    "key": "Laks01",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'misc' vs reviewer 'misc'"
+     ],
+     [
+      "howpublished",
+      false,
+      "final None vs reviewer \"Speech at the symposium ``Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes: The Auschwitz Connection'', Max Planck Society, Berlin, June 7, 2001, \\\\url{https://web.archive.org/web/20020222065956/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm}\""
+     ]
+    ]
+   },
+   {
+    "key": "Wech97",
+    "random_sample": true,
+    "resolved": false,
+    "checks": [
+     [
+      "title",
+      false,
+      "final '{Wechsler} adult intelligence scale' vs reviewer '{Wechsler} adult intelligence scale--third edition ({WAIS-III})'"
+     ]
+    ]
+   },
+   {
+    "key": "CarvEtal22b",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'C J Carver and Q Shao and S Lensgraf and A Sniffen and M Perroni-Scharf and H Gallant and A Quattrini Li and X Zhou' vs reviewer 'C J Carver and Q Shao and S Lensgraf and A Sniffen and M Perroni-Scharf and H Gallant and A {Quattrini Li} and X Zhou'"
+     ]
+    ]
+   },
+   {
+    "key": "vanVEtal05",
+    "random_sample": true,
+    "resolved": false,
+    "checks": [
+     [
+      "author",
+      false,
+      "final 'M {van Vugt} and G Hwang-Grodzins and M J Kahana' vs reviewer 'M K {van Vugt} and G Hwang-Grodzins and M J Kahana'"
+     ]
+    ]
+   }
+  ]
+ },
  "entries": {
   "WolzEtal88": {
    "key": "WolzEtal88",
@@ -91,7 +278,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -103,7 +291,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
        "quote": "\"container-title\":[\"Lecture Notes in Computer Science\",\"Dynamic Brain - from Neural Spikes to Behaviors\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -115,7 +304,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
        "quote": "\"DOI\":\"10.1007\\/978-3-540-88853-6_1\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -135,7 +325,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6",
        "quote": "\"given\":\"Yoko\",\"family\":\"Yamaguchi\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -147,7 +338,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
        "quote": "\"page\":\"1-12\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -159,7 +351,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
        "quote": "\"publisher\":\"Springer Berlin Heidelberg\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "series",
@@ -171,7 +364,8 @@
        "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
        "quote": "\"container-title\":[\"Lecture Notes in Computer Science\",\"Dynamic Brain - from Neural Spikes to Behaviors\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -221,7 +415,8 @@
        "url": "https://catalogue.bnf.fr/api/SRU?version=1.2&operation=searchRetrieve&query=bib.persistentid%20all%20%22ark:/12148/cb31876421v%22&recordSchema=unimarcxchange&maximumRecords=1",
        "quote": "Faculté des sciences de Paris"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -268,7 +463,8 @@
        "url": "https://search.library.dartmouth.edu/primaws/rest/pub/pnxs?blendFacetsSeparately=false&disableCache=false&getMore=0&inst=01DCL_INST&lang=en&limit=10&newspapersActive=false&newspapersSearch=false&offset=0&pcAvailability=true&q=any,contains,Notaro%20bio-measurement&qExclude=&qInclude=&rapido=false&refEntryActive=false&rtaLinks=true&scope=MyInst_and_CI&searchInFulltextUserSelection=true&skipDelivery=Y&sort=rank&tab=Everything&vid=01DCL_INST:01DCL",
        "quote": "\"lds06\" : [ \"Thesis (Ph.D.)--Dartmouth College, 2017.\" ]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -326,7 +522,8 @@
        "url": "https://archive.org/download/DTIC_AD0043237/DTIC_AD0043237_djvu.txt",
        "quote": "students  in  beginning  psychology  classes  at  the  University \nof  Minnesota"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -369,19 +566,22 @@
        "url": "https://api.crossref.org/works/10.1037/t49755-000",
        "quote": "Wechsler Adult Intelligence Scale--Third Edition"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
      "current": "{Wechsler} adult intelligence {Scale-III} {(WAIS-III})",
-     "proposed": "{Wechsler} adult intelligence scale",
-     "source": "researcher",
+     "proposed": "{Wechsler} adult intelligence scale--third edition ({WAIS-III})",
+     "source": "reviewer",
      "evidence": [
       {
-       "url": "https://api.crossref.org/works/10.1037/t49755-000",
-       "quote": "Wechsler Adult Intelligence Scale--Third Edition"
+       "reviewer_problems": [
+        "Crossref 10.1037/t49755-000 title: \"Wechsler Adult Intelligence Scale--Third Edition\". The proposal moves the edition to an Edition field, but this entry is @misc, and standard BibTeX styles do not print edition for @misc, so the rendered citation would read like WAIS-IV (Wech08). Also the notes say sibling Wech08 has an edition field; at HEAD it has none (@book, Title {Wechsler} adult intelligence scale, no Edition). Keep the edition in the title."
+       ]
       }
-     ]
+     ],
+     "reviewer": "disagree: loses the edition on @misc"
     }
    ],
    "removals": {},
@@ -420,7 +620,8 @@
        "url": "https://themoth.org/stories/pie-man",
        "quote": "content=\"https://www.themoth.org/stories/pie-man\" property=\"og:url\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -436,7 +637,8 @@
        "url": "https://themoth.org/stories/pie-man",
        "quote": ">November 24, 2008</a>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -468,7 +670,8 @@
        "url": "https://huggingface.co/Qwen/Qwen3.5-27B/raw/main/README.md",
        "quote": "title  = {{Qwen3.5}: Towards Native Multimodal Agents},"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -498,7 +701,8 @@
        "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
        "quote": "author = person(\"R Core Team\"),"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -510,7 +714,8 @@
        "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
        "quote": "R: A Language and Environment for Statistical Computing"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -544,7 +749,8 @@
        "url": "https://github.com/stan-dev/stan/releases/download/v2.1.0/stan-reference-2.1.0.pdf",
        "quote": "and Reference Manual. Version 2.1.0"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -661,7 +867,8 @@
        "url": "https://raw.githubusercontent.com/thestk/rtaudio/master/README.md",
        "quote": "https://github.com/thestk/rtaudio/actions/workflows/ci.yml/badge.svg"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -679,6 +886,12 @@
    "key": "Schl07",
    "verdict": "ambiguous",
    "flags": [
+    {
+     "code": "other_version_named",
+     "field": null,
+     "detail": "the researcher's notes name another version ('replacement candidate'): replacement is the user's decision",
+     "action": "flag"
+    },
     {
      "code": "needs_user",
      "field": "verdict",
@@ -698,7 +911,8 @@
        "url": "https://sourceforge.net/rest/p/biosig",
        "quote": "\"external_homepage\": \"http://biosig.sourceforge.net/\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -768,7 +982,14 @@
   "Stra06": {
    "key": "Stra06",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "other_version_named",
+     "field": null,
+     "detail": "the researcher's notes name another version ('replacement candidate'): replacement is the user's decision",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -781,7 +1002,8 @@
        "url": "https://raw.githubusercontent.com/visionegg/visionegg/master/README.txt",
        "quote": "http://www.visionegg.org/"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -793,7 +1015,8 @@
        "url": "https://raw.githubusercontent.com/visionegg/visionegg/master/README.txt",
        "quote": "Welcome to the Vision Egg!"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -848,25 +1071,12 @@
    "key": "SingEtal24",
    "verdict": "correction",
    "flags": [],
-   "normalisations": [
-    {
-     "field": "author",
-     "note": "'Vasuden' -> 'V'"
-    },
-    {
-     "field": "author",
-     "note": "'Hou' -> 'H'"
-    },
-    {
-     "field": "author",
-     "note": "'Satish' -> 'S'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
     {
      "field": "author",
      "current": "A Singh and A Grattafiori and A Dubey and A Jauhri and A Pandey and A Kadian and A Kelsey and A Gangidi and A Al-Dahle and A Sangani and A Goldstand and A Letman and A Menon and A Mathur and A Schelten and A Vaughan and A Yang and A Lupu and A Alvarado and A Gallagher and A Gu and A Ho and A Poulton and A Ryan and A Fan and A Ramchandani and A Hartshorn and A Mitra and A Sravankumar and A Korenev and A Rao and A Gabriel and A Bharambe and A Eisenman and A Zhang and A JJhaveri and A Rodriguez and A Gregerson and A Spataru and B Roziere and B Maurer and B Leonhardi and B Huang and B Paranjape and B Liu and B Tang and B Chern and B Stojkovic and B Fuller and C Mejia Arenas and C Zhou and C Caucheteux and C Nayak and C Chu and C Bi and C Cai and C Cox and C Marra and C McConnell and C Keller and C Feichtenhofer and C Touret and C Wu and C Wong and C Canton Ferrer and D Allonsius and D Kreymer and D Haziza and D Li and D Pintz and D Livshits and D Wyatt and D Adkins and D Esiobu and D Xu and D Testuggine and D David and D Parikh and D Choudhary and D Mahajan and D Liskovich and D Garcia-Olano and D Perino and D Hupkes and D Wang and D Holland and E Lakomkin and E Lobanova and X Tan and E Dinan and E Smith and E Brinkman and E Arcaute and F Radenovic and F Ozgenel and F Caggioni and F Seide and F Zhang and G Synnaeve and G Schwarz and G Lee and G Badeer and G Anderson and G Nail and G Mialon and G Pang and G Cucurell and H Nguyen and H Shojanazeri and H Korevaar and H Wang and H Habeeb and H Rudolph and H Aspegren and H Xu and H Touvron and I Kozlowska and I Molybog and I Tufanov and I Zarov and I Arrieta Ibarra and I Veliche and I Kloumann and I Misra and I Evtimov and J Copet and J Weissman and J Geffert and J Vranes and J Asher and J Park and J Mahadeokar and J Gaya and J Shah and J van der Linde and J Chan and J Hong and J Lee and J Fu and J Teboul and J Chi and J Huang and J Wang and J Yu and J Bitton and J Spisak and J Pineau and J Carvill and J Park and J Rocca and J Johnstun and J Jia and K Vasuden Alwala and K Hou U and K Plawiak and K Upasani and K Veeraraghavan and K Li and K Heafield and K Stone and K El-Arini and K Iyer and K Malik and K Chiu and K Bhalla and K Huang and L Garg and L Rantala-Yeary and L van der Maaten and L Chen and L Silva and L Bell and L Zhang and L Tan and L Martin and L Madaan and L Wehrstedt and L Blecher and L de Oliveira and M Muzzi and M Khabsa and M Avlani and M Singh and M Paluri and M Zuckerberg and M Kardas and M Mankus and M Oldham and M Rita and M Lennie and M Pavlova and M Keneally and M Kambadur and M Patel and M Samvelyan and M Clark and M Lewis and M Si and M Singh and M Metanat and M Hassan and N Goyal and N Torabi and N Usunier and N Bashlykov and N Bogoychev and N Chatterji and N Dong and O Yang and O Duchenne and O Celebi and P Parekh and P Alrassy and P Saab and P Balaji and P Rittner and P Zhang and P Li and P Vasic and P Weng and P Zvyagina and P Bhargava and P Dubal and P Krishnan and P Koura and P Xu and Q He and R Rodriguez and R Srinivasan and R Mitra and R Calderer and R Li and R Stojnic and R Raileanu and R Battey and R Wang and R Girdhar and R Patel and R Sauvestre and R Polidoro and R Sumbaly and R Taylor and R Silva and R Hou and R Wang and R Howes and R Rinott and S Hosseini and S Bondu and S Datta and S Singh and S Chugh and S Dhillon and S Pan and S Bell and S Edunov and S Nie and S Narang and S Raparthy and S Lindsay and S Feng and S Shen and S Lin and S Shankar and S Bhosale and S Zhang and S Vandenhende and S Wang and S Kim and S Batra and S Sootla and S Kehoe and S Gururangan and S Gupta and S Virk and S Borodinsky and T Glaser and T Herman and T Best and T Fowler and T Georgiou and T Scialom and T Li and T Mihaylov and T Xiao and U Karn and V Goswami and V Gupta and V Ramanathan and V Kerkez and V Satish Kumar and V Gonguet and V Vogeti and V Poenaru and V Mihailescu and V Petrovic and V Ivanov and W Li and W Chu and W Xiong and W Fu and W Bouaziz and W Meers and W Constable and X Martinet and X Wu and X Gao and X Xie and X Jia and Y Goldschlag and Y LeCun and Y Gaur and Y Babaei and Y Qi and Y Li and Y Wen and Y Song and Y Nam and Y Hao and Y Zhang and Y Wang and Y Mao and Y He and Z Delpierre Coudert and Z DeVito and Z Hankir and Z Wen and Z Yan and Z Chen and Z Yang and Z Papakipos",
-     "proposed": "A Singh and A Grattafiori and A Dubey and A Jauhri and A Pandey and A Kadian and A Kelsey and A Gangidi and A Al-Dahle and A Sangani and A Goldstand and A Letman and A Menon and A Mathur and A Schelten and A Vaughan and A Yang and A Lupu and A Alvarado and A Gallagher and A Gu and A Ho and A Poulton and A Ryan and A Fan and A Ramchandani and A Hartshorn and A Mitra and A Sravankumar and A Korenev and A Rao and A Gabriel and A Bharambe and A Eisenman and A Zhang and A JJhaveri and A Rodriguez and A Gregerson and A Spataru and B Roziere and B Maurer and B Leonhardi and B Huang and B Paranjape and B Liu and B Tang and B Chern and B Stojkovic and B Fuller and C {Mejia Arenas} and C Zhou and C Caucheteux and C Nayak and C-H Chu and C Bi and C Cai and C Cox and C Marra and C McConnell and C Keller and C Feichtenhofer and C Touret and C Wu and C Wong and C {Canton Ferrer} and D Allonsius and D Kreymer and D Haziza and D Li and D Pintz and D Livshits and D Wyatt and D Adkins and D Esiobu and D Xu and D Testuggine and D David and D Parikh and D Choudhary and D Mahajan and D Liskovich and D Garcia-Olano and D Perino and D Hupkes and D Wang and D Holland and E Lakomkin and E Lobanova and X E Tan and E Dinan and E Smith and E Brinkman and E Arcaute and F Radenovic and F Ozgenel and F Caggioni and F Seide and F Zhang and G Synnaeve and G Schwarz and G Lee and G Badeer and G Anderson and G Nail and G Mialon and G Pang and G Cucurell and H Nguyen and H Shojanazeri and H Korevaar and H Wang and H Habeeb and H Rudolph and H Aspegren and H Xu and H Touvron and I Kozlowska and I Molybog and I Tufanov and I Zarov and I {Arrieta Ibarra} and I-E Veliche and I Kloumann and I Misra and I Evtimov and J Copet and J Weissman and J Geffert and J Vranes and J Asher and J Park and J Mahadeokar and J-B Gaya and J Shah and J van der Linde and J Chan and J Hong and J Lee and J Fu and J Teboul and J Chi and J Huang and J Wang and J Yu and J Bitton and J Spisak and J Pineau and J Carvill and J Park and J Rocca and J Johnstun and J Jia and K V Alwala and K H U and K Plawiak and K Upasani and K Veeraraghavan and K Li and K Heafield and K Stone and K El-Arini and K Iyer and K Malik and K Chiu and K Bhalla and K Huang and L Garg and L Rantala-Yeary and L van der Maaten and L Chen and L Silva and L Bell and L Zhang and L Tan and L Martin and L Madaan and L Wehrstedt and L Blecher and L de Oliveira and M Muzzi and M Khabsa and M Avlani and M Singh and M Paluri and M Zuckerberg and M Kardas and M Mankus and M Oldham and M Rita and M Lennie and M Pavlova and M Keneally and M Kambadur and M Patel and M Samvelyan and M Clark and M Lewis and M Si and M K Singh and M Metanat and M Hassan and N Goyal and N Torabi and N Usunier and N Bashlykov and N Bogoychev and N Chatterji and N Dong and O A Yang and O Duchenne and O Celebi and P Parekh and P Alrassy and P Saab and P Balaji and P Rittner and P Zhang and P Li and P Vasic and P Weng and P Zvyagina and P Bhargava and P Dubal and P Krishnan and P S Koura and P Xu and Q He and R Rodriguez and R Srinivasan and R Mitra and R Calderer and R Li and R Stojnic and R Raileanu and R Battey and R Wang and R Girdhar and R Patel and R Sauvestre and R Polidoro and R Sumbaly and R Taylor and R Silva and R Hou and R Wang and R Howes and R Rinott and S Hosseini and S J Bondu and S Datta and S Singh and S Chugh and S Dhillon and S Pan and S Bell and S Edunov and S Nie and S Narang and S Raparthy and S Lindsay and S Feng and S Shen and S Lin and S Shankar and S Bhosale and S Zhang and S Vandenhende and S Wang and S S Kim and S Batra and S Sootla and S Kehoe and S Gururangan and S Gupta and S Virk and S Borodinsky and T Glaser and T Herman and T Best and T Fowler and T Georgiou and T Scialom and T Li and T Mihaylov and T Xiao and U Karn and V Goswami and V Gupta and V Ramanathan and V Kerkez and V S Kumar and V Gonguet and V Vogeti and V Poenaru and V T Mihailescu and V Petrovic and V Ivanov and W Li and W Chu and W Xiong and W Fu and W Bouaziz and W Meers and W Constable and X Martinet and X Wu and X Gao and X Xie and X Jia and Y Goldschlag and Y LeCun and Y Gaur and Y Babaei and Y Qi and Y Li and Y Wen and Y Song and Y Nam and Y Hao and Y Zhang and Y Wang and Y Mao and Y He and Z {Delpierre Coudert} and Z DeVito and Z Hankir and Z Wen and Z Yan and Z Chen and Z Yang and Z Papakipos",
+     "proposed": "A Singh and A Grattafiori and A Dubey and A Jauhri and A Pandey and A Kadian and A Kelsey and A Gangidi and A Al-Dahle and A Sangani and A Goldstand and A Letman and A Menon and A Mathur and A Schelten and A Vaughan and A Yang and A Lupu and A Alvarado and A Gallagher and A Gu and A Ho and A Poulton and A Ryan and A Fan and A Ramchandani and A Hartshorn and A Mitra and A Sravankumar and A Korenev and A Rao and A Gabriel and A Bharambe and A Eisenman and A Zhang and A JJhaveri and A Rodriguez and A Gregerson and A Spataru and B Roziere and B Maurer and B Leonhardi and B Huang and B Paranjape and B Liu and B Tang and B Chern and B Stojkovic and B Fuller and C {Mejia Arenas} and C Zhou and C Caucheteux and C Nayak and C-H Chu and C Bi and C Cai and C Cox and C Marra and C McConnell and C Keller and C Feichtenhofer and C Touret and C Wu and C Wong and C {Canton Ferrer} and D Allonsius and D Kreymer and D Haziza and D Li and D Pintz and D Livshits and D Wyatt and D Adkins and D Esiobu and D Xu and D Testuggine and D David and D Parikh and D Choudhary and D Mahajan and D Liskovich and D Garcia-Olano and D Perino and D Hupkes and D Wang and D Holland and E Lakomkin and E Lobanova and X E Tan and E Dinan and E Smith and E Brinkman and E Arcaute and F Radenovic and F Ozgenel and F Caggioni and F Seide and F Zhang and G Synnaeve and G Schwarz and G Lee and G Badeer and G Anderson and G Nail and G Mialon and G Pang and G Cucurell and H Nguyen and H Shojanazeri and H Korevaar and H Wang and H Habeeb and H Rudolph and H Aspegren and H Xu and H Touvron and I Kozlowska and I Molybog and I Tufanov and I Zarov and I {Arrieta Ibarra} and I-E Veliche and I Kloumann and I Misra and I Evtimov and J Copet and J Weissman and J Geffert and J Vranes and J Asher and J Park and J Mahadeokar and J-B Gaya and J Shah and J van der Linde and J Chan and J Hong and J Lee and J Fu and J Teboul and J Chi and J Huang and J Wang and J Yu and J Bitton and J Spisak and J Pineau and J Carvill and J Park and J Rocca and J Johnstun and J Jia and K Vasuden Alwala and K Hou U and K Plawiak and K Upasani and K Veeraraghavan and K Li and K Heafield and K Stone and K El-Arini and K Iyer and K Malik and K Chiu and K Bhalla and K Huang and L Garg and L Rantala-Yeary and L van der Maaten and L Chen and L Silva and L Bell and L Zhang and L Tan and L Martin and L Madaan and L Wehrstedt and L Blecher and L de Oliveira and M Muzzi and M Khabsa and M Avlani and M Singh and M Paluri and M Zuckerberg and M Kardas and M Mankus and M Oldham and M Rita and M Lennie and M Pavlova and M Keneally and M Kambadur and M Patel and M Samvelyan and M Clark and M Lewis and M Si and M K Singh and M Metanat and M Hassan and N Goyal and N Torabi and N Usunier and N Bashlykov and N Bogoychev and N Chatterji and N Dong and O A Yang and O Duchenne and O Celebi and P Parekh and P Alrassy and P Saab and P Balaji and P Rittner and P Zhang and P Li and P Vasic and P Weng and P Zvyagina and P Bhargava and P Dubal and P Krishnan and P S Koura and P Xu and Q He and R Rodriguez and R Srinivasan and R Mitra and R Calderer and R Li and R Stojnic and R Raileanu and R Battey and R Wang and R Girdhar and R Patel and R Sauvestre and R Polidoro and R Sumbaly and R Taylor and R Silva and R Hou and R Wang and R Howes and R Rinott and S Hosseini and S J Bondu and S Datta and S Singh and S Chugh and S Dhillon and S Pan and S Bell and S Edunov and S Nie and S Narang and S Raparthy and S Lindsay and S Feng and S Shen and S Lin and S Shankar and S Bhosale and S Zhang and S Vandenhende and S Wang and S S Kim and S Batra and S Sootla and S Kehoe and S Gururangan and S Gupta and S Virk and S Borodinsky and T Glaser and T Herman and T Best and T Fowler and T Georgiou and T Scialom and T Li and T Mihaylov and T Xiao and U Karn and V Goswami and V Gupta and V Ramanathan and V Kerkez and V Satish Kumar and V Gonguet and V Vogeti and V Poenaru and V T Mihailescu and V Petrovic and V Ivanov and W Li and W Chu and W Xiong and W Fu and W Bouaziz and W Meers and W Constable and X Martinet and X Wu and X Gao and X Xie and X Jia and Y Goldschlag and Y LeCun and Y Gaur and Y Babaei and Y Qi and Y Li and Y Wen and Y Song and Y Nam and Y Hao and Y Zhang and Y Wang and Y Mao and Y He and Z {Delpierre Coudert} and Z DeVito and Z Hankir and Z Wen and Z Yan and Z Chen and Z Yang and Z Papakipos",
      "source": "researcher",
      "evidence": [
       {
@@ -962,7 +1172,7 @@
        "quote": "Zoe Papakipos"
       }
      ],
-     "normalised_from": "A Singh and A Grattafiori and A Dubey and A Jauhri and A Pandey and A Kadian and A Kelsey and A Gangidi and A Al-Dahle and A Sangani and A Goldstand and A Letman and A Menon and A Mathur and A Schelten and A Vaughan and A Yang and A Lupu and A Alvarado and A Gallagher and A Gu and A Ho and A Poulton and A Ryan and A Fan and A Ramchandani and A Hartshorn and A Mitra and A Sravankumar and A Korenev and A Rao and A Gabriel and A Bharambe and A Eisenman and A Zhang and A JJhaveri and A Rodriguez and A Gregerson and A Spataru and B Roziere and B Maurer and B Leonhardi and B Huang and B Paranjape and B Liu and B Tang and B Chern and B Stojkovic and B Fuller and C {Mejia Arenas} and C Zhou and C Caucheteux and C Nayak and C-H Chu and C Bi and C Cai and C Cox and C Marra and C McConnell and C Keller and C Feichtenhofer and C Touret and C Wu and C Wong and C {Canton Ferrer} and D Allonsius and D Kreymer and D Haziza and D Li and D Pintz and D Livshits and D Wyatt and D Adkins and D Esiobu and D Xu and D Testuggine and D David and D Parikh and D Choudhary and D Mahajan and D Liskovich and D Garcia-Olano and D Perino and D Hupkes and D Wang and D Holland and E Lakomkin and E Lobanova and X E Tan and E Dinan and E Smith and E Brinkman and E Arcaute and F Radenovic and F Ozgenel and F Caggioni and F Seide and F Zhang and G Synnaeve and G Schwarz and G Lee and G Badeer and G Anderson and G Nail and G Mialon and G Pang and G Cucurell and H Nguyen and H Shojanazeri and H Korevaar and H Wang and H Habeeb and H Rudolph and H Aspegren and H Xu and H Touvron and I Kozlowska and I Molybog and I Tufanov and I Zarov and I {Arrieta Ibarra} and I-E Veliche and I Kloumann and I Misra and I Evtimov and J Copet and J Weissman and J Geffert and J Vranes and J Asher and J Park and J Mahadeokar and J-B Gaya and J Shah and J van der Linde and J Chan and J Hong and J Lee and J Fu and J Teboul and J Chi and J Huang and J Wang and J Yu and J Bitton and J Spisak and J Pineau and J Carvill and J Park and J Rocca and J Johnstun and J Jia and K Vasuden Alwala and K Hou U and K Plawiak and K Upasani and K Veeraraghavan and K Li and K Heafield and K Stone and K El-Arini and K Iyer and K Malik and K Chiu and K Bhalla and K Huang and L Garg and L Rantala-Yeary and L van der Maaten and L Chen and L Silva and L Bell and L Zhang and L Tan and L Martin and L Madaan and L Wehrstedt and L Blecher and L de Oliveira and M Muzzi and M Khabsa and M Avlani and M Singh and M Paluri and M Zuckerberg and M Kardas and M Mankus and M Oldham and M Rita and M Lennie and M Pavlova and M Keneally and M Kambadur and M Patel and M Samvelyan and M Clark and M Lewis and M Si and M K Singh and M Metanat and M Hassan and N Goyal and N Torabi and N Usunier and N Bashlykov and N Bogoychev and N Chatterji and N Dong and O A Yang and O Duchenne and O Celebi and P Parekh and P Alrassy and P Saab and P Balaji and P Rittner and P Zhang and P Li and P Vasic and P Weng and P Zvyagina and P Bhargava and P Dubal and P Krishnan and P S Koura and P Xu and Q He and R Rodriguez and R Srinivasan and R Mitra and R Calderer and R Li and R Stojnic and R Raileanu and R Battey and R Wang and R Girdhar and R Patel and R Sauvestre and R Polidoro and R Sumbaly and R Taylor and R Silva and R Hou and R Wang and R Howes and R Rinott and S Hosseini and S J Bondu and S Datta and S Singh and S Chugh and S Dhillon and S Pan and S Bell and S Edunov and S Nie and S Narang and S Raparthy and S Lindsay and S Feng and S Shen and S Lin and S Shankar and S Bhosale and S Zhang and S Vandenhende and S Wang and S S Kim and S Batra and S Sootla and S Kehoe and S Gururangan and S Gupta and S Virk and S Borodinsky and T Glaser and T Herman and T Best and T Fowler and T Georgiou and T Scialom and T Li and T Mihaylov and T Xiao and U Karn and V Goswami and V Gupta and V Ramanathan and V Kerkez and V Satish Kumar and V Gonguet and V Vogeti and V Poenaru and V T Mihailescu and V Petrovic and V Ivanov and W Li and W Chu and W Xiong and W Fu and W Bouaziz and W Meers and W Constable and X Martinet and X Wu and X Gao and X Xie and X Jia and Y Goldschlag and Y LeCun and Y Gaur and Y Babaei and Y Qi and Y Li and Y Wen and Y Song and Y Nam and Y Hao and Y Zhang and Y Wang and Y Mao and Y He and Z {Delpierre Coudert} and Z DeVito and Z Hankir and Z Wen and Z Yan and Z Chen and Z Yang and Z Papakipos"
+     "reviewer": "agree"
     },
     {
      "field": "howpublished",
@@ -974,7 +1184,8 @@
        "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
        "quote": "url = {https://github.com/meta-llama/llama3/blob/main/MODEL_CARD.md}"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -986,7 +1197,8 @@
        "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
        "quote": "title={Llama 3 Model Card},"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1016,7 +1228,8 @@
        "url": "http://www.mega-nerd.com/libsndfile/",
        "quote": "Libsndfile is a C library for reading and writing files containing sampled sound"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1155,7 +1368,8 @@
        "url": "https://api.crossref.org/works/10.1016/j.ijcard.2015.03.038",
        "quote": "\"type\":\"journal-article\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -1167,7 +1381,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
        "quote": "AID - 10.1016/j.ijcard.2015.03.038 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -1179,7 +1394,8 @@
        "url": "https://api.crossref.org/works/10.1016/j.ijcard.2015.03.038",
        "quote": "\"container-title\":[\"International Journal of Cardiology\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -1250,7 +1466,8 @@
        "url": "https://api.crossref.org/works/10.1093/deafed/eng010",
        "quote": "\"type\":\"journal-article\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -1262,7 +1479,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
        "quote": "AID - 10.1093/deafed/eng010 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -1319,7 +1537,8 @@
        "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
        "quote": "\"type\":\"journal-article\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -1351,7 +1570,8 @@
        "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
        "quote": "\"given\":\"T. J.\",\"family\":\"Sejnowski\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -1363,7 +1583,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/11287500/",
        "quote": "AID - 10.1152/jn.2001.85.4.1782 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -1430,7 +1651,8 @@
        "url": "https://api.crossref.org/works/10.1523/jneurosci.23-19-07407.2003",
        "quote": "\"type\":\"journal-article\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -1442,7 +1664,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
        "quote": "AID - 10.1523/JNEUROSCI.23-19-07407.2003 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -1504,7 +1727,8 @@
        "url": "https://patents.google.com/patent/US6757362B1/en",
        "quote": "<meta name=\"citation_patent_number\" content=\"US:6757362\">"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -1584,16 +1808,10 @@
      "action": "flag"
     },
     {
-     "code": "print_year_conflict",
+     "code": "proceedings_print_year",
      "field": "year",
-     "detail": "notes give a print date ['2019'] but the year is 2018: print year wins",
-     "action": "flag"
-    },
-    {
-     "code": "unverified_suggestions",
-     "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): year='2019'",
-     "action": "flag"
+     "detail": "notes give a print date ['2019'] of the proceedings; the conference year 2018 is quoted and stands (no year suggested)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -1639,9 +1857,7 @@
    "held": {
     "pages": "quote check failed"
    },
-   "suggestions": {
-    "year": "2019"
-   },
+   "suggestions": {},
    "key_plan": {
     "current_key": "LiuEtal18",
     "target_base": "LiuEtal18",
@@ -1667,16 +1883,10 @@
      "action": "flag"
     },
     {
-     "code": "print_year_conflict",
+     "code": "proceedings_print_year",
      "field": "year",
-     "detail": "notes give a print date ['2017'] but the year is 2016: print year wins",
-     "action": "flag"
-    },
-    {
-     "code": "unverified_suggestions",
-     "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): year='2017'",
-     "action": "flag"
+     "detail": "notes give a print date ['2017'] of the proceedings; the conference year 2016 is quoted and stands (no year suggested)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -1730,9 +1940,7 @@
    "held": {
     "pages": "quote check failed"
    },
-   "suggestions": {
-    "year": "2017"
-   },
+   "suggestions": {},
    "key_plan": {
     "current_key": "LiuWang16",
     "target_base": "LiuWang16",
@@ -1770,7 +1978,8 @@
        "url": "https://papers.nips.cc/paper_files/paper/2012/file/4588e674d3f0faf985047d4c3f13ed0d-Bibtex.bib",
        "quote": "editor = {F. Pereira and C.J. Burges and L. Bottou and K. Weinberger},"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -1782,7 +1991,8 @@
        "url": "https://papers.nips.cc/paper_files/paper/2012/file/4588e674d3f0faf985047d4c3f13ed0d-Bibtex.bib",
        "quote": "publisher = {Curran Associates, Inc.},"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -1794,7 +2004,8 @@
        "url": "https://papers.nips.cc/paper_files/paper/2012/hash/4588e674d3f0faf985047d4c3f13ed0d-Abstract.html",
        "quote": "<meta name=\"citation_volume\" content=\"25\">"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1882,16 +2093,10 @@
      "action": "flag"
     },
     {
-     "code": "print_year_conflict",
+     "code": "proceedings_print_year",
      "field": "year",
-     "detail": "notes give a print date ['2018'] but the year is 2017: print year wins",
-     "action": "flag"
-    },
-    {
-     "code": "unverified_suggestions",
-     "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): year='2018'",
-     "action": "flag"
+     "detail": "notes give a print date ['2018'] of the proceedings; the conference year 2017 is quoted and stands (no year suggested)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -1906,7 +2111,8 @@
        "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
        "quote": "@inproceedings{NIPS2017_3f5ee243,"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -1926,7 +2132,8 @@
        "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
        "quote": "author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser,"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -1938,7 +2145,8 @@
        "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
        "quote": "editor = {I. Guyon and U. Von Luxburg and S. Bengio and H. Wallach and R. Fergus and S. Vishwanathan and R. Garnett},"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -1950,14 +2158,13 @@
        "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
        "quote": "publisher = {Curran Associates, Inc.},"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
    "held": {},
-   "suggestions": {
-    "year": "2018"
-   },
+   "suggestions": {},
    "key_plan": {
     "current_key": "VaswEtal17",
     "target_base": "VaswEtal17",
@@ -2283,19 +2490,22 @@
    "key": "Laks01",
    "verdict": "correction",
    "flags": [],
-   "normalisations": [
-    {
-     "field": "ENTRYTYPE",
-     "note": "@conference -> @inproceedings"
-    }
-   ],
+   "normalisations": [],
    "changes": [
     {
      "field": "ENTRYTYPE",
      "current": "conference",
-     "proposed": "inproceedings",
-     "source": "postcheck",
-     "evidence": []
+     "proposed": "misc",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "Set A reason: ENTRYTYPE conference->inproceedings; different version (German 2003 print) named",
+        "MPG page (Wayback 2002): \"Speech given by the Chairman of the \\\"Organization of the Mengele Twins\\\" Jona Laks, Tel Aviv, on the occasion of the opening of the symposium entitled \\\"Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes - The Auschwitz Connection\\\" Berlin, June 7, 2001\". Title, organization and booktitle wording are supported. But the post-check turned @conference into @inproceedings, which asserts a proceedings volume that does not exist (the researcher says so and suggests @misc). Suggest @misc with howpublished giving the symposium and the archived URL."
+       ]
+      }
+     ],
+     "reviewer": "disagree: a speech with no proceedings; @misc fits better"
     },
     {
      "field": "booktitle",
@@ -2306,6 +2516,21 @@
       {
        "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
        "quote": "entitled \"Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes - The Auschwitz Connection\""
+      }
+     ],
+     "reviewer": "agree"
+    },
+    {
+     "field": "howpublished",
+     "current": null,
+     "proposed": "Speech at the symposium ``Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes: The Auschwitz Connection'', Max Planck Society, Berlin, June 7, 2001, \\url{https://web.archive.org/web/20020222065956/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm}",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "Set A reason: ENTRYTYPE conference->inproceedings; different version (German 2003 print) named",
+        "MPG page (Wayback 2002): \"Speech given by the Chairman of the \\\"Organization of the Mengele Twins\\\" Jona Laks, Tel Aviv, on the occasion of the opening of the symposium entitled \\\"Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes - The Auschwitz Connection\\\" Berlin, June 7, 2001\". Title, organization and booktitle wording are supported. But the post-check turned @conference into @inproceedings, which asserts a proceedings volume that does not exist (the researcher says so and suggests @misc). Suggest @misc with howpublished giving the symposium and the archived URL."
+       ]
       }
      ]
     },
@@ -2319,7 +2544,8 @@
        "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
        "quote": "I will begin by thanking the Max Planck Society and Dr. Carola Sachse"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -2331,7 +2557,8 @@
        "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
        "quote": "Speech given by the Chairman of the \"Organization of the Mengele Twins\" Jona Laks"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2423,7 +2650,8 @@
        "url": "https://web.archive.org/web/20150922193544id_/http://cosyne.org/cosyne13/Cosyne2013_program_book.pdf",
        "quote": "COSYNE 2013"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2673,7 +2901,8 @@
        "url": "https://api.crossref.org/works/10.21437/interspeech.2016-1358",
        "quote": "\"DOI\":\"10.21437\\/interspeech.2016-1358\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2748,7 +2977,8 @@
        "url": "https://cdn.aaai.org/Workshops/1994/WS-94-03/WS94-03-031.pdf",
        "quote": "AAAI-94 Workshop on Knowledge Discovery in Databases"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -2783,7 +3013,8 @@
      "current": "conference",
      "proposed": "inproceedings",
      "source": "postcheck",
-     "evidence": []
+     "evidence": [],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -2799,7 +3030,8 @@
        "url": "https://web.archive.org/web/2008id_/http://www.csbmb.princeton.edu/mvpa/polyn_et_al_mvpa_ohbm2005.pdf",
        "quote": "Benjamin D Singer , Jonathan D Cohen , James V Haxby , and Kenneth A Norman"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -2811,7 +3043,8 @@
        "url": "https://web.archive.org/web/20071224120824id_/http://www.csbmb.princeton.edu/mvpa/",
        "quote": "Annual Meeting of the Organization of Human Brain Mapping"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -2959,37 +3192,7 @@
     "target_base": "StonEtal25",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1145/3708035.3736076",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Dartmouth Chat - Deploying an Open-Source LLM Stack at Scale",
-    "subtitle": null,
-    "container": "Practice and Experience in Advanced Research Computing 2025: The Power of Collaboration",
-    "print_year": "2025",
-    "online_year": "2025",
-    "issued_year": "2025",
-    "page": "1-5",
-    "volume": null,
-    "issue": null,
-    "type": "proceedings-article",
-    "authors": [
-     "Simon Stone",
-     "Jonathan Crossett",
-     "Tivon Luker",
-     "Lora Leligdon",
-     "William Cowen",
-     "Christian Darabos"
-    ],
-    "families": [
-     "Stone",
-     "Crossett",
-     "Luker",
-     "Leligdon",
-     "Cowen",
-     "Darabos"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-094"
   },
   "LiEtal16": {
@@ -3498,7 +3701,8 @@
        "url": "https://api.crossref.org/works/10.1145/3384419.3430720",
        "quote": "\"publisher-location\":\"New York, NY, USA\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -3514,7 +3718,8 @@
        "url": "https://api.crossref.org/works/10.1145/3384419.3430720",
        "quote": "\"acronym\":\"SenSys '20\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -3526,7 +3731,8 @@
        "url": "https://api.crossref.org/works/10.1145/3384419.3430720",
        "quote": "\"DOI\":\"10.1145\\/3384419.3430720\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -3542,7 +3748,8 @@
        "url": "https://api.crossref.org/members/320",
        "quote": "\"primary-name\":\"Association for Computing Machinery (ACM)\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -3590,12 +3797,7 @@
    "key": "CarvEtal22b",
    "verdict": "correction",
    "flags": [],
-   "normalisations": [
-    {
-     "field": "author",
-     "note": "'Quattrini' -> 'Q'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
     {
      "field": "address",
@@ -3607,48 +3809,22 @@
        "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
        "quote": "\"publisher-location\":\"New York, NY, USA\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
      "current": "C J Carver and Q Shao and S Lensgraf and A Sniffen and M Perroni-Scharf and H Gallant and A Quattrini Li and X Zhou",
-     "proposed": "C J Carver and Q Shao and S Lensgraf and A Sniffen and M Perroni-Scharf and H Gallant and A Q Li and X Zhou",
-     "source": "researcher",
+     "proposed": "C J Carver and Q Shao and S Lensgraf and A Sniffen and M Perroni-Scharf and H Gallant and A {Quattrini Li} and X Zhou",
+     "source": "reviewer",
      "evidence": [
       {
-       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
-       "quote": "\"given\":\"Charles J.\",\"family\":\"Carver\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
-       "quote": "\"given\":\"Qijia\",\"family\":\"Shao\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
-       "quote": "\"given\":\"Samuel\",\"family\":\"Lensgraf\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
-       "quote": "\"given\":\"Amy\",\"family\":\"Sniffen\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
-       "quote": "\"given\":\"Maxine\",\"family\":\"Perroni-Scharf\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
-       "quote": "\"given\":\"Hunter\",\"family\":\"Gallant\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
-       "quote": "\"given\":\"Alberto Quattrini\",\"family\":\"Li\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
-       "quote": "\"given\":\"Xia\",\"family\":\"Zhou\""
+       "reviewer_problems": [
+        "Crossref 10.1145/3498361.3539773: Proceedings of the 20th Annual International Conference on Mobile Systems, Applications and Services pp 14-27, issued 2022. Crossref splits the name as given \"Alberto Quattrini\", family \"Li\", but his surname is Quattrini Li, as all three cdl.bib entries write it. The researcher kept 'A Quattrini Li' unchanged; the post-check formatter turned it into 'A Q Li' and merged.json still labels the change source \"researcher\". Against POSTCHECK.md (\"never adds or removes an initial\"). Same defect in TianEtal20b."
+       ]
       }
      ],
-     "normalised_from": "C J Carver and Q Shao and S Lensgraf and A Sniffen and M Perroni-Scharf and H Gallant and A Quattrini Li and X Zhou"
+     "reviewer": "disagree: A Quattrini Li changed to A Q Li"
     },
     {
      "field": "booktitle",
@@ -3664,7 +3840,8 @@
        "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
        "quote": "\"acronym\":\"MobiSys '22\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -3676,7 +3853,8 @@
        "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
        "quote": "\"DOI\":\"10.1145\\/3498361.3539773\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -3692,7 +3870,8 @@
        "url": "https://api.crossref.org/members/320",
        "quote": "\"primary-name\":\"Association for Computing Machinery (ACM)\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -3744,12 +3923,7 @@
    "key": "TianEtal20b",
    "verdict": "correction",
    "flags": [],
-   "normalisations": [
-    {
-     "field": "author",
-     "note": "'Quattrini' -> 'Q'"
-    }
-   ],
+   "normalisations": [],
    "changes": [
     {
      "field": "address",
@@ -3762,39 +3936,6 @@
        "quote": "\"publisher-location\":\"New York, NY, USA\""
       }
      ]
-    },
-    {
-     "field": "author",
-     "current": "Z Tian and C J Carver and Q Shao and M Roznere and A Quattrini Li and X Zhou",
-     "proposed": "Z Tian and C J Carver and Q Shao and M Roznere and A Q Li and X Zhou",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
-       "quote": "\"given\":\"Zhao\",\"family\":\"Tian\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
-       "quote": "\"given\":\"Charles J.\",\"family\":\"Carver\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
-       "quote": "\"given\":\"Qijia\",\"family\":\"Shao\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
-       "quote": "\"given\":\"Monika\",\"family\":\"Roznere\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
-       "quote": "\"given\":\"Alberto Quattrini\",\"family\":\"Li\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
-       "quote": "\"given\":\"Xia\",\"family\":\"Zhou\""
-      }
-     ],
-     "normalised_from": "Z Tian and C J Carver and Q Shao and M Roznere and A Quattrini Li and X Zhou"
     },
     {
      "field": "booktitle",
@@ -3961,7 +4102,8 @@
        "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
        "quote": "citation_author\" content=\"Carol Willing"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -3973,7 +4115,8 @@
        "url": "https://api.crossref.org/works/10.25080/majora-4af1f417-011",
        "quote": "\"DOI\":\"10.25080\\/majora-4af1f417-011\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -3985,7 +4128,8 @@
        "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
        "quote": "Binder 2.0 - Reproducible, interactive, sharable environments for science at scale"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4077,7 +4221,8 @@
        "url": "https://pure.mpg.de/rest/items/item_1794129",
        "quote": "\"givenName\":\"HH\",\"familyName\":\"Bülthoff\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -4089,7 +4234,8 @@
        "url": "https://link.springer.com/chapter/10.1007/BFb0020244",
        "quote": "citation_doi\" content=\"10.1007/BFb0020244\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -4105,7 +4251,8 @@
        "url": "https://link.springer.com/chapter/10.1007/BFb0020244",
        "quote": "citation_lastpage\" content=\"756\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "series",
@@ -4117,7 +4264,8 @@
        "url": "https://pure.mpg.de/rest/items/item_1794129",
        "quote": "Lecture Notes in Computer Science"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -4129,7 +4277,8 @@
        "url": "https://pure.mpg.de/rest/items/item_1794129",
        "quote": "\"volume\":\"1327\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4209,7 +4358,8 @@
      "current": "conference",
      "proposed": "inproceedings",
      "source": "postcheck",
-     "evidence": []
+     "evidence": [],
+     "reviewer": "agree"
     },
     {
      "field": "address",
@@ -4221,7 +4371,8 @@
        "url": "https://web.archive.org/web/20190831110456id_/http://www-all.cs.umass.edu/legacy/pubs.shtml",
        "quote": "International Conference on Developmental Learning (ICDL), LaJolla, CA, USA"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -4241,7 +4392,8 @@
        "url": "https://web.archive.org/web/20050312230512id_/http://www-all.cs.umass.edu:80/pubs/2004/barto_sc_ICDL04.pdf",
        "quote": "Nuttapong Chentanez"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -4277,7 +4429,8 @@
        "url": "https://web.archive.org/web/20110716205542id_/http://obereed.net/docs/MuellerShiffrinICDL2006.pdf",
        "quote": "on Development and Learning, 5, 2006."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -4293,7 +4446,8 @@
        "url": "https://web.archive.org/web/20110716205542id_/http://obereed.net/docs/MuellerShiffrinICDL2006.pdf",
        "quote": "Episodic Memory and Semantic Knowledge"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -4384,7 +4538,8 @@
      "current": "conference",
      "proposed": "inproceedings",
      "source": "postcheck",
-     "evidence": []
+     "evidence": [],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4438,7 +4593,8 @@
        "url": "https://www.isca-archive.org/icslp_1998/dolfing98_icslp.html",
        "quote": "content=\"10.21437/ICSLP.1998-815\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4535,7 +4691,8 @@
        "url": "https://web.archive.org/web/20160309074752id_/http://memory.psych.upenn.edu/files/pubs/CrutEtal12.poster.pdf",
        "quote": "Patrick N. Crutchley, M. Karl Healey, and Michael J. Kahana"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4589,7 +4746,8 @@
        "url": "https://api.crossref.org/works/10.3115/116580.116610",
        "quote": "\"title\":[\"The dragon continuous speech recognition system\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4670,7 +4828,8 @@
        "url": "https://openaccess.thecvf.com/content_cvpr_2016/html/Yu_Video_Paragraph_Captioning_CVPR_2016_paper.html",
        "quote": "content=\"Xu, Wei\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -4682,7 +4841,8 @@
        "url": "https://api.crossref.org/works/10.1109/cvpr.2016.496",
        "quote": "\"title\":[\"Video Paragraph Captioning Using Hierarchical Recurrent Neural Networks\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5036,7 +5196,8 @@
        "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=0c709087-deb8-4d6c-b092-a87322ccd3d5&cKey=c8a5a191-5950-4fd7-8dfb-1b8e3bbcd32b&mKey=%7BE5D5C83F-CE2D-4D71-9DD6-FC7231E090FB%7D",
        "quote": "Program#/Poster#: 44.1"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -5048,7 +5209,8 @@
        "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=0c709087-deb8-4d6c-b092-a87322ccd3d5&cKey=c8a5a191-5950-4fd7-8dfb-1b8e3bbcd32b&mKey=%7BE5D5C83F-CE2D-4D71-9DD6-FC7231E090FB%7D",
        "quote": "Program#/Poster#: 44.1"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5078,7 +5240,8 @@
        "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=28b3af96-04af-4198-a1fb-e57aeb174c93&cKey=18ac0ebc-952b-45e3-97ff-6aa5fe546521&mKey=%7B8334BE29-8911-4991-8C31-32B32DD5E6C8%7D",
        "quote": "Program#/Poster#: 732.12"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "address",
@@ -5090,7 +5253,8 @@
        "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=28b3af96-04af-4198-a1fb-e57aeb174c93&cKey=18ac0ebc-952b-45e3-97ff-6aa5fe546521&mKey=%7B8334BE29-8911-4991-8C31-32B32DD5E6C8%7D",
        "quote": "2011 Neuroscience Meeting Planner. Washington, DC: Society for Neuroscience, 2011"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -5102,7 +5266,8 @@
        "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=28b3af96-04af-4198-a1fb-e57aeb174c93&cKey=18ac0ebc-952b-45e3-97ff-6aa5fe546521&mKey=%7B8334BE29-8911-4991-8C31-32B32DD5E6C8%7D",
        "quote": "Program#/Poster#: 732.12"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5174,7 +5339,8 @@
        "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=7e56e1ae-955e-4a00-a994-172f61da2082&cKey=23521fba-bf2f-44bc-9659-d688734805f4&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
        "quote": "Program#/Poster#: 593.12"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5204,7 +5370,8 @@
        "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=806b0644-ae04-4196-b436-3c8a65da2a43&cKey=02a0b7e9-e7c1-4032-8c8a-d67c06d47749&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
        "quote": "2012 Neuroscience Meeting Planner. New Orleans, LA: Society for Neuroscience, 2012"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -5220,7 +5387,8 @@
        "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=806b0644-ae04-4196-b436-3c8a65da2a43&cKey=02a0b7e9-e7c1-4032-8c8a-d67c06d47749&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
        "quote": "C.P. Libby: None. J.A. White: None. M.E. Hasselmo: None. H. Eichenbaum: None."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "organization",
@@ -5232,7 +5400,8 @@
        "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=806b0644-ae04-4196-b436-3c8a65da2a43&cKey=02a0b7e9-e7c1-4032-8c8a-d67c06d47749&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
        "quote": "2012 Neuroscience Meeting Planner. New Orleans, LA: Society for Neuroscience, 2012"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5331,7 +5500,8 @@
        "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=bd28180c-8d0f-4875-9625-2c87ff0b6e19&cKey=826fe321-12c0-46d5-b8ce-7fab18c2fe29&mKey=%7B8D2A5BEC-4825-4CD6-9439-B42BB151D1CF%7D",
        "quote": "Program#/Poster#: 284.10"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "organization",
@@ -5343,7 +5513,8 @@
        "url": "https://www.abstractsonline.com/Plan/start.aspx?mkey=%7B8D2A5BEC-4825-4CD6-9439-B42BB151D1CF%7D",
        "quote": "2013 Neuroscience Meeting Planner. San Diego, CA: Society for Neuroscience, 2013"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5427,27 +5598,22 @@
        "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=1348",
        "quote": "2005 Neuroscience Meeting Planner. Washington, DC : Society for Neuroscience, 2005"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
      "current": "M {van Vugt} and G Hwang and M J Kahana",
-     "proposed": "M {van Vugt} and G Hwang-Grodzins and M J Kahana",
-     "source": "researcher",
+     "proposed": "M K {van Vugt} and G Hwang-Grodzins and M J Kahana",
+     "source": "reviewer",
      "evidence": [
       {
-       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=1348",
-       "quote": "van Vugt, M. K.*"
-      },
-      {
-       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=1348",
-       "quote": "Hwang-Grodzins, G."
-      },
-      {
-       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=1348",
-       "quote": "Kahana, M. J."
+       "reviewer_problems": [
+        "SfN 2005 archive page: \"Presentation Number: 65.26 Abstract Title: EEG correlate of summed similarity during a working memory task. Authors: van Vugt, M. K.* 1 ; Hwang-Grodzins, G. 3 ; Kahana, M. J. 2\" and \"2005 Neuroscience Meeting Planner. Washington, DC\". The byline prints 'Hwang-Grodzins, G.', so G Hwang-Grodzins is right for this abstract. The same byline prints 'M. K.' for van Vugt, and the 7 other HEAD cdl.bib entries for him all write 'M K {van Vugt}'; the researcher's \"no initial added to a braced particle surname\" is not a house rule (PROTOCOL: particles as printed; add initials as printed, as done for CrutEtal12). Consistency with DankEtal08 (wave 7): the Psychophysiology 2008 byline (PubMed \"Hwang Grace M\"; PDF \"Grace M. Hwang\") supports 'G M Hwang' there. Both are right for their own bylines: the same person printed under two names. Removal list anyway."
+       ]
       }
-     ]
+     ],
+     "reviewer": "partly: G Hwang-Grodzins agreed, missing K for van Vugt"
     },
     {
      "field": "number",
@@ -5459,7 +5625,8 @@
        "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=1348",
        "quote": "Presentation Number: 65.26"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "organization",
@@ -5471,7 +5638,8 @@
        "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=1348",
        "quote": "2005 Neuroscience Meeting Planner. Washington, DC : Society for Neuroscience, 2005"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5501,7 +5669,8 @@
        "url": "https://api.crossref.org/works/10.1109/icassp.2013.6639345",
        "quote": "\"container-title\":[\"2013 IEEE International Conference on Acoustics, Speech and Signal Processing\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5513,7 +5682,8 @@
        "url": "https://api.crossref.org/works/10.1109/icassp.2013.6639345",
        "quote": "\"DOI\":\"10.1109\\/icassp.2013.6639345\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5598,7 +5768,8 @@
        "url": "https://api.crossref.org/works/10.1109/icassp.2006.1659988",
        "quote": "\"DOI\":\"10.1109\\/icassp.2006.1659988\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5673,7 +5844,8 @@
        "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
        "quote": "\"container-title\":[\"IEEE International Conference on Acoustics Speech and Signal Processing\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5685,7 +5857,8 @@
        "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
        "quote": "\"DOI\":\"10.1109\\/icassp.1993.319416\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -5697,7 +5870,8 @@
        "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
        "quote": "\"published-print\":{\"date-parts\":[[1993]]}"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5753,7 +5927,8 @@
        "url": "https://api.crossref.org/works/10.1109/bigdata.2016.7840719",
        "quote": "\"container-title\":[\"2016 IEEE International Conference on Big Data (Big Data)\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5765,7 +5940,8 @@
        "url": "https://api.crossref.org/works/10.1109/bigdata.2016.7840719",
        "quote": "\"DOI\":\"10.1109\\/bigdata.2016.7840719\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -5777,7 +5953,8 @@
        "url": "https://api.crossref.org/works/10.1109/bigdata.2016.7840719",
        "quote": "\"page\":\"1151-1160\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5906,18 +6083,6 @@
    "verdict": "no_source",
    "flags": [
     {
-     "code": "print_year_conflict",
-     "field": "year",
-     "detail": "notes give a print date ['2000'] but the year is 1989: print year wins",
-     "action": "flag"
-    },
-    {
-     "code": "unverified_suggestions",
-     "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): year='2000'",
-     "action": "flag"
-    },
-    {
      "code": "needs_user",
      "field": "verdict",
      "detail": "verdict no_source: user decision",
@@ -5928,9 +6093,7 @@
    "changes": [],
    "removals": {},
    "held": {},
-   "suggestions": {
-    "year": "2000"
-   },
+   "suggestions": {},
    "key_plan": {
     "current_key": "ReccOKee89",
     "target_base": "ReccOKee89",
@@ -5955,7 +6118,8 @@
        "url": "https://api.crossref.org/works/10.1109/cvpr.2005.177",
        "quote": "2005 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR'05)"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5966,29 +6130,7 @@
     "target_base": "DalaTrig05",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1109/cvpr.2005.177",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Histograms of Oriented Gradients for Human Detection",
-    "subtitle": null,
-    "container": "2005 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR'05)",
-    "print_year": null,
-    "online_year": null,
-    "issued_year": null,
-    "page": "886-893",
-    "volume": "1",
-    "issue": null,
-    "type": "proceedings-article",
-    "authors": [
-     "N. Dalal",
-     "B. Triggs"
-    ],
-    "families": [
-     "Dalal",
-     "Triggs"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-098"
   },
   "DengEtal09": {
@@ -6007,7 +6149,8 @@
        "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
        "quote": "\"type\":\"proceedings-article\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -6039,7 +6182,8 @@
        "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
        "quote": "\"family\":\"Li Fei-Fei\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -6051,7 +6195,8 @@
        "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
        "quote": "\"DOI\":\"10.1109\\/cvpr.2009.5206848\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -6063,7 +6208,8 @@
        "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
        "quote": "\"page\":\"248-255\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6123,7 +6269,8 @@
        "url": "https://api.crossref.org/works/10.1109/cvpr.2006.122",
        "quote": "2006 IEEE Computer Society Conference on Computer Vision and Pattern Recognition - Volume 1 (CVPR'06)"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -6135,7 +6282,8 @@
        "url": "https://api.crossref.org/works/10.1109/cvpr.2006.122",
        "quote": "\"DOI\":\"10.1109\\/cvpr.2006.122\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6271,7 +6419,8 @@
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21097062&retmode=xml",
        "quote": "<Title>Annual International Conference of the IEEE Engineering in Medicine and Biology Society."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -6283,7 +6432,8 @@
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21097062&retmode=xml",
        "quote": "<ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.1109/IEMBS.2010.5627682</ELocationID>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6347,7 +6497,8 @@
        "url": "https://api.crossref.org/works/10.1109/iros.2008.4651205",
        "quote": "RSJ International Conference on Intelligent Robots and Systems"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -6359,7 +6510,8 @@
        "url": "https://api.crossref.org/works/10.1109/iros.2008.4651205",
        "quote": "\"DOI\":\"10.1109\\/iros.2008.4651205\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6413,7 +6565,8 @@
        "url": "https://api.crossref.org/works/10.1109/icra.2011.5980513",
        "quote": "\"container-title\":[\"2011 IEEE International Conference on Robotics and Automation\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -6425,7 +6578,8 @@
        "url": "https://api.crossref.org/works/10.1109/icra.2011.5980513",
        "quote": "\"DOI\":\"10.1109\\/icra.2011.5980513\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -6437,7 +6591,8 @@
        "url": "https://api.crossref.org/works/10.1109/icra.2011.5980513",
        "quote": "Automatic alignment of a camera with a line scan LIDAR system"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6479,7 +6634,12 @@
    "key": "WangEtal10b",
    "verdict": "correction",
    "flags": [],
-   "normalisations": [],
+   "normalisations": [
+    {
+     "field": "doi",
+     "note": "doi lowercased"
+    }
+   ],
    "changes": [
     {
      "field": "address",
@@ -6491,7 +6651,8 @@
        "url": "https://api.crossref.org/works/10.1109/icassp.2010.5494999",
        "quote": "\"location\":\"Dallas, TX, USA\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -6503,7 +6664,10 @@
        "url": "https://api.crossref.org/works/10.1109/icassp.2010.5494999",
        "quote": "\"DOI\":\"10.1109\\/icassp.2010.5494999\""
       }
-     ]
+     ],
+     "normalised_from": "10.1109/ICASSP.2010.5494999",
+     "normalised_by": "postcheck",
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6514,33 +6678,7 @@
     "target_base": "WangEtal10",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1109/icassp.2010.5494999",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Automatic disfluency removal for improving spoken language translation",
-    "subtitle": null,
-    "container": "2010 IEEE International Conference on Acoustics, Speech and Signal Processing",
-    "print_year": "2010",
-    "online_year": null,
-    "issued_year": "2010",
-    "page": "5214-5217",
-    "volume": null,
-    "issue": null,
-    "type": "proceedings-article",
-    "authors": [
-     "Wen Wang",
-     "Gokhan Tur",
-     "Jing Zheng",
-     "Necip Fazil Ayan"
-    ],
-    "families": [
-     "Wang",
-     "Tur",
-     "Zheng",
-     "Ayan"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-098"
   },
   "CoppEtal17": {
@@ -6695,12 +6833,15 @@
   "Varo10": [],
   "Scav05": [],
   "Schl07": [
+   "other_version_named",
    "needs_user:verdict"
   ],
   "Smit05": [
    "field_not_found:year"
   ],
-  "Stra06": [],
+  "Stra06": [
+   "other_version_named"
+  ],
   "deCa05a": [
    "field_not_found:year"
   ],
@@ -6724,14 +6865,12 @@
   "LiuEtal18": [
    "quote_check_failed:pages",
    "field_not_found:doi",
-   "print_year_conflict:year",
-   "unverified_suggestions"
+   "proceedings_print_year:year"
   ],
   "LiuWang16": [
    "quote_check_failed:pages",
    "field_not_found:doi",
-   "print_year_conflict:year",
-   "unverified_suggestions"
+   "proceedings_print_year:year"
   ],
   "ParkPill12": [
    "quote_check_failed:pages",
@@ -6746,15 +6885,16 @@
   "VaswEtal17": [
    "field_not_found:doi",
    "field_not_found:pages",
-   "print_year_conflict:year",
-   "unverified_suggestions"
+   "proceedings_print_year:year"
   ],
   "YangEtal13": [],
   "RangEtal14": [
    "field_not_found:doi"
   ],
   "WolfEtal20": [],
-  "Laks01": [],
+  "Laks01": [
+   "conference_without_proceedings:ENTRYTYPE"
+  ],
   "HealEtal12b": [
    "needs_user:verdict"
   ],
@@ -6873,8 +7013,6 @@
    "needs_user:verdict"
   ],
   "ReccOKee89": [
-   "print_year_conflict:year",
-   "unverified_suggestions",
    "needs_user:verdict"
   ],
   "DalaTrig05": [],

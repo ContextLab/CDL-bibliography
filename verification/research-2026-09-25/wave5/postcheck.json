@@ -4,7 +4,7 @@
   "bib": "HEAD",
   "flag_counts": {
    "doi_record_conflict": 15,
-   "doi_title_part_number": 3,
+   "doi_title_part_number": 2,
    "duplicate": 3,
    "field_not_found": 13,
    "key_collision": 1,
@@ -1772,7 +1772,12 @@
    "key": "LindEtal21",
    "verdict": "correction",
    "flags": [],
-   "normalisations": [],
+   "normalisations": [
+    {
+     "field": "doi",
+     "note": "doi lowercased"
+    }
+   ],
    "changes": [
     {
      "field": "doi",
@@ -1784,7 +1789,9 @@
        "url": "https://api.crossref.org/works/10.1017/s1355617720001009",
        "quote": "\"DOI\":\"10.1017\\/s1355617720001009\""
       }
-     ]
+     ],
+     "normalised_from": "10.1017/S1355617720001009",
+     "normalised_by": "postcheck"
     }
    ],
    "removals": {},
@@ -1795,65 +1802,7 @@
     "target_base": "LindEtal21",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1017/s1355617720001009",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Worth the Wait: Delayed Recall after 1 Week Predicts Cognitive and Medial Temporal Lobe Trajectories in Older Adults",
-    "subtitle": null,
-    "container": "Journal of the International Neuropsychological Society",
-    "print_year": "2021",
-    "online_year": "2020",
-    "issued_year": "2020",
-    "page": "382-388",
-    "volume": "27",
-    "issue": "4",
-    "type": "journal-article",
-    "authors": [
-     "Cutter A. Lindbergh",
-     "Nicole Walker",
-     "Renaud La Joie",
-     "Sophia Weiner-Light",
-     "Adam M. Staffaroni",
-     "Kaitlin B. Casaletto",
-     "Fanny Elahi",
-     "Samantha M. Walters",
-     "Michelle You",
-     "Devyn Cotter",
-     "Breton Asken",
-     "Alexandra C. Apple",
-     "Elena Tsoy",
-     "John Neuhaus",
-     "Corrina Fonseca",
-     "Amy Wolf",
-     "Yann Cobigo",
-     "Howie Rosen",
-     "Joel H. Kramer",
-     "the Hillblom Aging Network"
-    ],
-    "families": [
-     "Lindbergh",
-     "Walker",
-     "La Joie",
-     "Weiner-Light",
-     "Staffaroni",
-     "Casaletto",
-     "Elahi",
-     "Walters",
-     "You",
-     "Cotter",
-     "Asken",
-     "Apple",
-     "Tsoy",
-     "Neuhaus",
-     "Fonseca",
-     "Wolf",
-     "Cobigo",
-     "Rosen",
-     "Kramer",
-     "the Hillblom Aging Network"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-034"
   },
   "HartWong79": {
@@ -3135,31 +3084,7 @@
     "target_base": "vandEtal11",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1016/j.learninstruc.2009.10.004",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Patterns of contingent teaching in teacher–student interaction",
-    "subtitle": null,
-    "container": "Learning and Instruction",
-    "print_year": "2011",
-    "online_year": null,
-    "issued_year": "2011",
-    "page": "46-57",
-    "volume": "21",
-    "issue": "1",
-    "type": "journal-article",
-    "authors": [
-     "Janneke van de Pol",
-     "Monique Volman",
-     "Jos Beishuizen"
-    ],
-    "families": [
-     "Pol",
-     "Volman",
-     "Beishuizen"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-035"
   },
   "AndeEtal99a": {
@@ -3841,14 +3766,7 @@
   "Loft05": {
    "key": "Loft05",
    "verdict": "verified",
-   "flags": [
-    {
-     "code": "doi_title_part_number",
-     "field": "doi",
-     "detail": "10.1101/lm.94705 is registered to 'Planting misinformation in the human mind: A 30-year investigation of the malleability of memory: \\n      \\n        Figure 1.': titles agree except for part numbers ('Planting misinformation in the human mind: A 30-year investigation of the malleability of memory: \\n      \\n        Figure 1.' vs 'Planting misinformation in the human mind: a 30-year investigation of the malleability of memory'); the record's first page is the entry's; applied",
-     "action": "applied"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [],
    "removals": {},
@@ -3859,27 +3777,7 @@
     "target_base": "Loft05",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1101/lm.94705",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Planting misinformation in the human mind: A 30-year investigation of the malleability of memory: \n      \n        Figure 1.",
-    "subtitle": null,
-    "container": "Learning &amp; Memory",
-    "print_year": "2005",
-    "online_year": "2005",
-    "issued_year": "2005",
-    "page": "361-366",
-    "volume": "12",
-    "issue": "4",
-    "type": "journal-article",
-    "authors": [
-     "Elizabeth F. Loftus"
-    ],
-    "families": [
-     "Loftus"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-035"
   },
   "ParkEtal08": {
@@ -5118,7 +5016,7 @@
     "doi": "10.1002/mrm.10354",
     "registered": true,
     "ra": "Crossref",
-    "title": "Fast, automated, N‐dimensional phase‐unwrapping algorithm",
+    "title": "Fast, automated, N ‐dimensional phase‐unwrapping algorithm",
     "subtitle": null,
     "container": "Magnetic Resonance in Medicine",
     "print_year": "2003",
@@ -5413,7 +5311,8 @@
        "quote": "FAU - Gleeson, Michael"
       }
      ],
-     "normalised_from": "Eef Hogervorst and Stephan Bandelow and Jeroen Schmitt and Roy Jentjens and Marta Oliveira and Judith Allgrove and Tom Carter and Michael Gleeson"
+     "normalised_from": "Eef Hogervorst and Stephan Bandelow and Jeroen Schmitt and Roy Jentjens and Marta Oliveira and Judith Allgrove and Tom Carter and Michael Gleeson",
+     "normalised_by": "postcheck"
     },
     {
      "field": "doi",
@@ -5758,7 +5657,8 @@
        "quote": "FAU - Flude, Brenda"
       }
      ],
-     "normalised_from": "Graham J Hitch and Maria Chiara Fastame and Brenda Flude"
+     "normalised_from": "Graham J Hitch and Maria Chiara Fastame and Brenda Flude",
+     "normalised_by": "postcheck"
     },
     {
      "field": "doi",
@@ -7516,29 +7416,7 @@
     "target_base": "GoldWhel00",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1093/oxfordjournals.molbev.a026378",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Statistical Tests of Gamma-Distributed Rate Heterogeneity in Models of Sequence Evolution in Phylogenetics",
-    "subtitle": null,
-    "container": "Molecular Biology and Evolution",
-    "print_year": "2000",
-    "online_year": "2000",
-    "issued_year": "2000",
-    "page": "975-978",
-    "volume": "17",
-    "issue": "6",
-    "type": "journal-article",
-    "authors": [
-     "Nick Goldman",
-     "and Simon Whelan"
-    ],
-    "families": [
-     "Goldman",
-     "Whelan"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-038"
   },
   "DiazEtal19": {
@@ -13857,71 +13735,7 @@
     "target_base": "LuriEtal20",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1162/netn_a_00116",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Questions and controversies in the study of time-varying functional                     connectivity in resting fMRI",
-    "subtitle": null,
-    "container": "Network Neuroscience",
-    "print_year": "2020",
-    "online_year": null,
-    "issued_year": "2020",
-    "page": "30-69",
-    "volume": "4",
-    "issue": "1",
-    "type": "journal-article",
-    "authors": [
-     "Daniel J. Lurie",
-     "Daniel Kessler",
-     "Danielle S. Bassett",
-     "Richard F. Betzel",
-     "Michael Breakspear",
-     "Shella Kheilholz",
-     "Aaron Kucyi",
-     "Raphaël Liégeois",
-     "Martin A. Lindquist",
-     "Anthony Randal McIntosh",
-     "Russell A. Poldrack",
-     "James M. Shine",
-     "William Hedley Thompson",
-     "Natalia Z. Bielczyk",
-     "Linda Douw",
-     "Dominik Kraft",
-     "Robyn L. Miller",
-     "Muthuraman Muthuraman",
-     "Lorenzo Pasquini",
-     "Adeel Razi",
-     "Diego Vidaurre",
-     "Hua Xie",
-     "Vince D. Calhoun"
-    ],
-    "families": [
-     "Lurie",
-     "Kessler",
-     "Bassett",
-     "Betzel",
-     "Breakspear",
-     "Kheilholz",
-     "Kucyi",
-     "Liégeois",
-     "Lindquist",
-     "McIntosh",
-     "Poldrack",
-     "Shine",
-     "Thompson",
-     "Bielczyk",
-     "Douw",
-     "Kraft",
-     "Miller",
-     "Muthuraman",
-     "Pasquini",
-     "Razi",
-     "Vidaurre",
-     "Xie",
-     "Calhoun"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-041"
   },
   "NormEtal06a": {
@@ -14024,7 +13838,7 @@
     "doi": "10.1162/089976698300017539",
     "registered": true,
     "ra": "Crossref",
-    "title": "Changes in GABA\n                    B\n                    Modulation During a Theta Cycle May Be Analogous to the Fall of Temperature During Annealing",
+    "title": "Changes in GABA B Modulation During a Theta Cycle May Be Analogous to the Fall of Temperature During Annealing",
     "subtitle": null,
     "container": "Neural Computation",
     "print_year": "1998",
@@ -17646,9 +17460,7 @@
   "DoshEtal89": [],
   "GlucEtal02": [],
   "KnowEtal94": [],
-  "Loft05": [
-   "doi_title_part_number:doi"
-  ],
+  "Loft05": [],
   "ParkEtal08": [],
   "StarSqui01": [],
   "VossPall08": [

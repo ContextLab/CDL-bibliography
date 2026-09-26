@@ -1027,29 +1027,7 @@
     "target_base": "QiCout26",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1162/jocn.a.2682",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Memory Traces Reflect How They Were Last Accessed",
-    "subtitle": null,
-    "container": "Journal of Cognitive Neuroscience",
-    "print_year": null,
-    "online_year": "2026",
-    "issued_year": "2026",
-    "page": "1-18",
-    "volume": null,
-    "issue": null,
-    "type": "journal-article",
-    "authors": [
-     "Xiaoxi Qi",
-     "Marc N. Coutanche"
-    ],
-    "families": [
-     "Qi",
-     "Coutanche"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-023"
   },
   "RoyEtal14": {
@@ -14116,7 +14094,7 @@
     "doi": "10.18637/jss.v067.i01",
     "registered": true,
     "ra": "Crossref",
-    "title": "Fitting Linear Mixed-Effects Models Using\n                    lme4",
+    "title": "Fitting Linear Mixed-Effects Models Using lme4",
     "subtitle": null,
     "container": "Journal of Statistical Software",
     "print_year": null,
@@ -14155,29 +14133,7 @@
     "target_base": "HaleHojs14",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.18637/jss.v059.i09",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "A Kenward-Roger Approximation and Parametric Bootstrap Methods for Tests in Linear Mixed Models - The\n                    R\n                    Package\n                    pbkrtest",
-    "subtitle": null,
-    "container": "Journal of Statistical Software",
-    "print_year": null,
-    "online_year": "2014",
-    "issued_year": "2014",
-    "page": null,
-    "volume": "59",
-    "issue": "9",
-    "type": "journal-article",
-    "authors": [
-     "Ulrich Halekoh",
-     "Søren Højsgaard"
-    ],
-    "families": [
-     "Halekoh",
-     "Højsgaard"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-033"
   },
   "Ross12": {
@@ -14247,7 +14203,7 @@
     "doi": "10.18637/jss.v048.i02",
     "registered": true,
     "ra": "Crossref",
-    "title": "lavaan\n                    : An\n                    R\n                    Package for Structural Equation Modeling",
+    "title": "lavaan : An R Package for Structural Equation Modeling",
     "subtitle": null,
     "container": "Journal of Statistical Software",
     "print_year": null,

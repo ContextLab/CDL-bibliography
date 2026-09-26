@@ -3,7 +3,7 @@
   "entries": 200,
   "bib": "HEAD",
   "flag_counts": {
-   "doi_record_conflict": 15,
+   "doi_record_conflict": 14,
    "doi_title_part_number": 2,
    "duplicate": 2,
    "field_not_found": 16,
@@ -11,12 +11,13 @@
    "key_collision": 1,
    "key_rename": 13,
    "needs_user": 1,
-   "print_year_conflict": 6,
+   "print_year_conflict": 1,
+   "proceedings_print_year": 5,
    "quote_check_failed": 24,
    "style_only_change": 4,
    "surname_corroborated": 7,
    "surname_single_source": 2,
-   "unverified_suggestions": 8,
+   "unverified_suggestions": 4,
    "verdict_inconsistent": 6
   },
   "dois_dropped": [],
@@ -119,7 +120,7 @@
       "quote_check_failed"
      ],
      "year": [
-      "print_year_conflict"
+      "proceedings_print_year"
      ],
      "journal": [
       "normalised"
@@ -187,7 +188,7 @@
       "quote_check_failed"
      ],
      "year": [
-      "print_year_conflict"
+      "proceedings_print_year"
      ],
      "journal": [
       "normalised"
@@ -205,7 +206,7 @@
       "quote_check_failed"
      ],
      "year": [
-      "print_year_conflict"
+      "proceedings_print_year"
      ],
      "journal": [
       "normalised"
@@ -235,6 +236,9 @@
     "by": {},
     "rules_touched": {
      "journal": [
+      "normalised"
+     ],
+     "doi": [
       "normalised"
      ]
     }
@@ -267,7 +271,7 @@
       "field_not_found"
      ],
      "year": [
-      "print_year_conflict"
+      "proceedings_print_year"
      ],
      "journal": [
       "normalised"
@@ -389,7 +393,7 @@
       "quote_check_failed"
      ],
      "year": [
-      "print_year_conflict"
+      "proceedings_print_year"
      ],
      "journal": [
       "normalised"
@@ -1697,16 +1701,10 @@
      "action": "held"
     },
     {
-     "code": "print_year_conflict",
+     "code": "proceedings_print_year",
      "field": "year",
-     "detail": "notes give a print date ['2010'] but the year is 2009: print year wins",
-     "action": "flag"
-    },
-    {
-     "code": "unverified_suggestions",
-     "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): year='2010'",
-     "action": "flag"
+     "detail": "notes give a print date ['2010'] of the proceedings; the conference year 2009 is quoted and stands (no year suggested)",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -1805,9 +1803,7 @@
    "held": {
     "pages": "quote check failed"
    },
-   "suggestions": {
-    "year": "2010"
-   },
+   "suggestions": {},
    "key_plan": {
     "current_key": "ChanEtal09a",
     "target_base": "ChanEtal09",
@@ -1827,16 +1823,10 @@
      "action": "held"
     },
     {
-     "code": "print_year_conflict",
+     "code": "proceedings_print_year",
      "field": "year",
-     "detail": "notes give a print date ['2010'] but the year is 2009: print year wins",
-     "action": "flag"
-    },
-    {
-     "code": "unverified_suggestions",
-     "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): year='2010'",
-     "action": "flag"
+     "detail": "notes give a print date ['2010'] of the proceedings; the conference year 2009 is quoted and stands (no year suggested)",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -1922,9 +1912,7 @@
    "held": {
     "pages": "quote check failed"
    },
-   "suggestions": {
-    "year": "2010"
-   },
+   "suggestions": {},
    "key_plan": {
     "current_key": "SochEtal09",
     "target_base": "SochEtal09",
@@ -1944,16 +1932,10 @@
      "action": "held"
     },
     {
-     "code": "print_year_conflict",
+     "code": "proceedings_print_year",
      "field": "year",
-     "detail": "notes give a print date ['2013'] but the year is 2012: print year wins",
-     "action": "flag"
-    },
-    {
-     "code": "unverified_suggestions",
-     "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): year='2013'",
-     "action": "flag"
+     "detail": "notes give a print date ['2013'] of the proceedings; the conference year 2012 is quoted and stands (no year suggested)",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -2022,9 +2004,7 @@
    "held": {
     "pages": "quote check failed"
    },
-   "suggestions": {
-    "year": "2013"
-   },
+   "suggestions": {},
    "key_plan": {
     "current_key": "KrizEtal12",
     "target_base": "KrizEtal12",
@@ -2044,16 +2024,10 @@
      "action": "held"
     },
     {
-     "code": "print_year_conflict",
+     "code": "proceedings_print_year",
      "field": "year",
-     "detail": "notes give a print date ['2016'] but the year is 2015: print year wins",
-     "action": "flag"
-    },
-    {
-     "code": "unverified_suggestions",
-     "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): year='2016'",
-     "action": "flag"
+     "detail": "notes give a print date ['2016'] of the proceedings; the conference year 2015 is quoted and stands (no year suggested)",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -2156,9 +2130,7 @@
    "held": {
     "pages": "quote check failed"
    },
-   "suggestions": {
-    "year": "2016"
-   },
+   "suggestions": {},
    "key_plan": {
     "current_key": "KiroEtal15",
     "target_base": "KiroEtal15",
@@ -2178,15 +2150,15 @@
      "action": "flag"
     },
     {
-     "code": "print_year_conflict",
+     "code": "proceedings_print_year",
      "field": "year",
-     "detail": "notes give a print date ['2020'] but the year is 2019: print year wins",
-     "action": "flag"
+     "detail": "notes give a print date ['2020'] of the proceedings; the conference year 2019 is quoted and stands (no year suggested)",
+     "action": "applied"
     },
     {
      "code": "unverified_suggestions",
      "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): pages='7994--8005', year='2020'",
+     "detail": "values left not_found or suggested by the rules (never applied): pages='7994--8005'",
      "action": "flag"
     }
    ],
@@ -2255,8 +2227,7 @@
    },
    "held": {},
    "suggestions": {
-    "pages": "7994--8005",
-    "year": "2020"
+    "pages": "7994--8005"
    },
    "key_plan": {
     "current_key": "PaszEtal19",
@@ -2683,6 +2654,10 @@
     {
      "field": "journal",
      "note": "@incollection has no journal: already given by the series"
+    },
+    {
+     "field": "doi",
+     "note": "doi lowercased"
     }
    ],
    "changes": [
@@ -2736,6 +2711,8 @@
        "quote": "\"page\":\"137-153\""
       }
      ],
+     "normalised_from": "10.1016/S0166-4115(08)60886-9",
+     "normalised_by": "postcheck",
      "reviewer": "agree"
     },
     {
@@ -2788,31 +2765,7 @@
     "target_base": "MayeEtal92",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.1016/s0166-4115(08)60886-9",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Chapter 4 Mathematical Misunderstandings: Qualitative Reasoning About Quantitative Problems",
-    "subtitle": null,
-    "container": "Advances in Psychology The Nature and Origins of Mathematical Skills",
-    "print_year": "1992",
-    "online_year": null,
-    "issued_year": "1992",
-    "page": "137-153",
-    "volume": null,
-    "issue": null,
-    "type": "book-chapter",
-    "authors": [
-     "Richard E. Mayer",
-     "Anne Bovenmyer Lewis",
-     "Mary Hegarty"
-    ],
-    "families": [
-     "Mayer",
-     "Lewis",
-     "Hegarty"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-002"
   },
   "McGe36": {
@@ -5067,7 +5020,8 @@
        "quote": "Archiv für Psychiatrie und Nervenkrankheiten"
       }
      ],
-     "normalised_from": "Archiv F{\\\"u}r Psychiatrie und Nervenkrankheiten"
+     "normalised_from": "Archiv F{\\\"u}r Psychiatrie und Nervenkrankheiten",
+     "normalised_by": "postcheck"
     }
    ],
    "removals": {},
@@ -5137,7 +5091,8 @@
        "quote": "Archiv für Psychiatrie und Nervenkrankheiten"
       }
      ],
-     "normalised_from": "Archiv F{\\\"u}r Psychiatrie und Nervenkrankheiten"
+     "normalised_from": "Archiv F{\\\"u}r Psychiatrie und Nervenkrankheiten",
+     "normalised_by": "postcheck"
     },
     {
      "field": "number",
@@ -8704,14 +8659,7 @@
   "Wilc45": {
    "key": "Wilc45",
    "verdict": "verified",
-   "flags": [
-    {
-     "code": "doi_record_conflict",
-     "field": "pages",
-     "detail": "Crossref record of 10.2307/3001968 gives pages '80', proposal '80--83'",
-     "action": "flag"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [],
    "removals": {},
@@ -8722,27 +8670,7 @@
     "target_base": "Wilc45",
     "action": "keep"
    },
-   "doi_status": {
-    "doi": "10.2307/3001968",
-    "registered": true,
-    "ra": "Crossref",
-    "title": "Individual Comparisons by Ranking Methods",
-    "subtitle": null,
-    "container": "Biometrics Bulletin",
-    "print_year": "1945",
-    "online_year": null,
-    "issued_year": "1945",
-    "page": "80",
-    "volume": "1",
-    "issue": "6",
-    "type": "journal-article",
-    "authors": [
-     "Frank Wilcoxon"
-    ],
-    "families": [
-     "Wilcoxon"
-    ]
-   },
+   "doi_status": null,
    "batch": "batch-006"
   },
   "Fish15": {
@@ -9063,7 +8991,7 @@
     "doi": "10.1093/brain/117.1.71",
     "registered": true,
     "ra": "Crossref",
-    "title": "Anatomical origin of\n                    déjà vu\n                    and vivid ‘memories’ in human temporal lobe epilepsy",
+    "title": "Anatomical origin of déjà vu and vivid ‘memories’ in human temporal lobe epilepsy",
     "subtitle": null,
     "container": "Brain",
     "print_year": "1994",
@@ -17921,27 +17849,23 @@
   "ChenEtal24c": [],
   "ChanEtal09a": [
    "quote_check_failed:pages",
-   "print_year_conflict:year",
-   "unverified_suggestions"
+   "proceedings_print_year:year"
   ],
   "SochEtal09": [
    "quote_check_failed:pages",
-   "print_year_conflict:year",
-   "unverified_suggestions"
+   "proceedings_print_year:year"
   ],
   "KrizEtal12": [
    "quote_check_failed:pages",
-   "print_year_conflict:year",
-   "unverified_suggestions"
+   "proceedings_print_year:year"
   ],
   "KiroEtal15": [
    "quote_check_failed:pages",
-   "print_year_conflict:year",
-   "unverified_suggestions"
+   "proceedings_print_year:year"
   ],
   "PaszEtal19": [
    "field_not_found:pages",
-   "print_year_conflict:year",
+   "proceedings_print_year:year",
    "unverified_suggestions"
   ],
   "MairEtal09b": [
@@ -18112,9 +18036,7 @@
   "WoodEtal00b": [],
   "BallEtal04": [],
   "TingEtal02": [],
-  "Wilc45": [
-   "doi_record_conflict:pages"
-  ],
+  "Wilc45": [],
   "Fish15": [
    "doi_record_conflict:pages"
   ],

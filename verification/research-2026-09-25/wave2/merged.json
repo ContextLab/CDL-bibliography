@@ -719,16 +719,10 @@
     "action": "held"
    },
    {
-    "code": "print_year_conflict",
+    "code": "proceedings_print_year",
     "field": "year",
-    "detail": "notes give a print date ['2010'] but the year is 2009: print year wins",
-    "action": "flag"
-   },
-   {
-    "code": "unverified_suggestions",
-    "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): year='2010'",
-    "action": "flag"
+    "detail": "notes give a print date ['2010'] of the proceedings; the conference year 2009 is quoted and stands (no year suggested)",
+    "action": "applied"
    }
   ],
   "doi_status": null,
@@ -853,16 +847,10 @@
     "action": "held"
    },
    {
-    "code": "print_year_conflict",
+    "code": "proceedings_print_year",
     "field": "year",
-    "detail": "notes give a print date ['2010'] but the year is 2009: print year wins",
-    "action": "flag"
-   },
-   {
-    "code": "unverified_suggestions",
-    "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): year='2010'",
-    "action": "flag"
+    "detail": "notes give a print date ['2010'] of the proceedings; the conference year 2009 is quoted and stands (no year suggested)",
+    "action": "applied"
    }
   ],
   "doi_status": null,
@@ -969,16 +957,10 @@
     "action": "held"
    },
    {
-    "code": "print_year_conflict",
+    "code": "proceedings_print_year",
     "field": "year",
-    "detail": "notes give a print date ['2013'] but the year is 2012: print year wins",
-    "action": "flag"
-   },
-   {
-    "code": "unverified_suggestions",
-    "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): year='2013'",
-    "action": "flag"
+    "detail": "notes give a print date ['2013'] of the proceedings; the conference year 2012 is quoted and stands (no year suggested)",
+    "action": "applied"
    }
   ],
   "doi_status": null,
@@ -1117,16 +1099,10 @@
     "action": "held"
    },
    {
-    "code": "print_year_conflict",
+    "code": "proceedings_print_year",
     "field": "year",
-    "detail": "notes give a print date ['2016'] but the year is 2015: print year wins",
-    "action": "flag"
-   },
-   {
-    "code": "unverified_suggestions",
-    "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): year='2016'",
-    "action": "flag"
+    "detail": "notes give a print date ['2016'] of the proceedings; the conference year 2015 is quoted and stands (no year suggested)",
+    "action": "applied"
    }
   ],
   "doi_status": null,
@@ -1233,15 +1209,15 @@
     "action": "flag"
    },
    {
-    "code": "print_year_conflict",
+    "code": "proceedings_print_year",
     "field": "year",
-    "detail": "notes give a print date ['2020'] but the year is 2019: print year wins",
-    "action": "flag"
+    "detail": "notes give a print date ['2020'] of the proceedings; the conference year 2019 is quoted and stands (no year suggested)",
+    "action": "applied"
    },
    {
     "code": "unverified_suggestions",
     "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): pages='7994--8005', year='2020'",
+    "detail": "values left not_found or suggested by the rules (never applied): pages='7994--8005'",
     "action": "flag"
    }
   ],
@@ -1816,6 +1792,8 @@
       "quote": "\"page\":\"137-153\""
      }
     ],
+    "normalised_from": "10.1016/S0166-4115(08)60886-9",
+    "normalised_by": "postcheck",
     "reviewer": "agree"
    },
    {
@@ -1867,31 +1845,7 @@
    "action": "keep"
   },
   "flags": [],
-  "doi_status": {
-   "doi": "10.1016/s0166-4115(08)60886-9",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "Chapter 4 Mathematical Misunderstandings: Qualitative Reasoning About Quantitative Problems",
-   "subtitle": null,
-   "container": "Advances in Psychology The Nature and Origins of Mathematical Skills",
-   "print_year": "1992",
-   "online_year": null,
-   "issued_year": "1992",
-   "page": "137-153",
-   "volume": null,
-   "issue": null,
-   "type": "book-chapter",
-   "authors": [
-    "Richard E. Mayer",
-    "Anne Bovenmyer Lewis",
-    "Mary Hegarty"
-   ],
-   "families": [
-    "Mayer",
-    "Lewis",
-    "Hegarty"
-   ]
-  },
+  "doi_status": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -4530,7 +4484,8 @@
       "quote": "Archiv für Psychiatrie und Nervenkrankheiten"
      }
     ],
-    "normalised_from": "Archiv F{\\\"u}r Psychiatrie und Nervenkrankheiten"
+    "normalised_from": "Archiv F{\\\"u}r Psychiatrie und Nervenkrankheiten",
+    "normalised_by": "postcheck"
    }
   ],
   "removals": {},
@@ -4611,7 +4566,8 @@
       "quote": "Archiv für Psychiatrie und Nervenkrankheiten"
      }
     ],
-    "normalised_from": "Archiv F{\\\"u}r Psychiatrie und Nervenkrankheiten"
+    "normalised_from": "Archiv F{\\\"u}r Psychiatrie und Nervenkrankheiten",
+    "normalised_by": "postcheck"
    },
    {
     "field": "number",
@@ -8817,37 +8773,10 @@
    "target_base": "Wilc45",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "doi_record_conflict",
-    "field": "pages",
-    "detail": "Crossref record of 10.2307/3001968 gives pages '80', proposal '80--83'",
-    "action": "flag"
-   }
-  ],
-  "doi_status": {
-   "doi": "10.2307/3001968",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "Individual Comparisons by Ranking Methods",
-   "subtitle": null,
-   "container": "Biometrics Bulletin",
-   "print_year": "1945",
-   "online_year": null,
-   "issued_year": "1945",
-   "page": "80",
-   "volume": "1",
-   "issue": "6",
-   "type": "journal-article",
-   "authors": [
-    "Frank Wilcoxon"
-   ],
-   "families": [
-    "Wilcoxon"
-   ]
-  },
+  "flags": [],
+  "doi_status": null,
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Fish15",
@@ -9223,7 +9152,7 @@
    "doi": "10.1093/brain/117.1.71",
    "registered": true,
    "ra": "Crossref",
-   "title": "Anatomical origin of\n                    déjà vu\n                    and vivid ‘memories’ in human temporal lobe epilepsy",
+   "title": "Anatomical origin of déjà vu and vivid ‘memories’ in human temporal lobe epilepsy",
    "subtitle": null,
    "container": "Brain",
    "print_year": "1994",

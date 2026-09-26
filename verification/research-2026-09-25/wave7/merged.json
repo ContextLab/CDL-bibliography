@@ -213,7 +213,8 @@
       "url": "https://www.psychometricsociety.org/sites/main/files/file-attachments/mn11.pdf",
       "quote": "(Psychometric Monograph No. 11)."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -225,7 +226,8 @@
       "url": "https://www.psychometricsociety.org/sites/main/files/file-attachments/mn11.pdf",
       "quote": "Memory Abilities: A Factor Analysis (Psychometric Monograph No. 11)."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -236,7 +238,19 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "journal": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Researcher quotes the Psychometric Society's PDF: 'Kelley, H. P. (1964). Memory Abilities: A Factor Analysis (Psychometric Monograph No. 11).' Singular kept as printed; 'Psychometric Monographs' is the usual series name (house choice)."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -352,7 +366,8 @@
       "quote": "FAU - Ehlert, Ulrike"
      }
     ],
-    "normalised_from": "Urs Markus Nater and Roberto {La Marca} and Ladina Florin and Anthony Moses and Wolfgang Langhans and Markus M Koller and Ulrike Ehlert"
+    "normalised_from": "Urs Markus Nater and Roberto {La Marca} and Ladina Florin and Anthony Moses and Wolfgang Langhans and Markus M Koller and Ulrike Ehlert",
+    "normalised_by": "postcheck"
    },
    {
     "field": "doi",
@@ -595,7 +610,8 @@
       "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
       "quote": "\"DOI\":\"10.3758\\/s13423-011-0181-y\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -607,7 +623,8 @@
       "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
       "quote": "\"issue\":\"1\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -619,7 +636,8 @@
       "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
       "quote": "\"page\":\"126-134\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -631,7 +649,8 @@
       "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
       "quote": "\"volume\":\"19\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -647,7 +666,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/22083626/",
       "quote": "DP  - 2012 Feb"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -689,7 +709,23 @@
     "Dunlosky"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename HartDunl11 -> HartDunl12",
+    "Crossref 10.3758/s13423-011-0181-y: Psychonomic Bulletin &amp; Review 19(1) 126-134, print 2012 / issued 2011"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -781,7 +817,8 @@
       "url": "https://api.crossref.org/works/10.3758/bf03194119",
       "quote": "\"DOI\":\"10.3758\\/bf03194119\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -793,7 +830,8 @@
       "url": "https://api.crossref.org/works/10.3758/bf03194119",
       "quote": "\"issue\":\"5\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -805,7 +843,8 @@
       "url": "https://api.crossref.org/works/10.3758/bf03194119",
       "quote": "\"page\":\"901-907\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -817,7 +856,8 @@
       "url": "https://api.crossref.org/works/10.3758/bf03194119",
       "quote": "Who do you look like? Evidence of facial stereotypes for male names"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -829,7 +869,8 @@
       "url": "https://api.crossref.org/works/10.3758/bf03194119",
       "quote": "\"volume\":\"14\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -866,7 +907,21 @@
     "Bell"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.3758/bf03194119: Psychonomic Bulletin &amp; Review 14(5) 901-907, print 2007 / issued 2007"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -1086,7 +1141,9 @@
       "quote": "\"given\":\"James S.\",\"family\":\"Nairne\""
      }
     ],
-    "normalised_from": "Ian Neath and James S Nairne"
+    "normalised_from": "Ian Neath and James S Nairne",
+    "normalised_by": "postcheck",
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -1098,7 +1155,8 @@
       "url": "https://api.crossref.org/works/10.3758/bf03210981",
       "quote": "\"DOI\":\"10.3758\\/bf03210981\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -1110,7 +1168,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/24203783/",
       "quote": "Word-length effects in immediate memory: Overwriting trace decay theory."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1152,7 +1211,21 @@
     "Nairne"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename NairNeat95 -> NeatNair95",
+    "Crossref 10.3758/bf03210981: Psychonomic Bulletin &amp; Review 2(4) 429-441, print 1995 / issued 1995"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -1190,7 +1263,9 @@
       "quote": "FAU - Turk-Browne, Nicholas B"
      }
     ],
-    "normalised_from": "Megan T deBettencourt and Kenneth A Norman and Nicholas B Turk-Browne"
+    "normalised_from": "Megan T deBettencourt and Kenneth A Norman and Nicholas B Turk-Browne",
+    "normalised_by": "postcheck",
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -1202,7 +1277,8 @@
       "url": "https://api.crossref.org/works/10.3758/s13423-017-1309-5",
       "quote": "Forgetting from lapses of sustained attention"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1246,7 +1322,20 @@
     "Turk-Browne"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename NormTurk18 -> deBeEtal18",
+    "Crossref 10.3758/s13423-017-1309-5: Psychonomic Bulletin &amp; Review 25(2) 605-611, print 2018 / issued 2017"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -1530,7 +1619,8 @@
       "url": "https://api.crossref.org/works/10.3758/bf03330833",
       "quote": "\"given\":\"Mary W.\",\"family\":\"Laurence\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -1542,7 +1632,8 @@
       "url": "https://api.crossref.org/works/10.3758/bf03330833",
       "quote": "\"DOI\":\"10.3758\\/bf03330833\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -1554,7 +1645,8 @@
       "url": "https://api.crossref.org/works/10.3758/bf03330833",
       "quote": "\"container-title\":[\"Psychonomic Science\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1566,7 +1658,8 @@
       "url": "https://api.crossref.org/works/10.3758/bf03330833",
       "quote": "\"issue\":\"4\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1597,7 +1690,21 @@
     "Laurence"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Crossref 10.3758/bf03330833: Psychonomic Science 9(4) 209-210, print 1967 / issued 1967"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -1743,7 +1850,8 @@
       "url": "https://api.crossref.org/works/10.1007/s00213-006-0528-7",
       "quote": "\"DOI\":\"10.1007\\/s00213-006-0528-7\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1755,7 +1863,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16977476&retmode=xml",
       "quote": "<Issue>3</Issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1788,7 +1897,18 @@
     "Everitt"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1007/s00213-006-0528-7: Psychopharmacology 191(3) 433-437, print 2007 / issued 2006"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -1939,7 +2059,8 @@
       "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/DankerEtal08.pdf#page=1",
       "quote": "Jared F. Danker,1,2 Grace M. Hwang,1,3,4 Lynne Gauthier,1,3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -1951,7 +2072,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18513360&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.1111/j.1469-8986.2008.00672.x</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1963,7 +2085,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18513360&retmode=xml",
       "quote": "<Issue>5</Issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -2004,7 +2127,19 @@
     "Sekuler"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1111/j.1469-8986.2008.00672.x: Psychophysiology 45(5) 784-793, print 2008 / issued 2008"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -2215,7 +2350,15 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "verdict": "agree"
+   },
+   "problems": [],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -2339,7 +2482,8 @@
       "url": "https://api.crossref.org/works/10.1111/j.1469-8986.2007.00606.x",
       "quote": "\"DOI\":\"10.1111\\/j.1469-8986.2007.00606.x\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -2351,7 +2495,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17910733&retmode=xml",
       "quote": "<Issue>1</Issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -2363,7 +2508,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17910733&retmode=xml",
       "quote": "<Volume>45</Volume>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -2379,7 +2525,8 @@
       "url": "https://api.crossref.org/works/10.1111/j.1469-8986.2007.00606.x",
       "quote": "\"published-print\":{\"date-parts\":[[2008,1]]}"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -2431,7 +2578,22 @@
     "Hutzler"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "volume": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename VoEtal07 -> VoEtal08",
+    "Crossref 10.1111/j.1469-8986.2007.00606.x: Psychophysiology 45(1) 130-140, print 2008 / issued 2007"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -2565,37 +2727,7 @@
    "action": "keep"
   },
   "flags": [],
-  "doi_status": {
-   "doi": "10.1080/713755719",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "Teaching by Examples: Implications for the Process of Category Acquisition",
-   "subtitle": null,
-   "container": "The Quarterly Journal of Experimental Psychology Section A",
-   "print_year": "1997",
-   "online_year": "1997",
-   "issued_year": "1997",
-   "page": "586-606",
-   "volume": "50",
-   "issue": "3",
-   "type": "journal-article",
-   "authors": [
-    "Judith Avrahami",
-    "Yaakov Kareev",
-    "Yonatan Bogot",
-    "Ruth Caspi",
-    "Salomka Dunaevsky",
-    "Sharon Lerner"
-   ],
-   "families": [
-    "Avrahami",
-    "Kareev",
-    "Bogot",
-    "Caspi",
-    "Dunaevsky",
-    "Lerner"
-   ]
-  },
+  "doi_status": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -3252,7 +3384,8 @@
       "url": "https://api.crossref.org/works/10.1080/02724980443000223",
       "quote": "\"page\":\"98-119\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -3268,7 +3401,8 @@
       "url": "https://api.crossref.org/works/10.1080/02724980443000223",
       "quote": "\"volume\":\"58\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3301,7 +3435,18 @@
     "Maylor"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1080/02724980443000223: The Quarterly Journal of Experimental Psychology Section A 58(1) 98-119, print 2005 / issued 2005"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3327,6 +3472,12 @@
   },
   "flags": [
    {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('Replacement candidate'): replacement is the user's decision",
+    "action": "flag"
+   },
+   {
     "code": "needs_user",
     "field": "verdict",
     "detail": "verdict ambiguous: user decision",
@@ -3334,7 +3485,18 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree"
+   },
+   "problems": [
+    "Set A reason: verdict ambiguous",
+    "Ambiguous is defensible: only the 2006 Neurosci Biobehav Rev 30(4):562-575 version (10.1016/j.neubiorev.2005.10.004) is registered; the 2007 series printing could not be found."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -3367,7 +3529,8 @@
       "url": "https://api.crossref.org/works/10.3102/0034654307310317",
       "quote": "\"given\":\"Richard J.\",\"family\":\"Shavelson\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -3379,7 +3542,8 @@
       "url": "https://api.crossref.org/works/10.3102/0034654307310317",
       "quote": "\"page\":\"454-499\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3421,7 +3585,20 @@
     "Shavelson"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename Seid07 -> SeidShav07",
+    "Crossref 10.3102/0034654307310317: Review of Educational Research 77(4) 454-499, print 2007 / issued 2007"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -3448,7 +3625,8 @@
       "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
       "quote": "\"page\":\"1099-1124\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -3460,7 +3638,8 @@
       "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
       "quote": "\"journal-issue\":{\"issue\":\"3\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -3472,7 +3651,8 @@
       "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
       "quote": "\"page\":\"1099-1124\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -3484,7 +3664,8 @@
       "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
       "quote": "\"volume\":\"14\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -3496,7 +3677,8 @@
       "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
       "quote": "\"published-print\":{\"date-parts\":[[2023,9]]}"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3544,7 +3726,23 @@
     "Breithaupt"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename HiskEtal22 -> HiskEtal23",
+    "Crossref 10.1007/s13164-022-00621-5: Review of Philosophy and Psychology 14(3) 1099-1124, print 2023 / issued 2022"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -3573,7 +3771,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
       "quote": "10.1515/revneuro.2006.17.1-2.71 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3618,7 +3817,17 @@
     "Burgess"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1515/revneuro.2006.17.1-2.71: Reviews in the Neurosciences 17(1-2) None, print 2006 / issued 2006"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3745,7 +3954,8 @@
       "url": "https://api.crossref.org/works/10.1515/revneuro.2006.17.1-2.175",
       "quote": "\"given\":\"J.-Z.\",\"family\":\"Xiang\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -3757,7 +3967,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
       "quote": "10.1515/revneuro.2006.17.1-2.175 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -3769,7 +3980,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
       "quote": "IP  - 1-2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3802,7 +4014,19 @@
     "Xiang"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1515/revneuro.2006.17.1-2.175: Reviews in the Neurosciences 17(1-2) None, print 2006 / issued 2006"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3932,7 +4156,8 @@
       "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
       "quote": "Springer Tracts in Advanced Robotics, vol 38"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -3944,7 +4169,8 @@
       "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
       "quote": "Springer, Berlin, Heidelberg"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -3956,7 +4182,8 @@
       "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
       "quote": "(eds) Robotics and Cognitive Approaches to Spatial Mapping"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -3968,7 +4195,8 @@
       "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
       "quote": "https://doi.org/10.1007/978-3-540-75388-9_15"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "editor",
@@ -3984,7 +4212,8 @@
       "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
       "quote": "Wai-Kiang Yeap"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -4000,7 +4229,8 @@
       "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
       "quote": "content=\"264\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -4012,7 +4242,8 @@
       "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
       "quote": "Springer, Berlin, Heidelberg"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "series",
@@ -4024,7 +4255,8 @@
       "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
       "quote": "Springer Tracts in Advanced Robotics, vol 38"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -4057,7 +4289,26 @@
     "Kuipers"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "doi": "agree",
+    "editor": "agree",
+    "journal": "agree (removal)",
+    "pages": "agree",
+    "publisher": "agree",
+    "series": "agree"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change",
+    "Crossref 10.1007/978-3-540-75388-9_15: Robotics and Cognitive Approaches to Spatial Mapping None(None) 243-264, print None / issued None"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4525,7 +4776,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
       "quote": "10.1126/science.aat6766 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -4537,7 +4789,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
       "quote": "LID - eaat6766 [pii]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -4574,7 +4827,18 @@
     "Doeller"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1126/science.aat6766: Science 362(6415) None, print 2018 / issued 2018"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4854,7 +5118,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
       "quote": "10.1126/science.7466392 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -4866,7 +5131,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
       "quote": "IP  - 4487"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -4878,7 +5144,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
       "quote": "DP  - 1981 Mar 13"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -4922,7 +5189,21 @@
     "Robinson"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename DeadEtal80 -> DeadEtal81",
+    "Crossref 10.1126/science.7466392: Science 211(4487) 1181-1183, print 1981 / issued 1981"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -5247,7 +5528,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.284.5411.167",
       "quote": "\"DOI\":\"10.1126\\/science.284.5411.167\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -5259,7 +5541,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.284.5411.167",
       "quote": "\"issue\":\"5411\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5308,7 +5591,18 @@
     "Alpert"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1126/science.284.5411.167: Science 284(5411) 167-170, print 1999 / issued 1999"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -5444,7 +5738,23 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7878473/",
       "quote": "J E Lisman, M A Idiart"
      }
-    ]
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1126/science.7878473",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: DOI dropped by doi_title_mismatch",
+       "Crossref 10.1126/science.7878473: 'Storage of 7 ± 2 Short-Term Memories in Oscillatory Subcycles', Science 267(5203) 1512-1515, 1995, John E. Lisman and Marco A. P. Idiart - the entry's work. The check failed on '$7\\pm2$' vs '7 ± 2' (the \\pm fix in a92fd7e reached the validator, not this DOI-title check)."
+      ]
+     }
+    ],
+    "reviewer": "disagree (dropped but correct)"
    },
    {
     "field": "number",
@@ -5456,7 +5766,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.7878473",
       "quote": "\"issue\":\"5203\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5465,14 +5776,7 @@
    "target_base": "LismIdia95",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "doi_title_mismatch",
-    "field": "doi",
-    "detail": "10.1126/science.7878473 is registered to 'Storage of 7 ± 2 Short-Term Memories in Oscillatory Subcycles' (Crossref), not this entry's title; DOI change dropped",
-    "action": "dropped"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1126/science.7878473",
    "registered": true,
@@ -5496,7 +5800,22 @@
     "Idiart"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "disagree (dropped but correct)",
+    "number": "agree"
+   },
+   "problems": [
+    "Set A reason: DOI dropped by doi_title_mismatch",
+    "Crossref 10.1126/science.7878473: 'Storage of 7 ± 2 Short-Term Memories in Oscillatory Subcycles', Science 267(5203) 1512-1515, 1995, John E. Lisman and Marco A. P. Idiart - the entry's work. The check failed on '$7\\pm2$' vs '7 ± 2' (the \\pm fix in a92fd7e reached the validator, not this DOI-title check)."
+   ],
+   "suggested_value": {
+    "doi": "10.1126/science.7878473"
+   }
+  },
   "needs_user": false
  },
  {
@@ -5623,7 +5942,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.1245994",
       "quote": "\"DOI\":\"10.1126\\/science.1245994\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -5635,7 +5955,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.1245994",
       "quote": "\"issue\":\"6174\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -5647,7 +5968,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.1245994",
       "quote": "\"page\":\"1006-1010\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -5659,7 +5981,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.1245994",
       "quote": "\"title\":[\"Phonetic Feature Encoding in Human Superior Temporal Gyrus\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -5671,7 +5994,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.1245994",
       "quote": "\"volume\":\"343\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5708,7 +6032,22 @@
     "Chang"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Crossref 10.1126/science.1245994: Science 343(6174) 1006-1010, print 2014 / issued 2014"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -5809,7 +6148,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.291.5504.661",
       "quote": "\"DOI\":\"10.1126\\/science.291.5504.661\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -5821,7 +6161,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.291.5504.661",
       "quote": "\"issue\":\"5504\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -5833,7 +6174,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.291.5504.661",
       "quote": "\"page\":\"661-664\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5868,7 +6210,19 @@
     "Miyashita"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1126/science.291.5504.661: Science 291(5504) 661-664, print 2001 / issued 2001"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -6027,7 +6381,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.2296719",
       "quote": "\"DOI\":\"10.1126\\/science.2296719\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -6039,7 +6394,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.2296719",
       "quote": "\"issue\":\"4940\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -6051,7 +6407,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.2296719",
       "quote": "\"page\":\"301-306\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -6063,7 +6420,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.2296719",
       "quote": "\"published-print\":{\"date-parts\":[[1990"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6105,7 +6463,22 @@
     "Schacter"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename TulvScha91 -> TulvScha90",
+    "Crossref 10.1126/science.2296719: Science 247(4940) 301-306, print 1990 / issued 1990"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -6137,7 +6510,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/9219696/",
       "quote": "W Van Paesschen, M Mishkin"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -6149,7 +6523,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.277.5324.376",
       "quote": "\"DOI\":\"10.1126\\/science.277.5324.376\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -6161,7 +6536,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.277.5324.376",
       "quote": "\"issue\":\"5324\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6209,7 +6585,19 @@
     "Mishkin"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1126/science.277.5324.376: Science 277(5324) 376-380, print 1997 / issued 1997"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -6403,7 +6791,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.1232627",
       "quote": "\"DOI\":\"10.1126\\/science.1232627\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -6415,7 +6804,8 @@
       "url": "https://api.crossref.org/works/10.1126/science.1232627",
       "quote": "\"article-number\":\"1232627\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6460,7 +6850,18 @@
     "Moser"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1126/science.1232627: Science 340(6128) None, print 2013 / issued 2013"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7046,6 +7447,21 @@
   },
   "final_changes": [
    {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1038/scientificamericanmind0510-70",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: DOI dropped by doi_title_mismatch; title/journal change naming a different wording, venue or version",
+       "Crossref 10.1038/scientificamericanmind0510-70 is the 'Ask the Brains' item, Scientific American Mind 21(2) p 70, May 2010; the SciAm web page quoted by the researcher says this piece 'was published with the title \"Ask the Brains\" in SA Mind Vol. 21 No. 2'. Volume, issue and page equal the final entry's, so the DOI is the printed item; the generic column title should not drop it."
+      ]
+     }
+    ],
+    "reviewer": "disagree (dropped but correct)"
+   },
+   {
     "field": "journal",
     "current": "Scientific {American}",
     "proposed": "Scientific {American} Mind",
@@ -7055,7 +7471,8 @@
       "url": "https://api.crossref.org/works/10.1038/scientificamericanmind0510-70",
       "quote": "\"container-title\":[\"Scientific American Mind\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -7067,7 +7484,8 @@
       "url": "https://www.scientificamerican.com/article/what-is-the-memory-capacity/",
       "quote": "SA Mind Vol. 21 No. 2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -7079,7 +7497,8 @@
       "url": "https://api.crossref.org/works/10.1038/scientificamericanmind0510-70",
       "quote": "\"page\":\"70-70\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -7091,7 +7510,8 @@
       "url": "https://www.scientificamerican.com/article/what-is-the-memory-capacity/",
       "quote": "What Is the Memory Capacity of the Human Brain?"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -7103,7 +7523,8 @@
       "url": "https://www.scientificamerican.com/article/what-is-the-memory-capacity/",
       "quote": "SA Mind Vol. 21 No. 2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7114,10 +7535,10 @@
   },
   "flags": [
    {
-    "code": "doi_title_mismatch",
+    "code": "doi_generic_title",
     "field": "doi",
-    "detail": "10.1038/scientificamericanmind0510-70 is registered to 'Ask the Brains' (Crossref), not this entry's title; DOI change dropped",
-    "action": "dropped"
+    "detail": "10.1038/scientificamericanmind0510-70 is registered to 'Ask the Brains': registry title 'Ask the Brains' is not the entry's, but volume 21, issue 2, first page 70 and year 2010 all equal the entry's in 'Scientific American Mind'; applied",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -7137,7 +7558,25 @@
    "authors": [],
    "families": []
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "disagree (dropped but correct)",
+    "journal": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Set A reason: DOI dropped by doi_title_mismatch; title/journal change naming a different wording, venue or version",
+    "Crossref 10.1038/scientificamericanmind0510-70 is the 'Ask the Brains' item, Scientific American Mind 21(2) p 70, May 2010; the SciAm web page quoted by the researcher says this piece 'was published with the title \"Ask the Brains\" in SA Mind Vol. 21 No. 2'. Volume, issue and page equal the final entry's, so the DOI is the printed item; the generic column title should not drop it."
+   ],
+   "suggested_value": {
+    "doi": "10.1038/scientificamericanmind0510-70"
+   }
+  },
   "needs_user": false
  },
  {
@@ -7419,71 +7858,7 @@
    "action": "keep"
   },
   "flags": [],
-  "doi_status": {
-   "doi": "10.1093/sleepadvances/zpaf089",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "Assessing the performance of a portable electroencephalographic sleep monitor against level 1 polysomnography",
-   "subtitle": null,
-   "container": "SLEEP Advances",
-   "print_year": "2026",
-   "online_year": "2025",
-   "issued_year": "2025",
-   "page": null,
-   "volume": "7",
-   "issue": "1",
-   "type": "journal-article",
-   "authors": [
-    "Malika Lanthier",
-    "Michael-Christopher Foti",
-    "Karina Fonseca",
-    "Caitlin Higginson",
-    "Defne Oksit",
-    "David Smith",
-    "Jean-Marc Lina",
-    "Paniz Tavakoli",
-    "Stuart Fogel",
-    "Laura Ray",
-    "Rébecca Robillard",
-    "Canadian Sleep Research Consortium",
-    "Malika Lanthier",
-    "Micheal-Christopher Foti",
-    "Karina Fonseca",
-    "Caitlin Higginson",
-    "Defne Oksit",
-    "David Smith",
-    "Jean-Marc Lina",
-    "Paniz Tavakoli",
-    "Stuart Fogel",
-    "Laura Ray",
-    "Rébecca Robillard"
-   ],
-   "families": [
-    "Lanthier",
-    "Foti",
-    "Fonseca",
-    "Higginson",
-    "Oksit",
-    "Smith",
-    "Lina",
-    "Tavakoli",
-    "Fogel",
-    "Ray",
-    "Robillard",
-    "Canadian Sleep Research Consortium",
-    "Lanthier",
-    "Foti",
-    "Fonseca",
-    "Higginson",
-    "Oksit",
-    "Smith",
-    "Lina",
-    "Tavakoli",
-    "Fogel",
-    "Ray",
-    "Robillard"
-   ]
-  },
+  "doi_status": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -7591,7 +7966,17 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree"
+   },
+   "problems": [
+    "Set A reason: verdict no_source"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -7617,7 +8002,8 @@
       "url": "https://api.crossref.org/works/10.1093/scan/nsaa126",
       "quote": "\"page\":\"807-815\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -7629,7 +8015,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/32986080/",
       "quote": "IP  - 8"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -7641,7 +8028,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/32986080/",
       "quote": "PG  - 807-815"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -7653,7 +8041,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/32986080/",
       "quote": "Perceiving actions before they happen: psychological dimensions scaffold neural action prediction"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -7665,7 +8054,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/32986080/",
       "quote": "VI  - 16"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -7677,7 +8067,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/32986080/",
       "quote": "DP  - 2021 Aug 5"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7725,7 +8116,24 @@
     "Tamir"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename ThorTami20 -> ThorTami21",
+    "Crossref 10.1093/scan/nsaa126: Social Cognitive and Affective Neuroscience 16(8) 807-815, print 2021 / issued 2020"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -7849,7 +8257,8 @@
       "url": "https://api.crossref.org/works/10.1137/s1052623496303470",
       "quote": "\"volume\":\"9\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -7865,7 +8274,8 @@
       "url": "https://api.crossref.org/works/10.1137/s1052623496303470",
       "quote": "Society for Industrial & Applied Mathematics"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7902,7 +8312,20 @@
     "Wright"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Journal change is to the right journal: Crossref 10.1137/s1052623496303470 container 'SIAM Journal on Optimization' 9(1) 112-147.",
+    "Crossref 10.1137/s1052623496303470: SIAM Journal on Optimization 9(1) 112-147, print 1998 / issued 1998"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8085,7 +8508,17 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree"
+   },
+   "problems": [
+    "Set A reason: verdict no_source"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -8111,7 +8544,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=9688",
       "quote": "Neuroscience 2005 Abstract Presentation Number: 581.4"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -8123,7 +8557,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=9688",
       "quote": "2005 Neuroscience Meeting Planner. Washington, DC : Society for Neuroscience, 2005"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -8143,7 +8578,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=9688",
       "quote": "Washington, DC : Society for Neuroscience, 2005"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -8155,7 +8591,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=9688",
       "quote": "Presentation Number: 581.4"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "organization",
@@ -8167,7 +8604,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=9688",
       "quote": "Washington, DC : Society for Neuroscience, 2005"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -8179,7 +8617,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=9688",
       "quote": "Phase locking of neuronal activity and EEG oscillations during human spatial navigation."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -8192,7 +8631,24 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "journal": "agree (removal)",
+    "number": "agree",
+    "organization": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+    "SfN abstract archive AbsYear=2005 AbsID=9688: 'Neuroscience 2005 Abstract Presentation Number: 581.4 Abstract Title: Phase locking of neuronal activity and EEG oscillations during human spatial navigation. Authors: Jacobs, J.; Kahana, M. J.; Ekstrom, A. D.; Fried, I.' Conference abstract: on the user's removal list."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8302,7 +8758,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=4118",
       "quote": "Neuroscience 2000 Abstract Presentation Number: 263.10"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -8314,7 +8771,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=4118",
       "quote": "2000 Neuroscience Meeting Planner. New Orleans, LA : Society for Neuroscience, 2000"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -8334,7 +8792,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=4118",
       "quote": "New Orleans, LA : Society for Neuroscience, 2000"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -8346,7 +8805,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=4118",
       "quote": "Presentation Number: 263.10"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "organization",
@@ -8358,7 +8818,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=4118",
       "quote": "New Orleans, LA : Society for Neuroscience, 2000"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -8370,7 +8831,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=4118",
       "quote": "Ongoing theta activity (6-8 Hz) over the frontal midline increases with load in a short-term memory task: a parametric MEG study."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -8383,7 +8845,24 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "journal": "agree (removal)",
+    "number": "agree",
+    "organization": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+    "SfN abstract archive AbsYear=2000 AbsID=4118: 'Presentation Number: 263.10 Abstract Title: Ongoing theta activity (6-8 Hz) over the frontal midline increases with load in a short-term memory task: a parametric MEG study. Authors: Jensen, O.; Tesche, C. D.'"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8409,7 +8888,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=7682",
       "quote": "Neuroscience 2000 Abstract Presentation Number: 490.4"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -8421,7 +8901,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=7682",
       "quote": "2000 Neuroscience Meeting Planner. New Orleans, LA : Society for Neuroscience, 2000"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -8441,7 +8922,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=7682",
       "quote": "New Orleans, LA : Society for Neuroscience, 2000"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -8453,7 +8935,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=7682",
       "quote": "Presentation Number: 490.4"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "organization",
@@ -8465,7 +8948,8 @@
       "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=7682",
       "quote": "New Orleans, LA : Society for Neuroscience, 2000"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -8478,7 +8962,23 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "journal": "agree (removal)",
+    "number": "agree",
+    "organization": "agree"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change",
+    "SfN abstract archive AbsYear=2000 AbsID=7682: 'Presentation Number: 490.4 ... Authors: Makeig, S.; Enghoff, S.; Visser, E.; Jung, T. P.; Sejnowski, T. J.'"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8570,7 +9070,8 @@
       "url": "http://web.archive.org/web/20090510040827/http://alicekim.ca:80/tulving/1990_1999.htm",
       "quote": "Organization of memory: Quo vadis? In M. S. Gazzaniga (Ed.), The Cognitive Neurosciences"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -8586,7 +9087,8 @@
       "url": "http://web.archive.org/web/20090510040827/http://alicekim.ca:80/tulving/1990_1999.htm",
       "quote": "Cambridge, MA: The MIT Press. Tulving, E., & Kroll, N. (1995)"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -8602,7 +9104,8 @@
       "url": "https://openlibrary.org/isbn/0262071576.json",
       "quote": "\"title\": \"The cognitive neurosciences\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "editor",
@@ -8618,7 +9121,8 @@
       "url": "https://openlibrary.org/isbn/0262071576.json",
       "quote": "\"by_statement\": \"Michael S. Gazzaniga, editor-in-chief"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -8630,7 +9134,8 @@
       "url": "https://openlibrary.org/isbn/0262071576.json",
       "quote": "\"publishers\": [\"MIT Press\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -8642,7 +9147,8 @@
       "url": "http://web.archive.org/web/20090510040827/http://alicekim.ca:80/tulving/1990_1999.htm",
       "quote": "Organization of memory: Quo vadis?"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -8662,7 +9168,23 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "editor": "agree",
+    "journal": "agree (removal)",
+    "publisher": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -8691,7 +9213,8 @@
       "url": "http://yann.lecun.com/exdb/publis/index.html",
       "quote": "Arbib, M. A. (Eds)"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -8703,7 +9226,8 @@
       "url": "https://openlibrary.org/isbn/0262011484.json",
       "quote": "\"publish_places\": [\"Cambridge, Mass\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -8719,7 +9243,8 @@
       "url": "https://openlibrary.org/isbn/0262011484.json",
       "quote": "\"title\": \"The handbook of brain theory and neural networks\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "editor",
@@ -8735,7 +9260,23 @@
       "url": "https://openlibrary.org/isbn/0262011484.json",
       "quote": "\"by_statement\": \"edited by Michael A. Arbib"
      }
-    ]
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "pages",
+    "current": "1--14",
+    "proposed": "remove, or 255--258 once confirmed",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+       "Type change, booktitle, editor, publisher and corrected chapter title agree. Pages '1--14' kept although the researcher's own notes say they are almost certainly wrong (commonly cited 255--258). I could not reach a text source either (ACM DL behind a Cloudflare challenge). Suggest removing pages or confirming 255--258 from a scan before applying."
+      ]
+     }
+    ],
+    "reviewer": "disagree (kept a value the researcher says is wrong; not verified by me)"
    },
    {
     "field": "publisher",
@@ -8747,7 +9288,8 @@
       "url": "https://openlibrary.org/isbn/0262011484.json",
       "quote": "\"publishers\": [\"MIT Press\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -8759,7 +9301,8 @@
       "url": "http://yann.lecun.com/exdb/publis/index.html",
       "quote": "Convolutional Networks for Images, Speech, and Time-Series"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -8781,7 +9324,29 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "editor": "agree",
+    "journal": "agree (removal)",
+    "number": "agree (removal)",
+    "pages": "disagree (kept a value the researcher says is wrong; not verified by me)",
+    "publisher": "agree",
+    "title": "agree",
+    "volume": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+    "Type change, booktitle, editor, publisher and corrected chapter title agree. Pages '1--14' kept although the researcher's own notes say they are almost certainly wrong (commonly cited 255--258). I could not reach a text source either (ACM DL behind a Cloudflare challenge). Suggest removing pages or confirming 255--258 from a scan before applying."
+   ],
+   "suggested_value": {
+    "pages": "remove, or 255--258 once confirmed"
+   }
+  },
   "needs_user": true
  },
  {
@@ -8885,7 +9450,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18509031/",
       "quote": "Andrei Belitski, Arthur Gretton, Cesare Magri, Yusuke Murayama, Marcelo A Montemurro, Nikos K Logothetis, Stefano Panzeri"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -8897,7 +9463,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.0009-08.2008",
       "quote": "\"DOI\":\"10.1523\\/jneurosci.0009-08.2008\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -8909,7 +9476,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.0009-08.2008",
       "quote": "\"issue\":\"22\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -8925,7 +9493,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18509031/",
       "quote": "5696-709"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -8937,7 +9506,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18509031/",
       "quote": "Low-frequency local field potentials and spikes in primary visual cortex convey independent visual information"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -8949,7 +9519,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.0009-08.2008",
       "quote": "\"volume\":\"28\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8992,7 +9563,23 @@
     "Panzeri"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Crossref 10.1523/jneurosci.0009-08.2008: The Journal of Neuroscience 28(22) 5696-5709, print 2008 / issued 2008"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9020,7 +9607,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7823151/",
       "quote": "A Bragin, G Jandó, Z Nádasdy, J Hetke, K Wise, G Buzsáki"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -9032,7 +9620,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.15-01-00047.1995",
       "quote": "\"DOI\":\"10.1523\\/jneurosci.15-01-00047.1995\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -9044,7 +9633,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.15-01-00047.1995",
       "quote": "\"issue\":\"1\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -9056,7 +9646,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7823151/",
       "quote": "Gamma (40-100 Hz) oscillation in the hippocampus of the behaving rat"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9097,7 +9688,20 @@
     "Buzsaki"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.15-01-00047.1995: The Journal of Neuroscience 15(1) 47-60, print 1995 / issued 1995"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9210,7 +9814,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.23-34-10897.2003",
       "quote": "\"DOI\":\"10.1523\\/jneurosci.23-34-10897.2003\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9251,7 +9856,17 @@
     "Kocsis"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.23-34-10897.2003: The Journal of Neuroscience 23(34) 10897-10903, print 2003 / issued 2003"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9725,7 +10340,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/8699259/",
       "quote": "T Gómez-Isla, J L Price, D W McKeel, J C Morris, J H Growdon, B T Hyman"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -9737,7 +10353,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.16-14-04491.1996",
       "quote": "\"DOI\":\"10.1523\\/jneurosci.16-14-04491.1996\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -9753,7 +10370,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/8699259/",
       "quote": "4491-500"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9794,7 +10412,19 @@
     "Hyman"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.16-14-04491.1996: The Journal of Neuroscience 16(14) 4491-4500, print 1996 / issued 1996"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9823,7 +10453,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.21-04-j0003.2001",
       "quote": "\"DOI\":\"10.1523\\/jneurosci.21-04-j0003.2001\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -9839,7 +10470,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11160416/",
       "quote": "RC131"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9853,7 +10485,7 @@
    "doi": "10.1523/jneurosci.21-04-j0003.2001",
    "registered": true,
    "ra": "Crossref",
-   "title": "Synchronous Activity in the Hippocampus and Nucleus AccumbensIn Vivo",
+   "title": "Synchronous Activity in the Hippocampus and Nucleus Accumbens In Vivo",
    "subtitle": null,
    "container": "The Journal of Neuroscience",
    "print_year": "2001",
@@ -9872,7 +10504,18 @@
     "O'Donnell"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.21-04-j0003.2001: The Journal of Neuroscience 21(4) RC131-RC131, print 2001 / issued 2001"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -10092,7 +10735,7 @@
    "doi": "10.1523/jneurosci.23-17-06690.2003",
    "registered": true,
    "ra": "Crossref",
-   "title": "Brain-Derived Neurotrophic Factor val\n                    66\n                    met Polymorphism Affects Human Memory-Related Hippocampal Activity and Predicts Memory Performance",
+   "title": "Brain-Derived Neurotrophic Factor val 66 met Polymorphism Affects Human Memory-Related Hippocampal Activity and Predicts Memory Performance",
    "subtitle": null,
    "container": "The Journal of Neuroscience",
    "print_year": "2003",
@@ -10154,7 +10797,23 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.20-24-08987.2000",
       "quote": "\"given\":\"Salvador\",\"family\":\"Hern\\u00e1ndez-L\\u00f3pez\""
      }
-    ]
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1523/jneurosci.20-24-08987.2000",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: DOI dropped by doi_title_mismatch",
+       "Crossref 10.1523/jneurosci.20-24-08987.2000: J Neurosci 20(24) 8987-8995, 2000, first author Hernández-López, 7 authors as in the entry. The deposited title carries HTML tags glued to words ('D<sub>2</sub>Dopamine', 'Ca<sup>2+</sup>Currents'); the check should strip tags before comparing."
+      ]
+     }
+    ],
+    "reviewer": "disagree (dropped but correct)"
    },
    {
     "field": "pages",
@@ -10170,7 +10829,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11124974/",
       "quote": "8987-95"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -10182,7 +10842,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11124974/",
       "quote": "D2 dopamine receptors in striatal medium spiny neurons reduce L-type Ca2+ currents and excitability via a novel PLC[beta]1-IP3-calcineurin-signaling cascade"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10193,17 +10854,17 @@
   },
   "flags": [
    {
-    "code": "doi_title_mismatch",
+    "code": "doi_title_near",
     "field": "doi",
-    "detail": "10.1523/jneurosci.20-24-08987.2000 is registered to 'D2Dopamine Receptors in Striatal Medium Spiny Neurons Reduce L-Type Ca2+Currents and Excitability via a Novel PLCβ1–IP3–Calcineurin-Signaling Cascade' (Crossref), not this entry's title; DOI change dropped",
-    "action": "dropped"
+    "detail": "10.1523/jneurosci.20-24-08987.2000 is registered to 'D 2 Dopamine Receptors in Striatal Medium Spiny Neurons Reduce L-Type Ca 2+ Currents and Excitability via a Novel PLCβ1–IP 3 –Calcineurin-Signaling Cascade': registry title 'D 2 Dopamine Receptors in Striatal Medium Spiny Neurons Reduce L-Type Ca 2+ Currents and Excitability via a Novel PLCβ1–IP 3 –Calcineurin-Signaling Cascade' is the entry's '{D2} dopamine receptors in striatal medium spiny neurons reduce {L-type} {Ca}$^{2+}$ currents and excitability via a novel {PLC}$\\\\beta$1-{IP3}-calcineurin-signaling cascade' up to two letters or run-together words; first author, year, volume and first page all agree; applied",
+    "action": "applied"
    }
   ],
   "doi_status": {
    "doi": "10.1523/jneurosci.20-24-08987.2000",
    "registered": true,
    "ra": "Crossref",
-   "title": "D2Dopamine Receptors in Striatal Medium Spiny Neurons Reduce L-Type Ca2+Currents and Excitability via a Novel PLCβ1–IP3–Calcineurin-Signaling Cascade",
+   "title": "D 2 Dopamine Receptors in Striatal Medium Spiny Neurons Reduce L-Type Ca 2+ Currents and Excitability via a Novel PLCβ1–IP 3 –Calcineurin-Signaling Cascade",
    "subtitle": null,
    "container": "The Journal of Neuroscience",
    "print_year": "2000",
@@ -10232,7 +10893,23 @@
     "Surmeier"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "disagree (dropped but correct)",
+    "pages": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: DOI dropped by doi_title_mismatch",
+    "Crossref 10.1523/jneurosci.20-24-08987.2000: J Neurosci 20(24) 8987-8995, 2000, first author Hernández-López, 7 authors as in the entry. The deposited title carries HTML tags glued to words ('D<sub>2</sub>Dopamine', 'Ca<sup>2+</sup>Currents'); the check should strip tags before comparing."
+   ],
+   "suggested_value": {
+    "doi": "10.1523/jneurosci.20-24-08987.2000"
+   }
+  },
   "needs_user": false
  },
  {
@@ -10287,7 +10964,7 @@
    "doi": "10.1523/jneurosci.17-09-03334.1997",
    "registered": true,
    "ra": "Crossref",
-   "title": "D1Receptor Activation Enhances Evoked Discharge in Neostriatal Medium Spiny Neurons by Modulating an L-Type Ca2+Conductance",
+   "title": "D 1 Receptor Activation Enhances Evoked Discharge in Neostriatal Medium Spiny Neurons by Modulating an L-Type Ca 2+ Conductance",
    "subtitle": null,
    "container": "The Journal of Neuroscience",
    "print_year": "1997",
@@ -10365,7 +11042,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/24672015/",
       "quote": "FAU - Eichenbaum, Howard"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -10377,7 +11055,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/24672015/",
       "quote": "AID - 10.1523/JNEUROSCI.5808-12.2014 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -10389,7 +11068,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/24672015/",
       "quote": "A unified mathematical framework for coding time, space, and sequences in the hippocampal region."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10432,7 +11112,20 @@
     "Eichenbaum"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Crossref 10.1523/jneurosci.5808-12.2014: The Journal of Neuroscience 34(13) 4692-4707, print 2014 / issued 2014"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -10459,7 +11152,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/30037835/",
       "quote": "AID - 10.1523/JNEUROSCI.1920-17.2018 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -10471,7 +11165,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/30037835/",
       "quote": "IP  - 35"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -10483,7 +11178,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.1920-17.2018",
       "quote": "\"page\":\"7551-7558\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -10495,7 +11191,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/30037835/",
       "quote": "Beyond Trial-Based Paradigms: Continuous Behavior, Ongoing Neural Activity, and Natural Stimuli."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -10507,7 +11204,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/30037835/",
       "quote": "VI  - 38"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10542,7 +11240,21 @@
     "He"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.1920-17.2018: The Journal of Neuroscience 38(35) 7551-7558, print 2018 / issued 2018"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11106,7 +11818,7 @@
    "doi": "10.1523/jneurosci.0282-08.2008",
    "registered": true,
    "ra": "Crossref",
-   "title": "High-Frequency Stimulation of the Subthalamic Nucleus Suppresses Oscillatory   Activity in Patients with Parkinson's Disease in Parallel with Improvement in Motor Performance",
+   "title": "High-Frequency Stimulation of the Subthalamic Nucleus Suppresses Oscillatory Activity in Patients with Parkinson's Disease in Parallel with Improvement in Motor Performance",
    "subtitle": null,
    "container": "Journal of Neuroscience",
    "print_year": "2008",
@@ -11356,7 +12068,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11027240/",
       "quote": "FAU - Dostrovsky, J O"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -11368,7 +12081,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11027240/",
       "quote": "AID - 10.1523/JNEUROSCI.20-20-07766.2000 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -11380,7 +12094,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11027240/",
       "quote": "IP  - 20"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -11392,7 +12107,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.20-20-07766.2000",
       "quote": "\"page\":\"7766-7775\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11436,7 +12152,20 @@
     "Dostrovsky"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.20-20-07766.2000: The Journal of Neuroscience 20(20) 7766-7775, print 2000 / issued 2000"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11722,7 +12451,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/2593001/",
       "quote": "AID - 10.1523/JNEUROSCI.09-12-04253.1989 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11759,7 +12489,17 @@
     "Spencer"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.09-12-04253.1989: The Journal of Neuroscience 9(12) 4253-4268, print 1989 / issued 1989"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11788,7 +12528,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/20463210/",
       "quote": "AID - 10.1523/JNEUROSCI.6401-09.2010 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11826,7 +12567,17 @@
     "Miller"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.6401-09.2010: The Journal of Neuroscience 30(19) 6477-6479, print 2010 / issued 2010"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11854,7 +12605,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/8756444/",
       "quote": "AID - 10.1523/JNEUROSCI.16-16-05154.1996 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -11866,7 +12618,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/8756444/",
       "quote": "IP  - 16"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -11878,7 +12631,8 @@
       "url": "https://api.crossref.org/works/10.1523/jneurosci.16-16-05154.1996",
       "quote": "\"page\":\"5154-5167\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -11890,7 +12644,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/8756444/",
       "quote": "Neural mechanisms of visual working memory in prefrontal cortex of the macaque."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11925,7 +12680,20 @@
     "Desimone"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.16-16-05154.1996: The Journal of Neuroscience 16(16) 5154-5167, print 1996 / issued 1996"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -12581,7 +13349,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/12417678/",
       "quote": "Paul J Reber, Robert M Siwiec, Darren R Gitelman, Todd B Parrish, M-Marsel Mesulam, Ken A Paller"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -12593,7 +13362,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/12417678/",
       "quote": "J Neurosci. 2002 Nov 1;22(21):9541-8. doi: 10.1523/JNEUROSCI.22-21-09541.2002"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12634,7 +13404,18 @@
     "Paller"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.22-21-09541.2002: The Journal of Neuroscience 22(21) 9541-9548, print 2002 / issued 2002"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -13051,7 +13832,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16957073/",
       "quote": "J Neurosci. 2006 Sep 6;26(36):9162-72. doi: 10.1523/JNEUROSCI.2877-06.2006"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -13063,7 +13845,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16957073/",
       "quote": "J Neurosci. 2006 Sep 6;26(36):9162-72. doi: 10.1523/JNEUROSCI.2877-06.2006"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13096,7 +13879,18 @@
     "Davachi"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1523/jneurosci.2877-06.2006: The Journal of Neuroscience 26(36) 9162-9172, print 2006 / issued 2006"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -14238,7 +15032,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/12917744/",
       "quote": "The journal of nutrition, health &amp; aging"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -14250,7 +15045,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/12917744/",
       "quote": "Memory functions and focussed attention in middle-aged and elderly subjects are unaffected by a low, acute dose of caffeine."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14268,7 +15064,19 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "journal": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "PubMed 12917744: 'Memory functions and focussed attention in middle-aged and elderly subjects are unaffected by a low, acute dose of caffeine', J Nutr Health Aging 2003;7(5):301-3, same 5 authors; no DOI."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -14364,7 +15172,8 @@
       "url": "https://www.pdcnet.org/jphil/content/jphil_1995_0092_0007_0345_0381",
       "quote": "https://doi.org/10.2307/2941061"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14397,7 +15206,17 @@
     "Journal of Philosophy Inc."
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.2307/2941061: Journal of Philosophy 92(7) 345-381, print None / issued 1995"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -14425,7 +15244,8 @@
       "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
       "quote": "\"DOI\":\"10.1093\\/geronb\\/61.5.p278\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -14437,7 +15257,8 @@
       "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
       "quote": "\"container-title\":[\"The Journals of Gerontology Series B: Psychological Sciences and Social Sciences\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -14449,7 +15270,8 @@
       "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
       "quote": "\"issue\":\"5\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -14461,7 +15283,8 @@
       "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
       "quote": "\"page\":\"P278-P284\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -14473,7 +15296,8 @@
       "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
       "quote": "\"volume\":\"61\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14506,7 +15330,22 @@
     "Hasher"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Crossref 10.1093/geronb/61.5.p278: The Journals of Gerontology Series B: Psychological Sciences and Social Sciences 61(5) P278-P284, print 2006 / issued 2006"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -14722,7 +15561,7 @@
    "doi": "10.1080/14786440109462720",
    "registered": true,
    "ra": "Crossref",
-   "title": "LIII.\n                    On lines and planes of closest fit to systems of points in space",
+   "title": "LIII. On lines and planes of closest fit to systems of points in space",
    "subtitle": null,
    "container": "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science",
    "print_year": "1901",
@@ -14856,7 +15695,18 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree"
+   },
+   "problems": [
+    "Set A reason: verdict ambiguous",
+    "Ambiguous is defensible: three Crossref versions of the New Palgrave Dictionary entry 'Mathematics of networks' disagree on pages; the user must pick the printed version."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -14876,6 +15726,21 @@
   },
   "final_changes": [
    {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.2174/1874387001408010011",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: DOI dropped by doi_title_mismatch",
+       "Crossref 10.2174/1874387001408010011: 'Comparison of FitBit® Ultra to ActiGraph™ GT1M for Assessment of Physical Activity in Young Adults During Treadmill Walking', Open Sports Medicine Journal 8(1) 11-15, 2014, authors Gusmer, Bosch, Watkins, Ostrem, Dengel - identical to the entry. The title check failed only on ®/™ vs {\\textregistered}/{\\texttrademark}."
+      ]
+     }
+    ],
+    "reviewer": "disagree (dropped but correct)"
+   },
+   {
     "field": "title",
     "current": "{Comparison of FitBit{\\textregistered} Ultra to ActiGraph{\\texttrademark} GT1M for Assessment of Physical Activity in Young Adults During Treadmill Walking}",
     "proposed": "Comparison of {FitBit}{\\textregistered} {Ultra} to {ActiGraph}{\\texttrademark} {GT1M} for assessment of physical activity in young adults during treadmill walking",
@@ -14885,7 +15750,8 @@
       "url": "https://benthamopen.com/ABSTRACT/TOSMJ-8-11",
       "quote": "Comparison of FitBit® Ultra to ActiGraph™ GT1M for Assessment of Physical Activity in Young Adults During Treadmill Walking"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14894,14 +15760,7 @@
    "target_base": "GusmEtal14",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "doi_title_mismatch",
-    "field": "doi",
-    "detail": "10.2174/1874387001408010011 is registered to 'Comparison of FitBit® Ultra to ActiGraph™ GT1M for Assessment of Physical Activity in Young Adults During Treadmill Walking' (Crossref), not this entry's title; DOI change dropped",
-    "action": "dropped"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.2174/1874387001408010011",
    "registered": true,
@@ -14931,7 +15790,21 @@
     "Dengel"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "disagree (dropped but correct)",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: DOI dropped by doi_title_mismatch",
+    "Crossref 10.2174/1874387001408010011: 'Comparison of FitBit® Ultra to ActiGraph™ GT1M for Assessment of Physical Activity in Young Adults During Treadmill Walking', Open Sports Medicine Journal 8(1) 11-15, 2014, authors Gusmer, Bosch, Watkins, Ostrem, Dengel - identical to the entry. The title check failed only on ®/™ vs {\\textregistered}/{\\texttrademark}."
+   ],
+   "suggested_value": {
+    "doi": "10.2174/1874387001408010011"
+   }
+  },
   "needs_user": false
  },
  {
@@ -15451,7 +16324,8 @@
       "url": "https://api.crossref.org/works/10.1111/tops.12404",
       "quote": "\"DOI\":\"10.1111\\/tops.12404\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -15463,7 +16337,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=30576066&retmode=xml",
       "quote": "<Issue>2</Issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -15479,7 +16354,8 @@
       "url": "https://api.crossref.org/works/10.1111/tops.12404",
       "quote": "\"page\":\"433-454\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -15491,7 +16367,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=30576066&retmode=xml",
       "quote": "The Flatland Fallacy: Moving Beyond Low-Dimensional Thinking."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -15503,7 +16380,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=30576066&retmode=xml",
       "quote": "<Volume>11</Volume>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -15515,7 +16393,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=30576066&retmode=xml",
       "quote": "<PubDate><Year>2019</Year>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -15557,7 +16436,24 @@
     "Chang"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename JollChan18 -> JollChan19",
+    "Crossref 10.1111/tops.12404: Topics in Cognitive Science 11(2) 433-454, print 2019 / issued 2018"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -16895,7 +17791,8 @@
       "url": "https://api.crossref.org/works/10.1090/s0002-9947-1993-1117215-0",
       "quote": "\"given\":\"W. S.\",\"family\":\"Tang\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -16907,7 +17804,8 @@
       "url": "https://api.crossref.org/works/10.1090/s0002-9947-1993-1117215-0",
       "quote": "\"DOI\":\"10.1090\\/s0002-9947-1993-1117215-0\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -16919,7 +17817,8 @@
       "url": "https://api.crossref.org/works/10.1090/s0002-9947-1993-1117215-0",
       "quote": "\"page\":\"639-654\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -16963,7 +17862,21 @@
     "Tang"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename GoodLee93 -> GoodEtal93",
+    "Crossref 10.1090/s0002-9947-1993-1117215-0: Transactions of the American Mathematical Society 338(2) 639-654, print 1993 / issued 1993"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -17195,7 +18108,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9374776&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.1152/ajpheart.1997.273.5.H2388</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -17207,7 +18121,8 @@
       "url": "https://api.crossref.org/works/10.1152/ajpheart.1997.273.5.h2388",
       "quote": "\"container-title\":[\"American Journal of Physiology-Heart and Circulatory Physiology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -17219,7 +18134,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9374776&retmode=xml",
       "quote": "<StartPage>H2388</StartPage><EndPage>H2395</EndPage>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -17233,7 +18149,7 @@
    "doi": "10.1152/ajpheart.1997.273.5.h2388",
    "registered": true,
    "ra": "Crossref",
-   "title": "Contributions of acetylcholine and nitric oxide  to forearm blood flow at exercise onset and recovery",
+   "title": "Contributions of acetylcholine and nitric oxide to forearm blood flow at exercise onset and recovery",
    "subtitle": null,
    "container": "American Journal of Physiology-Heart and Circulatory Physiology",
    "print_year": "1997",
@@ -17256,7 +18172,20 @@
     "Joyner"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Crossref 10.1152/ajpheart.1997.273.5.h2388: American Journal of Physiology-Heart and Circulatory Physiology 273(5) H2388-H2395, print 1997 / issued 1997"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -17292,7 +18221,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2781732&retmode=xml",
       "quote": "<LastName>Spinelli</LastName><ForeName>D</ForeName>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -17304,7 +18234,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2781732&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.1016/0042-6989(89)90006-0</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -17316,7 +18247,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2781732&retmode=xml",
       "quote": "<Issue>4</Issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -17328,7 +18260,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2781732&retmode=xml",
       "quote": "<Volume>29</Volume>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -17372,7 +18305,22 @@
     "Spinelli"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename BennBank89 -> BurrEtal89",
+    "Crossref 10.1016/0042-6989(89)90006-0: Vision Research 29(4) 419-431, print 1989 / issued 1989"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -17400,7 +18348,8 @@
       "url": "https://api.crossref.org/works/10.1016/0042-6989(91)90060-i",
       "quote": "\"DOI\":\"10.1016\\/0042-6989(91)90060-i\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -17412,7 +18361,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1891827&retmode=xml",
       "quote": "<Issue>7-8</Issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -17424,7 +18374,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1891827&retmode=xml",
       "quote": "<Volume>31</Volume>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -17457,7 +18408,19 @@
     "Sperling"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/0042-6989(91)90060-i: Vision Research 31(7-8) 1399-1415, print 1991 / issued 1991"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -17486,7 +18449,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11718797&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.1016/s0042-6989(01)00245-0</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -17498,7 +18462,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11718797&retmode=xml",
       "quote": "<Issue>25-26</Issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -17510,7 +18475,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11718797&retmode=xml",
       "quote": "Oculomotor behavior and perceptual strategies in complex tasks."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -17543,7 +18509,19 @@
     "Canosa"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/s0042-6989(01)00245-0: Vision Research 41(25-26) 3587-3596, print 2001 / issued 2001"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -17797,7 +18775,9 @@
       "quote": "Zeitschrift  für  Psychologie  und  Physiologie  der  Sinnesorgane."
      }
     ],
-    "normalised_from": "Zeitschrift f{\\\"u}r Psychologie und Physiologie der Sinnesorgane"
+    "normalised_from": "Zeitschrift f{\\\"u}r Psychologie und Physiologie der Sinnesorgane",
+    "normalised_by": "postcheck",
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -17813,7 +18793,8 @@
       "url": "https://archive.org/download/zeitschriftfrps25psycgoog/zeitschriftfrps25psycgoog_djvu.txt",
       "quote": "der  Verteilung  der  Wiederholungen 436"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -17829,7 +18810,8 @@
       "url": "https://archive.org/metadata/zeitschriftfrps25psycgoog",
       "quote": "\"volume\":\"14\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -17847,7 +18829,17 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "journal": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -17909,7 +18901,9 @@
       "quote": "Zeitschrift  für  Psychologie  und  Physiologie  der  Sinnesorgane."
      }
     ],
-    "normalised_from": "Zeitschrift f{\\\"u}r Psychologie und Physiologie der Sinnesorgane"
+    "normalised_from": "Zeitschrift f{\\\"u}r Psychologie und Physiologie der Sinnesorgane",
+    "normalised_by": "postcheck",
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -17921,7 +18915,8 @@
       "url": "https://archive.org/download/b28111916/b28111916_djvu.txt",
       "quote": "Experimentelle  Beiträge  zur  Lehre  vom  Gedächtnis"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -17933,7 +18928,8 @@
       "url": "https://archive.org/download/b28111916/b28111916_djvu.txt",
       "quote": "Ergänzungsband  1."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -17951,7 +18947,20 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "journal": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Researcher's Internet Archive OCR (b28111916) title page: 'Experimentelle Beiträge zur Lehre vom Gedächtnis', Ergänzungsband 1, Leipzig 1900: the cited English title is not a published translation, so the original is right."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -17981,7 +18990,8 @@
       "quote": "Zeitschrift  für  Psychologie  und  Physiologie  der  Sinnesorgane."
      }
     ],
-    "normalised_from": "Zeitschrift f{\\\"u}r Psychologie und Physiologie der Sinnesorgane"
+    "normalised_from": "Zeitschrift f{\\\"u}r Psychologie und Physiologie der Sinnesorgane",
+    "normalised_by": "postcheck"
    },
    {
     "field": "title",
@@ -18046,7 +19056,9 @@
       "quote": "Zeitschrift  für  Psychologie  und  Physiologie  der  Sinnesorgane."
      }
     ],
-    "normalised_from": "Zeitschrift f{\\\"u}r Psychologie und Physiologie der Sinnesorgane"
+    "normalised_from": "Zeitschrift f{\\\"u}r Psychologie und Physiologie der Sinnesorgane",
+    "normalised_by": "postcheck",
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -18062,7 +19074,8 @@
       "url": "https://archive.org/download/zeitschriftfrps02psycgoog/zeitschriftfrps02psycgoog_djvu.txt",
       "quote": "Experimenteller Beitrag zur Lehre von den Be- \ndingungen der Aufmerksamkeit"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -18086,7 +19099,18 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "journal": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -18113,7 +19137,24 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.3937848",
       "quote": "\"resourceTypeGeneral\":\"InteractiveResource\""
      }
-    ]
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "author",
+    "current": "L J Chang and J R Manning and C Baldassano and A {de la Vega} and G Fleetwood and L Geerlings and J Haxby and J Lahnakoski and C Parkinson and H Shappell and W M Shim and T Wager and T Yarkoni and Y Yeshurun and E Finn",
+    "proposed": "L J Chang and J R Manning and C Baldassano and A {de la Vega} and G Fleetwood and L Geerligs and J Haxby and J Lahnakoski and C Parkinson and H Shappell and W M Shim and T Wager and T Yarkoni and Y Yeshurun and E Finn",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+       "Surname hold keeps 'L Geerlings'; DataCite 10.5281/zenodo.3937848 creator is 'Geerligs, Linda' (the author's name is Geerligs). No other cdl.bib entry spells her name, so nothing in cdl.bib argues for 'Geerlings'.",
+       "DataCite 10.5281/zenodo.3937848: naturalistic-data-analysis/naturalistic_data_analysis: Version 1.0, 2020, version 1.0, Zenodo"
+      ]
+     }
+    ],
+    "reviewer": "disagree (surname hold keeps a misspelling)"
    },
    {
     "field": "doi",
@@ -18125,7 +19166,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.3937848",
       "quote": "\"doi\":\"10.5281/zenodo.3937848\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "howpublished",
@@ -18137,7 +19179,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.3937848",
       "quote": "\"relatedIdentifier\":\"https://github.com/naturalistic-data-analysis/naturalistic_data_analysis/tree/1.0\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -18149,7 +19192,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.3937848",
       "quote": "\"title\":\"naturalistic-data-analysis/naturalistic_data_analysis: Version 1.0\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -18161,14 +19205,7 @@
    "target_base": "ChanEtal20",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "surname_single_source",
-    "field": "author",
-    "detail": "surname 'geerlings' -> 'geerligs' rests on 1 source host(s) ['api.datacite.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'L Geerlings' is kept",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.5281/zenodo.3937848",
    "registered": true,
@@ -18211,8 +19248,28 @@
    "issued_year": "2020",
    "type": "InteractiveResource"
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "author": "disagree (surname hold keeps a misspelling)",
+    "doi": "agree",
+    "howpublished": "agree",
+    "journal": "agree (removal)",
+    "title": "agree",
+    "volume": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+    "Surname hold keeps 'L Geerlings'; DataCite 10.5281/zenodo.3937848 creator is 'Geerligs, Linda' (the author's name is Geerligs). No other cdl.bib entry spells her name, so nothing in cdl.bib argues for 'Geerlings'.",
+    "DataCite 10.5281/zenodo.3937848: naturalistic-data-analysis/naturalistic_data_analysis: Version 1.0, 2020, version 1.0, Zenodo"
+   ],
+   "suggested_value": {
+    "author": "L J Chang and J R Manning and C Baldassano and A {de la Vega} and G Fleetwood and L Geerligs and J Haxby and J Lahnakoski and C Parkinson and H Shappell and W M Shim and T Wager and T Yarkoni and Y Yeshurun and E Finn"
+   }
+  },
+  "needs_user": false
  },
  {
   "key": "Mann21b",
@@ -18238,7 +19295,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.5123310",
       "quote": "\"resourceTypeGeneral\":\"Software\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -18250,7 +19308,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.5123310",
       "quote": "\"doi\":\"10.5281/zenodo.5123310\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -18277,7 +19336,20 @@
    "issued_year": "2021",
    "type": "Software"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "doi": "agree",
+    "journal": "agree (removal)",
+    "volume": "agree (removal)"
+   },
+   "problems": [
+    "DataCite 10.5281/zenodo.5123310: Data Wrangler, 2021, version 0.1.1, Zenodo"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -18304,7 +19376,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.5136794",
       "quote": "\"resourceTypeGeneral\":\"InteractiveResource\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -18316,7 +19389,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.5136794",
       "quote": "\"doi\":\"10.5281/zenodo.5136794\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -18343,7 +19417,21 @@
    "issued_year": "2021",
    "type": "InteractiveResource"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "doi": "agree",
+    "journal": "agree (removal)",
+    "volume": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change",
+    "DataCite 10.5281/zenodo.5136794: Introduction to Programming for Psychological Scientists, 2021, version None, Zenodo"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -18370,7 +19458,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.1322068",
       "quote": "\"resourceTypeGeneral\":\"Software\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "author",
@@ -18498,7 +19587,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.1322068",
       "quote": "\"name\":\"Mai, Feng\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -18510,7 +19600,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.1322068",
       "quote": "\"doi\":\"10.5281/zenodo.1322068\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "howpublished",
@@ -18522,7 +19613,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.1322068",
       "quote": "\"relatedIdentifier\":\"https://github.com/amueller/word_cloud/tree/1.5.0\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -18534,7 +19626,8 @@
       "url": "https://api.datacite.org/dois/10.5281/zenodo.1322068",
       "quote": "\"title\":\"amueller/word_cloud: WordCloud 1.5.0\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -18619,7 +19712,24 @@
    "issued_year": "2018",
    "type": "Software"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "author": "agree",
+    "doi": "agree",
+    "howpublished": "agree",
+    "journal": "agree (removal)",
+    "title": "agree",
+    "volume": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+    "DataCite 10.5281/zenodo.1322068: amueller/word_cloud: WordCloud 1.5.0, 2018, version 1.5.0, Zenodo"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -18636,13 +19746,21 @@
    "ID": "AbdeEtal21"
   },
   "final_changes": [],
-  "removals": {},
+  "removals": {
+   "force": "not a BibTeX field (junk force = 'True')"
+  },
   "key_plan": {
    "current_key": "AbdeEtal21",
    "target_base": "AbdeEtal21",
    "action": "keep"
   },
   "flags": [
+   {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('REPLACEMENT CANDIDATE'): replacement is the user's decision",
+    "action": "flag"
+   },
    {
     "code": "needs_user",
     "field": "verdict",
@@ -18651,7 +19769,21 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "force": "disagree (junk field left in place)",
+    "verdict": "agree"
+   },
+   "problems": [
+    "Set A reason: verdict ambiguous",
+    "Verdict ambiguous is reasonable (bioRxiv 10.1101/2021.12.01.470530 now titled '...elicits detectable reactivation'; eLife 12:e84324 replacement candidate raised). The researcher noted the junk field 'Force = {True}' but the final entry keeps it (also on LiEtal24b and Amer23b outside the review set)."
+   ],
+   "suggested_value": {
+    "force": "remove"
+   }
+  },
   "needs_user": true
  },
  {
@@ -18849,7 +19981,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.jalz.2007.01.013",
       "quote": "\"DOI\":\"10.1016\\/j.jalz.2007.01.013\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -18861,7 +19994,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19595972&retmode=xml",
       "quote": "<Volume>3</Volume><Issue>2 Suppl</Issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -18873,7 +20007,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19595972&retmode=xml",
       "quote": "<StartPage>S30</StartPage><EndPage>S37</EndPage>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -18906,7 +20041,19 @@
     "Berchtold"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/j.jalz.2007.01.013: Alzheimer's &amp; Dementia 3(2S) None, print 2007 / issued 2007"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -19017,7 +20164,8 @@
       "url": "https://api.crossref.org/works/10.1176/ajp.67.1.37",
       "quote": "\"DOI\":\"10.1176\\/ajp.67.1.37\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -19029,7 +20177,8 @@
       "url": "https://archive.org/metadata/sim_american-journal-of-psychiatry_1910-07_67_1",
       "quote": "The American Journal of Insanity  1910-07: Vol 67 Iss 1"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -19062,7 +20211,18 @@
     "Rosanoff"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1176/ajp.67.1.37: American Journal of Psychiatry 67(1) 37-96, print 1910 / issued 1910"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -19089,42 +20249,18 @@
    "action": "keep"
   },
   "flags": [],
-  "doi_status": {
-   "doi": "10.1016/s0749-3797(98)00017-8",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "Relationship of Childhood Abuse and Household Dysfunction to Many of the Leading Causes of Death in Adults",
-   "subtitle": null,
-   "container": "American Journal of Preventive Medicine",
-   "print_year": "1998",
-   "online_year": null,
-   "issued_year": "1998",
-   "page": "245-258",
-   "volume": "14",
-   "issue": "4",
-   "type": "journal-article",
-   "authors": [
-    "Vincent J Felitti",
-    "Robert F Anda",
-    "Dale Nordenberg",
-    "David F Williamson",
-    "Alison M Spitz",
-    "Valerie Edwards",
-    "Mary P Koss",
-    "James S Marks"
+  "doi_status": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "verdict": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/s0749-3797(98)00017-8: American Journal of Preventive Medicine 14(4) 245-258, print 1998 / issued 1998"
    ],
-   "families": [
-    "Felitti",
-    "Anda",
-    "Nordenberg",
-    "Williamson",
-    "Spitz",
-    "Edwards",
-    "Koss",
-    "Marks"
-   ]
+   "suggested_value": {}
   },
-  "reviewer": null,
   "needs_user": false
  },
  {
@@ -19253,7 +20389,8 @@
       "url": "https://api.crossref.org/works/10.1176/appi.ajp.2008.08081201",
       "quote": "\"DOI\":\"10.1176\\/appi.ajp.2008.08081201\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -19265,7 +20402,8 @@
       "url": "https://api.crossref.org/works/10.1176/appi.ajp.2008.08081201",
       "quote": "\"page\":\"702-710\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -19314,7 +20452,18 @@
     "Fava"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1176/appi.ajp.2008.08081201: American Journal of Psychiatry 166(6) 702-710, print 2009 / issued 2009"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -19421,7 +20570,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1418869",
       "quote": "DO  - 10.2307/1418869"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -19433,7 +20583,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1418869",
       "quote": "IS  - 4"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -19471,7 +20622,18 @@
     "Attneave"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.2307/1418869: The American Journal of Psychology 63(4) 516, print 1950 / issued 1950"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -19609,7 +20771,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1419785",
       "quote": "DO  - 10.2307/1419785"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -19621,7 +20784,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1419785",
       "quote": "IS  - 3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -19661,7 +20825,18 @@
     "Thurlow"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.2307/1419785: The American Journal of Psychology 76(3) 436, print 1963 / issued 1963"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -20014,7 +21189,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1422530",
       "quote": "DO  - 10.2307/1422530"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -20026,7 +21202,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1422530",
       "quote": "IS  - 3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -20066,7 +21243,18 @@
     "Crowder"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.2307/1422530: The American Journal of Psychology 97(3) 441, print 1984 / issued 1984"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -21335,7 +22523,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1420207",
       "quote": "DO  - 10.2307/1420207"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -21347,7 +22536,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1420207",
       "quote": "IS  - 1"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -21387,7 +22577,18 @@
     "Heimer"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.2307/1420207: The American Journal of Psychology 72(1) 1, print 1959 / issued 1959"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -21414,7 +22615,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1421465",
       "quote": "DO  - 10.2307/1421465"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -21426,7 +22628,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1421465",
       "quote": "IS  - 4"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -21438,7 +22641,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1421465",
       "quote": "VL  - 89"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -21478,7 +22682,19 @@
     "Biederman"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.2307/1421465: The American Journal of Psychology 89(4) 669, print 1976 / issued 1976"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -21600,7 +22816,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1421923",
       "quote": "DO  - 10.2307/1421923"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -21612,7 +22829,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1421923",
       "quote": "IS  - 2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -21652,7 +22870,18 @@
     "Nelson"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.2307/1421923: The American Journal of Psychology 92(2) 257, print 1979 / issued 1979"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -21680,7 +22909,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1422957",
       "quote": "DO  - 10.2307/1422957"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -21692,7 +22922,8 @@
       "url": "https://www.jstor.org/citation/ris/10.2307/1422957",
       "quote": "IS  - 2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -21734,7 +22965,18 @@
     "Sechler"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.2307/1422957: The American Journal of Psychology 102(2) 265, print 1989 / issued 1989"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -22335,7 +23577,8 @@
       "url": "https://api.crossref.org/works/10.1080/09541449408520140",
       "quote": "\"DOI\":\"10.1080\\/09541449408520140\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -22347,7 +23590,8 @@
       "url": "https://api.crossref.org/works/10.1080/09541449408520140",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -22363,7 +23607,8 @@
       "url": "https://api.crossref.org/works/10.1080/09541449408520140",
       "quote": "know\\u201d responses following a highly perceptual orienting task"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -22396,7 +23641,19 @@
     "Gardiner"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1080/09541449408520140: European Journal of Cognitive Psychology 6(2) 131-147, print 1994 / issued 1994"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -22620,7 +23877,8 @@
       "url": "https://api.crossref.org/works/10.1080/09541449508520154",
       "quote": "\"given\":\"C. A. Gordon\",\"family\":\"Hayman\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -22632,7 +23890,8 @@
       "url": "https://api.crossref.org/works/10.1080/09541449508520154",
       "quote": "\"DOI\":\"10.1080\\/09541449508520154\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -22644,7 +23903,8 @@
       "url": "https://api.crossref.org/works/10.1080/09541449508520154",
       "quote": "\"issue\":\"1\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -22656,7 +23916,8 @@
       "url": "https://api.crossref.org/works/10.1080/09541449508520154",
       "quote": "\"title\":[\"On the measurement of priming: What is the correct baseline?\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -22689,7 +23950,20 @@
     "Hayman"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1080/09541449508520154: European Journal of Cognitive Psychology 7(1) 13-18, print 1995 / issued 1995"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -22718,7 +23992,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=33942394&rettype=medline&retmode=text",
       "quote": "10.1111/ejn.15264 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -22730,7 +24005,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=33942394&rettype=medline&retmode=text",
       "quote": "IP  - 11-12"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -22746,7 +24022,8 @@
       "url": "https://api.crossref.org/works/10.1111/ejn.15264",
       "quote": "\"published-print\":{\"date-parts\":[[2022,6]]}"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -22790,7 +24067,21 @@
     "Melcher"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename BaleEtal21 -> BaleEtal22",
+    "Crossref 10.1111/ejn.15264: European Journal of Neuroscience 55(11-12) 3040-3053, print 2022 / issued 2021"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -23091,7 +24382,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15182317&rettype=medline&retmode=text",
       "quote": "AU  - Rektor I"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -23103,7 +24395,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15182317&rettype=medline&retmode=text",
       "quote": "10.1111/j.0953-816X.2004.03431.x [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -23115,7 +24408,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15182317&rettype=medline&retmode=text",
       "quote": "IP  - 11"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -23171,7 +24465,22 @@
     "Ivan"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename ClauEtal04 -> BabiEtal04",
+    "PubMed 15182317 (efetch): Babiloni C, Bares M, Vecchio F, Brazdil M, Jurak P, Moretti DV, Ubaldi A, Rossini PM, Rektor I; Eur J Neurosci 2004 Jun;19(11):3088-98. Crossref still deposits the misprinted given-name-as-surname byline. BabiEtal04 free in HEAD.",
+    "Crossref 10.1111/j.0953-816x.2004.03431.x: European Journal of Neuroscience 19(11) 3088-3098, print 2004 / issued 2004"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -23346,7 +24655,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18657185&rettype=medline&retmode=text",
       "quote": "AU  - Brown P"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -23358,7 +24668,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18657185&rettype=medline&retmode=text",
       "quote": "10.1111/j.1460-9568.2008.06363.x [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -23374,7 +24685,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18657185&rettype=medline&retmode=text",
       "quote": "PG  - 1686-95"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -23438,7 +24750,21 @@
     "Brown"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename GaynEtal08 -> DoylEtal08",
+    "Crossref 10.1111/j.1460-9568.2008.06363.x: European Journal of Neuroscience 28(8) 1686-1695, print 2008 / issued 2008"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -23579,7 +24905,24 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr.2016.265",
       "quote": "\"type\":\"proceedings-article\""
      }
-    ]
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "booktitle",
+    "current": null,
+    "proposed": "{IEEE} Conference on Computer Vision and Pattern Recognition",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: ENTRYTYPE change",
+       "The researcher proposed booktitle '{IEEE} Conference on Computer Vision and Pattern Recognition'; the validator failed its quote (missing 'ieee'), so the booktitle was dropped, while the journal removal was still honoured. Final @inproceedings has neither journal nor booktitle. Crossref container: '2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)'.",
+       "Crossref 10.1109/cvpr.2016.265: 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR) None(None) 2414-2423, print 2016 / issued 2016"
+      ]
+     }
+    ],
+    "reviewer": "disagree (missing: @inproceedings left with no venue)"
    },
    {
     "field": "doi",
@@ -23591,11 +24934,12 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr.2016.265",
       "quote": "\"DOI\":\"10.1109\\/cvpr.2016.265\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
-   "journal": "@inproceedings has no journal (the researcher asked to remove it; not moved to booktitle)"
+   "journal": "@inproceedings has no journal (already given by the booktitle)"
   },
   "key_plan": {
    "current_key": "GatyEtal16",
@@ -23606,8 +24950,8 @@
    {
     "code": "quote_check_failed",
     "field": "booktitle",
-    "detail": "validator: booktitle not covered by its quotes (missing ['ieee']; failures [])",
-    "action": "held"
+    "detail": "validator: booktitle not covered by its quotes (missing ['ieee']; failures []); reviewer supplied the value (source reviewer)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -23635,8 +24979,25 @@
     "Bethge"
    ]
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "booktitle": "disagree (missing: @inproceedings left with no venue)",
+    "doi": "agree",
+    "journal": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change",
+    "The researcher proposed booktitle '{IEEE} Conference on Computer Vision and Pattern Recognition'; the validator failed its quote (missing 'ieee'), so the booktitle was dropped, while the journal removal was still honoured. Final @inproceedings has neither journal nor booktitle. Crossref container: '2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)'.",
+    "Crossref 10.1109/cvpr.2016.265: 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR) None(None) 2414-2423, print 2016 / issued 2016"
+   ],
+   "suggested_value": {
+    "booktitle": "{IEEE} Conference on Computer Vision and Pattern Recognition"
+   }
+  },
+  "needs_user": false
  },
  {
   "key": "IsolEtal17",
@@ -23662,7 +25023,24 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr.2017.632",
       "quote": "\"type\":\"proceedings-article\""
      }
-    ]
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "booktitle",
+    "current": null,
+    "proposed": "{IEEE} Conference on Computer Vision and Pattern Recognition",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: ENTRYTYPE change",
+       "Same as GatyEtal16: booktitle dropped on a quote failure ('ieee'), journal still removed; final entry has no venue. Crossref container: '2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)'.",
+       "Crossref 10.1109/cvpr.2017.632: 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR) None(None) 5967-5976, print 2017 / issued 2017"
+      ]
+     }
+    ],
+    "reviewer": "disagree (missing: @inproceedings left with no venue)"
    },
    {
     "field": "doi",
@@ -23674,11 +25052,12 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr.2017.632",
       "quote": "\"DOI\":\"10.1109\\/cvpr.2017.632\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
-   "journal": "@inproceedings has no journal (the researcher asked to remove it; not moved to booktitle)"
+   "journal": "@inproceedings has no journal (already given by the booktitle)"
   },
   "key_plan": {
    "current_key": "IsolEtal17",
@@ -23689,8 +25068,8 @@
    {
     "code": "quote_check_failed",
     "field": "booktitle",
-    "detail": "validator: booktitle not covered by its quotes (missing ['ieee']; failures [])",
-    "action": "held"
+    "detail": "validator: booktitle not covered by its quotes (missing ['ieee']; failures []); reviewer supplied the value (source reviewer)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -23720,8 +25099,25 @@
     "Efros"
    ]
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "booktitle": "disagree (missing: @inproceedings left with no venue)",
+    "doi": "agree",
+    "journal": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change",
+    "Same as GatyEtal16: booktitle dropped on a quote failure ('ieee'), journal still removed; final entry has no venue. Crossref container: '2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)'.",
+    "Crossref 10.1109/cvpr.2017.632: 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR) None(None) 5967-5976, print 2017 / issued 2017"
+   ],
+   "suggested_value": {
+    "booktitle": "{IEEE} Conference on Computer Vision and Pattern Recognition"
+   }
+  },
+  "needs_user": false
  },
  {
   "key": "LiEtal24a",
@@ -23746,7 +25142,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr52733.2024.00686",
       "quote": "\"type\":\"proceedings-article\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "author",
@@ -23786,7 +25183,24 @@
       "url": "https://openaccess.thecvf.com/content/CVPR2024/html/Li_DistriFusion_Distributed_Parallel_Inference_for_High-Resolution_Diffusion_Models_CVPR_2024_paper.html",
       "quote": "Muyang Li, Tianle Cai, Jiaxin Cao, Qinsheng Zhang, Han Cai, Junjie Bai, Yangqing Jia, Kai Li, Song Han"
      }
-    ]
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "booktitle",
+    "current": null,
+    "proposed": "{IEEE} Conference on Computer Vision and Pattern Recognition",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: ENTRYTYPE change",
+       "Same as GatyEtal16: no venue in the final entry. Crossref container '2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)'. Author change (M-Y Liu removed) confirmed: CVF open-access page lists 9 citation_author tags without Ming-Yu Liu, matching Crossref.",
+       "Crossref 10.1109/cvpr52733.2024.00686: 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) None(None) 7183-7193, print 2024 / issued 2024"
+      ]
+     }
+    ],
+    "reviewer": "disagree (missing: @inproceedings left with no venue)"
    },
    {
     "field": "doi",
@@ -23798,7 +25212,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr52733.2024.00686",
       "quote": "\"DOI\":\"10.1109\\/cvpr52733.2024.00686\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -23810,11 +25225,12 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr52733.2024.00686",
       "quote": "\"page\":\"7183-7193\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
-   "journal": "@inproceedings has no journal (the researcher asked to remove it; not moved to booktitle)"
+   "journal": "@inproceedings has no journal (already given by the booktitle)"
   },
   "key_plan": {
    "current_key": "LiEtal24a",
@@ -23825,8 +25241,8 @@
    {
     "code": "quote_check_failed",
     "field": "booktitle",
-    "detail": "validator: booktitle not covered by its quotes (missing ['ieee']; failures [])",
-    "action": "held"
+    "detail": "validator: booktitle not covered by its quotes (missing ['ieee']; failures []); reviewer supplied the value (source reviewer)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -23866,8 +25282,27 @@
     "Han"
    ]
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "author": "agree",
+    "booktitle": "disagree (missing: @inproceedings left with no venue)",
+    "doi": "agree",
+    "journal": "agree (removal)",
+    "pages": "agree"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change",
+    "Same as GatyEtal16: no venue in the final entry. Crossref container '2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)'. Author change (M-Y Liu removed) confirmed: CVF open-access page lists 9 citation_author tags without Ming-Yu Liu, matching Crossref.",
+    "Crossref 10.1109/cvpr52733.2024.00686: 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) None(None) 7183-7193, print 2024 / issued 2024"
+   ],
+   "suggested_value": {
+    "booktitle": "{IEEE} Conference on Computer Vision and Pattern Recognition"
+   }
+  },
+  "needs_user": false
  },
  {
   "key": "PimeEtal19",
@@ -23894,7 +25329,8 @@
       "url": "https://api.crossref.org/works/10.1109/msr.2019.00077",
       "quote": "\"type\":\"proceedings-article\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -23906,7 +25342,8 @@
       "url": "https://api.crossref.org/works/10.1109/msr.2019.00077",
       "quote": "\"container-title\":[\"2019 IEEE\\/ACM 16th International Conference on Mining Software Repositories (MSR)\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -23918,7 +25355,8 @@
       "url": "https://api.crossref.org/works/10.1109/msr.2019.00077",
       "quote": "\"DOI\":\"10.1109\\/msr.2019.00077\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -23958,7 +25396,22 @@
     "Freire"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "booktitle": "agree",
+    "doi": "agree",
+    "journal": "agree (removal)",
+    "volume": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change",
+    "Crossref 10.1109/msr.2019.00077: 2019 IEEE/ACM 16th International Conference on Mining Software Repositories (MSR) None(None) 507-517, print 2019 / issued 2019"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -24748,7 +26201,8 @@
       "url": "https://api.crossref.org/works/10.1109/t-c.1969.222678",
       "quote": "\"DOI\":\"10.1109\\/t-c.1969.222678\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -24779,7 +26233,17 @@
     "Sammon"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1109/t-c.1969.222678: IEEE Transactions on Computers C-18(5) 401-409, print 1969 / issued 1969"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -24882,7 +26346,8 @@
       "url": "https://api.crossref.org/works/10.1109/18.61115",
       "quote": "\"DOI\":\"10.1109\\/18.61115\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -24898,7 +26363,8 @@
       "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/Lin09.pdf#page=1",
       "quote": "IEEE TRANSACTIONS ON INFORMATION THEORY. VOL. 37, NO. I , JANUARY 1991"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -24938,7 +26404,20 @@
     "Lin"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename Lin09 -> Lin91",
+    "Crossref 10.1109/18.61115: IEEE Transactions on Information Theory 37(1) 145-151, print 1991 / issued 1991"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -24968,7 +26447,9 @@
       "url": "https://api.crossref.org/works/10.1109/tit.1967.1054010",
       "quote": "\"DOI\":\"10.1109\\/tit.1967.1054010\""
      }
-    ]
+    ],
+    "normalised_from": "10.1109/TIT.1967.1054010",
+    "normalised_by": "postcheck"
    }
   ],
   "removals": {},
@@ -24978,27 +26459,7 @@
    "action": "keep"
   },
   "flags": [],
-  "doi_status": {
-   "doi": "10.1109/tit.1967.1054010",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "Error bounds for convolutional codes and an asymptotically optimum decoding algorithm",
-   "subtitle": null,
-   "container": "IEEE Transactions on Information Theory",
-   "print_year": "1967",
-   "online_year": null,
-   "issued_year": "1967",
-   "page": "260-269",
-   "volume": "13",
-   "issue": "2",
-   "type": "journal-article",
-   "authors": [
-    "A. Viterbi"
-   ],
-   "families": [
-    "Viterbi"
-   ]
-  },
+  "doi_status": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -25019,6 +26480,22 @@
   },
   "final_changes": [
    {
+    "field": "author",
+    "current": "R L Calibrasi and P M B Vitanyi",
+    "proposed": "R L Cilibrasi and P M B Vitanyi",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: key rename CaliVita05 -> CaliVita07",
+       "Surname hold keeps 'R L Calibrasi'. Crossref 10.1109/tkde.2007.48 gives 'Rudi L. Cilibrasi'; arXiv cs/0412098 (export.arxiv.org API, same title) gives 'Rudi Cilibrasi' - a second host, so the single-source hold should release. Key should then be CiliVita07 (free in HEAD).",
+       "Crossref 10.1109/tkde.2007.48: IEEE Transactions on Knowledge and Data Engineering 19(3) 370-383, print 2007 / issued 2007"
+      ]
+     }
+    ],
+    "reviewer": "disagree (surname hold keeps a misspelling)"
+   },
+   {
     "field": "doi",
     "current": null,
     "proposed": "10.1109/tkde.2007.48",
@@ -25028,7 +26505,8 @@
       "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
       "quote": "\"DOI\":\"10.1109\\/tkde.2007.48\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -25040,28 +26518,28 @@
       "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
       "quote": "\"published-print\":{\"date-parts\":[[2007,3]]}"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
   "key_plan": {
    "current_key": "CaliVita05",
-   "target_base": "CaliVita07",
+   "target_base": "CiliVita07",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "CaliVita07"
+   "new_key": "CiliVita07",
+   "reviewer_key": {
+    "text": "CiliVita07",
+    "key": "CiliVita07"
+   },
+   "reviewer_agrees": true
   },
   "flags": [
    {
-    "code": "surname_single_source",
-    "field": "author",
-    "detail": "surname 'calibrasi' -> 'cilibrasi' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'R L Calibrasi' is kept",
-    "action": "held"
-   },
-   {
     "code": "key_rename",
     "field": "key",
-    "detail": "CaliVita05 -> CaliVita07 (key does not follow the corrected metadata)",
+    "detail": "CaliVita05 -> CiliVita07 (key does not follow the corrected metadata)",
     "action": "flag"
    }
   ],
@@ -25088,7 +26566,25 @@
     "Vitanyi"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "disagree (surname hold keeps a misspelling)",
+    "doi": "agree",
+    "key": "disagree (should follow the corrected surname)",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename CaliVita05 -> CaliVita07",
+    "Surname hold keeps 'R L Calibrasi'. Crossref 10.1109/tkde.2007.48 gives 'Rudi L. Cilibrasi'; arXiv cs/0412098 (export.arxiv.org API, same title) gives 'Rudi Cilibrasi' - a second host, so the single-source hold should release. Key should then be CiliVita07 (free in HEAD).",
+    "Crossref 10.1109/tkde.2007.48: IEEE Transactions on Knowledge and Data Engineering 19(3) 370-383, print 2007 / issued 2007"
+   ],
+   "suggested_value": {
+    "author": "R L Cilibrasi and P M B Vitanyi",
+    "key": "CiliVita07"
+   }
+  },
   "needs_user": true
  },
  {
@@ -25140,7 +26636,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15484881&rettype=medline&retmode=text",
       "quote": "FAU - Gail, Alexander M"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -25152,7 +26649,8 @@
       "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
       "quote": "\"DOI\":\"10.1109\\/tnn.2004.833130\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -25164,7 +26662,8 @@
       "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
       "quote": "\"issue\":\"5\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -25176,7 +26675,8 @@
       "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
       "quote": "Different Types of Signal Coupling in the Visual Cortex Related to Neural Mechanisms of Associative Processing and Perception"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -25217,7 +26717,21 @@
     "Saam"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Crossref 10.1109/tnn.2004.833130: IEEE Transactions on Neural Networks 15(5) 1039-1052, print 2004 / issued 2004"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -25356,7 +26870,8 @@
       "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
       "quote": "\"family\":\"Qiang Wu\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -25368,7 +26883,8 @@
       "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
       "quote": "\"DOI\":\"10.1109\\/tpami.2012.16\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -25416,7 +26932,20 @@
     "Qiang Wu"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename MaoEtal12 -> HughEtal12",
+    "Crossref 10.1109/tpami.2012.16: IEEE Transactions on Pattern Analysis and Machine Intelligence 34(11) 2147-2157, print 2012 / issued 2012"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -25443,7 +26972,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
       "quote": "\"type\":\"proceedings-article\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "author",
@@ -25471,7 +27001,8 @@
       "url": "https://pure.mpg.de/rest/items/item_1562571",
       "quote": "\"familyName\":\"Čadík\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -25483,7 +27014,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
       "quote": "\"name\":\"2011 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -25495,7 +27027,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
       "quote": "\"DOI\":\"10.1109\\/cvpr.2011.5995727\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -25507,7 +27040,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
       "quote": "\"page\":\"41-48\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -25546,7 +27080,23 @@
     "Seidel"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "author": "agree",
+    "booktitle": "agree",
+    "doi": "agree",
+    "journal": "agree (removal)",
+    "pages": "agree"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change",
+    "Crossref 10.1109/cvpr.2011.5995727: CVPR 2011 None(None) 41-48, print 2011 / issued 2011"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -25575,7 +27125,8 @@
       "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
       "quote": "\"DOI\":\"10.1109\\/tkde.2020.3028705\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -25587,7 +27138,8 @@
       "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
       "quote": "\"container-title\":[\"IEEE Transactions on Knowledge and Data Engineering\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -25599,7 +27151,8 @@
       "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
       "quote": "\"published-print\":{\"date-parts\":[[2022,8,1]]}"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -25651,7 +27204,21 @@
     "He"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "key": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename GuoEtal20 -> GuoEtal22; title/journal change naming a different wording, venue or version",
+    "Crossref 10.1109/tkde.2020.3028705: IEEE Transactions on Knowledge and Data Engineering 34(8) 3549-3568, print 2022 / issued 2022"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -25678,7 +27245,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
       "quote": "\"type\":\"proceedings-article\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -25690,7 +27258,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
       "quote": "\"name\":\"2008 IEEE Computer Society Conference on Computer Vision and Pattern Recognition Workshops (CVPR Workshops)\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -25702,7 +27271,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
       "quote": "\"DOI\":\"10.1109\\/cvprw.2008.4562956\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -25714,7 +27284,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
       "quote": "\"page\":\"1-8\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -25726,7 +27297,8 @@
       "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
       "quote": "\"published-print\":{\"date-parts\":[[2008,6]]}"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -25772,7 +27344,24 @@
     "Darrell"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "booktitle": "agree",
+    "doi": "agree",
+    "journal": "agree (removal)",
+    "key": "agree",
+    "pages": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename StonEtal18 -> StonEtal08; ENTRYTYPE change",
+    "Crossref 10.1109/cvprw.2008.4562956: 2008 IEEE Computer Society Conference on Computer Vision and Pattern Recognition Workshops None(None) 1-8, print 2008 / issued 2008"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -26284,7 +27873,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/9931268/",
       "quote": "10.1006/nimg.1998.0395"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -26296,7 +27886,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/9931268/",
       "quote": "Cortical surface-based analysis. I. Segmentation and surface reconstruction"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -26338,7 +27929,18 @@
     "Sereno"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1006/nimg.1998.0395: NeuroImage 9(2) 179-194, print 1999 / issued 1999"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -26375,7 +27977,8 @@
       "url": "https://api.crossref.org/works/10.1016/s1053-8119(02)00031-9",
       "quote": "\"given\":\"B.\",\"family\":\"Schott\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -26387,7 +27990,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/12595175/",
       "quote": "10.1016/s1053-8119(02)00031-9"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -26403,7 +28007,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/12595175/",
       "quote": "A multivariate, spatiotemporal analysis of electromagnetic time-frequency data of recognition memory"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -26448,7 +28053,19 @@
     "Heinze"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/s1053-8119(02)00031-9: NeuroImage 18(2) 185-197, print 2003 / issued 2003"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -26477,7 +28094,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23792985/",
       "quote": "10.1016/j.neuroimage.2013.06.049"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -26489,7 +28107,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.049",
       "quote": "Multifaceted roles for low-frequency oscillations in bottom-up and top-down processing during navigation and memory"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -26522,7 +28141,18 @@
     "Watrous"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/j.neuroimage.2013.06.049: NeuroImage 85(None) 667-677, print 2014 / issued 2014"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -26776,7 +28406,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16169748/",
       "quote": "Adam D Gerson, Lucas C Parra, Paul Sajda"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -26788,7 +28419,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16169748/",
       "quote": "10.1016/j.neuroimage.2005.06.026"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -26800,7 +28432,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2005.06.026",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -26816,7 +28449,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16169748/",
       "quote": "342-53"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -26851,7 +28485,20 @@
     "Sajda"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/j.neuroimage.2005.06.026: NeuroImage 28(2) 342-353, print 2005 / issued 2005"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -26877,7 +28524,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/20736071/",
       "quote": "10.1016/j.neuroimage.2010.08.028"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -26889,7 +28537,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -26901,7 +28550,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
       "quote": "\"page\":\"1715-1734\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -26913,7 +28563,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
       "quote": "High-resolution imaging of the fusiform face area (FFA) using multivariate non-linear classifiers shows diagnosticity for non-face categories"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -26925,7 +28576,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
       "quote": "\"volume\":\"54\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -26941,7 +28593,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/20736071/",
       "quote": "2011"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -26983,7 +28636,24 @@
     "Schmidt"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename HansSchm10 -> HansSchm11",
+    "Crossref 10.1016/j.neuroimage.2010.08.028: NeuroImage 54(2) 1715-1734, print 2011 / issued 2011"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -27009,7 +28679,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23769913/",
       "quote": "10.1016/j.neuroimage.2013.05.121"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -27021,7 +28692,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23769913/",
       "quote": "85 Pt 2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -27033,7 +28705,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.05.121",
       "quote": "\"page\":\"648-655\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -27045,7 +28718,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.05.121",
       "quote": "\"volume\":\"85\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -27057,7 +28731,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.05.121",
       "quote": "\"published-print\":{\"date-parts\":[[2014,1"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -27099,7 +28774,23 @@
     "Staudigl"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename HansStau13 -> HansStau14",
+    "Crossref 10.1016/j.neuroimage.2013.05.121: NeuroImage 85(None) 648-655, print 2014 / issued 2014"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -27243,7 +28934,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/29902585/",
       "quote": "10.1016/j.neuroimage.2018.06.016"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -27288,7 +28980,18 @@
     "Parra"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree (removal)"
+   },
+   "problems": [
+    "Crossref 10.1016/j.neuroimage.2018.06.016: NeuroImage 179(None) 79-91, print 2018 / issued 2018"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -27349,7 +29052,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.04.061",
       "quote": "\"given\":\"Mark E.\",\"family\":\"Bastin\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -27361,7 +29065,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
       "quote": "10.1016/j.neuroimage.2013.04.061"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -27373,7 +29078,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
       "quote": "Multi-site genetic analysis of diffusion images and voxelwise heritability analysis: a pilot project of the ENIGMA-DTI working group"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -27466,7 +29172,20 @@
     "Glahn"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree (removal)",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/j.neuroimage.2013.04.061: NeuroImage 81(None) 455-469, print 2013 / issued 2013"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -28641,6 +30360,22 @@
   },
   "final_changes": [
    {
+    "field": "author",
+    "current": "M {{van} Gerven} and E Maris and M Sperling and A Sharan and B Litt and C Anderson and G Baltuch and J Jacobs",
+    "proposed": "M A J {van Gerven} and E Maris and M Sperling and A Sharan and B Litt and C Anderson and G Baltuch and J Jacobs",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: title/journal change naming a different wording, venue or version",
+       "Identity accepted: PubMed 23298746 / Crossref give the same 8 authors, NeuroImage 70 223-232, 2013; the cited title matches no record. First author left as 'M {{van} Gerven}': Crossref gives 'Marcel A.J. van Gerven', so by the all-initials rule it should be 'M A J {van Gerven}' (and the doubled braces normalised).",
+       "Crossref 10.1016/j.neuroimage.2012.12.059: NeuroImage 70(None) 223-232, print 2013 / issued 2013"
+      ]
+     }
+    ],
+    "reviewer": "disagree (initials incomplete; not changed)"
+   },
+   {
     "field": "doi",
     "current": null,
     "proposed": "10.1016/j.neuroimage.2012.12.059",
@@ -28650,7 +30385,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
       "quote": "10.1016/j.neuroimage.2012.12.059 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -28662,7 +30398,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
       "quote": "PG  - 223-32"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -28674,7 +30411,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
       "quote": "Decoding the memorization of individual stimuli with direct human brain recordings."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -28686,7 +30424,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
       "quote": "VI  - 70"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -28731,7 +30470,25 @@
     "Jacobs"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "disagree (initials incomplete; not changed)",
+    "doi": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Identity accepted: PubMed 23298746 / Crossref give the same 8 authors, NeuroImage 70 223-232, 2013; the cited title matches no record. First author left as 'M {{van} Gerven}': Crossref gives 'Marcel A.J. van Gerven', so by the all-initials rule it should be 'M A J {van Gerven}' (and the doubled braces normalised).",
+    "Crossref 10.1016/j.neuroimage.2012.12.059: NeuroImage 70(None) 223-232, print 2013 / issued 2013"
+   ],
+   "suggested_value": {
+    "author": "M A J {van Gerven} and E Maris and M Sperling and A Sharan and B Litt and C Anderson and G Baltuch and J Jacobs"
+   }
+  },
   "needs_user": false
  },
  {
@@ -29173,7 +30930,8 @@
       "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
       "quote": "Equal contribution 1 OpenAI, San Francisco"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "institution",
@@ -29185,7 +30943,8 @@
       "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
       "quote": "Equal contribution 1 OpenAI, San Francisco"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -29200,7 +30959,21 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "institution": "agree",
+    "journal": "agree (removal)",
+    "number": "agree (removal)",
+    "volume": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -29293,7 +31066,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
       "quote": "10.1371/journal.pbio.0030141 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -29305,7 +31079,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
       "quote": "Ongoing spontaneous activity controls access to consciousness: a neuronal model for inattentional blindness."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -29317,7 +31092,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
       "quote": "DP  - 2005 May"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -29359,7 +31135,21 @@
     "Changeux"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "title": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename DehaChan06 -> DehaChan05",
+    "Crossref 10.1371/journal.pbio.0030141: PLoS Biology 3(5) e141, print None / issued 2005"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -29622,7 +31412,8 @@
       "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1006196",
       "quote": "\"DOI\":\"10.1371\\/journal.pcbi.1006196\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -29659,7 +31450,17 @@
     "Fransson"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1371/journal.pcbi.1006196: PLOS Computational Biology 14(5) e1006196, print None / issued 2018"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -29751,7 +31552,8 @@
       "quote": "Joanne C Van Slooten, Sara Jahfari, Tomas Knapen, Jan Theeuwes"
      }
     ],
-    "normalised_from": "J C Van Slooten and S Jahfari and T Knapen and J Theeuwes"
+    "normalised_from": "J C Van Slooten and S Jahfari and T Knapen and J Theeuwes",
+    "normalised_by": "postcheck"
    },
    {
     "field": "doi",
@@ -29841,7 +31643,8 @@
       "url": "https://api.crossref.org/works/10.1371/journal.pone.0035940",
       "quote": "\"DOI\":\"10.1371\\/journal.pone.0035940\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -29878,7 +31681,17 @@
     "Becker"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1371/journal.pone.0035940: PLoS ONE 7(5) e35940, print None / issued 2012"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -29907,7 +31720,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/26061528/",
       "quote": "Koshiro Inoue, Masahiro Okamoto, Junko Shibato, Min Chul Lee, Takashi Matsui, Randeep Rakwal, Hideaki Soya"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -29919,7 +31733,8 @@
       "url": "https://api.crossref.org/works/10.1371/journal.pone.0128720",
       "quote": "\"DOI\":\"10.1371\\/journal.pone.0128720\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -29931,7 +31746,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/26061528/",
       "quote": "PG - e0128720"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -29974,7 +31790,19 @@
     "Soya"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1371/journal.pone.0128720: PLOS ONE 10(6) e0128720, print None / issued 2015"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -30067,7 +31895,8 @@
       "url": "https://api.crossref.org/works/10.1371/journal.pone.0004338",
       "quote": "\"DOI\":\"10.1371\\/journal.pone.0004338\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -30079,7 +31908,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/19190760/",
       "quote": "Neuronal shot noise and Brownian 1/f2 behavior in the local field potential"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -30116,7 +31946,18 @@
     "Koch"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1371/journal.pone.0004338: PLoS ONE 4(2) e4338, print None / issued 2009"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -30309,7 +32150,8 @@
       "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
       "quote": "\"type\":\"proceedings-article\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -30321,7 +32163,8 @@
       "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
       "quote": "\"container-title\":[\"Proceedings of the 26th International Conference on World Wide Web\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -30333,7 +32176,8 @@
       "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
       "quote": "\"DOI\":\"10.1145\\/3038912.3052558\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -30370,7 +32214,21 @@
     "Callan"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "booktitle": "agree",
+    "doi": "agree",
+    "journal": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change",
+    "Crossref 10.1145/3038912.3052558: Proceedings of the 26th International Conference on World Wide Web None(None) 1271-1279, print 2017 / issued 2017"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -30438,6 +32296,12 @@
     "field": "author",
     "detail": "verdict 'correction' but author is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('PUBLISHED VERSION'): replacement is the user's decision",
+    "action": "flag"
    }
   ],
   "doi_status": {
@@ -30480,15 +32344,14 @@
    {
     "field": "author",
     "current": "D Cer and Y Yang and S Y Kong and N Hua and N Limtiaco and R St John and N Constant and M Guajardo-Cespedes and S Yuan and C Tar and Y-H Sung and B Strope and R Kurzweil",
-    "proposed": "D Cer and Y Yang and S-Y Kong and N Hua and N Limtiaco and R S John and N Constant and M Guajardo-Cespedes and S Yuan and C Tar and Y-H Sung and B Strope and R Kurzweil",
+    "proposed": "D Cer and Y Yang and S-Y Kong and N Hua and N Limtiaco and R St John and N Constant and M Guajardo-Cespedes and S Yuan and C Tar and Y-H Sung and B Strope and R Kurzweil",
     "source": "researcher",
     "evidence": [
      {
       "url": "https://arxiv.org/abs/1803.11175",
       "quote": "Daniel Cer , Yinfei Yang , Sheng-yi Kong , Nan Hua , Nicole Limtiaco , Rhomni St. John , Noah Constant , Mario Guajardo-Cespedes , Steve Yuan , Chris Tar , Yun-Hsuan Sung , Brian Strope , Ray Kurzweil"
      }
-    ],
-    "normalised_from": "D Cer and Y Yang and S-Y Kong and N Hua and N Limtiaco and R St John and N Constant and M Guajardo-Cespedes and S Yuan and C Tar and Y-H Sung and B Strope and R Kurzweil"
+    ]
    },
    {
     "field": "doi",
@@ -30579,7 +32442,8 @@
       "url": "https://arxiv.org/abs/2401.04088",
       "quote": "Lélio Renard Lavaud , Lucile Saulnier , Marie-Anne Lachaux , Pierre Stock , Sandeep Subramanian , Sophia Yang , Szymon Antoniak , Teven Le Scao , Théophile Gervet , Thibaut Lavril , Thomas Wang , Timothée Lacroix , William El Sayed"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -30591,7 +32455,8 @@
       "url": "https://arxiv.org/abs/2401.04088",
       "quote": "https://doi.org/10.48550/arXiv.2401.04088"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -30603,7 +32468,8 @@
       "url": "https://arxiv.org/abs/2401.04088",
       "quote": "arXiv:2401.04088"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -30690,7 +32556,20 @@
    "issued_year": "2024",
    "type": "Preprint"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "DataCite creators match all 26 names in order. 'E B Hanna' (Emma Bou Hanna) and 'L R Lavaud' (Lélio Renard Lavaud) are probably compound surnames {Bou Hanna}/{Renard Lavaud}; the researcher left them for review. Not counted as an error.",
+    "DataCite 10.48550/arxiv.2401.04088: Mixtral of Experts, 2024, version 1, arXiv"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -30819,13 +32698,22 @@
     ]
    }
   ],
-  "removals": {},
+  "removals": {
+   "force": "not a BibTeX field (junk force = 'True')"
+  },
   "key_plan": {
    "current_key": "LiEtal24b",
    "target_base": "LiEtal24",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('PUBLISHED VERSION'): replacement is the user's decision",
+    "action": "flag"
+   }
+  ],
   "doi_status": {
    "doi": "10.48550/arxiv.2405.02485",
    "registered": true,
@@ -30845,7 +32733,7 @@
    "type": "Preprint"
   },
   "reviewer": null,
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "LiuEtal24",
@@ -30871,7 +32759,8 @@
       "url": "https://arxiv.org/abs/2412.19437",
       "quote": "https://doi.org/10.48550/arXiv.2412.19437"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -30883,7 +32772,8 @@
       "url": "https://arxiv.org/abs/2412.19437",
       "quote": "arXiv:2412.19437"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -30895,7 +32785,8 @@
       "url": "https://arxiv.org/abs/2412.19437",
       "quote": "[v2] Tue, 18 Feb 2025"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -31338,7 +33229,22 @@
    "issued_year": "2024",
    "type": "Preprint"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "key": "agree",
+    "volume": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename LiuEtal24 -> LiuEtal25",
+    "arXiv API: 2412.19437v2 dated 2025-02-18, so 2025/LiuEtal25 is right (DataCite publicationYear 2024 is v1). arXiv byline begins with the corporate author 'DeepSeek-AI'; author left not_found.",
+    "DataCite 10.48550/arxiv.2412.19437: DeepSeek-V3 Technical Report, 2024, version 2, arXiv"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -31365,7 +33271,8 @@
       "url": "https://arxiv.org/abs/0712.0846",
       "quote": "Kai J. Miller , Larry B. Sorensen , Jeffrey G. Ojemann , Marcel den Nijs"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -31377,7 +33284,8 @@
       "url": "https://arxiv.org/abs/0712.0846",
       "quote": "https://doi.org/10.48550/arXiv.0712.0846"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -31389,7 +33297,8 @@
       "url": "https://arxiv.org/abs/0712.0846",
       "quote": "arXiv:0712.0846"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -31419,7 +33328,19 @@
    "issued_year": "2007",
    "type": "Preprint"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "DataCite 10.48550/arxiv.0712.0846: ECoG observations of power-law scaling in the human cortex, 2007, version 1, arXiv"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -31445,7 +33366,8 @@
       "url": "https://arxiv.org/abs/1407.3384",
       "quote": "https://doi.org/10.48550/arXiv.1407.3384"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -31457,7 +33379,8 @@
       "url": "https://arxiv.org/abs/1407.3384",
       "quote": "arXiv:1407.3384v2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -31481,7 +33404,19 @@
    "issued_year": "2014",
    "type": "Preprint"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "arXiv 1407.3384 latest v2 confirmed (DataCite version 2). Style only: the title keeps single quotes 'time oriented coarse graining' while GregGard94/SongWang05 in this wave were converted to ``...''.",
+    "DataCite 10.48550/arxiv.1407.3384: Why do we remember the past and not the future? The 'time oriented coarse graining' hypothesis, 2014, version 2, arXiv"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -31548,7 +33483,8 @@
       "url": "https://export.arxiv.org/api/query?id_list=1610.03914",
       "quote": "<name>Sanjeev Arora</name>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -31560,7 +33496,8 @@
       "url": "https://arxiv.org/abs/1610.03914",
       "quote": "https://doi.org/10.48550/arXiv.1610.03914"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -31572,7 +33509,8 @@
       "url": "https://arxiv.org/abs/1610.03914",
       "quote": "arXiv:1610.03914v3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -31588,7 +33526,8 @@
       "url": "https://arxiv.org/abs/1610.03914",
       "quote": "last revised 10 Apr 2017 (this version, v3)"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -31606,6 +33545,12 @@
     "code": "doi_record_conflict",
     "field": "year",
     "detail": "DataCite record of 10.48550/arxiv.1610.03914 is dated 2016, proposal 2017",
+    "action": "flag"
+   },
+   {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('REPLACEMENT CANDIDATE'): replacement is the user's decision",
     "action": "flag"
    },
    {
@@ -31649,7 +33594,24 @@
    "issued_year": "2016",
    "type": "Preprint"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree",
+    "pages": "agree (removal)",
+    "volume": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key rename VodrEtal16 -> VodrEtal17",
+    "arXiv API: latest version 1610.03914v3 updated 2017-04-10, so year 2017 and VodrEtal17 are right. NeuroImage 180:223-231 (2018) replacement candidate raised; needs_user set.",
+    "DataCite 10.48550/arxiv.1610.03914: Mapping Between fMRI Responses to Movies and their Natural Language Annotations, 2016, version 3, arXiv"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -31840,7 +33802,8 @@
       "url": "https://export.arxiv.org/api/query?id_list=2412.15115",
       "quote": "<name>Zihan Qiu</name>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -31852,7 +33815,8 @@
       "url": "https://arxiv.org/abs/2412.15115",
       "quote": "https://doi.org/10.48550/arXiv.2412.15115"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -31864,7 +33828,8 @@
       "url": "https://arxiv.org/abs/2412.15115",
       "quote": "arXiv:2412.15115v2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -31880,7 +33845,8 @@
       "url": "https://arxiv.org/abs/2412.15115",
       "quote": "last revised 3 Jan 2025 (this version, v2)"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -32010,7 +33976,23 @@
    "issued_year": "2024",
    "type": "Preprint"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree",
+    "volume": "agree",
+    "year": "agree"
+   },
+   "problems": [
+    "Set A reason: key collision YangEtal24 -> YangEtal25c",
+    "arXiv API: 2412.15115v2 dated 2025-01-03, so 2025 is right; YangEtal25a/b in HEAD are Lattica and Qwen3 (different works), so YangEtal25c is correct.",
+    "DataCite 10.48550/arxiv.2412.15115: Qwen2.5 Technical Report, 2024, version 2, arXiv"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -32343,7 +34325,15 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "verdict": "agree"
+   },
+   "problems": [],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -32421,7 +34411,8 @@
       "url": "https://api.crossref.org/works/10.7551/mitpress/1130.003.0016",
       "quote": "\"type\":\"book-chapter\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -32437,7 +34428,8 @@
       "url": "http://lx2.loc.gov:210/lcdb?version=1.1&operation=searchRetrieve&query=bath.title=%22advances%20in%20kernel%20methods%22&maximumRecords=3&recordSchema=mods",
       "quote": "<subTitle>support vector learning</subTitle>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -32449,7 +34441,8 @@
       "url": "https://api.crossref.org/works/10.7551/mitpress/1130.003.0016",
       "quote": "\"DOI\":\"10.7551\\/mitpress\\/1130.003.0016\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "editor",
@@ -32469,7 +34462,8 @@
       "url": "http://lx2.loc.gov:210/lcdb?version=1.1&operation=searchRetrieve&query=bath.title=%22advances%20in%20kernel%20methods%22&maximumRecords=3&recordSchema=mods",
       "quote": "Smola, Alexander J."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -32481,7 +34475,8 @@
       "url": "https://api.crossref.org/works/10.7551/mitpress/1130.003.0016",
       "quote": "Fast Training of Support Vector Machines Using Sequential Minimal Optimization"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -32533,7 +34528,24 @@
     "Platt"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "booktitle": "agree",
+    "doi": "agree",
+    "editor": "agree",
+    "journal": "agree (removal)",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: ENTRYTYPE change; title/journal change naming a different wording, venue or version",
+    "Accept the chapter reading: Crossref 10.7551/mitpress/1130.003.0016 is Platt's chapter 'Fast Training of Support Vector Machines Using Sequential Minimal Optimization' in Advances in Kernel Methods (MIT Press); the cited title is MSR-TR-98-14 (1998), but the cited book, editors, publisher and 1999 point to the chapter. Crossref print 1998-12 vs LoC c1999: 1999 kept, flagged for the user. Pages (usually 185--208) missing.",
+    "Crossref 10.7551/mitpress/1130.003.0016: Advances in Kernel Methods None(None) None, print 1998 / issued 1998"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -32550,7 +34562,9 @@
    "ID": "Amer23b"
   },
   "final_changes": [],
-  "removals": {},
+  "removals": {
+   "force": "not a BibTeX field (junk force = 'True')"
+  },
   "key_plan": {
    "current_key": "Amer23b",
    "target_base": "Amer23",
@@ -32584,7 +34598,8 @@
       "url": "http://lx2.loc.gov:210/lcdb?version=1.1&operation=searchRetrieve&query=bath.lccn=99044479&maximumRecords=1&recordSchema=mods",
       "quote": "<placeTerm type=\"text\">New York</placeTerm>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "edition",
@@ -32596,7 +34611,8 @@
       "url": "http://lx2.loc.gov:210/lcdb?version=1.1&operation=searchRetrieve&query=bath.lccn=99044479&maximumRecords=1&recordSchema=mods",
       "quote": "<edition>4th ed.</edition>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -32608,7 +34624,8 @@
       "url": "http://lx2.loc.gov:210/lcdb?version=1.1&operation=searchRetrieve&query=bath.lccn=99044479&maximumRecords=1&recordSchema=mods",
       "quote": "<namePart>McGraw-Hill, Health Professions Division</namePart>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -32619,7 +34636,17 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "address": "agree",
+    "edition": "agree",
+    "publisher": "agree"
+   },
+   "problems": [],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -32985,7 +35012,14 @@
    "target_base": "JainHuth18",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('REPLACEMENT CANDIDATE'): replacement is the user's decision",
+    "action": "flag"
+   }
+  ],
   "doi_status": {
    "doi": "10.1101/327601",
    "registered": true,
@@ -33010,7 +35044,7 @@
    ]
   },
   "reviewer": null,
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "GoldEtal21",
@@ -33160,7 +35194,8 @@
       "url": "https://www.biorxiv.org/content/10.1101/2020.12.02.403477v4",
       "quote": "<meta name=\"citation_author\" content=\"Uri Hasson\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -33172,7 +35207,8 @@
       "url": "https://www.biorxiv.org/content/10.1101/2020.12.02.403477v4",
       "quote": "<meta name=\"citation_doi\" content=\"10.1101/2020.12.02.403477\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -33184,7 +35220,8 @@
       "url": "https://www.biorxiv.org/content/10.1101/2020.12.02.403477v4",
       "quote": "Thinking ahead: spontaneous prediction in context as a keystone of language in humans and machines"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -33286,7 +35323,22 @@
     "Hasson"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "pages": "agree (removal)",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Crossref posted-content record carries the v4 title; researcher cites v4 (2021-09-30). Nature Neuroscience 2022 successor raised as a candidate (no registry relation) and needs_user is set.",
+    "Crossref 10.1101/2020.12.02.403477: openRxiv None(None) None, print None / issued 2020"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -33313,7 +35365,24 @@
       "url": "https://www.biorxiv.org/content/10.1101/523753v2",
       "quote": "<meta name=\"citation_doi\" content=\"10.1101/523753\""
      }
-    ]
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "needs_user",
+    "current": null,
+    "proposed": "True",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Set A reason: title/journal change naming a different wording, venue or version",
+       "Fields agree (latest bioRxiv v2 title; Crossref posted 2019-01-17). But Crossref relation is-preprint-of 10.1016/j.cub.2019.11.048 (Current Biology 2020), the researcher named it as a replacement candidate, and merged.json has needs_user=false with no flag, so the user's per-entry preprint->published decision is never asked.",
+       "Crossref 10.1101/523753: openRxiv None(None) None, print None / issued 2019"
+      ]
+     }
+    ],
+    "reviewer": "disagree (published replacement not surfaced)"
    },
    {
     "field": "title",
@@ -33325,7 +35394,8 @@
       "url": "https://www.biorxiv.org/content/10.1101/523753v2",
       "quote": "Single-neuron representations of spatial targets in humans"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -33336,7 +35406,14 @@
    "target_base": "TsitEtal19",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "other_version_named",
+    "field": null,
+    "detail": "the researcher's notes name another version ('Published version'): replacement is the user's decision",
+    "action": "flag"
+   }
+  ],
   "doi_status": {
    "doi": "10.1101/523753",
    "registered": true,
@@ -33382,8 +35459,25 @@
     "Jacobs"
    ]
   },
-  "reviewer": null,
-  "needs_user": false
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "needs_user": "disagree (published replacement not surfaced)",
+    "title": "agree",
+    "volume": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: title/journal change naming a different wording, venue or version",
+    "Fields agree (latest bioRxiv v2 title; Crossref posted 2019-01-17). But Crossref relation is-preprint-of 10.1016/j.cub.2019.11.048 (Current Biology 2020), the researcher named it as a replacement candidate, and merged.json has needs_user=false with no flag, so the user's per-entry preprint->published decision is never asked.",
+    "Crossref 10.1101/523753: openRxiv None(None) None, print None / issued 2019"
+   ],
+   "suggested_value": {
+    "needs_user": true
+   }
+  },
+  "needs_user": true
  },
  {
   "key": "DaviHink97",
@@ -33410,7 +35504,9 @@
       "url": "https://api.crossref.org/works/10.1017/cbo9780511802843",
       "quote": "Bootstrap Methods and their Application"
      }
-    ]
+    ],
+    "normalised_from": "10.1017/CBO9780511802843",
+    "normalised_by": "postcheck"
    }
   ],
   "removals": {},
@@ -33427,29 +35523,7 @@
     "action": "flag"
    }
   ],
-  "doi_status": {
-   "doi": "10.1017/cbo9780511802843",
-   "registered": true,
-   "ra": "Crossref",
-   "title": "Bootstrap Methods and their Application",
-   "subtitle": null,
-   "container": null,
-   "print_year": "1997",
-   "online_year": "2013",
-   "issued_year": "1997",
-   "page": null,
-   "volume": null,
-   "issue": null,
-   "type": "monograph",
-   "authors": [
-    "A. C. Davison",
-    "D. V. Hinkley"
-   ],
-   "families": [
-    "Davison",
-    "Hinkley"
-   ]
-  },
+  "doi_status": null,
   "reviewer": null,
   "needs_user": true
  },
@@ -33466,24 +35540,7 @@
    "ENTRYTYPE": "book",
    "ID": "PresEtal93"
   },
-  "final_changes": [
-   {
-    "field": "title",
-    "current": "Numerical recipes in {C}: {T}he art of scientific computing",
-    "proposed": "Numerical recipes in {C}: the art of scientific computing",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D94105607",
-      "quote": "Numerical recipes in C :"
-     },
-     {
-      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D94105607",
-      "quote": "the art of scientific computing /"
-     }
-    ]
-   }
-  ],
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "PresEtal93",
@@ -33492,6 +35549,18 @@
   },
   "flags": [
    {
+    "code": "ambiguous_identity_held",
+    "field": "title",
+    "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: title='Numerical recipes in {C}: the art of scientific computing'",
+    "action": "held"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): title='Numerical recipes in {C}: the art of scientific computing'",
+    "action": "flag"
+   },
+   {
     "code": "needs_user",
     "field": "verdict",
     "detail": "verdict ambiguous: user decision",
@@ -33499,7 +35568,18 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: verdict ambiguous",
+    "Ambiguous is defensible: LoC has the 1988 1st and 1992 2nd editions, no 1993 printing."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -33524,7 +35604,15 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "verdict": "agree"
+   },
+   "problems": [],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -33632,7 +35720,17 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree"
+   },
+   "problems": [
+    "Set A reason: verdict no_source"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -33736,7 +35834,8 @@
       "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D28003035",
       "quote": "New York,"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "author",
@@ -33752,7 +35851,8 @@
       "url": "https://api.crossref.org/works/10.1037/10940-000",
       "quote": "Hollingworth"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -33764,7 +35864,8 @@
       "url": "https://api.crossref.org/works/10.1037/10940-000",
       "quote": "Psychology: Its facts and principles."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -33795,7 +35896,19 @@
     "Hollingworth"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "address": "agree",
+    "author": "agree",
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/10940-000: D Appleton & Company None(None) None, print 1928 / issued 1928"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -33940,7 +36053,8 @@
       "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D83156861",
       "quote": "Edward R. Tufte."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -33963,7 +36077,21 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "key": "agree",
+    "number": "agree (removal)",
+    "volume": "agree (removal)"
+   },
+   "problems": [
+    "Set A reason: key rename TuftGrav83 -> Tuft83",
+    "LoC SRU record: 'The visual display of quantitative information / Edward R. Tufte', Cheshire, Conn.: Graphics Press, c1983 (single author). Graves-Morris and volume/number were spurious. Tuft83 free in HEAD; no other entry with this title."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -34218,7 +36346,8 @@
       "url": "https://api.crossref.org/works/10.1037/10039-000",
       "quote": "Plans and the structure of behavior."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -34260,7 +36389,19 @@
     "Pribram"
    ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "publisher": "uncertain (held, not changed)"
+   },
+   "problems": [
+    "Publisher left as cited ('Holt, Rinehart, and Winston', held field_not_found). Crossref 10.1037/10039-000 gives 'Henry Holt and Co'; LoC SRU record gives 'New York, Holt [1960]'. Later printings carry Holt, Rinehart and Winston, so this is left to the user rather than counted as an error; 'Henry Holt and Company' is the better-supported 1960 imprint.",
+    "Crossref 10.1037/10039-000: Henry Holt and Co None(None) None, print 1960 / issued 1960"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
