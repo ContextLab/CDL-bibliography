@@ -1,0 +1,1942 @@
+[
+ {
+  "key": "yCaj91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195065169.001.0001",
+   "quote": "\"title\":[\"Cajal's Degeneration and Regeneration of the Nervous System\"]",
+   "why": "Crossref record of the 1991 Oxford University Press edition (edited by J DeFelipe and E G Jones, translated by R M May) whose title is exactly the cited title."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S R {y Cajal}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195065169.001.0001",
+      "quote": "\"given\":\"Santiago Ramon y\",\"family\":\"Cajal\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{Cajal's} degeneration and regeneration of the nervous system",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195065169.001.0001",
+      "quote": "\"title\":[\"Cajal's Degeneration and Regeneration of the Nervous System\"]"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{Oxford} {University} Press",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195065169.001.0001",
+      "quote": "\"publisher\":\"Oxford University Press\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195065169.001.0001",
+      "quote": "\"published-print\":{\"date-parts\":[[1991,11,14]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/acprof:oso/9780195065169.001.0001",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195065169.001.0001",
+      "quote": "\"title\":[\"Cajal's Degeneration and Regeneration of the Nervous System\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Book-level DOI (Crossref type edited-book) resolves (handle API 200). Author kept as the house form S R {y Cajal} (compound particle surname Ramon y Cajal; no initials changed). Crossref also lists R M May (translator) as author and J DeFelipe and E G Jones as editors; the 1991 book is the DeFelipe/Jones edited translation of Cajal's 1913-1914 work, which is exactly the cited title. Editors not added (optional; could add Editor = {J DeFelipe and E G Jones})."
+ },
+ {
+  "key": "LeeWang08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/b978-0-12-374176-9.00031-2",
+   "quote": "\"title\":[\"Mechanisms for Stochastic Decision Making in the Primate Frontal Cortex\"]",
+   "why": "Crossref chapter record: Daeyeol Lee and Xiao-Jing Wang, pp. 481-501 in Neuroeconomics (Academic Press/Elsevier, first edition, ISBN 9780123741769), print 2009."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "D Lee and X-J Wang",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-374176-9.00031-2",
+      "quote": "\"given\":\"Daeyeol\",\"family\":\"Lee\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-374176-9.00031-2",
+      "quote": "\"given\":\"Xiao-Jing\",\"family\":\"Wang\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Neuroeconomics: decision making and the brain",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL24649902M.json",
+      "quote": "\"title\": \"Neuroeconomics\""
+     },
+     {
+      "url": "https://openlibrary.org/books/OL24649902M.json",
+      "quote": "\"subtitle\": \"Decision Making and the Brain\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "P W Glimcher and C F Camerer and E Fehr and R A Poldrack",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL24649902M.json",
+      "quote": "\"by_statement\": \"edited by Paul W. Glimcher, Colin F. Camerer, Ernst Fehr & Russell Alan Poldrack\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "481--501",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-374176-9.00031-2",
+      "quote": "\"page\":\"481-501\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Academic Press",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL24649902M.json",
+      "quote": "\"publishers\": [\"Academic Press\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-374176-9.00031-2",
+      "quote": "\"published-print\":{\"date-parts\":[[2009]]}"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL24649902M.json",
+      "quote": "\"publish_date\": \"2009\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/b978-0-12-374176-9.00031-2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-374176-9.00031-2",
+      "quote": "\"title\":[\"Mechanisms for Stochastic Decision Making in the Primate Frontal Cortex\"]"
+     }
+    ]
+   },
+   "chapter": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Year: the first edition is dated 2009 (Crossref published-print and Open Library), so the key would become LeeWang09 (no collision; not in cdl.bib). Author: Xiao-Jing gives hyphenated initials X-J (cdl.bib uses both X J Wang x15 and X-J Wang x7; house rule is hyphenated). Chapter title: Crossref gives only the main title; the subtitle \"single-neuron recording and circuit modeling\" could not be confirmed (ScienceDirect and the Internet Archive scan block scripts), so Chapter left alone. Entry is @inbook with Chapter + Title = book title; house form would be @incollection with Title = chapter and Booktitle = Neuroeconomics: Decision Making and the Brain - reviewer may convert. Not the 2014 second edition (ed. Glimcher and Fehr; its chapter DOI 10.1016/b978-0-12-416008-8.00026-7 is a different version). DOI handle resolves (200)."
+ },
+ {
+  "key": "SiegWhit75",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0065-2407(08)60007-5",
+   "quote": "\"title\":[\"The Development of Spatial Representations of Large-Scale Environments\"]",
+   "why": "Elsevier Crossref chapter record: Siegel and White, Advances in Child Development and Behavior volume 10, pp. 9-55, 1975."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A W Siegel and S H White",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0065-2407(08)60007-5",
+      "quote": "\"given\":\"Alexander W.\",\"family\":\"Siegel\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0065-2407(08)60007-5",
+      "quote": "\"given\":\"Sheldon H.\",\"family\":\"White\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "The development of spatial representations of large-scale environments",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0065-2407(08)60007-5",
+      "quote": "\"title\":[\"The Development of Spatial Representations of Large-Scale Environments\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Advances in Child Development and Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0065-2407(08)60007-5",
+      "quote": "\"container-title\":[\"Advances in Child Development and Behavior\",\"Advances in Child Development and Behavior Volume 10\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0065-2407(08)60007-5",
+      "quote": "\"Advances in Child Development and Behavior Volume 10\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "9--55",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0065-2407(08)60007-5",
+      "quote": "\"page\":\"9-55\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "H W Reese",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/search.json?isbn=9780120097104&fields=key,title,publisher,publish_place,editions,author_name",
+      "quote": "\"author_name\":[\"Hayne Reese\"]"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Academic Press",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/search.json?isbn=9780120097104&fields=key,title,publisher,publish_place,editions,author_name",
+      "quote": "\"publisher\":[\"Academic Press Inc.,U.S.\",\"Academic P\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/search.json?isbn=9780120097104&fields=key,title,publisher,publish_place,editions,author_name",
+      "quote": "\"publish_place\":[\"London\",\"New York\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1975",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0065-2407(08)60007-5",
+      "quote": "\"published-print\":{\"date-parts\":[[1975]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0065-2407(08)60007-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0065-2407(08)60007-5",
+      "quote": "\"title\":[\"The Development of Spatial Representations of Large-Scale Environments\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Adds hyphen in \"large-scale\", volume 10 and the DOI (handle resolves, 200). Editor Hayne W. Reese: OpenLibrary gives \"Hayne Reese\" (surname confirmed; initial W kept)."
+ },
+ {
+  "key": "ChenEtal15a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://papers.nips.cc/paper_files/paper/2015/hash/b3967a0e938dc2a6340e258630febd5a-Abstract.html",
+   "quote": "Advances in Neural Information Processing Systems 28 (NIPS 2015)",
+   "why": "NeurIPS proceedings page for the same title, same six authors, NIPS 2015 volume 28."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "P-H Chen and J Chen and Y Yeshurun and U Hasson and J V Haxby and P J Ramadge",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/file/b3967a0e938dc2a6340e258630febd5a-Paper.pdf",
+      "quote": "Po-Hsuan Chen1 , Janice Chen2 , Yaara Yeshurun2 , Uri Hasson2 , James V. Haxby3 , Peter J. Ramadge1"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A reduced-dimension {fMRI} shared response model",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2015/hash/b3967a0e938dc2a6340e258630febd5a-Abstract.html",
+      "quote": "A Reduced-Dimension fMRI Shared Response Model"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2015/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems}"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "C Cortes and N D Lawrence and D D Lee and M Sugiyama and R Garnett",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2015/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "editor = {C. Cortes and N. Lawrence and D. Lee and M. Sugiyama and R. Garnett}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "28",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2015/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "volume = {28}"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates, Inc.",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2015/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.}"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2015",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2015/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "year = {2015}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Author: the paper PDF prints James V. Haxby, so J V Haxby. Volume 28 added (NeurIPS record; 11 of 23 NeurIPS entries in cdl.bib carry Volume). Publisher: source prints \"Curran Associates, Inc.\"; cdl.bib has \"Incorporated\" here only, reviewer may keep either. Pages 460--468 could not be confirmed (NeurIPS site gives no pages; ACM DL and DBLP block scripts); left unchanged. Editors: source omits middle initials N D / D D; kept per never-drop rule. No duplicate of this work in cdl.bib."
+ },
+ {
+  "key": "MozeEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/6bc24fc1ab650b25b4114e93a98f1eba-Paper.pdf",
+   "quote": "Predicting the Optimal Spacing of Study: A Multiscale Context Model of Memory Michael C. Mozer",
+   "why": "The NeurIPS 2009 paper PDF has this title with Mozer, Pashler, Cepeda, Lindsey and Vul in the cited order."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M C Mozer and H Pashler and N Cepeda and R Lindsey and E Vul",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/6bc24fc1ab650b25b4114e93a98f1eba-Paper.pdf",
+      "quote": "Michael C. Mozer? , Harold Pashler† , Nicholas Cepeda◦ , Robert Lindsey? , & Ed Vul‡"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Predicting the optimal spacing of study: a multiscale context model of memory",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/6bc24fc1ab650b25b4114e93a98f1eba-Paper.pdf",
+      "quote": "Predicting the Optimal Spacing of Study: A Multiscale Context Model of Memory"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2009/file/6bc24fc1ab650b25b4114e93a98f1eba-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems}"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "Y Bengio and D Schuurmans and J Lafferty and C K I Williams and A Culotta",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2009/file/6bc24fc1ab650b25b4114e93a98f1eba-Bibtex.bib",
+      "quote": "editor = {Y. Bengio and D. Schuurmans and J. Lafferty and C. Williams and A. Culotta}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2009/file/6bc24fc1ab650b25b4114e93a98f1eba-Bibtex.bib",
+      "quote": "volume = {22}"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates, Inc.",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2009/file/6bc24fc1ab650b25b4114e93a98f1eba-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.}"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2009/file/6bc24fc1ab650b25b4114e93a98f1eba-Bibtex.bib",
+      "quote": "year = {2009}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Author order follows the paper PDF (Mozer first); the NeurIPS website/BibTeX list Pashler first (Pashler, Cepeda, Lindsey, Vul, Mozer) - a site metadata quirk, the PDF byline governs, so key MozeEtal09 stands. Volume 22 and publisher added from the NeurIPS record. Pages 1321--1329 not confirmable (NeurIPS gives no pages; ACM DL/DBLP block scripts); left unchanged. Editor C K I Williams kept (source abbreviates to C. Williams). No duplicate in cdl.bib."
+ },
+ {
+  "key": "SkagEtal93",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/1992/file/5dd9db5e033da9c6fb5ba83c7a7ebea9-Paper.pdf",
+   "quote": "An Information-Theoretic Approach to Deciphering the Hippocampal Code William E. Skaggs Bruce L. McNaughton Katalin M. Gothard Etan J. Markus",
+   "why": "NeurIPS proceedings PDF (NIPS 5) with the same title and all four cited authors."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "W E Skaggs and B L McNaughton and K M Gothard and E J Markus",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/1992/file/5dd9db5e033da9c6fb5ba83c7a7ebea9-Paper.pdf",
+      "quote": "William E. Skaggs Bruce L. McNaughton Katalin M. Gothard Etan J. Markus"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "An information-theoretic approach to deciphering the hippocampal code",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/1992/file/5dd9db5e033da9c6fb5ba83c7a7ebea9-Paper.pdf",
+      "quote": "An Information-Theoretic Approach to Deciphering the Hippocampal Code"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/1992/file/5dd9db5e033da9c6fb5ba83c7a7ebea9-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems}"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "S J Hanson and J D Cowan and C L Giles",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/1992/file/5dd9db5e033da9c6fb5ba83c7a7ebea9-Bibtex.bib",
+      "quote": "editor = {S. Hanson and J. Cowan and C. Giles}"
+     },
+     {
+      "url": "https://archive.org/download/advancesinneural0000unse_n3r1/advancesinneural0000unse_n3r1_marc.xml",
+      "quote": "<subfield code=\"a\">Hanson, Stephen José,</subfield> <subfield code=\"e\">Ed.</subfield>"
+     },
+     {
+      "url": "https://archive.org/download/advancesinneural0000unse_n3r1/advancesinneural0000unse_n3r1_marc.xml",
+      "quote": "<subfield code=\"a\">Giles, C. Lee,</subfield> <subfield code=\"e\">Ed.</subfield>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/1992/file/5dd9db5e033da9c6fb5ba83c7a7ebea9-Bibtex.bib",
+      "quote": "volume = {5}"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Morgan Kaufmann",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/advancesinneural0000unse_n3r1/advancesinneural0000unse_n3r1_marc.xml",
+      "quote": "<subfield code=\"b\">Morgan Kaufmann,</subfield> <subfield code=\"c\">1993.</subfield>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/advancesinneural0000unse_n3r1/advancesinneural0000unse_n3r1_marc.xml",
+      "quote": "<subfield code=\"b\">Morgan Kaufmann,</subfield> <subfield code=\"c\">1993.</subfield>"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL8606424M.json",
+      "quote": "\"publish_date\": \"April 1993\", \"publishers\": [\"Morgan Kaufmann Pub\"]"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "address": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "NeurIPS site dates the paper 1992 (conference year) and its BibTeX omits Markus, but the PDF byline has all four authors; the printed volume (Morgan Kaufmann, ISBN 1558602747) is dated 1993 by the Internet Archive MARC record and Open Library, so year 1993 stands (print year). Pages 1030--1037 and address San Mateo, CA not confirmable from a scriptable source; left unchanged. No duplicate in cdl.bib."
+ },
+ {
+  "key": "HalgEtal91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+   "quote": "TI  - Memory dysfunction in epilepsy patients as a derangement of normal physiology.",
+   "why": "PubMed 2003417: same title, same nine authors, Adv Neurol 1991;55:385-410."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E Halgren and J Stapleton and P Domalski and B E Swartz and A V Delgado-Escueta and G O Walsh and M Mandelkern and W Blahd and J Ropchan",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "AU  - Halgren E"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "AU  - Stapleton J"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "AU  - Domalski P"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "AU  - Swartz BE"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "AU  - Delgado-Escueta AV"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "AU  - Walsh GO"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "AU  - Mandelkern M"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "AU  - Blahd W"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "AU  - Ropchan J"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Memory dysfunction in epilepsy patients as a derangement of normal physiology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "TI  - Memory dysfunction in epilepsy patients as a derangement of normal physiology."
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Advances in Neurology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "JT  - Advances in neurology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "55",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "VI  - 55"
+     },
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22neurobehavioral%20problems%20in%20epilepsy%22",
+      "quote": "<subfield code=\"i\">.A276 vol. 55</subfield>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "385--410",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "PG  - 385-410"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2003417&rettype=medline&retmode=text",
+      "quote": "SO  - Adv Neurol. 1991;55:385-410."
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "D B Smith and D M Treiman and M R Trimble",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22neurobehavioral%20problems%20in%20epilepsy%22",
+      "quote": "editors, Dennis B. Smith, David M. Treiman, Michael R. Trimble."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Raven Press",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22neurobehavioral%20problems%20in%20epilepsy%22",
+      "quote": "<subfield code=\"a\">New York :</subfield> <subfield code=\"b\">Raven Press,</subfield> <subfield code=\"c\">c1991.</subfield>"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22neurobehavioral%20problems%20in%20epilepsy%22",
+      "quote": "<subfield code=\"a\">New York :</subfield> <subfield code=\"b\">Raven Press,</subfield>"
+     }
+    ]
+   }
+  },
+  "remove": [
+   "journal"
+  ],
+  "notes": "Advances in Neurology vol. 55 is the volume titled \"Neurobehavioral problems in epilepsy\" (LoC 90009111, RC321 .A276 vol. 55). Editors corrected: three editors with middle initials (Dennis B. Smith, David M. Treiman, Michael R. Trimble); the citation had only two. The stray Journal field duplicates Booktitle on an @incollection and is removed. Reviewer may prefer Booktitle = {Neurobehavioral Problems in Epilepsy} with the series in notes; kept Advances in Neurology as cited. No DOI (Crossref has none for this chapter). No duplicate in cdl.bib."
+ },
+ {
+  "key": "ElliAshb88",
+  "verdict": "no_source",
+  "identity": {
+   "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22affect%20cognition%20and%20social%20behavior%22",
+   "quote": "<subfield code=\"c\">edited by Klaus Fiedler, Joseph Forgas.</subfield>",
+   "why": "Only the host volume could be identified (LoC 87026602: Fiedler and Forgas, eds., Hogrefe, Toronto, 1988); the chapter itself was not found in a fetchable source."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "Affect, Cognition, and Social Behavior",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22affect%20cognition%20and%20social%20behavior%22",
+      "quote": "<subfield code=\"a\">Affect, cognition, and social behavior :</subfield>"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "K Fiedler and J P Forgas",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL2396812M.json",
+      "quote": "\"contributions\": [\"Fiedler, Klaus, 1951-\", \"Forgas, Joseph P.\"]"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Hogrefe",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22affect%20cognition%20and%20social%20behavior%22",
+      "quote": "<subfield code=\"b\">C.J. Hogrefe,</subfield> <subfield code=\"c\">c1988.</subfield>"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Toronto, Canada",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22affect%20cognition%20and%20social%20behavior%22",
+      "quote": "<subfield code=\"a\">Toronto ;</subfield>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22affect%20cognition%20and%20social%20behavior%22",
+      "quote": "<subfield code=\"b\">C.J. Hogrefe,</subfield> <subfield code=\"c\">c1988.</subfield>"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Chapter-level record not found: Crossref has no record (Hogrefe 1988), no reissue located, no local PDF, web search unavailable. Book-level: booktitle gains the serial comma as catalogued (full title adds \"new evidence and integrative attempts\"); editor Forgas gains middle initial P (Forgas, Joseph P.). Pages (not in the entry) not found. Toronto, Canada matches the 2 existing Toronto addresses in cdl.bib. No duplicate in cdl.bib."
+ },
+ {
+  "key": "CraiByrd82",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9_11",
+   "quote": "\"title\":[\"Aging and Cognitive Deficits\"]",
+   "why": "Springer Crossref chapter record by Fergus I. M. Craik and Mark Byrd in Aging and Cognitive Processes (Plenum 1982), pp. 191-211."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "F I M Craik and M Byrd",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9_11",
+      "quote": "\"given\":\"Fergus I. M.\",\"family\":\"Craik\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9_11",
+      "quote": "\"given\":\"Mark\",\"family\":\"Byrd\""
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "Aging and cognitive deficits: the role of attentional resources",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9_11",
+      "quote": "\"title\":[\"Aging and Cognitive Deficits\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Aging and Cognitive Processes: Advances in the Study of Communication and Affect",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9_11",
+      "quote": "\"container-title\":[\"Aging and Cognitive Processes\"]"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL3498010M.json",
+      "quote": "\"series\": [\"Advances in the study of communication and affect ;\", \"v. 8\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL3498010M.json",
+      "quote": "\"series\": [\"Advances in the study of communication and affect ;\", \"v. 8\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "F I M Craik and S Trehub",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9",
+      "quote": "\"given\":\"F. I. M.\",\"family\":\"Craik\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9",
+      "quote": "\"given\":\"Sandra\",\"family\":\"Trehub\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "191--211",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9_11",
+      "quote": "\"page\":\"191-211\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Plenum Press",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL3498010M.json",
+      "quote": "\"publishers\": [\"Plenum Press\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL3498010M.json",
+      "quote": "\"publish_places\": [\"New York\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1982",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9_11",
+      "quote": "\"published-print\":{\"date-parts\":[[1982]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-1-4684-4178-9_11",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9_11",
+      "quote": "\"title\":[\"Aging and Cognitive Deficits\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Only change: add DOI (handle resolves, 200). Title subtitle \"the role of attentional resources\" is not in the Crossref record (main title only) and the Springer page blocks scripts; title left alone. The booktitle combines the volume title and its series (Advances in the Study of Communication and Affect, v. 8); a reviewer may prefer booktitle \"Aging and Cognitive Processes\" with the series in notes."
+ },
+ {
+  "key": "Swet98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.sas.upenn.edu/~saul/invite4contents.html",
+   "quote": "13. John Swets <br> <I> Separating discrimination and decision in detection, recognition, and matters of life and death.</I>",
+   "why": "Table of contents of An Invitation to Cognitive Science, Volume 4 (posted by volume editor Sternberg), chapter 13 by Swets; the MIT Press Crossref chapter record has the same title."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J A Swets",
+    "evidence": [
+     {
+      "url": "https://www.sas.upenn.edu/~saul/invite4contents.html",
+      "quote": "13. John Swets"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Separating discrimination and decision in detection, recognition, and matters of life and death",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/3967.003.0016",
+      "quote": "\"title\":[\"Separating Discrimination and Decision in Detection, Recognition, and Matters of Life and Death\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "An Invitation to Cognitive Science: Methods, Models, and Conceptual Issues",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/3967.001.0001",
+      "quote": "\"title\":[\"An Invitation to Cognitive Science\"]"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/3967.001.0001",
+      "quote": "\"subtitle\":[\"Methods, Models, and Conceptual Issues\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://www.sas.upenn.edu/~saul/invite4contents.html",
+      "quote": "An Invitation to Cognitive Science, Volume 4: Methods, Models, and Conceptual Issues"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "D N Osherson and D Scarborough and S Sternberg",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/3967.001.0001",
+      "quote": "\"given\":\"Daniel N.\",\"family\":\"Osherson\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/3967.001.0001",
+      "quote": "\"given\":\"Don\",\"family\":\"Scarborough\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/3967.001.0001",
+      "quote": "\"given\":\"Saul\",\"family\":\"Sternberg\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/3967.003.0016",
+      "quote": "\"publisher\":\"The MIT Press\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/3967.001.0001",
+      "quote": "\"published-print\":{\"date-parts\":[[1998]]}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "635--702",
+    "evidence": [
+     {
+      "url": "https://www.sas.upenn.edu/~saul/",
+      "quote": "Pp. 703-863"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.7551/mitpress/3967.003.0016",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/3967.003.0016",
+      "quote": "\"title\":[\"Separating Discrimination and Decision in Detection, Recognition, and Matters of Life and Death\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Volume field held \"4:Methods, Models, and Conceptual Issues\"; split into volume 4 and the subtitle moved to the booktitle. Title gains the serial comma both sources print. Editors: Osherson is series editor, Scarborough and Sternberg edit volume 4 (Crossref lists all three); Osherson gains middle initial N. Pages not confirmed: no source gives Swets's range; the next chapter (Sternberg, ch. 14) starts at p. 703 per Sternberg's list, consistent with the cited end page 702. Address Cambridge, {MA} not separately sourced (left alone). DOI handle resolves (200)."
+ },
+ {
+  "key": "ChenGall84",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315802602-29/testing-geometric-power-animal-spatial-representation-ken-cheng-gallistel",
+   "quote": "Testing the Geometric Power of an Animal's Spatial Representation",
+   "why": "Taylor & Francis (Psychology Press) facsimile reissue page of the 1984 Erlbaum volume Animal Cognition: chapter by Ken Cheng and C. R. Gallistel, pp. 409-423."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K Cheng and C R Gallistel",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315802602-29/testing-geometric-power-animal-spatial-representation-ken-cheng-gallistel",
+      "quote": "citation_author\" content=\"Ken Cheng\""
+     },
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315802602-29/testing-geometric-power-animal-spatial-representation-ken-cheng-gallistel",
+      "quote": "citation_author\" content=\"C. R. Gallistel\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Testing the geometric power of an animal's spatial representation",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315802602-29/testing-geometric-power-animal-spatial-representation-ken-cheng-gallistel",
+      "quote": "Testing the Geometric Power of an Animal's Spatial Representation"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "409--423",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315802602-29/testing-geometric-power-animal-spatial-representation-ken-cheng-gallistel",
+      "quote": "&q;chapter&q;:{&q;pageStart&q;:&q;409&q;,&q;pageEnd&q;:&q;423&q;"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Animal Cognition",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=bath.isbn%3D0898593344",
+      "quote": "<subfield code=\"a\">Animal cognition :</subfield>"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "H L Roitblat and T G Bever and H S Terrace",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=bath.isbn%3D0898593344",
+      "quote": "edited by H.L. Roitblat, T.G. Bever, H.S. Terrace."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=bath.isbn%3D0898593344",
+      "quote": "<subfield code=\"b\">L. Erlbaum Associates,</subfield> <subfield code=\"c\">1984.</subfield>"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=bath.isbn%3D0898593344",
+      "quote": "<subfield code=\"a\">Hillsdale, N.J. :</subfield>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1984",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=bath.isbn%3D0898593344",
+      "quote": "<subfield code=\"b\">L. Erlbaum Associates,</subfield> <subfield code=\"c\">1984.</subfield>"
+     }
+    ]
+   }
+  },
+  "notes": "Title typo fixed ('peometric' -> geometric) and the missing word 'spatial' restored. Editor typo 'Roitblatm' fixed. Address 'New Jersey, {USA}' -> Hillsdale, {NJ} (LoC 83020714). Page range from the Routledge/Psychology Press 2014 facsimile reissue, which keeps the 1984 pagination (Part VI starts p. 407). No DOI proposed: the reissue chapter DOI 10.4324/9781315802602-29 does not resolve (handle 404). No duplicate in cdl.bib."
+ },
+ {
+  "key": "Wolf98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315784762-2/visual-search-jeremy-wolfe",
+   "quote": "fullName&q;:&q;Jeremy M. Wolfe",
+   "why": "Taylor & Francis page of the reissued Pashler (Ed.) Attention (Psychology Press, first published 1998): chapter 2 \"Visual Search\" by Jeremy M. Wolfe."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J M Wolfe",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315784762-2/visual-search-jeremy-wolfe",
+      "quote": "fullName&q;:&q;Jeremy M. Wolfe"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Visual search",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315784762-2/visual-search-jeremy-wolfe",
+      "quote": "citation_title\" content=\"Visual Search\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Attention",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/books/9781315784762",
+      "quote": "Pashler, H. (Ed.). (1998). Attention (1st ed.). Psychology Press."
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "H Pashler",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/books/9781315784762",
+      "quote": "Pashler, H. (Ed.). (1998). Attention (1st ed.). Psychology Press."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Psychology Press",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/books/9781315784762",
+      "quote": "Pashler, H. (Ed.). (1998). Attention (1st ed.). Psychology Press."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/books/9781315784762",
+      "quote": "firstPublishedYear&q;:&q;1998&q;"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "13--73",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315784762-2/visual-search-jeremy-wolfe",
+      "quote": "&q;chapter&q;:{&q;pageStart&q;:&q;13&q;,&q;pageEnd&q;:&q;73&q;"
+     }
+    ]
+   },
+   "address": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Pages 13--75 -> 13--73 per the Taylor & Francis record of the same 1998 volume (2016 ebook reissue keeps the print pagination; ch. 2 is pp. 13-73). Address London, UK not confirmed (catalogue records found give no place); left alone. No DOI proposed: reissue chapter DOI 10.4324/9781315784762-2 does not resolve (handle 404). No duplicate in cdl.bib."
+ },
+ {
+  "key": "CraiRabi84",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL21051163M.json",
+   "quote": "\"title\": \"Attention and performance X\"",
+   "why": "Only the host volume could be identified (Erlbaum 1984, eds Bouma and Bouwhuis); the chapter itself was not found in a fetchable source."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "Attention and Performance {X}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21051163M.json",
+      "quote": "\"title\": \"Attention and performance X\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "H Bouma and D G Bouwhuis",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21051163M.json",
+      "quote": "\"by_statement\": \"edited by Herman Bouma and Don G. Bouwhuis.\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21051163M.json",
+      "quote": "\"publishers\": [\"Erlbaum Associates\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1984",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21051163M.json",
+      "quote": "\"publish_date\": \"1984\""
+     }
+    ]
+   },
+   "address": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Chapter-level record not found: Crossref has no chapter records for this volume (Routledge reissued A&P VI/VII with chapter DOIs, not this one), Taylor & Francis pages not found for its ISBNs, the Internet Archive scan (if any) is lending-restricted, the local PDF library has no copy, and web search was unavailable. Book-level fields confirmed; booktitle in house form Attention and Performance {X} (Volume = {X} would then be redundant). Address conflict: this catalogue record (ISBN 0863770053, Erlbaum UK prefix) gives London, not Hillsdale, NJ; the US co-imprint may say Hillsdale, so address left alone for the reviewer. Subtitle of the volume: control of language processes. No duplicate in cdl.bib."
+ },
+ {
+  "key": "Dond69",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
+   "quote": "\"title\":[\"On the speed of mental processes\"]",
+   "why": "Crossref record: F.C. Donders, \"On the speed of mental processes\", Acta Psychologica 30, 412-431, 1969 - the Attention and Performance II volume (ed. W G Koster) that the citation names, with identical pages."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "article",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
+      "quote": "\"type\":\"journal-article\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "F C Donders",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
+      "quote": "\"given\":\"F.C.\",\"family\":\"Donders\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "On the speed of mental processes",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
+      "quote": "\"title\":[\"On the speed of mental processes\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Acta Psychologica",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
+      "quote": "\"container-title\":[\"Acta Psychologica\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "30",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
+      "quote": "\"volume\":\"30\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "412--431",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
+      "quote": "\"page\":\"412-431\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1969",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
+      "quote": "\"published-print\":{\"date-parts\":[[1969]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0001-6918(69)90065-1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0001-6918(69)90065-1",
+      "quote": "\"DOI\":\"10.1016\\/0001-6918(69)90065-1\",\"type\":\"journal-article\""
+     }
+    ]
+   }
+  },
+  "remove": [
+   "booktitle",
+   "editor",
+   "publisher",
+   "address"
+  ],
+  "notes": "Attention and Performance II (ed. W G Koster, North-Holland, 1969) was issued as Acta Psychologica volume 30; cdl.bib already cites a paper from the same volume as @article Acta Psychologica 30 (Ster69a, doi 10.1016/0001-6918(69)90055-9), so this follows house form: convert to @article and drop booktitle, editor, publisher, address. Same work either way (the 1969 English translation of Donders 1868/1869, translated by Koster); pages match exactly. DOI handle resolves (200). Key unchanged. No other Donders entry for this work in cdl.bib."
+ },
+ {
+  "key": "HashEtal99",
+  "verdict": "correction",
+  "remove": [
+   "journal"
+  ],
+  "identity": {
+   "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+   "quote": "\"title\":[\"Inhibitory Control, Circadian Arousal, and Age\"]",
+   "why": "MIT Press Crossref chapter record by Hasher, Zacks and May in Attention and Performance XVII (1999)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L Hasher and R T Zacks and C P May",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+      "quote": "\"given\":\"Lynn\",\"family\":\"Hasher\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+      "quote": "\"given\":\"Rose T.\",\"family\":\"Zacks\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+      "quote": "\"given\":\"Cynthia P.\",\"family\":\"May\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Inhibitory control, circadian arousal, and age",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+      "quote": "\"title\":[\"Inhibitory Control, Circadian Arousal, and Age\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Attention and Performance {XVII}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+      "quote": "\"container-title\":[\"Attention and Performance XVII\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "D Gopher and A Koriat",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.001.0001",
+      "quote": "\"given\":\"Daniel\",\"family\":\"Gopher\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.001.0001",
+      "quote": "\"given\":\"Asher\",\"family\":\"Koriat\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "653--675",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+      "quote": "\"page\":\"653-676\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+      "quote": "\"publisher\":\"The MIT Press\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Cambridge, {MA}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL22559273M.json",
+      "quote": "\"publish_places\": [\"Cambridge, Mass\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+      "quote": "\"published-print\":{\"date-parts\":[[1999,4,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.7551/mitpress/1480.003.0032",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+      "quote": "\"title\":[\"Inhibitory Control, Circadian Arousal, and Age\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Editor field was garbled (\"Gopher A\"): the editors are Daniel Gopher and Asher Koriat. The stray journal field is removed (chapter). Pages left alone: Crossref (MIT digital) says 653-676 vs cited 653-675; MIT digital ranges ran one page longer than the print range for RobeSter93 in this batch, so the print end page is unconfirmed. volume = 17 duplicates the XVII in the booktitle; left alone. DOI handle resolves (200)."
+ },
+ {
+  "key": "Shal75",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL21997272M.json",
+   "quote": "\"title\": \"Attention and performance V.\"",
+   "why": "Only the host volume could be identified (Academic Press 1975, eds Rabbitt and Dornic); the chapter itself was not found in a fetchable source."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "Attention and Performance {V}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21997272M.json",
+      "quote": "\"title\": \"Attention and performance V.\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "P M A Rabbitt and S Dornic",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21997272M.json",
+      "quote": "\"by_statement\": \"Edited by P. M. A. Rabbitt, and S. Dornic.\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Academic Press",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21997272M.json",
+      "quote": "\"publish_date\": \"1975\", \"publishers\": [\"Academic Press\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "London, {UK}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21997272M.json",
+      "quote": "\"publish_places\": [\"London\", \"New York\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1975",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21997272M.json",
+      "quote": "\"publish_date\": \"1975\", \"publishers\": [\"Academic Press\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Chapter-level record not found: Crossref has no chapter records for this volume (Routledge reissued A&P VI/VII with chapter DOIs, not this one), Taylor & Francis pages not found for its ISBNs, the Internet Archive scan (if any) is lending-restricted, the local PDF library has no copy, and web search was unavailable. Book-level fields confirmed. House form (5 of 8 A&P booktitles in cdl.bib) puts the roman numeral in the booktitle: Attention and Performance {V}, which would make Volume = {5} redundant (reviewer may remove it). Editor: BaddHitc77 in this batch uses Dorni{\\v{c}} from a MARC record; this catalogue record prints Dornic, so no accent proposed here. No duplicate in cdl.bib."
+ },
+ {
+  "key": "RaaiShif81b",
+  "verdict": "no_source",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL21051129M.json",
+   "quote": "\"title\": \"Attention and performance IX\"",
+   "why": "Only the host volume could be identified (Erlbaum 1981, eds Long and Baddeley); the chapter itself was not found in a fetchable source."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Attention and Performance {IX}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21051129M.json",
+      "quote": "\"title\": \"Attention and performance IX\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "J B Long and A D Baddeley",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21051129M.json",
+      "quote": "\"by_statement\": \"edited by John Long, Alan Baddeley ; associate editor, Phil Barnard ... [et al.].\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21051129M.json",
+      "quote": "\"publishers\": [\"Erlbaum Associates\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21051129M.json",
+      "quote": "\"publish_places\": [\"Hillsdale, NJ\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1981",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL21051129M.json",
+      "quote": "\"publish_date\": \"1981\""
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Chapter-level record not found: Crossref has no chapter records for this volume (Routledge reissued A&P VI/VII with chapter DOIs, not this one), Taylor & Francis pages not found for its ISBNs, the Internet Archive scan (if any) is lending-restricted, the local PDF library has no copy, and web search was unavailable. Book-level fields confirmed (LoC 81009735 via Open Library). A 2020 Taylor & Francis ebook reissue exists (ISBN 9781315792293) but its DOI 10.4324/9781315792293 does not resolve and no chapter pages were fetchable. No duplicate of this chapter in cdl.bib."
+ },
+ {
+  "key": "BaddHitc77",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL22002325M.json",
+   "quote": "\"title\": \"Attention and performance VI\", \"languages\"",
+   "why": "The 1977 Erlbaum volume (Hillsdale, N.J.; ed. Stanislav Dornic) is the cited book; the chapter itself (title, authors, pp. 647-667) is recorded by Crossref for Routledge's 2022 facsimile reissue of the same volume."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A D Baddeley and G J Hitch",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9781003309734-35",
+      "quote": "\"given\":\"Alan D.\",\"family\":\"Baddeley\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9781003309734-35",
+      "quote": "\"given\":\"Graham J.\",\"family\":\"Hitch\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Recency reexamined",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9781003309734-35",
+      "quote": "\"title\":[\"Recency Reexamined\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Attention and Performance {VI}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL22002325M.json",
+      "quote": "\"title\": \"Attention and performance VI\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4324/9781003309734-35",
+      "quote": "\"container-title\":[\"Attention and Performance VI\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "S Dorni{\\v{c}}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL22002325M.json",
+      "quote": "\"contributions\": [\"Dorni\\u010d, Stanislav.\"]"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL22002325M.json",
+      "quote": "\"by_statement\": \"edited by Stanislav Dornic.\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "647--667",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9781003309734-35",
+      "quote": "\"page\":\"647-667\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL22002325M.json",
+      "quote": "\"publishers\": [\"L. Erlbaum Associates\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Hillsdale, {NJ}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL22002325M.json",
+      "quote": "\"publish_places\": [\"Hillsdale, N.J\", \"New York\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1977",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL22002325M.json",
+      "quote": "\"publish_date\": \"1977\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change: editor accent (Dornič, as the catalogue MARC record and Routledge print it; house form of a caron is {\\v{c}} as in P{\\v{r}}ibram). No DOI added: the only DOI (10.4324/9781003309734-35) belongs to Routledge's 2022 reissue, a later printing; pagination 647-667 matches the cited original. Reviewer may add it if reissue DOIs are accepted."
+ },
+ {
+  "key": "Raai93",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0030",
+   "quote": "\"title\":[\"The Story of the Two-Store Model of Memory: Past Criticisms, Current Status, and Future Directions\"]",
+   "why": "MIT Press Crossref chapter record in Attention and Performance XIV, pages 467-488, sole author Raaijmakers, 1993."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J G W Raaijmakers",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0030",
+      "quote": "\"given\":\"Jeroen G. W.\",\"family\":\"Raaijmakers\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The story of the two-store model of memory: past criticisms, current status, and future directions",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0030",
+      "quote": "\"title\":[\"The Story of the Two-Store Model of Memory: Past Criticisms, Current Status, and Future Directions\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Attention and Performance {XIV}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0030",
+      "quote": "\"container-title\":[\"Attention and Performance XIV\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "D E Meyer and S Kornblum",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.001.0001",
+      "quote": "\"given\":\"David E.\",\"family\":\"Meyer\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.001.0001",
+      "quote": "\"given\":\"Sylvan\",\"family\":\"Kornblum\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "467--488",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0030",
+      "quote": "\"page\":\"467-488\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0030",
+      "quote": "\"publisher\":\"The MIT Press\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Cambridge, {MA}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL20727751M.json",
+      "quote": "\"publish_places\": [\"Cambridge, Mass\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0030",
+      "quote": "\"published-print\":{\"date-parts\":[[1993,4,13]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.7551/mitpress/1477.003.0030",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0030",
+      "quote": "\"title\":[\"The Story of the Two-Store Model of Memory: Past Criticisms, Current Status, and Future Directions\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Editor D Meyer gains his middle initial E (Crossref book record and OpenLibrary: David E. Meyer). DOI handle resolves (200)."
+ },
+ {
+  "key": "RobeSter93",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0038",
+   "quote": "\"title\":[\"The Meaning of Additive Reaction-Time Effects: Tests of Three Alternatives\"]",
+   "why": "MIT Press Crossref chapter record by Seth Roberts and Saul Sternberg in Attention and Performance XIV (1993)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Roberts and S Sternberg",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0038",
+      "quote": "\"given\":\"Seth\",\"family\":\"Roberts\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0038",
+      "quote": "\"given\":\"Saul\",\"family\":\"Sternberg\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "The meaning of additive reaction-time effects: tests of three alternatives",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0038",
+      "quote": "\"title\":[\"The Meaning of Additive Reaction-Time Effects: Tests of Three Alternatives\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Attention and Performance {XIV}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0038",
+      "quote": "\"container-title\":[\"Attention and Performance XIV\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "D E Meyer and S Kornblum",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.001.0001",
+      "quote": "\"given\":\"David E.\",\"family\":\"Meyer\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.001.0001",
+      "quote": "\"given\":\"Sylvan\",\"family\":\"Kornblum\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "611--653",
+    "evidence": [
+     {
+      "url": "https://www.sas.upenn.edu/~saul/",
+      "quote": "Cambridge, MA: M.I.T. Press. Pp. 611-653"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0038",
+      "quote": "\"publisher\":\"The MIT Press\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Cambridge, {MA}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL20727751M.json",
+      "quote": "\"publish_places\": [\"Cambridge, Mass\"]"
+     },
+     {
+      "url": "https://www.sas.upenn.edu/~saul/",
+      "quote": "Cambridge, MA: M.I.T. Press"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0038",
+      "quote": "\"published-print\":{\"date-parts\":[[1993,4,13]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.7551/mitpress/1477.003.0038",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0038",
+      "quote": "\"title\":[\"The Meaning of Additive Reaction-Time Effects: Tests of Three Alternatives\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Title fix: \"reaction-time\" hyphenated and the missing space after the colon restored. Pages: Crossref (MIT digital edition) gives 611-654, while co-author Sternberg's own publication list gives the print range Pp. 611-653; kept the cited 611--653 (print), reviewer may prefer 654. DOI handle resolves (200)."
+ }
+]
