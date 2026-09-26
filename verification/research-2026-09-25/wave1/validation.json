@@ -1,6 +1,8 @@
 {
  "network_requests": 0,
- "unverified_tls_urls": [],
+ "unverified_tls_urls": [
+  "https://memory.psych.upenn.edu/files/pages/pubs.html"
+ ],
  "entries": 200,
  "passing": 155,
  "by_verdict": {
@@ -7384,10 +7386,8 @@
     },
     "pages": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "560"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "year": {
