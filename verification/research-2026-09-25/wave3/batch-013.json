@@ -1,0 +1,1814 @@
+[
+ {
+  "key": "BrigEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/02699931.2018.1478280",
+   "quote": "\"title\":[\"How thinking about what could have been affects how we feel ",
+   "why": "Crossref record: same title, De Brigard, Hanna, St Jacques, Schacter, Cognition and Emotion (online 2018, print 2019)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "How thinking about what could have been affects how we feel about what was",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699931.2018.1478280",
+      "quote": "\"title\":[\"How thinking about what could have been affects how we feel about what was"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "F {De Brigard} and E Hanna and P L {St Jacques} and D L Schacter",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"De Brigard F\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Hanna E\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"St Jacques PL\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Schacter DL\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "33",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699931.2018.1478280",
+      "quote": "\"volume\":\"33\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
+      "quote": "\"volume\":\"33\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699931.2018.1478280",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "646--659",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699931.2018.1478280",
+      "quote": "\"page\":\"646-659\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
+      "quote": "\"pageInfo\":\"646-659\""
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699931.2018.1478280",
+      "quote": "\"published-print\":{\"date-parts\":[[2019"
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
+      "quote": "\"yearOfPublication\":2019"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/02699931.2018.1478280",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699931.2018.1478280",
+      "quote": "\"DOI\":\"10.1080\\/02699931.2018.1478280\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume held a DOI string; published in print 2019 (33(4):646-659), online 2018. Year change and first-author surname 'De Brigard' give new key DeBrEtal19 (not in HEAD cdl.bib; Brig12 is the only other De Brigard entry and is a different work, also written 'F D Brigard'). No duplicate of this work in cdl.bib."
+ },
+ {
+  "key": "MiraKihl05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/02699930500202967",
+   "quote": "\"title\":[\"Mood congruence in childhood and recent autobiographical mem",
+   "why": "Crossref record: same title, Miranda and Kihlstrom, Cognition & Emotion 19(7) 981-998, 2005."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Mood congruence in childhood and recent autobiographical memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699930500202967",
+      "quote": "\"title\":[\"Mood congruence in childhood and recent autobiographical memory"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R Miranda and J F Kihlstrom",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699930500202967",
+      "quote": "\"given\":\"Regina\",\"family\":\"Miranda\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699930500202967",
+      "quote": "\"given\":\"John\",\"family\":\"Kihlstrom\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699930500202967",
+      "quote": "\"volume\":\"19\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699930500202967",
+      "quote": "\"issue\":\"7\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "981--998",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699930500202967",
+      "quote": "\"page\":\"981-998\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699930500202967",
+      "quote": "\"published-print\":{\"date-parts\":[[2005"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/02699930500202967",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02699930500202967",
+      "quote": "\"DOI\":\"10.1080\\/02699930500202967\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; only the DOI is added. Crossref gives 'John' without the middle initial; F kept per the never-drop-an-initial rule (John F. Kihlstrom)."
+ },
+ {
+  "key": "CurrFrie04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.cogbrainres.2003.09.006",
+   "quote": "\"title\":[\"ERP old\\/new effects at different retention intervals in rece",
+   "why": "Crossref record: same title, Curran and Friedman, Cognitive Brain Research, January 2004, pp 107-120."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{ERP} old/new effects at different retention intervals in recency discrimination tasks",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogbrainres.2003.09.006",
+      "quote": "\"title\":[\"ERP old\\/new effects at different retention intervals in recency discrimination tasks"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "T Curran and W J Friedman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogbrainres.2003.09.006",
+      "quote": "\"given\":\"Tim\",\"family\":\"Curran\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogbrainres.2003.09.006",
+      "quote": "\"given\":\"William J\",\"family\":\"Friedman\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogbrainres.2003.09.006",
+      "quote": "\"volume\":\"18\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogbrainres.2003.09.006",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "107--120",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogbrainres.2003.09.006",
+      "quote": "\"page\":\"107-120\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogbrainres.2003.09.006",
+      "quote": "\"published-print\":{\"date-parts\":[[2004"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cogbrainres.2003.09.006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogbrainres.2003.09.006",
+      "quote": "\"DOI\":\"10.1016\\/j.cogbrainres.2003.09.006\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume was 8 (typo); the article is in vol 18 no 2."
+ },
+ {
+  "key": "DoveEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+   "quote": "\"title\":[\"Prefrontal cortex activation in task switching: an event-rel",
+   "why": "Crossref record: same title, Dove, Pollmann, Schubert, Wiggins, von Cramon, Cognitive Brain Research 9(1) 103-109, 2000."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Prefrontal cortex activation in task switching: an event-related {fMRI} study",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"title\":[\"Prefrontal cortex activation in task switching: an event-related fMRI study"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Dove and S Pollmann and T Schubert and C J Wiggins and D Y {von Cramon}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"given\":\"Anja\",\"family\":\"Dove\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"given\":\"Stefan\",\"family\":\"Pollmann\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"given\":\"Torsten\",\"family\":\"Schubert\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"given\":\"Christopher J.\",\"family\":\"Wiggins\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"given\":\"D.\",\"family\":\"Yves von Cramon\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"volume\":\"9\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "103--109",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"page\":\"103-109\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"published-print\":{\"date-parts\":[[2000"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0926-6410(99)00029-4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4",
+      "quote": "\"DOI\":\"10.1016\\/s0926-6410(99)00029-4\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref mis-splits D. Yves von Cramon (given 'D.', family 'Yves von Cramon'); the cited form D Y {von Cramon} is correct. Adds issue and DOI."
+ },
+ {
+  "key": "RuggEtal96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+   "quote": "\"title\":[\"Event-related potentials and the recollection of associative",
+   "why": "Crossref record: same title, Rugg, Schloerscheidt, Doyle, Cox, Patching, Cognitive Brain Research 4(4) 297-304, 1996."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Event-related potentials and the recollection of associative information",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"title\":[\"Event-related potentials and the recollection of associative information"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M D Rugg and A M Schloerscheidt and M C Doyle and C J C Cox and G R Patching",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"given\":\"Michael D.\",\"family\":\"Rugg\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"given\":\"Astrid M.\",\"family\":\"Schloerscheidt\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"given\":\"Michael C.\",\"family\":\"Doyle\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"given\":\"Catherine J.C.\",\"family\":\"Cox\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"given\":\"Geoffrey R.\",\"family\":\"Patching\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"volume\":\"4\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "297--304",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"page\":\"297-304\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"published-print\":{\"date-parts\":[[1996"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0926-6410(96)00067-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
+      "quote": "\"DOI\":\"10.1016\\/s0926-6410(96)00067-5\""
+     }
+    ]
+   }
+  },
+  "notes": "Last author surname was truncated ('Patchin' -> 'Patching'); middle initials added."
+ },
+ {
+  "key": "SandEtal98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0926-6410(98)00002-0",
+   "quote": "\"title\":[\"Males and females use different distal cues in a virtual env",
+   "why": "Crossref record: same title, Sandstrom, Kaufman, Huettel, Cognitive Brain Research 6(4) 351-360, 1998."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Males and females use different distal cues in a virtual environment navigation task",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(98)00002-0",
+      "quote": "\"title\":[\"Males and females use different distal cues in a virtual environment navigation task"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "N J Sandstrom and J Kaufman and S A Huettel",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1016/s0926-6410(98)00002-0%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Sandstrom NJ\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1016/s0926-6410(98)00002-0%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Kaufman J\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1016/s0926-6410(98)00002-0%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Huettel SA\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(98)00002-0",
+      "quote": "\"volume\":\"6\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(98)00002-0",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "351--360",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(98)00002-0",
+      "quote": "\"page\":\"351-360\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(98)00002-0",
+      "quote": "\"published-print\":{\"date-parts\":[[1998"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0926-6410(98)00002-0",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(98)00002-0",
+      "quote": "\"DOI\":\"10.1016\\/s0926-6410(98)00002-0\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref mis-splits Huettel (given 'Scott', family 'A. Huettel'); Europe PMC (PMID 9593991) gives Huettel SA. Adds issue and DOI."
+ },
+ {
+  "key": "Skan98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
+   "quote": "\"title\":[\"Evoked potential correlates of semantic meaning—A brain mapp",
+   "why": "Crossref record: same title, sole author Wolfgang Skrandies, Cognitive Brain Research 6(3) 173-183, 1998."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Evoked potential correlates of semantic meaning---a brain mapping study",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
+      "quote": "\"title\":[\"Evoked potential correlates of semantic meaning\\u2014A brain mapping study\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "Wolfgang Skrandies",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
+      "quote": "\"given\":\"Wolfgang\",\"family\":\"Skrandies\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
+      "quote": "\"volume\":\"6\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "173--183",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
+      "quote": "\"page\":\"173-183\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
+      "quote": "\"published-print\":{\"date-parts\":[[1998"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0926-6410(97)00033-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
+      "quote": "\"DOI\":\"10.1016\\/s0926-6410(97)00033-5\""
+     }
+    ]
+   }
+  },
+  "notes": "Surname misspelled (Skandries -> Skrandies), so key becomes Skra98 (not in HEAD cdl.bib). Title: em dash as '---', no space, lowercase after it. Related but different work: SkraChiu03 (Neuroscience Letters 2003)."
+ },
+ {
+  "key": "GautLogo00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/026432900380535",
+   "quote": "\"title\":[\"IS FACE RECOGNITION NOT SO UNIQUE AFTER ALL?",
+   "why": "Crossref record: same title, Gauthier and Logothetis, Cognitive Neuropsychology 17(1-3) 125-142, 2000."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Is face recognition not so unique after all?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432900380535",
+      "quote": "\"title\":[\"IS FACE RECOGNITION NOT SO UNIQUE AFTER ALL?"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "I Gauthier and N K Logothetis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432900380535",
+      "quote": "\"given\":\"Isabel\",\"family\":\"Gauthier\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432900380535",
+      "quote": "\"given\":\"Nikos K.\",\"family\":\"Logothetis\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432900380535",
+      "quote": "\"volume\":\"17\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1--3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432900380535",
+      "quote": "\"issue\":\"1-3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "125--142",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432900380535",
+      "quote": "\"page\":\"125-142\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432900380535",
+      "quote": "\"published-print\":{\"date-parts\":[[2000"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/026432900380535",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432900380535",
+      "quote": "\"DOI\":\"10.1080\\/026432900380535\""
+     }
+    ]
+   }
+  },
+  "notes": "Issue '1/2/3' rewritten as house range 1--3; DOI added."
+ },
+ {
+  "key": "KensScha99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/026432999380852",
+   "quote": "\"title\":[\"WHEN TRUE MEMORIES SUPPRESS FALSE MEMORIES: EFFECTS OF AGEIN",
+   "why": "Crossref record: same title, Kensinger and Schacter, Cognitive Neuropsychology 16(3-5) 399-415, 1999."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "When true memories suppress false memories: effects of ageing",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432999380852",
+      "quote": "\"title\":[\"WHEN TRUE MEMORIES SUPPRESS FALSE MEMORIES: EFFECTS OF AGEING"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "E A Kensinger and D L Schacter",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432999380852",
+      "quote": "\"given\":\"Elizabeth A.\",\"family\":\"Kensinger\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432999380852",
+      "quote": "\"given\":\"Daniel L.\",\"family\":\"Schacter\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432999380852",
+      "quote": "\"volume\":\"16\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3--5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432999380852",
+      "quote": "\"issue\":\"3-5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "399--415",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432999380852",
+      "quote": "\"page\":\"399-415\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432999380852",
+      "quote": "\"published-print\":{\"date-parts\":[[1999"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/026432999380852",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026432999380852",
+      "quote": "\"DOI\":\"10.1080\\/026432999380852\""
+     }
+    ]
+   }
+  },
+  "notes": "Surname misspelled (Kensington -> Kensinger); key KensScha99 unchanged."
+ },
+ {
+  "key": "SpinEtal88",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+   "quote": "\"title\":[\"Dementia, ageing, and the structure of human memory",
+   "why": "Crossref record: same work, Spinnler, Della Sala, Bandera, Baddeley, Cognitive Neuropsychology 5(2) 193-211, 1988."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Dementia, ageing, and the structure of human memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+      "quote": "\"title\":[\"Dementia, ageing, and the structure of human memory"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "H Spinnler and S {Della Sala} and R Bandera and A D Baddeley",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+      "quote": "\"given\":\"H.\",\"family\":\"Spinnler\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+      "quote": "\"given\":\"S. Della\",\"family\":\"Sala\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+      "quote": "\"given\":\"R.\",\"family\":\"Bandera\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+      "quote": "\"given\":\"Alan\",\"family\":\"Baddeley\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+      "quote": "\"volume\":\"5\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "193--211",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+      "quote": "\"page\":\"193-211\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+      "quote": "\"published-print\":{\"date-parts\":[[1988"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/02643298808252933",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02643298808252933",
+      "quote": "\"DOI\":\"10.1080\\/02643298808252933\""
+     }
+    ]
+   }
+  },
+  "notes": "Title spelling 'ageing' as published. Crossref mis-splits Della Sala (given 'S. Della', family 'Sala'); braced {Della Sala} kept. Crossref gives 'Alan' only; D kept (Alan D. Baddeley)."
+ },
+ {
+  "key": "Boro01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1006/cogp.2001.0748",
+   "quote": "\"title\":[\"Does Language Shape Thought?: Mandarin and English Speakers'",
+   "why": "Crossref record: same title, sole author Lera Boroditsky, Cognitive Psychology 43(1) 1-22, 2001."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Does language shape thought?: {M}andarin and {English} speakers' conceptions of time",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.2001.0748",
+      "quote": "\"title\":[\"Does Language Shape Thought?: Mandarin and English Speakers' Conceptions of Time"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L Boroditsky",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.2001.0748",
+      "quote": "\"given\":\"Lera\",\"family\":\"Boroditsky\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "43",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.2001.0748",
+      "quote": "\"volume\":\"43\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.2001.0748",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--22",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.2001.0748",
+      "quote": "\"page\":\"1-22\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.2001.0748",
+      "quote": "\"published-print\":{\"date-parts\":[[2001"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/cogp.2001.0748",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.2001.0748",
+      "quote": "\"DOI\":\"10.1006\\/cogp.2001.0748\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change: the published title has a colon after the question mark ('Thought?:'). DOI added."
+ },
+ {
+  "key": "DarwEtal72",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/0010-0285(72)90007-2",
+   "quote": "\"title\":[\"An auditory analogue of the sperling partial report procedur",
+   "why": "Crossref record: same title, Darwin, Turvey, Crowder, Cognitive Psychology 3(2) 255-267, 1972."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "An auditory analogue of the {Sperling} partial report procedure: evidence for brief auditory storage",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0010-0285(72)90007-2",
+      "quote": "\"title\":[\"An auditory analogue of the sperling partial report procedure: Evidence for brief auditory storage"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "Christopher J Darwin and M T Turvey and R G Crowder",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0010-0285(72)90007-2",
+      "quote": "\"given\":\"Christopher J.\",\"family\":\"Darwin\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0010-0285(72)90007-2",
+      "quote": "\"given\":\"Michael T.\",\"family\":\"Turvey\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0010-0285(72)90007-2",
+      "quote": "\"given\":\"Robert G.\",\"family\":\"Crowder\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0010-0285(72)90007-2",
+      "quote": "\"volume\":\"3\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0010-0285(72)90007-2",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "255--267",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0010-0285(72)90007-2",
+      "quote": "\"page\":\"255-267\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1972",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0010-0285(72)90007-2",
+      "quote": "\"published-print\":{\"date-parts\":[[1972"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0010-0285(72)90007-2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0010-0285(72)90007-2",
+      "quote": "\"DOI\":\"10.1016\\/0010-0285(72)90007-2\""
+     }
+    ]
+   }
+  },
+  "notes": "Crowder's initial was wrong (R C -> R G, Robert G. Crowder). 'Sperling' is a proper noun (George Sperling) so braced; Crossref prints it lowercase."
+ },
+ {
+  "key": "Ratc06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.cogpsych.2005.10.002",
+   "quote": "\"title\":[\"Modeling response signal and response time data☆",
+   "why": "Crossref record: same title, sole author Ratcliff, Cognitive Psychology 53(3) 195-237, 2006."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Modeling response signal and response time data",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogpsych.2005.10.002",
+      "quote": "\"title\":[\"Modeling response signal and response time data"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Roger Ratcliff",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1016/j.cogpsych.2005.10.002%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Ratcliff R\",\"lastName\":\"Ratcliff\",\"firstName\":\"Roger\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "53",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogpsych.2005.10.002",
+      "quote": "\"volume\":\"53\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogpsych.2005.10.002",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "195--237",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogpsych.2005.10.002",
+      "quote": "\"page\":\"195-237\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogpsych.2005.10.002",
+      "quote": "\"published-print\":{\"date-parts\":[[2006"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cogpsych.2005.10.002",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cogpsych.2005.10.002",
+      "quote": "\"DOI\":\"10.1016\\/j.cogpsych.2005.10.002\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume '53(3)' split into volume 53 and number 3; DOI added."
+ },
+ {
+  "key": "SchoAnde97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1006/cogp.1997.0652",
+   "quote": "\"title\":[\"The Role of Process in the Rational Analysis of Memory",
+   "why": "Crossref record: same title, Schooler and Anderson, Cognitive Psychology 32(3) 219-250, 1997."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The role of process in the rational analysis of memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.1997.0652",
+      "quote": "\"title\":[\"The Role of Process in the Rational Analysis of Memory"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "L J Schooler and J R Anderson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.1997.0652",
+      "quote": "\"given\":\"Lael J.\",\"family\":\"Schooler\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.1997.0652",
+      "quote": "\"given\":\"John R.\",\"family\":\"Anderson\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "32",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.1997.0652",
+      "quote": "\"volume\":\"32\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.1997.0652",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "219--250",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.1997.0652",
+      "quote": "\"page\":\"219-250\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.1997.0652",
+      "quote": "\"published-print\":{\"date-parts\":[[1997"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/cogp.1997.0652",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/cogp.1997.0652",
+      "quote": "\"DOI\":\"10.1006\\/cogp.1997.0652\""
+     }
+    ]
+   }
+  },
+  "notes": "'JR Anderson' split into house initials 'J R Anderson'; DOI added."
+ },
+ {
+  "key": "ChiEtal01",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+   "quote": "\"title\":[\"Learning from human tutoring",
+   "why": "Crossref record for the cited DOI: same title, Chi, Siler, Jeong, Yamauchi, Hausmann, Cognitive Science 25(4) 471-533, 2001."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Learning from human tutoring",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"title\":[\"Learning from human tutoring"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M T H Chi and S A Siler and H Jeong and T Yamauchi and R G M Hausmann",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"given\":\"Michelene T.H.\",\"family\":\"Chi\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"given\":\"Stephanie A.\",\"family\":\"Siler\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"given\":\"Heisawn\",\"family\":\"Jeong\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"given\":\"Takashi\",\"family\":\"Yamauchi\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"given\":\"Robert G.\",\"family\":\"Hausmann\""
+     },
+     {
+      "url": "https://education.asu.edu/lcl/publications/chi-m-t-h-siler-s-jeong-h-yamauchi-t-hausmann-r-g-m-2001-learning-human-tutoring",
+      "quote": "Hausmann, R. G. M. (2001). Learning from human tutoring"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "25",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"volume\":\"25\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "471--533",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"page\":\"471-533\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"published-print\":{\"date-parts\":[[2001"
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.1207/s15516709cog2504_1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1207/s15516709cog2504_1",
+      "quote": "\"DOI\":\"10.1207\\/s15516709cog2504_1\""
+     }
+    ]
+   }
+  },
+  "notes": "All fields match. Crossref gives Hausmann as 'Robert G.'; the second initial M is supported by the Chi lab (ASU) publication page, and per house rule is not dropped."
+ },
+ {
+  "key": "FranEtal01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/cabn.1.2.137",
+   "quote": "\"title\":[\"Interactions between frontal cortex and basal ganglia in wor",
+   "why": "Crossref record: Frank, Loughry, O'Reilly, Cognitive, Affective, & Behavioral Neuroscience 1(2) 137-160, 2001; title differs only by 'the'."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Interactions between frontal cortex and basal ganglia in working memory: a computational model",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.1.2.137",
+      "quote": "\"title\":[\"Interactions between frontal cortex and basal ganglia in working memory: A computational model"
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.1.2.137%22&resultType=core&format=json",
+      "quote": "Interactions between frontal cortex and basal ganglia in working memory: a computational model"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.1.2.137",
+      "quote": "\"volume\":\"1\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.1.2.137",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "137--160",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.1.2.137",
+      "quote": "\"page\":\"137-160\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.1.2.137",
+      "quote": "\"published-print\":{\"date-parts\":[[2001"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/cabn.1.2.137",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.1.2.137",
+      "quote": "\"DOI\":\"10.3758\\/cabn.1.2.137\""
+     }
+    ]
+   }
+  },
+  "notes": "Title had an extra 'the' ('between the frontal cortex'). Author list is consistent with sources (Crossref and Europe PMC give M J Frank, B Loughry, R C O'Reilly), but the spelled-out given names Michael/Randall could not be confirmed from an acceptable fetchable source (Springer pages block scripts), so author left as is."
+ },
+ {
+  "key": "ThomEtal02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/cabn.2.2.109",
+   "quote": "\"title\":[\"Effects of frontal lobe damage on interference effects in wo",
+   "why": "Crossref record: same title, Thompson-Schill et al. (8 authors), Cognitive, Affective, & Behavioral Neuroscience 2(2) 109-120, 2002."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Effects of frontal lobe damage on interference effects in working memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.2.2.109",
+      "quote": "\"title\":[\"Effects of frontal lobe damage on interference effects in working memory"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "S L Thompson-Schill and J Jonides and C Marshuetz and E E Smith and M D'Esposito and I P Kan and R T Knight and D Swick",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.2.2.109%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Thompson-Schill SL\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.2.2.109%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Jonides J\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.2.2.109%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Marshuetz C\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.2.2.109%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Smith EE\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.2.2.109%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"D'Esposito M\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.2.2.109%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Kan IP\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.2.2.109%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Knight RT\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.2.2.109%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Swick D\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.2.2.109",
+      "quote": "\"volume\":\"2\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.2.2.109",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "109--120",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.2.2.109",
+      "quote": "\"page\":\"109-120\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.2.2.109",
+      "quote": "\"published-print\":{\"date-parts\":[[2002"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/cabn.2.2.109",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.2.2.109",
+      "quote": "\"DOI\":\"10.3758\\/cabn.2.2.109\""
+     }
+    ]
+   }
+  },
+  "notes": "Two authors were missing (R T Knight, D Swick); D'Esposito written in house form (plain D'Esposito, as elsewhere in cdl.bib). Author count 6 -> 8 keeps key ThomEtal02."
+ },
+ {
+  "key": "WageSmit03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.3.4.255%22&resultType=core&format=json",
+   "quote": "\"title\":\"Neuroimaging studies of working memory: a meta-analysis.\"",
+   "why": "Europe PMC (PMID 15040547): same title, Wager and Smith, Cogn Affect Behav Neurosci 3(4) 255-274, 2003; Crossref title is truncated."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Neuroimaging studies of working memory: a meta-analysis",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.3.4.255%22&resultType=core&format=json",
+      "quote": "\"title\":\"Neuroimaging studies of working memory: a meta-analysis.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T D Wager and E E Smith",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.3.4.255%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Wager TD\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.3.4.255%22&resultType=core&format=json",
+      "quote": "\"fullName\":\"Smith EE\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.3.4.255",
+      "quote": "\"volume\":\"3\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.3.4.255",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "255--274",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.3.4.255",
+      "quote": "\"page\":\"255-274\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.3.4.255",
+      "quote": "\"published-print\":{\"date-parts\":[[2003"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/cabn.3.4.255",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/cabn.3.4.255",
+      "quote": "\"DOI\":\"10.3758\\/cabn.3.4.255\""
+     }
+    ]
+   }
+  },
+  "notes": "Title: braced '{A}' after the colon lowercased per house colon rule. DOI added."
+ },
+ {
+  "key": "HollWels77",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/03610927708827533",
+   "quote": "\"title\":[\"Robust regression using iteratively reweighted least-squares",
+   "why": "Crossref record: same title, Holland and Welsch, Communications in Statistics - Theory and Methods 6(9) 813-827, 1977."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Robust regression using iteratively reweighted least-squares",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/03610927708827533",
+      "quote": "\"title\":[\"Robust regression using iteratively reweighted least-squares"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "P W Holland and R E Welsch",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/03610927708827533",
+      "quote": "\"given\":\"Paul W.\",\"family\":\"Holland\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/03610927708827533",
+      "quote": "\"given\":\"Roy E.\",\"family\":\"Welsch\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Communications in Statistics: Theory and Methods",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/03610927708827533",
+      "quote": "\"container-title\":[\"Communications in Statistics - Theory and Methods\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/03610927708827533",
+      "quote": "\"volume\":\"6\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/03610927708827533",
+      "quote": "\"issue\":\"9\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "813--827",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/03610927708827533",
+      "quote": "\"page\":\"813-827\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1977",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/03610927708827533",
+      "quote": "\"published-print\":{\"date-parts\":[[1977"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/03610927708827533",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/03610927708827533",
+      "quote": "\"DOI\":\"10.1080\\/03610927708827533\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume 'A6' reflects the series-A numbering printed in 1977; Crossref records volume 6, issue 9. Journal: Crossref uses a dash ('Communications in Statistics - Theory and Methods'); cited colon form kept, reviewer may prefer the dash form."
+ },
+ {
+  "key": "Mill95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1145/219717.219748",
+   "quote": "\"title\":[\"WordNet",
+   "why": "Crossref record: WordNet (subtitle 'a lexical database for English'), George A. Miller, Communications of the ACM 38(11) 39-41, 1995."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{WordNet}: a lexical database for {English}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/219717.219748",
+      "quote": "\"title\":[\"WordNet"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/219717.219748",
+      "quote": "\"subtitle\":[\"a lexical database for English\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "G A Miller",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/219717.219748",
+      "quote": "\"given\":\"George A.\",\"family\":\"Miller\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "38",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/219717.219748",
+      "quote": "\"volume\":\"38\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/219717.219748",
+      "quote": "\"issue\":\"11\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "39--41",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/219717.219748",
+      "quote": "\"page\":\"39-41\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/219717.219748",
+      "quote": "\"published-print\":{\"date-parts\":[[1995"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1145/219717.219748",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/219717.219748",
+      "quote": "\"DOI\":\"10.1145\\/219717.219748\""
+     }
+    ]
+   }
+  },
+  "notes": "Pages were '41' only; article spans 39-41. DOI added."
+ }
+]

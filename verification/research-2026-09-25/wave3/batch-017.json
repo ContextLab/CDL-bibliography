@@ -1,0 +1,1769 @@
+[
+ {
+  "key": "HeniEtal19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+   "quote": "\"title\":\"Closed-Loop Acoustic Stimulation Enhances Sleep Oscillations But Not Memory Performance.\"",
+   "why": "Europe PMC (PMID 31604814): same title, same 11 authors, eNeuro 6(6) 2019."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Closed-loop acoustic stimulation enhances sleep oscillations but not memory performance",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+      "quote": "\"title\":\"Closed-Loop Acoustic Stimulation Enhances Sleep Oscillations But Not Memory Performance.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S Henin and H Borges and A Shankar and C Sarac and L Melloni and D Friedman and A Flinker and L C Parra and G Buzs{\\'a}ki and O Devinsky and A Liu",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+      "quote": "Henin S, Borges H, Shankar A, Sarac C, Melloni L, Friedman D, Flinker A, Parra LC, Buzsaki G, Devinsky O, Liu A."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "eNeuro",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+      "quote": "\"title\":\"eNeuro\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+      "quote": "\"volume\":\"6\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "ENEURO.0306-19.2019",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"ENEURO.0306-19.2019\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+      "quote": "\"printPublicationDate\":\"2019-11-01\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1523/eneuro.0306-19.2019",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1523/eneuro.0306-19.2019\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal was \"Eneuro\"; publisher styles it eNeuro. Article-number journal: pages = article ID. Sources print \"Buzsaki\" unaccented (ASCII); accent kept per house rule."
+ },
+ {
+  "key": "DesaEtal12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1109/embc.2012.6346879%22&format=json&resultType=core",
+   "quote": "\"title\":\"Analyzing neuronal activation with macroelectrode vs. microelectrode array stimulation.\"",
+   "why": "Europe PMC (PMID 23366840): same title (vs.), same four authors, EMBC 2012 proceedings pages 4144-4147."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/embc.2012.6346879",
+      "quote": "\"type\":\"proceedings-article\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/embc.2012.6346879",
+      "quote": "\"container-title\":[\"2012 Annual International Conference of the IEEE Engineering in Medicine and Biology Society\"]"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Analyzing neuronal activation with macroelectrode vs. microelectrode array stimulation",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1109/embc.2012.6346879%22&format=json&resultType=core",
+      "quote": "\"title\":\"Analyzing neuronal activation with macroelectrode vs. microelectrode array stimulation.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "S A Desai and C A Gutekunst and S M Potter and R E Gross",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1109/embc.2012.6346879%22&format=json&resultType=core",
+      "quote": "Desai SA, Gutekunst CA, Potter SM, Gross RE."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "4144--4147",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1109/embc.2012.6346879%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"4144-4147\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/embc.2012.6346879",
+      "quote": "\"page\":\"4144-4147\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/embc.2012.6346879",
+      "quote": "\"published-print\":{\"date-parts\":[[2012,8]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/embc.2012.6346879",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1109/embc.2012.6346879%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1109/embc.2012.6346879\""
+     }
+    ]
+   }
+  },
+  "remove": [
+   "journal"
+  ],
+  "notes": "Proceedings paper, so @article -> @inproceedings with booktitle (year dropped) and the journal field removed. Title prints \"vs.\" not \"versus\". First author: PubMed/Europe PMC give \"Desai, Sharanya Arcot\" (initials SA); Crossref gives family name \"Arcot Desai\". Kept surname Desai (key unchanged) per the corroboration rule; if the reviewer prefers {Arcot Desai}, the key would become ArcoEtal12. Existing house booktitle for this conference elsewhere is \"{IEEE} Conference on Engineering in Medicine, Biology, and Society\" (KellEtal10a, BlakEtal08); proposed value follows the source."
+ },
+ {
+  "key": "TlauWils96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1177/001391659602800504",
+   "quote": "\"title\":[\"Orientation-Free Representations from Navigation through a Computer-Simulated Environment\"]",
+   "why": "Crossref: same title (hyphenated), Tlauka and Wilson, Environment and Behavior 28(5) 647-664, 1996."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Orientation-free representations from navigation through a computer-simulated environment",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/001391659602800504",
+      "quote": "\"title\":[\"Orientation-Free Representations from Navigation through a Computer-Simulated Environment\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Tlauka and P N Wilson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/001391659602800504",
+      "quote": "\"given\":\"Michael\",\"family\":\"Tlauka\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1177/001391659602800504",
+      "quote": "\"given\":\"Paul N.\",\"family\":\"Wilson\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Environment and Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/001391659602800504",
+      "quote": "\"container-title\":[\"Environment and Behavior\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "28",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/001391659602800504",
+      "quote": "\"volume\":\"28\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/001391659602800504",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "647--664",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/001391659602800504",
+      "quote": "\"page\":\"647-664\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/001391659602800504",
+      "quote": "\"published-print\":{\"date-parts\":[[1996,9]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1177/001391659602800504",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1177/001391659602800504",
+      "quote": "\"handle\":\"10.1177/001391659602800504\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change to the text: \"computer simulated\" -> \"computer-simulated\" as printed; issue 5 and DOI added. TlauWils94 is a different paper."
+ },
+ {
+  "key": "BrunHaus03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
+   "quote": "\"title\":\"The epidemiology of traumatic brain injury: a review.\"",
+   "why": "Europe PMC (PMID 14511388): same title, Bruns and Hauser, Epilepsia 44 s10:2-10, 2003."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The epidemiology of traumatic brain injury: a review",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
+      "quote": "\"title\":\"The epidemiology of traumatic brain injury: a review.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Bruns and W A Hauser",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
+      "quote": "Bruns J, Hauser WA."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Epilepsia",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
+      "quote": "\"title\":\"Epilepsia\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "44",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
+      "quote": "\"volume\":\"44\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "s10",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
+      "quote": "\"issue\":\"s10\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2--10",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"2-10\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
+      "quote": "\"pubYear\":\"2003\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1046/j.1528-1157.44.s10.3.x",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1046/j.1528-1157.44.s10.3.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Supplement 10: \"Suppl 10\" normalised to the source form \"s10\" (optional; same issue). DOI added."
+ },
+ {
+  "key": "FishEtal10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+   "quote": "\"title\":\"Electrical stimulation of the anterior nucleus of thalamus for treatment of refractory epilepsy.\"",
+   "why": "Europe PMC (PMID 20331461): same title, Fisher et al. with SANTE Study Group, Epilepsia 51(5):899-908, 2010."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Electrical stimulation of the anterior nucleus of thalamus for treatment of refractory epilepsy",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+      "quote": "\"title\":\"Electrical stimulation of the anterior nucleus of thalamus for treatment of refractory epilepsy.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "R Fisher and V Salanova and T Witt and R Worth and T Henry and R Gross and K Oommen and I Osorio and J Nazzaro and D Labar and M Kaplitt and M Sperling and E Sandok and J Neal and A Handforth and J Stern and A DeSalles and S Chung and A Shetter and D Bergen and R Bakay and J Henderson and J French and G Baltuch and W Rosenfeld and A Youkilis and W Marks and P Garcia and N Barbaro and N Fountain and C Bazil and R Goodman and G McKhann and K {Babu Krishnamurthy} and S Papavassiliou and C Epstein and J Pollard and L Tonder and J Grebin and R Coffey and N Graves",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+      "quote": "Fisher R, Salanova V, Witt T, Worth R, Henry T, Gross R, Oommen K, Osorio I, Nazzaro J, Labar D, Kaplitt M, Sperling M"
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+      "quote": "Sandok E, Neal J, Handforth A, Stern J, DeSalles A, Chung S, Shetter A, Bergen D, Bakay R, Henderson J, French J, Baltuch G"
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+      "quote": "Rosenfeld W, Youkilis A, Marks W, Garcia P, Barbaro N, Fountain N, Bazil C, Goodman R, McKhann G, Babu Krishnamurthy K, Papavassiliou S, Epstein C"
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+      "quote": "Pollard J, Tonder L, Grebin J, Coffey R, Graves N, SANTE Study Group."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "51",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+      "quote": "\"volume\":\"51\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "899--908",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"899-908\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+      "quote": "\"printPublicationDate\":\"2010-05-01\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1528-1167.2010.02536.x",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02536.x%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1111/j.1528-1167.2010.02536.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Cited list stopped at 7 of 41 named authors (skipped Oommen..Coffey, jumping from Gross to Graves). Full list per Europe PMC/Crossref/PubMed; byline also ends with the group author \"SANTE Study Group\", not included (reviewer may add {SANTE Study Group}). Key unchanged (Etal)."
+ },
+ {
+  "key": "HalgEtal77a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1977.tb05590.x%22&format=json&resultType=core",
+   "quote": "\"title\":\"Post-EEG seizure depression of human limbic neurons is not determined by their response to probable hypoxia.\"",
+   "why": "Europe PMC (PMID 192545): same title, Halgren, Babb, Crandall, Epilepsia 18(1):89-93, 1977."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Post-{EEG} seizure depression of human limbic neurons is not determined by their response to probable hypoxia",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1977.tb05590.x%22&format=json&resultType=core",
+      "quote": "\"title\":\"Post-EEG seizure depression of human limbic neurons is not determined by their response to probable hypoxia.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E Halgren and T L Babb and P H Crandall",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1977.tb05590.x%22&format=json&resultType=core",
+      "quote": "Halgren E, Babb TL, Crandall PH."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1977.tb05590.x%22&format=json&resultType=core",
+      "quote": "\"volume\":\"18\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1977.tb05590.x%22&format=json&resultType=core",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "89--93",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1977.tb05590.x%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"89-93\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1977",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1977.tb05590.x%22&format=json&resultType=core",
+      "quote": "\"printPublicationDate\":\"1977-03-01\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1528-1157.1977.tb05590.x",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1977.tb05590.x%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1111/j.1528-1157.1977.tb05590.x\""
+     }
+    ]
+   }
+  },
+  "notes": "\"Post-eeg\" -> \"Post-{EEG}\" (acronym). Crossref title has a stray accent (\"Détérmined\"); PubMed/Europe PMC print \"determined\"."
+ },
+ {
+  "key": "JobsEtal10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02618.x%22&format=json&resultType=core",
+   "quote": "\"title\":\"Brain stimulation for the treatment of epilepsy.\"",
+   "why": "Europe PMC (PMID 20618409): same title, Jobst, Darcey, Thadani, Roberts, Epilepsia 51 Suppl 3:88-92, 2010."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Brain stimulation for the treatment of epilepsy",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02618.x%22&format=json&resultType=core",
+      "quote": "\"title\":\"Brain stimulation for the treatment of epilepsy.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "B C Jobst and T M Darcey and V M Thadani and D W Roberts",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02618.x%22&format=json&resultType=core",
+      "quote": "Jobst BC, Darcey TM, Thadani VM, Roberts DW."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "51",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1528-1167.2010.02618.x",
+      "quote": "\"volume\":\"51\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "S3",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02618.x%22&format=json&resultType=core",
+      "quote": "\"volume\":\"51 Suppl 3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "88--92",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02618.x%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"88-92\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02618.x%22&format=json&resultType=core",
+      "quote": "\"pubYear\":\"2010\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1528-1167.2010.02618.x",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1167.2010.02618.x%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1111/j.1528-1167.2010.02618.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Last author was mangled as \"Roberts D W\"; fixed to \"D W Roberts\". DOI added."
+ },
+ {
+  "key": "KatzEtal89",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1989.tb05336.x%22&format=json&resultType=core",
+   "quote": "\"title\":\"Extent of resection in temporal lobectomy for epilepsy. II. Memory changes and neurologic complications.\"",
+   "why": "Europe PMC (PMID 2591343): same title, same eight authors, Epilepsia 30(6):763-771, 1989."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Extent of resection in temporal lobectomy for epilepsy. {II}. Memory changes and neurologic complications",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1989.tb05336.x%22&format=json&resultType=core",
+      "quote": "\"title\":\"Extent of resection in temporal lobectomy for epilepsy. II. Memory changes and neurologic complications.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A Katz and I A Awad and A K Kong and G J Chelune and R I Naugle and E Wyllie and G Beauchamp and H L{\\\"u}ders",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1989.tb05336.x%22&format=json&resultType=core",
+      "quote": "Katz A, Awad IA, Kong AK, Chelune GJ, Naugle RI, Wyllie E, Beauchamp G, Lüders H."
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&id=2591343",
+      "quote": "<LastName>Kong</LastName>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "30",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1989.tb05336.x%22&format=json&resultType=core",
+      "quote": "\"volume\":\"30\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1989.tb05336.x%22&format=json&resultType=core",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "763--771",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1989.tb05336.x%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"763-771\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1989",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1989.tb05336.x%22&format=json&resultType=core",
+      "quote": "\"printPublicationDate\":\"1989-11-01\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1528-1157.1989.tb05336.x",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1989.tb05336.x%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1111/j.1528-1157.1989.tb05336.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Two author fixes: \"Kongy\" -> \"Kong\" (PubMed and Europe PMC; Crossref alone has \"Kongy\", and Crossref's record of companion paper I (tb05335.x) gives \"Alan K. Kong\"); broken \"H L{\\\\\\\"u}ders\" (missing space, doubled backslash) -> \"H L{\\\"u}ders\"."
+ },
+ {
+  "key": "Spen94",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1994.tb05990.x%22&format=json&resultType=core",
+   "quote": "\"title\":\"The relative contributions of MRI, SPECT, and PET imaging in epilepsy.\"",
+   "why": "Europe PMC (PMID 8206016): same title, S S Spencer, Epilepsia 35 Suppl 6:S72-89, 1994."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The relative contributions of {MRI}, {SPECT}, and {PET} imaging in epilepsy",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1994.tb05990.x%22&format=json&resultType=core",
+      "quote": "\"title\":\"The relative contributions of MRI, SPECT, and PET imaging in epilepsy.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S S Spencer",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1994.tb05990.x%22&format=json&resultType=core",
+      "quote": "Spencer SS."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "35",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1528-1157.1994.tb05990.x",
+      "quote": "\"volume\":\"35\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "s6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1528-1157.1994.tb05990.x",
+      "quote": "\"issue\":\"s6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "S72--S89",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1994.tb05990.x%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"S72-89\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1994",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1994.tb05990.x%22&format=json&resultType=core",
+      "quote": "\"pubYear\":\"1994\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1528-1157.1994.tb05990.x",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1994.tb05990.x%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1111/j.1528-1157.1994.tb05990.x\""
+     }
+    ]
+   }
+  },
+  "notes": "All fields confirmed (Crossref lacks pages; PubMed/Europe PMC give S72-89). Only change: DOI added."
+ },
+ {
+  "key": "Sper97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1997.tb04541.x%22&format=json&resultType=core",
+   "quote": "\"title\":\"Clinical challenges in invasive monitoring in epilepsy surgery.\"",
+   "why": "Europe PMC (PMID 9240235): same title, M R Sperling, Epilepsia 38 Suppl 4:S6-12, 1997."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Clinical challenges in invasive monitoring in epilepsy surgery",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1997.tb04541.x%22&format=json&resultType=core",
+      "quote": "\"title\":\"Clinical challenges in invasive monitoring in epilepsy surgery.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M R Sperling",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1997.tb04541.x%22&format=json&resultType=core",
+      "quote": "Sperling MR."
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "38",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1528-1157.1997.tb04541.x",
+      "quote": "\"volume\":\"38\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "s4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1528-1157.1997.tb04541.x",
+      "quote": "\"issue\":\"s4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "S6--S12",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1997.tb04541.x%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"S6-12\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1997.tb04541.x%22&format=json&resultType=core",
+      "quote": "\"pubYear\":\"1997\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1528-1157.1997.tb04541.x",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1997.tb04541.x%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1111/j.1528-1157.1997.tb04541.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume \"38 Suppl 4\" split into volume 38 + number s4; supplement pages carry the S prefix (S6--S12)."
+ },
+ {
+  "key": "UlbeEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.0013-9580.2004.04011.x%22&format=json&resultType=core",
+   "quote": "\"title\":\"Laminar analysis of human neocortical interictal spike generation and propagation: current source density and multiunit analysis in vivo.\"",
+   "why": "Europe PMC (PMID 15281959): same title, same five authors, Epilepsia 45 Suppl 4:48-56, 2004."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Laminar analysis of human neocortical interictal spike generation and propagation: current source density and multiunit analysis in vivo",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.0013-9580.2004.04011.x%22&format=json&resultType=core",
+      "quote": "\"title\":\"Laminar analysis of human neocortical interictal spike generation and propagation: current source density and multiunit analysis in vivo.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "I Ulbert and G Heit and J R Madsen and G Karmos and E Halgren",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.0013-9580.2004.04011.x%22&format=json&resultType=core",
+      "quote": "Ulbert I, Heit G, Madsen J, Karmos G, Halgren E."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "45",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.0013-9580.2004.04011.x",
+      "quote": "\"volume\":\"45\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "s4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.0013-9580.2004.04011.x",
+      "quote": "\"issue\":\"s4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "48--56",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.0013-9580.2004.04011.x%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"48-56\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.0013-9580.2004.04011.x%22&format=json&resultType=core",
+      "quote": "\"pubYear\":\"2004\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.0013-9580.2004.04011.x",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.0013-9580.2004.04011.x%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1111/j.0013-9580.2004.04011.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Issue was \"4\"; it is Supplement 4 (s4). Sources give \"Madsen J\"; cited middle initial R kept (never drop an initial only because a source omits it)."
+ },
+ {
+  "key": "Braz03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1535-7597.2003.03610.x%22&format=json&resultType=core",
+   "quote": "\"title\":\"Drug Resistant Epilepsy: A Compliance Problem or an abnormality of Transport Proteins?\"",
+   "why": "Europe PMC (PMID 15346153, PMC321224): same title, single author Carl Bazil, Epilepsy Currents 3(6):204-206, 2003."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "C Bazil",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1535-7597.2003.03610.x%22&format=json&resultType=core",
+      "quote": "\"authorString\":\"Bazil C.\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1046/j.1535-7597.2003.03610.x",
+      "quote": "\"given\":\"Carl\",\"family\":\"Bazil\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Drug resistant epilepsy: a compliance problem or an abnormality of transport proteins?",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1535-7597.2003.03610.x%22&format=json&resultType=core",
+      "quote": "\"title\":\"Drug Resistant Epilepsy: A Compliance Problem or an abnormality of Transport Proteins?\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Epilepsy Currents",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1046/j.1535-7597.2003.03610.x",
+      "quote": "\"container-title\":[\"Epilepsy Currents\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1535-7597.2003.03610.x%22&format=json&resultType=core",
+      "quote": "\"volume\":\"3\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1535-7597.2003.03610.x%22&format=json&resultType=core",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "204--206",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=321224",
+      "quote": "<fpage>204</fpage>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=321224",
+      "quote": "<lpage>206</lpage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1535-7597.2003.03610.x%22&format=json&resultType=core",
+      "quote": "\"printPublicationDate\":\"2003-11-01\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1046/j.1535-7597.2003.03610.x",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1535-7597.2003.03610.x%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1046/j.1535-7597.2003.03610.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Author surname misspelled \"Brazil\" -> \"Bazil\" (Crossref + PubMed/Europe PMC + PMC). KEY RENAME: Braz03 -> Bazi03 (no Bazi03 in HEAD cdl.bib). Other cdl.bib entries (DeviEtal05, ChinEtal07, and FishEtal10 in this batch) write this author \"C W Bazil\"; this record gives only \"Carl\", so W is not added here (reviewer may). Crossref page \"204-205\" conflicts; PMC JATS XML gives fpage 204 / lpage 206, matching the citation."
+ },
+ {
+  "key": "DaviEtal11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016/j.eplepsyres.2011.05.011%22&format=json&resultType=core",
+   "quote": "\"title\":\"A novel implanted device to wirelessly record and analyze continuous intracranial canine EEG.\"",
+   "why": "Europe PMC (PMID 21676591): same title, Davis ... Litt, Epilepsy Research 96(1-2):116-122, 2011."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "A novel implanted device to wirelessly record and analyze continuous intracranial canine {EEG}",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016/j.eplepsyres.2011.05.011%22&format=json&resultType=core",
+      "quote": "\"title\":\"A novel implanted device to wirelessly record and analyze continuous intracranial canine EEG.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "K A Davis and B K Sturges and C H Vite and V A Ruedebusch and G Worrell and A B Gardner and K Leyde and W D Sheffield and B Litt",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016/j.eplepsyres.2011.05.011%22&format=json&resultType=core",
+      "quote": "Davis KA, Sturges BK, Vite CH, Ruedebusch V, Worrell G, Gardner AB, Leyde K, Sheffield WD, Litt B."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "96",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016/j.eplepsyres.2011.05.011%22&format=json&resultType=core",
+      "quote": "\"volume\":\"96\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1--2",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016/j.eplepsyres.2011.05.011%22&format=json&resultType=core",
+      "quote": "\"issue\":\"1-2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "116--122",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016/j.eplepsyres.2011.05.011%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"116-122\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016/j.eplepsyres.2011.05.011%22&format=json&resultType=core",
+      "quote": "\"printPublicationDate\":\"2011-09-01\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.eplepsyres.2011.05.011",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016/j.eplepsyres.2011.05.011%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1016/j.eplepsyres.2011.05.011\""
+     }
+    ]
+   }
+  },
+  "notes": "Two missing authors (K Leyde, W D Sheffield) inserted before Litt; issue is 1-2. Sources give \"Ruedebusch V\"; cited initial A kept."
+ },
+ {
+  "key": "KahaEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Bancaud%20and%20Talairach%20view%20on%20the%20epileptogenic%20zone%22&format=json&resultType=core",
+   "quote": "\"title\":\"The Bancaud and Talairach view on the epileptogenic zone: a working hypothesis.\"",
+   "why": "Europe PMC (PMID 17012069): same title, same five authors, Epileptic Disorders 8 Suppl 2:S16-26, 2006, DOI 10.1684/j.1950-6945.2006.tb00206.x."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The {B}ancaud and {T}alairach view on the epileptogenic zone: a working hypothesis",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Bancaud%20and%20Talairach%20view%20on%20the%20epileptogenic%20zone%22&format=json&resultType=core",
+      "quote": "\"title\":\"The Bancaud and Talairach view on the epileptogenic zone: a working hypothesis.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "P Kahane and E Landr\\'e and L Minotti and S Francione and P Ryvlin",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Bancaud%20and%20Talairach%20view%20on%20the%20epileptogenic%20zone%22&format=json&resultType=core",
+      "quote": "Kahane P, Landré E, Minotti L, Francione S, Ryvlin P."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Epileptic Disorders",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1684/j.1950-6945.2006.tb00206.x",
+      "quote": "\"container-title\":[\"Epileptic Disorders\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1684/j.1950-6945.2006.tb00206.x",
+      "quote": "\"volume\":\"8\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "S2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1684/j.1950-6945.2006.tb00206.x",
+      "quote": "\"issue\":\"S2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "S16--S26",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Bancaud%20and%20Talairach%20view%20on%20the%20epileptogenic%20zone%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"S16-26\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Bancaud%20and%20Talairach%20view%20on%20the%20epileptogenic%20zone%22&format=json&resultType=core",
+      "quote": "\"pubYear\":\"2006\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1684/j.1950-6945.2006.tb00206.x",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1684/j.1950-6945.2006.tb00206.x%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1684/j.1950-6945.2006.tb00206.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Supplement pages carry the S prefix (S16--S26); number \"supplement 2\" normalised to S2. Crossref misspells \"Stafano\" Francione (initial S either way). No correction/retraction notice is linked in the Crossref record (no update-to/relation); the flagged tb00210.x is a different paper (Chassagnon et al.) in the same supplement."
+ },
+ {
+  "key": "BaddLong78",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/00140137808931764",
+   "quote": "\"title\":[\"The Influence of Length and Frequency of Training Session on the Rate of Learning to Type\"]",
+   "why": "Crossref: same title, Baddeley and Longman, Ergonomics 21(8):627-635, 1978."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The influence of length and frequency of training session on the rate of learning to type",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00140137808931764",
+      "quote": "\"title\":[\"The Influence of Length and Frequency of Training Session on the Rate of Learning to Type\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A D Baddeley and D J A Longman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00140137808931764",
+      "quote": "\"given\":\"A. D.\",\"family\":\"BADDELEY\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/00140137808931764",
+      "quote": "\"given\":\"D. J. A.\",\"family\":\"LONGMAN\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Ergonomics",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00140137808931764",
+      "quote": "\"container-title\":[\"Ergonomics\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00140137808931764",
+      "quote": "\"volume\":\"21\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00140137808931764",
+      "quote": "\"issue\":\"8\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "627--635",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00140137808931764",
+      "quote": "\"page\":\"627-635\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1978",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00140137808931764",
+      "quote": "\"published-print\":{\"date-parts\":[[1978,8]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/00140137808931764",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1080/00140137808931764",
+      "quote": "\"handle\":\"10.1080/00140137808931764\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume \"21(8)\" split into volume 21 + number 8. Crossref gives Longman's initials as D. J. A. (third initial added). Not in PubMed."
+ },
+ {
+  "key": "RogeEvan93",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Changes%20in%20skeletal%20muscle%20with%20aging%22%20AND%20AUTH%3A%22Rogers%22&format=json&resultType=core",
+   "quote": "\"title\":\"Changes in skeletal muscle with aging: effects of exercise training.\"",
+   "why": "Europe PMC (PMID 8504850): same title, Rogers and Evans, Exerc Sport Sci Rev 21:65-102, 1993; Crossref DOI record has the same authors/volume/pages (title without subtitle)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Changes in skeletal muscle with aging: effects of exercise training",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Changes%20in%20skeletal%20muscle%20with%20aging%22%20AND%20AUTH%3A%22Rogers%22&format=json&resultType=core",
+      "quote": "\"title\":\"Changes in skeletal muscle with aging: effects of exercise training.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M A Rogers and W J Evans",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Changes%20in%20skeletal%20muscle%20with%20aging%22%20AND%20AUTH%3A%22Rogers%22&format=json&resultType=core",
+      "quote": "Rogers MA, Evans WJ."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Exercise and Sport Sciences Reviews",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1249/00003677-199301000-00003",
+      "quote": "\"container-title\":[\"Exercise and Sport Sciences Reviews\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Changes%20in%20skeletal%20muscle%20with%20aging%22%20AND%20AUTH%3A%22Rogers%22&format=json&resultType=core",
+      "quote": "\"volume\":\"21\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1249/00003677-199301000-00003",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "65--102",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Changes%20in%20skeletal%20muscle%20with%20aging%22%20AND%20AUTH%3A%22Rogers%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"65-102\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Changes%20in%20skeletal%20muscle%20with%20aging%22%20AND%20AUTH%3A%22Rogers%22&format=json&resultType=core",
+      "quote": "\"pubYear\":\"1993\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1249/00003677-199301000-00003",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1249/00003677-199301000-00003",
+      "quote": "\"handle\":\"10.1249/00003677-199301000-00003\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref title lacks the subtitle and its page field is garbled (\"65???102\"); PubMed/Europe PMC give full title and 65-102. Issue 1 per Crossref (optional). DOI added."
+ },
+ {
+  "key": "Bastvand05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730500326291%22&format=json&resultType=core",
+   "quote": "\"title\":\"The effects of aging on the recognition of different types of associations.\"",
+   "why": "Europe PMC (PMID 16293569): same title, Bastin and Van der Linden, Experimental Aging Research 32(1):61-77."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The effects of aging on the recognition of different types of associations",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730500326291%22&format=json&resultType=core",
+      "quote": "\"title\":\"The effects of aging on the recognition of different types of associations.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C Bastin and M {van der Linden}",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730500326291%22&format=json&resultType=core",
+      "quote": "Bastin C, Van der Linden M."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "32",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730500326291%22&format=json&resultType=core",
+      "quote": "\"volume\":\"32\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730500326291%22&format=json&resultType=core",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "61--77",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730500326291%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"61-77\""
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730500326291%22&format=json&resultType=core",
+      "quote": "\"printPublicationDate\":\"2006-01-01\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&id=16293569",
+      "quote": "<PubDate><Year>2006</Year><Season>Jan-Mar</Season></PubDate>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/03610730500326291",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730500326291%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1080/03610730500326291\""
+     }
+    ]
+   }
+  },
+  "notes": "Year 2005 -> 2006: PubMed dates vol 32 issue 1 \"Jan-Mar 2006\" (vol 31 = 2005, cf. SekuEtal05). CONFLICT: Crossref gives published-print 2005-10 for every vol 32(1) article (and for 31(4)), apparently a deposit error; reviewer should confirm. KEY RENAME if accepted: Bastvand05 -> Bastvand06 (no collision in HEAD cdl.bib)."
+ },
+ {
+  "key": "SekuEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730590882800%22&format=json&resultType=core",
+   "quote": "\"title\":\"Preservation of episodic visual recognition memory in aging.\"",
+   "why": "Europe PMC (PMID 15842070): same title, same five authors, Experimental Aging Research 31(1):1-13, 2005."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Preservation of episodic visual recognition memory in aging",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730590882800%22&format=json&resultType=core",
+      "quote": "\"title\":\"Preservation of episodic visual recognition memory in aging.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R Sekuler and M J Kahana and C McLaughlin and J D Golomb and A Wingfield",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730590882800%22&format=json&resultType=core",
+      "quote": "Sekuler R, Kahana MJ, McLaughlin C, Golomb J, Wingfield A."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "31",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730590882800%22&format=json&resultType=core",
+      "quote": "\"volume\":\"31\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730590882800%22&format=json&resultType=core",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--13",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730590882800%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"1-13\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730590882800%22&format=json&resultType=core",
+      "quote": "\"pubYear\":\"2005\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/03610730590882800",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730590882800%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1080/03610730590882800\""
+     }
+    ]
+   }
+  },
+  "notes": "Issue 1 and DOI added. Sources give \"Golomb J\"; cited middle initial D kept (Julie D. Golomb)."
+ },
+ {
+  "key": "WingEtal88",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610738808259731%22&format=json&resultType=core",
+   "quote": "\"title\":\"Does the capacity of working memory change with age?\"",
+   "why": "Europe PMC (PMID 3234452): same title, same four authors, Experimental Aging Research 14(2-3):103-107, 1988."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Does the capacity of working memory change with age?",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610738808259731%22&format=json&resultType=core",
+      "quote": "\"title\":\"Does the capacity of working memory change with age?\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A Wingfield and E A L Stine and C J Lahar and J S Aberdeen",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610738808259731%22&format=json&resultType=core",
+      "quote": "Wingfield A, Stine EA, Lahar CJ, Aberdeen JS."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/03610738808259731",
+      "quote": "\"given\":\"Elizabeth A.L.\",\"family\":\"Stine\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610738808259731%22&format=json&resultType=core",
+      "quote": "\"volume\":\"14\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2--3",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610738808259731%22&format=json&resultType=core",
+      "quote": "\"issue\":\"2-3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "103--107",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610738808259731%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"103-107\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610738808259731%22&format=json&resultType=core",
+      "quote": "\"pubYear\":\"1988\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/03610738808259731",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610738808259731%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1080/03610738808259731\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref gives Stine's initials \"Elizabeth A.L.\" -> E A L Stine (third initial added; PubMed gives EA only). Crossref issue \"2\" vs PubMed \"2-3\"; kept 2--3 (double issue). DOI added."
+ },
+ {
+  "key": "AlonGarc87",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
+   "quote": "\"title\":\"Neuronal sources of theta rhythm in the entorhinal cortex of the rat. I. Laminar distribution of theta field potentials.\"",
+   "why": "Europe PMC (PMID 3653311): Alonso and Garcia-Austt, Exp Brain Res 67(3):493-501, 1987 -- Part I of a two-part paper (Part II is pp. 502-509, DOI 10.1007/bf00247283)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Neuronal sources of theta rhythm in the entorhinal cortex of the rat. {I}. Laminar distribution of theta field potentials",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
+      "quote": "\"title\":\"Neuronal sources of theta rhythm in the entorhinal cortex of the rat. I. Laminar distribution of theta field potentials.\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A Alonso and E Garc\\'{i}a-Austt",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
+      "quote": "Alonso A, García-Austt E."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Experimental Brain Research",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf00247282",
+      "quote": "\"container-title\":[\"Experimental Brain Research\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "67",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
+      "quote": "\"volume\":\"67\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "493--501",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"493-501\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1987",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
+      "quote": "\"pubYear\":\"1987\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/bf00247282",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
+      "quote": "\"doi\":\"10.1007/bf00247282\""
+     }
+    ]
+   }
+  },
+  "notes": "Cited pages 493--501 identify Part I; title lacked the part number and subtitle. Accent added to García-Austt (house form Garc\\'{i}a-Austt is already used elsewhere in cdl.bib). Crossref truncates both parts' titles to the shared main title."
+ }
+]

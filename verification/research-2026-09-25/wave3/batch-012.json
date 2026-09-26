@@ -1,0 +1,1845 @@
+[
+ {
+  "key": "ShahEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15054063/",
+   "quote": "Neural dynamics and the fundamental mechanisms of event-related brain potentials.",
+   "why": "Same title, same seven authors, Cerebral Cortex 14(5) 2004 (PMID 15054063)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Neural dynamics and the fundamental mechanisms of event-related brain potentials",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15054063/",
+      "quote": "Neural dynamics and the fundamental mechanisms of event-related brain potentials."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A S Shah and S L Bressler and K H Knuth and M Ding and A D Mehta and I Ulbert and C E Schroeder",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15054063/",
+      "quote": "Ankoor S Shah, Steven L Bressler, Kevin H Knuth, Mingzhou Ding, Ashesh D Mehta, Istvan Ulbert, Charles E Schroeder"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15054063/",
+      "quote": "Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15054063/",
+      "quote": "DP  - 2004 May"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15054063/",
+      "quote": "VI  - 14"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15054063/",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "476--483",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15054063/",
+      "quote": "PG  - 476-83"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhh009",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/bhh009.xml",
+      "quote": "<doi>10.1093/cercor/bhh009</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Pages had only the first page; full range 476-483. Crossref lists only the first author, hence the queue's author mismatch; PubMed has all seven."
+ },
+ {
+  "key": "ZaraEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
+   "quote": "Eric Zarahn, Brian Rakitin, Diane Abela, Joseph Flynn, Yaakov Stern",
+   "why": "Same authors and title (cited title has a typo 'involvementt'), Cerebral Cortex 15(3) 2005 (PMID 15342440)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Positive evidence against human hippocampal involvement in working memory maintenance of familiar stimuli",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
+      "quote": "Positive evidence against human hippocampal involvement in working memory maintenance of familiar stimuli."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E Zarahn and B Rakitin and D Abela and J Flynn and Y Stern",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
+      "quote": "Eric Zarahn, Brian Rakitin, Diane Abela, Joseph Flynn, Yaakov Stern"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
+      "quote": "Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
+      "quote": "DP  - 2005 Mar"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
+      "quote": "VI  - 15"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "303--316",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
+      "quote": "PG  - 303-16"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhh132",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/bhh132.xml",
+      "quote": "<doi>10.1093/cercor/bhh132</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title typo fixed (involvementt -> involvement); first page is 303, not 305. Print year 2005 (issue March 2005); Crossref shows only the 2004 online date, print year wins so the key is unchanged."
+ },
+ {
+  "key": "vonSEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10220226/",
+   "quote": "Synchronization between temporal and parietal cortex during multimodal object processing in man.",
+   "why": "Same title, four authors, Cerebral Cortex 9(2) 1999 (PMID 10220226)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Synchronization between temporal and parietal cortex during multimodal object processing in man",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10220226/",
+      "quote": "Synchronization between temporal and parietal cortex during multimodal object processing in man."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A {von Stein} and P Rappelsberger and J Sarnthein and H Petsche",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10220226/",
+      "quote": "A von Stein, P Rappelsberger, J Sarnthein, H Petsche"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10220226/",
+      "quote": "Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10220226/",
+      "quote": "DP  - 1999 Mar"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10220226/",
+      "quote": "VI  - 9"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10220226/",
+      "quote": "IP  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "137--150",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10220226/",
+      "quote": "PG  - 137-50"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/9.2.137",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/9.2.137.xml",
+      "quote": "<doi>10.1093/cercor/9.2.137</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; only the DOI is added. Crossref lists only the first author (source of the queue's author mismatch)."
+ },
+ {
+  "key": "Sate14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/25367475/",
+   "quote": "International classification of sleep disorders-third edition: highlights and modifications.",
+   "why": "Same title and sole author, Chest 146(5) 2014 (PMID 25367475)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "International classification of sleep disorders---third edition: highlights and modifications",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25367475/",
+      "quote": "International classification of sleep disorders-third edition: highlights and modifications."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M J Sateia",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25367475/",
+      "quote": "FAU - Sateia, Michael J"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Chest",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25367475/",
+      "quote": "JT  - Chest"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2014",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25367475/",
+      "quote": "DP  - 2014 Nov"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "146",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25367475/",
+      "quote": "VI  - 146"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25367475/",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1387--1394",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25367475/",
+      "quote": "PG  - 1387-1394"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1378/chest.14-0970",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1378/chest.14-0970.xml",
+      "quote": "<doi>10.1378/chest.14-0970</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Only change to the title is removing the spaces around the dash ('disorders --- third' -> 'disorders---third'); sources print a single hyphen/dash, so the reviewer may prefer '-' instead. Crossref omits the subtitle, hence the queue's title mismatch."
+ },
+ {
+  "key": "PollEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10683360/",
+   "quote": "M L Pollock, B A Franklin, G J Balady, B L Chaitman, J L Fleg, B Fletcher, M Limacher, I L Pi&#xf1;a, R A Stein, M Williams, T Bazzarre",
+   "why": "Same 11 authors, same main title, Circulation 101(7) 2000 (PMID 10683360)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Resistance exercise in individuals with and without cardiovascular disease",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10683360/",
+      "quote": "Resistance exercise in individuals with and without cardiovascular disease"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M L Pollock and B A Franklin and G J Balady and B L Chaitman and J L Fleg and B Fletcher and M Limacher and I L Pi\\~{n}a and R A Stein and M Williams and T Bazzarre",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10683360/",
+      "quote": "M L Pollock, B A Franklin, G J Balady, B L Chaitman, J L Fleg, B Fletcher, M Limacher, I L Pi&#xf1;a, R A Stein, M Williams, T Bazzarre"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Circulation",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10683360/",
+      "quote": "JT  - Circulation"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10683360/",
+      "quote": "DP  - 2000 Feb 22"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "101",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10683360/",
+      "quote": "VI  - 101"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10683360/",
+      "quote": "IP  - 7"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "828--833",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10683360/",
+      "quote": "PG  - 828-33"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1161/01.cir.101.7.828",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1161/01.cir.101.7.828.xml",
+      "quote": "<doi>10.1161/01.cir.101.7.828</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Author typo Chaltman -> Chaitman. The cited title is the main title only; the full title adds ': benefits, rationale, safety, and prescription: an advisory from the Committee on Exercise, Rehabilitation, and Prevention, Council on Clinical Cardiology, American Heart Association' (PubMed prefixes 'AHA Science Advisory.'). Kept the short main title; the reviewer may want the subtitle."
+ },
+ {
+  "key": "RosaEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
+   "quote": "Heart disease and stroke statistics--2007 update: a report from the American Heart Association Statistics Committee and Stroke Statistics Subcommittee.",
+   "why": "Same title, first three authors match, Circulation 115 2007 e69-e171 (PMID 17194875)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Heart disease and stroke statistics---2007 update: a report from the {American} {Heart} {Association} {Statistics} {Committee} and {Stroke} {Statistics} {Subcommittee}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
+      "quote": "Heart disease and stroke statistics--2007 update: a report from the American Heart Association Statistics Committee and Stroke Statistics Subcommittee."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "W Rosamond and K Flegal and G Friday and K Furie and A Go and K Greenlund and N Haase and M Ho and V Howard and B Kissela and S Kittner and D Lloyd-Jones and M McDermott and J Meigs and C Moy and G Nichol and C J O'Donnell and V Roger and J Rumsfeld and P Sorlie and J Steinberger and T Thom and S Wasserthiel-Smoller and Y Hong",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
+      "quote": "Wayne Rosamond, Katherine Flegal, Gary Friday, Karen Furie, Alan Go, Kurt Greenlund, Nancy Haase, Michael Ho, Virginia Howard, Brett Kissela, Steven Kittner, Donald Lloyd-Jones, Mary McDermott, James Meigs, Claudia Moy, Graham Nichol, Christopher J O'Donnell, Veronique Roger, John Rumsfeld, Paul Sorlie, Julia Steinberger, Thomas Thom, Sylvia Wasserthiel-Smoller, Yuling Hong"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Circulation",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
+      "quote": "JT  - Circulation"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
+      "quote": "DP  - 2007 Feb 6"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "115",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
+      "quote": "VI  - 115"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e69--e171",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
+      "quote": "PG  - e69-171"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1161/circulationaha.106.179918",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1161/circulationaha.106.179918.xml",
+      "quote": "<doi>10.1161/circulationaha.106.179918</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Cited author list was truncated to 3 of 24 authors; full list from PubMed (Crossref has the same 24). PubMed and Crossref both spell 'Wasserthiel-Smoller' (the author's usual spelling is Wassertheil-Smoller; kept as the sources print it). Byline also carries the collective 'American Heart Association Statistics Committee and Stroke Statistics Subcommittee', not added. Title: proper nouns braced, dash spacing fixed."
+ },
+ {
+  "key": "ChkhEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15297008/",
+   "quote": "Electrophysiological effects and clinical results of direct brain stimulation for intractable epilepsy.",
+   "why": "Same title, same eight authors, Clin Neurol Neurosurg 106(4) 2004 (PMID 15297008)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Electrophysiological effects and clinical results of direct brain stimulation for intractable epilepsy",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15297008/",
+      "quote": "Electrophysiological effects and clinical results of direct brain stimulation for intractable epilepsy."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "S A Chkhenkeli and M \\v{S}ramka and G S Lortkipanidze and T N Rakviashvili and E S Bregvadze and G E Magalashvili and T S Gagoshidze and I S Chkhenkeli",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15297008/",
+      "quote": "Sozari A Chkhenkeli, Miron Sramka, George S Lortkipanidze, Tamaz N Rakviashvili, Eteri Sh Bregvadze, George E Magalashvili, Tamar Sh Gagoshidze, Irina S Chkhenkeli"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.clineuro.2004.01.009.xml",
+      "quote": "<surname>Šramka</surname>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical Neurology and Neurosurgery",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15297008/",
+      "quote": "JT  - Clinical neurology and neurosurgery"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15297008/",
+      "quote": "DP  - 2004 Sep"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "106",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15297008/",
+      "quote": "VI  - 106"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15297008/",
+      "quote": "IP  - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "318--329",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15297008/",
+      "quote": "PG  - 318-29"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.clineuro.2004.01.009",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.clineuro.2004.01.009.xml",
+      "quote": "<doi>10.1016/j.clineuro.2004.01.009</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Only change to authors is the caron on Šramka (Crossref); PubMed prints 'Sramka'. 'Eteri Sh'/'Tamar Sh' kept as single initial S (as cited)."
+ },
+ {
+  "key": "GrubEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10616112/",
+   "quote": "Selective visual-spatial attention alters induced gamma band responses in the human EEG.",
+   "why": "Same title and authors, Clin Neurophysiol 110(12) 1999 (PMID 10616112)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Selective visual-spatial attention alters induced gamma band responses in the human {EEG}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10616112/",
+      "quote": "Selective visual-spatial attention alters induced gamma band responses in the human EEG."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "T Gruber and M M M{\\\"u}ller and A Keil and T Elbert",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10616112/",
+      "quote": "T Gruber, M M M&#xfc;ller, A Keil, T Elbert"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10616112/",
+      "quote": "Clinical neurophysiology : official journal of the International Federation of Clinical Neurophysiology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10616112/",
+      "quote": "DP  - 1999 Dec"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "110",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10616112/",
+      "quote": "VI  - 110"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10616112/",
+      "quote": "IP  - 12"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2074--2085",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10616112/",
+      "quote": "PG  - 2074-85"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s1388-2457(99)00176-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1388-2457(99)00176-5.xml",
+      "quote": "<doi>10.1016/s1388-2457(99)00176-5</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Umlaut restored: Muller -> M{\\\"u}ller."
+ },
+ {
+  "key": "LuuEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15261861/",
+   "quote": "Frontal midline theta and the error-related negativity: neurophysiological mechanisms of action regulation.",
+   "why": "Same title, Luu/Tucker/Makeig, Clin Neurophysiol 115(8) 2004 (PMID 15261861)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Frontal midline theta and the error-related negativity: neurophysiological mechanisms of action regulation",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15261861/",
+      "quote": "Frontal midline theta and the error-related negativity: neurophysiological mechanisms of action regulation."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "P Luu and D M Tucker and S Makeig",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15261861/",
+      "quote": "Phan Luu, Don M Tucker, Scott Makeig"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15261861/",
+      "quote": "Clinical neurophysiology : official journal of the International Federation of Clinical Neurophysiology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15261861/",
+      "quote": "DP  - 2004 Aug"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "115",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15261861/",
+      "quote": "VI  - 115"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15261861/",
+      "quote": "IP  - 8"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1821--1835",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15261861/",
+      "quote": "PG  - 1821-35"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.clinph.2004.03.031",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.clinph.2004.03.031.xml",
+      "quote": "<doi>10.1016/j.clinph.2004.03.031</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Last page 1835 (not 1836); Tucker's middle initial M added (source gives D M)."
+ },
+ {
+  "key": "LuuTuck01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11516742/",
+   "quote": "Regulating action: alternating activation of midline frontal and motor cortical networks.",
+   "why": "Same title, Luu and Tucker, Clin Neurophysiol 112(7) 2001 (PMID 11516742)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Regulating action: alternating activation of midline frontal and motor cortical networks",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11516742/",
+      "quote": "Regulating action: alternating activation of midline frontal and motor cortical networks."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "P Luu and D M Tucker",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11516742/",
+      "quote": "P Luu, D M Tucker"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11516742/",
+      "quote": "Clinical neurophysiology : official journal of the International Federation of Clinical Neurophysiology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11516742/",
+      "quote": "DP  - 2001 Jul"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "112",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11516742/",
+      "quote": "VI  - 112"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11516742/",
+      "quote": "IP  - 7"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1295--1306",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11516742/",
+      "quote": "PG  - 1295-306"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s1388-2457(01)00559-4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1388-2457(01)00559-4.xml",
+      "quote": "<doi>10.1016/s1388-2457(01)00559-4</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Second author was garbled as 'D M Tucker-{W}hite'; source gives D M Tucker (key LuuTuck01 unchanged). Title: lowercase after colon."
+ },
+ {
+  "key": "ChatEtal96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8842578/",
+   "quote": "Salivary alpha-amylase as a measure of endogenous adrenergic activity.",
+   "why": "Same title and five authors, Clin Physiol 16(4) 1996 (PMID 8842578)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Salivary alpha-amylase as a measure of endogenous adrenergic activity",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8842578/",
+      "quote": "Salivary alpha-amylase as a measure of endogenous adrenergic activity."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "R T Chatterton and K M Vogelsong and Y C Lu and A B Ellman and G A Hudgens",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8842578/",
+      "quote": "R T Chatterton, K M Vogelsong, Y C Lu, A B Ellman, G A Hudgens"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical Physiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8842578/",
+      "quote": "Clinical physiology (Oxford, England)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8842578/",
+      "quote": "DP  - 1996 Jul"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8842578/",
+      "quote": "VI  - 16"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8842578/",
+      "quote": "IP  - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "433--448",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8842578/",
+      "quote": "PG  - 433-48"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1475-097x.1996.tb00731.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1475-097x.1996.tb00731.x.xml",
+      "quote": "<doi>10.1111/j.1475-097x.1996.tb00731.x</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Author initials were lowercased ('a B Ellman', 'G a Hudgens'); fixed to A B / G A. Crossref prints the title with 'α-amylase'; PubMed 'alpha-amylase' kept."
+ },
+ {
+  "key": "MattEtal92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+   "quote": "<title>Mood-congruent recall of affectively toned stimuli: A meta-analytic review</title>",
+   "why": "Crossref record of DOI 10.1016/0272-7358(92)90116-p: same title, Matt/Vázquez/Campbell, Clinical Psychology Review 12, 1992, 227-255 (not in PubMed)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Mood-congruent recall of affectively toned stimuli: a meta-analytic review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<title>Mood-congruent recall of affectively toned stimuli: A meta-analytic review</title>"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "G E Matt and C V{\\'a}zquez and W K Campbell",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<surname>Matt</surname>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<surname>Vázquez</surname>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<surname>Campbell</surname>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical Psychology Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<full_title>Clinical Psychology Review</full_title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<year>1992</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<volume>12</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<issue>2</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "227--255",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<first_page>227</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<last_page>255</last_page>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0272-7358(92)90116-p",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0272-7358(92)90116-p.xml",
+      "quote": "<doi>10.1016/0272-7358(92)90116-p</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Accent restored on V\\'azquez (Crossref 'Vázquez'); issue 2 added. Crossref gives 'Georg E.' and 'W.Keith', matching cited initials."
+ },
+ {
+  "key": "Kaba03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+   "quote": "<title>Mindfulness-based interventions in context: Past, present, and future.</title>",
+   "why": "Crossref record of DOI 10.1093/clipsy.bpg016: same title, Kabat-Zinn, Clinical Psychology: Science and Practice 10(2) 2003 144-156."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Mindfulness-based interventions in context: past, present, and future",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+      "quote": "<title>Mindfulness-based interventions in context: Past, present, and future.</title>"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Kabat-Zinn",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+      "quote": "<given_name>Jon</given_name>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+      "quote": "<surname>Kabat-Zinn</surname>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical Psychology: Science and Practice",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+      "quote": "<full_title>Clinical Psychology: Science and Practice</full_title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+      "quote": "<year>2003</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+      "quote": "<volume>10</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+      "quote": "<issue>2</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "144--156",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+      "quote": "<first_page>144</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+      "quote": "<last_page>156</last_page>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/clipsy.bpg016",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/clipsy.bpg016.xml",
+      "quote": "<doi>10.1093/clipsy.bpg016</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title adds the serial comma ('present, and future') as printed. Not indexed in PubMed."
+ },
+ {
+  "key": "PellEtal88",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://raw.githubusercontent.com/denispelli/Eye-Chart-Fonts/master/README.md",
+   "quote": "Pelli, D. G., Robson, J. G., & Wilkins, A. J. (1988) The design of a new letter chart for measuring contrast sensitivity. Clinical Vision Sciences 2, 187-199.",
+   "why": "First author's own repository (Denis Pelli) cites the same three authors, journal, volume, pages and year; the journal (1986-1994) has no online archive or DOI."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "The design of a new letter chart for measuring contrast sensitivity",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/denispelli/Eye-Chart-Fonts/master/README.md",
+      "quote": "Pelli, D. G., Robson, J. G., & Wilkins, A. J. (1988) The design of a new letter chart for measuring contrast sensitivity. Clinical Vision Sciences 2, 187-199."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D G Pelli and J G Robson and A J Wilkins",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/denispelli/Eye-Chart-Fonts/master/README.md",
+      "quote": "Pelli, D. G., Robson, J. G., & Wilkins, A. J. (1988) The design of a new letter chart for measuring contrast sensitivity. Clinical Vision Sciences 2, 187-199."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical Vision Sciences",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/denispelli/Eye-Chart-Fonts/master/README.md",
+      "quote": "Pelli, D. G., Robson, J. G., & Wilkins, A. J. (1988) The design of a new letter chart for measuring contrast sensitivity. Clinical Vision Sciences 2, 187-199."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/denispelli/Eye-Chart-Fonts/master/README.md",
+      "quote": "Pelli, D. G., Robson, J. G., & Wilkins, A. J. (1988) The design of a new letter chart for measuring contrast sensitivity. Clinical Vision Sciences 2, 187-199."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/denispelli/Eye-Chart-Fonts/master/README.md",
+      "quote": "Pelli, D. G., Robson, J. G., & Wilkins, A. J. (1988) The design of a new letter chart for measuring contrast sensitivity. Clinical Vision Sciences 2, 187-199."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "187--199",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/denispelli/Eye-Chart-Fonts/master/README.md",
+      "quote": "Pelli, D. G., Robson, J. G., & Wilkins, A. J. (1988) The design of a new letter chart for measuring contrast sensitivity. Clinical Vision Sciences 2, 187-199."
+     }
+    ]
+   },
+   "number": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Weak source class: only the author's own GitHub README is fetchable (protocol allows an author page when nothing else covers the item). NYU Scholars (Pure record 'The design of a new letter chart for measuring contrast sensitivity', Clinical Vision Sciences 2(3) 187-199) agrees incl. issue 3 but fails TLS for scripts and WebFetch, so it is not quoted; issue left unset. Title variance: many citing papers use 'Designing a new letter chart...', but the author's own records use 'The design of...'. No DOI exists. Reviewer may prefer the local PDF if one is found; none in the Papers library."
+ },
+ {
+  "key": "Nied90",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/2225471/",
+   "quote": "Alpha-like rhythmical activity of the temporal lobe.",
+   "why": "Same title and author(s), Clin Electroencephalogr 21(4) (PMID 2225471)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Alpha-like rhythmical activity of the temporal lobe",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2225471/",
+      "quote": "Alpha-like rhythmical activity of the temporal lobe."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E Niedermeyer",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2225471/",
+      "quote": "FAU - Niedermeyer, E"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical {EEG} (electroencephalography)",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2225471/",
+      "quote": "JT  - Clinical EEG (electroencephalography)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1990",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2225471/",
+      "quote": "DP  - 1990 Oct"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2225471/",
+      "quote": "VI  - 21"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2225471/",
+      "quote": "IP  - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "210--224",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2225471/",
+      "quote": "PG  - 210-24"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1177/155005949002100410",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/155005949002100410.xml",
+      "quote": "<doi>10.1177/155005949002100410</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Pages had only the first page; full range 210-224. Crossref names the journal 'Clinical Electroencephalography' (queue's journal mismatch); PubMed's 'Clinical EEG (electroencephalography)' matches the cited house form."
+ },
+ {
+  "key": "Nied91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/2032348/",
+   "quote": "The \"third rhythm\": further observations.",
+   "why": "Same title and author(s), Clin Electroencephalogr 22(2) (PMID 2032348)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The ``third rhythm'': further observations",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2032348/",
+      "quote": "The \"third rhythm\": further observations."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E Niedermeyer",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2032348/",
+      "quote": "FAU - Niedermeyer, E"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical {EEG} (electroencephalography)",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2032348/",
+      "quote": "JT  - Clinical EEG (electroencephalography)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2032348/",
+      "quote": "DP  - 1991 Apr"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2032348/",
+      "quote": "VI  - 22"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2032348/",
+      "quote": "IP  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "83--96",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2032348/",
+      "quote": "PG  - 83-96"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1177/155005949102200208",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/155005949102200208.xml",
+      "quote": "<doi>10.1177/155005949102200208</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Pages had only the first page; full range 83-96. Crossref names the journal 'Clinical Electroencephalography' (queue's journal mismatch); PubMed's 'Clinical EEG (electroencephalography)' matches the cited house form."
+ },
+ {
+  "key": "ShinEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10513319/",
+   "quote": "Clinical aspects of the \"third rhythm\" of the temporal lobe.",
+   "why": "Same title and author(s), Clin Electroencephalogr 30(4) (PMID 10513319)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Clinical aspects of the ``third rhythm'' of the temporal lobe",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10513319/",
+      "quote": "Clinical aspects of the \"third rhythm\" of the temporal lobe."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S Shinomiya and T Fukunaga and K Nagata",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10513319/",
+      "quote": "S Shinomiya, T Fukunaga, K Nagata"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Clinical {EEG} (electroencephalography)",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10513319/",
+      "quote": "JT  - Clinical EEG (electroencephalography)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10513319/",
+      "quote": "DP  - 1999 Oct"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "30",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10513319/",
+      "quote": "VI  - 30"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10513319/",
+      "quote": "IP  - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "136--142",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10513319/",
+      "quote": "PG  - 136-42"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1177/155005949903000405",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/155005949903000405.xml",
+      "quote": "<doi>10.1177/155005949903000405</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Pages had only the first page; full range 136-142. Crossref names the journal 'Clinical Electroencephalography' (queue's journal mismatch); PubMed's 'Clinical EEG (electroencephalography)' matches the cited house form."
+ },
+ {
+  "key": "BotvEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
+   "quote": "Hierarchically organized behavior and its neural foundations: a reinforcement learning perspective.",
+   "why": "Same title and authors, Cognition 113(3) 262-280 (PMID 18926527); cited volume/pages match, only the year was wrong."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Hierarchically organized behavior and its neural foundations: a reinforcement learning perspective",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
+      "quote": "Hierarchically organized behavior and its neural foundations: a reinforcement learning perspective."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M M Botvinick and Y Niv and A G Barto",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
+      "quote": "Matthew M Botvinick, Yael Niv, Andew G Barto"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cognition",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
+      "quote": "JT  - Cognition"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
+      "quote": "DP  - 2009 Dec"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "113",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
+      "quote": "VI  - 113"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "262--280",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
+      "quote": "PG  - 262-280"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cognition.2008.08.011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cognition.2008.08.011.xml",
+      "quote": "<doi>10.1016/j.cognition.2008.08.011</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Year 2004 -> 2009 (print Dec 2009; online 2008). Barto's initial is G (Andrew G Barto; sources misspell 'Andew'), not C. Key changes BotvEtal04 -> BotvEtal09 (not in HEAD cdl.bib, no collision; no duplicate of this work elsewhere).",
+  "new_key": "BotvEtal09"
+ },
+ {
+  "key": "DehaNacc00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11164022/",
+   "quote": "Towards a cognitive neuroscience of consciousness: basic evidence and a workspace framework.",
+   "why": "Same title, Dehaene and Naccache, Cognition 79(1-2) 1-37 (PMID 11164022)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Towards a cognitive neuroscience of consciousness: basic evidence and a workspace framework",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11164022/",
+      "quote": "Towards a cognitive neuroscience of consciousness: basic evidence and a workspace framework."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S Dehaene and L Naccache",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11164022/",
+      "quote": "S Dehaene, L Naccache"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cognition",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11164022/",
+      "quote": "JT  - Cognition"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11164022/",
+      "quote": "DP  - 2001 Apr"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "79",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11164022/",
+      "quote": "VI  - 79"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1--2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11164022/",
+      "quote": "IP  - 1-2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--37",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11164022/",
+      "quote": "PG  - 1-37"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0010-0277(00)00123-2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0010-0277(00)00123-2.xml",
+      "quote": "<doi>10.1016/s0010-0277(00)00123-2</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Print year 2001 (Cognition 79(1-2), April 2001; Crossref published-print 2001-04). Key changes DehaNacc00 -> DehaNacc01 (not in HEAD cdl.bib, no collision; no duplicate found).",
+  "new_key": "DehaNacc01"
+ },
+ {
+  "key": "JayaEtal23",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/36893523/",
+   "quote": "Manasi Jayakumar, Chinmayi Balusu, Mariam Aly",
+   "why": "Same title and authors, Cognition 235 (2023) article 105408 (PMID 36893523)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Attentional fluctuations and the temporal organization of memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36893523/",
+      "quote": "Attentional fluctuations and the temporal organization of memory."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Jayakumar and C Balusu and M Aly",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36893523/",
+      "quote": "Manasi Jayakumar, Chinmayi Balusu, Mariam Aly"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cognition",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36893523/",
+      "quote": "JT  - Cognition"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2023",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36893523/",
+      "quote": "DP  - 2023 Jun"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "235",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36893523/",
+      "quote": "VI  - 235"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "105408",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36893523/",
+      "quote": "PG  - 105408"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cognition.2023.105408",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.cognition.2023.105408.xml",
+      "quote": "<doi>10.1016/j.cognition.2023.105408</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Article number 105408 belongs in pages (house form, e.g. SumeEtal23 Pages = {105326}); the cited number=105408 and pages=1--32 (PDF page count) are wrong. Remove `number` (no issue exists).",
+  "remove": [
+   "number"
+  ]
+ }
+]

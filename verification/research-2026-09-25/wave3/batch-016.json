@@ -1,0 +1,1714 @@
+[
+ {
+  "key": "Scha12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22577300/",
+   "quote": "Constructive memory: past and future.",
+   "why": "PubMed 22577300: same title and sole author D L Schacter, 2012, pages 7-18; the journal is Dialogues in Clinical Neuroscience vol 14(1)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Constructive memory: past and future",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22577300/",
+      "quote": "Constructive memory: past and future."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D L Schacter",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22577300/",
+      "quote": "Daniel L Schacter"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Dialogues in Clinical Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22577300/",
+      "quote": "Dialogues in clinical neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31887/dcns.2012.14.1/dschacter",
+      "quote": "\"volume\":\"14\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31887/dcns.2012.14.1/dschacter",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "7--18",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31887/dcns.2012.14.1/dschacter",
+      "quote": "\"page\":\"7-18\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31887/dcns.2012.14.1/dschacter",
+      "quote": "\"published-print\":{\"date-parts\":[[2012,3,31]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.31887/dcns.2012.14.1/dschacter",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31887/dcns.2012.14.1/dschacter",
+      "quote": "\"title\":[\"Constructive memory: past and future\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Cited journal name 'Neurosciences' and volume 1 were wrong; Crossref and PubMed agree on vol 14 issue 1. PubMed also lists 2013 dates (PMC), print date is 2012. No duplicate of this work in cdl.bib (MIT Press chapter 10.7551/mitpress/8029.003.0065 is a different work)."
+ },
+ {
+  "key": "DaPo67",
+  "verdict": "no_source",
+  "identity": {},
+  "fields": {},
+  "notes": "Dissertation abstract (F J DaPolito, Indiana University PhD 1966, per other papers' reference lists only). No Crossref/PubMed record; Open Library and LoC searches returned nothing; IUCAT, HathiTrust and WorldCat blocked scripted access (bot walls). DAI vol 27 pp 2522-2523 could not be confirmed. Candidate for user sign-off or conversion to @phdthesis (Indiana University, 1966) if a catalogue record is found."
+ },
+ {
+  "key": "Yone96",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.datacite.org/dois/10.71548/12410",
+   "quote": "Dissociating Recollection and Familiarity in Recognition Memory",
+   "why": "DataCite record of the McMaster University PhD thesis by Andrew P. Yonelinas (1995) with the same title; the cited item is its Dissertation Abstracts International abstract, which could not be found."
+  },
+  "fields": {},
+  "notes": "The thesis itself: A P Yonelinas, 'Dissociating recollection and familiarity in recognition memory', PhD thesis, McMaster University, 1995 (advisor L L Jacoby), DOI 10.71548/12410 (DataCite, handle resolves; MacSphere hdl 11375/6990). DAI vol 57 p 2193 not verifiable (no ProQuest access). Replacement candidate: @phdthesis{Yone95, Author = {A P Yonelinas}, School = {McMaster University}, Title = {Dissociating recollection and familiarity in recognition memory}, Year = {1995}, Doi = {10.71548/12410}}; key Yone95 is free in HEAD cdl.bib. Evidence for the thesis fields: https://api.datacite.org/dois/10.71548/12410 (\"publisher\":\"McMaster University\", \"publicationYear\":1995, \"name\":\"Yonelinas, Andrew P.\")."
+ },
+ {
+  "key": "OlesEtal25",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+   "quote": "THE LINK BETWEEN POST-TRAUMATIC STRESS DISORDER AND CARDIOVASCULAR EVENTS DEVELOPMENT (LITERATURE REVIEW)",
+   "why": "Publisher page: same title, nine authors in the cited order, Eastern Ukrainian Medical Journal 13(2):364-372, 2025."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The link between post-traumatic stress disorder and cardiovascular events development (literature review)",
+    "evidence": [
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "THE LINK BETWEEN POST-TRAUMATIC STRESS DISORDER AND CARDIOVASCULAR EVENTS DEVELOPMENT (LITERATURE REVIEW)"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T B Oleshko and O M Oleshko and Y A Matvieieva and O S Korol and R I Chaikin and S A Zaiats and O V Kiriienko and A M Nosov and A Darvish",
+    "evidence": [
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "Tetiana Oleshko Physiology and Pathophysiology Department"
+     },
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "Oleksandr Oleshko Public Health Department"
+     },
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "Yuliia Matvieieva Oleg Balatskyi Department of Management"
+     },
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "Oleksandr Korol Public Health Department"
+     },
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "Roman Chaikin Physiology and Pathophysiology Department"
+     },
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "Serhii Zaiats Physical Education Department"
+     },
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "Oleksandr Kiriienko Public Health Department"
+     },
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "Andrii Nosov Public Health Department"
+     },
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "Adel Darvish Surgical Department"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Eastern Ukrainian Medical Journal",
+    "evidence": [
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "citation_journal_title\" content=\"Eastern Ukrainian Medical Journal\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "citation_volume\" content=\"13\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "citation_issue\" content=\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "364--372",
+    "evidence": [
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "citation_firstpage\" content=\"364\""
+     },
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "citation_lastpage\" content=\"372\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2025",
+    "evidence": [
+     {
+      "url": "https://eumj.med.sumdu.edu.ua/index.php/journal/article/view/840",
+      "quote": "citation_date\" content=\"2025/06/22\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.21272/eumj.2025;13(2):364-372",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.21272/eumj.2025;13(2):364-372",
+      "quote": "\"page\":\"364-372\""
+     }
+    ]
+   }
+  },
+  "notes": "Sources give given names without patronymics (Tetiana, Oleksandr, ...); the cited second initials are kept per the never-drop-an-initial rule (cannot be confirmed or refuted). DOI contains ';' and parentheses but the handle resolves (doi.org/api/handles 200)."
+ },
+ {
+  "key": "Warr98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/10407413.1998.9652682",
+   "quote": "\"title\":[\"Visually Controlled Locomotion: 40 years Later\"]",
+   "why": "Crossref: W H Warren, Ecological Psychology 10(3-4):177-219, 1998, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Visually controlled locomotion: 40 years later",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/10407413.1998.9652682",
+      "quote": "\"title\":[\"Visually Controlled Locomotion: 40 years Later\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W H Warren",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/10407413.1998.9652682",
+      "quote": "\"given\":\"William H.\",\"family\":\"Warren Jr.\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Ecological Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/10407413.1998.9652682",
+      "quote": "\"container-title\":[\"Ecological Psychology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/10407413.1998.9652682",
+      "quote": "\"volume\":\"10\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3--4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/10407413.1998.9652682",
+      "quote": "\"issue\":\"3-4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "177--219",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/10407413.1998.9652682",
+      "quote": "\"page\":\"177-219\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/10407413.1998.9652682",
+      "quote": "\"published-print\":{\"date-parts\":[[1998,9]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/10407413.1998.9652682",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/10407413.1998.9652682",
+      "quote": "\"page\":\"177-219\""
+     }
+    ]
+   }
+  },
+  "notes": "Last page 219, not 220 (both Crossref records agree). Suffix 'Jr.' dropped per house rule. The same article also has a legacy DOI 10.1207/s15326969eco103&4_3 (issue given as '3'; resolves only to a dead informaworld URL); the live T&F DOI is proposed."
+ },
+ {
+  "key": "Gran69",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://ideas.repec.org/a/ecm/emetrp/v37y1969i3p424-38.html",
+   "quote": "citation_title\" content=\"Investigating Causal Relations by Econometric Models and Cross-Spectral Methods\"",
+   "why": "RePEc record of Econometrica 37(3):424-438, 1969 by C W J Granger; Crossref DOI 10.2307/1912791 (JSTOR) is the same article."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Investigating causal relations by econometric models and cross-spectral methods",
+    "evidence": [
+     {
+      "url": "https://ideas.repec.org/a/ecm/emetrp/v37y1969i3p424-38.html",
+      "quote": "citation_title\" content=\"Investigating Causal Relations by Econometric Models and Cross-Spectral Methods\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C W J Granger",
+    "evidence": [
+     {
+      "url": "https://ideas.repec.org/a/ecm/emetrp/v37y1969i3p424-38.html",
+      "quote": "citation_authors\" content=\"Granger, C W J\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Econometrica",
+    "evidence": [
+     {
+      "url": "https://ideas.repec.org/a/ecm/emetrp/v37y1969i3p424-38.html",
+      "quote": "citation_journal_title\" content=\"Econometrica\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "37",
+    "evidence": [
+     {
+      "url": "https://ideas.repec.org/a/ecm/emetrp/v37y1969i3p424-38.html",
+      "quote": "citation_volume\" content=\"37\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://ideas.repec.org/a/ecm/emetrp/v37y1969i3p424-38.html",
+      "quote": "citation_issue\" content=\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "424--438",
+    "evidence": [
+     {
+      "url": "https://ideas.repec.org/a/ecm/emetrp/v37y1969i3p424-38.html",
+      "quote": "citation_firstpage\" content=\"424\""
+     },
+     {
+      "url": "https://ideas.repec.org/a/ecm/emetrp/v37y1969i3p424-38.html",
+      "quote": "citation_lastpage\" content=\"438\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1969",
+    "evidence": [
+     {
+      "url": "https://ideas.repec.org/a/ecm/emetrp/v37y1969i3p424-38.html",
+      "quote": "citation_year\" content=\"1969\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.2307/1912791",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/1912791",
+      "quote": "\"title\":[\"Investigating Causal Relations by Econometric Models and Cross-spectral Methods\"]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; only the DOI is added (Crossref lists first page only, which caused the flag). JSTOR page is behind a bot wall."
+ },
+ {
+  "key": "Poph99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ascd.org/el/articles/why-standardized-tests-dont-measure-educational-quality",
+   "quote": "March 1, 1999 • 5 min (est.) • Vol. 56 • No. 6 Why Standardized Tests Don't Measure Educational Quality W. James Popham",
+   "why": "Publisher (ASCD) page: same title and author, Educational Leadership vol 56 no 6, March 1999."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Why standardized tests don't measure educational quality",
+    "evidence": [
+     {
+      "url": "https://www.ascd.org/el/articles/why-standardized-tests-dont-measure-educational-quality",
+      "quote": "Why Standardized Tests Don't Measure Educational Quality W. James Popham"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W J Popham",
+    "evidence": [
+     {
+      "url": "https://www.ascd.org/el/articles/why-standardized-tests-dont-measure-educational-quality",
+      "quote": "W. James Popham"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Educational Leadership",
+    "evidence": [
+     {
+      "url": "https://eric.ed.gov/?id=EJ581564",
+      "quote": "Educational Leadership"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "56",
+    "evidence": [
+     {
+      "url": "https://www.ascd.org/el/articles/why-standardized-tests-dont-measure-educational-quality",
+      "quote": "Vol. 56 • No. 6"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://www.ascd.org/el/articles/why-standardized-tests-dont-measure-educational-quality",
+      "quote": "Vol. 56 • No. 6"
+     },
+     {
+      "url": "https://eric.ed.gov/?id=EJ581564",
+      "quote": "v56 n6 p8-15 Mar 1999"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "8--15",
+    "evidence": [
+     {
+      "url": "https://eric.ed.gov/?id=EJ581564",
+      "quote": "v56 n6 p8-15 Mar 1999"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://eric.ed.gov/?id=EJ581564",
+      "quote": "v56 n6 p8-15 Mar 1999"
+     }
+    ]
+   }
+  },
+  "notes": "ERIC gives pages 8-15 (cited 8--16; no source for 16 found; ASCD page gives no pages). ERIC's title reads 'Why Standardized Test Scores Don't...' but the publisher's page prints 'Why Standardized Tests Don't...', so the cited title is kept. No DOI exists."
+ },
+ {
+  "key": "Allo12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://academicjournals.org/journal/ERR/article-abstract/9AB8D714479",
+   "quote": "Tracy Packiam Alloway*, Gwyneth Doherty-Sneddon and Lynsey Forbes",
+   "why": "Publisher page: same title, Educational Research and Reviews 7(6):138-142, February 2012; three authors, not one."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Teachers' perceptions of classroom behaviour and working memory",
+    "evidence": [
+     {
+      "url": "https://eric.ed.gov/?id=EJ976900",
+      "quote": "Teachers' Perceptions of Classroom Behaviour and Working Memory"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "T P Alloway and G Doherty-Sneddon and L Forbes",
+    "evidence": [
+     {
+      "url": "https://academicjournals.org/journal/ERR/article-abstract/9AB8D714479",
+      "quote": "Tracy Packiam Alloway*, Gwyneth Doherty-Sneddon and Lynsey Forbes"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Educational Research and Reviews",
+    "evidence": [
+     {
+      "url": "https://academicjournals.org/journal/ERR/article-abstract/9AB8D714479",
+      "quote": "citation_journal_title\" content=\"Educational Research and Reviews\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://academicjournals.org/journal/ERR/article-abstract/9AB8D714479",
+      "quote": "Vol.7(6), pp. 138-142"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://academicjournals.org/journal/ERR/article-abstract/9AB8D714479",
+      "quote": "Vol.7(6), pp. 138-142"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "138--142",
+    "evidence": [
+     {
+      "url": "https://academicjournals.org/journal/ERR/article-abstract/9AB8D714479",
+      "quote": "Vol.7(6), pp. 138-142"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://academicjournals.org/journal/ERR/article-abstract/9AB8D714479",
+      "quote": "Published: 12 February 2012"
+     }
+    ]
+   }
+  },
+  "notes": "Author count changes 1 -> 3, so the key becomes AlloEtal12 (free in HEAD cdl.bib; rename Allo12 -> AlloEtal12). The page prints DOI 10.5897/ERR10.223 but it does NOT resolve (doi.org 404, handle API 404, no Crossref record), so no doi is proposed. ERIC lists Alloway only; the publisher byline and Northumbria repository both list three authors."
+ },
+ {
+  "key": "RhoaEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1111/edth.12011",
+   "quote": "Unmasking Power and Raising Questions about the Movement's Democratic Potential",
+   "why": "Crossref: Rhoads, Berdan, Toven-Lindsey, Educational Theory 63(1):87-110, 2013, same title."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The open courseware movement in higher education: unmasking power and raising questions about the movement's democratic potential",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/edth.12011",
+      "quote": "The Open Courseware Movement in Higher Education: Unmasking Power and Raising Questions about the Movement's Democratic Potential"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R A Rhoads and J Berdan and B Toven-Lindsey",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/edth.12011",
+      "quote": "\"given\":\"Robert A.\",\"family\":\"Rhoads\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/edth.12011",
+      "quote": "\"given\":\"Jennifer\",\"family\":\"Berdan,\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/edth.12011",
+      "quote": "\"family\":\"Toven"
+     },
+     {
+      "url": "https://eric.ed.gov/?id=EJ998131",
+      "quote": "Robert Rhoads, Jennifer Berdan, and Brit Toven-Lindsey"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Educational Theory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/edth.12011",
+      "quote": "\"container-title\":[\"Educational Theory\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "63",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/edth.12011",
+      "quote": "\"volume\":\"63\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/edth.12011",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "87--110",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/edth.12011",
+      "quote": "\"page\":\"87-110\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/edth.12011",
+      "quote": "\"published-print\":{\"date-parts\":[[2013,2]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/edth.12011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/edth.12011",
+      "quote": "\"page\":\"87-110\""
+     }
+    ]
+   }
+  },
+  "notes": "Author flag came from Crossref's stray comma ('Berdan,') and a non-ASCII hyphen in Toven-Lindsey; the cited authors are right. Only the DOI is added. ERIC (EJ998131) gives pages 87-109; the publisher's Crossref record (87-110) is kept."
+ },
+ {
+  "key": "ChaoEtal95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/7535221/",
+   "quote": "Auditory event-related potentials dissociate early and late memory processes.",
+   "why": "PubMed record 7535221: same title, authors, journal, volume and pages; DOI 10.1016/0168-5597(94)00256-e."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Auditory event-related potentials dissociate early and late memory processes",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7535221/",
+      "quote": "Auditory event-related potentials dissociate early and late memory processes."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L L Chao and L Nielsen-Bohlman and R T Knight",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7535221/",
+      "quote": "L L Chao, L Nielsen-Bohlman, R T Knight"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7535221/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "96",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(94)00256-e",
+      "quote": "\"volume\":\"96\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "157--168",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(94)00256-e",
+      "quote": "\"page\":\"157-168\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(94)00256-e",
+      "quote": "\"published-print\":{\"date-parts\":[[1995,3]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0168-5597(94)00256-e",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(94)00256-e",
+      "quote": "\"DOI\":\"10.1016\\/0168-5597(94)00256-e\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(94)00256-e",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref's container title is 'Electroencephalography and Clinical Neurophysiology/Evoked Potentials Section' (the section of the same journal, as PubMed indexes it); the house journal name is kept. Adds issue 2 and DOI."
+ },
+ {
+  "key": "FabiEtal90",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/1688770/",
+   "quote": "Effects of mnemonic strategy manipulation in a Von Restorff paradigm.",
+   "why": "PubMed record 1688770: same title, authors, journal, volume and pages; DOI 10.1016/0013-4694(90)90149-e."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Effects of mnemonic strategy manipulation in a von {Restorff} paradigm",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1688770/",
+      "quote": "Effects of mnemonic strategy manipulation in a Von Restorff paradigm."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Fabiani and D Karis and E Donchin",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1688770/",
+      "quote": "M Fabiani, D Karis, E Donchin"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1688770/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "75",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(90)90149-e",
+      "quote": "\"volume\":\"75\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1688770/",
+      "quote": "Electroencephalogr Clin Neurophysiol 1990 2022 1990 1990 1990 1990 75 2 22-35"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "22--35",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(90)90149-e",
+      "quote": "\"page\":\"22-35\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1990",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(90)90149-e",
+      "quote": "\"published-print\":{\"date-parts\":[[1990,2]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0013-4694(90)90149-e",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(90)90149-e",
+      "quote": "\"DOI\":\"10.1016\\/0013-4694(90)90149-e\""
+     }
+    ]
+   }
+  },
+  "notes": "Cited volume 23 and pages 298--308 belong to a DIFFERENT paper by the same authors: 'P300 and recall in an incidental memory paradigm', Psychophysiology 23(3):298-308, 1986 (doi 10.1111/j.1469-8986.1986.tb00636.x). Title, authors, journal and year all match the 1990 EEG paper, so volume -> 75 and pages -> 22--35. Issue not proposed: PubMed says 2, Crossref says 1-2. Reviewer should confirm the intended work is the 1990 paper (the 1986 paper is not in cdl.bib)."
+ },
+ {
+  "key": "IshiEtal75",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/53143/",
+   "quote": "Neuronal activities in human epileptic foci and surrounding areas.",
+   "why": "PubMed record 53143: same title, authors, journal, volume and pages; DOI 10.1016/0013-4694(75)90077-2."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Neuronal activities in human epileptic foci and surrounding areas",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/53143/",
+      "quote": "Neuronal activities in human epileptic foci and surrounding areas."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "B Ishijima and T Hori and N Yoshimasu and T Fukushima and K Hirakawa and H Sekino",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/53143/",
+      "quote": "B Ishijima, T Hori, N Yoshimasu, T Fukushima, K Hirakawa"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(75)90077-2",
+      "quote": "{\"given\":\"H\",\"family\":\"Sekino\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/53143/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "39",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(75)90077-2",
+      "quote": "\"volume\":\"39\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "643--650",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(75)90077-2",
+      "quote": "\"page\":\"643-650\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1975",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(75)90077-2",
+      "quote": "\"published-print\":{\"date-parts\":[[1975,12]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0013-4694(75)90077-2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(75)90077-2",
+      "quote": "\"DOI\":\"10.1016\\/0013-4694(75)90077-2\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(75)90077-2",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref lists a sixth author, H Sekino ('given':'H','family':'Sekino'); PubMed lists five. Other papers' reference lists also cite six authors (Ishijima, Hori, Yoshimasu, Fukushima, Hirakawa, Sekino). Sekino added from Crossref; the printed byline could not be inspected (ScienceDirect 403). Crossref spells the third author 'Yoshimasa'; PubMed and cdl.bib (IshiYosh72) use 'Yoshimasu', kept. Key IshiEtal75 unchanged (3+ authors)."
+ },
+ {
+  "key": "Lope91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/1713832/",
+   "quote": "Neural mechanisms underlying brain waves: from neural membranes to networks.",
+   "why": "PubMed record 1713832: same title, authors, journal, volume and pages; DOI 10.1016/0013-4694(91)90044-5."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Neural mechanisms underlying brain waves: from neural membranes to networks",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1713832/",
+      "quote": "Neural mechanisms underlying brain waves: from neural membranes to networks."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "F H {Lopes Da Silva}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1713832/",
+      "quote": "F Lopes da Silva"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1713832/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "79",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(91)90044-5",
+      "quote": "\"volume\":\"79\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "81--93",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(91)90044-5",
+      "quote": "\"page\":\"81-93\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(91)90044-5",
+      "quote": "\"published-print\":{\"date-parts\":[[1991,8]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0013-4694(91)90044-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(91)90044-5",
+      "quote": "\"DOI\":\"10.1016\\/0013-4694(91)90044-5\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(91)90044-5",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   }
+  },
+  "notes": "Sources give only 'F' / 'Fernando'; the cited H initial is kept (never drop an initial) and matches other cdl.bib entries for this author. Adds issue 2 and DOI."
+ },
+ {
+  "key": "LopeEtal73",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/4128158/",
+   "quote": "Organization of thalamic and cortical alpha rhythms: spectra and coherences.",
+   "why": "PubMed record 4128158: same title, authors, journal, volume and pages; DOI 10.1016/0013-4694(73)90216-2."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Organization of thalamic and cortical alpha rhythms: spectra and coherences",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/4128158/",
+      "quote": "Organization of thalamic and cortical alpha rhythms: spectra and coherences."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "F H {Lopes Da Silva} and T H {van Lierop} and C F Schrijer and W S {van Leeuwen}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/4128158/",
+      "quote": "F H da Silva, T H van Lierop, C F Schrijer, W S van Leeuwen"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(73)90216-2",
+      "quote": "\"family\":\"Lopes da Silva\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/4128158/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "35",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(73)90216-2",
+      "quote": "\"volume\":\"35\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "627--639",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(73)90216-2",
+      "quote": "\"page\":\"627-639\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1973",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(73)90216-2",
+      "quote": "\"published-print\":{\"date-parts\":[[1973,12]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0013-4694(73)90216-2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(73)90216-2",
+      "quote": "\"DOI\":\"10.1016\\/0013-4694(73)90216-2\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(73)90216-2",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   }
+  },
+  "notes": "PubMed matches the cited byline. Crossref gives 'T.H.M.T van Lierop' and 'W Storm van Leeuwen' (the author is W. Storm van Leeuwen); a single-source surname change needs corroboration and LopevanL77 spells him 'W S {van Leeuwen}' too, so the byline is left for the reviewer. Adds issue 6 and DOI."
+ },
+ {
+  "key": "MenoEtal96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8598178/",
+   "quote": "Spatio-temporal correlations in human gamma band electrocorticograms.",
+   "why": "PubMed record 8598178: same title, authors, journal, volume and pages; DOI 10.1016/0013-4694(95)00206-5."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Spatio-temporal correlations in human gamma band electrocorticograms",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8598178/",
+      "quote": "Spatio-temporal correlations in human gamma band electrocorticograms."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "V Menon and W J Freeman and B A Cutillo and J E Desmond and M F Ward and S L Bressler and K D Laxer and N Barbaro and A S Gevins",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8598178/",
+      "quote": "V Menon, W J Freeman, B A Cutillo, J E Desmond, M F Ward, S L Bressler, K D Laxer, N Barbaro, A S Gevins"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8598178/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "98",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(95)00206-5",
+      "quote": "\"volume\":\"98\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "89--102",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(95)00206-5",
+      "quote": "\"page\":\"89-102\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(95)00206-5",
+      "quote": "\"published-print\":{\"date-parts\":[[1996,2]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0013-4694(95)00206-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(95)00206-5",
+      "quote": "\"DOI\":\"10.1016\\/0013-4694(95)00206-5\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(95)00206-5",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; only the DOI is added. The correction/retraction flag came from an unrelated record (10.1016/0013-4694(96)88446-x is meeting abstract M54 by Bertrand et al.), not a notice on this paper."
+ },
+ {
+  "key": "NuneEtal97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9402881/",
+   "quote": "EEG coherency. I: Statistics, reference electrode, volume conduction, Laplacians, cortical imaging, and interpretation at multiple scales.",
+   "why": "PubMed record 9402881: same title, authors, journal, volume and pages; DOI 10.1016/s0013-4694(97)00066-7."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{EEG} coherency {I}: statistics, reference electrode, volume conduction, {L}aplacians, cortical imaging, and interpretation at multiple scales",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9402881/",
+      "quote": "EEG coherency. I: Statistics, reference electrode, volume conduction, Laplacians, cortical imaging, and interpretation at multiple scales."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "P L Nunez and R Srinivasan and A F Westdorp and R S Wijesinghe and D M Tucker and R B Silberstein and P J Cadusch",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9402881/",
+      "quote": "P L Nunez, R Srinivasan, A F Westdorp, R S Wijesinghe, D M Tucker, R B Silberstein, P J Cadusch"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9402881/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "103",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0013-4694(97)00066-7",
+      "quote": "\"volume\":\"103\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "499--515",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0013-4694(97)00066-7",
+      "quote": "\"page\":\"499-515\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0013-4694(97)00066-7",
+      "quote": "\"published-print\":{\"date-parts\":[[1997,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0013-4694(97)00066-7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0013-4694(97)00066-7",
+      "quote": "\"DOI\":\"10.1016\\/s0013-4694(97)00066-7\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0013-4694(97)00066-7",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref truncates the title to 'EEG coherency'; PubMed has the full title. Only the DOI is added."
+ },
+ {
+  "key": "PeloEtal95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/7530188/",
+   "quote": "Is \"memory-scanning\" time in the Sternberg paradigm reflected in the latency of event-related potentials?",
+   "why": "PubMed record 7530188: same title, authors, journal, volume and pages; DOI 10.1016/0013-4694(94)00163-f."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Is ``memory-scanning'' time in the {S}ternberg paradigm reflected in the latency of event-related potentials?",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7530188/",
+      "quote": "Is \"memory-scanning\" time in the Sternberg paradigm reflected in the latency of event-related potentials?"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L Pelosi and M Hayward and L D Blumhardt",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7530188/",
+      "quote": "L Pelosi, M Hayward, L D Blumhardt"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7530188/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "96",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(94)00163-f",
+      "quote": "\"volume\":\"96\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "44--55",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(94)00163-f",
+      "quote": "\"page\":\"44-55\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(94)00163-f",
+      "quote": "\"published-print\":{\"date-parts\":[[1995,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0013-4694(94)00163-f",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(94)00163-f",
+      "quote": "\"DOI\":\"10.1016\\/0013-4694(94)00163-f\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(94)00163-f",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref container is the Evoked Potentials Section of the same journal; house journal name kept. Adds issue 1 and DOI."
+ },
+ {
+  "key": "RuggEtal92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/1280198/",
+   "quote": "Modulation of event-related potentials (ERPs) by word repetition in a task with inconsistent mapping between repetition and response.",
+   "why": "PubMed record 1280198: same title, authors, journal, volume and pages; DOI 10.1016/0168-5597(92)90041-9."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Modulation of event-related potentials {(ERPs)} by word repetition in a task with inconsistent mapping between repetition and response",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1280198/",
+      "quote": "Modulation of event-related potentials (ERPs) by word repetition in a task with inconsistent mapping between repetition and response."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M D Rugg and P Brovedani and M C Doyle",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1280198/",
+      "quote": "M D Rugg, P Brovedani, M C Doyle"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1280198/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "84",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(92)90041-9",
+      "quote": "\"volume\":\"84\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "521--531",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(92)90041-9",
+      "quote": "\"page\":\"521-531\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(92)90041-9",
+      "quote": "\"published-print\":{\"date-parts\":[[1992,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0168-5597(92)90041-9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(92)90041-9",
+      "quote": "\"DOI\":\"10.1016\\/0168-5597(92)90041-9\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(92)90041-9",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref container is the Evoked Potentials Section of the same journal; house journal name kept. Only the DOI is added."
+ },
+ {
+  "key": "Snyd91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/1713843/",
+   "quote": "Dipole source localization in the study of EP generators: a critique.",
+   "why": "PubMed record 1713843: same title, authors, journal, volume and pages; DOI 10.1016/0168-5597(91)90116-f."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Dipole source localization in the study of {EP} generators: a critique",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1713843/",
+      "quote": "Dipole source localization in the study of EP generators: a critique."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Z Snyder",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1713843/",
+      "quote": "A Z Snyder"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1713843/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "80",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(91)90116-f",
+      "quote": "\"volume\":\"80\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "321--325",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(91)90116-f",
+      "quote": "\"page\":\"321-325\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(91)90116-f",
+      "quote": "\"published-print\":{\"date-parts\":[[1991,7]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0168-5597(91)90116-f",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(91)90116-f",
+      "quote": "\"DOI\":\"10.1016\\/0168-5597(91)90116-f\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0168-5597(91)90116-f",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref container is the Evoked Potentials Section of the same journal; house journal name kept. Only the DOI is added."
+ },
+ {
+  "key": "VolaEtal67",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/4163688/",
+   "quote": "Mental arithmetic and eye opening. An EEG frequency analysis and GSR study.",
+   "why": "PubMed record 4163688: same title, authors, journal, volume and pages; DOI 10.1016/0013-4694(67)90158-7."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Mental arithmetic and eye opening. An {EEG} frequency analysis and {GSR} study",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/4163688/",
+      "quote": "Mental arithmetic and eye opening. An EEG frequency analysis and GSR study."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J Volavka and M Matou{\\v{s}}ek and J Roub{\\'{i}}{\\v{c}}ek",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/4163688/",
+      "quote": "J Volavka, M Matousek, J Roub&#xed;cek"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Electroencephalography and Clinical Neurophysiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/4163688/",
+      "quote": "Electroencephalography and clinical neurophysiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(67)90158-7",
+      "quote": "\"volume\":\"22\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "174--176",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(67)90158-7",
+      "quote": "\"page\":\"174-176\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1967",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(67)90158-7",
+      "quote": "\"published-print\":{\"date-parts\":[[1967,2]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0013-4694(67)90158-7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(67)90158-7",
+      "quote": "\"DOI\":\"10.1016\\/0013-4694(67)90158-7\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0013-4694(67)90158-7",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   }
+  },
+  "notes": "Accents corrected: the cited 'Matous{\\'e}k' and 'Roubic{\\'e}k' misplace the accents; Crossref gives Matou\\u0161ek (Matoušek) and Roub\\u00ed\\u010dek (Roubíček), PubMed 'Matousek', 'Roubícek' (ASCII-limited). Adds issue 2 and DOI."
+ }
+]
