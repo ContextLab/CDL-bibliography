@@ -209,3 +209,9 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - (user, 2026-09-26) Keys must be correct: reusing a freed suffix for a different work (KahaEtal08c→KahaEtal08b, JacoEtal05d→JacoEtal05b) is fine.
 - (user, 2026-09-26) Fix the formatter so it drops unprinted countries instead of adding them back.
 - (user, 2026-09-26) Wech45, DougPeuc73, Mann06: resolve by manual web research. Accuracy first; consistency, scalability, generalizability second.
+
+## Standing rules for the remaining waves (user, 2026-09-26) — no more per-entry manual checks
+1. If an entry cannot be verified automatically, verify it by web search and cite the evidence (URL + verbatim quote) in the notes. If no evidence is available, drop the entry.
+2. No conference abstracts. Before dropping one, verify it is *actually* an abstract and not a real paper; conference *proceedings* papers are fine.
+3. All information must be *as printed* in the official record, up to the formatting differences bibcheck requires.
+4. Flag anything needing the user, phrased where possible as a question about a *rule* that generalizes; single-entry questions only when unavoidable.
