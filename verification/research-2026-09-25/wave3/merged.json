@@ -25,7 +25,8 @@
       "url": "https://api.crossref.org/works/10.1093/cercor/bhh009.xml",
       "quote": "<doi>10.1093/cercor/bhh009</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -37,7 +38,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15054063/",
       "quote": "PG  - 476-83"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -62,7 +64,18 @@
    "issue": "5",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "PubMed 15054063 PG 476-83."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -241,7 +254,8 @@
       "url": "https://api.crossref.org/works/10.1378/chest.14-0970.xml",
       "quote": "<doi>10.1378/chest.14-0970</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -253,7 +267,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/25367475/",
       "quote": "International classification of sleep disorders-third edition: highlights and modifications."
      }
-    ]
+    ],
+    "reviewer": "agree (style-only, flagged for the user)"
    }
   ],
   "removals": {},
@@ -285,7 +300,18 @@
    "issue": "5",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree (style-only, flagged for the user)"
+   },
+   "problems": [
+    "PubMed 25367475 'disorders-third edition: highlights and modifications'."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -303,18 +329,6 @@
    "ID": "PollEtal00"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "M L Pollock and B A Franklin and G J Balady and B L Chaltman and J L Fleg and B Fletcher and M Limacher and I L Pi\\~{n}a and R A Stein and M Williams and T Bazzarre",
-    "proposed": "M L Pollock and B A Franklin and G J Balady and B L Chaitman and J L Fleg and B Fletcher and M Limacher and I L Pi\\~{n}a and R A Stein and M Williams and T Bazzarre",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/10683360/",
-      "quote": "M L Pollock, B A Franklin, G J Balady, B L Chaitman, J L Fleg, B Fletcher, M Limacher, I L Pi&#xf1;a, R A Stein, M Williams, T Bazzarre"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -350,7 +364,7 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'chaltman' -> 'chaitman' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
+    "detail": "surname 'chaltman' -> 'chaitman' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'B L Chaltman' is kept",
     "action": "held"
    }
   ],
@@ -397,7 +411,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
       "quote": "Wayne Rosamond, Katherine Flegal, Gary Friday, Karen Furie, Alan Go, Kurt Greenlund, Nancy Haase, Michael Ho, Virginia Howard, Brett Kissela, Steven Kittner, Donald Lloyd-Jones, Mary McDermott, James Meigs, Claudia Moy, Graham Nichol, Christopher J O'Donnell, Veronique Roger, John Rumsfeld, Paul Sorlie, Julia Steinberger, Thomas Thom, Sylvia Wasserthiel-Smoller, Yuling Hong"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -409,7 +424,8 @@
       "url": "https://api.crossref.org/works/10.1161/circulationaha.106.179918.xml",
       "quote": "<doi>10.1161/circulationaha.106.179918</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -421,7 +437,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
       "quote": "IP  - 5"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -433,7 +450,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17194875/",
       "quote": "Heart disease and stroke statistics--2007 update: a report from the American Heart Association Statistics Committee and Stroke Statistics Subcommittee."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -458,7 +476,20 @@
    "issue": "5",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref: 24 authors as proposed, 115(5), title '...2007 Update' + subtitle."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -1017,7 +1048,8 @@
       "url": "https://raw.githubusercontent.com/denispelli/Eye-Chart-Fonts/master/README.md",
       "quote": "Pelli, D. G., Robson, J. G., & Wilkins, A. J. (1988) The design of a new letter chart for measuring contrast sensitivity. Clinical Vision Sciences 2, 187-199."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1035,7 +1067,18 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "title": "agree",
+    "number": "not_found, left (agree; OpenAlex gives issue 3)"
+   },
+   "problems": [
+    "Author README (fetched) and OpenAlex both give 'The design of a new letter chart for measuring contrast sensitivity', Clin Vis Sci 2(3) 187-199; no DOI exists."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -1261,7 +1304,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
       "quote": "Matthew M Botvinick, Yael Niv, Andew G Barto"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -1273,7 +1317,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.cognition.2008.08.011.xml",
       "quote": "<doi>10.1016/j.cognition.2008.08.011</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1285,7 +1330,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
       "quote": "IP  - 3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -1297,7 +1343,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18926527/",
       "quote": "DP  - 2009 Dec"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1331,7 +1378,21 @@
    "issue": "3",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "year": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/j.cognition.2008.08.011 published-print 2009-12, 113(3) 262-280, 'Andew G. Barto'; PubMed 18926527 same. BotvEtal09 free in HEAD."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -1359,7 +1420,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0010-0277(00)00123-2.xml",
       "quote": "<doi>10.1016/s0010-0277(00)00123-2</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1371,7 +1433,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11164022/",
       "quote": "IP  - 1-2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -1383,7 +1446,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11164022/",
       "quote": "DP  - 2001 Apr"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1417,7 +1481,20 @@
    "issue": "1-2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "year": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Crossref print 2001-04, 79(1-2) 1-37. DehaNacc01 free in HEAD."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -1461,7 +1538,9 @@
     ]
    }
   ],
-  "removals": {},
+  "removals": {
+   "number": "article number 105408 moved into pages"
+  },
   "key_plan": {
    "current_key": "JayaEtal23",
    "target_base": "JayaEtal23",
@@ -1504,7 +1583,7 @@
     "field": "author",
     "current": "F D Brigard and E Hanna and P L St Jacques and D L Schacter",
     "proposed": "F {De Brigard} and E Hanna and P L {St Jacques} and D L Schacter",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
@@ -1521,8 +1600,15 @@
      {
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
       "quote": "\"fullName\":\"Schacter DL\""
+     },
+     {
+      "reviewer_confirmed": "agree (held only by the single-source rule; Crossref family 'De Brigard' and HEAD form {St Jacques} corroborate)",
+      "reviewer_problems": [
+       "Crossref print 2019, 33(4) 646-659. HEAD writes P L {St Jacques} in 5 entries. DeBrEtal19 free."
+      ]
      }
-    ]
+    ],
+    "reviewer": "agree (held only by the single-source rule; Crossref family 'De Brigard' and HEAD form {St Jacques} corroborate)"
    },
    {
     "field": "doi",
@@ -1534,7 +1620,8 @@
       "url": "https://api.crossref.org/works/10.1080/02699931.2018.1478280",
       "quote": "\"DOI\":\"10.1080\\/02699931.2018.1478280\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1546,7 +1633,8 @@
       "url": "https://api.crossref.org/works/10.1080/02699931.2018.1478280",
       "quote": "\"issue\":\"4\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -1562,7 +1650,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
       "quote": "\"pageInfo\":\"646-659\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -1578,7 +1667,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
       "quote": "\"volume\":\"33\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -1594,7 +1684,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
       "quote": "\"yearOfPublication\":2019"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1609,14 +1700,14 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'brigard' -> 'de brigard' rests on 1 source host(s) ['www.ebi.ac.uk']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'brigard' -> 'de brigard' rests on 1 source host(s) ['www.ebi.ac.uk']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree (held only by the single-source rule; Crossref family 'De Brigard' and HEAD form {St Jacques} corroborate))",
+    "action": "applied"
    },
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'jacques' -> 'st jacques' rests on 1 source host(s) ['www.ebi.ac.uk']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'jacques' -> 'st jacques' rests on 1 source host(s) ['www.ebi.ac.uk']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree (held only by the single-source rule; Crossref family 'De Brigard' and HEAD form {St Jacques} corroborate))",
+    "action": "applied"
    },
    {
     "code": "key_rename",
@@ -1640,7 +1731,23 @@
    "issue": "4",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree (held only by the single-source rule; Crossref family 'De Brigard' and HEAD form {St Jacques} corroborate)",
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree",
+    "year": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Crossref print 2019, 33(4) 646-659. HEAD writes P L {St Jacques} in 5 entries. DeBrEtal19 free."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -1836,14 +1943,7 @@
    "target_base": "DoveEtal00",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "initials_uncertain",
-    "field": "author",
-    "detail": "{von Cramon}: initials kept as 'D Y'; source family name 'Yves von Cramon' (given 'D.') splits the name differently from '{von Cramon}'",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1016/s0926-6410(99)00029-4",
    "registered": true,
@@ -1860,7 +1960,7 @@
    "type": "journal-article"
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "RuggEtal96",
@@ -1881,7 +1981,7 @@
     "field": "author",
     "current": "M Rugg and A Schloerscheidt and M Doyle and C Cox and G Patchin",
     "proposed": "M D Rugg and A M Schloerscheidt and M C Doyle and C J C Cox and G R Patching",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
@@ -1902,8 +2002,15 @@
      {
       "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
       "quote": "\"given\":\"Geoffrey R.\",\"family\":\"Patching\""
+     },
+     {
+      "reviewer_confirmed": "agree",
+      "reviewer_problems": [
+       "Crossref: Geoffrey R. Patching; PubMed 8957571 'Patching, G R'."
+      ]
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -1915,7 +2022,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
       "quote": "\"DOI\":\"10.1016\\/s0926-6410(96)00067-5\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1927,7 +2035,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0926-6410(96)00067-5",
       "quote": "\"issue\":\"4\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1940,8 +2049,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'patchin' -> 'patching' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'patchin' -> 'patching' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -1959,8 +2068,20 @@
    "issue": "4",
    "type": "journal-article"
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref: Geoffrey R. Patching; PubMed 8957571 'Patching, G R'."
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
  },
  {
   "key": "SandEtal98",
@@ -2046,14 +2167,21 @@
     "field": "author",
     "current": "Wolfgang Skandries",
     "proposed": "W Skrandies",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
       "quote": "\"given\":\"Wolfgang\",\"family\":\"Skrandies\""
+     },
+     {
+      "reviewer_confirmed": "agree",
+      "reviewer_problems": [
+       "Crossref: Wolfgang Skrandies, Cogn Brain Res 6(3) 173-183, 1998. Identity-quote failure is the em dash encoding only. Skra98 free."
+      ]
      }
     ],
-    "normalised_from": "Wolfgang Skrandies"
+    "normalised_from": "Wolfgang Skrandies",
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -2065,7 +2193,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
       "quote": "\"DOI\":\"10.1016\\/s0926-6410(97)00033-5\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -2077,7 +2206,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
       "quote": "\"issue\":\"3\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -2089,7 +2219,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0926-6410(97)00033-5",
       "quote": "\"title\":[\"Evoked potential correlates of semantic meaning\\u2014A brain mapping study\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -2110,8 +2241,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'skandries' -> 'skrandies' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'skandries' -> 'skrandies' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
+    "action": "applied"
    },
    {
     "code": "key_rename",
@@ -2135,7 +2266,21 @@
    "issue": "3",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Crossref: Wolfgang Skrandies, Cogn Brain Res 6(3) 173-183, 1998. Identity-quote failure is the em dash encoding only. Skra98 free."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -2310,7 +2455,8 @@
       "url": "https://api.crossref.org/works/10.1080/02643298808252933",
       "quote": "\"DOI\":\"10.1080\\/02643298808252933\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -2322,7 +2468,8 @@
       "url": "https://api.crossref.org/works/10.1080/02643298808252933",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -2334,7 +2481,8 @@
       "url": "https://api.crossref.org/works/10.1080/02643298808252933",
       "quote": "\"title\":[\"Dementia, ageing, and the structure of human memory"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -2343,14 +2491,7 @@
    "target_base": "SpinEtal88",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "initials_uncertain",
-    "field": "author",
-    "detail": "{Della Sala}: initials kept as 'S'; source family name 'Sala' (given 'S. Della') splits the name differently from '{Della Sala}'",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1080/02643298808252933",
    "registered": true,
@@ -2366,8 +2507,20 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 'Dementia, ageing, and ...' 5(2) 193-211."
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
  },
  {
   "key": "Boro01",
@@ -2548,7 +2701,8 @@
       "quote": "\"fullName\":\"Ratcliff R\",\"lastName\":\"Ratcliff\",\"firstName\":\"Roger\""
      }
     ],
-    "normalised_from": "Roger Ratcliff"
+    "normalised_from": "Roger Ratcliff",
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -2560,7 +2714,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.cogpsych.2005.10.002",
       "quote": "\"DOI\":\"10.1016\\/j.cogpsych.2005.10.002\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -2572,7 +2727,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.cogpsych.2005.10.002",
       "quote": "\"issue\":\"3\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -2584,7 +2740,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.cogpsych.2005.10.002",
       "quote": "\"volume\":\"53\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -2616,7 +2773,20 @@
    "issue": "3",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/j.cogpsych.2005.10.002: 53(3) 195-237, 2006; identity failure is the title's star footnote glyph."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -2872,7 +3042,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.2.2.109%22&resultType=core&format=json",
       "quote": "\"fullName\":\"Swick D\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -2884,7 +3055,8 @@
       "url": "https://api.crossref.org/works/10.3758/cabn.2.2.109",
       "quote": "\"DOI\":\"10.3758\\/cabn.2.2.109\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -2896,7 +3068,8 @@
       "url": "https://api.crossref.org/works/10.3758/cabn.2.2.109",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -2921,7 +3094,19 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref: eight authors incl. Knight and Swick, 2(2) 109-120."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3269,7 +3454,8 @@
       "quote": "<dc:title>Comptes rendus des séances de la Société de biologie et de ses filiales</dc:title>"
      }
     ],
-    "normalised_from": "Comptes Rendus des S\\'{e}ances de la Soci\\'{e}t\\'{e} de Biologie et de ses Filiales"
+    "normalised_from": "Comptes Rendus des S\\'{e}ances de la Soci\\'{e}t\\'{e} de Biologie et de ses Filiales",
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -3285,7 +3471,8 @@
       "url": "https://gallica.bnf.fr/services/OAIRecord?ark=bpt6k6541920p",
       "quote": "1935 (A87,VOL118,T1)."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3296,7 +3483,18 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "journal": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "SUDOC 203086856 (fetched): offprint from 'Comptes rendus des seances de la Societe de biologie', t. CXVIII (1935), p. 1235."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3325,7 +3523,8 @@
       "url": "https://aclanthology.org/J92-4003/",
       "quote": "Peter F. Brown, Vincent J. Della Pietra, Peter V. deSouza, Jenifer C. Lai, and Robert L. Mercer"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3336,7 +3535,17 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree"
+   },
+   "problems": [
+    "ACL Anthology J92-4003 BibTeX (fetched): Brown, Della Pietra, deSouza, Lai, Mercer."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3365,7 +3574,8 @@
       "url": "https://api.crossref.org/works/10.1016/0167-9473(93)90193-w",
       "quote": "\"DOI\":\"10.1016\\/0167-9473(93)90193-w\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3390,7 +3600,17 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref main title only; 15(2) 211-238."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3446,7 +3666,9 @@
     ]
    }
   ],
-  "removals": {},
+  "removals": {
+   "number": "article number 8708434 moved into pages"
+  },
   "key_plan": {
    "current_key": "CookEtal16",
    "target_base": "CookEtal16",
@@ -3506,7 +3728,17 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree no_source"
+   },
+   "problems": [
+    "Cosyne 2007 abstracts are not online; conference-abstract removal rule applies (user decision)."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -3533,7 +3765,8 @@
       "url": "https://api.crossref.org/works/10.4324/9781410612328-10",
       "quote": "\"container-title\":[\"Computational, Geometric, and Process Perspectives on Facial Cognition\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -3545,7 +3778,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22Computational%20geometric%20and%20process%20perspectives%20on%20facial%20cognition%22&maximumRecords=2&recordSchema=mods",
       "quote": "<placeTerm type=\"text\">Mahwah, N.J</placeTerm>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -3561,7 +3795,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22Computational%20geometric%20and%20process%20perspectives%20on%20facial%20cognition%22&maximumRecords=2&recordSchema=mods",
       "quote": "contexts and challenges"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "editor",
@@ -3573,7 +3808,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22Computational%20geometric%20and%20process%20perspectives%20on%20facial%20cognition%22&maximumRecords=2&recordSchema=mods",
       "quote": "edited by Michael J. Wenger, James T. Townsend."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -3585,7 +3821,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=dc.title%3D%22Computational%20geometric%20and%20process%20perspectives%20on%20facial%20cognition%22&maximumRecords=2&recordSchema=mods",
       "quote": "<namePart>L. Erlbaum Associates</namePart>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -3605,7 +3842,23 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "editor": "agree",
+    "publisher": "agree",
+    "journal": "agree (removed)",
+    "pages": "not_found, left (agree)"
+   },
+   "problems": [
+    "Crossref chapter 10.4324/9781410612328-10 (reissue) confirms title and volume; reissue pagination differs, so leaving 147--191 and no DOI is right."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -3639,7 +3892,17 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree no_source"
+   },
+   "problems": [
+    "Trade magazine indexed only in ProQuest/Gale (excluded by user rule)."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -3666,7 +3929,8 @@
       "url": "https://sunypress.edu/p-2309-computer-networking-and-scholar.aspx",
       "quote": "Online Education: The Future Linda Harasim"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -3678,7 +3942,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95047786&maximumRecords=1&recordSchema=mods",
       "quote": "<placeTerm type=\"text\">Albany, NY</placeTerm>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -3690,7 +3955,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95047786&maximumRecords=1&recordSchema=mods",
       "quote": "<title>Computer networking and scholarly communication in the twenty-first-century university</title>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "editor",
@@ -3702,7 +3968,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95047786&maximumRecords=1&recordSchema=mods",
       "quote": "edited by Teresa M. Harrison and Timothy Stephen."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -3714,7 +3981,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95047786&maximumRecords=1&recordSchema=mods",
       "quote": "<namePart>State University of New York Press</namePart>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -3726,7 +3994,8 @@
       "url": "https://sunypress.edu/p-2309-computer-networking-and-scholar.aspx",
       "quote": "Online Education: The Future Linda Harasim"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -3746,7 +4015,24 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "editor": "agree",
+    "publisher": "agree",
+    "title": "agree",
+    "journal": "agree (removed)",
+    "pages": "not_found, left (agree)"
+   },
+   "problems": [
+    "SUNY Press TOC (fetched): 'Online Education: The Future Linda Harasim'."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -3774,7 +4060,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/8467635/",
       "quote": "10.1016/0010-4825(93)90104-9 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -3786,7 +4073,8 @@
       "url": "https://api.crossref.org/works/10.1016/0010-4825(93)90104-9",
       "quote": "\"issue\":\"1\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3811,7 +4099,18 @@
    "issue": "1",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "PubMed 8467635 'Dutt, D N', 23(1) 15-20."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3894,7 +4193,8 @@
       "url": "https://api.crossref.org/works/10.1109/mcse.2007.53",
       "quote": "\"DOI\":\"10.1109\\/mcse.2007.53\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -3906,7 +4206,8 @@
       "url": "https://api.crossref.org/works/10.1109/mcse.2007.53",
       "quote": "\"container-title\":[\"Computing in Science &amp; Engineering\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -3918,7 +4219,8 @@
       "url": "https://api.crossref.org/works/10.1109/mcse.2007.53",
       "quote": "\"title\":[\"IPython: A System for Interactive Scientific Computing\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3943,7 +4245,19 @@
    "issue": "3",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1109/mcse.2007.53: 9(3) 21-29."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4051,7 +4365,8 @@
       "url": "https://ni.cmu.edu/~plaut/papers/pdf/BotvinickPlaut03chap.Sofia.pdf",
       "quote": "In Kokinov, B. & Hirst, W. (Eds.), Constructive memory (pp. 129-137)."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -4063,7 +4378,8 @@
       "url": "https://ni.cmu.edu/~plaut/papers/pdf/BotvinickPlaut03chap.Sofia.pdf",
       "quote": "Sofia, Bulgaria: New Bulgarian"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -4075,7 +4391,8 @@
       "url": "https://ni.cmu.edu/~plaut/papers/pdf/BotvinickPlaut03chap.Sofia.pdf",
       "quote": "In Kokinov, B. & Hirst, W. (Eds.), Constructive memory (pp. 129-137)."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "editor",
@@ -4087,7 +4404,8 @@
       "url": "https://ni.cmu.edu/~plaut/papers/pdf/BotvinickPlaut03chap.Sofia.pdf",
       "quote": "In Kokinov, B. & Hirst, W. (Eds.), Constructive memory"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -4103,7 +4421,8 @@
       "url": "https://ni.cmu.edu/~plaut/papers/pdf/BotvinickPlaut03chap.Sofia.pdf",
       "quote": "University (2003)."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -4116,7 +4435,22 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "editor": "agree",
+    "publisher": "agree",
+    "journal": "agree (removed)"
+   },
+   "problems": [
+    "Author PDF header (fetched): 'In Kokinov, B. & Hirst, W. (Eds.), Constructive memory (pp. 129-137). Sofia, Bulgaria: New Bulgarian University (2003).'"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4144,7 +4478,8 @@
       "url": "https://www.karlpribram.com/t-062/",
       "quote": "In R. C. Atkinson, D. H. Krantz, R. C. Luce, & P. Suppes (Eds.), Contemporal developments in mathematical psychology."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -4156,7 +4491,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=73021887&maximumRecords=1&recordSchema=mods",
       "quote": "<placeTerm type=\"text\">San Francisco</placeTerm>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "author",
@@ -4168,7 +4504,8 @@
       "url": "https://www.karlpribram.com/t-062/",
       "quote": "PRIBRAM, K. H., NUWER, M., & BARON, R. J. (1973)"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -4180,7 +4517,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=73021887&maximumRecords=1&recordSchema=mods",
       "quote": "<title>Contemporary developments in mathematical psychology</title>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -4192,7 +4530,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=73021887&maximumRecords=1&recordSchema=mods",
       "quote": "<namePart>W. H. Freeman</namePart>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -4212,7 +4551,23 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "author": "agree",
+    "booktitle": "agree",
+    "publisher": "agree",
+    "journal": "agree (removed)",
+    "editor": "not_found, left (agree)"
+   },
+   "problems": [
+    "Open Library: Krantz (ed.), Contemporary developments in mathematical psychology, 1974; house sibling AtkiJuol74 uses San Francisco, {CA} / Freeman."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -4238,7 +4593,8 @@
       "url": "https://memory.psych.upenn.edu/CEMS_2012",
       "quote": "The 2012 Context and Episodic Memory Symposium (CEMS) will be held in Bloomington, Indiana, on May 10th."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -4250,7 +4606,8 @@
       "url": "https://memory.psych.upenn.edu/CEMS_2012",
       "quote": "May 10th, Bloomington, IN"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -4262,7 +4619,8 @@
       "url": "https://memory.psych.upenn.edu/CEMS_2012",
       "quote": "The 2012 Context and Episodic Memory Symposium (CEMS) will be held in Bloomington, Indiana"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -4275,7 +4633,20 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "journal": "agree (removed)"
+   },
+   "problems": [
+    "CEMS 2012 program (fetched) lists the talk; conference-abstract removal is the user's decision."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4301,7 +4672,8 @@
       "url": "https://memory.psych.upenn.edu/CEMS_2012",
       "quote": "The 2012 Context and Episodic Memory Symposium (CEMS) will be held in Bloomington, Indiana, on May 10th."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -4313,7 +4685,8 @@
       "url": "https://memory.psych.upenn.edu/CEMS_2012",
       "quote": "May 10th, Bloomington, IN"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -4325,7 +4698,8 @@
       "url": "https://memory.psych.upenn.edu/CEMS_2012",
       "quote": "The 2012 Context and Episodic Memory Symposium (CEMS) will be held in Bloomington, Indiana"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -4338,7 +4712,20 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "journal": "agree (removed)"
+   },
+   "problems": [
+    "CEMS 2012 program (fetched): 'Karl Healey, Lynn Lohnas & Michael J. Kahana ... Modeling age-related changes in episodic memory'."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4367,7 +4754,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/14584548/",
       "quote": "10.1016/s0010-9452(08)70859-1 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -4383,7 +4771,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/14584548/",
       "quote": "IP  - 4-5"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -4408,7 +4797,18 @@
    "issue": "4-5",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref issue 4-5."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4435,7 +4835,8 @@
       "url": "https://www.cs.toronto.edu/~hinton/coursera_lectures.html",
       "quote": "Lectures from the 2012 Coursera course"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "author",
@@ -4447,7 +4848,8 @@
       "url": "https://archive.org/metadata/academictorrents_743c16a18756557a67478a7570baf24a59f9cda6/metadata",
       "quote": "\"creator\":\"Geoffrey Hinton\""
      }
-    ]
+    ],
+    "reviewer": "agree (G E Hinton would match his other HEAD entries; optional)"
    },
    {
     "field": "howpublished",
@@ -4459,10 +4861,14 @@
       "url": "https://www.cs.toronto.edu/~hinton/coursera_lectures.html",
       "quote": "Lectures from the 2012 Coursera course: Neural Networks for Machine Learning"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
-  "removals": {},
+  "removals": {
+   "journal": "@misc has no journal",
+   "volume": "@misc: volume 'https://www.class-central.com/mooc/398/coursera-neural-networks-for-machine-learning' is a URL, not a volume"
+  },
   "key_plan": {
    "current_key": "Hint12",
    "target_base": "Hint12",
@@ -4470,7 +4876,22 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "howpublished": "agree",
+    "author": "agree (G E Hinton would match his other HEAD entries; optional)",
+    "journal": "disagree: must be removed",
+    "volume": "disagree: must be removed (holds a dead Class Central URL)"
+   },
+   "problems": [
+    "SYSTEMATIC: the @article -> @misc conversion leaves Journal {Coursera} and Volume {https://www.class-central.com/...} in the final entry (removals empty). The no-journal rule covers only @inproceedings/@incollection/@inbook, and researchers cannot propose removals, although the notes ask for both. Not caught by the post-check.",
+    "Toronto page (fetched): 'Lectures from the 2012 Coursera course: Neural Networks for Machine Learning'."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4592,7 +5013,17 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree no_source"
+   },
+   "problems": [
+    "DAI abstract; no open catalogue record."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -4625,7 +5056,17 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree ambiguous (thesis replacement is a user decision)"
+   },
+   "problems": [
+    "DataCite 10.71548/12410 (fetched): Yonelinas, Andrew P., McMaster University, 1995, same title; Yone95 free in HEAD."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -4849,7 +5290,8 @@
       "url": "https://eric.ed.gov/?id=EJ581564",
       "quote": "v56 n6 p8-15 Mar 1999"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -4861,7 +5303,8 @@
       "url": "https://eric.ed.gov/?id=EJ581564",
       "quote": "v56 n6 p8-15 Mar 1999"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -4872,7 +5315,18 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "number": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "ERIC EJ581564 (fetched) sourceid 'v56 n6 p8-15 Mar 1999'; ASCD page title 'Why Standardized Tests Don't Measure Educational Quality'."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4901,7 +5355,8 @@
       "url": "https://academicjournals.org/journal/ERR/article-abstract/9AB8D714479",
       "quote": "Tracy Packiam Alloway*, Gwyneth Doherty-Sneddon and Lynsey Forbes"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -4913,7 +5368,8 @@
       "url": "https://academicjournals.org/journal/ERR/article-abstract/9AB8D714479",
       "quote": "citation_journal_title\" content=\"Educational Research and Reviews\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -4933,7 +5389,19 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "journal": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Publisher page (fetched): 'Tracy Packiam Alloway*, Gwyneth Doherty-Sneddon and Lynsey Forbes', Vol.7(6), pp. 138-142, February 2012; printed DOI 10.5897/ERR10.223 returns 404 at the handle API, correctly not proposed."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -5015,7 +5483,8 @@
       "url": "https://api.crossref.org/works/10.1016/0168-5597(94)00256-e",
       "quote": "\"DOI\":\"10.1016\\/0168-5597(94)00256-e\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -5027,7 +5496,8 @@
       "url": "https://api.crossref.org/works/10.1016/0168-5597(94)00256-e",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5052,7 +5522,18 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "PubMed 7535221 96(2) 157-68."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -5231,7 +5712,8 @@
       "url": "https://api.crossref.org/works/10.1016/0013-4694(91)90044-5",
       "quote": "\"DOI\":\"10.1016\\/0013-4694(91)90044-5\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -5243,7 +5725,8 @@
       "url": "https://api.crossref.org/works/10.1016/0013-4694(91)90044-5",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5268,7 +5751,18 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref: 79(2) 81-93, 1991."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -5362,7 +5856,8 @@
       "url": "https://api.crossref.org/works/10.1016/0013-4694(95)00206-5",
       "quote": "\"DOI\":\"10.1016\\/0013-4694(95)00206-5\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5387,7 +5882,17 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref: nine authors, 98(2) 89-102."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -5784,7 +6289,8 @@
       "url": "https://api.crossref.org/works/10.1109/embc.2012.6346879",
       "quote": "\"type\":\"proceedings-article\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "author",
@@ -5796,7 +6302,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1109/embc.2012.6346879%22&format=json&resultType=core",
       "quote": "Desai SA, Gutekunst CA, Potter SM, Gross RE."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -5808,7 +6315,8 @@
       "url": "https://api.crossref.org/works/10.1109/embc.2012.6346879",
       "quote": "\"container-title\":[\"2012 Annual International Conference of the IEEE Engineering in Medicine and Biology Society\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -5820,14 +6328,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1109/embc.2012.6346879%22&format=json&resultType=core",
       "quote": "\"doi\":\"10.1109/embc.2012.6346879\""
      }
-    ]
-   },
-   {
-    "field": "series",
-    "current": null,
-    "proposed": "Engineering in Medicine and Biology Society Annual International Conference of the {IEEE}",
-    "source": "postcheck",
-    "evidence": []
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -5839,11 +6341,12 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1109/embc.2012.6346879%22&format=json&resultType=core",
       "quote": "\"title\":\"Analyzing neuronal activation with macroelectrode vs. microelectrode array stimulation.\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
-   "journal": "@inproceedings has no journal (moved to series)"
+   "journal": "@inproceedings has no journal (names the same venue as the booktitle 'Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society')"
   },
   "key_plan": {
    "current_key": "DesaEtal12",
@@ -5866,7 +6369,26 @@
    "issue": null,
    "type": "proceedings-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "author": "agree",
+    "booktitle": "agree",
+    "doi": "agree",
+    "title": "agree",
+    "journal": "agree (removed)",
+    "series": "disagree: must be removed (post-check moved the old journal value, which is the same conference as the booktitle, into series)"
+   },
+   "problems": [
+    "POST-CHECK: the 'move journal to series when the booktitle differs' rule treats a reworded name of the same conference as a book series, so the final entry has Booktitle 'Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society' and Series 'Engineering in Medicine and Biology Society Annual International Conference of the {IEEE}'. Caused by the post-check.",
+    "Crossref 10.1109/embc.2012.6346879: 'Analyzing neuronal activation with macroelectrode vs. microelectrode array stimulation', p 4144-4147; PubMed 23366840 'Desai, Sharanya Arcot'."
+   ],
+   "suggested_value": {
+    "series": null
+   }
+  },
   "needs_user": false
  },
  {
@@ -5972,7 +6494,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
       "quote": "\"doi\":\"10.1046/j.1528-1157.44.s10.3.x\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -5984,7 +6507,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1528-1157.44.s10.3.x%22&format=json&resultType=core",
       "quote": "\"issue\":\"s10\""
      }
-    ]
+    ],
+    "reviewer": "agree (optional form)"
    }
   ],
   "removals": {},
@@ -6009,7 +6533,18 @@
    "issue": "s10",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree (optional form)"
+   },
+   "problems": [
+    "Crossref issue s10, p 2-10."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -6116,7 +6651,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1977.tb05590.x%22&format=json&resultType=core",
       "quote": "\"doi\":\"10.1111/j.1528-1157.1977.tb05590.x\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -6128,7 +6664,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1111/j.1528-1157.1977.tb05590.x%22&format=json&resultType=core",
       "quote": "\"title\":\"Post-EEG seizure depression of human limbic neurons is not determined by their response to probable hypoxia.\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6153,7 +6690,18 @@
    "issue": "1",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 'Post-EEG ...' 18(1) 89-93."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -6273,14 +6821,7 @@
    "target_base": "KatzEtal89",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "surname_single_source",
-    "field": "author",
-    "detail": "surname 'l uders' -> 'luders' rests on 1 source host(s) ['www.ebi.ac.uk']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1111/j.1528-1157.1989.tb05336.x",
    "registered": true,
@@ -6297,7 +6838,7 @@
    "type": "journal-article"
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Spen94",
@@ -6538,7 +7079,8 @@
       "url": "https://api.crossref.org/works/10.1046/j.1535-7597.2003.03610.x",
       "quote": "\"given\":\"Carl\",\"family\":\"Bazil\""
      }
-    ]
+    ],
+    "reviewer": "agree (C W Bazil is the form HEAD uses elsewhere; optional)"
    },
    {
     "field": "doi",
@@ -6550,7 +7092,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1046/j.1535-7597.2003.03610.x%22&format=json&resultType=core",
       "quote": "\"doi\":\"10.1046/j.1535-7597.2003.03610.x\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6590,7 +7133,19 @@
    "issue": "6",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree (C W Bazil is the form HEAD uses elsewhere; optional)",
+    "doi": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Crossref: Carl Bazil, Epilepsy Curr 3(6) p 204-205 (PMC gives 206; cited 204--206 kept). Bazi03 free."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -6697,7 +7252,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1684/j.1950-6945.2006.tb00206.x%22&format=json&resultType=core",
       "quote": "\"doi\":\"10.1684/j.1950-6945.2006.tb00206.x\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -6709,7 +7265,8 @@
       "url": "https://api.crossref.org/works/10.1684/j.1950-6945.2006.tb00206.x",
       "quote": "\"issue\":\"S2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -6721,7 +7278,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Bancaud%20and%20Talairach%20view%20on%20the%20epileptogenic%20zone%22&format=json&resultType=core",
       "quote": "\"pageInfo\":\"S16-26\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6746,7 +7304,19 @@
    "issue": "S2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref issue S2 (no pages); supplement pages S16-S26 per researcher's source."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -6940,7 +7510,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080/03610730500326291%22&format=json&resultType=core",
       "quote": "\"doi\":\"10.1080/03610730500326291\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -6956,7 +7527,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&id=16293569",
       "quote": "<PubDate><Year>2006</Year><Season>Jan-Mar</Season></PubDate>"
      }
-    ]
+    ],
+    "reviewer": "agree 2006"
    }
   ],
   "removals": {},
@@ -6969,27 +7541,15 @@
   },
   "flags": [
    {
-    "code": "print_year_conflict",
+    "code": "doi_record_conflict",
     "field": "year",
-    "detail": "Crossref published-print 2005 vs year 2006: print year wins",
-    "action": "flag"
-   },
-   {
-    "code": "print_year_conflict",
-    "field": "year",
-    "detail": "notes give a print date ['2005'] but the year is 2006: print year wins",
+    "detail": "Crossref published-print 2005 vs the print date 2006 quoted from 2 sources ['eutils.ncbi.nlm.nih.gov', 'www.ebi.ac.uk']: the corroborated print date stands; the Crossref deposit year is not suggested",
     "action": "flag"
    },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "Bastvand05 -> Bastvand06 (key does not follow the corrected metadata)",
-    "action": "flag"
-   },
-   {
-    "code": "unverified_suggestions",
-    "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): year='2005'",
     "action": "flag"
    }
   ],
@@ -7008,7 +7568,19 @@
    "issue": "1",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "year": "agree 2006",
+    "key": "agree"
+   },
+   "problems": [
+    "PubMed 16293569 DP '2006 Jan-Mar' 32(1); Crossref published-print 2005-10 is a deposit error (vol 32 = 2006). The post-check's print_year_conflict suggestion of 2005 is wrong here and should not be accepted."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -7171,7 +7743,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
       "quote": "Alonso A, García-Austt E."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -7183,7 +7756,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
       "quote": "\"doi\":\"10.1007/bf00247282\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -7195,7 +7769,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
       "quote": "\"issue\":\"3\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -7207,7 +7782,8 @@
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007/bf00247282%22&format=json&resultType=core",
       "quote": "\"title\":\"Neuronal sources of theta rhythm in the entorhinal cortex of the rat. I. Laminar distribution of theta field potentials.\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7232,7 +7808,20 @@
    "issue": "3",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref subtitle 'I. Laminar distribution of theta field potentials', 67(3) 493-501; title form matches HEAD 'The labile brain. {I}. Neuronal transients...'."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7378,7 +7967,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1261623&retmode=xml",
       "quote": "<LastName>Kocsis</LastName><ForeName>J D</ForeName>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -7390,7 +7980,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1261623&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.1007/BF00235003</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -7402,7 +7993,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1261623&retmode=xml",
       "quote": "<Issue>4</Issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -7414,7 +8006,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1261623&retmode=xml",
       "quote": "<ArticleTitle>Excitatory nature of dopamine in the nigro-caudate pathway.</ArticleTitle>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7439,7 +8032,20 @@
    "issue": "4",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "PubMed 1261623: Kitai S T, Sugimori M, Kocsis J D; 'nigro-caudate'."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7521,7 +8127,8 @@
       "url": "https://api.crossref.org/works/10.1007/bf00237874",
       "quote": "\"DOI\":\"10.1007\\/bf00237874\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -7533,7 +8140,8 @@
       "url": "https://api.crossref.org/works/10.1007/bf00237874",
       "quote": "\"issue\":\"3\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7565,7 +8173,19 @@
    "issue": "3",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "not_found, left (agree)"
+   },
+   "problems": [
+    "Crossref 51(3), no pages."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -7648,7 +8268,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2286232&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.1007/BF00231248</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -7660,7 +8281,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2286232&retmode=xml",
       "quote": "<ArticleTitle>Functional connections in the human temporal lobe. I. Analysis of limbic system pathways using neuronal responses evoked by electrical stimulation.</ArticleTitle>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7685,7 +8307,18 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref subtitle 'I. Analysis of limbic system pathways using neuronal responses evoked by electrical stimulation'."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7714,7 +8347,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1183532&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.1016/0014-4886(75)90195-8</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7739,7 +8373,17 @@
    "issue": "1",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 49(1) 58-85."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7873,7 +8517,8 @@
       "url": "https://api.crossref.org/works/10.1145/130385.130401",
       "quote": "\"type\":\"proceedings-article\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -7885,13 +8530,14 @@
       "url": "https://api.crossref.org/works/10.1145/130385.130401",
       "quote": "\"publisher-location\":\"New York, NY, USA\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "author",
     "current": "B E Boser and I M Guyon and V Vapnick",
     "proposed": "B E Boser and I M Guyon and V N Vapnik",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://api.crossref.org/works/10.1145/130385.130401",
@@ -7904,8 +8550,16 @@
      {
       "url": "https://api.crossref.org/works/10.1145/130385.130401",
       "quote": "\"given\":\"Vladimir N.\",\"family\":\"Vapnik\""
+     },
+     {
+      "reviewer_confirmed": "agree (Vapnik: Crossref and every other source; held only by the single-source rule)",
+      "reviewer_problems": [
+       "POST-CHECK: journal moved to Series 'Fifth Annual Workshop on Computational Learning Theory, {ACM}', which repeats the booktitle; same rule defect as DesaEtal12. Caused by the post-check.",
+       "Crossref 10.1145/130385.130401: Boser, Guyon, Vladimir N. Vapnik, COLT proceedings p 144-152, ACM 1992."
+      ]
      }
-    ]
+    ],
+    "reviewer": "agree (Vapnik: Crossref and every other source; held only by the single-source rule)"
    },
    {
     "field": "booktitle",
@@ -7917,7 +8571,8 @@
       "url": "https://api.crossref.org/works/10.1145/130385.130401",
       "quote": "\"container-title\":[\"Proceedings of the fifth annual workshop on Computational learning theory\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -7929,7 +8584,8 @@
       "url": "https://api.crossref.org/works/10.1145/130385.130401",
       "quote": "\"DOI\":\"10.1145\\/130385.130401\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -7941,7 +8597,8 @@
       "url": "https://api.crossref.org/works/10.1145/130385.130401",
       "quote": "\"page\":\"144-152\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -7953,18 +8610,12 @@
       "url": "https://api.crossref.org/works/10.1145/130385.130401",
       "quote": "\"publisher\":\"ACM\""
      }
-    ]
-   },
-   {
-    "field": "series",
-    "current": null,
-    "proposed": "Fifth Annual Workshop on Computational Learning Theory, {ACM}",
-    "source": "postcheck",
-    "evidence": []
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
-   "journal": "@inproceedings has no journal (moved to series)"
+   "journal": "@inproceedings has no journal (names the same venue as the booktitle 'Proceedings of the Fifth Annual Workshop on Computational Learning Theory')"
   },
   "key_plan": {
    "current_key": "BoseEtal92",
@@ -7975,8 +8626,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'vapnick' -> 'vapnik' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'vapnick' -> 'vapnik' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree (Vapnik: Crossref and every other source; held only by the single-source rule))",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -7994,8 +8645,29 @@
    "issue": null,
    "type": "proceedings-article"
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "author": "agree (Vapnik: Crossref and every other source; held only by the single-source rule)",
+    "booktitle": "agree",
+    "doi": "agree",
+    "pages": "agree",
+    "publisher": "agree",
+    "journal": "agree (removed)",
+    "series": "disagree: must be removed (same workshop as the booktitle)"
+   },
+   "problems": [
+    "POST-CHECK: journal moved to Series 'Fifth Annual Workshop on Computational Learning Theory, {ACM}', which repeats the booktitle; same rule defect as DesaEtal12. Caused by the post-check.",
+    "Crossref 10.1145/130385.130401: Boser, Guyon, Vladimir N. Vapnik, COLT proceedings p 144-152, ACM 1992."
+   ],
+   "suggested_value": {
+    "series": null
+   }
+  },
+  "needs_user": false
  },
  {
   "key": "Half88",
@@ -8021,7 +8693,8 @@
       "url": "https://openlibrary.org/books/OL2392938M.json",
       "quote": "edited by Martha C. Polson, J. Jeffrey Richardson"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -8033,7 +8706,8 @@
       "url": "https://openlibrary.org/books/OL2392938M.json",
       "quote": "\"publish_places\": [\"Hillsdale, N.J\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -8045,7 +8719,8 @@
       "url": "https://openlibrary.org/books/OL2392938M.json",
       "quote": "\"title\": \"Foundations of intelligent tutoring systems\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "editor",
@@ -8057,7 +8732,8 @@
       "url": "https://openlibrary.org/books/OL2392938M.json",
       "quote": "edited by Martha C. Polson, J. Jeffrey Richardson"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -8069,7 +8745,8 @@
       "url": "https://openlibrary.org/books/OL2392938M.json",
       "quote": "\"publishers\": [\"L. Erlbaum Associates\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -8089,7 +8766,23 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "editor": "agree",
+    "publisher": "agree",
+    "journal": "agree (removed)",
+    "pages": "not_found, left (agree)"
+   },
+   "problems": [
+    "Open Library OL2392938M (fetched): TOC 'Curriculum and instruction in automated tutors / Henry M. Halff', Hillsdale, N.J."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -8111,7 +8804,7 @@
     "field": "author",
     "current": "J F Burk and M Merkow and J Jacobs and M J Kahana and K Zaghloul",
     "proposed": "J F Burke and M B Merkow and J Jacobs and M J Kahana and K A Zaghloul",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=25653605&retmode=xml",
@@ -8132,8 +8825,15 @@
      {
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=25653605&retmode=xml",
       "quote": "<LastName>Zaghloul</LastName><ForeName>Kareem A</ForeName>"
+     },
+     {
+      "reviewer_confirmed": "agree (held by the single-source rule; Crossref also gives Burke)",
+      "reviewer_problems": [
+       "Crossref: John F. Burke, Maxwell B. Merkow, Kareem A. Zaghloul."
+      ]
      }
-    ]
+    ],
+    "reviewer": "agree (held by the single-source rule; Crossref also gives Burke)"
    },
    {
     "field": "doi",
@@ -8145,7 +8845,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=25653605&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.3389/fnhum.2014.01055</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8158,8 +8859,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'burk' -> 'burke' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'burk' -> 'burke' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree (held by the single-source rule; Crossref also gives Burke))",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -8177,8 +8878,20 @@
    "issue": null,
    "type": "journal-article"
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree (held by the single-source rule; Crossref also gives Burke)",
+    "doi": "agree",
+    "year": "agree 2015 (online-only journal, published 2015-01-20; PubMed files it under 2014 as eCollection)"
+   },
+   "problems": [
+    "Crossref: John F. Burke, Maxwell B. Merkow, Kareem A. Zaghloul."
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
  },
  {
   "key": "GilbEtal10",
@@ -8216,7 +8929,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20463867&retmode=xml",
       "quote": "<LastName>Martin</LastName><ForeName>Alex</ForeName>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -8228,7 +8942,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20463867&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.3389/fnhum.2010.00030</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -8240,7 +8955,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20463867&retmode=xml",
       "quote": "<StartPage>30</StartPage>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8265,7 +8981,19 @@
    "issue": null,
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "PubMed 20463867: Gilbert, Jessica R; 4:30."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8300,7 +9028,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22514527&retmode=xml",
       "quote": "<LastName>Fellner</LastName><ForeName>Marie-Christin</ForeName>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -8312,7 +9041,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22514527&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.3389/fnhum.2012.00074</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -8324,7 +9054,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22514527&retmode=xml",
       "quote": "<StartPage>74</StartPage>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8349,7 +9080,19 @@
    "issue": null,
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "PubMed 22514527: Fellner, Marie-Christin; 6:74."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8376,7 +9119,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18958204&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.3389/neuro.09.003.2008</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -8388,7 +9132,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18958204&retmode=xml",
       "quote": "<StartPage>3</StartPage>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8413,7 +9158,18 @@
    "issue": null,
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "PubMed 18958204: 2:3."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8611,7 +9367,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34744662&retmode=xml",
       "quote": "<ArticleId IdType=\"doi\">10.3389/fnhum.2021.746499</ArticleId>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -8623,7 +9380,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34744662&retmode=xml",
       "quote": "<StartPage>746499</StartPage>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -8635,7 +9393,8 @@
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34744662&retmode=xml",
       "quote": "<ArticleTitle>Distributed Subnetworks of Depression Defined by Direct Intracranial Neurophysiology.</ArticleTitle>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8660,7 +9419,19 @@
    "issue": null,
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref/PubMed 34744662: 'Distributed Subnetworks of Depression Defined by Direct Intracranial Neurophysiology', 15:746499, same 10 authors."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8756,7 +9527,9 @@
     ]
    }
   ],
-  "removals": {},
+  "removals": {
+   "number": "researcher asked to remove it (current '0')"
+  },
   "key_plan": {
    "current_key": "VidaEtal10",
    "target_base": "VidaEtal10",
@@ -8877,7 +9650,9 @@
     ]
    }
   ],
-  "removals": {},
+  "removals": {
+   "number": "article number 117 moved into pages"
+  },
   "key_plan": {
    "current_key": "AfshEtal13",
    "target_base": "AfshEtal13",
@@ -8925,7 +9700,8 @@
       "url": "https://www.frontiersin.org/articles/10.3389/neuro.11.003.2009/full",
       "quote": "Hanke M, Halchenko YO, Sederberg PB, Olivetti E, Fründ I, Rieger JW, Herrmann CS, Haxby JV, Hanson SJ and Pollmann S (2009)"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -8937,7 +9713,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/19212459/",
       "quote": "LID - 10.3389/neuro.11.003.2009 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -8949,7 +9726,8 @@
       "url": "https://www.frontiersin.org/articles/10.3389/neuro.11.003.2009/full",
       "quote": "Front. Neuroinform. 3 :3. doi: 10.3389/neuro.11.003.2009"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -8961,7 +9739,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/19212459/",
       "quote": "VI  - 3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8993,7 +9772,20 @@
    "issue": null,
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "pages": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "PubMed (fetched): Haxby before Hanson; Front Neuroinform 2009;3:3."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -9125,7 +9917,9 @@
     ]
    }
   ],
-  "removals": {},
+  "removals": {
+   "number": "article number 316 moved into pages"
+  },
   "key_plan": {
    "current_key": "NastEtal18",
    "target_base": "NastEtal18",
@@ -9170,13 +9964,21 @@
     "field": "author",
     "current": "F D Brigard",
     "proposed": "F {De Brigard}",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://pubmed.ncbi.nlm.nih.gov/23162493/",
       "quote": "FAU - De Brigard, Felipe"
+     },
+     {
+      "reviewer_confirmed": "agree (held by the single-source rule; Crossref also gives family 'De Brigard')",
+      "reviewer_problems": [
+       "Final entry keeps Number {420} next to Pages {420}. HEAD Frontiers entries carry the article number in Pages with no Number. The researcher's notes say 'Number 420 removed' but no removal was proposed and the post-check has no rule. Not caught by the post-check.",
+       "PubMed 23162493: De Brigard, Felipe; Front Psychol 3:420. DeBr12 free in HEAD."
+      ]
      }
-    ]
+    ],
+    "reviewer": "agree (held by the single-source rule; Crossref also gives family 'De Brigard')"
    },
    {
     "field": "doi",
@@ -9188,7 +9990,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23162493/",
       "quote": "LID - 10.3389/fpsyg.2012.00420 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -9200,10 +10003,13 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/23162493/",
       "quote": "PG  - 420"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
-  "removals": {},
+  "removals": {
+   "number": "article number 420 moved into pages"
+  },
   "key_plan": {
    "current_key": "Brig12",
    "target_base": "DeBr12",
@@ -9215,8 +10021,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'brigard' -> 'de brigard' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'brigard' -> 'de brigard' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree (held by the single-source rule; Crossref also gives family 'De Brigard'))",
+    "action": "applied"
    },
    {
     "code": "key_rename",
@@ -9240,7 +10046,22 @@
    "issue": null,
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree (held by the single-source rule; Crossref also gives family 'De Brigard')",
+    "doi": "agree",
+    "pages": "agree",
+    "key": "agree",
+    "number": "disagree: must be removed (420 is the article number, now in pages; Frontiers has no issue)"
+   },
+   "problems": [
+    "Final entry keeps Number {420} next to Pages {420}. HEAD Frontiers entries carry the article number in Pages with no Number. The researcher's notes say 'Number 420 removed' but no removal was proposed and the post-check has no rule. Not caught by the post-check.",
+    "PubMed 23162493: De Brigard, Felipe; Front Psychol 3:420. DeBr12 free in HEAD."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -9274,7 +10095,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/24421759/",
       "quote": "FAU - Gerhardt, Greg A"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -9286,7 +10108,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/24421759/",
       "quote": "LID - 10.3389/fnsys.2013.00120 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -9298,7 +10121,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/24421759/",
       "quote": "PG  - 120"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -9310,7 +10134,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/24421759/",
       "quote": "VI  - 7"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9335,7 +10160,20 @@
    "issue": null,
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "pages": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "PubMed 24421759: Gerhardt, Greg A; 7:120."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9379,7 +10217,9 @@
     ]
    }
   ],
-  "removals": {},
+  "removals": {
+   "number": "researcher asked to remove it (current '10')"
+  },
   "key_plan": {
    "current_key": "FoxGrei10",
    "target_base": "FoxGrei10",
@@ -9526,7 +10366,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/19541911/",
       "quote": "LID - 10.1101/gr.092759.109 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -9538,7 +10379,8 @@
       "url": "https://api.crossref.org/works/10.1101/gr.092759.109",
       "quote": "\"issue\":\"9\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9563,7 +10405,18 @@
    "issue": "9",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "PubMed 19541911 19(9) 1639-45."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9596,7 +10449,17 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree no_source"
+   },
+   "problems": [
+    "No chapter-level record found; the entry stays a structurally wrong @article with Journal {Handbook of Neuropsychology}. Converting it to @incollection (booktitle, volume 9, Boller and Grafman eds., Elsevier, Amsterdam) should go to the user with the sign-off, as for RoedMcDe93."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -9626,7 +10489,8 @@
       "url": "http://psychnet.wustl.edu/memory/publications/",
       "quote": "Implicit memory in normal human subjects. In F. Boller & J. Grafman (Eds.), Handbook of neuropsychology"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -9642,7 +10506,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=88021312&maximumRecords=1&recordSchema=mods",
       "quote": "<placeTerm type=\"text\">Amsterdam</placeTerm>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -9658,7 +10523,8 @@
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=88021312&maximumRecords=1&recordSchema=mods",
       "quote": "<namePart>Elsevier</namePart>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -9670,7 +10536,8 @@
       "url": "http://psychnet.wustl.edu/memory/publications/",
       "quote": "Implicit memory in normal human subjects"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
@@ -9683,7 +10550,21 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "publisher": "agree",
+    "title": "agree",
+    "chapter": "agree (removed)"
+   },
+   "problems": [
+    "WUSTL lab list (fetched): '(1993). Implicit memory in normal human subjects. In F. Boller & J. Grafman (Eds.), Handbook of neuropsychology, (Vol. 8, pp. 63-131). Amsterdam: Elsevier.'"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9711,7 +10592,8 @@
       "url": "https://archive.org/download/harvardpsycholog02harvuoft/harvardpsycholog02harvuoft_djvu.txt",
       "quote": "HARVARD PSYCHOLOGICAL STUDIES EDITED BY HUGO MUNSTERBERG Volume II"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9722,7 +10604,17 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "journal": "agree"
+   },
+   "problems": [
+    "Internet Archive harvardpsycholog02harvuoft (fetched) contents: 'The Interference of Optical Stimuli: H. Kleinknecht 299'; title 'Harvard psychological studies', 1906."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9938,7 +10830,7 @@
    {
     "field": "author",
     "current": "A Bragin and J {Engel Jr} and C L Wilson and I Fried and G Buzs\\'{a}ki",
-    "proposed": "A Bragin and J J Engel and C L Wilson and I Fried and G Buzs\\'{a}ki",
+    "proposed": "A Bragin and J Engel and C L Wilson and I Fried and G Buzs\\'{a}ki",
     "source": "researcher",
     "evidence": [
      {
@@ -9961,8 +10853,7 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/10226774/",
       "quote": "FAU - Buzsaki, G"
      }
-    ],
-    "normalised_from": "A Bragin and J Engel and C L Wilson and I Fried and G Buzs\\'{a}ki"
+    ]
    },
    {
     "field": "doi",
@@ -9983,14 +10874,7 @@
    "target_base": "BragEtal99",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "initials_from_source",
-    "field": "author",
-    "detail": "Engel: 'J' -> 'J J' (source gives all initials)",
-    "action": "applied"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1002/(sici)1098-1063(1999)9:2<137::aid-hipo5>3.0.co;2-0",
    "registered": true,
@@ -10099,7 +10983,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/1308180/",
       "quote": "AID - 10.1002/hipo.450020207 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -10111,7 +10996,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/1308180/",
       "quote": "IP  - 2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -10131,7 +11017,8 @@
       "url": "https://api.crossref.org/works/10.1002/hipo.450020207",
       "quote": "\"page\":\"151-163\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -10143,7 +11030,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/1308180/",
       "quote": "Intact verbal and nonverbal short-term memory following damage to the human hippocampus."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10168,7 +11056,20 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref p 151-163, 2(2)."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -10197,7 +11098,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17546683/",
       "quote": "AID - 10.1002/hipo.20300 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10222,7 +11124,17 @@
    "issue": "8",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "PubMed 17546683 17(8) 606-17."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -10450,7 +11362,7 @@
     "field": "author",
     "current": "J D Johnson and {Muftuler L T } and M D Rugg",
     "proposed": "J D Johnson and L T Muftuler and M D Rugg",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://pubmed.ncbi.nlm.nih.gov/18548578/",
@@ -10463,8 +11375,15 @@
      {
       "url": "https://pubmed.ncbi.nlm.nih.gov/18548578/",
       "quote": "FAU - Rugg, Michael D"
+     },
+     {
+      "reviewer_confirmed": "agree (held by the single-source rule, but it only repairs a malformed brace; Crossref 'L. Tugan|Muftuler' corroborates)",
+      "reviewer_problems": [
+       "Crossref 10.1002/hipo.20456: 18(10) 975-980."
+      ]
      }
-    ]
+    ],
+    "reviewer": "agree (held by the single-source rule, but it only repairs a malformed brace; Crossref 'L. Tugan|Muftuler' corroborates)"
    },
    {
     "field": "doi",
@@ -10476,7 +11395,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18548578/",
       "quote": "AID - 10.1002/hipo.20456 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -10488,7 +11408,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18548578/",
       "quote": "IP  - 10"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -10500,7 +11421,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18548578/",
       "quote": "PG  - 975-80"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10513,8 +11435,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'muftuler l t' -> 'muftuler' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'muftuler l t' -> 'muftuler' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree (held by the single-source rule, but it only repairs a malformed brace; Crossref 'L. Tugan|Muftuler' corroborates))",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -10532,8 +11454,21 @@
    "issue": "10",
    "type": "journal-article"
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree (held by the single-source rule, but it only repairs a malformed brace; Crossref 'L. Tugan|Muftuler' corroborates)",
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1002/hipo.20456: 18(10) 975-980."
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
  },
  {
   "key": "KamoEtal98",
@@ -10703,7 +11638,8 @@
       "url": "https://api.crossref.org/works/10.1002/hipo.20937",
       "quote": "\"page\":\"748-761\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -10715,7 +11651,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/21538660/",
       "quote": "DP  - 2012 Apr"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10749,7 +11686,19 @@
    "issue": "4",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "year": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Crossref print 2012, 22(4) 748-761. LegaEtal12 free."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -10908,7 +11857,8 @@
       "url": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1998)8:2%3C171::aid-hipo9%3E3.0.co;2-o",
       "quote": "\"page\":\"171-193\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -10920,7 +11870,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/9572723/",
       "quote": "GABA(B) modulation improves sequence disambiguation in computational models of hippocampal region CA3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10945,7 +11896,18 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 'GABAB modulation ...' 8(2) 171-193."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11060,7 +12022,8 @@
       "url": "https://api.crossref.org/works/10.1002/hipo.20597",
       "quote": "\"page\":\"166-173\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -11072,7 +12035,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/19338019/",
       "quote": "IP  - 1"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -11088,7 +12052,8 @@
       "url": "https://api.crossref.org/works/10.1002/hipo.20597",
       "quote": "\"page\":\"166-173\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -11100,7 +12065,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/19338019/",
       "quote": "VI  - 20"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -11112,7 +12078,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/19338019/",
       "quote": "DP  - 2010 Jan"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11146,7 +12113,22 @@
    "issue": "1",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree",
+    "year": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Crossref print 2010, 20(1) 166-173. SteiEtal10 free."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -11174,7 +12156,8 @@
       "url": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1996)6:3%3C271::aid-hipo5%3E3.0.co;2-q",
       "quote": "\"page\":\"271-280\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -11186,7 +12169,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/8841826/",
       "quote": "IP  - 3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -11198,7 +12182,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/8841826/",
       "quote": "Population dynamics and theta rhythm phase precession of hippocampal place cell firing: a spiking neuron model"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11230,7 +12215,19 @@
    "issue": "3",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "PubMed 8841826 1996 6(3) 271-80; Crossref 1998 date is digitisation (flag is noise)."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -11250,19 +12247,6 @@
   },
   "final_changes": [
    {
-    "field": "author",
-    "current": "M A {van der Meer} and A A Carey and Y Tanaka",
-    "proposed": "M A A {van der Meer} and A A Carey and Y Tanaka",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/28177571/",
-      "quote": "Matthijs A A van der Meer, Alyssa A Carey, Youki Tanaka"
-     }
-    ],
-    "normalised_from": "M A {van der Meer} and A A Carey and Y Tanaka"
-   },
-   {
     "field": "doi",
     "current": null,
     "proposed": "10.1002/hipo.22714",
@@ -11281,14 +12265,7 @@
    "target_base": "vandEtal17",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "initials_from_source",
-    "field": "author",
-    "detail": "{van der Meer}: 'M A' -> 'M A A' (source gives all initials)",
-    "action": "applied"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1002/hipo.22714",
    "registered": true,
@@ -11333,7 +12310,8 @@
       "url": "https://api.crossref.org/works/10.1176/ps.34.12.1119",
       "quote": "\"page\":\"1119-1127\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11358,7 +12336,17 @@
    "issue": "12",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1176/ps.34.12.1119: 34(12) 1119-1127 (container renamed later)."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11387,7 +12375,8 @@
       "url": "https://api.crossref.org/works/10.1002/hbm.20648",
       "quote": "\"page\":\"2077-2089\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -11399,7 +12388,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18819109/",
       "quote": "DP  - 2009 Jul"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11433,7 +12423,19 @@
    "issue": "7",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "year": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Crossref print 2009, 30(7) 2077-2089. BabiEtal09 free."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -11462,7 +12464,8 @@
       "url": "https://api.crossref.org/works/10.1002/hbm.1024",
       "quote": "\"page\":\"43-53\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11487,7 +12490,17 @@
    "issue": "1",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 13(1) 43-53; 2024 correction is affiliation-only (PubMed 39189682)."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11516,7 +12529,8 @@
       "url": "https://api.crossref.org/works/10.1002/hbm.21333",
       "quote": "\"page\":\"1914-1928\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -11528,7 +12542,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/21769991/",
       "quote": "A whole brain fMRI atlas generated via spatially constrained spectral clustering"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11553,7 +12568,18 @@
    "issue": "8",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "PubMed 21769991 2012 Aug 33(8); 'whole brain'."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11581,7 +12607,8 @@
       "url": "https://api.crossref.org/works/10.1002/(sici)1097-0193(1999)8:4%3C272::aid-hbm10%3E3.0.co;2-4",
       "quote": "\"page\":\"272-284\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -11593,7 +12620,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/10619420/",
       "quote": "IP  - 4"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -11605,7 +12633,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/10619420/",
       "quote": "High-resolution intersubject averaging and a coordinate system for the cortical surface"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11630,7 +12659,19 @@
    "issue": "4",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 'intersubject', 8(4) 272-284."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11736,7 +12777,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17894399/",
       "quote": "Julien Jung, Nelly Mainy, Philippe Kahane, Lorella Minotti, Dominique Hoffmann, Olivier Bertrand, Jean-Philippe Lachaux"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -11748,7 +12790,8 @@
       "url": "https://api.crossref.org/works/10.1002/hbm.20454",
       "quote": "\"page\":\"1193-1206\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -11760,7 +12803,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17894399/",
       "quote": "IP  - 10"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -11776,7 +12820,8 @@
       "url": "https://api.crossref.org/works/10.1002/hbm.20454",
       "quote": "\"page\":\"1193-1206\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11801,7 +12846,20 @@
    "issue": "10",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "PubMed 17894399 29(10) 1193-206."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11829,7 +12887,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17712784/",
       "quote": "Anna Korzeniewska, Ciprian M Crainiceanu, Rafał Kuś, Piotr J Franaszczuk, Nathan E Crone"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -11841,7 +12900,8 @@
       "url": "https://api.crossref.org/works/10.1002/hbm.20458",
       "quote": "\"page\":\"1170-1192\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -11857,7 +12917,8 @@
       "url": "https://api.crossref.org/works/10.1002/hbm.20458",
       "quote": "\"page\":\"1170-1192\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11882,7 +12943,19 @@
    "issue": "10",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref: Rafał Kuś; print 2008-10; p 1170-1192."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11908,7 +12981,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17274021/",
       "quote": "Jean-Philippe Lachaux, Pierre Fonlupt, Philippe Kahane, Lorella Minotti, Dominique Hoffmann, Olivier Bertrand, Monica Baciu"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -11920,7 +12994,8 @@
       "url": "https://api.crossref.org/works/10.1002/hbm.20352",
       "quote": "\"page\":\"1368-1375\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -11932,7 +13007,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17274021/",
       "quote": "IP  - 12"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -11948,7 +13024,8 @@
       "url": "https://api.crossref.org/works/10.1002/hbm.20352",
       "quote": "\"page\":\"1368-1375\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -11960,7 +13037,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17274021/",
       "quote": "VI  - 28"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11985,7 +13063,21 @@
    "issue": "12",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref print 2007-12, 28(12) 1368-1375."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -12120,7 +13212,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/10864231/",
       "quote": "FAU - Naatanen, R"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -12132,7 +13225,8 @@
       "url": "https://api.crossref.org/works/10.1002/%28sici%291097-0193%28200006%2910%3A2%3C74%3A%3Aaid-hbm30%3E3.0.co%3B2-2",
       "quote": "\"volume\":\"10\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12157,7 +13251,18 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree"
+   },
+   "problems": [
+    "PubMed 10864231 'Naatanen, R' (ASCII); umlauts per user accent rule."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -12282,7 +13387,8 @@
       "quote": "FAU - Sperling, Reisa A"
      }
     ],
-    "normalised_from": "Patrizia Vannini and Trey Hedden and Caroline Sullivan and Reisa A Sperling"
+    "normalised_from": "Patrizia Vannini and Trey Hedden and Caroline Sullivan and Reisa A Sperling",
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -12294,7 +13400,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/22344847/",
       "quote": "10.1002/hbm.22011 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -12306,7 +13413,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/22344847/",
       "quote": "IP  - 7"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -12318,7 +13426,8 @@
       "url": "https://api.crossref.org/works/10.1002/hbm.22011",
       "quote": "\"page\":\"1568-1578\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -12330,7 +13439,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/22344847/",
       "quote": "VI  - 34"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -12342,7 +13452,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/22344847/",
       "quote": "DP  - 2013 Jul"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12376,7 +13487,23 @@
    "issue": "7",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree",
+    "year": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Crossref print 2013-07, 34(7) 1568-1578. VannEtal13 free."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -12405,7 +13532,8 @@
       "quote": "FAU - Balakrishnan, J D"
      }
     ],
-    "normalised_from": "Jerry D Balakrishnan"
+    "normalised_from": "Jerry D Balakrishnan",
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -12417,7 +13545,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/9974232/",
       "quote": "10.1518/001872098779649337 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -12429,7 +13558,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/9974232/",
       "quote": "IP  - 4"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12454,7 +13584,19 @@
    "issue": "4",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "PubMed 9974232 40(4) 601-23."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -12509,7 +13651,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-1523.28.4.854",
       "quote": "\"DOI\":\"10.1037\\/0096-1523.28.4.854\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -12521,7 +13664,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-1523.28.4.854",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology: Human Perception and Performance\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -12533,7 +13677,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-1523.28.4.854",
       "quote": "\"issue\":\"4\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -12545,7 +13690,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-1523.28.4.854",
       "quote": "\"volume\":\"28\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12570,7 +13716,20 @@
    "issue": "4",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref/PubMed 12190254: JEP:HPP 28(4) 854-867."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -12690,7 +13849,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.intell.2004.07.005",
       "quote": "\"volume\":\"32\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12715,7 +13875,17 @@
    "issue": "6",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 32(6) 607-619."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -12790,15 +13960,17 @@
    {
     "field": "author",
     "current": "W J Freeman and G Ga{\\'a}l and R Jornten",
-    "proposed": "W J Freeman and G Ga{\\'a}l and R E B E C K A Jorsten",
-    "source": "researcher",
+    "proposed": "W J Freeman and G Ga{\\'a}l and R J{\\\"o}rnsten",
+    "source": "reviewer",
     "evidence": [
      {
-      "url": "https://api.crossref.org/works/10.1142/s0218127403008260/transform/application/x-bibtex",
-      "quote": "author={FREEMAN, WALTER J. and GAÁL, GYöNGYI and JORSTEN, REBECKA}"
+      "reviewer_problems": [
+       "POST-CHECK BUG: initials_from_source reads World Scientific's upper-case given name 'REBECKA' as a string of initials and writes 'R E B E C K A'. Same bug in LachEtal00a and CarlEtal05. Caused by the post-check.",
+       "RESEARCHER: Crossref's 'JORSTEN' is a deposit typo. The author's own list (math.chalmers.se/~jornsten, fetched) prints 'Freeman, W., Gaal, G., and Jornsten, R. (2003) ... Part 3 ... 13(10), 2845-2856', and OpenAlex's author record is 'Rebecka J. Jörnsten'. The single-source surname hold stops 'Jorsten' being applied, but the value is still wrong."
+      ]
      }
     ],
-    "normalised_from": "W J Freeman and G Ga{\\'a}l and R Jorsten"
+    "reviewer": "disagree: third author is Rebecka J{\\\"o}rnsten; post-check made it 'R E B E C K A Jorsten'"
    },
    {
     "field": "doi",
@@ -12810,7 +13982,8 @@
       "url": "https://api.crossref.org/works/10.1142/s0218127403008260",
       "quote": "\"volume\":\"13\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -12822,7 +13995,8 @@
       "url": "https://api.crossref.org/works/10.1142/s0218127403008260",
       "quote": "\"issue\":\"10\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -12834,7 +14008,8 @@
       "url": "https://api.crossref.org/works/10.1142/s0218127403008260",
       "quote": "A NEUROBIOLOGICAL THEORY OF MEANING IN PERCEPTION PART III: MULTIPLE CORTICAL AREAS SYNCHRONIZE WITHOUT LOSS OF LOCAL AUTONOMY"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12843,20 +14018,7 @@
    "target_base": "FreeEtal03",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "initials_from_source",
-    "field": "author",
-    "detail": "Jorsten: 'R' -> 'R E B E C K A' (source gives all initials)",
-    "action": "applied"
-   },
-   {
-    "code": "surname_single_source",
-    "field": "author",
-    "detail": "surname 'jornten' -> 'jorsten' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1142/s0218127403008260",
    "registered": true,
@@ -12872,8 +14034,24 @@
    "issue": "10",
    "type": "journal-article"
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree",
+    "author": "disagree: third author is Rebecka J{\\\"o}rnsten; post-check made it 'R E B E C K A Jorsten'"
+   },
+   "problems": [
+    "POST-CHECK BUG: initials_from_source reads World Scientific's upper-case given name 'REBECKA' as a string of initials and writes 'R E B E C K A'. Same bug in LachEtal00a and CarlEtal05. Caused by the post-check.",
+    "RESEARCHER: Crossref's 'JORSTEN' is a deposit typo. The author's own list (math.chalmers.se/~jornsten, fetched) prints 'Freeman, W., Gaal, G., and Jornsten, R. (2003) ... Part 3 ... 13(10), 2845-2856', and OpenAlex's author record is 'Rebecka J. Jörnsten'. The single-source surname hold stops 'Jorsten' being applied, but the value is still wrong."
+   ],
+   "suggested_value": {
+    "author": "W J Freeman and G Ga{\\'a}l and R J{\\\"o}rnsten"
+   }
+  },
+  "needs_user": false
  },
  {
   "key": "LachEtal00a",
@@ -12893,35 +14071,17 @@
    {
     "field": "author",
     "current": "J P Lachaux and E Rodriguez and M {Le Van Quyen} and A Lutz and J Martinerie and F J Varela",
-    "proposed": "J-P Lachaux and E U G E N I O Rodriguez and M I C H E L {Le Van Quyen} and A N T O I N E Lutz and J A C Q U E S Martinerie and F J Varela",
-    "source": "researcher",
+    "proposed": "J-P Lachaux and E Rodriguez and M {Le Van Quyen} and A Lutz and J Martinerie and F J Varela",
+    "source": "reviewer",
     "evidence": [
      {
-      "url": "https://api.crossref.org/works/10.1142/s0218127400001560",
-      "quote": "\"given\":\"JEAN-PHILIPPE\",\"family\":\"LACHAUX\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1142/s0218127400001560",
-      "quote": "\"given\":\"EUGENIO\",\"family\":\"RODRIGUEZ\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1142/s0218127400001560",
-      "quote": "\"given\":\"MICHEL\",\"family\":\"LE VAN QUYEN\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1142/s0218127400001560",
-      "quote": "\"given\":\"ANTOINE\",\"family\":\"LUTZ\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1142/s0218127400001560",
-      "quote": "\"given\":\"JACQUES\",\"family\":\"MARTINERIE\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1142/s0218127400001560",
-      "quote": "\"given\":\"FRANCISCO J.\",\"family\":\"VARELA\""
+      "reviewer_problems": [
+       "POST-CHECK BUG: initials_from_source turns Crossref's upper-case given names (EUGENIO, MICHEL, ANTOINE, JACQUES) into 'E U G E N I O Rodriguez', 'M I C H E L {Le Van Quyen}', 'A N T O I N E Lutz', 'J A C Q U E S Martinerie'. Only J-P Lachaux (the researcher's change) is right. Caused by the post-check.",
+       "Crossref 10.1142/s0218127400001560: IJBC 10(10) 2429-2439, JEAN-PHILIPPE LACHAUX et al."
+      ]
      }
     ],
-    "normalised_from": "J-P Lachaux and E Rodriguez and M {Le Van Quyen} and A Lutz and J Martinerie and F J Varela"
+    "reviewer": "disagree: post-check spelled four given names out as initials"
    },
    {
     "field": "doi",
@@ -12933,7 +14093,8 @@
       "url": "https://api.crossref.org/works/10.1142/s0218127400001560",
       "quote": "\"DOI\":\"10.1142\\/s0218127400001560\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -12945,7 +14106,8 @@
       "url": "https://api.crossref.org/works/10.1142/s0218127400001560",
       "quote": "\"container-title\":[\"International Journal of Bifurcation and Chaos\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -12957,7 +14119,8 @@
       "url": "https://api.crossref.org/works/10.1142/s0218127400001560",
       "quote": "\"issue\":\"10\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12966,14 +14129,7 @@
    "target_base": "LachEtal00",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "initials_from_source",
-    "field": "author",
-    "detail": "Rodriguez: 'E' -> 'E U G E N I O' (source gives all initials); {Le Van Quyen}: 'M' -> 'M I C H E L' (source gives all initials); Lutz: 'A' -> 'A N T O I N E' (source gives all initials); Martinerie: 'J' -> 'J A C Q U E S' (source gives all initials)",
-    "action": "applied"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1142/s0218127400001560",
    "registered": true,
@@ -12989,7 +14145,23 @@
    "issue": "10",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "author": "disagree: post-check spelled four given names out as initials"
+   },
+   "problems": [
+    "POST-CHECK BUG: initials_from_source turns Crossref's upper-case given names (EUGENIO, MICHEL, ANTOINE, JACQUES) into 'E U G E N I O Rodriguez', 'M I C H E L {Le Van Quyen}', 'A N T O I N E Lutz', 'J A C Q U E S Martinerie'. Only J-P Lachaux (the researcher's change) is right. Caused by the post-check.",
+    "Crossref 10.1142/s0218127400001560: IJBC 10(10) 2429-2439, JEAN-PHILIPPE LACHAUX et al."
+   ],
+   "suggested_value": {
+    "author": "J-P Lachaux and E Rodriguez and M {Le Van Quyen} and A Lutz and J Martinerie and F J Varela"
+   }
+  },
   "needs_user": false
  },
  {
@@ -13057,7 +14229,8 @@
       "url": "https://api.crossref.org/works/10.1023/a:1026598000963",
       "quote": "\"volume\":\"40\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13082,7 +14255,17 @@
    "issue": "2",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 40(2) 123-148, 2000."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -13158,7 +14341,7 @@
     "field": "author",
     "current": "B G Whitmer and J H Bailey and B W Knerr and K C Parsons",
     "proposed": "B G Witmer and J H Bailey and B W Knerr and K C Parsons",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
@@ -13175,8 +14358,15 @@
      {
       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
       "quote": "\"given\":\"Kimberly C.\",\"family\":\"Parsons\""
+     },
+     {
+      "reviewer_confirmed": "agree",
+      "reviewer_problems": [
+       "HEAD WitmEtal96 (line 55228) holds the same work with DOI 10.1006/ijhc.1996.0060; Crossref author Bob G. Witmer."
+      ]
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -13188,7 +14378,8 @@
       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
       "quote": "\"volume\":\"45\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -13200,7 +14391,8 @@
       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
       "quote": "\"issue\":\"4\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -13212,7 +14404,8 @@
       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
       "quote": "\"title\":[\"Virtual spaces and real world places: transfer of route knowledge\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13234,8 +14427,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'whitmer' -> 'witmer' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'whitmer' -> 'witmer' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
+    "action": "applied"
    },
    {
     "code": "duplicate",
@@ -13259,7 +14452,21 @@
    "issue": "4",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "key": "agree (duplicate, merge into WitmEtal96)",
+    "author": "agree",
+    "title": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "HEAD WitmEtal96 (line 55228) holds the same work with DOI 10.1006/ijhc.1996.0060; Crossref author Bob G. Witmer."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -13324,14 +14531,7 @@
    "target_base": "VieiEtal03",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "initials_uncertain",
-    "field": "author",
-    "detail": "{D{\\'o}ria Neto}: initials kept as 'A D'; source family name 'Neto' (given 'Adrião Duarte Dória') splits the name differently from \"{D{\\\\'o}ria Neto}\"",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1142/s0129065703001443",
    "registered": true,
@@ -13348,7 +14548,7 @@
    "type": "journal-article"
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "AriEtal04",
@@ -13397,7 +14597,8 @@
       "quote": "FAU - Tavli, Talat"
      }
     ],
-    "normalised_from": "Zeki Ari and Necip Kutlu and Bekir Sami Uyanik and Fatma Taneli and Gurbuz Buyukyazi and Talat Tavli"
+    "normalised_from": "Zeki Ari and Necip Kutlu and Bekir Sami Uyanik and Fatma Taneli and Gurbuz Buyukyazi and Talat Tavli",
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -13409,7 +14610,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15204068/",
       "quote": "10.1080/00207450490430499 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13434,7 +14636,18 @@
    "issue": "5",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1080/00207450490430499: 114(5) 623-637."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -13676,14 +14889,7 @@
    "target_base": "BasaEtal92",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "surname_single_source",
-    "field": "author",
-    "detail": "surname 'schurman n' -> 'schurmann' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1016/0167-8760(92)90055-g",
    "registered": true,
@@ -13700,7 +14906,7 @@
    "type": "journal-article"
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "VanSEtal07",
@@ -13872,7 +15078,8 @@
       "url": "https://api.crossref.org/works/10.1080/002075999399792",
       "quote": "\"DOI\":\"10.1080\\/002075999399792\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -13884,7 +15091,8 @@
       "url": "https://api.crossref.org/works/10.1080/002075999399792",
       "quote": "\"issue\":\"5-6\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13909,7 +15117,18 @@
    "issue": "5-6",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref issue 5-6."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -13954,7 +15173,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0167-8760(00)00145-8",
       "quote": "\"given\":\"Martin\",\"family\":\"Sch\\u00fcrmann\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -13966,7 +15186,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0167-8760(00)00145-8",
       "quote": "\"DOI\":\"10.1016\\/s0167-8760(00)00145-8\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -13978,7 +15199,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11163901/",
       "quote": "IP  - 2-3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14003,7 +15225,19 @@
    "issue": "2-3",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref issue 2-3; Başar, Karakaş, Schürmann."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -14266,31 +15500,6 @@
   },
   "final_changes": [
    {
-    "field": "author",
-    "current": "G Carlsson and A Zomorodian and A Collins and L J Guibas",
-    "proposed": "G U N N A R Carlsson and A F R A Zomorodian and A N N E Collins and L J Guibas",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1142/s0218654305000761",
-      "quote": "\"given\":\"GUNNAR\",\"family\":\"CARLSSON\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1142/s0218654305000761",
-      "quote": "\"given\":\"AFRA\",\"family\":\"ZOMORODIAN\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1142/s0218654305000761",
-      "quote": "\"given\":\"ANNE\",\"family\":\"COLLINS\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1142/s0218654305000761",
-      "quote": "\"given\":\"LEONIDAS J.\",\"family\":\"GUIBAS\""
-     }
-    ],
-    "normalised_from": "G Carlsson and A Zomorodian and A Collins and L J Guibas"
-   },
-   {
     "field": "doi",
     "current": null,
     "proposed": "10.1142/s0218654305000761",
@@ -14300,7 +15509,8 @@
       "url": "https://api.crossref.org/works/10.1142/s0218654305000761",
       "quote": "\"DOI\":\"10.1142\\/s0218654305000761\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -14316,7 +15526,8 @@
       "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy%20Manning/Papers/CarlEtal05.pdf#page=1",
       "quote": "PERSISTENCE BARCODES FOR SHAPES"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14325,14 +15536,7 @@
    "target_base": "CarlEtal05",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "initials_from_source",
-    "field": "author",
-    "detail": "Carlsson: 'G' -> 'G U N N A R' (source gives all initials); Zomorodian: 'A' -> 'A F R A' (source gives all initials); Collins: 'A' -> 'A N N E' (source gives all initials)",
-    "action": "applied"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1142/s0218654305000761",
    "registered": true,
@@ -14348,7 +15552,22 @@
    "issue": "02",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree",
+    "author": "disagree: post-check spelled given names out as initials"
+   },
+   "problems": [
+    "POST-CHECK BUG: 'G U N N A R Carlsson and A F R A Zomorodian and A N N E Collins' from Crossref's upper-case given names. Caused by the post-check.",
+    "Crossref 10.1142/s0218654305000761: 'PERSISTENCE BARCODES FOR SHAPES', IJSM 11(2) 149-187, 2005."
+   ],
+   "suggested_value": {
+    "author": "G Carlsson and A Zomorodian and A Collins and L J Guibas"
+   }
+  },
   "needs_user": false
  },
  {
@@ -14510,7 +15729,17 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree no_source"
+   },
+   "problems": [
+    "ARVO 1995 supplement abstract not online; conference-abstract removal rule applies."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -14539,7 +15768,8 @@
       "url": "https://api.crossref.org/works/10.2307/30034818",
       "quote": "\"DOI\":\"10.2307\\/30034818\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14571,7 +15801,17 @@
    "issue": "5",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.2307/30034818 first page 305 only; cited range kept (flag is noise)."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -14608,7 +15848,8 @@
       "url": "https://api.crossref.org/works/10.1037/0021-843x.101.3.575",
       "quote": "\"given\":\"R. Reed\",\"family\":\"Hunt\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -14620,7 +15861,8 @@
       "url": "https://api.crossref.org/works/10.1037/0021-843x.101.3.575",
       "quote": "\"DOI\":\"10.1037\\/0021-843x.101.3.575\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14654,7 +15896,19 @@
    "issue": "3",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "Crossref: 'R. Reed|Hunt'; PubMed 'Hunt, R R'. DennHunt92 free."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -14698,7 +15952,8 @@
       "url": "https://api.crossref.org/works/10.1016/0165-0327(95)00021-e",
       "quote": "\"given\":\"Philippe\",\"family\":\"Greth\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -14710,7 +15965,8 @@
       "url": "https://api.crossref.org/works/10.1016/0165-0327(95)00021-e",
       "quote": "\"DOI\":\"10.1016\\/0165-0327(95)00021-e\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -14722,7 +15978,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7560551/",
       "quote": "IP  - 3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -14734,7 +15991,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7560551/",
       "quote": "Affective valence of words, explicit and implicit memory in clinical depression."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14759,7 +16017,20 @@
    "issue": "3",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref/PubMed 7560551: five authors incl. Greth, Zimmermann, Grangé; 'explicit'."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -14854,7 +16125,8 @@
       "url": "https://api.crossref.org/works/10.1037/0021-9010.84.5.795",
       "quote": "\"DOI\":\"10.1037\\/0021-9010.84.5.795\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -14866,7 +16138,8 @@
       "url": "https://api.crossref.org/works/10.1037/0021-9010.84.5.795",
       "quote": "A meta-analytic review of the distribution of practice effect: Now you see it, now you don't."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14891,7 +16164,18 @@
    "issue": "5",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref: 'Now you see it, now you don't.'"
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -14998,7 +16282,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16462195/",
       "quote": "PG  - 388-401"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -15009,7 +16294,17 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "pages": "agree"
+   },
+   "problems": [
+    "PubMed 16462195 PG 388-401; PubMed's DOI unregistered, correctly not proposed."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -15038,7 +16333,8 @@
       "url": "https://api.crossref.org/works/10.5664/jcsm.8116",
       "quote": "\"DOI\":\"10.5664\\/jcsm.8116\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -15063,7 +16359,17 @@
    "issue": "1",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref: 14 named authors + STRONG STAR Consortium; 16(1) 29-40."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -15083,23 +16389,6 @@
   },
   "final_changes": [
    {
-    "field": "author",
-    "current": "A Mecklinger and D Y {von Cramon} and A Springer and G {Matthes-von Cramon}",
-    "proposed": "A D Mecklinger and D Y {von Cramon} and A Springer and G {Matthes-von Cramon}",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/10572281/",
-      "quote": "A D Mecklinger, D Y von Cramon, A Springer, G Matthes-von Cramon"
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1076/jcen.21.5.606.873",
-      "quote": "\"given\":\"Axel\",\"family\":\"Mecklinger\""
-     }
-    ],
-    "normalised_from": "A Mecklinger and D Y {von Cramon} and A Springer and G {Matthes-von Cramon}"
-   },
-   {
     "field": "doi",
     "current": null,
     "proposed": "10.1076/jcen.21.5.606.873",
@@ -15109,7 +16398,8 @@
       "url": "https://api.crossref.org/works/10.1076/jcen.21.5.606.873",
       "quote": "\"DOI\":\"10.1076\\/jcen.21.5.606.873\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -15118,14 +16408,7 @@
    "target_base": "MeckEtal99",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "initials_from_source",
-    "field": "author",
-    "detail": "Mecklinger: 'A' -> 'A D' (source gives all initials)",
-    "action": "applied"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1076/jcen.21.5.606.873",
    "registered": true,
@@ -15141,7 +16424,20 @@
    "issue": "5",
    "type": "journal-article"
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "author": "disagree: post-check added a D to Mecklinger that the researcher had rejected"
+   },
+   "problems": [
+    "POST-CHECK: initials_from_source applied 'A' -> 'A D Mecklinger' from PubMed 10572281 'Mecklinger, A D', although Crossref (the publisher) gives the full given name 'Axel' with no second name. PubMed 'Mecklinger AD[au]' matches only this one record; every other entry in HEAD writes 'A Mecklinger' (7). A full given name without a middle name contradicts the extra initial, so 'every source form agrees' did not hold. Caused by the post-check."
+   ],
+   "suggested_value": {
+    "author": "A Mecklinger and D Y {von Cramon} and A Springer and G {Matthes-von Cramon}"
+   }
+  },
   "needs_user": false
  }
 ]

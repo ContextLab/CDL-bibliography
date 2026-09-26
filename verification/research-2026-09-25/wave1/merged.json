@@ -1433,7 +1433,7 @@
     "field": "author",
     "current": "Marcin Blaszcyk and Robert Grabowski and Barbara Exckersdorf and Henryk Golebiewski and Jan Konopacki",
     "proposed": "M B{\\l}aszczyk and R Grabowski and B Eckersdorf and H Go{\\l}{\\k{e}}biewski and J Konopacki",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://api.crossref.org/works/10.55782/ane-1996-1116/transform/application/vnd.crossref.unixsd+xml",
@@ -1466,6 +1466,12 @@
      {
       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8787169&retmode=xml",
       "quote": "<LastName>Go&#x142;ebiewski</LastName><ForeName>H</ForeName>"
+     },
+     {
+      "reviewer_confirmed": "agree",
+      "reviewer_problems": [
+       "Minor: {\\k{e}} has no precedent in HEAD cdl.bib (0 occurrences); confirm bibcheck accepts it."
+      ]
      }
     ],
     "reviewer": "agree"
@@ -1507,8 +1513,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'blaszcyk' -> 'blaszczyk' rests on 0 source host(s) []; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'blaszcyk' -> 'blaszczyk' rests on 0 source host(s) []; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -1544,7 +1550,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "AllaEtal98",
@@ -4031,14 +4037,7 @@
    "target_base": "Hunt03",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "initials_uncertain",
-    "field": "author",
-    "detail": "Hunt: initials kept as 'R R'; source family name 'Reed Hunt' (given 'R') splits the name differently from 'Hunt'",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1016/s0749-596x(03)00018-4",
    "registered": true,
@@ -4055,7 +4054,7 @@
    "type": "journal-article"
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "KarpRoed07",
@@ -5317,7 +5316,7 @@
    {
     "field": "author",
     "current": "B T T Yeo and F M Krienen and J Sepulcre and M R Sabuncu and D Lashkari and M Hollinshead and J L Roffman and J W Smoller and L Zollei and J R Polimieni and B Fischl and H Liu and R L Buckner",
-    "proposed": "B T T Yeo and F M Krienen and J Sepulcre and M R Sabuncu and D Lashkari and M Hollinshead and J L Roffman and J W Smoller and L Z{\\\"o}llei and J R Polimeni and B Fischl and H Liu and R L Buckner",
+    "proposed": "B T T Yeo and F M Krienen and J Sepulcre and M R Sabuncu and D Lashkari and M Hollinshead and J L Roffman and J W Smoller and L Z{\\\"o}llei and J R Polimieni and B Fischl and H Liu and R L Buckner",
     "source": "researcher",
     "evidence": [
      {
@@ -5397,7 +5396,7 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'polimieni' -> 'polimeni' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
+    "detail": "surname 'polimieni' -> 'polimeni' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'J R Polimieni' is kept",
     "action": "held"
    }
   ],
@@ -5587,7 +5586,7 @@
    {
     "field": "author",
     "current": "H Boddeke and R Best and P H Beojinga",
-    "proposed": "H W Boddeke and R Best and P H Boeijinga",
+    "proposed": "H W Boddeke and R Best and P H Beojinga",
     "source": "researcher",
     "evidence": [
      {
@@ -5633,7 +5632,7 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'beojinga' -> 'boeijinga' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
+    "detail": "surname 'beojinga' -> 'boeijinga' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'P H Beojinga' is kept",
     "action": "held"
    }
   ],
@@ -7803,7 +7802,7 @@
    {
     "field": "author",
     "current": "A Benabid and P Pollack and A Loveau and S Henry and J {de Rougemont}",
-    "proposed": "A L Benabid and P Pollak and A Louveau and S Henry and J {de Rougemont}",
+    "proposed": "A L Benabid and P Pollack and A Loveau and S Henry and J {de Rougemont}",
     "source": "researcher",
     "evidence": [
      {
@@ -7887,13 +7886,13 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'pollack' -> 'pollak' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
+    "detail": "surname 'pollack' -> 'pollak' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'P Pollack' is kept",
     "action": "held"
    },
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'loveau' -> 'louveau' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
+    "detail": "surname 'loveau' -> 'louveau' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'A Loveau' is kept",
     "action": "held"
    }
   ],
@@ -9023,11 +9022,18 @@
     "field": "author",
     "current": "R H Baayen and R Piepenrbrock and L Gulikers",
     "proposed": "R H Baayen and R Piepenbrock and L Gulikers",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://catalog.ldc.upenn.edu/LDC96L14",
       "quote": "R H. Baayen, R Piepenbrock, L Gulikers"
+     },
+     {
+      "reviewer_confirmed": "agree",
+      "reviewer_problems": [
+       "Confirmed independently: DataCite https://api.datacite.org/dois/10.35111/gs6s-gm48 creators 'Baayen, R H.', 'Piepenbrock, R', 'Gulikers, L', publisher 'Linguistic Data Consortium', publicationYear 1995, title 'CELEX2', bibtex type 'misc'; LDC page LDC96L14 'Author(s): R H. Baayen, R Piepenbrock, L Gulikers'.",
+       "Title: registry title is 'CELEX2'; the cited conventional title is not printed by any acceptable source, so title stays unverified (needs user decision; researcher correctly flagged). Entry type @book vs @misc (DataCite: Dataset) is also a user decision."
+      ]
      }
     ],
     "reviewer": "agree"
@@ -9055,8 +9061,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'piepenrbrock' -> 'piepenbrock' rests on 1 source host(s) ['catalog.ldc.upenn.edu']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'piepenrbrock' -> 'piepenbrock' rests on 1 source host(s) ['catalog.ldc.upenn.edu']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -9502,11 +9508,17 @@
     "field": "author",
     "current": "G Kanisza",
     "proposed": "G Kanizsa",
-    "source": "researcher",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=79011851&maximumRecords=1&recordSchema=mods",
       "quote": "Kanizsa, Gaetano."
+     },
+     {
+      "reviewer_confirmed": "agree",
+      "reviewer_problems": [
+       "LoC SRU LCCN 79011851 (https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=79011851&recordSchema=mods): title 'Organization in vision', subTitle 'essays on gestalt perception', namePart 'Kanizsa, Gaetano.', New York, Praeger, 1979. Keep the subtitle and brace {Gestalt} as cdl.bib does elsewhere ('{Gestalt} psychology'). Surname change is single-source (LoC) but no other cdl.bib entry spells it either way; key unchanged."
+      ]
      }
     ],
     "reviewer": "agree"
@@ -9536,8 +9548,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'kanisza' -> 'kanizsa' rests on 1 source host(s) ['lx2.loc.gov']; single-source surname changes need corroboration or the user's sign-off",
-    "action": "held"
+    "detail": "surname 'kanisza' -> 'kanizsa' rests on 1 source host(s) ['lx2.loc.gov']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
+    "action": "applied"
    }
   ],
   "doi_status": null,
@@ -9558,7 +9570,7 @@
     "title": "Organization in vision: essays on {Gestalt} perception"
    }
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Rayp68",

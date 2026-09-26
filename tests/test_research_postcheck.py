@@ -172,13 +172,16 @@ def test_suffix_stripped_from_wave_row(bib):
     assert changed(check(bib, "IyyeEtal15"))["author"] == "M Iyyer and V Manjunatha and J Boyd-Graber and H {Daum\\'{e}}"
 
 
-def test_hyphenated_initials_from_pubmed_forename(bib):
-    rec = check(bib, "GoldEtal05")
-    assert "J-P Michel" in changed(rec)["author"] and "initials_from_source" in codes(rec)
-
-
-def test_all_initials_the_source_gives(bib):
-    assert changed(check(bib, "Hawk99"))["author"] == "S W Hawking"
+def test_initials_come_from_the_researcher_or_reviewer_only(bib):
+    """The post-check never adds or hyphenates initials from the sources (wave-3 review:
+    5 of 6 applications wrong). GoldEtal05 and Hawk99 get the fuller forms only from
+    the reviewer's values."""
+    assert "J P Michel" in pc.split_names(check(bib, "GoldEtal05")["final_entry"]["author"])
+    assert "J-P Michel" in pc.split_names(check(bib, "GoldEtal05", review=True)["final_entry"]["author"])
+    assert "author" not in changed(check(bib, "Hawk99"))  # researcher confirmed 'S Hawking'
+    rec = check(bib, "Hawk99", review=True)
+    assert changed(rec)["author"] == "S W Hawking"
+    assert {c["field"]: c["source"] for c in rec["changes"]}["author"] == "reviewer"
 
 
 def test_initials_not_changed_when_sources_disagree_or_match(bib):
@@ -188,7 +191,10 @@ def test_initials_not_changed_when_sources_disagree_or_match(bib):
 
 
 def test_single_source_surname_change_is_flagged(bib):
-    assert "surname_single_source" in codes(check(bib, "MannEtal23b"))
+    rec = check(bib, "MannEtal23b")
+    assert "surname_single_source" in codes(rec)
+    # the hold keeps the cited name: the respelled surname is not in the final entry
+    assert rec["final_entry"]["author"] == "J R Manning and H Menjunatha and K Kording"
     assert "surname_single_source" not in codes(check(bib, "DawKenj06"))  # PubMed + Crossref
 
 
@@ -343,8 +349,11 @@ def test_wave1_run_measures_review(tmp_path):
     assert m["findings"] == 29 and m["random_sample_findings"] == 10
     caught = {r["key"] for r in m["rows"] if r["caught"]}
     assert {"KleiEtal07b", "WardEtal09", "PetzHaub04", "GoebLewa91", "Este91", "GoenEtal08", "DawKenj06",
-            "Frie06", "EchaEtal00", "LittEtal98", "IyyeEtal15", "ChenEtal22", "GoldEtal05",
+            "Frie06", "EchaEtal00", "LittEtal98", "IyyeEtal15", "ChenEtal22",
             "KansEtal15"} <= caught
+    # GoldEtal05's J-P was caught by the source-initials rule, removed after the wave-3
+    # review; the reviewer's value now supplies it (test_initials_come_from_...)
+    assert "GoldEtal05" not in caught
     assert len(page) == 200
     for p in page:  # never an empty proposed value
         assert all(str(c["proposed"] or "").strip() for c in p["final_changes"]), p["key"]
@@ -393,35 +402,12 @@ def test_compound_surname_never_read_as_given_name(bib, key, name):
     assert not any(f["code"] == "initials_from_source" and name.split()[-1] in f["detail"] for f in rec["flags"])
 
 
-def test_initials_still_added_when_source_gives_them(bib):
-    """Negative controls: the two wave-2 applications the reviewer confirmed, and a
-    Crossref given name with a middle initial."""
-    rec = check2(bib, "AllpEtal94")
-    assert "S L Hsieh" in pc.split_names(rec["final_entry"]["author"])
-    assert "initials_from_source" in codes(rec)
-    assert "X-J Wang" in pc.split_names(check2(bib, "MillEtal03")["final_entry"]["author"])
-    quote = '{"given":"John A.","family":"Smith","sequence":"first"}'
-    assert pc.initials_from_evidence("J Smith", [quote])[0] == "J A Smith"
-    assert pc.initials_from_evidence("J Smith and K Jones", ["John Andrew Smith, Kate Jones"])[0] == \
-        "J A Smith and K Jones"
-
-
-def test_uncertain_split_holds_initials():
-    unsure = []
-    assert pc.initials_from_evidence("D Bihan", ["Denis Le Bihan"], unsure)[0] == "D Bihan"
-    assert unsure and "particle" in unsure[0]
-    unsure = []
-    quote = '{"given":"Mohsen Parto","family":"Dezfouli"}'  # source splits the surname
-    assert pc.initials_from_evidence("M {Parto Dezfouli}", [quote], unsure)[0] == "M {Parto Dezfouli}"
-    assert unsure and "splits the name differently" in unsure[0]
-    # a braced surname is one unit and the source gives only 'Mohsen'
-    assert pc.initials_from_evidence("M {Parto Dezfouli}", ["Mohsen Parto Dezfouli, Mohammad Reza Daliri"])[0] \
-        == "M {Parto Dezfouli}"
-
-
-def test_bibtex_author_list_is_structured_evidence():
-    quote = "author = {Desmaison, Alban and Kopf, Andreas and Yang, Edward}"
-    assert pc.evidence_given_names("K{\\\"o}pf", [quote]) == ["Andreas"]
+def test_researcher_initials_kept_without_reviewer_value(bib):
+    """The rule that read initials from the sources is gone: AllpEtal94 and MillEtal03
+    keep the researcher's initials (only format is normalised)."""
+    assert not hasattr(pc, "initials_from_evidence")
+    assert "S Hsieh" in pc.split_names(check2(bib, "AllpEtal94")["final_entry"]["author"])
+    assert "X J Wang" in pc.split_names(check2(bib, "MillEtal03")["final_entry"]["author"])
 
 
 NEURIPS_CONVERSIONS = ("BorzEtal23b", "ChanEtal09a", "ChenEtal24b", "ChenEtal24c", "GrifStey03", "KiroEtal15",
@@ -549,3 +535,178 @@ def test_wave2_review_resolution():
             "CaoWors99", "Schw78", "Hint84", "BorzEtal23b", "MayeEtal92b", "SchaTurk15"} <= fixed
     for p in page:
         assert all(str(c["proposed"] or "").strip() for c in p["final_changes"]), p["key"]
+
+
+# ---------------------------------------------------------------- wave-3 review regressions
+
+WAVE3 = ROOT / "verification/research-2026-09-25/wave3"
+ROWS3, REVIEW3, VALIDATION3 = load_wave(WAVE3)
+
+
+def check3(bib, key, row=None, review=False, current=None):
+    row = row or ROWS3[key]
+    return pc.check_entry(row, current if current is not None else bib.get(key), bib, ctx_for(bib),
+                          review=REVIEW3.get(key) if review else None,
+                          validation=VALIDATION3.get(key))
+
+
+def researcher_value(row, field):
+    return (pc.canonical_fields(row["fields"]).get(field) or {}).get("value")
+
+
+@pytest.mark.parametrize("key,name", [
+    ("BragEtal99", "J Engel"),       # PubMed 'Engel, J Jr' was read as 'J J Engel'
+    ("MeckEtal99", "A Mecklinger"),  # PubMed-only 'A D' against the publisher's 'Axel'
+    ("LachEtal00a", "E Rodriguez"),  # World Scientific all-caps 'EUGENIO'
+    ("CarlEtal05", "G Carlsson"),    # 'GUNNAR'
+])
+def test_no_initials_added_from_sources(bib, key, name):
+    rec = check3(bib, key)
+    assert name in pc.split_names(rec["final_entry"]["author"]), rec["final_entry"]["author"]
+    assert not codes(rec) & {"initials_from_source", "initials_uncertain"}
+
+
+def test_author_changes_only_as_researcher_proposed(bib):
+    """Every researcher author/editor that is applied ends as the researcher's value in
+    house FORMAT: the same number of initials per name (rules alone, waves 1-3)."""
+    for folder in (WAVE, WAVE2, WAVE3):
+        post, page, rules_only, merged = pc.run(folder, write=False, offline=True)
+        rows_, _, _ = load_wave(folder)
+        for k, rec in rules_only.items():
+            for field in pc.NAME_FIELDS:
+                ch = {c["field"]: c for c in rec["changes"]}.get(field)
+                if not ch or ch["source"] != "researcher":
+                    continue
+                raw = researcher_value(rows_[k], field)
+                want, notes = pc.normalise_names(raw)
+                want = want if notes else raw  # set only when the normaliser reports a change
+                if field == "author" and "author" in rec["held"]:  # single-source surname kept as cited
+                    assert "surname_single_source" in codes(rec), k
+                    got_n, want_n = pc.split_names(ch["proposed"]), pc.split_names(want)
+                    cited = {pc.normalise_name(n)[0] for n in pc.split_names(bib[k]["author"])}
+                    assert len(got_n) == len(want_n), k
+                    assert all(g == w or g in cited for g, w in zip(got_n, want_n)), (k, got_n)
+                else:
+                    assert ch["proposed"] == want, (folder.name, k, ch["proposed"], want)
+                for n in pc.split_names(ch["proposed"]):
+                    assert not any(len(t) == 1 and t.isalpha() for t in pc.split_top(pc.surname(n))), (k, n)
+
+
+@pytest.mark.parametrize("given,expected", [
+    ("Rodriguez, EUGENIO", "E Rodriguez"),
+    ("EUGENIO RODRIGUEZ", "E Rodriguez"),
+    ("JEAN-PHILIPPE LACHAUX", "J-P Lachaux"),
+    ("{Le Van Quyen}, MICHEL", "M {Le Van Quyen}"),
+    ("Engel, J Jr", "J Engel"),
+    ("JP Smith", "J P Smith"),        # clumped initials stay initials
+    ("M A A {van der Meer}", "M A A {van der Meer}"),
+])
+def test_capitalised_given_names_are_never_spelled_as_letters(given, expected):
+    assert pc.normalise_names(given)[0] == expected
+
+
+@pytest.mark.parametrize("key", ["DesaEtal12", "BoseEtal92"])
+def test_journal_naming_the_booktitle_venue_is_dropped_not_series(bib, key):
+    rec = check3(bib, key)
+    fin = rec["final_entry"]
+    assert "series" not in fin and "journal" not in fin and "journal" in rec["removals"]
+
+
+def test_same_venue():
+    assert pc.same_venue("Engineering in Medicine and Biology Society Annual International Conference of the {IEEE}",
+                         "Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society")
+    assert pc.same_venue("Fifth Annual Workshop on Computational Learning Theory, {ACM}",
+                         "Proceedings of the Fifth Annual Workshop on Computational Learning Theory")
+    assert not pc.same_venue("Advances in Psychology", "The Nature and Origins of Mathematical Skills")
+    assert not pc.same_venue("Lecture Notes in Computer Science", "Computer Vision -- {ECCV}")
+
+
+ARTICLE_NUMBERS = ("Brig12", "JayaEtal23", "CookEtal16", "AfshEtal13", "NastEtal18")
+
+
+@pytest.mark.parametrize("key", ARTICLE_NUMBERS)
+def test_article_number_moved_to_pages_removes_number(bib, key):
+    row = copy.deepcopy(ROWS3[key])
+    row.pop("remove", None)  # the rule alone, without the researcher's remove list
+    rec = check3(bib, key, row)
+    fin = rec["final_entry"]
+    assert fin["pages"] == bib[key]["number"] and "number" not in fin and "number" in rec["removals"]
+
+
+def test_number_kept_when_it_is_not_the_article_number(bib):
+    row = copy.deepcopy(ROWS3["FoxGrei10"])  # Number 10, article number 19
+    row.pop("remove", None)
+    rec = check3(bib, "FoxGrei10", row)
+    assert rec["final_entry"]["number"] == "10" and "number" not in rec["removals"]
+    rec = check3(bib, "Bastvand05")  # issue 1, pages 61--77
+    assert rec["final_entry"]["number"] == "1" and not rec["removals"]
+
+
+def test_researcher_remove_list_is_honoured(bib):
+    rec = check3(bib, "FoxGrei10")  # remove: ["number"]
+    assert "number" not in rec["final_entry"] and "researcher" in rec["removals"]["number"]
+    rec = check3(bib, "VidaEtal10")
+    assert "number" not in rec["final_entry"] and "number" in rec["removals"]
+
+
+def test_misc_drops_journal_and_url_volume(bib):
+    row = copy.deepcopy(ROWS3["Hint12"])
+    row.pop("remove", None)
+    rec = check3(bib, "Hint12", row)
+    fin = rec["final_entry"]
+    assert fin["ENTRYTYPE"] == "misc" and "journal" not in fin and "volume" not in fin
+    assert {"journal", "volume"} <= set(rec["removals"])
+    current = dict(bib["Hint12"], volume="2")  # negative control: a plain volume stays
+    rec = check3(bib, "Hint12", row, current=current)
+    assert rec["final_entry"]["volume"] == "2" and "journal" not in rec["final_entry"]
+
+
+def test_corroborated_print_year_beats_crossref_deposit(bib):
+    rec = check3(bib, "Bastvand05")  # PubMed + Europe PMC print 2006; Crossref published-print 2005
+    assert rec["final_entry"]["year"] == "2006"
+    assert "year" not in rec["suggestions"]
+    assert any(f["code"] == "doi_record_conflict" and f["field"] == "year" for f in rec["flags"])
+    # negative control: one print-date source only -> Crossref's print year is still suggested
+    row = copy.deepcopy(ROWS3["Bastvand05"])
+    row["fields"]["year"]["evidence"] = row["fields"]["year"]["evidence"][:1]
+    rec = check3(bib, "Bastvand05", row)
+    assert rec["suggestions"].get("year") == "2005" and "print_year_conflict" in codes(rec)
+
+
+def test_single_source_surname_hold_keeps_cited_name(bib):
+    rec = check3(bib, "FreeEtal03b")  # Crossref deposit typo 'Jorsten'; cited 'Jornten'
+    assert "surname_single_source" in codes(rec)
+    names = pc.split_names(rec["final_entry"]["author"])
+    assert names[2] == pc.split_names(bib["FreeEtal03b"]["author"])[2] and "Jorsten" not in rec["final_entry"]["author"]
+    rec = check3(bib, "FreeEtal03b", review=True)  # the reviewer's corrected surname
+    assert pc.split_names(rec["final_entry"]["author"])[2] == 'R J{\\"o}rnsten'
+    # a surname the reviewer confirms (Crossref also gives it) is released, provenance reviewer
+    rec = check3(bib, "Brig12", review=True)
+    assert rec["final_entry"]["author"] == "F {De Brigard}"
+    assert {c["field"]: c["source"] for c in rec["changes"]}["author"] == "reviewer"
+    assert rec["final_entry"]["author"] != check3(bib, "Brig12")["final_entry"]["author"]
+
+
+@pytest.mark.parametrize("folder,findings", [(WAVE3, 8)])
+def test_wave3_review_resolution(folder, findings):
+    post, page, rules_only, merged = pc.run(folder, write=False, offline=True)
+    res = post["review_resolution"]
+    assert res["findings"] == findings and res["unresolved"] == [], res["unresolved"]
+    assert not any(f["code"] == "initials_from_source" for r in merged.values() for f in r["flags"])
+
+
+def test_surname_hold_keeps_the_whole_cited_name(bib):
+    """AguiEtal96: cited 'M D Esposito', researcher 'M D'Esposito' from PubMed alone. The
+    hold keeps the cited name whole, so no initial is dropped ('M Esposito' was wrong)."""
+    rec = check2(bib, "AguiEtal96")
+    assert "surname_single_source" in codes(rec)
+    assert pc.split_names(rec["final_entry"]["author"])[-1] == "M D Esposito"
+
+
+@pytest.mark.parametrize("wave,key", [("3", "BasaEtal92"), ("3", "KatzEtal89")])
+def test_brace_or_spacing_fix_is_not_a_respelling(bib, wave, key):
+    """{Schurman n} -> Sch{\\"u}rmann and a broken L{\\\\"u}ders are format fixes of the same
+    letters, not surname respellings: applied, no hold."""
+    rec = (check2 if wave == "2" else check3)(bib, key)
+    assert "surname_single_source" not in codes(rec)
+    assert "author" not in rec["held"] and "author" in changed(rec)

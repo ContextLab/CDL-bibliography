@@ -63,9 +63,6 @@ CONTAINED_TYPES = ("inproceedings", "incollection", "inbook")
 ORDINAL_FIELDS = ("title", "booktitle", "journal", "edition", "series", "publisher",
                   "organization", "howpublished", "note", "school", "institution")
 SUFFIX_RE = re.compile(r"(?:,?\s+|,\s*)(?:Jr|Sr|II|III|IV)\.?(\}?)$")
-HONORIFICS = {"professor", "prof", "dr", "sir", "mr", "mrs", "ms", "phd", "md", "by",
-              "the", "and", "editor", "editors", "ed", "eds", "author", "authors",
-              "lecture", "copyright", "of", "with"}
 PROCEEDINGS_RE = re.compile(r"proceedings|conference|meeting|workshop|symposium|congress|"
                             r"advances in neural information processing systems", re.I)
 
@@ -424,6 +421,25 @@ def is_initial(tok):
     return False
 
 
+def uncapitalise(tokens):
+    """Name words printed in capitals (World Scientific's 'EUGENIO', 'LACHAUX') in
+    ordinary case, so no formatter reads them as clumped initials ('E U G E N I O').
+    A plain capitalised token of four or more letters is a word; in a name printed
+    entirely in capitals, a two- or three-letter token with a vowel ('ANN', 'WU') is a
+    word too. 'JP' in 'JP Smith' stays clumped initials. Braced and LaTeX tokens are
+    left alone."""
+    plain = [t for t in tokens if "{" not in t and "\\" not in t and re.search(r"[A-Za-z]", t)]
+    all_caps = bool(plain) and all(t == t.upper() for t in plain)
+    out = []
+    for t in tokens:
+        letters_ = re.sub(r"[^A-Za-z]", "", t)
+        if t in plain and t == t.upper() and (
+                len(letters_) >= 4 or (all_caps and len(letters_) >= 2 and re.search(r"[AEIOUY]", letters_))):
+            t = re.sub(r"[A-Za-z]+", lambda m: m[0].capitalize(), t)
+        out.append(t)
+    return out
+
+
 def normalise_name(name):
     """One name in house form; returns (new, [notes])."""
     notes = []
@@ -452,7 +468,9 @@ def normalise_name(name):
             notes.append("suffix removed")
     else:
         return original, [f"cannot parse name {original!r}"]
-    tokens = split_top(name)
+    tokens = uncapitalise(split_top(name))
+    if tokens != split_top(name):
+        notes.append(f"capitalised name {name!r} -> {' '.join(tokens)!r}")
     # unbrace a single-word surname group without macros: {Engel} -> Engel
     last = tokens[-1]
     if last.startswith("{") and last.endswith("}") and " " not in last and "\\" not in last \
@@ -509,154 +527,6 @@ def given_part(name):
     return " ".join(tokens[: len(tokens) - len(split_top(fam))])
 
 
-GIVEN_TOKEN = re.compile(r"[^\W\d_][\w'’\-]*\.?", re.U)
-# Surname particles: a given-name candidate that contains one means the source's
-# given/family split disagrees with the entry's (Denis Le Bihan read as 'Denis Le').
-PARTICLES = {"de", "van", "von", "le", "la", "di", "du", "da", "del", "della", "der", "den",
-             "des", "dos", "das", "ten", "ter", "zu", "vom"}
-
-
-def _structured_forms(q):
-    """(given, family) pairs a quote prints in a structured form: Crossref JSON,
-    PubMed XML, MEDLINE FAU lines, or BibTeX 'Family, Given and ...' author lists."""
-    pairs = re.findall(r'"given"\s*:\s*"([^"]*)"\s*,\s*"family"\s*:\s*"([^"]*)"', q)
-    pairs += [(g, f) for f, g in re.findall(r'"family"\s*:\s*"([^"]*)"\s*,\s*"given"\s*:\s*"([^"]*)"', q)]
-    pairs += [(g, f) for f, g in re.findall(r"<LastName>(.*?)</LastName>\s*<ForeName>(.*?)</ForeName>", q)]
-    pairs += [(g.strip(), f) for f, g in re.findall(r"FAU\s*-\s*([^,\n]+),\s*([^\n]+)", q)]
-    bib = re.search(r"\bauthor\s*=\s*[{\"](.*)", q, re.I)
-    if bib:
-        for part in re.split(r"\s+and\s+", bib[1].rstrip('}",')):
-            m = re.fullmatch(r"\s*([^,]+?),\s*([^,]+?)\s*", part.strip('{}" '))
-            if m:
-                pairs.append((m[2], m[1]))
-    structured = bool(pairs) or re.search(r'"given"|<LastName>|FAU\s*-', q) is not None
-    return pairs, structured
-
-
-def evidence_given_names(sur, quotes, others=(), uncertain=None):
-    """Given-name strings the evidence prints for surname `sur` (the WHOLE surname:
-    a braced or multi-word surname such as {Parto Dezfouli} is one unit).
-
-    Structured sources must give the same family name; free text must print the
-    whole surname, and the given name is read backwards from its first word,
-    stopping at punctuation, a lowercase word, an honorific or another author's
-    surname (`others`). A form whose given/family split disagrees with the
-    entry's (the source's family is a part of the entry's surname, or a particle
-    sits in the given name) is not returned; its reason is appended to
-    `uncertain` when a list is passed."""
-    sw = fold(sur).split()
-    if not sw:
-        return []
-    others = {w for o in others for w in fold(o).split()} - set(sw)
-    found = []
-
-    def unsure(why, given):
-        if uncertain is not None:
-            uncertain.append((why, given))
-
-    def check_given(g, source):
-        words = [w.strip(".,").lower() for w in g.split()]
-        if any(w in PARTICLES for w in words):
-            unsure(f"{source} given name {g!r} contains a surname particle", g)
-            return None
-        if any(w in sw for w in fold(g).split() if len(w) > 1):
-            unsure(f"{source} given name {g!r} contains part of the surname {sur!r}", g)
-            return None
-        return g
-
-    for q in quotes:
-        q = html.unescape(q).replace("\\/", "/")
-        pairs, structured = _structured_forms(q)
-        for g, f in pairs:
-            fw = fold(f).split()
-            if fw == sw:
-                g = check_given(g, "source")
-                if g:
-                    found.append(g)
-            elif fw and sw and fw[-1] == sw[-1]:
-                unsure(f"source family name {f!r} (given {g!r}) splits the name differently from {sur!r}", g)
-        if structured:
-            continue
-        # a name printed in capitals (GEOFF WARD) is a name, not clumped initials
-        q = re.sub(r"\b[A-Z]{4,}\b", lambda m: m.group(0).capitalize(), q)
-        toks = list(GIVEN_TOKEN.finditer(q))
-        folded = [fold(t.group(0)) for t in toks]
-        target = " ".join(sw)
-        for i in range(len(toks)):
-            acc, j = "", i
-            while j < len(toks) and len(acc) < len(target):
-                acc = (acc + " " + folded[j]).strip()
-                j += 1
-            if acc != target:
-                continue
-            given, k = [], i
-            while k > 0 and len(given) < 4:
-                prev = toks[k - 1]
-                gap = q[prev.end():toks[k].start()]
-                word = prev.group(0)
-                if gap.strip() or not word[:1].isupper() or fold(word) in HONORIFICS \
-                        or fold(word) in others:
-                    break
-                given.insert(0, word)
-                k -= 1
-            if given:
-                g = check_given(" ".join(given), "text")
-                if g:
-                    found.append(g)
-    return found
-
-
-def letters(initials):
-    return initials.replace("-", " ").split()
-
-
-def initials_from_evidence(value, quotes, uncertain_notes=None):
-    """Extend or hyphenate initials the evidence prints more fully.
-
-    Returns (new value, notes). Never removes an initial; applies only when every
-    evidence form for that surname agrees (each is a prefix of the longest), and
-    never when a source splits given and family names differently from the
-    entry (those names are listed in `uncertain_notes`)."""
-    names, notes = [], []
-    all_names = split_names(value)
-    surnames = [surname(x) for x in all_names if x != "others"]
-    for n in all_names:
-        if n == "others" or (n.startswith("{") and split_top(n) == [n]):
-            names.append(n)
-            continue
-        sur, giv = surname(n), given_part(n)
-        unsure = []
-        forms = [given_initials(g) for g in evidence_given_names(sur, quotes, [s for s in surnames if s != sur],
-                                                                 unsure)]
-        forms = [f for f in forms if f]
-        if unsure:
-            # report only when the unsure reading would have changed the initials
-            if uncertain_notes is not None and any(
-                    letters(given_initials(g)) != letters(giv) or ("-" in given_initials(g)) != ("-" in giv)
-                    for _, g in unsure if given_initials(g)):
-                uncertain_notes.append(f"{sur}: initials kept as '{giv}'; "
-                                       + "; ".join(sorted({w for w, _ in unsure})))
-            names.append(n)
-            continue
-        if not forms:
-            names.append(n)
-            continue
-        best = max(forms, key=lambda f: (len(letters(f)), "-" in f))
-        if not all(letters(best)[: len(letters(f))] == letters(f) for f in forms):
-            names.append(n)
-            continue
-        have = letters(giv)
-        if have == letters(best) and "-" in best and "-" not in giv:
-            notes.append(f"{sur}: '{giv}' -> '{best}' (hyphenated given name in source)")
-            names.append(f"{best} {sur}")
-        elif len(have) < len(letters(best)) and letters(best)[: len(have)] == have:
-            notes.append(f"{sur}: '{giv}' -> '{best}' (source gives all initials)")
-            names.append(f"{best} {sur}")
-        else:
-            names.append(n)
-    return " and ".join(names), notes
-
-
 # ---------------------------------------------------------------- field rules
 
 def roman(n):
@@ -669,6 +539,22 @@ def roman(n):
         while n >= v:
             out, n = out + r, n - v
     return out
+
+
+VENUE_STOP = {"the", "of", "on", "in", "and", "for", "a", "an", "proceedings", "proc", "conference", "annual",
+              "international", "workshop", "symposium", "meeting"}
+
+
+def same_venue(journal, booktitle):
+    """A journal value that names the same venue as the booktitle (a rewording of the
+    conference or book name: DesaEtal12's 'Engineering in Medicine and Biology Society
+    Annual International Conference of the {IEEE}'), not a book series. Content words
+    (minus function words and generic venue words) of the journal: at least two, and
+    at least 80% of them in the booktitle. 'Advances in Psychology' against a book
+    title shares none."""
+    words = lambda t: {w for w in fold(t).split() if w not in VENUE_STOP and not re.fullmatch(r"(?:19|20)\d{2}", w)}
+    j, b = words(journal), words(booktitle)
+    return len(j) >= 2 and len(j & b) / len(j) >= 0.8
 
 
 def ordinal_suffix(n):
@@ -905,6 +791,25 @@ def print_years_in_notes(notes):
     return years
 
 
+PRINT_DATE_RES = (re.compile(r'printPublicationDate"?\s*:\s*"?((?:19|20)\d{2})'),
+                  re.compile(r"<PubDate>\s*<Year>((?:19|20)\d{2})"),
+                  re.compile(r"\bDP\s+-\s+((?:19|20)\d{2})"),
+                  re.compile(r"published-print\D{0,40}((?:19|20)\d{2})"))
+
+
+def quoted_print_years(yfield):
+    """{year: {source hosts}} of print dates quoted in the year evidence: Europe PMC
+    printPublicationDate, PubMed <PubDate><Year> (the issue date), MEDLINE DP, Crossref
+    published-print."""
+    out = {}
+    for e in (yfield or {}).get("evidence") or []:
+        q, host = e.get("quote", ""), urlparse(e.get("url", "")).netloc
+        for rx in PRINT_DATE_RES:
+            for y in rx.findall(q):
+                out.setdefault(y, set()).add(host)
+    return out
+
+
 def patent_like(row, current):
     urls = " ".join([row.get("identity", {}).get("url", "")] +
                     [e.get("url", "") for f in (row.get("fields") or {}).values()
@@ -1138,7 +1043,13 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                     flag(flags, "doi_record_conflict", "pages",
                          f"{rec.get('ra')} record of {doi} gives pages {rec['page']!r}, proposal {pages!r}")
                 year = (applied.get("year") or {}).get("value") or current.get("year")
-                if rec.get("print_year") and year and rec["print_year"] != year:
+                print_hosts = quoted_print_years(fields.get("year")).get(year) or set()
+                if rec.get("print_year") and year and rec["print_year"] != year and len(print_hosts) >= 2:
+                    flag(flags, "doi_record_conflict", "year",
+                         f"{rec.get('ra')} published-print {rec['print_year']} vs the print date {year} quoted "
+                         f"from {len(print_hosts)} sources {sorted(print_hosts)}: the corroborated print date "
+                         f"stands; the {rec.get('ra')} deposit year is not suggested")
+                elif rec.get("print_year") and year and rec["print_year"] != year:
                     flag(flags, "print_year_conflict", "year",
                          f"{rec.get('ra')} published-print {rec['print_year']} vs year {year}: print year wins")
                     suggestions.setdefault("year", rec["print_year"])
@@ -1150,7 +1061,8 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
     # --- print year from notes / year evidence
     year_now = (applied.get("year") or {}).get("value") or current.get("year")
     note_prints = print_years_in_notes(row.get("notes"))
-    if note_prints and year_now and year_now not in note_prints:
+    corroborated = len(quoted_print_years(fields.get("year")).get(year_now) or ()) >= 2
+    if note_prints and year_now and year_now not in note_prints and not corroborated:
         flag(flags, "print_year_conflict", "year",
              f"notes give a print date {sorted(note_prints)} but the year is {year_now}: print year wins")
         if len(note_prints) == 1:
@@ -1235,6 +1147,8 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                 norms.append({"field": "volume", "note": f"series number {vol} is in the booktitle {bt!r}"})
                 if current.get("volume"):
                     removals["volume"] = f"series number already in the booktitle {bt!r}"
+        elif same_venue(journal, bt):
+            why = f"names the same venue as the booktitle {bt!r}"
         elif not series:
             set_norm("series", journal, [f"@{final['ENTRYTYPE']}: journal {journal!r} is a book series; moved to series"])
             why = "moved to series"
@@ -1254,35 +1168,53 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
             for b in bad:
                 flag(flags, "name_unparsed", name, b)
             set_norm(name, new, [n for n in notes if n not in bad])
-            quotes = [e.get("quote", "") for e in (fields.get(name) or {}).get("evidence") or []]
-            quotes.append((row.get("identity") or {}).get("quote", ""))
-            if applied.get(name, {}).get("source") == "researcher":
-                unsure = []
-                new2, notes2 = initials_from_evidence(final[name], quotes, unsure)
-                if notes2:
-                    flag(flags, "initials_from_source", name, "; ".join(notes2), "applied")
-                if unsure:
-                    flag(flags, "initials_uncertain", name, "; ".join(unsure), "held")
-                set_norm(name, new2, notes2)
 
-    # single-source surname change: a new surname that respells a cited one
+    # single-source surname change: a new surname that respells a cited one is held,
+    # i.e. that author keeps the cited name, unless the reviewer confirms the author
     if "author" in applied and applied["author"]["source"] == "researcher" and current.get("author"):
         strip = lambda n: fold(SUFFIX_RE.sub(r"\1", surname(n)))
-        old = {strip(n) for n in split_names(current["author"]) if n != "others"}
+        old = {strip(n): n for n in split_names(current["author"]) if n != "others"}
         ev = (fields.get("author") or {}).get("evidence") or []
+        rv_author = ((review or {}).get("field_verdicts") or {}).get("author")
+        release = bool(review) and reviewer_confirms(rv_author)
+        out, kept, released = [], [], []
         for n in split_names(final["author"]):
             new = strip(n)
             if not new or new in old or n == "others":
+                out.append(n)
                 continue
-            near = [o for o in old if o and difflib.SequenceMatcher(None, o, new).ratio() >= 0.75]
-            if not near:
-                continue  # an added or reordered author, not a respelling
+            near = sorted(((difflib.SequenceMatcher(None, o, new).ratio(), o) for o in old if o), reverse=True)
+            near = [o for r, o in near if r >= 0.75]
+            if not near or any(o.replace(" ", "") == new.replace(" ", "") for o in near):
+                out.append(n)  # an added or reordered author, or a brace/spacing fix, not a respelling
+                continue
             last = new.split()[-1]
             hosts = {urlparse(e.get("url", "")).netloc for e in ev if last in fold(e.get("quote", "")).split()}
-            if len(hosts) < 2:
+            if len(hosts) >= 2:
+                out.append(n)
+                continue
+            detail = (f"surname {near[0]!r} -> {new!r} rests on {len(hosts)} source host(s) {sorted(hosts)}; "
+                      "single-source surname changes need corroboration or the user's sign-off")
+            if release:
                 flag(flags, "surname_single_source", "author",
-                     f"surname {near[0]!r} -> {new!r} rests on {len(hosts)} source host(s) {sorted(hosts)}; "
-                     "single-source surname changes need corroboration or the user's sign-off", "held")
+                     detail + f"; applied: the reviewer confirms the author ({rv_author})", "applied")
+                out.append(n)
+                released.append(n)
+            else:
+                cited = normalise_name(old[near[0]])[0]  # the whole cited name, house format
+                flag(flags, "surname_single_source", "author",
+                     detail + f"; held: the cited name {cited!r} is kept", "held")
+                out.append(cited)
+                kept.append(cited)
+        if released:
+            applied["author"]["source"] = "reviewer"
+            applied["author"]["evidence"] = list(applied["author"]["evidence"]) + [
+                {"reviewer_confirmed": rv_author, "reviewer_problems": review.get("problems") or []}]
+        if kept:
+            value = " and ".join(out)
+            final["author"] = value
+            applied["author"]["value"] = value
+            held["author"] = "single-source surname respelling not applied; kept as cited: " + ", ".join(kept)
 
     for name in list(applied):
         a = applied[name]
@@ -1334,6 +1266,37 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
         norms.append({"field": "publisher", "note": "@article has no publisher"})
         if current.get("publisher"):
             removals["publisher"] = "no publisher on @article (house rule)"
+
+    # an article number moved into pages: a Number holding the same value goes
+    if "pages" in applied and applied["pages"]["value"] != current.get("pages") and final.get("number") \
+            and re.fullmatch(r"[A-Za-z]?\d+", final.get("pages", "").strip()) \
+            and final["number"].strip() == final["pages"].strip():
+        applied.pop("number", None)
+        final.pop("number", None)
+        norms.append({"field": "number", "note": f"article number {final['pages']} is now in pages"})
+        if current.get("number"):
+            removals["number"] = f"article number {current['number']} moved into pages"
+    # @misc: no journal, and a volume that is a URL goes
+    if etype == "misc":
+        for name in ("journal", "volume"):
+            v = str(final.get(name) or "")
+            if not v or (name == "volume" and not re.search(r"https?:|www\.|\\url|\.(?:com|org|edu)\b", v)):
+                continue
+            applied.pop(name, None)
+            final.pop(name, None)
+            why = "@misc has no journal" if name == "journal" else f"@misc: volume {v!r} is a URL, not a volume"
+            norms.append({"field": name, "note": why})
+            if current.get(name):
+                removals[name] = why
+    # the researcher's own removals (top-level "remove" list); a reviewer value wins
+    for name in [field_name(n) for n in row.get("remove") or []]:
+        if (applied.get(name) or {}).get("source") == "reviewer" or name in removals:
+            continue
+        if current.get(name) or final.get(name):
+            applied.pop(name, None)
+            final.pop(name, None)
+            if current.get(name):
+                removals[name] = f"researcher asked to remove it (current {current[name]!r})"
 
     # whitespace-only changes of text fields (a house-form question, not a source correction)
     for name in ("title", "booktitle", "journal"):
@@ -1595,8 +1558,7 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
                           "field_verdicts": rv.get("field_verdicts"), "problems": rv.get("problems"),
                           "suggested_value": rv.get("suggested_value")} if rv else None),
             "needs_user": bool(r["verdict"] in ("ambiguous", "no_source") or
-                               any(f["action"] in ("held", "flag") and f["code"] != "initials_from_source"
-                                   for f in r["flags"]) or r["key_plan"]["action"] != "keep"),
+                               any(f["action"] in ("held", "flag") for f in r["flags"]) or r["key_plan"]["action"] != "keep"),
         })
     if write:
         (folder / "postcheck.json").write_text(json.dumps(post, indent=1, ensure_ascii=False) + "\n")

@@ -7,7 +7,6 @@
    "duplicate": 2,
    "field_not_found": 16,
    "identity_quote_failed": 2,
-   "initials_from_source": 2,
    "key_collision": 1,
    "key_rename": 13,
    "needs_user": 1,
@@ -407,10 +406,6 @@
      "pages": [
       "field_not_found",
       "doi_record_conflict"
-     ],
-     "author": [
-      "initials_from_source",
-      "normalised"
      ],
      "volume": [
       "normalised"
@@ -3658,7 +3653,7 @@
     {
      "code": "surname_single_source",
      "field": "author",
-     "detail": "surname 'suremeier' -> 'surmeier' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off",
+     "detail": "surname 'suremeier' -> 'surmeier' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'J Suremeier' is kept",
      "action": "held"
     }
    ],
@@ -3667,7 +3662,7 @@
     {
      "field": "author",
      "current": "S Nicola and J Suremeier and R Malenka",
-     "proposed": "S M Nicola and D J Surmeier and R C Malenka",
+     "proposed": "S M Nicola and J Suremeier and R C Malenka",
      "source": "researcher",
      "evidence": [
       {
@@ -3698,7 +3693,9 @@
     }
    ],
    "removals": {},
-   "held": {},
+   "held": {
+    "author": "single-source surname respelling not applied; kept as cited: J Suremeier"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "NicoEtal00",
@@ -5709,12 +5706,6 @@
      "field": "pages",
      "detail": "Crossref record of 10.7551/mitpress/1478.003.0025 gives pages '411-442', proposal '421--452'",
      "action": "flag"
-    },
-    {
-     "code": "initials_from_source",
-     "field": "author",
-     "detail": "Hsieh: 'S' -> 'S L' (source gives all initials)",
-     "action": "applied"
     }
    ],
    "normalisations": [
@@ -5725,10 +5716,6 @@
     {
      "field": "journal",
      "note": "@incollection has no journal: already given by the booktitle"
-    },
-    {
-     "field": "author",
-     "note": "Hsieh: 'S' -> 'S L' (source gives all initials)"
     }
    ],
    "changes": [
@@ -5750,7 +5737,7 @@
     {
      "field": "author",
      "current": "A Allport and E Styles and S Hsieh",
-     "proposed": "A Allport and E A Styles and S L Hsieh",
+     "proposed": "A Allport and E A Styles and S Hsieh",
      "source": "researcher",
      "evidence": [
       {
@@ -5758,7 +5745,6 @@
        "quote": "author = \"A ALLPORT and EA STYLES and SL HSIEH\""
       }
      ],
-     "normalised_from": "A Allport and E A Styles and S Hsieh",
      "reviewer": "agree (S L from NCKU 'SL HSIEH', applied by the post-check, not the researcher)"
     },
     {
@@ -6353,8 +6339,8 @@
     {
      "code": "surname_single_source",
      "field": "author",
-     "detail": "surname 'd olivero' -> 'd oliveiro' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
-     "action": "held"
+     "detail": "surname 'd olivero' -> 'd oliveiro' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -6363,7 +6349,7 @@
      "field": "author",
      "current": "T Bates and L D'Olivero",
      "proposed": "T C Bates and L D'Oliveiro",
-     "source": "researcher",
+     "source": "reviewer",
      "evidence": [
       {
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14748500&retmode=xml",
@@ -6380,6 +6366,12 @@
       {
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14748500&retmode=xml",
        "quote": "<ForeName>Lawrence</ForeName>"
+      },
+      {
+       "reviewer_confirmed": "agree",
+       "reviewer_problems": [
+        "Surname hold can be released: D'Oliveiro is printed by both PubMed 14748500 ('L D'Oliveiro') and Crossref 10.3758/bf03195535 (family 'D’Oliveiro', given 'Timothy C.' for Bates) - two hosts. Volume 35(4):565-576."
+       ]
       }
      ],
      "reviewer": "agree"
@@ -6619,8 +6611,8 @@
     {
      "code": "surname_single_source",
      "field": "author",
-     "detail": "surname 'hoorman' -> 'hoormann' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off",
-     "action": "held"
+     "detail": "surname 'hoorman' -> 'hoormann' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -6629,7 +6621,7 @@
      "field": "author",
      "current": "J Hoorman and M Falkenstein and P Schwarzenau and J Hohnsbein",
      "proposed": "J Hoormann and M Falkenstein and P Schwarzenau and J Hohnsbein",
-     "source": "researcher",
+     "source": "reviewer",
      "evidence": [
       {
        "url": "https://api.crossref.org/works/10.3758/bf03209420",
@@ -6646,6 +6638,12 @@
       {
        "url": "https://api.crossref.org/works/10.3758/bf03209420",
        "quote": "\"given\":\"J.\",\"family\":\"Hohnsbein\""
+      },
+      {
+       "reviewer_confirmed": "agree",
+       "reviewer_problems": [
+        "Crossref 10.3758/bf03209420 family 'Hoormann'; 30(1):103-109. Surname hold (single host) is procedurally right; value correct (Springer page did not return author meta to a script, so no second host found by me)."
+       ]
       }
      ],
      "reviewer": "agree"
@@ -7888,24 +7886,12 @@
     {
      "code": "surname_single_source",
      "field": "author",
-     "detail": "surname 'hatsopolous' -> 'hatsopoulos' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
+     "detail": "surname 'hatsopolous' -> 'hatsopoulos' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'N Hatsopolous' is kept",
      "action": "held"
     }
    ],
    "normalisations": [],
    "changes": [
-    {
-     "field": "author",
-     "current": "M D Serruya and N Hatsopolous and M Fellows and L Paninski and J P Donoghue",
-     "proposed": "M D Serruya and N Hatsopoulos and M Fellows and L Paninski and J P Donoghue",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/12647229/",
-       "quote": "Mijail Serruya, Nicholas Hatsopoulos, Matthew Fellows, Liam Paninski, John Donoghue"
-      }
-     ]
-    },
     {
      "field": "doi",
      "current": null,
@@ -7932,7 +7918,9 @@
     }
    ],
    "removals": {},
-   "held": {},
+   "held": {
+    "author": "single-source surname respelling not applied; kept as cited: N Hatsopolous"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "SerrEtal03",
@@ -8451,8 +8439,8 @@
     {
      "code": "surname_single_source",
      "field": "author",
-     "detail": "surname 'boisgueheneuc' -> 'du boisgueheneuc' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
-     "action": "held"
+     "detail": "surname 'boisgueheneuc' -> 'du boisgueheneuc' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
+     "action": "applied"
     },
     {
      "code": "key_rename",
@@ -8467,11 +8455,17 @@
      "field": "author",
      "current": "F Boisgueheneuc and R Levy and E Volle and M Seassau and H Duffau and S Kinkingnehun and Y Samson and S Zhang and B Dubois",
      "proposed": "F {du Boisgueheneuc} and R Levy and E Volle and M Seassau and H Duffau and S Kinkingnehun and Y Samson and S Zhang and B Dubois",
-     "source": "researcher",
+     "source": "reviewer",
      "evidence": [
       {
        "url": "https://pubmed.ncbi.nlm.nih.gov/16984899/",
        "quote": "Foucaud du Boisgueheneuc, Richard Levy, Emmanuelle Volle, Magali Seassau, Hughes Duffau, Serge Kinkingnehun, Yves Samson, Sandy Zhang, Bruno Dubois"
+      },
+      {
+       "reviewer_confirmed": "agree",
+       "reviewer_problems": [
+        "PubMed 16984899 LastName 'du Boisgueheneuc' (Crossref splits it as given 'F. d.'); pages 3315-3328 in both. Particle key duBoEtal06 follows house delaEtal07/vanEEtal11; surname hold (single source) is appropriate, Crossref's 'F. d.' corroborates the particle."
+       ]
       }
      ],
      "reviewer": "agree"
@@ -13504,28 +13498,12 @@
     {
      "code": "surname_single_source",
      "field": "author",
-     "detail": "surname 'mccullough' -> 'mcculloch' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off",
+     "detail": "surname 'mccullough' -> 'mcculloch' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'W S McCullough' is kept",
      "action": "held"
     }
    ],
    "normalisations": [],
    "changes": [
-    {
-     "field": "author",
-     "current": "W S McCullough and W H Pitts",
-     "proposed": "W S McCulloch and W H Pitts",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1007/bf02478259",
-       "quote": "\"given\":\"Warren S.\",\"family\":\"McCulloch\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1007/bf02478259",
-       "quote": "\"given\":\"Walter\",\"family\":\"Pitts\""
-      }
-     ]
-    },
     {
      "field": "doi",
      "current": null,
@@ -13552,7 +13530,9 @@
     }
    ],
    "removals": {},
-   "held": {},
+   "held": {
+    "author": "single-source surname respelling not applied; kept as cited: W S McCullough"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "McCuPitt43",
@@ -13886,36 +13866,12 @@
     {
      "code": "surname_single_source",
      "field": "author",
-     "detail": "surname 'esposito' -> 'd esposito' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
+     "detail": "surname 'esposito' -> 'd esposito' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'M D Esposito' is kept",
      "action": "held"
     }
    ],
    "normalisations": [],
    "changes": [
-    {
-     "field": "author",
-     "current": "G K Aguirre and J A Detre and D C Alsop and M D Esposito",
-     "proposed": "G K Aguirre and J A Detre and D C Alsop and M D'Esposito",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
-       "quote": "FAU - Aguirre, G K"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
-       "quote": "FAU - Detre, J A"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
-       "quote": "FAU - Alsop, D C"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
-       "quote": "FAU - D'Esposito, M"
-      }
-     ]
-    },
     {
      "field": "doi",
      "current": null,
@@ -13954,7 +13910,9 @@
     }
    ],
    "removals": {},
-   "held": {},
+   "held": {
+    "author": "single-source surname respelling not applied; kept as cited: M D Esposito"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "AguiEtal96",
@@ -14677,8 +14635,8 @@
     {
      "code": "surname_single_source",
      "field": "author",
-     "detail": "surname 'georges francios' -> 'georges francois' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
-     "action": "held"
+     "detail": "surname 'georges francios' -> 'georges francois' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -14687,7 +14645,7 @@
      "field": "author",
      "current": "P Georges-Francios and E Rolls and R Robertson",
      "proposed": "P Georges-Fran{\\c{c}}ois and E T Rolls and R G Robertson",
-     "source": "researcher",
+     "source": "reviewer",
      "evidence": [
       {
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
@@ -14700,6 +14658,12 @@
       {
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
        "quote": "<LastName>Robertson</LastName><ForeName>R G</ForeName>"
+      },
+      {
+       "reviewer_confirmed": "agree",
+       "reviewer_problems": [
+        "Surname hold can be released: PubMed 10355900 'Georges-François' and Crossref family 'Georges-Francois' (second host, unaccented) both contradict 'Francios'."
+       ]
       }
      ],
      "reviewer": "agree"
@@ -15143,7 +15107,7 @@
     {
      "code": "surname_single_source",
      "field": "author",
-     "detail": "surname 'schultze bonhage' -> 'schulze bonhage' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off",
+     "detail": "surname 'schultze bonhage' -> 'schulze bonhage' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'A Schultze-Bonhage' is kept",
      "action": "held"
     }
    ],
@@ -15152,7 +15116,7 @@
     {
      "field": "author",
      "current": "M W Howard and D S Rizzuto and J C Caplan and J R Madsen and J Lisman and R Aschenbrenner-Scheibe and A Schultze-Bonhage and M J Kahana",
-     "proposed": "M W Howard and D S Rizzuto and J B Caplan and J R Madsen and J Lisman and R Aschenbrenner-Scheibe and A Schulze-Bonhage and M J Kahana",
+     "proposed": "M W Howard and D S Rizzuto and J B Caplan and J R Madsen and J Lisman and R Aschenbrenner-Scheibe and A Schultze-Bonhage and M J Kahana",
      "source": "researcher",
      "evidence": [
       {
@@ -15215,7 +15179,9 @@
     }
    ],
    "removals": {},
-   "held": {},
+   "held": {
+    "author": "single-source surname respelling not applied; kept as cited: A Schultze-Bonhage"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "HowaEtal03",
@@ -15530,46 +15496,9 @@
   "MillEtal03": {
    "key": "MillEtal03",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "initials_from_source",
-     "field": "author",
-     "detail": "Wang: 'X J' -> 'X-J' (hyphenated given name in source)",
-     "action": "applied"
-    }
-   ],
-   "normalisations": [
-    {
-     "field": "author",
-     "note": "Wang: 'X J' -> 'X-J' (hyphenated given name in source)"
-    }
-   ],
+   "flags": [],
+   "normalisations": [],
    "changes": [
-    {
-     "field": "author",
-     "current": "P Miller and C D Brody and R Romo and X J Wang",
-     "proposed": "P Miller and C D Brody and R Romo and X-J Wang",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
-       "quote": "<LastName>Miller</LastName><ForeName>Paul</ForeName>"
-      },
-      {
-       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
-       "quote": "<LastName>Brody</LastName><ForeName>Carlos D</ForeName>"
-      },
-      {
-       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
-       "quote": "<LastName>Romo</LastName><ForeName>Ranulfo</ForeName>"
-      },
-      {
-       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
-       "quote": "<LastName>Wang</LastName><ForeName>Xiao-Jing</ForeName>"
-      }
-     ],
-     "normalised_from": "P Miller and C D Brody and R Romo and X J Wang"
-    },
     {
      "field": "doi",
      "current": null,
@@ -16367,8 +16296,7 @@
   "CravEtal00": [],
   "AllpEtal94": [
    "field_not_found:pages",
-   "doi_record_conflict:pages",
-   "initials_from_source:author"
+   "doi_record_conflict:pages"
   ],
   "HirsAly22": [
    "key_rename:key"
@@ -16438,8 +16366,7 @@
   "AxmaEtal08": [],
   "BancEtal94": [],
   "BoisEtal06": [
-   "surname_single_source:author",
-   "key_rename:key"
+   "surname_single_source:author"
   ],
   "BungEtal01": [],
   "CassEtal02": [],
@@ -16595,9 +16522,7 @@
   "MeyeEtal18": [
    "key_collision:key"
   ],
-  "MillEtal03": [
-   "initials_from_source:author"
-  ],
+  "MillEtal03": [],
   "MortEtal13": [],
   "NarrEtal05": [],
   "PlonEtal00": [],
