@@ -11,13 +11,14 @@
    "duplicate": 3,
    "empty_value": 5,
    "field_not_found": 29,
+   "initials_uncertain": 1,
    "key_collision": 2,
    "key_rename": 10,
    "needs_user": 33,
    "patent_filing_year": 2,
    "patent_number_missing": 2,
    "print_year_conflict": 3,
-   "quote_check_failed": 16,
+   "quote_check_failed": 15,
    "reviewer_action": 1,
    "reviewer_disagrees": 1,
    "reviewer_dropped": 4,
@@ -149,6 +150,9 @@
      ],
      "year": [
       "field_not_found"
+     ],
+     "journal": [
+      "normalised"
      ]
     }
    },
@@ -353,7 +357,6 @@
     "caught": true,
     "by": {
      "pages": [
-      "quote_check_failed",
       "doi_record_conflict"
      ],
      "ENTRYTYPE": [
@@ -368,7 +371,6 @@
     },
     "rules_touched": {
      "pages": [
-      "quote_check_failed",
       "doi_record_conflict"
      ],
      "ENTRYTYPE": [
@@ -730,6 +732,1055 @@
       "normalised"
      ]
     }
+   }
+  ]
+ },
+ "review_resolution": {
+  "findings": 29,
+  "resolved": 24,
+  "unresolved": [
+   "Frie06"
+  ],
+  "not_checkable": [
+   "BeckBurg01",
+   "Jell02",
+   "Chri92",
+   "KansEtal15"
+  ],
+  "rows": [
+   {
+    "key": "HeatEtal93",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'R K Heaton and G J Chelune and J L Talley and G G Kay and G Curtiss' vs reviewer 'R K Heaton and G J Chelune and J L Talley and G G Kay and G Curtiss'"
+     ]
+    ]
+   },
+   {
+    "key": "Wech45",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'A standardized memory scale for clinical use' vs reviewer 'A standardized memory scale for clinical use'"
+     ],
+     [
+      "journal",
+      true,
+      "final 'Journal of Psychology' vs reviewer 'Journal of Psychology'"
+     ],
+     [
+      "volume",
+      true,
+      "final '19' vs reviewer '19'"
+     ],
+     [
+      "number",
+      true,
+      "final '1' vs reviewer '1'"
+     ],
+     [
+      "pages",
+      true,
+      "final '87--95' vs reviewer '87--95'"
+     ],
+     [
+      "doi",
+      true,
+      "final '10.1080/00223980.1945.9917223' vs reviewer '10.1080/00223980.1945.9917223'"
+     ]
+    ]
+   },
+   {
+    "key": "Wech81",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'book' vs reviewer 'book'"
+     ],
+     [
+      "title",
+      true,
+      "final '{Wechsler} adult intelligence scale--revised ({WAIS-R})' vs reviewer '{Wechsler} adult intelligence scale--revised ({WAIS-R})'"
+     ],
+     [
+      "year",
+      true,
+      "final '1981' vs reviewer '1981'"
+     ],
+     [
+      "publisher",
+      true,
+      "final 'Psychological Corporation' vs reviewer 'Psychological Corporation'"
+     ]
+    ]
+   },
+   {
+    "key": "BeckBurg01",
+    "random_sample": false,
+    "resolved": null,
+    "checks": []
+   },
+   {
+    "key": "GoenEtal08",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "key",
+      true,
+      "reviewer: duplicate (GoenLogo08 (merge into existing duplicate)); plan duplicate GoenLogo08"
+     ]
+    ]
+   },
+   {
+    "key": "DawKenj06",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "key",
+      true,
+      "reviewer: duplicate (disagree); plan duplicate DawDoya06"
+     ]
+    ]
+   },
+   {
+    "key": "TurlWhit03",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1016/s0749-596x(03)00095-0' vs reviewer '10.1016/s0749-596x(03)00095-0'"
+     ]
+    ]
+   },
+   {
+    "key": "Jell02",
+    "random_sample": false,
+    "resolved": null,
+    "checks": []
+   },
+   {
+    "key": "EngeEtal93",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'incollection' vs reviewer 'incollection'"
+     ],
+     [
+      "author",
+      true,
+      "final 'J Engel and P C {Van Ness} and T B Rasmussen and L M Ojemann' vs reviewer 'J Engel and P C {Van Ness} and T B Rasmussen and L M Ojemann'"
+     ],
+     [
+      "editor",
+      true,
+      "final 'J Engel' vs reviewer 'J Engel'"
+     ],
+     [
+      "booktitle",
+      true,
+      "final 'Surgical Treatment of the Epilepsies' vs reviewer 'Surgical Treatment of the Epilepsies'"
+     ],
+     [
+      "edition",
+      true,
+      "final '2\\\\textsuperscript{nd}' vs reviewer '2\\\\textsuperscript{nd}'"
+     ],
+     [
+      "publisher",
+      true,
+      "final 'Raven Press' vs reviewer 'Raven Press'"
+     ],
+     [
+      "address",
+      true,
+      "final 'New York, {NY}' vs reviewer 'New York, {NY}'"
+     ]
+    ]
+   },
+   {
+    "key": "LincNati81",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "key",
+      true,
+      "reviewer key 'Linc81'; plan rename Linc81"
+     ],
+     [
+      "author",
+      true,
+      "final 'G H Lincoff' vs reviewer 'G H Lincoff'"
+     ],
+     [
+      "address",
+      true,
+      "final 'New York, {NY}' vs reviewer 'New York, {NY}'"
+     ]
+    ]
+   },
+   {
+    "key": "Chri92",
+    "random_sample": false,
+    "resolved": null,
+    "checks": []
+   },
+   {
+    "key": "Frie06",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "key",
+      false,
+      "reviewer key 'Frie08a (collision with existing Frie08)'; plan collision Frie08b"
+     ]
+    ]
+   },
+   {
+    "key": "KleiEtal07b",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'incollection' vs reviewer 'incollection'"
+     ],
+     [
+      "title",
+      true,
+      "final 'Putting context in context' vs reviewer 'Putting context in context'"
+     ],
+     [
+      "editor",
+      true,
+      "final 'J S Nairne' vs reviewer 'J S Nairne'"
+     ],
+     [
+      "doi",
+      true,
+      "reviewer withdrew the change"
+     ]
+    ]
+   },
+   {
+    "key": "VandEtal99",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'incollection' vs reviewer 'incollection'"
+     ],
+     [
+      "title",
+      true,
+      "final 'The neural correlates of updating information in verbal working memory' vs reviewer 'The neural correlates of updating information in verbal working memory'"
+     ],
+     [
+      "booktitle",
+      true,
+      "final 'Neuroimaging and Memory' vs reviewer 'Neuroimaging and Memory'"
+     ],
+     [
+      "editor",
+      true,
+      "final 'J K Foster' vs reviewer 'J K Foster'"
+     ],
+     [
+      "publisher",
+      true,
+      "final 'Psychology Press' vs reviewer 'Psychology Press'"
+     ],
+     [
+      "address",
+      true,
+      "final 'Hove, {UK}' vs reviewer 'Hove, {UK}'"
+     ],
+     [
+      "pages",
+      true,
+      "final '549--560' vs reviewer '549--560'"
+     ],
+     [
+      "year",
+      true,
+      "final '1999' vs reviewer '1999'"
+     ]
+    ]
+   },
+   {
+    "key": "Este91",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'incollection' vs reviewer 'incollection'"
+     ],
+     [
+      "doi",
+      true,
+      "disagree"
+     ]
+    ]
+   },
+   {
+    "key": "MannEtal23b",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final '{ContextLab}/chatify: {v0.2.1}' vs reviewer '{ContextLab}/chatify: {v0.2.1}'"
+     ],
+     [
+      "doi",
+      true,
+      "final '10.5281/zenodo.8274025' vs reviewer '10.5281/zenodo.8274025'"
+     ],
+     [
+      "author",
+      true,
+      "final 'J R Manning and H Manjunatha and Y Halchenko and K Kording' vs reviewer 'J R Manning and H Manjunatha and Y Halchenko and K Kording'"
+     ],
+     [
+      "howpublished",
+      true,
+      "final '\\\\url{https://github.com/ContextLab/chatify}' vs reviewer '\\\\url{https://github.com/ContextLab/chatify}'"
+     ]
+    ]
+   },
+   {
+    "key": "Mann06",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'mastersthesis' vs reviewer 'mastersthesis'"
+     ],
+     [
+      "type",
+      true,
+      "final '{B.S.} honors thesis' vs reviewer '{B.S.} honors thesis'"
+     ]
+    ]
+   },
+   {
+    "key": "Nati24b",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'P P Schnurr' vs reviewer 'P P Schnurr'"
+     ]
+    ]
+   },
+   {
+    "key": "IyyeEtal15",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final \"M Iyyer and V Manjunatha and J Boyd-Graber and H {Daum\\\\'{e}}\" vs reviewer \"M Iyyer and V Manjunatha and J Boyd-Graber and H {Daum\\\\'{e}}\""
+     ]
+    ]
+   },
+   {
+    "key": "ChenEtal22",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "address",
+      true,
+      "final 'Seattle, {WA}' vs reviewer 'Seattle, {WA}'"
+     ]
+    ]
+   },
+   {
+    "key": "EchaEtal00",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "year",
+      true,
+      "final '2004' vs reviewer '2004'"
+     ],
+     [
+      "howpublished",
+      true,
+      "final 'U.S. Patent 6,678,548' vs reviewer 'U.S. Patent 6,678,548'"
+     ]
+    ]
+   },
+   {
+    "key": "EngeFrie10",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Beta-band oscillations--- signalling the status quo?' vs reviewer 'Beta-band oscillations--- signalling the status quo?'"
+     ]
+    ]
+   },
+   {
+    "key": "GoebLewa91",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "reviewer withdrew the change"
+     ]
+    ]
+   },
+   {
+    "key": "GoldEtal05",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'G Gold and E K{\\\\\"o}vari and F R Herrmann and A Canuto and P R Hof and J-P Michel and C Bouras and P Giannakopoulos' vs reviewer 'G Gold and E K{\\\\\"o}vari and F R Herrmann and A Canuto and P R Hof and J-P Michel and C Bouras and P Giannakopoulos'"
+     ]
+    ]
+   },
+   {
+    "key": "Hawk99",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'S W Hawking' vs reviewer 'S W Hawking'"
+     ],
+     [
+      "howpublished",
+      true,
+      "final 'Public lecture, \\\\url{https://www.hawking.org.uk/in-words/lectures/does-god-play-dice}' vs reviewer 'Public lecture, \\\\url{https://www.hawking.org.uk/in-words/lectures/does-god-play-dice}'"
+     ]
+    ]
+   },
+   {
+    "key": "KansEtal15",
+    "random_sample": true,
+    "resolved": null,
+    "checks": []
+   },
+   {
+    "key": "LittEtal98",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "key",
+      true,
+      "reviewer key 'LittEtal03'; plan rename LittEtal03"
+     ],
+     [
+      "year",
+      true,
+      "final '2003' vs reviewer '2003'"
+     ],
+     [
+      "howpublished",
+      true,
+      "final '{U.S.} Patent 6,658,287' vs reviewer '{U.S.} Patent 6,658,287'"
+     ]
+    ]
+   },
+   {
+    "key": "PetzHaub04",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "reviewer withdrew the change"
+     ]
+    ]
+   },
+   {
+    "key": "WardEtal09",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "reviewer withdrew the change"
+     ],
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'incollection' vs reviewer 'incollection'"
+     ]
+    ]
+   }
+  ]
+ },
+ "review_resolution_rules_alone": {
+  "findings": 29,
+  "resolved": 13,
+  "unresolved": [
+   "HeatEtal93",
+   "Wech45",
+   "Wech81",
+   "EngeEtal93",
+   "LincNati81",
+   "Frie06",
+   "VandEtal99",
+   "MannEtal23b",
+   "Mann06",
+   "EchaEtal00",
+   "Hawk99",
+   "LittEtal98"
+  ],
+  "not_checkable": [
+   "BeckBurg01",
+   "Jell02",
+   "Chri92",
+   "KansEtal15"
+  ],
+  "rows": [
+   {
+    "key": "HeatEtal93",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "author",
+      false,
+      "final 'R Heaton and G Chelune and J Talley and G Kay and G Curtiss' vs reviewer 'R K Heaton and G J Chelune and J L Talley and G G Kay and G Curtiss'"
+     ]
+    ]
+   },
+   {
+    "key": "Wech45",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "title",
+      false,
+      "final '{Wechsler} memory scale' vs reviewer 'A standardized memory scale for clinical use'"
+     ],
+     [
+      "journal",
+      false,
+      "final None vs reviewer 'Journal of Psychology'"
+     ],
+     [
+      "volume",
+      false,
+      "final None vs reviewer '19'"
+     ],
+     [
+      "number",
+      false,
+      "final None vs reviewer '1'"
+     ],
+     [
+      "pages",
+      false,
+      "final None vs reviewer '87--95'"
+     ],
+     [
+      "doi",
+      false,
+      "final None vs reviewer '10.1080/00223980.1945.9917223'"
+     ]
+    ]
+   },
+   {
+    "key": "Wech81",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      false,
+      "final 'article' vs reviewer 'book'"
+     ],
+     [
+      "title",
+      false,
+      "final '{Wechsler} adult intelligence scale--- revised' vs reviewer '{Wechsler} adult intelligence scale--revised ({WAIS-R})'"
+     ],
+     [
+      "year",
+      true,
+      "final '1981' vs reviewer '1981'"
+     ],
+     [
+      "publisher",
+      false,
+      "final None vs reviewer 'Psychological Corporation'"
+     ]
+    ]
+   },
+   {
+    "key": "BeckBurg01",
+    "random_sample": false,
+    "resolved": null,
+    "checks": []
+   },
+   {
+    "key": "GoenEtal08",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "key",
+      true,
+      "reviewer: duplicate (GoenLogo08 (merge into existing duplicate)); plan duplicate GoenLogo08"
+     ]
+    ]
+   },
+   {
+    "key": "DawKenj06",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "key",
+      true,
+      "reviewer: duplicate (disagree); plan duplicate DawDoya06"
+     ]
+    ]
+   },
+   {
+    "key": "TurlWhit03",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1016/s0749-596x(03)00095-0' vs reviewer '10.1016/s0749-596x(03)00095-0'"
+     ]
+    ]
+   },
+   {
+    "key": "Jell02",
+    "random_sample": false,
+    "resolved": null,
+    "checks": []
+   },
+   {
+    "key": "EngeEtal93",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      false,
+      "final 'article' vs reviewer 'incollection'"
+     ],
+     [
+      "author",
+      false,
+      "final 'J {Engel Jr} and P C {Van Ness} and T B Rasmussen and L M Ojemann' vs reviewer 'J Engel and P C {Van Ness} and T B Rasmussen and L M Ojemann'"
+     ],
+     [
+      "editor",
+      false,
+      "final None vs reviewer 'J Engel'"
+     ],
+     [
+      "booktitle",
+      false,
+      "final None vs reviewer 'Surgical Treatment of the Epilepsies'"
+     ],
+     [
+      "edition",
+      false,
+      "final None vs reviewer '2\\\\textsuperscript{nd}'"
+     ],
+     [
+      "publisher",
+      false,
+      "final None vs reviewer 'Raven Press'"
+     ],
+     [
+      "address",
+      false,
+      "final None vs reviewer 'New York, {NY}'"
+     ]
+    ]
+   },
+   {
+    "key": "LincNati81",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "key",
+      false,
+      "reviewer key 'Linc81'; plan keep"
+     ],
+     [
+      "author",
+      false,
+      "final 'G H Lincoff and {National Audubon Society}' vs reviewer 'G H Lincoff'"
+     ],
+     [
+      "address",
+      true,
+      "final 'New York, {NY}' vs reviewer 'New York, {NY}'"
+     ]
+    ]
+   },
+   {
+    "key": "Chri92",
+    "random_sample": false,
+    "resolved": null,
+    "checks": []
+   },
+   {
+    "key": "Frie06",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "key",
+      false,
+      "reviewer key 'Frie08a (collision with existing Frie08)'; plan collision Frie08b"
+     ]
+    ]
+   },
+   {
+    "key": "KleiEtal07b",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'incollection' vs reviewer 'incollection'"
+     ],
+     [
+      "title",
+      true,
+      "final 'Putting context in context' vs reviewer 'Putting context in context'"
+     ],
+     [
+      "editor",
+      true,
+      "final 'J S Nairne' vs reviewer 'J S Nairne'"
+     ],
+     [
+      "doi",
+      true,
+      "reviewer withdrew the change"
+     ]
+    ]
+   },
+   {
+    "key": "VandEtal99",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'incollection' vs reviewer 'incollection'"
+     ],
+     [
+      "title",
+      true,
+      "final 'The neural correlates of updating information in verbal working memory' vs reviewer 'The neural correlates of updating information in verbal working memory'"
+     ],
+     [
+      "booktitle",
+      true,
+      "final 'Neuroimaging and Memory' vs reviewer 'Neuroimaging and Memory'"
+     ],
+     [
+      "editor",
+      true,
+      "final 'J K Foster' vs reviewer 'J K Foster'"
+     ],
+     [
+      "publisher",
+      true,
+      "final 'Psychology Press' vs reviewer 'Psychology Press'"
+     ],
+     [
+      "address",
+      false,
+      "final 'New York, {NY}' vs reviewer 'Hove, {UK}'"
+     ],
+     [
+      "pages",
+      true,
+      "final '549--560' vs reviewer '549--560'"
+     ],
+     [
+      "year",
+      true,
+      "final '1999' vs reviewer '1999'"
+     ]
+    ]
+   },
+   {
+    "key": "Este91",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'incollection' vs reviewer 'incollection'"
+     ],
+     [
+      "doi",
+      true,
+      "disagree"
+     ]
+    ]
+   },
+   {
+    "key": "MannEtal23b",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "title",
+      false,
+      "final 'Chatify: {A} {J}upyter extension for adding {LLM}-driven chatbots to interactive notebooks' vs reviewer '{ContextLab}/chatify: {v0.2.1}'"
+     ],
+     [
+      "doi",
+      false,
+      "final None vs reviewer '10.5281/zenodo.8274025'"
+     ],
+     [
+      "author",
+      false,
+      "final 'J R Manning and H Manjunatha and K Kording' vs reviewer 'J R Manning and H Manjunatha and Y Halchenko and K Kording'"
+     ],
+     [
+      "howpublished",
+      true,
+      "final '\\\\url{https://github.com/ContextLab/chatify}' vs reviewer '\\\\url{https://github.com/ContextLab/chatify}'"
+     ]
+    ]
+   },
+   {
+    "key": "Mann06",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'mastersthesis' vs reviewer 'mastersthesis'"
+     ],
+     [
+      "type",
+      false,
+      "final None vs reviewer '{B.S.} honors thesis'"
+     ]
+    ]
+   },
+   {
+    "key": "Nati24b",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'P P Schnurr' vs reviewer 'P P Schnurr'"
+     ]
+    ]
+   },
+   {
+    "key": "IyyeEtal15",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final \"M Iyyer and V Manjunatha and J Boyd-Graber and H {Daum\\\\'{e}}\" vs reviewer \"M Iyyer and V Manjunatha and J Boyd-Graber and H {Daum\\\\'{e}}\""
+     ]
+    ]
+   },
+   {
+    "key": "ChenEtal22",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "address",
+      true,
+      "final 'Seattle, {WA}' vs reviewer 'Seattle, {WA}'"
+     ]
+    ]
+   },
+   {
+    "key": "EchaEtal00",
+    "random_sample": true,
+    "resolved": false,
+    "checks": [
+     [
+      "year",
+      false,
+      "final '2000' vs reviewer '2004'"
+     ],
+     [
+      "howpublished",
+      false,
+      "final None vs reviewer 'U.S. Patent 6,678,548'"
+     ]
+    ]
+   },
+   {
+    "key": "EngeFrie10",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Beta-band oscillations---signalling the status quo?' vs reviewer 'Beta-band oscillations--- signalling the status quo?'"
+     ]
+    ]
+   },
+   {
+    "key": "GoebLewa91",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "reviewer withdrew the change"
+     ]
+    ]
+   },
+   {
+    "key": "GoldEtal05",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'G Gold and E K{\\\\\"o}vari and F R Herrmann and A Canuto and P R Hof and J-P Michel and C Bouras and P Giannakopoulos' vs reviewer 'G Gold and E K{\\\\\"o}vari and F R Herrmann and A Canuto and P R Hof and J-P Michel and C Bouras and P Giannakopoulos'"
+     ]
+    ]
+   },
+   {
+    "key": "Hawk99",
+    "random_sample": true,
+    "resolved": false,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'S W Hawking' vs reviewer 'S W Hawking'"
+     ],
+     [
+      "howpublished",
+      false,
+      "final 'Public lecture' vs reviewer 'Public lecture, \\\\url{https://www.hawking.org.uk/in-words/lectures/does-god-play-dice}'"
+     ]
+    ]
+   },
+   {
+    "key": "KansEtal15",
+    "random_sample": true,
+    "resolved": null,
+    "checks": []
+   },
+   {
+    "key": "LittEtal98",
+    "random_sample": true,
+    "resolved": false,
+    "checks": [
+     [
+      "key",
+      false,
+      "reviewer key 'LittEtal03'; plan keep"
+     ],
+     [
+      "year",
+      false,
+      "final '1998' vs reviewer '2003'"
+     ],
+     [
+      "howpublished",
+      false,
+      "final None vs reviewer '{U.S.} Patent 6,658,287'"
+     ]
+    ]
+   },
+   {
+    "key": "PetzHaub04",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "reviewer withdrew the change"
+     ]
+    ]
+   },
+   {
+    "key": "WardEtal09",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "reviewer withdrew the change"
+     ],
+     [
+      "ENTRYTYPE",
+      true,
+      "final 'incollection' vs reviewer 'incollection'"
+     ]
+    ]
    }
   ]
  },
@@ -2195,7 +3246,12 @@
      "action": "flag"
     }
    ],
-   "normalisations": [],
+   "normalisations": [
+    {
+     "field": "journal",
+     "note": "@inproceedings has no journal: already given by the booktitle"
+    }
+   ],
    "changes": [
     {
      "field": "ENTRYTYPE",
@@ -2263,7 +3319,9 @@
      "reviewer": "agree"
     }
    ],
-   "removals": {},
+   "removals": {
+    "journal": "@inproceedings has no journal (already given by the booktitle)"
+   },
    "held": {},
    "suggestions": {},
    "key_plan": {
@@ -2440,6 +3498,9 @@
     "target_base": "GoenLogo08",
     "action": "duplicate",
     "same_doi_as": [
+     "GoenLogo08"
+    ],
+    "same_work_as": [
      "GoenLogo08"
     ],
     "rename_reason": "key does not follow the corrected metadata",
@@ -2863,6 +3924,9 @@
     "target_base": "DawDoya06",
     "action": "duplicate",
     "same_doi_as": [
+     "DawDoya06"
+    ],
+    "same_work_as": [
      "DawDoya06"
     ],
     "rename_reason": "key does not follow the corrected metadata",
@@ -3934,7 +4998,14 @@
   "Hunt03": {
    "key": "Hunt03",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "initials_uncertain",
+     "field": "author",
+     "detail": "Hunt: initials kept as 'R R'; source family name 'Reed Hunt' (given 'R') splits the name differently from 'Hunt'",
+     "action": "held"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -7390,7 +8461,12 @@
      "action": "flag"
     }
    ],
-   "normalisations": [],
+   "normalisations": [
+    {
+     "field": "journal",
+     "note": "@incollection has no journal: already given by the booktitle"
+    }
+   ],
    "changes": [
     {
      "field": "ENTRYTYPE",
@@ -7498,7 +8574,9 @@
      "reviewer": "agree"
     }
    ],
-   "removals": {},
+   "removals": {
+    "journal": "@incollection has no journal (already given by the booktitle)"
+   },
    "held": {},
    "suggestions": {},
    "key_plan": {
@@ -8838,6 +9916,9 @@
     "target_base": "KahaMill13",
     "action": "duplicate",
     "same_doi_as": [
+     "KahaMill13"
+    ],
+    "same_work_as": [
      "KahaMill13"
     ],
     "rename_reason": "key does not follow the corrected metadata",
@@ -10263,12 +11344,6 @@
    "verdict": "ambiguous",
    "flags": [
     {
-     "code": "quote_check_failed",
-     "field": "pages",
-     "detail": "validator: pages not covered by its quotes (missing ['560']; failures [])",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.1080/096582199387742 gives pages '549-561', proposal '549--560'",
@@ -10720,7 +11795,7 @@
     {
      "code": "reviewer_disagrees",
      "field": "doi",
-     "detail": "reviewer disagrees and gave no replacement value; not applied",
+     "detail": "reviewer disagrees (disagree) and gave no replacement value; not applied",
      "action": "held"
     },
     {
@@ -12805,7 +13880,12 @@
      "action": "flag"
     }
    ],
-   "normalisations": [],
+   "normalisations": [
+    {
+     "field": "journal",
+     "note": "@inproceedings has no journal: already given by the booktitle"
+    }
+   ],
    "changes": [
     {
      "field": "title",
@@ -12821,7 +13901,9 @@
      "reviewer": "agree"
     }
    ],
-   "removals": {},
+   "removals": {
+    "journal": "@inproceedings has no journal (already given by the booktitle)"
+   },
    "held": {},
    "suggestions": {},
    "key_plan": {
@@ -13554,7 +14636,9 @@
   "HulmEtal03": [
    "style_only_change:title"
   ],
-  "Hunt03": [],
+  "Hunt03": [
+   "initials_uncertain:author"
+  ],
   "KarpRoed07": [],
   "McKoRatc89": [],
   "ShriEtal90": [
@@ -13783,7 +14867,6 @@
    "booktitle_case:booktitle"
   ],
   "VandEtal99": [
-   "quote_check_failed:pages",
    "doi_record_conflict:pages",
    "unverified_suggestions",
    "needs_user:verdict"

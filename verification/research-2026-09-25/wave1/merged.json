@@ -1868,7 +1868,9 @@
     "reviewer": "agree"
    }
   ],
-  "removals": {},
+  "removals": {
+   "journal": "@inproceedings has no journal (already given by the booktitle)"
+  },
   "key_plan": {
    "current_key": "BeckBurg01",
    "target_base": "BeckBurg01",
@@ -2115,6 +2117,9 @@
    "target_base": "GoenLogo08",
    "action": "duplicate",
    "same_doi_as": [
+    "GoenLogo08"
+   ],
+   "same_work_as": [
     "GoenLogo08"
    ],
    "rename_reason": "key does not follow the corrected metadata",
@@ -2652,6 +2657,9 @@
    "target_base": "DawDoya06",
    "action": "duplicate",
    "same_doi_as": [
+    "DawDoya06"
+   ],
+   "same_work_as": [
     "DawDoya06"
    ],
    "rename_reason": "key does not follow the corrected metadata",
@@ -4023,7 +4031,14 @@
    "target_base": "Hunt03",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "initials_uncertain",
+    "field": "author",
+    "detail": "Hunt: initials kept as 'R R'; source family name 'Reed Hunt' (given 'R') splits the name differently from 'Hunt'",
+    "action": "held"
+   }
+  ],
   "doi_status": {
    "doi": "10.1016/s0749-596x(03)00018-4",
    "registered": true,
@@ -4040,7 +4055,7 @@
    "type": "journal-article"
   },
   "reviewer": null,
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "KarpRoed07",
@@ -8327,7 +8342,9 @@
     "reviewer": "agree"
    }
   ],
-  "removals": {},
+  "removals": {
+   "journal": "@incollection has no journal (already given by the booktitle)"
+  },
   "key_plan": {
    "current_key": "EngeEtal93",
    "target_base": "EngeEtal93",
@@ -10171,6 +10188,9 @@
    "target_base": "KahaMill13",
    "action": "duplicate",
    "same_doi_as": [
+    "KahaMill13"
+   ],
+   "same_work_as": [
     "KahaMill13"
    ],
    "rename_reason": "key does not follow the corrected metadata",
@@ -12200,12 +12220,6 @@
   },
   "flags": [
    {
-    "code": "quote_check_failed",
-    "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['560']; failures [])",
-    "action": "held"
-   },
-   {
     "code": "doi_record_conflict",
     "field": "pages",
     "detail": "Crossref record of 10.1080/096582199387742 gives pages '549-561', proposal '549--560'",
@@ -12752,7 +12766,7 @@
    {
     "code": "reviewer_disagrees",
     "field": "doi",
-    "detail": "reviewer disagrees and gave no replacement value; not applied",
+    "detail": "reviewer disagrees (disagree) and gave no replacement value; not applied",
     "action": "held"
    },
    {
@@ -15509,7 +15523,9 @@
     "reviewer": "agree"
    }
   ],
-  "removals": {},
+  "removals": {
+   "journal": "@inproceedings has no journal (already given by the booktitle)"
+  },
   "key_plan": {
    "current_key": "BranEtal04",
    "target_base": "BranEtal04",

@@ -37,7 +37,8 @@ def bib():
 
 
 def ctx_for(bib):
-    return {"doi": pc.doi_record, "cities": pc.city_states(bib), "taken": set(), "reserved": pc.renamed_away()}
+    return {"doi": pc.doi_record, "cities": pc.city_states(bib), "taken": set(), "reserved": pc.renamed_away(),
+            "index": pc.work_index(bib)}
 
 
 def check(bib, key, row=None, review=False):
@@ -346,4 +347,205 @@ def test_wave1_run_measures_review(tmp_path):
             "KansEtal15"} <= caught
     assert len(page) == 200
     for p in page:  # never an empty proposed value
+        assert all(str(c["proposed"] or "").strip() for c in p["final_changes"]), p["key"]
+
+
+# ---------------------------------------------------------------- wave-2 review regressions
+
+WAVE2 = ROOT / "verification/research-2026-09-25/wave2"
+
+
+def load_wave(folder):
+    out = {}
+    for batch in sorted(folder.glob("batch-*.json")):
+        for row in json.loads(batch.read_text()):
+            out[row["key"]] = row
+    review = {r["key"]: r for r in json.loads((folder / "review.json").read_text())}
+    validation = {e["key"]: e for e in json.loads((folder / "validation.json").read_text())["report"]}
+    return out, review, validation
+
+
+ROWS2, REVIEW2, VALIDATION2 = load_wave(WAVE2)
+
+
+def check2(bib, key, row=None, review=False):
+    row = row or ROWS2[key]
+    return pc.check_entry(row, bib.get(key), bib, ctx_for(bib),
+                          review=REVIEW2.get(key) if review else None,
+                          validation=VALIDATION2.get(key))
+
+
+@pytest.mark.parametrize("key,name", [
+    ("DezfDali20", "M {Parto Dezfouli}"),
+    ("DupoEtal00", "D {Le Bihan}"),
+    ("SilbEtal03", "V {Di Lazzaro}"),
+    ("HoltEtal12", "P {Riva Posse}"),
+    ("TingEtal02", "M-L {Ting Lee}"),
+    ("CassEtal02", "V {Di Lazzaro}"),
+    ("CowaEtal04", "S {Della Sala}"),
+    ("PaszEtal19", "A K{\\\"o}pf"),
+])
+def test_compound_surname_never_read_as_given_name(bib, key, name):
+    """Wave-2 review: the first word of a compound surname (or the previous author in a
+    comma-less byline) was added as an initial. Rules alone, no reviewer values."""
+    rec = check2(bib, key)
+    assert name in pc.split_names(rec["final_entry"]["author"]), rec["final_entry"]["author"]
+    assert not any(f["code"] == "initials_from_source" and name.split()[-1] in f["detail"] for f in rec["flags"])
+
+
+def test_initials_still_added_when_source_gives_them(bib):
+    """Negative controls: the two wave-2 applications the reviewer confirmed, and a
+    Crossref given name with a middle initial."""
+    rec = check2(bib, "AllpEtal94")
+    assert "S L Hsieh" in pc.split_names(rec["final_entry"]["author"])
+    assert "initials_from_source" in codes(rec)
+    assert "X-J Wang" in pc.split_names(check2(bib, "MillEtal03")["final_entry"]["author"])
+    quote = '{"given":"John A.","family":"Smith","sequence":"first"}'
+    assert pc.initials_from_evidence("J Smith", [quote])[0] == "J A Smith"
+    assert pc.initials_from_evidence("J Smith and K Jones", ["John Andrew Smith, Kate Jones"])[0] == \
+        "J A Smith and K Jones"
+
+
+def test_uncertain_split_holds_initials():
+    unsure = []
+    assert pc.initials_from_evidence("D Bihan", ["Denis Le Bihan"], unsure)[0] == "D Bihan"
+    assert unsure and "particle" in unsure[0]
+    unsure = []
+    quote = '{"given":"Mohsen Parto","family":"Dezfouli"}'  # source splits the surname
+    assert pc.initials_from_evidence("M {Parto Dezfouli}", [quote], unsure)[0] == "M {Parto Dezfouli}"
+    assert unsure and "splits the name differently" in unsure[0]
+    # a braced surname is one unit and the source gives only 'Mohsen'
+    assert pc.initials_from_evidence("M {Parto Dezfouli}", ["Mohsen Parto Dezfouli, Mohammad Reza Daliri"])[0] \
+        == "M {Parto Dezfouli}"
+
+
+def test_bibtex_author_list_is_structured_evidence():
+    quote = "author = {Desmaison, Alban and Kopf, Andreas and Yang, Edward}"
+    assert pc.evidence_given_names("K{\\\"o}pf", [quote]) == ["Andreas"]
+
+
+NEURIPS_CONVERSIONS = ("BorzEtal23b", "ChanEtal09a", "ChenEtal24b", "ChenEtal24c", "GrifStey03", "KiroEtal15",
+                       "KrizEtal12", "MairEtal09b", "MnihHint09", "PaszEtal19", "SanbGrif08", "ShihEtal23",
+                       "SochEtal09")
+
+
+@pytest.mark.parametrize("key", NEURIPS_CONVERSIONS + ("SchaTurk15", "Sina07", "MayeEtal92b", "AllpEtal94"))
+def test_type_conversion_drops_journal(bib, key):
+    rec = check2(bib, key, review=True)
+    fin = rec["final_entry"]
+    assert fin["ENTRYTYPE"] in ("inproceedings", "incollection") and fin.get("booktitle")
+    assert "journal" not in fin and "journal" in rec["removals"]
+
+
+def test_journal_as_series(bib):
+    rec = check2(bib, "MayeEtal92b", review=True)
+    assert rec["final_entry"]["series"] == "Advances in Psychology"
+    row = copy.deepcopy(ROWS2["MayeEtal92b"])
+    row["fields"].pop("series", None)  # no series proposed: the journal becomes the series
+    fin = check2(bib, "MayeEtal92b", row)["final_entry"]
+    assert fin.get("series") == bib["MayeEtal92b"]["journal"] and "journal" not in fin
+
+
+def test_series_number_in_booktitle_drops_volume(bib):
+    rec = check2(bib, "AllpEtal94", review=True)
+    assert "volume" not in rec["final_entry"] and "volume" in rec["removals"]
+    assert check2(bib, "KrizEtal12", review=True)["final_entry"]["volume"] == "25"  # NeurIPS volume kept
+
+
+def test_article_keeps_journal(bib):
+    for key in ("GoldEtal05", "DawKenj06"):
+        fin = check(bib, key)["final_entry"]
+        assert fin["ENTRYTYPE"] == "article" and fin["journal"], key
+
+
+def test_lowercase_entrytype_is_the_type(bib):
+    rec = check2(bib, "AllpEtal94")  # rules alone: researcher wrote 'entrytype'
+    assert rec["final_entry"]["ENTRYTYPE"] == "incollection"
+    assert "entrytype" not in rec["final_entry"]
+    assert pc.field_name("EntryType") == "ENTRYTYPE" and pc.field_name("Journal") == "journal"
+
+
+def test_duplicate_of_head_entry_without_doi(bib):
+    """CronEtal98a gains a DOI; CronEtal98c (HEAD, no DOI) is the same Part II paper."""
+    rec = check2(bib, "CronEtal98a")
+    assert "duplicate" in codes(rec) and "CronEtal98c" in rec["key_plan"]["same_work_as"]
+    plan = check2(bib, "CronEtal98c")["key_plan"]
+    assert plan["action"] == "duplicate" and plan["merge_into"] == "CronEtal98a"
+    assert "CronEtal98b" not in rec["key_plan"]["same_work_as"]  # Part I is a different work
+
+
+def test_part_numbers_distinguish_works(bib):
+    assert not pc.same_work(bib["CronEtal98b"], bib["CronEtal98a"])
+    assert pc.same_work(bib["CronEtal98c"], bib["CronEtal98a"])
+
+
+def test_duplicates_within_a_wave():
+    base = {"ENTRYTYPE": "article", "author": "A Smith and B Jones", "year": "2001",
+            "title": "A study of recall in rats"}
+    recs = {k: {"final_entry": dict(base, **extra), "key_plan": {"action": "keep", "current_key": k}, "flags": []}
+            for k, extra in (("SmitJone01", {"doi": "10.1/x"}), ("SmitJone01b", {"doi": "10.1/X"}),
+                             ("SmitJone01c", {"title": "Another study entirely", "doi": "10.1/y"}))}
+    pc.wave_duplicates(recs)
+    assert recs["SmitJone01b"]["key_plan"]["merge_into"] == "SmitJone01"
+    assert recs["SmitJone01"]["key_plan"]["action"] == "keep" and recs["SmitJone01"]["flags"]
+    assert recs["SmitJone01c"]["key_plan"]["action"] == "keep" and not recs["SmitJone01c"]["flags"]
+
+
+def test_registry_title_with_footnote_matches(bib):
+    rec = pc.doi_record("10.1016/s0006-3223(00)00917-3")
+    assert rec["title"].startswith("Laboratory sleep correlates of nightmare complaint in PTSD inpatients11")
+    r = check2(bib, "WoodEtal00b", review=True)
+    assert changed(r)["doi"] == "10.1016/s0006-3223(00)00917-3" and "doi_title_mismatch" not in codes(r)
+    assert pc.registry_title_matches("Memory for places in infancy*", "Memory for faces in infancy") is False
+    assert pc.registry_title_matches("A theory of memory for faces*", "A theory of memory for faces")
+    assert pc.registry_title_matches("Correspondence", "Correspondence regarding memory for faces") is False
+    # strictness kept: another work's title, and a part number continuing the title
+    assert not pc.registry_title_matches("Functional mapping of human sensorimotor cortex II",
+                                         "Functional mapping of human sensorimotor cortex")
+
+
+def test_boddetal97_generic_record_title_still_dropped(bib):
+    rec = check(bib, "BoddEtal97")
+    assert "doi_title_mismatch" in codes(rec) and "doi" not in changed(rec)
+
+
+@pytest.mark.parametrize("key,expected", [
+    ("CaoWors99", {"doi": "10.1214/aoap/1029962864"}),
+    ("Schw78", {"volume": "6", "number": "2", "doi": "10.1214/aos/1176344136"}),
+    ("Hint84", {"volume": "16"}),
+])
+def test_reviewer_confirmed_values_replace_blocked_holds(bib, key, expected):
+    rec = check2(bib, key, review=True)
+    by = {c["field"]: c for c in rec["changes"]}
+    for field, value in expected.items():
+        assert by[field]["proposed"] == value and by[field]["source"] == "reviewer", field
+        assert field not in rec["held"]
+    assert pc.fold(rec["final_entry"]["title"]) == pc.fold(REVIEW2[key]["suggested_value"].get(
+        "title", rec["final_entry"]["title"]))
+
+
+def test_reviewer_agreement_releases_fetch_blocked_hold(bib):
+    """A field held only because the source could not be read, and the reviewer agrees
+    with it (no suggested value): applied with provenance reviewer."""
+    review = {"key": "CaoWors99", "agree": "yes", "field_verdicts": {"title": "agree (Crossref)"},
+              "suggested_value": {}}
+    rec = pc.check_entry(ROWS2["CaoWors99"], bib["CaoWors99"], bib, ctx_for(bib), review=review,
+                         validation=VALIDATION2["CaoWors99"])
+    assert changed(rec)["title"].startswith("The geometry of correlation fields with")
+    assert {c["field"]: c["source"] for c in rec["changes"]}["title"] == "reviewer"
+    # negative control: no reviewer confirmation keeps the hold
+    rec = check2(bib, "CaoWors99")
+    assert "title" in rec["held"] and "title" not in changed(rec)
+    # a quote that fails on a page that WAS read (Hint84 volume) is not a fetch block
+    assert not pc.fetch_blocked(VALIDATION2["Hint84"]["fields"]["volume"], VALIDATION2["Hint84"])
+    assert pc.fetch_blocked(VALIDATION2["CaoWors99"]["fields"]["title"], VALIDATION2["CaoWors99"])
+
+
+def test_wave2_review_resolution():
+    post, page, rules_only, merged = pc.run(WAVE2, write=False)
+    res = post["review_resolution"]
+    fixed = {r["key"] for r in res["rows"] if r["resolved"]}
+    assert {"DezfDali20", "DupoEtal00", "SilbEtal03", "PaszEtal19", "AllpEtal94", "CronEtal98a", "WoodEtal00b",
+            "CaoWors99", "Schw78", "Hint84", "BorzEtal23b", "MayeEtal92b", "SchaTurk15"} <= fixed
+    for p in page:
         assert all(str(c["proposed"] or "").strip() for c in p["final_changes"]), p["key"]

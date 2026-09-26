@@ -59,6 +59,7 @@ BIBTEX_TYPES = {"article", "book", "booklet", "inbook", "incollection", "inproce
                 "manual", "mastersthesis", "misc", "phdthesis", "proceedings",
                 "techreport", "unpublished", "patent"}
 NAME_FIELDS = ("author", "editor")
+CONTAINED_TYPES = ("inproceedings", "incollection", "inbook")
 ORDINAL_FIELDS = ("title", "booktitle", "journal", "edition", "series", "publisher",
                   "organization", "howpublished", "note", "school", "institution")
 SUFFIX_RE = re.compile(r"(?:,?\s+|,\s*)(?:Jr|Sr|II|III|IV)\.?(\}?)$")
@@ -152,6 +153,58 @@ def titles_match(a, b):
         return True
     sa, sb = set(fa.split()), set(fb.split())
     return len(sa & sb) / len(sa | sb) >= 0.85
+
+
+def _casefolded(text):
+    """A title without LaTeX, accents or case, punctuation kept."""
+    t = delatex(html.unescape(str(text or "")))
+    t = unicodedata.normalize("NFKD", t)
+    t = "".join(c for c in t if not unicodedata.combining(c)).casefold()
+    return t
+
+
+def footnote_appended(a, b):
+    """One title is the other plus a footnote: after stripping trailing markers (*,
+    daggers), the shorter title's characters are exactly the start of the longer one,
+    which continues with a footnote number glued to the last word or a footnote
+    marker, never with more words. The shorter title needs at least three words."""
+    strip = lambda t: re.sub(r"[\s*\u2020\u2021\u00a7\u00b6]+$", "", t)
+    a, b = strip(_casefolded(a)), strip(_casefolded(b))
+    if not a or not b:
+        return False
+    short, long_ = sorted((a, b), key=lambda t: len(re.sub(r"[^0-9a-z]", "", t)))
+    if len(fold(short).split()) < 3:
+        return False
+    target = re.sub(r"[^0-9a-z]", "", short)
+    i = 0
+    for pos, ch in enumerate(long_):
+        if i == len(target):
+            rest = long_[pos:]
+            break
+        if ch.isalnum() and ch.isascii():
+            if ch != target[i]:
+                return False
+            i += 1
+    else:
+        return i == len(target)
+    if long_[pos - 1].isalnum() and rest[:1].isdigit():
+        return True  # footnote number glued to the last word
+    rest = rest.lstrip()
+    return not rest or rest[0] in "*\u2020\u2021\u00a7\u00b6"
+
+
+def registry_title_matches(record_title, entry_title):
+    """A DOI record title that is the entry's title.
+
+    Accepted: the record is the entry's title with a footnote appended (Crossref
+    appends '11The percentage of nights...' to WoodEtal00b's title), or the titles
+    match (titles_match) and carry the same part numbers ('... cortex II' is a
+    different work from '... cortex'). A generic record title ('Correspondence')
+    never matches."""
+    if footnote_appended(record_title, entry_title):
+        return True
+    numerals = lambda t: {w for w in fold(t).split() if NUMERAL.match(w)}
+    return numerals(record_title) == numerals(entry_title) and titles_match(record_title, entry_title)
 
 
 def braced(text):
@@ -457,49 +510,99 @@ def given_part(name):
 
 
 GIVEN_TOKEN = re.compile(r"[^\W\d_][\w'’\-]*\.?", re.U)
+# Surname particles: a given-name candidate that contains one means the source's
+# given/family split disagrees with the entry's (Denis Le Bihan read as 'Denis Le').
+PARTICLES = {"de", "van", "von", "le", "la", "di", "du", "da", "del", "della", "der", "den",
+             "des", "dos", "das", "ten", "ter", "zu", "vom"}
 
 
-def evidence_given_names(sur, quotes):
-    """Given-name strings the evidence prints next to surname `sur`."""
-    target = fold(sur).split()[-1:] if fold(sur) else []
-    if not target:
+def _structured_forms(q):
+    """(given, family) pairs a quote prints in a structured form: Crossref JSON,
+    PubMed XML, MEDLINE FAU lines, or BibTeX 'Family, Given and ...' author lists."""
+    pairs = re.findall(r'"given"\s*:\s*"([^"]*)"\s*,\s*"family"\s*:\s*"([^"]*)"', q)
+    pairs += [(g, f) for f, g in re.findall(r'"family"\s*:\s*"([^"]*)"\s*,\s*"given"\s*:\s*"([^"]*)"', q)]
+    pairs += [(g, f) for f, g in re.findall(r"<LastName>(.*?)</LastName>\s*<ForeName>(.*?)</ForeName>", q)]
+    pairs += [(g.strip(), f) for f, g in re.findall(r"FAU\s*-\s*([^,\n]+),\s*([^\n]+)", q)]
+    bib = re.search(r"\bauthor\s*=\s*[{\"](.*)", q, re.I)
+    if bib:
+        for part in re.split(r"\s+and\s+", bib[1].rstrip('}",')):
+            m = re.fullmatch(r"\s*([^,]+?),\s*([^,]+?)\s*", part.strip('{}" '))
+            if m:
+                pairs.append((m[2], m[1]))
+    structured = bool(pairs) or re.search(r'"given"|<LastName>|FAU\s*-', q) is not None
+    return pairs, structured
+
+
+def evidence_given_names(sur, quotes, others=(), uncertain=None):
+    """Given-name strings the evidence prints for surname `sur` (the WHOLE surname:
+    a braced or multi-word surname such as {Parto Dezfouli} is one unit).
+
+    Structured sources must give the same family name; free text must print the
+    whole surname, and the given name is read backwards from its first word,
+    stopping at punctuation, a lowercase word, an honorific or another author's
+    surname (`others`). A form whose given/family split disagrees with the
+    entry's (the source's family is a part of the entry's surname, or a particle
+    sits in the given name) is not returned; its reason is appended to
+    `uncertain` when a list is passed."""
+    sw = fold(sur).split()
+    if not sw:
         return []
-    target = target[0]
+    others = {w for o in others for w in fold(o).split()} - set(sw)
     found = []
+
+    def unsure(why, given):
+        if uncertain is not None:
+            uncertain.append((why, given))
+
+    def check_given(g, source):
+        words = [w.strip(".,").lower() for w in g.split()]
+        if any(w in PARTICLES for w in words):
+            unsure(f"{source} given name {g!r} contains a surname particle", g)
+            return None
+        if any(w in sw for w in fold(g).split() if len(w) > 1):
+            unsure(f"{source} given name {g!r} contains part of the surname {sur!r}", g)
+            return None
+        return g
+
     for q in quotes:
         q = html.unescape(q).replace("\\/", "/")
-        for g, f in re.findall(r'"given"\s*:\s*"([^"]*)"\s*,\s*"family"\s*:\s*"([^"]*)"', q):
-            if fold(f).split()[-1:] == [target]:
-                found.append(g)
-        for f, g in re.findall(r'"family"\s*:\s*"([^"]*)"\s*,\s*"given"\s*:\s*"([^"]*)"', q):
-            if fold(f).split()[-1:] == [target]:
-                found.append(g)
-        for f, g in re.findall(r"<LastName>(.*?)</LastName>\s*<ForeName>(.*?)</ForeName>", q):
-            if fold(f).split()[-1:] == [target]:
-                found.append(g)
-        for f, g in re.findall(r"FAU\s*-\s*([^,\n]+),\s*([^\n]+)", q):
-            if fold(f).split()[-1:] == [target]:
-                found.append(g.strip())
+        pairs, structured = _structured_forms(q)
+        for g, f in pairs:
+            fw = fold(f).split()
+            if fw == sw:
+                g = check_given(g, "source")
+                if g:
+                    found.append(g)
+            elif fw and sw and fw[-1] == sw[-1]:
+                unsure(f"source family name {f!r} (given {g!r}) splits the name differently from {sur!r}", g)
+        if structured:
+            continue
         # a name printed in capitals (GEOFF WARD) is a name, not clumped initials
         q = re.sub(r"\b[A-Z]{4,}\b", lambda m: m.group(0).capitalize(), q)
-        if re.search(r'"given"|<LastName>|FAU\s*-', q):
-            continue
         toks = list(GIVEN_TOKEN.finditer(q))
-        for i, t in enumerate(toks):
-            if fold(t.group(0)) != target:
+        folded = [fold(t.group(0)) for t in toks]
+        target = " ".join(sw)
+        for i in range(len(toks)):
+            acc, j = "", i
+            while j < len(toks) and len(acc) < len(target):
+                acc = (acc + " " + folded[j]).strip()
+                j += 1
+            if acc != target:
                 continue
-            given = []
-            j = i
-            while j > 0 and len(given) < 4:
-                prev = toks[j - 1]
-                gap = q[prev.end():toks[j].start()]
+            given, k = [], i
+            while k > 0 and len(given) < 4:
+                prev = toks[k - 1]
+                gap = q[prev.end():toks[k].start()]
                 word = prev.group(0)
-                if gap.strip() or not word[:1].isupper() or fold(word) in HONORIFICS:
+                if gap.strip() or not word[:1].isupper() or fold(word) in HONORIFICS \
+                        or fold(word) in others:
                     break
                 given.insert(0, word)
-                j -= 1
+                k -= 1
             if given:
-                found.append(" ".join(given))
+                g = check_given(" ".join(given), "text")
+                if g:
+                    found.append(g)
     return found
 
 
@@ -507,19 +610,34 @@ def letters(initials):
     return initials.replace("-", " ").split()
 
 
-def initials_from_evidence(value, quotes):
+def initials_from_evidence(value, quotes, uncertain_notes=None):
     """Extend or hyphenate initials the evidence prints more fully.
 
     Returns (new value, notes). Never removes an initial; applies only when every
-    evidence form for that surname agrees (each is a prefix of the longest)."""
+    evidence form for that surname agrees (each is a prefix of the longest), and
+    never when a source splits given and family names differently from the
+    entry (those names are listed in `uncertain_notes`)."""
     names, notes = [], []
-    for n in split_names(value):
-        if n == "others" or n.startswith("{"):
+    all_names = split_names(value)
+    surnames = [surname(x) for x in all_names if x != "others"]
+    for n in all_names:
+        if n == "others" or (n.startswith("{") and split_top(n) == [n]):
             names.append(n)
             continue
         sur, giv = surname(n), given_part(n)
-        forms = [given_initials(g) for g in evidence_given_names(sur, quotes)]
+        unsure = []
+        forms = [given_initials(g) for g in evidence_given_names(sur, quotes, [s for s in surnames if s != sur],
+                                                                 unsure)]
         forms = [f for f in forms if f]
+        if unsure:
+            # report only when the unsure reading would have changed the initials
+            if uncertain_notes is not None and any(
+                    letters(given_initials(g)) != letters(giv) or ("-" in given_initials(g)) != ("-" in giv)
+                    for _, g in unsure if given_initials(g)):
+                uncertain_notes.append(f"{sur}: initials kept as '{giv}'; "
+                                       + "; ".join(sorted({w for w, _ in unsure})))
+            names.append(n)
+            continue
         if not forms:
             names.append(n)
             continue
@@ -540,6 +658,18 @@ def initials_from_evidence(value, quotes):
 
 
 # ---------------------------------------------------------------- field rules
+
+def roman(n):
+    """'15' -> 'xv' (lowercase, for comparison with folded text); '' if not a number."""
+    if not re.fullmatch(r"\d+", str(n)) or not 0 < int(n) < 4000:
+        return ""
+    n, out = int(n), ""
+    for v, r in ((1000, "m"), (900, "cm"), (500, "d"), (400, "cd"), (100, "c"), (90, "xc"), (50, "l"),
+                 (40, "xl"), (10, "x"), (9, "ix"), (5, "v"), (4, "iv"), (1, "i")):
+        while n >= v:
+            out, n = out + r, n - v
+    return out
+
 
 def ordinal_suffix(n):
     n = int(n)
@@ -661,13 +791,38 @@ def key_fits(key, target):
     return key == target or (key.startswith(target) and re.fullmatch(r"[a-z]+", key[len(target):]) is not None)
 
 
+def first_surname(e):
+    names = split_names(e.get("author") or e.get("editor") or "")
+    return fold(surname(names[0])) if names else ""
+
+
+NUMERAL = re.compile(r"^(?:\d+|[ivxlc]+)$")
+
+
 def same_work(a, b):
-    """Title + first author surname + year."""
-    fa = lambda e: fold(surname(split_names(e.get("author") or e.get("editor") or "")[0])) \
-        if (e.get("author") or e.get("editor")) else ""
-    return (titles_match(a.get("title", ""), b.get("title", ""))
-            and fa(a) and fa(a) == fa(b)
+    """Title + first author surname + year; part numbers in the titles must agree
+    (Part I and Part II of a series are different works)."""
+    ta, tb = fold(a.get("title", "")), fold(b.get("title", ""))
+    if {w for w in ta.split() if NUMERAL.match(w)} != {w for w in tb.split() if NUMERAL.match(w)}:
+        return False
+    return (titles_match(ta, tb)
+            and first_surname(a) and first_surname(a) == first_surname(b)
             and a.get("year", "").strip() == b.get("year", "").strip())
+
+
+def work_index(bib):
+    """{(first surname, year): [keys]} for duplicate search."""
+    idx = {}
+    for k, e in bib.items():
+        idx.setdefault((first_surname(e), e.get("year", "").strip()), []).append(k)
+    return idx
+
+
+def same_work_in_bib(key, final, bib, index):
+    """Other cdl.bib entries that are the same work as `final` (title, first author, year),
+    whether or not they have a DOI."""
+    cands = index.get((first_surname(final), final.get("year", "").strip()), []) if index is not None else bib
+    return sorted(k for k in cands if k != key and same_work(bib[k], final))
 
 
 def next_suffix(used):
@@ -676,7 +831,7 @@ def next_suffix(used):
             return s
 
 
-def key_plan(key, current, final, bib, taken, reserved):
+def key_plan(key, current, final, bib, taken, reserved, index=None):
     """rename / duplicate / collision plan for the final entry."""
     target = key_target(final)
     plan = {"current_key": key, "target_base": target, "action": "keep"}
@@ -687,10 +842,20 @@ def key_plan(key, current, final, bib, taken, reserved):
                 and clean_doi(e.get("doi")) == clean_doi(final.get("doi"))]
     if same_doi:
         plan["same_doi_as"] = same_doi
+    same = same_work_in_bib(key, final, bib, index)
+    if same:
+        plan["same_work_as"] = same
     if key_fits(key, target) or H.key_overrides.get(key) == target:
         if same_doi:
             plan["action"] = "duplicate"
             plan["merge_into"] = same_doi[0]
+        elif same and same[0] < key:
+            plan.update(action="duplicate", merge_into=same[0],
+                        detail=f"same work (title, first author, year) already in cdl.bib as {same[0]}: "
+                               f"merge {key} into it")
+        elif same:
+            plan["detail"] = (f"same work (title, first author, year) as {', '.join(same)} in cdl.bib: "
+                              f"{same[0]} should merge into {key}")
         return plan
     plan["rename_reason"] = ("key does not follow the corrected metadata"
                              if key_fits(key, key_target(current) or "\0")
@@ -698,7 +863,7 @@ def key_plan(key, current, final, bib, taken, reserved):
     group = [k for k in list(bib) + sorted(taken) if k != key and key_fits(k, target)]
     group = sorted(set(group))
     dup = [k for k in group if k in bib and same_work(bib[k], final)] or \
-          [k for k in same_doi if key_fits(k, target)]
+          [k for k in same_doi if key_fits(k, target)] or same
     if dup:
         plan.update(action="duplicate", merge_into=dup[0],
                     detail=f"same work already in cdl.bib as {dup[0]}: merge {key} into it")
@@ -748,11 +913,59 @@ def patent_like(row, current):
             or re.search(r"\bpatent\b", row.get("notes", ""), re.I) is not None)
 
 
+def field_name(name):
+    """Canonical field name: 'ENTRYTYPE' for any case of entrytype, else lowercase."""
+    return "ENTRYTYPE" if str(name).lower() == "entrytype" else str(name).lower()
+
+
+def canonical_fields(d):
+    """A field-keyed dict with canonical names; on a case clash the non-empty value wins."""
+    out = {}
+    for k, v in (d or {}).items():
+        n = field_name(k)
+        if n not in out or out[n] in (None, "", {}):
+            out[n] = v
+    return out
+
+
+def canonical_review(review):
+    if not review:
+        return review
+    review = dict(review)
+    for part in ("suggested_value", "field_verdicts"):
+        if review.get(part):
+            review[part] = canonical_fields(review[part])
+    return review
+
+
+def reviewer_confirms(verdict_text):
+    """A reviewer field verdict that confirms the researcher's value: 'agree ...' or
+    'disagree (held but correct)'."""
+    v = str(verdict_text or "").lower()
+    return v.startswith("agree") or "held but correct" in v
+
+
+def fetch_blocked(vfield, validation):
+    """The validator could not read the source (not a wrong value): every failure is a
+    fetch failure, or the whole page failed (identity quote and every field's quotes
+    'not found', i.e. a block page was served)."""
+    fails = (vfield or {}).get("failures") or []
+    if not fails:
+        return False
+    if all(str(f).startswith("fetch failed") for f in fails):
+        return True
+    vf = (validation or {}).get("fields") or {}
+    identity_failed = not ((validation or {}).get("identity") or {}).get("ok", True)
+    return identity_failed and all(not v.get("ok", True) for v in vf.values()) and \
+        all(f in ("quote not found at url",) or str(f).startswith("fetch failed") for f in fails)
+
+
 def check_entry(row, current, bib, ctx, review=None, validation=None):
     """Post-check one researcher row. Returns the per-key record."""
     key = row["key"]
     verdict = row.get("verdict")
-    fields = row.get("fields") or {}
+    fields = canonical_fields(row.get("fields"))
+    review = canonical_review(review)
     flags, norms = [], []
     applied = {}   # field -> {"value", "source", "evidence", ...}
     held = {}      # field -> reason
@@ -776,7 +989,7 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
         flag(flags, "verdict_understated", "verdict",
              f"verdict '{verdict}' but identity is quoted and every field is confirmed/corrected")
 
-    vfields = (validation or {}).get("fields") or {}
+    vfields = canonical_fields((validation or {}).get("fields"))
     if validation and verdict != "no_source" and not (validation.get("identity") or {}).get("ok", True):
         flag(flags, "identity_quote_failed", "identity",
              f"identity quote not found at source: {validation['identity'].get('why')}")
@@ -840,6 +1053,13 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
 
     # --- reviewer merge
     reviewer_key = None
+
+    def resolve_hold(name, why):
+        for f in flags:
+            if f["field"] == name and f["code"] == "quote_check_failed" and f["action"] == "held":
+                f["action"] = "applied"
+                f["detail"] += f"; {why} (source reviewer)"
+
     if review:
         sv = review.get("suggested_value") or {}
         verdicts = review.get("field_verdicts") or {}
@@ -859,13 +1079,27 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                 continue
             applied[name] = {"value": str(value), "source": "reviewer",
                              "evidence": [{"reviewer_problems": review.get("problems") or []}]}
-            held.pop(name, None)
+            if name in held:
+                held.pop(name)
+                resolve_hold(name, "reviewer supplied the value")
         for name, verdict_f in verdicts.items():
-            if verdict_f == "disagree" and name in applied and applied[name]["source"] == "researcher" \
-                    and name not in sv:
+            if str(verdict_f).lower().startswith("disagree") and not reviewer_confirms(verdict_f) \
+                    and name in applied and applied[name]["source"] == "researcher" and name not in sv:
                 del applied[name]
                 flag(flags, "reviewer_disagrees", name,
-                     "reviewer disagrees and gave no replacement value; not applied", "held")
+                     f"reviewer disagrees ({verdict_f}) and gave no replacement value; not applied", "held")
+            elif name in held and name not in sv and reviewer_confirms(verdict_f) \
+                    and fetch_blocked(vfields.get(name), validation):
+                f = fields.get(name) or {}
+                value = f.get("value")
+                if value not in (None, "") and str(value).strip():
+                    applied[name] = {"value": str(value), "source": "reviewer", "status": f.get("status"),
+                                     "evidence": (f.get("evidence") or []) +
+                                     [{"reviewer_confirmed": verdict_f,
+                                       "reviewer_problems": review.get("problems") or []}]}
+                    held.pop(name)
+                    resolve_hold(name, "validator could not fetch the source; reviewer confirmed "
+                                       f"the value ({verdict_f})")
 
     # --- DOI registration and record match
     doi_status = None
@@ -892,7 +1126,7 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                                  (applied.get("chapter") or {}).get("value"), current.get("chapter"),
                                  (applied.get("booktitle") or {}).get("value"), current.get("booktitle"))
                      if c]
-            if not any(titles_match(record_title, c) or titles_match(rec_title, c) for c in cands):
+            if not any(titles_match(record_title, c) or registry_title_matches(rec_title, c) for c in cands):
                 del applied["doi"]
                 flag(flags, "doi_title_mismatch", "doi",
                      f"{doi} is registered to {record_title!r} ({rec.get('ra')}), not this entry's title; "
@@ -982,6 +1216,36 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
             and final.get("title") and verdict != "no_source":
         set_norm("ENTRYTYPE", "incollection", ["titled chapter with booktitle: @inbook -> @incollection"])
 
+    # a chapter or proceedings paper has no journal: drop it, or move it to the
+    # booktitle (none yet) or series (a book series given as the journal)
+    if final.get("ENTRYTYPE") in CONTAINED_TYPES and final.get("journal"):
+        journal = final["journal"]
+        bt, series = final.get("booktitle", ""), final.get("series", "")
+        fj, fbt = fold(journal), fold(bt)
+        if not bt:
+            set_norm("booktitle", journal, [f"@{final['ENTRYTYPE']}: journal {journal!r} moved to booktitle"])
+            why = "moved to booktitle"
+        elif fbt == fj or fbt.startswith(fj + " ") or (series and fold(series) == fj):
+            why = "already given by the " + ("series" if series and fold(series) == fj else "booktitle")
+            vol = final.get("volume", "").strip()
+            rest = fbt[len(fj):].split() if fbt.startswith(fj + " ") else []
+            if vol and not series and rest and (rest[0] == vol or rest[0] == roman(vol)):
+                applied.pop("volume", None)
+                final.pop("volume", None)
+                norms.append({"field": "volume", "note": f"series number {vol} is in the booktitle {bt!r}"})
+                if current.get("volume"):
+                    removals["volume"] = f"series number already in the booktitle {bt!r}"
+        elif not series:
+            set_norm("series", journal, [f"@{final['ENTRYTYPE']}: journal {journal!r} is a book series; moved to series"])
+            why = "moved to series"
+        else:
+            why = f"not a field of @{final['ENTRYTYPE']} (booktitle {bt!r}, series {series!r} kept)"
+        applied.pop("journal", None)
+        final.pop("journal", None)
+        norms.append({"field": "journal", "note": f"@{final['ENTRYTYPE']} has no journal: {why}"})
+        if current.get("journal"):
+            removals["journal"] = f"@{final['ENTRYTYPE']} has no journal ({why})"
+
     # names
     for name in NAME_FIELDS:
         if name in applied:
@@ -993,9 +1257,12 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
             quotes = [e.get("quote", "") for e in (fields.get(name) or {}).get("evidence") or []]
             quotes.append((row.get("identity") or {}).get("quote", ""))
             if applied.get(name, {}).get("source") == "researcher":
-                new2, notes2 = initials_from_evidence(final[name], quotes)
+                unsure = []
+                new2, notes2 = initials_from_evidence(final[name], quotes, unsure)
                 if notes2:
                     flag(flags, "initials_from_source", name, "; ".join(notes2), "applied")
+                if unsure:
+                    flag(flags, "initials_uncertain", name, "; ".join(unsure), "held")
                 set_norm(name, new2, notes2)
 
     # single-source surname change: a new surname that respells a cited one
@@ -1091,13 +1358,15 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
         changes.append(change)
 
     # --- key plan
-    plan = key_plan(key, current, final, bib, ctx["taken"], ctx["reserved"])
+    plan = key_plan(key, current, final, bib, ctx["taken"], ctx["reserved"], ctx.get("index"))
     if plan["action"] in ("rename", "collision"):
         ctx["taken"].add(plan["new_key"])
     if plan["action"] == "duplicate":
         flag(flags, "duplicate", "key", plan.get("detail") or
              f"same DOI as {plan['merge_into']}: merge {key} into {plan['merge_into']}")
-    elif plan["action"] == "collision":
+    elif plan.get("same_work_as"):
+        flag(flags, "duplicate", "key", plan["detail"])
+    if plan["action"] == "collision":
         flag(flags, "key_collision", "key", plan["detail"] + f"; proposed key {plan['new_key']}")
     elif plan["action"] == "rename":
         flag(flags, "key_rename", "key", f"{key} -> {plan['new_key']} ({plan['rename_reason']})")
@@ -1120,6 +1389,45 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
 
 
 # ---------------------------------------------------------------- wave
+
+def wave_duplicates(records):
+    """Entries of one wave that resolve to the same work: the same final DOI, or the
+    same title + first author + year. The later key merges into the earliest."""
+    groups = {}
+    keys = sorted(records)
+    by_doi = {}
+    for k in keys:
+        d = clean_doi(records[k]["final_entry"].get("doi"))
+        if d:
+            by_doi.setdefault(d, []).append(k)
+    for d, ks in by_doi.items():
+        if len(ks) > 1:
+            groups.setdefault(ks[0], set()).update(ks[1:])
+    buckets = {}
+    for k in keys:
+        e = records[k]["final_entry"]
+        buckets.setdefault((first_surname(e), e.get("year", "").strip()), []).append(k)
+    for ks in buckets.values():
+        for i, a in enumerate(ks):
+            for b in ks[i + 1:]:
+                if same_work(records[a]["final_entry"], records[b]["final_entry"]):
+                    groups.setdefault(a, set()).add(b)
+    for first, rest in groups.items():
+        for k in sorted(rest):
+            rec, plan = records[k], records[k]["key_plan"]
+            why = (f"same work as {first} in this wave (same DOI or title, first author and year)")
+            if plan.get("merge_into") == first:
+                continue
+            plan.setdefault("same_work_in_wave", []).append(first)
+            if plan["action"] != "duplicate":
+                plan.update(action="duplicate", merge_into=first, detail=f"{why}: merge {k} into {first}")
+            flag(rec["flags"], "duplicate", "key", f"{why}: merge {k} into {first}")
+        plan = records[first]["key_plan"]
+        new = sorted(set(rest) - set(plan.get("same_work_as") or []))
+        if new:
+            plan.setdefault("same_work_in_wave", []).extend(new)
+            flag(records[first]["flags"], "duplicate", "key",
+                 f"{', '.join(new)} in this wave is the same work: merge into {first}")
 
 def measure(review_rows, rules_only):
     """For each reviewer finding (agree != yes): is a disputed field touched by the rules?"""
@@ -1149,6 +1457,69 @@ def measure(review_rows, rules_only):
             "rows": out}
 
 
+def resolution(review_rows, merged, bib):
+    """For each reviewer finding (agree != yes): does the final output (rules + reviewer
+    merge) do what the reviewer asked? Checks, per field: a suggested value is the final
+    value; a field the reviewer says must be removed / should go is absent; a key the
+    reviewer calls a duplicate has a duplicate plan or flag; any other disagreement
+    without a value leaves the field as it is in cdl.bib. A row with none of these is
+    'not checkable' (resolved None: e.g. a missed source)."""
+    out = []
+    for r in review_rows:
+        if r.get("key") == "_summary" or r.get("agree") == "yes":
+            continue
+        rec = merged.get(r["key"])
+        if rec is None:
+            out.append({"key": r["key"], "resolved": False, "checks": [["row", False, "not in the wave"]]})
+            continue
+        fin, cur = rec["final_entry"], bib.get(r["key"]) or {}
+        sv = canonical_fields(r.get("suggested_value"))
+        fv = canonical_fields(r.get("field_verdicts"))
+        checks = []
+        about = " ".join([str(fv.get("key", "")), str(sv.get("key", "")), str(sv.get("action", ""))] +
+                         [str(p) for p in r.get("problems") or []]).lower()
+        if sv.get("key") or str(fv.get("key", "")).lower().startswith("disagree"):
+            plan = rec["key_plan"]
+            if "duplicate" in about or "merge" in about:
+                checks.append(["key", plan["action"] == "duplicate" or any(x["code"] == "duplicate" for x in rec["flags"])
+                               and (not sv.get("key") or plan.get("reviewer_agrees", True)),
+                               f"reviewer: duplicate ({sv.get('key') or fv.get('key')}); plan {plan['action']} "
+                               f"{plan.get('merge_into') or ''}".strip()])
+            elif sv.get("key"):
+                checks.append(["key", bool(plan.get("reviewer_agrees")),
+                               f"reviewer key {sv['key']!r}; plan {plan['action']} "
+                               f"{plan.get('new_key') or plan.get('merge_into') or ''}".strip()])
+            else:
+                checks.append(["key", plan["action"] != "keep", f"reviewer: {fv.get('key')}; plan {plan['action']}"])
+        for f, v in sv.items():
+            if f in ("action", "key"):
+                continue
+            if v is None or str(v).strip() == "":
+                ok = fin.get(f) == cur.get(f)
+                checks.append([f, ok, "reviewer withdrew the change"])
+            else:
+                ok = fold(fin.get(f, "")) == fold(v) if f != "ENTRYTYPE" else \
+                    str(fin.get(f, "")).lower() == str(v).lower().lstrip("@")
+                checks.append([f, ok, f"final {fin.get(f)!r} vs reviewer {v!r}"])
+        for f, v in fv.items():
+            text = str(v).lower()
+            if f in sv or not text.startswith("disagree") or reviewer_confirms(v):
+                continue
+            if f == "key":
+                continue
+            elif f == "entrytype" or f == "ENTRYTYPE":
+                checks.append([f, "entrytype" not in fin, v])
+            elif re.search(r"remov|should go|must go|drop", text):
+                checks.append([f, f not in fin, v])
+            else:
+                checks.append([f, fin.get(f) == cur.get(f), v])
+        out.append({"key": r["key"], "random_sample": r.get("sampled_as") == "b",
+                    "resolved": all(c[1] for c in checks) if checks else None, "checks": checks})
+    return {"findings": len(out), "resolved": sum(o["resolved"] is True for o in out),
+            "unresolved": [o["key"] for o in out if o["resolved"] is False],
+            "not_checkable": [o["key"] for o in out if o["resolved"] is None], "rows": out}
+
+
 def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
     folder = Path(folder)
     bibd = load_bib(bib)
@@ -1169,8 +1540,11 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
         for row in json.loads(batch.read_text()):
             rows.append((batch.stem, row))
 
+    index = work_index(bibd)
+
     def pass_(with_review):
-        ctx = {"doi": doi, "cities": city_states(bibd), "taken": set(), "reserved": renamed_away()}
+        ctx = {"doi": doi, "cities": city_states(bibd), "taken": set(), "reserved": renamed_away(),
+               "index": index}
         out = {}
         for stem, row in rows:
             rec = check_entry(row, bibd.get(row["key"]), bibd, ctx,
@@ -1178,6 +1552,7 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
                               validation=validation.get(row["key"]))
             rec["batch"] = stem
             out[row["key"]] = rec
+        wave_duplicates(out)
         return out
 
     rules_only = pass_(False)
@@ -1201,6 +1576,8 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True):
         "doi_requests_uncached": None,
     }
     post = {"summary": summary, "measurement": meas,
+            "review_resolution": resolution(review_rows, merged, bibd) if review_rows else None,
+            "review_resolution_rules_alone": resolution(review_rows, rules_only, bibd) if review_rows else None,
             "entries": {k: {kk: vv for kk, vv in r.items() if kk != "final_entry"} for k, r in merged.items()},
             "rules_only_flags": {k: [f["code"] + (":" + f["field"] if f["field"] else "") for f in r["flags"]]
                                  for k, r in rules_only.items()}}
@@ -1243,6 +1620,13 @@ def main(argv=None):
               f"random sample {m['random_sample_caught']}/{m['random_sample_findings']}")
         for r in m["rows"]:
             print(("CAUGHT " if r["caught"] else "MISSED ") + r["key"], r["disputed"], r["by"] or r["rules_touched"])
+    if post.get("review_resolution"):
+        rr = post["review_resolution"]
+        print(f"review findings resolved by rules + reviewer merge: {rr['resolved']}/{rr['findings']}; "
+              f"unresolved {rr['unresolved']}; not checkable {rr['not_checkable']}")
+        ra = post["review_resolution_rules_alone"]
+        print(f"  of which resolved by the rules alone (no reviewer values): {ra['resolved']}/{ra['findings']}; "
+              f"unresolved {ra['unresolved']}")
     return 0
 
 

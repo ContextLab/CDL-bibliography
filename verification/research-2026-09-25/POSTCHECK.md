@@ -32,27 +32,38 @@ Each rule records a flag `{code, field, detail, action}`; `action` is `applied`,
 | Never apply an empty value | `empty_value` | Held; a removal the researcher intended (e.g. Frie06 `volume`) is the user's decision |
 | Quote check | `quote_check_failed`, `identity_quote_failed` | A field whose quotes failed `validate.py` is held |
 | DOI registration | `doi_unregistered`, `doi_check_failed` | Every proposed DOI must return responseCode 1 at `https://doi.org/api/handles/<doi>`; otherwise the DOI change is dropped (404) or held (check failed) |
-| DOI record title | `doi_title_mismatch`, `doi_title_unavailable` | The Crossref/DataCite title (plus subtitle, minus a leading "Chapter N") must match the entry's title, chapter or booktitle after folding case, accents, braces and punctuation (equal, title+subtitle, or 85% word overlap); else the DOI change is dropped |
+| DOI record title | `doi_title_mismatch`, `doi_title_unavailable` | The Crossref/DataCite title (plus subtitle, minus a leading "Chapter N") must match the entry's title, chapter or booktitle after folding case, accents, braces and punctuation (equal, title+subtitle, or 85% word overlap) with the same part numbers (`... cortex II` is another work); a registry title that is the entry's title plus an appended footnote (a number glued to the last word, `*`, a dagger: WoodEtal00b's Crossref title ends `inpatients11The percentage of nights...`) also matches. Otherwise the DOI change is dropped (BoddEtal97's generic `Correspondence` still is) |
 | DOI record fields | `doi_record_conflict`, `print_year_conflict` | Record pages or issued year that differ from the proposal are flagged; a `published-print` year that differs is a print-year conflict (print year wins, suggested) |
 | Print year | `print_year_conflict`, `year_from_online_date` | A print date in the notes (a clause with "print"/"printed", not "reprint") that differs from the year is flagged with the print year suggested; year evidence that is only an online date is flagged |
 | Patents | `patent_filing_year`, `patent_year_unproven`, `patent_number_missing` | For a patent (@patent, patent URL or notes), year evidence mentioning filing/priority/application/submitted holds the year; the grant year from the notes is suggested |
+| Duplicates | `duplicate` | The final entry is compared with every cdl.bib entry, with or without a DOI: same title (same part numbers), first-author surname and year = the same work (CronEtal98a gains a DOI; CronEtal98c in HEAD, no DOI, is the same Part II paper). The later key merges into the earlier; the earlier gets a flag. Within one wave, two rows that end with the same DOI or the same work are flagged the same way |
 | Keys | `key_rename`, `duplicate`, `key_collision` | The house ID rule (`helpers.authors2key` on author, or editor when there is no author, and year) is computed for the final entry. If the current key does not fit it (suffix letters allowed, `key_overrides.json` honoured), it is a rename. If the new base key exists in cdl.bib: same work (title, first-author surname and year) = "duplicate, merge into <key>"; a different work = collision, with the next free suffix per house practice (an unsuffixed holder becomes `a`, the new entry the next letter, as with LeeEtal20 -> LeeEtal20a/LeeEtal20b). A shared DOI with another entry is also reported as a duplicate. Keys renamed away in `verification/key-renames.json` are reported if reused |
 | Names (author, editor) | normalisation | No suffixes (Jr, Sr, II, III, IV, also inside braces: `H {Daum\'{e} III}` -> `H {Daum\'{e}}`); full given names to initials (`Jean-Pierre` -> `J-P`); initials without periods; then `helpers.reformat_author`. Braced corporate names and particles are kept |
-| Initials from evidence | `initials_from_source` | Given names the author evidence prints (Crossref given/family, PubMed LastName/ForeName, MEDLINE FAU, or "Given Surname" text) extend the initials (`S Hawking` -> `S W Hawking`) or hyphenate them (`J P Michel` -> `J-P Michel`) when every source form agrees; an initial is never removed |
+| Initials from evidence | `initials_from_source`, `initials_uncertain` | Given names the author evidence prints (Crossref given/family, PubMed LastName/ForeName, MEDLINE FAU, a BibTeX `Family, Given and ...` list, or "Given Surname" text) extend the initials (`S Hawking` -> `S W Hawking`) or hyphenate them (`J P Michel` -> `J-P Michel`) when every source form agrees; an initial is never removed. The surname is the whole surname: a braced token (`{Parto Dezfouli}`, `{Le Bihan}`) or a particle surname is one unit, a structured source must give the same family name, and free text must print the whole surname. Given names are read backwards from it and stop at punctuation, a lowercase word, an honorific or another author's surname (`Luca Antiga Alban Desmaison Andreas Köpf` gives `Andreas`). If a source splits the name differently (its family is part of the entry's surname, or a particle such as de/van/von/le/di/du/da/del/della/der/ten/ter sits in the given name), no initial is added and, when the other reading would have changed the initials, `initials_uncertain` (held) says so |
 | Surname respelling | `surname_single_source` | A new surname that respells a cited one (similarity >= 0.75) with quotes from fewer than two source hosts is flagged for corroboration or sign-off (README rule) |
 | US addresses | normalisation, `us_address_state_unknown` | `City, United States`/`USA`, `City, NJ`, `City, N.J.`, `City, Texas` -> `City, {ST}`; the city's state comes from cdl.bib's own `City, {ST}` addresses, then a small table of unambiguous cities; other addresses go through the house address formatter |
 | Ordinals | normalisation | Numeric ordinals in text fields -> `N\textsuperscript{st/nd/rd/th}` with the correct suffix (URLs untouched); editions `Second`/`2nd ed.` -> `2\textsuperscript{nd}` |
 | Issue ranges, pages | normalisation | `3-4` -> `3--4`; page ranges `start--end`, abbreviated end pages expanded (`347-76` -> `347--376`) |
 | Proceedings booktitle | normalisation | Years removed from proceedings/conference/meeting/NeurIPS booktitles |
+| Field names | normalisation | Field names are case-folded (`entrytype`, `EntryType` -> `ENTRYTYPE`; `Journal` -> `journal`) in researcher rows, reviewer values and verdicts, and validation rows, so a lowercase `entrytype` is the type change (AllpEtal94) |
 | Entry types | normalisation, `invalid_entrytype` | `@conference` -> `@inproceedings`; a titled chapter (`@inbook` with a chapter title, or with a booktitle) -> `@incollection` with title = chapter, booktitle = book; an ENTRYTYPE that is not a BibTeX type (a sentence) is dropped |
 | @book, @article | normalisation | `@book` has no pages; `@article` has no publisher (listed under removals) |
+| No journal on contained types | normalisation | `@inproceedings`/`@incollection`/`@inbook` have no journal (listed under removals): dropped when the booktitle or series already gives it (NeurIPS, SchaTurk15, MayeEtal92b), moved to booktitle when there is none, moved to series when the booktitle differs and there is no series (a book series given as the journal). A volume that is the series number already printed in the booktitle (`Attention and Performance {XV}`, volume 15) is removed too |
 | House formatters | normalisation, `booktitle_case` | Title, journal and publisher go through `helpers.format_title`/`format_journal_name`; output that alters brace-protected text or lowercases an inner capital (O'Reilly) is rejected |
 | Spacing-only change | `style_only_change` | A title/booktitle/journal change that differs only in whitespace (EngeFrie10 `--- signalling`) is a house-style question, flagged |
 | Verdicts | `verdict_inconsistent`, `verdict_understated`, `needs_user` | `verified` with a corrected field; `correction` with none; `ambiguous`/`no_source` although identity is quoted and every field confirmed |
-| Reviewer merge | `reviewer_dropped`, `reviewer_disagrees`, `reviewer_action` | Each `suggested_value` replaces the researcher's value (source `reviewer`); a null/empty suggestion withdraws the researcher's change (never an empty value); a field the reviewer disagrees with and gives no value for is held; the reviewer's `key` is compared with the computed key plan (`reviewer_agrees`) |
+| Reviewer merge | `reviewer_dropped`, `reviewer_disagrees`, `reviewer_action` | Each `suggested_value` (wave 1 and wave 2 `review.json`) replaces the researcher's value (source `reviewer`) and releases a quote-check hold on that field; a null/empty suggestion withdraws the researcher's change (never an empty value); a field the reviewer disagrees with (`disagree`, `disagree: ...`) and gives no value for is held. A field held only because the validator could not read the source (every failure a fetch failure, or the whole page failed: identity and all fields `quote not found`, as with Project Euclid's block page) is applied with source `reviewer` when the reviewer's verdict confirms it (`agree ...`, `disagree (held but correct)`); a quote that fails on a page that was read (Hint84 volume) is not released this way. The reviewer's `key` is compared with the computed key plan (`reviewer_agrees`) |
 
 The rules run twice: once without the review (measurement) and once with it (final
 output). House normalisations run after the merge, so reviewer values are normalised too.
+
+`review_resolution` in `postcheck.json` checks each reviewer finding against the final
+output (rules + reviewer merge): every suggested value is the final value; a field the
+reviewer says must be removed or should go is absent; a key called a duplicate has a
+duplicate plan or flag, and a suggested key equals the key plan; any other disagreement
+without a value leaves the field as in cdl.bib. A finding with only `unsure` verdicts is
+not checkable. `review_resolution_rules_alone` runs the same checks on the pass without
+the review.
 
 ## Wave 1 measurement (2026-09-25)
 
@@ -115,6 +126,36 @@ with no authors, a deposit error; the DOI is probably right) and BaayEtal95 (Dat
 "CELEX2" vs "The {CELEX} lexical database"); WernSchm99's DOI is held because its
 Crossref record has no title. Print-year conflicts from Crossref: Post69 (print 1970)
 and Bord08 (print 2012).
+
+## Wave 2 review fixes (2026-09-25)
+
+The wave-2 reviewer (25 findings of 93) found that the post-check itself caused most
+remaining errors. Fixed, each with a regression test on the real wave-2 rows:
+
+- Initials: 8 of 10 `initials_from_source` applications were wrong (DezfDali20
+  `M P {Parto Dezfouli}`, DupoEtal00 `D L {Le Bihan}`, SilbEtal03 and CassEtal02
+  `V D {Di Lazzaro}`, HoltEtal12 `P R {Riva Posse}`, TingEtal02 `M-L T {Ting Lee}`,
+  CowaEtal04 `S D {Della Sala}`, PaszEtal19 `A A D A K{\"o}pf`). Now 2 of 2 applications
+  in wave 2, both the ones the reviewer confirmed (AllpEtal94 `S L Hsieh`, MillEtal03 `X-J Wang`).
+- 17 type conversions kept Journal next to Booktitle: journal removed (MayeEtal92b's
+  duplicates its series; AllpEtal94's volume 15 is the `{XV}` in its booktitle, removed).
+  The same rule removes Journal from wave 1's BeckBurg01, EngeEtal93 and BranEtal04.
+- AllpEtal94's lowercase `entrytype` is now the type change.
+- CronEtal98a / CronEtal98c (same Part II paper, the second without a DOI) are a duplicate.
+- WoodEtal00b's DOI is kept (Crossref title plus footnote).
+- CaoWors99, Schw78, Hint84: the reviewer's values replace the fetch-blocked or
+  mis-scoped holds.
+
+Resolution after the fix (`review_resolution`):
+
+| Wave | Findings | Resolved (rules + reviewer merge) | Rules alone | Unresolved | Not checkable |
+|-|-|-|-|-|-|
+| 1 | 29 | 24 | 13 | Frie06 (reviewer says Frie08a; the house suffix rule gives Frie08 -> Frie08a, new Frie08b) | BeckBurg01, Jell02, Chri92, KansEtal15 (`unsure` verdicts: user decisions) |
+| 2 | 25 | 25 | 22 | none (CaoWors99, Schw78, Hint84 need the reviewer's values) | none |
+
+The wave-1 "resolved" count relies on the reviewer's values for the findings the rules
+cannot catch (missed sources, work form); it says the final output carries the
+reviewer's values, not that the rules found them (see the audit above).
 
 Rerun: `.venv/bin/python verification/research-2026-09-25/postcheck.py verification/research-2026-09-25/wave1`
 (the second run makes no network requests).
