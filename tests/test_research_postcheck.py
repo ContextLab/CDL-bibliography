@@ -680,11 +680,18 @@ def test_single_source_surname_hold_keeps_cited_name(bib):
     assert names[2] == pc.split_names(bib["FreeEtal03b"]["author"])[2] and "Jorsten" not in rec["final_entry"]["author"]
     rec = check3(bib, "FreeEtal03b", review=True)  # the reviewer's corrected surname
     assert pc.split_names(rec["final_entry"]["author"])[2] == 'R J{\\"o}rnsten'
-    # a surname the reviewer confirms (Crossref also gives it) is released, provenance reviewer
-    rec = check3(bib, "Brig12", review=True)
-    assert rec["final_entry"]["author"] == "F {De Brigard}"
+    # a surname the reviewer confirms is released, provenance reviewer (RuggEtal96:
+    # cited 'Patchin', Crossref only 'Patching')
+    rec = check3(bib, "RuggEtal96", review=True)
+    assert "Patching" in rec["final_entry"]["author"]
     assert {c["field"]: c["source"] for c in rec["changes"]}["author"] == "reviewer"
-    assert rec["final_entry"]["author"] != check3(bib, "Brig12")["final_entry"]["author"]
+    assert any(f["code"] == "surname_single_source" and f["action"] == "applied" for f in rec["flags"])
+    rules_alone = check3(bib, "RuggEtal96")
+    assert "author" in rules_alone["held"] and "Patching" not in rules_alone["final_entry"]["author"]
+    # Brig12's cited 'F De Brigard' -> 'F {De Brigard}' is a particle brace fix (same
+    # letters, wave-4 fix), applied by the rules alone without a hold
+    rec = check3(bib, "Brig12")
+    assert rec["final_entry"]["author"] == "F {De Brigard}" and "surname_single_source" not in codes(rec)
 
 
 @pytest.mark.parametrize("folder,findings", [(WAVE3, 8)])
@@ -697,10 +704,17 @@ def test_wave3_review_resolution(folder, findings):
 
 def test_surname_hold_keeps_the_whole_cited_name(bib):
     """AguiEtal96: cited 'M D Esposito', researcher 'M D'Esposito' from PubMed alone. The
-    hold keeps the cited name whole, so no initial is dropped ('M Esposito' was wrong)."""
-    rec = check2(bib, "AguiEtal96")
+    hold keeps the cited name whole, so no initial is dropped ('M Esposito' was wrong).
+    With the proposed DOI kept, its Crossref record is the second host (wave-5 fix) and
+    the surname is applied; without the DOI the hold stands."""
+    row = copy.deepcopy(ROWS2["AguiEtal96"])
+    row["fields"] = {k: v for k, v in row["fields"].items() if k.lower() != "doi"}
+    rec = check2(bib, "AguiEtal96", row)
     assert "surname_single_source" in codes(rec)
     assert pc.split_names(rec["final_entry"]["author"])[-1] == "M D Esposito"
+    rec = check2(bib, "AguiEtal96")
+    assert "surname_single_source" not in codes(rec)
+    assert pc.split_names(rec["final_entry"]["author"])[-1] == "M D'Esposito"
 
 
 @pytest.mark.parametrize("wave,key", [("3", "BasaEtal92"), ("3", "KatzEtal89")])
@@ -710,3 +724,216 @@ def test_brace_or_spacing_fix_is_not_a_respelling(bib, wave, key):
     rec = (check2 if wave == "2" else check3)(bib, key)
     assert "surname_single_source" not in codes(rec)
     assert "author" not in rec["held"] and "author" in changed(rec)
+
+
+# ---------------------------------------------------------------- wave-4 review regressions
+
+WAVE4 = ROOT / "verification/research-2026-09-25/wave4"
+ROWS4, REVIEW4, VALIDATION4 = load_wave(WAVE4)
+
+
+def check4(bib, key, row=None, review=False):
+    row = row or ROWS4[key]
+    return pc.check_entry(row, bib.get(key), bib, ctx_for(bib),
+                          review=REVIEW4.get(key) if review else None, validation=VALIDATION4.get(key))
+
+
+def test_particle_brace_fix_is_not_a_respelling(bib):
+    """VogtEtal14: cited 'B A L Di Leone', researcher 'B A L {Di Leone}'. The normaliser
+    made the unbraced particle an initial ('B A L D Leone') and the surname hold kept that."""
+    assert pc.normalise_names("B A L Di Leone")[0] == "B A L {Di Leone}"
+    assert pc.normalise_names("D Le Bihan")[0] == "D {Le Bihan}"
+    rec = check4(bib, "VogtEtal14")
+    assert rec["final_entry"]["author"] == "D Vogt and A B Fox and B A L {Di Leone}"
+    assert "surname_single_source" not in codes(rec) and "author" not in rec["held"]
+    # negative controls: a first-token 'Van' is a given name; a real respelling is held and
+    # keeps the cited name in house form, never 'B A L D Leone'
+    assert pc.normalise_names("Van Morrison")[0] == "V Morrison"
+    row = copy.deepcopy(ROWS4["VogtEtal14"])
+    row["fields"]["author"]["value"] = "D Vogt and A B Fox and B A L {Di Leoni}"
+    rec = check4(bib, "VogtEtal14", row)
+    assert "surname_single_source" in codes(rec)
+    assert pc.split_names(rec["final_entry"]["author"])[-1] == "B A L {Di Leone}"
+
+
+def test_researcher_remove_list_beats_journal_to_series(bib):
+    """NeweRose81 (@article -> @incollection; the JMP article does not exist): the
+    researcher removes journal, so it is never moved into series."""
+    rec = check4(bib, "NeweRose81")
+    assert "series" not in rec["final_entry"] and "journal" not in rec["final_entry"]
+    assert "researcher" in rec["removals"]["journal"]
+    row = copy.deepcopy(ROWS4["NeweRose81"])  # negative control: journal not in the remove list
+    row["remove"] = [f for f in row["remove"] if f != "journal"]
+    assert check4(bib, "NeweRose81", row)["final_entry"]["series"] == "Journal of Mathematical Psychology"
+
+
+@pytest.mark.parametrize("key,doi", [
+    ("Mitc09", "10.1177/0269881108091592"),    # 'Book Review: <title> Michael First, ... Price: 50'
+    ("Waug63b", "10.1037/h0041501"),           # '2 methods' = 'Two methods'
+    ("WehnSrin81", "10.1007/bf00605445"),      # 'genusCataglyphis' glued by the registry
+])
+def test_correct_dois_kept_by_title_check(bib, key, doi):
+    rec = check4(bib, key)
+    assert changed(rec).get("doi") == doi and "doi_title_mismatch" not in codes(rec)
+
+
+def test_title_check_still_rejects_other_works():
+    two = "Two methods for testing serial memorization"
+    assert not pc.registry_title_matches("3 methods for testing serial memorization.", two)
+    assert not pc.registry_title_matches("Book Review: A guide to the diagnosis of sleep disorders Michael First",
+                                         "Clinical guide to the diagnosis and treatment of mental disorders")
+    assert not pc.registry_title_matches("Book Review: Functional mapping of human sensorimotor cortex II",
+                                         "Functional mapping of human sensorimotor cortex")
+    assert not pc.registry_title_matches("Searching behaviour of desert bees, genusApis (Apidae)",
+                                         "Searching behaviour of desert ants, genus \\textit{Cataglyphis} "
+                                         "({Formicidae}, {Hymenoptera})")
+    assert pc.fold("genus \\textit{Cataglyphis}") == "genus cataglyphis"
+
+
+def test_rate_limited_request_is_retried(tmp_path):
+    """A real local HTTP server answers 429 (Retry-After: 0) twice, then 200: http_get
+    retries and returns the 200. A server that always answers 429 gives 429 after the
+    retries, which is never cached (CeraHend65 and HaymTulv89 were held on 429 only)."""
+    import http.server
+    import threading
+    import uuid
+    calls = {"n": 0}
+
+    class Handler(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            calls["n"] += 1
+            limited = "always" in self.path or calls["n"] <= 2
+            self.send_response(429 if limited else 200)
+            if limited:
+                self.send_header("Retry-After", "0")
+            self.end_headers()
+            self.wfile.write(b'{"limited": true}' if limited else b'{"ok": true}')
+
+        def log_message(self, *args):
+            pass
+
+    server = http.server.HTTPServer(("127.0.0.1", 0), Handler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    base = f"http://127.0.0.1:{server.server_port}"
+    urls = [f"{base}/ok/{uuid.uuid4().hex}", f"{base}/always/{uuid.uuid4().hex}"]
+    try:
+        assert pc.http_get(urls[0]) == (200, '{"ok": true}') and calls["n"] == 3
+        calls["n"] = 0
+        status, _ = pc.http_get(urls[1], retries=2)
+        assert status == 429 and calls["n"] == 3
+        assert pc.http_get(urls[1], offline=True)[0] is None  # the 429 was not cached
+    finally:
+        server.shutdown()
+        for u in urls:
+            (pc.CACHE / (pc.hashlib.sha256(u.encode()).hexdigest() + ".json")).unlink(missing_ok=True)
+    assert pc.retry_wait("7", 0) == 7 and pc.retry_wait(None, 2) == pc.BACKOFF * 4
+    assert pc.retry_wait("100000", 0) == pc.MAX_WAIT
+
+
+@pytest.mark.parametrize("key,doi", [("CeraHend65", "10.1037/h0022247"),
+                                     ("HaymTulv89", "10.1037/0278-7393.15.5.941")])
+def test_dois_held_only_by_rate_limit_now_checked(bib, key, doi):
+    rec = check4(bib, key)
+    assert changed(rec).get("doi") == doi and "doi_title_unavailable" not in codes(rec)
+
+
+def test_run_together_surname_follows_house_form(bib):
+    """MillEtal07d: the journal prints 'denNijs'; cdl.bib writes the same author M {den Nijs}."""
+    rec = check4(bib, "MillEtal07d")
+    assert "M {den Nijs}" in pc.split_names(rec["final_entry"]["author"])
+    # negative controls: another initial, a spaced form, and a name cdl.bib has no spaced form for
+    assert pc.house_surname("Q {denNijs}", bib)[0] == "Q {denNijs}"
+    assert pc.house_surname("M {den Nijs}", bib)[0] == "M {den Nijs}"
+    assert pc.house_surname("K J Miller", bib)[0] == "K J Miller"
+
+
+def test_hyphenated_journal_keeps_its_suffix(bib):
+    """LachEtal03: 'Journal of Physiology-Paris' is not 'Journal of Physiology'."""
+    assert check4(bib, "LachEtal03")["final_entry"]["journal"] == "Journal of Physiology-Paris"
+    assert pc.H.format_journal_name("Journal of Physiology") == "Journal of Physiology"
+
+
+# ---------------------------------------------------------------- wave-5 review regressions
+
+WAVE5 = ROOT / "verification/research-2026-09-25/wave5"
+ROWS5, REVIEW5, VALIDATION5 = load_wave(WAVE5)
+
+
+def check5(bib, key, row=None, review=False):
+    row = row or ROWS5[key]
+    return pc.check_entry(row, bib.get(key), bib, ctx_for(bib),
+                          review=REVIEW5.get(key) if review else None, validation=VALIDATION5.get(key))
+
+
+@pytest.mark.parametrize("key,doi", [
+    ("Eich04", "10.1016/j.neuron.2004.08.028"),          # registry: 'Hippocampus'
+    ("SaliThie00", "10.1016/s0896-6273(00)00004-0"),    # 'Gain Modulation'
+    ("ShadMovs99", "10.1016/s0896-6273(00)80822-3"),    # 'Synchrony Unbound'
+    ("WagnEtal01", "10.1016/s0896-6273(01)00359-2"),    # 'Recovering Meaning'
+    ("Turi50", "10.1093/mind/lix.236.433"),             # 'I.—COMPUTING MACHINERY AND INTELLIGENCE'
+    ("ChabEtal98", "10.1007/bfb0056189"),               # Crossref typo 'padiatric'
+])
+def test_wave5_correct_dois_kept(bib, key, doi):
+    rec = check5(bib, key)
+    assert changed(rec).get("doi") == doi and "doi_title_mismatch" not in codes(rec)
+
+
+def test_precolon_title_needs_volume_or_page():
+    entry = ["Hippocampus: cognitive processes and neural representations that underlie declarative memory"]
+    rec = {"title": "Hippocampus", "volume": "44", "page": "109-120"}
+    assert pc.doi_title_verdict(rec, entry, "44", "109--120")[0] == "match"
+    assert pc.doi_title_verdict(dict(rec, volume="7", page="1-9"), entry, "44", "109--120")[0] == "short"
+    assert pc.doi_title_verdict(rec, ["Hippocampus and memory"], "44", "109--120")[0] is None
+
+
+def test_section_numeral_and_typo_tolerance_are_narrow():
+    assert pc.registry_title_matches("I.—COMPUTING MACHINERY AND INTELLIGENCE", "Computing machinery and intelligence")
+    assert not pc.registry_title_matches("I.—COMPUTING MACHINERY AND INTELLIGENCE", "Computing machinery and wisdom")
+    assert pc.one_edit("padiatric", "pediatric") and not pc.one_edit("memory", "memoir")
+    # two misspelled words are not one typo
+    assert not pc.registry_title_matches("Three-dimensional reconstruction and surgical navigation in padiatric epilepsi",
+                                         "Three-dimensional reconstruction and surgical navigation in pediatric epilepsy")
+
+
+def test_part_number_guard_is_live(bib):
+    """The bare titles_match alternative used to bypass the part-number rule. JacoEtal98
+    ('Virtual Space {II}', Crossref 'Place Learning in Virtual Space') is kept only because
+    the record's first page is the entry's; without that the DOI is held."""
+    rec = check5(bib, "JacoEtal98")
+    assert any(f["code"] == "doi_title_part_number" and f["action"] == "applied" for f in rec["flags"])
+    entry = [bib["JacoEtal98"]["title"]]
+    assert pc.doi_title_verdict({"title": "Place Learning in Virtual Space", "page": "1-20"},
+                                entry, None, "288--308")[0] == "part_number"
+    assert pc.doi_title_verdict({"title": "Functional mapping of human sensorimotor cortex II"},
+                                ["Functional mapping of human sensorimotor cortex"])[0] == "part_number"
+
+
+@pytest.mark.parametrize("key,name", [("VanEEtal01", "J Dickson"), ("ToluEtal12", "J-P Changeux")])
+def test_doi_record_counts_as_second_surname_host(bib, key, name):
+    rec = check5(bib, key)
+    assert name in pc.split_names(rec["final_entry"]["author"]) and "surname_single_source" not in codes(rec)
+    row = copy.deepcopy(ROWS5[key])  # negative control: without the DOI record, one host: held
+    row["fields"] = {k: v for k, v in row["fields"].items() if k.lower() != "doi"}
+    current = dict(bib[key])
+    current.pop("doi", None)
+    rec = pc.check_entry(row, current, bib, ctx_for(bib), validation=VALIDATION5.get(key))
+    assert "surname_single_source" in codes(rec) and name not in pc.split_names(rec["final_entry"]["author"])
+
+
+@pytest.mark.parametrize("key,name", [("KrauEtal13", "R J Robinson"), ("ChamEtal03", "A A Artigas"),
+                                      ("WagnEtal01", "E J Paré-Blagoev")])
+def test_format_damage_is_not_a_respelling(bib, key, name):
+    """A mangled suffix ('{Robinson I I }'), a broken split ('{and Artigas}') and a
+    restored accented letter ('Par-Blagoev') are not surname respellings."""
+    row = copy.deepcopy(ROWS5[key])
+    row["fields"] = {k: v for k, v in row["fields"].items() if k.lower() != "doi"}  # no registry host
+    rec = check5(bib, key, row)
+    assert name in pc.split_names(rec["final_entry"]["author"]) and "surname_single_source" not in codes(rec)
+
+
+def test_format_damage_helpers():
+    assert pc.surname_key("R J {Robinson I I }") == "robinson"
+    assert pc.surname_key("A A {and Artigas}") == "artigas"
+    assert pc.surname_without_accented("E J Par{\\'e}-Blagoev") == "par blagoev"
+    assert pc.surname_without_accented("E J Pare-Blagoev") == "pare blagoev"  # a plain letter is a spelling
+    assert pc.surname_key("R J Robertson") == "robertson"

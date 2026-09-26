@@ -613,7 +613,14 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
         # articles whose sources use the unprefixed journal title.
         "brain research reviews",
     }
-    if (n.lower() not in preserve_identity and n.lower() in key.keys()) and (type(key[n.lower()]) == str):
+    # An alias that only cuts a hyphenated suffix ("journal of physiology-paris" ->
+    # "journal of physiology") names a different journal, not a spelling variant of
+    # the same one (LachEtal03); the name is formatted as given instead.
+    alias = key.get(n.lower()) if isinstance(key.get(n.lower()), str) else None
+    cuts_suffix = alias is not None and re.fullmatch(
+        re.escape(alias.lower()) + r"-\w[\w ]*", n.lower()) is not None
+    if (n.lower() not in preserve_identity and n.lower() in key.keys()) and (type(key[n.lower()]) == str) \
+            and not cuts_suffix:
         n = key[n.lower()]
         as_given = n.split(" ")
     else:

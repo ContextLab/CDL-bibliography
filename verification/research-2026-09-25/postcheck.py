@@ -44,6 +44,9 @@ CACHE = ROOT / ".bibcheck/research-postcheck"
 SSL = ssl.create_default_context(cafile=certifi.where())
 UA = "CDL-bibliography research post-check (https://github.com/ContextLab/CDL-bibliography)"
 PACE = 0.4  # seconds between network requests
+RETRIES = 4  # retries of a rate-limited request (HTTP 429/503) before giving up
+BACKOFF = 5.0  # seconds before the first retry when the server sends no Retry-After
+MAX_WAIT = 120.0  # longest single wait, whatever Retry-After asks for
 
 _cwd = os.getcwd()
 sys.path.insert(0, str(ROOT / "bibcheck"))
@@ -122,6 +125,8 @@ def delatex(text):
     text = re.sub(r"\\([cvuHkr])\s*\{([A-Za-z])\}",
                   lambda m: unicodedata.normalize("NFC", m[2] + ACCENTS[m[1]]), text)
     text = re.sub(r"(\d+)\\textsuperscript\{([a-z]+)\}", r"\1\2", text)
+    # font commands keep their text: 'genus \textit{Cataglyphis}' -> 'genus Cataglyphis'
+    text = re.sub(r"\\(?:textit|emph|textbf|textsc|textsl|textup|textrm|mathit|mathrm|it|em|bf)\b\s*", "", text)
     for macro, letter in SPECIAL.items():
         text = re.sub(r"\{\\" + macro + r"\}", letter, text)
         text = re.sub(r"\\" + macro + r"(?![A-Za-z])\s?", letter, text)
@@ -190,18 +195,156 @@ def footnote_appended(a, b):
     return not rest or rest[0] in "*\u2020\u2021\u00a7\u00b6"
 
 
+NUMBER_WORDS = {w: str(i) for i, w in enumerate(
+    "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen "
+    "sixteen seventeen eighteen nineteen twenty".split())}
+BOOK_REVIEW = re.compile(r"^\s*(?:book\s+reviews?|reviews?\s+of)\s*[:.\-\u2013\u2014]?\s+", re.I)
+
+
+def fold_numbers(text):
+    """fold() with number words as digits: Crossref's '2 methods' is 'Two methods'."""
+    return " ".join(NUMBER_WORDS.get(w, w) for w in fold(text).split())
+
+
+def unglue(text):
+    """Split a word glued to a following capitalised word, as registries print an
+    italic name without its space ('genus<i>Cataglyphis</i>' -> 'genusCataglyphis')."""
+    return re.sub(r"(?<=[a-z])(?=[A-Z][a-z])", " ", str(text or ""))
+
+
+def book_review_of(record_title, entry_title):
+    """The record is a review of the entry's title: 'Book Review: <title> <book's
+    authors, publisher, price>' (Mitc09). The entry title (three words or more) must
+    start the rest, and the next word must not be a part number."""
+    m = BOOK_REVIEW.match(record_title or "")
+    if not m:
+        return False
+    rest, entry = fold_numbers(record_title[m.end():]), fold_numbers(entry_title)
+    if len(entry.split()) < 3:
+        return False
+    if rest == entry:
+        return True
+    return rest.startswith(entry + " ") and not NUMERAL.match(rest[len(entry) + 1:].split()[0])
+
+
+SECTION_NUMERAL = re.compile(r"^\s*(?:[IVXLC]+|\d+)\.\s*[\u2014\u2013-]*\s*")
+
+
+def one_edit(a, b):
+    """a and b differ by exactly one substituted, inserted or deleted letter."""
+    if a == b or abs(len(a) - len(b)) > 1:
+        return False
+    if len(a) > len(b):
+        a, b = b, a
+    i = 0
+    while i < len(a) and a[i] == b[i]:
+        i += 1
+    return a[i + (len(a) == len(b)):] == b[i + 1:]
+
+
+def typo_overlap(rec, entry):
+    """Word-set overlap (Jaccard) of two folded titles where a registry word that is
+    one letter from an entry word of five or more letters counts as that word
+    (ChabEtal98: Crossref 'padiatric' for 'pediatric'). One such typo at most: with
+    two or more the plain overlap is returned. Numbers never count."""
+    ra, eb = set(rec.split()), set(entry.split())
+    fixed, typos = set(), 0
+    for w in ra:
+        if w in eb or len(w) < 5 or not w.isalpha():
+            fixed.add(w)
+            continue
+        near = [e for e in eb if len(e) >= 5 and e.isalpha() and one_edit(w, e)]
+        typos += len(near) == 1
+        fixed.add(near[0] if len(near) == 1 else w)
+    if typos > 1:
+        fixed = ra
+    return len(fixed & eb) / len(fixed | eb)
+
+
 def registry_title_matches(record_title, entry_title):
     """A DOI record title that is the entry's title.
 
     Accepted: the record is the entry's title with a footnote appended (Crossref
-    appends '11The percentage of nights...' to WoodEtal00b's title), or the titles
-    match (titles_match) and carry the same part numbers ('... cortex II' is a
-    different work from '... cortex'). A generic record title ('Correspondence')
-    never matches."""
-    if footnote_appended(record_title, entry_title):
+    appends '11The percentage of nights...' to WoodEtal00b's title); the record is a
+    book review of the entry's title (Mitc09); or the titles match (titles_match) and
+    carry the same part numbers ('... cortex II' is a different work from
+    '... cortex'), comparing number words as digits (Waug63b: '2 methods' = 'Two
+    methods') and splitting words the registry glued together (WehnSrin81:
+    'genusCataglyphis'). A generic record title ('Correspondence') never matches."""
+    if footnote_appended(record_title, entry_title) or book_review_of(record_title, entry_title):
         return True
-    numerals = lambda t: {w for w in fold(t).split() if NUMERAL.match(w)}
-    return numerals(record_title) == numerals(entry_title) and titles_match(record_title, entry_title)
+    numerals = lambda t: {w for w in t.split() if NUMERAL.match(w)}
+    entry = fold_numbers(entry_title)
+    for variant in record_variants(record_title, entry_title):
+        rec = fold_numbers(variant)
+        if numerals(rec) == numerals(entry) and (titles_match(rec, entry) or typo_overlap(rec, entry) >= 0.85):
+            return True
+    return False
+
+
+def record_variants(record_title, entry_title):
+    """The registry title as deposited, with glued words split, and without a leading
+    section numeral ('I.\u2014COMPUTING MACHINERY AND INTELLIGENCE', Turi50) unless the
+    entry's title starts with one too."""
+    out = [record_title, unglue(record_title)]
+    if SECTION_NUMERAL.match(record_title or "") and not SECTION_NUMERAL.match(entry_title or ""):
+        out += [SECTION_NUMERAL.sub("", v, count=1) for v in list(out)]
+    return list(dict.fromkeys(out))
+
+
+def main_title(title):
+    """The text before the first colon outside braces ('Hippocampus' of
+    'Hippocampus: cognitive processes ...'), or None without a colon."""
+    depth = 0
+    for i, ch in enumerate(title or ""):
+        depth += (ch == "{") - (ch == "}")
+        if ch == ":" and depth == 0:
+            return title[:i]
+    return None
+
+
+def first_page(pages):
+    m = re.match(r"\s*([A-Za-z]?\d+)", str(pages or ""))
+    return m[1] if m else None
+
+
+def doi_title_verdict(rec, cands, volume=None, pages=None):
+    """How a DOI record's title relates to the entry: ('match', why), ('part_number', why)
+    when the titles agree except for part numbers (a different part of a series or a
+    registry that left the number out: held for the user, JacoEtal98), ('short', why)
+    when the registry holds only the entry's pre-colon main title but neither volume
+    nor first page corroborates it, or (None, '') when the record is another work.
+
+    A registry title that is exactly the entry's pre-colon main title (Elsevier/Cell
+    deposit 'Hippocampus', 'Gain Modulation': Eich04, SaliThie00, ShadMovs99,
+    WagnEtal01) matches when the record's volume or first page equals the entry's."""
+    rec_title = re.sub(r"(?i)^chapter\s+(?:\d+|[ivxlc]+)\.?[:.]?\s+", "", rec["title"])
+    record_title = rec_title + (": " + rec["subtitle"] if rec.get("subtitle") else "")
+    for c in cands:
+        for t in dict.fromkeys((record_title, rec_title)):
+            if registry_title_matches(t, c):
+                return "match", "title"
+    short = None
+    for c in cands:
+        main = main_title(c)
+        if main and any(fold_numbers(v) == fold_numbers(main) for v in record_variants(rec_title, main)):
+            vol_ok = bool(rec.get("volume") and volume and str(rec["volume"]).strip() == str(volume).strip())
+            page_ok = bool(first_page(rec.get("page")) and first_page(rec.get("page")) == first_page(pages))
+            if vol_ok or page_ok:
+                return "match", "pre-colon main title, " + ("volume" if vol_ok else "first page") + " agrees"
+            short = ("short", f"registry title is the pre-colon main title {main!r} of the entry, but neither "
+                              "volume nor first page corroborates it")
+    if short:
+        return short
+    page_ok = bool(first_page(rec.get("page")) and first_page(rec.get("page")) == first_page(pages))
+    for c in cands:
+        for t in dict.fromkeys((record_title, rec_title)):
+            if any(titles_match(fold_numbers(v), fold_numbers(c)) for v in record_variants(t, c)):
+                if page_ok:  # both parts of a series share the registry title (DamiEtal99a/b)
+                    return "part_number_page", (f"titles agree except for part numbers ({t!r} vs {c!r}); "
+                                                "the record's first page is the entry's")
+                return "part_number", f"titles agree except for part numbers ({t!r} vs {c!r})"
+    return None, ""
 
 
 def braced(text):
@@ -226,8 +369,29 @@ def guarded(original, formatted):
 _last = [0.0]
 
 
-def http_get(url, offline=False):
-    """(status, body) for a GET, cached on disk; status 0 = network failure."""
+def retry_wait(retry_after, attempt):
+    """Seconds to wait before retry number `attempt` (0-based) of a rate-limited
+    request: the server's Retry-After (seconds or an HTTP date) when given, else
+    exponential backoff; never more than MAX_WAIT."""
+    wait = None
+    if retry_after:
+        try:
+            wait = float(retry_after)
+        except ValueError:
+            try:
+                from email.utils import parsedate_to_datetime
+                wait = parsedate_to_datetime(retry_after).timestamp() - time.time()
+            except (TypeError, ValueError):
+                wait = None
+    if wait is None:
+        wait = BACKOFF * 2 ** attempt
+    return min(max(wait, 0.0), MAX_WAIT)
+
+
+def http_get(url, offline=False, retries=None):
+    """(status, body) for a GET, cached on disk; status 0 = network failure. A
+    rate-limited answer (429, 503) is retried up to `retries` times (default RETRIES),
+    honouring Retry-After, before it is returned (and never cached)."""
     CACHE.mkdir(parents=True, exist_ok=True)
     path = CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".json")
     if path.exists():
@@ -235,19 +399,26 @@ def http_get(url, offline=False):
         return cached["status"], cached["body"]
     if offline:
         return None, "offline: not cached"
-    wait = PACE - (time.time() - _last[0])
-    if wait > 0:
-        time.sleep(wait)
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
-    try:
-        with urllib.request.urlopen(req, timeout=60, context=SSL) as resp:
-            status, body = resp.status, resp.read().decode("utf-8", "replace")
-    except urllib.error.HTTPError as err:
-        status, body = err.code, err.read().decode("utf-8", "replace")
-    except (urllib.error.URLError, TimeoutError, OSError) as err:
+    retries = RETRIES if retries is None else retries
+    for attempt in range(retries + 1):
+        wait = PACE - (time.time() - _last[0])
+        if wait > 0:
+            time.sleep(wait)
+        req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
+        retry_after = None
+        try:
+            with urllib.request.urlopen(req, timeout=60, context=SSL) as resp:
+                status, body = resp.status, resp.read().decode("utf-8", "replace")
+        except urllib.error.HTTPError as err:
+            status, body = err.code, err.read().decode("utf-8", "replace")
+            retry_after = err.headers.get("Retry-After") if err.headers else None
+        except (urllib.error.URLError, TimeoutError, OSError) as err:
+            _last[0] = time.time()
+            return 0, f"network error: {err}"
         _last[0] = time.time()
-        return 0, f"network error: {err}"
-    _last[0] = time.time()
+        if status not in (429, 503) or attempt == retries:
+            break
+        time.sleep(retry_wait(retry_after, attempt))
     if status in (200, 404) or (status == 400 and "handles" in url):
         path.write_text(json.dumps({"url": url, "status": status, "body": body}))
     return status, body
@@ -311,6 +482,8 @@ def doi_record(doi, offline=False):
                 "issued_year": date_year(msg, "issued"),
                 "page": msg.get("page"), "volume": msg.get("volume"),
                 "issue": msg.get("issue"), "type": msg.get("type"),
+                "authors": [" ".join(x for x in (a.get("given"), a.get("family") or a.get("name")) if x)
+                            for a in msg.get("author") or []],
             })
         else:
             out["error"] = f"Crossref record unavailable: HTTP {status}"
@@ -320,6 +493,8 @@ def doi_record(doi, offline=False):
             attrs = json.loads(body)["data"]["attributes"]
             titles = attrs.get("titles") or [{}]
             out.update({"title": titles[0].get("title"),
+                        "authors": [c.get("name") or " ".join(x for x in (c.get("givenName"), c.get("familyName")) if x)
+                                    for c in attrs.get("creators") or []],
                         "issued_year": str(attrs.get("publicationYear") or "") or None,
                         "type": (attrs.get("types") or {}).get("resourceTypeGeneral")})
         else:
@@ -482,6 +657,18 @@ def normalise_name(name):
         if t.lower() in H.prefixes and t == t.lower():
             start = i
             break
+    else:
+        # a capitalised particle after the initials starts a compound surname, braced
+        # as cdl.bib writes it: 'B A L Di Leone' -> 'B A L {Di Leone}' (VogtEtal14),
+        # never the initial 'D'
+        for i, t in enumerate(tokens[:-1]):
+            if i and t.lower() in CAP_PARTICLES and t[:1].isupper() and all(is_initial(g) for g in tokens[:i]):
+                start = i
+                if "\\" not in " ".join(tokens[i:]):
+                    family = "{" + " ".join(tokens[i:]).replace("{", "").replace("}", "") + "}"
+                    notes.append(f"particle surname braced: {' '.join(tokens[i:])!r} -> {family!r}")
+                    tokens = tokens[:i] + [family]
+                break
     given, family = tokens[:start], tokens[start:]
     new_given = []
     for t in given:
@@ -498,6 +685,10 @@ def normalise_name(name):
     except ValueError as err:
         return original, [f"house formatter could not parse {original!r}: {err}"]
     return name, notes if name != original else []
+
+
+CAP_PARTICLES = {"de", "da", "di", "du", "des", "del", "della", "der", "den", "van", "von", "la", "le", "dos",
+                 "das", "dei", "ten", "ter"}
 
 
 def normalise_names(value):
@@ -519,6 +710,66 @@ def surname(name):
             start = i
             break
     return " ".join(tokens[start:])
+
+
+def surname_key(name):
+    """Folded surname for the respelling test, without format damage that is not a
+    spelling: a suffix, also mangled ('{Robinson I I }', KrauEtal13), and a leading
+    'and' left by a broken name split ('A A {and Artigas}', ChamEtal03)."""
+    f = fold(SUFFIX_RE.sub(r"\1", surname(name)))
+    f = re.sub(r"^and\s+", "", f)
+    return re.sub(r"(?:\s+(?:jr|sr|i|ii|iii|iv|2nd|3rd))+$", "", f)
+
+
+def surname_without_accented(name):
+    """Folded surname with every accented letter left out, so a restored accented
+    letter ('Par-Blagoev' -> 'Par{\\'e}-Blagoev', WagnEtal01) compares equal."""
+    t = unicodedata.normalize("NFC", delatex(html.unescape(surname(name))))
+    return fold("".join(c for c in t if c.isascii()))
+
+
+_HOUSE_SURNAMES = {}
+
+
+def house_surname_forms(bib):
+    """{(first initial, surname letters): {surname form: count}} over the author and
+    editor fields of cdl.bib, for names written with a space or particle."""
+    cached = _HOUSE_SURNAMES.get(id(bib))
+    if cached and cached[0] is bib:
+        return cached[1]
+    forms = {}
+    for e in bib.values():
+        for field in NAME_FIELDS:
+            for n in split_names(e.get(field, "")):
+                fam, giv = surname(n), given_part(n)
+                if not giv or " " not in fold(fam):
+                    continue
+                k = (fold(giv)[:1], fold(fam).replace(" ", ""))
+                forms.setdefault(k, {}).setdefault(fam, 0)
+                forms[k][fam] += 1
+    _HOUSE_SURNAMES[id(bib)] = (bib, forms)
+    return forms
+
+
+def house_surname(name, bib, exclude=None):
+    """A run-together surname ('M {denNijs}', MillEtal07d) in the form cdl.bib already
+    writes for the same author ('M {den Nijs}', five entries): same first initial, the
+    same letters, and a spaced form used at least twice (entries other than `exclude`).
+    Returns (name, note) or (name, None)."""
+    fam, giv = surname(name), given_part(name)
+    if not giv or " " in fold(fam) or not fold(fam):
+        return name, None
+    forms = house_surname_forms(bib).get((fold(giv)[:1], fold(fam).replace(" ", "")), {})
+    if exclude is not None:
+        forms = dict(forms)
+        for n in split_names((exclude or {}).get("author", "")) + split_names((exclude or {}).get("editor", "")):
+            if surname(n) in forms:
+                forms[surname(n)] -= 1
+    best = sorted(((c, f) for f, c in forms.items() if c >= 2), reverse=True)
+    if not best or (len(best) > 1 and best[0][0] == best[1][0]):
+        return name, None
+    new = f"{giv} {best[0][1]}"
+    return new, f"surname {fam!r} -> {best[0][1]!r} as cdl.bib writes it ({best[0][0]} entries)"
 
 
 def given_part(name):
@@ -1025,19 +1276,38 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
             flag(flags, "doi_title_unavailable", "doi",
                  f"{doi}: {rec.get('error') or 'the registry record has no title'}; held", "held")
         else:
-            rec_title = re.sub(r"(?i)^chapter\s+(?:\d+|[ivxlc]+)\.?[:.]?\s+", "", rec["title"])
-            record_title = rec_title + (": " + rec["subtitle"] if rec.get("subtitle") else "")
+            record_title = rec["title"] + (": " + rec["subtitle"] if rec.get("subtitle") else "")
             cands = [c for c in ((applied.get("title") or {}).get("value"), current.get("title"),
                                  (applied.get("chapter") or {}).get("value"), current.get("chapter"),
                                  (applied.get("booktitle") or {}).get("value"), current.get("booktitle"))
                      if c]
-            if not any(titles_match(record_title, c) or registry_title_matches(rec_title, c) for c in cands):
+            title_verdict, why = doi_title_verdict(
+                rec, cands, (applied.get("volume") or {}).get("value") or current.get("volume"),
+                (applied.get("pages") or {}).get("value") or current.get("pages"))
+            rv_doi = str(((review or {}).get("field_verdicts") or {}).get("doi") or "")
+            confirmed = applied["doi"]["source"] == "reviewer" or reviewer_confirms(rv_doi) \
+                or "but correct" in rv_doi.lower()
+            if title_verdict in ("part_number", "short") and not confirmed:
+                del applied["doi"]
+                held["doi"] = why
+                flag(flags, "doi_title_part_number" if title_verdict == "part_number" else "doi_title_short", "doi",
+                     f"{doi} is registered to {record_title!r} ({rec.get('ra')}): {why}; held", "held")
+            elif title_verdict is None:
                 del applied["doi"]
                 flag(flags, "doi_title_mismatch", "doi",
                      f"{doi} is registered to {record_title!r} ({rec.get('ra')}), not this entry's title; "
                      "DOI change dropped", "dropped")
             else:
+                if title_verdict == "part_number_page":
+                    flag(flags, "doi_title_part_number", "doi",
+                         f"{doi} is registered to {record_title!r}: {why}; applied", "applied")
+                elif title_verdict != "match":
+                    flag(flags, "doi_title_part_number" if title_verdict == "part_number" else "doi_title_short",
+                         "doi", f"{doi} is registered to {record_title!r}: {why}; applied: the reviewer "
+                                f"confirms the DOI ({rv_doi or 'reviewer value'})", "applied")
                 rec_pages = re.sub(r"(?<!-)[-–](?!-)", "--", rec["page"]) if rec.get("page") else None
+                if rec_pages and re.fullmatch(r"(\w+)--\1", rec_pages):
+                    rec_pages = rec_pages.split("--")[0]  # a one-page item deposited as '1005-1005' (Mitc09)
                 pages = (applied.get("pages") or {}).get("value") or current.get("pages")
                 if rec_pages and pages and rec_pages != pages:
                     flag(flags, "doi_record_conflict", "pages",
@@ -1130,11 +1400,15 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
 
     # a chapter or proceedings paper has no journal: drop it, or move it to the
     # booktitle (none yet) or series (a book series given as the journal)
+    researcher_removes = {field_name(n) for n in row.get("remove") or []}
     if final.get("ENTRYTYPE") in CONTAINED_TYPES and final.get("journal"):
         journal = final["journal"]
         bt, series = final.get("booktitle", ""), final.get("series", "")
         fj, fbt = fold(journal), fold(bt)
-        if not bt:
+        removed = "journal" in researcher_removes  # the researcher's remove list wins over a move (NeweRose81)
+        if not bt and removed:
+            why = "the researcher asked to remove it; not moved to booktitle"
+        elif not bt:
             set_norm("booktitle", journal, [f"@{final['ENTRYTYPE']}: journal {journal!r} moved to booktitle"])
             why = "moved to booktitle"
         elif fbt == fj or fbt.startswith(fj + " ") or (series and fold(series) == fj):
@@ -1149,6 +1423,8 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                     removals["volume"] = f"series number already in the booktitle {bt!r}"
         elif same_venue(journal, bt):
             why = f"names the same venue as the booktitle {bt!r}"
+        elif not series and removed:
+            why = "the researcher asked to remove it; not moved to series"
         elif not series:
             set_norm("series", journal, [f"@{final['ENTRYTYPE']}: journal {journal!r} is a book series; moved to series"])
             why = "moved to series"
@@ -1168,28 +1444,51 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
             for b in bad:
                 flag(flags, "name_unparsed", name, b)
             set_norm(name, new, [n for n in notes if n not in bad])
+            names_, house_notes = [], []
+            for n in split_names(applied[name]["value"]):
+                hn, note = house_surname(n, bib, exclude=current)
+                names_.append(hn)
+                if note:
+                    house_notes.append(note)
+            set_norm(name, " and ".join(names_), house_notes)
 
     # single-source surname change: a new surname that respells a cited one is held,
     # i.e. that author keeps the cited name, unless the reviewer confirms the author
     if "author" in applied and applied["author"]["source"] == "researcher" and current.get("author"):
-        strip = lambda n: fold(SUFFIX_RE.sub(r"\1", surname(n)))
-        old = {strip(n): n for n in split_names(current["author"]) if n != "others"}
+        strip = surname_key
+        old = {}
+        for n in split_names(current["author"]):
+            if n != "others":
+                old.setdefault(strip(n), n)
+                old.setdefault(strip(normalise_name(n)[0]), n)  # 'B A L Di Leone' = 'B A L {Di Leone}'
+        old_noacc = {fold(o).replace(" ", "") for o in old}
         ev = (fields.get("author") or {}).get("evidence") or []
+        # the DOI record the post-check fetched (and kept) is a source host too
+        reg = doi_status if doi_status and "doi" in applied else None
+        reg_names = fold(" ".join(reg.get("authors") or [])).split() if reg else []
+        reg_host = {"Crossref": "api.crossref.org", "DataCite": "api.datacite.org"}.get((reg or {}).get("ra"), "doi record")
         rv_author = ((review or {}).get("field_verdicts") or {}).get("author")
         release = bool(review) and reviewer_confirms(rv_author)
         out, kept, released = [], [], []
-        for n in split_names(final["author"]):
+        cited_list = [n for n in split_names(current["author"])]
+        for pos, n in enumerate(split_names(final["author"])):
             new = strip(n)
+            if cited_list and cited_list[-1] == "others" and pos >= len(cited_list) - 1:
+                out.append(n)  # expands the cited 'and others': an added author (YangEtal24)
+                continue
             if not new or new in old or n == "others":
                 out.append(n)
                 continue
             near = sorted(((difflib.SequenceMatcher(None, o, new).ratio(), o) for o in old if o), reverse=True)
             near = [o for r, o in near if r >= 0.75]
-            if not near or any(o.replace(" ", "") == new.replace(" ", "") for o in near):
-                out.append(n)  # an added or reordered author, or a brace/spacing fix, not a respelling
+            if not near or any(o.replace(" ", "") == new.replace(" ", "") for o in near) \
+                    or surname_without_accented(n).replace(" ", "") in old_noacc:
+                out.append(n)  # an added or reordered author, a brace/spacing fix, or a restored accent
                 continue
             last = new.split()[-1]
             hosts = {urlparse(e.get("url", "")).netloc for e in ev if last in fold(e.get("quote", "")).split()}
+            if last in reg_names:
+                hosts.add(reg_host)
             if len(hosts) >= 2:
                 out.append(n)
                 continue
@@ -1201,7 +1500,11 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                 out.append(n)
                 released.append(n)
             else:
-                cited = normalise_name(old[near[0]])[0]  # the whole cited name, house format
+                # the whole cited name, house format; of several cited authors with that
+                # surname (YangEtal24's Yangs), the one at the same position
+                same = [c for c in cited_list if near[0] in (strip(c), strip(normalise_name(c)[0]))]
+                pick = cited_list[pos] if pos < len(cited_list) and cited_list[pos] in same else old[near[0]]
+                cited = normalise_name(pick)[0]
                 flag(flags, "surname_single_source", "author",
                      detail + f"; held: the cited name {cited!r} is kept", "held")
                 out.append(cited)

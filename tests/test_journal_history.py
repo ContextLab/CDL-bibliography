@@ -33,11 +33,23 @@ def test_history_proposal_changes_only_the_incorrect_successor_title(entry, reco
     "Journal of Experimental Psychology Monograph", "Journal of Experimental Psychology Monograph Supplement",
     "The Quarterly Journal of Experimental Psychology Section A",
     "The Quarterly Journal of Experimental Psychology: Section A",
+    "Journal of Physiology-Paris",
 ])
 def test_formatter_preserves_publication_identity(title):
     from helpers import format_journal_name
     assert normalize_journal(format_journal_name(title)) == normalize_journal(title)
     assert format_journal_name(format_journal_name(title)) == format_journal_name(title)
+
+
+def test_alias_cutting_a_hyphenated_suffix_is_not_applied():
+    """journal_key maps 'journal of physiology-paris' to 'journal of physiology', a
+    different journal (LachEtal03, wave-4 review). Other aliases still apply."""
+    from helpers import format_journal_name
+    assert format_journal_name("Journal of Physiology-Paris") == "Journal of Physiology-Paris"
+    assert format_journal_name("Journal of Physiology") == "Journal of Physiology"
+    # negative control: a hyphen alias that re-punctuates the same journal still applies
+    assert format_journal_name("Journal of Experimental Psychology-General") == \
+        "Journal of Experimental Psychology: General"
 
 
 @pytest.mark.parametrize("bad", ["future", "too_old", "future_volume", "wrong_issn", "pages", "title", "hold", "notice", "ambiguous"])
