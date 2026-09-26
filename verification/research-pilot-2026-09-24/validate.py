@@ -54,6 +54,8 @@ def delatex(text):
     text = re.sub(r"\\([cvuHkr])\s*\{([A-Za-z])\}", repl, text)
     text = re.sub(r"\\([cvuHkr]) ([A-Za-z])", repl, text)
     text = re.sub(r"(\d+)\\textsuperscript\{([a-z]+)\}", r"\1\2", text)  # 30\textsuperscript{th} -> 30th
+    # Text-style commands keep their content: \textit{Drosophila} -> Drosophila.
+    text = re.sub(r"\\(?:textit|emph|textbf|textsc|textrm|textsf|texttt|mathrm|mathit|mbox)\s*\{([^{}]*)\}", r"\1", text)
     for macro, letter in SPECIAL.items():  # {\l}, \o, \ss ... -> ł, ø, ß
         text = re.sub(r"\{\\" + macro + r"\}", letter, text)
         text = re.sub(r"\\" + macro + r"(?![A-Za-z])\s?", letter, text)
