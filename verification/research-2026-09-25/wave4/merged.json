@@ -24,7 +24,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15814011/",
       "quote": "10.1162/0898929053279469 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -36,7 +37,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15814011/",
       "quote": "IP  - 3"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -59,9 +61,27 @@
    "page": "530-541",
    "volume": "17",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Marcel C.M. Bastiaansen",
+    "Marieke van der Linden",
+    "Mariken ter Keurs",
+    "Ton Dijkstra",
+    "Peter Hagoort"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1162/0898929053279469: Journal of Cognitive Neuroscience 17(3) 530-541, 2005."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -147,7 +167,14 @@
    "page": "1106-1128",
    "volume": "33",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Claire H. C. Chang",
+    "Christina Lazaridi",
+    "Yaara Yeshurun",
+    "Kenneth A. Norman",
+    "Uri Hasson"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -175,7 +202,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18702577/",
       "quote": "10.1162/jocn.2009.21062 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -187,7 +215,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18702577/",
       "quote": "IP  - 5"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -199,7 +228,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18702577/",
       "quote": "PG  - 875-89"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -211,7 +241,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18702577/",
       "quote": "VI  - 21"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -223,7 +254,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18702577/",
       "quote": "DP  - 2009 May"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -260,9 +292,32 @@
    "page": "875-889",
    "volume": "21",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Michael X Cohen",
+    "Nikolai Axmacher",
+    "Doris Lenartz",
+    "Christian E. Elger",
+    "Volker Sturm",
+    "Thomas E. Schlaepfer"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree",
+    "year": "agree",
+    "key": "agree (CoheEtal08a -> CoheEtal09c; target free in HEAD)"
+   },
+   "problems": [
+    "Crossref 10.1162/jocn.2009.21062: Journal of Cognitive Neuroscience 21(5) 875-889, 2009."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -327,7 +382,12 @@
    "page": "390-402",
    "volume": "21",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Michael X Cohen",
+    "Christian E. Elger",
+    "Juergen Fell"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -412,7 +472,11 @@
    "page": "1439-1452",
    "volume": "18",
    "issue": "9",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Ian G. Dobbins",
+    "Sanghoon Han"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -442,7 +506,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15593272/",
       "quote": "Sara L Gonzalez Andino, Cristoph M Michel, Gregor Thut, Theodor Landis, Rolando Grave de Peralta"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -454,7 +519,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15593272/",
       "quote": "10.1002/hbm.20056 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -466,7 +532,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15593272/",
       "quote": "Human brain mapping"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -478,7 +545,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15593272/",
       "quote": "IP  - 1"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -501,9 +569,29 @@
    "page": "50-58",
    "volume": "24",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Sara L. Gonzalez Andino",
+    "Cristoph M. Michel",
+    "Gregor Thut",
+    "Theodor Landis",
+    "Rolando Grave de Peralta"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1002/hbm.20056: Human Brain Mapping 24(1) 50-58, 2005."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -566,7 +654,12 @@
    "page": "437-458",
    "volume": "11",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "François Guillem",
+    "Alain Rougier",
+    "Bernard Claverie"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -596,7 +689,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11506650/",
       "quote": "10.1162/089892900564091 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -608,7 +702,8 @@
       "url": "https://api.crossref.org/works/10.1162/089892900564091",
       "quote": "\"issue\":\"Supplement 2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -620,7 +715,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11506650/",
       "quote": "VI  - 12 Suppl 2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -643,9 +739,25 @@
    "page": "90-105",
    "volume": "12",
    "issue": "Supplement 2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Amishi P. Jha",
+    "Gregory McCarthy"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1162/089892900564091: Journal of Cognitive Neuroscience 12(Supplement 2) 90-105, 2000."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -672,7 +784,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11506653/",
       "quote": "C Marshuetz, E E Smith, J Jonides, J DeGutis, T L Chenevert"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -684,7 +797,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11506653/",
       "quote": "10.1162/08989290051137459 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -696,7 +810,8 @@
       "url": "https://api.crossref.org/works/10.1162/08989290051137459",
       "quote": "\"issue\":\"Supplement 2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -708,7 +823,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11506653/",
       "quote": "PG  - 130-44"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -720,7 +836,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11506653/",
       "quote": "DP  - 2000"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -752,9 +869,31 @@
    "page": "130-144",
    "volume": "12",
    "issue": "Supplement 2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Christy Marshuetz",
+    "Edward E. Smith",
+    "John Jonides",
+    "Joseph DeGutis",
+    "Thomas L. Chenevert"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "year": "agree",
+    "key": "agree (MarsEtal06 -> MarsEtal00; target free in HEAD)"
+   },
+   "problems": [
+    "Crossref 10.1162/08989290051137459: Journal of Cognitive Neuroscience 12(Supplement 2) 130-144, 2000."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -791,7 +930,11 @@
    "page": "1-18",
    "volume": null,
    "issue": null,
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Xiaoxi Qi",
+    "Marc N. Coutanche"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -890,7 +1033,12 @@
    "page": "1283-1291",
    "volume": "26",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Jefferson E. Roy",
+    "Timothy J. Buschman",
+    "Earl K. Miller"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -911,6 +1059,19 @@
   },
   "final_changes": [
    {
+    "field": "author",
+    "current": "M J Taylor and M Betty and R J Itier",
+    "proposed": "M J Taylor and M Batty and R J Itier",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15509388/",
+      "quote": "M J Taylor, M Batty, R J Itier"
+     }
+    ],
+    "reviewer": "agree (held only by the single-source rule; PubMed 15509388 and Crossref both print Batty)"
+   },
+   {
     "field": "doi",
     "current": null,
     "proposed": "10.1162/0898929042304732",
@@ -920,7 +1081,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15509388/",
       "quote": "10.1162/0898929042304732 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -932,7 +1094,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15509388/",
       "quote": "IP  - 8"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -944,7 +1107,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15509388/",
       "quote": "VI  - 16"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -953,14 +1117,7 @@
    "target_base": "TaylEtal04",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "surname_single_source",
-    "field": "author",
-    "detail": "surname 'betty' -> 'batty' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'M Betty' is kept",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1162/0898929042304732",
    "registered": true,
@@ -974,10 +1131,28 @@
    "page": "1426-1442",
    "volume": "16",
    "issue": "8",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "M. J. Taylor",
+    "M. Batty",
+    "R. J. Itier"
+   ]
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "volume": "agree",
+    "author": "agree (held only by the single-source rule; PubMed 15509388 and Crossref both print Batty)"
+   },
+   "problems": [
+    "Crossref 10.1162/0898929042304732: Journal of Cognitive Neuroscience 16(8) 1426-1442, 2004."
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
  },
  {
   "key": "WagnEtal00",
@@ -1002,7 +1177,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11506647/",
       "quote": "10.1162/089892900564064 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1014,7 +1190,8 @@
       "url": "https://api.crossref.org/works/10.1162/089892900564064",
       "quote": "\"issue\":\"Supplement 2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -1026,7 +1203,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11506647/",
       "quote": "PG  - 52-60"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -1038,7 +1216,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11506647/",
       "quote": "VI  - 12 Suppl 2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1061,9 +1240,27 @@
    "page": "52-60",
    "volume": "12",
    "issue": "Supplement 2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Anthony D. Wagner",
+    "Anat Maril",
+    "Daniel L. Schacter"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1162/089892900564064: Journal of Cognitive Neuroscience 12(Supplement 2) 52-60, 2000."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -1092,7 +1289,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11798388/",
       "quote": "Dráulio B de Araújo, Oswaldo Baffa, Ronald T Wakai"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -1104,7 +1302,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11798388/",
       "quote": "10.1162/089892902317205339 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1127,9 +1326,25 @@
    "page": "70-78",
    "volume": "14",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Dráulio B. de Araújo",
+    "Oswaldo Baffa",
+    "Ronald T. Wakai"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1162/089892902317205339: Journal of Cognitive Neuroscience 14(1) 70-78, 2002."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -1181,7 +1396,13 @@
    "page": "2132-2148",
    "volume": "33",
    "issue": "10",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Megan T. deBettencourt",
+    "Stephanie D. Williams",
+    "Edward K. Vogel",
+    "Edward Awh"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -1246,7 +1467,13 @@
    "page": "415-427",
    "volume": "282",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "G. B. Stanton",
+    "S.‐Y. Deng",
+    "E. M. Goldberg",
+    "N. T. McMullen"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -1312,7 +1539,11 @@
    "page": "1047-1062",
    "volume": "190",
    "issue": "12",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Gerald E. Hough",
+    "Verner P. Bingman"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -1342,7 +1573,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7962700/",
       "quote": "10.1002/cne.903450407 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -1354,7 +1586,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7962700/",
       "quote": "The Journal of comparative neurology"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1366,7 +1599,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7962700/",
       "quote": "IP  - 4"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -1378,7 +1612,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7962700/",
       "quote": "Primate striatonigral projections: a comparison of the sensorimotor-related striatum and the ventral striatum."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1401,9 +1636,26 @@
    "page": "562-578",
    "volume": "345",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "E. Lynd‐Balta",
+    "S. N. Haber"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1002/cne.903450407: Journal of Comparative Neurology 345(4) 562-578, 1994."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -1430,7 +1682,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18293071/",
       "quote": "10.1007/s10827-007-0066-2 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1442,7 +1695,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18293071/",
       "quote": "IP  - 1"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -1454,7 +1708,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18293071/",
       "quote": "PG  - 89-107"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -1466,7 +1721,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/18293071/",
       "quote": "VI  - 25"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1489,9 +1745,27 @@
    "page": "89-107",
    "volume": "25",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Magteld Zeitler",
+    "Pascal Fries",
+    "Stan Gielen"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1007/s10827-007-0066-2: Journal of Computational Neuroscience 25(1) 89-107, 2008."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -1519,7 +1793,8 @@
       "url": "https://api.crossref.org/works/10.1007/s003590050092",
       "quote": "\"DOI\":\"10.1007\\/s003590050092\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -1531,7 +1806,8 @@
       "url": "https://api.crossref.org/works/10.1007/s003590050092",
       "quote": "\"container-title\":[\"Journal of Comparative Physiology A: Sensory, Neural, and Behavioral Physiology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1543,7 +1819,8 @@
       "url": "https://api.crossref.org/works/10.1007/s003590050092",
       "quote": "\"issue\":\"1\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1566,9 +1843,25 @@
    "page": "47-58",
    "volume": "181",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "T. S. Collett",
+    "J. A. Rees"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1007/s003590050092: Journal of Comparative Physiology A: Sensory, Neural, and Behavioral Physiology 181(1) 47-58, 1997."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -1596,7 +1889,8 @@
       "url": "https://api.crossref.org/works/10.1007/bf00199474",
       "quote": "\"DOI\":\"10.1007\\/bf00199474\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -1608,7 +1902,8 @@
       "url": "https://api.crossref.org/works/10.1007/bf00199474",
       "quote": "\"container-title\":[\"Journal of Comparative Physiology A\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -1620,7 +1915,8 @@
       "url": "https://api.crossref.org/works/10.1007/bf00199474",
       "quote": "\"issue\":\"5\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -1632,7 +1928,8 @@
       "url": "https://api.crossref.org/works/10.1007/bf00199474",
       "quote": "\"title\":[\"The hidden spiral: systematic search and path integration in desert ants, Cataglyphis fortis\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -1668,9 +1965,26 @@
    "page": null,
    "volume": "175",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "M. M�ller",
+    "R. Wehner"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1007/bf00199474: Journal of Comparative Physiology A 175(5) None, 1994."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -1688,6 +2002,18 @@
    "ID": "WehnSrin81"
   },
   "final_changes": [
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1007/bf00605445",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf00605445",
+      "quote": "\"DOI\":\"10.1007\\/bf00605445\""
+     }
+    ]
+   },
    {
     "field": "journal",
     "current": "Journal of Computational Physiology",
@@ -1731,14 +2057,7 @@
    "target_base": "WehnSrin81",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "doi_title_mismatch",
-    "field": "doi",
-    "detail": "10.1007/bf00605445 is registered to 'Searching behaviour of desert ants, genusCataglyphis (Formicidae, Hymenoptera)' (Crossref), not this entry's title; DOI change dropped",
-    "action": "dropped"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1007/bf00605445",
    "registered": true,
@@ -1752,7 +2071,11 @@
    "page": "315-338",
    "volume": "142",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "R�diger Wehner",
+    "Mandyam V. Srinivasan"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -1845,7 +2168,13 @@
    "page": "99-122",
    "volume": "7",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "H. Couclelis",
+    "R.G. Golledge",
+    "N. Gale",
+    "W. Tobler"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -1961,7 +2290,14 @@
    "page": "323-335",
    "volume": "4",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Gary W. Evans",
+    "Mary Anne Skorpanich",
+    "Tommy Gärling",
+    "Kendall J. Bryant",
+    "Brian Bresolin"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -2038,7 +2374,10 @@
    "page": "1189-1206",
    "volume": "25",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "J. D. Balakrishnan"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -2115,7 +2454,11 @@
    "page": "294-317",
    "volume": "22",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Stephen C. McKinley",
+    "Robert M. Nosofsky"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -2157,7 +2500,8 @@
       "url": "https://api.crossref.org/v1/works/10.1242/jeb.02060/transform/application/vnd.crossref.unixsd+xml",
       "quote": "Roth"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -2169,7 +2513,8 @@
       "url": "https://api.crossref.org/works/10.1242/jeb.02060",
       "quote": "\"DOI\":\"10.1242\\/jeb.02060\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -2181,7 +2526,8 @@
       "url": "https://api.crossref.org/works/10.1242/jeb.02060",
       "quote": "\"issue\":\"5\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -2193,7 +2539,8 @@
       "url": "https://api.crossref.org/works/10.1242/jeb.02060",
       "quote": "\"page\":\"781-788\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -2205,7 +2552,8 @@
       "url": "https://api.crossref.org/v1/works/10.1242/jeb.02060/transform/application/vnd.crossref.unixsd+xml",
       "quote": "Nocturnal colour vision – not as rare as we might think"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -2228,9 +2576,27 @@
    "page": "781-788",
    "volume": "209",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Almut Kelber",
+    "Lina S. V. Roth"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1242/jeb.02060: Journal of Experimental Biology 209(5) 781-788, 2006."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -2314,7 +2680,15 @@
    "page": "15-33",
    "volume": "24",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Brian C. Rakitin",
+    "John Gibbon",
+    "Trevor B. Penney",
+    "Chara Malapani",
+    "Sean C. Hinton",
+    "Warren H. Meck"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -2344,7 +2718,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0047507",
       "quote": "\"DOI\":\"10.1037\\/h0047507\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -2356,7 +2731,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0047507",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -2368,7 +2744,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0047507",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -2384,7 +2761,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/13796886/",
       "quote": "Fate of first-list associations in transfer theory."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -2407,9 +2785,26 @@
    "page": "97-105",
    "volume": "58",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Jean M. Barnes",
+    "Benton J. Underwood"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0047507: Journal of Experimental Psychology 58(2) 97-105, 1959."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -2485,7 +2880,11 @@
    "page": "1-46",
    "volume": "80",
    "issue": "3, Pt.2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "William F. Battig",
+    "William E. Montague"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -2559,7 +2958,12 @@
    "page": "451-473",
    "volume": "110",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Gordon H. Bower",
+    "Stephen G. Gilligan",
+    "Kenneth P. Monteiro"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -2652,7 +3056,10 @@
    "page": "60-67",
    "volume": "53",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "George E. Briggs"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -2750,7 +3157,12 @@
    "page": "137-160",
    "volume": "124",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Axel Buchner",
+    "Edgar Erdfelder",
+    "Bianca Vaterrodt-Plünnecke"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -2770,6 +3182,18 @@
    "ID": "CeraHend65"
   },
   "final_changes": [
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1037/h0022247",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0022247",
+      "quote": "\"DOI\":\"10.1037\\/h0022247\""
+     }
+    ]
+   },
    {
     "field": "journal",
     "current": "Journal of Experimental Psychology: General",
@@ -2805,22 +3229,28 @@
    "target_base": "CeraHend65",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "doi_title_unavailable",
-    "field": "doi",
-    "detail": "10.1037/h0022247: Crossref record unavailable: HTTP 429; held",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1037/h0022247",
    "registered": true,
    "ra": "Crossref",
-   "error": "Crossref record unavailable: HTTP 429"
+   "title": "Unavailability and associative loss in in RI and PI.",
+   "subtitle": null,
+   "container": "Journal of Experimental Psychology",
+   "print_year": null,
+   "online_year": "1965",
+   "issued_year": "1965",
+   "page": "300-303",
+   "volume": "70",
+   "issue": "3",
+   "type": "journal-article",
+   "authors": [
+    "John Ceraso",
+    "Ann Henderson"
+   ]
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "DoshRose89",
@@ -2871,7 +3301,11 @@
    "page": "191-211",
    "volume": "118",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Barbara A. Dosher",
+    "Glenda Rosedale"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -2902,7 +3336,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.11.2.363",
       "quote": "\"DOI\":\"10.1037\\/0278-7393.11.2.363\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -2914,7 +3349,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.11.2.363",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -2937,9 +3373,26 @@
    "page": "363-370",
    "volume": "11",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Henry C. Ellis",
+    "Roger L. Thomas",
+    "Alan D. McFarland",
+    "J. Walter Lane"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.11.2.363: Journal of Experimental Psychology: Learning, Memory, and Cognition 11(2) 363-370, 1985."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3015,7 +3468,10 @@
    "page": "39-47",
    "volume": "95",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Philippe R. Falkenberg"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -3084,7 +3540,10 @@
    "page": "153-154",
    "volume": "72",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Gloria J. Fischer"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -3173,7 +3632,11 @@
    "page": "272-279",
    "volume": "99",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Bert Forrin",
+    "Kathrine Cunningham"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -3204,7 +3667,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0033882",
       "quote": "\"DOI\":\"10.1037\\/h0033882\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -3216,7 +3680,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0033882",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -3228,7 +3693,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0033882",
       "quote": "\"title\":[\"Serial learning process: Test of chaining, position, and dual-process hypotheses.\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3251,9 +3717,24 @@
    "page": "154-157",
    "volume": "97",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Sebastian L. Giurintano"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0033882: Journal of Experimental Psychology 97(2) 154-157, 1973."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3360,7 +3841,10 @@
    "page": "23-29",
    "volume": "61",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Aloysia M. Gorman"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -3390,7 +3874,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0043117.xml",
       "quote": "<doi>10.1037/h0043117</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -3402,7 +3887,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0043117",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -3414,7 +3900,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0043117",
       "quote": "\"issue\":\"6\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -3430,7 +3917,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/13953638/",
       "quote": "Supplementary report: frequency of stimulus presentation and short-term decrement"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3439,14 +3927,7 @@
    "target_base": "Hell62",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "doi_record_conflict",
-    "field": "pages",
-    "detail": "Crossref record of 10.1037/h0043117 gives pages '650-650', proposal '650'",
-    "action": "flag"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1037/h0043117",
    "registered": true,
@@ -3460,10 +3941,26 @@
    "page": "650-650",
    "volume": "64",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "S. Hellyer"
+   ]
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0043117: Journal of Experimental Psychology 64(6) 650-650, 1962."
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
  },
  {
   "key": "HintEtal73",
@@ -3538,7 +4035,12 @@
    "page": "220-229",
    "volume": "97",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Douglas L. Hintzman",
+    "Richard A. Block",
+    "Jeffery J. Summers"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -3615,7 +4117,11 @@
    "page": "352-361",
    "volume": "65",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Leonard M. Horowitz",
+    "Chizuko Izawa"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -3645,7 +4151,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0035879.xml",
       "quote": "<doi>10.1037/h0035879</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -3657,7 +4164,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0035879",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -3669,7 +4177,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0035879",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -3681,7 +4190,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0035879",
       "quote": "\"title\":[\"B-A learning as a function of degree of A-B learning.\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3704,9 +4214,26 @@
    "page": "327-329",
    "volume": "102",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "C. Michael Levy",
+    "Dorothy D. Nevill"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0035879: Journal of Experimental Psychology 102(2) 327-329, 1974."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3770,7 +4297,10 @@
    "page": "556-561",
    "volume": "74",
    "issue": "4, Pt.1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Henry Loess"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -3805,7 +4335,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
       "quote": "\"given\":\"Kristina E.\",\"family\":\"Kampe\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -3817,7 +4348,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132.xml",
       "quote": "<doi>10.1037/0278-7393.22.1.132</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -3829,7 +4361,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -3852,9 +4385,25 @@
    "page": "132-142",
    "volume": "22",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Colin M. MacLeod",
+    "Kristina E. Kampe"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "journal": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.22.1.132: Journal of Experimental Psychology: Learning, Memory, and Cognition 22(1) 132-142, 1996."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -3936,7 +4485,10 @@
    "page": "294-296",
    "volume": "87",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Stephen A. Madigna"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -3966,7 +4518,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145.xml",
       "quote": "<doi>10.1037/0096-3445.119.2.145</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -3978,7 +4531,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -3990,7 +4544,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145",
       "quote": "\"title\":[\"Composite Holographic Associative Recall Model (CHARM) and blended memories in eyewitness testimony.\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -4013,9 +4568,24 @@
    "page": "145-160",
    "volume": "119",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Janet Metcalfe"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0096-3445.119.2.145: Journal of Experimental Psychology: General 119(2) 145-160, 1990."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4043,7 +4613,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0031564.xml",
       "quote": "<doi>10.1037/h0031564</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -4055,7 +4626,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0031564",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -4067,7 +4639,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0031564",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -4079,7 +4652,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0031564",
       "quote": "\"title\":[\"Facilitation in recognizing pairs of words: Evidence of a dependence between retrieval operations.\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -4102,9 +4676,26 @@
    "page": "227-234",
    "volume": "90",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "David E. Meyer",
+    "Roger W. Schvaneveldt"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0031564: Journal of Experimental Psychology 90(2) 227-234, 1971."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4179,7 +4770,10 @@
    "page": "213-215",
    "volume": "51",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Bennet B. Murdock"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -4268,7 +4862,11 @@
    "page": "167-169",
    "volume": "97",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Douglas L. Nelson",
+    "Richard C. Borden"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -4299,7 +4897,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0037406.xml",
       "quote": "<doi>10.1037/h0037406</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -4311,7 +4910,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0037406",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -4323,7 +4923,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0037406",
       "quote": "\"title\":[\"Further evidence for organization by modality in immediate free recall.\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -4346,9 +4947,24 @@
    "page": "948-957",
    "volume": "103",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Lars-Goran Nilsson"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0037406: Journal of Experimental Psychology 103(5) 948-957, 1974."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4424,7 +5040,11 @@
    "page": "551-559",
    "volume": "78",
    "issue": "4, Pt.1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Donald A. Norman",
+    "Nancy C. Waugh"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -4501,7 +5121,11 @@
    "page": "193-198",
    "volume": "58",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Lloyd Peterson",
+    "Margaret Jean Peterson"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -4532,7 +5156,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0044472.xml",
       "quote": "<doi>10.1037/h0044472</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -4544,7 +5169,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0044472",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -4560,7 +5186,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/14053252/",
       "quote": "SOME SOURCES OF ARTIFACT IN STUDIES OF THE TACHISTOSCOPIC PERCEPTION OF WORDS."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -4583,9 +5210,24 @@
    "page": "363-370",
    "volume": "66",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Jan Pierce"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0044472: Journal of Experimental Psychology 66(4) 363-370, 1963."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4614,7 +5256,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376.xml",
       "quote": "<doi>10.1037/0096-3445.106.4.376</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -4626,7 +5269,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376",
       "quote": "\"title\":[\"Conditions of cumulative proactive inhibition.\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -4649,9 +5293,24 @@
    "page": "376-403",
    "volume": "106",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Leo Postman",
+    "Geoffrey Keppel"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0096-3445.106.4.376: Journal of Experimental Psychology: General 106(4) 376-403, 1977."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -4733,7 +5392,11 @@
    "page": "381-395",
    "volume": "20",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Evelyn Raskin",
+    "Stuart A. Cook"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -4799,7 +5462,10 @@
    "page": "414-419",
    "volume": "74",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "William H. Saufley"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -4865,7 +5531,10 @@
    "page": "504-513",
    "volume": "76",
    "issue": "4, Pt.1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Norman J. Slamecka"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -4884,6 +5553,26 @@
    "ID": "SmitEtal13a"
   },
   "final_changes": [
+   {
+    "field": "author",
+    "current": "T A Smith and A E Hasinksi and P B Sederberg",
+    "proposed": "T A Smith and A E Hasinski and P B Sederberg",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23957285/",
+      "quote": "FAU - Smith, Troy A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23957285/",
+      "quote": "FAU - Hasinski, Adam E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23957285/",
+      "quote": "FAU - Sederberg, Per B"
+     }
+    ]
+   },
    {
     "field": "doi",
     "current": null,
@@ -4939,14 +5628,7 @@
    "target_base": "SmitEtal13",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "surname_single_source",
-    "field": "author",
-    "detail": "surname 'hasinksi' -> 'hasinski' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'A E Hasinksi' is kept",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1037/a0034067",
    "registered": true,
@@ -4960,10 +5642,15 @@
    "page": "1298-1308",
    "volume": "142",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Troy A. Smith",
+    "Adam E. Hasinski",
+    "Per B. Sederberg"
+   ]
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "SnodCorw88",
@@ -4991,7 +5678,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-3445.117.1.34",
       "quote": "\"DOI\":\"10.1037\\/0096-3445.117.1.34\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -5003,7 +5691,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-3445.117.1.34",
       "quote": "Pragmatics of measuring recognition memory: Applications to dementia and amnesia."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5026,9 +5715,24 @@
    "page": "34-50",
    "volume": "117",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Joan G. Snodgrass",
+    "June Corwin"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0096-3445.117.1.34: Journal of Experimental Psychology: General 117(1) 34-50, 1988."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -5057,7 +5761,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.6.2.174",
       "quote": "\"DOI\":\"10.1037\\/0278-7393.6.2.174\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -5069,7 +5774,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.6.2.174",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology: Human Learning and Memory\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5092,9 +5798,24 @@
    "page": "174-215",
    "volume": "6",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Joan G. Snodgrass",
+    "Mary Vanderwart"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.6.2.174: Journal of Experimental Psychology: Human Learning and Memory 6(2) 174-215, 1980."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -5146,7 +5867,12 @@
    "page": "236-257",
    "volume": "138",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Khena M. Swallow",
+    "Jeffrey M. Zacks",
+    "Richard A. Abrams"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -5230,7 +5956,11 @@
    "page": "297-304",
    "volume": "92",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Endel Tulvig",
+    "Reid Hastie"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -5260,7 +5990,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0022014",
       "quote": "\"given\":\"Benton J.\",\"family\":\"Underwood\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -5272,7 +6003,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0022014",
       "quote": "\"DOI\":\"10.1037\\/h0022014\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -5284,7 +6016,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0022014",
       "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -5296,7 +6029,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0022014",
       "quote": "\"issue\":\"1\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5319,9 +6053,25 @@
    "page": "122-129",
    "volume": "70",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Benton J. Underwood"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0022014: Journal of Experimental Psychology 70(1) 122-129, 1965."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -5408,7 +6158,10 @@
    "page": "276-283",
    "volume": "94",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Benton J. Underwood"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -5486,7 +6239,10 @@
    "page": "220-225",
    "volume": "79",
    "issue": "2, Pt.1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "James F. Voss"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -5506,6 +6262,18 @@
    "ID": "Waug63b"
   },
   "final_changes": [
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1037/h0041501",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0041501",
+      "quote": "\"DOI\":\"10.1037\\/h0041501\""
+     }
+    ]
+   },
    {
     "field": "journal",
     "current": "Journal of Experimental Psychology: General",
@@ -5543,12 +6311,6 @@
     "field": "title",
     "detail": "verdict 'correction' but title is not_found: the entry is not fully verified",
     "action": "flag"
-   },
-   {
-    "code": "doi_title_mismatch",
-    "field": "doi",
-    "detail": "10.1037/h0041501 is registered to '2 methods for testing serial memorization.' (Crossref), not this entry's title; DOI change dropped",
-    "action": "dropped"
    }
   ],
   "doi_status": {
@@ -5564,7 +6326,10 @@
    "page": "215-216",
    "volume": "65",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Nancy C. Waugh"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -5618,7 +6383,22 @@
    "page": "1-12",
    "volume": "148",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Christoph T. Weidemann",
+    "James E. Kragel",
+    "Bradley C. Lega",
+    "Gregory A. Worrell",
+    "Michael R. Sperling",
+    "Ashwini D. Sharan",
+    "Barbara C. Jobst",
+    "Fatemeh Khadjevand",
+    "Kathryn A. Davis",
+    "Paul A. Wanda",
+    "Allison Kadel",
+    "Daniel S. Rizzuto",
+    "Michael J. Kahana"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -5696,7 +6476,10 @@
    "page": "627-628",
    "volume": "62",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Joanna P. Williams"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -5726,7 +6509,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-3445.125.4.422",
       "quote": "\"DOI\":\"10.1037\\/0096-3445.125.4.422\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -5738,7 +6522,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-3445.125.4.422",
       "quote": "\"issue\":\"4\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -5761,9 +6546,24 @@
    "page": "422-434",
    "volume": "125",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Andrew P. Yonelinas",
+    "Larry L. Jacoby"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0096-3445.125.4.422: Journal of Experimental Psychology: General 125(4) 422-434, 1996."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -5818,12 +6618,6 @@
     "field": "title",
     "detail": "validator: title not covered by its quotes (missing ['response', 'bias', 'process', 'dissociation', 'procedure']; failures ['quote not found at url'])",
     "action": "held"
-   },
-   {
-    "code": "doi_record_conflict",
-    "field": "pages",
-    "detail": "Crossref record of 10.1037/0096-3445.126.1.18 gives pages '18-18', proposal '18'",
-    "action": "flag"
    }
   ],
   "doi_status": {
@@ -5839,7 +6633,11 @@
    "page": "18-18",
    "volume": "126",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Andrew P. Yonelinas",
+    "Larry L. Jacoby"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -5944,7 +6742,17 @@
    "page": "355-369",
    "volume": "6",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Arthur M. Glenberg",
+    "Margaret M. Bradley",
+    "Jennifer A. Stevenson",
+    "Thomas A. Kraus",
+    "Marilyn J. Tkachuk",
+    "Ann L. Gretz",
+    "Joel H. Fish",
+    "BettyAnn M. Turpin"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -5974,7 +6782,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.6.6.651",
       "quote": "\"DOI\":\"10.1037\\/0278-7393.6.6.651\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -5986,7 +6795,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.6.6.651",
       "quote": "\"issue\":\"6\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -5998,7 +6808,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.6.6.651",
       "quote": "\"page\":\"651-675\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -6010,7 +6821,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.6.6.651",
       "quote": "Speed and accuracy of recency judgments for events in short-term memory."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -6022,7 +6834,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.6.6.651",
       "quote": "\"volume\":\"6\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6045,9 +6858,26 @@
    "page": "651-675",
    "volume": "6",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Michael J. Hacker"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.6.6.651: Journal of Experimental Psychology: Human Learning and Memory 6(6) 651-675, 1980."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -6157,7 +6987,11 @@
    "page": "442-452",
    "volume": "1",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Olga C. Watkins",
+    "Michael J. Watkins"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -6234,7 +7068,11 @@
    "page": "275-292",
    "volume": "21",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Clark Fagot",
+    "Harold Pashler"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -6335,7 +7173,12 @@
    "page": "707-718",
    "volume": "24",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Svein Magnussen",
+    "Espen Idås",
+    "Steinar Holst Myhre"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -6370,7 +7213,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/1830090/",
       "quote": "FAU - Yantis, S"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -6382,7 +7226,8 @@
       "url": "https://api.crossref.org/works/10.1037/0096-1523.17.2.520",
       "quote": "\"DOI\":\"10.1037\\/0096-1523.17.2.520\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6414,9 +7259,25 @@
    "page": "520-538",
    "volume": "17",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "J. Toby Mordkoff",
+    "Steven Yantis"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree (YantMord91 -> MordYant91; target free in HEAD)"
+   },
+   "problems": [
+    "Crossref 10.1037/0096-1523.17.2.520: Journal of Experimental Psychology: Human Perception and Performance 17(2) 520-538, 1991."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -6510,7 +7371,11 @@
    "page": "344-349",
    "volume": "13",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Harry P. Bahrick",
+    "Elizabeth Phelphs"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -6540,7 +7405,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
       "quote": "<doi>10.1037/0278-7393.25.6.1452</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -6552,7 +7418,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
       "quote": "<issue>6</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6575,9 +7442,24 @@
    "page": "1452-1474",
    "volume": "25",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Lance C. Bloom",
+    "Michael J. Watkins"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.25.6.1452: Journal of Experimental Psychology: Learning, Memory, and Cognition 25(6) 1452-1474, 1999."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -6652,7 +7534,13 @@
    "page": "710-721",
    "volume": "17",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Sam C. Brown",
+    "Jerry N. Conover",
+    "Luis M. Flores",
+    "Karen M. Goodman"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -6686,7 +7574,8 @@
       "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
       "quote": "Wayne A. Wickelgren"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -6698,7 +7587,8 @@
       "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
       "quote": "<doi>10.1080/14640747808400648</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -6710,7 +7600,8 @@
       "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
       "quote": "<full_title>Quarterly Journal of Experimental Psychology</full_title>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -6722,7 +7613,8 @@
       "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
       "quote": "<issue>1</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -6738,7 +7630,8 @@
       "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
       "quote": "<last_page>15</last_page>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -6750,7 +7643,8 @@
       "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
       "quote": "Semantic Memory Retrieval: Analysis by Speed Accuracy Tradeoff Functions"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -6762,7 +7656,8 @@
       "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
       "quote": "<volume>30</volume>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6785,9 +7680,29 @@
    "page": "1-15",
    "volume": "30",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Albert T. Corbett",
+    "Wayne A. Wickelgren"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1080/14640747808400648: Quarterly Journal of Experimental Psychology 30(1) 1-15, 1978."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -6815,7 +7730,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
       "quote": "<doi>10.1037/0278-7393.9.2.231</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -6827,7 +7743,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
       "quote": "<issue>2</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -6843,7 +7760,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
       "quote": "<last_page>255</last_page>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -6855,7 +7773,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
       "quote": "Studies of the long-term recency effect: Support for a contextually guided retrieval hypothesis."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -6867,7 +7786,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
       "quote": "<volume>9</volume>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6890,9 +7810,29 @@
    "page": "231-255",
    "volume": "9",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Arthur M. Glenberg",
+    "Margaret M. Bradley",
+    "Thomas A. Kraus",
+    "Gary J. Renzaglia"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.9.2.231: Journal of Experimental Psychology: Learning, Memory, and Cognition 9(2) 231-255, 1983."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -6920,7 +7860,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
       "quote": "<doi>10.1037/0278-7393.12.4.550</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -6932,7 +7873,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
       "quote": "<issue>4</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -6944,7 +7886,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
       "quote": "Retrieval strategies in recall of natural categories and categorized lists."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -6967,9 +7910,25 @@
    "page": "550-561",
    "volume": "12",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Scott D. Gronlund",
+    "Richard M. Shiffrin"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.12.4.550: Journal of Experimental Psychology: Learning, Memory, and Cognition 12(4) 550-561, 1986."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7008,6 +7967,18 @@
     ]
    },
    {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1037/0278-7393.15.5.941",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "<doi>10.1037/0278-7393.15.5.941</doi>"
+     }
+    ]
+   },
+   {
     "field": "number",
     "current": null,
     "proposed": "5",
@@ -7026,22 +7997,28 @@
    "target_base": "HaymTulv89",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "doi_title_unavailable",
-    "field": "doi",
-    "detail": "10.1037/0278-7393.15.5.941: Crossref record unavailable: HTTP 429; held",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1037/0278-7393.15.5.941",
    "registered": true,
    "ra": "Crossref",
-   "error": "Crossref record unavailable: HTTP 429"
+   "title": "Is priming in fragment completion based on a \"traceless\" memory system?",
+   "subtitle": null,
+   "container": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+   "print_year": null,
+   "online_year": "1989",
+   "issued_year": "1989",
+   "page": "941-956",
+   "volume": "15",
+   "issue": "5",
+   "type": "journal-article",
+   "authors": [
+    "C. Gordon Hayman",
+    "Endel Tulving"
+   ]
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Heat03",
@@ -7093,7 +8070,10 @@
    "page": "1210-1230",
    "volume": "29",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Andrew Heathcote"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -7151,7 +8131,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
       "quote": "Bruce T. Volpe"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -7163,7 +8144,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
       "quote": "<doi>10.1037/0278-7393.12.3.445</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -7175,7 +8157,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
       "quote": "<issue>3</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7207,9 +8190,30 @@
    "page": "445-451",
    "volume": "12",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "William Hirst",
+    "Marcia K. Johnson",
+    "Jung K. Kim",
+    "Elizabeth A. Phelps",
+    "Gail Risse",
+    "Bruce T. Volpe"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "key": "agree (Hirs86 -> HirsEtal86; target free in HEAD)"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.12.3.445: Journal of Experimental Psychology: Learning, Memory, and Cognition 12(3) 445-451, 1986."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -7277,7 +8281,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
       "quote": "Stuart"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -7289,7 +8294,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
       "quote": "<doi>10.1037/0278-7393.23.5.1217</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -7301,7 +8307,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
       "quote": "<issue>5</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7324,9 +8331,29 @@
    "page": "1217-1232",
    "volume": "23",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Charles Hulme",
+    "Steven Roodenrys",
+    "Richard Schweickert",
+    "Gordon D. A. Brown",
+    "Sarah Martin",
+    "George Stuart"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.23.5.1217: Journal of Experimental Psychology: Learning, Memory, and Cognition 23(5) 1217-1232, 1997."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7378,7 +8405,10 @@
    "page": "1146-1163",
    "volume": "32",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Donald Laming"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -7409,7 +8439,8 @@
       "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
       "quote": "<doi>10.1037/a0033669</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -7421,7 +8452,8 @@
       "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
       "quote": "Parametric effects of word frequency in memory for mixed frequency lists."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7444,9 +8476,24 @@
    "page": "1943-1946",
    "volume": "39",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Lynn J. Lohnas",
+    "Michael J. Kahana"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/a0033669: Journal of Experimental Psychology: Learning, Memory, and Cognition 39(6) 1943-1946, 2013."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7521,7 +8568,11 @@
    "page": "689-697",
    "volume": "19",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Bennet B. Murdock",
+    "Michael J. Kahana"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -7551,7 +8602,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
       "quote": "<doi>10.1037/0278-7393.19.6.1450</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -7563,7 +8615,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
       "quote": "<issue>6</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -7575,7 +8628,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
       "quote": "List-strength and list-length effects: Reply to Shiffrin, Ratcliff, Murnane, and Nobel (1993)."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7598,9 +8652,25 @@
    "page": "1450-1453",
    "volume": "19",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Bennet B. Murdock",
+    "Michael J. Kahana"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.19.6.1450: Journal of Experimental Psychology: Learning, Memory, and Cognition 19(6) 1450-1453, 1993."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7675,7 +8745,10 @@
    "page": "1170-1187",
    "volume": "26",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Moshe Naveh-Benjamin"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -7706,7 +8779,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
       "quote": "<doi>10.1037/0278-7393.29.1.42</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -7722,7 +8796,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
       "quote": "<last_page>52</last_page>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7745,9 +8820,25 @@
    "page": "42-52",
    "volume": "29",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Douglas L. Nelson",
+    "Cathy L. McEvoy",
+    "Lisa Pointer"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.29.1.42: Journal of Experimental Psychology: Learning, Memory, and Cognition 29(1) 42-52, 2003."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7838,7 +8929,12 @@
    "page": "266-277",
    "volume": "14",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Lars-Göran Nilsson",
+    "Janine Law",
+    "Endel Tulving"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -7870,7 +8966,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
       "quote": "<doi>10.1037/0278-7393.32.4.716</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7893,9 +8990,26 @@
    "page": "716-733",
    "volume": "32",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Mike P. A. Page",
+    "Nick Cumming",
+    "Dennis Norris",
+    "Graham J. Hitch",
+    "Alan M. McNeil"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.32.4.716: Journal of Experimental Psychology: Learning, Memory, and Cognition 32(4) 716-733, 2006."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -7923,7 +9037,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
       "quote": "<doi>10.1037/0278-7393.20.4.763</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -7935,7 +9050,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
       "quote": "<issue>4</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -7947,7 +9063,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
       "quote": "Empirical generality of data from recognition memory receiver-operating characteristic functions and implications for the global memory models."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -7970,9 +9087,26 @@
    "page": "763-785",
    "volume": "20",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Roger Ratcliff",
+    "Gail McKoon",
+    "Michael Tindall"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.20.4.763: Journal of Experimental Psychology: Learning, Memory, and Cognition 20(4) 763-785, 1994."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8044,7 +9178,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
       "quote": "Hiraki"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -8056,7 +9191,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
       "quote": "<doi>10.1037/0278-7393.26.2.294</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -8068,7 +9204,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
       "quote": "<issue>2</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8091,9 +9228,29 @@
    "page": "294-320",
    "volume": "26",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Lynne M. Reder",
+    "Adisack Nhouyvanisvong",
+    "Christian D. Schunn",
+    "Michael S. Ayers",
+    "Paige Angstadt",
+    "Kazuo Hiraki"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.26.2.294: Journal of Experimental Psychology: Learning, Memory, and Cognition 26(2) 294-320, 2000."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8196,7 +9353,13 @@
    "page": "1127-1139",
    "volume": "21",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Doug Rohrer",
+    "John T. Wixted",
+    "David P. Salmon",
+    "Nelson Butters"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -8261,7 +9424,11 @@
    "page": "789-801",
    "volume": "31",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Lili Sahakyan",
+    "Peter F. Delaney"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -8292,7 +9459,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.16.2.179",
       "quote": "\"page\":\"179-195\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8315,9 +9483,24 @@
    "page": "179-195",
    "volume": "16",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Richard M. Shiffrin",
+    "Roger Ratcliff",
+    "Steven E. Clark"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.16.2.179: Journal of Experimental Psychology: Learning, Memory, and Cognition 16(2) 179-195, 1990."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8345,7 +9528,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1445",
       "quote": "\"page\":\"1445-1449\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -8357,7 +9541,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/8270891/",
       "quote": "IP  - 6"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -8369,7 +9554,8 @@
       "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1445",
       "quote": "TODAM and the list-strength and list-length effects: Comment on Murdock and Kahana (1993a)."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8392,9 +9578,27 @@
    "page": "1445-1449",
    "volume": "19",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Richard Shiffrin",
+    "Roger Ratcliff",
+    "Kevin Murnane",
+    "Peter Nobel"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/0278-7393.19.6.1445: Journal of Experimental Psychology: Learning, Memory, and Cognition 19(6) 1445-1449, 1993."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8457,7 +9661,14 @@
    "page": "362-374",
    "volume": "27",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Steven M. Smith",
+    "Deborah R. Tindell",
+    "Benton H. Pierce",
+    "Todd R. Gilliland",
+    "David R. Gerkens"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -8488,7 +9699,8 @@
       "url": "https://api.crossref.org/works/10.1037/a0013082",
       "quote": "\"page\":\"1392-1399\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8511,9 +9723,24 @@
    "page": "1392-1399",
    "volume": "34",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Karl K. Szpunar",
+    "Kathleen B. McDermott",
+    "Henry L. Roediger"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/a0013082: Journal of Experimental Psychology: Learning, Memory, and Cognition 34(6) 1392-1399, 2008."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8584,7 +9811,11 @@
    "page": "1256-1271",
    "volume": "25",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Ian Walker",
+    "Charles Hulme"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -8614,7 +9845,8 @@
       "url": "https://api.crossref.org/works/10.1111/j.1525-1497.2006.00443.x",
       "quote": "\"title\":[\"Educating for empathy\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -8626,7 +9858,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16704404/",
       "quote": "IP  - 5"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -8638,7 +9871,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/16704404/",
       "quote": "Educating for empathy. A review."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8661,9 +9895,25 @@
    "page": "524-530",
    "volume": "21",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Kathy A. Stepien",
+    "Amy Baernstein"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1111/j.1525-1497.2006.00443.x: Journal of General Internal Medicine 21(5) 524-530, 2006."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -8726,7 +9976,10 @@
    "page": "3-14",
    "volume": "1",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Walter Miles"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -8815,7 +10068,10 @@
    "page": "255-269",
    "volume": "35",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "J. Arthur Glaze"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -8904,7 +10160,11 @@
    "page": "497-524",
    "volume": "34",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Calvin P. Stone",
+    "Dorothy Bird Nyswander"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -8935,7 +10195,8 @@
       "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p276",
       "quote": "\"page\":\"P276-P278\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -8947,7 +10208,8 @@
       "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p276",
       "quote": "\"container-title\":[\"The Journals of Gerontology Series B: Psychological Sciences and Social Sciences\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -8977,9 +10239,25 @@
    "page": "P276-P278",
    "volume": "60",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "G. A. Radvansky",
+    "R. T. Zacks",
+    "L. Hasher"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree"
+   },
+   "problems": [
+    "Crossref 10.1093/geronb/60.5.p276: The Journals of Gerontology Series B: Psychological Sciences and Social Sciences 60(5) P276-P278, 2005."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -9066,7 +10344,11 @@
    "page": "P274-P283",
    "volume": "52B",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "R. Zacks",
+    "L. Hasher"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -9096,7 +10378,8 @@
       "url": "https://api.crossref.org/works/10.1093/geronb/60.2.p92",
       "quote": "\"page\":\"P92-P97\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -9108,7 +10391,8 @@
       "url": "https://api.crossref.org/works/10.1093/geronb/60.2.p92",
       "quote": "\"container-title\":[\"The Journals of Gerontology Series B: Psychological Sciences and Social Sciences\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -9120,7 +10404,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15746023/",
       "quote": "IP  - 2"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -9132,7 +10417,8 @@
       "url": "https://api.crossref.org/works/10.1093/geronb/60.2.p92",
       "quote": "\"page\":\"P92-P97\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -9144,7 +10430,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15746023/",
       "quote": "Intrusions in episodic recall: age differences in editing of overt responses."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -9156,7 +10443,8 @@
       "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/KahaEtal05.pdf#page=1",
       "quote": "2005, Vol. 60B, No. 2, P92"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9179,9 +10467,30 @@
    "page": "P92-P97",
    "volume": "60",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "M. J. Kahana",
+    "E. D. Dolan",
+    "C. L. Sauder",
+    "A. Wingfield"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1093/geronb/60.2.p92: The Journals of Gerontology Series B: Psychological Sciences and Social Sciences 60(2) P92-P97, 2005."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9268,7 +10577,12 @@
    "page": "P157-P171",
    "volume": "48",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "P. Verhaeghen",
+    "A. Marcoen",
+    "L. Goossens"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -9325,7 +10639,8 @@
       "url": "https://api.crossref.org/works/10.1142/s0219635203000214",
       "quote": "\"page\":\"3-30\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -9337,7 +10652,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/15011274/",
       "quote": "IP  - 1"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9360,9 +10676,23 @@
    "page": "3-30",
    "volume": "02",
    "issue": "01",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "WALTER J. FREEMAN"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1142/s0219635203000214: Journal of Integrative Neuroscience 02(01) 3-30, 2003."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9437,7 +10767,12 @@
    "page": "573-585",
    "volume": "17",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Gordon H. Bower",
+    "Kenneth P. Monteiro",
+    "Stephen G. Gilligan"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -9610,7 +10945,8 @@
       "url": "https://www.jmlr.org/papers/v7/gardner06a.html",
       "quote": "Andrew B. Gardner, Abba M. Krieger, George Vachtsevanos, Brian Litt"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9621,7 +10957,17 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree"
+   },
+   "problems": [
+    "JMLR v7 page (fetched): citation_author Andrew B. Gardner, Abba M. Krieger; firstpage 1025."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9676,7 +11022,8 @@
       "url": "https://www.jmlr.org/papers/v14/hoffman13a.html",
       "quote": "Matthew D. Hoffman, David M. Blei, Chong Wang, John Paisley"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9687,7 +11034,17 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree"
+   },
+   "problems": [
+    "JMLR v14 page (fetched): citation_author Matthew D. Hoffman; firstpage 1303."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9767,7 +11124,8 @@
       "url": "https://www.jmlr.org/papers/v9/vandermaaten08a.html",
       "quote": "Visualizing Data using t-SNE"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9778,7 +11136,17 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "title": "agree"
+   },
+   "problems": [
+    "JMLR v9 page (fetched): <title>Visualizing Data using t-SNE</title>."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9806,7 +11174,8 @@
       "url": "https://api.crossref.org/works/10.1177/002224379403100306.xml",
       "quote": "<doi>10.1177/002224379403100306</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -9818,7 +11187,8 @@
       "url": "https://api.crossref.org/works/10.1177/002224379403100306",
       "quote": "\"issue\":\"3\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9841,9 +11211,26 @@
    "page": "384-392",
    "volume": "31",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Surendra N. Singh",
+    "Sanjay Mishra",
+    "Neeli Bendapudi",
+    "Denise Linville"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1177/002224379403100306: Journal of Marketing Research 31(3) 384-392, 1994."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -9864,8 +11251,8 @@
    {
     "field": "author",
     "current": "F G Ashby and J Y Tein and J D Balakrishan",
-    "proposed": "F G Ashby and J-Y Tein and J D Balakrishan",
-    "source": "researcher",
+    "proposed": "F G Ashby and J-Y Tein and J D Balakrishnan",
+    "source": "reviewer",
     "evidence": [
      {
       "url": "https://api.crossref.org/works/10.1006/jmps.1993.1033",
@@ -9878,8 +11265,15 @@
      {
       "url": "https://api.crossref.org/works/10.1006/jmps.1993.1033",
       "quote": "\"given\":\"J.D.\",\"family\":\"Balakrishnan\""
+     },
+     {
+      "reviewer_confirmed": "agree (held only by the single-source rule; Crossref J.D. Balakrishnan and 4 HEAD entries write J D Balakrishnan)",
+      "reviewer_problems": [
+       "Crossref 10.1006/jmps.1993.1033: Journal of Mathematical Psychology 37(4) 526-555, 1993."
+      ]
      }
-    ]
+    ],
+    "reviewer": "agree (held only by the single-source rule; Crossref J.D. Balakrishnan and 4 HEAD entries write J D Balakrishnan)"
    },
    {
     "field": "doi",
@@ -9891,7 +11285,8 @@
       "url": "https://api.crossref.org/works/10.1006/jmps.1993.1033.xml",
       "quote": "<doi>10.1006/jmps.1993.1033</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -9903,7 +11298,8 @@
       "url": "https://api.crossref.org/works/10.1006/jmps.1993.1033",
       "quote": "\"issue\":\"4\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -9916,8 +11312,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'balakrishan' -> 'balakrishnan' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'J D Balakrishan' is kept",
-    "action": "held"
+    "detail": "surname 'balakrishan' -> 'balakrishnan' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree (held only by the single-source rule; Crossref J.D. Balakrishnan and 4 HEAD entries write J D Balakrishnan))",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -9933,10 +11329,27 @@
    "page": "526-555",
    "volume": "37",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "F.Gregory Ashby",
+    "Jenn-Yun Tein",
+    "J.D. Balakrishnan"
+   ]
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree (held only by the single-source rule; Crossref J.D. Balakrishnan and 4 HEAD entries write J D Balakrishnan)",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1006/jmps.1993.1033: Journal of Mathematical Psychology 37(4) 526-555, 1993."
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
  },
  {
   "key": "AshbMadd93",
@@ -9998,7 +11411,11 @@
    "page": "372-400",
    "volume": "37",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "F.Gregory Ashby",
+    "W.Todd Maddox"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -10028,7 +11445,8 @@
       "url": "https://api.crossref.org/works/10.1016/0022-2496(78)90016-0.xml",
       "quote": "<doi>10.1016/0022-2496(78)90016-0</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -10040,7 +11458,8 @@
       "url": "https://api.crossref.org/works/10.1016/0022-2496(78)90016-0",
       "quote": "\"issue\":\"3\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -10056,7 +11475,8 @@
       "url": "https://api.istex.fr/document/?q=doi:%2210.1016/0022-2496(78)90016-0%22&output=author,title,host,publicationDate",
       "quote": "Behavioral contrast in short term memory: Serial binary memory models or parallel continuous memory models?"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10079,9 +11499,24 @@
    "page": "199-219",
    "volume": "17",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Stephen Grossberg"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/0022-2496(78)90016-0: Journal of Mathematical Psychology 17(3) 199-219, 1978."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -10166,7 +11601,11 @@
    "page": "30-57",
    "volume": "50",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Tyler McMillen",
+    "Philip Holmes"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -10196,7 +11635,8 @@
       "url": "https://api.crossref.org/works/10.1006/jmps.2000.1339.xml",
       "quote": "<doi>10.1006/jmps.2000.1339</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -10208,7 +11648,8 @@
       "url": "https://api.crossref.org/works/10.1006/jmps.2000.1339",
       "quote": "\"issue\":\"4\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -10220,7 +11661,8 @@
       "url": "https://api.crossref.org/works/10.1006/jmps.2000.1339",
       "quote": "Judgments of Frequency and Recency in a Distributed Memory Model"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10243,9 +11685,26 @@
    "page": "564-602",
    "volume": "45",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Bennet Murdock",
+    "David Smith",
+    "Juan Bai"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1006/jmps.2000.1339: Journal of Mathematical Psychology 45(4) 564-602, 2001."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -10315,7 +11774,12 @@
    "page": "99-128",
    "volume": "3",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Patrick Suppes",
+    "Guy Groen",
+    "Madeleine Schlag-Rey"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -10380,7 +11844,10 @@
    "page": "163-177",
    "volume": "25",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Ulrik Brandes"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -10402,6 +11869,39 @@
   },
   "final_changes": [
    {
+    "field": "author",
+    "current": "D M Low and L Rumker and T Talkar and J Torous and G Cecchi and S S Chosh",
+    "proposed": "D M Low and L Rumker and T Talkar and J Torous and G Cecchi and S S Ghosh",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32936777/",
+      "quote": "FAU - Low, Daniel M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32936777/",
+      "quote": "FAU - Rumker, Laurie"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32936777/",
+      "quote": "FAU - Talkar, Tanya"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32936777/",
+      "quote": "FAU - Torous, John"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32936777/",
+      "quote": "FAU - Cecchi, Guillermo"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32936777/",
+      "quote": "FAU - Ghosh, Satrajit S"
+     }
+    ],
+    "reviewer": "agree (held only by the single-source rule; PubMed 32936777 and Crossref both print Satrajit S Ghosh)"
+   },
+   {
     "field": "doi",
     "current": null,
     "proposed": "10.2196/22635",
@@ -10411,7 +11911,8 @@
       "url": "https://api.crossref.org/works/10.2196/22635.xml",
       "quote": "<doi>10.2196/22635</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10420,14 +11921,7 @@
    "target_base": "LowEtal20",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "surname_single_source",
-    "field": "author",
-    "detail": "surname 'chosh' -> 'ghosh' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'S S Chosh' is kept",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.2196/22635",
    "registered": true,
@@ -10441,10 +11935,29 @@
    "page": "e22635",
    "volume": "22",
    "issue": "10",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Daniel M Low",
+    "Laurie Rumker",
+    "Tanya Talkar",
+    "John Torous",
+    "Guillermo Cecchi",
+    "Satrajit S Ghosh"
+   ]
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "author": "agree (held only by the single-source rule; PubMed 32936777 and Crossref both print Satrajit S Ghosh)"
+   },
+   "problems": [
+    "Crossref 10.2196/22635: Journal of Medical Internet Research 22(10) e22635, 2020."
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
  },
  {
   "key": "Ande03",
@@ -10472,7 +11985,8 @@
       "url": "https://api.crossref.org/works/10.1016/j.jml.2003.08.006.xml",
       "quote": "<doi>10.1016/j.jml.2003.08.006</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10495,9 +12009,22 @@
    "page": "415-445",
    "volume": "49",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "M Anderson"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/j.jml.2003.08.006: Journal of Memory and Language 49(4) 415-445, 2003."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -10560,7 +12087,10 @@
    "page": "445-467",
    "volume": "48",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "C Brainerd"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -10590,7 +12120,8 @@
       "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90022-p.xml",
       "quote": "<doi>10.1016/0749-596x(92)90022-p</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -10602,7 +12133,8 @@
       "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90022-p",
       "quote": "\"issue\":\"4\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -10614,7 +12146,8 @@
       "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90022-p",
       "quote": "Toward a network model of the articulatory loop"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10637,9 +12170,24 @@
    "page": "429-460",
    "volume": "31",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "N BURGESS"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/0749-596x(92)90022-p: Journal of Memory and Language 31(4) 429-460, 1992."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -10667,7 +12215,8 @@
       "url": "https://api.crossref.org/works/10.4324/9780203728178-6",
       "quote": "\"type\":\"book-chapter\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "address",
@@ -10679,7 +12228,8 @@
       "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22cognitive%20skills%20and%20their%20acquisition%22",
       "quote": "Hillsdale, N.J. :"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "booktitle",
@@ -10691,7 +12241,8 @@
       "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22cognitive%20skills%20and%20their%20acquisition%22",
       "quote": "Cognitive skills and their acquisition /"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "editor",
@@ -10703,7 +12254,8 @@
       "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22cognitive%20skills%20and%20their%20acquisition%22",
       "quote": "edited by John R. Anderson."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "publisher",
@@ -10715,18 +12267,12 @@
       "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=dc.title%3D%22cognitive%20skills%20and%20their%20acquisition%22",
       "quote": "L. Erlbaum Associates,"
      }
-    ]
-   },
-   {
-    "field": "series",
-    "current": null,
-    "proposed": "Journal of Mathematical Psychology",
-    "source": "postcheck",
-    "evidence": []
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {
-   "journal": "@incollection has no journal (moved to series)",
+   "journal": "@incollection has no journal (the researcher asked to remove it; not moved to series)",
    "volume": "researcher asked to remove it (current '6')",
    "pages": "researcher asked to remove it (current '192--208')"
   },
@@ -10737,7 +12283,28 @@
   },
   "flags": [],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "address": "agree",
+    "booktitle": "agree",
+    "editor": "agree",
+    "publisher": "agree",
+    "series": "disagree: must be removed (post-check moved the wrong journal into series although the researcher listed journal under remove)",
+    "journal": "agree (removed)",
+    "volume": "agree (removed)",
+    "pages": "not_found (chapter is usually cited as 1--55; no source read)"
+   },
+   "problems": [
+    "POST-CHECK: the contained-type rule moved Journal {Journal of Mathematical Psychology} into Series; the researcher asked for journal to be removed (the JMP article does not exist). The researcher removal list must win over the journal-to-series move.",
+    "LoC LCCN 80028702 (fetched): \"Cognitive skills and their acquisition / edited by John R. Anderson. Hillsdale, N.J. : L. Erlbaum Associates, 1981.\" HEAD writes Publisher {Erlbaum} 52 times."
+   ],
+   "suggested_value": {
+    "series": null
+   }
+  },
   "needs_user": false
  },
  {
@@ -10766,7 +12333,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/7841806/",
       "quote": "AID - 10.1176/jnp.6.4.348 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -10782,7 +12350,8 @@
       "url": "https://api.crossref.org/works/10.1176/jnp.6.4.348.xml",
       "quote": "<first_page>348</first_page>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10805,9 +12374,22 @@
    "page": "348-357",
    "volume": "6",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": []
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "PubMed 7841806: 6(4) 348-57, Goldman-Rakic PS.",
+    "Crossref 10.1176/jnp.6.4.348: The Journal of Neuropsychiatry and Clinical Neurosciences 6(4) 348-357, 1994."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -10871,7 +12453,8 @@
    "page": "371-378",
    "volume": "6",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": []
   },
   "reviewer": null,
   "needs_user": false
@@ -10902,7 +12485,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/9276840/",
       "quote": "L Heimer, G F Alheid, J S de Olmos, H J Groenewegen, S N Haber, R E Harlan, D S Zahm"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -10914,7 +12498,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/9276840/",
       "quote": "AID - 10.1176/jnp.9.3.354 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -10926,7 +12511,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/9276840/",
       "quote": "PG  - 354-81"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -10949,9 +12535,23 @@
    "page": "354-381",
    "volume": "9",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": []
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "PubMed 9276840: 9(3) 354-81, 'de Olmos, J S'.",
+    "Crossref 10.1176/jnp.9.3.354: The Journal of Neuropsychiatry and Clinical Neurosciences 9(3) 354-381, 1997."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11014,7 +12614,10 @@
    "page": "321-332",
    "volume": "137",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Andreas Bruns"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -11049,7 +12652,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0165-0270(01)00372-7.xml",
       "quote": "<given_name>Jean-Philippe</given_name>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -11061,7 +12665,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11595276/",
       "quote": "AID - 10.1016/s0165-0270(01)00372-7 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11084,9 +12689,29 @@
    "page": "83-98",
    "volume": "111",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Michel Le Van Quyen",
+    "Jack Foucher",
+    "Jean-Philippe Lachaux",
+    "Eugenio Rodriguez",
+    "Antoine Lutz",
+    "Jacques Martinerie",
+    "Francisco J. Varela"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/s0165-0270(01)00372-7: Journal of Neuroscience Methods 111(2) 83-98, 2001."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11108,14 +12733,16 @@
    {
     "field": "author",
     "current": "K Miller and S Makeig and A O Hebb and R P N Rao and M dennijs and J G Ojemann",
-    "proposed": "K J Miller and S Makeig and A O Hebb and R P N Rao and M {denNijs} and J G Ojemann",
-    "source": "researcher",
+    "proposed": "K J Miller and S Makeig and A O Hebb and R P N Rao and M {den Nijs} and J G Ojemann",
+    "source": "reviewer",
     "evidence": [
      {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/17343918/",
-      "quote": "Kai J Miller, Scott Makeig, Adam O Hebb, Rajesh P N Rao, Marcel denNijs, Jeffrey G Ojemann"
+      "reviewer_problems": [
+       "Crossref prints 'Marcel denNijs'; HEAD writes the same author M {den Nijs} in 5 entries (lines 16635, 20661, 22699, 39504, 40913). Brief: check how cdl.bib writes a value first."
+      ]
      }
-    ]
+    ],
+    "reviewer": "disagree: house form is M {den Nijs} (5 HEAD entries for the same author); K J Miller agree"
    },
    {
     "field": "doi",
@@ -11127,7 +12754,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17343918/",
       "quote": "AID - 10.1016/j.jneumeth.2007.01.019 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -11139,7 +12767,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/17343918/",
       "quote": "Cortical electrode localization from X-rays and simple mapping for electrocorticographic research: The \"Location on Cortex\" (LOC) package for MATLAB"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11162,9 +12791,31 @@
    "page": "303-308",
    "volume": "162",
    "issue": "1-2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Kai J. Miller",
+    "Scott Makeig",
+    "Adam O. Hebb",
+    "Rajesh P.N. Rao",
+    "Marcel denNijs",
+    "Jeffrey G. Ojemann"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "disagree: house form is M {den Nijs} (5 HEAD entries for the same author); K J Miller agree",
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref prints 'Marcel denNijs'; HEAD writes the same author M {den Nijs} in 5 entries (lines 16635, 20661, 22699, 39504, 40913). Brief: check how cdl.bib writes a value first."
+   ],
+   "suggested_value": {
+    "author": "K J Miller and S Makeig and A O Hebb and R P N Rao and M {den Nijs} and J G Ojemann"
+   }
+  },
   "needs_user": false
  },
  {
@@ -11263,7 +12914,14 @@
    "page": "107-125",
    "volume": "145",
    "issue": "1-2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Ahmet Kemal Özdemir",
+    "Sirel Karakaş",
+    "Emine D. Çakmak",
+    "D. İlhan Tüfekçi",
+    "Orhan Arıkan"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -11298,7 +12956,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0165-0270(01)00459-9.xml",
       "quote": "<given_name>Maarten E.A.</given_name>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -11310,7 +12969,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11716947/",
       "quote": "AID - 10.1016/s0165-0270(01)00459-9 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11333,9 +12993,27 @@
    "page": "119-133",
    "volume": "112",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Qun Wu",
+    "Maarten E.A. Reith",
+    "R.Mark Wightman",
+    "Kirk T. Kawagoe",
+    "Paul A. Garris"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/s0165-0270(01)00459-9: Journal of Neuroscience Methods 112(2) 119-133, 2001."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -11406,7 +13084,14 @@
    "page": "322-332",
    "volume": "156",
    "issue": "1-2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Yang Zhan",
+    "David Halliday",
+    "Ping Jiang",
+    "Xuguang Liu",
+    "Jianfeng Feng"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -11460,7 +13145,10 @@
    "page": "1741-1757",
    "volume": "96",
    "issue": "11",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Stavros I. Dimitriadis"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -11525,7 +13213,18 @@
    "page": "697-705",
    "volume": "91",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Itzhak Fried",
+    "Charles L. Wilson",
+    "Nigel T. Maidment",
+    "Jerome Engel",
+    "Eric Behnke",
+    "Tony A. Fields",
+    "Katherine A. Macdonald",
+    "Jack W. Morrow",
+    "Larry Ackerson"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -11591,7 +13290,15 @@
    "page": "129-132",
    "volume": "84",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Matthew A. Howard",
+    "Igor O. Volkov",
+    "Mark A. Granner",
+    "Hanna M. Damasio",
+    "Michael C. Ollendieck",
+    "Hans E. Bakken"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -11645,7 +13352,15 @@
    "page": "369-375",
    "volume": "100",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "G. Evren Keles",
+    "David A. Lundin",
+    "Kathleen R. Lamborn",
+    "Edward F. Chang",
+    "George Ojemann",
+    "Mitchel S. Berger"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -11711,7 +13426,17 @@
    "page": "29-36",
    "volume": "107",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Galit Kleiner-Fisman",
+    "Grace S. Lin Liang",
+    "Paul J. Moberg",
+    "Anthony C. Ruocco",
+    "Howard I. Hurtig",
+    "Gordon H. Baltuch",
+    "Jurg L. Jaggi",
+    "Matthew B. Stern"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -11733,6 +13458,18 @@
   },
   "final_changes": [
    {
+    "field": "author",
+    "current": "M Lafreniere-Roula and W D Hutchinson and A M Lozano and M Hodaie and J O Dostrovsky",
+    "proposed": "M Lafreniere-Roula and W D Hutchison and A M Lozano and M Hodaie and J O Dostrovsky",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19408978/",
+      "quote": "Myriam Lafreniere-Roula, William D Hutchison, Andres M Lozano, Mojgan Hodaie, Jonathan O Dostrovsky"
+     }
+    ]
+   },
+   {
     "field": "doi",
     "current": null,
     "proposed": "10.3171/2009.3.jns09111",
@@ -11751,14 +13488,7 @@
    "target_base": "LafrEtal09",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "surname_single_source",
-    "field": "author",
-    "detail": "surname 'hutchinson' -> 'hutchison' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'W D Hutchinson' is kept",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.3171/2009.3.jns09111",
    "registered": true,
@@ -11772,10 +13502,17 @@
    "page": "724-728",
    "volume": "111",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Myriam Lafreniere-Roula",
+    "William D. Hutchison",
+    "Andres M. Lozano",
+    "Mojgan Hodaie",
+    "Jonathan O. Dostrovsky"
+   ]
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LittEtal09",
@@ -11864,7 +13601,16 @@
    "page": "1263-1274",
    "volume": "111",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Andrew S. Little",
+    "Kris A. Smith",
+    "Kristin Kirlin",
+    "Leslie C. Baxter",
+    "Steve Chung",
+    "Rama Maganti",
+    "David M. Treiman"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -11895,7 +13641,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/3964840/",
       "quote": "AID - 10.3171/jns.1985.62.1.0101 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -11911,7 +13658,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/3964840/",
       "quote": "Verbal memory deficits after left temporal lobectomy for epilepsy. Mechanism and intraoperative prediction."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -11934,9 +13682,24 @@
    "page": "101-107",
    "volume": "62",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "George A. Ojemann",
+    "Carl B. Dodrill"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.3171/jns.1985.62.1.0101: Journal of Neurosurgery 62(1) 101-107, 1985."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -12023,7 +13786,13 @@
    "page": "316-326",
    "volume": "71",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "George Ojemann",
+    "Jeff Ojemann",
+    "E. Lettich",
+    "M. Berger"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -12054,7 +13823,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11990805/",
       "quote": "Tanya Simuni, Jurg L Jaggi, Heather Mulholland, Howard I Hurtig, Amy Colcher, Andrew D Siderowf, Bernard Ravina, Brett E Skolnick, Reid Goldstein, Matthew B Stern, Gordon H Baltuch"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -12066,7 +13836,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11990805/",
       "quote": "AID - 10.3171/jns.2002.96.4.0666 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -12078,7 +13849,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11990805/",
       "quote": "Bilateral stimulation of the subthalamic nucleus in patients with Parkinson disease: a study of efficacy and safety."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12101,9 +13873,34 @@
    "page": "666-672",
    "volume": "96",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Tanya Simuni",
+    "Jurg L. Jaggi",
+    "Heather Mulholland",
+    "Howard I. Hurtig",
+    "Amy Colcher",
+    "Andrew D. Siderowf",
+    "Bernard Ravina",
+    "Brett E. Skolnick",
+    "Reid Goldstein",
+    "Matthew B. Stern",
+    "Gordon H. Baltuch"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.3171/jns.2002.96.4.0666: Journal of Neurosurgery 96(4) 666-672, 2002."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -12167,7 +13964,15 @@
    "page": "501-505",
    "volume": "106",
    "issue": "6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Kuan H. Kho",
+    "Geert-Jan M. Rutten",
+    "Frans S. S. Leijten",
+    "Arjen van der Schaaf",
+    "Peter C. van Rijen",
+    "Nick F. Ramsey"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -12196,7 +14001,8 @@
       "url": "https://api.crossref.org/works/10.21105/joss.00424.xml",
       "quote": "<doi>10.21105/joss.00424</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -12208,7 +14014,8 @@
       "url": "https://joss.theoj.org/papers/10.21105/joss.00424",
       "quote": "volume = {2}, number = {18}, pages = {424}"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -12220,7 +14027,8 @@
       "url": "https://joss.theoj.org/papers/10.21105/joss.00424",
       "quote": "volume = {2}, number = {18}, pages = {424}"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -12232,7 +14040,8 @@
       "url": "https://joss.theoj.org/papers/10.21105/joss.00424",
       "quote": "volume = {2}, number = {18}, pages = {424}"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12255,9 +14064,29 @@
    "page": "424",
    "volume": "2",
    "issue": "18",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Andrew C. Heusser",
+    "Paxton C. Fitzpatrick",
+    "Campbell E. Field",
+    "Kirsten Ziman",
+    "Jeremy R. Manning"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.21105/joss.00424: The Journal of Open Source Software 2(18) 424, 2017."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -12309,7 +14138,10 @@
    "page": "3021",
    "volume": "6",
    "issue": "60",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Michael Waskom"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -12387,7 +14219,13 @@
    "page": "646-657",
    "volume": "42",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "James D. Laird",
+    "J. John Wagener",
+    "Mark Halal",
+    "Martha Szegda"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -12448,7 +14286,11 @@
    "page": "321-336",
    "volume": "59",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "W. Gerrod Parrott",
+    "John Sabini"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -12494,7 +14336,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-3565(24)35076-1",
       "quote": "\"given\":\"Valentin K.\",\"family\":\"Gribkoff\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -12506,7 +14349,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-3565(24)35076-1",
       "quote": "\"DOI\":\"10.1016\\/s0022-3565(24)35076-1\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -12518,7 +14362,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/10490892/",
       "quote": "IP  - 1"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -12530,7 +14375,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/10490892/",
       "quote": "Cognition-enhancing drugs increase stimulated hippocampal theta rhythm amplitude in the urethane-anesthetized rat."
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -12542,7 +14388,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/10490892/",
       "quote": "VI  - 291"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12565,9 +14412,31 @@
    "page": "99-106",
    "volume": "291",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Gene G. Kinney",
+    "Patricia Patino",
+    "Yvan Mermet-Bouvier",
+    "John E. Starrett",
+    "Valentin K. Gribkoff"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "PubMed 10490892: JPET 291(1) 99-106, 1999 Oct, 'Starrett, J E Jr' (suffix dropped per house rule).",
+    "Crossref 10.1016/s0022-3565(24)35076-1: The Journal of Pharmacology and Experimental Therapeutics 291(1) 99-106, 1999."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -12637,6 +14506,18 @@
       "quote": "<doi>10.1016/j.jphysparis.2004.01.018</doi>"
      }
     ]
+   },
+   {
+    "field": "journal",
+    "current": "Journal of Physiology",
+    "proposed": "Journal of Physiology-Paris",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.jphysparis.2004.01.018",
+      "quote": "\"container-title\":[\"Journal of Physiology-Paris\"]"
+     }
+    ]
    }
   ],
   "removals": {},
@@ -12659,7 +14540,12 @@
    "page": "613-628",
    "volume": "97",
    "issue": "4-6",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "J.Ph Lachaux",
+    "D Rudrauf",
+    "P Kahane"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -12729,7 +14615,8 @@
       "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917005.xml",
       "quote": "<doi>10.1080/00223980.1940.9917005</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -12741,7 +14628,8 @@
       "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917005",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -12753,7 +14641,8 @@
       "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917005",
       "quote": "The Effect of Changed Environmental Conditions Upon the Results of College Examinations"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12783,9 +14672,25 @@
    "page": "293-301",
    "volume": "10",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Ethel Mary Abernethy"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree",
+    "author": "hold correct: Crossref Ethel Mary Abernethy; no second independent host (OpenAlex mirrors Crossref; T&F 403)"
+   },
+   "problems": [
+    "Crossref 10.1080/00223980.1940.9917005: The Journal of Psychology 10(2) 293-301, 1940."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -12813,7 +14718,8 @@
       "url": "https://api.crossref.org/works/10.1080/00223980.1957.9713089.xml",
       "quote": "<doi>10.1080/00223980.1957.9713089</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -12825,7 +14731,8 @@
       "url": "https://api.crossref.org/works/10.1080/00223980.1957.9713089",
       "quote": "\"issue\":\"2\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12855,9 +14762,25 @@
    "page": "319-327",
    "volume": "44",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "C. W. Crannell",
+    "J. M. Parrish"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "author": "hold correct: Crossref J. M. Parrish; no second independent host found (OpenAlex mirrors Crossref; T&F page 403)"
+   },
+   "problems": [
+    "Crossref 10.1080/00223980.1957.9713089: The Journal of Psychology 44(2) 319-327, 1957."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -12912,7 +14835,10 @@
    "page": "127-142",
    "volume": "53",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Arthur R. Jensen"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -12942,7 +14868,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0082853.xml",
       "quote": "<doi>10.1037/h0082853</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -12954,7 +14881,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0082853",
       "quote": "\"container-title\":[\"Canadian Journal of Psychology \\/ Revue canadienne de psychologie\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -12966,7 +14894,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0082853",
       "quote": "\"issue\":\"3\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -12989,9 +14918,24 @@
    "page": "178-183",
    "volume": "24",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "S. I. Shapiro"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0082853: Canadian Journal of Psychology / Revue canadienne de psychologie 24(3) 178-183, 1970."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -13008,6 +14952,22 @@
   },
   "final_changes": [
    {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1177/0269881108091592",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "POST-CHECK: doi_title_mismatch drops 10.1177/0269881108091592 because the Crossref title is 'Book Review: Clinical Guide to the Diagnosis and Treatment of Mental Disorders Michael First, Allam Tasman, Wiley, Price: £50'. It is this work (A J Mitchell's one-page review, J Psychopharmacol 23(8) 1005, 2009). A reviewed-book title plus a 'Book Review:' prefix and price should match.",
+       "Work-form question for the user: the entry cites the review, titled as the book; if the citing paper meant the book (First and Tasman), the entry should become @book.",
+       "Crossref 10.1177/0269881108091592: Journal of Psychopharmacology 23(8) 1005-1005, 2009."
+      ]
+     }
+    ],
+    "reviewer": "disagree: correct DOI dropped by the post-check title check"
+   },
+   {
     "field": "number",
     "current": null,
     "proposed": "8",
@@ -13017,7 +14977,8 @@
       "url": "https://api.crossref.org/works/10.1177/0269881108091592",
       "quote": "\"issue\":\"8\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -13029,7 +14990,8 @@
       "url": "https://api.crossref.org/works/10.1177/0269881108091592",
       "quote": "\"page\":\"1005-1005\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -13041,7 +15003,8 @@
       "url": "https://api.crossref.org/works/10.1177/0269881108091592",
       "quote": "\"volume\":\"23\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13050,14 +15013,7 @@
    "target_base": "Mitc09",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "doi_title_mismatch",
-    "field": "doi",
-    "detail": "10.1177/0269881108091592 is registered to 'Book Review: Clinical Guide to the Diagnosis and Treatment of Mental Disorders Michael First, Allam Tasman, Wiley, Price: £50' (Crossref), not this entry's title; DOI change dropped",
-    "action": "dropped"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1177/0269881108091592",
    "registered": true,
@@ -13071,9 +15027,29 @@
    "page": "1005-1005",
    "volume": "23",
    "issue": "8",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "AJ Mitchell"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "number": "agree",
+    "pages": "agree",
+    "volume": "agree",
+    "doi": "disagree: correct DOI dropped by the post-check title check"
+   },
+   "problems": [
+    "POST-CHECK: doi_title_mismatch drops 10.1177/0269881108091592 because the Crossref title is 'Book Review: Clinical Guide to the Diagnosis and Treatment of Mental Disorders Michael First, Allam Tasman, Wiley, Price: £50'. It is this work (A J Mitchell's one-page review, J Psychopharmacol 23(8) 1005, 2009). A reviewed-book title plus a 'Book Review:' prefix and price should match.",
+    "Work-form question for the user: the entry cites the review, titled as the book; if the citing paper meant the book (First and Tasman), the entry should become @book.",
+    "Crossref 10.1177/0269881108091592: Journal of Psychopharmacology 23(8) 1005-1005, 2009."
+   ],
+   "suggested_value": {
+    "doi": "10.1177/0269881108091592"
+   }
+  },
   "needs_user": false
  },
  {
@@ -13114,7 +15090,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/11163900/",
       "quote": "FAU - Basar, E"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -13126,7 +15103,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0167-8760(00)00144-6",
       "quote": "\"DOI\":\"10.1016\\/s0167-8760(00)00144-6\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -13138,7 +15116,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0167-8760(00)00144-6",
       "quote": "\"container-title\":[\"International Journal of Psychophysiology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13161,9 +15140,27 @@
    "page": "229-239",
    "volume": "39",
    "issue": "2-3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Martin Schürmann",
+    "Canan Başar-Eroglu",
+    "Vasil Kolev",
+    "Erol Başar"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "journal": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/s0167-8760(00)00144-6: International Journal of Psychophysiology 39(2-3) 229-239, 2001."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -13215,7 +15212,11 @@
    "page": "61-76",
    "volume": "18",
    "issue": "2/3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Geert J.M. van Boxtel",
+    "Koen B.E. Böcker"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -13292,7 +15293,11 @@
    "page": "289-300",
    "volume": "57",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Yoav Benjamini",
+    "Yosef Hochberg"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -13323,7 +15328,8 @@
       "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1953.tb00135.x.xml",
       "quote": "<doi>10.1111/j.2517-6161.1953.tb00135.x</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -13335,7 +15341,8 @@
       "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1953.tb00135.x",
       "quote": "\"container-title\":[\"Journal of the Royal Statistical Society Series B: Statistical Methodology\"]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "pages",
@@ -13347,7 +15354,8 @@
       "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1953.tb00135.x",
       "quote": "\"page\":\"193-225\""
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13370,9 +15378,24 @@
    "page": "193-225",
    "volume": "15",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Harold Hotelling"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1111/j.2517-6161.1953.tb00135.x: Journal of the Royal Statistical Society Series B: Statistical Methodology 15(2) 193-225, 1953."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -13436,7 +15459,11 @@
    "page": "611-622",
    "volume": "61",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Michael E. Tipping",
+    "Christopher M. Bishop"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -13466,7 +15493,8 @@
       "url": "https://api.crossref.org/works/10.1046/j.1365-2869.7.s1.3.x.xml",
       "quote": "<doi>10.1046/j.1365-2869.7.s1.3.x</doi>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -13478,7 +15506,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/9682189/",
       "quote": "VI  - 7 Suppl 1"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13501,9 +15530,23 @@
    "page": "17-23",
    "volume": "7",
    "issue": "S1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "GyÖrgy BuzsÁk"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1046/j.1365-2869.7.s1.3.x: Journal of Sleep Research 7(S1) 17-23, 1998."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -13538,8 +15581,8 @@
    {
     "code": "quote_check_failed",
     "field": "title",
-    "detail": "validator: title not covered by its quotes (missing ['mood', 'congruent', 'memory', 'replication', 'symmetrical', 'effects', 'both', 'positive', 'negative', 'moods']; failures ['quote not found at url'])",
-    "action": "held"
+    "detail": "validator: title not covered by its quotes (missing ['mood', 'congruent', 'memory', 'replication', 'symmetrical', 'effects', 'both', 'positive', 'negative', 'moods']; failures ['quote not found at url']); validator could not fetch the source; reviewer confirmed the value (agree (PsycNET page title read in a browser: 'Mood congruent memory: A replication of symmetrical effects for both positive and negative moods.')) (source reviewer)",
+    "action": "applied"
    },
    {
     "code": "quote_check_failed",
@@ -13579,7 +15622,23 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "title": "agree (PsycNET page title read in a browser: 'Mood congruent memory: A replication of symmetrical effects for both positive and negative moods.')",
+    "author": "unsure (PsycNET body did not render)",
+    "journal": "unsure",
+    "year": "unsure",
+    "volume": "unsure",
+    "number": "unsure",
+    "pages": "unsure"
+   },
+   "problems": [
+    "No changes in the final output; all holds are validator fetch failures on a JavaScript page. Only the title could be re-read."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -13613,7 +15672,15 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree (no_source): OpenAlex W2787812610 is a lead only and gives 'Effect' not 'Effects'; PsycNET not readable by script"
+   },
+   "problems": [],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -13642,7 +15709,8 @@
       "url": "https://www.jstatsoft.org/article/view/v067i01",
       "quote": "DOI: 10.18637/jss.v067.i01"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13665,9 +15733,25 @@
    "page": null,
    "volume": "67",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Douglas Bates",
+    "Martin Mächler",
+    "Ben Bolker",
+    "Steve Walker"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.18637/jss.v067.i01: Journal of Statistical Software 67(1) None, 2015."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -13707,7 +15791,11 @@
    "page": null,
    "volume": "59",
    "issue": "9",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Ulrich Halekoh",
+    "Søren Højsgaard"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -13795,7 +15883,10 @@
    "page": null,
    "volume": "48",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Yves Rosseel"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -13856,7 +15947,10 @@
    "page": "973",
    "volume": "21",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Howard G. Knuttgen"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -13899,7 +15993,8 @@
       "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
       "quote": "<surname>Whalen</surname>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -13911,7 +16006,8 @@
       "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
       "quote": "10.70725/307718pkpjuu"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -13943,9 +16039,25 @@
    "page": "189-199",
    "volume": "28",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Torrey Trust",
+    "Jeromie Whalen"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "key": "agree (Whal20 -> TrusWhal20; target free in HEAD)"
+   },
+   "problems": [
+    "Crossref 10.70725/307718pkpjuu: Journal of Technology and Teacher Education 28(2) 189-199, 2020."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -14009,7 +16121,20 @@
    "page": "589-609",
    "volume": "13",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Barry Krakow",
+    "Michael Hollifield",
+    "Ron Schrader",
+    "Mary Koss",
+    "Dan Tandberg",
+    "John Lauriello",
+    "Leslie McBride",
+    "Teddy D. Warner",
+    "Diana Cheng",
+    "Tonya Edmond",
+    "Robert Kellner"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -14033,22 +16158,18 @@
    {
     "field": "author",
     "current": "D Vogt and A B Fox and B A L Di Leone",
-    "proposed": "D Vogt and A B Fox and B A L D Leone",
-    "source": "researcher",
+    "proposed": "D Vogt and A B Fox and B A L {Di Leone}",
+    "source": "reviewer",
     "evidence": [
      {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
-      "quote": "FAU - Vogt, Dawne"
-     },
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
-      "quote": "FAU - Fox, Annie B"
-     },
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
-      "quote": "FAU - Di Leone, Brooke A L"
+      "reviewer_problems": [
+       "POST-CHECK BUG: researcher proposed B A L {Di Leone} (a brace fix of the cited 'B A L Di Leone'); the name normaliser read the unbraced 'Di' as a given name and made it 'D', then surname_single_source held the change and kept 'B A L D Leone', which is worse than HEAD. A brace fix of the same letters should not trigger the surname hold.",
+       "PubMed 24839077 'FAU - Di Leone, Brooke A L'; Crossref 'Brooke A. L. Di Leone' (two hosts).",
+       "Crossref 10.1002/jts.21919: Journal of Traumatic Stress 27(3) 307-313, 2014."
+      ]
      }
-    ]
+    ],
+    "reviewer": "disagree: final value B A L D Leone is wrong (post-check turned the cited unbraced particle Di into an initial, then held that normalised form as 'the cited name')"
    },
    {
     "field": "doi",
@@ -14060,7 +16181,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
       "quote": "LID - 10.1002/jts.21919 [doi]"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -14072,7 +16194,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
       "quote": "Mental health beliefs and their relationship with treatment seeking among U.S. OEF/OIF veterans."
      }
-    ]
+    ],
+    "reviewer": "agree (source prints U.S.; HEAD has {US} in other titles: house-style choice)"
    }
   ],
   "removals": {},
@@ -14081,14 +16204,7 @@
    "target_base": "VogtEtal14",
    "action": "keep"
   },
-  "flags": [
-   {
-    "code": "surname_single_source",
-    "field": "author",
-    "detail": "surname 'leone' -> 'di leone' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'B A L D Leone' is kept",
-    "action": "held"
-   }
-  ],
+  "flags": [],
   "doi_status": {
    "doi": "10.1002/jts.21919",
    "registered": true,
@@ -14102,10 +16218,31 @@
    "page": "307-313",
    "volume": "27",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Dawne Vogt",
+    "Annie B. Fox",
+    "Brooke A. L. Di Leone"
+   ]
   },
-  "reviewer": null,
-  "needs_user": true
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "disagree: final value B A L D Leone is wrong (post-check turned the cited unbraced particle Di into an initial, then held that normalised form as 'the cited name')",
+    "doi": "agree",
+    "title": "agree (source prints U.S.; HEAD has {US} in other titles: house-style choice)"
+   },
+   "problems": [
+    "POST-CHECK BUG: researcher proposed B A L {Di Leone} (a brace fix of the cited 'B A L Di Leone'); the name normaliser read the unbraced 'Di' as a given name and made it 'D', then surname_single_source held the change and kept 'B A L D Leone', which is worse than HEAD. A brace fix of the same letters should not trigger the surname hold.",
+    "PubMed 24839077 'FAU - Di Leone, Brooke A L'; Crossref 'Brooke A. L. Di Leone' (two hosts).",
+    "Crossref 10.1002/jts.21919: Journal of Traumatic Stress 27(3) 307-313, 2014."
+   ],
+   "suggested_value": {
+    "author": "D Vogt and A B Fox and B A L {Di Leone}"
+   }
+  },
+  "needs_user": false
  },
  {
   "key": "vand95",
@@ -14138,7 +16275,15 @@
    }
   ],
   "doi_status": null,
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "verdict": "agree (ambiguous): Crossref 10.1002/jts.2490080402 JTS 8(4) 505-525 1995 is van der Kolk and Fisler 'Dissociation and the fragmentary nature of traumatic memories'; 10.1046/j.1440-1819.1998.0520s5S97.x is van der Kolk 'Trauma and memory' PCN 52(S1) 1998. User must pick."
+   },
+   "problems": [],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -14213,7 +16358,10 @@
    "page": "596-606",
    "volume": "9",
    "issue": "5",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Arthur W. Melton"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -14279,7 +16427,10 @@
    "page": "261-295",
    "volume": "22",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "John R. Anderson"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -14372,7 +16523,11 @@
    "page": "89-94",
    "volume": "14",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Francis S. Bellezza",
+    "Nancy Jo Schirmann"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -14402,7 +16557,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
       "quote": "C. James Goodwin"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "doi",
@@ -14414,7 +16570,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
       "quote": "10.1016/s0022-5371(76)90012-8"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -14426,7 +16583,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
       "quote": "<issue>1</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14449,9 +16607,24 @@
    "page": "119-132",
    "volume": "15",
    "issue": "1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "C. James Goodwin"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "number": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/s0022-5371(76)90012-8: Journal of Verbal Learning and Verbal Behavior 15(1) 119-132, 1976."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -14470,6 +16643,33 @@
   },
   "final_changes": [
    {
+    "field": "author",
+    "current": "G Keppel and L Postman and B Zavortnik",
+    "proposed": "G Keppel and L Postman and B Zavortink",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "Geoffrey Keppel"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "Leo Postman"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "Bonnie Zavortink"
+     },
+     {
+      "reviewer_confirmed": "agree (held only by the single-source rule; Crossref Bonnie Zavortink and HEAD line 43147 B Zavortink)",
+      "reviewer_problems": [
+       "Crossref 10.1016/s0022-5371(68)80143-4: Journal of Verbal Learning and Verbal Behavior 7(4) 790-796, 1968."
+      ]
+     }
+    ],
+    "reviewer": "agree (held only by the single-source rule; Crossref Bonnie Zavortink and HEAD line 43147 B Zavortink)"
+   },
+   {
     "field": "doi",
     "current": null,
     "proposed": "10.1016/s0022-5371(68)80143-4",
@@ -14479,7 +16679,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
       "quote": "10.1016/s0022-5371(68)80143-4"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -14491,7 +16692,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
       "quote": "<issue>4</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14510,8 +16712,8 @@
    {
     "code": "surname_single_source",
     "field": "author",
-    "detail": "surname 'zavortnik' -> 'zavortink' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'B Zavortnik' is kept",
-    "action": "held"
+    "detail": "surname 'zavortnik' -> 'zavortink' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree (held only by the single-source rule; Crossref Bonnie Zavortink and HEAD line 43147 B Zavortink))",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -14527,9 +16729,27 @@
    "page": "790-796",
    "volume": "7",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Geoffrey Keppel",
+    "Leo Postman",
+    "Bonnie Zavortink"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "author": "agree (held only by the single-source rule; Crossref Bonnie Zavortink and HEAD line 43147 B Zavortink)",
+    "title": "not_found, left (agree; Crossref deposits only 'Studies of learning to learn: VIII')"
+   },
+   "problems": [
+    "Crossref 10.1016/s0022-5371(68)80143-4: Journal of Verbal Learning and Verbal Behavior 7(4) 790-796, 1968."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -14557,7 +16777,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
       "quote": "10.1016/s0022-5371(63)80099-7"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -14569,7 +16790,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
       "quote": "<issue>4</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "year",
@@ -14581,7 +16803,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
       "quote": "<year>1963</year>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14613,9 +16836,25 @@
    "page": "310-319",
    "volume": "2",
    "issue": "4",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "R.J. Koppenaal"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "year": "agree",
+    "key": "agree (Kopp78 -> Kopp63; target free in HEAD)"
+   },
+   "problems": [
+    "Crossref 10.1016/s0022-5371(63)80099-7: Journal of Verbal Learning and Verbal Behavior 2(4) 310-319, 1963."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -14643,7 +16882,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
       "quote": "10.1016/s0022-5371(62)80008-5"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -14655,7 +16895,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
       "quote": "<issue>2</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -14667,7 +16908,8 @@
       "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
       "quote": "Direction of recall in short-term memory"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14690,9 +16932,24 @@
    "page": "119-124",
    "volume": "1",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Bennet B. Murdock"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/s0022-5371(62)80008-5: Journal of Verbal Learning and Verbal Behavior 1(2) 119-124, 1962."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  },
  {
@@ -14774,7 +17031,11 @@
    "page": "309-324",
    "volume": "17",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Bennet Murdock",
+    "Janet Metcalfe"
+   ]
   },
   "reviewer": null,
   "needs_user": true
@@ -14804,7 +17065,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
       "quote": "10.1037/h0029993"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -14816,7 +17078,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
       "quote": "Journal of Experimental Psychology"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -14828,7 +17091,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
       "quote": "<issue>2</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "title",
@@ -14840,7 +17104,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
       "quote": "Interresponse times in single-trial free recall."
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -14870,9 +17135,26 @@
    "page": "263-267",
    "volume": "86",
    "issue": "2",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Bennet B. Murdock",
+    "Ronald Okada"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0029993: Journal of Experimental Psychology 86(2) 263-267, 1970."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": true
  },
  {
@@ -14967,7 +17249,12 @@
    "page": "303-311",
    "volume": "6",
    "issue": "3",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "James L. Phillips",
+    "Richard M. Shiffrin",
+    "Richard C. Atkinson"
+   ]
   },
   "reviewer": null,
   "needs_user": false
@@ -14997,7 +17284,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
       "quote": "10.1037/h0025385"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "journal",
@@ -15009,7 +17297,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
       "quote": "Journal of Experimental Psychology"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "number",
@@ -15021,7 +17310,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
       "quote": "<issue>2, Pt.1</issue>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    },
    {
     "field": "volume",
@@ -15033,7 +17323,8 @@
       "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
       "quote": "<volume>76</volume>"
      }
-    ]
+    ],
+    "reviewer": "agree"
    }
   ],
   "removals": {},
@@ -15056,9 +17347,27 @@
    "page": "190-197",
    "volume": "76",
    "issue": "2, Pt.1",
-   "type": "journal-article"
+   "type": "journal-article",
+   "authors": [
+    "Howard R. Pollio",
+    "Richard A. Kasschau",
+    "Harry E. Denise"
+   ]
   },
-  "reviewer": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "journal": "agree",
+    "number": "agree",
+    "volume": "agree"
+   },
+   "problems": [
+    "Crossref 10.1037/h0025385: Journal of Experimental Psychology 76(2, Pt.1) 190-197, 1968."
+   ],
+   "suggested_value": {}
+  },
   "needs_user": false
  }
 ]

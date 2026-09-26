@@ -4,6 +4,7 @@
   "bib": "HEAD",
   "flag_counts": {
    "doi_record_conflict": 15,
+   "doi_title_part_number": 2,
    "duplicate": 2,
    "field_not_found": 16,
    "identity_quote_failed": 2,
@@ -13,7 +14,7 @@
    "print_year_conflict": 6,
    "quote_check_failed": 24,
    "style_only_change": 4,
-   "surname_single_source": 9,
+   "surname_single_source": 4,
    "unverified_suggestions": 8,
    "verdict_inconsistent": 6
   },
@@ -1262,7 +1263,17 @@
     "page": "12312-12331",
     "volume": null,
     "issue": null,
-    "type": "proceedings-article"
+    "type": "proceedings-article",
+    "authors": [
+     "Alexander Borzunov",
+     "Max Ryabinin",
+     "Artem Chumachenko",
+     "Dmitry Baranchuk",
+     "Tim Dettmers",
+     "Younes Belkada",
+     "Pavel Samygin",
+     "Colin Raffel"
+    ]
    },
    "batch": "batch-002"
   },
@@ -1370,7 +1381,14 @@
     "page": "4263-4276",
     "volume": null,
     "issue": null,
-    "type": "proceedings-article"
+    "type": "proceedings-article",
+    "authors": [
+     "Andy Shih",
+     "Suneel Belkhale",
+     "Stefano Ermon",
+     "Dorsa Sadigh",
+     "Nima Anari"
+    ]
    },
    "batch": "batch-002"
   },
@@ -1495,7 +1513,13 @@
     "page": "133661-133709",
     "volume": null,
     "issue": null,
-    "type": "proceedings-article"
+    "type": "proceedings-article",
+    "authors": [
+     "Haoxuan Chen",
+     "Yinuo Ren",
+     "Lexing Ying",
+     "Grant Rotskoff"
+    ]
    },
    "batch": "batch-002"
   },
@@ -1620,7 +1644,14 @@
     "page": "95170-95197",
     "volume": null,
     "issue": null,
-    "type": "proceedings-article"
+    "type": "proceedings-article",
+    "authors": [
+     "Zigeng Chen",
+     "Xinyin Ma",
+     "Gongfan Fang",
+     "Zhenxiong Tan",
+     "Xinchao Wang"
+    ]
    },
    "batch": "batch-002"
   },
@@ -2739,7 +2770,12 @@
     "page": "137-153",
     "volume": null,
     "issue": null,
-    "type": "book-chapter"
+    "type": "book-chapter",
+    "authors": [
+     "Richard E. Mayer",
+     "Anne Bovenmyer Lewis",
+     "Mary Hegarty"
+    ]
    },
    "batch": "batch-002"
   },
@@ -2830,7 +2866,10 @@
     "page": "221",
     "volume": "48",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John A. McGeoch"
+    ]
    },
    "batch": "batch-002"
   },
@@ -2921,7 +2960,10 @@
     "page": "201",
     "volume": "15",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "C. Spearman"
+    ]
    },
    "batch": "batch-002"
   },
@@ -3043,7 +3085,11 @@
     "page": null,
     "volume": "9",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jin Cao",
+     "Keith Worsley"
+    ]
    },
    "batch": "batch-002"
   },
@@ -3114,7 +3160,13 @@
     "page": "155-159",
     "volume": "11",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Paula Altman Fuld",
+     "Robert Katzman",
+     "Peter Davies",
+     "Robert D. Terry"
+    ]
    },
    "batch": "batch-002"
   },
@@ -3158,7 +3210,10 @@
     "page": null,
     "volume": "7",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "B. Efron"
+    ]
    },
    "batch": "batch-002"
   },
@@ -3293,7 +3348,10 @@
     "page": null,
     "volume": "6",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Gideon Schwarz"
+    ]
    },
    "batch": "batch-002"
   },
@@ -3343,7 +3401,10 @@
     "page": "25-42",
     "volume": "911",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "REBECCA D. BURWELL"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3388,7 +3449,11 @@
     "page": "132-153",
     "volume": "1369",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Evelina Fedorenko",
+     "Rosemary Varley"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3451,7 +3516,10 @@
     "page": "151-160",
     "volume": "769",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "ARTHUR P. SHIMAMURA"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3512,7 +3580,10 @@
     "page": "1-11",
     "volume": "1097",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "WENDY A. SUZUKI"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3556,7 +3627,11 @@
     "page": "239-261",
     "volume": "1124",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Giulio Tononi",
+     "Christof Koch"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3601,7 +3676,11 @@
     "page": "186-203",
     "volume": "22",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Joan Kelly Hall",
+     "Meghan Walsh"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3674,7 +3753,12 @@
     "page": "185-215",
     "volume": "23",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Saleem M. Nicola",
+     "D. James Surmeier",
+     "Robert C. Malenka"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3727,7 +3811,11 @@
     "page": "403-414",
     "volume": "13",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "R Wehner",
+     "R Menzel"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3776,7 +3864,10 @@
     "page": "349-374",
     "volume": "55",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "W Singer"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3825,7 +3916,10 @@
     "page": "87-115",
     "volume": "49",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J. D. E. Gabrieli"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3888,7 +3982,11 @@
     "page": "143-172",
     "volume": "47",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Alice F. Healy",
+     "Danielle S. McNamara"
+    ]
    },
    "batch": "batch-003"
   },
@@ -3981,7 +4079,15 @@
     "page": "193-224",
     "volume": "59",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John Jonides",
+     "Richard L. Lewis",
+     "Derek Evan Nee",
+     "Cindy A. Lustig",
+     "Marc G. Berman",
+     "Katherine Sledge Moore"
+    ]
    },
    "batch": "batch-003"
   },
@@ -4052,7 +4158,11 @@
     "page": "621-647",
     "volume": "62",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Marta Kutas",
+     "Kara D. Federmeier"
+    ]
    },
    "batch": "batch-003"
   },
@@ -4127,7 +4237,10 @@
     "page": "333-376",
     "volume": "42",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Leah L. Light"
+    ]
    },
    "batch": "batch-003"
   },
@@ -4171,7 +4284,10 @@
     "page": "225-254",
     "volume": "59",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Henry L. Roediger, III"
+    ]
    },
    "batch": "batch-003"
   },
@@ -4444,7 +4560,47 @@
     "page": null,
     "volume": "2021",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Manoj Kumar",
+     "Michael J. Anderson",
+     "James W. Antony",
+     "Christopher Baldassano",
+     "Paula P. Brooks",
+     "Ming Bo Cai",
+     "Po-Hsuan Cameron Chen",
+     "Cameron T. Ellis",
+     "Gregory Henselman-Petrusek",
+     "David Huberdeau",
+     "J. Benjamin Hutchinson",
+     "Y. Peeta Li",
+     "Qihong Lu",
+     "Jeremy R. Manning",
+     "Anne C. Mennen",
+     "Samuel A. Nastase",
+     "Hugo Richard",
+     "Anna C. Schapiro",
+     "Nicolas W. Schuck",
+     "Michael Shvartsman",
+     "Narayanan Sundaram",
+     "Daniel Suo",
+     "Javier S. Turek",
+     "David Turner",
+     "Vy A. Vo",
+     "Grant Wallace",
+     "Yida Wang",
+     "Jamal A. Williams",
+     "Hejia Zhang",
+     "Xia Zhu",
+     "Mihai Capota˘",
+     "Jonathan D. Cohen",
+     "Uri Hasson",
+     "Kai Li",
+     "Peter J. Ramadge",
+     "Nicholas B. Turk-Browne",
+     "Theodore L. Willke",
+     "Kenneth A. Norman"
+    ]
    },
    "batch": "batch-003"
   },
@@ -4501,7 +4657,12 @@
     "page": "281-294",
     "volume": "17",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Arnaud D'Argembeau",
+     "Christine Comblain",
+     "Martial Van der Linden"
+    ]
    },
    "batch": "batch-003"
   },
@@ -4572,7 +4733,11 @@
     "page": "472-478",
     "volume": "30",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Janie Busby Grant",
+     "Erin Walsh"
+    ]
    },
    "batch": "batch-003"
   },
@@ -4637,7 +4802,11 @@
     "page": null,
     "volume": "14",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Peter G. Rendell",
+     "Fergus I. M. Craik"
+    ]
    },
    "batch": "batch-003"
   },
@@ -4755,7 +4924,11 @@
     "page": "163-174",
     "volume": "183",
     "issue": "1-2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Herbert Jasper",
+     "Wilder Penfield"
+    ]
    },
    "batch": "batch-004"
   },
@@ -4841,7 +5014,10 @@
     "page": "527-570",
     "volume": "87",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Hans Berger"
+    ]
    },
    "batch": "batch-004"
   },
@@ -4912,7 +5088,13 @@
     "page": "49-57",
     "volume": "5",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "D. Jacobs",
+     "D. P. Salmon",
+     "A. I. Troster",
+     "N. Butters"
+    ]
    },
    "batch": "batch-004"
   },
@@ -4991,7 +5173,10 @@
     "page": "150",
     "volume": "69",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Paul E. Holtzheimer"
+    ]
    },
    "batch": "batch-004"
   },
@@ -5140,7 +5325,10 @@
     "page": "321",
     "volume": "170",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Matthew P. Herring"
+    ]
    },
    "batch": "batch-004"
   },
@@ -5215,7 +5403,10 @@
     "page": "194",
     "volume": "6",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "W. R. ADEY"
+    ]
    },
    "batch": "batch-004"
   },
@@ -5307,7 +5498,16 @@
     "page": null,
     "volume": "66",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Hans-Joachim Freund",
+     "Jens Kuhn",
+     "Doris Lenartz",
+     "Jürgen K. Mai",
+     "Thomas Schnell",
+     "Joachim Klosterkoetter",
+     "Volker Sturm"
+    ]
    },
    "batch": "batch-004"
   },
@@ -5414,7 +5614,10 @@
     "page": "96",
     "volume": "39",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "HERBERT H. JASPER"
+    ]
    },
    "batch": "batch-004"
   },
@@ -5515,7 +5718,13 @@
     "page": "7-49",
     "volume": "42",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John R. Anderson",
+     "C.Franklin Boyle",
+     "Albert T. Corbett",
+     "Matthew W. Lewis"
+    ]
    },
    "batch": "batch-004"
   },
@@ -5586,7 +5795,16 @@
     "page": "69-113",
     "volume": "118",
     "issue": "1-2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Mark Craven",
+     "Dan DiPasquo",
+     "Dayne Freitag",
+     "Andrew McCallum",
+     "Tom Mitchell",
+     "Kamal Nigam",
+     "Seán Slattery"
+    ]
    },
    "batch": "batch-004"
   },
@@ -5730,7 +5948,8 @@
     "page": "411-442",
     "volume": null,
     "issue": null,
-    "type": "book-chapter"
+    "type": "book-chapter",
+    "authors": []
    },
    "batch": "batch-004"
   },
@@ -5836,7 +6055,11 @@
     "page": "1517-1549",
     "volume": "85",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Zall Hirschstein",
+     "Mariam Aly"
+    ]
    },
    "batch": "batch-004"
   },
@@ -5881,7 +6104,13 @@
     "page": "2472-2482",
     "volume": "84",
     "issue": "8",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Paul A. Keene",
+     "Megan T. deBettencourt",
+     "Edward Awh",
+     "Edward K. Vogel"
+    ]
    },
    "batch": "batch-004"
   },
@@ -5962,7 +6191,19 @@
     "page": "445-459",
     "volume": "39",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "David A. Balota",
+     "Melvin J. Yap",
+     "Keith A. Hutchison",
+     "Michael J. Cortese",
+     "Brett Kessler",
+     "Bjorn Loftis",
+     "James H. Neely",
+     "Douglas L. Nelson",
+     "Greg B. Simpson",
+     "Rebecca Treiman"
+    ]
    },
    "batch": "batch-004"
   },
@@ -6068,7 +6309,13 @@
     "page": "447-454",
     "volume": "44",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Louisa Dahmani",
+     "Andrée-Anne Ledoux",
+     "Patrice Boyer",
+     "Véronique D. Bohbot"
+    ]
    },
    "batch": "batch-004"
   },
@@ -6126,7 +6373,11 @@
     "page": "1-23",
     "volume": "44",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Winter Mason",
+     "Siddharth Suri"
+    ]
    },
    "batch": "batch-004"
   },
@@ -6194,28 +6445,27 @@
     "page": "457-466",
     "volume": "40",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Kim Nimon",
+     "Mitzi Lewis",
+     "Richard Kane",
+     "R. Michael Haynes"
+    ]
    },
    "batch": "batch-005"
   },
   "BateDOli03": {
    "key": "BateDOli03",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'd olivero' -> 'd oliveiro' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
-     "action": "applied"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
     {
      "field": "author",
      "current": "T Bates and L D'Olivero",
      "proposed": "T C Bates and L D'Oliveiro",
-     "source": "reviewer",
+     "source": "researcher",
      "evidence": [
       {
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14748500&retmode=xml",
@@ -6232,12 +6482,6 @@
       {
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14748500&retmode=xml",
        "quote": "<ForeName>Lawrence</ForeName>"
-      },
-      {
-       "reviewer_confirmed": "agree",
-       "reviewer_problems": [
-        "Surname hold can be released: D'Oliveiro is printed by both PubMed 14748500 ('L D'Oliveiro') and Crossref 10.3758/bf03195535 (family 'D’Oliveiro', given 'Timothy C.' for Bates) - two hosts. Volume 35(4):565-576."
-       ]
       }
      ],
      "reviewer": "agree"
@@ -6316,7 +6560,11 @@
     "page": "565-576",
     "volume": "35",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Timothy C. Bates",
+     "Lawrence D’Oliveiro"
+    ]
    },
    "batch": "batch-005"
   },
@@ -6374,7 +6622,13 @@
     "page": "257-271",
     "volume": "25",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jonathan Cohen",
+     "Brian MacWhinney",
+     "Matthew Flatt",
+     "Jefferson Provost"
+    ]
    },
    "batch": "batch-005"
   },
@@ -6466,7 +6720,10 @@
     "page": "96-101",
     "volume": "16",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Douglas L. Hintzman"
+    ]
    },
    "batch": "batch-005"
   },
@@ -6562,7 +6819,13 @@
     "page": "103-109",
     "volume": "30",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J. Hoormann",
+     "M. Falkenstein",
+     "P. Schwarzenau",
+     "J. Hohnsbein"
+    ]
    },
    "batch": "batch-005"
   },
@@ -6618,7 +6881,14 @@
     "page": "287-296",
     "volume": "33",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Brian MacWhinney",
+     "James St. James",
+     "Chris Schunn",
+     "Ping Li",
+     "Walter Schneider"
+    ]
    },
    "batch": "batch-005"
   },
@@ -6686,7 +6956,10 @@
     "page": "713-721",
     "volume": "13",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "David C. Rubin"
+    ]
    },
    "batch": "batch-005"
   },
@@ -6757,7 +7030,10 @@
     "page": "6-10",
     "volume": "20",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael Wilson"
+    ]
    },
    "batch": "batch-005"
   },
@@ -6841,7 +7117,14 @@
     "page": "77-84",
     "volume": "132",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Robert S Astur",
+     "Laughlin B Taylor",
+     "Adam N Mamelak",
+     "Linda Philpott",
+     "Robert J Sutherland"
+    ]
    },
    "batch": "batch-005"
   },
@@ -6921,7 +7204,12 @@
     "page": "185-190",
     "volume": "93",
     "issue": "1-2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Robert S Astur",
+     "Maria L Ortiz",
+     "Robert J Sutherland"
+    ]
    },
    "batch": "batch-005"
   },
@@ -7009,7 +7297,12 @@
     "page": "145-155",
     "volume": "39",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jean-Marc Edeline",
+     "N. Neuenschwander-El Massioui",
+     "G. Dutrieux"
+    ]
    },
    "batch": "batch-005"
   },
@@ -7109,7 +7402,14 @@
     "page": "111920",
     "volume": "369",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Danielle I. Fournier",
+     "Meghan C. Eddy",
+     "Nicole E. DeAngeli",
+     "Roman Huszár",
+     "David J. Bucci"
+    ]
    },
    "batch": "batch-005"
   },
@@ -7288,7 +7588,12 @@
     "page": "434-442",
     "volume": "116",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Yukiko Asaka",
+     "Amy L. Griffin",
+     "Stephen D. Berry"
+    ]
    },
    "batch": "batch-005"
   },
@@ -7339,7 +7644,10 @@
     "page": null,
     "volume": "42",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Romain Brette"
+    ]
    },
    "batch": "batch-005"
   },
@@ -7390,7 +7698,11 @@
     "page": null,
     "volume": "41",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Johannes B. Mahr",
+     "Gergely Csibra"
+    ]
    },
    "batch": "batch-005"
   },
@@ -7453,7 +7765,12 @@
     "page": "2-36",
     "volume": "57",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Howard Eichenbaum",
+     "Tim Otto",
+     "Neal J. Cohen"
+    ]
    },
    "batch": "batch-005"
   },
@@ -7525,7 +7842,12 @@
     "page": "65-72",
     "volume": "254",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "R. Jonathan Robitsek",
+     "John A. White",
+     "Howard Eichenbaum"
+    ]
    },
    "batch": "batch-005"
   },
@@ -7614,7 +7936,16 @@
     "page": "618-625",
     "volume": "256",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Qin Wang",
+     "Zhiqiang Xu",
+     "Jinrong Tang",
+     "Jianguo Sun",
+     "Junying Gao",
+     "Ting Wu",
+     "Ming Xiao"
+    ]
    },
    "batch": "batch-005"
   },
@@ -7670,7 +8001,16 @@
     "page": "121-130",
     "volume": "60",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "R. Eckhorn",
+     "R. Bauer",
+     "W. Jordan",
+     "M. Brosch",
+     "W. Kruse",
+     "M. Munk",
+     "H. J. Reitboeck"
+    ]
    },
    "batch": "batch-005"
   },
@@ -7741,23 +8081,32 @@
     "page": "203-210",
     "volume": "65",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "M. J. Kaminski",
+     "K. J. Blinowska"
+    ]
    },
    "batch": "batch-006"
   },
   "SerrEtal03": {
    "key": "SerrEtal03",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'hatsopolous' -> 'hatsopoulos' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'N Hatsopolous' is kept",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "M D Serruya and N Hatsopolous and M Fellows and L Paninski and J P Donoghue",
+     "proposed": "M D Serruya and N Hatsopoulos and M Fellows and L Paninski and J P Donoghue",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/12647229/",
+       "quote": "Mijail Serruya, Nicholas Hatsopoulos, Matthew Fellows, Liam Paninski, John Donoghue"
+      }
+     ]
+    },
     {
      "field": "doi",
      "current": null,
@@ -7784,9 +8133,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: N Hatsopolous"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "SerrEtal03",
@@ -7806,7 +8153,14 @@
     "page": "219-228",
     "volume": "88",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Mijail Serruya",
+     "Matthew Fellows",
+     "Liam Paninski",
+     "John Donoghue",
+     "Nicholas Hatsopoulos"
+    ]
    },
    "batch": "batch-006"
   },
@@ -7852,7 +8206,13 @@
     "page": "1081-1087",
     "volume": "48",
     "issue": "11",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Steven H Woodward",
+     "Ned J Arsenault",
+     "Catherine Murray",
+     "Donald L Bliwise"
+    ]
    },
    "batch": "batch-006"
   },
@@ -7943,7 +8303,13 @@
     "page": "981-988",
     "volume": "58",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Mei-Ling Ting Lee",
+     "Martha L. Bulyk",
+     "G. A. Whitmore",
+     "George M. Church"
+    ]
    },
    "batch": "batch-006"
   },
@@ -7981,7 +8347,10 @@
     "page": "80",
     "volume": "1",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Frank Wilcoxon"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8033,7 +8402,10 @@
     "page": "507",
     "volume": "10",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "R. A. Fisher"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8108,7 +8480,10 @@
     "page": "17",
     "volume": "37",
     "issue": "1/2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. A. P. Moran"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8180,7 +8555,11 @@
     "page": "323-351",
     "volume": "58",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "E. D. ADRIAN",
+     "K. YAMAGIWA"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8224,7 +8603,12 @@
     "page": "1806-1817",
     "volume": "131",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "N. Axmacher",
+     "C. E. Elger",
+     "J. Fell"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8282,7 +8666,13 @@
     "page": "71-90",
     "volume": "117",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J. Bancaud",
+     "F. Brunet-Bourgin",
+     "P. Chauvel",
+     "E. Halgren"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8290,12 +8680,6 @@
    "key": "BoisEtal06",
    "verdict": "correction",
    "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'boisgueheneuc' -> 'du boisgueheneuc' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
-     "action": "applied"
-    },
     {
      "code": "key_rename",
      "field": "key",
@@ -8309,17 +8693,11 @@
      "field": "author",
      "current": "F Boisgueheneuc and R Levy and E Volle and M Seassau and H Duffau and S Kinkingnehun and Y Samson and S Zhang and B Dubois",
      "proposed": "F {du Boisgueheneuc} and R Levy and E Volle and M Seassau and H Duffau and S Kinkingnehun and Y Samson and S Zhang and B Dubois",
-     "source": "reviewer",
+     "source": "researcher",
      "evidence": [
       {
        "url": "https://pubmed.ncbi.nlm.nih.gov/16984899/",
        "quote": "Foucaud du Boisgueheneuc, Richard Levy, Emmanuelle Volle, Magali Seassau, Hughes Duffau, Serge Kinkingnehun, Yves Samson, Sandy Zhang, Bruno Dubois"
-      },
-      {
-       "reviewer_confirmed": "agree",
-       "reviewer_problems": [
-        "PubMed 16984899 LastName 'du Boisgueheneuc' (Crossref splits it as given 'F. d.'); pages 3315-3328 in both. Particle key duBoEtal06 follows house delaEtal07/vanEEtal11; surname hold (single source) is appropriate, Crossref's 'F. d.' corroborates the particle."
-       ]
       }
      ],
      "reviewer": "agree"
@@ -8374,7 +8752,18 @@
     "page": "3315-3328",
     "volume": "129",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "F. d. Boisgueheneuc",
+     "R. Levy",
+     "E. Volle",
+     "M. Seassau",
+     "H. Duffau",
+     "S. Kinkingnehun",
+     "Y. Samson",
+     "S. Zhang",
+     "B. Dubois"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8432,7 +8821,10 @@
     "page": "2074-2086",
     "volume": "124",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "S. A. Bunge"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8488,7 +8880,16 @@
     "page": "1235-1246",
     "volume": "125",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael Cassidy",
+     "Paolo Mazzone",
+     "Antonio Oliviero",
+     "Angelo Insola",
+     "Pietro Tonali",
+     "Vincenzo Di Lazzaro",
+     "Peter Brown"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8556,7 +8957,16 @@
     "page": "291-307",
     "volume": "123",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Laurent Cohen",
+     "Stanislas Dehaene",
+     "Lionel Naccache",
+     "Stéphane Lehéricy",
+     "Ghislaine Dehaene-Lambertz",
+     "Marie-Anne Hénaff",
+     "François Michel"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8612,7 +9022,10 @@
     "page": "825-834",
     "volume": "127",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "N. Cowan"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8681,7 +9094,10 @@
     "page": "2301-2315",
     "volume": "121",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "N. Crone"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8737,7 +9153,10 @@
     "page": "2271-2299",
     "volume": "121",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "N. Crone"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8793,7 +9212,10 @@
     "page": "2301-2315",
     "volume": "121",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "N. Crone"
+    ]
    },
    "batch": "batch-006"
   },
@@ -8806,6 +9228,12 @@
      "field": "title",
      "detail": "validator: title not covered by its quotes (missing ['d28k']; failures [])",
      "action": "held"
+    },
+    {
+     "code": "doi_title_part_number",
+     "field": "doi",
+     "detail": "10.1093/brain/122.8.1421 is registered to 'The substantia nigra of the human brain': titles agree except for part numbers ('The substantia nigra of the human brain' vs 'The substantia nigra of the human brain {I}. Nigrosomes and the nigral matrix, a compartmental organization based on calbindin {D28K} immunohistochemistry'); the record's first page is the entry's; applied",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -8858,14 +9286,27 @@
     "page": "1421-1436",
     "volume": "122",
     "issue": "8",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. Damier",
+     "E. C. Hirsch",
+     "Y. Agid",
+     "A. M. Graybiel"
+    ]
    },
    "batch": "batch-006"
   },
   "DamiEtal99b": {
    "key": "DamiEtal99b",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "doi_title_part_number",
+     "field": "doi",
+     "detail": "10.1093/brain/122.8.1437 is registered to 'The substantia nigra of the human brain': titles agree except for part numbers ('The substantia nigra of the human brain' vs \"The substantia nigra of the human brain {II}. Patterns of loss of dopamine-containing neurons in {Parkinson's} disease\"); the record's first page is the entry's; applied",
+     "action": "applied"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -8938,7 +9379,13 @@
     "page": "1437-1448",
     "volume": "122",
     "issue": "8",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. Damier",
+     "E. C. Hirsch",
+     "Y. Agid",
+     "A. M. Graybiel"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9018,7 +9465,17 @@
     "page": "1753-1768",
     "volume": "115",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "JEAN-FRANÇOIS DÉMONET",
+     "FRANÇOIS CHOLLET",
+     "STUART RAMSAY",
+     "DOMINIQUE CARDEBAT",
+     "JEAN-LUC NESPOULOUS",
+     "RICHARD WISE",
+     "ANDRÉ RASCOL",
+     "RICHARD FRACKOWIAK"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9090,7 +9547,10 @@
     "page": "1722-1732",
     "volume": "123",
     "issue": "8",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "S. Dupont"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9191,7 +9651,19 @@
     "page": "2139-2150",
     "volume": "132",
     "issue": "8",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Alexandre Eusebio",
+     "Alek Pogosyan",
+     "Shouyan Wang",
+     "Bruno Averbeck",
+     "Louise Doyle Gaynor",
+     "Stéphanie Cantiniaux",
+     "Tatiana Witjas",
+     "Patricia Limousin",
+     "Jean-Philippe Azulay",
+     "Peter Brown"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9236,7 +9708,28 @@
     "page": "485-499",
     "volume": "131",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "D. Fabo",
+     "Z. Magloczky",
+     "L. Wittner",
+     "A. Pek",
+     "L. Eross",
+     "S. Czirjak",
+     "J. Vajda",
+     "A. Solyom",
+     "G. Rasonyi",
+     "A. Szucs",
+     "A. Kelemen",
+     "V. Juhos",
+     "L. Grand",
+     "B. Dombovari",
+     "P. Halasz",
+     "T. F. Freund",
+     "E. Halgren",
+     "G. Karmos",
+     "I. Ulbert"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9312,7 +9805,17 @@
     "page": "108-114",
     "volume": "129",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Juergen Fell",
+     "Guillén Fernández",
+     "Martin T. Lutz",
+     "Edgar Kockelmann",
+     "Wieland Burr",
+     "Carlo Schaller",
+     "Christian E. Elger",
+     "Christoph Helmstaedter"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9413,7 +9916,14 @@
     "page": "1587-1596",
     "volume": "119",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. C. Fletcher",
+     "T. Shallice",
+     "C. D. Frith",
+     "R. S. J. Frackowiak",
+     "R. J. Dolan"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9469,7 +9979,10 @@
     "page": "1239-1248",
     "volume": "121",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. Fletcher"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9525,7 +10038,10 @@
     "page": "1249-1256",
     "volume": "121",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. Fletcher"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9583,7 +10099,13 @@
     "page": "83-115",
     "volume": "101",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "ERIC HALGREN",
+     "RICHARD D. WALTER",
+     "DIANA G. CHERLOW",
+     "PAUL H. CRANDALL"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9679,7 +10201,12 @@
     "page": "1367-1381",
     "volume": "122",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "R. N. A. Henson",
+     "T. Shallice",
+     "R. J. Dolan"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9747,7 +10274,13 @@
     "page": "1783-1806",
     "volume": "115",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "JOHN R. HODGES",
+     "KARALYN PATTERSON",
+     "SUSAN OXBURY",
+     "ELAINE FUNNELL"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9812,7 +10345,10 @@
     "page": "323-356",
     "volume": "2",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J. HUGHLINGS-JACKSON"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9868,7 +10404,10 @@
     "page": "1593-1608",
     "volume": "129",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J. D. Jirsch"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9912,7 +10451,26 @@
     "page": "1668-1681",
     "volume": "133",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Corey J. Keller",
+     "Wilson Truccolo",
+     "John T. Gale",
+     "Emad Eskandar",
+     "Thomas Thesen",
+     "Chad Carlson",
+     "Orrin Devinsky",
+     "Ruben Kuzniecky",
+     "Werner K. Doyle",
+     "Joseph R. Madsen",
+     "Donald L. Schomer",
+     "Ashesh D. Mehta",
+     "Emery N. Brown",
+     "Leigh R. Hochberg",
+     "István Ulbert",
+     "Eric Halgren",
+     "Sydney S. Cash"
+    ]
    },
    "batch": "batch-007"
   },
@@ -9991,7 +10549,17 @@
     "page": "735-746",
     "volume": "127",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Andrea A. Kühn",
+     "David Williams",
+     "Andreas Kupsch",
+     "Patricia Limousin",
+     "Marwan Hariz",
+     "Gerd‐Helge Schneider",
+     "Kielan Yarrow",
+     "Peter Brown"
+    ]
    },
    "batch": "batch-007"
   },
@@ -10049,7 +10617,10 @@
     "page": "701-722",
     "volume": "120",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "V. Mountcastle"
+    ]
    },
    "batch": "batch-007"
   },
@@ -10159,7 +10730,16 @@
     "page": "46-59",
     "volume": "133",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "George A. Ojemann",
+     "David P. Corina",
+     "Neva Corrigan",
+     "Julie Schoenfield-McNeill",
+     "Andrew Poliakov",
+     "Leona Zamora",
+     "Stavros Zanos"
+    ]
    },
    "batch": "batch-007"
   },
@@ -10217,7 +10797,10 @@
     "page": "399-412",
     "volume": "124",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "L. J. Otten"
+    ]
    },
    "batch": "batch-007"
   },
@@ -10301,7 +10884,14 @@
     "page": "1597-1615",
     "volume": "119",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Adrian M. Owen",
+     "Robin G. Morris",
+     "Barbara J. Sahakian",
+     "Charles E. Polkey",
+     "Trevor W. Robbins"
+    ]
    },
    "batch": "batch-007"
   },
@@ -10357,7 +10947,11 @@
     "page": "595-696",
     "volume": "86",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "WILDER PENFIELD",
+     "PHANOR PEROT"
+    ]
    },
    "batch": "batch-008"
   },
@@ -10415,7 +11009,10 @@
     "page": "815-842",
     "volume": "121",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "R. Rogers"
+    ]
    },
    "batch": "batch-008"
   },
@@ -10491,7 +11088,19 @@
     "page": "1963-1971",
     "volume": "122",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Andrew J. Saykin",
+     "Sterling C. Johnson",
+     "Laura A. Flashman",
+     "Thomas W. McAllister",
+     "Molly Sparling",
+     "Terrance M. Darcey",
+     "Chad H. Moritz",
+     "Stephen J. Guerin",
+     "John Weaver",
+     "Alexander Mamourian"
+    ]
    },
    "batch": "batch-008"
   },
@@ -10535,7 +11144,10 @@
     "page": "851-859",
     "volume": "127",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "D. Shohamy"
+    ]
    },
    "batch": "batch-008"
   },
@@ -10607,7 +11219,10 @@
     "page": "2597-2608",
     "volume": "126",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. Silberstein"
+    ]
    },
    "batch": "batch-008"
   },
@@ -10663,7 +11278,10 @@
     "page": "2476-2489",
     "volume": "124",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "H. J. Spiers"
+    ]
    },
    "batch": "batch-008"
   },
@@ -10739,7 +11357,17 @@
     "page": "2013-2027",
     "volume": "131",
     "issue": "8",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "V. L. Towle",
+     "H.-A. Yoon",
+     "M. Castelle",
+     "J. C. Edgar",
+     "N. M. Biassou",
+     "D. M. Frim",
+     "J.-P. Spire",
+     "M. H. Kohrman"
+    ]
    },
    "batch": "batch-008"
   },
@@ -10821,7 +11449,13 @@
     "page": "88-99",
     "volume": "130",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J.-P. Vignal",
+     "L. Maillard",
+     "A. McGonigal",
+     "P. Chauvel"
+    ]
    },
    "batch": "batch-008"
   },
@@ -10877,7 +11511,11 @@
     "page": "829-853",
     "volume": "107",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "ELIZABETH K. WARRINGTON",
+     "T. SHALLICE"
+    ]
    },
    "batch": "batch-008"
   },
@@ -10957,7 +11595,11 @@
     "page": "889-905",
     "volume": "119",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Edward L. Wilding",
+     "Michael D. Rugg"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11025,7 +11667,10 @@
     "page": "1975-1985",
     "volume": "126",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "D. Williams"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11069,7 +11714,10 @@
     "page": "907-920",
     "volume": "14",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Karen Hux, Nancy Manasse, Shawna Wr"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11173,7 +11821,11 @@
     "page": "501-506",
     "volume": null,
     "issue": null,
-    "type": "book-chapter"
+    "type": "book-chapter",
+    "authors": [
+     "A. Schapiro",
+     "N. Turk-Browne"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11217,7 +11869,13 @@
     "page": "87-101",
     "volume": "1453",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Y.K. Chang",
+     "J.D. Labban",
+     "J.I. Gapin",
+     "J.L. Etnier"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11304,7 +11962,13 @@
     "page": "116-129",
     "volume": "1118",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "K. Gramann",
+     "H.J. Müller",
+     "B. Schönebeck",
+     "G. Debus"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11348,7 +12012,15 @@
     "page": "260-264",
     "volume": "724",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Matthew A. Howard",
+     "Igor O. Volkov",
+     "Paul J. Abbas",
+     "Hanna Damasio",
+     "Michael C. Ollendieck",
+     "Mark A. Granner"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11405,7 +12077,11 @@
     "page": "43-50",
     "volume": "248",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Shozo Kojima",
+     "Patricia S. Goldman-Rakic"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11465,7 +12141,11 @@
     "page": "68-80",
     "volume": "407",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "L.-W.S. Leung",
+     "J.G.G. Borst"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11540,7 +12220,11 @@
     "page": "323-327",
     "volume": "367",
     "issue": "1-2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Lai-Wo S. Leung",
+     "Chi Yiu Yim"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11608,7 +12292,12 @@
     "page": "289-300",
     "volume": "416",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Angel Nu´n˜ez",
+     "Elio Garci´a-Austt",
+     "Washington Bun˜o"
+    ]
    },
    "batch": "batch-008"
   },
@@ -11664,7 +12353,13 @@
     "page": "383-387",
     "volume": "439",
     "issue": "1-2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Constantine Pavlides",
+     "Yoram J. Greenstein",
+     "Mark Grudman",
+     "Jonathan Winson"
+    ]
    },
    "batch": "batch-009"
   },
@@ -11744,7 +12439,11 @@
     "page": "117-126",
     "volume": "678",
     "issue": "1-2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Urszula Sl&z.shtsls;;awińska",
+     "Stefan Kasicki"
+    ]
    },
    "batch": "batch-009"
   },
@@ -11836,7 +12535,13 @@
     "page": "53-62",
     "volume": "1080",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Do-Joon Yi",
+     "Todd A. Kelley",
+     "René Marois",
+     "Marvin M. Chun"
+    ]
    },
    "batch": "batch-009"
   },
@@ -11920,7 +12625,12 @@
     "page": "139-171",
     "volume": "6",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "György Buzsáki",
+     "Leung Lai-Wo S.",
+     "Cornelius H. Vanderwolf"
+    ]
    },
    "batch": "batch-009"
   },
@@ -11976,7 +12686,10 @@
     "page": "233-244",
     "volume": "62",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Arne Ekstrom"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12059,7 +12772,13 @@
     "page": "295-303",
     "volume": "35",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Roy P.C. Kessels",
+     "Edward H.F. de Haan",
+     "L.Jaap Kappelle",
+     "Albert Postma"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12127,7 +12846,10 @@
     "page": "169-195",
     "volume": "29",
     "issue": "2-3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Wolfgang Klimesch"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12228,7 +12950,11 @@
     "page": "128-154",
     "volume": "20",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "André Parent",
+     "Lili-Naz Hazrati"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12310,7 +13036,11 @@
     "page": "10-21",
     "volume": "33",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Mohsen Parto Dezfouli",
+     "Mohammad Reza Daliri"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12366,7 +13096,16 @@
     "page": "18-23",
     "volume": "22",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Karim Jerbi",
+     "Samson Freyermuth",
+     "Sarang Dalal",
+     "Philippe Kahane",
+     "Olivier Bertrand",
+     "Alain Berthoz",
+     "Jean-Philippe Lachaux"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12410,7 +13149,11 @@
     "page": "124-141",
     "volume": "19",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Alex Martin",
+     "Paul Fedio"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12485,7 +13228,11 @@
     "page": "163-171",
     "volume": "22",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John D. Teasdale",
+     "M. Louise Russell"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12556,7 +13303,10 @@
     "page": "972-984",
     "volume": "95",
     "issue": "401",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Alan Stoller"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12612,7 +13362,10 @@
     "page": "97-104",
     "volume": "28",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "M. S. BARTLETT"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12683,7 +13436,11 @@
     "page": "45-60",
     "volume": "83",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "A. Mike Burton",
+     "Vicki Bruce"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12741,7 +13498,10 @@
     "page": "182-194",
     "volume": "49",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "JAMES J. GIBSON"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12820,7 +13580,11 @@
     "page": "325-331",
     "volume": "66",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "D. R. GODDEN",
+     "A. D. BADDELEY"
+    ]
    },
    "batch": "batch-009"
   },
@@ -12876,7 +13640,11 @@
     "page": "99-104",
     "volume": "71",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Duncan Godden",
+     "Alan Baddeley"
+    ]
    },
    "batch": "batch-009"
   },
@@ -13041,7 +13809,10 @@
     "page": "247-273",
     "volume": null,
     "issue": null,
-    "type": "book-chapter"
+    "type": "book-chapter",
+    "authors": [
+     "Alon Sinai"
+    ]
    },
    "batch": "batch-009"
   },
@@ -13123,7 +13894,10 @@
     "page": "171-199",
     "volume": "84",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Timothy A. Salthouse"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13230,7 +14004,13 @@
     "page": "370-374",
     "volume": "41",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Tracey Covassin",
+     "Leigh Weiss",
+     "John Powell",
+     "Christopher Womack"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13305,7 +14085,10 @@
     "page": "812-815",
     "volume": "72",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "F A Lado"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13370,7 +14153,11 @@
     "page": "115-133",
     "volume": "5",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Warren S. McCulloch",
+     "Walter Pitts"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13421,7 +14208,11 @@
     "page": "33-41",
     "volume": "54",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Katherine Arbuthnott",
+     "Janis Frank"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13489,7 +14280,11 @@
     "page": "187-199",
     "volume": "56",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Arthur Wingfield",
+     "Michael J. Kahana"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13554,7 +14349,12 @@
     "page": "71-89",
     "volume": "31",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Bennet Murdock",
+     "William Hockley",
+     "Paul Muter"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13617,7 +14417,10 @@
     "page": "1-12",
     "volume": "26",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Endel Tulving"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13673,23 +14476,46 @@
     "page": "4626-4639.e13",
     "volume": "184",
     "issue": "18",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Liberty S. Hamilton",
+     "Yulia Oganian",
+     "Jeffery Hall",
+     "Edward F. Chang"
+    ]
    },
    "batch": "batch-010"
   },
   "AguiEtal96": {
    "key": "AguiEtal96",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'esposito' -> 'd esposito' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'M D Esposito' is kept",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "G K Aguirre and J A Detre and D C Alsop and M D Esposito",
+     "proposed": "G K Aguirre and J A Detre and D C Alsop and M D'Esposito",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+       "quote": "FAU - Aguirre, G K"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+       "quote": "FAU - Detre, J A"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+       "quote": "FAU - Alsop, D C"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+       "quote": "FAU - D'Esposito, M"
+      }
+     ]
+    },
     {
      "field": "doi",
      "current": null,
@@ -13728,9 +14554,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: M D Esposito"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "AguiEtal96",
@@ -13750,7 +14574,13 @@
     "page": "823-829",
     "volume": "6",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Geoffrey K. Aguirre",
+     "John A. Detre",
+     "David C. Alsop",
+     "Mark D'Esposito"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13846,7 +14676,10 @@
     "page": "512-528",
     "volume": "10",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J.R. Binder"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13890,7 +14723,11 @@
     "page": "1474-1485",
     "volume": "19",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Bradley R. Buchsbaum",
+     "Mark D'Esposito"
+    ]
    },
    "batch": "batch-010"
   },
@@ -13969,7 +14806,11 @@
     "page": "i16-i26",
     "volume": "17",
     "issue": "suppl 1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "E. Carter",
+     "X.-J. Wang"
+    ]
    },
    "batch": "batch-010"
   },
@@ -14036,7 +14877,13 @@
     "page": "739-749",
     "volume": "23",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "L. J. Chang",
+     "T. Yarkoni",
+     "M. W. Khaw",
+     "A. G. Sanfey"
+    ]
    },
    "batch": "batch-010"
   },
@@ -14087,7 +14934,10 @@
     "page": "1003-1014",
     "volume": "11",
     "issue": "11",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J. M. Chein"
+    ]
    },
    "batch": "batch-010"
   },
@@ -14179,7 +15029,10 @@
     "page": "910-923",
     "volume": "10",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "A. Compte"
+    ]
    },
    "batch": "batch-010"
   },
@@ -14259,7 +15112,10 @@
     "page": "1136-1143",
     "volume": "11",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "R. Cools"
+    ]
    },
    "batch": "batch-010"
   },
@@ -14339,7 +15195,15 @@
     "page": "2681-2695",
     "volume": "21",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael Denker",
+     "Sébastien Roux",
+     "Henrik Lindén",
+     "Markus Diesmann",
+     "Alexa Riehle",
+     "Sonja Grün"
+    ]
    },
    "batch": "batch-010"
   },
@@ -14426,28 +15290,24 @@
     "page": "575-584",
     "volume": "12",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "I. Fried"
+    ]
    },
    "batch": "batch-010"
   },
   "GeorEtal99": {
    "key": "GeorEtal99",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'georges francios' -> 'georges francois' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; applied: the reviewer confirms the author (agree)",
-     "action": "applied"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
     {
      "field": "author",
      "current": "P Georges-Francios and E Rolls and R Robertson",
      "proposed": "P Georges-Fran{\\c{c}}ois and E T Rolls and R G Robertson",
-     "source": "reviewer",
+     "source": "researcher",
      "evidence": [
       {
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
@@ -14460,12 +15320,6 @@
       {
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
        "quote": "<LastName>Robertson</LastName><ForeName>R G</ForeName>"
-      },
-      {
-       "reviewer_confirmed": "agree",
-       "reviewer_problems": [
-        "Surname hold can be released: PubMed 10355900 'Georges-François' and Crossref family 'Georges-Francois' (second host, unaccented) both contradict 'Francios'."
-       ]
       }
      ],
      "reviewer": "agree"
@@ -14531,7 +15385,10 @@
     "page": "197-212",
     "volume": "9",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. Georges-Francois"
+    ]
    },
    "batch": "batch-011"
   },
@@ -14575,7 +15432,10 @@
     "page": "374-385",
     "volume": "7",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "A Gevins"
+    ]
    },
    "batch": "batch-011"
   },
@@ -14633,7 +15493,10 @@
     "page": "829-839",
     "volume": "10",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "A. Gevins"
+    ]
    },
    "batch": "batch-011"
   },
@@ -14689,7 +15552,10 @@
     "page": "1214-1225",
     "volume": "14",
     "issue": "11",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "A. Gilboa"
+    ]
    },
    "batch": "batch-011"
   },
@@ -14783,7 +15649,10 @@
     "page": "109-116",
     "volume": "15",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "T. Gruber"
+    ]
    },
    "batch": "batch-011"
   },
@@ -14834,7 +15703,17 @@
     "page": "1-8",
     "volume": "17",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "S. Hanslmayr",
+     "W. Klimesch",
+     "P. Sauseng",
+     "W. Gruber",
+     "M. Doppelmayr",
+     "R. Freunberger",
+     "T. Pecherstorfer",
+     "N. Birbaumer"
+    ]
    },
    "batch": "batch-011"
   },
@@ -14898,7 +15777,12 @@
     "page": "1631-1640",
     "volume": "19",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "S. Hanslmayr",
+     "B. Spitzer",
+     "K.-H. Bauml"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15003,7 +15887,10 @@
     "page": "1369-1374",
     "volume": "13",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "M. W. Howard"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15074,7 +15961,10 @@
     "page": "132-142",
     "volume": "14",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "R. J. Itier"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15132,7 +16022,10 @@
     "page": "877-882",
     "volume": "12",
     "issue": "8",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "O. Jensen"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15176,7 +16069,10 @@
     "page": "563-574",
     "volume": "8",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "L. McEvoy"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15291,7 +16187,13 @@
     "page": "1910-1920",
     "volume": "29",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Meghan L Meyer",
+     "Lila Davachi",
+     "Kevin N Ochsner",
+     "Matthew D Lieberman"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15347,7 +16249,10 @@
     "page": "1208-1218",
     "volume": "13",
     "issue": "11",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. Miller"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15431,7 +16336,17 @@
     "page": "2407-2422",
     "volume": "23",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "N. W. Morton",
+     "M. J. Kahana",
+     "E. A. Rosenberg",
+     "G. H. Baltuch",
+     "B. Litt",
+     "A. D. Sharan",
+     "M. R. Sperling",
+     "S. M. Polyn"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15543,7 +16458,21 @@
     "page": "708-719",
     "volume": "15",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Katherine L. Narr",
+     "Robert M. Bilder",
+     "Arthur W. Toga",
+     "Roger P. Woods",
+     "David E. Rex",
+     "Philip R. Szeszko",
+     "Delbert Robinson",
+     "Serge Sevy",
+     "Handan Gunduz-Bruce",
+     "Yung-Ping Wang",
+     "Heather DeLuca",
+     "Paul M. Thompson"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15588,7 +16517,10 @@
     "page": "1211-1216",
     "volume": "10",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "C. J. Ploner"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15719,7 +16651,12 @@
     "page": "1618-1629",
     "volume": "18",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J. Rissman",
+     "A. Gazzaley",
+     "M. D'Esposito"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15818,7 +16755,17 @@
     "page": "3095-3114",
     "volume": "28",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Alexander Schaefer",
+     "Ru Kong",
+     "Evan M Gordon",
+     "Timothy O Laumann",
+     "Xi-Nian Zuo",
+     "Avram J Holmes",
+     "Simon B Eickhoff",
+     "B T Thomas Yeo"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15901,7 +16848,10 @@
     "page": "272-283",
     "volume": "10",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "W. Schultz"
+    ]
    },
    "batch": "batch-011"
   },
@@ -15952,7 +16902,17 @@
     "page": "1190-1196",
     "volume": "17",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. B. Sederberg",
+     "A. Schulze-Bonhage",
+     "J. R. Madsen",
+     "E. B. Bromfield",
+     "D. C. McCarthy",
+     "A. Brandt",
+     "M. S. Tully",
+     "M. J. Kahana"
+    ]
    },
    "batch": "batch-011"
   }
@@ -16113,9 +17073,7 @@
   ],
   "MasoSuri12": [],
   "NimoEtal08": [],
-  "BateDOli03": [
-   "surname_single_source:author"
-  ],
+  "BateDOli03": [],
   "CoheEtal93": [],
   "Hint84": [
    "quote_check_failed:volume"
@@ -16149,9 +17107,7 @@
   ],
   "EckhEtal88": [],
   "KamiBlin91": [],
-  "SerrEtal03": [
-   "surname_single_source:author"
-  ],
+  "SerrEtal03": [],
   "WoodEtal00b": [],
   "BallEtal04": [],
   "TingEtal02": [],
@@ -16168,7 +17124,7 @@
   "AxmaEtal08": [],
   "BancEtal94": [],
   "BoisEtal06": [
-   "surname_single_source:author"
+   "key_rename:key"
   ],
   "BungEtal01": [],
   "CassEtal02": [],
@@ -16182,9 +17138,12 @@
    "duplicate:key"
   ],
   "DamiEtal99a": [
-   "quote_check_failed:title"
+   "quote_check_failed:title",
+   "doi_title_part_number:doi"
   ],
-  "DamiEtal99b": [],
+  "DamiEtal99b": [
+   "doi_title_part_number:doi"
+  ],
   "DemoEtal92": [],
   "DupoEtal00": [],
   "EuseEtal09": [],
@@ -16285,9 +17244,7 @@
    "verdict_inconsistent:verdict"
   ],
   "HamiEtal21": [],
-  "AguiEtal96": [
-   "surname_single_source:author"
-  ],
+  "AguiEtal96": [],
   "BindEtal00": [],
   "BuchDEsp09": [],
   "CartWang07": [],
@@ -16301,9 +17258,7 @@
   "CoolEtal01": [],
   "DenkEtal11": [],
   "FrieEtal02b": [],
-  "GeorEtal99": [
-   "surname_single_source:author"
-  ],
+  "GeorEtal99": [],
   "GeviEtal97": [],
   "GeviSmit00": [],
   "GilbEtal04": [],

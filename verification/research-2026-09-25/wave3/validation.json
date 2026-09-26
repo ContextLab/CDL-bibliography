@@ -5,7 +5,7 @@
   "https://memory.psych.upenn.edu/CEMS_2012"
  ],
  "entries": 200,
- "passing": 191,
+ "passing": 193,
  "by_verdict": {
   "ambiguous": 1,
   "correction": 192,
@@ -1568,10 +1568,10 @@
     }
    },
    "identity": {
-    "ok": false,
-    "why": "quote not found at url"
+    "ok": true,
+    "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "GautLogo00",
@@ -1892,10 +1892,10 @@
     }
    },
    "identity": {
-    "ok": false,
-    "why": "quote not found at url"
+    "ok": true,
+    "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "SchoAnde97",
@@ -4400,10 +4400,8 @@
     },
     "pages": {
      "status": "corrected",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "19"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "year": {
@@ -4423,7 +4421,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "DesaEtal12",
@@ -8046,8 +8044,10 @@
    "fields": {
     "title": {
      "status": "corrected",
-     "ok": true,
-     "value_missing_from_quotes": [],
+     "ok": false,
+     "value_missing_from_quotes": [
+      "gabab"
+     ],
      "failures": []
     },
     "author": {
@@ -8097,7 +8097,7 @@
     "ok": true,
     "why": null
    },
-   "passes": true
+   "passes": false
   },
   {
    "key": "SquiZola98",

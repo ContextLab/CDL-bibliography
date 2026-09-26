@@ -3,35 +3,18 @@
   "entries": 200,
   "bib": "HEAD",
   "flag_counts": {
-   "doi_record_conflict": 16,
-   "doi_title_mismatch": 6,
-   "doi_title_unavailable": 8,
+   "doi_record_conflict": 15,
+   "doi_title_part_number": 3,
    "duplicate": 3,
    "field_not_found": 13,
-   "identity_quote_failed": 4,
    "key_collision": 1,
    "key_rename": 9,
    "needs_user": 1,
-   "quote_check_failed": 6,
-   "style_only_change": 2,
-   "surname_single_source": 12
+   "quote_check_failed": 2,
+   "style_only_change": 2
   },
-  "dois_dropped": [
-   "ChabEtal98: 10.1007/bfb0056189 is registered to 'Three-dimensional reconstruction and surgical navigation in padiatric epilepsy surgery' (Crossref), not this entry's title; DOI change dropped",
-   "Eich04: 10.1016/j.neuron.2004.08.028 is registered to 'Hippocampus' (Crossref), not this entry's title; DOI change dropped",
-   "SaliThie00: 10.1016/s0896-6273(00)00004-0 is registered to 'Gain Modulation' (Crossref), not this entry's title; DOI change dropped",
-   "ShadMovs99: 10.1016/s0896-6273(00)80822-3 is registered to 'Synchrony Unbound' (Crossref), not this entry's title; DOI change dropped",
-   "Turi50: 10.1093/mind/lix.236.433 is registered to 'I.—COMPUTING MACHINERY AND INTELLIGENCE' (Crossref), not this entry's title; DOI change dropped",
-   "WagnEtal01: 10.1016/s0896-6273(01)00359-2 is registered to 'Recovering Meaning' (Crossref), not this entry's title; DOI change dropped"
-  ],
-  "dois_dropped_by_rules_alone": [
-   "ChabEtal98",
-   "Eich04",
-   "SaliThie00",
-   "ShadMovs99",
-   "Turi50",
-   "WagnEtal01"
-  ],
+  "dois_dropped": [],
+  "dois_dropped_by_rules_alone": [],
   "renames": {
    "AshbEtal88": "AshbGott88",
    "CohnEtal21": "CohnEtal22",
@@ -52,9 +35,758 @@
   },
   "doi_requests_uncached": null
  },
- "measurement": null,
- "review_resolution": null,
- "review_resolution_rules_alone": null,
+ "measurement": {
+  "findings": 19,
+  "caught": 3,
+  "random_sample_findings": 6,
+  "random_sample_caught": 2,
+  "rows": [
+   {
+    "key": "CareEtal19",
+    "random_sample": false,
+    "disputed": [
+     "author"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "ChabEtal98",
+    "random_sample": false,
+    "disputed": [
+     "doi"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "title": [
+      "field_not_found"
+     ],
+     "journal": [
+      "normalised"
+     ]
+    }
+   },
+   {
+    "key": "CohnEtal21",
+    "random_sample": false,
+    "disputed": [
+     "doi"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "key": [
+      "key_rename"
+     ]
+    }
+   },
+   {
+    "key": "Eich04",
+    "random_sample": false,
+    "disputed": [
+     "doi"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "Jenk03",
+    "random_sample": false,
+    "disputed": [
+     "title"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "KnowEtal94",
+    "random_sample": false,
+    "disputed": [
+     "doi"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "MallEtal02",
+    "random_sample": false,
+    "disputed": [
+     "number"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "Nobl04",
+    "random_sample": false,
+    "disputed": [
+     "address",
+     "editor"
+    ],
+    "caught": true,
+    "by": {
+     "editor": [
+      "quote_check_failed"
+     ],
+     "address": [
+      "quote_check_failed"
+     ]
+    },
+    "rules_touched": {
+     "editor": [
+      "quote_check_failed"
+     ],
+     "address": [
+      "quote_check_failed"
+     ],
+     "journal": [
+      "normalised"
+     ]
+    }
+   },
+   {
+    "key": "SaliThie00",
+    "random_sample": false,
+    "disputed": [
+     "doi"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "ShadMovs99",
+    "random_sample": false,
+    "disputed": [
+     "doi"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "ToluEtal12",
+    "random_sample": false,
+    "disputed": [
+     "author"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "key": [
+      "key_rename"
+     ]
+    }
+   },
+   {
+    "key": "Turi50",
+    "random_sample": false,
+    "disputed": [
+     "doi"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {
+     "volume": [
+      "field_not_found"
+     ]
+    }
+   },
+   {
+    "key": "WagnEtal01",
+    "random_sample": false,
+    "disputed": [
+     "author",
+     "doi"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "CortVapn95",
+    "random_sample": true,
+    "disputed": [
+     "author"
+    ],
+    "caught": true,
+    "by": {
+     "author": [
+      "surname_single_source"
+     ]
+    },
+    "rules_touched": {
+     "author": [
+      "surname_single_source"
+     ]
+    }
+   },
+   {
+    "key": "DuchNeel89",
+    "random_sample": true,
+    "disputed": [
+     "doi"
+    ],
+    "caught": true,
+    "by": {
+     "doi": [
+      "doi_title_part_number"
+     ]
+    },
+    "rules_touched": {
+     "title": [
+      "field_not_found"
+     ],
+     "doi": [
+      "doi_title_part_number"
+     ]
+    }
+   },
+   {
+    "key": "KrauEtal13",
+    "random_sample": true,
+    "disputed": [
+     "author"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "SellEtal82",
+    "random_sample": true,
+    "disputed": [
+     "doi"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "SpieEtal18",
+    "random_sample": true,
+    "disputed": [
+     "doi"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   },
+   {
+    "key": "VanEEtal01",
+    "random_sample": true,
+    "disputed": [
+     "author"
+    ],
+    "caught": false,
+    "by": {},
+    "rules_touched": {}
+   }
+  ]
+ },
+ "review_resolution": {
+  "findings": 19,
+  "resolved": 19,
+  "unresolved": [],
+  "not_checkable": [],
+  "rows": [
+   {
+    "key": "CareEtal19",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'A A Carey and Y Tanaka and M A A {van der Meer}' vs reviewer 'A A Carey and Y Tanaka and M A A {van der Meer}'"
+     ]
+    ]
+   },
+   {
+    "key": "ChabEtal98",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1007/bfb0056189' vs reviewer '10.1007/bfb0056189'"
+     ]
+    ]
+   },
+   {
+    "key": "CohnEtal21",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.3758/s13421-021-01178-x' vs reviewer '10.3758/s13421-021-01178-x'"
+     ]
+    ]
+   },
+   {
+    "key": "Eich04",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1016/j.neuron.2004.08.028' vs reviewer '10.1016/j.neuron.2004.08.028'"
+     ]
+    ]
+   },
+   {
+    "key": "Jenk03",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Fast, automated, {N}-dimensional phase-unwrapping algorithm' vs reviewer 'Fast, automated, {N}-dimensional phase-unwrapping algorithm'"
+     ]
+    ]
+   },
+   {
+    "key": "KnowEtal94",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1101/lm.1.2.106' vs reviewer '10.1101/lm.1.2.106'"
+     ]
+    ]
+   },
+   {
+    "key": "MallEtal02",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "number",
+      true,
+      "final '4' vs reviewer '4'"
+     ],
+     [
+      "verdict",
+      true,
+      "disagree: resolvable"
+     ]
+    ]
+   },
+   {
+    "key": "Nobl04",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "editor",
+      true,
+      "final 'B Sch{\\\\\"o}lkopf and K Tsuda and J-P Vert' vs reviewer 'B Sch{\\\\\"o}lkopf and K Tsuda and J-P Vert'"
+     ]
+    ]
+   },
+   {
+    "key": "SaliThie00",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1016/s0896-6273(00)00004-0' vs reviewer '10.1016/s0896-6273(00)00004-0'"
+     ]
+    ]
+   },
+   {
+    "key": "ShadMovs99",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1016/s0896-6273(00)80822-3' vs reviewer '10.1016/s0896-6273(00)80822-3'"
+     ]
+    ]
+   },
+   {
+    "key": "ToluEtal12",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos' vs reviewer 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos'"
+     ]
+    ]
+   },
+   {
+    "key": "Turi50",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1093/mind/lix.236.433' vs reviewer '10.1093/mind/lix.236.433'"
+     ]
+    ]
+   },
+   {
+    "key": "WagnEtal01",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1016/s0896-6273(01)00359-2' vs reviewer '10.1016/s0896-6273(01)00359-2'"
+     ],
+     [
+      "author",
+      true,
+      "final \"A D Wagner and E J Par{\\\\'e}-Blagoev and J Clark and R A Poldrack\" vs reviewer \"A D Wagner and E J Par{\\\\'e}-Blagoev and J Clark and R A Poldrack\""
+     ]
+    ]
+   },
+   {
+    "key": "CortVapn95",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'C Cortes and V Vapnik' vs reviewer 'C Cortes and V Vapnik'"
+     ]
+    ]
+   },
+   {
+    "key": "DuchNeel89",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.3758/bf03197065' vs reviewer '10.3758/bf03197065'"
+     ]
+    ]
+   },
+   {
+    "key": "KrauEtal13",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'B J Kraus and R J Robinson and J A White and H Eichenbaum and M E Hasselmo' vs reviewer 'B J Kraus and R J Robinson and J A White and H Eichenbaum and M E Hasselmo'"
+     ]
+    ]
+   },
+   {
+    "key": "SellEtal82",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1121/1.387996' vs reviewer '10.1121/1.387996'"
+     ]
+    ]
+   },
+   {
+    "key": "SpieEtal18",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1167/18.10.37' vs reviewer '10.1167/18.10.37'"
+     ]
+    ]
+   },
+   {
+    "key": "VanEEtal01",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'D C {Van Essen} and H A Drury and J Dickson and J Harwell and D Hanlon and C H Anderson' vs reviewer 'D C {Van Essen} and H A Drury and J Dickson and J Harwell and D Hanlon and C H Anderson'"
+     ]
+    ]
+   }
+  ]
+ },
+ "review_resolution_rules_alone": {
+  "findings": 19,
+  "resolved": 15,
+  "unresolved": [
+   "CareEtal19",
+   "MallEtal02",
+   "Nobl04",
+   "CortVapn95"
+  ],
+  "not_checkable": [],
+  "rows": [
+   {
+    "key": "CareEtal19",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "author",
+      false,
+      "final 'A A Carey and Y Tanaka and M A {van der Meer}' vs reviewer 'A A Carey and Y Tanaka and M A A {van der Meer}'"
+     ]
+    ]
+   },
+   {
+    "key": "ChabEtal98",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1007/bfb0056189' vs reviewer '10.1007/bfb0056189'"
+     ]
+    ]
+   },
+   {
+    "key": "CohnEtal21",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.3758/s13421-021-01178-x' vs reviewer '10.3758/s13421-021-01178-x'"
+     ]
+    ]
+   },
+   {
+    "key": "Eich04",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1016/j.neuron.2004.08.028' vs reviewer '10.1016/j.neuron.2004.08.028'"
+     ]
+    ]
+   },
+   {
+    "key": "Jenk03",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "title",
+      true,
+      "final 'Fast, automated, {N}-dimensional phase-unwrapping algorithm' vs reviewer 'Fast, automated, {N}-dimensional phase-unwrapping algorithm'"
+     ]
+    ]
+   },
+   {
+    "key": "KnowEtal94",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1101/lm.1.2.106' vs reviewer '10.1101/lm.1.2.106'"
+     ]
+    ]
+   },
+   {
+    "key": "MallEtal02",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "number",
+      false,
+      "final None vs reviewer '4'"
+     ],
+     [
+      "verdict",
+      true,
+      "disagree: resolvable"
+     ]
+    ]
+   },
+   {
+    "key": "Nobl04",
+    "random_sample": false,
+    "resolved": false,
+    "checks": [
+     [
+      "editor",
+      false,
+      "final None vs reviewer 'B Sch{\\\\\"o}lkopf and K Tsuda and J-P Vert'"
+     ]
+    ]
+   },
+   {
+    "key": "SaliThie00",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1016/s0896-6273(00)00004-0' vs reviewer '10.1016/s0896-6273(00)00004-0'"
+     ]
+    ]
+   },
+   {
+    "key": "ShadMovs99",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1016/s0896-6273(00)80822-3' vs reviewer '10.1016/s0896-6273(00)80822-3'"
+     ]
+    ]
+   },
+   {
+    "key": "ToluEtal12",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos' vs reviewer 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos'"
+     ]
+    ]
+   },
+   {
+    "key": "Turi50",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1093/mind/lix.236.433' vs reviewer '10.1093/mind/lix.236.433'"
+     ]
+    ]
+   },
+   {
+    "key": "WagnEtal01",
+    "random_sample": false,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1016/s0896-6273(01)00359-2' vs reviewer '10.1016/s0896-6273(01)00359-2'"
+     ],
+     [
+      "author",
+      true,
+      "final 'A D Wagner and E J Paré-Blagoev and J Clark and R A Poldrack' vs reviewer \"A D Wagner and E J Par{\\\\'e}-Blagoev and J Clark and R A Poldrack\""
+     ]
+    ]
+   },
+   {
+    "key": "CortVapn95",
+    "random_sample": true,
+    "resolved": false,
+    "checks": [
+     [
+      "author",
+      false,
+      "final 'C Cortes and V Vapnick' vs reviewer 'C Cortes and V Vapnik'"
+     ]
+    ]
+   },
+   {
+    "key": "DuchNeel89",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.3758/bf03197065' vs reviewer '10.3758/bf03197065'"
+     ]
+    ]
+   },
+   {
+    "key": "KrauEtal13",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'B J Kraus and R J Robinson and J A White and H Eichenbaum and M E Hasselmo' vs reviewer 'B J Kraus and R J Robinson and J A White and H Eichenbaum and M E Hasselmo'"
+     ]
+    ]
+   },
+   {
+    "key": "SellEtal82",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1121/1.387996' vs reviewer '10.1121/1.387996'"
+     ]
+    ]
+   },
+   {
+    "key": "SpieEtal18",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "doi",
+      true,
+      "final '10.1167/18.10.37' vs reviewer '10.1167/18.10.37'"
+     ]
+    ]
+   },
+   {
+    "key": "VanEEtal01",
+    "random_sample": true,
+    "resolved": true,
+    "checks": [
+     [
+      "author",
+      true,
+      "final 'D C {Van Essen} and H A Drury and J Dickson and J Harwell and D Hanlon and C H Anderson' vs reviewer 'D C {Van Essen} and H A Drury and J Dickson and J Harwell and D Hanlon and C H Anderson'"
+     ]
+    ]
+   }
+  ]
+ },
  "entries": {
   "Raym69": {
    "key": "Raym69",
@@ -108,7 +840,10 @@
     "page": "567-574",
     "volume": "8",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Beth Raymond"
+    ]
    },
    "batch": "batch-034"
   },
@@ -200,7 +935,13 @@
     "page": "635-655",
     "volume": "21",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Henry L. Roediger",
+     "David G. Payne",
+     "Gerald L. Gillespie",
+     "Debra S. Lean"
+    ]
    },
    "batch": "batch-034"
   },
@@ -228,7 +969,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
        "quote": "\"given\":\"Donald R.\",\"family\":\"McLachlan\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -240,7 +982,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
        "quote": "\"DOI\":\"10.1016\\/s0022-5371(84)90373-6\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -252,7 +995,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
        "quote": "\"issue\":\"5\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -276,7 +1020,12 @@
     "page": "593-611",
     "volume": "23",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Daniel L. Schacter",
+     "Joanne L. Harbluk",
+     "Donald R. McLachlan"
+    ]
    },
    "batch": "batch-034"
   },
@@ -300,7 +1049,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
        "quote": "\"given\":\"James R.\",\"family\":\"Cook\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -312,7 +1062,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
        "quote": "\"DOI\":\"10.1016\\/s0022-5371(78)90146-9\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -336,7 +1087,11 @@
     "page": "189-218",
     "volume": "17",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Richard M. Shiffrin",
+     "James R. Cook"
+    ]
    },
    "batch": "batch-034"
   },
@@ -412,7 +1167,11 @@
     "page": "153-163",
     "volume": "22",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Norman J. Slamucka",
+     "Jacobo Fevreiski"
+    ]
    },
    "batch": "batch-034"
   },
@@ -432,7 +1191,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
        "quote": "\"DOI\":\"10.1037\\/0278-7393.17.4.595\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -444,7 +1204,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
        "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -456,7 +1217,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
        "quote": "\"issue\":\"4\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -468,7 +1230,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
        "quote": "\"title\":[\"Long-lasting perceptual priming and semantic learning in amnesia: A case experiment.\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -492,7 +1255,12 @@
     "page": "595-617",
     "volume": "17",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Endel Tulving",
+     "C. A. Hayman",
+     "Carol A. Macdonald"
+    ]
    },
    "batch": "batch-034"
   },
@@ -568,7 +1336,11 @@
     "page": "375-384",
     "volume": "22",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael J. Watkins",
+     "Zehra F. Peynrcoğlu"
+    ]
    },
    "batch": "batch-034"
   },
@@ -588,7 +1360,8 @@
        "url": "https://api.crossref.org/works/10.1037/h0030171",
        "quote": "\"DOI\":\"10.1037\\/h0030171\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -600,7 +1373,8 @@
        "url": "https://api.crossref.org/works/10.1037/h0030171",
        "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -612,7 +1386,8 @@
        "url": "https://api.crossref.org/works/10.1037/h0030171",
        "quote": "\"issue\":\"3\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -636,21 +1411,19 @@
     "page": "416-419",
     "volume": "86",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Keith A. Wollen",
+     "Robert A. Fox",
+     "Douglas H. Lowry"
+    ]
    },
    "batch": "batch-034"
   },
   "NabeEtal13": {
    "key": "NabeEtal13",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "doi_record_conflict",
-     "field": "pages",
-     "detail": "Crossref record of 10.1167/13.2.11 gives pages '11-11', proposal '11'",
-     "action": "flag"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
     {
@@ -703,23 +1476,38 @@
     "page": "11-11",
     "volume": "13",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "M. Naber",
+     "S. Frassle",
+     "U. Rutishauser",
+     "W. Einhauser"
+    ]
    },
    "batch": "batch-034"
   },
   "SpieEtal18": {
    "key": "SpieEtal18",
    "verdict": "correction",
-   "flags": [
+   "flags": [],
+   "normalisations": [],
+   "changes": [
     {
-     "code": "doi_title_unavailable",
      "field": "doi",
-     "detail": "10.1167/18.10.37: Crossref record unavailable: HTTP 429; held",
-     "action": "held"
+     "current": null,
+     "proposed": "10.1167/18.10.37",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.1167/18.10.37 held only because of HTTP 429; refetched Crossref: same title and 5 authors, J Vis 18(10) 37, 2018-09.",
+        "The researcher's notes call this a VSS 2018 meeting abstract, but it was not flagged: user rule 2026-09-22 is that conference abstracts are flagged for removal (listed for confirmation)."
+       ]
+      }
+     ],
+     "reviewer": "disagree (held but correct)"
     }
    ],
-   "normalisations": [],
-   "changes": [],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -732,23 +1520,46 @@
     "doi": "10.1167/18.10.37",
     "registered": true,
     "ra": "Crossref",
-    "error": "Crossref record unavailable: HTTP 429"
+    "title": "Direct Neural Read-Out of Binocular Rivalry Dynamics in Autism using EEG",
+    "subtitle": null,
+    "container": "Journal of Vision",
+    "print_year": "2018",
+    "online_year": null,
+    "issued_year": "2018",
+    "page": "37",
+    "volume": "18",
+    "issue": "10",
+    "type": "journal-article",
+    "authors": [
+     "Alina Spiegel",
+     "Jackson Lee",
+     "AJ Haskins",
+     "Nancy Kanwisher",
+     "Caroline Robertson"
+    ]
    },
    "batch": "batch-034"
   },
   "SellEtal82": {
    "key": "SellEtal82",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "doi_title_unavailable",
-     "field": "doi",
-     "detail": "10.1121/1.387996: Crossref record unavailable: HTTP 429; held",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1121/1.387996",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.1121/1.387996 held only because of HTTP 429. Refetched Crossref: 'Measurement of basilar membrane motion in the guinea pig using the Mössbauer technique', JASA 72(1) 131-141, 1982-07."
+       ]
+      }
+     ],
+     "reviewer": "disagree (held but correct)"
+    },
     {
      "field": "journal",
      "current": "Journal of the Acoustic Society of America",
@@ -759,7 +1570,8 @@
        "url": "https://api.crossref.org/works/10.1121/1.387996",
        "quote": "\"container-title\":[\"The Journal of the Acoustical Society of America\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -771,7 +1583,8 @@
        "url": "https://api.crossref.org/works/10.1121/1.387996",
        "quote": "\"issue\":\"1\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -787,7 +1600,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/7108035/",
        "quote": "TI  - Measurement of basilar membrane motion in the guinea pig using the Mossbauer"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -802,7 +1616,21 @@
     "doi": "10.1121/1.387996",
     "registered": true,
     "ra": "Crossref",
-    "error": "Crossref record unavailable: HTTP 429"
+    "title": "Measurement of basilar membrane motion in the guinea pig using the Mössbauer technique",
+    "subtitle": null,
+    "container": "The Journal of the Acoustical Society of America",
+    "print_year": "1982",
+    "online_year": null,
+    "issued_year": "1982",
+    "page": "131-141",
+    "volume": "72",
+    "issue": "1",
+    "type": "journal-article",
+    "authors": [
+     "P. M. Sellick",
+     "R. Patuzzi",
+     "B. M. Johnstone"
+    ]
    },
    "batch": "batch-034"
   },
@@ -858,7 +1686,11 @@
     "page": "858-865",
     "volume": "90",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Neal F. Viemeister",
+     "Gregory H. Wakefield"
+    ]
    },
    "batch": "batch-034"
   },
@@ -902,7 +1734,29 @@
     "page": "382-388",
     "volume": "27",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Cutter A. Lindbergh",
+     "Nicole Walker",
+     "Renaud La Joie",
+     "Sophia Weiner-Light",
+     "Adam M. Staffaroni",
+     "Kaitlin B. Casaletto",
+     "Fanny Elahi",
+     "Samantha M. Walters",
+     "Michelle You",
+     "Devyn Cotter",
+     "Breton Asken",
+     "Alexandra C. Apple",
+     "Elena Tsoy",
+     "John Neuhaus",
+     "Corrina Fonseca",
+     "Amy Wolf",
+     "Yann Cobigo",
+     "Howie Rosen",
+     "Joel H. Kramer",
+     "the Hillblom Aging Network"
+    ]
    },
    "batch": "batch-034"
   },
@@ -935,7 +1789,8 @@
        "url": "https://api.crossref.org/works/10.2307/2346830",
        "quote": "\"DOI\":\"10.2307\\/2346830\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -947,7 +1802,8 @@
        "url": "https://api.crossref.org/works/10.2307/2346830",
        "quote": "\"container-title\":[\"Applied Statistics\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -971,7 +1827,11 @@
     "page": "100",
     "volume": "28",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J. A. Hartigan",
+     "M. A. Wong"
+    ]
    },
    "batch": "batch-034"
   },
@@ -1062,7 +1922,11 @@
     "page": "647",
     "volume": "16",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Denis G. Pelli",
+     "Bart Farell"
+    ]
    },
    "batch": "batch-034"
   },
@@ -1089,7 +1953,8 @@
        "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
        "quote": "\"DOI\":\"10.1364\\/josaa.3.000864\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -1101,7 +1966,8 @@
        "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
        "quote": "\"container-title\":[\"Journal of the Optical Society of America A\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -1113,7 +1979,8 @@
        "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
        "quote": "\"issue\":\"6\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -1125,7 +1992,8 @@
        "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
        "quote": "\"volume\":\"3\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1149,7 +2017,11 @@
     "page": "864",
     "volume": "3",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Robert Sekuler",
+     "Karlene Ball"
+    ]
    },
    "batch": "batch-034"
   },
@@ -1205,7 +2077,10 @@
     "page": "302-306",
     "volume": "22",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "S. F. Buck"
+    ]
    },
    "batch": "batch-034"
   },
@@ -1274,7 +2149,11 @@
     "page": "370",
     "volume": "135",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "J. A. Nelder",
+     "R. W. M. Wedderburn"
+    ]
    },
    "batch": "batch-034"
   },
@@ -1294,7 +2173,8 @@
        "url": "https://api.crossref.org/works/10.1111/j.1532-5415.2005.53221.x",
        "quote": "\"DOI\":\"10.1111\\/j.1532-5415.2005.53221.x\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1318,7 +2198,17 @@
     "page": "695-699",
     "volume": "53",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Ziad S. Nasreddine",
+     "Natalie A. Phillips",
+     "Valérie Bédirian",
+     "Simon Charbonneau",
+     "Victor Whitehead",
+     "Isabelle Collin",
+     "Jeffrey L. Cummings",
+     "Howard Chertkow"
+    ]
    },
    "batch": "batch-034"
   },
@@ -1381,7 +2271,11 @@
     "page": "407",
     "volume": "315",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michelle A. Detry",
+     "Yan Ma"
+    ]
    },
    "batch": "batch-034"
   },
@@ -1444,23 +2338,33 @@
     "page": "470",
     "volume": "276",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael R. Sperling"
+    ]
    },
    "batch": "batch-035"
   },
   "VanEEtal01": {
    "key": "VanEEtal01",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'dickenson' -> 'dickson' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'J Dickenson' is kept",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "D C {Van Essen} and H A Drury and J Dickenson and J Harwell and D Hanlon and C H Anderson",
+     "proposed": "D C {Van Essen} and H A Drury and J Dickson and J Harwell and D Hanlon and C H Anderson",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "The surname hold keeps 'J Dickenson'. Both Crossref 10.1136/jamia.2001.0080443 ('J. Dickson') and PubMed 11522765 ('Dickson J') print Dickson. The researcher quoted only PubMed, so the post-check counted one host although its own DOI fetch had the second."
+       ]
+      }
+     ],
+     "reviewer": "disagree"
+    },
     {
      "field": "doi",
      "current": null,
@@ -1471,7 +2375,8 @@
        "url": "https://api.crossref.org/works/10.1136/jamia.2001.0080443",
        "quote": "\"DOI\":\"10.1136\\/jamia.2001.0080443\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -1483,7 +2388,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/11522765",
        "quote": "IP - 5"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -1495,13 +2401,12 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/11522765",
        "quote": "TI - An integrated software suite for surface-based analyses of cerebral cortex."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: J Dickenson"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "VanEEtal01",
@@ -1521,7 +2426,15 @@
     "page": "443-459",
     "volume": "8",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "D. C. Van Essen",
+     "H. A. Drury",
+     "J. Dickson",
+     "J. Harwell",
+     "D. Hanlon",
+     "C. H. Anderson"
+    ]
    },
    "batch": "batch-035"
   },
@@ -1541,7 +2454,8 @@
        "url": "https://api.crossref.org/works/10.1080/01621459.1982.10477803",
        "quote": "\"DOI\":\"10.1080\\/01621459.1982.10477803\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -1553,7 +2467,8 @@
        "url": "https://api.crossref.org/works/10.1080/01621459.1982.10477803",
        "quote": "\"issue\":\"378\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -1565,7 +2480,8 @@
        "url": "https://api.crossref.org/works/10.1080/01621459.1982.10477803",
        "quote": "\"page\":\"304-313\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1589,7 +2505,10 @@
     "page": "304-313",
     "volume": "77",
     "issue": "378",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John Geweke"
+    ]
    },
    "batch": "batch-035"
   },
@@ -1609,7 +2528,8 @@
        "url": "https://api.crossref.org/works/10.3233/jad-2012-121078",
        "quote": "\"DOI\":\"10.3233\\/jad-2012-121078\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1633,7 +2553,12 @@
     "page": "1011-1018",
     "volume": "32",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Sabrina K. Segal",
+     "Carl W. Cotman",
+     "Lawrence F. Cahill"
+    ]
    },
    "batch": "batch-035"
   },
@@ -1644,8 +2569,8 @@
     {
      "code": "quote_check_failed",
      "field": "editor",
-     "detail": "validator: editor not covered by its quotes (missing ['scholkopf', 'tsuda', 'vert']; failures ['fetch failed: HTTPError: HTTP Error 403: Forbidden'])",
-     "action": "held"
+     "detail": "validator: editor not covered by its quotes (missing ['scholkopf', 'tsuda', 'vert']; failures ['fetch failed: HTTPError: HTTP Error 403: Forbidden']); reviewer supplied the value (source reviewer)",
+     "action": "applied"
     },
     {
      "code": "quote_check_failed",
@@ -1671,7 +2596,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/4057.003.0005",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -1683,7 +2609,8 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/4057.003.0005",
        "quote": "\"container-title\":[\"Kernel Methods in Computational Biology\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -1695,7 +2622,22 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/4057.003.0005",
        "quote": "\"DOI\":\"10.7551\\/mitpress\\/4057.003.0005\""
       }
-     ]
+     ],
+     "reviewer": "agree"
+    },
+    {
+     "field": "editor",
+     "current": null,
+     "proposed": "B Sch{\\\"o}lkopf and K Tsuda and J-P Vert",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "Editor held only because the MIT Press page returned 403. Crossref edited-book record (filter isbn:9780262256926,type:edited-book) lists editors Bernhard Schölkopf, Koji Tsuda, Jean-Philippe Vert, so the researcher's value is right. Address Cambridge, {MA} is the house form for MIT Press, but I could not fetch a page that states it (403), so I leave it held. Chapter record 10.7551/mitpress/4057.003.0005: pages 71-92, 2004."
+       ]
+      }
+     ],
+     "reviewer": "disagree (held but correct)"
     },
     {
      "field": "publisher",
@@ -1707,14 +2649,14 @@
        "url": "https://api.crossref.org/works/10.7551/mitpress/4057.003.0005",
        "quote": "\"publisher\":\"The MIT Press\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
     "journal": "@incollection has no journal (already given by the booktitle)"
    },
    "held": {
-    "editor": "quote check failed",
     "address": "quote check failed"
    },
    "suggestions": {},
@@ -1736,7 +2678,10 @@
     "page": "71-92",
     "volume": null,
     "issue": null,
-    "type": "book-chapter"
+    "type": "book-chapter",
+    "authors": [
+     "William Stafford Noble"
+    ]
    },
    "batch": "batch-035"
   },
@@ -1782,7 +2727,22 @@
     }
    ],
    "normalisations": [],
-   "changes": [],
+   "changes": [
+    {
+     "field": "number",
+     "current": null,
+     "proposed": "4",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "no_source understates this. OpenAlex (a lead only) points to Loomis's own copy, https://people.psych.ucsb.edu/loomis/jack/mallot%20steck%20loomis%2002.pdf. I fetched that PDF: its page footer prints 'Künstliche Intelligenz, Heft 4/02, Seiten 24-28, ISSN 0933-1875, arendtap Verlag, Bremen' (the OCR reads 'Kiinstliche'), and its title and byline match the entry. This confirms title, authors, year and pages and adds issue 4. The page does not print volume 16; OpenAlex gives 16 (KI 2002 = Jahrgang 16), so leave it as cited."
+       ]
+      }
+     ],
+     "reviewer": "missing"
+    }
+   ],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -1870,7 +2830,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/7815888",
        "quote": "AU - Benabid AL"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -1882,7 +2843,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0140-6736(95)90062-4",
        "quote": "\"DOI\":\"10.1016\\/s0140-6736(95)90062-4\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -1894,7 +2856,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0140-6736(95)90062-4",
        "quote": "\"issue\":\"8942\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -1906,7 +2869,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0140-6736(95)90062-4",
        "quote": "\"title\":[\"Effect on parkinsonian signs and symptoms of bilateral subthalamic nucleus stimulation\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -1930,7 +2894,17 @@
     "page": "91-95",
     "volume": "345",
     "issue": "8942",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. Limousin",
+     "P. Pollak",
+     "A. Benazzouz",
+     "D. Hoffmann",
+     "J-F. Le Bas",
+     "J.E. Perret",
+     "A-L. Benabid",
+     "El Broussolle"
+    ]
    },
    "batch": "batch-035"
   },
@@ -1974,27 +2948,22 @@
     "page": "111-118",
     "volume": "3",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "William H Theodore",
+     "Robert S Fisher"
+    ]
    },
    "batch": "batch-035"
   },
   "vandEtal11": {
    "key": "vandEtal11",
    "verdict": "verified",
-   "flags": [
-    {
-     "code": "quote_check_failed",
-     "field": "title",
-     "detail": "validator: title not covered by its quotes (missing ['student']; failures [])",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [],
    "removals": {},
-   "held": {
-    "title": "quote check failed"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "vandEtal11",
@@ -2014,7 +2983,12 @@
     "page": "46-57",
     "volume": "21",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Janneke van de Pol",
+     "Monique Volman",
+     "Jos Beishuizen"
+    ]
    },
    "batch": "batch-035"
   },
@@ -2042,7 +3016,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1120",
        "quote": "\"given\":\"Scott\",\"family\":\"Douglass\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -2054,7 +3029,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1120",
        "quote": "\"DOI\":\"10.1037\\/0278-7393.25.5.1120\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -2066,7 +3042,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1120",
        "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2090,7 +3067,12 @@
     "page": "1120-1136",
     "volume": "25",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John R. Anderson",
+     "Jon M. Fincham",
+     "Scott Douglass"
+    ]
    },
    "batch": "batch-035"
   },
@@ -2114,7 +3096,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.20.6.1322",
        "quote": "\"given\":\"Jon M.\",\"family\":\"Fincham\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -2126,7 +3109,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.20.6.1322",
        "quote": "\"DOI\":\"10.1037\\/0278-7393.20.6.1322\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -2138,7 +3122,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.20.6.1322",
        "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2162,7 +3147,11 @@
     "page": "1322-1340",
     "volume": "20",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John R. Anderson",
+     "Jon M. Fincham"
+    ]
    },
    "batch": "batch-035"
   },
@@ -2193,7 +3182,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.14.1.33",
        "quote": "\"given\":\"Ralph E.\",\"family\":\"Gott\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -2205,7 +3195,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.14.1.33",
        "quote": "\"DOI\":\"10.1037\\/0278-7393.14.1.33\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -2217,7 +3208,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.14.1.33",
        "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2243,7 +3235,11 @@
     "page": "33-53",
     "volume": "14",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "F. Gregory Ashby",
+     "Ralph E. Gott"
+    ]
    },
    "batch": "batch-035"
   },
@@ -2299,7 +3295,11 @@
     "page": "21-27",
     "volume": "21",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "James A. Bisby",
+     "Neil Burgess"
+    ]
    },
    "batch": "batch-035"
   },
@@ -2319,7 +3319,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.23.4.898",
        "quote": "\"DOI\":\"10.1037\\/0278-7393.23.4.898\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -2331,7 +3332,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.23.4.898",
        "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2355,7 +3357,10 @@
     "page": "898-914",
     "volume": "23",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Norman R. Brown"
+    ]
    },
    "batch": "batch-035"
   },
@@ -2375,7 +3380,8 @@
        "url": "https://api.crossref.org/works/10.1101/lm.2.3-4.107",
        "quote": "\"DOI\":\"10.1101\\/lm.2.3-4.107\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2399,7 +3405,11 @@
     "page": "107-132",
     "volume": "2",
     "issue": "3-4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "E J Capaldi",
+     "I Neath"
+    ]
    },
    "batch": "batch-035"
   },
@@ -2419,7 +3429,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.868",
        "quote": "\"DOI\":\"10.1037\\/0278-7393.15.5.868\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -2431,7 +3442,8 @@
        "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.868",
        "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2455,7 +3467,13 @@
     "page": "868-886",
     "volume": "15",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Barbara A. Dosher",
+     "Brian McElree",
+     "R. Mark Hood",
+     "Glenda Rosedale"
+    ]
    },
    "batch": "batch-035"
   },
@@ -2511,23 +3529,35 @@
     "page": "408-418",
     "volume": "9",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Mark A. Gluck",
+     "Daphna Shohamy",
+     "Catherine Myers"
+    ]
    },
    "batch": "batch-035"
   },
   "KnowEtal94": {
    "key": "KnowEtal94",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "doi_title_unavailable",
-     "field": "doi",
-     "detail": "10.1101/lm.1.2.106: Crossref record unavailable: HTTP 429; held",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1101/lm.1.2.106",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.1101/lm.1.2.106 held only because of HTTP 429. Refetched Crossref: 'Probabilistic classification learning in amnesia.', Knowlton/Squire/Gluck, Learning & Memory 1(2) 106-120, 1994."
+       ]
+      }
+     ],
+     "reviewer": "disagree (held but correct)"
+    },
     {
      "field": "number",
      "current": null,
@@ -2538,7 +3568,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10467589",
        "quote": "IP - 2"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -2550,7 +3581,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10467589",
        "quote": "PG - 106-20"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -2562,7 +3594,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10467589",
        "quote": "TI - Probabilistic classification learning in amnesia."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2577,14 +3610,35 @@
     "doi": "10.1101/lm.1.2.106",
     "registered": true,
     "ra": "Crossref",
-    "error": "Crossref record unavailable: HTTP 429"
+    "title": "Probabilistic classification learning in amnesia.",
+    "subtitle": null,
+    "container": "Learning &amp; Memory",
+    "print_year": "1994",
+    "online_year": "1994",
+    "issued_year": "1994",
+    "page": "106-120",
+    "volume": "1",
+    "issue": "2",
+    "type": "journal-article",
+    "authors": [
+     "B J Knowlton",
+     "L R Squire",
+     "M A Gluck"
+    ]
    },
    "batch": "batch-035"
   },
   "Loft05": {
    "key": "Loft05",
    "verdict": "verified",
-   "flags": [],
+   "flags": [
+    {
+     "code": "doi_title_part_number",
+     "field": "doi",
+     "detail": "10.1101/lm.94705 is registered to 'Planting misinformation in the human mind: A 30-year investigation of the malleability of memory: \\n      \\n        Figure 1.': titles agree except for part numbers ('Planting misinformation in the human mind: A 30-year investigation of the malleability of memory: \\n      \\n        Figure 1.' vs 'Planting misinformation in the human mind: a 30-year investigation of the malleability of memory'); the record's first page is the entry's; applied",
+     "action": "applied"
+    }
+   ],
    "normalisations": [],
    "changes": [],
    "removals": {},
@@ -2608,7 +3662,10 @@
     "page": "361-366",
     "volume": "12",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Elizabeth F. Loftus"
+    ]
    },
    "batch": "batch-035"
   },
@@ -2628,7 +3685,8 @@
        "url": "https://api.crossref.org/works/10.1101/lm.878908",
        "quote": "\"page\":\"417-425\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -2640,7 +3698,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/18511693/",
        "quote": "PG - 417-25"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -2664,7 +3723,12 @@
     "page": "417-425",
     "volume": "15",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Heekyeong Park",
+     "Melina R. Uncapher",
+     "Michael D. Rugg"
+    ]
    },
    "batch": "batch-036"
   },
@@ -2748,7 +3812,11 @@
     "page": "190-197",
     "volume": "8",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Craig E.L. Stark",
+     "Larry R. Squire"
+    ]
    },
    "batch": "batch-036"
   },
@@ -2780,7 +3848,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00106-6",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -2792,7 +3861,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00106-6",
        "quote": "\"container-title\":[\"Learning and Memory: A Comprehensive Reference\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -2804,7 +3874,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00106-6",
        "quote": "\"page\":\"79-97\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -2816,7 +3887,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22learning%20and%20memory%20a%20comprehensive%20reference%22",
        "quote": "editor-in-chief, John H. Byrne."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -2828,7 +3900,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00106-6",
        "quote": "\"page\":\"79-97\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -2844,7 +3917,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22learning%20and%20memory%20a%20comprehensive%20reference%22",
        "quote": "Elsevier,"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -2870,7 +3944,11 @@
     "page": "79-97",
     "volume": null,
     "issue": null,
-    "type": "book-chapter"
+    "type": "book-chapter",
+    "authors": [
+     "J.L. Voss",
+     "K.A. Paller"
+    ]
    },
    "batch": "batch-036"
   },
@@ -2902,7 +3980,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00168-6",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -2914,7 +3993,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00168-6",
        "quote": "\"container-title\":[\"Learning and Memory: A Comprehensive Reference\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -2926,7 +4006,8 @@
        "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00168-6",
        "quote": "\"page\":\"65-78\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -2938,7 +4019,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22learning%20and%20memory%20a%20comprehensive%20reference%22",
        "quote": "editor-in-chief, John H. Byrne."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -2954,7 +4036,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22learning%20and%20memory%20a%20comprehensive%20reference%22",
        "quote": "Elsevier,"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -2980,23 +4063,39 @@
     "page": "65-78",
     "volume": null,
     "issue": null,
-    "type": "book-chapter"
+    "type": "book-chapter",
+    "authors": [
+     "R.L. Greene"
+    ]
    },
    "batch": "batch-036"
   },
   "ChamEtal03": {
    "key": "ChamEtal03",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'and artigas' -> 'artigas' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'A A {and Artigas}' is kept",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "V D Chamizo and J A Aznar-Casanova and A A {and Artigas}",
+     "proposed": "V D Chamizo and J A Aznar-Casanova and A A Artigas",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/s0023-9690(03)00020-1",
+       "quote": "\"given\":\"V.D.\",\"family\":\"Chamizo\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1016/s0023-9690(03)00020-1",
+       "quote": "\"given\":\"J.A.\",\"family\":\"Aznar-Casanova\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1016/s0023-9690(03)00020-1",
+       "quote": "\"given\":\"A.A.\",\"family\":\"Artigas\""
+      }
+     ]
+    },
     {
      "field": "doi",
      "current": null,
@@ -3023,9 +4122,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: A A {and Artigas}"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "ChamEtal03",
@@ -3045,7 +4142,12 @@
     "page": "262-281",
     "volume": "34",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "V.D. Chamizo",
+     "J.A. Aznar-Casanova",
+     "A.A. Artigas"
+    ]
    },
    "batch": "batch-036"
   },
@@ -3058,6 +4160,12 @@
      "field": "title",
      "detail": "verdict 'correction' but title is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "doi_title_part_number",
+     "field": "doi",
+     "detail": "10.1006/lmot.1998.1008 is registered to 'Place Learning in Virtual Space': titles agree except for part numbers ('Place Learning in Virtual Space' vs 'Place learning in virtual space {II}: {T}opographical relations as one dimension of stimulus control'); the record's first page is the entry's; applied",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -3072,7 +4180,8 @@
        "url": "https://api.crossref.org/works/10.1006/lmot.1998.1008",
        "quote": "\"page\":\"288-308\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -3096,7 +4205,13 @@
     "page": "288-308",
     "volume": "29",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "W.Jake Jacobs",
+     "Kevin G.F. Thomas",
+     "Holly E. Laurance",
+     "Lynn Nadel"
+    ]
    },
    "batch": "batch-036"
   },
@@ -3109,12 +4224,6 @@
      "field": "title",
      "detail": "verdict 'correction' but title is not_found: the entry is not fully verified",
      "action": "flag"
-    },
-    {
-     "code": "doi_title_mismatch",
-     "field": "doi",
-     "detail": "10.1007/bfb0056189 is registered to 'Three-dimensional reconstruction and surgical navigation in padiatric epilepsy surgery' (Crossref), not this entry's title; DOI change dropped",
-     "action": "dropped"
     }
    ],
    "normalisations": [
@@ -3134,7 +4243,8 @@
        "url": "https://api.crossref.org/works/10.1007/bfb0056189",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "author",
@@ -3198,7 +4308,8 @@
        "url": "https://api.crossref.org/works/10.1007/bfb0056189",
        "quote": "\"given\":\"Peter\",\"family\":\"Black\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -3210,7 +4321,22 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22medical%20image%20computing%20and%20computer-assisted%20intervention%20miccai%2098%22",
        "quote": "Medical image computing and computer-assisted intervention--MICCAI '98"
       }
-     ]
+     ],
+     "reviewer": "agree"
+    },
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1007/bfb0056189",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.1007/bfb0056189 was dropped by the title check only because Crossref deposits the typo 'padiatric'. With 10 distinct words the one typo gives Jaccard 9/11 = 0.82, below the 0.85 cutoff. Crossref record: same 14 authors, LNCS / MICCAI'98, pages 74-83, print 1998. The DOI is this chapter."
+       ]
+      }
+     ],
+     "reviewer": "disagree (dropped but correct)"
     },
     {
      "field": "editor",
@@ -3222,7 +4348,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22medical%20image%20computing%20and%20computer-assisted%20intervention%20miccai%2098%22",
        "quote": "William M. Wells, Alan Colchester, Scott Delp (eds.)."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -3234,7 +4361,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22medical%20image%20computing%20and%20computer-assisted%20intervention%20miccai%2098%22",
        "quote": "Springer, c1998."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "series",
@@ -3246,7 +4374,8 @@
        "url": "https://api.crossref.org/works/10.1007/bfb0056189",
        "quote": "\"container-title\":[\"Lecture Notes in Computer Science\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -3258,7 +4387,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22medical%20image%20computing%20and%20computer-assisted%20intervention%20miccai%2098%22",
        "quote": "Lecture notes in computer science, 0302-9743 ; 1496"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -3284,7 +4414,23 @@
     "page": "74-83",
     "volume": null,
     "issue": null,
-    "type": "book-chapter"
+    "type": "book-chapter",
+    "authors": [
+     "Alexandra Chabrerie",
+     "Fatma Ozlen",
+     "Shin Nakajima",
+     "Michael Leventon",
+     "Hideki Atsumi",
+     "Eric Grimson",
+     "Erwin Keeve",
+     "Sandra Helmers",
+     "James Riviello",
+     "Gregory Holmes",
+     "Frank Duffy",
+     "Ferenc Jolesz",
+     "Ron Kikinis",
+     "Peter Black"
+    ]
    },
    "batch": "batch-036"
   },
@@ -3345,16 +4491,23 @@
   "CortVapn95": {
    "key": "CortVapn95",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'vapnick' -> 'vapnik' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'V Vapnick' is kept",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "C Cortes and V Vapnick",
+     "proposed": "C Cortes and V Vapnik",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "The surname hold keeps the cited typo 'V Vapnick'. Crossref 10.1007/bf00994018 prints 'Vladimir Vapnik', and the article is not in PubMed. The hold is working as designed on one host, but the value is certainly Vapnik: the researcher notes the same typo in other entries (Boser et al.). Release it on reviewer confirmation."
+       ]
+      }
+     ],
+     "reviewer": "disagree"
+    },
     {
      "field": "doi",
      "current": null,
@@ -3365,7 +4518,8 @@
        "url": "https://api.crossref.org/works/10.1007/bf00994018",
        "quote": "\"page\":\"273-297\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -3377,7 +4531,8 @@
        "url": "https://api.crossref.org/works/10.1007/bf00994018",
        "quote": "\"issue\":\"3\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -3389,13 +4544,12 @@
        "url": "https://api.crossref.org/works/10.1007/bf00994018",
        "quote": "\"title\":[\"Support-vector networks\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: V Vapnick"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "CortVapn95",
@@ -3415,7 +4569,11 @@
     "page": "273-297",
     "volume": "20",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Corinna Cortes",
+     "Vladimir Vapnik"
+    ]
    },
    "batch": "batch-036"
   },
@@ -3471,7 +4629,13 @@
     "page": "133-168",
     "volume": "28",
     "issue": "2-3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Yoav Freund",
+     "H. Sebastian Seung",
+     "Eli Shamir",
+     "Naftali Tishby"
+    ]
    },
    "batch": "batch-036"
   },
@@ -3491,7 +4655,8 @@
        "url": "https://api.crossref.org/works/10.1023/a:1007649029923",
        "quote": "\"page\":\"135-168\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -3503,7 +4668,8 @@
        "url": "https://api.crossref.org/works/10.1023/a:1007649029923",
        "quote": "\"issue\":\"2-3\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -3515,7 +4681,8 @@
        "url": "https://api.crossref.org/works/10.1023/a:1007649029923",
        "quote": "\"title\":[\"BoosTexter: A Boosting-based System for Text Categorization\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -3539,7 +4706,11 @@
     "page": "135-168",
     "volume": "39",
     "issue": "2-3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Robert E. Schapire",
+     "Yoram Singer"
+    ]
    },
    "batch": "batch-036"
   },
@@ -3619,27 +4790,18 @@
     "page": "515-522",
     "volume": "46",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Gary H. Glover",
+     "Christine S. Law"
+    ]
    },
    "batch": "batch-036"
   },
   "Jenk03": {
    "key": "Jenk03",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "identity_quote_failed",
-     "field": "identity",
-     "detail": "identity quote not found at source: fetch failed: HTTPError: HTTP Error 429: Too Many Requests",
-     "action": "flag"
-    },
-    {
-     "code": "quote_check_failed",
-     "field": "title",
-     "detail": "validator: title not covered by its quotes (missing ['fast', 'automated', 'dimensional', 'phase', 'unwrapping', 'algorithm']; failures ['fetch failed: HTTPError: HTTP Error 429: Too Many Requests'])",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
     {
@@ -3652,13 +4814,26 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12509838/",
        "quote": "AID - 10.1002/mrm.10354 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
+    },
+    {
+     "field": "title",
+     "current": "A fast, automated, n-dimensional phase unwrapping algorithm",
+     "proposed": "Fast, automated, {N}-dimensional phase-unwrapping algorithm",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "Title held only because every fetch returned HTTP 429. Crossref 10.1002/mrm.10354 prints 'Fast, automated, <i>N</i>-dimensional phase-unwrapping algorithm' and PubMed 12509838 'Fast, automated, N-dimensional phase-unwrapping algorithm.' The cited 'A fast ... n-dimensional phase unwrapping' is wrong. Print 2003-01, 49(1) 193-197."
+       ]
+      }
+     ],
+     "reviewer": "disagree (held but correct)"
     }
    ],
    "removals": {},
-   "held": {
-    "title": "quote check failed"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Jenk03",
@@ -3678,23 +4853,32 @@
     "page": "193-197",
     "volume": "49",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Mark Jenkinson"
+    ]
    },
    "batch": "batch-036"
   },
   "JenkSmit01": {
    "key": "JenkSmit01",
    "verdict": "correction",
-   "flags": [
+   "flags": [],
+   "normalisations": [],
+   "changes": [
     {
-     "code": "doi_title_unavailable",
      "field": "doi",
-     "detail": "10.1016/s1361-8415(01)00036-6: Crossref record unavailable: HTTP 429; held",
-     "action": "held"
+     "current": null,
+     "proposed": "10.1016/s1361-8415(01)00036-6",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/11516708/",
+       "quote": "AID - 10.1016/s1361-8415(01)00036-6 [doi]"
+      }
+     ]
     }
    ],
-   "normalisations": [],
-   "changes": [],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -3707,7 +4891,20 @@
     "doi": "10.1016/s1361-8415(01)00036-6",
     "registered": true,
     "ra": "Crossref",
-    "error": "Crossref record unavailable: HTTP 429"
+    "title": "A global optimisation method for robust affine registration of brain images",
+    "subtitle": null,
+    "container": "Medical Image Analysis",
+    "print_year": "2001",
+    "online_year": null,
+    "issued_year": "2001",
+    "page": "143-156",
+    "volume": "5",
+    "issue": "2",
+    "type": "journal-article",
+    "authors": [
+     "Mark Jenkinson",
+     "Stephen Smith"
+    ]
    },
    "batch": "batch-036"
   },
@@ -3732,7 +4929,8 @@
        "url": "https://api.crossref.org/works/10.1007/11866763_8",
        "quote": "\"type\":\"book-chapter\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "booktitle",
@@ -3744,7 +4942,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22medical%20image%20computing%20and%20computer-assisted%20intervention%20miccai%202006%22",
        "quote": "Medical image computing and computer-assisted intervention -- MICCAI 2006"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -3756,7 +4955,8 @@
        "url": "https://api.crossref.org/works/10.1007/11866763_8",
        "quote": "\"page\":\"58-66\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "editor",
@@ -3768,7 +4968,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22medical%20image%20computing%20and%20computer-assisted%20intervention%20miccai%202006%22",
        "quote": "Rasmus Larsen, Mads Nielsen, Jon Sporring (eds.)"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "publisher",
@@ -3780,7 +4981,8 @@
        "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22medical%20image%20computing%20and%20computer-assisted%20intervention%20miccai%202006%22",
        "quote": "Springer, c2006."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "series",
@@ -3792,7 +4994,8 @@
        "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy%20Manning/Papers/GrabEtal06.pdf#page=2",
        "quote": "Lecture Notes in Computer Science 4191"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -3804,7 +5007,8 @@
        "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy%20Manning/Papers/GrabEtal06.pdf#page=2",
        "quote": "Lecture Notes in Computer Science 4191"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -3830,7 +5034,15 @@
     "page": "58-66",
     "volume": null,
     "issue": null,
-    "type": "book-chapter"
+    "type": "book-chapter",
+    "authors": [
+     "Günther Grabner",
+     "Andrew L. Janke",
+     "Marc M. Budge",
+     "David Smith",
+     "Jens Pruessner",
+     "D. Louis Collins"
+    ]
    },
    "batch": "batch-036"
   },
@@ -3948,21 +5160,24 @@
     "page": "1841-1851",
     "volume": "40",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "EEF HOGERVORST",
+     "STEPHAN BANDELOW",
+     "JEROEN SCHMITT",
+     "ROY JENTJENS",
+     "MARTA OLIVEIRA",
+     "JUDITH ALLGROVE",
+     "TOM CARTER",
+     "MICHAEL GLEESON"
+    ]
    },
    "batch": "batch-036"
   },
   "BrowEtal95": {
    "key": "BrowEtal95",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "identity_quote_failed",
-     "field": "identity",
-     "detail": "identity quote not found at source: fetch failed: HTTPError: HTTP Error 429: Too Many Requests",
-     "action": "flag"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
     {
@@ -3983,7 +5198,8 @@
        "url": "https://api.crossref.org/works/10.1080/09658219508258962",
        "quote": "\"given\":\"Charles\",\"family\":\"Hulme\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -3995,7 +5211,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/7796301/",
        "quote": "AID - 10.1080/09658219508258962 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -4007,7 +5224,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/7796301/",
        "quote": "IP - 2"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -4019,7 +5237,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/7796301/",
        "quote": "VI - 3"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4043,7 +5262,12 @@
     "page": "113-145",
     "volume": "3",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Gordon D.A. Brown",
+     "Peter Dalloz",
+     "Charles Hulme"
+    ]
    },
    "batch": "batch-036"
   },
@@ -4051,12 +5275,6 @@
    "key": "BurgShal96",
    "verdict": "correction",
    "flags": [
-    {
-     "code": "identity_quote_failed",
-     "field": "identity",
-     "detail": "identity quote not found at source: fetch failed: HTTPError: HTTP Error 429: Too Many Requests",
-     "action": "flag"
-    },
     {
      "code": "field_not_found",
      "field": "pages",
@@ -4076,7 +5294,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8817460/",
        "quote": "AID - 10.1080/096582196388906 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4100,7 +5319,10 @@
     "page": "359-412",
     "volume": "4",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Paul W. Burgess"
+    ]
    },
    "batch": "batch-036"
   },
@@ -4133,7 +5355,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12653488/",
        "quote": "AID - 10.1080/741938175 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -4145,7 +5368,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12653488/",
        "quote": "TI - Testing a positional model of the Hebb effect."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -4171,21 +5395,19 @@
     "page": "43-63",
     "volume": "11",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Nick Cumming",
+     "Mike Page",
+     "Dennis Norris"
+    ]
    },
    "batch": "batch-036"
   },
   "HitcEtal05": {
    "key": "HitcEtal05",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "doi_title_unavailable",
-     "field": "doi",
-     "detail": "10.1080/09658210344000314: Crossref record unavailable: HTTP 429; held",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [
     {
      "field": "author",
@@ -4225,6 +5447,18 @@
       }
      ],
      "normalised_from": "Graham J Hitch and Maria Chiara Fastame and Brenda Flude"
+    },
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1080/09658210344000314",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/15948610/",
+       "quote": "AID - 10.1080/09658210344000314 [doi]"
+      }
+     ]
     }
    ],
    "removals": {
@@ -4241,7 +5475,21 @@
     "doi": "10.1080/09658210344000314",
     "registered": true,
     "ra": "Crossref",
-    "error": "Crossref record unavailable: HTTP 429"
+    "title": "How is the serial order of a verbal sequence coded? Some comparisons between models",
+    "subtitle": null,
+    "container": "Memory",
+    "print_year": "2005",
+    "online_year": "2007",
+    "issued_year": "2005",
+    "page": "247-258",
+    "volume": "13",
+    "issue": "3-4",
+    "type": "journal-article",
+    "authors": [
+     "Maria Chiara Fastame",
+     "Brenda Flude",
+     "Graham J. Hitch"
+    ]
    },
    "batch": "batch-036"
   },
@@ -4316,7 +5564,11 @@
     "page": "146-155",
     "volume": "21",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Alan D. Baddeley",
+     "Graham Hitch"
+    ]
    },
    "batch": "batch-037"
   },
@@ -4400,7 +5652,11 @@
     "page": "55-62",
     "volume": "22",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Steven E. Clark",
+     "Richard E. R. Burchett"
+    ]
    },
    "batch": "batch-037"
   },
@@ -4408,12 +5664,6 @@
    "key": "CohnEtal21",
    "verdict": "correction",
    "flags": [
-    {
-     "code": "doi_title_unavailable",
-     "field": "doi",
-     "detail": "10.3758/s13421-021-01178-x: Crossref record unavailable: HTTP 429; held",
-     "action": "held"
-    },
     {
      "code": "key_rename",
      "field": "key",
@@ -4423,6 +5673,20 @@
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.3758/s13421-021-01178-x",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "Researcher's DOI 10.3758/s13421-021-01178-x was held only because Crossref answered HTTP 429 during the post-check. Refetched: Crossref record is this work, Memory & Cognition 50(3) 478-494, published-print 2022-04, online 2021-04-26; year 2022 and key CohnEtal22 right (CohnEtal22 free in HEAD)."
+       ]
+      }
+     ],
+     "reviewer": "disagree (held but correct)"
+    },
     {
      "field": "number",
      "current": null,
@@ -4469,7 +5733,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/33904017/",
        "quote": "DP  - 2022 Apr"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4486,7 +5751,26 @@
     "doi": "10.3758/s13421-021-01178-x",
     "registered": true,
     "ra": "Crossref",
-    "error": "Crossref record unavailable: HTTP 429"
+    "title": "Narratives bridge the divide between distant events in episodic memory",
+    "subtitle": null,
+    "container": "Memory &amp; Cognition",
+    "print_year": "2022",
+    "online_year": "2021",
+    "issued_year": "2021",
+    "page": "478-494",
+    "volume": "50",
+    "issue": "3",
+    "type": "journal-article",
+    "authors": [
+     "Brendan I. Cohn-Sheehy",
+     "Angelique I. Delarazan",
+     "Jordan E. Crivelli-Decker",
+     "Zachariah M. Reagh",
+     "Nidhi S. Mundada",
+     "Andrew P. Yonelinas",
+     "Jeffrey M. Zacks",
+     "Charan Ranganath"
+    ]
    },
    "batch": "batch-037"
   },
@@ -4542,7 +5826,14 @@
     "page": "323-334",
     "volume": "34",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Eddy J. Davelaar",
+     "Eddy J. Davelaar",
+     "Henk J. Haarmann",
+     "Yonatan Goshen-Gottstein",
+     "Marius Usher"
+    ]
    },
    "batch": "batch-037"
   },
@@ -4557,14 +5848,28 @@
      "action": "flag"
     },
     {
-     "code": "doi_title_unavailable",
+     "code": "doi_title_part_number",
      "field": "doi",
-     "detail": "10.3758/bf03197065: Crossref record unavailable: HTTP 429; held",
-     "action": "held"
+     "detail": "10.3758/bf03197065 is registered to 'A dissociative word-frequency X levels-of-processing interaction in episodic recognition and lexical decision tasks': titles agree except for part numbers ('A dissociative word-frequency X levels-of-processing interaction in episodic recognition and lexical decision tasks' vs 'A dissociative word-frequency $\\\\times$ levels-of-processing interaction in episodic recognition and lexical decision tasks'); the record's first page is the entry's; applied",
+     "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.3758/bf03197065",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.3758/bf03197065 held only because of HTTP 429. Refetched Crossref: 'A dissociative word-frequency X levels-of-processing interaction in episodic recognition and lexical decision tasks', Duchek/Neely, Memory & Cognition 17(2) 148-162, 1989-03. The title matches (the × is printed as X)."
+       ]
+      }
+     ],
+     "reviewer": "disagree (held but correct)"
+    },
     {
      "field": "number",
      "current": null,
@@ -4575,7 +5880,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/2927313/",
        "quote": "IP  - 2"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4590,23 +5896,41 @@
     "doi": "10.3758/bf03197065",
     "registered": true,
     "ra": "Crossref",
-    "error": "Crossref record unavailable: HTTP 429"
+    "title": "A dissociative word-frequency X levels-of-processing interaction in episodic recognition and lexical decision tasks",
+    "subtitle": null,
+    "container": "Memory &amp; Cognition",
+    "print_year": "1989",
+    "online_year": null,
+    "issued_year": "1989",
+    "page": "148-162",
+    "volume": "17",
+    "issue": "2",
+    "type": "journal-article",
+    "authors": [
+     "Janet M. Duchek",
+     "James H. Neely"
+    ]
    },
    "batch": "batch-037"
   },
   "FernGlen85": {
    "key": "FernGlen85",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "doi_title_unavailable",
-     "field": "doi",
-     "detail": "10.3758/bf03202501: Crossref record unavailable: HTTP 429; held",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.3758/bf03202501",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/4079749/",
+       "quote": "AID - 10.3758/bf03202501 [doi]"
+      }
+     ]
+    },
     {
      "field": "number",
      "current": null,
@@ -4632,7 +5956,20 @@
     "doi": "10.3758/bf03202501",
     "registered": true,
     "ra": "Crossref",
-    "error": "Crossref record unavailable: HTTP 429"
+    "title": "Changing environmental context does not reliably affect memory",
+    "subtitle": null,
+    "container": "Memory &amp; Cognition",
+    "print_year": "1985",
+    "online_year": null,
+    "issued_year": "1985",
+    "page": "333-345",
+    "volume": "13",
+    "issue": "4",
+    "type": "journal-article",
+    "authors": [
+     "Angel Fernandez",
+     "Arthur M. Glenberg"
+    ]
    },
    "batch": "batch-037"
   },
@@ -4659,7 +5996,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/7808280/",
        "quote": "AID - 10.3758/bf03209256 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -4671,7 +6009,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/7808280/",
        "quote": "DP  - 1994 Nov"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4697,7 +6036,10 @@
     "page": "713-722",
     "volume": "22",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "William E. Hockley"
+    ]
    },
    "batch": "batch-037"
   },
@@ -4753,7 +6095,12 @@
     "page": "92-101",
     "volume": "38",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "M. J. Kahana",
+     "M. V. Mollison",
+     "K. M. Addis"
+    ]
    },
    "batch": "batch-037"
   },
@@ -4833,7 +6180,12 @@
     "page": "452-464",
     "volume": "41",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Oliver Kliegl",
+     "Bernhard Pastötter",
+     "Karl-Heinz T. Bäuml"
+    ]
    },
    "batch": "batch-037"
   },
@@ -4901,7 +6253,11 @@
     "page": "177-182",
     "volume": "1",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Steven P. Mewaldt",
+     "James V. Hinrichs"
+    ]
    },
    "batch": "batch-037"
   },
@@ -4921,7 +6277,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/22290593/",
        "quote": "Jonathan F Miller, Christoph T Weidemann, Michael J Kahana"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -4933,7 +6290,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/22290593/",
        "quote": "AID - 10.3758/s13421-011-0178-9 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -4957,7 +6315,12 @@
     "page": "540-550",
     "volume": "40",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jonathan F. Miller",
+     "Christoph T. Weidemann",
+     "Michael J. Kahana"
+    ]
    },
    "batch": "batch-037"
   },
@@ -4977,7 +6340,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/3352524/",
        "quote": "AID - 10.3758/bf03213476 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -4989,7 +6353,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/3352524/",
        "quote": "IP  - 2"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5013,7 +6378,11 @@
     "page": "91-101",
     "volume": "16",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Bennet Murdock",
+     "Mary Lamon"
+    ]
    },
    "batch": "batch-037"
   },
@@ -5069,7 +6438,11 @@
     "page": "161-171",
     "volume": "11",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "James H. Neely",
+     "David G. Payne"
+    ]
    },
    "batch": "batch-037"
   },
@@ -5137,7 +6510,12 @@
     "page": "785-796",
     "volume": "25",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Douglas L. Nelson",
+     "David J. Bennett",
+     "Todd W. Leibert"
+    ]
    },
    "batch": "batch-037"
   },
@@ -5205,7 +6583,11 @@
     "page": "397-410",
     "volume": "21",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Lars-Göran Nilsson",
+     "John M. Gardiner"
+    ]
    },
    "batch": "batch-037"
   },
@@ -5232,7 +6614,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/21811888/",
        "quote": "AID - 10.3758/s13421-011-0131-y [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -5244,7 +6627,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/21811888/",
        "quote": "DP  - 2012 Jan"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5270,7 +6654,11 @@
     "page": "19-27",
     "volume": "40",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jeroen G. W. Raaijmakers",
+     "Emőke Jakab"
+    ]
    },
    "batch": "batch-037"
   },
@@ -5290,7 +6678,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/1549060/",
        "quote": "AID - 10.3758/bf03208247 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -5302,7 +6691,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/1549060/",
        "quote": "IP  - 1"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5326,7 +6716,12 @@
     "page": "1-11",
     "volume": "20",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Mark Tippens Reinitz",
+     "William J. Lammers",
+     "aBarbara Pitt’s Cochran"
+    ]
    },
    "batch": "batch-037"
   },
@@ -5346,7 +6741,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/20852233/",
        "quote": "Per B Sederberg, Jonathan F Miller, Marc W Howard, Michael J Kahana"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5358,7 +6754,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/20852233/",
        "quote": "AID - 10.3758/MC.38.6.689 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5382,7 +6779,13 @@
     "page": "689-699",
     "volume": "38",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Per B. Sederberg",
+     "Jonathan F. Miller",
+     "Marc W. Howard",
+     "Michael J. Kahana"
+    ]
    },
    "batch": "batch-037"
   },
@@ -5457,7 +6860,11 @@
     "page": "329-337",
     "volume": "21",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Anjali Thapar",
+     "Robert L. Greene"
+    ]
    },
    "batch": "batch-037"
   },
@@ -5484,7 +6891,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8757500/",
        "quote": "W Donaldson"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5496,7 +6904,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8757500/",
        "quote": "AID - 10.3758/bf03200940 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -5508,7 +6917,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8757500/",
        "quote": "The role of decision processes in remembering and knowing"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5541,7 +6951,10 @@
     "page": "523-533",
     "volume": "24",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Wayne Donaldson"
+    ]
    },
    "batch": "batch-037"
   },
@@ -5601,7 +7014,14 @@
     "page": "54-63",
     "volume": "51",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Hugh Garavan",
+     "Dan Kelley",
+     "Allyson Rosen",
+     "Steve M. Rao",
+     "Elliot A. Stein"
+    ]
    },
    "batch": "batch-038"
   },
@@ -5614,16 +7034,25 @@
      "field": "volume",
      "detail": "verdict 'correction' but volume is not_found: the entry is not fully verified",
      "action": "flag"
-    },
-    {
-     "code": "doi_title_mismatch",
-     "field": "doi",
-     "detail": "10.1093/mind/lix.236.433 is registered to 'I.—COMPUTING MACHINERY AND INTELLIGENCE' (Crossref), not this entry's title; DOI change dropped",
-     "action": "dropped"
     }
    ],
    "normalisations": [],
-   "changes": [],
+   "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1093/mind/lix.236.433",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.1093/mind/lix.236.433 dropped by the title check, but the Crossref record is this work: 'I.—COMPUTING MACHINERY AND INTELLIGENCE', A M Turing, Mind LIX(236) 433-460, 1950-10. The leading section numeral 'I.' makes the part-number check see 'i' and the word-set Jaccard 0.8. The prefix rule needs at least 3 words in the shorter title, so a 1-2 word pre-colon registry title never matches. Keep the DOI."
+       ]
+      }
+     ],
+     "reviewer": "disagree (dropped but correct)"
+    }
+   ],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -5645,7 +7074,10 @@
     "page": "433-460",
     "volume": "LIX",
     "issue": "236",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "A. M. TURING"
+    ]
    },
    "batch": "batch-038"
   },
@@ -5676,7 +7108,11 @@
     "page": "975-978",
     "volume": "17",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Nick Goldman",
+     "and Simon Whelan"
+    ]
    },
    "batch": "batch-038"
   },
@@ -5723,7 +7159,8 @@
        "url": "https://api.crossref.org/works/10.1007/s12035-019-1516-3",
        "quote": "\"family\":\"Capell\\u00e1\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -5739,7 +7176,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
        "quote": "10.1007/s12035-019-1516-3 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -5751,7 +7189,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
        "quote": "IP  - 9"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -5763,7 +7202,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
        "quote": "PG  - 6206-6217"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -5775,7 +7215,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
        "quote": "VI  - 56"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -5801,7 +7242,13 @@
     "page": "6206-6217",
     "volume": "56",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Fernando Castillo Díaz",
+     "Micaela A. Hernandez",
+     "Tomas Capellá",
+     "Jorge H. Medina"
+    ]
    },
    "batch": "batch-038"
   },
@@ -5809,12 +7256,6 @@
    "key": "ToluEtal12",
    "verdict": "correction",
    "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'cangeux' -> 'changeux' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'J P Cangeux' is kept",
-     "action": "held"
-    },
     {
      "code": "key_rename",
      "field": "key",
@@ -5827,94 +7268,16 @@
     {
      "field": "author",
      "current": "S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Besson and C Reperant and J Zemdegs and C Pages and Y A Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J P Cangeux and P Faure and U Maskos",
-     "proposed": "S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J P Cangeux and P Faure and U Maskos",
-     "source": "researcher",
+     "proposed": "S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos",
+     "source": "reviewer",
      "evidence": [
       {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Tolu, S"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Eddine, R"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Marti, F"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - David, V"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Graupner, M"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Pons, S"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Baudonnat, M"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Husson, M"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Besson, M"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Reperant, C"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Zemdegs, J"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Pages, C"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Hay, Y A H"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Lambolez, B"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Caboche, J"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Gutkin, B"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Gardier, A M"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Changeux, J-P"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Faure, P"
-      },
-      {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
-       "quote": "FAU - Maskos, U"
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1038/mp.2012.83",
-       "quote": "\"family\":\"Pag\\u00e8s\""
+       "reviewer_problems": [
+        "Changeux surname hold keeps the cited typo 'J P Cangeux'. Crossref 10.1038/mp.2012.83 prints 'J-P Changeux' and PubMed 22751493 'Changeux, J-P', so two hosts corroborate (the researcher quoted only PubMed). House form hyphenates J-P. Print 2013-03 vol 18(3) 382-393 correct; ToluEtal13 free in HEAD."
+       ]
       }
-     ]
+     ],
+     "reviewer": "disagree"
     },
     {
      "field": "doi",
@@ -5946,7 +7309,8 @@
        "url": "https://api.crossref.org/works/10.1038/mp.2012.83",
        "quote": "\"container-title\":[\"Molecular Psychiatry\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -5994,13 +7358,12 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
        "quote": "DP  - 2013 Mar"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: J P Cangeux"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "ToluEtal12",
@@ -6022,7 +7385,29 @@
     "page": "382-393",
     "volume": "18",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "S Tolu",
+     "R Eddine",
+     "F Marti",
+     "V David",
+     "M Graupner",
+     "S Pons",
+     "M Baudonnat",
+     "M Husson",
+     "M Besson",
+     "C Reperant",
+     "J Zemdegs",
+     "C Pagès",
+     "Y A H Hay",
+     "B Lambolez",
+     "J Caboche",
+     "B Gutkin",
+     "A M Gardier",
+     "J-P Changeux",
+     "P Faure",
+     "U Maskos"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6070,7 +7455,13 @@
     "page": "375-383",
     "volume": "56",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Munder Zagaar",
+     "An Dao",
+     "Ibrahim Alhaider",
+     "Karim Alkadhi"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6142,7 +7533,11 @@
     "page": "195-209",
     "volume": "21",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "José A. Ruiz-Caballero",
+     "Piedad González"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6218,7 +7613,12 @@
     "page": "553-557",
     "volume": "23",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Marek Baláž",
+     "Ivan Rektor",
+     "Jiří Pulkrábek"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6242,7 +7642,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
        "quote": "10.1002/mds.20960 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -6254,7 +7655,8 @@
        "url": "https://api.crossref.org/works/10.1002/mds.20960",
        "quote": "\"issue\":\"S14\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -6266,7 +7668,8 @@
        "url": "https://api.crossref.org/works/10.1002/mds.20960",
        "quote": "\"page\":\"S259-S283\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6290,29 +7693,63 @@
     "page": "S259-S283",
     "volume": "21",
     "issue": "S14",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Robert E. Gross",
+     "Paul Krack",
+     "Maria C. Rodriguez-Oroz",
+     "Ali R. Rezai",
+     "Alim-Louis Benabid"
+    ]
    },
    "batch": "batch-038"
   },
   "KracEtal98": {
    "key": "KracEtal98",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'pollack' -> 'pollak' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'P Pollack' is kept",
-     "action": "held"
-    },
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'hoffman' -> 'hoffmann' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'D Hoffman' is kept",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "P Krack and A Benazzouz and P Pollack and P Limousin and B Piallat and D Hoffman and J Xie and A L Benabid",
+     "proposed": "P Krack and A Benazzouz and P Pollak and P Limousin and B Piallat and D Hoffmann and J Xie and A L Benabid",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+       "quote": "FAU - Krack, P"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+       "quote": "FAU - Benazzouz, A"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+       "quote": "FAU - Pollak, P"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+       "quote": "FAU - Limousin, P"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+       "quote": "FAU - Piallat, B"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+       "quote": "FAU - Hoffmann, D"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+       "quote": "FAU - Xie, J"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+       "quote": "FAU - Benabid, A L"
+      }
+     ]
+    },
     {
      "field": "doi",
      "current": null,
@@ -6355,9 +7792,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: P Pollack, D Hoffman"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "KracEtal98",
@@ -6377,7 +7812,17 @@
     "page": "907-914",
     "volume": "13",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "P. Krack",
+     "Abdelhamid Benazzouz",
+     "Pierre Pollak",
+     "Patricia Limousin",
+     "Brigitte Piallat",
+     "Dominique Hoffmann",
+     "Jing Xie",
+     "Alim‐Louis Benabid"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6408,7 +7853,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
        "quote": "10.1002/mds.870100523 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -6420,7 +7866,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
        "quote": "PG  - 672-4"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6447,7 +7894,16 @@
     "page": "672-674",
     "volume": "10",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Patricia Limousin",
+     "Pierre Pollak",
+     "Abdelhamid Benazzouz",
+     "Dominique Hoffmann",
+     "Emmanuel Broussolle",
+     "Jean Edmond Perret",
+     "Alim‐Louis Benabid"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6455,18 +7911,6 @@
    "key": "LimoEtal95c",
    "verdict": "correction",
    "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'pollack' -> 'pollak' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'P Pollack' is kept",
-     "action": "held"
-    },
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'hoffman' -> 'hoffmann' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'D Hoffman' is kept",
-     "action": "held"
-    },
     {
      "code": "duplicate",
      "field": "key",
@@ -6479,7 +7923,7 @@
     {
      "field": "author",
      "current": "P Limousin and P Pollack and A Benazzouz and D Hoffman and E Broussolle and E J Perret and A L Benabid",
-     "proposed": "P Limousin and P Pollack and A Benazzouz and D Hoffman and E Broussolle and J E Perret and A L Benabid",
+     "proposed": "P Limousin and P Pollak and A Benazzouz and D Hoffmann and E Broussolle and J E Perret and A L Benabid",
      "source": "researcher",
      "evidence": [
       {
@@ -6510,7 +7954,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
        "quote": "FAU - Benabid, A L"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -6526,7 +7971,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
        "quote": "10.1002/mds.870100523 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -6538,7 +7984,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
        "quote": "IP  - 5"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -6550,13 +7997,12 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
        "quote": "Bilateral subthalamic nucleus stimulation for severe Parkinson's disease."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: P Pollack, D Hoffman"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "LimoEtal95c",
@@ -6581,7 +8027,16 @@
     "page": "672-674",
     "volume": "10",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Patricia Limousin",
+     "Pierre Pollak",
+     "Abdelhamid Benazzouz",
+     "Dominique Hoffmann",
+     "Emmanuel Broussolle",
+     "Jean Edmond Perret",
+     "Alim‐Louis Benabid"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6629,7 +8084,15 @@
     "page": "S247-S258",
     "volume": "21",
     "issue": "S14",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Andre Machado",
+     "Ali R. Rezai",
+     "Brian H. Kopell",
+     "Robert E. Gross",
+     "Ashwini D. Sharan",
+     "Alim-Louis Benabid"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6685,7 +8148,15 @@
     "page": "423-457",
     "volume": "77",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Davi Oliveira Serrano de Andrade",
+     "Luis Fernando Maia",
+     "Hugo Feitosa de Figueirêdo",
+     "Windson Viana",
+     "Fernando Trinta",
+     "Cláudio de Souza Baptista"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6713,7 +8184,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
        "quote": "FAU - Benedict, Ralph H B"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -6729,7 +8201,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
        "quote": "10.1177/1352458511409612 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6753,7 +8226,12 @@
     "page": "1034-1040",
     "volume": "17",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Robert W Motl",
+     "Brian M Sandroff",
+     "Ralph HB Benedict"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6821,7 +8299,12 @@
     "page": "692-695",
     "volume": "442",
     "issue": "7103",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Seyed-Reza Afraz",
+     "Roozbeh Kiani",
+     "Hossein Esteky"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6852,7 +8335,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
        "quote": "10.1038/nature11276 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -6864,7 +8348,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
        "quote": "PG  - E1-2; discussion E2-3"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -6888,7 +8373,13 @@
     "page": "E1-E1",
     "volume": "488",
     "issue": "7409",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Caswell Barry",
+     "Daniel Bush",
+     "John O’Keefe",
+     "Neil Burgess"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6936,7 +8427,13 @@
     "page": "327-332",
     "volume": "495",
     "issue": "7441",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Kristofer E. Bouchard",
+     "Nima Mesgarani",
+     "Keith Johnson",
+     "Edward F. Chang"
+    ]
    },
    "batch": "batch-038"
   },
@@ -6984,7 +8481,11 @@
     "page": "255-257",
     "volume": "379",
     "issue": "6562",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "M. Bunsey",
+     "H. Eichenbaum"
+    ]
    },
    "batch": "batch-038"
   },
@@ -7108,7 +8609,17 @@
     "page": "663-667",
     "volume": "459",
     "issue": "7247",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jessica A. Cardin",
+     "Marie Carlén",
+     "Konstantinos Meletis",
+     "Ulf Knoblich",
+     "Feng Zhang",
+     "Karl Deisseroth",
+     "Li-Huei Tsai",
+     "Christopher I. Moore"
+    ]
    },
    "batch": "batch-038"
   },
@@ -7164,7 +8675,17 @@
     "page": "353-357",
     "volume": "462",
     "issue": "7271",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Laura Lee Colgin",
+     "Tobias Denninger",
+     "Marianne Fyhn",
+     "Torkel Hafting",
+     "Tora Bonnevie",
+     "Ole Jensen",
+     "May-Britt Moser",
+     "Edvard I. Moser"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7220,7 +8741,14 @@
     "page": "499-505",
     "volume": "380",
     "issue": "6574",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Hanna Damasio",
+     "Thomas J. Grabowski",
+     "Daniel Tranel",
+     "Richard D. Hichwa",
+     "Antonio R. Damasio"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7240,7 +8768,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/23395984/",
        "quote": "10.1038/nature11973 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -7264,7 +8793,12 @@
     "page": "199-204",
     "volume": "495",
     "issue": "7440",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Cristina Domnisoru",
+     "Amina A. Kinkhabwala",
+     "David W. Tank"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7320,7 +8854,11 @@
     "page": "598-601",
     "volume": "392",
     "issue": "6676",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Russell Epstein",
+     "Nancy Kanwisher"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7352,7 +8890,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/32939066/",
        "quote": "Mark Wiebe, Pearu Peterson, Pierre Gérard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, Travis E Oliphant"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -7364,7 +8903,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/32939066/",
        "quote": "10.1038/s41586-020-2649-2 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -7388,7 +8928,35 @@
     "page": "357-362",
     "volume": "585",
     "issue": "7825",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Charles R. Harris",
+     "K. Jarrod Millman",
+     "Stéfan J. van der Walt",
+     "Ralf Gommers",
+     "Pauli Virtanen",
+     "David Cournapeau",
+     "Eric Wieser",
+     "Julian Taylor",
+     "Sebastian Berg",
+     "Nathaniel J. Smith",
+     "Robert Kern",
+     "Matti Picus",
+     "Stephan Hoyer",
+     "Marten H. van Kerkwijk",
+     "Matthew Brett",
+     "Allan Haldane",
+     "Jaime Fernández del Río",
+     "Mark Wiebe",
+     "Pearu Peterson",
+     "Pierre Gérard-Marchant",
+     "Kevin Sheppard",
+     "Tyler Reddy",
+     "Warren Weckesser",
+     "Hameer Abbasi",
+     "Christoph Gohlke",
+     "Travis E. Oliphant"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7460,7 +9028,16 @@
     "page": "844-848",
     "volume": "421",
     "issue": "6925",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Thomas Klausberger",
+     "Peter J. Magill",
+     "László F. Márton",
+     "J. David B. Roberts",
+     "Philip M. Cobden",
+     "György Buzsáki",
+     "Peter Somogyi"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7544,7 +9121,13 @@
     "page": "774-776",
     "volume": "319",
     "issue": "6056",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "R. G. M. Morris",
+     "E. Anderson",
+     "G. S. Lynch",
+     "M. Baudry"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7595,7 +9178,12 @@
     "page": "722-726",
     "volume": "406",
     "issue": "6797",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Karim Nader",
+     "Glenn E. Schafe",
+     "Joseph E. Le Doux"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7634,7 +9222,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8455719/",
        "quote": "E Paulesu, C D Frith, R S Frackowiak"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -7646,7 +9235,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8455719/",
        "quote": "10.1038/362342a0 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -7658,7 +9248,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8455719/",
        "quote": "IP  - 6418"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -7670,7 +9261,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8455719/",
        "quote": "PG  - 342-5"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -7682,7 +9274,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/8455719/",
        "quote": "The neural correlates of the verbal component of working memory."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -7708,7 +9301,12 @@
     "page": "342-345",
     "volume": "362",
     "issue": "6418",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "E. Paulesu",
+     "C. D. Frith",
+     "R. S. J. Frackowiak"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7736,7 +9334,8 @@
        "url": "https://api.crossref.org/works/10.1038/35092560",
        "quote": "\"given\":\"Jeffery R.\",\"family\":\"Wickens\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -7748,7 +9347,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/11544526/",
        "quote": "10.1038/35092560 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -7760,7 +9360,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/11544526/",
        "quote": "IP  - 6851"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -7784,7 +9385,12 @@
     "page": "67-70",
     "volume": "413",
     "issue": "6851",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John N. J. Reynolds",
+     "Brian I. Hyland",
+     "Jeffery R. Wickens"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7840,7 +9446,15 @@
     "page": "72-78",
     "volume": "492",
     "issue": "7427",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Hanne Stensola",
+     "Tor Stensola",
+     "Trygve Solstad",
+     "Kristian Frøland",
+     "May-Britt Moser",
+     "Edvard I. Moser"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7860,7 +9474,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/17220886/",
        "quote": "10.1038/nn1829 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "journal",
@@ -7872,7 +9487,8 @@
        "url": "https://api.crossref.org/works/10.1038/nn1829",
        "quote": "\"container-title\":[\"Nature Neuroscience\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -7884,7 +9500,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/17220886/",
        "quote": "IP  - 2"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -7896,7 +9513,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/17220886/",
        "quote": "VI  - 10"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -7920,7 +9538,11 @@
     "page": "224-233",
     "volume": "10",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Nachum Ulanovsky",
+     "Cynthia F Moss"
+    ]
    },
    "batch": "batch-039"
   },
@@ -7988,7 +9610,17 @@
     "page": "38-44",
     "volume": "37",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Etienne Becht",
+     "Leland McInnes",
+     "John Healy",
+     "Charles-Antoine Dutertre",
+     "Immanuel W H Kwok",
+     "Lai Guan Ng",
+     "Florent Ginhoux",
+     "Evan W Newell"
+    ]
    },
    "batch": "batch-039"
   },
@@ -8056,7 +9688,13 @@
     "page": null,
     "volume": "10",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Juan Linde-Domingo",
+     "Matthias S. Treder",
+     "Casper Kerrén",
+     "Maria Wimber"
+    ]
    },
    "batch": "batch-039"
   },
@@ -8136,7 +9774,12 @@
     "page": null,
     "volume": "11",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael L. Mack",
+     "Alison R. Preston",
+     "Bradley C. Love"
+    ]
    },
    "batch": "batch-039"
   },
@@ -8156,7 +9799,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/33771999/",
        "quote": "Meir Meshulam, Liat Hasenfratz, Hanna Hillman, Yun-Fei Liu, Mai Nguyen, Kenneth A Norman, Uri Hasson"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -8168,7 +9812,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/33771999/",
        "quote": "10.1038/s41467-021-22202-3 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -8192,7 +9837,16 @@
     "page": null,
     "volume": "12",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Meir Meshulam",
+     "Liat Hasenfratz",
+     "Hanna Hillman",
+     "Yun-Fei Liu",
+     "Mai Nguyen",
+     "Kenneth A. Norman",
+     "Uri Hasson"
+    ]
    },
    "batch": "batch-039"
   },
@@ -8260,7 +9914,12 @@
     "page": null,
     "volume": "12",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Lucy L. W. Owen",
+     "Thomas H. Chang",
+     "Jeremy R. Manning"
+    ]
    },
    "batch": "batch-039"
   },
@@ -8280,7 +9939,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/34531380/",
        "quote": "10.1038/s41467-021-25280-5 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -8292,7 +9952,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/34531380/",
        "quote": "IP  - 1"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -8304,7 +9965,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/34531380/",
        "quote": "PG  - 5475"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -8328,7 +9990,17 @@
     "page": null,
     "volume": "12",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jon Palacios-Filardo",
+     "Matt Udakis",
+     "Giles A. Brown",
+     "Benjamin G. Tehan",
+     "Miles S. Congreve",
+     "Pradeep J. Nathan",
+     "Alastair J. H. Brown",
+     "Jack R. Mellor"
+    ]
    },
    "batch": "batch-039"
   },
@@ -8408,7 +10080,16 @@
     "page": null,
     "volume": "7",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Erez Simony",
+     "Christopher J Honey",
+     "Janice Chen",
+     "Olga Lositsky",
+     "Yaara Yeshurun",
+     "Ami Wiesel",
+     "Uri Hasson"
+    ]
    },
    "batch": "batch-039"
   },
@@ -8512,7 +10193,25 @@
     "page": null,
     "volume": "9",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "E. A. Solomon",
+     "J. E. Kragel",
+     "R. Gross",
+     "B. Lega",
+     "M. R. Sperling",
+     "G. Worrell",
+     "S. A. Sheth",
+     "K. A. Zaghloul",
+     "B. C. Jobst",
+     "J. M. Stein",
+     "S. Das",
+     "R. Gorniak",
+     "C. S. Inman",
+     "S. Seger",
+     "D. S. Rizzuto",
+     "M. J. Kahana"
+    ]
    },
    "batch": "batch-039"
   },
@@ -8587,7 +10286,15 @@
     "page": "177-188",
     "volume": "4",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jacob L. S. Bellmund",
+     "William de Cothi",
+     "Tom A. Ruiter",
+     "Matthias Nau",
+     "Caswell Barry",
+     "Christian F. Doeller"
+    ]
    },
    "batch": "batch-040"
   },
@@ -8662,7 +10369,19 @@
     "page": "189-200",
     "volume": "4",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Pierre Gagnepain",
+     "Thomas Vallée",
+     "Serge Heiden",
+     "Matthieu Decorde",
+     "Jean-Luc Gauvain",
+     "Antoine Laurent",
+     "Carine Klein-Peschanski",
+     "Fausto Viader",
+     "Denis Peschanski",
+     "Francis Eustache"
+    ]
    },
    "batch": "batch-040"
   },
@@ -8742,7 +10461,12 @@
     "page": "1087-1103",
     "volume": "6",
     "issue": "8",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Maxime Maheu",
+     "Florent Meyniel",
+     "Stanislas Dehaene"
+    ]
    },
    "batch": "batch-040"
   },
@@ -8798,7 +10522,16 @@
     "page": "871-878",
     "volume": "8",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Kunal K Ghosh",
+     "Laurie D Burns",
+     "Eric D Cocker",
+     "Axel Nimmerjahn",
+     "Yaniv Ziv",
+     "Abbas El Gamal",
+     "Mark J Schnitzer"
+    ]
    },
    "batch": "batch-040"
   },
@@ -8866,21 +10599,128 @@
     "page": "261-272",
     "volume": "17",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Pauli Virtanen",
+     "Ralf Gommers",
+     "Travis E. Oliphant",
+     "Matt Haberland",
+     "Tyler Reddy",
+     "David Cournapeau",
+     "Evgeni Burovski",
+     "Pearu Peterson",
+     "Warren Weckesser",
+     "Jonathan Bright",
+     "Stéfan J. van der Walt",
+     "Matthew Brett",
+     "Joshua Wilson",
+     "K. Jarrod Millman",
+     "Nikolay Mayorov",
+     "Andrew R. J. Nelson",
+     "Eric Jones",
+     "Robert Kern",
+     "Eric Larson",
+     "C J Carey",
+     "İlhan Polat",
+     "Yu Feng",
+     "Eric W. Moore",
+     "Jake VanderPlas",
+     "Denis Laxalde",
+     "Josef Perktold",
+     "Robert Cimrman",
+     "Ian Henriksen",
+     "E. A. Quintero",
+     "Charles R. Harris",
+     "Anne M. Archibald",
+     "Antônio H. Ribeiro",
+     "Fabian Pedregosa",
+     "Paul van Mulbregt",
+     "SciPy 1.0 Contributors",
+     "Aditya Vijaykumar",
+     "Alessandro Pietro Bardelli",
+     "Alex Rothberg",
+     "Andreas Hilboll",
+     "Andreas Kloeckner",
+     "Anthony Scopatz",
+     "Antony Lee",
+     "Ariel Rokem",
+     "C. Nathan Woods",
+     "Chad Fulton",
+     "Charles Masson",
+     "Christian Häggström",
+     "Clark Fitzgerald",
+     "David A. Nicholson",
+     "David R. Hagen",
+     "Dmitrii V. Pasechnik",
+     "Emanuele Olivetti",
+     "Eric Martin",
+     "Eric Wieser",
+     "Fabrice Silva",
+     "Felix Lenders",
+     "Florian Wilhelm",
+     "G. Young",
+     "Gavin A. Price",
+     "Gert-Ludwig Ingold",
+     "Gregory E. Allen",
+     "Gregory R. Lee",
+     "Hervé Audren",
+     "Irvin Probst",
+     "Jörg P. Dietrich",
+     "Jacob Silterra",
+     "James T Webber",
+     "Janko Slavič",
+     "Joel Nothman",
+     "Johannes Buchner",
+     "Johannes Kulick",
+     "Johannes L. Schönberger",
+     "José Vinícius de Miranda Cardoso",
+     "Joscha Reimer",
+     "Joseph Harrington",
+     "Juan Luis Cano Rodríguez",
+     "Juan Nunez-Iglesias",
+     "Justin Kuczynski",
+     "Kevin Tritz",
+     "Martin Thoma",
+     "Matthew Newville",
+     "Matthias Kümmerer",
+     "Maximilian Bolingbroke",
+     "Michael Tartre",
+     "Mikhail Pak",
+     "Nathaniel J. Smith",
+     "Nikolai Nowaczyk",
+     "Nikolay Shebanov",
+     "Oleksandr Pavlyk",
+     "Per A. Brodtkorb",
+     "Perry Lee",
+     "Robert T. McGibbon",
+     "Roman Feldbauer",
+     "Sam Lewis",
+     "Sam Tygier",
+     "Scott Sievert",
+     "Sebastiano Vigna",
+     "Stefan Peterson",
+     "Surhud More",
+     "Tadeusz Pudlik",
+     "Takuya Oshima",
+     "Thomas J. Pingel",
+     "Thomas P. Robitaille",
+     "Thomas Spura",
+     "Thouis R. Jones",
+     "Tim Cera",
+     "Tim Leslie",
+     "Tiziano Zito",
+     "Tom Krauss",
+     "Utkarsh Upadhyay",
+     "Yaroslav O. Halchenko",
+     "Yoshiki Vázquez-Baeza"
+    ]
    },
    "batch": "batch-040"
   },
   "BranEtal13": {
    "key": "BranEtal13",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "identity_quote_failed",
-     "field": "identity",
-     "detail": "identity quote not found at source: fetch failed: HTTPError: HTTP Error 429: Too Many Requests",
-     "action": "flag"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
     {
@@ -8893,7 +10733,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
        "quote": "10.1038/nn.3383 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -8905,7 +10746,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
        "quote": "IP  - 6"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -8917,7 +10759,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
        "quote": "PG  - 739-48"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -8929,7 +10772,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
        "quote": "VI  - 16"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -8953,7 +10797,13 @@
     "page": "739-748",
     "volume": "16",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Mark P Brandon",
+     "Andrew R Bogaard",
+     "Nathan W Schultheiss",
+     "Michael E Hasselmo"
+    ]
    },
    "batch": "batch-040"
   },
@@ -8964,6 +10814,20 @@
    "normalisations": [],
    "changes": [
     {
+     "field": "author",
+     "current": "A A Carey and Y Tanaka and M A {van der Meer}",
+     "proposed": "A A Carey and Y Tanaka and M A A {van der Meer}",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "The researcher's own quote reads 'Matthijs A A van der Meer' (Crossref: 'Matthijs A. A.'), yet the value keeps 'M A'. House rule: all the initials the source gives."
+       ]
+      }
+     ],
+     "reviewer": "disagree"
+    },
+    {
      "field": "doi",
      "current": null,
      "proposed": "10.1038/s41593-019-0464-6",
@@ -8973,7 +10837,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
        "quote": "10.1038/s41593-019-0464-6 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -8985,7 +10850,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
        "quote": "IP  - 9"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -8997,7 +10863,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
        "quote": "PG  - 1450-1459"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -9009,7 +10876,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
        "quote": "Reward revaluation biases hippocampal replay content away from the preferred outcome."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -9021,7 +10889,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
        "quote": "VI  - 22"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -9045,7 +10914,12 @@
     "page": "1450-1459",
     "volume": "22",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Alyssa A. Carey",
+     "Youki Tanaka",
+     "Matthijs A. A. van der Meer"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9101,7 +10975,15 @@
     "page": "115-125",
     "volume": "20",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Janice Chen",
+     "Yuan Chang Leong",
+     "Christopher J Honey",
+     "Chung H Yong",
+     "Kenneth A Norman",
+     "Uri Hasson"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9157,7 +11039,16 @@
     "page": "648-653",
     "volume": "16",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Rumana Chowdhury",
+     "Marc Guitart-Masip",
+     "Christian Lambert",
+     "Peter Dayan",
+     "Quentin Huys",
+     "Emrah Düzel",
+     "Raymond J Dolan"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9213,7 +11104,16 @@
     "page": "1325-1332",
     "volume": "12",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Dori Derdikman",
+     "Jonathan R Whitlock",
+     "Albert Tsao",
+     "Marianne Fyhn",
+     "Torkel Hafting",
+     "May-Britt Moser",
+     "Edvard I Moser"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9281,7 +11181,14 @@
     "page": "568-573",
     "volume": "2",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Isabel Gauthier",
+     "Michael J. Tarr",
+     "Adam W. Anderson",
+     "Pawel Skudlarski",
+     "John C. Gore"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9325,7 +11232,13 @@
     "page": "1298-1300",
     "volume": "8",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Adam Gazzaley",
+     "Jeffrey W Cooney",
+     "Jesse Rissman",
+     "Mark D'Esposito"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9381,7 +11294,11 @@
     "page": "1316-1321",
     "volume": "3",
     "issue": "12",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Brian Gonsalves",
+     "Ken A. Paller"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9437,7 +11354,12 @@
     "page": "1177-1185",
     "volume": "9",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Kalanit Grill-Spector",
+     "Rory Sayres",
+     "David Ress"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9457,7 +11379,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
        "quote": "10.1038/nn.4374 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -9469,7 +11392,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
        "quote": "IP  - 10"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -9481,7 +11405,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
        "quote": "PG  - 1374-80"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -9493,7 +11418,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
        "quote": "VI  - 19"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -9517,7 +11443,13 @@
     "page": "1374-1380",
     "volume": "19",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Andrew C Heusser",
+     "David Poeppel",
+     "Youssef Ezzyat",
+     "Lila Davachi"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9537,7 +11469,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/16136037/",
        "quote": "10.1038/nn1538 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -9549,7 +11482,8 @@
        "url": "https://api.crossref.org/works/10.1038/nn1538",
        "quote": "\"page\":\"1386-1391\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -9573,7 +11507,13 @@
     "page": "1386-1391",
     "volume": "8",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Gunter Loffler",
+     "Grigori Yourganov",
+     "Frances Wilkinson",
+     "Hugh R Wilson"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9653,7 +11593,12 @@
     "page": "284-288",
     "volume": "22",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Maria E Montchal",
+     "Zachariah M Reagh",
+     "Michael A Yassa"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9673,7 +11618,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
        "quote": "Anna G Orr, Adam L Orr, Xiao-Jiang Li, Robert E Gross, Stephen F Traynelis"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -9685,7 +11631,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
        "quote": "10.1038/nn.2341 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -9697,7 +11644,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
        "quote": "IP  - 7"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -9709,7 +11657,8 @@
        "url": "https://api.crossref.org/works/10.1038/nn.2341",
        "quote": "Adenosine A2A receptor mediates microglial process retraction"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -9733,7 +11682,14 @@
     "page": "872-878",
     "volume": "12",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Anna G Orr",
+     "Adam L Orr",
+     "Xiao-Jiang Li",
+     "Robert E Gross",
+     "Stephen F Traynelis"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9789,7 +11745,12 @@
     "page": "71-78",
     "volume": "16",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Wei-Xing Pan",
+     "Jennifer Brown",
+     "Joshua Tate Dudman"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9857,7 +11818,11 @@
     "page": "112-119",
     "volume": "13",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Alireza Soltani",
+     "Xiao-Jing Wang"
+    ]
    },
    "batch": "batch-040"
   },
@@ -9881,7 +11846,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
        "quote": "FAU - Gauthier, I"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -9893,7 +11859,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
        "quote": "10.1038/77666 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -9905,7 +11872,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
        "quote": "IP  - 8"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -9921,7 +11889,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
        "quote": "PG  - 764-9"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -9945,7 +11914,11 @@
     "page": "764-769",
     "volume": "3",
     "issue": "8",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael J. Tarr",
+     "Isabel Gauthier"
+    ]
    },
    "batch": "batch-041"
   },
@@ -9989,7 +11962,13 @@
     "page": "1421-1432",
     "volume": "23",
     "issue": "11",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Ye Tian",
+     "Daniel S. Margulies",
+     "Michael Breakspear",
+     "Andrew Zalesky"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10033,7 +12012,10 @@
     "page": "13-19",
     "volume": "15",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jonathan D Wallis"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10053,7 +12035,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
        "quote": "10.1038/nn.3973 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -10069,7 +12052,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
        "quote": "PG  - 582-9"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10093,7 +12077,14 @@
     "page": "582-589",
     "volume": "18",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Maria Wimber",
+     "Arjen Alink",
+     "Ian Charest",
+     "Nikolaus Kriegeskorte",
+     "Michael C Anderson"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10113,7 +12104,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
        "quote": "10.1038/s41593-018-0148-7 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -10125,7 +12117,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
        "quote": "IP  - 6"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10149,29 +12142,47 @@
     "page": "808-810",
     "volume": "21",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John H. Wittig",
+     "Anthony I. Jang",
+     "John B. Cocjin",
+     "Sara K. Inati",
+     "Kareem A. Zaghloul"
+    ]
    },
    "batch": "batch-041"
   },
   "BorcEtal12": {
    "key": "BorcEtal12",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'himmelback' -> 'himmelbach' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'M Himmelback' is kept",
-     "action": "held"
-    },
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'karanath' -> 'karnath' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'H Karanath' is kept",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "S Borchers and M Himmelback and N K Logothetis and H Karanath",
+     "proposed": "S Borchers and M Himmelbach and N K Logothetis and H-O Karnath",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/22127300/",
+       "quote": "FAU - Borchers, Svenja"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/22127300/",
+       "quote": "FAU - Himmelbach, Marc"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/22127300/",
+       "quote": "FAU - Logothetis, Nikos"
+      },
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/22127300/",
+       "quote": "FAU - Karnath, Hans-Otto"
+      }
+     ]
+    },
     {
      "field": "doi",
      "current": null,
@@ -10198,9 +12209,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: M Himmelback, H Karanath"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "BorcEtal12",
@@ -10220,7 +12229,13 @@
     "page": "63-70",
     "volume": "13",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Svenja Borchers",
+     "Marc Himmelbach",
+     "Nikos Logothetis",
+     "Hans-Otto Karnath"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10240,7 +12255,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19190637/",
        "quote": "10.1038/nrn2575 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10264,7 +12280,11 @@
     "page": "186-198",
     "volume": "10",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Ed Bullmore",
+     "Olaf Sporns"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10284,7 +12304,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/20959860/",
        "quote": "10.1038/nrn2920 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -10300,7 +12321,8 @@
        "url": "https://www.nature.com/articles/nrn2920",
        "quote": "name=\"citation_lastpage\" content=\"782\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10324,7 +12346,11 @@
     "page": "773-782",
     "volume": "11",
     "issue": "11",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Luiz Pessoa",
+     "Ralph Adolphs"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10352,7 +12378,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
        "quote": "FAU - Montague, P Read"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -10364,7 +12391,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
        "quote": "10.1038/nrn2357 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -10376,7 +12404,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
        "quote": "IP  - 7"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -10388,7 +12417,8 @@
        "url": "https://api.crossref.org/works/10.1038/nrn2357",
        "quote": "\"page\":\"545-556\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10412,27 +12442,19 @@
     "page": "545-556",
     "volume": "9",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Antonio Rangel",
+     "Colin Camerer",
+     "P. Read Montague"
+    ]
    },
    "batch": "batch-041"
   },
   "SquiEtal07": {
    "key": "SquiEtal07",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "quote_check_failed",
-     "field": "journal",
-     "detail": "validator: journal not covered by its quotes (missing ['nature', 'reviews', 'neuroscience']; failures ['fetch failed: HTTPError: HTTP Error 429: Too Many Requests'])",
-     "action": "held"
-    },
-    {
-     "code": "quote_check_failed",
-     "field": "pages",
-     "detail": "validator: pages not covered by its quotes (missing ['872', '883']; failures ['fetch failed: HTTPError: HTTP Error 429: Too Many Requests'])",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
     {
@@ -10451,10 +12473,7 @@
    "removals": {
     "address": "researcher asked to remove it (current 'San Diego, {CA}')"
    },
-   "held": {
-    "journal": "quote check failed",
-    "pages": "quote check failed"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "SquiEtal07",
@@ -10474,7 +12493,12 @@
     "page": "872-883",
     "volume": "8",
     "issue": "11",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Larry R. Squire",
+     "John T. Wixted",
+     "Robert E. Clark"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10494,7 +12518,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/18714327/",
        "quote": "10.1038/nrn2414 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10518,7 +12543,10 @@
     "page": "720-729",
     "volume": "9",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "R. Christopher deCharms"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10586,7 +12614,11 @@
     "page": "139-164",
     "volume": "3",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Wulfram Gerstner",
+     "J Leo van Hemmen"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10642,7 +12674,11 @@
     "page": "333-339",
     "volume": "7",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "B A Olshausen",
+     "D J Field"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10722,7 +12758,16 @@
     "page": "788-806",
     "volume": "4",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John Fallon",
+     "Phillip G. D. Ward",
+     "Linden Parkes",
+     "Stuart Oldham",
+     "Aurina Arnatkevičiūtė",
+     "Alex Fornito",
+     "Ben D. Fulcher"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10753,7 +12798,32 @@
     "page": "30-69",
     "volume": "4",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Daniel J. Lurie",
+     "Daniel Kessler",
+     "Danielle S. Bassett",
+     "Richard F. Betzel",
+     "Michael Breakspear",
+     "Shella Kheilholz",
+     "Aaron Kucyi",
+     "Raphaël Liégeois",
+     "Martin A. Lindquist",
+     "Anthony Randal McIntosh",
+     "Russell A. Poldrack",
+     "James M. Shine",
+     "William Hedley Thompson",
+     "Natalia Z. Bielczyk",
+     "Linda Douw",
+     "Dominik Kraft",
+     "Robyn L. Miller",
+     "Muthuraman Muthuraman",
+     "Lorenzo Pasquini",
+     "Adeel Razi",
+     "Diego Vidaurre",
+     "Hua Xie",
+     "Vince D. Calhoun"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10809,7 +12879,13 @@
     "page": "1577-1610",
     "volume": "18",
     "issue": "7",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Kenneth A. Norman",
+     "Ehren Newman",
+     "Greg Detre",
+     "Sean Polyn"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10829,7 +12905,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
        "quote": "10.1162/089976698300017539 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10853,7 +12930,11 @@
     "page": "869-882",
     "volume": "10",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Vikaas S. Sohal",
+     "Michael E. Hasselmo"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10873,7 +12954,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
        "quote": "10.1016/j.neunet.2005.08.007 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10897,7 +12979,11 @@
     "page": "1172-1190",
     "volume": "18",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael E. Hasselmo",
+     "Howard Eichenbaum"
+    ]
    },
    "batch": "batch-041"
   },
@@ -10924,7 +13010,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
        "quote": "10.1016/j.nbd.2009.07.007 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -10936,7 +13023,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
        "quote": "IP  - 3"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -10948,7 +13036,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
        "quote": "PG  - 354-60"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -10960,7 +13049,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
        "quote": "VI  - 38"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -10972,7 +13062,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
        "quote": "DP  - 2010 Jun"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -10998,7 +13089,13 @@
     "page": "354-360",
     "volume": "38",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Bradley C. Lega",
+     "Casey H. Halpern",
+     "Jurg L. Jaggi",
+     "Gordon H. Baltuch"
+    ]
    },
    "batch": "batch-041"
   },
@@ -11018,7 +13115,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
        "quote": "10.1006/nlme.2002.4103 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11042,7 +13140,10 @@
     "page": "625-636",
     "volume": "78",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "T Robbins"
+    ]
    },
    "batch": "batch-041"
   },
@@ -11098,7 +13199,11 @@
     "page": "637-642",
     "volume": "32-33",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jessica D. Bayliss",
+     "Dana H. Ballard"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11118,7 +13223,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0925-2312(00)00229-0",
        "quote": "\"DOI\":\"10.1016\\/s0925-2312(00)00229-0\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -11130,7 +13236,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0925-2312(00)00229-0",
        "quote": "\"title\":[\"Task dependence of human theta: The case for multiple cognitive functions\"]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -11142,7 +13249,8 @@
        "url": "https://api.crossref.org/works/10.1016/s0925-2312(00)00229-0",
        "quote": "\"volume\":\"32-33\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11166,7 +13274,14 @@
     "page": "659-665",
     "volume": "32-33",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Jeremy B Caplan",
+     "Michael J Kahana",
+     "Robert Sekuler",
+     "Matthew Kirschen",
+     "Joseph R Madsen"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11186,7 +13301,8 @@
        "url": "https://api.crossref.org/works/10.1016/j.neucom.2004.01.014",
        "quote": "\"DOI\":\"10.1016\\/j.neucom.2004.01.014\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -11198,7 +13314,8 @@
        "url": "https://api.crossref.org/works/10.1016/j.neucom.2004.01.014",
        "quote": "\"volume\":\"58-60\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -11224,7 +13341,11 @@
     "page": "1-6",
     "volume": "58-60",
     "issue": null,
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Adam Kepecs",
+     "John Lisman"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11249,7 +13370,8 @@
        "url": "https://api.crossref.org/works/10.1159/000109998",
        "quote": "\"DOI\":\"10.1159\\/000109998\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11273,7 +13395,22 @@
     "page": "125-132",
     "volume": "29",
     "issue": "1-2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "B.L. Plassman",
+     "K.M. Langa",
+     "G.G. Fisher",
+     "S.G. Heeringa",
+     "D.R. Weir",
+     "M.B. Ofstedal",
+     "J.R. Burke",
+     "M.D. Hurd",
+     "G.G. Potter",
+     "W.L. Rodgers",
+     "D.C. Steffens",
+     "R.J. Willis",
+     "R.B. Wallace"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11300,7 +13437,8 @@
        "url": "https://api.crossref.org/works/10.1007/s12021-008-9041-y",
        "quote": "\"DOI\":\"10.1007\\/s12021-008-9041-y\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -11312,7 +13450,8 @@
        "url": "https://api.crossref.org/works/10.1007/s12021-008-9041-y",
        "quote": "\"issue\":\"1\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -11324,7 +13463,8 @@
        "url": "https://api.crossref.org/works/10.1007/s12021-008-9041-y",
        "quote": "\"page\":\"37-53\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -11336,7 +13476,8 @@
        "url": "https://api.crossref.org/works/10.1007/s12021-008-9041-y",
        "quote": "\"volume\":\"7\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "year",
@@ -11348,7 +13489,8 @@
        "url": "https://api.crossref.org/works/10.1007/s12021-008-9041-y",
        "quote": "\"published-print\":{\"date-parts\":[[2009,3]]}"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11381,7 +13523,15 @@
     "page": "37-53",
     "volume": "7",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael Hanke",
+     "Yaroslav O. Halchenko",
+     "Per B. Sederberg",
+     "Stephen José Hanson",
+     "James V. Haxby",
+     "Stefan Pollmann"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11408,7 +13558,8 @@
        "url": "https://api.crossref.org/works/10.1212/wnl.40.2.353",
        "quote": "\"DOI\":\"10.1212\\/wnl.40.2.353\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -11420,7 +13571,8 @@
        "url": "https://api.crossref.org/works/10.1212/wnl.40.2.353",
        "quote": "\"issue\":\"2\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -11432,7 +13584,8 @@
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2300260&retmode=xml",
        "quote": "Broca's area aphasias: aphasia after lesions including the frontal operculum."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11456,7 +13609,12 @@
     "page": "353-353",
     "volume": "40",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael P. Alexander",
+     "Margaret A. Naeser",
+     "Carole Palumbo"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11560,7 +13718,16 @@
     "page": "858-864",
     "volume": "63",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "F. Bartolomei",
+     "E. Barbeau",
+     "M. Gavaret",
+     "M. Guye",
+     "A. McGonigal",
+     "J. Régis",
+     "P. Chauvel"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11587,7 +13754,8 @@
        "url": "https://api.crossref.org/works/10.1212/wnl.54.8.1596",
        "quote": "\"DOI\":\"10.1212\\/wnl.54.8.1596\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -11599,7 +13767,8 @@
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10762499&retmode=xml",
        "quote": "<MedlinePgn>1596-602</MedlinePgn>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11623,7 +13792,16 @@
     "page": "1596-1603",
     "volume": "54",
     "issue": "8",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "T.A. Hughes",
+     "H.F. Ross",
+     "S. Musa",
+     "S. Bhattacherjee",
+     "R.N. Nathan",
+     "R.H. S. Mindham",
+     "E.G. S. Spokes"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11654,7 +13832,8 @@
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21917777&retmode=xml",
        "quote": "<CollectiveName>RNS System in Epilepsy Study Group</CollectiveName>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -11666,7 +13845,8 @@
        "url": "https://api.crossref.org/works/10.1212/wnl.0b013e3182302056",
        "quote": "\"DOI\":\"10.1212\\/wnl.0b013e3182302056\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -11678,7 +13858,8 @@
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21917777&retmode=xml",
        "quote": "Responsive cortical stimulation for the treatment of medically intractable partial epilepsy."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11704,7 +13885,10 @@
     "page": "1295-1304",
     "volume": "77",
     "issue": "13",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Martha J. Morrell"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11731,7 +13915,8 @@
        "url": "https://api.crossref.org/works/10.1212/wnl.41.6.869",
        "quote": "\"DOI\":\"10.1212\\/wnl.41.6.869\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -11743,7 +13928,8 @@
        "url": "https://api.crossref.org/works/10.1212/wnl.41.6.869",
        "quote": "\"issue\":\"6\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11767,7 +13953,18 @@
     "page": "869-869",
     "volume": "41",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "K. J. Meador",
+     "J. L. Thompson",
+     "D. W. Loring",
+     "A. M. Murro",
+     "D. W. King",
+     "B. B. Gallagher",
+     "G. P. Lee",
+     "J. R. Smith",
+     "H. F. Flanigin"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11803,7 +14000,8 @@
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15753424&retmode=xml",
        "quote": "<LastName>van der Schouw</LastName><ForeName>Y T</ForeName>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -11815,7 +14013,8 @@
        "url": "https://api.crossref.org/works/10.1212/01.wnl.0000153072.54068.e3",
        "quote": "\"DOI\":\"10.1212\\/01.wnl.0000153072.54068.e3\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -11827,7 +14026,8 @@
        "url": "https://api.crossref.org/works/10.1212/01.wnl.0000153072.54068.e3",
        "quote": "\"issue\":\"5\""
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -11839,7 +14039,8 @@
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15753424&retmode=xml",
        "quote": "<MedlinePgn>866-71</MedlinePgn>"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -11851,7 +14052,8 @@
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15753424&retmode=xml",
        "quote": "Endogenous sex hormone levels and cognitive function in aging men: is there an optimal level?"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -11875,7 +14077,14 @@
     "page": "866-871",
     "volume": "64",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "M. Muller",
+     "A. Aleman",
+     "D. E. Grobbee",
+     "E. H.F. de Haan",
+     "Y. T. van der Schouw"
+    ]
    },
    "batch": "batch-042"
   },
@@ -11954,7 +14163,14 @@
     "page": "1845-1845",
     "volume": "44",
     "issue": "10",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Kenneth Perrine",
+     "Orrin Devinsky",
+     "Suzan Uysal",
+     "Daniel J. Luciano",
+     "Michael Dogali"
+    ]
    },
    "batch": "batch-042"
   },
@@ -12046,7 +14262,16 @@
     "page": "1312-1316",
     "volume": "49",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "M. Seeck",
+     "N. Mainwaring",
+     "R. Cosgrove",
+     "H. Blume",
+     "D. Dubuisson",
+     "M.-M. Mesulam",
+     "D. L. Schomer"
+    ]
    },
    "batch": "batch-042"
   },
@@ -12153,7 +14378,18 @@
     "page": "1800-1800",
     "volume": "43",
     "issue": "9",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "M. R. Trenerry",
+     "C. R. Jack",
+     "R. J. Ivnik",
+     "F. W. Sharbrough",
+     "G. D. Cascino",
+     "K. A. Hirschorn",
+     "W. R. Marsh",
+     "P. J. Kelly",
+     "F. B. Meyer"
+    ]
    },
    "batch": "batch-042"
   },
@@ -12275,7 +14511,15 @@
     "page": "537-551",
     "volume": "32",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Itzhak Aharon",
+     "Nancy Etcoff",
+     "Dan Ariely",
+     "Christopher F Chabris",
+     "Ethan O'Connor",
+     "Hans C Breiter"
+    ]
    },
    "batch": "batch-042"
   },
@@ -12319,7 +14563,16 @@
     "page": "55-67",
     "volume": "26",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Anders M. Dale",
+     "Arthur K. Liu",
+     "Bruce R. Fischl",
+     "Randy L. Buckner",
+     "John W. Belliveau",
+     "Jeffrey D. Lewine",
+     "Eric Halgren"
+    ]
    },
    "batch": "batch-042"
   },
@@ -12375,23 +14628,36 @@
     "page": "989-996",
     "volume": "35",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Ian G Dobbins",
+     "Heather Foley",
+     "Daniel L Schacter",
+     "Anthony D Wagner"
+    ]
    },
    "batch": "batch-042"
   },
   "Eich04": {
    "key": "Eich04",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "doi_title_mismatch",
-     "field": "doi",
-     "detail": "10.1016/j.neuron.2004.08.028 is registered to 'Hippocampus' (Crossref), not this entry's title; DOI change dropped",
-     "action": "dropped"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1016/j.neuron.2004.08.028",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.1016/j.neuron.2004.08.028 dropped by the title check, but the Crossref record is this work: 'Hippocampus' (Elsevier deposits only the text before the colon), Eichenbaum, Neuron 44(1) 109-120, 2004-09. The prefix rule needs at least 3 words in the shorter title, so a 1-2 word pre-colon registry title never matches. Keep the DOI."
+       ]
+      }
+     ],
+     "reviewer": "disagree (dropped but correct)"
+    },
     {
      "field": "title",
      "current": "{H}ippocampus: cognitive processes and neural representations that underlie declarative memory",
@@ -12402,7 +14668,8 @@
        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15450164&retmode=xml",
        "quote": "Hippocampus: cognitive processes and neural representations that underlie declarative memory."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -12426,7 +14693,10 @@
     "page": "109-120",
     "volume": "44",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Howard Eichenbaum"
+    ]
    },
    "batch": "batch-042"
   },
@@ -12470,7 +14740,14 @@
     "page": "209-226",
     "volume": "23",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Howard Eichenbaum",
+     "Paul Dudchenko",
+     "Emma Wood",
+     "Matthew Shapiro",
+     "Heikki Tanila"
+    ]
    },
    "batch": "batch-042"
   },
@@ -12550,7 +14827,13 @@
     "page": "631-638",
     "volume": "31",
     "issue": "4",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "A.D. Ekstrom",
+     "J. Meltzer",
+     "B.L. McNaughton",
+     "C.A. Barnes"
+    ]
    },
    "batch": "batch-043"
   },
@@ -12570,7 +14853,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/11182079/",
        "quote": "10.1016/s0896-6273(01)00178-7 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -12582,7 +14866,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/11182079/",
        "quote": "Traveling electrical waves in cortex: insights from phase dynamics and speculation on a computational role."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -12606,7 +14891,11 @@
     "page": "33-44",
     "volume": "29",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "G.Bard Ermentrout",
+     "David Kleinfeld"
+    ]
    },
    "batch": "batch-043"
   },
@@ -12626,7 +14915,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/17442251/",
        "quote": "Stefano Fusi, Wael F Asaad, Earl K Miller, Xiao-Jing Wang"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -12638,7 +14928,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/17442251/",
        "quote": "10.1016/j.neuron.2007.03.017 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -12650,7 +14941,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/17442251/",
        "quote": "IP  - 2"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -12662,7 +14954,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/17442251/",
        "quote": "A neural circuit model of flexible sensorimotor mapping: learning and forgetting on multiple timescales."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -12686,7 +14979,13 @@
     "page": "319-333",
     "volume": "54",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Stefano Fusi",
+     "Wael F. Asaad",
+     "Earl K. Miller",
+     "Xiao-Jing Wang"
+    ]
    },
    "batch": "batch-043"
   },
@@ -12754,7 +15053,10 @@
     "page": "319-333",
     "volume": "30",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Joaquı́n M. Fuster"
+    ]
    },
    "batch": "batch-043"
   },
@@ -12810,7 +15112,10 @@
     "page": "31-47",
     "volume": "24",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Charles M. Gray"
+    ]
    },
    "batch": "batch-043"
   },
@@ -12854,7 +15159,13 @@
     "page": "877-888",
     "volume": "37",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Tom Hartley",
+     "Eleanor A. Maguire",
+     "Hugo J. Spiers",
+     "Neil Burgess"
+    ]
    },
    "batch": "batch-043"
   },
@@ -12898,7 +15209,12 @@
     "page": "416-434",
     "volume": "105",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Uri Hasson",
+     "Samuel A. Nastase",
+     "Ariel Goldstein"
+    ]
    },
    "batch": "batch-043"
   },
@@ -12966,7 +15282,19 @@
     "page": "423-434",
     "volume": "76",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Christopher J. Honey",
+     "Thomas Thesen",
+     "Tobias H. Donner",
+     "Lauren J. Silbert",
+     "Chad E. Carlson",
+     "Orrin Devinsky",
+     "Werner K. Doyle",
+     "Nava Rubin",
+     "David J. Heeger",
+     "Uri Hasson"
+    ]
    },
    "batch": "batch-043"
   },
@@ -13046,23 +15374,43 @@
     "page": "927-936",
     "volume": "20",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "William M Kelley",
+     "Francis M Miezin",
+     "Kathleen B McDermott",
+     "Randy L Buckner",
+     "Marcus E Raichle",
+     "Neal J Cohen",
+     "John M Ollinger",
+     "Erbil Akbudak",
+     "Thomas E Conturo",
+     "Abraham Z Snyder",
+     "Steven E Petersen"
+    ]
    },
    "batch": "batch-043"
   },
   "KrauEtal13": {
    "key": "KrauEtal13",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'robinson i i' -> 'robinson' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'R J {Robinson I I }' is kept",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "B J Kraus and R J {Robinson I I } and J A White and H Eichenbaum and M E Hasselmo",
+     "proposed": "B J Kraus and R J Robinson and J A White and H Eichenbaum and M E Hasselmo",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "The surname hold keeps the malformed '{Robinson I I }' (a mangled suffix II; PubMed 'Robinson RJ 2nd'). Crossref prints 'Robert J. Robinson'. Removing a suffix is the house no-suffix rule, not a respelling, and two hosts agree anyway. The same garbage is in a second cdl.bib entry (KrauEtal12)."
+       ]
+      }
+     ],
+     "reviewer": "disagree"
+    },
     {
      "field": "doi",
      "current": null,
@@ -13073,7 +15421,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/23707613/",
        "quote": "10.1016/j.neuron.2013.04.015 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -13085,7 +15434,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/23707613/",
        "quote": "IP  - 6"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -13097,7 +15447,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/23707613/",
        "quote": "PG  - 1090-101"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -13109,13 +15460,12 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/23707613/",
        "quote": "VI  - 78"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: R J {Robinson I I }"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "KrauEtal13",
@@ -13135,7 +15485,14 @@
     "page": "1090-1101",
     "volume": "78",
     "issue": "6",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Benjamin J. Kraus",
+     "Robert J. Robinson",
+     "John A. White",
+     "Howard Eichenbaum",
+     "Michael E. Hasselmo"
+    ]
    },
    "batch": "batch-043"
   },
@@ -13215,7 +15572,10 @@
     "page": "233-242",
     "volume": "22",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "John E Lisman"
+    ]
    },
    "batch": "batch-043"
   },
@@ -13259,7 +15619,20 @@
     "page": "51-64",
     "volume": "30",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Brian Litt",
+     "Rosana Esteller",
+     "Javier Echauz",
+     "Maryann D'Alessandro",
+     "Rachel Shor",
+     "Thomas Henry",
+     "Page Pennell",
+     "Charles Epstein",
+     "Roy Bakay",
+     "Marc Dichter",
+     "George Vachtsevanos"
+    ]
    },
    "batch": "batch-043"
   },
@@ -13279,7 +15652,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/17988635/",
        "quote": "10.1016/j.neuron.2007.08.017 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {
@@ -13305,7 +15679,12 @@
     "page": "530-540",
     "volume": "56",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Joseph R. Manns",
+     "Marc W. Howard",
+     "Howard Eichenbaum"
+    ]
    },
    "batch": "batch-043"
   },
@@ -13361,7 +15740,13 @@
     "page": "975-987",
     "volume": "35",
     "issue": "5",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Luiz Pessoa",
+     "Eva Gutierrez",
+     "Peter A. Bandettini",
+     "Leslie G. Ungerleider"
+    ]
    },
    "batch": "batch-043"
   },
@@ -13381,7 +15766,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12741993/",
        "quote": "Alfonso Renart, Pengcheng Song, Xiao-Jing Wang"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "doi",
@@ -13393,7 +15779,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12741993/",
        "quote": "10.1016/s0896-6273(03)00255-1 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -13405,7 +15792,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12741993/",
        "quote": "IP  - 3"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -13417,7 +15805,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12741993/",
        "quote": "PG  - 473-85"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -13429,7 +15818,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12741993/",
        "quote": "Robust spatial working memory through homeostatic synaptic scaling in heterogeneous cortical networks."
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "volume",
@@ -13441,7 +15831,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/12741993/",
        "quote": "VI  - 38"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -13465,23 +15856,36 @@
     "page": "473-485",
     "volume": "38",
     "issue": "3",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Alfonso Renart",
+     "Pengcheng Song",
+     "Xiao-Jing Wang"
+    ]
    },
    "batch": "batch-043"
   },
   "SaliThie00": {
    "key": "SaliThie00",
    "verdict": "correction",
-   "flags": [
+   "flags": [],
+   "normalisations": [],
+   "changes": [
     {
-     "code": "doi_title_mismatch",
      "field": "doi",
-     "detail": "10.1016/s0896-6273(00)00004-0 is registered to 'Gain Modulation' (Crossref), not this entry's title; DOI change dropped",
-     "action": "dropped"
+     "current": null,
+     "proposed": "10.1016/s0896-6273(00)00004-0",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.1016/s0896-6273(00)00004-0 dropped by the title check, but the Crossref record is this work: 'Gain Modulation', Salinas/Thier, Neuron 27(1) 15-21, 2000-07. The prefix rule needs at least 3 words in the shorter title, so a 1-2 word pre-colon registry title never matches. Keep the DOI."
+       ]
+      }
+     ],
+     "reviewer": "disagree (dropped but correct)"
     }
    ],
-   "normalisations": [],
-   "changes": [],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -13503,23 +15907,34 @@
     "page": "15-21",
     "volume": "27",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Emilio Salinas",
+     "Peter Thier"
+    ]
    },
    "batch": "batch-043"
   },
   "ShadMovs99": {
    "key": "ShadMovs99",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "doi_title_mismatch",
-     "field": "doi",
-     "detail": "10.1016/s0896-6273(00)80822-3 is registered to 'Synchrony Unbound' (Crossref), not this entry's title; DOI change dropped",
-     "action": "dropped"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1016/s0896-6273(00)80822-3",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.1016/s0896-6273(00)80822-3 dropped by the title check, but the Crossref record is this work: 'Synchrony Unbound', Shadlen/Movshon, Neuron 24(1) 67-77, 1999-09. The prefix rule needs at least 3 words in the shorter title, so a 1-2 word pre-colon registry title never matches. Keep the DOI."
+       ]
+      }
+     ],
+     "reviewer": "disagree (dropped but correct)"
+    },
     {
      "field": "number",
      "current": null,
@@ -13530,7 +15945,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10677027/",
        "quote": "IP  - 1"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -13554,7 +15970,11 @@
     "page": "67-77",
     "volume": "24",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Michael N. Shadlen",
+     "J.Anthony Movshon"
+    ]
    },
    "batch": "batch-043"
   },
@@ -13574,7 +15994,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
        "quote": "10.1016/j.neuron.2017.09.005 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "pages",
@@ -13586,7 +16007,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
        "quote": "PG  - 228-241.e5"
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -13610,7 +16032,11 @@
     "page": "228-241.e5",
     "volume": "96",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Alexa Tompary",
+     "Lila Davachi"
+    ]
    },
    "batch": "batch-043"
   },
@@ -13637,7 +16063,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10677031/",
        "quote": "10.1016/s0896-6273(00)80826-0 [doi]"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "number",
@@ -13649,7 +16076,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10677031/",
        "quote": "IP  - 1"
       }
-     ]
+     ],
+     "reviewer": "agree"
     },
     {
      "field": "title",
@@ -13661,7 +16089,8 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/10677031/",
        "quote": "Solutions to the binding problem: progress through controversy and convergence."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
@@ -13685,29 +16114,49 @@
     "page": "105-125",
     "volume": "24",
     "issue": "1",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Anne Treisman"
+    ]
    },
    "batch": "batch-043"
   },
   "WagnEtal01": {
    "key": "WagnEtal01",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "doi_title_mismatch",
-     "field": "doi",
-     "detail": "10.1016/s0896-6273(01)00359-2 is registered to 'Recovering Meaning' (Crossref), not this entry's title; DOI change dropped",
-     "action": "dropped"
-    },
-    {
-     "code": "surname_single_source",
-     "field": "author",
-     "detail": "surname 'par blagoev' -> 'pare blagoev' rests on 1 source host(s) ['pubmed.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'E J Par-Blagoev' is kept",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "A D Wagner and E J Par-Blagoev and J Clark and R A Poldrack",
+     "proposed": "A D Wagner and E J Par{\\'e}-Blagoev and J Clark and R A Poldrack",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.1016/s0896-6273(01)00359-2 dropped by the title check, but the Crossref record is this work: 'Recovering Meaning', Wagner/Paré-Blagoev/Clark/Poldrack, Neuron 31(2) 329-338, 2001-08. The prefix rule needs at least 3 words in the shorter title, so a 1-2 word pre-colon registry title never matches. Keep the DOI.",
+        "Surname hold keeps the broken 'E J Par-Blagoev'. Crossref prints 'E.Juliana Paré-Blagoev' and PubMed 'Paré-Blagoev' (two hosts); this restores an accent, it is not a respelling. cdl.bib elsewhere has 'Paré-Blagoev' (BadrEtal05, raw UTF-8); house LaTeX form Par{\\'e}."
+       ]
+      }
+     ],
+     "reviewer": "disagree"
+    },
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1016/s0896-6273(01)00359-2",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "DOI 10.1016/s0896-6273(01)00359-2 dropped by the title check, but the Crossref record is this work: 'Recovering Meaning', Wagner/Paré-Blagoev/Clark/Poldrack, Neuron 31(2) 329-338, 2001-08. The prefix rule needs at least 3 words in the shorter title, so a 1-2 word pre-colon registry title never matches. Keep the DOI.",
+        "Surname hold keeps the broken 'E J Par-Blagoev'. Crossref prints 'E.Juliana Paré-Blagoev' and PubMed 'Paré-Blagoev' (two hosts); this restores an accent, it is not a respelling. cdl.bib elsewhere has 'Paré-Blagoev' (BadrEtal05, raw UTF-8); house LaTeX form Par{\\'e}."
+       ]
+      }
+     ],
+     "reviewer": "disagree (dropped but correct)"
+    },
     {
      "field": "title",
      "current": "{R}ecovering meaning: left prefrontal cortex guides controlled semantic retrieval",
@@ -13718,13 +16167,12 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/11502262/",
        "quote": "Recovering meaning: left prefrontal cortex guides controlled semantic retrieval."
       }
-     ]
+     ],
+     "reviewer": "agree"
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: E J Par-Blagoev"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "WagnEtal01",
@@ -13744,7 +16192,13 @@
     "page": "329-338",
     "volume": "31",
     "issue": "2",
-    "type": "journal-article"
+    "type": "journal-article",
+    "authors": [
+     "Anthony D Wagner",
+     "E.Juliana Paré-Blagoev",
+     "Jill Clark",
+     "Russell A Poldrack"
+    ]
    },
    "batch": "batch-043"
   }
@@ -13758,15 +16212,9 @@
   "TulvEtal91": [],
   "WatkPeyn83": [],
   "WollEtal70": [],
-  "NabeEtal13": [
-   "doi_record_conflict:pages"
-  ],
-  "SpieEtal18": [
-   "doi_title_unavailable:doi"
-  ],
-  "SellEtal82": [
-   "doi_title_unavailable:doi"
-  ],
+  "NabeEtal13": [],
+  "SpieEtal18": [],
+  "SellEtal82": [],
   "ViemWake91": [],
   "LindEtal21": [],
   "HartWong79": [
@@ -13791,9 +16239,7 @@
   "SperEtal96": [
    "doi_record_conflict:pages"
   ],
-  "VanEEtal01": [
-   "surname_single_source:author"
-  ],
+  "VanEEtal01": [],
   "Gewe82": [],
   "SegaEtal12": [],
   "Nobl04": [
@@ -13806,9 +16252,7 @@
   ],
   "LimoEtal95b": [],
   "TheoFish04": [],
-  "vandEtal11": [
-   "quote_check_failed:title"
-  ],
+  "vandEtal11": [],
   "AndeEtal99a": [],
   "AndeFinc94": [],
   "AshbEtal88": [
@@ -13819,10 +16263,10 @@
   "CapaNeat95": [],
   "DoshEtal89": [],
   "GlucEtal02": [],
-  "KnowEtal94": [
-   "doi_title_unavailable:doi"
+  "KnowEtal94": [],
+  "Loft05": [
+   "doi_title_part_number:doi"
   ],
-  "Loft05": [],
   "ParkEtal08": [],
   "StarSqui01": [],
   "VossPall08": [
@@ -13831,15 +16275,13 @@
   "Gree08": [
    "field_not_found:volume"
   ],
-  "ChamEtal03": [
-   "surname_single_source:author"
-  ],
+  "ChamEtal03": [],
   "JacoEtal98": [
-   "field_not_found:title"
+   "field_not_found:title",
+   "doi_title_part_number:doi"
   ],
   "ChabEtal98": [
-   "field_not_found:title",
-   "doi_title_mismatch:doi"
+   "field_not_found:title"
   ],
   "Merk14": [
    "field_not_found:number",
@@ -13852,42 +16294,29 @@
   "FreuEtal97": [],
   "SchaSing00": [],
   "GlovLaw01": [],
-  "Jenk03": [
-   "identity_quote_failed:identity",
-   "quote_check_failed:title"
-  ],
-  "JenkSmit01": [
-   "doi_title_unavailable:doi"
-  ],
+  "Jenk03": [],
+  "JenkSmit01": [],
   "GrabEtal06": [],
   "HogeEtal08": [],
-  "BrowEtal95": [
-   "identity_quote_failed:identity"
-  ],
+  "BrowEtal95": [],
   "BurgShal96": [
-   "identity_quote_failed:identity",
    "field_not_found:pages"
   ],
   "CummEtal03": [],
-  "HitcEtal05": [
-   "doi_title_unavailable:doi"
-  ],
+  "HitcEtal05": [],
   "BaddHitc93": [
    "style_only_change:title"
   ],
   "ClarBurc94": [],
   "CohnEtal21": [
-   "doi_title_unavailable:doi",
    "key_rename:key"
   ],
   "DaveEtal06": [],
   "DuchNeel89": [
    "field_not_found:title",
-   "doi_title_unavailable:doi"
+   "doi_title_part_number:doi"
   ],
-  "FernGlen85": [
-   "doi_title_unavailable:doi"
-  ],
+  "FernGlen85": [],
   "Hock96": [
    "key_rename:key"
   ],
@@ -13912,31 +16341,24 @@
   ],
   "GaraEtal00": [],
   "Turi50": [
-   "field_not_found:volume",
-   "doi_title_mismatch:doi"
+   "field_not_found:volume"
   ],
   "GoldWhel00": [],
   "DiazEtal19": [
    "key_rename:key"
   ],
   "ToluEtal12": [
-   "surname_single_source:author",
    "key_rename:key"
   ],
   "ZagaEtal13a": [],
   "RuizGonz97": [],
   "BalaEtal08": [],
   "GrosEtal06": [],
-  "KracEtal98": [
-   "surname_single_source:author",
-   "surname_single_source:author"
-  ],
+  "KracEtal98": [],
   "LimoEtal95a": [
    "duplicate:key"
   ],
   "LimoEtal95c": [
-   "surname_single_source:author",
-   "surname_single_source:author",
    "duplicate:key"
   ],
   "MachEtal06": [],
@@ -13982,9 +16404,7 @@
   "MaheEtal22": [],
   "GhosEtal11": [],
   "VirtEtal20": [],
-  "BranEtal13": [
-   "identity_quote_failed:identity"
-  ],
+  "BranEtal13": [],
   "CareEtal19": [],
   "ChenEtal17": [],
   "ChowEtal13": [],
@@ -14004,17 +16424,11 @@
   "Wall12": [],
   "WimbEtal15": [],
   "WittEtal18": [],
-  "BorcEtal12": [
-   "surname_single_source:author",
-   "surname_single_source:author"
-  ],
+  "BorcEtal12": [],
   "BullSpor09": [],
   "PessAdol10": [],
   "RangEtal08": [],
-  "SquiEtal07": [
-   "quote_check_failed:journal",
-   "quote_check_failed:pages"
-  ],
+  "SquiEtal07": [],
   "deCh08": [],
   "GersvanH92": [],
   "OlshFiel96": [],
@@ -14059,9 +16473,7 @@
   "AharEtal01": [],
   "DaleEtal00": [],
   "DobbEtal02": [],
-  "Eich04": [
-   "doi_title_mismatch:doi"
-  ],
+  "Eich04": [],
   "EichEtal99": [],
   "EkstEtal01": [],
   "ErmeKlei01": [],
@@ -14072,27 +16484,18 @@
   "HassEtal20": [],
   "HoneEtal12a": [],
   "KellEtal98": [],
-  "KrauEtal13": [
-   "surname_single_source:author"
-  ],
+  "KrauEtal13": [],
   "Lism99": [],
   "LittEtal01": [],
   "MannEtal07": [],
   "PessEtal02": [],
   "RenaEtal03": [],
-  "SaliThie00": [
-   "doi_title_mismatch:doi"
-  ],
-  "ShadMovs99": [
-   "doi_title_mismatch:doi"
-  ],
+  "SaliThie00": [],
+  "ShadMovs99": [],
   "TompDava17": [],
   "Trei99": [
    "doi_record_conflict:pages"
   ],
-  "WagnEtal01": [
-   "doi_title_mismatch:doi",
-   "surname_single_source:author"
-  ]
+  "WagnEtal01": []
  }
 }

@@ -1,8 +1,8 @@
 {
- "network_requests": 300,
+ "network_requests": 1,
  "unverified_tls_urls": [],
  "entries": 200,
- "passing": 192,
+ "passing": 198,
  "by_verdict": {
   "correction": 195,
   "no_source": 1,
@@ -1714,10 +1714,8 @@
     },
     "title": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "student"
-     ],
+     "ok": true,
+     "value_missing_from_quotes": [],
      "failures": []
     },
     "journal": {
@@ -1761,7 +1759,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "AndeEtal99a",
@@ -3075,18 +3073,9 @@
    "fields": {
     "title": {
      "status": "corrected",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "fast",
-      "automated",
-      "dimensional",
-      "phase",
-      "unwrapping",
-      "algorithm"
-     ],
-     "failures": [
-      "fetch failed: HTTPError: HTTP Error 429: Too Many Requests"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "author": {
      "status": "confirmed",
@@ -3132,10 +3121,10 @@
     }
    },
    "identity": {
-    "ok": false,
-    "why": "fetch failed: HTTPError: HTTP Error 429: Too Many Requests"
+    "ok": true,
+    "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "JenkSmit01",
@@ -3387,10 +3376,10 @@
     }
    },
    "identity": {
-    "ok": false,
-    "why": "fetch failed: HTTPError: HTTP Error 429: Too Many Requests"
+    "ok": true,
+    "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "BurgShal96",
@@ -3441,10 +3430,10 @@
     }
    },
    "identity": {
-    "ok": false,
-    "why": "fetch failed: HTTPError: HTTP Error 429: Too Many Requests"
+    "ok": true,
+    "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "CummEtal03",
@@ -7497,10 +7486,10 @@
     }
    },
    "identity": {
-    "ok": false,
-    "why": "fetch failed: HTTPError: HTTP Error 429: Too Many Requests"
+    "ok": true,
+    "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "CareEtal19",
@@ -8901,15 +8890,9 @@
     },
     "journal": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "nature",
-      "reviews",
-      "neuroscience"
-     ],
-     "failures": [
-      "fetch failed: HTTPError: HTTP Error 429: Too Many Requests"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "volume": {
      "status": "confirmed",
@@ -8925,14 +8908,9 @@
     },
     "pages": {
      "status": "confirmed",
-     "ok": false,
-     "value_missing_from_quotes": [
-      "872",
-      "883"
-     ],
-     "failures": [
-      "fetch failed: HTTPError: HTTP Error 429: Too Many Requests"
-     ]
+     "ok": true,
+     "value_missing_from_quotes": [],
+     "failures": []
     },
     "year": {
      "status": "confirmed",
@@ -8951,7 +8929,7 @@
     "ok": true,
     "why": null
    },
-   "passes": false
+   "passes": true
   },
   {
    "key": "deCh08",
