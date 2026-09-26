@@ -128,7 +128,7 @@ function citation(f){
   const bits = [f.volume && `vol. ${f.volume}`, f.number && `no. ${f.number}`, f.pages && `pp. ${f.pages}`].filter(Boolean).join(", ");
   return `<div class="cite">${esc(f.author || f.editor || "")} (${esc(f.year || "n.d.")}). <span class="t">${esc(f.title || "")}</span>. ${esc(venue)}${bits ? ". " + esc(bits) : ""}.</div>`;
 }
-function link(u){ return u.startsWith("file:") ? `<span>${esc(decodeURIComponent(u.split("/").pop()))} (local PDF)</span>` : `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").slice(0,70))}</a>`; }
+function link(u){ if (!u) return ""; return u.startsWith("file:") ? `<span>${esc(decodeURIComponent(u.split("/").pop()))} (local PDF)</span>` : `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").slice(0,70))}</a>`; }
 function changes(s){
   const ch = Object.entries(s.changes);
   if (!ch.length) return '<div class="notes">No change proposed.</div>';
@@ -138,7 +138,7 @@ function changes(s){
 function evidence(s){
   const items = [];
   if (s.identity && s.identity.url) items.push(`<div>identity: <q>${esc(s.identity.quote)}</q> — ${link(s.identity.url)}</div>`);
-  for (const [f,c] of Object.entries(s.changes)) for (const e of (c.evidence || [])) items.push(`<div>${esc(f)}: <q>${esc(e.quote)}</q> — ${link(e.url)}</div>`);
+  for (const [f,c] of Object.entries(s.changes)) for (const e of (c.evidence || [])) items.push(`<div>${esc(f)}: ${e.quote != null ? `<q>${esc(e.quote)}</q>` : esc(Object.entries(e).filter(([k]) => k !== "url").map(([k,v]) => k.replace(/_/g," ") + ": " + (Array.isArray(v) ? v.join("; ") : v)).join(" · "))}${e.url ? " — " + link(e.url) : ""}</div>`);
   return items.length ? `<details><summary>Evidence (${items.length} quotes, each confirmed at its link)</summary><div class="ev">${items.join("")}</div></details>` : "";
 }
 function reviewer(s){
