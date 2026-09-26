@@ -1,0 +1,445 @@
+{
+ "_doc": "Corrections to journal_key.xls, applied by helpers.load_key_overrides() when journal_key is loaded. 'remove' drops the alias so the name is formatted as given; 'retarget' replaces a wrong or misspelled target. Each row states the spreadsheet's old_target and the loader raises if the spreadsheet no longer says that, so an edit to the .xls cannot silently collide with an override. Audit: verification/journal-alias-audit-2026-09-26.json.",
+ "overrides": [
+  {
+   "source": "j comp neurol",
+   "xls_rows": [
+    342
+   ],
+   "old_target": "journal of computational neuroscience",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "the journal of comparative neurology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Comp Neurol' = NLM 0406041 'The Journal of comparative neurology.' (ISSN 0021-9967); the old target is 'J Comput Neurosci' = NLM 9439510 'Journal of computational neuroscience.' (ISSN 0929-5313, founded 1994)."
+  },
+  {
+   "source": "j comp physiol",
+   "xls_rows": [
+    343
+   ],
+   "old_target": "journal of computational physiology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of comparative physiology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Comp Physiol' = NLM 7502104 'Journal of comparative physiology.' (ISSN 0302-9824). No journal titled 'Journal of Computational Physiology' exists."
+  },
+  {
+   "source": "j. comp. physiol.",
+   "xls_rows": [
+    353
+   ],
+   "old_target": "journal of computational physiology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of comparative physiology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Comp Physiol' = NLM 7502104 'Journal of comparative physiology.' (dotted form of the same abbreviation)."
+  },
+  {
+   "source": "j comp physiol a",
+   "xls_rows": [
+    344
+   ],
+   "old_target": "journal of computational physiology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of comparative physiology a",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Comp Physiol A' = NLM 8413199 'Journal of comparative physiology. A, Sensory, neural, and behavioral physiology.' (c1984-c2001)."
+  },
+  {
+   "source": "j exp psychol",
+   "xls_rows": [
+    346
+   ],
+   "old_target": "journal of experimental psychology: general",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of experimental psychology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Exp Psychol' = NLM 7502586 'Journal of experimental psychology.' (ISSN 0022-1015, the undivided journal to 1974). JEP: General (1975-) is a different serial, abbreviated 'J Exp Psychol Gen'."
+  },
+  {
+   "source": "journal of experimental pyschology",
+   "xls_rows": [
+    422
+   ],
+   "old_target": "journal of experimental psychology: general",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of experimental psychology",
+   "evidence": "Misspelling of 'Journal of Experimental Psychology' (NLM 7502586). The old target 'JEP: General' is a different serial begun in 1975 (NLM 'J Exp Psychol Gen'); the same rule is already applied to 'journal of experimental psychology; journal of experimental psychology' by preserve_identity in helpers.py."
+  },
+  {
+   "source": "psychonomic science",
+   "xls_rows": [
+    733
+   ],
+   "old_target": "psychological science",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Psychon Sci' = NLM 0360135 'Psychonomic science.' (ISSN 0033-3131, 1964-1972). Psychological Science is a different journal (APS, begun 1990)."
+  },
+  {
+   "source": "psychometric monographs",
+   "xls_rows": [
+    726
+   ],
+   "old_target": "psychometrika",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "Psychometric Monographs is the Psychometric Society's numbered monograph series (e.g. No. 1, Thurstone 1938, Primary Mental Abilities), separate from the journal Psychometrika (ISSN 0033-3123). Neither NLM nor Crossref /journals indexes the monograph series (both queried 2026-09-26, 0 hits)."
+  },
+  {
+   "source": "journal of the royal statistical society. series c (applied statistics)",
+   "xls_rows": [
+    490
+   ],
+   "old_target": "journal of the optical society of america",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of the royal statistical society series c: applied statistics",
+   "evidence": "Crossref /journals: 'Journal of the Royal Statistical Society Series C (Applied Statistics)' ISSN 0035-9254/1467-9876. The old target, Journal of the Optical Society of America (NLM 7503097, ISSN 0030-3941), is an unrelated journal."
+  },
+  {
+   "source": "journal of the optical society of america [a]",
+   "xls_rows": [
+    489
+   ],
+   "old_target": "journal of the optical society of america",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of the optical society of america a",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Opt Soc Am A' = NLM 8402086 'Journal of the Optical Society of America. A, Optics and image science.' (ISSN 0740-3232, 1984-) is distinct from 'J Opt Soc Am' = NLM 7503097 (ISSN 0030-3941, to 1983)."
+  },
+  {
+   "source": "journals of gerontology",
+   "xls_rows": [
+    500
+   ],
+   "old_target": "journal of gerontology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "the journals of gerontology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Gerontol' = NLM 0374762 'Journal of gerontology.' (ISSN 0022-1422, to 1994); 'The journals of gerontology' (Series A/B, 1995-) are successor serials, e.g. NLM 9508483 'J Gerontol B Psychol Sci Soc Sci' (ISSN 1079-5014). The plural title names the successor, not Journal of Gerontology."
+  },
+  {
+   "source": "journals of gerontology: series b: psychological sciences \\& social sciences",
+   "xls_rows": [
+    501
+   ],
+   "old_target": "journal of gerontology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "the journals of gerontology series b",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): NLM 9508483 'The journals of gerontology. Series B, Psychological sciences and social sciences.' (ISSN 1079-5014). Old target 'journal of gerontology' is NLM 0374762 (ISSN 0022-1422). New target matches this table's existing alias for the Series B full title."
+  },
+  {
+   "source": "journal of neural transmission supplement",
+   "xls_rows": [
+    450
+   ],
+   "old_target": "journal of neural transmission",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Neural Transm Suppl' = NLM 0425126 'Journal of neural transmission. Supplementum.' (ISSN 0303-6995), a separate serial from Journal of Neural Transmission."
+  },
+  {
+   "source": "psychological review monographs supplement",
+   "xls_rows": [
+    716
+   ],
+   "old_target": "psychological review",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "psychological review: monograph supplements",
+   "evidence": "Crossref work 10.1037/h0092987 (Thorndike 1898) has container-title 'The Psychological Review: Monograph Supplements', ISSN 0096-9753 (NLM 19920010R 'Psychological monographs.'), a separate serial from Psychological Review."
+  },
+  {
+   "source": "proceedings of the royal society of london a",
+   "xls_rows": [
+    686
+   ],
+   "old_target": "proceedings of the royal society of london",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the royal society of london series a",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Proc R Soc Lond A Math Phys Sci' = NLM 7505888 'Proceedings of the Royal Society of London. Series A, Mathematical and physical sciences.' (1905-1990, ISSN 0950-1207). Dropping the series letter names the undivided pre-1905 Proceedings; this table already keeps the series for 'series b'."
+  },
+  {
+   "source": "proc. intl. soc. mag. reson. med.",
+   "xls_rows": [
+    666
+   ],
+   "old_target": "proceedings of the society for magnetic resonance in medicine",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the international society for magnetic resonance in medicine",
+   "evidence": "The source abbreviates 'Proceedings of the International Society for Magnetic Resonance in Medicine' (ISMRM, formed 1994 by merging SMRM and SMRI); the old target names the predecessor Society of Magnetic Resonance in Medicine."
+  },
+  {
+   "source": "proceedings of the naacl-hlt",
+   "xls_rows": [
+    678
+   ],
+   "old_target": "proceedings of the national association for computational linguistics",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the conference of the north american chapter of the association for computational linguistics: human language technologies",
+   "evidence": "NAACL-HLT = Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (ACL Anthology venue 'naacl'); no 'National Association for Computational Linguistics' exists. New target is the booktitle already used by 3 cdl.bib entries."
+  },
+  {
+   "source": "proc. {ieee}",
+   "xls_rows": [
+    668
+   ],
+   "old_target": "ieee proceedings",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the ieee",
+   "evidence": "'Proc. IEEE' is Proceedings of the IEEE (ISSN 0018-9219). The old target 'IEEE Proceedings' is not a journal title and is easily confused with the IET/IEE 'IEE Proceedings' series."
+  },
+  {
+   "source": "proceedings of the {aaai} 2008 workshop on wikipedia and artificial intelligence",
+   "xls_rows": [
+    688
+   ],
+   "old_target": "proceedings of the association for the advancement of artificial intelligence",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "The AAAI 2008 Workshop on Wikipedia and Artificial Intelligence (MilnWitt08, AAAI workshop technical report WS-08-15) is a workshop, not the AAAI conference proceedings named by the old target."
+  },
+  {
+   "source": "proceedings of the {t}hird {i}nternational {ica} {c}onference",
+   "xls_rows": [
+    1024
+   ],
+   "old_target": "proceedings of the international congress on acoustics",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the international conference on independent component analysis and blind signal separation",
+   "evidence": "The only cdl.bib user (DeloEtal01, San Diego 2001, 'independent component analysis' in the title) is ICA 2001, the 3rd International Conference on Independent Component Analysis and Blind Signal Separation. The old target, International Congress on Acoustics, is an unrelated meeting."
+  },
+  {
+   "source": "learning and memory: memory systems",
+   "xls_rows": [
+    514
+   ],
+   "old_target": "learning and memory",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "'Memory Systems' is vol. 3 of the reference work 'Learning and Memory: A Comprehensive Reference' (Academic Press, 2008); the old target 'learning and memory' is the name this table gives the CSHL journal Learning & Memory (rows 'learning \\& memory', 'learning {\\&} memory')."
+  },
+  {
+   "source": "zeitschrift f{\\\"u}r psychologie und physiologie der sinnesorgane",
+   "xls_rows": [
+    845
+   ],
+   "old_target": "zeitschrift f{\\\"u}r psychologie",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "Historical title (1890-1906) of the serial that then split into Zeitschrift fur Psychologie and Zeitschrift fur Sinnesphysiologie; the alias erases the historical title, the same reason preserve_identity already exists in helpers.py. Title history from domain knowledge: NLM has no record for the old title (esearch 'Z Psychol Physiol Sinnesorg' returned 0); UNCONFIRMED against a catalogue."
+  },
+  {
+   "source": "zeitschrift f{\\\"u}r psychologie eganzungsband",
+   "xls_rows": [
+    844
+   ],
+   "old_target": "zeitschrift f{\\\"u}r psychologie",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "zeitschrift f{\\\"u}r psychologie erg{\\\"a}nzungsband",
+   "evidence": "Erganzungsband is the journal's numbered supplementary-volume series, separate from the journal issues; the old target drops it. New target keeps the series and fixes the source's 'eganzungsband' typo."
+  },
+  {
+   "source": "physiological reviews",
+   "xls_rows": [
+    653
+   ],
+   "old_target": "physiological review",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "physiological reviews",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Physiol Rev' = NLM 0231714 'Physiological reviews.' (ISSN 0031-9333). 'Physiological Review' (singular) is not a journal title."
+  },
+  {
+   "source": "int j psychophysiol",
+   "xls_rows": [
+    317
+   ],
+   "old_target": "international journal of phychophysiology",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "international journal of psychophysiology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Int J Psychophysiol' = NLM 8406214 'International journal of psychophysiology' (ISSN 0167-8760); old target misspells 'phychophysiology'."
+  },
+  {
+   "source": "int. j. psychophys.",
+   "xls_rows": [
+    319
+   ],
+   "old_target": "international journal of phychophysiology",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "international journal of psychophysiology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): NLM 8406214 'International journal of psychophysiology'; old target misspells 'phychophysiology'."
+  },
+  {
+   "source": "j clin exp neuropsychol",
+   "xls_rows": [
+    340
+   ],
+   "old_target": "journal of clinical and experimental neuropyschology",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "journal of clinical and experimental neuropsychology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Clin Exp Neuropsychol' = NLM 8502170 'Journal of clinical and experimental neuropsychology.' (ISSN 1380-3395); old target misspells 'neuropyschology'."
+  },
+  {
+   "source": "journal of experimental psychlogy: human perception and performance",
+   "xls_rows": [
+    394
+   ],
+   "old_target": "journal of experiment psychology: human perception and performance",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "journal of experimental psychology: human perception and performance",
+   "evidence": "Old target reads 'journal of experiment psychology: ...'; the journal is Journal of Experimental Psychology: Human Perception and Performance (NLM 'J Exp Psychol Hum Percept Perform', ISSN 0096-1523)."
+  },
+  {
+   "source": "learning, memory",
+   "xls_rows": [
+    517
+   ],
+   "old_target": "learning and memory",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "A truncated 'Journal of Experimental Psychology: Learning, Memory, and Cognition'. cdl.bib HEAD entries AshbEtal88 (14(1):33-53, 1988), DoshEtal89 (15(5):868-886), AndeFinc94 (20(6):1322-1340), Brow97 (23(4):898-914) and AndeEtal99a (25(5):1120-1136) carry 'Learning and Memory' with JEP:LMC volume numbers; the CSHL journal Learning & Memory began in 1994 at vol 1. The fragment is too short to retarget safely, so the alias is dropped."
+  },
+  {
+   "source": "psychol forsch",
+   "xls_rows": [
+    700
+   ],
+   "old_target": "psychologie forschung",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "psychologische forschung",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Psychol Forsch' = NLM 0435063 'Psychologische Forschung.' (ISSN 0033-3026); Crossref /journals agrees. 'Psychologie Forschung' is not the title."
+  },
+  {
+   "source": "alzheimer disease \\& associated disorders",
+   "xls_rows": [
+    18
+   ],
+   "old_target": "alzheimer's disease and associated disorders",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "alzheimer disease and associated disorders",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Alzheimer Dis Assoc Disord' = NLM 8704771 'Alzheimer disease and associated disorders.' (ISSN 0893-0341); the old target adds a possessive the title does not have."
+  },
+  {
+   "source": "reliability engineering \\& systems safety",
+   "xls_rows": [
+    743
+   ],
+   "old_target": "reliability engineering and systems safety",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "reliability engineering and system safety",
+   "evidence": "Crossref /journals: 'Reliability Engineering & System Safety' (Elsevier, ISSN 0951-8320); old target reads 'systems'."
+  },
+  {
+   "source": "{artificial intelligence and statistics}",
+   "xls_rows": [
+    1084
+   ],
+   "old_target": "artificial intellience and statistics",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "artificial intelligence and statistics",
+   "evidence": "Old target misspells 'intellience' (AISTATS)."
+  },
+  {
+   "source": "{c}omputational and {s}ystems {n}euroscience ({cosyne}) {a}bstracts",
+   "xls_rows": [
+    1086
+   ],
+   "old_target": "computational and systems neuroscience (coysne)",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "computational and systems neuroscience (cosyne)",
+   "evidence": "Old target misspells the acronym 'coysne'; the meeting is Cosyne (Computational and Systems Neuroscience)."
+  },
+  {
+   "source": "youman's neurosurgical surgery, 5th edition",
+   "xls_rows": [
+    1081
+   ],
+   "old_target": "youman's neurosurgical surgery",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "youmans neurological surgery",
+   "evidence": "The book is 'Youmans Neurological Surgery' (5th ed., H R Winn ed., Saunders 2004); old target reads \"youman's neurosurgical surgery\"."
+  },
+  {
+   "source": "current issues in cognitive processes: the {tulane flowerree} symposium on cognition",
+   "xls_rows": [
+    930
+   ],
+   "old_target": "current issues in cognitive processes: the floweree symposium on cognition",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "current issues in cognitive processes: the tulane flowerree symposium on cognition",
+   "evidence": "Open Library works OL8447287W/OL4634505W editions: 'Current Issues in Cognitive Processes' subtitle 'The Tulane Flowerree Symposia on Cognition' (Izawa ed., 1989). Old target drops 'Tulane' and misspells 'Floweree'."
+  },
+  {
+   "source": "engineering in medicine and biology society (embc), 2010 annual international conference of the ieee",
+   "xls_rows": [
+    935
+   ],
+   "old_target": "ieee conference on engineering in medicine, biology, and society",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "annual international conference of the ieee engineering in medicine and biology society",
+   "evidence": "The meeting is the Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC); old target 'engineering in medicine, biology, and society' splits the society's name into three topics."
+  },
+  {
+   "source": "engineering in medicine and biology society, 2008. embs 2008. 30th annual international conference of the ieee",
+   "xls_rows": [
+    936
+   ],
+   "old_target": "ieee conference on engineering in medicine, biology, and society",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "annual international conference of the ieee engineering in medicine and biology society",
+   "evidence": "Same as the EMBC 2010 row: old target mis-expands 'Engineering in Medicine and Biology Society'."
+  },
+  {
+   "source": "proc. intl. conference on learning and development (icdl)",
+   "xls_rows": [
+    1005
+   ],
+   "old_target": "proceedings of the international conference on learning and development",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "proceedings of the international conference on development and learning",
+   "evidence": "ICDL is the (IEEE) International Conference on Development and Learning; this table already maps the 3rd ICDL to 'proceedings of the international conference on development and learning'. Old target transposes the name."
+  },
+  {
+   "source": "mathematics $+$ physics",
+   "xls_rows": [
+    979
+   ],
+   "old_target": "mathematics$+$ physics",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "mathematics $+$ physics",
+   "evidence": "Open Library: 'Mathematics + Physics' (L Streit ed., World Scientific 1985); old target 'mathematics$+$ physics' drops the space before '+'."
+  }
+ ]
+}

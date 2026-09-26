@@ -1,0 +1,1708 @@
+{
+ "date": "2026-09-26",
+ "scope": "bibcheck/journal_key.xls, every row with a target (format_journal_name aliases)",
+ "method": "Each of the 450 rows with a target (448 distinct sources after the pandas to_dict duplicate collapse; 648 further rows have no target and never apply) was classified as (a) same journal, (b) different_journal, (c) misspelled_target, using NLM Catalog E-utilities (nlmcatalog esearch/esummary, <=1 req/s), Crossref /journals and /works, Open Library, and the cdl.bib entries that use each name. A dictionary scan of every target word found the misspellings.",
+ "counts": {
+  "rows_with_target": 450,
+  "distinct_active_sources": 448,
+  "wrong_rows_fixed": 40,
+  "different_journal": 24,
+  "misspelled_target": 16,
+  "wrong_rows_already_neutralized": 6,
+  "likely_corrupted_entries": 96,
+  "likely_corrupted_confirmed": 75,
+  "likely_corrupted_unconfirmed": 21
+ },
+ "fix_method": "bibcheck/journal_key_overrides.json, applied by helpers.load_key_overrides() to journal_key only. The .xls is legacy BIFF (Excel 2004-era); only xlrd (read-only) is installed, and rewriting it would need a new unmaintained writer (xlwt), would rewrite the whole binary and give an unreviewable diff. The JSON carries the evidence, and the loader raises if the spreadsheet's target no longer equals the recorded old_target.",
+ "regression_check": {
+  "method": "format_journal_name over every distinct journal and booktitle value in `git show HEAD:cdl.bib`, before vs after",
+  "distinct_journals": 794,
+  "distinct_booktitles": 218,
+  "differences": [],
+  "note": "No HEAD value changes: cdl.bib already stores formatted names, so no wrong-row source string survives in it. The corrupted values (e.g. 'Physiological Review') are not alias sources and format to themselves both before and after; they need source-verified edits to cdl.bib, listed below."
+ },
+ "wrong_rows": [
+  {
+   "source": "j comp neurol",
+   "xls_rows": [
+    342
+   ],
+   "old_target": "journal of computational neuroscience",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "the journal of comparative neurology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Comp Neurol' = NLM 0406041 'The Journal of comparative neurology.' (ISSN 0021-9967); the old target is 'J Comput Neurosci' = NLM 9439510 'Journal of computational neuroscience.' (ISSN 0929-5313, founded 1994).",
+   "formatted_before": "Journal of Computational Neuroscience",
+   "formatted_after": "The Journal of Comparative Neurology",
+   "fix": "target replaced by 'the journal of comparative neurology'"
+  },
+  {
+   "source": "j comp physiol",
+   "xls_rows": [
+    343
+   ],
+   "old_target": "journal of computational physiology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of comparative physiology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Comp Physiol' = NLM 7502104 'Journal of comparative physiology.' (ISSN 0302-9824). No journal titled 'Journal of Computational Physiology' exists.",
+   "formatted_before": "Journal of Computational Physiology",
+   "formatted_after": "Journal of Comparative Physiology",
+   "fix": "target replaced by 'journal of comparative physiology'"
+  },
+  {
+   "source": "j. comp. physiol.",
+   "xls_rows": [
+    353
+   ],
+   "old_target": "journal of computational physiology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of comparative physiology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Comp Physiol' = NLM 7502104 'Journal of comparative physiology.' (dotted form of the same abbreviation).",
+   "formatted_before": "Journal of Computational Physiology",
+   "formatted_after": "Journal of Comparative Physiology",
+   "fix": "target replaced by 'journal of comparative physiology'"
+  },
+  {
+   "source": "j comp physiol a",
+   "xls_rows": [
+    344
+   ],
+   "old_target": "journal of computational physiology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of comparative physiology a",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Comp Physiol A' = NLM 8413199 'Journal of comparative physiology. A, Sensory, neural, and behavioral physiology.' (c1984-c2001).",
+   "formatted_before": "Journal of Computational Physiology",
+   "formatted_after": "Journal of Comparative Physiology {A}",
+   "fix": "target replaced by 'journal of comparative physiology a'"
+  },
+  {
+   "source": "j exp psychol",
+   "xls_rows": [
+    346
+   ],
+   "old_target": "journal of experimental psychology: general",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of experimental psychology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Exp Psychol' = NLM 7502586 'Journal of experimental psychology.' (ISSN 0022-1015, the undivided journal to 1974). JEP: General (1975-) is a different serial, abbreviated 'J Exp Psychol Gen'.",
+   "formatted_before": "Journal of Experimental Psychology: General",
+   "formatted_after": "Journal of Experimental Psychology",
+   "fix": "target replaced by 'journal of experimental psychology'"
+  },
+  {
+   "source": "journal of experimental pyschology",
+   "xls_rows": [
+    422
+   ],
+   "old_target": "journal of experimental psychology: general",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of experimental psychology",
+   "evidence": "Misspelling of 'Journal of Experimental Psychology' (NLM 7502586). The old target 'JEP: General' is a different serial begun in 1975 (NLM 'J Exp Psychol Gen'); the same rule is already applied to 'journal of experimental psychology; journal of experimental psychology' by preserve_identity in helpers.py.",
+   "formatted_before": "Journal of Experimental Psychology: General",
+   "formatted_after": "Journal of Experimental Psychology",
+   "fix": "target replaced by 'journal of experimental psychology'"
+  },
+  {
+   "source": "psychonomic science",
+   "xls_rows": [
+    733
+   ],
+   "old_target": "psychological science",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Psychon Sci' = NLM 0360135 'Psychonomic science.' (ISSN 0033-3131, 1964-1972). Psychological Science is a different journal (APS, begun 1990).",
+   "formatted_before": "Psychological Science",
+   "formatted_after": "Psychonomic Science",
+   "fix": "alias removed; name formatted as given"
+  },
+  {
+   "source": "psychometric monographs",
+   "xls_rows": [
+    726
+   ],
+   "old_target": "psychometrika",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "Psychometric Monographs is the Psychometric Society's numbered monograph series (e.g. No. 1, Thurstone 1938, Primary Mental Abilities), separate from the journal Psychometrika (ISSN 0033-3123). Neither NLM nor Crossref /journals indexes the monograph series (both queried 2026-09-26, 0 hits).",
+   "formatted_before": "Psychometrika",
+   "formatted_after": "Psychometric Monographs",
+   "fix": "alias removed; name formatted as given"
+  },
+  {
+   "source": "journal of the royal statistical society. series c (applied statistics)",
+   "xls_rows": [
+    490
+   ],
+   "old_target": "journal of the optical society of america",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of the royal statistical society series c: applied statistics",
+   "evidence": "Crossref /journals: 'Journal of the Royal Statistical Society Series C (Applied Statistics)' ISSN 0035-9254/1467-9876. The old target, Journal of the Optical Society of America (NLM 7503097, ISSN 0030-3941), is an unrelated journal.",
+   "formatted_before": "Journal of the Optical Society of America",
+   "formatted_after": "Journal of the Royal Statistical Society Series {C}: Applied Statistics",
+   "fix": "target replaced by 'journal of the royal statistical society series c: applied statistics'"
+  },
+  {
+   "source": "journal of the optical society of america [a]",
+   "xls_rows": [
+    489
+   ],
+   "old_target": "journal of the optical society of america",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of the optical society of america a",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Opt Soc Am A' = NLM 8402086 'Journal of the Optical Society of America. A, Optics and image science.' (ISSN 0740-3232, 1984-) is distinct from 'J Opt Soc Am' = NLM 7503097 (ISSN 0030-3941, to 1983).",
+   "formatted_before": "Journal of the Optical Society of America",
+   "formatted_after": "Journal of the Optical Society of America {A}",
+   "fix": "target replaced by 'journal of the optical society of america a'"
+  },
+  {
+   "source": "journals of gerontology",
+   "xls_rows": [
+    500
+   ],
+   "old_target": "journal of gerontology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "the journals of gerontology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Gerontol' = NLM 0374762 'Journal of gerontology.' (ISSN 0022-1422, to 1994); 'The journals of gerontology' (Series A/B, 1995-) are successor serials, e.g. NLM 9508483 'J Gerontol B Psychol Sci Soc Sci' (ISSN 1079-5014). The plural title names the successor, not Journal of Gerontology.",
+   "formatted_before": "Journal of Gerontology",
+   "formatted_after": "The Journals of Gerontology",
+   "fix": "target replaced by 'the journals of gerontology'"
+  },
+  {
+   "source": "journals of gerontology: series b: psychological sciences \\& social sciences",
+   "xls_rows": [
+    501
+   ],
+   "old_target": "journal of gerontology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "the journals of gerontology series b",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): NLM 9508483 'The journals of gerontology. Series B, Psychological sciences and social sciences.' (ISSN 1079-5014). Old target 'journal of gerontology' is NLM 0374762 (ISSN 0022-1422). New target matches this table's existing alias for the Series B full title.",
+   "formatted_before": "Journal of Gerontology",
+   "formatted_after": "The Journals of Gerontology Series {B}",
+   "fix": "target replaced by 'the journals of gerontology series b'"
+  },
+  {
+   "source": "journal of neural transmission supplement",
+   "xls_rows": [
+    450
+   ],
+   "old_target": "journal of neural transmission",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Neural Transm Suppl' = NLM 0425126 'Journal of neural transmission. Supplementum.' (ISSN 0303-6995), a separate serial from Journal of Neural Transmission.",
+   "formatted_before": "Journal of Neural Transmission",
+   "formatted_after": "Journal of Neural Transmission Supplement",
+   "fix": "alias removed; name formatted as given"
+  },
+  {
+   "source": "psychological review monographs supplement",
+   "xls_rows": [
+    716
+   ],
+   "old_target": "psychological review",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "psychological review: monograph supplements",
+   "evidence": "Crossref work 10.1037/h0092987 (Thorndike 1898) has container-title 'The Psychological Review: Monograph Supplements', ISSN 0096-9753 (NLM 19920010R 'Psychological monographs.'), a separate serial from Psychological Review.",
+   "formatted_before": "Psychological Review",
+   "formatted_after": "Psychological Review: Monograph Supplements",
+   "fix": "target replaced by 'psychological review: monograph supplements'"
+  },
+  {
+   "source": "proceedings of the royal society of london a",
+   "xls_rows": [
+    686
+   ],
+   "old_target": "proceedings of the royal society of london",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the royal society of london series a",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Proc R Soc Lond A Math Phys Sci' = NLM 7505888 'Proceedings of the Royal Society of London. Series A, Mathematical and physical sciences.' (1905-1990, ISSN 0950-1207). Dropping the series letter names the undivided pre-1905 Proceedings; this table already keeps the series for 'series b'.",
+   "formatted_before": "Proceedings of the Royal Society of London",
+   "formatted_after": "Proceedings of the Royal Society of London Series {A}",
+   "fix": "target replaced by 'proceedings of the royal society of london series a'"
+  },
+  {
+   "source": "proc. intl. soc. mag. reson. med.",
+   "xls_rows": [
+    666
+   ],
+   "old_target": "proceedings of the society for magnetic resonance in medicine",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the international society for magnetic resonance in medicine",
+   "evidence": "The source abbreviates 'Proceedings of the International Society for Magnetic Resonance in Medicine' (ISMRM, formed 1994 by merging SMRM and SMRI); the old target names the predecessor Society of Magnetic Resonance in Medicine.",
+   "formatted_before": "Proceedings of the Society for Magnetic Resonance in Medicine",
+   "formatted_after": "Proceedings of the International Society for Magnetic Resonance in Medicine",
+   "fix": "target replaced by 'proceedings of the international society for magnetic resonance in medicine'"
+  },
+  {
+   "source": "proceedings of the naacl-hlt",
+   "xls_rows": [
+    678
+   ],
+   "old_target": "proceedings of the national association for computational linguistics",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the conference of the north american chapter of the association for computational linguistics: human language technologies",
+   "evidence": "NAACL-HLT = Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (ACL Anthology venue 'naacl'); no 'National Association for Computational Linguistics' exists. New target is the booktitle already used by 3 cdl.bib entries.",
+   "formatted_before": "Proceedings of the National Association for Computational Linguistics",
+   "formatted_after": "Proceedings of the Conference of the North {American} Chapter of the Association for Computational Linguistics: Human Language Technologies",
+   "fix": "target replaced by 'proceedings of the conference of the north american chapter of the association for computational linguistics: human language technologies'"
+  },
+  {
+   "source": "proc. {ieee}",
+   "xls_rows": [
+    668
+   ],
+   "old_target": "ieee proceedings",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the ieee",
+   "evidence": "'Proc. IEEE' is Proceedings of the IEEE (ISSN 0018-9219). The old target 'IEEE Proceedings' is not a journal title and is easily confused with the IET/IEE 'IEE Proceedings' series.",
+   "formatted_before": "{IEEE} Proceedings",
+   "formatted_after": "Proceedings of the {IEEE}",
+   "fix": "target replaced by 'proceedings of the ieee'"
+  },
+  {
+   "source": "proceedings of the {aaai} 2008 workshop on wikipedia and artificial intelligence",
+   "xls_rows": [
+    688
+   ],
+   "old_target": "proceedings of the association for the advancement of artificial intelligence",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "The AAAI 2008 Workshop on Wikipedia and Artificial Intelligence (MilnWitt08, AAAI workshop technical report WS-08-15) is a workshop, not the AAAI conference proceedings named by the old target.",
+   "formatted_before": "Proceedings of the Association for the Advancement of Artificial Intelligence",
+   "formatted_after": "Proceedings of the {AAAI} 2008 Workshop on {Wikipedia} and Artificial Intelligence",
+   "fix": "alias removed; name formatted as given"
+  },
+  {
+   "source": "proceedings of the {t}hird {i}nternational {ica} {c}onference",
+   "xls_rows": [
+    1024
+   ],
+   "old_target": "proceedings of the international congress on acoustics",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the international conference on independent component analysis and blind signal separation",
+   "evidence": "The only cdl.bib user (DeloEtal01, San Diego 2001, 'independent component analysis' in the title) is ICA 2001, the 3rd International Conference on Independent Component Analysis and Blind Signal Separation. The old target, International Congress on Acoustics, is an unrelated meeting.",
+   "formatted_before": "Proceedings of the International Congress on Acoustics",
+   "formatted_after": "Proceedings of the International Conference on Independent Component Analysis and Blind Signal Separation",
+   "fix": "target replaced by 'proceedings of the international conference on independent component analysis and blind signal separation'"
+  },
+  {
+   "source": "learning and memory: memory systems",
+   "xls_rows": [
+    514
+   ],
+   "old_target": "learning and memory",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "'Memory Systems' is vol. 3 of the reference work 'Learning and Memory: A Comprehensive Reference' (Academic Press, 2008); the old target 'learning and memory' is the name this table gives the CSHL journal Learning & Memory (rows 'learning \\& memory', 'learning {\\&} memory').",
+   "formatted_before": "Learning and Memory",
+   "formatted_after": "Learning and Memory: Memory Systems",
+   "fix": "alias removed; name formatted as given"
+  },
+  {
+   "source": "zeitschrift f{\\\"u}r psychologie und physiologie der sinnesorgane",
+   "xls_rows": [
+    845
+   ],
+   "old_target": "zeitschrift f{\\\"u}r psychologie",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "Historical title (1890-1906) of the serial that then split into Zeitschrift fur Psychologie and Zeitschrift fur Sinnesphysiologie; the alias erases the historical title, the same reason preserve_identity already exists in helpers.py. Title history from domain knowledge: NLM has no record for the old title (esearch 'Z Psychol Physiol Sinnesorg' returned 0); UNCONFIRMED against a catalogue.",
+   "formatted_before": "Zeitschrift F{\\\"u}r Psychologie",
+   "formatted_after": "Zeitschrift F{\\\"u}r Psychologie Und Physiologie Der Sinnesorgane",
+   "fix": "alias removed; name formatted as given"
+  },
+  {
+   "source": "zeitschrift f{\\\"u}r psychologie eganzungsband",
+   "xls_rows": [
+    844
+   ],
+   "old_target": "zeitschrift f{\\\"u}r psychologie",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "zeitschrift f{\\\"u}r psychologie erg{\\\"a}nzungsband",
+   "evidence": "Erganzungsband is the journal's numbered supplementary-volume series, separate from the journal issues; the old target drops it. New target keeps the series and fixes the source's 'eganzungsband' typo.",
+   "formatted_before": "Zeitschrift F{\\\"u}r Psychologie",
+   "formatted_after": "Zeitschrift F{\\\"u}r Psychologie Erg{\\\"a}nzungsband",
+   "fix": "target replaced by 'zeitschrift f{\\\\\"u}r psychologie erg{\\\\\"a}nzungsband'"
+  },
+  {
+   "source": "physiological reviews",
+   "xls_rows": [
+    653
+   ],
+   "old_target": "physiological review",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "physiological reviews",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Physiol Rev' = NLM 0231714 'Physiological reviews.' (ISSN 0031-9333). 'Physiological Review' (singular) is not a journal title.",
+   "formatted_before": "Physiological Review",
+   "formatted_after": "Physiological Reviews",
+   "fix": "target replaced by 'physiological reviews'"
+  },
+  {
+   "source": "int j psychophysiol",
+   "xls_rows": [
+    317
+   ],
+   "old_target": "international journal of phychophysiology",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "international journal of psychophysiology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Int J Psychophysiol' = NLM 8406214 'International journal of psychophysiology' (ISSN 0167-8760); old target misspells 'phychophysiology'.",
+   "formatted_before": "International Journal of Phychophysiology",
+   "formatted_after": "International Journal of Psychophysiology",
+   "fix": "target replaced by 'international journal of psychophysiology'"
+  },
+  {
+   "source": "int. j. psychophys.",
+   "xls_rows": [
+    319
+   ],
+   "old_target": "international journal of phychophysiology",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "international journal of psychophysiology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): NLM 8406214 'International journal of psychophysiology'; old target misspells 'phychophysiology'.",
+   "formatted_before": "International Journal of Phychophysiology",
+   "formatted_after": "International Journal of Psychophysiology",
+   "fix": "target replaced by 'international journal of psychophysiology'"
+  },
+  {
+   "source": "j clin exp neuropsychol",
+   "xls_rows": [
+    340
+   ],
+   "old_target": "journal of clinical and experimental neuropyschology",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "journal of clinical and experimental neuropsychology",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'J Clin Exp Neuropsychol' = NLM 8502170 'Journal of clinical and experimental neuropsychology.' (ISSN 1380-3395); old target misspells 'neuropyschology'.",
+   "formatted_before": "Journal of Clinical and Experimental Neuropyschology",
+   "formatted_after": "Journal of Clinical and Experimental Neuropsychology",
+   "fix": "target replaced by 'journal of clinical and experimental neuropsychology'"
+  },
+  {
+   "source": "journal of experimental psychlogy: human perception and performance",
+   "xls_rows": [
+    394
+   ],
+   "old_target": "journal of experiment psychology: human perception and performance",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "journal of experimental psychology: human perception and performance",
+   "evidence": "Old target reads 'journal of experiment psychology: ...'; the journal is Journal of Experimental Psychology: Human Perception and Performance (NLM 'J Exp Psychol Hum Percept Perform', ISSN 0096-1523).",
+   "formatted_before": "Journal of Experiment Psychology: Human Perception and Performance",
+   "formatted_after": "Journal of Experimental Psychology: Human Perception and Performance",
+   "fix": "target replaced by 'journal of experimental psychology: human perception and performance'"
+  },
+  {
+   "source": "learning, memory",
+   "xls_rows": [
+    517
+   ],
+   "old_target": "learning and memory",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null,
+   "evidence": "A truncated 'Journal of Experimental Psychology: Learning, Memory, and Cognition'. cdl.bib HEAD entries AshbEtal88 (14(1):33-53, 1988), DoshEtal89 (15(5):868-886), AndeFinc94 (20(6):1322-1340), Brow97 (23(4):898-914) and AndeEtal99a (25(5):1120-1136) carry 'Learning and Memory' with JEP:LMC volume numbers; the CSHL journal Learning & Memory began in 1994 at vol 1. The fragment is too short to retarget safely, so the alias is dropped.",
+   "formatted_before": "Learning and Memory",
+   "formatted_after": "Learning, Memory",
+   "fix": "alias removed; name formatted as given"
+  },
+  {
+   "source": "psychol forsch",
+   "xls_rows": [
+    700
+   ],
+   "old_target": "psychologie forschung",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "psychologische forschung",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Psychol Forsch' = NLM 0435063 'Psychologische Forschung.' (ISSN 0033-3026); Crossref /journals agrees. 'Psychologie Forschung' is not the title.",
+   "formatted_before": "Psychologie Forschung",
+   "formatted_after": "Psychologische Forschung",
+   "fix": "target replaced by 'psychologische forschung'"
+  },
+  {
+   "source": "alzheimer disease \\& associated disorders",
+   "xls_rows": [
+    18
+   ],
+   "old_target": "alzheimer's disease and associated disorders",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "alzheimer disease and associated disorders",
+   "evidence": "NLM Catalog (esearch/esummary db=nlmcatalog, 2026-09-26): 'Alzheimer Dis Assoc Disord' = NLM 8704771 'Alzheimer disease and associated disorders.' (ISSN 0893-0341); the old target adds a possessive the title does not have.",
+   "formatted_before": "{Alzheimer's} Disease and Associated Disorders",
+   "formatted_after": "Alzheimer Disease and Associated Disorders",
+   "fix": "target replaced by 'alzheimer disease and associated disorders'"
+  },
+  {
+   "source": "reliability engineering \\& systems safety",
+   "xls_rows": [
+    743
+   ],
+   "old_target": "reliability engineering and systems safety",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "reliability engineering and system safety",
+   "evidence": "Crossref /journals: 'Reliability Engineering & System Safety' (Elsevier, ISSN 0951-8320); old target reads 'systems'.",
+   "formatted_before": "Reliability Engineering and Systems Safety",
+   "formatted_after": "Reliability Engineering and System Safety",
+   "fix": "target replaced by 'reliability engineering and system safety'"
+  },
+  {
+   "source": "{artificial intelligence and statistics}",
+   "xls_rows": [
+    1084
+   ],
+   "old_target": "artificial intellience and statistics",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "artificial intelligence and statistics",
+   "evidence": "Old target misspells 'intellience' (AISTATS).",
+   "formatted_before": "Artificial Intellience and Statistics",
+   "formatted_after": "Artificial Intelligence and Statistics",
+   "fix": "target replaced by 'artificial intelligence and statistics'"
+  },
+  {
+   "source": "{c}omputational and {s}ystems {n}euroscience ({cosyne}) {a}bstracts",
+   "xls_rows": [
+    1086
+   ],
+   "old_target": "computational and systems neuroscience (coysne)",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "computational and systems neuroscience (cosyne)",
+   "evidence": "Old target misspells the acronym 'coysne'; the meeting is Cosyne (Computational and Systems Neuroscience).",
+   "formatted_before": "Computational and Systems Neuroscience (coysne)",
+   "formatted_after": "Computational and Systems Neuroscience ({COSYNE})",
+   "fix": "target replaced by 'computational and systems neuroscience (cosyne)'"
+  },
+  {
+   "source": "youman's neurosurgical surgery, 5th edition",
+   "xls_rows": [
+    1081
+   ],
+   "old_target": "youman's neurosurgical surgery",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "youmans neurological surgery",
+   "evidence": "The book is 'Youmans Neurological Surgery' (5th ed., H R Winn ed., Saunders 2004); old target reads \"youman's neurosurgical surgery\".",
+   "formatted_before": "{Youman's} Neurosurgical Surgery",
+   "formatted_after": "{Youmans} Neurological Surgery",
+   "fix": "target replaced by 'youmans neurological surgery'"
+  },
+  {
+   "source": "current issues in cognitive processes: the {tulane flowerree} symposium on cognition",
+   "xls_rows": [
+    930
+   ],
+   "old_target": "current issues in cognitive processes: the floweree symposium on cognition",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "current issues in cognitive processes: the tulane flowerree symposium on cognition",
+   "evidence": "Open Library works OL8447287W/OL4634505W editions: 'Current Issues in Cognitive Processes' subtitle 'The Tulane Flowerree Symposia on Cognition' (Izawa ed., 1989). Old target drops 'Tulane' and misspells 'Floweree'.",
+   "formatted_before": "Current Issues in Cognitive Processes: the Floweree Symposium on Cognition",
+   "formatted_after": "Current Issues in Cognitive Processes: the Tulane Flowerree Symposium on Cognition",
+   "fix": "target replaced by 'current issues in cognitive processes: the tulane flowerree symposium on cognition'"
+  },
+  {
+   "source": "engineering in medicine and biology society (embc), 2010 annual international conference of the ieee",
+   "xls_rows": [
+    935
+   ],
+   "old_target": "ieee conference on engineering in medicine, biology, and society",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "annual international conference of the ieee engineering in medicine and biology society",
+   "evidence": "The meeting is the Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC); old target 'engineering in medicine, biology, and society' splits the society's name into three topics.",
+   "formatted_before": "{IEEE} Conference on Engineering in Medicine, Biology, and Society",
+   "formatted_after": "Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society",
+   "fix": "target replaced by 'annual international conference of the ieee engineering in medicine and biology society'"
+  },
+  {
+   "source": "engineering in medicine and biology society, 2008. embs 2008. 30th annual international conference of the ieee",
+   "xls_rows": [
+    936
+   ],
+   "old_target": "ieee conference on engineering in medicine, biology, and society",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "annual international conference of the ieee engineering in medicine and biology society",
+   "evidence": "Same as the EMBC 2010 row: old target mis-expands 'Engineering in Medicine and Biology Society'.",
+   "formatted_before": "{IEEE} Conference on Engineering in Medicine, Biology, and Society",
+   "formatted_after": "Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society",
+   "fix": "target replaced by 'annual international conference of the ieee engineering in medicine and biology society'"
+  },
+  {
+   "source": "proc. intl. conference on learning and development (icdl)",
+   "xls_rows": [
+    1005
+   ],
+   "old_target": "proceedings of the international conference on learning and development",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "proceedings of the international conference on development and learning",
+   "evidence": "ICDL is the (IEEE) International Conference on Development and Learning; this table already maps the 3rd ICDL to 'proceedings of the international conference on development and learning'. Old target transposes the name.",
+   "formatted_before": "Proceedings of the International Conference on Learning and Development",
+   "formatted_after": "Proceedings of the International Conference on Development and Learning",
+   "fix": "target replaced by 'proceedings of the international conference on development and learning'"
+  },
+  {
+   "source": "mathematics $+$ physics",
+   "xls_rows": [
+    979
+   ],
+   "old_target": "mathematics$+$ physics",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "mathematics $+$ physics",
+   "evidence": "Open Library: 'Mathematics + Physics' (L Streit ed., World Scientific 1985); old target 'mathematics$+$ physics' drops the space before '+'.",
+   "formatted_before": "Mathematics$+$ Physics",
+   "formatted_after": "Mathematics $+$ Physics",
+   "fix": "target replaced by 'mathematics $+$ physics'"
+  }
+ ],
+ "wrong_rows_already_neutralized": [
+  {
+   "source": "journal of experimental psychology monograph",
+   "old_target": "journal of experimental psychology: general",
+   "class": "different_journal",
+   "fix": "already neutralized before this audit by preserve_identity / cuts_suffix in helpers.format_journal_name; left as is"
+  },
+  {
+   "source": "journal of experimental psychology monograph supplement",
+   "old_target": "journal of experimental psychology: general",
+   "class": "different_journal",
+   "fix": "already neutralized before this audit by preserve_identity / cuts_suffix in helpers.format_journal_name; left as is"
+  },
+  {
+   "source": "journal of experimental psychology; journal of experimental psychology",
+   "old_target": "journal of experimental psychology: general",
+   "class": "different_journal",
+   "fix": "already neutralized before this audit by preserve_identity / cuts_suffix in helpers.format_journal_name; left as is"
+  },
+  {
+   "source": "the quarterly journal of experimental psychology section a",
+   "old_target": "quarterly journal of experimental psychology",
+   "class": "different_journal",
+   "fix": "already neutralized before this audit by preserve_identity / cuts_suffix in helpers.format_journal_name; left as is"
+  },
+  {
+   "source": "the quarterly journal of experimental psychology: section a",
+   "old_target": "quarterly journal of experimental psychology",
+   "class": "different_journal",
+   "fix": "already neutralized before this audit by preserve_identity / cuts_suffix in helpers.format_journal_name; left as is"
+  },
+  {
+   "source": "journal of physiology-paris",
+   "old_target": "journal of physiology",
+   "class": "different_journal",
+   "fix": "already neutralized before this audit by preserve_identity / cuts_suffix in helpers.format_journal_name; left as is"
+  }
+ ],
+ "kept_with_notes": [
+  {
+   "source": "acta neurobiol.",
+   "target": "acta neurobiologiae experimentalis",
+   "note": "truncated abbreviation; the only 'Acta Neurobiol.' serial is Acta Neurobiologiae Experimentalis (NLM 'Acta Neurobiol Exp (Wars)'); kept"
+  },
+  {
+   "source": "psychology review",
+   "target": "psychological review",
+   "note": "probable typo for Psychological Review; no cdl.bib entry uses it; kept"
+  },
+  {
+   "source": "control of cognitive processes: attention and performance xviii",
+   "target": "control of cognitive processes: attention and performance",
+   "note": "drops the volume numeral but the subtitle still identifies the book; kept"
+  },
+  {
+   "source": "operative neurosurgery supplement i",
+   "target": "operative neurosurgery",
+   "note": "drops 'supplement I' of the same publication; kept"
+  },
+  {
+   "source": "{proceedings of the acm national conference}",
+   "target": "proceedings of the association for computing machinery",
+   "note": "generic ACM proceedings target; same venue family; kept"
+  },
+  {
+   "source": "proceedings of the 53rd annual meeting of the association for computational linguistics and the 7th international joint conference on natural language processing",
+   "target": "proceedings of the association for computational linguistics",
+   "note": "drops the joint IJCNLP name; same ACL proceedings; kept"
+  },
+  {
+   "source": "seventh european conference on speech communication and technology",
+   "target": "proceedings of the conference on speech communication and technology",
+   "note": "drops 'European' (Eurospeech); same conference; kept"
+  },
+  {
+   "source": "brain research reviews",
+   "target": "brain research: brain research reviews",
+   "note": "title-history target, already neutralized by preserve_identity"
+  }
+ ],
+ "likely_corrupted_cdl_entries": [
+  {
+   "key": "TounEtal99",
+   "year": "1999",
+   "field": "journal",
+   "current_journal": "{Alzheimer's} Disease and Associated Disorders",
+   "probable_true_journal": "Alzheimer Disease and Associated Disorders",
+   "wrong_alias_row": "alzheimer disease \\& associated disorders",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1097/00002093-199903000-00006: container-title 'Alzheimer Disease &amp; Associated Disorders' (title match 1.0, year 1999)"
+  },
+  {
+   "key": "BlakEtal08",
+   "year": "2008",
+   "field": "booktitle",
+   "current_journal": "{IEEE} Conference on Engineering in Medicine, Biology, and Society",
+   "probable_true_journal": "Annual International Conference of the IEEE Engineering in Medicine and Biology Society",
+   "wrong_alias_row": "engineering in medicine and biology society ... (EMBC rows)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1109/iembs.2008.4650328: container-title '2008 30th Annual International Conference of the IEEE Engineering in Medicine and Biology Society' (title match 1.0, year 2008)"
+  },
+  {
+   "key": "KellEtal10a",
+   "year": "2010",
+   "field": "booktitle",
+   "current_journal": "{IEEE} Conference on Engineering in Medicine, Biology, and Society",
+   "probable_true_journal": "Annual International Conference of the IEEE Engineering in Medicine and Biology Society",
+   "wrong_alias_row": "engineering in medicine and biology society ... (EMBC rows)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1109/iembs.2010.5627682: container-title '2010 Annual International Conference of the IEEE Engineering in Medicine and Biology' (title match 1.0, year 2010)"
+  },
+  {
+   "key": "BasaEtal92",
+   "year": "1992",
+   "field": "journal",
+   "current_journal": "International Journal of Phychophysiology",
+   "probable_true_journal": "International Journal of Psychophysiology",
+   "wrong_alias_row": "int j psychophysiol | int. j. psychophys.",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1016/0167-8760(92)90055-g: container-title 'International Journal of Psychophysiology' (title match 1.0, year 1992)"
+  },
+  {
+   "key": "DiazEtal06",
+   "year": "2006",
+   "field": "journal",
+   "current_journal": "Journal of Clinical and Experimental Neuropyschology",
+   "probable_true_journal": "Journal of Clinical and Experimental Neuropsychology",
+   "wrong_alias_row": "j clin exp neuropsychol",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1080/13803390500434359: container-title 'Journal of Clinical and Experimental Neuropsychology' (title match 1.0, year 2006)"
+  },
+  {
+   "key": "CollRees97",
+   "year": "1997",
+   "field": "journal",
+   "current_journal": "Journal of Computational Physiology",
+   "probable_true_journal": "Journal of Comparative Physiology A",
+   "wrong_alias_row": "j comp physiol a | j comp physiol | j. comp. physiol.",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1007/s003590050092: container-title 'Journal of Comparative Physiology A: Sensory, Neural, and Behavioral Physiology' (title match 1.0, year 1997)"
+  },
+  {
+   "key": "WehnSrin81",
+   "year": "1981",
+   "field": "journal",
+   "current_journal": "Journal of Computational Physiology",
+   "probable_true_journal": "Journal of Comparative Physiology A",
+   "wrong_alias_row": "j comp physiol a | j comp physiol | j. comp. physiol.",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1007/bf00605445: container-title 'Journal of Comparative Physiology ? A' (title match 0.954, year 1981)"
+  },
+  {
+   "key": "BarnUnde59",
+   "year": "1959",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0047507: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1959)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "BattMont69",
+   "year": "1969",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0027577: container-title 'Journal of Experimental Psychology' (title match 0.986, year 1969)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Brig57",
+   "year": "1957",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0047458: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1957)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Falk72",
+   "year": "1972",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0033287: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1972)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Fisc66",
+   "year": "1966",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0023338: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1966)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "ForrCunn73",
+   "year": "1973",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0034646: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1973)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Giur73",
+   "year": "1973",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0033882: container-title 'Journal of Experimental Psychology' (title match 0.993, year 1973)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Gorm61",
+   "year": "1961",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0040561: container-title 'Journal of Experimental Psychology' (title match 0.986, year 1961)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Hell62",
+   "year": "1962",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0043117: container-title 'Journal of Experimental Psychology' (title match 0.866, year 1962)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "HintEtal73",
+   "year": "1973",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0033884: container-title 'Journal of Experimental Psychology' (title match 0.991, year 1973)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "HoroIzaw63",
+   "year": "1963",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0048352: container-title 'Journal of Experimental Psychology' (title match 0.99, year 1963)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "LevyNevi74",
+   "year": "1974",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0035879: container-title 'Journal of Experimental Psychology' (title match 0.97, year 1974)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Loes67",
+   "year": "1967",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0024787: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1967)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "MeyeSchv71",
+   "year": "1971",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0031564: container-title 'Journal of Experimental Psychology' (title match 0.99, year 1971)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Murd56",
+   "year": "1956",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0044314: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1956)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Murd68",
+   "year": "1968",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0025694: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1968)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "MurdVomS67",
+   "year": "1967",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0024507: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1967)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "NelsBord73",
+   "year": "1973",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0033901: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1973)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Nils74",
+   "year": "1974",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0037406: container-title 'Journal of Experimental Psychology' (title match 0.923, year 1974)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "NormWaug68",
+   "year": "1968",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0026637: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1968)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "PetePete59",
+   "year": "1959",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0049234: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1959)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Pier63",
+   "year": "1963",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0044472: container-title 'Journal of Experimental Psychology' (title match 0.934, year 1963)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "RaskCook37",
+   "year": "1937",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0061612: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1937)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Sauf67",
+   "year": "1967",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0024706: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1967)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Slam68",
+   "year": "1968",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0025695: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1968)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Unde65",
+   "year": "1965",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0022014: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1965)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Unde72b",
+   "year": "1972",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0032785: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1972)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Voss69",
+   "year": "1969",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0026918: container-title 'Journal of Experimental Psychology' (title match 1.0, year 1969)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Waug63b",
+   "year": "1963",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0041501: container-title 'Journal of Experimental Psychology' (title match 0.952, year 1963)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Will61",
+   "year": "1961",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0041551: container-title 'Journal of Experimental Psychology' (title match 0.988, year 1961)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Bala99",
+   "year": "1999",
+   "field": "journal",
+   "current_journal": "Journal of Experiment Psychology: Human Perception and Performance",
+   "probable_true_journal": "Journal of Experimental Psychology: Human Perception and Performance",
+   "wrong_alias_row": "journal of experimental psychlogy: human perception and performance",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037//0096-1523.25.5.1189: container-title 'Journal of Experimental Psychology: Human Perception and Performance' (title match 1.0, year 1999)"
+  },
+  {
+   "key": "McKiNoso96",
+   "year": "1996",
+   "field": "journal",
+   "current_journal": "Journal of Experiment Psychology: Human Perception and Performance",
+   "probable_true_journal": "Journal of Experimental Psychology: Human Perception and Performance",
+   "wrong_alias_row": "journal of experimental psychlogy: human perception and performance",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037//0096-1523.22.2.294: container-title 'Journal of Experimental Psychology: Human Perception and Performance' (title match 1.0, year 1996)"
+  },
+  {
+   "key": "AndeEtal99a",
+   "year": "1999",
+   "field": "journal",
+   "current_journal": "Learning and Memory",
+   "probable_true_journal": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+   "wrong_alias_row": "learning, memory",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/0278-7393.25.5.1120: container-title 'Journal of Experimental Psychology: Learning, Memory, and Cognition' (title match 1.0, year 1999)"
+  },
+  {
+   "key": "AndeFinc94",
+   "year": "1994",
+   "field": "journal",
+   "current_journal": "Learning and Memory",
+   "probable_true_journal": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+   "wrong_alias_row": "learning, memory",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/0278-7393.20.6.1322: container-title 'Journal of Experimental Psychology: Learning, Memory, and Cognition' (title match 1.0, year 1994)"
+  },
+  {
+   "key": "AshbEtal88",
+   "year": "1988",
+   "field": "journal",
+   "current_journal": "Learning and Memory",
+   "probable_true_journal": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+   "wrong_alias_row": "learning, memory",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/0278-7393.14.1.33: container-title 'Journal of Experimental Psychology: Learning, Memory, and Cognition' (title match 1.0, year 1988)"
+  },
+  {
+   "key": "Brow97",
+   "year": "1997",
+   "field": "journal",
+   "current_journal": "Learning and Memory",
+   "probable_true_journal": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+   "wrong_alias_row": "learning, memory",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037//0278-7393.23.4.898: container-title 'Journal of Experimental Psychology: Learning, Memory, and Cognition' (title match 1.0, year 1997)"
+  },
+  {
+   "key": "DoshEtal89",
+   "year": "1989",
+   "field": "journal",
+   "current_journal": "Learning and Memory",
+   "probable_true_journal": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+   "wrong_alias_row": "learning, memory",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037//0278-7393.15.5.868: container-title 'Journal of Experimental Psychology: Learning, Memory, and Cognition' (title match 1.0, year 1989)"
+  },
+  {
+   "key": "Jell02",
+   "year": "2002",
+   "field": "journal",
+   "current_journal": "Journal of Neural Transmission",
+   "probable_true_journal": "Journal of Neural Transmission Supplementum",
+   "wrong_alias_row": "journal of neural transmission supplement",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1007/978-3-7091-6139-5_33: container-title 'Journal of Neural Transmission. Supplementa' (title match 1.0, year 2002)"
+  },
+  {
+   "key": "PellFare99",
+   "year": "1999",
+   "field": "journal",
+   "current_journal": "Journal of the Optical Society of America",
+   "probable_true_journal": "Journal of the Optical Society of America A",
+   "wrong_alias_row": "journal of the optical society of america [a]",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1364/josaa.16.000647: container-title 'Journal of the Optical Society of America A' (title match 1.0, year 1999)"
+  },
+  {
+   "key": "SekuBall86",
+   "year": "1986",
+   "field": "journal",
+   "current_journal": "Journal of the Optical Society of America",
+   "probable_true_journal": "Journal of the Optical Society of America A",
+   "wrong_alias_row": "journal of the optical society of america [a]",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1364/josaa.3.000864: container-title 'Journal of the Optical Society of America A' (title match 1.0, year 1986)"
+  },
+  {
+   "key": "HartWong79",
+   "year": "1979",
+   "field": "journal",
+   "current_journal": "Journal of the Optical Society of America",
+   "probable_true_journal": "Journal of the Royal Statistical Society Series C: Applied Statistics",
+   "wrong_alias_row": "journal of the royal statistical society. series c (applied statistics)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.2307/2346830: container-title 'Applied Statistics' (title match 1.0, year 1979)"
+  },
+  {
+   "key": "VossPall08",
+   "year": "2008",
+   "field": "journal",
+   "current_journal": "Learning and Memory",
+   "probable_true_journal": "Learning and Memory: A Comprehensive Reference (vol 3, Memory Systems)",
+   "wrong_alias_row": "learning and memory: memory systems",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1016/b978-012370509-9.00106-6: container-title 'Learning and Memory: A Comprehensive Reference' (title match 0.984, year 2008)",
+   "note": "a book chapter carried as the journal Learning and Memory"
+  },
+  {
+   "key": "CordEtal02",
+   "year": "2002",
+   "field": "journal",
+   "current_journal": "Proceedings of the Society for Magnetic Resonance in Medicine",
+   "probable_true_journal": "Magnetic Resonance Imaging",
+   "wrong_alias_row": "proc. intl. soc. mag. reson. med. (probable)",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1016/s0730-725x(02)00503-9: container-title 'Magnetic Resonance Imaging' (title match 1.0, year 2002)",
+   "note": "20(4):305-317 is a Magnetic Resonance Imaging article, not an ISMRM abstract; the SMRM value most likely came from this alias applied to a wrong source journal"
+  },
+  {
+   "key": "GrosMorl85",
+   "year": "1985",
+   "field": "booktitle",
+   "current_journal": "Mathematics$+$ Physics",
+   "probable_true_journal": "Mathematics + Physics (booktitle)",
+   "wrong_alias_row": "mathematics $+$ physics",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1142/9789814415125_0004: container-title 'Mathematics + Physics' (title match 1.0, year 1985)",
+   "note": "spacing only"
+  },
+  {
+   "key": "DanPoo06",
+   "year": "2006",
+   "field": "journal",
+   "current_journal": "Physiological Review",
+   "probable_true_journal": "Physiological Reviews",
+   "wrong_alias_row": "physiological reviews",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1152/physrev.00030.2005: container-title 'Physiological Reviews' (title match 1.0, year 2006)"
+  },
+  {
+   "key": "DestSejn03",
+   "year": "2003",
+   "field": "journal",
+   "current_journal": "Physiological Review",
+   "probable_true_journal": "Physiological Reviews",
+   "wrong_alias_row": "physiological reviews",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1152/physrev.00012.2003: container-title 'Physiological Reviews' (title match 1.0, year 2003)"
+  },
+  {
+   "key": "Jeff95",
+   "year": "1995",
+   "field": "journal",
+   "current_journal": "Physiological Review",
+   "probable_true_journal": "Physiological Reviews",
+   "wrong_alias_row": "physiological reviews",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1152/physrev.1995.75.4.689: container-title 'Physiological Reviews' (title match 1.0, year 1995)"
+  },
+  {
+   "key": "Mitz85",
+   "year": "1985",
+   "field": "journal",
+   "current_journal": "Physiological Review",
+   "probable_true_journal": "Physiological Reviews",
+   "wrong_alias_row": "physiological reviews",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1152/physrev.1985.65.1.37: container-title 'Physiological Reviews' (title match 1.0, year 1985)"
+  },
+  {
+   "key": "Wang10",
+   "year": "2010",
+   "field": "journal",
+   "current_journal": "Physiological Review",
+   "probable_true_journal": "Physiological Reviews",
+   "wrong_alias_row": "physiological reviews",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1152/physrev.00035.2008: container-title 'Physiological Reviews' (title match 1.0, year 2010)"
+  },
+  {
+   "key": "Thom82",
+   "year": "1982",
+   "field": "journal",
+   "current_journal": "{IEEE} Proceedings",
+   "probable_true_journal": "Proceedings of the IEEE",
+   "wrong_alias_row": "proc. {ieee}",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1109/proc.1982.12433: container-title 'Proceedings of the IEEE' (title match 1.0, year 1982)"
+  },
+  {
+   "key": "HuanEtal98",
+   "year": "1998",
+   "field": "journal",
+   "current_journal": "Proceedings of the Royal Society of London",
+   "probable_true_journal": "Proceedings of the Royal Society of London Series A",
+   "wrong_alias_row": "proceedings of the royal society of london a",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1098/rspa.1998.0193: container-title 'Proceedings of the Royal Society of London. Series A: Mathematical, Physical and Engineering Sciences' (title match 0.986, year 1998)"
+  },
+  {
+   "key": "GlasKwia70",
+   "year": "1970",
+   "field": "journal",
+   "current_journal": "Psychologie Forschung",
+   "probable_true_journal": "Psychologische Forschung",
+   "wrong_alias_row": "psychol forsch",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1007/bf00424979: container-title 'Psychologische Forschung' (title match 1.0, year 1970)"
+  },
+  {
+   "key": "VonR33",
+   "year": "1933",
+   "field": "journal",
+   "current_journal": "Psychologie Forschung",
+   "probable_true_journal": "Psychologische Forschung",
+   "wrong_alias_row": "psychol forsch",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1007/bf02409636: container-title 'Psychologische Forschung' (title match 0.99, year 1933)"
+  },
+  {
+   "key": "AlleGart68",
+   "year": "1968",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03331581: container-title 'Psychonomic Science' (title match 1.0, year 1968)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "BjorEtal68",
+   "year": "1968",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03331404: container-title 'Psychonomic Science' (title match 1.0, year 1968)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "Blak67",
+   "year": "1967",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03327842: container-title 'Psychonomic Science' (title match 1.0, year 1967)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "BousRosn70",
+   "year": "1970",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03335608: container-title 'Psychonomic Science' (title match 0.889, year 1970)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "Crai68a",
+   "year": "1968",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03331557: container-title 'Psychonomic Science' (title match 1.0, year 1968)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "CrowMelt65",
+   "year": "1965",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03343462: container-title 'Psychonomic Science' (title match 1.0, year 1965)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "Dall65",
+   "year": "1965",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03343114: container-title 'Psychonomic Science' (title match 1.0, year 1965)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "FozaWaug69",
+   "year": "1969",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03336447: container-title 'Psychonomic Science' (title match 1.0, year 1969)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "Hinr68",
+   "year": "1968",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03331300: container-title 'Psychonomic Science' (title match 1.0, year 1968)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "Muth65",
+   "year": "1965",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03343215: container-title 'Psychonomic Science' (title match 1.0, year 1965)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "PeteJame67",
+   "year": "1967",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03332272: container-title 'Psychonomic Science' (title match 1.0, year 1967)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "Ster67a",
+   "year": "1967",
+   "field": "journal",
+   "current_journal": "Psychological Science",
+   "probable_true_journal": "Psychonomic Science",
+   "wrong_alias_row": "psychonomic science",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.3758/bf03330664: container-title 'Psychonomic Science' (title match 1.0, year 1967)",
+   "note": "Psychological Science began in 1990"
+  },
+  {
+   "key": "RadvEtal05",
+   "year": "2005",
+   "field": "journal",
+   "current_journal": "Journal of Gerontology",
+   "probable_true_journal": "The Journals of Gerontology Series B: Psychological Sciences and Social Sciences",
+   "wrong_alias_row": "journals of gerontology: series b: psychological sciences \\& social sciences | journals of gerontology",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1093/geronb/60.5.p276: container-title 'The Journals of Gerontology Series B: Psychological Sciences and Social Sciences' (title match 1.0, year 2005)"
+  },
+  {
+   "key": "ZackHash97",
+   "year": "1997",
+   "field": "journal",
+   "current_journal": "Journal of Gerontology",
+   "probable_true_journal": "The Journals of Gerontology Series B: Psychological Sciences and Social Sciences",
+   "wrong_alias_row": "journals of gerontology: series b: psychological sciences \\& social sciences | journals of gerontology",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1093/geronb/52b.6.p274: container-title 'The Journals of Gerontology Series B: Psychological Sciences and Social Sciences' (title match 1.0, year 1997)"
+  },
+  {
+   "key": "Calk96",
+   "year": "1896",
+   "field": "journal",
+   "current_journal": "Psychological Review",
+   "probable_true_journal": "The Psychological Review: Monograph Supplements",
+   "wrong_alias_row": "psychological review monographs supplement",
+   "status": "confirmed",
+   "evidence": "Crossref record 10.1037/h0092984: container-title 'The Psychological Review: Monograph Supplements' (title match 1.0, year 1896)"
+  },
+  {
+   "key": "RangEtal14",
+   "year": "2014",
+   "field": "booktitle",
+   "current_journal": "Artificial Intellience and Statistics",
+   "probable_true_journal": "Artificial Intelligence and Statistics (AISTATS)",
+   "wrong_alias_row": "{artificial intelligence and statistics}",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1007/s12045-008-0028-7 'Resonance', title similarity 0.6)"
+  },
+  {
+   "key": "BurkKaha13",
+   "year": "2013",
+   "field": "booktitle",
+   "current_journal": "Computational and Systems Neuroscience (coysne)",
+   "probable_true_journal": "Computational and Systems Neuroscience (Cosyne) abstracts",
+   "wrong_alias_row": "{c}omputational and {s}ystems {n}euroscience ({cosyne}) {a}bstracts",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1523/jneurosci.2057-12.2013 'The Journal of Neuroscience', title similarity 0.671)"
+  },
+  {
+   "key": "JohnRedi07b",
+   "year": "2007",
+   "field": "journal",
+   "current_journal": "Computational and Systems Neuroscience (coysne)",
+   "probable_true_journal": "Computational and Systems Neuroscience (Cosyne) abstracts",
+   "wrong_alias_row": "{c}omputational and {s}ystems {n}euroscience ({cosyne}) {a}bstracts",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1016/j.mehy.2004.04.017 'Medical Hypotheses', title similarity 0.45)"
+  },
+  {
+   "key": "RamaEtal13",
+   "year": "2013",
+   "field": "booktitle",
+   "current_journal": "Computational and Systems Neuroscience (coysne)",
+   "probable_true_journal": "Computational and Systems Neuroscience (Cosyne) abstracts",
+   "wrong_alias_row": "{c}omputational and {s}ystems {n}euroscience ({cosyne}) {a}bstracts",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1523/jneurosci.5445-13.2014 'The Journal of Neuroscience', title similarity 0.748)"
+  },
+  {
+   "key": "BjorRich89",
+   "year": "1989",
+   "field": "booktitle",
+   "current_journal": "Current Issues in Cognitive Processes: the Floweree Symposium on Cognition",
+   "probable_true_journal": "Current Issues in Cognitive Processes: The Tulane Flowerree Symposium on Cognition (booktitle)",
+   "wrong_alias_row": "current issues in cognitive processes: the {tulane flowerree} symposium on cognition",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.3758/bf03197465 'Memory &amp; Cognition', title similarity 0.673)"
+  },
+  {
+   "key": "Murd89",
+   "year": "1989",
+   "field": "booktitle",
+   "current_journal": "Current Issues in Cognitive Processes: the Floweree Symposium on Cognition",
+   "probable_true_journal": "Current Issues in Cognitive Processes: The Tulane Flowerree Symposium on Cognition (booktitle)",
+   "wrong_alias_row": "current issues in cognitive processes: the {tulane flowerree} symposium on cognition",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1006/jmps.1995.1026 'Journal of Mathematical Psychology', title similarity 0.872)"
+  },
+  {
+   "key": "VanSEtal07",
+   "year": "2007",
+   "field": "journal",
+   "current_journal": "International Journal of Phychophysiology",
+   "probable_true_journal": "International Journal of Psychophysiology",
+   "wrong_alias_row": "int j psychophysiol | int. j. psychophys.",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1016/j.ijpsycho.2008.07.022 'International Journal of Psychophysiology', title similarity 0.36)"
+  },
+  {
+   "key": "MullWehn94",
+   "year": "1994",
+   "field": "journal",
+   "current_journal": "Journal of Computational Physiology",
+   "probable_true_journal": "Journal of Comparative Physiology A",
+   "wrong_alias_row": "j comp physiol a | j comp physiol | j. comp. physiol.",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search"
+  },
+  {
+   "key": "CeraHend65",
+   "year": "1965",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1037/e572342012-010 'PsycEXTRA Dataset', title similarity 1.0)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "Madi71",
+   "year": "1971",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1016/s0022-5371(71)80101-9 'Journal of Verbal Learning and Verbal Behavior', title similarity 0.464)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "TulvHast72",
+   "year": "1972",
+   "field": "journal",
+   "current_journal": "Journal of Experimental Psychology: General",
+   "probable_true_journal": "Journal of Experimental Psychology",
+   "wrong_alias_row": "j exp psychol | journal of experimental pyschology (or rows already neutralized)",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1016/s0022-5371(66)80016-6 'Journal of Verbal Learning and Verbal Behavior', title similarity 0.6)",
+   "note": "JEP: General began in 1975 (vol 104); this entry predates it"
+  },
+  {
+   "key": "DeloEtal01",
+   "year": "2001",
+   "field": "booktitle",
+   "current_journal": "Proceedings of the International Congress on Acoustics",
+   "probable_true_journal": "Proceedings of the 3rd International Conference on Independent Component Analysis and Blind Signal Separation (ICA 2001)",
+   "wrong_alias_row": "proceedings of the {t}hird {i}nternational {ica} {c}onference",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1016/j.neuroimage.2006.11.004 'NeuroImage', title similarity 0.829)"
+  },
+  {
+   "key": "MilnWitt08",
+   "year": "2008",
+   "field": "journal",
+   "current_journal": "Proceedings of the Association for the Advancement of Artificial Intelligence",
+   "probable_true_journal": "Proceedings of the AAAI 2008 Workshop on Wikipedia and Artificial Intelligence",
+   "wrong_alias_row": "proceedings of the {aaai} 2008 workshop on wikipedia and artificial intelligence",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1126/science.12.310.891 'Science', title similarity 0.42)"
+  },
+  {
+   "key": "MuelShif06",
+   "year": "2006",
+   "field": "booktitle",
+   "current_journal": "Proceedings of the International Conference on Learning and Development",
+   "probable_true_journal": "Proceedings of the International Conference on Development and Learning",
+   "wrong_alias_row": "proc. intl. conference on learning and development (icdl)",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1093/braincomms/fcaf390 'Brain Communications', title similarity 0.442)"
+  },
+  {
+   "key": "MaguEtal96",
+   "year": "1996",
+   "field": "journal",
+   "current_journal": "Proceedings of the Royal Society of London",
+   "probable_true_journal": "Proceedings of the Royal Society of London Series B: Biological Sciences",
+   "wrong_alias_row": null,
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1016/s1053-8119(96)80591-x 'NeuroImage', title similarity 0.267)",
+   "note": "vol 263 pp 1745-1750 (1996) is Series B; the series was dropped but no audited wrong row maps to this value, so the cause is unknown"
+  },
+  {
+   "key": "Kell64",
+   "year": "1964",
+   "field": "journal",
+   "current_journal": "Psychometrika",
+   "probable_true_journal": "Psychometric Monographs (No. 11)",
+   "wrong_alias_row": "psychometric monographs",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.21236/ad0043212 None, title similarity 0.493)",
+   "note": "Kelley 1964 'Memory abilities: a factor analysis' is Psychometric Monographs No. 11 (vol field 11, no pages); no Crossref/NLM record"
+  },
+  {
+   "key": "BenaEtal04",
+   "year": "2004",
+   "field": "booktitle",
+   "current_journal": "{Youman's} Neurosurgical Surgery",
+   "probable_true_journal": "Youmans Neurological Surgery (booktitle)",
+   "wrong_alias_row": "youman's neurosurgical surgery, 5th edition",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1002/mds.20954 'Movement Disorders', title similarity 0.756)"
+  },
+  {
+   "key": "Jost97",
+   "year": "1897",
+   "field": "journal",
+   "current_journal": "Zeitschrift F{\\\"u}r Psychologie",
+   "probable_true_journal": "Zeitschrift für Psychologie und Physiologie der Sinnesorgane",
+   "wrong_alias_row": "zeitschrift f{\\\"u}r psychologie und physiologie der sinnesorgane",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1007/978-3-663-09437-1_3 'Bolivien: Politisches System und Reformprozess 1993–1997', title similarity 0.232)",
+   "note": "the journal carried this title until 1906"
+  },
+  {
+   "key": "MullSchu94",
+   "year": "1894",
+   "field": "journal",
+   "current_journal": "Zeitschrift F{\\\"u}r Psychologie",
+   "probable_true_journal": "Zeitschrift für Psychologie und Physiologie der Sinnesorgane",
+   "wrong_alias_row": "zeitschrift f{\\\"u}r psychologie und physiologie der sinnesorgane",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1007/bf00695293 'Archiv f�r Klinische und Experimentelle Dermatologie', title similarity 0.574)",
+   "note": "the journal carried this title until 1906"
+  },
+  {
+   "key": "Rans02",
+   "year": "1902",
+   "field": "journal",
+   "current_journal": "Zeitschrift F{\\\"u}r Psychologie",
+   "probable_true_journal": "Zeitschrift für Psychologie und Physiologie der Sinnesorgane",
+   "wrong_alias_row": "zeitschrift f{\\\"u}r psychologie und physiologie der sinnesorgane",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1007/bf02864666 'Zeitschrift für die gesamte Neurologie und Psychiatrie', title similarity 0.413)",
+   "note": "the journal carried this title until 1906"
+  },
+  {
+   "key": "MullPilz00",
+   "year": "1900",
+   "field": "journal",
+   "current_journal": "Zeitschrift F{\\\"u}r Psychologie",
+   "probable_true_journal": "Zeitschrift für Psychologie, Ergänzungsband 1",
+   "wrong_alias_row": "zeitschrift f{\\\"u}r psychologie eganzungsband",
+   "status": "unconfirmed",
+   "evidence": "no matching Crossref record found by bibliographic search (best hit 10.1093/oso/9780199377176.003.0010 'Oxford Scholarship Online', title similarity 0.48)",
+   "note": "Müller and Pilzecker 1900 (pp 1-300) is Ergänzungsband 1, not a journal issue"
+  }
+ ],
+ "excluded_after_check": [
+  {
+   "key": "Kirk94",
+   "reason": "genuine Psychological Review 1(6), DOI 10.1037/h0068244"
+  },
+  {
+   "key": "GrunSher01",
+   "reason": "1901, before the 1905 A/B split: undivided Proceedings of the Royal Society of London is correct"
+  },
+  {
+   "key": "Psychometrika (10 entries)",
+   "reason": "all carry Psychometrika DOIs 10.1007/bf0... or s11336"
+  },
+  {
+   "key": "Journal of Computational Neuroscience (6 entries)",
+   "reason": "all 1997 or later; 5 carry J Comput Neurosci DOIs"
+  },
+  {
+   "key": "BrauEtal01",
+   "reason": "genuine Journal of Neural Transmission 108(7), DOI 10.1007/s007020170038"
+  },
+  {
+   "key": "Kroh35",
+   "reason": "1935: Zeitschrift fur Psychologie is the title then in use"
+  }
+ ]
+}

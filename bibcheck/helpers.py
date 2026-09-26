@@ -34,7 +34,36 @@ uncaps = read("uncaps.txt")
 force_caps = read("caps.txt")
 address_codes = read("addresses.txt")
 
-journal_key = load_key("journal_key.xls")
+def load_key_overrides(key, fname):
+    """Apply source-backed corrections to an alias table loaded by load_key.
+
+    journal_key.xls mapped some names onto a different journal ('psychonomic
+    science' -> 'psychological science', 'j comp neurol' -> 'journal of
+    computational neuroscience') or onto a misspelled target ('physiological
+    review'). The legacy .xls is not rewritten (no faithful .xls writer is
+    installed, and a binary diff cannot be reviewed); each correction lives in a
+    JSON file with its evidence. 'remove' drops the alias so the name is
+    formatted as given; 'retarget' replaces the target. Each row names the
+    spreadsheet's old target, and a mismatch raises instead of silently
+    overriding a row someone has since edited.
+    """
+    path = Path(__file__).parent / fname
+    for row in json.loads(path.read_text())["overrides"]:
+        source = row["source"]
+        if key.get(source) != row["old_target"]:
+            raise ValueError(
+                f"{fname}: {source!r} maps to {key.get(source)!r} in the spreadsheet, "
+                f"not the recorded old target {row['old_target']!r}")
+        if row["action"] == "remove":
+            del key[source]
+        elif row["action"] == "retarget":
+            key[source] = row["new_target"]
+        else:
+            raise ValueError(f"{fname}: unknown action {row['action']!r} for {source!r}")
+    return key
+
+
+journal_key = load_key_overrides(load_key("journal_key.xls"), "journal_key_overrides.json")
 publisher_key = load_key("publisher_key.xls")
 address_key = load_key("address_key.xls")
 
