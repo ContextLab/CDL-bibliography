@@ -1,0 +1,1390 @@
+[
+ {
+  "key": "_summary",
+  "reviewed": 95,
+  "yes": 87,
+  "partly": 8,
+  "no": 0,
+  "error_rate_random_sample": 0.019,
+  "random_sample_size": 52,
+  "random_sample_with_disagreement": [
+   "MeckEtal99"
+  ],
+  "set_a_size": 43,
+  "set_b_size": 52,
+  "sampling_method": "pool=sorted keys not in A; B=random.Random(20260927).sample(pool, round(len(pool)/3)). A = key rename/duplicate/collision, ENTRYTYPE change, identity_quote_failed, verdict ambiguous/no_source, plus work/version changes to title or journal (PellEtal88, AlonGarc87, WilsEtal90, ScanEtal21, FreeEtal03b, Brem35, GaneGosh02, LachEtal00a, CarlEtal05, TsodEtal96, KitaEtal76, Hara96, RoedMcDe93).",
+  "missing": [],
+  "systematic_findings": [
+   "POST-CHECK BUG (new): initials_from_source reads World Scientific's all-caps Crossref given names as strings of initials: FreeEtal03b 'R E B E C K A', LachEtal00a 'E U G E N I O', 'M I C H E L', 'A N T O I N E', 'J A C Q U E S', CarlEtal05 'G U N N A R', 'A F R A', 'A N N E'. It also reads PubMed's suffix 'Engel, J Jr' as a second initial (BragEtal99, outside the set: 'J J Engel'). It also adds an initial that PubMed alone prints when the publisher gives a full given name without it (MeckEtal99 'A D Mecklinger'; Crossref 'Axel'). 5 of 6 applications in wave 3 are wrong; only vandEtal17 'M A A van der Meer' is right. Caused by the post-check.",
+   "POST-CHECK BUG (new): the journal-to-series move for contained types fires when the booktitle is a reworded name of the same conference, so DesaEtal12 and BoseEtal92 get a Series that repeats the Booktitle. It should drop the journal (as the NeurIPS case does), not move it. Caused by the post-check.",
+   "Researchers cannot propose removals, and no rule covers these cases: Number stays next to an article number moved into Pages (Brig12 in the set; JayaEtal23, CookEtal16, AfshEtal13 and NastEtal18 outside it, where every researcher asked for Number to be removed). @article -> @misc keeps Journal and a URL in Volume (Hint12). Not caught by the post-check.",
+   "Researcher error: FreeEtal03b takes Crossref's deposit typo 'Jorsten' for Rebecka Jörnsten (the author's own list prints 'Jornsten, R.'). The single-source surname hold keeps it from being applied, so the post-check catches it.",
+   "Noise: Bastvand05's print_year_conflict suggests 2005 from a Crossref deposit error (vol 32 = 2006, PubMed); TsodEtal96 and SimoEtal04 doi_record_conflict flags are Crossref gaps. Surname holds on correct values (BrigEtal18, Brig12, BoseEtal92 Vapnik, JohnEtal08, BurkEtal15, RuggEtal96) are the corroboration rule working as designed."
+  ],
+  "outside_review_set_findings": [
+   "BragEtal99: 'J J Engel' from PubMed 'Engel, J Jr' (post-check initials bug); should be 'J Engel'.",
+   "JayaEtal23, CookEtal16, AfshEtal13, NastEtal18: Number still holds the article number now in Pages; each researcher asked for it to be removed."
+  ]
+ },
+ {
+  "key": "PellEtal88",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "number": "not_found, left (agree; OpenAlex gives issue 3)"
+  },
+  "problems": [
+   "Author README (fetched) and OpenAlex both give 'The design of a new letter chart for measuring contrast sensitivity', Clin Vis Sci 2(3) 187-199; no DOI exists."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "BotvEtal04",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/j.cognition.2008.08.011 published-print 2009-12, 113(3) 262-280, 'Andew G. Barto'; PubMed 18926527 same. BotvEtal09 free in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "DehaNacc00",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref print 2001-04, 79(1-2) 1-37. DehaNacc01 free in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "BrigEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree (held only by the single-source rule; Crossref family 'De Brigard' and HEAD form {St Jacques} corroborate)",
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref print 2019, 33(4) 646-659. HEAD writes P L {St Jacques} in 5 entries. DeBrEtal19 free."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Skan98",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref: Wolfgang Skrandies, Cogn Brain Res 6(3) 173-183, 1998. Identity-quote failure is the em dash encoding only. Skra98 free."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Ratc06",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/j.cogpsych.2005.10.002: 53(3) 195-237, 2006; identity failure is the title's star footnote glyph."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Brem35",
+  "agree": "yes",
+  "field_verdicts": {
+   "journal": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "SUDOC 203086856 (fetched): offprint from 'Comptes rendus des seances de la Societe de biologie', t. CXVIII (1935), p. 1235."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "JohnRedi07b",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree no_source"
+  },
+  "problems": [
+   "Cosyne 2007 abstracts are not online; conference-abstract removal rule applies (user decision)."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Buse01",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "journal": "agree (removed)",
+   "pages": "not_found, left (agree)"
+  },
+  "problems": [
+   "Crossref chapter 10.4324/9781410612328-10 (reissue) confirms title and volume; reissue pagination differs, so leaving 147--191 and no DOI is right."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Seac97",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree no_source"
+  },
+  "problems": [
+   "Trade magazine indexed only in ProQuest/Gale (excluded by user rule)."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Hara96",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "title": "agree",
+   "journal": "agree (removed)",
+   "pages": "not_found, left (agree)"
+  },
+  "problems": [
+   "SUNY Press TOC (fetched): 'Online Education: The Future Linda Harasim'."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "BotvPlau03",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "journal": "agree (removed)"
+  },
+  "problems": [
+   "Author PDF header (fetched): 'In Kokinov, B. & Hirst, W. (Eds.), Constructive memory (pp. 129-137). Sofia, Bulgaria: New Bulgarian University (2003).'"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "PribEtal74",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "publisher": "agree",
+   "journal": "agree (removed)",
+   "editor": "not_found, left (agree)"
+  },
+  "problems": [
+   "Open Library: Krantz (ed.), Contemporary developments in mathematical psychology, 1974; house sibling AtkiJuol74 uses San Francisco, {CA} / Freeman."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "EskrEtal12",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "journal": "agree (removed)"
+  },
+  "problems": [
+   "CEMS 2012 program (fetched) lists the talk; conference-abstract removal is the user's decision."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "HealEtal12a",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "journal": "agree (removed)"
+  },
+  "problems": [
+   "CEMS 2012 program (fetched): 'Karl Healey, Lynn Lohnas & Michael J. Kahana ... Modeling age-related changes in episodic memory'."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "DaPo67",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree no_source"
+  },
+  "problems": [
+   "DAI abstract; no open catalogue record."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Yone96",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree ambiguous (thesis replacement is a user decision)"
+  },
+  "problems": [
+   "DataCite 10.71548/12410 (fetched): Yonelinas, Andrew P., McMaster University, 1995, same title; Yone95 free in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Allo12",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "journal": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Publisher page (fetched): 'Tracy Packiam Alloway*, Gwyneth Doherty-Sneddon and Lynsey Forbes', Vol.7(6), pp. 138-142, February 2012; printed DOI 10.5897/ERR10.223 returns 404 at the handle API, correctly not proposed."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Braz03",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree (C W Bazil is the form HEAD uses elsewhere; optional)",
+   "doi": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref: Carl Bazil, Epilepsy Curr 3(6) p 204-205 (PMC gives 206; cited 204--206 kept). Bazi03 free."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Bastvand05",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "year": "agree 2006",
+   "key": "agree"
+  },
+  "problems": [
+   "PubMed 16293569 DP '2006 Jan-Mar' 32(1); Crossref published-print 2005-10 is a deposit error (vol 32 = 2006). The post-check's print_year_conflict suggestion of 2005 is wrong here and should not be accepted."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "AlonGarc87",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref subtitle 'I. Laminar distribution of theta field potentials', 67(3) 493-501; title form matches HEAD 'The labile brain. {I}. Neuronal transients...'."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "KitaEtal76",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "PubMed 1261623: Kitai S T, Sugimori M, Kocsis J D; 'nigro-caudate'."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "WilsEtal90",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref subtitle 'I. Analysis of limbic system pathways using neuronal responses evoked by electrical stimulation'."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Half88",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "journal": "agree (removed)",
+   "pages": "not_found, left (agree)"
+  },
+  "problems": [
+   "Open Library OL2392938M (fetched): TOC 'Curriculum and instruction in automated tutors / Henry M. Halff', Hillsdale, N.J."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "ScanEtal21",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref/PubMed 34744662: 'Distributed Subnetworks of Depression Defined by Direct Intracranial Neurophysiology', 15:746499, same 10 authors."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "RoedMcDe93",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "publisher": "agree",
+   "title": "agree",
+   "chapter": "agree (removed)"
+  },
+  "problems": [
+   "WUSTL lab list (fetched): '(1993). Implicit memory in normal human subjects. In F. Boller & J. Grafman (Eds.), Handbook of neuropsychology, (Vol. 8, pp. 63-131). Amsterdam: Elsevier.'"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "LegaEtal11b",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref print 2012, 22(4) 748-761. LegaEtal12 free."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "SteiEtal09",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref print 2010, 20(1) 166-173. SteiEtal10 free."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "TsodEtal96",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "PubMed 8841826 1996 6(3) 271-80; Crossref 1998 date is digitisation (flag is noise)."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "BabiEtal08",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref print 2009, 30(7) 2077-2089. BabiEtal09 free."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "VannEtal12",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref print 2013-07, 34(7) 1568-1578. VannEtal13 free."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "GaneGosh02",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree",
+   "number": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Crossref/PubMed 12190254: JEP:HPP 28(4) 854-867."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "WhitEtal96",
+  "agree": "yes",
+  "field_verdicts": {
+   "key": "agree (duplicate, merge into WitmEtal96)",
+   "author": "agree",
+   "title": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "HEAD WitmEtal96 (line 55228) holds the same work with DOI 10.1006/ijhc.1996.0060; Crossref author Bob G. Witmer."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "TongEtal95",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree no_source"
+  },
+  "problems": [
+   "ARVO 1995 supplement abstract not online; conference-abstract removal rule applies."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "DennReed92",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref: 'R. Reed|Hunt'; PubMed 'Hunt, R R'. DennHunt92 free."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Hint12",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "howpublished": "agree",
+   "author": "agree (G E Hinton would match his other HEAD entries; optional)",
+   "journal": "disagree: must be removed",
+   "volume": "disagree: must be removed (holds a dead Class Central URL)"
+  },
+  "problems": [
+   "SYSTEMATIC: the @article -> @misc conversion leaves Journal {Coursera} and Volume {https://www.class-central.com/...} in the final entry (removals empty). The no-journal rule covers only @inproceedings/@incollection/@inbook, and researchers cannot propose removals, although the notes ask for both. Not caught by the post-check.",
+   "Toronto page (fetched): 'Lectures from the 2012 Coursera course: Neural Networks for Machine Learning'."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "DesaEtal12",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "title": "agree",
+   "journal": "agree (removed)",
+   "series": "disagree: must be removed (post-check moved the old journal value, which is the same conference as the booktitle, into series)"
+  },
+  "problems": [
+   "POST-CHECK: the 'move journal to series when the booktitle differs' rule treats a reworded name of the same conference as a book series, so the final entry has Booktitle 'Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society' and Series 'Engineering in Medicine and Biology Society Annual International Conference of the {IEEE}'. Caused by the post-check.",
+   "Crossref 10.1109/embc.2012.6346879: 'Analyzing neuronal activation with macroelectrode vs. microelectrode array stimulation', p 4144-4147; PubMed 23366840 'Desai, Sharanya Arcot'."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "series": null
+  }
+ },
+ {
+  "key": "BoseEtal92",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "author": "agree (Vapnik: Crossref and every other source; held only by the single-source rule)",
+   "booktitle": "agree",
+   "doi": "agree",
+   "pages": "agree",
+   "publisher": "agree",
+   "journal": "agree (removed)",
+   "series": "disagree: must be removed (same workshop as the booktitle)"
+  },
+  "problems": [
+   "POST-CHECK: journal moved to Series 'Fifth Annual Workshop on Computational Learning Theory, {ACM}', which repeats the booktitle; same rule defect as DesaEtal12. Caused by the post-check.",
+   "Crossref 10.1145/130385.130401: Boser, Guyon, Vladimir N. Vapnik, COLT proceedings p 144-152, ACM 1992."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "series": null
+  }
+ },
+ {
+  "key": "Brig12",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree (held by the single-source rule; Crossref also gives family 'De Brigard')",
+   "doi": "agree",
+   "pages": "agree",
+   "key": "agree",
+   "number": "disagree: must be removed (420 is the article number, now in pages; Frontiers has no issue)"
+  },
+  "problems": [
+   "Final entry keeps Number {420} next to Pages {420}. HEAD Frontiers entries carry the article number in Pages with no Number. The researcher's notes say 'Number 420 removed' but no removal was proposed and the post-check has no rule. Not caught by the post-check.",
+   "PubMed 23162493: De Brigard, Felipe; Front Psychol 3:420. DeBr12 free in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "FreeEtal03b",
+  "agree": "partly",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree",
+   "author": "disagree: third author is Rebecka J{\\\"o}rnsten; post-check made it 'R E B E C K A Jorsten'"
+  },
+  "problems": [
+   "POST-CHECK BUG: initials_from_source reads World Scientific's upper-case given name 'REBECKA' as a string of initials and writes 'R E B E C K A'. Same bug in LachEtal00a and CarlEtal05. Caused by the post-check.",
+   "RESEARCHER: Crossref's 'JORSTEN' is a deposit typo. The author's own list (math.chalmers.se/~jornsten, fetched) prints 'Freeman, W., Gaal, G., and Jornsten, R. (2003) ... Part 3 ... 13(10), 2845-2856', and OpenAlex's author record is 'Rebecka J. Jörnsten'. The single-source surname hold stops 'Jorsten' being applied, but the value is still wrong."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "author": "W J Freeman and G Ga{\\'a}l and R J{\\\"o}rnsten"
+  }
+ },
+ {
+  "key": "LachEtal00a",
+  "agree": "partly",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree",
+   "number": "agree",
+   "author": "disagree: post-check spelled four given names out as initials"
+  },
+  "problems": [
+   "POST-CHECK BUG: initials_from_source turns Crossref's upper-case given names (EUGENIO, MICHEL, ANTOINE, JACQUES) into 'E U G E N I O Rodriguez', 'M I C H E L {Le Van Quyen}', 'A N T O I N E Lutz', 'J A C Q U E S Martinerie'. Only J-P Lachaux (the researcher's change) is right. Caused by the post-check.",
+   "Crossref 10.1142/s0218127400001560: IJBC 10(10) 2429-2439, JEAN-PHILIPPE LACHAUX et al."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "author": "J-P Lachaux and E Rodriguez and M {Le Van Quyen} and A Lutz and J Martinerie and F J Varela"
+  }
+ },
+ {
+  "key": "CarlEtal05",
+  "agree": "partly",
+  "field_verdicts": {
+   "doi": "agree",
+   "title": "agree",
+   "author": "disagree: post-check spelled given names out as initials"
+  },
+  "problems": [
+   "POST-CHECK BUG: 'G U N N A R Carlsson and A F R A Zomorodian and A N N E Collins' from Crossref's upper-case given names. Caused by the post-check.",
+   "Crossref 10.1142/s0218654305000761: 'PERSISTENCE BARCODES FOR SHAPES', IJSM 11(2) 149-187, 2005."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {
+   "author": "G Carlsson and A Zomorodian and A Collins and L J Guibas"
+  }
+ },
+ {
+  "key": "PetrPand94",
+  "agree": "yes",
+  "field_verdicts": {
+   "verdict": "agree no_source"
+  },
+  "problems": [
+   "No chapter-level record found; the entry stays a structurally wrong @article with Journal {Handbook of Neuropsychology}. Converting it to @incollection (booktitle, volume 9, Boller and Grafman eds., Elsevier, Amsterdam) should go to the user with the sign-off, as for RoedMcDe93."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "JohnEtal08",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree (held by the single-source rule, but it only repairs a malformed brace; Crossref 'L. Tugan|Muftuler' corroborates)",
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1002/hipo.20456: 18(10) 975-980."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "ShahEtal04",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed 15054063 PG 476-83."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Lope91",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref: 79(2) 81-93, 1991."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "DaniEtal95",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref/PubMed 7560551: five authors incl. Greth, Zimmermann, Grangé; 'explicit'."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "CaveSqui92",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref p 151-163, 2(2)."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "ChaoEtal95",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 7535221 96(2) 157-68."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "SimoEtal04",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/30034818 first page 305 only; cited range kept (flag is noise)."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "PereGran07",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1109/mcse.2007.53: 9(3) 21-29."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "MormEtal08b",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed 18958204: 2:3."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "CradEtal12",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "PubMed 21769991 2012 Aug 33(8); 'whole brain'."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Lewa99",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref issue 5-6."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "WrigBeck83",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1176/ps.34.12.1119: 34(12) 1119-1127 (container renamed later)."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "GilbEtal10",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed 20463867: Gilbert, Jessica R; 4:30."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Sate14",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "title": "agree (style-only, flagged for the user)"
+  },
+  "problems": [
+   "PubMed 25367475 'disorders-third edition: highlights and modifications'."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KorzEtal08",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref: Rafał Kuś; print 2008-10; p 1170-1192."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KahaEtal06",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref issue S2 (no pages); supplement pages S16-S26 per researcher's source."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "AriEtal04",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1080/00207450490430499: 114(5) 623-637."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "DonoRado99",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref: 'Now you see it, now you don't.'"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "MenoEtal96",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref: nine authors, 98(2) 89-102."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "TervEtal00",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 10864231 'Naatanen, R' (ASCII); umlauts per user accent rule."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "HalgEtal77a",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 'Post-EEG ...' 18(1) 89-93."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Bala98a",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 9974232 40(4) 601-23."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "SohaHass98b",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 'GABAB modulation ...' 8(2) 171-193."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "EkstEtal07",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 17546683 17(8) 606-17."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "CalhEtal01",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 13(1) 43-53; 2024 correction is affiliation-only (PubMed 39189682)."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Klei06",
+  "agree": "yes",
+  "field_verdicts": {
+   "journal": "agree"
+  },
+  "problems": [
+   "Internet Archive harvardpsycholog02harvuoft (fetched) contents: 'The Interference of Optical Stimuli: H. Kleinknecht 299'; title 'Harvard psychological studies', 1906."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "HansEtal12a",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed 22514527: Fellner, Marie-Christin; 6:74."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "PruiEtal20",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref: 14 named authors + STRONG STAR Consortium; 16(1) 29-40."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "CrimEtal00",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 40(2) 123-148, 2000."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "PradEtal93",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 8467635 'Dutt, D N', 23(1) 15-20."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BrunHaus03",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree (optional form)"
+  },
+  "problems": [
+   "Crossref issue s10, p 2-10."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BeieAcke04",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 32(6) 607-619."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "RosaEtal07",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref: 24 authors as proposed, 115(5), title '...2007 Update' + subtitle."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "LachEtal07a",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Crossref print 2007-12, 28(12) 1368-1375."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BasaEtal01",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref issue 2-3; Başar, Karakaş, Schürmann."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "ThomEtal02",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref: eight authors incl. Knight and Swick, 2(2) 109-120."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "MeckEtal99",
+  "agree": "partly",
+  "field_verdicts": {
+   "doi": "agree",
+   "author": "disagree: post-check added a D to Mecklinger that the researcher had rejected"
+  },
+  "problems": [
+   "POST-CHECK: initials_from_source applied 'A' -> 'A D Mecklinger' from PubMed 10572281 'Mecklinger, A D', although Crossref (the publisher) gives the full given name 'Axel' with no second name. PubMed 'Mecklinger AD[au]' matches only this one record; every other entry in HEAD writes 'A Mecklinger' (7). A full given name without a middle name contradicts the extra initial, so 'every source form agrees' did not hold. Caused by the post-check."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {
+   "author": "A Mecklinger and D Y {von Cramon} and A Springer and G {Matthes-von Cramon}"
+  }
+ },
+ {
+  "key": "HankEtal09",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "PubMed (fetched): Haxby before Hanson; Front Neuroinform 2009;3:3."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "SchuEtal83",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "not_found, left (agree)"
+  },
+  "problems": [
+   "Crossref 51(3), no pages."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BurkEtal15",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree (held by the single-source rule; Crossref also gives Burke)",
+   "doi": "agree",
+   "year": "agree 2015 (online-only journal, published 2015-01-20; PubMed files it under 2014 as eCollection)"
+  },
+  "problems": [
+   "Crossref: John F. Burke, Maxwell B. Merkow, Kareem A. Zaghloul."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "RuggEtal96",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref: Geoffrey R. Patching; PubMed 8957571 'Patching, G R'."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "DeadEtal13",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "PubMed 24421759: Gerhardt, Greg A; 7:120."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KrzyEtal09",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 19541911 19(9) 1639-45."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "FiscEtal99",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 'intersubject', 8(4) 272-284."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "StepEtal05",
+  "agree": "yes",
+  "field_verdicts": {
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed 16462195 PG 388-401; PubMed's DOI unregistered, correctly not proposed."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "ConwFthe03",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref issue 4-5."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "JungEtal08",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed 17894399 29(10) 1193-206."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "SpinEtal88",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 'Dementia, ageing, and ...' 5(2) 193-211."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KramEtal75",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 49(1) 58-85."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "SaltEtal93",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref main title only; 15(2) 211-238."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Poph99",
+  "agree": "yes",
+  "field_verdicts": {
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "ERIC EJ581564 (fetched) sourceid 'v56 n6 p8-15 Mar 1999'; ASCD page title 'Why Standardized Tests Don't Measure Educational Quality'."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BrowEtal92",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree"
+  },
+  "problems": [
+   "ACL Anthology J92-4003 BibTeX (fetched): Brown, Della Pietra, deSouza, Lai, Mercer."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ }
+]
