@@ -702,14 +702,27 @@ def test_wave3_review_resolution(folder, findings):
     assert not any(f["code"] == "initials_from_source" for r in merged.values() for f in r["flags"])
 
 
+def without_house_spelling(bib, name, key):
+    """cdl.bib without the other entries that write `name` for the same person, so a
+    test of another hold rule is not released by the wave-6 cdl.bib rule."""
+    drop = set(pc.house_name_uses(bib, name, exclude_key=key))
+    assert drop  # the corroborating entries exist in HEAD
+    return {k: v for k, v in bib.items() if k not in drop}
+
+
 def test_surname_hold_keeps_the_whole_cited_name(bib):
     """AguiEtal96: cited 'M D Esposito', researcher 'M D'Esposito' from PubMed alone. The
     hold keeps the cited name whole, so no initial is dropped ('M Esposito' was wrong).
     With the proposed DOI kept, its Crossref record is the second host (wave-5 fix) and
-    the surname is applied; without the DOI the hold stands."""
+    the surname is applied; without the DOI the hold stands. (Wave-6 cdl.bib rule: cdl.bib
+    writes 'M D'Esposito' in other entries, which alone releases the DOI-less hold, so the
+    hold is tested on the bibliography without those entries.)"""
     row = copy.deepcopy(ROWS2["AguiEtal96"])
     row["fields"] = {k: v for k, v in row["fields"].items() if k.lower() != "doi"}
     rec = check2(bib, "AguiEtal96", row)
+    assert any(f["code"] == "surname_corroborated" and "cdl.bib rule" in f["detail"] for f in rec["flags"])
+    alone = without_house_spelling(bib, "M D'Esposito", "AguiEtal96")
+    rec = pc.check_entry(row, bib["AguiEtal96"], alone, ctx_for(alone), validation=VALIDATION2.get("AguiEtal96"))
     assert "surname_single_source" in codes(rec)
     assert pc.split_names(rec["final_entry"]["author"])[-1] == "M D Esposito"
     rec = check2(bib, "AguiEtal96")
@@ -916,7 +929,10 @@ def test_doi_record_counts_as_second_surname_host(bib, key, name):
     row["fields"] = {k: v for k, v in row["fields"].items() if k.lower() != "doi"}
     current = dict(bib[key])
     current.pop("doi", None)
-    rec = pc.check_entry(row, current, bib, ctx_for(bib), validation=VALIDATION5.get(key))
+    # (wave 6: cdl.bib's own spelling of these people, e.g. DehaChan06 'J-P Changeux', is a
+    # witness of its own; the one-host hold is tested without those entries)
+    alone = without_house_spelling(bib, name, key) if pc.house_name_uses(bib, name, key) else bib
+    rec = pc.check_entry(row, current, alone, ctx_for(alone), validation=VALIDATION5.get(key))
     assert "surname_single_source" in codes(rec) and name not in pc.split_names(rec["final_entry"]["author"])
 
 
@@ -937,3 +953,142 @@ def test_format_damage_helpers():
     assert pc.surname_without_accented("E J Par{\\'e}-Blagoev") == "par blagoev"
     assert pc.surname_without_accented("E J Pare-Blagoev") == "pare blagoev"  # a plain letter is a spelling
     assert pc.surname_key("R J Robertson") == "robertson"
+
+
+# ---------------------------------------------------------------- wave-6 review regressions
+
+WAVE6 = ROOT / "verification/research-2026-09-25/wave6"
+ROWS6, REVIEW6, VALIDATION6 = load_wave(WAVE6)
+
+
+def check6(bib, key, row=None, review=False, current=None):
+    row = row or ROWS6[key]
+    return pc.check_entry(row, current if current is not None else bib.get(key), bib, ctx_for(bib),
+                          review=REVIEW6.get(key) if review else None, validation=VALIDATION6.get(key))
+
+
+@pytest.mark.parametrize("key,doi", [
+    ("Curr99", "10.1016/s0028-3932(98)00133-x"),   # Crossref 'intentionalretrieval', mojibake 'oldî\x97¿new'
+    ("BousRosn70", "10.3758/bf03335608"),          # Crossref deposit typo 'Free vs unhibited recall'
+    ("Mart65", "10.1037/h0022250"),                # the ENTRY's typo 'paried'; title left not_found
+])
+def test_near_title_with_agreeing_metadata_keeps_doi(bib, key, doi):
+    """Wave-6 review: correct DOIs were dropped because one title is garbled or mistyped.
+    Kept when the title is within two letters (spaces removed, vs = versus) and the
+    record's first author, year, volume and first page all agree."""
+    rec = check6(bib, key)
+    assert changed(rec).get("doi") == doi and "doi_title_mismatch" not in codes(rec)
+    assert any(f["code"] == "doi_title_near" and f["action"] == "applied" for f in rec["flags"])
+    # negative control: the same record with one metadata field disagreeing is another work
+    record = pc.doi_record(doi)
+    entry = [bib[key]["title"]]
+    year, pages = bib[key]["year"], bib[key]["pages"]
+    author = pc.surname(pc.split_names(bib[key]["author"])[0])
+    vol = record["volume"]
+    assert pc.doi_title_verdict(record, entry, vol, pages, author, year)[0] == "near"
+    assert pc.doi_title_verdict(record, entry, str(int(vol) + 1), pages, author, year)[0] is None
+    assert pc.doi_title_verdict(record, entry, vol, "999--1000", author, year)[0] is None
+    assert pc.doi_title_verdict(record, entry, vol, pages, "Smith", year)[0] is None
+    assert pc.doi_title_verdict(record, entry, vol, pages, author, str(int(year) + 1))[0] is None
+
+
+def test_near_title_still_rejects_other_works(bib):
+    """Different wording, a part number, or a short title are never 'near', whatever the
+    metadata say."""
+    record = pc.doi_record("10.3758/bf03335608")  # 'Free vs unhibited recall', 20(2) 75-76, 1970
+    args = ("20", "75--76", "Bousfield", "1970")
+    assert pc.doi_title_verdict(record, ["Free versus cued recall"], *args)[0] is None
+    assert pc.doi_title_verdict(record, ["Free versus uninhibited recall II"], *args)[0] is None
+    assert not pc.near_title("Transfer and verbal paired associates II", "Transfer and verbal paired associates")
+    assert not pc.near_title("Serial recall", "Serial recalls")  # under 20 letters
+    assert pc.near_title("Free vs unhibited recall", "Free versus uninhibited recall")
+    assert pc.osa_distance("paried", "paired") == 1 and pc.osa_distance("abc", "xyzabc") == 3
+    # a real row whose record is another work: still dropped (BoddEtal97's 'Correspondence')
+    rec = check(bib, "BoddEtal97")
+    assert "doi_title_mismatch" in codes(rec) and "doi" not in changed(rec)
+
+
+def test_hyphenated_dotted_initials(bib):
+    """TrulEtal97: 'Jean-{A}rcady Meyer' became 'J-{ Meyer' (the brace read as an
+    initial) and the surname hold fired on an unchanged surname."""
+    rec = check6(bib, "TrulEtal97")
+    assert "surname_single_source" not in codes(rec) and "author" not in rec["held"]
+    assert pc.split_names(rec["final_entry"]["author"])[-1] == "J-A Meyer"
+    assert pc.normalise_name("J.-A. Meyer")[0] == "J-A Meyer"
+    assert pc.given_initials("Jean-{A}rcady") == "J-A"
+    # negative controls: separate dotted initials stay separate; accent macros keep their letter
+    assert pc.normalise_name("J. A. Meyer")[0] == "J A Meyer"
+    assert pc.given_initials("{\\'E}mile") == "{\\'E}"
+
+
+def test_cdl_bib_spelling_releases_surname_hold(bib):
+    """TulvThom73: cited 'D M Thompson', Crossref only 'Thomson'. cdl.bib writes the same
+    person 'D M Thomson' (editor, Smit88) and the cited spelling nowhere else: released
+    by the cdl.bib rule and reported."""
+    rec = check6(bib, "TulvThom73")
+    assert rec["final_entry"]["author"] == "E Tulving and D M Thomson" and "author" not in rec["held"]
+    assert any(f["code"] == "surname_corroborated" and "cdl.bib rule" in f["detail"] and "Smit88" in f["detail"]
+               for f in rec["flags"])
+    # negative control 1: without the corroborating entry the hold stands
+    no_smit = {k: v for k, v in bib.items() if k != "Smit88"}
+    rec = check6(no_smit, "TulvThom73", current=bib["TulvThom73"])
+    assert "surname_single_source" in codes(rec) and "D M Thompson" in rec["final_entry"]["author"]
+    # negative control 2: the cited spelling is also used for that person elsewhere: held
+    both = dict(bib, ZzzzTest73={"ENTRYTYPE": "article", "ID": "ZzzzTest73", "author": "D M Thompson",
+                                 "title": "x", "year": "1973"})
+    rec = check6(both, "TulvThom73", current=bib["TulvThom73"])
+    assert "surname_single_source" in codes(rec)
+
+
+@pytest.mark.parametrize("key,cited", [("Trop86", "Y Trop"), ("CrosEtal93", "B Crossen"), ("ParkEtal13", "J Gosh")])
+def test_one_host_respellings_without_house_spelling_stay_held(bib, key, cited):
+    """Trope, Crosson and Ghosh rest on one host (the researcher's only quotes come from the
+    same Crossref record the post-check fetched, or PMLR alone) and cdl.bib has no other
+    entry for these people: held, as for FreeEtal03b's Crossref typo 'Jorsten' and
+    RuggEtal96's Crossref-only 'Patching'."""
+    rec = check6(bib, key)
+    assert "surname_single_source" in codes(rec) and cited in pc.split_names(rec["final_entry"]["author"])
+
+
+def test_doi_record_release_is_reported(bib):
+    rec = check5(bib, "VanEEtal01")
+    assert any(f["code"] == "surname_corroborated" and "DOI record rule" in f["detail"] for f in rec["flags"])
+
+
+def test_january_cover_date_beats_crossref_print_year(bib):
+    """WiggEtal99: PubMed DP '1999 Jan' (volume 37 issue 1), Crossref published-print
+    1998-10. The cover year of a January issue stands; nothing is suggested."""
+    rec = check6(bib, "WiggEtal99")
+    assert "print_year_conflict" not in codes(rec) and "year" not in rec["suggestions"]
+    assert any(f["code"] == "doi_record_conflict" and f["field"] == "year" for f in rec["flags"])
+    # negative control: a March cover date is not explained by a late-printed January issue
+    row = copy.deepcopy(ROWS6["WiggEtal99"])
+    row["fields"]["year"]["evidence"][0]["quote"] = "DP  - 1999 Mar"
+    rec = check6(bib, "WiggEtal99", row)
+    assert "print_year_conflict" in codes(rec) and rec["suggestions"].get("year") == "1998"
+
+
+def test_online_digitisation_year_in_notes_is_not_a_print_year(bib):
+    """AdelEtal95: the notes say Karger's 2008 date is 'the online digitisation'; it is not
+    a print date to suggest."""
+    rec = check6(bib, "AdelEtal95")
+    assert "print_year_conflict" not in codes(rec) and "year" not in rec["suggestions"]
+    assert pc.print_years_in_notes("Crossref record lacks volume/print year (its 2008 date is the online "
+                                   "digitisation)") == set()
+    # negative controls: a print year next to an online year is still read
+    assert pc.print_years_in_notes("Print issue 2012 (online 2011)") == {"2012"}
+    row = copy.deepcopy(ROWS6["AdelEtal95"])
+    row["notes"] = "The print issue is dated 2008."
+    rec = check6(bib, "AdelEtal95", row)
+    assert "print_year_conflict" in codes(rec) and rec["suggestions"].get("year") == "2008"
+
+
+@pytest.mark.parametrize("key,journal", [("BousRosn70", "Psychonomic Science"), ("AlleGart68", "Psychonomic Science"),
+                                         ("DanPoo06", "Physiological Reviews"), ("Jeff95", "Physiological Reviews")])
+def test_journal_names_keep_their_identity(bib, key, journal):
+    """Wave-6 review: the journal-key aliases 'psychonomic science' -> 'psychological
+    science' and 'physiological reviews' -> 'physiological review' reverted the
+    researchers' names (fixed in bibcheck/journal_key_overrides.json, 3eb4564)."""
+    assert check6(bib, key)["final_entry"]["journal"] == journal
+    # negative control: the other journal keeps its own name
+    assert pc.H.format_journal_name("Psychological Science") == "Psychological Science"

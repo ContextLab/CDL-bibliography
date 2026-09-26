@@ -308,7 +308,71 @@ def first_page(pages):
     return m[1] if m else None
 
 
-def doi_title_verdict(rec, cands, volume=None, pages=None):
+TITLE_SYNONYMS = {"vs": "versus", "v": "versus"}
+
+
+def squash(text):
+    """A title as one run of letters and digits: folded (case, accents, braces,
+    punctuation), 'vs' written 'versus', and every space removed, so words a registry
+    ran together ('intentionalretrieval', Curr99) compare equal."""
+    return "".join(TITLE_SYNONYMS.get(w, w) for w in fold_numbers(text).split())
+
+
+def osa_distance(a, b, cap=3):
+    """Edit distance (insert, delete, substitute, swap two adjacent letters), counted
+    up to `cap`."""
+    if abs(len(a) - len(b)) >= cap:
+        return cap
+    prev2, prev = None, list(range(len(b) + 1))
+    for i in range(1, len(a) + 1):
+        cur = [i] + [0] * len(b)
+        for j in range(1, len(b) + 1):
+            cur[j] = min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] != b[j - 1]))
+            if i > 1 and j > 1 and a[i - 1] == b[j - 2] and a[i - 2] == b[j - 1]:
+                cur[j] = min(cur[j], prev2[j - 2] + 1)
+        if min(cur) >= cap:
+            return cap
+        prev2, prev = prev, cur
+    return min(prev[-1], cap)
+
+
+NEAR_TITLE_EDITS = 2      # letters a garbled or mistyped title may differ by
+NEAR_TITLE_MIN_LETTERS = 20
+
+
+def near_title(record_title, entry_title):
+    """The registry title is the entry's up to a deposit garble or a typo on either
+    side: with spaces removed and 'vs' = 'versus', at most two letters differ (an
+    insertion, deletion, substitution or swap: BousRosn70 'unhibited', Mart65's cited
+    'paried', Curr99's run-together words and mojibake 'old\u00ee\u00bfnew'), the entry
+    title has at least 20 letters, and both carry the same part numbers."""
+    numerals = lambda t: {w for w in fold_numbers(t).split() if NUMERAL.match(w)}
+    for variant in record_variants(record_title, entry_title):
+        r, e = squash(variant), squash(entry_title)
+        if len(e) >= NEAR_TITLE_MIN_LETTERS and numerals(unglue(variant)) == numerals(entry_title) \
+                and osa_distance(r, e) <= NEAR_TITLE_EDITS:
+            return True
+    return False
+
+
+def record_metadata_agrees(rec, first_author=None, year=None, volume=None, pages=None):
+    """The DOI record's first-author surname, year (print or issued), volume and first
+    page are all present and all equal the entry's. Returns the list of what differs
+    or is missing (empty when everything agrees)."""
+    fam = fold((rec.get("families") or [""])[0])
+    out = []
+    if not fam or not first_author or fold(first_author).replace(" ", "") != fam.replace(" ", ""):
+        out.append("first author")
+    if not year or year not in {rec.get("print_year"), rec.get("issued_year")}:
+        out.append("year")
+    if not rec.get("volume") or not volume or str(rec["volume"]).strip() != str(volume).strip():
+        out.append("volume")
+    if not first_page(rec.get("page")) or first_page(rec.get("page")) != first_page(pages):
+        out.append("first page")
+    return out
+
+
+def doi_title_verdict(rec, cands, volume=None, pages=None, first_author=None, year=None):
     """How a DOI record's title relates to the entry: ('match', why), ('part_number', why)
     when the titles agree except for part numbers (a different part of a series or a
     registry that left the number out: held for the user, JacoEtal98), ('short', why)
@@ -317,7 +381,12 @@ def doi_title_verdict(rec, cands, volume=None, pages=None):
 
     A registry title that is exactly the entry's pre-colon main title (Elsevier/Cell
     deposit 'Hippocampus', 'Gain Modulation': Eich04, SaliThie00, ShadMovs99,
-    WagnEtal01) matches when the record's volume or first page equals the entry's."""
+    WagnEtal01) matches when the record's volume or first page equals the entry's.
+
+    A registry title that is the entry's up to a garble or typo (near_title) is
+    ('near', why) when the record's first-author surname, year, volume and first page
+    all equal the entry's (Curr99, BousRosn70, Mart65); without that agreement it is
+    another work."""
     rec_title = re.sub(r"(?i)^chapter\s+(?:\d+|[ivxlc]+)\.?[:.]?\s+", "", rec["title"])
     record_title = rec_title + (": " + rec["subtitle"] if rec.get("subtitle") else "")
     for c in cands:
@@ -336,6 +405,13 @@ def doi_title_verdict(rec, cands, volume=None, pages=None):
                               "volume nor first page corroborates it")
     if short:
         return short
+    for c in cands:
+        for t in dict.fromkeys((record_title, rec_title)):
+            if near_title(t, c):
+                differs = record_metadata_agrees(rec, first_author, year, volume, pages)
+                if not differs:
+                    return "near", (f"registry title {t!r} is the entry's {c!r} up to two letters or run-together "
+                                    "words; first author, year, volume and first page all agree")
     page_ok = bool(first_page(rec.get("page")) and first_page(rec.get("page")) == first_page(pages))
     for c in cands:
         for t in dict.fromkeys((record_title, rec_title)):
@@ -484,6 +560,7 @@ def doi_record(doi, offline=False):
                 "issue": msg.get("issue"), "type": msg.get("type"),
                 "authors": [" ".join(x for x in (a.get("given"), a.get("family") or a.get("name")) if x)
                             for a in msg.get("author") or []],
+                "families": [a.get("family") or a.get("name") or "" for a in msg.get("author") or []],
             })
         else:
             out["error"] = f"Crossref record unavailable: HTTP {status}"
@@ -495,6 +572,8 @@ def doi_record(doi, offline=False):
             out.update({"title": titles[0].get("title"),
                         "authors": [c.get("name") or " ".join(x for x in (c.get("givenName"), c.get("familyName")) if x)
                                     for c in attrs.get("creators") or []],
+                        "families": [c.get("familyName") or (c.get("name") or "").split(",")[0]
+                                     for c in attrs.get("creators") or []],
                         "issued_year": str(attrs.get("publicationYear") or "") or None,
                         "type": (attrs.get("types") or {}).get("resourceTypeGeneral")})
         else:
@@ -569,11 +648,14 @@ def split_names(value):
 
 
 def given_initials(token):
-    """'Jean-Pierre' -> 'J-P', 'S.W.' -> 'S W', 'T. V. P.' -> 'T V P', 'JP' -> 'J P'."""
+    """'Jean-Pierre' -> 'J-P', 'S.W.' -> 'S W', 'T. V. P.' -> 'T V P', 'JP' -> 'J P'.
+    A hyphen joins dotted initials too ('J.-A.' -> 'J-A', Crossref's form), and a
+    brace-protected capital is that letter ('Jean-{A}rcady' -> 'J-A', TrulEtal97; it
+    was read as the initial '{')."""
     token = token.strip()
     if not token:
         return ""
-    words = token.replace(".", ". ").split()
+    words = re.sub(r"\.(?!-)", ". ", token).split()
     out = []
     for w in words:
         parts = [p for p in w.replace(".", "").split("-") if p]
@@ -584,8 +666,9 @@ def given_initials(token):
             continue
         letters = []
         for p in parts:
+            plain = re.match(r"\{([A-Za-z])\}", p)  # '{A}rcady': a protected capital, no macro
             m = H.LETTER_UNIT.match(p)
-            letters.append(m.group(0) if m else p[0])
+            letters.append(plain[1] if plain else m.group(0) if m else p[0])
         out.append("-".join(letters))
     return " ".join(out)
 
@@ -770,6 +853,39 @@ def house_surname(name, bib, exclude=None):
         return name, None
     new = f"{giv} {best[0][1]}"
     return new, f"surname {fam!r} -> {best[0][1]!r} as cdl.bib writes it ({best[0][0]} entries)"
+
+
+_NAME_INDEX = {}
+
+
+def name_initials(name):
+    """The initials of a name's given part as folded letters: 'J-P' -> ('j', 'p')."""
+    return tuple(w[0] for w in fold(given_part(name)).split())
+
+
+def compatible_initials(a, b):
+    """Same first initial, and one list of initials starts the other ('D' ~ 'D M')."""
+    if not a or not b or a[0] != b[0]:
+        return False
+    short, long_ = sorted((a, b), key=len)
+    return long_[:len(short)] == short
+
+
+def house_name_uses(bib, name, exclude_key=None):
+    """Keys of cdl.bib entries (other than exclude_key) whose author or editor field has
+    a person with the same folded surname as `name` and compatible initials."""
+    cached = _NAME_INDEX.get(id(bib))
+    if not (cached and cached[0] is bib):
+        index = {}
+        for k, e in bib.items():
+            for field in NAME_FIELDS:
+                for n in split_names(e.get(field, "")):
+                    if n != "others":
+                        index.setdefault(surname_key(n), []).append((name_initials(n), k))
+        cached = _NAME_INDEX[id(bib)] = (bib, index)
+    mine = name_initials(name)
+    return sorted({k for ini, k in cached[1].get(surname_key(name), []) if k != exclude_key
+                   and compatible_initials(ini, mine)})
 
 
 def given_part(name):
@@ -1031,15 +1147,44 @@ def year_evidence_quotes(f):
     return [e.get("quote", "") for e in (f or {}).get("evidence") or []]
 
 
+NOT_PRINT_DATE = re.compile(r"online|digiti[sz]|electronic|epub|archive|scann|web|posted|deposit", re.I)
+
+
 def print_years_in_notes(notes):
+    """Years the notes give as print dates: those in a clause that says print/printed
+    (not reprint), except a year whose own part of the clause (split at parentheses,
+    commas, 'but', 'while', 'whereas') calls it an online, digitisation, archive or
+    deposit date and never print (AdelEtal95: 'Crossref record lacks volume/print year
+    (its 2008 date is the online digitisation)' gives no print year)."""
     years = set()
     for clause in re.split(r";\s|\.\s|\n", notes or ""):
         c = clause.lower()
         if "reprint" in c:
             continue
         if re.search(r"\bprint(ed)?\b|published-print|print year|print edition|print issue", c):
-            years |= set(re.findall(r"\b(?:19|20)\d{2}\b", clause))
+            for part in re.split(r"[()\[\],]|\b(?:but|while|whereas)\b", clause):
+                found = set(re.findall(r"\b(?:19|20)\d{2}\b", part))
+                if found and NOT_PRINT_DATE.search(part) and not re.search(r"\bprint", part, re.I):
+                    continue
+                years |= found
     return years
+
+
+JANUARY_COVER_RES = (re.compile(r"\bDP\s+-\s+((?:19|20)\d{2})\s+Jan\b"),
+                     re.compile(r"<PubDate>\s*<Year>((?:19|20)\d{2})</Year>\s*<Month>(?:Jan|January|0?1)</Month>"),
+                     re.compile(r'printPublicationDate"?\s*:\s*"?((?:19|20)\d{2})-01\b'))
+
+
+def january_cover_hosts(yfield, year):
+    """Source hosts whose quoted print (cover) date is January of `year`: MEDLINE 'DP -
+    1999 Jan', PubMed <PubDate><Year>1999</Year><Month>Jan</Month>, Europe PMC
+    printPublicationDate 1999-01."""
+    hosts = set()
+    for e in (yfield or {}).get("evidence") or []:
+        q = e.get("quote", "")
+        if any(year in rx.findall(q) for rx in JANUARY_COVER_RES):
+            hosts.add(urlparse(e.get("url", "")).netloc)
+    return hosts
 
 
 PRINT_DATE_RES = (re.compile(r'printPublicationDate"?\s*:\s*"?((?:19|20)\d{2})'),
@@ -1281,9 +1426,12 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                                  (applied.get("chapter") or {}).get("value"), current.get("chapter"),
                                  (applied.get("booktitle") or {}).get("value"), current.get("booktitle"))
                      if c]
+            authors_now = split_names((applied.get("author") or {}).get("value") or current.get("author", ""))
             title_verdict, why = doi_title_verdict(
                 rec, cands, (applied.get("volume") or {}).get("value") or current.get("volume"),
-                (applied.get("pages") or {}).get("value") or current.get("pages"))
+                (applied.get("pages") or {}).get("value") or current.get("pages"),
+                first_author=surname(normalise_name(authors_now[0])[0]) if authors_now else None,
+                year=(applied.get("year") or {}).get("value") or current.get("year"))
             rv_doi = str(((review or {}).get("field_verdicts") or {}).get("doi") or "")
             confirmed = applied["doi"]["source"] == "reviewer" or reviewer_confirms(rv_doi) \
                 or "but correct" in rv_doi.lower()
@@ -1298,7 +1446,10 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                      f"{doi} is registered to {record_title!r} ({rec.get('ra')}), not this entry's title; "
                      "DOI change dropped", "dropped")
             else:
-                if title_verdict == "part_number_page":
+                if title_verdict == "near":
+                    flag(flags, "doi_title_near", "doi", f"{doi} is registered to {record_title!r}: {why}; applied",
+                         "applied")
+                elif title_verdict == "part_number_page":
                     flag(flags, "doi_title_part_number", "doi",
                          f"{doi} is registered to {record_title!r}: {why}; applied", "applied")
                 elif title_verdict != "match":
@@ -1319,6 +1470,16 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                          f"{rec.get('ra')} published-print {rec['print_year']} vs the print date {year} quoted "
                          f"from {len(print_hosts)} sources {sorted(print_hosts)}: the corroborated print date "
                          f"stands; the {rec.get('ra')} deposit year is not suggested")
+                elif rec.get("print_year") and year and rec["print_year"] == str(int(year) - 1) \
+                        and january_cover_hosts(fields.get("year"), year) \
+                        and rec.get("volume") and str(rec["volume"]).strip() == str(
+                            (applied.get("volume") or {}).get("value") or current.get("volume") or "").strip():
+                    # a January issue printed (or deposited) late the year before: the
+                    # cover date of that volume is the citation year (WiggEtal99)
+                    flag(flags, "doi_record_conflict", "year",
+                         f"{rec.get('ra')} published-print {rec['print_year']} vs the January {year} cover date of "
+                         f"volume {rec['volume']} quoted from {sorted(january_cover_hosts(fields.get('year'), year))}: "
+                         f"the cover year stands; the {rec.get('ra')} year is not suggested")
                 elif rec.get("print_year") and year and rec["print_year"] != year:
                     flag(flags, "print_year_conflict", "year",
                          f"{rec.get('ra')} published-print {rec['print_year']} vs year {year}: print year wins")
@@ -1486,11 +1647,30 @@ def check_entry(row, current, bib, ctx, review=None, validation=None):
                 out.append(n)  # an added or reordered author, a brace/spacing fix, or a restored accent
                 continue
             last = new.split()[-1]
-            hosts = {urlparse(e.get("url", "")).netloc for e in ev if last in fold(e.get("quote", "")).split()}
+            quoted = {urlparse(e.get("url", "")).netloc for e in ev if last in fold(e.get("quote", "")).split()}
+            hosts = set(quoted)
             if last in reg_names:
                 hosts.add(reg_host)
             if len(hosts) >= 2:
                 out.append(n)
+                if len(quoted) < 2:
+                    flag(flags, "surname_corroborated", "author",
+                         f"surname {near[0]!r} -> {new!r}: released by the DOI record rule, the {reg_host} "
+                         f"record of the kept DOI is the second host {sorted(hosts)}", "applied")
+                continue
+            # the corrected spelling is already cdl.bib's for this person (same surname,
+            # compatible initials, in another entry) and the cited spelling is not:
+            # a second, independent witness (TulvThom73: editor 'D M Thomson')
+            cited_name = next((c for c in cited_list if near[0] in (strip(c), strip(normalise_name(c)[0]))),
+                              old[near[0]])
+            new_uses = house_name_uses(bib, n, exclude_key=key)
+            old_uses = house_name_uses(bib, cited_name, exclude_key=key)
+            if hosts and new_uses and not old_uses:
+                out.append(n)
+                flag(flags, "surname_corroborated", "author",
+                     f"surname {near[0]!r} -> {new!r}: released by the cdl.bib rule, {sorted(hosts)} plus "
+                     f"cdl.bib's own spelling for this person in {', '.join(new_uses[:5])} (the cited "
+                     "spelling is in no other entry)", "applied")
                 continue
             detail = (f"surname {near[0]!r} -> {new!r} rests on {len(hosts)} source host(s) {sorted(hosts)}; "
                       "single-source surname changes need corroboration or the user's sign-off")
