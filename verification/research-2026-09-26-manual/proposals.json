@@ -1,0 +1,139 @@
+[
+ {
+  "key": "Wech45",
+  "new_key": "Wech45",
+  "entrytype": "article",
+  "fields": {
+   "author": {
+    "value": "D Wechsler",
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/00223980.1945.9917223",
+    "quote": "A Standardized Memory Scale for Clinical Use David Wechsler"
+   },
+   "title": {
+    "value": "A standardized memory scale for clinical use",
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/00223980.1945.9917223",
+    "quote": "Original Articles A Standardized Memory Scale for Clinical Use"
+   },
+   "journal": {
+    "value": "Journal of Psychology",
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/00223980.1945.9917223",
+    "quote": "The Journal of Psychology Interdisciplinary and Applied Volume 19, 1945 - Issue 1 (house form 'Journal of Psychology', used by the 6 existing cdl.bib entries, e.g. AschLind63 doi 10.1080/00223980.1963.9916612)"
+   },
+   "volume": {
+    "value": "19",
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/00223980.1945.9917223",
+    "quote": "Volume 19, 1945 - Issue 1"
+   },
+   "number": {
+    "value": "1",
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/00223980.1945.9917223",
+    "quote": "Volume 19, 1945 - Issue 1"
+   },
+   "pages": {
+    "value": "87--95",
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/00223980.1945.9917223",
+    "quote": "Pages 87-95 | Received 02 Nov 1944, Published online: 02 Jul 2010"
+   },
+   "year": {
+    "value": "1945",
+    "url": "https://api.crossref.org/works/10.1080/00223980.1945.9917223",
+    "quote": "\"published-print\": {\"date-parts\": [[1945, 1]]}"
+   },
+   "doi": {
+    "value": "10.1080/00223980.1945.9917223",
+    "url": "https://api.crossref.org/works/10.1080/00223980.1945.9917223",
+    "quote": "\"DOI\": \"10.1080/00223980.1945.9917223\", \"type\": \"journal-article\", \"container-title\": [\"The Journal of Psychology\"], \"volume\": \"19\", \"issue\": \"1\", \"page\": \"87-95\" (doi.org handle API returns 200)"
+   }
+  },
+  "remove": [],
+  "notes": "Title/journal/doi change (identity decision). Cite the 1945 article that introduced the Wechsler Memory Scale, not the test: the entry's existing volume 19, number 1, pages 87--95 and @article type match this article exactly, and it is the only 1945 Wechsler memory-scale publication in Crossref. The alternative, PsycTESTS 10.1037/t27207-000 'Wechsler Memory Scale', is a type 'dataset' record created 2014-02-10 (APA test database), not a 1945 publication; the test form itself has no verifiable 1945 publisher record found here. Key unchanged (year and author unchanged). The WebFetch/curl route to tandfonline.com returns 403; quotes above are from the page rendered in a real browser (Playwright) on 2026-09-26."
+ },
+ {
+  "key": "DougPeuc73",
+  "new_key": "DougPeuc73",
+  "entrytype": "article",
+  "fields": {
+   "author": {
+    "value": "D H Douglas and T K Peucker",
+    "url": "https://utppublishing.com/doi/10.3138/FM57-6770-U75U-7727",
+    "quote": "Authors: DAVID H DOUGLAS and THOMAS K PEUCKER"
+   },
+   "title": {
+    "value": "Algorithms for the reduction of the number of points required to represent a digitized line or its caricature",
+    "url": "https://utppublishing.com/doi/10.3138/FM57-6770-U75U-7727",
+    "quote": "ALGORITHMS FOR THE REDUCTION OF THE NUMBER OF POINTS REQUIRED TO REPRESENT A DIGITIZED LINE OR ITS CARICATURE"
+   },
+   "journal": {
+    "value": "The Canadian Cartographer",
+    "url": "https://catalog.hathitrust.org/Record/000641805",
+    "quote": "245: The Canadian cartographer. ; 362: v. 5-16, no. 2; June 1968-Dec. 1979. ; 785: Cartographica (1980) 0317-7173 (MARC via https://catalog.hathitrust.org/api/volumes/full/recordnumber/000641805.json). Full-text search of the volume 'The Canadian cartographer v.8-10 1971-1973' (mdp.39015010552480) for the exact title phrase returns totalResults 3 (search-only view, page numbers not shown): https://babel.hathitrust.org/cgi/pt/search?q1=%22reduction+of+the+number+of+points+required+to+represent+a+digitized+line+or+its+caricature%22;id=mdp.39015010552480"
+   },
+   "volume": {
+    "value": "10",
+    "url": "https://utppublishing.com/doi/10.3138/FM57-6770-U75U-7727",
+    "quote": "Volume 10 • Number 2 • 1 December 1973 Pages: 112 - 122"
+   },
+   "number": {
+    "value": "2",
+    "url": "https://utppublishing.com/doi/10.3138/FM57-6770-U75U-7727",
+    "quote": "Volume 10 • Number 2 • 1 December 1973"
+   },
+   "pages": {
+    "value": "112--122",
+    "url": "https://utppublishing.com/doi/10.3138/FM57-6770-U75U-7727",
+    "quote": "Pages: 112 - 122"
+   },
+   "year": {
+    "value": "1973",
+    "url": "https://utppublishing.com/doi/10.3138/FM57-6770-U75U-7727",
+    "quote": "Published in print: 1 December 1973"
+   },
+   "doi": {
+    "value": "10.3138/fm57-6770-u75u-7727",
+    "url": "https://api.crossref.org/works/10.3138/fm57-6770-u75u-7727",
+    "quote": "\"DOI\": \"10.3138/fm57-6770-u75u-7727\", \"type\": \"journal-article\", \"title\": [\"ALGORITHMS FOR THE REDUCTION OF THE NUMBER OF POINTS REQUIRED TO REPRESENT A DIGITIZED LINE OR ITS CARICATURE\"], \"container-title\": [\"Cartographica\"], \"volume\": \"10\", \"issue\": \"2\", \"page\": \"112-122\" (doi.org handle API returns 200)"
+   }
+  },
+  "remove": [],
+  "notes": "No change: every field in HEAD is confirmed. Only discrepancy is expected: Crossref/UTP list the journal under its current name 'Cartographica' (renamed 1980, MARC 785 'Cartographica (1980)'); in 1973 it was printed as 'The Canadian Cartographer' (HathiTrust MARC 245, v. 5-16 1968-1979), which is what the entry has, and the house keeps a printed leading 'The' (392 journal fields, e.g. 'The Journal of Neuroscience'). An automated Crossref comparator will flag journal 'Cartographica' vs 'The Canadian Cartographer' -- that is a rename, not an error. Crossref issued date 1973-12-01; UTP 'Version of Record: 12 October 2006' is the online posting, print year 1973 stands."
+ },
+ {
+  "key": "Mann06",
+  "new_key": "Mann06",
+  "entrytype": "mastersthesis",
+  "fields": {
+   "author": {
+    "value": "J R Manning",
+    "url": "https://raw.githubusercontent.com/ContextLab/contextlab.github.io/main/documents/JRM_CV.pdf",
+    "quote": "B.S. in Neuroscience (High honors, Magna cum laude), Brandeis University, Waltham, MA (2006) Advisor: Robert Sekuler, Ph.D. Dissertation: Modeling human spatial navigation using a degraded ideal navigator (CV of Jeremy R Manning; the thesis title page prints 'Jeremy Manning')"
+   },
+   "title": {
+    "value": "Modeling human spatial navigation using a degraded ideal navigator",
+    "url": "https://caligari.dartmouth.edu/~jmanning/pubs/magellan_dissertation.pdf",
+    "quote": "Modeling Human Spatial Navigation Using A Degraded Ideal Navigator Jeremy Manning Volen Center for Complex Systems, Brandeis University"
+   },
+   "type": {
+    "value": "Senior honors thesis",
+    "url": "https://caligari.dartmouth.edu/~jmanning/pubs/magellan_dissertation.pdf",
+    "quote": "Korolev, I. O.(2005). Behavioral and neural correlates of human spatial navigation. Senior Honors Thesis, Brandeis University. (the thesis's own reference list names a sibling Sekuler-lab thesis this way); CV: 'B.S. in Neuroscience (High honors ...)'; https://www.context-lab.com/publications: 'Senior thesis: Brandeis University, Waltham, MA.'"
+   },
+   "school": {
+    "value": "Brandeis University",
+    "url": "https://caligari.dartmouth.edu/~jmanning/pubs/magellan_dissertation.pdf",
+    "quote": "Volen Center for Complex Systems, Brandeis University"
+   },
+   "address": {
+    "value": "Waltham, {MA}",
+    "url": "https://raw.githubusercontent.com/ContextLab/contextlab.github.io/main/documents/JRM_CV.pdf",
+    "quote": "Brandeis University, Waltham, MA (2006)"
+   },
+   "year": {
+    "value": "2006",
+    "url": "https://raw.githubusercontent.com/ContextLab/contextlab.github.io/main/documents/JRM_CV.pdf",
+    "quote": "B.S. in Neuroscience (High honors, Magna cum laude), Brandeis University, Waltham, MA (2006)"
+   }
+  },
+  "remove": [],
+  "notes": "Undergraduate senior honors thesis for the B.S. in Neuroscience (Brandeis, 2006; adviser Robert Sekuler; the thesis PDF prints 'Special thanks to my thesis adviser, Professor Robert Sekuler'). The PDF title page prints no date or degree; year 2006 rests on the CV, the context-lab.com publications page ('Manning JR (2006)') and the PDF's CreationDate 'Tue May 2 06:02:39 2006'. Title unchanged (the PDF's title case lowered per house sentence case). BibTeX has no bachelor's type; the standard idiom is @mastersthesis with a Type field, which replaces the printed 'Master's thesis' label (plain.bst/apacite honour 'type'). cdl.bib has no other undergraduate thesis to copy (Mann06 is the only @mastersthesis; the nearest precedent, Kele99, is a @book whose title begins 'Diploma thesis:', which I do not recommend). Only change proposed: add Type = {Senior honors thesis}. Not found: no Brandeis library catalogue or repository record (ScholarWorks and WorldCat searches returned no match in the scripted/browser views; 'not found' is not 'absent'). Unconfirmed: whether bibcheck's formatter accepts/keeps a Type field on @mastersthesis (another agent owns bibcheck/; Type is used today only on 5 @techreport entries: 'Technical Report', 'PEP', 'Draft PEP')."
+ }
+]
