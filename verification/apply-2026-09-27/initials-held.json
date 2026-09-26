@@ -1,7 +1,7 @@
 {
- "generated": "2026-09-25 11:07:05",
- "count": 204,
- "entries": 169,
+ "generated": "2026-09-25 21:05:29",
+ "count": 201,
+ "entries": 166,
  "names": [
   {
    "key": "SingEtal24",
@@ -141,13 +141,6 @@
    "field": "author",
    "name": "A-l Saive",
    "reason": "given name 'A-l' mixes initials and words",
-   "entry_otherwise_converted": false
-  },
-  {
-   "key": "ZhenEtal19",
-   "field": "author",
-   "name": "M \\ ' { A } Serrano",
-   "reason": "braced multi-word group among the given names",
    "entry_otherwise_converted": false
   },
   {
@@ -1201,13 +1194,6 @@
    "entry_otherwise_converted": true
   },
   {
-   "key": "ZrenEtal11",
-   "field": "author",
-   "name": "Karl Ulrich Bartz-Schmidt",
-   "reason": "'Ulrich' directly before the surname 'Bartz-Schmidt' may be part of a compound (unbraced) surname",
-   "entry_otherwise_converted": true
-  },
-  {
    "key": "McClEtal03",
    "field": "author",
    "name": "P Read Montague",
@@ -1247,13 +1233,6 @@
    "field": "author",
    "name": "Bryant K J",
    "reason": "surname 'J' looks like an initial (given/family order unclear)",
-   "entry_otherwise_converted": false
-  },
-  {
-   "key": "NilsEtal75",
-   "field": "author",
-   "name": "L -G Nilsson",
-   "reason": "'-G' directly before the surname 'Nilsson' may be part of a compound (unbraced) surname",
    "entry_otherwise_converted": false
   },
   {

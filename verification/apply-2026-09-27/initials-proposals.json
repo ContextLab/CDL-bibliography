@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-25 11:07:05",
+ "generated": "2026-09-25 21:05:29",
  "batch": "initials",
- "count": 1149,
- "held_names": 204,
+ "count": 1142,
+ "held_names": 201,
  "skipped": {},
  "proposals": [
   {
@@ -3945,18 +3945,6 @@
    }
   },
   {
-   "key": "Hume07",
-   "fingerprint": "v2:4138faecb0005b54a14fde736bdc4a957b2d38093b9c2439bdb6a8be70596e5e",
-   "kind": "given_names_to_initials",
-   "rule": "user-2026-09-24/25 initials everywhere",
-   "changes": {
-    "author": {
-     "before": "David Hume",
-     "after": "D Hume"
-    }
-   }
-  },
-  {
    "key": "HowaEtal14",
    "fingerprint": "v2:c094ab67ecf810cb45914b6636ed650670859821462e995f4c61120c416d07b0",
    "kind": "given_names_to_initials",
@@ -4941,18 +4929,6 @@
     "author": {
      "before": "Gene G Kinney and Patricia Patino and Yvan Mermet-Bouvier and John E {St\\ arrett} and Valentin K Gribkoff",
      "after": "G G Kinney and P Patino and Y Mermet-Bouvier and J E {St\\ arrett} and V K Gribkoff"
-    }
-   }
-  },
-  {
-   "key": "EichMaca06",
-   "fingerprint": "v2:9d4f2bf61cc195c8092079784e90ed22109a1b976c8466e8f1fca6fa93533879",
-   "kind": "given_names_to_initials",
-   "rule": "user-2026-09-24/25 initials everywhere",
-   "changes": {
-    "editor": {
-     "before": "Joseph P Forgas",
-     "after": "J P Forgas"
     }
    }
   },
@@ -6881,22 +6857,6 @@
    }
   },
   {
-   "key": "Mink07",
-   "fingerprint": "v2:31620bac674d1f9ff30c50bcec2396ecf1881c138cea9a33b6a6180cb26f58a1",
-   "kind": "given_names_to_initials",
-   "rule": "user-2026-09-24/25 initials everywhere",
-   "changes": {
-    "author": {
-     "before": "Jonathan W Mink",
-     "after": "J W Mink"
-    },
-    "editor": {
-     "before": "Joseph Jankovic and Eduardo Tolosa",
-     "after": "J Jankovic and E Tolosa"
-    }
-   }
-  },
-  {
    "key": "BussEtal99",
    "fingerprint": "v2:6ee67a1b3394271af042a114ff7c0e36c00f870f21ea2a306450421b106e66a2",
    "kind": "given_names_to_initials",
@@ -8445,18 +8405,6 @@
    }
   },
   {
-   "key": "Aust14",
-   "fingerprint": "v2:c3d514af3f2db33f7f2f617936f875040ca6e0f35cd00c24c300787c9b3ed142",
-   "kind": "given_names_to_initials",
-   "rule": "user-2026-09-24/25 initials everywhere",
-   "changes": {
-    "author": {
-     "before": "Jane Austen",
-     "after": "J Austen"
-    }
-   }
-  },
-  {
    "key": "ColeEtal04",
    "fingerprint": "v2:91679f15cb1a7bfef170f1fbfcaa31dd5eaa9d864ebee2be4c7d3bc36aa70ec8",
    "kind": "given_names_to_initials",
@@ -9725,18 +9673,6 @@
     "author": {
      "before": "P B Sederberg and Lynne V Gauthier and Vitaly Terushkin and Jonathan F Miller and Julia A Barnathan and Michael J Kahana",
      "after": "P B Sederberg and L V Gauthier and V Terushkin and J F Miller and J A Barnathan and M J Kahana"
-    }
-   }
-  },
-  {
-   "key": "MannEtal11",
-   "fingerprint": "v2:d86b86acdea3d08d5e1bbb7f8c324a6be3ad2d612df3e42c6bac58aad0008118",
-   "kind": "given_names_to_initials",
-   "rule": "user-2026-09-24/25 initials everywhere",
-   "changes": {
-    "author": {
-     "before": "Jeremy R Manning and Sean M Polyn and Gordon H Baltuch and Brian Litt and Michael J Kahana",
-     "after": "J R Manning and S M Polyn and G H Baltuch and B Litt and M J Kahana"
     }
    }
   },
@@ -11853,18 +11789,6 @@
    }
   },
   {
-   "key": "ZrenEtal11",
-   "fingerprint": "v2:2b8066a20f4d00dbc8ff2b59529ff7413d2a8ff3d43060afb2a4a3439cf8e480",
-   "kind": "given_names_to_initials",
-   "rule": "user-2026-09-24/25 initials everywhere",
-   "changes": {
-    "author": {
-     "before": "Eberhart Zrenner and Karl Ulrich Bartz-Schmidt and Heval Benav and Dorothea Besch and Anna Bruckmann and Veit-Peter Gabel and Florian Gekeler and Udo Greppmaier and Alex Harscher and Steffen Kibbel and others",
-     "after": "E Zrenner and Karl Ulrich Bartz-Schmidt and H Benav and D Besch and A Bruckmann and V-P Gabel and F Gekeler and U Greppmaier and A Harscher and S Kibbel and others"
-    }
-   }
-  },
-  {
    "key": "LongEtal14",
    "fingerprint": "v2:d4a51c84b50c81117a7a929e25df84b6c32555fea5325a738a36bc4e7e30456b",
    "kind": "given_names_to_initials",
@@ -12777,18 +12701,6 @@
     "author": {
      "before": "John Joseph Downes and Theodora Kalla and Ann D M Davies and Ann Flynn and Hamid Ali and Andrew R Mayes",
      "after": "John Joseph Downes and T Kalla and A D M Davies and A Flynn and H Ali and A R Mayes"
-    }
-   }
-  },
-  {
-   "key": "Jame90",
-   "fingerprint": "v2:53435f021cb619879cad35d18e0a9152cd7ce14376d7f1a0ea1904cc57b76b45",
-   "kind": "given_names_to_initials",
-   "rule": "user-2026-09-24/25 initials everywhere",
-   "changes": {
-    "author": {
-     "before": "William James",
-     "after": "W James"
     }
    }
   },
