@@ -1,0 +1,2251 @@
+[
+ {
+  "key": "BlooWatk99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+   "quote": "Two-component theory of the suffix effect: Contrary findings.",
+   "why": "Same title, both authors, JEP:LMC 25(6) 1999, pp. 1452-1474."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Two-component theory of the suffix effect: contrary findings",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+      "quote": "Two-component theory of the suffix effect: Contrary findings."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L C Bloom and M J Watkins",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+      "quote": "Lance C. Bloom"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+      "quote": "Michael J. Watkins"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+      "quote": "<year>1999</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "25",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+      "quote": "<volume>25</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+      "quote": "<issue>6</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1452--1474",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+      "quote": "<first_page>1452</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+      "quote": "<last_page>1474</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.25.6.1452",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.6.1452.xml",
+      "quote": "<doi>10.1037/0278-7393.25.6.1452</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; adds issue 6 and DOI. PubMed 10605831 agrees (PG 1452-74)."
+ },
+ {
+  "key": "BrowEtal91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+   "quote": "Clustering and recall: Do high clusterers recall more than low clusterers because of clustering?",
+   "why": "Same title, same four authors, JEP:LMC 17(4) 1991, pp. 710-721."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Clustering and recall: do high clusterers recall more than low clusterers because of clustering?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "Clustering and recall: Do high clusterers recall more than low clusterers because of clustering?"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S C Brown and J N Conover and L M Flores and K M Goodman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "Sam C. Brown"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "Jerry N. Conover"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "Luis M. Flores"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "Karen M. Goodman"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "<year>1991</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "<volume>17</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "<issue>4</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "710--721",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "<first_page>710</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "<last_page>721</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.17.4.710",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.710.xml",
+      "quote": "<doi>10.1037/0278-7393.17.4.710</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title lacked the final question mark. Adds issue 4 and DOI."
+ },
+ {
+  "key": "CorbWick78",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+   "quote": "Semantic Memory Retrieval: Analysis by Speed Accuracy Tradeoff Functions",
+   "why": "Same title and authors (Corbett and Wickelgren), 1978; the paper appeared in the Quarterly Journal of Experimental Psychology 30(1):1-15, not JEP:LMC (which only began in 1982)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Semantic memory retrieval: analysis by speed accuracy tradeoff functions",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+      "quote": "Semantic Memory Retrieval: Analysis by Speed Accuracy Tradeoff Functions"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A T Corbett and W A Wickelgren",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+      "quote": "Albert T. Corbett"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+      "quote": "Wayne A. Wickelgren"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+      "quote": "<full_title>Quarterly Journal of Experimental Psychology</full_title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1978",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+      "quote": "<year>1978</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "30",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+      "quote": "<volume>30</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+      "quote": "<issue>1</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1--15",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+      "quote": "<first_page>1</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+      "quote": "<last_page>15</last_page>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/14640747808400648",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747808400648.xml",
+      "quote": "<doi>10.1080/14640747808400648</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Cited journal/volume/pages (JEP:LMC 12, 538-549) were wrong: JEP:LMC did not exist in 1978; no Corbett & Wickelgren paper of this title exists there. Crossref print date Feb 1978, QJEP 30(1) 1-15. Journal name in house form (27 cdl.bib entries use 'Quarterly Journal of Experimental Psychology'). Crossref prints 'Speed Accuracy' without hyphen; reviewer may prefer keeping 'speed-accuracy'. Key unchanged."
+ },
+ {
+  "key": "GlenEtal83",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+   "quote": "Studies of the long-term recency effect: Support for a contextually guided retrieval hypothesis.",
+   "why": "Same four authors, same title except the last word, JEP:LMC 1983."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Studies of the long-term recency effect: support for a contextually guided retrieval hypothesis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "Studies of the long-term recency effect: Support for a contextually guided retrieval hypothesis."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A M Glenberg and M M Bradley and T A Kraus and G J Renzaglia",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "Arthur M. Glenberg"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "Margaret M. Bradley"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "Thomas A. Kraus"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "Gary J. Renzaglia"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1983",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "<year>1983</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "<volume>9</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "<issue>2</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "231--255",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "<first_page>231</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "<last_page>255</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.9.2.231",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.9.2.231.xml",
+      "quote": "<doi>10.1037/0278-7393.9.2.231</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title ends 'hypothesis', not 'theory'. Cited volume 12, pages 413-418 were wrong; actual 9(2):231-255. Key unchanged."
+ },
+ {
+  "key": "GronShif86",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+   "quote": "Retrieval strategies in recall of natural categories and categorized lists.",
+   "why": "Same title, both authors, JEP:LMC 12(4) 1986, pp. 550-561."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Retrieval strategies in recall of natural categories and categorized lists",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+      "quote": "Retrieval strategies in recall of natural categories and categorized lists."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S D Gronlund and R M Shiffrin",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+      "quote": "Scott D. Gronlund"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+      "quote": "Richard M. Shiffrin"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1986",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+      "quote": "<year>1986</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+      "quote": "<volume>12</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+      "quote": "<issue>4</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "550--561",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+      "quote": "<first_page>550</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+      "quote": "<last_page>561</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.12.4.550",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.4.550.xml",
+      "quote": "<doi>10.1037/0278-7393.12.4.550</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Spurious hyphen in 'categorized-lists' removed. PMID 2945900 (Crossref)."
+ },
+ {
+  "key": "HaymTulv89",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+   "quote": "Is priming in fragment completion based on a \"traceless\" memory system?",
+   "why": "Same title, Hayman and Tulving, JEP:LMC 15(5) 1989, pp. 941-956."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Is priming in fragment completion based on a ``traceless'' memory system?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "Is priming in fragment completion based on a \"traceless\" memory system?"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "C A G Hayman and E Tulving",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "C. Gordon Hayman"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "Endel Tulving"
+     },
+     {
+      "url": "http://alicekim.ca/tulving/1980_1989.htm",
+      "quote": "Hayman, C. A. G., & Tulving, E. (1989). Is priming in fragment completion based on a traceless memory system."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1989",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "<year>1989</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "<volume>15</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "<issue>5</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "941--956",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "<first_page>941</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "<last_page>956</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.15.5.941",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.15.5.941.xml",
+      "quote": "<doi>10.1037/0278-7393.15.5.941</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Cited initials 'G A C' are scrambled: the author is C. A. Gordon Hayman (Crossref 'C. Gordon'; Tulving bibliography 'Hayman, C. A. G.'). The A is kept per the never-drop-an-initial rule; cdl.bib already writes him 'C A G Hayman' (Tulving et al. 1982)."
+ },
+ {
+  "key": "Heat03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+   "quote": "Item Recognition Memory and the Receiver Operating Characteristic.",
+   "why": "Same title, sole author Andrew Heathcote, JEP:LMC 29(6) 2003, pp. 1210-1230."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Item recognition memory and the receiver operating characteristic",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+      "quote": "Item Recognition Memory and the Receiver Operating Characteristic."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A Heathcote",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+      "quote": "Andrew"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+      "quote": "Heathcote"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+      "quote": "<year>2003</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "29",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+      "quote": "<volume>29</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+      "quote": "<issue>6</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1210--1230",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+      "quote": "<first_page>1210</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+      "quote": "<last_page>1230</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.29.6.1210",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.6.1210.xml",
+      "quote": "<doi>10.1037/0278-7393.29.6.1210</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Full given name converted to initial. The entry carries an 'Address = {Callaghan, {AU}}' field (author affiliation, not a publication field) that looks spurious on an @article; left for the reviewer."
+ },
+ {
+  "key": "Hirs86",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+   "quote": "Recognition and recall in amnesics.",
+   "why": "Same title, first author William Hirst, JEP:LMC 12(3) 1986, pp. 445-451."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Recognition and recall in amnesics",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "Recognition and recall in amnesics."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "W Hirst and M K Johnson and J K Kim and E A Phelps and G Risse and B T Volpe",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "William"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "Hirst"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "Marcia K. Johnson"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "Jung K. Kim"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "Elizabeth A. Phelps"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "Gail"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "Risse"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "Bruce T. Volpe"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1986",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "<year>1986</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "<volume>12</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "<issue>3</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "445--451",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "<first_page>445</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "<last_page>451</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.12.3.445",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.12.3.445.xml",
+      "quote": "<doi>10.1037/0278-7393.12.3.445</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Citation listed only Hirst; the paper has six authors (Hirst, Johnson, Kim, Phelps, Risse, Volpe). Author count changes the key: Hirs86 -> HirsEtal86 (not present in HEAD cdl.bib; no collision). No other copy of this work in cdl.bib.",
+  "new_key": "HirsEtal86"
+ },
+ {
+  "key": "HulmEtal97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+   "quote": "Word-frequency effects on short-term memory tasks: Evidence for a redintegration process in immediate serial recall.",
+   "why": "Same title, Hulme et al., JEP:LMC 23(5) 1997, pp. 1217-1232."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Word-frequency effects on short-term memory tasks: evidence for a redintegration process in immediate serial recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Word-frequency effects on short-term memory tasks: Evidence for a redintegration process in immediate serial recall."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "C Hulme and S Roodenrys and R Schweickert and G D A Brown and S Martin and G Stuart",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Charles"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Hulme"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Steven"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Roodenrys"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Richard"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Schweickert"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Gordon D. A. Brown"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Sarah"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Martin"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "George"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "Stuart"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "<year>1997</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "23",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "<volume>23</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "<issue>5</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1217--1232",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "<first_page>1217</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "<last_page>1232</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.23.5.1217",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.23.5.1217.xml",
+      "quote": "<doi>10.1037/0278-7393.23.5.1217</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Citation had only four authors; six per Crossref (adds S Martin, G Stuart) and Brown is G D A. Key unchanged (Etal)."
+ },
+ {
+  "key": "Lami06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+   "quote": "Predicting free recalls.",
+   "why": "Same title, sole author Laming, JEP:LMC 32(5) 2006, pp. 1146-1163."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Predicting free recalls",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+      "quote": "Predicting free recalls."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D L Laming",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+      "quote": "Donald"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+      "quote": "Laming"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+      "quote": "<year>2006</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "32",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+      "quote": "<volume>32</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+      "quote": "<issue>5</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1146--1163",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+      "quote": "<first_page>1146</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+      "quote": "<last_page>1163</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.32.5.1146",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.5.1146.xml",
+      "quote": "<doi>10.1037/0278-7393.32.5.1146</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Only change is the DOI. Crossref and PubMed (16938052) give 'Donald Laming' without a middle initial; the cited 'L' is kept under the never-drop-an-initial rule (no source prints a different one) but is unconfirmed; that is the queue's author mismatch."
+ },
+ {
+  "key": "LohnKaha13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+   "quote": "Parametric effects of word frequency in memory for mixed frequency lists.",
+   "why": "Same authors, JEP:LMC 39(6) 2013, pp. 1943-1946; cited title has an extra 'effect'."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Parametric effects of word frequency in memory for mixed frequency lists",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "Parametric effects of word frequency in memory for mixed frequency lists."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L J Lohnas and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "Lynn J."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "Lohnas"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "Michael J."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "Kahana"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "<year>2013</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "39",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "<volume>39</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "<issue>6</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1943--1946",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "<first_page>1943</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "<last_page>1946</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/a0033669",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0033669.xml",
+      "quote": "<doi>10.1037/a0033669</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Removed duplicated word 'effect' from the title. A correction notice exists: 10.1037/a0034164 '\"Parametric effects of word frequency in memory for mixed frequency lists\": Correction to Lohnas and Kahana (2013)', which Crossmark links as a correction (2013-08-05) to 10.1037/a0033669; it is a separate notice, not the cited work, and does not change the article's metadata. Not a retraction."
+ },
+ {
+  "key": "MurdKaha93a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+   "quote": "Analysis of the list-strength effect.",
+   "why": "Same title (hyphenated), Murdock and Kahana, JEP:LMC 19(3) 1993, pp. 689-697."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Analysis of the list-strength effect",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "Analysis of the list-strength effect."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B B Murdock and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "Bennet B."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "Murdock"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "Michael J."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "Kahana"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "<year>1993</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "<volume>19</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "<issue>3</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "689--697",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "<first_page>689</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "<last_page>697</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.19.3.689",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.3.689.xml",
+      "quote": "<doi>10.1037/0278-7393.19.3.689</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "'list strength' -> 'list-strength' as printed. Distinct from MurdKaha93b (the reply, 19(6):1450)."
+ },
+ {
+  "key": "MurdKaha93b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+   "quote": "List-strength and list-length effects: Reply to Shiffrin, Ratcliff, Murnane, and Nobel (1993).",
+   "why": "Same title, Murdock and Kahana, JEP:LMC 19(6) 1993, pp. 1450-1453."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "List-strength and list-length effects: reply to {S}hiffrin, {R}atcliff, {M}urnane, and {N}obel (1993)",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "List-strength and list-length effects: Reply to Shiffrin, Ratcliff, Murnane, and Nobel (1993)."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B B Murdock and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "Bennet B."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "Murdock"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "Michael J."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "Kahana"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "<year>1993</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "<volume>19</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "<issue>6</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1450--1453",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "<first_page>1450</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "<last_page>1453</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.19.6.1450",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1450.xml",
+      "quote": "<doi>10.1037/0278-7393.19.6.1450</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref's title ends with '(1993)', which the citation lacks; 'Reply' lowercased after the colon per house rule (the cited '{R}eply' braced it). If the reviewer prefers titles without the parenthetical year, keep the cited title minus the {R} brace."
+ },
+ {
+  "key": "Nave00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+   "quote": "Adult age differences in memory performance: Tests of an associative deficit hypothesis.",
+   "why": "Same title (no hyphen), sole author Naveh-Benjamin, JEP:LMC 26(5) 2000, pp. 1170-1187."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Adult age differences in memory performance: tests of an associative deficit hypothesis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+      "quote": "Adult age differences in memory performance: Tests of an associative deficit hypothesis."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Naveh-Benjamin",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+      "quote": "Moshe"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+      "quote": "Naveh-Benjamin"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+      "quote": "<year>2000</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "26",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+      "quote": "<volume>26</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+      "quote": "<issue>5</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1170--1187",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+      "quote": "<first_page>1170</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+      "quote": "<last_page>1187</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.26.5.1170",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.5.1170.xml",
+      "quote": "<doi>10.1037/0278-7393.26.5.1170</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "'Adult-age' -> 'Adult age' as printed."
+ },
+ {
+  "key": "NelsEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+   "quote": "Spreading activation or spooky action at a distance?",
+   "why": "Same title and three authors, JEP:LMC 29(1) 2003, first page 42."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Spreading activation or spooky action at a distance?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "Spreading activation or spooky action at a distance?"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D L Nelson and C L McEvoy and L Pointer",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "Douglas L."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "Nelson"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "Cathy L."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "McEvoy"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "Lisa"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "Pointer"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "<year>2003</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "29",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "<volume>29</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "<issue>1</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "42--52",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "<first_page>42</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "<last_page>52</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.29.1.42",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.29.1.42.xml",
+      "quote": "<doi>10.1037/0278-7393.29.1.42</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Pages had only the first page; full range 42-52."
+ },
+ {
+  "key": "NilsEtal88",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+   "quote": "Recognition failure of recallable unique names: Evidence for an empirical law of memory and learning.",
+   "why": "Same title and three authors, JEP:LMC 14(2) 1988, pp. 266-277."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Recognition failure of recallable unique names: evidence for an empirical law of memory and learning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "Recognition failure of recallable unique names: Evidence for an empirical law of memory and learning."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "L-G Nilsson and J Law and E Tulving",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "Nilsson"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "Janine"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "Law"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "Endel"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "Tulving"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "<year>1988</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "<volume>14</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "<issue>2</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "266--277",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "<first_page>266</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "<last_page>277</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.14.2.266",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.14.2.266.xml",
+      "quote": "<doi>10.1037/0278-7393.14.2.266</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Only format change: 'L -G' -> house hyphenated initials 'L-G' (Crossref given name Lars-Göran; cdl.bib already uses 'L-G Nilsson' 3 times). Adds issue 2 and DOI."
+ },
+ {
+  "key": "PageEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+   "quote": "Repetition learning in the immediate serial recall of visual and auditory materials.",
+   "why": "Same title and five authors, JEP:LMC 32(4) 2006, pp. 716-733."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Repetition learning in the immediate serial recall of visual and auditory materials",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "Repetition learning in the immediate serial recall of visual and auditory materials."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M P A Page and N Cumming and D Norris and G J Hitch and A M McNeil",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "Mike P. A."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "Page"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "Nick"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "Cumming"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "Dennis"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "Norris"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "Graham J."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "Hitch"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "Alan M."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "McNeil"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "<year>2006</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "32",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "<volume>32</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "<issue>4</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "716--733",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "<first_page>716</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "<last_page>733</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.32.4.716",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.32.4.716.xml",
+      "quote": "<doi>10.1037/0278-7393.32.4.716</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Full given names converted to initials. The 'Address = {Hatfield, {UK}}' field on this @article is an affiliation, not a publication field; left for the reviewer."
+ },
+ {
+  "key": "RatcEtal94",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+   "quote": "Empirical generality of data from recognition memory receiver-operating characteristic functions and implications for the global memory models.",
+   "why": "Same three authors, JEP:LMC 20(4) 1994, pp. 763-785; cited title abbreviates ROC/GMMs."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Empirical generality of data from recognition memory receiver-operating characteristic functions and implications for the global memory models",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "Empirical generality of data from recognition memory receiver-operating characteristic functions and implications for the global memory models."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R Ratcliff and G McKoon and M Tindall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "Roger"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "Ratcliff"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "Gail"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "McKoon"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "Michael"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "Tindall"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1994",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "<year>1994</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "20",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "<volume>20</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "<issue>4</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "763--785",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "<first_page>763</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "<last_page>785</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.20.4.763",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.20.4.763.xml",
+      "quote": "<doi>10.1037/0278-7393.20.4.763</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Cited title used the abbreviations ROC and GMMs; the published title spells them out."
+ },
+ {
+  "key": "RedeEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+   "quote": "A mechanistic account of the mirror effect for word frequency: A computational model of remember",
+   "why": "Same title and six authors, JEP:LMC 26(2) 2000, pp. 294-320."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "A mechanistic account of the mirror effect for word frequency: a computational model of remember-know judgments in a continuous recognition paradigm",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "A mechanistic account of the mirror effect for word frequency: A computational model of remember"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "know judgments in a continuous recognition paradigm."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "L M Reder and A Nhouyvanisvong and C D Schunn and M S Ayers and P Angstadt and K A Hiraki",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Lynne M."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Reder"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Adisack"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Nhouyvanisvong"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Christian D."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Schunn"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Michael S."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Ayers"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Paige"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Angstadt"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Kazuo"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "Hiraki"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "<year>2000</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "26",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "<volume>26</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "<issue>2</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "294--320",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "<first_page>294</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "<last_page>320</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.26.2.294",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.26.2.294.xml",
+      "quote": "<doi>10.1037/0278-7393.26.2.294</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref prints an en dash in 'remember–know'; cited hyphen kept. Cited 'R Angstadt' is wrong: Crossref and PubMed 10764098 give Paige Angstadt ('Angstadt P'), so corrected to 'P Angstadt'. Hiraki: sources give only 'Kazuo'/'K'; cited 'K A' kept under the never-drop rule but the A is unconfirmed."
+ },
+ {
+  "key": "RohrEtal95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+   "quote": "Retrieval from semantic memory and its implications for Alzheimer's disease.",
+   "why": "Same title, Rohrer et al., JEP:LMC 21(5) 1995, pp. 1127-1139."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Retrieval from semantic memory and its implications for {A}lzheimer's disease",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "Retrieval from semantic memory and its implications for Alzheimer's disease."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "D Rohrer and J T Wixted and D P Salmon and N Butters",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "Doug"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "Rohrer"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "John T."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "Wixted"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "David P."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "Salmon"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "Nelson"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "Butters"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "<year>1995</year>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "<volume>21</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "<issue>5</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1127--1139",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "<first_page>1127</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "<last_page>1139</last_page>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "<full_title>Journal of Experimental Psychology: Learning, Memory, and Cognition</full_title>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.21.5.1127",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.21.5.1127.xml",
+      "quote": "<doi>10.1037/0278-7393.21.5.1127</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Citation omitted second author John T. Wixted and Salmon's middle initial. Key unchanged (still Etal)."
+ }
+]

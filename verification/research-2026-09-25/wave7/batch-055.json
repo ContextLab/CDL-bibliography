@@ -1,0 +1,1959 @@
+[
+ {
+  "key": "NeelKeef89",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60538-1",
+   "quote": "Semantic Context Effects on Visual Word Processing: A Hybrid Prospective-Retrospective Processing Theory",
+   "why": "Crossref chapter record: Neely and Keefe, Psychology of Learning and Motivation, 1989, pp. 207-248; its ISBN 9780125433242 is volume 24 in the Internet Archive catalogue record."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J H Neely and D E Keefe",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60538-1",
+      "quote": "\"given\":\"James H.\",\"family\":\"Neely\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60538-1",
+      "quote": "\"given\":\"Dennis E.\",\"family\":\"Keefe\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Semantic context effects on visual word processing: a hybrid prospective-retrospective processing theory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60538-1",
+      "quote": "Semantic Context Effects on Visual Word Processing: A Hybrid Prospective-Retrospective Processing Theory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychology of Learning and Motivation",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60538-1",
+      "quote": "\"container-title\":[\"Psychology of Learning and Motivation\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1989",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60538-1",
+      "quote": "\"published-print\":{\"date-parts\":[[1989]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "24",
+    "evidence": [
+     {
+      "url": "https://archive.org/metadata/psychologyoflear0024unse/metadata",
+      "quote": "advances in research and theory. Volume 24"
+     },
+     {
+      "url": "https://archive.org/metadata/psychologyoflear0024unse/metadata",
+      "quote": "9780125433242"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60538-1",
+      "quote": "\"ISBN\":[\"9780125433242\"]"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "207--248",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60538-1",
+      "quote": "\"page\":\"207-248\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0079-7421(08)60538-1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)60538-1",
+      "quote": "Semantic Context Effects on Visual Word Processing"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Crossref types this as a book-chapter with no volume; volume 24 comes from the ISBN (0125433247 / 9780125433242) shared by the Crossref record and the Internet Archive record titled 'The psychology of learning and motivation: advances in research and theory. Volume 24'. Kept as @article: the Library of Congress catalogues this title as a serial, and cdl.bib has other @article entries for it (HuntEtal89 from the same volume). No duplicate of this work elsewhere in cdl.bib."
+ },
+ {
+  "key": "SahaEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/b978-0-12-407187-2.00004-6",
+   "quote": "List-Method Directed Forgetting in Cognitive and Clinical Research",
+   "why": "Crossref chapter record: Sahakyan, Delaney, Foster, Abushanab, Psychology of Learning and Motivation, 2013, pp. 131-189; Harvard's catalogue record of volume 59 lists the chapter with its subtitle."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L Sahakyan and P F Delaney and N L Foster and B Abushanab",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-407187-2.00004-6",
+      "quote": "\"given\":\"Lili\",\"family\":\"Sahakyan\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-407187-2.00004-6",
+      "quote": "\"given\":\"Peter F.\",\"family\":\"Delaney\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-407187-2.00004-6",
+      "quote": "\"given\":\"Nathaniel L.\",\"family\":\"Foster\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-407187-2.00004-6",
+      "quote": "\"given\":\"Branden\",\"family\":\"Abushanab\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "List-method directed forgetting in cognitive and clinical research: a theoretical and methodological review",
+    "evidence": [
+     {
+      "url": "https://api.lib.harvard.edu/v2/items.json?q=psychology+of+learning+and+motivation+59&limit=1",
+      "quote": "List-Method Directed Forgetting in Cognitive and Clinical Research: A Theoretical and Methodological Review"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychology of Learning and Motivation",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-407187-2.00004-6",
+      "quote": "\"container-title\":[\"Psychology of Learning and Motivation\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-407187-2.00004-6",
+      "quote": "\"published-print\":{\"date-parts\":[[2013]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "59",
+    "evidence": [
+     {
+      "url": "https://api.lib.harvard.edu/v2/items.json?q=psychology+of+learning+and+motivation+59&limit=1",
+      "quote": "Volume 59 includes chapters on such varied topics"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "131--189",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-407187-2.00004-6",
+      "quote": "\"page\":\"131-189\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/b978-0-12-407187-2.00004-6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-407187-2.00004-6",
+      "quote": "List-Method Directed Forgetting in Cognitive and Clinical Research"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Crossref and Semantic Scholar carry only the main title; the subtitle 'A Theoretical and Methodological Review' is in the Harvard (Alma) catalogue contents of volume 59 (that record gives 2014 as its e-book date; Crossref print date is 2013, kept). Kept as @article (PLM is catalogued as a serial; house has other @article PLM entries). No duplicate in cdl.bib."
+ },
+ {
+  "key": "WelcEtal89",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+   "quote": "Real-time Visual Feedback in the Development of Vocal Pitch Accuracy in Singing",
+   "why": "Crossref: Welch, Howard, Rush, Psychology of Music 17(2), 146-157, 1989."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychology of Music",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+      "quote": "\"container-title\":[\"Psychology of Music\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1989",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+      "quote": "\"published-print\":{\"date-parts\":[[1989,10]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+      "quote": "\"volume\":\"17\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "146--157",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+      "quote": "\"page\":\"146-157\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1177/0305735689172005",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+      "quote": "\"DOI\":\"10.1177\\/0305735689172005\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Graham F Welch and David M Howard and Christine Rush",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+      "quote": "\"given\":\"Graham F.\",\"family\":\"Welch\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+      "quote": "\"given\":\"D. M.\",\"family\":\"Howard\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+      "quote": "\"given\":\"C.\",\"family\":\"Rush\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Real-time visual feedback in the development of vocal pitch accuracy in singing",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/0305735689172005",
+      "quote": "Real-time Visual Feedback in the Development of Vocal Pitch Accuracy in Singing"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Crossref gives only initials for Howard (D. M.) and Rush (C.); the cited full given names David and Christine are consistent and were kept (not confirmed beyond initials). No duplicate in cdl.bib."
+ },
+ {
+  "key": "Kell64",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.psychometricsociety.org/sites/main/files/file-attachments/mn11.pdf",
+   "quote": "Kelley, H. P. (1964). Memory Abilities: A Factor Analysis (Psychometric Monograph No. 11).",
+   "why": "The Psychometric Society's own PDF of the monograph: H. Paul Kelley, Memory abilities: a factor analysis, Psychometric Monograph No. 11, Psychometric Corporation, 1964 - not an article in Psychometrika."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "H P Kelley",
+    "evidence": [
+     {
+      "url": "https://www.psychometricsociety.org/sites/main/files/file-attachments/mn11.pdf",
+      "quote": "Kelley, H. P. (1964)."
+     },
+     {
+      "url": "https://www.psychometricsociety.org/sites/main/files/file-attachments/mn11.pdf",
+      "quote": "By H. PAUL KELLEY"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Memory abilities: a factor analysis",
+    "evidence": [
+     {
+      "url": "https://www.psychometricsociety.org/sites/main/files/file-attachments/mn11.pdf",
+      "quote": "Memory Abilities: A Factor Analysis (Psychometric Monograph No. 11)."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Psychometric Monograph",
+    "evidence": [
+     {
+      "url": "https://www.psychometricsociety.org/sites/main/files/file-attachments/mn11.pdf",
+      "quote": "(Psychometric Monograph No. 11)."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://www.psychometricsociety.org/sites/main/files/file-attachments/mn11.pdf",
+      "quote": "(Psychometric Monograph No. 11)."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1964",
+    "evidence": [
+     {
+      "url": "https://www.psychometricsociety.org/sites/main/files/file-attachments/mn11.pdf",
+      "quote": "Copyright, 1964, by the Psychometric Corporation."
+     }
+    ]
+   }
+  },
+  "notes": "Different venue: this is Psychometric Monograph No. 11 (Richmond, VA: Psychometric Corporation, 1964), a monograph series of the Psychometric Society, not Psychometrika. Kept as @article with the series as journal and the monograph number as volume, following the house pattern for monograph series (e.g. Psychological Monographs, Behavioral Monographs entries). The series is usually called 'Psychometric Monographs' (plural); the source prints the singular in its recommended citation, so the singular is proposed - reviewer may prefer the plural. Title: lowercase 'a' after the colon (house colon rule; the cited {A} is the caps.txt blind spot). Crossref's Psychometrika 1964 DOIs matched by the matcher are unrelated works. No duplicate in cdl.bib; no DOI exists."
+ },
+ {
+  "key": "KivlGran06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16624493/",
+   "quote": "Salivary alpha-amylase response to competition: relation to gender, previous experience, and attitudes.",
+   "why": "PubMed 16624493: Kivlighan and Granger, Psychoneuroendocrinology 31(6), 703-714, 2006."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychoneuroendocrinology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2006.01.007",
+      "quote": "\"container-title\":[\"Psychoneuroendocrinology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2006.01.007",
+      "quote": "\"published-print\":{\"date-parts\":[[2006,7]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "31",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2006.01.007",
+      "quote": "\"volume\":\"31\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "703--714",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2006.01.007",
+      "quote": "\"page\":\"703-714\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.psyneuen.2006.01.007",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2006.01.007",
+      "quote": "\"DOI\":\"10.1016\\/j.psyneuen.2006.01.007\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2006.01.007",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Katie T Kivlighan and Douglas A Granger",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16624493/",
+      "quote": "FAU - Kivlighan, Katie T"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16624493/",
+      "quote": "FAU - Granger, Douglas A"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Salivary alpha-amylase response to competition: relation to gender, previous experience, and attitudes",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16624493/",
+      "quote": "Salivary alpha-amylase response to competition: relation to gender, previous experience, and attitudes."
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Crossref writes the Greek letter (α-amylase); PubMed and the house (5 other amylase titles) spell 'alpha', kept. No duplicate in cdl.bib."
+ },
+ {
+  "key": "NateEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16002223/",
+   "quote": "FAU - Nater, Urs Markus",
+   "why": "PubMed 16002223 and Crossref: Nater et al., Psychoneuroendocrinology 31(1), 49-58, 2006, same seven authors."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychoneuroendocrinology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2005.05.010",
+      "quote": "\"container-title\":[\"Psychoneuroendocrinology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2005.05.010",
+      "quote": "\"published-print\":{\"date-parts\":[[2006,1]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "31",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2005.05.010",
+      "quote": "\"volume\":\"31\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "49--58",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2005.05.010",
+      "quote": "\"page\":\"49-58\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.psyneuen.2005.05.010",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2005.05.010",
+      "quote": "\"DOI\":\"10.1016\\/j.psyneuen.2005.05.010\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2005.05.010",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Urs Markus Nater and Roberto {La Marca} and Ladina Florin and Anthony Moses and Wolfgang Langhans and Markus M Koller and Ulrike Ehlert",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16002223/",
+      "quote": "FAU - Nater, Urs Markus"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16002223/",
+      "quote": "FAU - La Marca, Roberto"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16002223/",
+      "quote": "FAU - Florin, Ladina"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16002223/",
+      "quote": "FAU - Moses, Anthony"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16002223/",
+      "quote": "FAU - Langhans, Wolfgang"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16002223/",
+      "quote": "FAU - Koller, Markus M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16002223/",
+      "quote": "FAU - Ehlert, Ulrike"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Stress-induced changes in human salivary alpha-amylase activity---associations with adrenergic activity",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2005.05.010",
+      "quote": "Stress-induced changes in human salivary alpha-amylase activity"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.psyneuen.2005.05.010",
+      "quote": "associations with adrenergic activity"
+     }
+    ]
+   }
+  },
+  "notes": "Title punctuation only: the publisher title (Crossref) joins the two parts with an em dash (activity—associations); written as house '---' without spaces, replacing the cited spaced hyphen. DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "BalaMacD02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/bf03196345",
+   "quote": "Decision criteria do not shift: Reply to Treisman",
+   "why": "Crossref: Balakrishnan and MacDonald, Psychonomic Bulletin and Review 9(4), 858-865, 2002."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196345",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196345",
+      "quote": "\"published-print\":{\"date-parts\":[[2002,12]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196345",
+      "quote": "\"volume\":\"9\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "858--865",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196345",
+      "quote": "\"page\":\"858-865\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/bf03196345",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196345",
+      "quote": "\"DOI\":\"10.3758\\/bf03196345\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196345",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Jerry D Balakrishnan and Justin A MacDonald",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196345",
+      "quote": "\"given\":\"J. D.\",\"family\":\"Balakrishnan\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196345",
+      "quote": "\"given\":\"Justin A.\",\"family\":\"Macdonald\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Decision criteria do not shift: reply to {Treisman}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196345",
+      "quote": "Decision criteria do not shift: Reply to Treisman"
+     }
+    ]
+   }
+  },
+  "notes": "Issue 4 and DOI added. Crossref writes 'Macdonald' and only 'J. D.' for Balakrishnan; the cited MacDonald capitalisation and given name Jerry were kept (not contradicted). No duplicate in cdl.bib."
+ },
+ {
+  "key": "EsteMadd05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/bf03193784",
+   "quote": "Risks of drawing inferences about cognitive processes from model fits to individual versus average performance",
+   "why": "Crossref: Estes and Maddox, Psychonomic Bulletin and Review 12(3), 403-408, 2005."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03193784",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03193784",
+      "quote": "\"published-print\":{\"date-parts\":[[2005,6]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03193784",
+      "quote": "\"volume\":\"12\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "403--408",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03193784",
+      "quote": "\"page\":\"403-408\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/bf03193784",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03193784",
+      "quote": "\"DOI\":\"10.3758\\/bf03193784\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03193784",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W K Estes and W T Maddox",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03193784",
+      "quote": "\"given\":\"W. K.\",\"family\":\"Estes\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03193784",
+      "quote": "\"given\":\"W.\",\"family\":\"Todd Maddox\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Risks of drawing inferences about cognitive processes from model fits to individual versus average performance",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03193784",
+      "quote": "Risks of drawing inferences about cognitive processes from model fits to individual versus average performance"
+     }
+    ]
+   }
+  },
+  "notes": "Issue 3 and DOI added. Crossref mis-splits the second author as given 'W.' family 'Todd Maddox' (W. Todd Maddox); house form W T Maddox kept. No duplicate in cdl.bib."
+ },
+ {
+  "key": "HartDunl11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22083626/",
+   "quote": "FAU - Hartwig, Marissa K",
+   "why": "PubMed 22083626 and Crossref: Hartwig and Dunlosky, Psychonomic Bulletin and Review 19(1), 126-134, Feb 2012 (online first 2011)."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
+      "quote": "\"published-print\":{\"date-parts\":[[2012,2]]}"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22083626/",
+      "quote": "DP  - 2012 Feb"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
+      "quote": "\"volume\":\"19\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "126--134",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
+      "quote": "\"page\":\"126-134\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/s13423-011-0181-y",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
+      "quote": "\"DOI\":\"10.3758\\/s13423-011-0181-y\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Marissa K Hartwig and John Dunlosky",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22083626/",
+      "quote": "FAU - Hartwig, Marissa K"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22083626/",
+      "quote": "FAU - Dunlosky, John"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Study strategies of college students: are self-testing and scheduling related to achievement?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-011-0181-y",
+      "quote": "Study strategies of college students: Are self-testing and scheduling related to achievement?"
+     }
+    ]
+   }
+  },
+  "notes": "Year 2011 was the online-first date; print is 2012 (vol 19, issue 1, pp. 126-134), all added/corrected with DOI. Key changes HartDunl11 -> HartDunl12; HartDunl12 is not in cdl.bib (no collision). No duplicate of this work in cdl.bib."
+ },
+ {
+  "key": "KimbEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+   "quote": "Part-list cuing and the dynamics of false recall",
+   "why": "Crossref: Kimball, Bjork, Bjork, Smith, Psychonomic Bulletin and Review 15(2), 296-301, 2008."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "\"published-print\":{\"date-parts\":[[2008,4]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "\"volume\":\"15\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "296--301",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "\"page\":\"296-301\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/pbr.15.2.296",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "\"DOI\":\"10.3758\\/pbr.15.2.296\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D R Kimball and E L Bjork and R A Bjork and T A Smith",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "\"given\":\"Daniel R.\",\"family\":\"Kimball\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "\"given\":\"Elizabeth L.\",\"family\":\"Bjork\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "\"given\":\"Robert A.\",\"family\":\"Bjork\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "\"given\":\"Troy A.\",\"family\":\"Smith\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Part-list cuing and the dynamics of false recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.2.296",
+      "quote": "Part-list cuing and the dynamics of false recall"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "LeaEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/bf03194119",
+   "quote": "Who do you look like? Evidence of facial stereotypes for male names",
+   "why": "Crossref: Lea, Thomas, Lamkin, Bell, Psychonomic Bulletin and Review 14(5), 901-907, 2007."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "\"published-print\":{\"date-parts\":[[2007,10]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "\"volume\":\"14\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "901--907",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "\"page\":\"901-907\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/bf03194119",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "\"DOI\":\"10.3758\\/bf03194119\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M A Lea and R D Thomas and N A Lamkin and A Bell",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "\"given\":\"Melissa A.\",\"family\":\"Lea\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "\"given\":\"Robin D.\",\"family\":\"Thomas\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "\"given\":\"Nathan A.\",\"family\":\"Lamkin\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "\"given\":\"Aaron\",\"family\":\"Bell\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Who do you look like? Evidence of facial stereotypes for male names",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03194119",
+      "quote": "Who do you look like? Evidence of facial stereotypes for male names"
+     }
+    ]
+   }
+  },
+  "notes": "Title word 'for' -> 'of' ('Evidence of facial stereotypes'); volume 14, issue 5, pages 901--907 and DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "MuelWeid08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/pbr.15.3.465",
+   "quote": "Decision noise: An explanation for observed violations of signal detection theory",
+   "why": "Crossref: Mueller and Weidemann, Psychonomic Bulletin and Review 15(3), 465-494, 2008."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.3.465",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.3.465",
+      "quote": "\"published-print\":{\"date-parts\":[[2008,6,1]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.3.465",
+      "quote": "\"volume\":\"15\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "465--494",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.3.465",
+      "quote": "\"page\":\"465-494\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/pbr.15.3.465",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.3.465",
+      "quote": "\"DOI\":\"10.3758\\/pbr.15.3.465\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.3.465",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Shane T Mueller and Christoph T Weidemann",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.3.465",
+      "quote": "\"given\":\"S. T.\",\"family\":\"MUELLER\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.3.465",
+      "quote": "\"given\":\"C. T.\",\"family\":\"WEIDEMANN\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Decision noise: an explanation for observed violations of signal detection theory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.15.3.465",
+      "quote": "Decision noise: An explanation for observed violations of signal detection theory"
+     }
+    ]
+   }
+  },
+  "notes": "Volume 15, issue 3, pages 465--494 and DOI added. Crossref gives only initials S. T. / C. T.; cited given names Shane and Christoph kept. No duplicate in cdl.bib."
+ },
+ {
+  "key": "Murd03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/bf03196518",
+   "quote": "The mirror effect and the spacing effect",
+   "why": "Crossref: Murdock, Psychonomic Bulletin and Review 10(3), 570-588, 2003."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196518",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196518",
+      "quote": "\"published-print\":{\"date-parts\":[[2003,9]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196518",
+      "quote": "\"volume\":\"10\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "570--588",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196518",
+      "quote": "\"page\":\"570-588\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/bf03196518",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196518",
+      "quote": "\"DOI\":\"10.3758\\/bf03196518\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196518",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B B Murdock",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196518",
+      "quote": "\"given\":\"Bennet\",\"family\":\"Murdock\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The mirror effect and the spacing effect",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196518",
+      "quote": "The mirror effect and the spacing effect"
+     }
+    ]
+   }
+  },
+  "notes": "Cited volume '10(3)' split into volume 10 and number 3; DOI added. Crossref gives only 'Bennet'; the cited second initial (Bennet B. Murdock) kept. No duplicate in cdl.bib."
+ },
+ {
+  "key": "NairNeat95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/24203783/",
+   "quote": "Word-length effects in immediate memory: Overwriting trace decay theory.",
+   "why": "PubMed 24203783 and Crossref: Neath and Nairne, Psychonomic Bulletin and Review 2(4), 429-441, 1995."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03210981",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03210981",
+      "quote": "\"published-print\":{\"date-parts\":[[1995,12]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03210981",
+      "quote": "\"volume\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "429--441",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03210981",
+      "quote": "\"page\":\"429-441\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/bf03210981",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03210981",
+      "quote": "\"DOI\":\"10.3758\\/bf03210981\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03210981",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "Ian Neath and James S Nairne",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24203783/",
+      "quote": "FAU - Neath, I"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24203783/",
+      "quote": "FAU - Nairne, J S"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03210981",
+      "quote": "\"given\":\"Ian\",\"family\":\"Neath\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03210981",
+      "quote": "\"given\":\"James S.\",\"family\":\"Nairne\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Word-length effects in immediate memory: overwriting trace decay theory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24203783/",
+      "quote": "Word-length effects in immediate memory: Overwriting trace decay theory."
+     }
+    ]
+   }
+  },
+  "notes": "Author order reversed: Neath is first author, Nairne second (PubMed and Crossref agree). Title 'effect' -> 'effects'. DOI added. Key changes NairNeat95 -> NeatNair95; NeatNair95 is not in cdl.bib (no collision; NeatCrow90/NeatCrow96 are different works). No duplicate of this work in cdl.bib."
+ },
+ {
+  "key": "NormTurk18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/28585055/",
+   "quote": "Forgetting from lapses of sustained attention.",
+   "why": "PubMed 28585055: deBettencourt, Norman, Turk-Browne, Psychonomic Bulletin and Review 25(2), 605-611, 2018."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-017-1309-5",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-017-1309-5",
+      "quote": "\"published-print\":{\"date-parts\":[[2018,4]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "25",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-017-1309-5",
+      "quote": "\"volume\":\"25\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "605--611",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-017-1309-5",
+      "quote": "\"page\":\"605-611\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/s13423-017-1309-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-017-1309-5",
+      "quote": "Forgetting from lapses of sustained attention"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/s13423-017-1309-5",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "Megan T deBettencourt and Kenneth A Norman and Nicholas B Turk-Browne",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28585055/",
+      "quote": "FAU - deBettencourt, Megan T"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28585055/",
+      "quote": "FAU - Norman, Kenneth A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28585055/",
+      "quote": "FAU - Turk-Browne, Nicholas B"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Forgetting from lapses of sustained attention",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28585055/",
+      "quote": "Forgetting from lapses of sustained attention."
+     }
+    ]
+   }
+  },
+  "notes": "Missing first author Megan T deBettencourt added (written 'deBettencourt' as cdl.bib already does, e.g. deBeEtal15). DOI added. Key changes NormTurk18 -> deBeEtal18 (three authors); deBeEtal18 is not in cdl.bib (existing deBeEtal15/deBeEtal21 are different works). No duplicate of this work in cdl.bib."
+ },
+ {
+  "key": "ShifStey97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/bf03209391",
+   "quote": "A model for recognition memory: REM",
+   "why": "Crossref: Shiffrin and Steyvers, Psychonomic Bulletin and Review 4(2), 145-166, 1997."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03209391",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03209391",
+      "quote": "\"published-print\":{\"date-parts\":[[1997,6]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03209391",
+      "quote": "\"volume\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "145--166",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03209391",
+      "quote": "\"page\":\"145-166\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/bf03209391",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03209391",
+      "quote": "\"DOI\":\"10.3758\\/bf03209391\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03209391",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R M Shiffrin and M Steyvers",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03209391",
+      "quote": "\"given\":\"Richard M.\",\"family\":\"Shiffrin\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03209391",
+      "quote": "\"given\":\"Mark\",\"family\":\"Steyvers\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "A model for recognition memory: {REM}---retrieving effectively from memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03209391",
+      "quote": "A model for recognition memory: REM"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03209391",
+      "quote": "retrieving effectively from memory"
+     }
+    ]
+   }
+  },
+  "notes": "Pages 145 -> 145--166; issue 2 and DOI added; title em dash written '---' without the stray space before 'retrieving'. No duplicate in cdl.bib."
+ },
+ {
+  "key": "SmitVela01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/bf03196157",
+   "quote": "Environmental context-dependent memory: A review and meta-analysis",
+   "why": "Crossref: Smith and Vela, Psychonomic Bulletin and Review 8(2), 203-220, 2001."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196157",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196157",
+      "quote": "\"published-print\":{\"date-parts\":[[2001,6]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196157",
+      "quote": "\"volume\":\"8\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "203--220",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196157",
+      "quote": "\"page\":\"203-220\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/bf03196157",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196157",
+      "quote": "\"DOI\":\"10.3758\\/bf03196157\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196157",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S M Smith and E Vela",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196157",
+      "quote": "\"given\":\"Steven M.\",\"family\":\"Smith\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196157",
+      "quote": "\"given\":\"Edward\",\"family\":\"Vela\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Environmental context-dependent memory: a review and meta-analysis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03196157",
+      "quote": "Environmental context-dependent memory: A review and meta-analysis"
+     }
+    ]
+   }
+  },
+  "remove": [
+   "address"
+  ],
+  "notes": "All cited bibliographic fields confirmed; DOI added. The 'address' field (College Station, TX - the authors' affiliation) does not belong on an @article and is listed under remove. Smit88 ('Environmental context-dependent memory', Wiley chapter 1988) is a different work, not a duplicate."
+ },
+ {
+  "key": "UnswEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/19815801/",
+   "quote": "FAU - Unsworth, Nash",
+   "why": "PubMed 19815801 and Crossref: Unsworth, Brewer, Spillers, Psychonomic Bulletin and Review 16(5), 931-937, 2009."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychonomic Bulletin and Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.16.5.931",
+      "quote": "\"container-title\":[\"Psychonomic Bulletin &amp; Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.16.5.931",
+      "quote": "\"published-print\":{\"date-parts\":[[2009,10]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.16.5.931",
+      "quote": "\"volume\":\"16\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "931--937",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.16.5.931",
+      "quote": "\"page\":\"931-937\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/pbr.16.5.931",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.16.5.931",
+      "quote": "\"DOI\":\"10.3758\\/pbr.16.5.931\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/pbr.16.5.931",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "N Unsworth and G A Brewer and G J Spillers",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19815801/",
+      "quote": "FAU - Unsworth, Nash"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19815801/",
+      "quote": "FAU - Brewer, Gene A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19815801/",
+      "quote": "FAU - Spillers, Gregory J"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "There's more to the working memory capacity---fluid intelligence relationship than just secondary memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19815801/",
+      "quote": "There's more to the working memory capacity-fluid intelligence relationship than just secondary memory."
+     }
+    ]
+   }
+  },
+  "notes": "Title: the publisher (Crossref) has an em dash in 'capacity—fluid'; written '---' without the stray space after it. DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "Laur67",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3758/bf03330833",
+   "quote": "Memory loss with age: A test of two strategies for its retardation",
+   "why": "Crossref: Mary W. Laurence, Psychonomic Science 9(4), 209-210, 1967."
+  },
+  "fields": {
+   "journal": {
+    "status": "corrected",
+    "value": "Psychonomic Science",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03330833",
+      "quote": "\"container-title\":[\"Psychonomic Science\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1967",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03330833",
+      "quote": "\"published-print\":{\"date-parts\":[[1967,4]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03330833",
+      "quote": "\"volume\":\"9\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "209--210",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03330833",
+      "quote": "\"page\":\"209-210\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3758/bf03330833",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03330833",
+      "quote": "\"DOI\":\"10.3758\\/bf03330833\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03330833",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M W Laurence",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03330833",
+      "quote": "\"given\":\"Mary W.\",\"family\":\"Laurence\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Memory loss with age: a test of two strategies for its retardation",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3758/bf03330833",
+      "quote": "Memory loss with age: A test of two strategies for its retardation"
+     }
+    ]
+   }
+  },
+  "notes": "Journal 'Psychonomic Society' -> 'Psychonomic Science'; author middle initial W added (Mary W. Laurence); issue 4 and DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "deBoEtal97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+   "quote": "The comprehension of metaphors in schizophrenia.",
+   "why": "PubMed 9186980: de Bonis, Epelbaum, Deffez, Feline, Psychopathology 30(3), 149-154, 1997, DOI 10.1159/000285041."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M {de Bonis} and C Epelbaum and V Deffez and A F{\\'e}line",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "FAU - de Bonis, M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "FAU - Epelbaum, C"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "FAU - Deffez, V"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "FAU - Feline, A"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The comprehension of metaphors in schizophrenia",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "The comprehension of metaphors in schizophrenia."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychopathology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "JT  - Psychopathology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "DP  - 1997"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "30",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "VI  - 30"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "149--154",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "PG  - 149-54"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1159/000285041",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9186980/",
+      "quote": "AID - 10.1159/000285041 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Volume 30, issue 3, pages 149--154 and DOI added. Crossref's date (2010) is the Karger online-archive date, not the print year; PubMed gives 1997. PubMed drops the accent on Feline; Crossref has 'Féline' (André Féline), cited accent kept. No duplicate in cdl.bib."
+ }
+]

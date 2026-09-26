@@ -1,0 +1,2129 @@
+[
+ {
+  "key": "BlanEtal08b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+   "quote": "Optimizing Spatial filters for Robust EEG Single-Trial Analysis",
+   "why": "Crossref record: Blankertz, Tomioka, Lemm, Kawanabe, Muller; IEEE Signal Processing Magazine 25(1):41-56, 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B Blankertz and R Tomioka and S Lemm and M Kawanabe and K-R M{\\\"u}ller",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"given\":\"Benjamin\",\"family\":\"Blankertz\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"given\":\"Ryota\",\"family\":\"Tomioka\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"given\":\"Steven\",\"family\":\"Lemm\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"given\":\"Motoaki\",\"family\":\"Kawanabe\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"given\":\"Klaus-robert\",\"family\":\"Muller\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:18838371%20AND%20SRC:MED&format=json&resultType=core",
+      "quote": "Curio G, Müller KR"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Optimizing spatial filters for robust {EEG} single-trial analysis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "Optimizing Spatial filters for Robust EEG Single-Trial Analysis"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"published-print\":{\"date-parts\":[[2008]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/msp.2008.4408441",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"DOI\":\"10.1109\\/msp.2008.4408441\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Signal Processing Magazine",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"container-title\":[\"IEEE Signal Processing Magazine\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "25",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"volume\":\"25\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "41--56",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2008.4408441",
+      "quote": "\"page\":\"41-56\""
+     }
+    ]
+   }
+  },
+  "notes": "Adds number 1 and DOI. Crossref prints 'Klaus-robert Muller' without the umlaut; the umlaut is kept (house keeps accents); the Europe PMC record of the same author's 2008 TBME paper (BlanEtal08a) prints 'Müller KR'. Author list otherwise matches. No duplicate found in cdl.bib."
+ },
+ {
+  "key": "HintEtal12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+   "quote": "Deep Neural Networks for Acoustic Modeling in Speech Recognition: The Shared Views of Four Research Groups",
+   "why": "Crossref record: Hinton et al., IEEE Signal Processing Magazine 29(6):82-97, 2012."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "G Hinton and L Deng and D Yu and G E Dahl and A-R Mohamed and N Jaitly and A Senior and V Vanhoucke and P Nguyen and T N Sainath and B Kingsbury",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"Geoffrey\",\"family\":\"Hinton\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"Li\",\"family\":\"Deng\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"Dong\",\"family\":\"Yu\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"George\",\"family\":\"Dahl\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"Abdel-rahman\",\"family\":\"Mohamed\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"Navdeep\",\"family\":\"Jaitly\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"Andrew\",\"family\":\"Senior\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"Vincent\",\"family\":\"Vanhoucke\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"Patrick\",\"family\":\"Nguyen\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"Tara\",\"family\":\"Sainath\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"given\":\"Brian\",\"family\":\"Kingsbury\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Deep neural networks for acoustic modeling in speech recognition: the shared views of four research groups",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "Deep Neural Networks for Acoustic Modeling in Speech Recognition: The Shared Views of Four Research Groups"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"published-print\":{\"date-parts\":[[2012,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/msp.2012.2205597",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"DOI\":\"10.1109\\/msp.2012.2205597\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Signal Processing Magazine",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"container-title\":[\"IEEE Signal Processing Magazine\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "29",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"volume\":\"29\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "82--97",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/msp.2012.2205597",
+      "quote": "\"page\":\"82-97\""
+     }
+    ]
+   }
+  },
+  "notes": "Seventh author was a bare 'Andrew'; Crossref gives Andrew Senior -> 'A Senior'. Middle initials G E Dahl and T N Sainath are kept from the citation (Crossref gives only given names, never drop). 'Abdel-rahman' -> hyphenated initials A-R. Adds DOI."
+ },
+ {
+  "key": "LameEtal81",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+   "quote": "An improved endpoint detector for isolated word recognition",
+   "why": "Crossref record: Lamel, Rabiner, Rosenberg, Wilpon; IEEE TASSP 29(4):777-785, 1981."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L F Lamel and L R Rabiner and A E Rosenberg and J G Wilpon",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "\"given\":\"L.\",\"family\":\"Lamel\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "\"given\":\"L.\",\"family\":\"Rabiner\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "\"given\":\"A.\",\"family\":\"Rosenberg\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "\"given\":\"J.\",\"family\":\"Wilpon\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "An improved endpoint detector for isolated word recognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "An improved endpoint detector for isolated word recognition"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1981",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "\"published-print\":{\"date-parts\":[[1981,8]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tassp.1981.1163642",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "\"DOI\":\"10.1109\\/tassp.1981.1163642\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Acoustics, Speech, and Signal Processing",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "\"container-title\":[\"IEEE Transactions on Acoustics, Speech, and Signal Processing\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "29",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "\"volume\":\"29\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "777--785",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tassp.1981.1163642",
+      "quote": "\"page\":\"777-785\""
+     }
+    ]
+   }
+  },
+  "notes": "All bibliographic fields match; only change is adding the DOI. Crossref prints single initials (L. Lamel etc.); the second initials in the citation are kept per the never-drop rule (IEEE Xplore, which prints full names, blocks scripts)."
+ },
+ {
+  "key": "WilpEtal90",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/29.103088",
+   "quote": "Automatic recognition of keywords in unconstrained speech using hidden Markov models",
+   "why": "Crossref record: Wilpon, Rabiner, Lee, Goldman; IEEE TASSP 38(11):1870-1878, 1990."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J G Wilpon and L R Rabiner and C-H Lee and E R Goldman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "\"given\":\"J.G.\",\"family\":\"Wilpon\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "\"given\":\"L.R.\",\"family\":\"Rabiner\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "\"given\":\"C.-H.\",\"family\":\"Lee\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "\"given\":\"E.R.\",\"family\":\"Goldman\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Automatic recognition of keywords in unconstrained speech using hidden {M}arkov models",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "Automatic recognition of keywords in unconstrained speech using hidden Markov models"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1990",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "\"published-print\":{\"date-parts\":[[1990]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/29.103088",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "\"DOI\":\"10.1109\\/29.103088\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Acoustics, Speech, and Signal Processing",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "\"container-title\":[\"IEEE Transactions on Acoustics, Speech, and Signal Processing\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "38",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "\"volume\":\"38\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "\"issue\":\"11\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1870--1878",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/29.103088",
+      "quote": "\"page\":\"1870-1878\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref prints 'C.-H. Lee' -> hyphenated initials 'C-H Lee' (house rule). Adds DOI. Title kept as in cdl.bib ({M}arkov)."
+ },
+ {
+  "key": "GrunRant08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tac.2008.927799",
+   "quote": "On the Infinite Horizon Performance of Receding Horizon Controllers",
+   "why": "Crossref record: Lars Grune and Anders Rantzer, IEEE TAC 53(9):2100-2111, 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L {Gr\\\"{u}ne} and A Rantzer",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tac.2008.927799",
+      "quote": "\"given\":\"Lars\",\"family\":\"Grune\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tac.2008.927799",
+      "quote": "\"given\":\"Anders\",\"family\":\"Rantzer\""
+     },
+     {
+      "url": "https://lup.lub.lu.se/record/1284691",
+      "quote": "Grüne, Lars"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "On the infinite horizon performance of receding horizon controllers",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tac.2008.927799",
+      "quote": "On the Infinite Horizon Performance of Receding Horizon Controllers"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tac.2008.927799",
+      "quote": "\"published-print\":{\"date-parts\":[[2008,10]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tac.2008.927799",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tac.2008.927799",
+      "quote": "\"DOI\":\"10.1109\\/tac.2008.927799\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Automatic Control",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tac.2008.927799",
+      "quote": "\"container-title\":[\"IEEE Transactions on Automatic Control\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "53",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tac.2008.927799",
+      "quote": "\"volume\":\"53\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tac.2008.927799",
+      "quote": "\"issue\":\"9\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2100--2111",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tac.2008.927799",
+      "quote": "\"page\":\"2100-2111\""
+     }
+    ]
+   }
+  },
+  "notes": "Adds number 9 and DOI. Crossref drops the umlaut ('Grune'); Lund University Publications record prints 'Grüne, Lars', so the existing braced umlaut surname is kept."
+ },
+ {
+  "key": "BlanEtal08a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+   "quote": "The Berlin Brain-Computer Interface: Accurate performance from first-session in BCI-naive subjects",
+   "why": "Crossref and PubMed/Europe PMC (PMID 18838371): Blankertz et al., IEEE TBME 55(10):2452-2462, 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B Blankertz and F Losch and M Krauledat and G Dornhege and G Curio and K-R M{\\\"u}ller",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"given\":\"Benjamin\",\"family\":\"Blankertz\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"given\":\"Florian\",\"family\":\"Losch\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"given\":\"Matthias\",\"family\":\"Krauledat\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"given\":\"Guido\",\"family\":\"Dornhege\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"given\":\"Gabriel\",\"family\":\"Curio\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"given\":\"Klaus-Robert\",\"family\":\"Muller\""
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:18838371%20AND%20SRC:MED&format=json&resultType=core",
+      "quote": "Blankertz B, Losch F, Krauledat M, Dornhege G, Curio G, Müller KR"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "The {Berlin} brain-computer interface: accurate performance from first-session in {BCI}-na{\\\"\\i}ve subjects",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "The Berlin Brain-Computer Interface: Accurate performance from first-session in BCI-naive subjects"
+     },
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:18838371%20AND%20SRC:MED&format=json&resultType=core",
+      "quote": "accurate performance from first-session in BCI-naïve subjects"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"published-print\":{\"date-parts\":[[2008,10]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tbme.2008.923152",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"DOI\":\"10.1109\\/tbme.2008.923152\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Biomedical Engineering",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"container-title\":[\"IEEE Transactions on Biomedical Engineering\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "55",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"volume\":\"55\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"issue\":\"10\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2452--2462",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.923152",
+      "quote": "\"page\":\"2452-2462\""
+     }
+    ]
+   }
+  },
+  "notes": "Issue was 18; Crossref and PubMed give 10. Title: only change is bracing the acronym {BCI}. Adds DOI."
+ },
+ {
+  "key": "DAleEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+   "quote": "Epileptic seizure prediction using hybrid feature selection over multiple intracranial EEG electrode contacts: a report of four patients",
+   "why": "Crossref and PubMed (PMID 12769436): D'Alessandro et al., IEEE TBME 50(5):603-615, 2003."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M D'Alessandro and R Esteller and G Vachtsevanos and A Hinson and J Echauz and B Litt",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"given\":\"M.\",\"family\":\"D'Alessandro\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"given\":\"R.\",\"family\":\"Esteller\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"given\":\"G.\",\"family\":\"Vachtsevanos\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"given\":\"A.\",\"family\":\"Hinson\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"given\":\"J.\",\"family\":\"Echauz\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"given\":\"B.\",\"family\":\"Litt\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Epileptic seizure prediction using hybrid feature selection over multiple intracranial {EEG} electrode contacts: a report of four patients",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "Epileptic seizure prediction using hybrid feature selection over multiple intracranial EEG electrode contacts: a report of four patients"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"published-print\":{\"date-parts\":[[2003,5]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tbme.2003.810706",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"DOI\":\"10.1109\\/tbme.2003.810706\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Biomedical Engineering",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"container-title\":[\"IEEE Transactions on Biomedical Engineering\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "50",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"volume\":\"50\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "603--615",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2003.810706",
+      "quote": "\"page\":\"603-615\""
+     }
+    ]
+   }
+  },
+  "notes": "All fields match; adds DOI. The second Crossref record 10.1109/tbme.2003.815899 (same title, 50(8):1041) is an erratum to this article: PubMed PMID 12769436 lists 'EIN - IEEE Trans Biomed Eng. 2003 Aug;50(8):1041'. The erratum is a separate notice, not a retraction; the cited article is the original 603-615 paper, so no change beyond noting it."
+ },
+ {
+  "key": "MillEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+   "quote": "Beyond the Gamma Band: The Role of High-Frequency Features in Movement Classification",
+   "why": "Crossref and PubMed (PMID 18440909): Miller, Shenoy, den Nijs, Sorensen, Rao, Ojemann; IEEE TBME 55(5):1634-1637, 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K J Miller and P Shenoy and M {den Nijs} and L B Sorensen and R P N Rao and J G Ojemann",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"given\":\"Kai J.\",\"family\":\"Miller $^*$\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"given\":\"Pradeep\",\"family\":\"Shenoy\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"given\":\"Marcel\",\"family\":\"den Nijs\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"given\":\"Larry B.\",\"family\":\"Sorensen\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"given\":\"Rajesh P. N.\",\"family\":\"Rao\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"given\":\"Jeffrey G.\",\"family\":\"Ojemann\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Beyond the gamma band: the role of high-frequency features in movement classification",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "Beyond the Gamma Band: The Role of High-Frequency Features in Movement Classification"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"published-print\":{\"date-parts\":[[2008,5]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tbme.2008.918569",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"DOI\":\"10.1109\\/tbme.2008.918569\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Biomedical Engineering",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"container-title\":[\"IEEE Transactions on Biomedical Engineering\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "55",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"volume\":\"55\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1634--1637",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tbme.2008.918569",
+      "quote": "\"page\":\"1634-1637\""
+     }
+    ]
+   }
+  },
+  "notes": "All fields match; adds DOI. Crossref's first author family is 'Miller $^*$' (a corresponding-author asterisk artefact). Crossref gives 'Rajesh P. N.' so R P N Rao stays (PubMed prints 'Rao, Rajesh N'); particle surname kept as cdl.bib writes it, {den Nijs}."
+ },
+ {
+  "key": "Samm69",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/t-c.1969.222678",
+   "quote": "A Nonlinear Mapping for Data Structure Analysis",
+   "why": "Crossref record: J.W. Sammon, IEEE Transactions on Computers C-18(5):401-409, 1969."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J W Sammon",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/t-c.1969.222678",
+      "quote": "\"given\":\"J.W.\",\"family\":\"Sammon\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A nonlinear mapping for data structure analysis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/t-c.1969.222678",
+      "quote": "A Nonlinear Mapping for Data Structure Analysis"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1969",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/t-c.1969.222678",
+      "quote": "\"published-print\":{\"date-parts\":[[1969,5]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/t-c.1969.222678",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/t-c.1969.222678",
+      "quote": "\"DOI\":\"10.1109\\/t-c.1969.222678\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Computers",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/t-c.1969.222678",
+      "quote": "\"container-title\":[\"IEEE Transactions on Computers\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "C-18",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/t-c.1969.222678",
+      "quote": "\"volume\":\"C-18\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/t-c.1969.222678",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "401--409",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/t-c.1969.222678",
+      "quote": "\"page\":\"401-409\""
+     }
+    ]
+   }
+  },
+  "notes": "Every field matches Crossref; the only change is adding the DOI."
+ },
+ {
+  "key": "KemeChil72",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tit.1972.1054926",
+   "quote": "Signal detection and extraction by cepstrum techniques",
+   "why": "Crossref record: Kemerait and Childers, IEEE Trans. Information Theory 18(6):745-759, 1972."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R C Kemerait and D G Childers",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1972.1054926",
+      "quote": "\"given\":\"R.\",\"family\":\"Kemerait\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1972.1054926",
+      "quote": "\"given\":\"D.\",\"family\":\"Childers\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Signal detection and extraction by cepstrum techniques",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1972.1054926",
+      "quote": "Signal detection and extraction by cepstrum techniques"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1972",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1972.1054926",
+      "quote": "\"published-print\":{\"date-parts\":[[1972,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tit.1972.1054926",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1972.1054926",
+      "quote": "\"DOI\":\"10.1109\\/tit.1972.1054926\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Information Theory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1972.1054926",
+      "quote": "\"container-title\":[\"IEEE Transactions on Information Theory\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1972.1054926",
+      "quote": "\"volume\":\"18\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1972.1054926",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "745--759",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1972.1054926",
+      "quote": "\"page\":\"745-759\""
+     }
+    ]
+   }
+  },
+  "notes": "Title: '{C}epstrum' is a common noun, lowercase per sentence case (Crossref prints 'cepstrum'). Adds DOI. Crossref gives single initials (R. Kemerait, D. Childers); the citation's second initials are kept (never drop)."
+ },
+ {
+  "key": "Lin09",
+  "verdict": "correction",
+  "new_key": "Lin91",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/18.61115",
+   "quote": "Divergence measures based on the Shannon entropy",
+   "why": "Crossref record and local PDF: Jianhua Lin, IEEE Trans. Information Theory 37(1):145-151, 1991."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Lin",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/18.61115",
+      "quote": "\"given\":\"J.\",\"family\":\"Lin\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Divergence measures based on the {Shannon} entropy",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/18.61115",
+      "quote": "Divergence measures based on the Shannon entropy"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/18.61115",
+      "quote": "\"published-print\":{\"date-parts\":[[1991]]}"
+     },
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/Lin09.pdf#page=1",
+      "quote": "IEEE TRANSACTIONS ON INFORMATION THEORY. VOL. 37, NO. I , JANUARY 1991"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/18.61115",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/18.61115",
+      "quote": "\"DOI\":\"10.1109\\/18.61115\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Information Theory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/18.61115",
+      "quote": "\"container-title\":[\"IEEE Transactions on Information Theory\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "37",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/18.61115",
+      "quote": "\"volume\":\"37\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/18.61115",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "145--151",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/18.61115",
+      "quote": "\"page\":\"145-151\""
+     }
+    ]
+   }
+  },
+  "notes": "Year was 2009; the paper is 1991 (Crossref and the local PDF masthead). Key rename Lin09 -> Lin91; Lin91 is not in HEAD cdl.bib (no collision, no duplicate of this work). Adds DOI."
+ },
+ {
+  "key": "Vite67",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tit.1967.1054010",
+   "quote": "Error bounds for convolutional codes and an asymptotically optimum decoding algorithm",
+   "why": "Crossref record: A. Viterbi, IEEE Trans. Information Theory 13(2):260-269, 1967."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A J Viterbi",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1967.1054010",
+      "quote": "\"given\":\"A.\",\"family\":\"Viterbi\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Error bounds for convolutional codes and an asymptotically optimum decoding algorithm",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1967.1054010",
+      "quote": "Error bounds for convolutional codes and an asymptotically optimum decoding algorithm"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1967",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1967.1054010",
+      "quote": "\"published-print\":{\"date-parts\":[[1967,4]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.1109/tit.1967.1054010",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1967.1054010",
+      "quote": "\"DOI\":\"10.1109\\/tit.1967.1054010\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Information Theory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1967.1054010",
+      "quote": "\"container-title\":[\"IEEE Transactions on Information Theory\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1967.1054010",
+      "quote": "\"volume\":\"13\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1967.1054010",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "260--269",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tit.1967.1054010",
+      "quote": "\"page\":\"260-269\""
+     }
+    ]
+   }
+  },
+  "notes": "All fields match. DOI already present (uppercase in cdl.bib); house form is lowercase, same DOI. Crossref gives only 'A.'; the citation's A J is kept (never drop). The other Crossref hit 10.1142/9789814287517_0004 is a later book reprint (different work)."
+ },
+ {
+  "key": "CaliVita05",
+  "verdict": "correction",
+  "new_key": "CiliVita07",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+   "quote": "The Google Similarity Distance",
+   "why": "Crossref record: Rudi L. Cilibrasi and Paul M.B. Vitanyi, IEEE TKDE 19(3):370-383, 2007."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "R L Cilibrasi and P M B Vitanyi",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+      "quote": "\"given\":\"Rudi L.\",\"family\":\"Cilibrasi\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+      "quote": "\"given\":\"Paul M.B.\",\"family\":\"Vitanyi\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The {G}oogle similarity distance",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+      "quote": "The Google Similarity Distance"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+      "quote": "\"published-print\":{\"date-parts\":[[2007,3]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tkde.2007.48",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+      "quote": "\"DOI\":\"10.1109\\/tkde.2007.48\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Knowledge and Data Engineering",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+      "quote": "\"container-title\":[\"IEEE Transactions on Knowledge and Data Engineering\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+      "quote": "\"volume\":\"19\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "370--383",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+      "quote": "\"page\":\"370-383\""
+     }
+    ]
+   }
+  },
+  "notes": "First author surname misspelled 'Calibrasi' -> 'Cilibrasi'; year 2005 -> 2007 (volume 19 no. 3 is March 2007). Key rename CaliVita05 -> CiliVita07 (not in HEAD cdl.bib; no other entry for this work). A 2004 arXiv preprint (cs/0412098) exists; that may explain the old year, but the cited volume/pages are the TKDE 2007 article. Adds DOI."
+ },
+ {
+  "key": "EckhEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+   "quote": "Different Types of Signal Coupling in the Visual Cortex Related to Neural Mechanisms of Associative Processing and Perception",
+   "why": "Crossref and PubMed (PMID 15484881): Eckhorn et al., IEEE Trans. Neural Networks 15(5):1039-1052, 2004."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "R Eckhorn and A M Gail and A Bruns and A Gabriel and B Al-Shaikhli and M Saam",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"given\":\"R.\",\"family\":\"Eckhorn\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"given\":\"A.M.\",\"family\":\"Gail\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"given\":\"A.\",\"family\":\"Bruns\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"given\":\"A.\",\"family\":\"Gabriel\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"given\":\"B.\",\"family\":\"Al-Shaikhli\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"given\":\"M.\",\"family\":\"Saam\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15484881&rettype=medline&retmode=text",
+      "quote": "FAU - Gail, Alexander M"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Different types of signal coupling in the visual cortex related to neural mechanisms of associative processing and perception",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "Different Types of Signal Coupling in the Visual Cortex Related to Neural Mechanisms of Associative Processing and Perception"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"published-print\":{\"date-parts\":[[2004,9]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tnn.2004.833130",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"DOI\":\"10.1109\\/tnn.2004.833130\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Neural Networks",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"container-title\":[\"IEEE Transactions on Neural Networks\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"volume\":\"15\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1039--1052",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tnn.2004.833130",
+      "quote": "\"page\":\"1039-1052\""
+     }
+    ]
+   }
+  },
+  "notes": "Title was truncated; full title restored. Second author A M Gail (Crossref 'A.M.', PubMed 'Alexander M'). Adds number 5 and DOI. Different work: the same six authors' 'Neural mechanisms of visual associative processing', Acta Neurobiologiae Experimentalis 64(2):239-252, 2004 (10.55782/ane-2004-1509) is a separate paper; the cited volume/pages are the TNN article."
+ },
+ {
+  "key": "GemaGema84",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tpami.1984.4767596",
+   "quote": "Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images",
+   "why": "Crossref record: Stuart Geman and Donald Geman, IEEE TPAMI PAMI-6(6):721-741, 1984."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Geman and D Geman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.1984.4767596",
+      "quote": "\"given\":\"Stuart\",\"family\":\"Geman\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.1984.4767596",
+      "quote": "\"given\":\"Donald\",\"family\":\"Geman\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Stochastic relaxation, {Gibbs} distributions, and the {Bayesian} restoration of images",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.1984.4767596",
+      "quote": "Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1984",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.1984.4767596",
+      "quote": "\"published-print\":{\"date-parts\":[[1984,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tpami.1984.4767596",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.1984.4767596",
+      "quote": "\"DOI\":\"10.1109\\/tpami.1984.4767596\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Pattern Analysis and Machine Intelligence",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.1984.4767596",
+      "quote": "\"container-title\":[\"IEEE Transactions on Pattern Analysis and Machine Intelligence\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "PAMI-6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.1984.4767596",
+      "quote": "\"volume\":\"PAMI-6\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.1984.4767596",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "721--741",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.1984.4767596",
+      "quote": "\"page\":\"721-741\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume printed as 'PAMI-6' (Crossref); proposed to match the house form already used for Samm69 (Volume = {C-18}). If the reviewer prefers plain numerals, '6' is the same volume, so this is cosmetic. Adds DOI."
+ },
+ {
+  "key": "MaoEtal12",
+  "verdict": "correction",
+  "new_key": "HughEtal12",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+   "quote": "Empirical Mode Decomposition Analysis for Visual Stylometry",
+   "why": "Crossref and PubMed (PMID 23289129): Hughes, Mao, Rockmore, Wang, Wu; IEEE TPAMI 34(11):2147-2157, 2012."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J M Hughes and D Mao and D N Rockmore and Y Wang and Q Wu",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23289129&rettype=medline&retmode=text",
+      "quote": "FAU - Hughes, James M"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23289129&rettype=medline&retmode=text",
+      "quote": "FAU - Mao, Dong"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23289129&rettype=medline&retmode=text",
+      "quote": "FAU - Rockmore, Daniel N"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23289129&rettype=medline&retmode=text",
+      "quote": "FAU - Wang, Yang"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23289129&rettype=medline&retmode=text",
+      "quote": "FAU - Wu, Qiang"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"given\":\"J. M.\",\"family\":\"Hughes\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"family\":\"Dong Mao\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"given\":\"D. N.\",\"family\":\"Rockmore\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"family\":\"Yang Wang\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"family\":\"Qiang Wu\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Empirical mode decomposition analysis for visual stylometry",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "Empirical Mode Decomposition Analysis for Visual Stylometry"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"published-print\":{\"date-parts\":[[2012,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tpami.2012.16",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"DOI\":\"10.1109\\/tpami.2012.16\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{IEEE} Transactions on Pattern Analysis and Machine Intelligence",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"container-title\":[\"IEEE Transactions on Pattern Analysis and Machine Intelligence\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "34",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"volume\":\"34\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"issue\":\"11\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2147--2157",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tpami.2012.16",
+      "quote": "\"page\":\"2147-2157\""
+     }
+    ]
+   }
+  },
+  "notes": "Author order: both PubMed and Crossref list James M Hughes first, then Dong Mao, so first author changes and the key is renamed MaoEtal12 -> HughEtal12 (not in HEAD cdl.bib; no duplicate of this work). Adds DOI."
+ },
+ {
+  "key": "BaboEtal11",
+  "verdict": "correction",
+  "remove": [
+   "journal"
+  ],
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+   "quote": "Automatic photo-to-terrain alignment for the annotation of mountain pictures",
+   "why": "Crossref proceedings-article: Baboud, Cadik, Eisemann, Seidel, CVPR 2011, pp. 41-48."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "L Baboud and M {\\v C}ad{\\'\\i}k and E Eisemann and H-P Seidel",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+      "quote": "\"given\":\"Lionel\",\"family\":\"Baboud\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+      "quote": "\"given\":\"Martin\",\"family\":\"Cadik\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+      "quote": "\"given\":\"Elmar\",\"family\":\"Eisemann\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+      "quote": "\"given\":\"Hans-Peter\",\"family\":\"Seidel\""
+     },
+     {
+      "url": "https://pure.mpg.de/rest/items/item_1562571",
+      "quote": "\"familyName\":\"Čadík\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Automatic photo-to-terrain alignment for the annotation of mountain pictures",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+      "quote": "Automatic photo-to-terrain alignment for the annotation of mountain pictures"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+      "quote": "\"published-print\":{\"date-parts\":[[2011,6]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/cvpr.2011.5995727",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+      "quote": "\"DOI\":\"10.1109\\/cvpr.2011.5995727\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "41--48",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+      "quote": "\"page\":\"41-48\""
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+      "quote": "\"type\":\"proceedings-article\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "{IEEE} Conference on Computer Vision and Pattern Recognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvpr.2011.5995727",
+      "quote": "\"name\":\"2011 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)\""
+     }
+    ]
+   }
+  },
+  "notes": "Was @article with Journal '{IEEE} {Xplore}' and a DOI URL in pages. It is a CVPR 2011 conference paper: @inproceedings, booktitle in the house form already used 4x in cdl.bib ('{IEEE} Conference on Computer Vision and Pattern Recognition'), pages 41--48, DOI. Remove journal. Second author is Čadík (MPG PuRe record): adds the missing acute on the i, written {\\'\\i} as cdl.bib does (Mart{\\'\\i}nez)."
+ },
+ {
+  "key": "GuoEtal20",
+  "verdict": "correction",
+  "new_key": "GuoEtal22",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+   "quote": "A Survey on Knowledge Graph-Based Recommender Systems",
+   "why": "Crossref record: Guo et al., IEEE TKDE 34(8):3549-3568, 2022."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "Q Guo and F Zhuang and C Qin and H Zhu and X Xie and H Xiong and Q He",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"given\":\"Qingyu\",\"family\":\"Guo\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"given\":\"Fuzhen\",\"family\":\"Zhuang\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"given\":\"Chuan\",\"family\":\"Qin\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"given\":\"Hengshu\",\"family\":\"Zhu\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"given\":\"Xing\",\"family\":\"Xie\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"given\":\"Hui\",\"family\":\"Xiong\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"given\":\"Qing\",\"family\":\"He\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A survey on knowledge graph-based recommender systems",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "A Survey on Knowledge Graph-Based Recommender Systems"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2022",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"published-print\":{\"date-parts\":[[2022,8,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/tkde.2020.3028705",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"DOI\":\"10.1109\\/tkde.2020.3028705\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "{IEEE} Transactions on Knowledge and Data Engineering",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"container-title\":[\"IEEE Transactions on Knowledge and Data Engineering\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "34",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"volume\":\"34\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"issue\":\"8\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "3549--3568",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/tkde.2020.3028705",
+      "quote": "\"page\":\"3549-3568\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal was '{IEEE} {Xplore}' -> IEEE Transactions on Knowledge and Data Engineering. Year: online-first 2020 (DOI suffix 2020), print issue 34(8) August 2022; print year wins -> 2022, key GuoEtal20 -> GuoEtal22 (not in HEAD cdl.bib; no duplicate). The Science China Information Sciences Chinese-language survey (10.1360/ssi-2019-0274) is a different work."
+ },
+ {
+  "key": "StonEtal18",
+  "verdict": "correction",
+  "remove": [
+   "journal"
+  ],
+  "new_key": "StonEtal08",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
+   "quote": "Autotagging Facebook: Social network context improves photo annotation",
+   "why": "Crossref proceedings-article: Stone, Zickler, Darrell, CVPR Workshops 2008, pp. 1-8."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "Z Stone and T Zickler and T Darrell",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
+      "quote": "\"given\":\"Zak\",\"family\":\"Stone\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
+      "quote": "\"given\":\"Todd\",\"family\":\"Zickler\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
+      "quote": "\"given\":\"Trevor\",\"family\":\"Darrell\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Autotagging {Facebook}: social network context improves photo annotation",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
+      "quote": "Autotagging Facebook: Social network context improves photo annotation"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
+      "quote": "\"published-print\":{\"date-parts\":[[2008,6]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/cvprw.2008.4562956",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
+      "quote": "\"DOI\":\"10.1109\\/cvprw.2008.4562956\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1--8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
+      "quote": "\"page\":\"1-8\""
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
+      "quote": "\"type\":\"proceedings-article\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "{IEEE} Computer Society Conference on Computer Vision and Pattern Recognition Workshops",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/cvprw.2008.4562956",
+      "quote": "\"name\":\"2008 IEEE Computer Society Conference on Computer Vision and Pattern Recognition Workshops (CVPR Workshops)\""
+     }
+    ]
+   }
+  },
+  "notes": "Was @article, Journal '{IEEE} {Xplore}', year 2018, DOI URL in pages. It is a 2008 CVPR Workshops paper: @inproceedings, booktitle without year, pages 1--8, DOI; remove journal. Year 2018 -> 2008, key StonEtal18 -> StonEtal08 (not in HEAD cdl.bib; no duplicate)."
+ },
+ {
+  "key": "BeckEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+   "quote": "Group comparison of resting-state FMRI data using multi-subject ICA and dual regression",
+   "why": "Crossref record: Beckmann, Mackay, Filippini, Smith, NeuroImage 47 (supplement S1):S148, July 2009 (OHBM 2009 meeting abstract)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C F Beckmann and C E Mackay and N Filippini and S M Smith",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "\"given\":\"CF\",\"family\":\"Beckmann\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "\"given\":\"CE\",\"family\":\"Mackay\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "\"given\":\"N\",\"family\":\"Filippini\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "\"given\":\"SM\",\"family\":\"Smith\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Group comparison of resting-state {fMRI} data using multi-subject {ICA} and dual regression",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "Group comparison of resting-state FMRI data using multi-subject ICA and dual regression"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "\"published-print\":{\"date-parts\":[[2009,7]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s1053-8119(09)71511-3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "\"DOI\":\"10.1016\\/s1053-8119(09)71511-3\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "47",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "\"volume\":\"47\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "S148",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "\"page\":\"S148\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "Suppl 1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(09)71511-3",
+      "quote": "\"special_numbering\":\"S1\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume was '{Suppl 1}'; Crossref gives volume 47 and special numbering S1 -> Volume 47, Number 'Suppl 1' (house form, cf. Number = {Suppl 10} in cdl.bib). This is a conference abstract (OHBM 2009) published in the NeuroImage supplement. Adds DOI."
+ }
+]

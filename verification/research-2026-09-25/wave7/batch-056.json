@@ -1,0 +1,1815 @@
+[
+ {
+  "key": "RobbEver07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16977476/",
+   "quote": "A role for mesencephalic dopamine in activation: commentary on Berridge (2006).",
+   "why": "Same title, same two authors, Psychopharmacology 191(3) 433-437, 2007."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "T W Robbins and B J Everitt",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16977476/",
+      "quote": "T W Robbins, B J Everitt"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A role for mesencephalic dopamine in activation: commentary on {Berridge} (2006)",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16977476/",
+      "quote": "A role for mesencephalic dopamine in activation: commentary on Berridge (2006)."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychopharmacology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s00213-006-0528-7",
+      "quote": "\"container-title\":[\"Psychopharmacology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "191",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16977476&retmode=xml",
+      "quote": "<Volume>191</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16977476&retmode=xml",
+      "quote": "<Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "433--437",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16977476&retmode=xml",
+      "quote": "<StartPage>433</StartPage><EndPage>437</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s00213-006-0528-7",
+      "quote": "\"published-print\":{\"date-parts\":[[2007,3,2]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/s00213-006-0528-7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s00213-006-0528-7",
+      "quote": "\"DOI\":\"10.1007\\/s00213-006-0528-7\""
+     }
+    ]
+   }
+  },
+  "notes": "Author given names reduced to house-format initials (sources print T W / B J; cited full names Trevor/Barry are the same people). Issue 3 and DOI added. Online first 2006-09-15, print 2007 (print year kept). Key unchanged."
+ },
+ {
+  "key": "ZeliGile88",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/3074313/",
+   "quote": "Assessment of memory complaints by rating scales and questionnaires.",
+   "why": "Same title and authors, Psychopharmacology Bulletin 24(4) 523-529, 1988."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E M Zelinski and M J Gilewski",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3074313/",
+      "quote": "E M Zelinski, M J Gilewski"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Assessment of memory complaints by rating scales and questionnaires",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3074313/",
+      "quote": "Assessment of memory complaints by rating scales and questionnaires."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychopharmacology Bulletin",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3074313&retmode=xml",
+      "quote": "<Title>Psychopharmacology bulletin</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "24",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3074313&retmode=xml",
+      "quote": "<Volume>24</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3074313&retmode=xml",
+      "quote": "<Issue>4</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "523--529",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3074313&retmode=xml",
+      "quote": "<StartPage>523</StartPage><EndPage>529</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3074313&retmode=xml",
+      "quote": "<PubDate><Year>1988</Year></PubDate>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "PubMed 3074313. Issue 4 added. No DOI registered (Crossref has no record for this 1988 Psychopharmacol Bull article). Not a duplicate of GileZeli86 (a different APA handbook chapter) or of PubMed 3249769 (the MFQ paper, same issue pp. 665-670)."
+ },
+ {
+  "key": "BurgGruz00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11037036/",
+   "quote": "Short duration power changes in the EEG during recognition memory for words and faces.",
+   "why": "Same title and authors, Psychophysiology 37(5) 596-606, 2000."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "A P Burgess and J H Gruzelier",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11037036/",
+      "quote": "A P Burgess, J H Gruzelier"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Short duration power changes in the {EEG} during recognition memory for words and faces",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11037036/",
+      "quote": "Short duration power changes in the EEG during recognition memory for words and faces."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychophysiology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11037036&retmode=xml",
+      "quote": "<Title>Psychophysiology</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "37",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11037036&retmode=xml",
+      "quote": "<Volume>37</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11037036&retmode=xml",
+      "quote": "<Issue>5</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "596--606",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11037036&retmode=xml",
+      "quote": "<StartPage>596</StartPage><EndPage>606</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11037036&retmode=xml",
+      "quote": "<Year>2000</Year><Month>Sep</Month>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/1469-8986.3750596",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/1469-8986.3750596",
+      "quote": "\"DOI\":\"10.1111\\/1469-8986.3750596\""
+     }
+    ]
+   }
+  },
+  "notes": "Author given names reduced to house-format initials (sources give A P / J H; cited Adrian/John). Issue and DOI added. Crossref also holds a parallel Cambridge registration for 2000 Psychophysiology articles; the Wiley DOI (current publisher) is proposed."
+ },
+ {
+  "key": "DankEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18513360/",
+   "quote": "Characterizing the ERP Old-New effect in a short-term memory task.",
+   "why": "Same title and author team, Psychophysiology 45(5) 784-793, 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J F Danker and G M Hwang and L Gauthier and A S Geller and M J Kahana and R Sekuler",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18513360/",
+      "quote": "Jared F Danker, Grace M Hwang, Lynne Gauthier, Aaron Geller, Michael J Kahana, Robert Sekuler"
+     },
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/DankerEtal08.pdf#page=1",
+      "quote": "Jared F. Danker,1,2 Grace M. Hwang,1,3,4 Lynne Gauthier,1,3"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Characterizing the {ERP} {O}ld-{N}ew effect in a short-term memory task",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18513360/",
+      "quote": "Characterizing the ERP Old-New effect in a short-term memory task."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychophysiology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18513360&retmode=xml",
+      "quote": "<Title>Psychophysiology</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "45",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18513360&retmode=xml",
+      "quote": "<Volume>45</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18513360&retmode=xml",
+      "quote": "<Issue>5</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "784--793",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18513360&retmode=xml",
+      "quote": "<StartPage>784</StartPage><EndPage>793</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18513360&retmode=xml",
+      "quote": "<Year>2008</Year><Month>Sep</Month>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1469-8986.2008.00672.x",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18513360&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1111/j.1469-8986.2008.00672.x</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Second author is printed 'Grace M. Hwang' (PubMed, Crossref and the local preprint), not 'Hwang-Grodzins'; first author gains his middle initial F. 'A S Geller' kept: sources print 'Aaron Geller' without the middle initial, and the S is not contradicted (same person as A S Geller elsewhere in cdl.bib). Issue and DOI added."
+ },
+ {
+  "key": "KotcEtal96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8854740/",
+   "quote": "Event-related brain potentials in a varied-set memory search task: a reconsideration.",
+   "why": "Same title and five authors, Psychophysiology 33(5) 530-540, 1996."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "B I Kotchoubey and J S Jordan and B Gr{\\\"o}zinger and K P Westphal and H H Kornhuber",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8854740/",
+      "quote": "B I Kotchoubey, J S Jordan, B Gr&#xf6;zinger, K P Westphal, H H Kornhuber"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Event-related brain potentials in a varied-set memory search task: a reconsideration",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8854740/",
+      "quote": "Event-related brain potentials in a varied-set memory search task: a reconsideration."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychophysiology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8854740&retmode=xml",
+      "quote": "<Title>Psychophysiology</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "33",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8854740&retmode=xml",
+      "quote": "<Volume>33</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8854740&retmode=xml",
+      "quote": "<Issue>5</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "530--540",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8854740&retmode=xml",
+      "quote": "<StartPage>530</StartPage><EndPage>540</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8854740&retmode=xml",
+      "quote": "<Year>1996</Year><Month>Sep</Month>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1469-8986.1996.tb02429.x",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8854740&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1111/j.1469-8986.1996.tb02429.x</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Third author's umlaut restored (Grözinger, per PubMed and Crossref). Issue and DOI added."
+ },
+ {
+  "key": "LobaEtal01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11352141/",
+   "quote": "Spatiotemporal analysis of experimental differences in event-related potential data with partial least squares.",
+   "why": "Same title and three authors, Psychophysiology 38(3) 517-530, 2001."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "N J Lobaugh and R West and A R Mc{I}ntosh",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11352141/",
+      "quote": "N J Lobaugh, R West, A R McIntosh"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Spatiotemporal analysis of experimental differences in event-related potential data with partial least squares",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11352141/",
+      "quote": "Spatiotemporal analysis of experimental differences in event-related potential data with partial least squares."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychophysiology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11352141&retmode=xml",
+      "quote": "<Title>Psychophysiology</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "38",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11352141&retmode=xml",
+      "quote": "<Volume>38</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11352141&retmode=xml",
+      "quote": "<Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "517--530",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11352141&retmode=xml",
+      "quote": "<StartPage>517</StartPage><EndPage>530</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11352141&retmode=xml",
+      "quote": "<Year>2001</Year><Month>May</Month>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1017/s0048577201991681",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11352141&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1017/s0048577201991681</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Second author was written surname-first ('West R'); fixed to 'R West'. Mc{I}ntosh kept as cited (cdl.bib uses both McIntosh and Mc{I}ntosh). Issue and DOI added (only the Cambridge DOI is registered for this article)."
+ },
+ {
+  "key": "PailEtal00",
+  "verdict": "no_source",
+  "identity": {
+   "url": "",
+   "quote": "",
+   "why": "SPR 2000 meeting abstract in the Psychophysiology 37 supplement; no fetchable record found."
+  },
+  "fields": {},
+  "notes": "Conference abstract (Psychophysiology 37, Supplement 1, S76; SPR 40th annual meeting 2000). Searched: Crossref (bibliographic query and ISSN 0048-5772/1469-8986 filtered to 2000: the S1 abstract supplement is not registered), PubMed (not indexed), Wiley supplement TOC (403 to scripts), local Papers library (absent). Web search budget was exhausted, so no further catalogue search was possible. Related later full papers by the same group (Pailing, Segalowitz, Dywan & Davies 2002, Psychophysiology 39(2):198-206, 'Error negativity and response control') are DIFFERENT works. Leave entry unchanged."
+ },
+ {
+  "key": "RossEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10194967/",
+   "quote": "Event-related potential correlates of proactive interference in schizophrenic patients and controls.",
+   "why": "Same title, first author and co-authors, Psychophysiology 36(2) 199-208, 1999."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "P R{\\\"o}{\\ss}ner and B Rockstroh and R Cohen and M Wagner and T Elbert",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10194967/",
+      "quote": "P Rössner, B Rockstroh, R Cohen, M Wagner, T Elbert"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/1469-8986.3620199",
+      "quote": "\"given\":\"Rudolf\",\"family\":\"Cohen\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Event-related potential correlates of proactive interference in schizophrenic patients and controls",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10194967/",
+      "quote": "Event-related potential correlates of proactive interference in schizophrenic patients and controls."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychophysiology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10194967&retmode=xml",
+      "quote": "<Title>Psychophysiology</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "36",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10194967&retmode=xml",
+      "quote": "<Volume>36</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10194967&retmode=xml",
+      "quote": "<Issue>2</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "199--208",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10194967&retmode=xml",
+      "quote": "<StartPage>199</StartPage><EndPage>208</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10194967&retmode=xml",
+      "quote": "<Year>1999</Year><Month>Mar</Month>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/1469-8986.3620199",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/1469-8986.3620199",
+      "quote": "\"DOI\":\"10.1111\\/1469-8986.3620199\""
+     }
+    ]
+   }
+  },
+  "notes": "Third author is Rudolf Cohen (R), not 'M Cohen'. First author printed Rößner (both Crossref registrations: 'R\\u00f6\\u00dfner'; PubMed transliterates to Rössner); proposed R{\\\"o}{\\ss}ner. Issue and DOI added; a parallel Cambridge DOI 10.1017/s0048577299971834 is registered for the same article, Wiley DOI proposed. Key unchanged."
+ },
+ {
+  "key": "VoEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17910733/",
+   "quote": "The coupling of emotion and cognition in the eye: introducing the pupil old/new effect.",
+   "why": "Same title and seven authors in Psychophysiology; printed in 45(1) 130-140, January 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M L-H V{\\~o} and A M Jacobs and L Kuchinke and M Hofmann and M Conrad and A Schacht and F Hutzler",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17910733/",
+      "quote": "Melissa L-H V&#xf5;, Arthur M Jacobs, Lars Kuchinke, Markus Hofmann, Markus Conrad, Annekathrin Schacht, Florian Hutzler"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The coupling of emotion and cognition in the eye: introducing the pupil old/new effect",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17910733/",
+      "quote": "The coupling of emotion and cognition in the eye: introducing the pupil old/new effect."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychophysiology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17910733&retmode=xml",
+      "quote": "<Title>Psychophysiology</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "45",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17910733&retmode=xml",
+      "quote": "<Volume>45</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17910733&retmode=xml",
+      "quote": "<Issue>1</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "130--140",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17910733&retmode=xml",
+      "quote": "<StartPage>130</StartPage><EndPage>140</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17910733&retmode=xml",
+      "quote": "<Year>2008</Year><Month>Jan</Month>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1469-8986.2007.00606.x",
+      "quote": "\"published-print\":{\"date-parts\":[[2008,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1469-8986.2007.00606.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1469-8986.2007.00606.x",
+      "quote": "\"DOI\":\"10.1111\\/j.1469-8986.2007.00606.x\""
+     }
+    ]
+   }
+  },
+  "rename": {
+   "from": "VoEtal07",
+   "to": "VoEtal08"
+  },
+  "notes": "Placeholder volume/number '0' (online-first citation) replaced by the print coordinates 45(1):130-140. Online 2007-10-02, print January 2008: print year wins, so key becomes VoEtal08 (not present in HEAD cdl.bib)."
+ },
+ {
+  "key": "YordKole98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9499712/",
+   "quote": "Single-sweep analysis of the theta frequency band during an auditory oddball task.",
+   "why": "Same title and two authors, Psychophysiology 35(1) 116-126, 1998."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Yordanova and V Kolev",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9499712/",
+      "quote": "J Yordanova, V Kolev"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Single-sweep analysis of the theta frequency band during an auditory oddball task",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9499712/",
+      "quote": "Single-sweep analysis of the theta frequency band during an auditory oddball task."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychophysiology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9499712&retmode=xml",
+      "quote": "<Title>Psychophysiology</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "35",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9499712&retmode=xml",
+      "quote": "<Volume>35</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9499712&retmode=xml",
+      "quote": "<Issue>1</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "116--126",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9499712&retmode=xml",
+      "quote": "<StartPage>116</StartPage><EndPage>126</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9499712&retmode=xml",
+      "quote": "<Year>1998</Year><Month>Jan</Month>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/1469-8986.3510116",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/1469-8986.3510116",
+      "quote": "\"DOI\":\"10.1111\\/1469-8986.3510116\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited values correct; issue and DOI added. A parallel Cambridge DOI 10.1017/s0048577298000663 exists for the same article; Wiley DOI proposed."
+ },
+ {
+  "key": "TaylEtal85",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/3920718/",
+   "quote": "The relation of physical activity and exercise to mental health.",
+   "why": "Same title and three authors, Public Health Reports 100(2) 195-202, 1985."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C B Taylor and J F Sallis and R Needle",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3920718/",
+      "quote": "C B Taylor, J F Sallis, R Needle"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The relation of physical activity and exercise to mental health",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3920718/",
+      "quote": "The relation of physical activity and exercise to mental health."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Public Health Reports",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3920718&retmode=xml",
+      "quote": "<Title>Public health reports (Washington, D.C. : 1974)</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "100",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3920718&retmode=xml",
+      "quote": "<Volume>100</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3920718&retmode=xml",
+      "quote": "<Issue>2</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "195--202",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3920718&retmode=xml",
+      "quote": "<StartPage>195</StartPage><EndPage>202</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1985",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3920718&retmode=xml",
+      "quote": "<Year>1985</Year><Season>Mar-Apr</Season>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "PubMed 3920718 (PMC1424736). No DOI registered for this 1985 article."
+ },
+ {
+  "key": "AvraEtal97",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/713755719",
+   "quote": "\"title\":[\"Teaching by Examples: Implications for the Process of Category Acquisition\"]",
+   "why": "Cited DOI resolves to this title with the same six authors, QJEP A 50(3) 586-606, 1997."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Avrahami and Y Kareev and Y Bogot and R Caspi and S Dunaevsky and S Lerner",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"given\":\"Judith\",\"family\":\"Avrahami\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"given\":\"Yaakov\",\"family\":\"Kareev\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"given\":\"Yonatan\",\"family\":\"Bogot\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"given\":\"Ruth\",\"family\":\"Caspi\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"given\":\"Salomka\",\"family\":\"Dunaevsky\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"given\":\"Sharon\",\"family\":\"Lerner\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Teaching by examples: implications for the process of category acquisition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "Teaching by Examples: Implications for the Process of Category Acquisition"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section A\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "50",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"volume\":\"50\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "586--606",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"page\":\"586-606\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"published-print\":{\"date-parts\":[[1997,8]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.1080/713755719",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755719",
+      "quote": "\"DOI\":\"10.1080\\/713755719\""
+     }
+    ]
+   }
+  },
+  "notes": "All values match; the queue flag was only the journal name (Crossref: '...Section A'). Journal kept in the house form used by 27 cdl.bib entries (sources print the section title)."
+ },
+ {
+  "key": "BaddEcob73",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/14640747308400342",
+   "quote": "\"title\":[\"Reaction Time and Short-term Memory: Implications of Repetition Effects for the High-speed Exhaustive Scan Hypothesis\"]",
+   "why": "Same title and authors, QJEP 25(2) 229-240, 1973."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A D Baddeley and J R Ecob",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747308400342",
+      "quote": "\"given\":\"Alan D.\",\"family\":\"Baddeley\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747308400342",
+      "quote": "\"given\":\"J.\",\"family\":\"Russell Ecob\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/5428200/",
+      "quote": "A D Baddeley, J R Ecob"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Reaction time and short-term memory: implications of repetition effects for the high-speed exhaustive scan hypothesis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747308400342",
+      "quote": "Reaction Time and Short-term Memory: Implications of Repetition Effects for the High-speed Exhaustive Scan Hypothesis"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747308400342",
+      "quote": "\"container-title\":[\"Quarterly Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "25",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747308400342",
+      "quote": "\"volume\":\"25\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747308400342",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "229--240",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747308400342",
+      "quote": "\"page\":\"229-240\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1973",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747308400342",
+      "quote": "\"published-print\":{\"date-parts\":[[1973,5]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/14640747308400342",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640747308400342",
+      "quote": "\"DOI\":\"10.1080\\/14640747308400342\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref splits the second author as given 'J.' family 'Russell Ecob' (the byline 'J. Russell Ecob'); surname is Ecob with middle name Russell, as PubMed prints him 'Ecob JR' on the same pair's 1970 Nature paper (PMID 5428200, supporting evidence for the name form only). Author kept 'J R Ecob'. Issue and DOI added."
+ },
+ {
+  "key": "Burg02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/02724980244000224",
+   "quote": "\"title\":[\"The hippocampus, space, and viewpoints in episodic memory\"]",
+   "why": "Same title and sole author, QJEP A 55(4) 1057-1080, 2002."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "N Burgess",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724980244000224",
+      "quote": "\"given\":\"Neil\",\"family\":\"Burgess\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The hippocampus, space, and viewpoints in episodic memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724980244000224",
+      "quote": "\"title\":[\"The hippocampus, space, and viewpoints in episodic memory\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724980244000224",
+      "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section A\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "55",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724980244000224",
+      "quote": "\"volume\":\"55\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724980244000224",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1057--1080",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724980244000224",
+      "quote": "\"page\":\"1057-1080\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724980244000224",
+      "quote": "\"published-print\":{\"date-parts\":[[2002,10]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/02724980244000224",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724980244000224",
+      "quote": "\"DOI\":\"10.1080\\/02724980244000224\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited values match; DOI added. Journal kept in the house form used by 27 cdl.bib entries (sources print the section title)."
+ },
+ {
+  "key": "Colt81",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/14640748108400805",
+   "quote": "\"title\":[\"The MRC Psycholinguistic Database\"]",
+   "why": "Same title and sole author, QJEP A 33(4) 497-505, 1981."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M Coltheart",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748108400805",
+      "quote": "\"given\":\"Max\",\"family\":\"Coltheart\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The {MRC} psycholinguistic database",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748108400805",
+      "quote": "\"title\":[\"The MRC Psycholinguistic Database\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748108400805",
+      "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section A\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "33",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748108400805",
+      "quote": "\"volume\":\"33\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748108400805",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "497--505",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748108400805",
+      "quote": "\"page\":\"497-505\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1981",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748108400805",
+      "quote": "\"published-print\":{\"date-parts\":[[1981,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/14640748108400805",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748108400805",
+      "quote": "\"DOI\":\"10.1080\\/14640748108400805\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited values match; DOI added. Not a duplicate of Wils88 (Wilson 1988, 'MRC psycholinguistic database: machine-usable dictionary, version 2.00', a different work). Journal kept in the house form used by 27 cdl.bib entries (sources print the section title)."
+ },
+ {
+  "key": "HensEtal96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/713755612",
+   "quote": "\"title\":[\"Unchained Memory: Error Patterns Rule out Chaining Models of Immediate Serial Recall\"]",
+   "why": "Same title and four authors, QJEP Section A 49(1) 80-115, 1996."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "R N A Henson and D G Norris and M P A Page and A D Baddeley",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"given\":\"Richard N. A.\",\"family\":\"Henson\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"given\":\"Dennis G.\",\"family\":\"Norris\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"given\":\"Michael P. A.\",\"family\":\"Page\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"given\":\"Alan D.\",\"family\":\"Baddeley\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Unchained memory: error patterns rule out chaining models of immediate serial recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "Unchained Memory: Error Patterns Rule out Chaining Models of Immediate Serial Recall"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section A\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "49A",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"volume\":\"49\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section A\"]"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "80--115",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"page\":\"80-115\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"published-print\":{\"date-parts\":[[1996,2]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/713755612",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755612",
+      "quote": "\"DOI\":\"10.1080\\/713755612\""
+     }
+    ]
+   }
+  },
+  "notes": "First author gains middle initials N A. Volume '49A' kept: Crossref gives volume 49 in 'Section A' (the journal's print style was 49A); reviewer may normalise to 49. Issue and DOI added. Crossref also holds an older duplicate registration 10.1080/027249896392810 for the same article; 10.1080/713755612 (the Section A record, same prefix pattern as AvraEtal97's DOI) proposed."
+ },
+ {
+  "key": "Kene97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9225625/",
+   "quote": "Mood-state-dependent retrieval: the effects of induced mood on memory reconsidered.",
+   "why": "Same title and sole author, QJEP A 50(2) 290-317, 1997."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "P M Kenealy",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9225625/",
+      "quote": "P M Kenealy"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Mood-state-dependent retrieval: the effects of induced mood on memory reconsidered",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9225625/",
+      "quote": "Mood-state-dependent retrieval: the effects of induced mood on memory reconsidered."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755711",
+      "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section A\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "50A",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9225625&retmode=xml",
+      "quote": "<Volume>50</Volume>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9225625&retmode=xml",
+      "quote": "<ISOAbbreviation>Q J Exp Psychol A</ISOAbbreviation>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9225625&retmode=xml",
+      "quote": "<Issue>2</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "290--317",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9225625&retmode=xml",
+      "quote": "<StartPage>290</StartPage><EndPage>317</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9225625&retmode=xml",
+      "quote": "<Year>1997</Year><Month>May</Month>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/713755711",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9225625&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1080/713755711</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "All cited values match (PubMed title hyphenates 'Mood-state-dependent' as cited; Crossref writes 'Mood State-Dependent'). DOI added (the one PubMed links; an older duplicate registration 10.1080/027249897392107 also exists). Volume '50A' kept as the Section A form (sources: volume 50, Section A). Author given name reduced to house-format initials."
+ },
+ {
+  "key": "MartLeve91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/1947200/",
+   "quote": "Blocking observed in human eyelid conditioning.",
+   "why": "Same title and authors in QJEP Section B, 43(3), 1991."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "I Martin and A B Levey",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1947200/",
+      "quote": "I Martin, A B Levey"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Blocking observed in human eyelid conditioning",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1947200/",
+      "quote": "Blocking observed in human eyelid conditioning."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1947200&retmode=xml",
+      "quote": "<Title>The Quarterly journal of experimental psychology. B, Comparative and physiological psychology</Title>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "43B",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1947200&retmode=xml",
+      "quote": "<Volume>43</Volume>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1947200&retmode=xml",
+      "quote": "<ISOAbbreviation>Q J Exp Psychol B</ISOAbbreviation>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1947200&retmode=xml",
+      "quote": "<Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "233--256",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1947200&retmode=xml",
+      "quote": "<StartPage>233</StartPage><EndPage>256</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1947200&retmode=xml",
+      "quote": "<Year>1991</Year><Month>Aug</Month>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "PubMed 1947200: end page is 256, not 255; issue 3 added. No DOI found in Crossref for this 1991 QJEP B article (queried by title and by author within QJEP). The same authors' same-titled short paper in Integrative Physiological and Behavioral Science 26(2):127-131 (1991, doi 10.1007/bf02691035) is a DIFFERENT work. Volume '43B' kept (Section B form)."
+ },
+ {
+  "key": "MoarCarl82",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/6890217/",
+   "quote": "Memory for routes.",
+   "why": "Same title and authors, QJEP A 34(3) 381-394, 1982."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "I Moar and L R Carleton",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6890217/",
+      "quote": "I Moar, L R Carleton"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Memory for routes",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748208400850",
+      "quote": "\"title\":[\"Memory for Routes\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748208400850",
+      "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section A\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "34A",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748208400850",
+      "quote": "\"volume\":\"34\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748208400850",
+      "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section A\"]"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748208400850",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "381--394",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748208400850",
+      "quote": "\"page\":\"381-394\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1982",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748208400850",
+      "quote": "\"published-print\":{\"date-parts\":[[1982,8]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/14640748208400850",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6890217&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1080/14640748208400850</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Issue 3 (PubMed 'Pt 3') and DOI added. Volume '34A' kept (Section A form)."
+ },
+ {
+  "key": "MurrEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16194975/",
+   "quote": "Perirhinal cortex and its neighbours in the medial temporal lobe: contributions to memory and perception.",
+   "why": "Same title and three authors, QJEP B 58(3-4) 378-396, 2005."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E A Murray and K S Graham and D Gaffan",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16194975/",
+      "quote": "Elisabeth A Murray, Kim S Graham, David Gaffan"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Perirhinal cortex and its neighbours in the medial temporal lobe: contributions to memory and perception",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16194975/",
+      "quote": "Perirhinal cortex and its neighbours in the medial temporal lobe: contributions to memory and perception."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724990544000077",
+      "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section B\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "58",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16194975&retmode=xml",
+      "quote": "<Volume>58</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3--4",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16194975&retmode=xml",
+      "quote": "<Issue>3-4</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "378--396",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16194975&retmode=xml",
+      "quote": "<StartPage>378</StartPage><EndPage>396</EndPage>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16194975&retmode=xml",
+      "quote": "<Year>2005</Year><Season>Jul-Oct</Season>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/02724990544000077",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16194975&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1080/02724990544000077</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Issue '3 \\& 4' rewritten in house range form '3--4' (PubMed 3-4; Crossref '3-4b'). DOI added. Article is in Section B (joint A/B special issue); volume kept as cited '58' (a Section-letter form would be '58B')."
+ }
+]

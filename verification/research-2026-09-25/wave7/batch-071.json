@@ -1,0 +1,1894 @@
+[
+ {
+  "key": "BuckEtal98a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9597657/",
+   "quote": "Functional-anatomic study of episodic retrieval using fMRI. I. Retrieval effort versus retrieval success",
+   "why": "PubMed 9597657: Buckner, Koutstaal, Schacter, Wagner, Rosen, NeuroImage 7(3):151-62, April 1998; DOI in PubMed and Crossref."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R L Buckner and W Koutstaal and D L Schacter and A D Wagner and B R Rosen",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9597657/",
+      "quote": "R L Buckner, W Koutstaal, D L Schacter, A D Wagner, B R Rosen"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{F}unctional-anatomic study of episodic retrieval using f{MRI}. {I}. {R}etrieval effort versus retrieval success",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9597657/",
+      "quote": "Functional-anatomic study of episodic retrieval using fMRI. I. Retrieval effort versus retrieval success"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0327",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0327",
+      "quote": "\"published-print\":{\"date-parts\":[[1998,4"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0327",
+      "quote": "\"volume\":\"7\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0327",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "151--162",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0327",
+      "quote": "\"page\":\"151-162\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/nimg.1998.0327",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9597657/",
+      "quote": "10.1006/nimg.1998.0327"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Crossref's title drops the subtitle ('Functional-Anatomic Study of Episodic Retrieval Using fMRI'); PubMed has the full title. Part II is BuckEtal98b (10.1006/nimg.1998.0328), a different paper. No duplicate in cdl.bib."
+ },
+ {
+  "key": "BuckEtal98b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9597658/",
+   "quote": "Functional-anatomic study of episodic retrieval. II. Selective averaging of event-related fMRI trials to test the retrieval success hypothesis",
+   "why": "PubMed 9597658: Buckner, Koutstaal, Schacter, Dale, Rotte, Rosen, NeuroImage 7(3):163-75, April 1998."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R L Buckner and W Koutstaal and D L Schacter and A M Dale and M Rotte and B R Rosen",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9597658/",
+      "quote": "R L Buckner, W Koutstaal, D L Schacter, A M Dale, M Rotte, B R Rosen"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{F}unctional-anatomic study of episodic retrieval. {II}. {S}elective averaging of event-related f{MRI} trials to test the retrieval success hypothesis",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9597658/",
+      "quote": "Functional-anatomic study of episodic retrieval. II. Selective averaging of event-related fMRI trials to test the retrieval success hypothesis"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0328",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0328",
+      "quote": "\"published-print\":{\"date-parts\":[[1998,4"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0328",
+      "quote": "\"volume\":\"7\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0328",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "163--175",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0328",
+      "quote": "\"page\":\"163-175\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/nimg.1998.0328",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9597658/",
+      "quote": "10.1006/nimg.1998.0328"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Crossref title is truncated to 'Functional-Anatomic Study of Episodic Retrieval'; PubMed gives the full title. No duplicate in cdl.bib."
+ },
+ {
+  "key": "BurkEtal14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23827329/",
+   "quote": "Human intracranial high-frequency activity maps episodic memory formation in space and time",
+   "why": "PubMed 23827329 and Crossref: Burke, Long, Zaghloul, Sharan, Sperling, Kahana, NeuroImage 85 Pt 2:834-43, January 2014."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J F Burke and N M Long and K A Zaghloul and A D Sharan and M R Sperling and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23827329/",
+      "quote": "John F Burke, Nicole M Long, Kareem A Zaghloul"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23827329/",
+      "quote": "Ashwini D Sharan, Michael R Sperling, Michael J Kahana"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Human intracranial high-frequency activity maps episodic memory formation in space and time",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.067",
+      "quote": "Human intracranial high-frequency activity maps episodic memory formation in space and time"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.067",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2014",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.067",
+      "quote": "\"published-print\":{\"date-parts\":[[2014,1"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "85",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.067",
+      "quote": "\"volume\":\"85\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23827329/",
+      "quote": "85 Pt 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "834--843",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.067",
+      "quote": "\"page\":\"834-843\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2013.06.067",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23827329/",
+      "quote": "10.1016/j.neuroimage.2013.06.067"
+     }
+    ]
+   }
+  },
+  "notes": "Volume '85 Pt. 2' split into volume 85 and number 2 (PubMed '85 Pt 2'; Crossref volume 85, no issue), matching how cdl.bib writes EkstWatr14 from the same part and prior batches' handling of 'Pt N'. DOI added. BurkEtal13 (J Neurosci) is a different paper; no duplicate."
+ },
+ {
+  "key": "ChenEtal20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32294538/",
+   "quote": "Intersubject representational similarity analysis reveals individual variations in affective experience when watching erotic movies",
+   "why": "PubMed 32294538 and Crossref: Chen, Jolly, Cheong, Chang, NeuroImage 216:116851, August 2020."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "P-H A Chen and E Jolly and J H Cheong and L J Chang",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32294538/",
+      "quote": "Pin-Hao A Chen, Eshin Jolly, Jin Hyun Cheong, Luke J Chang"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Intersubject representational similarity analysis reveals individual variations in affective experience when watching erotic movies",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2020.116851",
+      "quote": "Intersubject representational similarity analysis reveals individual variations in affective experience when watching erotic movies"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2020.116851",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2020.116851",
+      "quote": "\"published-print\":{\"date-parts\":[[2020,8"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "216",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2020.116851",
+      "quote": "\"volume\":\"216\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "116851",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2020.116851",
+      "quote": "\"article-number\":\"116851\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2020.116851",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32294538/",
+      "quote": "10.1016/j.neuroimage.2020.116851"
+     }
+    ]
+   }
+  },
+  "remove": [
+   "number"
+  ],
+  "notes": "Pages held a DOI URL and number held the article number: pages -> 116851 (article number), number removed (no issue in Crossref or PubMed), DOI added; same shape as FinnBand21. Crossref links a bioRxiv preprint (10.1101/726570); the cited version is the journal article. No duplicate in cdl.bib."
+ },
+ {
+  "key": "ColeEtal19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30597260/",
+   "quote": "Task activations produce spurious but systematic inflation of task functional connectivity estimates",
+   "why": "PubMed 30597260 and Crossref: Cole, Ito, Schultz, Mill, Chen, Cocuzza, NeuroImage 189:1-18, April 2019."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M W Cole and T Ito and D Schultz and R Mill and R Chen and C Cocuzza",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30597260/",
+      "quote": "Michael W Cole, Takuya Ito, Douglas Schultz"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30597260/",
+      "quote": "Ravi Mill, Richard Chen, Carrisa Cocuzza"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Task activations produce spurious but systematic inflation of task functional connectivity estimates",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.12.054",
+      "quote": "Task activations produce spurious but systematic inflation of task functional connectivity estimates"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.12.054",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.12.054",
+      "quote": "\"published-print\":{\"date-parts\":[[2019,4"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "189",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.12.054",
+      "quote": "\"volume\":\"189\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--18",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.12.054",
+      "quote": "\"page\":\"1-18\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2018.12.054",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30597260/",
+      "quote": "10.1016/j.neuroimage.2018.12.054"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Crossref links a bioRxiv preprint (10.1101/292045); the cited version is the journal article. No duplicate in cdl.bib."
+ },
+ {
+  "key": "DaleEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9931268/",
+   "quote": "Cortical surface-based analysis. I. Segmentation and surface reconstruction",
+   "why": "PubMed 9931268: Dale, Fischl, Sereno, NeuroImage 9(2):179-94, February 1999."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A M Dale and B R Fischl and M I Sereno",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9931268/",
+      "quote": "A M Dale, B Fischl, M I Sereno"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0395",
+      "quote": "\"given\":\"Bruce\",\"family\":\"Fischl\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Cortical surface-based analysis. {I}. {S}egmentation and surface reconstruction",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9931268/",
+      "quote": "Cortical surface-based analysis. I. Segmentation and surface reconstruction"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0395",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0395",
+      "quote": "\"published-print\":{\"date-parts\":[[1999,2"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0395",
+      "quote": "\"volume\":\"9\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0395",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "179--194",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1998.0395",
+      "quote": "\"page\":\"179-194\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/nimg.1998.0395",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9931268/",
+      "quote": "10.1006/nimg.1998.0395"
+     }
+    ]
+   }
+  },
+  "notes": "Title punctuation follows PubMed ('analysis. I. Segmentation', same shape as BuckEtal98a/b); the cited 'analysis {I}: segmentation' has the same words, so a reviewer may keep it. B R Fischl kept: sources print 'B Fischl'/'Bruce' without a middle initial but no different one (house rule; FiscEtal99 also writes B R Fischl). DOI added. Part II (Fischl, Sereno, Dale 1999, 10.1006/nimg.1998.0396) is not in cdl.bib under this title; no duplicate."
+ },
+ {
+  "key": "DuzeEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s1053-8119(02)00031-9",
+   "quote": "A multivariate, spatiotemporal analysis of electromagnetic time-frequency data of recognition memory",
+   "why": "Crossref and PubMed 12595175: Duzel, Habib, Schott, Schoenfeld, Lobaugh, McIntosh, Scholz, Heinze, NeuroImage 18(2):185-97, February 2003."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "E D{\\\"{u}}zel and R Habib and B Schott and A Schoenfeld and N Lobaugh and A R McIntosh and M Scholz and H J Heinze",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12595175/",
+      "quote": "E Düzel, R Habib, B Schott, A Schoenfeld"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12595175/",
+      "quote": "N Lobaugh, A R McIntosh, M Scholz, H J Heinze"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(02)00031-9",
+      "quote": "\"given\":\"B.\",\"family\":\"Schott\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "A multivariate, spatiotemporal analysis of electromagnetic time-frequency data of recognition memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(02)00031-9",
+      "quote": "A multivariate, spatiotemporal analysis of electromagnetic time-frequency data of recognition memory"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12595175/",
+      "quote": "A multivariate, spatiotemporal analysis of electromagnetic time-frequency data of recognition memory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(02)00031-9",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(02)00031-9",
+      "quote": "\"published-print\":{\"date-parts\":[[2003,2"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(02)00031-9",
+      "quote": "\"volume\":\"18\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(02)00031-9",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "185--197",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s1053-8119(02)00031-9",
+      "quote": "\"page\":\"185-197\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s1053-8119(02)00031-9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12595175/",
+      "quote": "10.1016/s1053-8119(02)00031-9"
+     }
+    ]
+   }
+  },
+  "notes": "Author 'B Scott' -> 'B Schott' (Crossref and PubMed); title gains the comma 'multivariate, spatiotemporal'. DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "EkstWatr14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.049",
+   "quote": "Multifaceted roles for low-frequency oscillations in bottom-up and top-down processing during navigation and memory",
+   "why": "Crossref and PubMed 23792985: Ekstrom and Watrous, NeuroImage 85 Pt 2:667-77, January 2014."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A D Ekstrom and A J Watrous",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23792985/",
+      "quote": "Arne D Ekstrom, Andrew J Watrous"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Multifaceted roles for low-frequency oscillations in bottom-up and top-down processing during navigation and memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.049",
+      "quote": "Multifaceted roles for low-frequency oscillations in bottom-up and top-down processing during navigation and memory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.049",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2014",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.049",
+      "quote": "\"published-print\":{\"date-parts\":[[2014,1"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "85",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.049",
+      "quote": "\"volume\":\"85\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23792985/",
+      "quote": "85 Pt 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "667--677",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.06.049",
+      "quote": "\"page\":\"667-677\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2013.06.049",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23792985/",
+      "quote": "10.1016/j.neuroimage.2013.06.049"
+     }
+    ]
+   }
+  },
+  "notes": "Title typo 'Multifacited' -> 'Multifaceted'. Number 2 is Part 2 of volume 85 (PubMed '85 Pt 2'; Crossref has no issue). DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "FinnBand21",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/33813007/",
+   "quote": "Movie-watching outperforms rest for functional connectivity-based prediction of behavior",
+   "why": "PubMed 33813007 and Crossref: Finn and Bandettini, NeuroImage 235:117963, July 2021."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E S Finn and P A Bandettini",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33813007/",
+      "quote": "Emily S Finn, Peter A Bandettini"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Movie-watching outperforms rest for functional connectivity-based prediction of behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2021.117963",
+      "quote": "Movie-watching outperforms rest for functional connectivity-based prediction of behavior"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2021.117963",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2021",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2021.117963",
+      "quote": "\"published-print\":{\"date-parts\":[[2021,7"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "235",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2021.117963",
+      "quote": "\"volume\":\"235\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "117963",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2021.117963",
+      "quote": "\"article-number\":\"117963\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2021.117963",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33813007/",
+      "quote": "10.1016/j.neuroimage.2021.117963"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Crossref links a bioRxiv preprint (10.1101/2020.08.23.263723); the cited version is the journal article. No duplicate in cdl.bib."
+ },
+ {
+  "key": "FletEtal95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9343602/",
+   "quote": "The mind's eye--precuneus activation in memory-related imagery",
+   "why": "PubMed 9343602 and Crossref: Fletcher, Frith, Baker, Shallice, Frackowiak, Dolan, NeuroImage 2(3):195-200, September 1995."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "P C Fletcher and C D Frith and S C Baker and T Shallice and R S J Frackowiak and R J Dolan",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9343602/",
+      "quote": "P C Fletcher, C D Frith, S C Baker"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9343602/",
+      "quote": "T Shallice, R S Frackowiak, R J Dolan"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1995.1025",
+      "quote": "\"given\":\"R.S.J.\",\"family\":\"Frackowiak\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The mind's eye--- precuneus activation in memory-related imagery",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9343602/",
+      "quote": "The mind's eye--precuneus activation in memory-related imagery"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1995.1025",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1995.1025",
+      "quote": "\"published-print\":{\"date-parts\":[[1995,9"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1995.1025",
+      "quote": "\"volume\":\"2\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1995.1025",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "195--200",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1995.1025",
+      "quote": "\"page\":\"195-200\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/nimg.1995.1025",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9343602/",
+      "quote": "10.1006/nimg.1995.1025"
+     }
+    ]
+   }
+  },
+  "notes": "Frackowiak gains the third initial J (Crossref 'R.S.J.'; PubMed prints only 'R S'); cdl.bib writes R S J Frackowiak 6 times elsewhere. Title kept in the cited house em-dash form '--- ' (Crossref prints an em dash). DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "GenoEtal02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11906227/",
+   "quote": "Thresholding of statistical maps in functional neuroimaging using the false discovery rate",
+   "why": "PubMed 11906227 and Crossref: Genovese, Lazar, Nichols, NeuroImage 15(4):870-8, April 2002."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C R Genovese and N A Lazar and T E Nichols",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11906227/",
+      "quote": "Christopher R Genovese, Nicole A Lazar, Thomas Nichols"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Thresholding of statistical maps in functional neuroimaging using the false discovery rate",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11906227/",
+      "quote": "Thresholding of statistical maps in functional neuroimaging using the false discovery rate"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.2001.1037",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.2001.1037",
+      "quote": "\"published-print\":{\"date-parts\":[[2002,4"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.2001.1037",
+      "quote": "\"volume\":\"15\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.2001.1037",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "870--878",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.2001.1037",
+      "quote": "\"page\":\"870-878\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/nimg.2001.1037",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11906227/",
+      "quote": "10.1006/nimg.2001.1037"
+     }
+    ]
+   }
+  },
+  "notes": "Committed cdl.bib already has the initials form 'C R Genovese and N A Lazar and T E Nichols' (the queue snapshot shows full given names). T E Nichols kept: sources print 'Thomas' with no middle initial, not a different one. Issue 4 and DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "GersEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2005.06.026",
+   "quote": "Cortical origins of response time variability during rapid discrimination of visual objects",
+   "why": "Crossref and PubMed 16169748: Gerson, Parra, Sajda, NeuroImage 28(2):342-53, November 2005."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "A D Gerson and L C Parra and P Sajda",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16169748/",
+      "quote": "Adam D Gerson, Lucas C Parra, Paul Sajda"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Cortical origins of response time variability during rapid discrimination of visual objects",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2005.06.026",
+      "quote": "Cortical origins of response time variability during rapid discrimination of visual objects"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2005.06.026",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2005.06.026",
+      "quote": "\"published-print\":{\"date-parts\":[[2005,11"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "28",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2005.06.026",
+      "quote": "\"volume\":\"28\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2005.06.026",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "342--353",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2005.06.026",
+      "quote": "\"page\":\"342-353\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16169748/",
+      "quote": "342-53"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2005.06.026",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16169748/",
+      "quote": "10.1016/j.neuroimage.2005.06.026"
+     }
+    ]
+   }
+  },
+  "notes": "Pages 326--341 -> 342--353 (Crossref and PubMed agree); middle initials A D Gerson, L C Parra added; issue 2 and DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "HansSchm10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
+   "quote": "High-resolution imaging of the fusiform face area (FFA) using multivariate non-linear classifiers shows diagnosticity for non-face categories",
+   "why": "Crossref and PubMed 20736071: Hanson and Schmidt, NeuroImage 54(2):1715-34, 15 January 2011 (online 2010)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S J Hanson and A Schmidt",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
+      "quote": "\"family\":\"Hanson\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20736071/",
+      "quote": "Stephen José Hanson, Arielle Schmidt"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "High-resolution imaging of the fusiform face area ({FFA}) using multivariate non-linear classifiers shows diagnosticity for non-face categories",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
+      "quote": "High-resolution imaging of the fusiform face area (FFA) using multivariate non-linear classifiers shows diagnosticity for non-face categories"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
+      "quote": "\"published-print\":{\"date-parts\":[[2011,1"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20736071/",
+      "quote": "2011"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "54",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
+      "quote": "\"volume\":\"54\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1715--1734",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.08.028",
+      "quote": "\"page\":\"1715-1734\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2010.08.028",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20736071/",
+      "quote": "10.1016/j.neuroimage.2010.08.028"
+     }
+    ]
+   }
+  },
+  "notes": "Year 2010 -> 2011 (print issue 15 Jan 2011; print year beats online year). New key HansSchm11: not in cdl.bib, no collision. Title: 'High resolution' -> 'High-resolution', 'nonface' -> 'non-face'. Volume, issue, pages, DOI added. Grill-Spector et al. 'High-resolution imaging reveals highly selective nonface clusters' in cdl.bib is a different work; no duplicate."
+ },
+ {
+  "key": "HansStau13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23769913/",
+   "quote": "How brain oscillations form memories--a processing based perspective on oscillatory subsequent memory effects",
+   "why": "PubMed 23769913 and Crossref: Hanslmayr and Staudigl, NeuroImage 85 Pt 2:648-55, 15 January 2014 (online 2013)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Hanslmayr and T Staudigl",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23769913/",
+      "quote": "Simon Hanslmayr, Tobias Staudigl"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "How brain oscillations form memories--- a processing based perspective on oscillatory subsequent memory effects",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23769913/",
+      "quote": "How brain oscillations form memories--a processing based perspective on oscillatory subsequent memory effects"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.05.121",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2014",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.05.121",
+      "quote": "\"published-print\":{\"date-parts\":[[2014,1"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "85",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.05.121",
+      "quote": "\"volume\":\"85\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23769913/",
+      "quote": "85 Pt 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "648--655",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.05.121",
+      "quote": "\"page\":\"648-655\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2013.05.121",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23769913/",
+      "quote": "10.1016/j.neuroimage.2013.05.121"
+     }
+    ]
+   }
+  },
+  "notes": "Year 2013 -> 2014 (print issue January 2014; online 2013). New key HansStau14: not in cdl.bib, no collision. Volume 85, number 2 (Part 2), pages and DOI added. Title kept in house em-dash form. No duplicate in cdl.bib."
+ },
+ {
+  "key": "HarvEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2012.10.020",
+   "quote": "Frequency specific spatial interactions in human electrocorticography: V1 alpha oscillations reflect surround suppression",
+   "why": "Crossref and PubMed 23085107: Harvey, Vansteensel, Ferrier, Petridou, ..., Dumoulin, NeuroImage 65:424-32, January 2013."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "B M Harvey and M J Vansteensel and C H Ferrier and N Petridou and W Zuiderbaan and E J Aarnoutse and M G Bleichner and H C Dijkerman and M J E {van Zandvoort} and F S S Leijten and N F Ramsey and S O Dumoulin",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23085107/",
+      "quote": "B M Harvey, M J Vansteensel, C H Ferrier, N Petridou"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23085107/",
+      "quote": "W Zuiderbaan, E J Aarnoutse, M G Bleichner, H C Dijkerman"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23085107/",
+      "quote": "M J E van Zandvoort, F S S Leijten, N F Ramsey, S O Dumoulin"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Frequency specific spatial interactions in human electrocorticography: {V1} alpha oscillations reflect surround suppression",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2012.10.020",
+      "quote": "Frequency specific spatial interactions in human electrocorticography: V1 alpha oscillations reflect surround suppression"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2012.10.020",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2012.10.020",
+      "quote": "\"published-print\":{\"date-parts\":[[2013,1"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "65",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2012.10.020",
+      "quote": "\"volume\":\"65\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "424--432",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2012.10.020",
+      "quote": "\"page\":\"424-432\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2012.10.020",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23085107/",
+      "quote": "10.1016/j.neuroimage.2012.10.020"
+     }
+    ]
+   }
+  },
+  "remove": [
+   "number"
+  ],
+  "notes": "'65' was in number: moved to volume, number removed (no issue in Crossref or PubMed). Missing 4th author N Petridou added (12 authors in Crossref and PubMed). DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "HaufEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.06.016",
+   "quote": "Elucidating relations between fMRI, ECoG, and EEG through a common natural stimulus",
+   "why": "Crossref and PubMed 29902585: Haufe, DeGuzman, Henin, Arcaro, Honey, Hasson, Parra, NeuroImage 179:79-91, October 2018."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Haufe and P {DeGuzman} and S Henin and M Arcaro and C J Honey and U Hasson and L C Parra",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29902585/",
+      "quote": "Stefan Haufe, Paul DeGuzman, Simon Henin, Michael Arcaro"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29902585/",
+      "quote": "Christopher J Honey, Uri Hasson, Lucas C Parra"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Elucidating relations between {fMRI}, {ECoG}, and {EEG} through a common natural stimulus",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.06.016",
+      "quote": "Elucidating relations between fMRI, ECoG, and EEG through a common natural stimulus"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.06.016",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.06.016",
+      "quote": "\"published-print\":{\"date-parts\":[[2018,10"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "179",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.06.016",
+      "quote": "\"volume\":\"179\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "79--91",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2018.06.016",
+      "quote": "\"page\":\"79-91\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2018.06.016",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29902585/",
+      "quote": "10.1016/j.neuroimage.2018.06.016"
+     }
+    ]
+   }
+  },
+  "remove": [
+   "number"
+  ],
+  "notes": "Number 1 is unsupported (Crossref and PubMed give volume 179 with no issue): remove. DOI added. Crossref links a bioRxiv preprint (10.1101/207456); the cited version is the journal article. No duplicate in cdl.bib."
+ },
+ {
+  "key": "JahaEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+   "quote": "Multi-site genetic analysis of diffusion images and voxelwise heritability analysis: a pilot project of the ENIGMA-DTI working group",
+   "why": "PubMed 23629049 and Crossref: Jahanshad et al. (31 authors), NeuroImage 81:455-469, 1 November 2013."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "N Jahanshad and P V Kochunov and E Sprooten and R C Mandl and T E Nichols and L Almasy and J Blangero and R M Brouwer and J E Curran and G I {de Zubicaray} and R Duggirala and P T Fox and L E Hong and B A Landman and N G Martin and K L McMahon and S E Medland and B D Mitchell and R L Olvera and C P Peterson and J M Starr and J E Sussmann and A W Toga and J M Wardlaw and M J Wright and H E {Hulshoff Pol} and M E Bastin and A M McIntosh and I J Deary and P M Thompson and D C Glahn",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+      "quote": "Neda Jahanshad, Peter V Kochunov, Emma Sprooten, René C Mandl"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+      "quote": "Thomas E Nichols, Laura Almasy, John Blangero, Rachel M Brouwer"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+      "quote": "Joanne E Curran, Greig I de Zubicaray, Ravi Duggirala, Peter T Fox"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+      "quote": "L Elliot Hong, Bennett A Landman, Nicholas G Martin, Katie L McMahon"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+      "quote": "Sarah E Medland, Braxton D Mitchell, Rene L Olvera, Charles P Peterson"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+      "quote": "John M Starr, Jessika E Sussmann, Arthur W Toga, Joanna M Wardlaw"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+      "quote": "Margaret J Wright, Hilleke E Hulshoff Pol, Mark E Bastin, Andrew M McIntosh"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+      "quote": "Ian J Deary, Paul M Thompson, David C Glahn"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.04.061",
+      "quote": "\"given\":\"Mark E.\",\"family\":\"Bastin\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Multi-site genetic analysis of diffusion images and voxelwise heritability analysis: a pilot project of the {ENIGMA-DTI} working group",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+      "quote": "Multi-site genetic analysis of diffusion images and voxelwise heritability analysis: a pilot project of the ENIGMA-DTI working group"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.04.061",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.04.061",
+      "quote": "\"published-print\":{\"date-parts\":[[2013,11"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "81",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.04.061",
+      "quote": "\"volume\":\"81\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "455--469",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2013.04.061",
+      "quote": "\"page\":\"455-469\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2013.04.061",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23629049/",
+      "quote": "10.1016/j.neuroimage.2013.04.061"
+     }
+    ]
+   }
+  },
+  "remove": [
+   "number"
+  ],
+  "notes": "Author 'M E Pastin' -> 'M E Bastin'; particle/compound surnames braced as cdl.bib writes them elsewhere ({de Zubicaray}, {Hulshoff Pol}; no initials added). Title acronym braced {ENIGMA-DTI}. Number 1 unsupported (no issue in Crossref or PubMed): remove. DOI added. A corrigendum exists: 10.1016/j.neuroimage.2013.12.053, NeuroImage 90 (2014) 470-471, Crossref type erratum on this DOI; its text is not script-readable (Elsevier API returned metadata only), so its content is unknown: flag for the user per the errata rule. Its Crossref record splits the name as given 'Hilleke E. Hulshoff', family 'Pol', unlike the original's 'Hulshoff Pol'. No duplicate in cdl.bib."
+ },
+ {
+  "key": "MariEtal11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.09.029",
+   "quote": "Spatially distributed patterns of oscillatory coupling between high-frequency amplitudes and low-frequency phases in human iEEG",
+   "why": "Crossref and PubMed 20851192: Maris, van Vugt, Kahana, NeuroImage 54(2):836-50, 15 January 2011."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E Maris and M K {van Vugt} and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20851192/",
+      "quote": "Eric Maris, Marieke van Vugt, Michael Kahana"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Spatially distributed patterns of oscillatory coupling between high-frequency amplitudes and low-frequency phases in human {iEEG}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.09.029",
+      "quote": "Spatially distributed patterns of oscillatory coupling between high-frequency amplitudes and low-frequency phases in human iEEG"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.09.029",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.09.029",
+      "quote": "\"published-print\":{\"date-parts\":[[2011,1"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "54",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.09.029",
+      "quote": "\"volume\":\"54\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.09.029",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "836--850",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.09.029",
+      "quote": "\"page\":\"836-850\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2010.09.029",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20851192/",
+      "quote": "10.1016/j.neuroimage.2010.09.029"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Sources print 'Marieke van Vugt' and 'Michael Kahana' without middle initials; cited M K and M J kept (omitted, not different; cdl.bib writes M K {van Vugt} and M J Kahana throughout). No duplicate in cdl.bib."
+ },
+ {
+  "key": "McDoEtal10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+   "quote": "Multimodal imaging of repetition priming: Using fMRI, MEG, and intracranial EEG to reveal spatiotemporal profiles of word processing",
+   "why": "PubMed 20620212 and Crossref: McDonald et al. (15 authors), NeuroImage 53(2):707-17, 1 November 2010."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C R McDonald and T Thesen and C Carlson and M Blumberg and H M Girard and A Trongnetrpunya and J S Sherfey and O Devinsky and R Kuzniecky and W K Dolye and S S Cash and M K Leonard and D J Hagler and A M Dale and E Halgren",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+      "quote": "Carrie R McDonald, Thomas Thesen, Chad Carlson, Mark Blumberg, Holly M Girard"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+      "quote": "Amy Trongnetrpunya, Jason S Sherfey, Orrin Devinsky, Rubin Kuzniecky, Werner K Dolye"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+      "quote": "Sydney S Cash, Matthew K Leonard, Donald J Hagler, Anders M Dale, Eric Halgren"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Multimodal imaging of repetition priming: using {fMRI}, {MEG}, and intracranial {EEG} to reveal spatiotemporal profiles of word processing",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+      "quote": "Multimodal imaging of repetition priming: Using fMRI, MEG, and intracranial EEG to reveal spatiotemporal profiles of word processing"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.06.069",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.06.069",
+      "quote": "\"published-print\":{\"date-parts\":[[2010,11"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "53",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.06.069",
+      "quote": "\"volume\":\"53\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.06.069",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "707--717",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.06.069",
+      "quote": "\"page\":\"707-717\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2010.06.069",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+      "quote": "10.1016/j.neuroimage.2010.06.069"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Crossref lists only the first 10 authors; PubMed has all 15. 'Dolye' (Werner K Doyle) is how both Crossref and PubMed print it, so it is kept as printed; the real name is likely Doyle but no source for the cited record says so. No duplicate in cdl.bib."
+ },
+ {
+  "key": "MillEtal07c",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17604183/",
+   "quote": "Real-time functional brain mapping using electrocorticography",
+   "why": "PubMed 17604183 and Crossref: Miller, denNijs, Shenoy, Miller, Rao, Ojemann, NeuroImage 37(2):504-7, August 2007."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "K J Miller and M {den Nijs} and P Shenoy and J W Miller and R P N Rao and J G Ojemann",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17604183/",
+      "quote": "Kai J Miller, Marcel denNijs, Pradeep Shenoy"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17604183/",
+      "quote": "John W Miller, Rajesh P N Rao, Jeffrey G Ojemann"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Real-time functional brain mapping using electrocorticography",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2007.05.029",
+      "quote": "Real-time functional brain mapping using electrocorticography"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2007.05.029",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2007.05.029",
+      "quote": "\"published-print\":{\"date-parts\":[[2007,8"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "37",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2007.05.029",
+      "quote": "\"volume\":\"37\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2007.05.029",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "504--507",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2007.05.029",
+      "quote": "\"page\":\"504-507\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2007.05.029",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17604183/",
+      "quote": "10.1016/j.neuroimage.2007.05.029"
+     }
+    ]
+   }
+  },
+  "notes": "K Miller -> K J Miller (Crossref 'Kai J.', PubMed 'Kai J Miller'; cdl.bib MillEtal07a writes K J Miller). Sources print the surname 'denNijs'; kept as cdl.bib writes it, M {den Nijs} (5 uses). DOI added. MillEtal07a/b/d are different papers; no duplicate."
+ }
+]

@@ -1,0 +1,2053 @@
+[
+ {
+  "key": "NaveEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10994220/",
+   "quote": "The effects of divided attention on encoding and retrieval processes: the resiliency of retrieval processes.",
+   "why": "Same four authors, QJEP A 53(3), 2000, pp. 609-625."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "Moshe Naveh-Benjamin and Fergus I M Craik and James G Perretta and Simon T Tonev",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755914",
+      "quote": "\"given\":\"Moshe\",\"family\":\"Naveh-Benjamin\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755914",
+      "quote": "\"given\":\"Fergus I. M.\",\"family\":\"Craik\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755914",
+      "quote": "\"given\":\"James G.\",\"family\":\"Perretta\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755914",
+      "quote": "\"given\":\"Simon T.\",\"family\":\"Tonev\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The effects of divided attention on encoding and retrieval processes: the resiliency of retrieval processes",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10994220/",
+      "quote": "The effects of divided attention on encoding and retrieval processes: the resiliency of retrieval processes."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10994220/",
+      "quote": "The Quarterly journal of experimental psychology. A"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10994220/",
+      "quote": "DP  - 2000 Aug"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "53",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10994220/",
+      "quote": "VI  - 53"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10994220/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "609--625",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10994220/",
+      "quote": "PG  - 609-25"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/713755914",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755914",
+      "quote": "\"page\":\"609-625\""
+     }
+    ]
+   }
+  },
+  "notes": "Adds DOI 10.1080/713755914 (the DOI PubMed lists; resolves to journals.sagepub.com). Crossref also has a second record 10.1080/027249800410454 for the same article (resolves to an old catchword link); not used. The journal was 'Section A' at the time; the house form 'Quarterly Journal of Experimental Psychology' (27 entries) is kept."
+ },
+ {
+  "key": "WardMayl05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15881293/",
+   "quote": "Age-related deficits in free recall: the role of rehearsal.",
+   "why": "Same authors (Geoff Ward, Elizabeth A Maylor), QJEP A 58(1), 2005, pp. 98-119."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "G Ward and E A Maylor",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15881293/",
+      "quote": "FAU - Ward, Geoff"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15881293/",
+      "quote": "FAU - Maylor, Elizabeth A"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Age-related deficits in free recall: the role of rehearsal",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15881293/",
+      "quote": "Age-related deficits in free recall: the role of rehearsal."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Quarterly Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15881293/",
+      "quote": "The Quarterly journal of experimental psychology. A"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15881293/",
+      "quote": "DP  - 2005 Jan"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "58",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15881293/",
+      "quote": "VI  - 58"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724980443000223",
+      "quote": "\"volume\":\"58\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15881293/",
+      "quote": "IP  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "98--119",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15881293/",
+      "quote": "PG  - 98-119"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/02724980443000223",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/02724980443000223",
+      "quote": "\"page\":\"98-119\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume '58A' -> '58' (PubMed VI 58; Crossref volume 58; the A is the journal section, already dropped from the house journal name). DOI added."
+ },
+ {
+  "key": "EggeEtal07",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/j.neubiorev.2005.10.004",
+   "quote": "\"title\":[\"Exercise, cognition and Alzheimer's disease: More is not necessarily better\"]",
+   "why": "The only located record of this title/author set is the 2006 Neuroscience & Biobehavioral Reviews article, a different version from the cited 2007 'Research and Practice in Alzheimer's Disease' vol 12 printing."
+  },
+  "fields": {},
+  "notes": "Cited: Research and Practice in Alzheimer's Disease 12, 216-222 (2007). Could not find any record of that printing (Crossref, Europe PMC, PubMed, LoC searched; web search unavailable). The same authors/title (Eggermont, Swaab, Luiten, Scherder) appeared in Neurosci Biobehav Rev 30(4):562-575, 2006, doi 10.1016/j.neubiorev.2005.10.004 (PMID 16359729); the Serdi 'Research and Practice in AD' series reprints selected papers, so the cited item is probably a reprint. Replacement candidate if the user prefers the original: @article EggeEtal06 (key free), journal Neuroscience and Biobehavioral Reviews, 30(4), 562--575, 2006. Title typo 'Excercise' -> 'Exercise' in any case; original title has no comma after 'cognition'. No duplicate of either version in cdl.bib."
+ },
+ {
+  "key": "Seid07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.3102/0034654307310317",
+   "quote": "\"title\":[\"Teaching Effectiveness Research in the Past Decade: The Role of Theory and Research Design in Disentangling Meta-Analysis Results\"]",
+   "why": "Same title, Review of Educational Research 77(4), 2007, pp. 454-499; the published article has a second author, Shavelson."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "T Seidel and R J Shavelson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3102/0034654307310317",
+      "quote": "\"given\":\"Tina\",\"family\":\"Seidel\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.3102/0034654307310317",
+      "quote": "\"given\":\"Richard J.\",\"family\":\"Shavelson\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Teaching effectiveness research in the past decade: the role of theory and research design in disentangling meta-analysis results",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3102/0034654307310317",
+      "quote": "Teaching Effectiveness Research in the Past Decade: The Role of Theory and Research Design in Disentangling Meta-Analysis Results"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Review of Educational Research",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3102/0034654307310317",
+      "quote": "\"container-title\":[\"Review of Educational Research\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3102/0034654307310317",
+      "quote": "\"published-print\":{\"date-parts\":[[2007,12]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "77",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3102/0034654307310317",
+      "quote": "\"volume\":\"77\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3102/0034654307310317",
+      "quote": "\"journal-issue\":{\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "454--499",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3102/0034654307310317",
+      "quote": "\"page\":\"454-499\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.3102/0034654307310317",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.3102/0034654307310317",
+      "quote": "\"page\":\"454-499\""
+     }
+    ]
+   }
+  },
+  "notes": "Adds second author R J Shavelson -> key would become SeidShav07 (not in HEAD cdl.bib; no key collision). DOI added. No duplicate of this work elsewhere in cdl.bib."
+ },
+ {
+  "key": "HiskEtal22",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+   "quote": "\"title\":[\"Multiversionality: Considering multiple possibilities in the processing of narratives\"]",
+   "why": "Same title and five authors, Review of Philosophy and Psychology; online 2022-02-26, in print 14(3), 2023."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B Hiskes and M Hicks and S Evola and C Kincaid and F Breithaupt",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"given\":\"Ben\",\"family\":\"Hiskes\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"given\":\"Milo\",\"family\":\"Hicks\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"given\":\"Samuel\",\"family\":\"Evola\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"given\":\"Cameron\",\"family\":\"Kincaid\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"given\":\"Fritz\",\"family\":\"Breithaupt\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Multiversionality: considering multiple possibilities in the processing of narratives",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "Multiversionality: Considering multiple possibilities in the processing of narratives"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Review of Philosophy and Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"container-title\":[\"Review of Philosophy and Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2023",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"published-print\":{\"date-parts\":[[2023,9]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"volume\":\"14\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"journal-issue\":{\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1099--1124",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"page\":\"1099-1124\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/s13164-022-00621-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s13164-022-00621-5",
+      "quote": "\"page\":\"1099-1124\""
+     }
+    ]
+   }
+  },
+  "notes": "Pages held a DOI string; real pages 1099--1124 in 14(3). Print year 2023 beats online-first 2022 -> key would become HiskEtal23 (not in HEAD cdl.bib; no collision). No duplicate elsewhere."
+ },
+ {
+  "key": "BarrEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+   "quote": "The boundary vector cell model of place cell firing and spatial memory.",
+   "why": "Same eight authors, Rev Neurosci 17(1-2), 2006, pp. 71-97."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C Barry and C Lever and R Hayman and T Hartley and S Burton and J O'Keefe and K Jeffery and N Burgess",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "FAU - Barry, Caswell"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "FAU - Lever, Colin"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "FAU - Hayman, Robin"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "FAU - Hartley, Tom"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "FAU - Burton, Stephen"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "FAU - O'Keefe, John"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "FAU - Jeffery, Kate"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "FAU - Burgess, Neil"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The boundary vector cell model of place cell firing and spatial memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "The boundary vector cell model of place cell firing and spatial memory."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Reviews in the Neurosciences",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "JT  - Reviews in the neurosciences"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "DP  - 2006"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "VI  - 17"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1--2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "IP  - 1-2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "71--97",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "PG  - 71-97"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1515/revneuro.2006.17.1-2.71",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703944/",
+      "quote": "10.1515/revneuro.2006.17.1-2.71 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited values confirmed by PubMed; DOI added (Crossref has no page field, hence the earlier mismatch)."
+ },
+ {
+  "key": "PoucEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+   "quote": "Spatial navigation and hippocampal place cell firing: the problem of goal encoding.",
+   "why": "Same seven authors, Rev Neurosci 15(2), 2004, pp. 89-107."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B Poucet and P P Lenck-Santini and V Hok and E Save and J P Banquet and P Gaussier and R U Muller",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "FAU - Poucet, B"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "FAU - Lenck-Santini, P P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "FAU - Hok, V"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "FAU - Save, E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "FAU - Banquet, J P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "FAU - Gaussier, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "FAU - Muller, R U"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Spatial navigation and hippocampal place cell firing: the problem of goal encoding",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "Spatial navigation and hippocampal place cell firing: the problem of goal encoding."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Reviews in the Neurosciences",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "JT  - Reviews in the neurosciences"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "DP  - 2004"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "VI  - 15"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "IP  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "89--107",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "PG  - 89-107"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1515/revneuro.2004.15.2.89",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15202682/",
+      "quote": "10.1515/revneuro.2004.15.2.89 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Title: '{Hippocampal}' was wrongly braced as a proper noun; lowercase. Issue 2 and DOI added."
+ },
+ {
+  "key": "RollXian06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
+   "quote": "Spatial view cells in the primate hippocampus and memory recall.",
+   "why": "Same authors, Rev Neurosci 17(1-2), 2006, pp. 175-200."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "E T Rolls and J-Z Xiang",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
+      "quote": "FAU - Rolls, Edmund T"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1515/revneuro.2006.17.1-2.175",
+      "quote": "\"given\":\"J.-Z.\",\"family\":\"Xiang\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Spatial view cells in the primate hippocampus and memory recall",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
+      "quote": "Spatial view cells in the primate hippocampus and memory recall."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Reviews in the Neurosciences",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
+      "quote": "JT  - Reviews in the neurosciences"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
+      "quote": "DP  - 2006"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
+      "quote": "VI  - 17"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1--2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
+      "quote": "IP  - 1-2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "175--200",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
+      "quote": "PG  - 175-200"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1515/revneuro.2006.17.1-2.175",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16703951/",
+      "quote": "10.1515/revneuro.2006.17.1-2.175 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref (publisher deposit) gives the second author's initials as hyphenated 'J.-Z.' -> house form J-Z Xiang (PubMed writes 'Xiang, J Z'); reviewer may keep 'J Z' if preferred. Issue 1--2 and DOI added."
+ },
+ {
+  "key": "LazoEtal16",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+   "quote": "Superior lung capacity in swimmers: Some questions, more answers!",
+   "why": "Same title, first four and sixth authors, Rev Port Pneumol 22(3), 2016, pp. 151-156."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "B Lazovic-Popovic and M Zlatkovic-Svenda and T Durmic and M Djelic and S {Djordjevic Saranovic} and V Zugic",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "FAU - Lazovic-Popovic, B"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "FAU - Zlatkovic-Svenda, M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "FAU - Durmic, T"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "FAU - Djelic, M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "FAU - Djordjevic Saranovic, S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "FAU - Zugic, V"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Superior lung capacity in swimmers: some questions, more answers!",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "Superior lung capacity in swimmers: Some questions, more answers!"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Revista Portuguesa de Pneumologia",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "JT  - Revista portuguesa de pneumologia"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "DP  - 2016 May-Jun"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "VI  - 22"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "151--156",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "PG  - 151-6"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.rppnen.2015.11.003",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26917276/",
+      "quote": "10.1016/j.rppnen.2015.11.003 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Fifth author was 'D Saranovic'; the source prints S Djordjevic Saranovic (compound surname, braced, no extra initials). Crossref labels the container 'Revista Portuguesa de Pneumologia (English Edition)'; PubMed journal name kept. DOI added."
+ },
+ {
+  "key": "Kuip08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+   "quote": "An Intellectual History of the Spatial Semantic Hierarchy. In: Jefferies, M.E., Yeap, WK. (eds) Robotics and Cognitive Approaches to Spatial Mapping.",
+   "why": "Kuipers' chapter in the edited volume (Springer Tracts in Advanced Robotics 38); the 'journal' is actually the book title."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "Springer Tracts in Advanced Robotics, vol 38"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B Kuipers",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "content=\"Kuipers, Benjamin\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "An intellectual history of the spatial semantic hierarchy",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "An Intellectual History of the Spatial Semantic Hierarchy"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Robotics and Cognitive Approaches to Spatial Mapping",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "(eds) Robotics and Cognitive Approaches to Spatial Mapping"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "M E Jefferies and W-K Yeap",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "Margaret E. Jefferies"
+     },
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "Wai-Kiang Yeap"
+     }
+    ]
+   },
+   "series": {
+    "status": "corrected",
+    "value": "Springer Tracts in Advanced Robotics",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "Springer Tracts in Advanced Robotics, vol 38"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "38",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "Springer Tracts in Advanced Robotics, vol 38"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "243--264",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "content=\"243\""
+     },
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "content=\"264\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/book/10.1007/978-3-540-75388-9",
+      "quote": "Springer-Verlag Berlin Heidelberg 2008"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "Springer, Berlin, Heidelberg"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Berlin",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "Springer, Berlin, Heidelberg"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-3-540-75388-9_15",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_15",
+      "quote": "https://doi.org/10.1007/978-3-540-75388-9_15"
+     }
+    ]
+   }
+  },
+  "remove": [
+   "journal"
+  ],
+  "notes": "Convert @article -> @incollection (remove journal). Pages 234 -> 243 (243--264). Year: the chapter page says (2007) (eBook published 23 Sep 2007), but the book's copyright is 2008 and the hardcover was 'Published: 10 January 2008' (book page), so the print year 2008 is kept. House incollection form: Publisher {Springer}, Address {Berlin}. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "Lind79",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/419396/",
+   "quote": "Increase of muscle strength from isometric quadriceps exercises at different knee angles.",
+   "why": "Same sole author (M Lindh), Scand J Rehabil Med 11(1), 1979, pp. 33-36."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M Lindh",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/419396/",
+      "quote": "FAU - Lindh, M"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Increase of muscle strength from isometric quadriceps exercises at different knee angles",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/419396/",
+      "quote": "Increase of muscle strength from isometric quadriceps exercises at different knee angles."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Scandinavian Journal of Rehabilitation Medicine",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/419396/",
+      "quote": "JT  - Scandinavian journal of rehabilitation medicine"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1979",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/419396/",
+      "quote": "DP  - 1979"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/419396/",
+      "quote": "VI  - 11"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/419396/",
+      "quote": "IP  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "33--36",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/419396/",
+      "quote": "PG  - 33-6"
+     }
+    ]
+   }
+  },
+  "notes": "All fields confirmed by PubMed (PMID 419396). No DOI exists for this article."
+ },
+ {
+  "key": "FirtEtal17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+   "quote": "Aerobic Exercise Improves Cognitive Functioning in People With Schizophrenia: A Systematic Review and Meta-Analysis.",
+   "why": "Same nine authors, Schizophr Bull 43(3), 2017, pp. 546-556."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "Joseph Firth and Brendon Stubbs and Simon Rosenbaum and Davy Vancampfort and Berend Malchow and Felipe Schuch and Rebecca Elliott and Keith H Nuechterlein and Alison R Yung",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "FAU - Firth, Joseph"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "FAU - Stubbs, Brendon"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "FAU - Rosenbaum, Simon"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "FAU - Vancampfort, Davy"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "FAU - Malchow, Berend"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "FAU - Schuch, Felipe"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "FAU - Elliott, Rebecca"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "FAU - Nuechterlein, Keith H"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "FAU - Yung, Alison R"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Aerobic exercise improves cognitive functioning in people with schizophrenia: a systematic review and meta-analysis",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "Aerobic Exercise Improves Cognitive Functioning in People With Schizophrenia: A Systematic Review and Meta-Analysis."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Schizophrenia Bulletin",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "JT  - Schizophrenia bulletin"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "DP  - 2017 May 1"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "43",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "VI  - 43"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "546--556",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "PG  - 546-556"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/schbul/sbw115",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521348/",
+      "quote": "10.1093/schbul/sbw115 [doi]"
+     }
+    ]
+   }
+  },
+  "remove": [
+   "booktitle"
+  ],
+  "notes": "The journal name was stored in 'booktitle'; move it to 'journal' and remove 'booktitle'. Online 2016 (Crossref page 'sbw115'), print 43(3) 2017. DOI added."
+ },
+ {
+  "key": "LismBuzs08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18559405/",
+   "quote": "A neural coding scheme formed by the combined function of gamma and theta oscillations.",
+   "why": "Same authors (John Lisman, Gyorgy Buzsaki), Schizophr Bull 34(5), 2008, pp. 974-980."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Lisman and G Buzsaki",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18559405/",
+      "quote": "FAU - Lisman, John"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18559405/",
+      "quote": "FAU - Buzsaki, Gyorgy"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A neural coding scheme formed by the combined function of gamma and theta oscillations",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18559405/",
+      "quote": "A neural coding scheme formed by the combined function of gamma and theta oscillations."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Schizophrenia Bulletin",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18559405/",
+      "quote": "JT  - Schizophrenia bulletin"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18559405/",
+      "quote": "DP  - 2008 Sep"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "34",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18559405/",
+      "quote": "VI  - 34"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18559405/",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "974--980",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18559405/",
+      "quote": "PG  - 974-80"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/schbul/sbn060",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18559405/",
+      "quote": "10.1093/schbul/sbn060 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Adds volume, issue, pages, DOI. Source prints 'Buzsaki' without accent; cdl.bib uses both 'G Buzsaki' and 'G Buzs\\'{a}ki', so the cited form is kept."
+ },
+ {
+  "key": "Free07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.scholarpedia.org/article/Hilbert_transform_for_brain_waves",
+   "quote": "Walter J. Freeman (2007), Scholarpedia, 2(1):1338.",
+   "why": "Same author, title, Scholarpedia 2(1):1338, 2007."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "W J Freeman",
+    "evidence": [
+     {
+      "url": "https://www.scholarpedia.org/article/Hilbert_transform_for_brain_waves",
+      "quote": "content=\"Walter J. Freeman\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{Hilbert} transform for brain waves",
+    "evidence": [
+     {
+      "url": "https://www.scholarpedia.org/article/Hilbert_transform_for_brain_waves",
+      "quote": "content=\"Hilbert transform for brain waves\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Scholarpedia",
+    "evidence": [
+     {
+      "url": "https://www.scholarpedia.org/article/Hilbert_transform_for_brain_waves",
+      "quote": "Walter J. Freeman (2007), Scholarpedia, 2(1):1338."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://www.scholarpedia.org/article/Hilbert_transform_for_brain_waves",
+      "quote": "Walter J. Freeman (2007), Scholarpedia, 2(1):1338."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://www.scholarpedia.org/article/Hilbert_transform_for_brain_waves",
+      "quote": "Walter J. Freeman (2007), Scholarpedia, 2(1):1338."
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://www.scholarpedia.org/article/Hilbert_transform_for_brain_waves",
+      "quote": "Walter J. Freeman (2007), Scholarpedia, 2(1):1338."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1338",
+    "evidence": [
+     {
+      "url": "https://www.scholarpedia.org/article/Hilbert_transform_for_brain_waves",
+      "quote": "Walter J. Freeman (2007), Scholarpedia, 2(1):1338."
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4249/scholarpedia.1338",
+    "evidence": [
+     {
+      "url": "https://www.scholarpedia.org/article/Hilbert_transform_for_brain_waves",
+      "quote": "doi:10.4249/scholarpedia.1338"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref lists the author as 'Walter Freeman' (no middle initial); the article page gives Walter J. Freeman, so W J kept. DOI added."
+ },
+ {
+  "key": "AbboEtal97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+   "quote": "Synaptic depression and cortical gain control.",
+   "why": "Same four authors, Science 275(5297), 10 Jan 1997."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L F Abbott and J A Varela and K Sen and S B Nelson",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "FAU - Abbott, L F"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "FAU - Varela, J A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "FAU - Sen, K"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "FAU - Nelson, S B"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Synaptic depression and cortical gain control",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "Synaptic depression and cortical gain control."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Science",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "JT  - Science (New York, N.Y.)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "DP  - 1997 Jan 10"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "275",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "VI  - 275"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5297",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "IP  - 5297"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "220--224",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "PG  - 220-4"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1126/science.275.5297.221",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8985017/",
+      "quote": "10.1126/science.275.5297.221 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Page conflict: PubMed (and Europe PMC) give 220-224; Crossref and the DOI suffix give 221-224. The science.org page blocks scripts, so the printed first page could not be checked; the cited 220--224 (PubMed) is kept, reviewer may prefer 221--224. DOI added."
+ },
+ {
+  "key": "BaraAlbe99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10521342/",
+   "quote": "Emergence of scaling in random networks.",
+   "why": "Same authors, Science 286(5439), 1999, pp. 509-512."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "A-L Barab\\'{a}si and R Albert",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1126/science.286.5439.509.xml",
+      "quote": "<given_name>Albert-László</given_name>"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10521342/",
+      "quote": "FAU - Barabasi, AL"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10521342/",
+      "quote": "FAU - Albert, R"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Emergence of scaling in random networks",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10521342/",
+      "quote": "Emergence of scaling in random networks."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Science",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10521342/",
+      "quote": "JT  - Science (New York, N.Y.)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10521342/",
+      "quote": "DP  - 1999 Oct 15"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "286",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10521342/",
+      "quote": "VI  - 286"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5439",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10521342/",
+      "quote": "IP  - 5439"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "509--512",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10521342/",
+      "quote": "PG  - 509-12"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1126/science.286.5439.509",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10521342/",
+      "quote": "10.1126/science.286.5439.509 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Given name Albert-László is hyphenated -> house hyphenated initials A-L (cdl.bib currently writes 'A L Barab\\'{a}si' here and the full name in one other entry). DOI added."
+ },
+ {
+  "key": "BellEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+   "quote": "Navigating cognition: Spatial codes for human thinking.",
+   "why": "Same four authors, Science 362(6415), 2018, article eaat6766."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J L S Bellmund and P G\\\"{a}rdenfors and E I Moser and C F Doeller",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "FAU - Bellmund, Jacob L S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "FAU - Gardenfors, Peter"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "FAU - Moser, Edvard I"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "FAU - Doeller, Christian F"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Navigating cognition: spatial codes for human thinking",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "Navigating cognition: Spatial codes for human thinking."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Science",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "JT  - Science (New York, N.Y.)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "DP  - 2018 Nov 9"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "362",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "VI  - 362"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6415",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "IP  - 6415"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "eaat6766",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "LID - eaat6766 [pii]"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1126/science.aat6766",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30409861/",
+      "quote": "10.1126/science.aat6766 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Adds article number eaat6766 as pages and DOI. Umlaut in G\\\"{a}rdenfors kept (Crossref: Gärdenfors)."
+ },
+ {
+  "key": "BellEtal91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+   "quote": "Functional mapping of the human visual cortex by magnetic resonance imaging.",
+   "why": "Same nine authors, Science 254(5032), 1991, pp. 716-719."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J W Belliveau and D N Kennedy and R C McKinstry and B R Buchbinder and R M Weisskoff and M S Cohen and J M Vevea and T J Brady and B R Rosen",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "FAU - Belliveau, J W"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "FAU - Kennedy, D N Jr"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "FAU - McKinstry, R C"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "FAU - Buchbinder, B R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "FAU - Weisskoff, R M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "FAU - Cohen, M S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "FAU - Vevea, J M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "FAU - Brady, T J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "FAU - Rosen, B R"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Functional mapping of the human visual cortex by magnetic resonance imaging",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "Functional mapping of the human visual cortex by magnetic resonance imaging."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Science",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "JT  - Science (New York, N.Y.)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "DP  - 1991 Nov 1"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "254",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "VI  - 254"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5032",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "IP  - 5032"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "716--719",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "PG  - 716-9"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1126/science.1948051",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1948051/",
+      "quote": "10.1126/science.1948051 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Removed suffix 'Jr' from D N {Kennedy Jr} (house no-suffix rule). Pages 716 -> 716--719. DOI added."
+ },
+ {
+  "key": "BrunEtal02a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+   "quote": "Place cells and place recognition maintained by direct entorhinal-hippocampal circuitry.",
+   "why": "Same seven authors, Science 296(5576), 21 Jun 2002, pp. 2243-2246."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "V H Brun and M K Otn{\\ae}ss and S Molden and H-A Steffenach and M P Witter and M-B Moser and E I Moser",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "FAU - Brun, Vegard H"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1126/science.1071089.xml",
+      "quote": "<surname>Otnæss</surname>"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "FAU - Molden, Sturla"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "FAU - Steffenach, Hill-Aina"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "FAU - Witter, Menno P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "FAU - Moser, May-Britt"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "FAU - Moser, Edvard I"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Place cells and place recognition maintained by direct entorhinal-hippocampal circuitry",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "Place cells and place recognition maintained by direct entorhinal-hippocampal circuitry."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Science",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "JT  - Science (New York, N.Y.)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "DP  - 2002 Jun 21"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "296",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "VI  - 296"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5576",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "IP  - 5576"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "2243--2246",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "PG  - 2243-6"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1126/science.1071089",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12077421/",
+      "quote": "10.1126/science.1071089 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Hyphenated given names Hill-Aina and May-Britt -> H-A Steffenach, M-B Moser (house hyphenated initials; earlier waves used M-B Moser). Pages 2243 -> 2243--2246. DOI added."
+ },
+ {
+  "key": "DeadEtal80",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
+   "quote": "Entorhinal and septal inputs differentially control sensory-evoked responses in the rat dentate gyrus.",
+   "why": "Same three authors, Science 211(4487), 13 Mar 1981, pp. 1181-1183."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "Sam A Deadwyler and Mark O West and John H Robinson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1126/science.7466392",
+      "quote": "\"given\":\"Sam A.\",\"family\":\"Deadwyler\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1126/science.7466392",
+      "quote": "\"given\":\"Mark O.\",\"family\":\"West\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1126/science.7466392",
+      "quote": "\"given\":\"John H.\",\"family\":\"Robinson\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Entorhinal and septal inputs differentially control sensory-evoked responses in the rat dentate gyrus",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
+      "quote": "Entorhinal and septal inputs differentially control sensory-evoked responses in the rat dentate gyrus."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Science",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
+      "quote": "JT  - Science (New York, N.Y.)"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "1981",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
+      "quote": "DP  - 1981 Mar 13"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "211",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
+      "quote": "VI  - 211"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4487",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
+      "quote": "IP  - 4487"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1181--1183",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
+      "quote": "PG  - 1181-3"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1126/science.7466392",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7466392/",
+      "quote": "10.1126/science.7466392 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Year 1980 -> 1981 (Science 211, 13 March 1981) -> key would become DeadEtal81 (not in HEAD cdl.bib; no collision). Issue 4487 and DOI added. No duplicate elsewhere."
+ }
+]

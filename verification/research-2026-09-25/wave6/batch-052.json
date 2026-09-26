@@ -1,0 +1,2007 @@
+[
+ {
+  "key": "Farr12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/a0027371",
+   "quote": "\"title\":[\"Temporal clustering and sequencing in short-term memory and episodic memory.\"]",
+   "why": "Same sole author (Farrell), identical title, Psychological Review 119(2), 2012, pp. 223-271."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Farrell",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0027371",
+      "quote": "\"given\":\"Simon\",\"family\":\"Farrell\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Temporal clustering and sequencing in short-term memory and episodic memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0027371",
+      "quote": "\"title\":[\"Temporal clustering and sequencing in short-term memory and episodic memory.\"]"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22506678&retmode=xml",
+      "quote": "<ArticleTitle>Temporal clustering and sequencing in short-term memory and episodic memory.</ArticleTitle>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0027371",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0027371",
+      "quote": "\"issued\":{\"date-parts\":[[2012"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "119",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0027371",
+      "quote": "\"volume\":\"119\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0027371",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "223--271",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0027371",
+      "quote": "\"page\":\"223-271\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/a0027371",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0027371",
+      "quote": "\"DOI\":\"10.1037\\/a0027371\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change: add DOI. A correction notice exists (Psychological Review 119(4), p. 899, 2012, doi 10.1037/a0030031, \"Correction to Farrell (2012)\"; PubMed 22506678 lists ErratumIn). Crossref holds no abstract for the notice, so its content (content-only vs metadata) could not be retrieved; the cited metadata match the article record fully. No retraction."
+ },
+ {
+  "key": "Flex81",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.88.4.327",
+   "quote": "\"title\":[\"Homogenizing the 2\\u2002\\u00d7\\u20022 contingency table: A method for removing dependencies due to subject and item differences.\"]",
+   "why": "Same sole author (Flexser), same title, Psychological Review 88(4), 1981, pp. 327-339."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A J Flexser",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.88.4.327",
+      "quote": "\"given\":\"Arthur J.\",\"family\":\"Flexser\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Homogenizing the $2 \\times 2$ contingency table: a method for removing dependencies due to subject and item differences",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.88.4.327",
+      "quote": "\"title\":[\"Homogenizing the 2\\u2002\\u00d7\\u20022 contingency table: A method for removing dependencies due to subject and item differences.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.88.4.327",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1981",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.88.4.327",
+      "quote": "\"issued\":{\"date-parts\":[[1981"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "88",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.88.4.327",
+      "quote": "\"volume\":\"88\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.88.4.327",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "327--339",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.88.4.327",
+      "quote": "\"page\":\"327-339\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.88.4.327",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.88.4.327",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.88.4.327\""
+     }
+    ]
+   }
+  },
+  "notes": "Added number 4 and DOI. The title mismatch flag is only the Crossref en-spaces around the multiplication sign (2\\u2002\\u00d7\\u20022); cited $2 \\times 2$ kept."
+ },
+ {
+  "key": "Hint81",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.87.4.398",
+   "quote": "\"title\":[\"Simpson's paradox and the analysis of memory retrieval.\"]",
+   "why": "Same sole author (Hintzman), identical title, Psychological Review 87(4), pp. 398-410; volume 87 is the 1980 volume."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D L Hintzman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.4.398",
+      "quote": "\"given\":\"Douglas L.\",\"family\":\"Hintzman\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{Simpson's} paradox and the analysis of memory retrieval",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.4.398",
+      "quote": "\"title\":[\"Simpson's paradox and the analysis of memory retrieval.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.4.398",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "1980",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.4.398",
+      "quote": "\"issued\":{\"date-parts\":[[1980"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "87",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.4.398",
+      "quote": "\"volume\":\"87\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.4.398",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "398--410",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.4.398",
+      "quote": "\"page\":\"398-410\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.87.4.398",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.4.398",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.87.4.398\""
+     }
+    ]
+   }
+  },
+  "notes": "Year corrected 1981 -> 1980 (Crossref issued 1980-07; volume 87 = 1980; the 1981 reply by Martin, Mart81, is in volume 88). New key would be Hint80: not present in HEAD cdl.bib (no key collision, no duplicate of this work found by title). Added number 4 and DOI. Not indexed in PubMed."
+ },
+ {
+  "key": "Hint86",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.93.4.411",
+   "quote": "\"title\":[\"\\\"Schema abstraction\\\" in a multiple-trace memory model.\"]",
+   "why": "Same sole author (Hintzman), same title, Psychological Review 93(4), 1986, pp. 411-428."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D L Hintzman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.93.4.411",
+      "quote": "\"given\":\"Douglas L.\",\"family\":\"Hintzman\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "``{S}chema abstraction'' in a multiple-trace memory model",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.93.4.411",
+      "quote": "\"title\":[\"\\\"Schema abstraction\\\" in a multiple-trace memory model.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.93.4.411",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1986",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.93.4.411",
+      "quote": "\"issued\":{\"date-parts\":[[1986"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "93",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.93.4.411",
+      "quote": "\"volume\":\"93\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.93.4.411",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "411--428",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.93.4.411",
+      "quote": "\"page\":\"411-428\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.93.4.411",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.93.4.411",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.93.4.411\""
+     }
+    ]
+   }
+  },
+  "notes": "Title: the source prints double quotes around \"Schema abstraction\"; changed the cited single quotes to ``... (the form cdl.bib uses elsewhere, e.g. ``stream of consciousness). Words unchanged. Added number 4 and DOI."
+ },
+ {
+  "key": "HubeEtal01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+   "quote": "\"title\":[\"Perception and preference in short-term word priming.\"]",
+   "why": "Same four authors in order, identical title, Psychological Review 108(1), 2001, pp. 149-182."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D E Huber and R M Shiffrin and K B Lyle and K I Ruys",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"given\":\"David E.\",\"family\":\"Huber\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"given\":\"Richard M.\",\"family\":\"Shiffrin\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"given\":\"Keith B.\",\"family\":\"Lyle\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"given\":\"Kirsten I.\",\"family\":\"Ruys\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Perception and preference in short-term word priming",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"title\":[\"Perception and preference in short-term word priming.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"issued\":{\"date-parts\":[[2001"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "108",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"volume\":\"108\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "149--182",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"page\":\"149-182\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.108.1.149",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.108.1.149",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.108.1.149\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change: add DOI. The \"notice\" flag comes from a PsycEXTRA record (10.1037/e501882009-065, \"Preference for prime-related words in short-term priming...\", 2000, different author list incl. Quach), which is a different work, not a notice. Crossref lists no correction updating 10.1037/0033-295x.108.1.149."
+ },
+ {
+  "key": "KahaEtal08c",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/a0013724",
+   "quote": "\"title\":[\"Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).\"]",
+   "why": "Same three authors, same title start and reply target, Psychological Review 115(4), 2008, starting p. 1119."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M J Kahana and P B Sederberg and M W Howard",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"given\":\"Michael J.\",\"family\":\"Kahana\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"given\":\"Per B.\",\"family\":\"Sederberg\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"given\":\"Marc W.\",\"family\":\"Howard\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Putting short-term memory into context: reply to {Usher}, {Davelaar}, {Haarmann}, and {Goshen-Gottstein} (2008)",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"title\":[\"Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).\"]"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20976034&retmode=xml",
+      "quote": "<ArticleTitle>Putting Short-Term Memory Into Context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).</ArticleTitle>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"issued\":{\"date-parts\":[[2008"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "115",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"volume\":\"115\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1119--1125",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"page\":\"1119-1125\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20976034&retmode=xml",
+      "quote": "<MedlinePgn>1119-1125</MedlinePgn>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/a0013724",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"DOI\":\"10.1037\\/a0013724\""
+     }
+    ]
+   }
+  },
+  "notes": "Title completed from the source (\"Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008)\" instead of \"Reply to Usher and colleagues\"); end page 1126 -> 1125 (Crossref and PubMed agree). Added DOI."
+ },
+ {
+  "key": "LewaLi94",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.101.3.539",
+   "quote": "\"title\":[\"Memory for serial order revisited.\"]",
+   "why": "Same two authors, identical title, Psychological Review 101(3), 1994, pp. 539-543."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "S Lewandowsky and S-C Li",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.101.3.539",
+      "quote": "\"given\":\"Stephan\",\"family\":\"Lewandowsky\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.101.3.539",
+      "quote": "\"given\":\"Shu-Chen\",\"family\":\"Li\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Memory for serial order revisited",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.101.3.539",
+      "quote": "\"title\":[\"Memory for serial order revisited.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.101.3.539",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1994",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.101.3.539",
+      "quote": "\"issued\":{\"date-parts\":[[1994"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "101",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.101.3.539",
+      "quote": "\"volume\":\"101\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.101.3.539",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "539--543",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.101.3.539",
+      "quote": "\"page\":\"539-543\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.101.3.539",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.101.3.539",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.101.3.539\""
+     }
+    ]
+   }
+  },
+  "notes": "Second author given name is hyphenated \"Shu-Chen\", so S C Li -> S-C Li (house hyphenated initials). Surname and key unchanged. Added number 3 and DOI."
+ },
+ {
+  "key": "Mart65",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0022250",
+   "quote": "\"title\":[\"Transfer and verbal paired associates.\"]",
+   "why": "Same sole author (E Martin), Psychological Review 72(5), 1965, pp. 327-343, title words \"verbal paired associates\"; PubMed 5318085 has the same coordinates."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E Martin",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0022250",
+      "quote": "\"given\":\"Edwin\",\"family\":\"Martin\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0022250",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1965",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0022250",
+      "quote": "\"issued\":{\"date-parts\":[[1965"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "72",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0022250",
+      "quote": "\"volume\":\"72\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5318085&retmode=xml",
+      "quote": "<Volume>72</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0022250",
+      "quote": "\"issue\":\"5\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5318085&retmode=xml",
+      "quote": "<Issue>5</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "327--343",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0022250",
+      "quote": "\"page\":\"327-343\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=5318085&retmode=xml",
+      "quote": "<MedlinePgn>327-43</MedlinePgn>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0022250",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0022250",
+      "quote": "\"DOI\":\"10.1037\\/h0022250\""
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Volume \"72(5)\" split into volume 72 and number 5 (both Crossref and PubMed state issue 5). Added DOI. TITLE UNRESOLVED: cited \"Transfer and verbal paried associates\" has a typo, and the two sources disagree on the connective: Crossref \"Transfer and verbal paired associates.\" vs PubMed \"Transfer of verbal paired associates.\" (APA PsycNET page could not be read). Reviewer should pick from the printed first page; both make \"paried\" -> \"paired\"."
+ },
+ {
+  "key": "MensRaai88",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.95.4.434",
+   "quote": "\"title\":[\"A model for interference and forgetting.\"]",
+   "why": "Same two authors (Mensink, Raaijmakers), identical title, Psychological Review 95(4), 1988, pp. 434-455."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "G-J M Mensink and J G W Raaijmakers",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.95.4.434",
+      "quote": "\"given\":\"Ger-Jan\",\"family\":\"Mensink\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.95.4.434",
+      "quote": "\"given\":\"Jeroen G.\",\"family\":\"Raaijmakers\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A model for interference and forgetting",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.95.4.434",
+      "quote": "\"title\":[\"A model for interference and forgetting.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.95.4.434",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.95.4.434",
+      "quote": "\"issued\":{\"date-parts\":[[1988"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "95",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.95.4.434",
+      "quote": "\"volume\":\"95\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.95.4.434",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "434--455",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.95.4.434",
+      "quote": "\"page\":\"434-455\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.95.4.434",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.95.4.434",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.95.4.434\""
+     }
+    ]
+   }
+  },
+  "notes": "Added number 4 and DOI. Crossref gives \"Ger-Jan\" (no M) and \"Jeroen G.\" (no W); the cited extra initials are kept since no source prints a different initial (house rule; cdl.bib writes J G W Raaijmakers 8 times)."
+ },
+ {
+  "key": "Metc82",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.89.6.627",
+   "quote": "\"title\":[\"A composite holographic associative recall model.\"]",
+   "why": "Identical title, Psychological Review 89(6), 1982, pp. 627-661; sole author Janet M(etcalfe) Eich = J Metcalfe."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J M Eich",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.89.6.627",
+      "quote": "\"given\":\"Janet M.\",\"family\":\"Eich\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A composite holographic associative recall model",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.89.6.627",
+      "quote": "\"title\":[\"A composite holographic associative recall model.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.89.6.627",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1982",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.89.6.627",
+      "quote": "\"issued\":{\"date-parts\":[[1982"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "89",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.89.6.627",
+      "quote": "\"volume\":\"89\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.89.6.627",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "627--661",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.89.6.627",
+      "quote": "\"page\":\"627-661\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.89.6.627",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.89.6.627",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.89.6.627\""
+     }
+    ]
+   }
+  },
+  "notes": "AUTHOR NEEDS A DECISION: Crossref records the author as given \"Janet M.\" family \"Eich\" (she published as Janet Metcalfe Eich then; later as J Metcalfe, which is how cdl.bib writes her elsewhere). No source writes \"Metcalfe-Eich\". Proposed J M Eich; new key would be Eich82 (not in HEAD cdl.bib; no collision). If the user prefers to keep her later name, keep key Metc82 and just add number 6 + DOI. Metc90 (JEP: General 119, \"Composite holographic associative recall model\") is a different work."
+ },
+ {
+  "key": "Metc85",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.92.1.1",
+   "quote": "\"title\":[\"Levels of processing, encoding specificity, elaboration, and CHARM.\"]",
+   "why": "Identical title, Psychological Review 92(1), 1985, pp. 1-38 (Crossref and PubMed 3983302); author Janet M. Eich (= J Metcalfe)."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J M Eich",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.92.1.1",
+      "quote": "\"given\":\"Janet M.\",\"family\":\"Eich\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3983302&retmode=xml",
+      "quote": "<LastName>Eich</LastName><ForeName>J M</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Levels of processing, encoding specificity, elaboration, and {CHARM}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.92.1.1",
+      "quote": "\"title\":[\"Levels of processing, encoding specificity, elaboration, and CHARM.\"]"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3983302&retmode=xml",
+      "quote": "<ArticleTitle>Levels of processing, encoding specificity, elaboration, and CHARM.</ArticleTitle>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.92.1.1",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1985",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.92.1.1",
+      "quote": "\"issued\":{\"date-parts\":[[1985"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "92",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.92.1.1",
+      "quote": "\"volume\":\"92\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.92.1.1",
+      "quote": "\"issue\":\"1\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3983302&retmode=xml",
+      "quote": "<Issue>1</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--38",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.92.1.1",
+      "quote": "\"page\":\"1-38\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.92.1.1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.92.1.1",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.92.1.1\""
+     }
+    ]
+   }
+  },
+  "notes": "AUTHOR NEEDS A DECISION (same as Metc82): Crossref and PubMed both give Eich, J M. Proposed J M Eich; new key would be Eich85 (not in HEAD cdl.bib; no collision). Alternative: keep J Metcalfe/Metc85 and only add number 1 + DOI."
+ },
+ {
+  "key": "Murd06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.113.3.648",
+   "quote": "\"title\":[\"Decision-making models of remember-know judgments: Comment on Rotello, Macmillan, and Reeder (2004).\"]",
+   "why": "Same sole author (Murdock), same title, Psychological Review 113(3), 2006, starting p. 648."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B B Murdock",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.3.648",
+      "quote": "\"given\":\"Bennet\",\"family\":\"Murdock\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Decision-making models of remember-know judgments: comment on {Rotello}, {Macmillan}, and {Reeder} (2004)",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.3.648",
+      "quote": "\"title\":[\"Decision-making models of remember-know judgments: Comment on Rotello, Macmillan, and Reeder (2004).\"]"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16802885&retmode=xml",
+      "quote": "<ArticleTitle>Decision-making models of remember-know judgments: comment on Rotello, Macmillan, and Reeder (2004).</ArticleTitle>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.3.648",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.3.648",
+      "quote": "\"issued\":{\"date-parts\":[[2006"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "113",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.3.648",
+      "quote": "\"volume\":\"113\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.3.648",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "648--655",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.3.648",
+      "quote": "\"page\":\"648-655\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.113.3.648",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.3.648",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.113.3.648\""
+     }
+    ]
+   }
+  },
+  "notes": "Title converted to sentence case (words unchanged). Pages: Crossref 648-655 vs PubMed 648-56 (cited 656); PubMed evidently includes a following discussion/postscript (the Macmillan & Rotello reply record is \"657-65; discussion 655-6\"), so the article itself is 648--655. Middle initial B kept (sources give \"Bennet\" only). Added DOI."
+ },
+ {
+  "key": "NosoPalm97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.104.2.266",
+   "quote": "\"title\":[\"An exemplar-based random walk model of speeded classification.\"]",
+   "why": "Same two authors, identical title, Psychological Review 104(2), 1997, pp. 266-300."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R M Nosofsky and T J Palmeri",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.104.2.266",
+      "quote": "\"given\":\"Robert M.\",\"family\":\"Nosofsky\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.104.2.266",
+      "quote": "\"given\":\"Thomas J.\",\"family\":\"Palmeri\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9127583&retmode=xml",
+      "quote": "<LastName>Nosofsky</LastName><ForeName>R M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9127583&retmode=xml",
+      "quote": "<LastName>Palmeri</LastName><ForeName>T J</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "An exemplar-based random walk model of speeded classification",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.104.2.266",
+      "quote": "\"title\":[\"An exemplar-based random walk model of speeded classification.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.104.2.266",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.104.2.266",
+      "quote": "\"issued\":{\"date-parts\":[[1997"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "104",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.104.2.266",
+      "quote": "\"volume\":\"104\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.104.2.266",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "266--300",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.104.2.266",
+      "quote": "\"page\":\"266-300\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.104.2.266",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.104.2.266",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.104.2.266\""
+     }
+    ]
+   }
+  },
+  "notes": "Added number 2 and DOI. A correction notice exists: Psychological Review 115(2), p. 446, 2008, doi 10.1037/0033-295x.115.2.446 (\"Correction to Nosofsky and Palmeri (1997)\"; PubMed ErratumIn). Crossref holds no notice text, so its content could not be retrieved; cited metadata fully match the article. No retraction."
+ },
+ {
+  "key": "Osgo49",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0057488",
+   "quote": "\"title\":[\"The similarity paradox in human learning: a resolution.\"]",
+   "why": "Same sole author (Osgood), same title plus subtitle, Psychological Review 56(3), 1949, pp. 132-143."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C E Osgood",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0057488",
+      "quote": "\"given\":\"Charles E.\",\"family\":\"Osgood\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18139121&retmode=xml",
+      "quote": "<LastName>OSGOOD</LastName><ForeName>C E</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "The similarity paradox in human learning: a resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0057488",
+      "quote": "\"title\":[\"The similarity paradox in human learning: a resolution.\"]"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18139121&retmode=xml",
+      "quote": "<ArticleTitle>The similarity paradox in human learning; a resolution.</ArticleTitle>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0057488",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1949",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0057488",
+      "quote": "\"issued\":{\"date-parts\":[[1949"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "56",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0057488",
+      "quote": "\"volume\":\"56\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0057488",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "132--143",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0057488",
+      "quote": "\"page\":\"132-143\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0057488",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0057488",
+      "quote": "\"DOI\":\"10.1037\\/h0057488\""
+     }
+    ]
+   }
+  },
+  "notes": "Title completed with its subtitle \"a resolution\" (Crossref; PubMed prints \"; a resolution\"). Added number 3 and DOI."
+ },
+ {
+  "key": "ParkYone07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.114.1.188",
+   "quote": "\"title\":[\"Moving beyond pure signal-detection models: Comment on Wixted (2007).\"]",
+   "why": "Same two authors, identical title, Psychological Review 114(1), 2007, starting p. 188."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "C M Parks and A P Yonelinas",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.114.1.188",
+      "quote": "\"given\":\"Colleen M.\",\"family\":\"Parks\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.114.1.188",
+      "quote": "\"given\":\"Andrew P.\",\"family\":\"Yonelinas\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17227187&retmode=xml",
+      "quote": "<LastName>Parks</LastName><ForeName>Colleen M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17227187&retmode=xml",
+      "quote": "<LastName>Yonelinas</LastName><ForeName>Andrew P</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Moving beyond pure signal-detection models: comment on {Wixted} (2007)",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.114.1.188",
+      "quote": "\"title\":[\"Moving beyond pure signal-detection models: Comment on Wixted (2007).\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.114.1.188",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.114.1.188",
+      "quote": "\"issued\":{\"date-parts\":[[2007"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "114",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.114.1.188",
+      "quote": "\"volume\":\"114\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.114.1.188",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "188--201",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.114.1.188",
+      "quote": "\"page\":\"188-201\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.114.1.188",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.114.1.188",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.114.1.188\""
+     }
+    ]
+   }
+  },
+  "notes": "Authors converted to house initials. Pages 188--202 -> 188--201: the article is 188-201 in Crossref; pp. 201-202 are a separate \"Postscript: Comment on Wixted (2007)\" (doi 10.1037/0033-295x.114.1.201). PubMed gives 188-202 because it merges the postscript. Added DOI. The \"address = Davis, {CA}\" field is an author affiliation, not a bibliographic field of an @article; proposed for removal (top-level \"remove\").",
+  "remove": [
+   "address"
+  ]
+ },
+ {
+  "key": "PearHall80",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.87.6.532",
+   "quote": "\"title\":[\"A model for Pavlovian learning: Variations in the effectiveness of conditioned but not of unconditioned stimuli.\"]",
+   "why": "Same two authors, same title except \"learning\" for \"conditioning\", Psychological Review 87(6), 1980, starting p. 532."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J M Pearce and G Hall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.6.532",
+      "quote": "\"given\":\"John M.\",\"family\":\"Pearce\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.6.532",
+      "quote": "\"given\":\"Geoffrey\",\"family\":\"Hall\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "A model for {Pavlovian} learning: variations in the effectiveness of conditioned but not of unconditioned stimuli",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.6.532",
+      "quote": "\"title\":[\"A model for Pavlovian learning: Variations in the effectiveness of conditioned but not of unconditioned stimuli.\"]"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7443916&retmode=xml",
+      "quote": "<ArticleTitle>A model for Pavlovian learning: variations in the effectiveness of conditioned but not of unconditioned stimuli.</ArticleTitle>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.6.532",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1980",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.6.532",
+      "quote": "\"issued\":{\"date-parts\":[[1980"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "87",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.6.532",
+      "quote": "\"volume\":\"87\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.6.532",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "532--552",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.6.532",
+      "quote": "\"page\":\"532-552\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7443916&retmode=xml",
+      "quote": "<MedlinePgn>532-52</MedlinePgn>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.87.6.532",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.87.6.532",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.87.6.532\""
+     }
+    ]
+   }
+  },
+  "notes": "Title word \"conditioning\" -> \"learning\" and end page 555 -> 552 (Crossref and PubMed 7443916 agree). Added number 6 and DOI."
+ },
+ {
+  "key": "Pike84",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.91.3.281",
+   "quote": "\"title\":[\"Comparison of convolution and matrix distributed memory systems for associative recall and recognition.\"]",
+   "why": "Same sole author (Pike), identical title, Psychological Review 91(3), 1984, pp. 281-294."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R Pike",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.91.3.281",
+      "quote": "\"given\":\"Ray\",\"family\":\"Pike\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Comparison of convolution and matrix distributed memory systems for associative recall and recognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.91.3.281",
+      "quote": "\"title\":[\"Comparison of convolution and matrix distributed memory systems for associative recall and recognition.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.91.3.281",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1984",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.91.3.281",
+      "quote": "\"issued\":{\"date-parts\":[[1984"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "91",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.91.3.281",
+      "quote": "\"volume\":\"91\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.91.3.281",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "281--294",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.91.3.281",
+      "quote": "\"page\":\"281-294\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.91.3.281",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.91.3.281",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.91.3.281\""
+     }
+    ]
+   }
+  },
+  "notes": "Added number 3 and DOI."
+ },
+ {
+  "key": "PittEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+   "quote": "\"title\":[\"Global model analysis by parameter space partitioning.\"]",
+   "why": "Same four authors in order, identical title, Psychological Review 113(1), 2006, pp. 57-83."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M A Pitt and W Kim and D J Navarro and J I Myung",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"given\":\"Mark A.\",\"family\":\"Pitt\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"given\":\"Woojae\",\"family\":\"Kim\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"given\":\"Daniel J.\",\"family\":\"Navarro\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"given\":\"Jay I.\",\"family\":\"Myung\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Global model analysis by parameter space partitioning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"title\":[\"Global model analysis by parameter space partitioning.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"issued\":{\"date-parts\":[[2006"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "113",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"volume\":\"113\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "57--83",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"page\":\"57-83\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0033-295x.113.1.57",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0033-295x.113.1.57",
+      "quote": "\"DOI\":\"10.1037\\/0033-295x.113.1.57\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change: add DOI. Crossref links a later PsyArXiv copy (10.31234/osf.io/43auj); the journal article is the cited version."
+ },
+ {
+  "key": "PlauMcCl10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/a0017101",
+   "quote": "\"title\":[\"Locating object knowledge in the brain: Comment on Bowers\\u2019s (2009) attempt to revive the grandmother cell hypothesis.\"]",
+   "why": "Same two authors, same title (comment vs comments), Psychological Review 117(1), 2010, starting p. 284."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "D C Plaut and J L McClelland",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0017101",
+      "quote": "\"given\":\"David C.\",\"family\":\"Plaut\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0017101",
+      "quote": "\"given\":\"James L.\",\"family\":\"McClelland\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Locating object knowledge in the brain: comment on {Bowers's} (2009) attempt to revive the grandmother cell hypothesis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0017101",
+      "quote": "\"title\":[\"Locating object knowledge in the brain: Comment on Bowers\\u2019s (2009) attempt to revive the grandmother cell hypothesis.\"]"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20063976&retmode=xml",
+      "quote": "<ArticleTitle>Locating object knowledge in the brain: comment on Bowers's (2009) attempt to revive the grandmother cell hypothesis.</ArticleTitle>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0017101",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0017101",
+      "quote": "\"issued\":{\"date-parts\":[[2010"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "117",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0017101",
+      "quote": "\"volume\":\"117\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0017101",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "284--288",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0017101",
+      "quote": "\"page\":\"284-288\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20063976&retmode=xml",
+      "quote": "<MedlinePgn>284-8</MedlinePgn>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/a0017101",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0017101",
+      "quote": "\"DOI\":\"10.1037\\/a0017101\""
+     }
+    ]
+   }
+  },
+  "notes": "Title \"comments on\" -> \"comment on\"; end page 290 -> 288 (Crossref and PubMed 20063976 agree; 289-290 hold a separate reply). Author: Mc{C}lelland -> McClelland, the form cdl.bib uses 11 of 13 times (not a particle; spelling unchanged). Added DOI."
+ },
+ {
+  "key": "PurcEtal10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/a0020311",
+   "quote": "\"title\":[\"Neurally constrained modeling of perceptual decision making.\"]",
+   "why": "Same six authors in order, identical title, Psychological Review 2010."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B A Purcell and R P Heitz and J Y Cohen and J D Schall and G D Logan and T J Palmeri",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"given\":\"Braden A.\",\"family\":\"Purcell\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"given\":\"Richard P.\",\"family\":\"Heitz\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"given\":\"Jeremiah Y.\",\"family\":\"Cohen\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"given\":\"Jeffrey D.\",\"family\":\"Schall\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"given\":\"Gordon D.\",\"family\":\"Logan\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"given\":\"Thomas J.\",\"family\":\"Palmeri\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Neurally constrained modeling of perceptual decision making",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"title\":[\"Neurally constrained modeling of perceptual decision making.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"issued\":{\"date-parts\":[[2010"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "117",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"volume\":\"117\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20822291&retmode=xml",
+      "quote": "<Volume>117</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"issue\":\"4\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20822291&retmode=xml",
+      "quote": "<Issue>4</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1113--1143",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"page\":\"1113-1143\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20822291&retmode=xml",
+      "quote": "<MedlinePgn>1113-43</MedlinePgn>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/a0020311",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0020311",
+      "quote": "\"DOI\":\"10.1037\\/a0020311\""
+     }
+    ]
+   }
+  },
+  "notes": "Added missing volume 117, number 4, pages 1113--1143 and DOI (Crossref and PubMed 20822291 agree). The \"author\" mismatch flag was a false positive (authors match). Correction notices exist: Psychological Review 118(1) p. 96 (doi 10.1037/a0021906) and p. 134 (doi 10.1037/a0022305), plus PubMed lists an erratum \"following 1143\" in 117(4). Notice texts not retrievable via Crossref; no retraction."
+ }
+]

@@ -1,0 +1,1635 @@
+[
+ {
+  "key": "GailEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/19296722/",
+   "quote": "Converging intracranial markers of conscious access",
+   "why": "PubMed record: same title, same eight authors, PLoS Biol 2009;7(3), DOI 10.1371/journal.pbio.1000061."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R Gaillard and S Dehaene and C Adam and S Cl{\\'e}menceau and D Hasboun and M Baulac and L Cohen and L Naccache",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19296722/",
+      "quote": "Raphaël Gaillard, Stanislas Dehaene, Claude Adam, Stéphane Clémenceau, Dominique Hasboun, Michel Baulac, Laurent Cohen, Lionel Naccache"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Converging intracranial markers of conscious access",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19296722/",
+      "quote": "Converging intracranial markers of conscious access"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} Biology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pbio.1000061",
+      "quote": "\"container-title\":[\"PLoS Biology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19296722/",
+      "quote": "VI - 7"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19296722/",
+      "quote": "IP - 3"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19296722/",
+      "quote": "DP - 2009 Mar 17"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "e1000061",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pbio.1000061",
+      "quote": "\"page\":\"e1000061\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pbio.1000061",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pbio.1000061",
+      "quote": "\"DOI\":\"10.1371\\/journal.pbio.1000061\""
+     }
+    ]
+   }
+  },
+  "notes": "Cited pages 1--21 are the PDF page count; the article number is e1000061 (PubMed abbreviates it e61). DOI added."
+ },
+ {
+  "key": "KeleFent10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+   "quote": "Dynamic grouping of hippocampal neural activity during cognitive control of two spatial frames",
+   "why": "PubMed record: same title, Kelemen and Fenton, PLoS Biol 2010;8(6):e1000403."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E Kelemen and A A Fenton",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "Eduard Kelemen, André A Fenton"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Dynamic grouping of hippocampal neural activity during cognitive control of two spatial frames",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "Dynamic grouping of hippocampal neural activity during cognitive control of two spatial frames"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} Biology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pbio.1000403",
+      "quote": "\"container-title\":[\"PLoS Biology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "VI - 8"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e1000403",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "PG - e1000403"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "DP - 2010 Jun 22"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pbio.1000403",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pbio.1000403",
+      "quote": "\"DOI\":\"10.1371\\/journal.pbio.1000403\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. Correction notice 10.1371/journal.pbio.1002100 (2015) is content-only: it fixes swapped row labels and duplicated spatial-coherence numbers in S2 Fig; no metadata change."
+ },
+ {
+  "key": "RubiEtal17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+   "quote": "Decoding brain activity using a large-scale probabilistic functional-anatomical atlas of human cognition",
+   "why": "PubMed record: same title and six authors, PLoS Comput Biol 2017;13(10):e1005649."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "T N Rubin and O Koyejo and K J Gorgolewski and M N Jones and R A Poldrack and T Yarkoni",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "Timothy N Rubin, Oluwasanmi Koyejo, Krzysztof J Gorgolewski, Michael N Jones, Russell A Poldrack, Tal Yarkoni"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1005649",
+      "quote": "\"given\":\"Oluwasanmi\",\"family\":\"Koyejo\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Decoding brain activity using a large-scale probabilistic functional-anatomical atlas of human cognition",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "Decoding brain activity using a large-scale probabilistic functional-anatomical atlas of human cognition"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} Computational Biology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1005649",
+      "quote": "\"container-title\":[\"PLOS Computational Biology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "VI - 13"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "IP - 10"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e1005649",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "PG - e1005649"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "DP - 2017 Oct"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pcbi.1005649",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1005649",
+      "quote": "\"DOI\":\"10.1371\\/journal.pcbi.1005649\""
+     }
+    ]
+   }
+  },
+  "notes": "Second author misspelled \"Kyoejo\"; PubMed and Crossref both print Koyejo (two sources; cdl.bib ParkEtal entry also writes \"O Koyejo\"). DOI added. Crossref \"new_version\" self-link is a PLOS re-deposit, not a correction."
+ },
+ {
+  "key": "ThomEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/29813064/",
+   "quote": "Simulations to benchmark time-varying connectivity methods for fMRI",
+   "why": "PubMed record: same title and four authors, PLoS Comput Biol 2018;14(5):e1006196."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "W H Thompson and C G Richter and P Plav\\'{e}n-Sigray and P Fransson",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29813064/",
+      "quote": "William Hedley Thompson, Craig Geoffrey Richter, Pontus Plavén-Sigray, Peter Fransson"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Simulations to benchmark time-varying connectivity methods for f{MRI}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29813064/",
+      "quote": "Simulations to benchmark time-varying connectivity methods for fMRI"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} Computational Biology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1006196",
+      "quote": "\"container-title\":[\"PLOS Computational Biology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29813064/",
+      "quote": "VI - 14"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29813064/",
+      "quote": "IP - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e1006196",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29813064/",
+      "quote": "PG - e1006196"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29813064/",
+      "quote": "DP - 2018 May"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pcbi.1006196",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1006196",
+      "quote": "\"DOI\":\"10.1371\\/journal.pcbi.1006196\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. bioRxiv preprint 10.1101/212241 is the earlier version; the entry already cites the journal version."
+ },
+ {
+  "key": "TokeSomm19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30730907/",
+   "quote": "Information integration in large brain networks",
+   "why": "PubMed record: same title, Toker and Sommer, PLoS Comput Biol 2019;15(2):e1006807."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D Toker and F T Sommer",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30730907/",
+      "quote": "Daniel Toker, Friedrich T Sommer"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Information integration in large brain networks",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30730907/",
+      "quote": "Information integration in large brain networks"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} Computational Biology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1006807",
+      "quote": "\"container-title\":[\"PLOS Computational Biology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30730907/",
+      "quote": "VI - 15"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30730907/",
+      "quote": "IP - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e1006807",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30730907/",
+      "quote": "PG - e1006807"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30730907/",
+      "quote": "DP - 2019 Feb"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pcbi.1006807",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1006807",
+      "quote": "\"DOI\":\"10.1371\\/journal.pcbi.1006807\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added."
+ },
+ {
+  "key": "VanSEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30500813/",
+   "quote": "How pupil responses track value-based decision-making during and after reinforcement learning",
+   "why": "PubMed record: same four authors, PLoS Comput Biol 2018;14(11):e1006632."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J C Van Slooten and S Jahfari and T Knapen and J Theeuwes",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30500813/",
+      "quote": "Joanne C Van Slooten, Sara Jahfari, Tomas Knapen, Jan Theeuwes"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "How pupil responses track value-based decision-making during and after reinforcement learning",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30500813/",
+      "quote": "How pupil responses track value-based decision-making during and after reinforcement learning"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} Computational Biology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1006632",
+      "quote": "\"container-title\":[\"PLOS Computational Biology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30500813/",
+      "quote": "VI - 14"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30500813/",
+      "quote": "IP - 11"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e1006632",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30500813/",
+      "quote": "PG - e1006632"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30500813/",
+      "quote": "DP - 2018 Nov"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pcbi.1006632",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1006632",
+      "quote": "\"DOI\":\"10.1371\\/journal.pcbi.1006632\""
+     }
+    ]
+   }
+  },
+  "notes": "Title hyphen: \"decision-making\" (cited \"decision making\"). Van Slooten kept as cdl.bib writes it (unbraced, as printed). Correction 10.1371/journal.pcbi.1007031 (2019) replaces Fig 5 only: content-only. DOI added."
+ },
+ {
+  "key": "HanEtal12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22586455/",
+   "quote": "When do objects become landmarks? A VR study of the effect of task relevance on spatial memory",
+   "why": "PubMed record: Han, Byrne, Kahana, Becker, PLoS One 2012;7(5):e35940."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "X Han and P Byrne and M J Kahana and S Becker",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22586455/",
+      "quote": "Xue Han, Patrick Byrne, Michael Kahana, Suzanna Becker"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "When do objects become landmarks? {A VR} study of the effect of task relevance on spatial memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22586455/",
+      "quote": "When do objects become landmarks? A VR study of the effect of task relevance on spatial memory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} One",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pone.0035940",
+      "quote": "\"container-title\":[\"PLoS ONE\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22586455/",
+      "quote": "VI - 7"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22586455/",
+      "quote": "IP - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e35940",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22586455/",
+      "quote": "PG - e35940"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22586455/",
+      "quote": "DP - 2012"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pone.0035940",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pone.0035940",
+      "quote": "\"DOI\":\"10.1371\\/journal.pone.0035940\""
+     }
+    ]
+   }
+  },
+  "notes": "Sources print \"Michael Kahana\" without the middle initial; M J kept (never drop an initial only because a source omits it). DOI added."
+ },
+ {
+  "key": "InouEtal15",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/26061528/",
+   "quote": "Long-Term Mild, rather than Intense, Exercise Enhances Adult Hippocampal Neurogenesis and Greatly Changes the Transcriptomic Profile of the Hippocampus",
+   "why": "PubMed record: same title and seven authors, PLoS One 2015;10(6):e0128720."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "K Inoue and M Okamoto and J Shibato and M C Lee and T Matsui and R Rakwal and H Soya",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26061528/",
+      "quote": "Koshiro Inoue, Masahiro Okamoto, Junko Shibato, Min Chul Lee, Takashi Matsui, Randeep Rakwal, Hideaki Soya"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Long-term mild, rather than intense, exercise enhances adult hippocampal neurogenesis and greatly changes the transcriptomic profile of the hippocampus",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26061528/",
+      "quote": "Long-Term Mild, rather than Intense, Exercise Enhances Adult Hippocampal Neurogenesis and Greatly Changes the Transcriptomic Profile of the Hippocampus"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} One",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pone.0128720",
+      "quote": "\"container-title\":[\"PLOS ONE\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26061528/",
+      "quote": "VI - 10"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26061528/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "e0128720",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26061528/",
+      "quote": "PG - e0128720"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2015",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26061528/",
+      "quote": "DP - 2015"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pone.0128720",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pone.0128720",
+      "quote": "\"DOI\":\"10.1371\\/journal.pone.0128720\""
+     }
+    ]
+   }
+  },
+  "notes": "Fourth author given names \"Min Chul\" converted to initials (M C Lee; simple surname). Pages 1--25 were the PDF page count; article number e0128720. Correction 10.1371/journal.pone.0133089 (2015) fixes Fig 3 gene counts and one Results sentence: content-only. DOI added."
+ },
+ {
+  "key": "LangEtal15",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/26114751/",
+   "quote": "Just Another Tool for Online Studies\" (JATOS): An Easy Solution for Setup and Management of Web Servers Supporting Online Studies",
+   "why": "PubMed record: Lange, Kühn, Filevich, PLoS One 2015;10(6):e0130834."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K Lange and S K{\\\"u}hn and E Filevich",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26114751/",
+      "quote": "Kristian Lange, Simone Kühn, Elisa Filevich"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{\"Just Another Tool for Online Studies'' (JATOS)}: an easy solution for setup and management of web servers supporting online studies",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26114751/",
+      "quote": "Just Another Tool for Online Studies\" (JATOS): An Easy Solution for Setup and Management of Web Servers Supporting Online Studies"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} One",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pone.0130834",
+      "quote": "\"container-title\":[\"PLOS ONE\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26114751/",
+      "quote": "VI - 10"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26114751/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e0130834",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26114751/",
+      "quote": "PG - e0130834"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2015",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26114751/",
+      "quote": "DP - 2015"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pone.0130834",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pone.0130834",
+      "quote": "\"DOI\":\"10.1371\\/journal.pone.0130834\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. Correction 10.1371/journal.pone.0134073 (2015) fixes the first author's affiliation only: content-only."
+ },
+ {
+  "key": "MilsEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/19190760/",
+   "quote": "Neuronal shot noise and Brownian 1/f2 behavior in the local field potential",
+   "why": "PubMed record: Milstein, Mormann, Fried, Koch, PLoS One 2009;4(2):e4338."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Milstein and F Mormann and I Fried and C Koch",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190760/",
+      "quote": "Joshua Milstein, Florian Mormann, Itzhak Fried, Christof Koch"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Neuronal shot noise and {B}rownian $1/f^2$ behavior in the local field potential",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190760/",
+      "quote": "Neuronal shot noise and Brownian 1/f2 behavior in the local field potential"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} One",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pone.0004338",
+      "quote": "\"container-title\":[\"PLoS ONE\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190760/",
+      "quote": "VI - 4"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190760/",
+      "quote": "IP - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e4338",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190760/",
+      "quote": "PG - e4338"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190760/",
+      "quote": "DP - 2009"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pone.0004338",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pone.0004338",
+      "quote": "\"DOI\":\"10.1371\\/journal.pone.0004338\""
+     }
+    ]
+   }
+  },
+  "notes": "Title: the source prints lowercase f with superscript 2 (\"1/f2\" in plain-text records); cited \"$1/{F}^2$\" had a capital F. DOI added."
+ },
+ {
+  "key": "HalpEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17141550/",
+   "quote": "Deep brain stimulation in neurologic disorders",
+   "why": "PubMed record: Halpern, Hurtig, Jaggi, Grossman, Won, Baltuch, Parkinsonism Relat Disord 2007;13(1):1-16."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C Halpern and H I Hurtig and J L Jaggi and M Grossman and M Won and G H Baltuch",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17141550/",
+      "quote": "Casey Halpern, Howard Hurtig, Jurg Jaggi, Murray Grossman, Michelle Won, Gordon Baltuch"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Deep brain stimulation in neurologic disorders",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17141550/",
+      "quote": "Deep brain stimulation in neurologic disorders"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{Parkinsonism} and Related Disorders",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.parkreldis.2006.03.001",
+      "quote": "\"container-title\":[\"Parkinsonism &amp; Related Disorders\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17141550/",
+      "quote": "VI - 13"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17141550/",
+      "quote": "IP - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17141550/",
+      "quote": "PG - 1-16"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17141550/",
+      "quote": "DP - 2007 Feb"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.parkreldis.2006.03.001",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.parkreldis.2006.03.001",
+      "quote": "\"DOI\":\"10.1016\\/j.parkreldis.2006.03.001\""
+     }
+    ]
+   }
+  },
+  "notes": "Title word is \"neurologic\" (cited \"neurological\"). Issue 1 added (PubMed and Crossref). Sources give first names only; cited middle initials (H I, J L, G H) kept. Print year 2007 (Feb). DOI added."
+ },
+ {
+  "key": "MannEtal23a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+   "quote": "Feature and order manipulations in a free recall task affect memory for current and future lists",
+   "why": "Crossref record of the PsyArXiv preprint with the same nine authors, posted 2023-01-24; OSF shows only version 1."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J R Manning and E C Whitaker and P C Fitzpatrick and M R Lee and A M Frantz and B J Bollinger and D Romanova and C E Field and A C Heusser",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"given\":\"Jeremy R.\",\"family\":\"Manning\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"given\":\"Emily C.\",\"family\":\"Whitaker\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"given\":\"Paxton C.\",\"family\":\"Fitzpatrick\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"given\":\"Madeline R.\",\"family\":\"Lee\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"given\":\"Allison M.\",\"family\":\"Frantz\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"given\":\"Bryan J.\",\"family\":\"Bollinger\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"given\":\"Darya\",\"family\":\"Romanova\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"given\":\"Campbell E.\",\"family\":\"Field\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"given\":\"Andrew C.\",\"family\":\"Heusser\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Feature and order manipulations in a free recall task affect memory for current and future lists",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "Feature and order manipulations in a free recall task affect memory for current and future lists"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PsyArXiv}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"group-title\":\"PsyArXiv\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2023",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"posted\":{\"date-parts\":[[2023,1,24]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.31234/osf.io/erzfp",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/erzfp",
+      "quote": "\"DOI\":\"10.31234\\/osf.io\\/erzfp\""
+     }
+    ]
+   }
+  },
+  "notes": "OSF API (https://api.osf.io/v2/preprints/erzfp/versions/) lists a single version (erzfp_v1, 2023-01-24) with no article_doi; no published version found in Crossref. DOI added."
+ },
+ {
+  "key": "XionEtal17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
+   "quote": "Explicit Semantic Ranking for Academic Search via Knowledge Graph Embedding",
+   "why": "Crossref record: Xiong, Power, Callan, WWW 2017 proceedings, pp. 1271-1279."
+  },
+  "fields": {
+   "entrytype": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
+      "quote": "\"type\":\"proceedings-article\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C Xiong and R Power and J Callan",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
+      "quote": "\"given\":\"Chenyan\",\"family\":\"Xiong\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
+      "quote": "\"given\":\"Russell\",\"family\":\"Power\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
+      "quote": "\"given\":\"Jamie\",\"family\":\"Callan\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Explicit semantic ranking for academic search via knowledge graph embedding",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
+      "quote": "Explicit Semantic Ranking for Academic Search via Knowledge Graph Embedding"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Proceedings of the 26\\textsuperscript{th} International Conference on World Wide Web",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
+      "quote": "\"container-title\":[\"Proceedings of the 26th International Conference on World Wide Web\"]"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1271--1279",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
+      "quote": "\"page\":\"1271-1279\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
+      "quote": "\"published-print\":{\"date-parts\":[[2017,4,3]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1145/3038912.3052558",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/3038912.3052558",
+      "quote": "\"DOI\":\"10.1145\\/3038912.3052558\""
+     }
+    ]
+   }
+  },
+  "remove": [
+   "journal"
+  ],
+  "notes": "Conference paper stored as @article with the proceedings in journal: convert to @inproceedings with booktitle (without the \"WWW '17:\" prefix, as Crossref names it) and remove journal. DOI added."
+ },
+ {
+  "key": "AlvaEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://arxiv.org/abs/cs/0504107",
+   "quote": "k-core decomposition: a tool for the visualization of large scale networks",
+   "why": "arXiv cs/0504107 by Alvarez-Hamelin, Dall'Asta, Barrat and Vespignani; latest version v2 dated 12 Oct 2005."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "$k$-core decomposition: a tool for the visualization of large scale networks",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/cs/0504107",
+      "quote": "k-core decomposition: a tool for the visualization of large scale networks"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "cs/0504107v2",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/cs/0504107",
+      "quote": "arXiv:cs/0504107v2"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/cs/0504107",
+      "quote": "[v2] Wed, 12 Oct 2005"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.48550/arxiv.cs/0504107",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/cs/0504107",
+      "quote": "https://doi.org/10.48550/arXiv.cs/0504107"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "remove": [
+   "pages"
+  ],
+  "notes": "Cited title had two typos (\"k-corr\", \"visualiztion\"). arXiv id moved from pages to volume (house form for arXiv), pinned to v2 (latest, 12 Oct 2005); pages removed. Author left alone: arXiv prints \"José Ignacio Alvarez-Hamelin\" (initials J I, cited I); held under the compound-surname rule for a human decision; the other three surnames match. PUBLISHED VERSION (replacement candidate): arXiv journal-ref \"Advances in Neural Information Processing Systems 18, Canada (2006) 41\"; NeurIPS proceedings list it as \"Large scale networks fingerprinting and visualization using the k-core decomposition\", NIPS 2005 vol 18, same four authors (https://papers.nips.cc/paper_files/paper/2005/hash/b19aa25ff58940d974234b48391b9549-Abstract.html); not in cdl.bib under any key found."
+ },
+ {
+  "key": "CerEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://arxiv.org/abs/1803.11175",
+   "quote": "Universal Sentence Encoder",
+   "why": "arXiv 1803.11175, same 13 authors; latest version v2 dated 12 Apr 2018."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "D Cer and Y Yang and S-Y Kong and N Hua and N Limtiaco and R St John and N Constant and M Guajardo-Cespedes and S Yuan and C Tar and Y-H Sung and B Strope and R Kurzweil",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/1803.11175",
+      "quote": "Daniel Cer , Yinfei Yang , Sheng-yi Kong , Nan Hua , Nicole Limtiaco , Rhomni St. John , Noah Constant , Mario Guajardo-Cespedes , Steve Yuan , Chris Tar , Yun-Hsuan Sung , Brian Strope , Ray Kurzweil"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Universal sentence encoder",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/1803.11175",
+      "quote": "Universal Sentence Encoder"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "1803.11175",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/1803.11175",
+      "quote": "arXiv:1803.11175"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/1803.11175",
+      "quote": "[v2] Thu, 12 Apr 2018"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.48550/arxiv.1803.11175",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/1803.11175",
+      "quote": "https://doi.org/10.48550/arXiv.1803.11175"
+     }
+    ]
+   }
+  },
+  "notes": "Third author \"Sheng-yi\" gives hyphenated initials S-Y (cited \"S Y\"). \"R St John\" kept as cdl.bib writes it (compound surname St. John, no initials added). DOI added. Related but DIFFERENT work: EMNLP 2018 demo paper \"Universal Sentence Encoder for English\" (10.18653/v1/d18-2029) has a different title and omits Sung; not a replacement."
+ },
+ {
+  "key": "JianEtal24",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://arxiv.org/abs/2401.04088",
+   "quote": "Mixtral of Experts",
+   "why": "arXiv 2401.04088, Jiang et al. (26 authors), single version v1 dated 8 Jan 2024."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "A Q Jiang and A Sablayrolles and A Roux and A Mensch and B Savary and C Bamford and D S Chaplot and D {de las Casas} and E B Hanna and F Bressand and G Lengyel and G Bour and G Lample and L R Lavaud and L Saulnier and M-A Lachaux and P Stock and S Subramanian and S Yang and S Antoniak and T {Le Scao} and T Gervet and T Lavril and T Wang and T Lacroix and W {El Sayed}",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2401.04088",
+      "quote": "Albert Q. Jiang , Alexandre Sablayrolles , Antoine Roux , Arthur Mensch , Blanche Savary , Chris Bamford , Devendra Singh Chaplot , Diego de las Casas , Emma Bou Hanna , Florian Bressand , Gianna Lengyel , Guillaume Bour , Guillaume Lample"
+     },
+     {
+      "url": "https://arxiv.org/abs/2401.04088",
+      "quote": "Lélio Renard Lavaud , Lucile Saulnier , Marie-Anne Lachaux , Pierre Stock , Sandeep Subramanian , Sophia Yang , Szymon Antoniak , Teven Le Scao , Théophile Gervet , Thibaut Lavril , Thomas Wang , Timothée Lacroix , William El Sayed"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Mixtral of experts",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2401.04088",
+      "quote": "Mixtral of Experts"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "2401.04088",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2401.04088",
+      "quote": "arXiv:2401.04088"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2024",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2401.04088",
+      "quote": "[v1] Mon, 8 Jan 2024"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.48550/arxiv.2401.04088",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2401.04088",
+      "quote": "https://doi.org/10.48550/arXiv.2401.04088"
+     }
+    ]
+   }
+  },
+  "notes": "Particle surnames were split into initials: \"D d l Casas\" -> D {de las Casas}, \"T L Scao\" -> T {Le Scao} (cdl.bib already writes T {Le Scao} in the Transformers entry), \"W E Sayed\" -> W {El Sayed}; \"M Lachaux\" -> M-A Lachaux (Marie-Anne). HELD for review, left as cited: \"E B Hanna\" (Emma Bou Hanna) and \"L R Lavaud\" (Lélio Renard Lavaud) may be compound surnames {Bou Hanna}/{Renard Lavaud}; the source does not say. Volume moved from \"doi.org/10.48550/arXiv.2401.04088\" to the bare id with the DOI in doi (house form, e.g. DevlEtal18). No published version found."
+ },
+ {
+  "key": "KhanEtal25",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://arxiv.org/abs/2506.17298",
+   "quote": "Mercury: Ultra-Fast Language Models Based on Diffusion",
+   "why": "arXiv 2506.17298, single version v1 dated 17 Jun 2025, same twelve named authors."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Khanna and S Kharbanda and S Li and H Varma and E Wang and S Birnbaum and Z Luo and Y Miraoui and A Palrecha and S Ermon and A Grover and V Kuleshov",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2506.17298",
+      "quote": "Samar Khanna , Siddhant Kharbanda , Shufan Li , Harshit Varma , Eric Wang , Sawyer Birnbaum , Ziyang Luo , Yanis Miraoui , Akash Palrecha , Stefano Ermon , Aditya Grover , Volodymyr Kuleshov"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Mercury: ultra-fast language models based on diffusion",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2506.17298",
+      "quote": "Mercury: Ultra-Fast Language Models Based on Diffusion"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "2506.17298",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2506.17298",
+      "quote": "arXiv:2506.17298"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2025",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2506.17298",
+      "quote": "[v1] Tue, 17 Jun 2025"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.48550/arxiv.2506.17298",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2506.17298",
+      "quote": "https://doi.org/10.48550/arXiv.2506.17298"
+     }
+    ]
+   }
+  },
+  "notes": "arXiv metadata lists \"Inception Labs\" as a first author; the PDF prints \"Inception Labs\" as an organisation line above the twelve names (https://arxiv.org/pdf/2506.17298v1, page 1), so the personal names are kept as the byline (reviewer may decide otherwise). Volume moved from the doi.org URL to the bare id, DOI in doi. No published version found."
+ },
+ {
+  "key": "LiEtal24b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://arxiv.org/abs/2405.02485",
+   "quote": "A Survey of Few-Shot Learning for Biomedical Time Series",
+   "why": "arXiv 2405.02485 by Chenqi Li, Timothy Denison, Tingting Zhu, single version v1 dated 3 May 2024."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C Li and T Denison and T Zhu",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2405.02485",
+      "quote": "Chenqi Li , Timothy Denison , Tingting Zhu"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A survey of few-shot learning for biomedical time series",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2405.02485",
+      "quote": "A Survey of Few-Shot Learning for Biomedical Time Series"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "2405.02485",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2405.02485",
+      "quote": "arXiv:2405.02485"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2024",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2405.02485",
+      "quote": "[v1] Fri, 3 May 2024"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.48550/arxiv.2405.02485",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2405.02485",
+      "quote": "https://doi.org/10.48550/arXiv.2405.02485"
+     }
+    ]
+   }
+  },
+  "notes": "arXiv id and DOI added (entry had none). PUBLISHED VERSION (replacement candidate): Li, Denison, Zhu, \"A Survey of Few-Shot Learning for Biomedical Time Series\", IEEE Reviews in Biomedical Engineering 18:192-210, 2025, DOI 10.1109/rbme.2024.3492381 (https://api.crossref.org/works/10.1109/rbme.2024.3492381); new key would be LiEtal25 (free in cdl.bib HEAD). The entry carries a non-standard field Force = {True}."
+ },
+ {
+  "key": "LiuEtal24",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://arxiv.org/abs/2412.19437",
+   "quote": "DeepSeek-V3 Technical Report",
+   "why": "arXiv 2412.19437, DeepSeek-AI and 199 other authors; latest version v2 dated 18 Feb 2025."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{DeepSeek-V3} technical report",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2412.19437",
+      "quote": "DeepSeek-V3 Technical Report"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2025",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2412.19437",
+      "quote": "[v2] Tue, 18 Feb 2025"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "2412.19437",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2412.19437",
+      "quote": "arXiv:2412.19437"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.48550/arxiv.2412.19437",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2412.19437",
+      "quote": "https://doi.org/10.48550/arXiv.2412.19437"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "new_key": "LiuEtal25",
+  "notes": "Latest version is v2 (18 Feb 2025; v1 27 Dec 2024), so year 2025 under the latest-version rule and key LiuEtal24 -> LiuEtal25 (free in cdl.bib HEAD). AUTHOR NEEDS A DECISION: the PDF byline is the corporate author \"DeepSeek-AI\" alone (full contributor list in an appendix); arXiv metadata lists \"DeepSeek-AI, Aixin Liu, Bei Feng, ...\" (200 names). The cited 14 personal names plus \"others\" match arXiv positions 2-15 in order, but omit DeepSeek-AI; under the corporate-byline rule the author would be {DeepSeek-AI} and the key would change again. Left as cited here."
+ },
+ {
+  "key": "MillEtal07b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://arxiv.org/abs/0712.0846",
+   "quote": "ECoG observations of power-law scaling in the human cortex",
+   "why": "arXiv 0712.0846 by Miller, Sorensen, Ojemann, den Nijs; single version v1 dated 5 Dec 2007."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "K J Miller and L B Sorensen and J G Ojemann and M {den Nijs}",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/0712.0846",
+      "quote": "Kai J. Miller , Larry B. Sorensen , Jeffrey G. Ojemann , Marcel den Nijs"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{ECoG} observations of power-law scaling in the human cortex",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/0712.0846",
+      "quote": "ECoG observations of power-law scaling in the human cortex"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "0712.0846",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/0712.0846",
+      "quote": "arXiv:0712.0846"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/0712.0846",
+      "quote": "[v1] Wed, 5 Dec 2007"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.48550/arxiv.0712.0846",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/0712.0846",
+      "quote": "https://doi.org/10.48550/arXiv.0712.0846"
+     }
+    ]
+   }
+  },
+  "notes": "Volume \"712\" was a truncated arXiv id (0712.0846). First author K -> K J (Kai J. Miller; cdl.bib MillEtal09a writes K J Miller). {den Nijs} kept as cdl.bib writes it. Possible later journal version: MillEtal09a (Miller, Sorensen, Ojemann, den Nijs, \"Power-law scaling in the brain surface electric potential\", PLoS Comput Biol 2009, 10.1371/journal.pcbi.1000609) has the same authors and topic but a different title and no stated preprint link; not asserted as the same work."
+ }
+]

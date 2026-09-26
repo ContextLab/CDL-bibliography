@@ -1,0 +1,1796 @@
+[
+ {
+  "key": "YoneEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15772360/",
+   "quote": "Separating the brain regions involved in recollection and familiarity in recognition memory.",
+   "why": "Same title, four authors, J Neurosci 25(11) 3002-3008, 2005."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A P Yonelinas and L J Otten and K N Shaw and M D Rugg",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15772360/",
+      "quote": "Andrew P Yonelinas, Leun J Otten, Kendra N Shaw, Michael D Rugg"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Separating the brain regions involved in recollection and familiarity in recognition memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15772360/",
+      "quote": "Separating the brain regions involved in recollection and familiarity in recognition memory."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The Journal of Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.5295-04.2005",
+      "quote": "\"container-title\":[\"The Journal of Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "25",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.5295-04.2005",
+      "quote": "\"volume\":\"25\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.5295-04.2005",
+      "quote": "\"issue\":\"11\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "3002--3008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.5295-04.2005",
+      "quote": "\"page\":\"3002-3008\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.5295-04.2005",
+      "quote": "\"published-print\":{\"date-parts\":[[2005,3,16]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1523/jneurosci.5295-04.2005",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.5295-04.2005",
+      "quote": "\"DOI\":\"10.1523\\/jneurosci.5295-04.2005\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. The entry carries Address = {Davis, {CA}} (an author affiliation, not a publication field); left untouched here, reviewer may drop it. Not a duplicate of the other \"recollection and familiarity\" title in cdl.bib (that one is \"Dissociating ...\")."
+ },
+ {
+  "key": "ZolaEtal89",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/2723757/",
+   "quote": "Lesions of the amygdala that spare adjacent cortical regions do not impair memory or exacerbate the impairment following lesions of the hippocampal formation.",
+   "why": "Same authors, J Neurosci 9(6) 1922-1936, 1989; title ends \"hippocampal formation\"."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Zola-Morgan and L R Squire and D G Amaral",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2723757/",
+      "quote": "S Zola-Morgan, L R Squire, D G Amaral"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Lesions of the amygdala that spare adjacent cortical regions do not impair memory or exacerbate the impairment following lesions of the hippocampal formation",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2723757/",
+      "quote": "Lesions of the amygdala that spare adjacent cortical regions do not impair memory or exacerbate the impairment following lesions of the hippocampal formation."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The Journal of Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.09-06-01922.1989",
+      "quote": "\"container-title\":[\"The Journal of Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.09-06-01922.1989",
+      "quote": "\"volume\":\"9\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.09-06-01922.1989",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1922--1936",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.09-06-01922.1989",
+      "quote": "\"page\":\"1922-1936\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1989",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.09-06-01922.1989",
+      "quote": "\"published-print\":{\"date-parts\":[[1989,6,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1523/jneurosci.09-06-01922.1989",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.09-06-01922.1989",
+      "quote": "\"DOI\":\"10.1523\\/jneurosci.09-06-01922.1989\""
+     }
+    ]
+   }
+  },
+  "notes": "Title corrected: last word is \"hippocampal formation\", not \"hippocampus\" (PubMed and Crossref agree). DOI added."
+ },
+ {
+  "key": "delaEtal16",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/27307242/",
+   "quote": "Large-Scale Meta-Analysis of Human Medial Frontal Cortex Reveals Tripartite Functional Organization.",
+   "why": "Same title, J Neurosci 36(24) 6553-6562, 2016; byline has five authors."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "A {de la Vega} and L J Chang and M T Banich and T D Wager and T Yarkoni",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27307242/",
+      "quote": "Alejandro de la Vega, Luke J Chang, Marie T Banich, Tor D Wager, Tal Yarkoni"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Large-scale meta-analysis of human medial frontal cortex reveals tripartite functional organization",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27307242/",
+      "quote": "Large-Scale Meta-Analysis of Human Medial Frontal Cortex Reveals Tripartite Functional Organization."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The Journal of Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4402-15.2016",
+      "quote": "\"container-title\":[\"The Journal of Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "36",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4402-15.2016",
+      "quote": "\"volume\":\"36\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "24",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4402-15.2016",
+      "quote": "\"issue\":\"24\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "6553--6562",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4402-15.2016",
+      "quote": "\"page\":\"6553-6562\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4402-15.2016",
+      "quote": "\"published-print\":{\"date-parts\":[[2016,6,15]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1523/jneurosci.4402-15.2016",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4402-15.2016",
+      "quote": "\"DOI\":\"10.1523\\/jneurosci.4402-15.2016\""
+     }
+    ]
+   }
+  },
+  "notes": "Fifth author Tal Yarkoni missing from the citation; added (key delaEtal16 unchanged, still Etal). Erratum 10.1523/jneurosci.0471-17.2017 (J Neurosci 37(13) 3735, PMC6596917) is content-only: it fixes \"0-cluster\" typos to \"9-cluster\" and says the corrections do not affect the conclusions; no retraction. Surname kept in house form {de la Vega}."
+ },
+ {
+  "key": "vandEtal12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22219274/",
+   "quote": "Phase-amplitude coupling in human electrocorticography is spatially distributed and phase diverse.",
+   "why": "Same authors, J Neurosci 32(1) 111-123, 2012; title spells out electrocorticography."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R {van der Meij} and M J Kahana and E Maris",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22219274/",
+      "quote": "Roemer van der Meij, Michael Kahana, Eric Maris"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Phase-amplitude coupling in human electrocorticography is spatially distributed and phase diverse",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22219274/",
+      "quote": "Phase-amplitude coupling in human electrocorticography is spatially distributed and phase diverse."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The Journal of Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4816-11.2012",
+      "quote": "\"container-title\":[\"The Journal of Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "32",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4816-11.2012",
+      "quote": "\"volume\":\"32\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4816-11.2012",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "111--123",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4816-11.2012",
+      "quote": "\"page\":\"111-123\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4816-11.2012",
+      "quote": "\"published-print\":{\"date-parts\":[[2012,1,4]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1523/jneurosci.4816-11.2012",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.4816-11.2012",
+      "quote": "\"DOI\":\"10.1523\\/jneurosci.4816-11.2012\""
+     }
+    ]
+   }
+  },
+  "notes": "Printed title uses \"electrocorticography\", not the abbreviation {ECoG}. Sources print only \"Michael Kahana\"; the cited middle initial J is kept (house rule: never drop an initial only because a source omits it)."
+ },
+ {
+  "key": "SchmEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12917744/",
+   "quote": "Memory functions and focussed attention in middle-aged and elderly subjects are unaffected by a low, acute dose of caffeine.",
+   "why": "Same five authors, J Nutr Health Aging 7(5) 301-303, 2003."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J A J Schmitt and E Hogervorst and E F P M Vuurman and J Jolles and W J Riedel",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917744/",
+      "quote": "J A J Schmitt, E Hogervorst, E F P M Vuurman, J Jolles, W J Riedel"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Memory functions and focussed attention in middle-aged and elderly subjects are unaffected by a low, acute dose of caffeine",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917744/",
+      "quote": "Memory functions and focussed attention in middle-aged and elderly subjects are unaffected by a low, acute dose of caffeine."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "The Journal of Nutrition, Health and Aging",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917744/",
+      "quote": "The journal of nutrition, health &amp; aging"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917744/",
+      "quote": "VI  - 7"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917744/",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "301--303",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917744/",
+      "quote": "PG  - 301-3"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917744/",
+      "quote": "DP  - 2003"
+     }
+    ]
+   },
+   "doi": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Title corrected: printed \"Memory functions and focussed attention\", not \"Memory and attention functions\". Journal comma restored. No DOI found (PubMed has none; Crossref bibliographic search found no record for this 2003 article)."
+ },
+ {
+  "key": "Denn91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051",
+   "quote": "The Journal of Philosophy Volume 88, Issue 1, January 1991 Daniel C. Dennett Pages 27-51",
+   "why": "PDCnet record: Real Patterns, Dennett, J Phil 88(1) 27-51, 1991, DOI 10.2307/2027085."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D C Dennett",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051",
+      "quote": "Daniel C. Dennett Pages 27-51"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Real patterns",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051",
+      "quote": "https://doi.org/10.2307/2027085 Real Patterns"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The Journal of Philosophy",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051",
+      "quote": "The Journal of Philosophy Volume 88, Issue 1"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "88",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051",
+      "quote": "Volume 88, Issue 1, January 1991"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051",
+      "quote": "Volume 88, Issue 1, January 1991"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "27--51",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051",
+      "quote": "Pages 27-51"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051",
+      "quote": "Issue 1, January 1991"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.2307/2027085",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051",
+      "quote": "https://doi.org/10.2307/2027085"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match (Crossref gives only first page 27; PDCnet gives 27-51; JSTOR blocks scripts). DOI added."
+ },
+ {
+  "key": "vanG95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.pdcnet.org/jphil/content/jphil_1995_0092_0007_0345_0381",
+   "quote": "The Journal of Philosophy Volume 92, Issue 7, July 1995 Tim Van Gelder Pages 345-381",
+   "why": "PDCnet record: same title and author, J Phil 92(7) 345-381, 1995, DOI 10.2307/2941061."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "T {van Gelder}",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1995_0092_0007_0345_0381",
+      "quote": "Tim Van Gelder Pages 345-381"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "What might cognition be, if not computation?",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1995_0092_0007_0345_0381",
+      "quote": "What Might Cognition Be, If Not Computation?"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The Journal of Philosophy",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1995_0092_0007_0345_0381",
+      "quote": "The Journal of Philosophy Volume 92, Issue 7"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "92",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1995_0092_0007_0345_0381",
+      "quote": "Volume 92, Issue 7, July 1995"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1995_0092_0007_0345_0381",
+      "quote": "Volume 92, Issue 7, July 1995"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "345--381",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1995_0092_0007_0345_0381",
+      "quote": "Pages 345-381"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1995_0092_0007_0345_0381",
+      "quote": "Issue 7, July 1995"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.2307/2941061",
+    "evidence": [
+     {
+      "url": "https://www.pdcnet.org/jphil/content/jphil_1995_0092_0007_0345_0381",
+      "quote": "https://doi.org/10.2307/2941061"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. Sources capitalise \"Van Gelder\"; the particle is kept as cdl.bib already writes it ({van Gelder}, the only occurrence). Crossref lists a second, empty author object (data artifact)."
+ },
+ {
+  "key": "IkieHash06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16960231/",
+   "quote": "Age differences in implicit interference.",
+   "why": "Same title and authors, J Gerontol B 61(5) P278-P284, 2006."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Ikier and L Hasher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16960231/",
+      "quote": "Simay Ikier, Lynn Hasher"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Age differences in implicit interference",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16960231/",
+      "quote": "Age differences in implicit interference."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "The Journals of Gerontology Series {B}: Psychological Sciences and Social Sciences",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
+      "quote": "\"container-title\":[\"The Journals of Gerontology Series B: Psychological Sciences and Social Sciences\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "61",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
+      "quote": "\"volume\":\"61\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "P278--P284",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
+      "quote": "\"page\":\"P278-P284\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
+      "quote": "\"published-print\":{\"date-parts\":[[2006,9,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/geronb/61.5.p278",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/61.5.p278",
+      "quote": "\"DOI\":\"10.1093\\/geronb\\/61.5.p278\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume is 61 (cited \"61b\" folds in the series letter); issue 5 added; pages carry the journal's P prefix, as sibling BoppVerh05 already writes them; journal given its full series name."
+ },
+ {
+  "key": "BoppVerh05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16131616/",
+   "quote": "Aging and verbal memory span: a meta-analysis.",
+   "why": "Same title and authors, J Gerontol B 60(5) P223-P233, 2005."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K L Bopp and P Verhaeghen",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16131616/",
+      "quote": "Kara L Bopp, Paul Verhaeghen"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Aging and verbal memory span: a meta-analysis",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16131616/",
+      "quote": "Aging and verbal memory span: a meta-analysis."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "The Journals of Gerontology Series {B}: Psychological Sciences and Social Sciences",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p223",
+      "quote": "\"container-title\":[\"The Journals of Gerontology Series B: Psychological Sciences and Social Sciences\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "60",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p223",
+      "quote": "\"volume\":\"60\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p223",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "P223--P233",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p223",
+      "quote": "\"page\":\"P223-P233\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p223",
+      "quote": "\"published-print\":{\"date-parts\":[[2005,9,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/geronb/60.5.p223",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p223",
+      "quote": "\"DOI\":\"10.1093\\/geronb\\/60.5.p223\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume is 60 (cited \"60B\" folds in the series letter); journal given its full series name; DOI added."
+ },
+ {
+  "key": "CranEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23213030/",
+   "quote": "Long-term aerobic exercise is associated with greater muscle strength throughout the life span.",
+   "why": "Same title and authors, J Gerontol A 68(6) 631-638, 2013."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J D Crane and L G {MacNeil} and M A Tarnopolsky",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/gerona/gls237",
+      "quote": "\"given\":\"J. D.\",\"family\":\"Crane\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/gerona/gls237",
+      "quote": "\"given\":\"L. G.\",\"family\":\"MacNeil\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/gerona/gls237",
+      "quote": "\"given\":\"M. A.\",\"family\":\"Tarnopolsky\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Long-term aerobic exercise is associated with greater muscle strength throughout the life span",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23213030/",
+      "quote": "Long-term aerobic exercise is associated with greater muscle strength throughout the life span."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "The Journals of Gerontology Series {A}: Biological Sciences and Medical Sciences",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/gerona/gls237",
+      "quote": "\"container-title\":[\"The Journals of Gerontology Series A: Biological Sciences and Medical Sciences\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "68",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/gerona/gls237",
+      "quote": "\"volume\":\"68\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/gerona/gls237",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "631--638",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/gerona/gls237",
+      "quote": "\"page\":\"631-638\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/gerona/gls237",
+      "quote": "\"published-print\":{\"date-parts\":[[2013,6,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/gerona/gls237",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/gerona/gls237",
+      "quote": "\"DOI\":\"10.1093\\/gerona\\/gls237\""
+     }
+    ]
+   }
+  },
+  "notes": "Online first 2012-12-03, print June 2013: print year 2013 kept. Journal given its full series name; DOI added."
+ },
+ {
+  "key": "Pear01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/14786440109462720",
+   "quote": "On lines and planes of closest fit to systems of points in space",
+   "why": "Crossref: Karl Pearson, Phil Mag series 6, 2(11) 559-572, November 1901."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K Pearson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14786440109462720",
+      "quote": "\"given\":\"Karl\",\"family\":\"Pearson\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "On lines and planes of closest fit to systems of points in space",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14786440109462720",
+      "quote": "On lines and planes of closest fit to systems of points in space"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14786440109462720",
+      "quote": "\"container-title\":[\"The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14786440109462720",
+      "quote": "\"volume\":\"2\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14786440109462720",
+      "quote": "\"issue\":\"11\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "559--572",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14786440109462720",
+      "quote": "\"page\":\"559-572\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1901",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14786440109462720",
+      "quote": "\"published-print\":{\"date-parts\":[[1901,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/14786440109462720",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14786440109462720",
+      "quote": "\"DOI\":\"10.1080\\/14786440109462720\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref title carries the article number prefix \"LIII.\" (not part of the title). Volume 2 is of the sixth series. Issue 11 and DOI added."
+ },
+ {
+  "key": "Enge01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11488399/",
+   "quote": "Mesial temporal lobe epilepsy: what have we learned?",
+   "why": "Same title, J Engel, Neuroscientist 7(4) 340-352, 2001."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J Engel",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/107385840100700410",
+      "quote": "\"given\":\"Jerome\",\"family\":\"Engel\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Mesial temporal lobe epilepsy: what have we learned?",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11488399/",
+      "quote": "Mesial temporal lobe epilepsy: what have we learned?"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The Neuroscientist",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/107385840100700410",
+      "quote": "\"container-title\":[\"The Neuroscientist\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/107385840100700410",
+      "quote": "\"volume\":\"7\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/107385840100700410",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "340--352",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/107385840100700410",
+      "quote": "\"page\":\"340-352\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/107385840100700410",
+      "quote": "\"published-print\":{\"date-parts\":[[2001,8]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1177/107385840100700410",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1177/107385840100700410",
+      "quote": "\"DOI\":\"10.1177\\/107385840100700410\""
+     }
+    ]
+   }
+  },
+  "notes": "Suffix \"Jr\" dropped per house rule (author is Jerome Engel Jr). Cited pages \"340\" was the first page only; full range 340-352 (PubMed 340-52). DOI added. Key Enge01 unchanged."
+ },
+ {
+  "key": "Newm08",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1057/9780230226203.1064",
+   "quote": "\"title\":[\"mathematics of networks\"]",
+   "why": "Crossref reference-entry by M.E.J. Newman in The New Palgrave Dictionary of Economics, 2nd edition (Basingstoke), pages 465-470."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M E J Newman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1057/9780230226203.1064",
+      "quote": "\"given\":\"M.E.J.\",\"family\":\"Newman\""
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "journal": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "volume": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   }
+  },
+  "notes": "Not a journal article: an entry in The New Palgrave Dictionary of Economics, 2nd edition (eds S N Durlauf and L E Blume, Palgrave Macmillan 2008; cited \"Encyclopedia\" is wrong). Three Crossref versions disagree on coordinates: 10.1057/9780230226203.1064 (2nd ed online, ISBN 9780333786765, pp 465-470, no issued date), 10.1007/978-1-349-58802-2_1061 (Palgrave Macmillan UK, London, issued 2008, pp 4059-4064), 10.1057/978-1-349-95121-5_2565-1 (living reference version, pp 1-8). Published title is \"Mathematics of networks\"; the cited \"volume 2, pages 1-12\" match none and look like Newman's own 12-page preprint. Suggested: @incollection, booktitle {The New Palgrave Dictionary of Economics}, edition 2\\textsuperscript{nd}, remove journal/volume, pages per the reviewer's choice of printed version. Springer/Palgrave pages block scripts; editors and print volume could not be confirmed from a fetchable source."
+ },
+ {
+  "key": "GusmEtal14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://benthamopen.com/ABSTRACT/TOSMJ-8-11",
+   "quote": "Comparison of FitBit® Ultra to ActiGraph™ GT1M for Assessment of Physical Activity in Young Adults During Treadmill Walking",
+   "why": "Bentham Open page: same title and five authors, Open Sports Med J 8: 11-15, 2014."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R J Gusmer and T A Bosch and A N Watkins and J D Ostrem and D R Dengel",
+    "evidence": [
+     {
+      "url": "https://benthamopen.com/ABSTRACT/TOSMJ-8-11",
+      "quote": "R.J. Gusmer , T.A. Bosch , A.N. Watkins , J.D. Ostrem and D.R. Dengel"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Comparison of {FitBit}{\\textregistered} {Ultra} to {ActiGraph}{\\texttrademark} {GT1M} for assessment of physical activity in young adults during treadmill walking",
+    "evidence": [
+     {
+      "url": "https://benthamopen.com/ABSTRACT/TOSMJ-8-11",
+      "quote": "Comparison of FitBit® Ultra to ActiGraph™ GT1M for Assessment of Physical Activity in Young Adults During Treadmill Walking"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The Open Sports Medicine Journal",
+    "evidence": [
+     {
+      "url": "https://benthamopen.com/ABSTRACT/TOSMJ-8-11",
+      "quote": "The Open Sports Medicine Journal 2014 , 8 : 11-15"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://benthamopen.com/ABSTRACT/TOSMJ-8-11",
+      "quote": "The Open Sports Medicine Journal 2014 , 8 : 11-15"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2174/1874387001408010011",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "11--15",
+    "evidence": [
+     {
+      "url": "https://benthamopen.com/ABSTRACT/TOSMJ-8-11",
+      "quote": "2014 , 8 : 11-15"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2014",
+    "evidence": [
+     {
+      "url": "https://benthamopen.com/ABSTRACT/TOSMJ-8-11",
+      "quote": "The Open Sports Medicine Journal 2014"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.2174/1874387001408010011",
+    "evidence": [
+     {
+      "url": "https://benthamopen.com/ABSTRACT/TOSMJ-8-11",
+      "quote": "DOI: 10.2174/1874387001408010011"
+     }
+    ]
+   }
+  },
+  "notes": "Title was fully braced title case; rewritten in sentence case with the product names (FitBit Ultra, ActiGraph GT1M) braced and the printed trademark symbols kept as {\\textregistered}/{\\texttrademark} (the cited macros). Validator note: its delatex does not expand these two macros and NFKC folds the printed trademark sign into \"ActiGraphTM\", so the token check reports textregistered/actigraph/texttrademark missing although the quote is the verbatim printed title. DOI added."
+ },
+ {
+  "key": "LewaFarr08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)00001-7",
+   "quote": "\"title\":[\"Short-Term Memory: New Data and a Model\"]",
+   "why": "Crossref chapter: Lewandowsky and Farrell, Psychology of Learning and Motivation (ISBN 9780123743169), pages 1-48, 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Lewandowsky and S Farrell",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)00001-7",
+      "quote": "\"given\":\"Stephan\",\"family\":\"Lewandowsky\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)00001-7",
+      "quote": "\"given\":\"Simon\",\"family\":\"Farrell\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Short-term memory: new data and a model",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)00001-7",
+      "quote": "Short-Term Memory: New Data and a Model"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "The Psychology of Learning and Motivation",
+    "evidence": [
+     {
+      "url": "https://shop.elsevier.com/books/psychology-of-learning-and-motivation/ross/978-0-12-374316-9",
+      "quote": "The Psychology of Learning and Motivation, Volume 49"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "49",
+    "evidence": [
+     {
+      "url": "https://shop.elsevier.com/books/psychology-of-learning-and-motivation/ross/978-0-12-374316-9",
+      "quote": "Volume 49 contains chapters on short-term memory"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--48",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)00001-7",
+      "quote": "\"page\":\"1-48\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)00001-7",
+      "quote": "\"published-print\":{\"date-parts\":[[2008]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0079-7421(08)00001-7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0079-7421(08)00001-7",
+      "quote": "\"DOI\":\"10.1016\\/s0079-7421(08)00001-7\""
+     }
+    ]
+   }
+  },
+  "notes": "Title: lowercase after the colon (house rule; cited \"{N}ew\"). Serial volume 49 (ed. B H Ross) confirmed from the Elsevier shop page (ISBN 978-0-12-374316-9 matches Crossref). Kept as @article in the serial, as cdl.bib does for other PLM chapters. DOI added."
+ },
+ {
+  "key": "BeamJone98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/713755774",
+   "quote": "\"title\":[\"Irrelevant Sound Disrupts Order Information in Free Recall as in Serial Recall\"]",
+   "why": "Crossref: Beaman and Jones, QJEP Section A 51(3) 615-636, 1998."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C P Beaman and D M Jones",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755774",
+      "quote": "\"given\":\"C. Philip\",\"family\":\"Beaman\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755774",
+      "quote": "\"given\":\"Dylan M.\",\"family\":\"Jones\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Irrelevant sound disrupts order information in free recall as in serial recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755774",
+      "quote": "Irrelevant Sound Disrupts Order Information in Free Recall as in Serial Recall"
+     }
+    ]
+   },
+   "journal": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "51",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755774",
+      "quote": "\"volume\":\"51\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755774",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "615--636",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755774",
+      "quote": "\"page\":\"615-636\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755774",
+      "quote": "\"published-print\":{\"date-parts\":[[1998,8]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/713755774",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/713755774",
+      "quote": "\"DOI\":\"10.1080\\/713755774\""
+     }
+    ]
+   }
+  },
+  "notes": "Title typo \"reacall\" fixed. Journal left as cited: Crossref prints only \"The Quarterly Journal of Experimental Psychology Section A\"; the \": Human Experimental Psychology\" subtitle could not be confirmed (Taylor & Francis/SAGE pages block scripts). DOI 10.1080/027249898391558 is a different record (mismatched authors), not this work."
+ },
+ {
+  "key": "Tipp85",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/14640748508400920",
+   "quote": "\"title\":[\"The Negative Priming Effect: Inhibitory Priming by Ignored Objects\"]",
+   "why": "Crossref: Steven P. Tipper, QJEP Section A 37(4) 571-590, 1985."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S P Tipper",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748508400920",
+      "quote": "\"given\":\"Steven P.\",\"family\":\"Tipper\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The negative priming effect: inhibitory priming by ignored objects",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748508400920",
+      "quote": "The Negative Priming Effect: Inhibitory Priming by Ignored Objects"
+     }
+    ]
+   },
+   "journal": {
+    "status": "not_found",
+    "value": "",
+    "evidence": []
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "37",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748508400920",
+      "quote": "\"volume\":\"37\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748508400920",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "571--590",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748508400920",
+      "quote": "\"page\":\"571-590\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1985",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748508400920",
+      "quote": "\"published-print\":{\"date-parts\":[[1985,11]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/14640748508400920",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/14640748508400920",
+      "quote": "\"DOI\":\"10.1080\\/14640748508400920\""
+     }
+    ]
+   }
+  },
+  "notes": "Issue 4 and DOI added. Journal left as cited (Crossref prints only \"The Quarterly Journal of Experimental Psychology Section A\"; subtitle unconfirmed, publisher pages block scripts)."
+ },
+ {
+  "key": "KatzEtal83",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/6846631/",
+   "quote": "Validation of a short Orientation-Memory-Concentration Test of cognitive impairment.",
+   "why": "Same title and six authors, Am J Psychiatry 140(6) 734-739, 1983."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R Katzman and T Brown and P Fuld and A Peck and R Schechter and H Schimmel",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6846631/",
+      "quote": "R Katzman, T Brown, P Fuld, A Peck, R Schechter, H Schimmel"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Validation of a short {Orientation-Memory-Concentration Test} of cognitive impairment",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6846631/",
+      "quote": "Validation of a short Orientation-Memory-Concentration Test of cognitive impairment."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "{American} Journal of Psychiatry",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1176/ajp.140.6.734",
+      "quote": "\"container-title\":[\"American Journal of Psychiatry\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "140",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1176/ajp.140.6.734",
+      "quote": "\"volume\":\"140\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1176/ajp.140.6.734",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "734--739",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1176/ajp.140.6.734",
+      "quote": "\"page\":\"734-739\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1983",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1176/ajp.140.6.734",
+      "quote": "\"published-print\":{\"date-parts\":[[1983,6,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1176/ajp.140.6.734",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1176/ajp.140.6.734",
+      "quote": "\"DOI\":\"10.1176\\/ajp.140.6.734\""
+     }
+    ]
+   }
+  },
+  "notes": "Title: the instrument name is printed capitalised (a proper name), so braced. Journal: house form {American} Journal of Psychiatry (6 other entries) without the leading \"The\". DOI added (Crossref record has no authors; authors from PubMed)."
+ },
+ {
+  "key": "Rao82",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/0040-5809(82)90004-1",
+   "quote": "\"title\":[\"Diversity and dissimilarity coefficients: A unified approach\"]",
+   "why": "Crossref: C. Radhakrishna Rao, Theor Popul Biol 21(1) 24-43, 1982."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C R Rao",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0040-5809(82)90004-1",
+      "quote": "\"given\":\"C.Radhakrishna\",\"family\":\"Rao\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Diversity and dissimilarity coefficients: a unified approach",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0040-5809(82)90004-1",
+      "quote": "Diversity and dissimilarity coefficients: A unified approach"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Theoretical Population Biology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0040-5809(82)90004-1",
+      "quote": "\"container-title\":[\"Theoretical Population Biology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0040-5809(82)90004-1",
+      "quote": "\"volume\":\"21\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0040-5809(82)90004-1",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "24--43",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0040-5809(82)90004-1",
+      "quote": "\"page\":\"24-43\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1982",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0040-5809(82)90004-1",
+      "quote": "\"published-print\":{\"date-parts\":[[1982,2]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0040-5809(82)90004-1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0040-5809(82)90004-1",
+      "quote": "\"DOI\":\"10.1016\\/0040-5809(82)90004-1\""
+     }
+    ]
+   }
+  },
+  "notes": "Title typo \"coeficients\" fixed. DOI added."
+ },
+ {
+  "key": "HowaEtal11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+   "quote": "\"title\":[\"Constructing Semantic Representations From a Gradually Changing Representation of Temporal Context\"]",
+   "why": "Crossref: Howard, Shankar, Jagadisan, Topics in Cognitive Science 3(1) 48-73, January 2011."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M W Howard and K H Shankar and U K K Jagadisan",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+      "quote": "\"given\":\"Marc W.\",\"family\":\"Howard\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+      "quote": "\"given\":\"Karthik H.\",\"family\":\"Shankar\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+      "quote": "\"given\":\"Udaya K. K.\",\"family\":\"Jagadisan\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Constructing semantic representations from a gradually changing representation of temporal context",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+      "quote": "Constructing Semantic Representations From a Gradually Changing Representation of Temporal Context"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Topics in Cognitive Science",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+      "quote": "\"container-title\":[\"Topics in Cognitive Science\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+      "quote": "\"volume\":\"3\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "48--73",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+      "quote": "\"page\":\"48-73\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+      "quote": "\"published-print\":{\"date-parts\":[[2011,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1756-8765.2010.01112.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1756-8765.2010.01112.x",
+      "quote": "\"DOI\":\"10.1111\\/j.1756-8765.2010.01112.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Online 2010-08-19, print January 2011: print year 2011 kept. Title printed \"gradually changing\" (no hyphen). Volume, issue, pages and DOI were missing; added."
+ }
+]

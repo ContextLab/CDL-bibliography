@@ -1,0 +1,1795 @@
+[
+ {
+  "key": "ElliEtal95",
+  "verdict": "no_source",
+  "identity": {
+   "url": "",
+   "quote": "",
+   "why": ""
+  },
+  "fields": {},
+  "notes": "No acceptable source reachable. Leads only: OpenAlex W2787812610 and Semantic Scholar give 'Emotion and memory: Effect of mood states on immediate and unexpected delayed recall.' (Ellis, Seibert, Varner, 1995, J Soc Behav Pers 10:349-362), i.e. 'Effect' not 'Effects'. No DOI (journal has none); APA PsycNET record page renders only via JavaScript; no local PDF; Crossref has no record. Web-search budget for the session was exhausted before a PsycINFO/catalogue record could be located. Recommend the reviewer check PsycINFO for the title word 'Effect' and issue number 2."
+ },
+ {
+  "key": "BateEtal15a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.jstatsoft.org/article/view/v067i01",
+   "quote": "Fitting Linear Mixed-Effects Models Using lme4",
+   "why": "Same title, four authors, JSS 67(1), 2015."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D Bates and M M{\\\"a}chler and B Bolker and S Walker",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "Douglas Bates"
+     },
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "Martin Mächler"
+     },
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "Ben Bolker"
+     },
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "Steve Walker"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Fitting linear mixed-effects models using {lme4}",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "Fitting Linear Mixed-Effects Models Using lme4"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Statistical Software",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "Journal of Statistical Software , 67 (1), 1–48"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "67",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "Volume: Vol. 67 (2015) Number: 1"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "Volume: Vol. 67 (2015) Number: 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--48",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "Journal of Statistical Software , 67 (1), 1–48"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2015",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "Volume: Vol. 67 (2015) Number: 1"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.18637/jss.v067.i01",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v067i01",
+      "quote": "DOI: 10.18637/jss.v067.i01"
+     }
+    ]
+   }
+  },
+  "notes": "All fields confirmed on the JSS article page (Crossref has no page field, hence the hold); only the DOI is added. No other lme4 entry in cdl.bib (BateEtal15b is the different arXiv paper 'Parsimonious mixed models')."
+ },
+ {
+  "key": "HaleHojs14",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://www.jstatsoft.org/article/view/v059i09",
+   "quote": "A Kenward-Roger Approximation and Parametric Bootstrap Methods for Tests in Linear Mixed Models – The R Package pbkrtest",
+   "why": "Same title, authors, JSS 59(9), 2014."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "U Halekoh and S H{\\o}jsgaard",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v059i09",
+      "quote": "Ulrich Halekoh"
+     },
+     {
+      "url": "https://www.jstatsoft.org/article/view/v059i09",
+      "quote": "Søren Højsgaard"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A {Kenward}-{Roger} approximation and parametric bootstrap methods for tests in linear mixed models -- the {R} package pbkrtest",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v059i09",
+      "quote": "A Kenward-Roger Approximation and Parametric Bootstrap Methods for Tests in Linear Mixed Models – The R Package pbkrtest"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Statistical Software",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v059i09",
+      "quote": "Journal of Statistical Software , 59 (9), 1–32"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "59",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v059i09",
+      "quote": "Volume: Vol. 59 (2014) Number: 9"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v059i09",
+      "quote": "Volume: Vol. 59 (2014) Number: 9"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--32",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v059i09",
+      "quote": "Journal of Statistical Software , 59 (9), 1–32"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2014",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v059i09",
+      "quote": "Volume: Vol. 59 (2014) Number: 9"
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.18637/jss.v059.i09",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v059i09",
+      "quote": "DOI: 10.18637/jss.v059.i09"
+     }
+    ]
+   }
+  },
+  "notes": "Everything matches the JSS page; the hold was only Crossref's missing page field."
+ },
+ {
+  "key": "Ross12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.jstatsoft.org/article/view/v048i02",
+   "quote": "lavaan: An R Package for Structural Equation Modeling",
+   "why": "Same title, sole author Yves Rosseel, JSS 48(2), 2012."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "Y Rosseel",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v048i02",
+      "quote": "Yves Rosseel"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "{lavaan}: an {R} package for structural equation modeling",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v048i02",
+      "quote": "lavaan: An R Package for Structural Equation Modeling"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Statistical Software",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v048i02",
+      "quote": "Journal of Statistical Software , 48 (2), 1–36"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "48",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v048i02",
+      "quote": "Volume: Vol. 48 (2012) Number: 2"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v048i02",
+      "quote": "Volume: Vol. 48 (2012) Number: 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1--36",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v048i02",
+      "quote": "Journal of Statistical Software , 48 (2), 1–36"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v048i02",
+      "quote": "Volume: Vol. 48 (2012) Number: 2"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.18637/jss.v048.i02",
+    "evidence": [
+     {
+      "url": "https://www.jstatsoft.org/article/view/v048i02",
+      "quote": "DOI: 10.18637/jss.v048.i02"
+     }
+    ]
+   }
+  },
+  "notes": "Package name is printed all lowercase ('lavaan'), so {Lavaan} becomes {lavaan}. Adds number, pages, DOI."
+ },
+ {
+  "key": "Knut07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17685726/",
+   "quote": "Strength training and aerobic exercise: comparison and contrast.",
+   "why": "Same title, sole author Knuttgen HG, J Strength Cond Res 21(3), 2007."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "H G Knuttgen",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17685726/",
+      "quote": "FAU - Knuttgen, Howard G"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Strength training and aerobic exercise: comparison and contrast",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17685726/",
+      "quote": "Strength training and aerobic exercise: comparison and contrast."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Strength and Conditioning Research",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1519/00124278-200708000-00053.xml",
+      "quote": "Journal of Strength and Conditioning Research"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17685726/",
+      "quote": "VI  - 21"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17685726/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "973--978",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17685726/",
+      "quote": "PG  - 973-8"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17685726/",
+      "quote": "DP  - 2007 Aug"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1519/r-505011.1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17685726/",
+      "quote": "AID - 10.1519/R-505011.1 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Adds DOI. Two Crossref DOIs exist for this article: 10.1519/r-505011.1 (the one PubMed and the article carry; doi.org currently redirects it to a dead nsca.allenpress.com URL) and 10.1519/00124278-200708000-00053 (LWW/Ovid re-registration, resolves to ovid.com, title given only as 'STRENGTH TRAINING AND AEROBIC EXERCISE'). Proposed the PubMed one; reviewer may prefer the LWW DOI because it resolves to a live page."
+ },
+ {
+  "key": "Whal20",
+  "verdict": "correction",
+  "new_key": "TrusWhal20",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+   "quote": "Should Teachers be Trained in Emergency Remote Teaching? Lessons Learned from the COVID-19 Pandemic",
+   "why": "Same title, JTATE 28(2):189-199, 2020; the article has two authors, Trust first."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "T Trust and J Whalen",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "<given_name>Torrey</given_name>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "<surname>Trust</surname>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "<given_name>Jeromie</given_name>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "<surname>Whalen</surname>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Should teachers be trained in emergency remote teaching? {L}essons learned from the {COVID-19} pandemic",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "Should Teachers be Trained in Emergency Remote Teaching? Lessons Learned from the COVID-19 Pandemic"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Technology and Teacher Education",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "Journal of Technology and Teacher Education"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "28",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "<volume>28</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "<issue>2</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "189--199",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "<first_page>189</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "<last_page>199</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "<year>2020</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.70725/307718pkpjuu",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.70725/307718pkpjuu.xml",
+      "quote": "10.70725/307718pkpjuu"
+     }
+    ]
+   }
+  },
+  "notes": "First author Torrey Trust was missing. Key changes Whal20 -> TrusWhal20 (not in HEAD cdl.bib; no other entry with this title). DOI (AACE/LearnTechLib, registered with Crossref, handle resolves 200 to learntechlib.org/primary/p/215995/) added."
+ },
+ {
+  "key": "KrakEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11109233/",
+   "quote": "A controlled study of imagery rehearsal for chronic nightmares in sexual assault survivors with PTSD: a preliminary report.",
+   "why": "Same title, J Trauma Stress 13(4):589-609, 2000, Krakow first author."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "B Krakow and M Hollifield and R Schrader and M Koss and D Tandberg and J Lauriello and L McBride and T D Warner and D Cheng and T Edmond and R Kellner",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11109233/",
+      "quote": "B Krakow, M Hollifield, R Schrader, M Koss, D Tandberg, J Lauriello, L McBride, T D Warner, D Cheng, T Edmond, R Kellner"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A controlled study of imagery rehearsal for chronic nightmares in sexual assault survivors with {PTSD}: a preliminary report",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11109233/",
+      "quote": "A controlled study of imagery rehearsal for chronic nightmares in sexual assault survivors with PTSD: a preliminary report."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Traumatic Stress",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11109233/",
+      "quote": "JT  - Journal of traumatic stress"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11109233/",
+      "quote": "VI  - 13"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11109233/",
+      "quote": "IP  - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "589--609",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11109233/",
+      "quote": "PG  - 589-609"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11109233/",
+      "quote": "DP  - 2000 Oct"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1023/a:1007854015481",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11109233/",
+      "quote": "AID - 10.1023/A:1007854015481 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Eleventh author R Kellner was missing (PubMed and Crossref both list 11). Key KrakEtal00 unchanged. KrakEtal01 is a different work (JAMA RCT). DOI added."
+ },
+ {
+  "key": "VogtEtal14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+   "quote": "Mental health beliefs and their relationship with treatment seeking among U.S. OEF/OIF veterans.",
+   "why": "Same title, Vogt/Fox/Di Leone, J Trauma Stress 27(3):307-313, 2014."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "D Vogt and A B Fox and B A L {Di Leone}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+      "quote": "FAU - Vogt, Dawne"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+      "quote": "FAU - Fox, Annie B"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+      "quote": "FAU - Di Leone, Brooke A L"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Mental health beliefs and their relationship with treatment seeking among {U.S.} {OEF}/{OIF} veterans",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+      "quote": "Mental health beliefs and their relationship with treatment seeking among U.S. OEF/OIF veterans."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Traumatic Stress",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+      "quote": "Journal of traumatic stress"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "27",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+      "quote": "VI  - 27"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "307--313",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+      "quote": "PG  - 307-13"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2014",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+      "quote": "DP  - 2014 Jun"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/jts.21919",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24839077/",
+      "quote": "LID - 10.1002/jts.21919 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Compound surname: 'B A L Di Leone' parsed as surname Leone; brace it as {Di Leone} (house form, cf. {Di Chiara}). Title prints 'U.S.' not 'US' (cdl.bib has {US} in three other titles; reviewer may keep {US} as house style). DOI added. Key unchanged."
+ },
+ {
+  "key": "vand95",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1002/jts.2490080402.xml",
+   "quote": "Dissociation and the fragmentary nature of traumatic memories: Overview and exploratory study",
+   "why": "J Trauma Stress 8(4):505-525 (1995) is van der Kolk & Fisler, not a sole-author paper titled 'Trauma and memory'."
+  },
+  "fields": {},
+  "notes": "Citation mixes two works. The venue/volume/issue/pages/year (J Trauma Stress 8(4):505-525, 1995) belong to B A van der Kolk and R Fisler, 'Dissociation and the fragmentary nature of traumatic memories: overview and exploratory study' (Crossref 10.1002/jts.2490080402; PubMed 8564271 lists DOI 10.1007/BF02102887; both registered). The title 'Trauma and memory' (sole author van der Kolk) is Psychiatry and Clinical Neurosciences 52(S1), 1998, DOI 10.1046/j.1440-1819.1998.0520s5S97.x (pages S97-S109 per DOI suffix, unconfirmed); there is also a 1996 book chapter of that title in Traumatic Stress (van der Kolk, McFarlane, Weisaeth, eds.). User must decide which work is meant: if the JTS paper, key becomes vandFisl95 (not in HEAD cdl.bib); if the 1998 paper, key vand98. Neither work is elsewhere in cdl.bib."
+ },
+ {
+  "key": "Melt70",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(70)80107-4.xml",
+   "quote": "The situation with respect to the spacing of repetitions and memory",
+   "why": "Same title and author, J Verbal Learn Verbal Behav 9:596-606, 1970."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A W Melton",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(70)80107-4.xml",
+      "quote": "Arthur W. Melton"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The situation with respect to the spacing of repetitions and memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(70)80107-4.xml",
+      "quote": "The situation with respect to the spacing of repetitions and memory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(70)80107-4.xml",
+      "quote": "Journal of Verbal Learning and Verbal Behavior"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(70)80107-4.xml",
+      "quote": "<volume>9</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(70)80107-4.xml",
+      "quote": "<issue>5</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "596--606",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(70)80107-4.xml",
+      "quote": "<first_page>596</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(70)80107-4.xml",
+      "quote": "<last_page>606</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1970",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(70)80107-4.xml",
+      "quote": "<year>1970</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(70)80107-4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(70)80107-4.xml",
+      "quote": "10.1016/s0022-5371(70)80107-4"
+     }
+    ]
+   }
+  },
+  "notes": "Journal name was 'Journal of Verbal Learning and Memory' (does not exist); corrected. Adds number and DOI."
+ },
+ {
+  "key": "Ande83",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90201-3.xml",
+   "quote": "A spreading activation theory of memory",
+   "why": "Same title, John R. Anderson, JVLVB 22(3):261-295, 1983."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J R Anderson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90201-3.xml",
+      "quote": "John R. Anderson"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A spreading activation theory of memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90201-3.xml",
+      "quote": "A spreading activation theory of memory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90201-3.xml",
+      "quote": "Journal of Verbal Learning and Verbal Behavior"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90201-3.xml",
+      "quote": "<volume>22</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90201-3.xml",
+      "quote": "<issue>3</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "261--295",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90201-3.xml",
+      "quote": "<first_page>261</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90201-3.xml",
+      "quote": "<last_page>295</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1983",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90201-3.xml",
+      "quote": "<year>1983</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(83)90201-3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90201-3.xml",
+      "quote": "10.1016/s0022-5371(83)90201-3"
+     }
+    ]
+   }
+  },
+  "notes": "Author 'JR' becomes 'J R' (one initial per given name). DOI added."
+ },
+ {
+  "key": "BellSchi75",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+   "quote": "Response dependence in simultaneously learned A-B, A-C lists",
+   "why": "Same authors (Bellezza, Schirmann), JVLVB 14:89-94, 1975."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "F S Bellezza and N J Schirmann",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+      "quote": "Francis S. Bellezza"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+      "quote": "Nancy Jo Schirmann"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Response dependence in simultaneously learned {A-B}, {A-C} lists",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+      "quote": "Response dependence in simultaneously learned A-B, A-C lists"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+      "quote": "Journal of Verbal Learning and Verbal Behavior"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+      "quote": "<volume>14</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+      "quote": "<issue>1</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "89--94",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+      "quote": "<first_page>89</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+      "quote": "<last_page>94</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1975",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+      "quote": "<year>1975</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(75)80009-0",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(75)80009-0.xml",
+      "quote": "10.1016/s0022-5371(75)80009-0"
+     }
+    ]
+   }
+  },
+  "notes": "Title 'list' -> 'lists'; first page 89 not 88 (Crossref). Adds issue and DOI."
+ },
+ {
+  "key": "Good76",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
+   "quote": "Changes in primacy and recency with practice in single-trial free recall",
+   "why": "Same title, JVLVB 15:119-132, 1976."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "C J Goodwin",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
+      "quote": "C. James Goodwin"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Changes in primacy and recency with practice in single-trial free recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
+      "quote": "Changes in primacy and recency with practice in single-trial free recall"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
+      "quote": "Journal of Verbal Learning and Verbal Behavior"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
+      "quote": "<volume>15</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
+      "quote": "<issue>1</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "119--132",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
+      "quote": "<first_page>119</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
+      "quote": "<last_page>132</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1976",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
+      "quote": "<year>1976</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(76)90012-8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(76)90012-8.xml",
+      "quote": "10.1016/s0022-5371(76)90012-8"
+     }
+    ]
+   }
+  },
+  "notes": "Author is C. James Goodwin: initials 'C J', not 'J C'. Key unchanged. Adds issue and DOI."
+ },
+ {
+  "key": "KeppEtal68",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+   "quote": "Studies of learning to learn: VIII",
+   "why": "Same series number, authors Keppel, Postman, Zavortink, JVLVB 7:790-796, 1968."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "G Keppel and L Postman and B Zavortink",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "Geoffrey Keppel"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "Leo Postman"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "Bonnie Zavortink"
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found"
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "Journal of Verbal Learning and Verbal Behavior"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "<volume>7</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "<issue>4</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "790--796",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "<first_page>790</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "<last_page>796</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1968",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "<year>1968</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(68)80143-4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(68)80143-4.xml",
+      "quote": "10.1016/s0022-5371(68)80143-4"
+     }
+    ]
+   }
+  },
+  "notes": "Third author is Zavortink (not Zavortnik). Crossref gives only the series title 'Studies of learning to learn: VIII'; the subtitle ('The influence of massive amounts of training ...') could not be confirmed (ScienceDirect blocks scripts), so the title is left as is."
+ },
+ {
+  "key": "Kopp78",
+  "verdict": "correction",
+  "new_key": "Kopp63",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
+   "quote": "Time changes in the strengths of A–B, A–C lists; spontaneous recovery?",
+   "why": "Same title and author, JVLVB 2(4):310-319; volume 2 is 1963, not 1978."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R J Koppenaal",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
+      "quote": "R.J. Koppenaal"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Time changes in the strengths of {A-B, A-C} lists; spontaneous recovery?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
+      "quote": "Time changes in the strengths of A–B, A–C lists; spontaneous recovery?"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
+      "quote": "Journal of Verbal Learning and Verbal Behavior"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
+      "quote": "<volume>2</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
+      "quote": "<issue>4</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "310--319",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
+      "quote": "<first_page>310</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
+      "quote": "<last_page>319</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "1963",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
+      "quote": "<year>1963</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(63)80099-7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(63)80099-7.xml",
+      "quote": "10.1016/s0022-5371(63)80099-7"
+     }
+    ]
+   }
+  },
+  "notes": "Year 1978 was wrong (volume 2 = 1963). Key changes Kopp78 -> Kopp63 (not in HEAD cdl.bib; no other entry with this title). Adds issue and DOI."
+ },
+ {
+  "key": "Murd62b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
+   "quote": "Direction of recall in short-term memory",
+   "why": "Same title and author (Bennet B. Murdock), JVLVB 1:119-124, 1962."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B B Murdock",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
+      "quote": "Bennet B. Murdock"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Direction of recall in short-term memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
+      "quote": "Direction of recall in short-term memory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
+      "quote": "Journal of Verbal Learning and Verbal Behavior"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
+      "quote": "<volume>1</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
+      "quote": "<issue>2</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "119--124",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
+      "quote": "<first_page>119</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
+      "quote": "<last_page>124</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1962",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
+      "quote": "<year>1962</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(62)80008-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(62)80008-5.xml",
+      "quote": "10.1016/s0022-5371(62)80008-5"
+     }
+    ]
+   }
+  },
+  "notes": "Title 'short term' -> 'short-term'. Adds issue and DOI."
+ },
+ {
+  "key": "MurdMetc78",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+   "quote": "Controlled rehearsal in single-trial free recall",
+   "why": "Same title, Murdock and Metcalfe, JVLVB 17:309-324, 1978."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B B Murdock and J Metcalfe",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+      "quote": "Murdock"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+      "quote": "Janet Metcalfe"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Controlled rehearsal in single-trial free recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+      "quote": "Controlled rehearsal in single-trial free recall"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+      "quote": "Journal of Verbal Learning and Verbal Behavior"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+      "quote": "<volume>17</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+      "quote": "<issue>3</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "309--324",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+      "quote": "<first_page>309</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+      "quote": "<last_page>324</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1978",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+      "quote": "<year>1978</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(78)90201-3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90201-3.xml",
+      "quote": "10.1016/s0022-5371(78)90201-3"
+     }
+    ]
+   }
+  },
+  "notes": "Title had a stray space ('single- trial'). Crossref gives 'Bennet Murdock' without middle initial; kept B B (never drop an initial only because a source omits it). Adds issue and DOI."
+ },
+ {
+  "key": "MurdOkad70",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+   "quote": "Interresponse times in single-trial free recall.",
+   "why": "Same title and authors (Murdock, Okada), vol 86 pp 263-267, 1970, but in Journal of Experimental Psychology."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B B Murdock and R Okada",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+      "quote": "Bennet B. Murdock"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+      "quote": "Ronald Okada"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Interresponse times in single-trial free recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+      "quote": "Interresponse times in single-trial free recall."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+      "quote": "Journal of Experimental Psychology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "86",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+      "quote": "<volume>86</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+      "quote": "<issue>2</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "263--267",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+      "quote": "<first_page>263</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+      "quote": "<last_page>267</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1970",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+      "quote": "<year>1970</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0029993",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0029993.xml",
+      "quote": "10.1037/h0029993"
+     }
+    ]
+   }
+  },
+  "notes": "Journal was wrong (JVLVB has no volume 86); it is J Exp Psychol 86(2). Title stray space removed. Adds issue and DOI. Key unchanged."
+ },
+ {
+  "key": "PhilEtal67",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+   "quote": "Effects of list length on short-term memory",
+   "why": "Same authors Phillips, Shiffrin, Atkinson, JVLVB 6:303-311, 1967."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J L Phillips and R M Shiffrin and R C Atkinson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "James L. Phillips"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "Richard M. Shiffrin"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "Richard C. Atkinson"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Effects of list length on short-term memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "Effects of list length on short-term memory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "Journal of Verbal Learning and Verbal Behavior"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "<volume>6</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "<issue>3</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "303--311",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "<first_page>303</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "<last_page>311</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1967",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "<year>1967</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(67)80117-8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(67)80117-8.xml",
+      "quote": "10.1016/s0022-5371(67)80117-8"
+     }
+    ]
+   }
+  },
+  "notes": "Shiffrin's initials R M (not R J); title has no leading 'The'. Adds issue and DOI."
+ },
+ {
+  "key": "PollEtal68",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+   "quote": "Associative structure and the temporal characteristics of free recall.",
+   "why": "Same title, authors Pollio, Kasschau, Denise, pp 190-197, 1968, in Journal of Experimental Psychology 76."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "H R Pollio and R A Kasschau and H E DeNise",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "Howard R. Pollio"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "Richard A. Kasschau"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "Harry E. Denise"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Associative structure and the temporal characteristics of free recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "Associative structure and the temporal characteristics of free recall."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "Journal of Experimental Psychology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "76",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "<volume>76</volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2, Pt.1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "<issue>2, Pt.1</issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "190--197",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "<first_page>190</first_page>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "<last_page>197</last_page>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1968",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "<year>1968</year>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0025385",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025385.xml",
+      "quote": "10.1037/h0025385"
+     }
+    ]
+   }
+  },
+  "notes": "Journal was wrong (JVLVB volume 10 is 1971); it is J Exp Psychol 76(2, Pt.1). Number written '2, Pt.1' as in PaivYuil69. Crossref spells the third author 'Denise'; cdl.bib has 'DeNise' - capitalisation not independently confirmed, left as is. Adds DOI. Key unchanged."
+ }
+]

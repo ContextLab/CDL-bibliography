@@ -1,0 +1,1867 @@
+[
+ {
+  "key": "SahaDela05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16060780/",
+   "quote": "Lili Sahakyan, Peter F Delaney",
+   "why": "Same title and authors, JEP:LMC 31(4) 789-801, 2005 (PMID 16060780)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Directed forgetting in incidental learning and recognition testing: support for a two-factor account",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060780/",
+      "quote": "Directed forgetting in incidental learning and recognition testing: support for a two-factor account."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L Sahakyan and P F Delaney",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060780/",
+      "quote": "Lili Sahakyan, Peter F Delaney"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.31.4.789",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060780/",
+      "quote": "DP  - 2005 Jul"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "31",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060780/",
+      "quote": "VI  - 31"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060780/",
+      "quote": "IP  - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "789--801",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16060780/",
+      "quote": "PG  - 789-801"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.31.4.789",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.31.4.789",
+      "quote": "\"page\":\"789-801\""
+     }
+    ]
+   }
+  },
+  "notes": "Added issue 4 and DOI. A correction notice exists (JEP:LMC 31(5):1164, doi 10.1037/0278-7393.31.5.1164, Crossref update-to this DOI); it is a separate notice, not a different version of the article, so the citation metadata stand. The other queue DOI 10.1037/e537052012-173 is an unrelated APA record."
+ },
+ {
+  "key": "ShifEtal90",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/2137860/",
+   "quote": "List-strength effect: II. Theoretical mechanisms.",
+   "why": "Same title, authors Shiffrin, Ratcliff, Clark, JEP:LMC 16(2) 179-195, 1990 (PMID 2137860)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "List-strength effect: {II}. Theoretical mechanisms",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2137860/",
+      "quote": "List-strength effect: II. Theoretical mechanisms."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R M Shiffrin and R Ratcliff and S E Clark",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2137860/",
+      "quote": "FAU - Shiffrin, R M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2137860/",
+      "quote": "FAU - Ratcliff, R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2137860/",
+      "quote": "FAU - Clark, S E"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.16.2.179",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1990",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2137860/",
+      "quote": "DP  - 1990 Mar"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2137860/",
+      "quote": "VI  - 16"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2137860/",
+      "quote": "IP  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "179--195",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2137860/",
+      "quote": "PG  - 179-95"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.16.2.179",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.16.2.179",
+      "quote": "\"page\":\"179-195\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added (single-slash form; the 10.1037//0278-7393.16.2.179 twin is the APA alias of the same article). 'Theoretical' is capitalised because it starts a new sentence after 'II.'."
+ },
+ {
+  "key": "ShifEtal93",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1445",
+   "quote": "TODAM and the list-strength and list-length effects: Comment on Murdock and Kahana (1993a).",
+   "why": "Same four authors (Shiffrin, Ratcliff, Murnane, Nobel), JEP:LMC 19(6) 1445-1449, 1993; the cited title paraphrases the subtitle."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "{TODAM} and the list-strength and list-length effects: comment on {M}urdock and {K}ahana (1993a)",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1445",
+      "quote": "TODAM and the list-strength and list-length effects: Comment on Murdock and Kahana (1993a)."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R M Shiffrin and R Ratcliff and K Murnane and P A Nobel",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8270891/",
+      "quote": "FAU - Shiffrin, R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8270891/",
+      "quote": "FAU - Ratcliff, R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8270891/",
+      "quote": "FAU - Murnane, K"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8270891/",
+      "quote": "FAU - Nobel, P"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1445",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8270891/",
+      "quote": "DP  - 1993 Nov"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8270891/",
+      "quote": "VI  - 19"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8270891/",
+      "quote": "IP  - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1445--1449",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8270891/",
+      "quote": "PG  - 1445-9"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.19.6.1445",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.19.6.1445",
+      "quote": "\"page\":\"1445-1449\""
+     }
+    ]
+   }
+  },
+  "notes": "Subtitle is 'Comment on Murdock and Kahana (1993a)', not 'a reply to Murdock and Kahana' (Crossref and PubMed agree). Sources give only first initials (Richard Shiffrin, Peter Nobel); the cited middle initials R M and P A are kept (not contradicted). Added issue 6 and DOI. The queue's 19.6.1450 record is the Murdock/Kahana reply that follows, a different work."
+ },
+ {
+  "key": "SmitEtal01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+   "quote": "The use of source memory to identify one's own episodic confusion errors.",
+   "why": "Same title and five authors, JEP:LMC 27(2) 362-374, 2001 (PMID 11294438)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The use of source memory to identify one's own episodic confusion errors",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+      "quote": "The use of source memory to identify one's own episodic confusion errors."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S M Smith and D R Tindell and B H Pierce and T R Gilliland and D R Gerkens",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+      "quote": "FAU - Smith, S M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+      "quote": "FAU - Tindell, D R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+      "quote": "FAU - Pierce, B H"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+      "quote": "FAU - Gilliland, T R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+      "quote": "FAU - Gerkens, D R"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.27.2.362",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+      "quote": "DP  - 2001 Mar"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "27",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+      "quote": "VI  - 27"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+      "quote": "IP  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "362--374",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11294438/",
+      "quote": "PG  - 362-74"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.27.2.362",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.27.2.362",
+      "quote": "\"page\":\"362-374\""
+     }
+    ]
+   }
+  },
+  "notes": "Title flag is a Crossref typo ('identity' for 'identify'); PubMed has 'identify', as cited. Added issue and DOI."
+ },
+ {
+  "key": "SzpuEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18980403/",
+   "quote": "Testing during study insulates against the buildup of proactive interference.",
+   "why": "Same title and authors, JEP:LMC 34(6) 1392-1399, 2008 (PMID 18980403)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Testing during study insulates against the buildup of proactive interference",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18980403/",
+      "quote": "Testing during study insulates against the buildup of proactive interference."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K K Szpunar and K B {McDermott} and H L Roediger",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18980403/",
+      "quote": "FAU - Szpunar, Karl K"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18980403/",
+      "quote": "FAU - McDermott, Kathleen B"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18980403/",
+      "quote": "FAU - Roediger, Henry L 3rd"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013082",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18980403/",
+      "quote": "DP  - 2008 Nov"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "34",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18980403/",
+      "quote": "VI  - 34"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18980403/",
+      "quote": "IP  - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1392--1399",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18980403/",
+      "quote": "PG  - 1392-9"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/a0013082",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013082",
+      "quote": "\"page\":\"1392-1399\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. Suffix '3rd' dropped per house rule. A correction notice exists (JEP:LMC 35(1):156, 2009, doi 10.1037/a0014896, Crossref update-to this DOI); it is a separate notice, not a different version."
+ },
+ {
+  "key": "WalkHulm99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1256",
+   "quote": "Concrete words are easier to recall than abstract words: Evidence for a semantic contribution to short-term serial recall.",
+   "why": "Same title and authors (Walker, Hulme), JEP:LMC 25(5) 1256-1271, 1999."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Concrete words are easier to recall than abstract words: evidence for a semantic contribution to short-term serial recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1256",
+      "quote": "Concrete words are easier to recall than abstract words: Evidence for a semantic contribution to short-term serial recall."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "I Walker and C Hulme",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1256",
+      "quote": "{\"given\":\"Ian\",\"family\":\"Walker\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1256",
+      "quote": "{\"given\":\"Charles\",\"family\":\"Hulme\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1256",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1256",
+      "quote": "\"published-online\":{\"date-parts\":[[1999,9]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "25",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1256",
+      "quote": "\"volume\":\"25\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1256",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1256--1271",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1256",
+      "quote": "\"page\":\"1256-1271\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.25.5.1256",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.25.5.1256",
+      "quote": "\"page\":\"1256-1271\""
+     }
+    ]
+   }
+  },
+  "notes": "Title hyphenation 'short-term' fixed; full given names reduced to house initials; DOI added. Not indexed in PubMed; Crossref (APA) is the source."
+ },
+ {
+  "key": "StepBaer06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16704404/",
+   "quote": "Kathy A Stepien, Amy Baernstein",
+   "why": "Same authors, J Gen Intern Med 21(5) 524-530, 2006 (PMID 16704404, PMC1484804); cited title 'Education for empathy' is a misquote of 'Educating for empathy'."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Educating for empathy: a review",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16704404/",
+      "quote": "Educating for empathy. A review."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K A Stepien and A Baernstein",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16704404/",
+      "quote": "Kathy A Stepien, Amy Baernstein"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of General Internal Medicine",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1525-1497.2006.00443.x",
+      "quote": "\"container-title\":[\"Journal of General Internal Medicine\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16704404/",
+      "quote": "DP  - 2006 May"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16704404/",
+      "quote": "VI  - 21"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16704404/",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "524--530",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16704404/",
+      "quote": "PG  - 524-30"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1525-1497.2006.00443.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1525-1497.2006.00443.x",
+      "quote": "\"title\":[\"Educating for empathy\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Title word is 'Educating', not 'Education'. PubMed/Europe PMC give 'Educating for empathy. A review.' (subtitle); Crossref gives only 'Educating for empathy'. If the reviewer prefers the Crossref form, use 'Educating for empathy'. Springer and PMC pages were bot-blocked. Added issue and DOI."
+ },
+ {
+  "key": "Mile28",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/00221309.1928.9923408",
+   "quote": "\"title\":[\"The High Relief Finger Maze for Human Learning\"]",
+   "why": "Same title, author Walter Miles, Journal of General Psychology 1(1) 3-14, 1928."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The high relief finger maze for human learning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00221309.1928.9923408",
+      "quote": "\"title\":[\"The High Relief Finger Maze for Human Learning\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W R Miles",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00221309.1928.9923408",
+      "quote": "{\"given\":\"Walter\",\"family\":\"Miles\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of General Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00221309.1928.9923408",
+      "quote": "\"container-title\":[\"The Journal of General Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1928",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00221309.1928.9923408",
+      "quote": "\"published-print\":{\"date-parts\":[[1928,1]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00221309.1928.9923408",
+      "quote": "\"volume\":\"1\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00221309.1928.9923408",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "3--14",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00221309.1928.9923408",
+      "quote": "\"page\":\"3-14\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/00221309.1928.9923408",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/00221309.1928.9923408",
+      "quote": "\"page\":\"3-14\""
+     }
+    ]
+   }
+  },
+  "notes": "Author flag is only Crossref's 'Walter Miles' without the middle initial; Walter R. Miles, initial R kept (not contradicted). House journal form drops 'The' (5 entries). Added issue and DOI."
+ },
+ {
+  "key": "Glaz28",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/08856559.1928.10532156",
+   "quote": "\"title\":[\"The Association Value of Non-Sense Syllables\"]",
+   "why": "Same title, author J. Arthur Glaze, vol 35(2) 1928, Pedagogical Seminary and Journal of Genetic Psychology."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The association value of non-sense syllables",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1928.10532156",
+      "quote": "\"title\":[\"The Association Value of Non-Sense Syllables\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J A Glaze",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1928.10532156",
+      "quote": "{\"given\":\"J. Arthur\",\"family\":\"Glaze\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Pedagogical Seminary and Journal of Genetic Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1928.10532156",
+      "quote": "\"container-title\":[\"The Pedagogical Seminary and Journal of Genetic Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1928",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1928.10532156",
+      "quote": "\"published-print\":{\"date-parts\":[[1928,6]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "35",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1928.10532156",
+      "quote": "\"volume\":\"35\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1928.10532156",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "255--269",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1928.10532156",
+      "quote": "\"page\":\"255-269\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/08856559.1928.10532156",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1928.10532156",
+      "quote": "\"page\":\"255-269\""
+     }
+    ]
+   }
+  },
+  "notes": "Last page is 269, not 267 (Crossref; the next article in the issue, Carter, 'The organization of mechanical intelligence', doi 10.1080/08856559.1928.10532157, starts at 270). In 1928 the journal was titled The Pedagogical Seminary and Journal of Genetic Psychology (renamed Journal of Genetic Psychology in 1954); 'The' dropped per house practice (cf. Stol49, Rubi81 period names). Reviewer may keep 'Journal of Genetic Psychology' if the modern name is preferred. Added issue and DOI."
+ },
+ {
+  "key": "StonNysw27",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1080/08856559.1927.10532397",
+   "quote": "\"title\":[\"The Reliability of Rat Learning Scores from the Multiple-T Maze as Determined by Four Different Methods\"]",
+   "why": "Same title and authors (Calvin P. Stone, Dorothy Bird Nyswander), vol 34(4) 497-524, 1927."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "The reliability of rat learning scores from the multiple-{T} maze as determined by four different methods",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1927.10532397",
+      "quote": "\"title\":[\"The Reliability of Rat Learning Scores from the Multiple-T Maze as Determined by Four Different Methods\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C P Stone and D B Nyswander",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1927.10532397",
+      "quote": "{\"given\":\"Calvin P.\",\"family\":\"Stone\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1927.10532397",
+      "quote": "{\"given\":\"Dorothy Bird\",\"family\":\"Nyswander\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Pedagogical Seminary and Journal of Genetic Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1927.10532397",
+      "quote": "\"container-title\":[\"The Pedagogical Seminary and Journal of Genetic Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1927",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1927.10532397",
+      "quote": "\"published-print\":{\"date-parts\":[[1927,12]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "34",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1927.10532397",
+      "quote": "\"volume\":\"34\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1927.10532397",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "497--524",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1927.10532397",
+      "quote": "\"page\":\"497-524\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/08856559.1927.10532397",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/08856559.1927.10532397",
+      "quote": "\"page\":\"497-524\""
+     }
+    ]
+   }
+  },
+  "notes": "Title: 'multiple-T maze' is hyphenated in print and 'maze' is not a proper noun (sentence case). Journal period name as for Glaz28 (renamed Journal of Genetic Psychology in 1954). Added issue and DOI."
+ },
+ {
+  "key": "RadvEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16131622/",
+   "quote": "Gabriel A Radvansky, Rose T Zacks, Lynn Hasher",
+   "why": "Same title and authors, J Gerontol B Psychol Sci Soc Sci 60(5) P276-P278, 2005 (PMID 16131622)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Age and inhibition: the retrieval of situation models",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16131622/",
+      "quote": "Age and inhibition: the retrieval of situation models."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "G A Radvansky and R T Zacks and L Hasher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16131622/",
+      "quote": "Gabriel A Radvansky, Rose T Zacks, Lynn Hasher"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journals of Gerontology Series {B}: Psychological Sciences and Social Sciences",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p276",
+      "quote": "\"container-title\":[\"The Journals of Gerontology Series B: Psychological Sciences and Social Sciences\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16131622/",
+      "quote": "DP  - 2005 Sep"
+     }
+    ]
+   },
+   "volume": {
+    "status": "not_found",
+    "value": "60B",
+    "evidence": []
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16131622/",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "P276--P278",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p276",
+      "quote": "\"page\":\"P276-P278\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/geronb/60.5.p276",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p276",
+      "quote": "\"page\":\"P276-P278\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume left as cited (60B): Crossref and PubMed give 60, but 2005 issues of this journal print 'Vol. 60B' (see the KahaEtal05a PDF header, same year); no source for this article's own header could be fetched (OUP bot-blocked). Journal: from 1995 the Journal of Gerontology split into Series A and B; Crossref, PubMed and OUP name this 'The Journals of Gerontology Series B: Psychological Sciences and Social Sciences' (the printed running head reads 'Journal of Gerontology: PSYCHOLOGICAL SCIENCES'). House forms vary (BoppVerh05 'The Journals of Gerontology Series {B}', HayeEtal16 'The Journals of Gerontology: Series {B}'); the same form is proposed for RadvEtal05, ZackHash97 and KahaEtal05a so they agree. DOI added."
+ },
+ {
+  "key": "ZackHash97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/geronb/52b.6.p274",
+   "quote": "\"title\":[\"Cognitive Gerontology and Attentional Inhibition: A Reply to Burke and McDowd\"]",
+   "why": "Same title and authors (Zacks, Hasher), J Gerontol B 52B(6) P274-P283, 1997 (PMID 9403516)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Cognitive gerontology and attentional inhibition: a reply to {B}urke and {M}c{D}owd",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/52b.6.p274",
+      "quote": "\"title\":[\"Cognitive Gerontology and Attentional Inhibition: A Reply to Burke and McDowd\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R Zacks and L Hasher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9403516/",
+      "quote": "FAU - Zacks, R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9403516/",
+      "quote": "FAU - Hasher, L"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journals of Gerontology Series {B}: Psychological Sciences and Social Sciences",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/52b.6.p274",
+      "quote": "\"container-title\":[\"The Journals of Gerontology Series B: Psychological Sciences and Social Sciences\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9403516/",
+      "quote": "DP  - 1997 Nov"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "52B",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/52b.6.p274",
+      "quote": "\"volume\":\"52B\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/52b.6.p274",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "P274--P283",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/52b.6.p274",
+      "quote": "\"page\":\"P274-P283\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/geronb/52b.6.p274",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/52b.6.p274",
+      "quote": "\"page\":\"P274-P283\""
+     }
+    ]
+   }
+  },
+  "notes": "Pages carry the P section prefix (house form as in RadvEtal05, BoppVerh05). Journal: from 1995 the Journal of Gerontology split into Series A and B; Crossref, PubMed and OUP name this 'The Journals of Gerontology Series B: Psychological Sciences and Social Sciences' (the printed running head reads 'Journal of Gerontology: PSYCHOLOGICAL SCIENCES'). House forms vary (BoppVerh05 'The Journals of Gerontology Series {B}', HayeEtal16 'The Journals of Gerontology: Series {B}'); the same form is proposed for RadvEtal05, ZackHash97 and KahaEtal05a so they agree. Added issue and DOI."
+ },
+ {
+  "key": "KahaEtal05a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15746023/",
+   "quote": "Michael J Kahana, Emily D Dolan, Colin L Sauder, Arthur Wingfield",
+   "why": "Same title and four authors, J Gerontol B 60(2) P92-P97, 2005 (PMID 15746023); local PDF KahaEtal05.pdf is this article."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Intrusions in episodic recall: age differences in editing of overt responses",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15746023/",
+      "quote": "Intrusions in episodic recall: age differences in editing of overt responses."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M J Kahana and E D Dolan and C L Sauder and A Wingfield",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15746023/",
+      "quote": "Michael J Kahana, Emily D Dolan, Colin L Sauder, Arthur Wingfield"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journals of Gerontology Series {B}: Psychological Sciences and Social Sciences",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.2.p92",
+      "quote": "\"container-title\":[\"The Journals of Gerontology Series B: Psychological Sciences and Social Sciences\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15746023/",
+      "quote": "DP  - 2005 Mar"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "60B",
+    "evidence": [
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/KahaEtal05.pdf#page=1",
+      "quote": "2005, Vol. 60B, No. 2, P92"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15746023/",
+      "quote": "IP  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "P92--P97",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.2.p92",
+      "quote": "\"page\":\"P92-P97\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/geronb/60.2.p92",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronb/60.2.p92",
+      "quote": "\"page\":\"P92-P97\""
+     }
+    ]
+   }
+  },
+  "notes": "Title: lowercase 'age' after the colon (house rule). Volume printed '60B' (PDF header; Crossref/PubMed '60'), matching house RadvEtal05/BoppVerh05. Pages carry the P prefix. The cited journal 'Journal of Gerontology: Psychological Sciences' is the printed running head, so keeping it is defensible; the Series B form is proposed for consistency. Journal: from 1995 the Journal of Gerontology split into Series A and B; Crossref, PubMed and OUP name this 'The Journals of Gerontology Series B: Psychological Sciences and Social Sciences' (the printed running head reads 'Journal of Gerontology: PSYCHOLOGICAL SCIENCES'). House forms vary (BoppVerh05 'The Journals of Gerontology Series {B}', HayeEtal16 'The Journals of Gerontology: Series {B}'); the same form is proposed for RadvEtal05, ZackHash97 and KahaEtal05a so they agree. Added issue and DOI."
+ },
+ {
+  "key": "VerhEtal93",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/geronj/48.4.p157",
+   "quote": "\"title\":[\"Facts and Fiction About Memory Aging: A Quantitative Integration of Research Findings\"]",
+   "why": "Same title and authors (Verhaeghen, Marcoen, Goossens), J Gerontol 48(4) P157-P171, 1993 (PMID 8315232)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Facts and fiction about memory aging: a quantitative integration of research findings",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronj/48.4.p157",
+      "quote": "\"title\":[\"Facts and Fiction About Memory Aging: A Quantitative Integration of Research Findings\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "P Verhaeghen and A Marcoen and L Goossens",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8315232/",
+      "quote": "FAU - Verhaeghen, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8315232/",
+      "quote": "FAU - Marcoen, A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8315232/",
+      "quote": "FAU - Goossens, L"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Gerontology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronj/48.4.p157",
+      "quote": "\"container-title\":[\"Journal of Gerontology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8315232/",
+      "quote": "DP  - 1993 Jul"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "48",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8315232/",
+      "quote": "VI  - 48"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8315232/",
+      "quote": "IP  - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "P157--P171",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronj/48.4.p157",
+      "quote": "\"page\":\"P157-P171\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/geronj/48.4.p157",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/geronj/48.4.p157",
+      "quote": "\"page\":\"P157-P171\""
+     }
+    ]
+   }
+  },
+  "notes": "Pre-1995 the journal was the single Journal of Gerontology (Crossref, PubMed; 13 house entries use this form); 'Psychological Sciences' was the section (hence the P page prefix). Keeping the cited section name is defensible if the reviewer prefers. Added issue, P page prefix and DOI."
+ },
+ {
+  "key": "GoodEtal07",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+   "quote": "Volume 18 Number 3, Pages 297-302 Fall 2007 Enhancing IS Education with Flexible Teaching and Learning",
+   "why": "Journal's own article page: same title, four authors, JISE 18(3) 297-302, 2007."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Enhancing {IS} education with flexible teaching and learning",
+    "evidence": [
+     {
+      "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+      "quote": "Enhancing IS Education with Flexible Teaching and Learning"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S Goode and R A Willis and J R Wolf and A L Harris",
+    "evidence": [
+     {
+      "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+      "quote": "Sigi Goode The Australian National University"
+     },
+     {
+      "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+      "quote": "Robert A. Willis Malaspina University-College"
+     },
+     {
+      "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+      "quote": "James R. Wolf Illinois State University"
+     },
+     {
+      "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+      "quote": "Albert L. Harris Appalachian State University"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Information Systems Education",
+    "evidence": [
+     {
+      "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+      "quote": "Journal of Information Systems Education (JISE)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+      "quote": "Fall 2007"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+      "quote": "Volume 18 Number 3, Pages 297-302"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+      "quote": "Volume 18 Number 3, Pages 297-302"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "297--302",
+    "evidence": [
+     {
+      "url": "https://jise.org/Volume18/n3/JISEv18n3p297.html",
+      "quote": "Volume 18 Number 3, Pages 297-302"
+     },
+     {
+      "url": "https://aisel.aisnet.org/jise/vol18/iss3/4/",
+      "quote": "content=\"302\""
+     }
+    ]
+   }
+  },
+  "notes": "All fields match the JISE page and the AIS eLibrary record. No DOI exists for JISE 2007 articles (the Crossref candidates in the queue are unrelated works)."
+ },
+ {
+  "key": "Free03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15011274/",
+   "quote": "The wave packet: an action potential for the 21st century.",
+   "why": "Same title and author, J Integr Neurosci 2(1) 3-30, 2003 (PMID 15011274)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The wave packet: an action potential for the 21\\textsuperscript{st} century",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15011274/",
+      "quote": "The wave packet: an action potential for the 21st century."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W J Freeman",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15011274/",
+      "quote": "FAU - Freeman, Walter J"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Integrative Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15011274/",
+      "quote": "JT  - Journal of integrative neuroscience"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15011274/",
+      "quote": "DP  - 2003 Jun"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15011274/",
+      "quote": "VI  - 2"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15011274/",
+      "quote": "IP  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "3--30",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15011274/",
+      "quote": "PG  - 3-30"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1142/s0219635203000214",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1142/s0219635203000214",
+      "quote": "\"page\":\"3-30\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume flag is only Crossref's zero-padded '02'. Added issue and DOI."
+ },
+ {
+  "key": "BoweEtal78",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+   "quote": "\"title\":[\"Emotional mood as a context for learning and recall\"]",
+   "why": "Same title and three authors, Journal of Verbal Learning and Verbal Behavior 17(5) 573-585, 1978."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Emotional mood as a context for learning and recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+      "quote": "\"title\":[\"Emotional mood as a context for learning and recall\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "G H Bower and K P Monteiro and S G Gilligan",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+      "quote": "{\"given\":\"Gordon H.\",\"family\":\"Bower\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+      "quote": "{\"given\":\"Kenneth P.\",\"family\":\"Monteiro\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+      "quote": "{\"given\":\"Stephen G.\",\"family\":\"Gilligan\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+      "quote": "\"container-title\":[\"Journal of Verbal Learning and Verbal Behavior\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1978",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+      "quote": "\"published-print\":{\"date-parts\":[[1978,10]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+      "quote": "\"volume\":\"17\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "573--585",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+      "quote": "\"page\":\"573-585\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(78)90348-1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90348-1",
+      "quote": "\"page\":\"573-585\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal name typo fixed ('Journal of Learning and Verbal Behavior' -> 'Journal of Verbal Learning and Verbal Behavior', house form in 140 entries). Added issue and DOI."
+ },
+ {
+  "key": "BengEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.jmlr.org/papers/v3/bengio03a.html",
+   "quote": "Yoshua Bengio, R&eacute;jean Ducharme, Pascal Vincent, Christian Jauvin ; 3(Feb):1137-1155, 2003.",
+   "why": "JMLR's own page for the article: same title, JMLR 3 1137-1155, 2003, with a fourth author."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "A neural probabilistic language model",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v3/bengio03a.html",
+      "quote": "<meta name=\"citation_title\" content=\"A Neural Probabilistic Language Model\">"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "Y Bengio and R Ducharme and P Vincent and C Jauvin",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v3/bengio03a.html",
+      "quote": "Yoshua Bengio, R&eacute;jean Ducharme, Pascal Vincent, Christian Jauvin"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Machine Learning Research",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v3/bengio03a.html",
+      "quote": "<meta name=\"citation_journal_title\" content=\"Journal of Machine Learning Research\">"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v3/bengio03a.html",
+      "quote": "3(Feb):1137-1155, 2003."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v3/bengio03a.html",
+      "quote": "3(Feb):1137-1155, 2003."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1137--1155",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v3/bengio03a.html",
+      "quote": "3(Feb):1137-1155, 2003."
+     }
+    ]
+   }
+  },
+  "notes": "The JMLR article has four authors: Christian Jauvin added (the three-author list is the NIPS 2000 conference version, a different work). Key stays BengEtal03 (3+ authors either way). JMLR assigns no DOIs; 'Feb' is the issue month, not a number, so no issue field. The local BengEtal03.pdf is the NIPS version (three authors), not this one."
+ },
+ {
+  "key": "BleiEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.jmlr.org/papers/v3/blei03a.html",
+   "quote": "Latent Dirichlet Allocation David M. Blei, Andrew Y. Ng, Michael I. Jordan ; 3(Jan):993-1022, 2003.",
+   "why": "JMLR's own page: same title, authors, JMLR 3 993-1022, 2003."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Latent {D}irichlet allocation",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v3/blei03a.html",
+      "quote": "<meta name=\"citation_title\" content=\"Latent Dirichlet Allocation\">"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D M Blei and A Y Ng and M I Jordan",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v3/blei03a.html",
+      "quote": "David M. Blei, Andrew Y. Ng, Michael I. Jordan"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Machine Learning Research",
+    "evidence": [
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/BleiEtal03.pdf#page=1",
+      "quote": "Journal of Machine Learning Research 3 (2003) 993-1022"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/BleiEtal03.pdf#page=1",
+      "quote": "Journal of Machine Learning Research 3 (2003) 993-1022"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/BleiEtal03.pdf#page=1",
+      "quote": "Journal of Machine Learning Research 3 (2003) 993-1022"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "993--1022",
+    "evidence": [
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/BleiEtal03.pdf#page=1",
+      "quote": "Journal of Machine Learning Research 3 (2003) 993-1022"
+     }
+    ]
+   }
+  },
+  "notes": "Only change: brace the proper noun {D}irichlet. JMLR assigns no DOIs (the queue's MIT Press/Springer DOIs are other works). No issue field ('Jan' is a month)."
+ },
+ {
+  "key": "DuchEtal11",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://www.jmlr.org/papers/v12/duchi11a.html",
+   "quote": "<meta name=\"citation_title\" content=\"Adaptive Subgradient Methods for Online Learning and Stochastic Optimization\">",
+   "why": "JMLR's own page: same title, authors, JMLR 12 2121-2159, 2011."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Adaptive subgradient methods for online learning and stochastic optimization",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v12/duchi11a.html",
+      "quote": "<meta name=\"citation_title\" content=\"Adaptive Subgradient Methods for Online Learning and Stochastic Optimization\">"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Duchi and E Hazan and Y Singer",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v12/duchi11a.html",
+      "quote": "<meta name=\"citation_author\" content=\"John Duchi\">"
+     },
+     {
+      "url": "https://www.jmlr.org/papers/v12/duchi11a.html",
+      "quote": "<meta name=\"citation_author\" content=\"Elad Hazan\">"
+     },
+     {
+      "url": "https://www.jmlr.org/papers/v12/duchi11a.html",
+      "quote": "<meta name=\"citation_author\" content=\"Yoram Singer\">"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Machine Learning Research",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v12/duchi11a.html",
+      "quote": "<meta name=\"citation_journal_title\" content=\"Journal of Machine Learning Research\">"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v12/duchi11a.html",
+      "quote": "<meta name=\"citation_publication_date\" content=\"2011\">"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v12/duchi11a.html",
+      "quote": "<meta name=\"citation_volume\" content=\"12\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2121--2159",
+    "evidence": [
+     {
+      "url": "https://www.jmlr.org/papers/v12/duchi11a.html",
+      "quote": "<meta name=\"citation_firstpage\" content=\"2121\">"
+     },
+     {
+      "url": "https://www.jmlr.org/papers/v12/duchi11a.html",
+      "quote": "<meta name=\"citation_lastpage\" content=\"2159\">"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match. JMLR assigns no DOIs; the citation_issue '61' is JMLR's paper number, not an issue, so no number field. The local DuchEtal10.pdf is the 2010 technical report, a different version."
+ }
+]

@@ -1,0 +1,1924 @@
+[
+ {
+  "key": "Gorm61",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0040561",
+   "quote": "\"title\":[\"Recognition memory for nouns as a function of abstractness and frequency.\"]",
+   "why": "Same author (Gorman), title (abstractness), J Exp Psychol 61, 1961, p. 23; PubMed 13707272 carries this DOI."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Recognition memory for nouns as a function of abstractness and frequency",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0040561",
+      "quote": "\"title\":[\"Recognition memory for nouns as a function of abstractness and frequency.\"]"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13707272/",
+      "quote": "Recognition memory for nouns as a function of abstractness and frequency."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A M Gorman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0040561",
+      "quote": "\"given\":\"Aloysia M.\",\"family\":\"Gorman\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13707272/",
+      "quote": "FAU - GORMAN, A M"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0040561",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1961",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0040561",
+      "quote": "\"issued\":{\"date-parts\":[[1961,1]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "61",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0040561",
+      "quote": "\"volume\":\"61\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "23--29",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0040561",
+      "quote": "\"page\":\"23-29\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13707272/",
+      "quote": "PG  - 23-9"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0040561",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0040561",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0040561.xml",
+      "quote": "<doi>10.1037/h0040561</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal was 'JEP: General' (founded 1975); in 1961 it was Journal of Experimental Psychology. Title typo 'abstractedness' -> 'abstractness'. End page 39 -> 29 (Crossref 23-29, PubMed 23-9)."
+ },
+ {
+  "key": "Hell62",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0043117",
+   "quote": "\"title\":[\"Supplementary report: Frequency of stimulus presentation and short-term decrement in recall.\"]",
+   "why": "Same author (S Hellyer), title, J Exp Psychol 64, 1962, p. 650; PubMed 13953638 carries this DOI."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Supplementary report: frequency of stimulus presentation and short-term decrement in recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0043117",
+      "quote": "\"title\":[\"Supplementary report: Frequency of stimulus presentation and short-term decrement in recall.\"]"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13953638/",
+      "quote": "Supplementary report: frequency of stimulus presentation and short-term decrement"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S Hellyer",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0043117",
+      "quote": "\"given\":\"S.\",\"family\":\"Hellyer\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13953638/",
+      "quote": "FAU - HELLYER, S"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0043117",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1962",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0043117",
+      "quote": "\"issued\":{\"date-parts\":[[1962,12]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "64",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0043117",
+      "quote": "\"volume\":\"64\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "650",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0043117",
+      "quote": "\"page\":\"650-650\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13953638/",
+      "quote": "PG  - 650"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0043117",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0043117",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0043117.xml",
+      "quote": "<doi>10.1037/h0043117</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal corrected to Journal of Experimental Psychology. The printed title carries the 'Supplementary report:' prefix (Crossref and PubMed); cdl.bib already keeps this prefix in other titles. Single-page article."
+ },
+ {
+  "key": "HintEtal73",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0033884",
+   "quote": "\"title\":[\"Contextual associations and memory for serial position.\"]",
+   "why": "Same three authors, J Exp Psychol 97(2), 1973, pp. 220-229."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Contextual associations and memory for serial position",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033884",
+      "quote": "\"title\":[\"Contextual associations and memory for serial position.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "D L Hintzman and R A Block and J J Summers",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033884",
+      "quote": "\"given\":\"Douglas L.\",\"family\":\"Hintzman\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033884",
+      "quote": "\"given\":\"Richard A.\",\"family\":\"Block\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033884",
+      "quote": "\"given\":\"Jeffery J.\",\"family\":\"Summers\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033884",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1973",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033884",
+      "quote": "\"issued\":{\"date-parts\":[[1973,2]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "97",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033884",
+      "quote": "\"volume\":\"97\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "220--229",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033884",
+      "quote": "\"page\":\"220-229\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033884",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0033884",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033884.xml",
+      "quote": "<doi>10.1037/h0033884</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title is 'serial position' (singular), not 'positions'. Journal corrected to Journal of Experimental Psychology. Authors reduced to house initials."
+ },
+ {
+  "key": "HoroIzaw63",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0048352",
+   "quote": "\"title\":[\"Comparison of serial and paired associate learning.\"]",
+   "why": "Same authors (Horowitz, Izawa), title, J Exp Psychol 65, 1963, pp. 352-361; PubMed 13954984 carries this DOI."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Comparison of serial and paired-associate learning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0048352",
+      "quote": "\"title\":[\"Comparison of serial and paired associate learning.\"]"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13954984/",
+      "quote": "Comparison of serial and paired-associate learning."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L M Horowitz and C Izawa",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0048352",
+      "quote": "\"given\":\"Leonard M.\",\"family\":\"Horowitz\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0048352",
+      "quote": "\"given\":\"Chizuko\",\"family\":\"Izawa\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13954984/",
+      "quote": "FAU - HOROWITZ, L M"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0048352",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1963",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0048352",
+      "quote": "\"published-print\":{\"date-parts\":[[1963]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "65",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0048352",
+      "quote": "\"volume\":\"65\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "352--361",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0048352",
+      "quote": "\"page\":\"352-361\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0048352",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0048352",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0048352.xml",
+      "quote": "<doi>10.1037/h0048352</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal corrected. Title hyphen 'paired-associate' as in PubMed (Crossref drops the hyphen)."
+ },
+ {
+  "key": "LevyNevi74",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0035879",
+   "quote": "\"title\":[\"B-A learning as a function of degree of A-B learning.\"]",
+   "why": "Same authors (Levy, Nevill), J Exp Psychol 102(2), 1974, pp. 327-329."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "{B-A} learning as a function of degree of {A-B} learning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0035879",
+      "quote": "\"title\":[\"B-A learning as a function of degree of A-B learning.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C M Levy and D D Nevill",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0035879",
+      "quote": "\"given\":\"C. Michael\",\"family\":\"Levy\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0035879",
+      "quote": "\"given\":\"Dorothy D.\",\"family\":\"Nevill\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0035879",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1974",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0035879",
+      "quote": "\"issued\":{\"date-parts\":[[1974,2]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "102",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0035879",
+      "quote": "\"volume\":\"102\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "327--329",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0035879",
+      "quote": "\"page\":\"327-329\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0035879",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0035879",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0035879.xml",
+      "quote": "<doi>10.1037/h0035879</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title typo 'degress' -> 'degree'. Journal corrected (JEP: General began 1975)."
+ },
+ {
+  "key": "Loes67",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0024787",
+   "quote": "\"title\":[\"Short-term memory, word class, and sequence of items.\"]",
+   "why": "Same author (Henry Loess), title, J Exp Psychol 74(4, Pt 1), 1967, pp. 556-561."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Short-term memory, word class, and sequence of items",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024787",
+      "quote": "\"title\":[\"Short-term memory, word class, and sequence of items.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "H Loess",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024787",
+      "quote": "\"given\":\"Henry\",\"family\":\"Loess\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024787",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1967",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024787",
+      "quote": "\"issued\":{\"date-parts\":[[1967]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "74",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024787",
+      "quote": "\"volume\":\"74\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "556--561",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024787",
+      "quote": "\"page\":\"556-561\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024787",
+      "quote": "\"issue\":\"4, Pt.1\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0024787",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024787.xml",
+      "quote": "<doi>10.1037/h0024787</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal corrected. Crossref issue is '4, Pt.1'; the cited number 4 is kept (reviewer may add ', Pt.1')."
+ },
+ {
+  "key": "MacLKamp96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
+   "quote": "\"title\":[\"Word frequency effects on recall, recognition, and word fragment completion tests.\"]",
+   "why": "Same authors, title, volume 22(1), pages 132-142, 1996."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Word frequency effects on recall, recognition, and word fragment completion tests",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
+      "quote": "\"title\":[\"Word frequency effects on recall, recognition, and word fragment completion tests.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "C M MacLeod and K E Kampe",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
+      "quote": "\"given\":\"Colin M.\",\"family\":\"MacLeod\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
+      "quote": "\"given\":\"Kristina E.\",\"family\":\"Kampe\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
+      "quote": "\"issued\":{\"date-parts\":[[1996]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
+      "quote": "\"volume\":\"22\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "132--142",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
+      "quote": "\"page\":\"132-142\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.22.1.132",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.22.1.132.xml",
+      "quote": "<doi>10.1037/0278-7393.22.1.132</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal is JEP: Learning, Memory, and Cognition, not JEP: General. Second author gains middle initial E (Kristina E. Kampe)."
+ },
+ {
+  "key": "Madi71",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0030549",
+   "quote": "\"title\":[\"Modality and recall order interactions in short-term memory for serial order.\"]",
+   "why": "Same title, J Exp Psychol 87(2), 1971, pp. 294-296; Crossref lists the author as \"Stephen A. Madigna\", a misspelling of Madigan."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Modality and recall order interactions in short-term memory for serial order",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030549",
+      "quote": "\"title\":[\"Modality and recall order interactions in short-term memory for serial order.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "S A Madigan",
+    "evidence": []
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030549",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1971",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030549",
+      "quote": "\"issued\":{\"date-parts\":[[1971,2]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "87",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030549",
+      "quote": "\"volume\":\"87\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "294--296",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030549",
+      "quote": "\"page\":\"294-296\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030549",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0030549",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030549.xml",
+      "quote": "<doi>10.1037/h0030549</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref (and OpenAlex, copying it) misspell the surname 'Madigna'; PsycNET is script-blocked and PubMed does not index this 1971 item, so the cited 'S A Madigan' is left unchanged (not_found, no change). Journal corrected."
+ },
+ {
+  "key": "Metc90",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145",
+   "quote": "\"title\":[\"Composite Holographic Associative Recall Model (CHARM) and blended memories in eyewitness testimony.\"]",
+   "why": "Same author (Janet Metcalfe), JEP: General 119(2), 1990, pp. 145-160; the cited title is the first part of the full title."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Composite holographic associative recall model ({CHARM}) and blended memories in eyewitness testimony",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145",
+      "quote": "\"title\":[\"Composite Holographic Associative Recall Model (CHARM) and blended memories in eyewitness testimony.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Metcalfe",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145",
+      "quote": "\"given\":\"Janet\",\"family\":\"Metcalfe\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: General",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology: General\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1990",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145",
+      "quote": "\"issued\":{\"date-parts\":[[1990]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "119",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145",
+      "quote": "\"volume\":\"119\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "145--160",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145",
+      "quote": "\"page\":\"145-160\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0096-3445.119.2.145",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.119.2.145.xml",
+      "quote": "<doi>10.1037/0096-3445.119.2.145</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title truncated in cdl.bib; full title restored. Not a duplicate of Metc82 (Metcalfe-Eich 1982, Psychological Review). Crossref also has a double-slash alias 10.1037//0096-3445.119.2.145; the single-slash DOI is used."
+ },
+ {
+  "key": "MeyeSchv71",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0031564",
+   "quote": "\"title\":[\"Facilitation in recognizing pairs of words: Evidence of a dependence between retrieval operations.\"]",
+   "why": "Same authors (Meyer, Schvaneveldt), J Exp Psychol 90(2), 1971, pp. 227-234."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Facilitation in recognizing pairs of words: evidence of a dependence between retrieval operations",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0031564",
+      "quote": "\"title\":[\"Facilitation in recognizing pairs of words: Evidence of a dependence between retrieval operations.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "D E Meyer and R W Schvaneveldt",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0031564",
+      "quote": "\"given\":\"David E.\",\"family\":\"Meyer\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0031564",
+      "quote": "\"given\":\"Roger W.\",\"family\":\"Schvaneveldt\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0031564",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1971",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0031564",
+      "quote": "\"issued\":{\"date-parts\":[[1971,10]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "90",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0031564",
+      "quote": "\"volume\":\"90\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "227--234",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0031564",
+      "quote": "\"page\":\"227-234\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0031564",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0031564",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0031564.xml",
+      "quote": "<doi>10.1037/h0031564</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title typo 'oparations' -> 'operations'. Journal corrected. Authors to house initials. Crossref print date 1971-10."
+ },
+ {
+  "key": "Murd56",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0044314",
+   "quote": "\"title\":[\"\\\"Backward\\\" learning in paired associates.\"]",
+   "why": "Same author (Bennet B. Murdock), title, J Exp Psychol 51(3), 1956, pp. 213-215; PubMed 13306866 carries this DOI."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Backward learning in paired associates",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044314",
+      "quote": "\"title\":[\"\\\"Backward\\\" learning in paired associates.\"]"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13306866/",
+      "quote": "Backward learning in paired associates."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B B Murdock",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044314",
+      "quote": "\"given\":\"Bennet B.\",\"family\":\"Murdock\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13306866/",
+      "quote": "FAU - MURDOCK, B B"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044314",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1956",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044314",
+      "quote": "\"issued\":{\"date-parts\":[[1956]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "51",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044314",
+      "quote": "\"volume\":\"51\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "213--215",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044314",
+      "quote": "\"page\":\"213-215\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044314",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0044314",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044314.xml",
+      "quote": "<doi>10.1037/h0044314</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal corrected. Crossref puts 'Backward' in quotation marks; PubMed does not; title kept. PubMed has suffix Jr, dropped per house rule."
+ },
+ {
+  "key": "NelsBord73",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0033901",
+   "quote": "\"title\":[\"Interference produced by phonetic similarities: Stimulus recognition, associative retrieval, or both?\"]",
+   "why": "Same authors (Nelson, Borden), title, J Exp Psychol 97(2), 1973, pp. 167-169."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Interference produced by phonetic similarities: stimulus recognition, associative retrieval, or both?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033901",
+      "quote": "\"title\":[\"Interference produced by phonetic similarities: Stimulus recognition, associative retrieval, or both?\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D L Nelson and R C Borden",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033901",
+      "quote": "\"given\":\"Douglas L.\",\"family\":\"Nelson\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033901",
+      "quote": "\"given\":\"Richard C.\",\"family\":\"Borden\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033901",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1973",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033901",
+      "quote": "\"issued\":{\"date-parts\":[[1973,2]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "97",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033901",
+      "quote": "\"volume\":\"97\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "167--169",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033901",
+      "quote": "\"page\":\"167-169\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033901",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0033901",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0033901.xml",
+      "quote": "<doi>10.1037/h0033901</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Volume '97(2)' split into volume 97 and number 2. Journal corrected."
+ },
+ {
+  "key": "Nils74",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0037406",
+   "quote": "\"title\":[\"Further evidence for organization by modality in immediate free recall.\"]",
+   "why": "Same author (Lars-Goran Nilsson), J Exp Psychol 103(5), 1974, pp. 948-957."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Further evidence for organization by modality in immediate free recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0037406",
+      "quote": "\"title\":[\"Further evidence for organization by modality in immediate free recall.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L-G Nilsson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0037406",
+      "quote": "\"given\":\"Lars-Goran\",\"family\":\"Nilsson\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0037406",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1974",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0037406",
+      "quote": "\"issued\":{\"date-parts\":[[1974,11]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "103",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0037406",
+      "quote": "\"volume\":\"103\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "948--957",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0037406",
+      "quote": "\"page\":\"948-957\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0037406",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0037406",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0037406.xml",
+      "quote": "<doi>10.1037/h0037406</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title is missing 'immediate'. Journal corrected (JEP: General began 1975). Crossref print date 1974-11."
+ },
+ {
+  "key": "NormWaug68",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0026637",
+   "quote": "\"title\":[\"Stimulus and response interference in recognition-memory experiments.\"]",
+   "why": "Same authors (Norman, Waugh), title, J Exp Psychol 78(4, Pt 1), 1968, pp. 551-559."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Stimulus and response interference in recognition-memory experiments",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0026637",
+      "quote": "\"title\":[\"Stimulus and response interference in recognition-memory experiments.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D A Norman and N C Waugh",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0026637",
+      "quote": "\"given\":\"Donald A.\",\"family\":\"Norman\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0026637",
+      "quote": "\"given\":\"Nancy C.\",\"family\":\"Waugh\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0026637",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1968",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0026637",
+      "quote": "\"issued\":{\"date-parts\":[[1968,12]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "78",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0026637",
+      "quote": "\"volume\":\"78\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "551--559",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0026637",
+      "quote": "\"page\":\"551-559\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4, Pt.1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0026637",
+      "quote": "\"issue\":\"4, Pt.1\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0026637",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0026637.xml",
+      "quote": "<doi>10.1037/h0026637</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal corrected. Number '4/1' meant issue 4 part 1; written as Crossref prints it ('4, Pt.1', a form cdl.bib already uses)."
+ },
+ {
+  "key": "PetePete59",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0049234",
+   "quote": "\"title\":[\"Short-term retention of individual verbal items.\"]",
+   "why": "Same authors, title, J Exp Psychol 58(3), 1959, pp. 193-198; PubMed 14432252 carries this DOI."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Short-term retention of individual verbal items",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0049234",
+      "quote": "\"title\":[\"Short-term retention of individual verbal items.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L R Peterson and M J Peterson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0049234",
+      "quote": "\"given\":\"Lloyd\",\"family\":\"Peterson\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0049234",
+      "quote": "\"given\":\"Margaret Jean\",\"family\":\"Peterson\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14432252/",
+      "quote": "FAU - PETERSON, L R"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0049234",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1959",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0049234",
+      "quote": "\"published-print\":{\"date-parts\":[[1959]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "58",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0049234",
+      "quote": "\"volume\":\"58\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "193--198",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0049234",
+      "quote": "\"page\":\"193-198\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0049234",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0049234",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0049234.xml",
+      "quote": "<doi>10.1037/h0049234</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal corrected. Crossref gives 'Lloyd' without the middle initial; PubMed gives L R, kept."
+ },
+ {
+  "key": "Pier63",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0044472",
+   "quote": "\"title\":[\"Some sources of artifact in studies of the tachistoscopic perception of words.\"]",
+   "why": "Same author (J Pierce), J Exp Psychol 66(4), 1963, pp. 363-370; PubMed 14053252 carries this DOI."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Some sources of artifact in studies of the tachistoscopic perception of words",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044472",
+      "quote": "\"title\":[\"Some sources of artifact in studies of the tachistoscopic perception of words.\"]"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14053252/",
+      "quote": "SOME SOURCES OF ARTIFACT IN STUDIES OF THE TACHISTOSCOPIC PERCEPTION OF WORDS."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Pierce",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044472",
+      "quote": "\"given\":\"Jan\",\"family\":\"Pierce\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14053252/",
+      "quote": "FAU - PIERCE, J"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044472",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1963",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044472",
+      "quote": "\"issued\":{\"date-parts\":[[1963,10]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "66",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044472",
+      "quote": "\"volume\":\"66\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "363--370",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044472",
+      "quote": "\"page\":\"363-370\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044472",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0044472",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0044472.xml",
+      "quote": "<doi>10.1037/h0044472</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title garbled in cdl.bib ('sources of the tachistophic'); corrected to 'studies of the tachistoscopic'. Journal corrected."
+ },
+ {
+  "key": "PostKepp77",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376",
+   "quote": "\"title\":[\"Conditions of cumulative proactive inhibition.\"]",
+   "why": "Same authors (Postman, Keppel), JEP: General 106(4), 1977, pp. 376-403."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Conditions of cumulative proactive inhibition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376",
+      "quote": "\"title\":[\"Conditions of cumulative proactive inhibition.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "L Postman and G Keppel",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376",
+      "quote": "\"given\":\"Leo\",\"family\":\"Postman\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376",
+      "quote": "\"given\":\"Geoffrey\",\"family\":\"Keppel\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Experimental Psychology: General",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology: General\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1977",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376",
+      "quote": "\"issued\":{\"date-parts\":[[1977,12]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "106",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376",
+      "quote": "\"volume\":\"106\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "376--403",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376",
+      "quote": "\"page\":\"376-403\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0096-3445.106.4.376",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.106.4.376.xml",
+      "quote": "<doi>10.1037/0096-3445.106.4.376</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Title had a spurious hyphen ('proactive-inhibition'). Journal correct for 1977. Crossref also has a double-slash alias DOI."
+ },
+ {
+  "key": "RaskCook37",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0061612",
+   "quote": "\"title\":[\"The strength and direction of associations formed in the learning of nonsense syllables.\"]",
+   "why": "Same title, surnames (Raskin, Cook), J Exp Psychol 20(4), 1937, pp. 381-395."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The strength and direction of associations formed in the learning of nonsense syllables",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0061612",
+      "quote": "\"title\":[\"The strength and direction of associations formed in the learning of nonsense syllables.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "E Raskin and S W Cook",
+    "evidence": []
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0061612",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1937",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0061612",
+      "quote": "\"issued\":{\"date-parts\":[[1937,4]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "20",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0061612",
+      "quote": "\"volume\":\"20\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "381--395",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0061612",
+      "quote": "\"page\":\"381-395\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0061612",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0061612",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0061612.xml",
+      "quote": "<doi>10.1037/h0061612</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Author: cdl.bib has 'Stuart W Cook'; Crossref prints 'Stuart A. Cook'. PsycNET is script-blocked and PubMed does not index it, so the middle initial is unresolved; author left unchanged (current value is the full names 'Evelyn Raskin and Stuart W Cook'). Journal corrected."
+ },
+ {
+  "key": "Sauf67",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0024706",
+   "quote": "\"title\":[\"An analysis of cues in serial learning.\"]",
+   "why": "Same author (William H. Saufley), title, J Exp Psychol 74(3), 1967, pp. 414-419."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "An analysis of cues in serial learning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024706",
+      "quote": "\"title\":[\"An analysis of cues in serial learning.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "W H Saufley",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024706",
+      "quote": "\"given\":\"William H.\",\"family\":\"Saufley\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024706",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1967",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024706",
+      "quote": "\"issued\":{\"date-parts\":[[1967]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "74",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024706",
+      "quote": "\"volume\":\"74\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "414--419",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024706",
+      "quote": "\"page\":\"414-419\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024706",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0024706",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0024706.xml",
+      "quote": "<doi>10.1037/h0024706</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal corrected. Author to house initials."
+ },
+ {
+  "key": "Slam68",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0025695",
+   "quote": "\"title\":[\"An examination of trace storage in free recall.\"]",
+   "why": "Same author (Norman J. Slamecka), title, J Exp Psychol 76(4, Pt 1), 1968, pp. 504-513."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "An examination of trace storage in free recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025695",
+      "quote": "\"title\":[\"An examination of trace storage in free recall.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "N J Slamecka",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025695",
+      "quote": "\"given\":\"Norman J.\",\"family\":\"Slamecka\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025695",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1968",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025695",
+      "quote": "\"issued\":{\"date-parts\":[[1968]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "76",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025695",
+      "quote": "\"volume\":\"76\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "504--513",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025695",
+      "quote": "\"page\":\"504-513\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025695",
+      "quote": "\"issue\":\"4, Pt.1\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0025695",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0025695.xml",
+      "quote": "<doi>10.1037/h0025695</doi>"
+     }
+    ]
+   }
+  },
+  "notes": "Journal corrected. Author to house initials. Crossref issue '4, Pt.1'; number 4 kept."
+ }
+]

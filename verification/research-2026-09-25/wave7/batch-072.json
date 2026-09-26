@@ -1,0 +1,1594 @@
+[
+ {
+  "key": "NeggEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16473025/",
+   "quote": "Interactions between ego- and allocentric neuronal representations of space.",
+   "why": "Same title, same four authors, NeuroImage 31(1) 320-331, 2006."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "S F W Neggers and R H J {Van der Lubbe} and N F Ramsey and A Postma",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16473025/",
+      "quote": "S F W Neggers, R H J Van der Lubbe, N F Ramsey, A Postma"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Interactions between ego- and allocentric neuronal representations of space",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16473025/",
+      "quote": "Interactions between ego- and allocentric neuronal representations of space."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "31",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16473025/",
+      "quote": "VI  - 31"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "320--331",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16473025/",
+      "quote": "PG  - 320-31"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16473025/",
+      "quote": "DP  - 2006 May 15"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2005.12.028",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16473025/",
+      "quote": "10.1016/j.neuroimage.2005.12.028 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16473025/",
+      "quote": "IP  - 1"
+     }
+    ]
+   }
+  },
+  "notes": "Title typo fixed (\"ofspace\" -> \"of space\"). Particle surname braced as {Van der Lubbe}, following the majority house form ({Van der Linden}, {van der Meer}); capital V as printed by PubMed and Crossref; initials unchanged. DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "PanEtal20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32068165/",
+   "quote": "Instructor-learner brain coupling discriminates between instructional approaches and predicts learning.",
+   "why": "Same title, same six authors, NeuroImage 211 116657, 2020."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "Y Pan and S Dikker and P Goldstein and Y Zhu and C Yang and Y Hu",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32068165/",
+      "quote": "Yafeng Pan, Suzanne Dikker, Pavel Goldstein, Yi Zhu, Cuirong Yang, Yi Hu"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Instructor-learner brain coupling discriminates between instructional approaches and predicts learning",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32068165/",
+      "quote": "Instructor-learner brain coupling discriminates between instructional approaches and predicts learning."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "211",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32068165/",
+      "quote": "VI  - 211"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "116657",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32068165/",
+      "quote": "PG  - 116657"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32068165/",
+      "quote": "DP  - 2020 May 1"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2020.116657",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32068165/",
+      "quote": "10.1016/j.neuroimage.2020.116657 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; only the DOI is added. A bioRxiv preprint (10.1101/704239) exists; the journal version is the one cited. No duplicate in cdl.bib."
+ },
+ {
+  "key": "PastEtal08a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18675917/",
+   "quote": "Oscillatory brain activity before and after an internal context change--evidence for a reset of encoding processes.",
+   "why": "Same title, same three authors, NeuroImage 43(1) 173-181, 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B Past\\\"{o}tter and K-H B\\\"{a}uml and S Hanslmayr",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18675917/",
+      "quote": "Bernhard Past&#xf6;tter, Karl-Heinz B&#xe4;uml, Simon Hanslmayr"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Oscillatory brain activity before and after an internal context change---evidence for a reset of encoding processes",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18675917/",
+      "quote": "Oscillatory brain activity before and after an internal context change--evidence for a reset of encoding processes."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "43",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18675917/",
+      "quote": "VI  - 43"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "173--181",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18675917/",
+      "quote": "PG  - 173-81"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18675917/",
+      "quote": "DP  - 2008 Oct 15"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2008.07.005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18675917/",
+      "quote": "10.1016/j.neuroimage.2008.07.005 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18675917/",
+      "quote": "IP  - 1"
+     }
+    ]
+   }
+  },
+  "notes": "Title: stray space and capital after the em dash removed (sentence case: \"---evidence\"); Crossref prints the dash as an em dash. Issue 1 added. DOI added."
+ },
+ {
+  "key": "PretEtal17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/28034766/",
+   "quote": "The dynamic functional connectome: State-of-the-art and perspectives.",
+   "why": "Same title, same three authors, NeuroImage 160 41-54, 2017."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M G Preti and T A W Bolton and D {Van De Ville}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28034766/",
+      "quote": "Maria Giulia Preti, Thomas Aw Bolton, Dimitri Van De Ville"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2016.12.061",
+      "quote": "\"given\":\"Thomas AW\",\"family\":\"Bolton\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The dynamic functional connectome: state-of-the-art and perspectives",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28034766/",
+      "quote": "The dynamic functional connectome: State-of-the-art and perspectives."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "160",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28034766/",
+      "quote": "VI  - 160"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "41--54",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28034766/",
+      "quote": "PG  - 41-54"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28034766/",
+      "quote": "DP  - 2017 Oct 15"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2016.12.061",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28034766/",
+      "quote": "10.1016/j.neuroimage.2016.12.061 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match (Crossref gives Bolton as \"Thomas AW\", supporting T A W). Print year 2017 (online Dec 2016). DOI added."
+ },
+ {
+  "key": "ReynEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15050572/",
+   "quote": "Item- and task-level processes in the left inferior prefrontal cortex: positive and negative correlates of encoding.",
+   "why": "Same title, same four authors, NeuroImage 21(4) 1472-1483, 2004."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J R Reynolds and D I Donaldson and A D Wagner and T S Braver",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15050572/",
+      "quote": "Jeremy R Reynolds, David I Donaldson, Anthony D Wagner, Todd S Braver"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Item- and task-level processes in the left inferior prefrontal cortex: positive and negative correlates of encoding",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15050572/",
+      "quote": "Item- and task-level processes in the left inferior prefrontal cortex: positive and negative correlates of encoding."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15050572/",
+      "quote": "VI  - 21"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1472--1483",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15050572/",
+      "quote": "PG  - 1472-83"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15050572/",
+      "quote": "DP  - 2004 Apr"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2003.10.033",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15050572/",
+      "quote": "10.1016/j.neuroimage.2003.10.033 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15050572/",
+      "quote": "IP  - 4"
+     }
+    ]
+   }
+  },
+  "notes": "Title: missing space restored (\"Item- and\"). First author initials written J R (queue shows \"JR\", HEAD shows \"J\"; source gives Jeremy R). DOI added."
+ },
+ {
+  "key": "RosbEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18955148/",
+   "quote": "Sensory gating in intracranial recordings--the role of phase locking.",
+   "why": "Same title, same six authors, NeuroImage 44(3) 1041-1049, 2009."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "T Rosburg and P Trautner and J Fell and K A Moxon and C E Elger and N N Boutros",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18955148/",
+      "quote": "Timm Rosburg, Peter Trautner, J&#xfc;rgen Fell, Karen Anne Moxon, Christian E Elger, Nash N Boutros"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Sensory gating in intracranial recordings---the role of phase locking",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18955148/",
+      "quote": "Sensory gating in intracranial recordings--the role of phase locking."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "44",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18955148/",
+      "quote": "VI  - 44"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1041--1049",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18955148/",
+      "quote": "PG  - 1041-9"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18955148/",
+      "quote": "DP  - 2009 Feb 1"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2008.09.035",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18955148/",
+      "quote": "10.1016/j.neuroimage.2008.09.035 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18955148/",
+      "quote": "IP  - 3"
+     }
+    ]
+   }
+  },
+  "notes": "Authors converted to house initials (queue had full given names; HEAD already has initials except Karen Anne Moxon -> K A Moxon). Title: stray space after the em dash removed. DOI added."
+ },
+ {
+  "key": "RuggEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10547329/",
+   "quote": "The role of the prefrontal cortex in recognition memory and memory for source: an fMRI study.",
+   "why": "Same title, same four authors, NeuroImage 10(5) 520-529, 1999."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M D Rugg and P C Fletcher and P M-L Chua and R J Dolan",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10547329/",
+      "quote": "M D Rugg, P C Fletcher, P M Chua, R J Dolan"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1006/nimg.1999.0488",
+      "quote": "\"given\":\"Phyllis M-L.\",\"family\":\"Chua\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The role of the prefrontal cortex in recognition memory and memory for source: an {fMRI} study",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10547329/",
+      "quote": "The role of the prefrontal cortex in recognition memory and memory for source: an fMRI study."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10547329/",
+      "quote": "VI  - 10"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "520--529",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10547329/",
+      "quote": "PG  - 520-9"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10547329/",
+      "quote": "DP  - 1999 Nov"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/nimg.1999.0488",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10547329/",
+      "quote": "10.1006/nimg.1999.0488 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10547329/",
+      "quote": "IP  - 5"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref prints Chua as \"Phyllis M-L.\", so the initials are hyphenated P M-L per house rule (PubMed truncates to P M). DOI added."
+ },
+ {
+  "key": "ShapEtal19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30753927/",
+   "quote": "Improved state change estimation in dynamic functional connectivity using hidden semi-Markov models.",
+   "why": "Same title, same four authors, NeuroImage 191 243-257, 2019."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "H Shappell and B S Caffo and J J Pekar and M A Lindquist",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30753927/",
+      "quote": "Heather Shappell, Brian S Caffo, James J Pekar, Martin A Lindquist"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Improved state change estimation in dynamic functional connectivity using hidden semi-{M}arkov models",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30753927/",
+      "quote": "Improved state change estimation in dynamic functional connectivity using hidden semi-Markov models."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "191",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30753927/",
+      "quote": "VI  - 191"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "243--257",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30753927/",
+      "quote": "PG  - 243-257"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30753927/",
+      "quote": "DP  - 2019 May 1"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2019.02.013",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30753927/",
+      "quote": "10.1016/j.neuroimage.2019.02.013 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. A bioRxiv preprint (10.1101/519868) exists; the journal version is cited."
+ },
+ {
+  "key": "TurkEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23108276/",
+   "quote": "Complementary attentional components of successful memory encoding.",
+   "why": "Same title, Turk-Browne, Golomb and Chun, NeuroImage 66 553-562, 2013."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "N B Turk-Browne and J D Golomb and M M Chun",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23108276/",
+      "quote": "Nicholas B Turk-Browne, Julie D Golomb, Marvin M Chun"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Complementary attentional components of successful memory encoding",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23108276/",
+      "quote": "Complementary attentional components of successful memory encoding."
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "66",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23108276/",
+      "quote": "VI  - 66"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "553--562",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23108276/",
+      "quote": "PG  - 553-62"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23108276/",
+      "quote": "DP  - 2013 Feb 1"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2012.10.053",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23108276/",
+      "quote": "10.1016/j.neuroimage.2012.10.053 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Third author surname typo fixed (Chine -> Chun). Volume and pages added (entry had none). Print year 2013 (online Oct 2012). DOI added."
+ },
+ {
+  "key": "WaltEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18329905/",
+   "quote": "Distinguishing specific sexual and general emotional effects in fMRI-subcortical and cortical arousal during erotic picture viewing.",
+   "why": "Same title, same nine authors, NeuroImage 40(4) 1482-1494, 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M Walter and F Bermpohl and H Mouras and K Schiltz and C Tempelmann and M Rotte and H J Heinze and B Bogerts and G Northoff",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18329905/",
+      "quote": "Martin Walter, Felix Bermpohl, Harold Mouras, Kolja Schiltz, Claus Tempelmann, Michael Rotte, Hans Jochen Heinze, Bernhard Bogerts, Georg Northoff"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Distinguishing specific sexual and general emotional effects in {fMRI}---subcortical and cortical arousal during erotic picture viewing",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18329905/",
+      "quote": "Distinguishing specific sexual and general emotional effects in fMRI-subcortical and cortical arousal during erotic picture viewing."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "40",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18329905/",
+      "quote": "VI  - 40"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1482--1494",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18329905/",
+      "quote": "PG  - 1482-94"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18329905/",
+      "quote": "DP  - 2008 May 1"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2008.01.040",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18329905/",
+      "quote": "10.1016/j.neuroimage.2008.01.040 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18329905/",
+      "quote": "IP  - 4"
+     }
+    ]
+   }
+  },
+  "notes": "Title: stray space after the em dash removed (Crossref prints \"fMRI—Subcortical\"). DOI added."
+ },
+ {
+  "key": "WyliEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/14683733/",
+   "quote": "Task switching: a high-density electrical mapping study.",
+   "why": "Same title, same three authors, NeuroImage 20(4) 2322-2342, 2003."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "G R Wylie and D C Javitt and J J Foxe",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14683733/",
+      "quote": "G R Wylie, D C Javitt, J J Foxe"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Task switching: a high-density electrical mapping study",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14683733/",
+      "quote": "Task switching: a high-density electrical mapping study."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "20",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14683733/",
+      "quote": "VI  - 20"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2322--2342",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14683733/",
+      "quote": "PG  - 2322-42"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14683733/",
+      "quote": "DP  - 2003 Dec"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2003.08.010",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14683733/",
+      "quote": "10.1016/j.neuroimage.2003.08.010 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14683733/",
+      "quote": "IP  - 4"
+     }
+    ]
+   }
+  },
+  "notes": "Issue 4 added; DOI added. Crossref also holds a stub DOI 10.1016/s1053-8119(03)00504-4 (same PII S1053811903005044, no volume/pages, one author); use the complete 10.1016/j.neuroimage.2003.08.010, which PubMed lists."
+ },
+ {
+  "key": "vanGEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
+   "quote": "Decoding the memorization of individual stimuli with direct human brain recordings.",
+   "why": "The only 2013 NeuroImage paper by exactly these eight authors in this order (van Gerven, Maris, Sperling, Sharan, Litt, Anderson, Baltuch, Jacobs); the cited title matches no published record."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M {{van} Gerven} and E Maris and M Sperling and A Sharan and B Litt and C Anderson and G Baltuch and J Jacobs",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
+      "quote": "Marcel A J van Gerven, Eric Maris, Michael Sperling, Ashwini Sharan, Brian Litt, Christopher Anderson, Gordon Baltuch, Joshua Jacobs"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Decoding the memorization of individual stimuli with direct human brain recordings",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
+      "quote": "Decoding the memorization of individual stimuli with direct human brain recordings."
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "70",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
+      "quote": "VI  - 70"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "223--232",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
+      "quote": "PG  - 223-32"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
+      "quote": "DP  - 2013 Apr 15"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2012.12.059",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23298746/",
+      "quote": "10.1016/j.neuroimage.2012.12.059 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "REVIEW: the cited title \"Multivariate encoding of letter representations from ECoG signals\" was not found anywhere (Europe PMC search for \"letter representations\" AND ECoG returns only an unrelated 2020 paper; author search returns only this paper); it looks like a working title. Identity rests on the identical eight-author list, year and journal; the published paper decodes individually viewed stimuli (letters) in a working-memory task. Title, volume 70 and pages 223--232 added from PubMed; DOI added. Author field left as is: per the extra rule, no initials (A J) added to the braced particle surname; the odd {{van} Gerven} bracing is left for a house-form decision ({van Gerven} would match {van der Meer}). No duplicate of the published title in cdl.bib."
+ },
+ {
+  "key": "CheuChan03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12634486/",
+   "quote": "Memory impairment in humans after bilateral damage to lateral temporal neocortex.",
+   "why": "Same title, same two authors, NeuroReport 14(3) 371-374, 2003."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M-C Cheung and A S Chan",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12634486/",
+      "quote": "Mei-Chun Cheung, Agnes S Chan"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Memory impairment in humans after bilateral damage to lateral temporal neocortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12634486/",
+      "quote": "Memory impairment in humans after bilateral damage to lateral temporal neocortex."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12634486/",
+      "quote": "VI  - 14"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "371--374",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12634486/",
+      "quote": "PG  - 371-4"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12634486/",
+      "quote": "DP  - 2003 Mar 3"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1097/00001756-200303030-00015",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12634486/",
+      "quote": "10.1097/00001756-200303030-00015 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12634486/",
+      "quote": "IP  - 3"
+     }
+    ]
+   }
+  },
+  "notes": "Pages completed (371 -> 371--374). First author given name Mei-Chun, so hyphenated initials M-C per house rule. DOI added."
+ },
+ {
+  "key": "GoldEtal02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12499854/",
+   "quote": "Simultaneous EEG and fMRI of the alpha rhythm.",
+   "why": "Same title, same four authors, NeuroReport 13(18) 2487-2492, 2002."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "R I Goldman and J M Stern and J Engel and M S Cohen",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12499854/",
+      "quote": "Robin I Goldman, John M Stern, Jerome Engel, Mark S Cohen"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Simultaneous {EEG} and {fMRI} of the alpha rhythm",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12499854/",
+      "quote": "Simultaneous EEG and fMRI of the alpha rhythm."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12499854/",
+      "quote": "VI  - 13"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2487--2492",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12499854/",
+      "quote": "PG  - 2487-92"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12499854/",
+      "quote": "DP  - 2002 Dec 20"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1097/00001756-200212200-00022",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1097/00001756-200212200-00022",
+      "quote": "\"DOI\":\"10.1097\\/00001756-200212200-00022\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12499854/",
+      "quote": "IP  - 18"
+     }
+    ]
+   }
+  },
+  "notes": "Name suffix dropped per house rule ({Engel Jr} -> Engel; PubMed gives Suffix Jr). House writes this author as plain \"J Engel\" elsewhere. DOI added: Crossref primary DOI 10.1097/00001756-200212200-00022; PubMed lists the alias 10.1097/01.wnr.0000047685.08940.d0, which Crossref resolves to the same record."
+ },
+ {
+  "key": "LeVaEtal97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9189918/",
+   "quote": "Temporal patterns in human epileptic activity are modulated by perceptual discriminations.",
+   "why": "Same title, same seven authors, NeuroReport 8(7) 1703-1710, 1997."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M {Le Van Quyen} and C Adam and J-P Lachaux and J Martinerie and M Baulac and B Renault and F J Varela",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9189918/",
+      "quote": "M Le Van Quyen, C Adam, J P Lachaux, J Martinerie, M Baulac, B Renault, F J Varela"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1097/00001756-199705060-00028",
+      "quote": "\"given\":\"Jean-Philippe\",\"family\":\"Lachaux\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Temporal patterns in human epileptic activity are modulated by perceptual discriminations",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9189918/",
+      "quote": "Temporal patterns in human epileptic activity are modulated by perceptual discriminations."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9189918/",
+      "quote": "VI  - 8"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1703--1710",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9189918/",
+      "quote": "PG  - 1703-10"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9189918/",
+      "quote": "DP  - 1997 May 6"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1097/00001756-199705060-00028",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9189918/",
+      "quote": "10.1097/00001756-199705060-00028 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9189918/",
+      "quote": "IP  - 7"
+     }
+    ]
+   }
+  },
+  "notes": "Pages completed (1703 -> 1703--1710). Lachaux is Jean-Philippe (Crossref), so J-P per house rule. DOI added."
+ },
+ {
+  "key": "LegaEtal11a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+   "quote": "Neuronal and oscillatory activity during reward processing in the human ventral striatum.",
+   "why": "Same title, same five authors, NeuroReport 22(16) 795-800, 2011."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B C Lega and M J Kahana and J L Jaggi and G H Baltuch and K A Zaghloul",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+      "quote": "Bradley C Lega, Michael J Kahana, Jurg Jaggi, Gordon H Baltuch, Kareem Zaghloul"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Neuronal and oscillatory activity during reward processing in the human ventral striatum",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+      "quote": "Neuronal and oscillatory activity during reward processing in the human ventral striatum."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+      "quote": "VI  - 22"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "795--800",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+      "quote": "PG  - 795-800"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+      "quote": "DP  - 2011 Nov 16"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1097/wnr.0b013e32834b2975",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+      "quote": "10.1097/wnr.0b013e32834b2975 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+      "quote": "IP  - 16"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added (lowercased). Middle initials J L Jaggi and K A Zaghloul are not printed by PubMed/Crossref but kept (never drop an initial a source merely omits)."
+ },
+ {
+  "key": "NakaEtal92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/1611028/",
+   "quote": "Oscillatory neuronal activity related to visual short-term memory in monkey temporal pole.",
+   "why": "Same title, same three authors, NeuroReport 3(1) 117-120, 1992."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K Nakamura and A Mikami and K Kubota",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1611028/",
+      "quote": "K Nakamura, A Mikami, K Kubota"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Oscillatory neuronal activity related to visual short-term memory in monkey temporal pole",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1611028/",
+      "quote": "Oscillatory neuronal activity related to visual short-term memory in monkey temporal pole."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1611028/",
+      "quote": "VI  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "117--120",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1611028/",
+      "quote": "PG  - 117-20"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1611028/",
+      "quote": "DP  - 1992 Jan"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1097/00001756-199201000-00031",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1611028/",
+      "quote": "10.1097/00001756-199201000-00031 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1611028/",
+      "quote": "IP  - 1"
+     }
+    ]
+   }
+  },
+  "notes": "Issue 1 added; DOI added. Crossref gives only first page 117; PubMed gives 117-20."
+ },
+ {
+  "key": "RadfEtal19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+   "quote": "Language Models are Unsupervised Multitask Learners",
+   "why": "The OpenAI GPT-2 report itself: same title and the six authors Radford, Wu, Child, Luan, Amodei, Sutskever."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "techreport",
+    "evidence": [
+     {
+      "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+      "quote": "Equal contribution 1 OpenAI, San Francisco"
+     }
+    ]
+   },
+   "institution": {
+    "status": "corrected",
+    "value": "{OpenAI}",
+    "evidence": [
+     {
+      "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+      "quote": "Equal contribution 1 OpenAI, San Francisco"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Radford and J Wu and R Child and D Luan and D Amodei and I Sutskever",
+    "evidence": [
+     {
+      "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+      "quote": "Alec Radford * 1 Jeffrey Wu * 1 Rewon Child 1 David Luan 1 Dario Amodei ** 1 Ilya Sutskever ** 1"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Language models are unsupervised multitask learners",
+    "evidence": [
+     {
+      "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+      "quote": "Language Models are Unsupervised Multitask Learners"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/openai/gpt-2/master/README.md",
+      "quote": "title={Language Models are Unsupervised Multitask Learners}"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/openai/gpt-2/master/README.md",
+      "quote": "year={2019}"
+     }
+    ]
+   }
+  },
+  "notes": "Not a journal article: an unreviewed OpenAI technical report (PDF on cdn.openai.com, released with the Feb 2019 GPT-2 blog post). \"OpenAI Blog\" volume 1 number 8 is a Google Scholar artefact with no source. Proposed @techreport with Institution {OpenAI}, as cdl.bib does for other reports (e.g. Alva02, WolzEtal88); journal, volume and number removed. Year 2019 from the authors' own citation block in the openai/gpt-2 README (the PDF prints no date). No DOI exists. No duplicate in cdl.bib.",
+  "remove": [
+   "journal",
+   "volume",
+   "number"
+  ]
+ },
+ {
+  "key": "BarrEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/29965966/",
+   "quote": "Nonmonotonic recruitment of ventromedial prefrontal cortex during remote memory recall.",
+   "why": "Same title, same three authors, PLoS Biology 16(7) e2005479, 2018."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D N Barry and M J Chadwick and E A Maguire",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29965966/",
+      "quote": "Daniel N Barry, Martin J Chadwick, Eleanor A Maguire"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Nonmonotonic recruitment of ventromedial prefrontal cortex during remote memory recall",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29965966/",
+      "quote": "Nonmonotonic recruitment of ventromedial prefrontal cortex during remote memory recall."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29965966/",
+      "quote": "VI  - 16"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e2005479",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29965966/",
+      "quote": "PG  - e2005479"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29965966/",
+      "quote": "DP  - 2018 Jul"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pbio.2005479",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29965966/",
+      "quote": "10.1371/journal.pbio.2005479 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29965966/",
+      "quote": "IP  - 7"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. A bioRxiv preprint (10.1101/202689) exists; the journal version is cited."
+ },
+ {
+  "key": "DehaChan06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
+   "quote": "Ongoing spontaneous activity controls access to consciousness: a neuronal model for inattentional blindness.",
+   "why": "Same title, same two authors, PLoS Biology 3(5) e141; published 2005, not 2006."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Dehaene and J-P Changeux",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
+      "quote": "Stanislas Dehaene, Jean-Pierre Changeux"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Ongoing spontaneous activity controls access to consciousness: a neuronal model for inattentional blindness",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
+      "quote": "Ongoing spontaneous activity controls access to consciousness: a neuronal model for inattentional blindness."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
+      "quote": "VI  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e141",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
+      "quote": "PG  - e141"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
+      "quote": "DP  - 2005 May"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pbio.0030141",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
+      "quote": "10.1371/journal.pbio.0030141 [doi]"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15819609/",
+      "quote": "IP  - 5"
+     }
+    ]
+   }
+  },
+  "notes": "Year corrected 2006 -> 2005 (volume 3 issue 5 is May 2005; Crossref issued 2005-04-12). Key becomes DehaChan05, which is free in cdl.bib (no collision, no duplicate of this title). Title typo fixed (\"spontaenous\" -> \"spontaneous\"). DOI added.",
+  "rename": "DehaChan05"
+ }
+]

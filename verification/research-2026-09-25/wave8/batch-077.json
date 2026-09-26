@@ -1,0 +1,1348 @@
+[
+ {
+  "key": "HastEtal01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001031433&maximumRecords=1&recordSchema=mods",
+   "quote": "Trevor Hastie, Robert Tibshirani, Jerome Friedman.",
+   "why": "LoC LCCN 2001031433: The elements of statistical learning: data mining, inference, and prediction, Hastie/Tibshirani/Friedman, New York: Springer, c2001 (1st ed.); Springer DOI 10.1007/978-0-387-21606-5 is this 2001 edition."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The elements of statistical learning: data mining, inference, and prediction",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-21606-5",
+      "quote": "\"title\":[\"The Elements of Statistical Learning\""
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001031433&maximumRecords=1&recordSchema=mods",
+      "quote": "data mining, inference, and prediction"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "T Hastie and R Tibshirani and J H Friedman",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001031433&maximumRecords=1&recordSchema=mods",
+      "quote": "Hastie, Trevor."
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001031433&maximumRecords=1&recordSchema=mods",
+      "quote": "Tibshirani, Robert."
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001031433&maximumRecords=1&recordSchema=mods",
+      "quote": "Friedman, J. H. (Jerome H.)"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001031433&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Springer</namePart>"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-21606-5",
+      "quote": "\"publisher-location\":\"New York, NY\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2001031433&maximumRecords=1&recordSchema=mods",
+      "quote": "c2001"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-21606-5",
+      "quote": "\"published-print\":{\"date-parts\":[[2001]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-0-387-21606-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-21606-5",
+      "quote": "\"DOI\":\"10.1007\\/978-0-387-21606-5\""
+     }
+    ]
+   }
+  },
+  "notes": "First edition (2001); a 2nd ed. (2009, LCCN 2008941148) exists and is a different version. Middle initial H from the LoC name heading \"Friedman, J. H. (Jerome H.)\"; house already writes J H Friedman elsewhere. DOI handle resolves (200); Crossref record is Springer New York 2001 book by Hastie, Friedman, Tibshirani. No duplicate in cdl.bib; key unchanged."
+ },
+ {
+  "key": "Vapn95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95024205&maximumRecords=1&recordSchema=mods",
+   "quote": "Vladimir N. Vapnik.",
+   "why": "LoC LCCN 95024205: The nature of statistical learning theory, Vapnik, New York: Springer, c1995 (1st ed.); DOI 10.1007/978-1-4757-2440-0 is the 1995 Springer book."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "V N Vapnik",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95024205&maximumRecords=1&recordSchema=mods",
+      "quote": "Vladimir N. Vapnik."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4757-2440-0",
+      "quote": "\"given\":\"Vladimir N.\",\"family\":\"Vapnik\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The nature of statistical learning theory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4757-2440-0",
+      "quote": "\"title\":[\"The Nature of Statistical Learning Theory\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95024205&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Springer</namePart>"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4757-2440-0",
+      "quote": "\"publisher-location\":\"New York, NY\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95024205&maximumRecords=1&recordSchema=mods",
+      "quote": "c1995"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4757-2440-0",
+      "quote": "\"published-print\":{\"date-parts\":[[1995]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-1-4757-2440-0",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4757-2440-0",
+      "quote": "\"DOI\":\"10.1007\\/978-1-4757-2440-0\""
+     }
+    ]
+   }
+  },
+  "notes": "Surname misspelt \"Vapnick\" in cdl.bib; correct spelling Vapnik (key Vapn95 unchanged). 2nd ed. is 2000 (LCCN 99039803), a different version. DOI handle resolves. No duplicate in cdl.bib (CortVapn95 is the SVM article)."
+ },
+ {
+  "key": "VenaRipl02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2002022925&maximumRecords=1&recordSchema=mods",
+   "quote": "W.N. Venables, B.D. Ripley.",
+   "why": "LoC LCCN 2002022925: Modern applied statistics with S, 4th ed., New York: Springer, c2002; DOI 10.1007/978-0-387-21706-2 is this 2002 book."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "W N Venables and B D Ripley",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-21706-2",
+      "quote": "\"given\":\"W. N.\",\"family\":\"Venables\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-21706-2",
+      "quote": "\"given\":\"B. D.\",\"family\":\"Ripley\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Modern applied statistics with {S}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2002022925&maximumRecords=1&recordSchema=mods",
+      "quote": "Modern applied statistics with S"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "4\\textsuperscript{th}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2002022925&maximumRecords=1&recordSchema=mods",
+      "quote": "<edition>4th ed.</edition>"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2002022925&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Springer</namePart>"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-21706-2",
+      "quote": "\"publisher-location\":\"New York, NY\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2002022925&maximumRecords=1&recordSchema=mods",
+      "quote": "c2002"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-0-387-21706-2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-21706-2",
+      "quote": "\"DOI\":\"10.1007\\/978-0-387-21706-2\""
+     }
+    ]
+   }
+  },
+  "notes": "The 2002 title is the 4th edition (earlier editions titled \"...with S-PLUS\", 1994/1997/1999). DOI handle resolves. No duplicate."
+ },
+ {
+  "key": "Wear16",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2016938827&maximumRecords=1&recordSchema=mods",
+   "quote": "John Wearden.",
+   "why": "LoC LCCN 2016938827: The psychology of time perception, John Wearden, [London]: Palgrave Macmillan, [2016]; DOI 10.1057/978-1-137-40883-9 is the same book."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Wearden",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2016938827&maximumRecords=1&recordSchema=mods",
+      "quote": "John Wearden."
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The psychology of time perception",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1057/978-1-137-40883-9",
+      "quote": "\"title\":[\"The Psychology of Time Perception\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Palgrave Macmillan",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2016938827&maximumRecords=1&recordSchema=mods",
+      "quote": "Palgrave Macmillan,"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "London, {UK}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1057/978-1-137-40883-9",
+      "quote": "\"publisher-location\":\"London\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2016938827&maximumRecords=1&recordSchema=mods",
+      "quote": "[2016]"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1057/978-1-137-40883-9",
+      "quote": "\"published-print\":{\"date-parts\":[[2016]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1057/978-1-137-40883-9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1057/978-1-137-40883-9",
+      "quote": "\"DOI\":\"10.1057\\/978-1-137-40883-9\""
+     }
+    ]
+   }
+  },
+  "notes": "Publisher is Palgrave Macmillan (London), not Springer (Palgrave is now part of Springer Nature, but the book was issued under the Palgrave imprint). DOI handle resolves. No duplicate."
+ },
+ {
+  "key": "HawkBlak05",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2004051640&maximumRecords=1&recordSchema=mods",
+   "quote": "Jeff Hawkins with Sandra Blakeslee.",
+   "why": "LoC LCCN 2004051640: On intelligence, Hawkins with Blakeslee, New York: Times Books, 2004, 1st ed."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Hawkins and S Blakeslee",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2004051640&maximumRecords=1&recordSchema=mods",
+      "quote": "Hawkins, Jeff,"
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2004051640&maximumRecords=1&recordSchema=mods",
+      "quote": "Blakeslee, Sandra."
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "On intelligence",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2004051640&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>On intelligence</title>"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "St. Martin's Griffin"
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "2005"
+   }
+  },
+  "notes": "The first edition is New York: Times Books, 2004 (LoC). The 2005 paperback (ISBN 0805078533) is recorded by Open Library (OL7933130M, Amazon-derived) as Holt Paperbacks, July 14, 2005; no catalogue record found for a 2005 St. Martin's Griffin issue (LoC, Harvard LibraryCloud, Open Library checked; Macmillan page blocked). Options: (a) cite the 2004 Times Books first edition (key would become HawkBlak04; no such key in cdl.bib), or (b) keep the 2005 paperback with publisher Holt Paperbacks. Reviewer choice; nothing changed."
+ },
+ {
+  "key": "Este59",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+   "quote": "edited by Robert R. Bush and William K. Estes.",
+   "why": "LoC LCCN 59007672: Studies in mathematical learning theory, ed. Bush and Estes, Stanford University Press, 1959 -- the volume the cited title names; Estes's paper is a chapter in it."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "W K Estes",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+      "quote": "Estes, William K. (William Kaye)"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Stanford {University} Press",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+      "quote": "Stanford University Press"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Stanford, {CA}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+      "quote": "Stanford, Calif"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1959",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>1959</dateIssued>"
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "Component and pattern models with {M}arkovian interpretations"
+   }
+  },
+  "notes": "The entry runs a chapter title and its book title together. It should be @incollection: Booktitle = {Studies in Mathematical Learning Theory}, Editor = {R R Bush and W K Estes} (both confirmed by LoC LCCN 59007672: 'edited by Robert R. Bush and William K. Estes'), Publisher/Address/Year as above, Title = {Component and pattern models with {M}arkovian interpretations}, and pages (commonly given as 9--52). The chapter title and pages could not be confirmed from a script-fetchable source: the Internet Archive copy (studiesinmathema0000robe_b6v2) is lending-restricted, and LoC/Harvard/Open Library records carry no chapter-level contents."
+ },
+ {
+  "key": "Aust14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=06015461&maximumRecords=1&recordSchema=mods",
+   "quote": "Printed for T. Egerton, Military Library, Whitehall,",
+   "why": "LoC LCCN 06015461: Mansfield Park: a novel, in three volumes, London: T. Egerton, 1814 (first edition), by Jane Austen."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Austen",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=06015461&maximumRecords=1&recordSchema=mods",
+      "quote": "Austen, Jane,"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{Mansfield} {Park}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=06015461&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>Mansfield Park</title>"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "T Egerton",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=06015461&maximumRecords=1&recordSchema=mods",
+      "quote": "Printed for T. Egerton"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "London, {UK}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=06015461&maximumRecords=1&recordSchema=mods",
+      "quote": "London :"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1814",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=06015461&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>1814.</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "First edition, 3 volumes, published anonymously (\"by the author of Sense and sensibility...\"); author from LoC heading. Adds address London. No DOI (crossref hit 10.1093/oseo/... is a modern Oxford Scholarly Editions text, a different work). No duplicate."
+ },
+ {
+  "key": "Ebbi85",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/10011-000",
+   "quote": "\"title\":[\"Memory: A contribution to experimental psychology.\"",
+   "why": "APA PsycBooks record 10.1037/10011-000: Ebbinghaus, Memory: a contribution to experimental psychology, tr. Ruger and Bussenius, New York: Teachers College, 1913 -- the English translation whose publisher and address the entry uses."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "H Ebbinghaus",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10011-000",
+      "quote": "\"given\":\"Hermann\",\"family\":\"Ebbinghaus\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Memory: a contribution to experimental psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10011-000",
+      "quote": "\"title\":[\"Memory: A contribution to experimental psychology.\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10011-000",
+      "quote": "\"publisher-location\":\"New York\""
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "1885"
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/10011-000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/10011-000",
+      "quote": "\"DOI\":\"10.1037\\/10011-000\""
+     }
+    ]
+   }
+  },
+  "notes": "The entry mixes two works: year 1885 is the German original (Über das Gedächtnis, Leipzig: Duncker & Humblot), while the English title, publisher (Teachers College, Columbia University) and New York address belong to the 1913 Ruger & Bussenius translation (DOI 10.1037/10011-000, Crossref published 1913; title is 'Memory', not 'On memory'). A translation is a different work, so reviewer must choose: (a) keep the 1885 original (then title/publisher/address change to the German edition), or (b) cite the 1913 translation: Year 1913, Title as above, Doi 10.1037/10011-000, key becomes Ebbi13 (no such key in cdl.bib; this key is widely cited, so renaming affects papers). No duplicate of either version in cdl.bib."
+ },
+ {
+  "key": "Thor13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/13051-000",
+   "quote": "\"title\":[\"Educational psychology, Vol 2: The psychology of learning.\"",
+   "why": "APA PsycBooks DOI 10.1037/13051-000 (the entry's own DOI): Thorndike, Educational psychology, Vol 2: The psychology of learning, New York: Teachers College, 1913; LoC LCCN 13014278 is the 3-volume set, 1913-14."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E L Thorndike",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/13051-000",
+      "quote": "\"given\":\"Edward L.\",\"family\":\"Thorndike\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Educational psychology: the psychology of learning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/13051-000",
+      "quote": "\"title\":[\"Educational psychology, Vol 2: The psychology of learning.\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/13051-000",
+      "quote": "Educational psychology, Vol 2"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Teachers College, Columbia {University}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=13014278&maximumRecords=1&recordSchema=mods",
+      "quote": "Teachers college, Columbia university"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=13014278&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/13051-000",
+      "quote": "\"publisher-location\":\"New York\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1913",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/13051-000",
+      "quote": "\"published-print\":{\"date-parts\":[[1913]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.1037/13051-000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/13051-000",
+      "quote": "\"DOI\":\"10.1037\\/13051-000\""
+     }
+    ]
+   }
+  },
+  "notes": "Adds address. Volume 2 of the 1913-14 three-volume Educational psychology. DOI handle resolves. No duplicate."
+ },
+ {
+  "key": "Robi32",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/11455-000",
+   "quote": "\"title\":[\"Association theory to-day: An essay in systematic psychology.\"",
+   "why": "APA PsycBooks DOI 10.1037/11455-000: Robinson, Association theory to-day: an essay in systematic psychology, The Century Co, 1932; LoC LCCN 32007368 same book, New York: The Century co., c1932."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E S Robinson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/11455-000",
+      "quote": "\"given\":\"Edward S.\",\"family\":\"Robinson\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Association theory to-day: an essay in systematic psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/11455-000",
+      "quote": "\"title\":[\"Association theory to-day: An essay in systematic psychology.\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "The Century Co",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=32007368&maximumRecords=1&recordSchema=mods",
+      "quote": "The Century co."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/11455-000",
+      "quote": "\"publisher\":\"The Century Co\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=32007368&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1932",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=32007368&maximumRecords=1&recordSchema=mods",
+      "quote": "[c1932]"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/11455-000",
+      "quote": "\"published-print\":{\"date-parts\":[[1932]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/11455-000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/11455-000",
+      "quote": "\"DOI\":\"10.1037\\/11455-000\""
+     }
+    ]
+   }
+  },
+  "notes": "Semicolon in title replaced by colon (house subtitle form). Publisher printed \"The Century co.\" (LoC) and \"The Century Co\" (Crossref); the entry's expanded \"The Century Company\" is not the printed form. DOI handle resolves. 1964 Hafner reprint (LCCN 63018174) is a different version. No duplicate."
+ },
+ {
+  "key": "Wern84",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
+   "quote": "Theü  I. \nPsycho  -  physiologische  Einleitung",
+   "why": "Internet Archive scan (Harvard Medical School copy) of Wernicke, Grundriss der Psychiatrie in klinischen Vorlesungen, binding Theil I with its own title page: Psycho-physiologische Einleitung, Leipzig: Georg Thieme, 1894."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C Wernicke",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
+      "quote": "Dr.  C.  Wernicke"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Grundriss der {Psychiatrie} in klinischen {Vorlesungen}: {Psycho-physiologische} {Einleitung}",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
+      "quote": "Grundriss  der  Psychiatrie"
+     },
+     {
+      "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
+      "quote": "klinischen   Vorlesungen"
+     },
+     {
+      "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
+      "quote": "Psycho  -  physiologische  Einleitung"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Georg Thieme",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
+      "quote": "Verlag  von  Georg  Thieme. \n1894."
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "1894",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
+      "quote": "Breslau,  im  August  1894."
+     }
+    ]
+   }
+  },
+  "notes": "Year 1984 is a typo for 1894: Theil I (Psycho-physiologische Einleitung) was issued by Georg Thieme, Leipzig, 1894 (title page and preface dated August 1894, in the IA scan of the 1900 collected volume; the complete Grundriss appeared 1900, 2nd ed. 1906). Key becomes Wern94 (checked: no Wern94 in cdl.bib; no duplicate). Remove the \"chapter\" field (its content, misspelt \"Psychophysio Logishe Einleitung\", moves into the title as the part title; it is Theil I, so Volume = {1} may be added). Publisher is Georg Thieme, not \"Thieme Medical Publishers\" (the modern name). Address Leipzig, Germany is right (title page: Leipzig) and is left as is. Title bracing follows house German style ({Wertbemessung}); OCR renders \"Theil\" as \"Theü\".",
+  "remove": [
+   "chapter"
+  ],
+  "new_key": "Wern94"
+ },
+ {
+  "key": "TalaTour88",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010286519&maximumRecords=1&recordSchema=mods",
+   "quote": "by Jean Talairach and Pierre Tournoux ; translated by Mark Rayport.",
+   "why": "LoC LCCN 2010286519: Co-planar stereotaxic atlas of the human brain, Talairach and Tournoux, Stuttgart; New York: Georg Thieme, 1988."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J Talairach and P Tournoux",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010286519&maximumRecords=1&recordSchema=mods",
+      "quote": "Talairach, J. (Jean)"
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010286519&maximumRecords=1&recordSchema=mods",
+      "quote": "Tournoux, Pierre."
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Co-planar stereotaxic atlas of the human brain",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010286519&maximumRecords=1&recordSchema=mods",
+      "quote": "Co-planar stereotaxic atlas of the human brain"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Georg Thieme",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010286519&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Georg Thieme</namePart>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010286519&maximumRecords=1&recordSchema=mods",
+      "quote": "<dateIssued>1988</dateIssued>"
+     }
+    ]
+   }
+  },
+  "notes": "Publisher \"Verlag\" is incomplete: Georg Thieme (Verlag). Full subtitle \"3-dimensional proportional system: an approach to cerebral imaging\" may be appended if wanted. Translated by Mark Rayport. Address Stuttgart (LoC: Stuttgart; New York) is right and left as is. No DOI. No duplicate."
+ },
+ {
+  "key": "Mart98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://openlibrary.org/books/OL28650528M.json",
+   "quote": "\"title\": \"A Clash of Kings Book Two of A Song of Ice and Fire\"",
+   "why": "Open Library edition OL28650528M: A Clash of Kings, Book Two of A Song of Ice and Fire, Voyager, 6 Aug 1998, hardcover ISBN 000224585X (UK first edition), author OL234664A (George R. R. Martin)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "A {C}lash of {K}ings",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL28650528M.json",
+      "quote": "\"title\": \"A Clash of Kings"
+     }
+    ]
+   },
+   "series": {
+    "status": "confirmed",
+    "value": "A Song of Ice and Fire",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL28650528M.json",
+      "quote": "A Song of Ice and Fire"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Voyager",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL28650528M.json",
+      "quote": "\"publishers\": [\"Voyager\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL28650528M.json",
+      "quote": "\"publish_date\": \"Aug 06, 1998\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "G R R Martin",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98037954&maximumRecords=1&recordSchema=mods",
+      "quote": "George R.R. Martin."
+     }
+    ]
+   }
+  },
+  "notes": "UK first edition, Voyager (HarperCollins), London, 1998; the US Bantam edition is 1999 (LCCN 98037954, used here only for the author name). Only catalogue found for the Voyager 1998 edition is Open Library (Amazon/BWB-derived record); LoC holds only US editions. Publisher corrected to the printed imprint \"Voyager\" (not \"Voyager Books\"). No duplicate."
+ },
+ {
+  "key": "HestEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.timhesterberg.net/articles",
+   "quote": "Tim Hesterberg, David S. Moore, Shaun Monaghan, Ashley Clipson, and Rachel Epstein (2005), Bootstrap Methods and Permutation Tests, 2nd edition, W. H. Freeman, N.Y.",
+   "why": "First author's publication list: Hesterberg, Moore, Monaghan, Clipson and Epstein (2005), Bootstrap methods and permutation tests, 2nd edition, W. H. Freeman, New York."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "T Hesterberg and D S Moore and S Monaghan and A Clipson and R Epstein",
+    "evidence": [
+     {
+      "url": "https://www.timhesterberg.net/articles",
+      "quote": "Tim Hesterberg, David S. Moore, Shaun Monaghan, Ashley Clipson, and Rachel Epstein (2005)"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Bootstrap methods and permutation tests",
+    "evidence": [
+     {
+      "url": "https://www.timhesterberg.net/articles",
+      "quote": "Bootstrap Methods and Permutation Tests, 2nd edition"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "2\\textsuperscript{nd}",
+    "evidence": [
+     {
+      "url": "https://www.timhesterberg.net/articles",
+      "quote": "Bootstrap Methods and Permutation Tests, 2nd edition"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "W H Freeman",
+    "evidence": [
+     {
+      "url": "https://www.timhesterberg.net/articles",
+      "quote": "2nd edition, W. H. Freeman, N.Y."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://www.timhesterberg.net/articles",
+      "quote": "Rachel Epstein (2005)"
+     }
+    ]
+   }
+  },
+  "notes": "Author page used because no library catalogue records this booklet (LoC title and author searches found nothing). It is the 2nd edition of the supplementary chapter (1st ed. 2003, W. H. Freeman); the 2005 version accompanies Introduction to the Practice of Statistics, 5th ed. Place given as \"N.Y.\" (New York, {NY}) if an address is wanted. No DOI. No duplicate."
+ },
+ {
+  "key": "Ship46",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/t07774-000",
+   "quote": "\"title\":[\"Shipley Institute of Living Scale\"",
+   "why": "APA PsycTESTS record 10.1037/t07774-000: Shipley Institute of Living Scale, Walter C. Shipley, dated 1940 -- the test itself, not the 1946 WPS manual."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "W C Shipley",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t07774-000",
+      "quote": "\"given\":\"Walter C.\",\"family\":\"Shipley\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Shipley institute of living scale",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t07774-000",
+      "quote": "\"title\":[\"Shipley Institute of Living Scale\""
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "1946"
+   },
+   "publisher": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "Western Psychological Services"
+   }
+  },
+  "notes": "PsycTESTS dates the test 1940 (Crossref \"published\" 1940; record type dataset). No catalogue record found for a 1946 Western Psychological Services edition (LoC title/author searches, Internet Archive). Consider {Shipley} and {Institute of Living} bracing in the title (proper name). Left unchanged pending a source for the 1946 edition."
+ },
+ {
+  "key": "BendPier01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
+   "quote": "Julius S. Bendat, Allan G. Piersol.",
+   "why": "LoC LCCN 99029982: Random data: analysis and measurement procedures, 3rd ed., Bendat and Piersol, New York: Wiley, c2000 -- the edition current in 2001 (next is 4th ed. 2010)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J S Bendat and A G Piersol",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
+      "quote": "Bendat, Julius S."
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
+      "quote": "Piersol, Allan G."
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Random data: analysis and measurement procedures",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>Random data</title>"
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
+      "quote": "analysis and measurement procedures"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "3\\textsuperscript{rd}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
+      "quote": "<edition>3rd ed.</edition>"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Wiley",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Wiley</namePart>"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029982&maximumRecords=1&recordSchema=mods",
+      "quote": "c2000"
+     }
+    ]
+   }
+  },
+  "notes": "No 2001 edition exists: the 3rd edition is c2000 (ISBN 0471317330); a 2001 date is at most a reprint. Year change gives key BendPier00 (checked: not in cdl.bib; no duplicate). Crossref 10.1002/9781118032428 is the 4th ed. (2010), a different version, so no DOI added.",
+  "new_key": "BendPier00"
+ },
+ {
+  "key": "Boll98",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98010160&maximumRecords=1&recordSchema=mods",
+   "quote": "editors-in-chief, Peter Armitage, Theodore Colton.",
+   "why": "LoC LCCN 98010160: Encyclopedia of biostatistics, eds. Armitage and Colton, Chichester; New York: J. Wiley, c1998 -- the 1998 Wiley work in which Bollen's \"Structural equation models\" article appeared; Crossref has only the 2005 2nd-edition article."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K A Bollen",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/0470011815.b2a13089",
+      "quote": "\"given\":\"Kenneth A.\",\"family\":\"Bollen\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Structural equation models",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/0470011815.b2a13089",
+      "quote": "\"title\":[\"Structural Equation Models\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Wiley",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98010160&maximumRecords=1&recordSchema=mods",
+      "quote": "J. Wiley"
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "1998"
+   }
+  },
+  "notes": "Not a book: Bollen's 'Structural equation models' is an article in the Encyclopedia of Biostatistics (eds. P Armitage and T Colton, Wiley). The 1998 1st edition (LoC 98010160, 6 v.) cannot be checked for the article or its pages from a fetchable source; the 2nd edition article is DOI 10.1002/0470011815.b2a13089 (Crossref, 2005, container 'Encyclopedia of Biostatistics'). Suggested @incollection: Booktitle = {Encyclopedia of Biostatistics}, Editor = {P Armitage and T Colton}, Publisher = {Wiley}, Address = {Chichester, {UK}}, Year 1998 (pages unverified); or replace with the 2005 version (key Boll05, DOI above). Not Bollen's 1989 book Structural equations with latent variables."
+ },
+ {
+  "key": "DudaEtal01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029981&maximumRecords=1&recordSchema=mods",
+   "quote": "Richard O. Duda, Peter E. Hart, David G. Stork.",
+   "why": "LoC LCCN 99029981: Pattern classification, 2nd ed., Duda, Hart and Stork, New York: Wiley, c2001."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R O Duda and P E Hart and D G Stork",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029981&maximumRecords=1&recordSchema=mods",
+      "quote": "Richard O. Duda, Peter E. Hart, David G. Stork."
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Pattern classification",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029981&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>Pattern classification</title>"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "2\\textsuperscript{nd}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029981&maximumRecords=1&recordSchema=mods",
+      "quote": "<edition>2nd ed.</edition>"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Wiley",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029981&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Wiley</namePart>"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029981&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99029981&maximumRecords=1&recordSchema=mods",
+      "quote": "c2001"
+     }
+    ]
+   }
+  },
+  "notes": "\"second edition\" moved from the title into the edition field. No DOI found for the 2001 print edition. No duplicate."
+ },
+ {
+  "key": "Harc75",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=75005857&maximumRecords=1&recordSchema=mods",
+   "quote": "E. Rae Harcum.",
+   "why": "LoC LCCN 75005857: Serial learning and paralearning, E. Rae (Eugene Rae) Harcum, New York: Wiley, [1975]."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "E R Harcum",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=75005857&maximumRecords=1&recordSchema=mods",
+      "quote": "Harcum, E. Rae (Eugene Rae),"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Serial learning and paralearning: control processes in serial acquisition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/1421632",
+      "quote": "\"title\":[\"Serial Learning and Paralearning: Control Processes in Serial Acquisition\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Wiley",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=75005857&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Wiley</namePart>"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=75005857&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1975",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=75005857&maximumRecords=1&recordSchema=mods",
+      "quote": "[1975]"
+     }
+    ]
+   }
+  },
+  "notes": "Author: house initials one per given name (Eugene Rae -> E R). Title: lowercase after colon (house rule); the subtitle is attested by the Am J Psychol 1976 book-review record (DOI 10.2307/1421632, title = the reviewed book's full title); the LoC record gives only the main title. No DOI for the book. No duplicate."
+ },
+ {
+  "key": "Ripl81",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=80026104&maximumRecords=1&recordSchema=mods",
+   "quote": "Brian D. Ripley.",
+   "why": "LoC LCCN 80026104: Spatial statistics, Brian D. Ripley, New York: Wiley, c1981 (Wiley series in probability and mathematical statistics); Wiley DOI 10.1002/0471725218 carries print ISBN 9780471083672 and date 1981."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B D Ripley",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/0471725218",
+      "quote": "\"given\":\"Brian D.\",\"family\":\"Ripley\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Spatial statistics",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=80026104&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>Spatial statistics</title>"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Wiley",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=80026104&maximumRecords=1&recordSchema=mods",
+      "quote": "<namePart>Wiley</namePart>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1002/0471725218",
+      "quote": "\"publisher\":\"Wiley\""
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=80026104&maximumRecords=1&recordSchema=mods",
+      "quote": "<placeTerm type=\"text\">New York</placeTerm>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1981",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=80026104&maximumRecords=1&recordSchema=mods",
+      "quote": "c1981"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1002/0471725218",
+      "quote": "\"published-print\":{\"date-parts\":[[1981,4,22]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/0471725218",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/0471725218",
+      "quote": "\"DOI\":\"10.1002\\/0471725218\""
+     }
+    ]
+   }
+  },
+  "notes": "The 1981 printing is under Wiley (LoC); the 2004 Wiley-Interscience reissue (LCCN 2005270927) is a different version. DOI handle resolves; Crossref print ISBN 9780471083672 matches LoC 1981 ISBN 0471083674."
+ }
+]
