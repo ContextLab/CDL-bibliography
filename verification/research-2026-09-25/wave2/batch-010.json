@@ -1,0 +1,2023 @@
+[
+ {
+  "key": "Salt93",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8319054/",
+   "quote": "Influence of working memory on adult age differences in matrix reasoning.",
+   "why": "Same title, sole author Salthouse, British Journal of Psychology 1993 84(2) 171-199; PMID 8319054."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "T A Salthouse",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8319054/",
+      "quote": "FAU - Salthouse, T A"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Influence of working memory on adult age differences in matrix reasoning",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8319054/",
+      "quote": "TI - Influence of working memory on adult age differences in matrix reasoning."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "British Journal of Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1993.tb02472.x",
+      "quote": "\"container-title\":[\"British Journal of Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8319054/",
+      "quote": "DP - 1993 May"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "84",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8319054/",
+      "quote": "VI - 84 ( Pt 2)"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1993.tb02472.x",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "171--199",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1993.tb02472.x",
+      "quote": "\"page\":\"171-199\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.2044-8295.1993.tb02472.x",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8319054/",
+      "quote": "10.1111/j.2044-8295.1993.tb02472.x [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Only change is house-format initials (source gives 'Timothy A. Salthouse' in Crossref, 'T A' in PubMed) and adding the DOI."
+ },
+ {
+  "key": "Gomu53",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.lib.harvard.edu/v2/items.dc?q=gomulicki%20trace%20theory",
+   "quote": "The development and present status of the trace theory of memory",
+   "why": "Harvard catalogue record: same title, author Gomulicki, British journal of psychology Monograph supplements no. 29, 1953 (LCCN 53011675, OCLC 1443384)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B R Gomulicki",
+    "evidence": [
+     {
+      "url": "https://api.lib.harvard.edu/v2/items.dc?q=gomulicki%20trace%20theory",
+      "quote": "Gomulicki, Bronislaw R."
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The development and present status of the trace theory of memory",
+    "evidence": [
+     {
+      "url": "https://api.lib.harvard.edu/v2/items.dc?q=gomulicki%20trace%20theory",
+      "quote": "The development and present status of the trace theory of memory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "British Journal of Psychology Monograph Supplements",
+    "evidence": [
+     {
+      "url": "https://api.lib.harvard.edu/v2/items.dc?q=gomulicki%20trace%20theory",
+      "quote": "British journal of psychology. Monograph supplements ; 29"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "29",
+    "evidence": [
+     {
+      "url": "https://api.lib.harvard.edu/v2/items.dc?q=gomulicki%20trace%20theory",
+      "quote": "British journal of psychology. Monograph supplements ; 29"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1953",
+    "evidence": [
+     {
+      "url": "https://api.lib.harvard.edu/v2/items.dc?q=gomulicki%20trace%20theory",
+      "quote": "W1 BR617 no.29 1953"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL6137467M.json",
+      "quote": "\"publish_date\": \"1953\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   }
+  },
+  "notes": "A 94-page monograph (Cambridge University Press) issued as BJP Monograph Supplement 29; catalogues give '94 p.' and 'Bibliography: pages [86]-91', consistent with the cited 1--91 but no source states that range, so pages left alone. No DOI exists (not in Crossref). The user may prefer recasting as @book with Series = {British Journal of Psychology Monograph Supplements}, Number = {29}, Publisher = {Cambridge University Press}, Address = {Cambridge, {UK}}."
+ },
+ {
+  "key": "CovaEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+   "quote": "Effects of a maximal exercise test on neurocognitive function.",
+   "why": "Same title, Covassin et al., Br J Sports Med 2007 41(6) 370-374; PMID 17224438, DOI 10.1136/bjsm.2006.032334."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "T Covassin and L Weiss and J Powell and C Womack",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "FAU - Covassin, Tracey"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "FAU - Weiss, Leigh"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "FAU - Powell, John"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "FAU - Womack, Christopher"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Effects of a maximal exercise test on neurocognitive function",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "TI - Effects of a maximal exercise test on neurocognitive function."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "British Journal of Sports Medicine",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "JT - British journal of sports medicine"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "DP - 2007 Jun"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "41",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "VI - 41"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "370--374",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "PG - 370-4; discussion 374"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1136/bjsm.2006.032334",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224438/",
+      "quote": "10.1136/bjsm.2006.032334 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "The article has four authors. The citation's ': commentary' and fifth author M R Lovell come from the invited commentary printed with the paper (PubMed: 'discussion 374'); Lovell is not an author of the article. Key unchanged (still 3+ authors)."
+ },
+ {
+  "key": "LadoEtal02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+   "quote": "Alteration of the cortical motor map in a patient with intractable focal seizures",
+   "why": "Same title and four authors, J Neurol Neurosurg Psychiatry 2002 72(6) 812-815; PMID 12023433."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "F A Lado and A D Legatt and P A LaSala and S Shinnar",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "FAU - Lado, F A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "FAU - Legatt, A D"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "FAU - LaSala, P A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "FAU - Shinnar, S"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Alteration of the cortical motor map in a patient with intractable focal seizures",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "Alteration of the cortical motor map in a patient with intractable focal seizures"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Neurology, Neurosurgery, and Psychiatry",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "JT - Journal of neurology, neurosurgery, and psychiatry"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "DP - 2002 Jun"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "72",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "VI - 72"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "812--815",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "PG - 812-5"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1136/jnnp.72.6.812",
+      "quote": "\"page\":\"812-815\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1136/jnnp.72.6.812",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12023433/",
+      "quote": "10.1136/jnnp.72.6.812 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Journal was wrong (BMJ publishes JNNP, but this is JNNP, not the British Medical Journal); house form 'Journal of Neurology, Neurosurgery, and Psychiatry' used twice in cdl.bib."
+ },
+ {
+  "key": "McCuPitt43",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/bf02478259",
+   "quote": "\"title\":[\"A logical calculus of the ideas immanent in nervous activity\"]",
+   "why": "Crossref record for the 1943 Springer article: same title, McCulloch and Pitts, Bulletin of Mathematical Biophysics 5(4) 115-133."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "W S McCulloch and W H Pitts",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf02478259",
+      "quote": "\"given\":\"Warren S.\",\"family\":\"McCulloch\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf02478259",
+      "quote": "\"given\":\"Walter\",\"family\":\"Pitts\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A logical calculus of the ideas immanent in nervous activity",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf02478259",
+      "quote": "\"title\":[\"A logical calculus of the ideas immanent in nervous activity\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Bulletin of Mathematical Biophysics",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf02478259",
+      "quote": "\"container-title\":[\"The Bulletin of Mathematical Biophysics\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1943",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf02478259",
+      "quote": "\"published-print\":{\"date-parts\":[[1943,12]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf02478259",
+      "quote": "\"volume\":\"5\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf02478259",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "115--133",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf02478259",
+      "quote": "\"page\":\"115-133\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/bf02478259",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf02478259",
+      "quote": "\"DOI\":\"10.1007\\/bf02478259\""
+     }
+    ]
+   }
+  },
+  "notes": "Surname misspelled (McCullough -> McCulloch); key McCuPitt43 unchanged. Crossref gives Pitts as 'Walter' only; the citation's middle initial H kept (Walter Harry Pitts). A 1990 reprint exists in Bulletin of Mathematical Biology 52:99-115 (10.1016/s0092-8240(05)80006-0), a different version; not used."
+ },
+ {
+  "key": "ArbuFran00",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10721237/",
+   "quote": "Executive control in set switching: residual switch cost and task-set inhibition.",
+   "why": "Same title, Arbuthnott and Frank, Can J Exp Psychol 2000 54(1) 33-41; PMID 10721237."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K Arbuthnott and J Frank",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10721237/",
+      "quote": "FAU - Arbuthnott, K"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10721237/",
+      "quote": "FAU - Frank, J"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Executive control in set switching: residual switch cost and task-set inhibition",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10721237/",
+      "quote": "Executive control in set switching: residual switch cost and task-set inhibition."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Canadian Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0087328",
+      "quote": "\"container-title\":[\"Canadian Journal of Experimental Psychology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10721237/",
+      "quote": "DP - 2000 Mar"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "54",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10721237/",
+      "quote": "VI - 54"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10721237/",
+      "quote": "IP - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "33--41",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10721237/",
+      "quote": "PG - 33-41"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0087328",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10721237/",
+      "quote": "10.1037/h0087328 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields correct; only the DOI is new. Crossref's container title adds the French parallel title '/ Revue canadienne de psychologie expérimentale', omitted per house form."
+ },
+ {
+  "key": "WingKaha02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12271749/",
+   "quote": "The dynamics of memory retrieval in older adulthood.",
+   "why": "Same authors, Can J Exp Psychol 2002 56(3) 187-199; title ends 'older adulthood' not 'older adults'; PMID 12271749."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A Wingfield and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12271749/",
+      "quote": "FAU - Wingfield, Arthur"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12271749/",
+      "quote": "FAU - Kahana, Michael J"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "The dynamics of memory retrieval in older adulthood",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12271749/",
+      "quote": "TI - The dynamics of memory retrieval in older adulthood."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Canadian Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12271749/",
+      "quote": "JT - Canadian journal of experimental psychology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12271749/",
+      "quote": "DP - 2002 Sep"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "56",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12271749/",
+      "quote": "VI - 56"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12271749/",
+      "quote": "IP - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "187--199",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12271749/",
+      "quote": "PG - 187-99"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0087396",
+      "quote": "\"page\":\"187-199\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0087396",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12271749/",
+      "quote": "10.1037/h0087396 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": ""
+ },
+ {
+  "key": "MurdEtal77",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0081652",
+   "quote": "\"title\":[\"Two tests of the conveyor-belt model for item recognition.\"]",
+   "why": "Crossref/APA record: same title, Murdock, Hockley and Muter, Canadian Journal of Psychology 1977 31(2) 71-89."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B B Murdock and W E Hockley and P Muter",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0081652",
+      "quote": "\"family\":\"Murdock\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0081652",
+      "quote": "\"family\":\"Hockley\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0081652",
+      "quote": "\"family\":\"Muter\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Two tests of the conveyor-belt model for item recognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0081652",
+      "quote": "\"title\":[\"Two tests of the conveyor-belt model for item recognition.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Canadian Journal of Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0081652",
+      "quote": "\"container-title\":[\"Canadian Journal of Psychology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1977",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0081652",
+      "quote": "\"issued\":{\"date-parts\":[[1977,6]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "31",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0081652",
+      "quote": "\"volume\":\"31\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0081652",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "71--89",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0081652",
+      "quote": "\"page\":\"71-89\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0081652",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0081652",
+      "quote": "\"DOI\":\"10.1037\\/h0081652\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref gives given names only (Bennet, William, Paul); the citation's middle initials B B / W E kept per the never-drop rule. Adds issue 2 and DOI."
+ },
+ {
+  "key": "Tulv85b",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0080017",
+   "quote": "\"title\":[\"Memory and consciousness.\"]",
+   "why": "Crossref/APA record: Tulving, 'Memory and consciousness', Canadian Psychology 26(1) 1-12, 1985."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E Tulving",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0080017",
+      "quote": "\"given\":\"Endel\",\"family\":\"Tulving\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Memory and consciousness",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0080017",
+      "quote": "\"title\":[\"Memory and consciousness.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Canadian Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0080017",
+      "quote": "\"container-title\":[\"Canadian Psychology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1985",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0080017",
+      "quote": "\"issued\":{\"date-parts\":[[1985,1]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "26",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0080017",
+      "quote": "\"volume\":\"26\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0080017",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--12",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0080017",
+      "quote": "\"page\":\"1-12\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0080017",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0080017",
+      "quote": "\"DOI\":\"10.1037\\/h0080017\""
+     }
+    ]
+   }
+  },
+  "notes": "Adds issue 1 and DOI. Tulv85a is a different 1985 Tulving work; no duplicate."
+ },
+ {
+  "key": "HamiEtal21",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+   "quote": "Parallel and distributed encoding of speech across human auditory cortex.",
+   "why": "Same title and four authors, Cell 2021 184(18); PMID 34411517."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L S Hamilton and Y Oganian and J Hall and E F Chang",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "FAU - Hamilton, Liberty S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "FAU - Oganian, Yulia"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "FAU - Hall, Jeffery"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "FAU - Chang, Edward F"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Parallel and distributed encoding of speech across human auditory cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "TI - Parallel and distributed encoding of speech across human auditory cortex."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cell",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "JT - Cell"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2021",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "DP - 2021 Sep 2"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "184",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "VI - 184"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "IP - 18"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "4626--4639.e13",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "PG - 4626-4639.e13"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.cell.2021.07.019",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34411517/",
+      "quote": "10.1016/j.cell.2021.07.019 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages gain the STAR Methods suffix .e13 (cdl.bib already writes N--M.eK ranges). A bioRxiv preprint exists (Crossref 'has-preprint'); the cited version is the journal article."
+ },
+ {
+  "key": "AguiEtal96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+   "quote": "The parahippocampus subserves topographical learning in man.",
+   "why": "Same authors, Cerebral Cortex 1996 6(6) 823-829; title says 'topographical'; PMID 8922339."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "G K Aguirre and J A Detre and D C Alsop and M D'Esposito",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "FAU - Aguirre, G K"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "FAU - Detre, J A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "FAU - Alsop, D C"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "FAU - D'Esposito, M"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "The parahippocampus subserves topographical learning in man",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "TI - The parahippocampus subserves topographical learning in man."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "JT - Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "DP - 1996 Nov-Dec"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "VI - 6"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "823--829",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "PG - 823-9"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/6.6.823",
+      "quote": "\"page\":\"823-829\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/6.6.823",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8922339/",
+      "quote": "10.1093/cercor/6.6.823 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Fourth author was mangled as 'M D Esposito'; it is M D'Esposito."
+ },
+ {
+  "key": "BindEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+   "quote": "Human temporal lobe activation by speech and nonspeech sounds.",
+   "why": "Same title and seven authors, Cerebral Cortex 2000 10(5) 512-528; PMID 10847601."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J R Binder and J A Frost and T A Hammeke and P S F Bellgowan and J A Springer and J N Kaufman and E T Possing",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "FAU - Binder, J R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "FAU - Frost, J A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "FAU - Hammeke, T A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "FAU - Bellgowan, P S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "FAU - Springer, J A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "FAU - Kaufman, J N"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "FAU - Possing, E T"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Human temporal lobe activation by speech and nonspeech sounds",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "TI - Human temporal lobe activation by speech and nonspeech sounds."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "JT - Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "DP - 2000 May"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "VI - 10"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "IP - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "512--528",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "PG - 512-28"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/10.5.512",
+      "quote": "\"page\":\"512-528\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/10.5.512",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10847601/",
+      "quote": "10.1093/cercor/10.5.512 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "First author lacked initials (J R Binder). PubMed gives Bellgowan as 'P S'; the citation's 'P S F' kept per the never-drop rule."
+ },
+ {
+  "key": "BuchDEsp09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
+   "quote": "Repetition suppression and reactivation in auditory-verbal short-term recognition",
+   "why": "Same title, Buchsbaum and D'Esposito, Cerebral Cortex 2009 19(6) 1474-1485; PMID 18987393."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "B R Buchsbaum and M D'Esposito",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
+      "quote": "FAU - Buchsbaum, Bradley R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
+      "quote": "FAU - D'Esposito, Mark"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Repetition suppression and reactivation in auditory-verbal short-term recognition memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
+      "quote": "Repetition suppression and reactivation in auditory-verbal short-term recognition memory"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
+      "quote": "JT - Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
+      "quote": "DP - 2009 Jun"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
+      "quote": "VI - 19"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1474--1485",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
+      "quote": "PG - 1474-85"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/bhn186",
+      "quote": "\"page\":\"1474-1485\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhn186",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
+      "quote": "10.1093/cercor/bhn186 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Author names only changed to house initials. PubMed lists an erratum ('EIN - Cereb Cortex. 2009 Dec;19(12):3030'); it is a correction notice, not a retraction, and no cited field changes. Publisher prints 'Auditory–Verbal' with an en dash; the hyphen kept."
+ },
+ {
+  "key": "CartWang07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17725998/",
+   "quote": "Cannabinoid-mediated disinhibition and working memory: dynamical interplay of",
+   "why": "Same title, Carter and Wang, Cerebral Cortex 2007 17 Suppl 1 i16-i26; PMID 17725998."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "E Carter and X-J Wang",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17725998/",
+      "quote": "FAU - Carter, Eugene"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17725998/",
+      "quote": "FAU - Wang, Xiao-Jing"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Cannabinoid-mediated disinhibition and working memory: dynamical interplay of multiple feedback mechanisms in a continuous attractor model of prefrontal cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17725998/",
+      "quote": "Cannabinoid-mediated disinhibition and working memory: dynamical interplay of multiple feedback mechanisms in a continuous attractor model of prefrontal cortex"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17725998/",
+      "quote": "JT - Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17725998/",
+      "quote": "DP - 2007 Sep"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17725998/",
+      "quote": "VI - 17 Suppl 1"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "Suppl 1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17725998/",
+      "quote": "VI - 17 Suppl 1"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/bhm103",
+      "quote": "\"issue\":\"suppl 1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "i16--i26",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17725998/",
+      "quote": "PG - i16-26"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhm103",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17725998/",
+      "quote": "10.1093/cercor/bhm103 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "First author is Eugene Carter (E), not G; key CartWang07 unchanged. Wang written with hyphenated initials X-J per house rule, though cdl.bib has 'X J Wang' 15 times (consistency question for the user). cdl.bib writes supplement numbers inconsistently ('Supplement 1', 'supplement 2', 'Suppl 10')."
+ },
+ {
+  "key": "ChanEtal12a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+   "quote": "Decoding the role of the insula in human cognition: functional parcellation and",
+   "why": "Same title and four authors, Cerebral Cortex 23(3) 739-749, print issue March 2013 (online 20 March 2012); PMID 22437053."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L J Chang and T Yarkoni and M W Khaw and A G Sanfey",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "FAU - Chang, Luke J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "FAU - Yarkoni, Tal"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "FAU - Khaw, Mel Win"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "FAU - Sanfey, Alan G"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Decoding the role of the insula in human cognition: functional parcellation and large-scale reverse inference",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "Decoding the role of the insula in human cognition: functional parcellation and large-scale reverse inference"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "JT - Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "DP - 2013 Mar"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "23",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "VI - 23"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "IP - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "739--749",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "PG - 739-49"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/bhs065",
+      "quote": "\"page\":\"739-749\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhs065",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22437053/",
+      "quote": "10.1093/cercor/bhs065 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Print year 2013 beats online-first 2012 (DEP 20120320). Key rename ChanEtal12a -> ChanEtal13: no ChanEtal13* key exists in HEAD cdl.bib and the work is not present under another key. After the rename ChanEtal12b may no longer need its suffix. A commentary on this paper exists (Cereb Cortex 2013 23(11):2779-80, PMID 22892421), a different work."
+ },
+ {
+  "key": "CheiFiez01",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11590110/",
+   "quote": "Dissociation of verbal working memory system components using a delayed serial",
+   "why": "Same title, Chein and Fiez, Cerebral Cortex 2001 11(11) 1003-1014; PMID 11590110."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J M Chein and J A Fiez",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11590110/",
+      "quote": "FAU - Chein, J M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11590110/",
+      "quote": "FAU - Fiez, J A"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Dissociation of verbal working memory system components using a delayed serial recall task",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11590110/",
+      "quote": "Dissociation of verbal working memory system components using a delayed serial recall task"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11590110/",
+      "quote": "JT - Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11590110/",
+      "quote": "DP - 2001 Nov"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11590110/",
+      "quote": "VI - 11"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11590110/",
+      "quote": "IP - 11"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1003--1014",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11590110/",
+      "quote": "PG - 1003-14"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/11.11.1003",
+      "quote": "\"page\":\"1003-1014\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/11.11.1003",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11590110/",
+      "quote": "10.1093/cercor/11.11.1003 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields correct; only the DOI is new (Crossref lists only the first author, hence the queue flag)."
+ },
+ {
+  "key": "CompEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+   "quote": "Synaptic mechanisms and network dynamics underlying spatial working memory in a",
+   "why": "Same four authors, Cerebral Cortex 2000 10(9) 910-923; title says 'spatial' not 'visuospatial'; PMID 10982751."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "A Compte and N Brunel and P S Goldman-Rakic and X-J Wang",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "FAU - Compte, A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "FAU - Brunel, N"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "FAU - Goldman-Rakic, P S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "FAU - Wang, X J"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Synaptic mechanisms and network dynamics underlying spatial working memory in a cortical network model",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "Synaptic mechanisms and network dynamics underlying spatial working memory in a cortical network model"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "JT - Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "DP - 2000 Sep"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "VI - 10"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "IP - 9"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "910--923",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "PG - 910-23"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/10.9.910",
+      "quote": "\"page\":\"910-923\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/10.9.910",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10982751/",
+      "quote": "10.1093/cercor/10.9.910 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Author change is only X J -> X-J (hyphenated initial, Xiao-Jing Wang); cdl.bib writes 'X J Wang' 15 times, so the user may prefer to keep it."
+ },
+ {
+  "key": "CoolEtal01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+   "quote": "Enhanced or impaired cognitive function in Parkinson's disease as a function of",
+   "why": "Same title, Cools et al., Cerebral Cortex 2001 11(12) 1136-1143; PMID 11709484."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "R Cools and R A Barker and B J Sahakian and T W Robbins",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "FAU - Cools, R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "FAU - Barker, R A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "FAU - Sahakian, B J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "FAU - Robbins, T W"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Enhanced or impaired cognitive function in {Parkinson}'s disease as a function of dopaminergic medication and task demands",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "Enhanced or impaired cognitive function in Parkinson's disease as a function of dopaminergic medication and task demands"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "JT - Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "DP - 2001 Dec"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "VI - 11"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "IP - 12"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1136--1143",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "PG - 1136-43"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/11.12.1136",
+      "quote": "\"page\":\"1136-1143\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/11.12.1136",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11709484/",
+      "quote": "10.1093/cercor/11.12.1136 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Adds the missing middle initials (R A Barker, B J Sahakian, T W Robbins), issue 12 and DOI."
+ },
+ {
+  "key": "DenkEtal11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21508303/",
+   "quote": "The local field potential reflects surplus spike synchrony.",
+   "why": "Same title and six authors, Cerebral Cortex 2011 21(12) 2681-2695; PMID 21508303."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M Denker and S Roux and H Lind{\\'e}n and M Diesmann and A Riehle and S Gr{\\\"u}n",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1093/cercor/bhr040&resultType=core&format=json",
+      "quote": "Denker M, Roux S, Lindén H, Diesmann M, Riehle A, Grün S."
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The local field potential reflects surplus spike synchrony",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21508303/",
+      "quote": "TI - The local field potential reflects surplus spike synchrony."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21508303/",
+      "quote": "JT - Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21508303/",
+      "quote": "DP - 2011 Dec"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21508303/",
+      "quote": "VI - 21"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21508303/",
+      "quote": "IP - 12"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2681--2695",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21508303/",
+      "quote": "PG - 2681-95"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/bhr040",
+      "quote": "\"page\":\"2681-2695\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhr040",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21508303/",
+      "quote": "10.1093/cercor/bhr040 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Volume was wrong (12 -> 21). Accents restored on Lindén and Grün (Europe PMC and Crossref print them; PubMed strips them)."
+ },
+ {
+  "key": "FrieEtal02b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+   "quote": "Inhibitory and excitatory responses of single neurons in the human medial",
+   "why": "Same title and five authors, Cerebral Cortex 2002 12(6) 575-584; PMID 12003857."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "I Fried and K A Cameron and S Yashar and R Fong and J W Morrow",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "FAU - Fried, Itzhak"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "FAU - Cameron, Katherine A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "FAU - Yashar, Sharona"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "FAU - Fong, Raymond"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "FAU - Morrow, Jack W"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Inhibitory and excitatory responses of single neurons in the human medial temporal lobe during recognition of faces and objects",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "Inhibitory and excitatory responses of single neurons in the human medial temporal lobe during recognition of faces and objects"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "JT - Cerebral cortex (New York, N.Y. : 1991)"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "DP - 2002 Jun"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "VI - 12"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "575--584",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "PG - 575-84"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/12.6.575",
+      "quote": "\"page\":\"575-584\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/12.6.575",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12003857/",
+      "quote": "10.1093/cercor/12.6.575 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Adds middle initials K A Cameron and J W Morrow, issue 6 and DOI."
+ }
+]

@@ -1,0 +1,2182 @@
+[
+ {
+  "key": "GeorEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+   "quote": "Spatial view cells in the primate hippocampus: allocentric view not head direction or eye position or place.",
+   "why": "PubMed 10355900: same title, authors, Cerebral Cortex 9(3):197--212, DOI 10.1093/cercor/9.3.197."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "P Georges-Fran{\\c{c}}ois and E T Rolls and R G Robertson",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+      "quote": "<LastName>Georges-François</LastName><ForeName>P</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+      "quote": "<LastName>Rolls</LastName><ForeName>E T</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+      "quote": "<LastName>Robertson</LastName><ForeName>R G</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Spatial view cells in the primate hippocampus: allocentric view not head direction or eye position or place",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+      "quote": "Spatial view cells in the primate hippocampus: allocentric view not head direction or eye position or place."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+      "quote": "<Year>1999</Year><Season>Apr-May</Season>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+      "quote": "<Volume>9</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+      "quote": "<Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "197--212",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+      "quote": "<StartPage>197</StartPage><EndPage>212</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/9.3.197",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10355900&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/9.3.197</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Author surname typo (Francios) fixed, initials E T Rolls and R G Robertson added from PubMed; title typo hippocapus fixed; issue and DOI added. Crossref lists only the first author."
+ },
+ {
+  "key": "GeviEtal97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+   "quote": "High-resolution EEG mapping of cortical activation related to working memory: effects of task difficulty, type of processing, and practice.",
+   "why": "PubMed 9177767: same title, authors, Cerebral Cortex 7(4):374--385, DOI 10.1093/cercor/7.4.374."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A Gevins and M E Smith and L McEvoy and D Yu",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "<LastName>Gevins</LastName><ForeName>A</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "<LastName>Smith</LastName><ForeName>M E</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "<LastName>McEvoy</LastName><ForeName>L</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "<LastName>Yu</LastName><ForeName>D</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "High-resolution {EEG} mapping of cortical activation related to working memory: effects of task difficulty, type of processing, and practice",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "High-resolution EEG mapping of cortical activation related to working memory: effects of task difficulty, type of processing, and practice."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "<Year>1997</Year><Month>Jun</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "<Volume>7</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "<Issue>4</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "374--385",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "<StartPage>374</StartPage><EndPage>385</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/7.4.374",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9177767&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/7.4.374</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added."
+ },
+ {
+  "key": "GeviSmit00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10982744&retmode=xml",
+   "quote": "Neurophysiological measures of working memory and individual differences in cognitive ability and cognitive style.",
+   "why": "PubMed 10982744: same title, authors, Cerebral Cortex 10(9):829--839, DOI 10.1093/cercor/10.9.829."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A Gevins and M E Smith",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10982744&retmode=xml",
+      "quote": "<LastName>Gevins</LastName><ForeName>A</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10982744&retmode=xml",
+      "quote": "<LastName>Smith</LastName><ForeName>M E</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Neurophysiological measures of working memory and individual differences in cognitive ability and cognitive style",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10982744&retmode=xml",
+      "quote": "Neurophysiological measures of working memory and individual differences in cognitive ability and cognitive style."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10982744&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10982744&retmode=xml",
+      "quote": "<Year>2000</Year><Month>Sep</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10982744&retmode=xml",
+      "quote": "<Volume>10</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10982744&retmode=xml",
+      "quote": "<Issue>9</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "829--839",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10982744&retmode=xml",
+      "quote": "<StartPage>829</StartPage><EndPage>839</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/10.9.829",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10982744&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/10.9.829</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Issue 9 and DOI added."
+ },
+ {
+  "key": "GilbEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+   "quote": "Remembering our past: functional neuroanatomy of recollection of recent and very remote personal events.",
+   "why": "PubMed 15166099: same title, authors, Cerebral Cortex 14(11):1214--1225, DOI 10.1093/cercor/bhh082."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A Gilboa and G Winocur and C L Grady and S J Hevenor and M Moscovitch",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<LastName>Gilboa</LastName><ForeName>Asaf</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<LastName>Winocur</LastName><ForeName>Gordon</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<LastName>Grady</LastName><ForeName>Cheryl L</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<LastName>Hevenor</LastName><ForeName>Stephanie J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<LastName>Moscovitch</LastName><ForeName>Morris</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Remembering our past: functional neuroanatomy of recollection of recent and very remote personal events",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "Remembering our past: functional neuroanatomy of recollection of recent and very remote personal events."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<Year>2004</Year><Month>Nov</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<Volume>14</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<Issue>11</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1214--1225",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<StartPage>1214</StartPage><EndPage>1225</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhh082",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15166099&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhh082</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Page range completed (1214--1225); DOI added. Online 2004-05-13, print Nov 2004."
+ },
+ {
+  "key": "GrubMatt05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&retmode=xml",
+   "quote": "Oscillatory brain activity dissociates between associative stimulus content in a repetition priming task in the human EEG.",
+   "why": "PubMed 15238442: same title, authors, Cerebral Cortex 15(1):109--116, DOI 10.1093/cercor/bhh113."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "T Gruber and M M M{\\\"u}ller",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&retmode=xml",
+      "quote": "<LastName>Gruber</LastName><ForeName>Thomas</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&retmode=xml",
+      "quote": "<LastName>Müller</LastName><ForeName>Matthias M</ForeName>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/bhh113",
+      "quote": "\"given\":\"T.\",\"family\":\"Gruber\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Oscillatory brain activity dissociates between associative stimulus content in a repetition priming task in the human {EEG}",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&retmode=xml",
+      "quote": "Oscillatory brain activity dissociates between associative stimulus content in a repetition priming task in the human EEG."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&retmode=xml",
+      "quote": "<Year>2005</Year><Month>Jan</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&retmode=xml",
+      "quote": "<Volume>15</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&retmode=xml",
+      "quote": "<Issue>1</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "109--116",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&retmode=xml",
+      "quote": "<StartPage>109</StartPage><EndPage>116</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhh113",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhh113</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Second author is Matthias M Müller (the cited M M Matthias took his given name as surname). Key rename: GrubMatt05 -> GrubMull05 (not in HEAD cdl.bib; no collision). Year 2005 is the print issue (15(1), Jan 2005); online 2004-07-06. Issue and DOI added."
+ },
+ {
+  "key": "HansEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+   "quote": "Alpha phase reset contributes to the generation of ERPs.",
+   "why": "PubMed 16452640: same title, authors, Cerebral Cortex 17(1):1--8, DOI 10.1093/cercor/bhj129."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S Hanslmayr and W Klimesch and P Sauseng and W Gruber and M Doppelmayr and R Freunberger and T Pecherstorfer and N Birbaumer",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<LastName>Hanslmayr</LastName><ForeName>Simon</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<LastName>Klimesch</LastName><ForeName>Wolfgang</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<LastName>Sauseng</LastName><ForeName>Paul</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<LastName>Gruber</LastName><ForeName>Walter</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<LastName>Doppelmayr</LastName><ForeName>Michael</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<LastName>Freunberger</LastName><ForeName>Roman</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<LastName>Pecherstorfer</LastName><ForeName>Thomas</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<LastName>Birbaumer</LastName><ForeName>Niels</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Alpha phase reset contributes to the generation of {ERPs}",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "Alpha phase reset contributes to the generation of ERPs."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<Year>2007</Year><Month>Jan</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<Volume>17</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<Issue>1</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--8",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<StartPage>1</StartPage><EndPage>8</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhj129",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhj129</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Print issue 17(1) Jan 2007; online 2006-02-01 (Crossref issued 2006); print year 2007 kept. DOI added."
+ },
+ {
+  "key": "HansEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+   "quote": "Brain oscillations dissociate between semantic and nonsemantic encoding of episodic memories.",
+   "why": "PubMed 19001457: same title, authors, Cerebral Cortex 19(7):1631--1640, DOI 10.1093/cercor/bhn197."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "S Hanslmayr and B Spitzer and K-H B\\\"{a}uml",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+      "quote": "<LastName>Hanslmayr</LastName><ForeName>Simon</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+      "quote": "<LastName>Spitzer</LastName><ForeName>Bernhard</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+      "quote": "<LastName>Bäuml</LastName><ForeName>Karl-Heinz</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Brain oscillations dissociate between semantic and nonsemantic encoding of episodic memories",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+      "quote": "Brain oscillations dissociate between semantic and nonsemantic encoding of episodic memories."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+      "quote": "<Year>2009</Year><Month>Jul</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+      "quote": "<Volume>19</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+      "quote": "<Issue>7</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1631--1640",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+      "quote": "<StartPage>1631</StartPage><EndPage>1640</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhn197",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19001457&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhn197</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Third author is Karl-Heinz Bäuml: hyphenated initials K-H and umlaut (house form B\\\"{a}uml). Print 19(7) July 2009; online 2008-11-11. DOI added."
+ },
+ {
+  "key": "HowaEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+   "quote": "Gamma oscillations correlate with working memory load in humans.",
+   "why": "PubMed 14615302: same title, authors, Cerebral Cortex 13(12):1369--1374, DOI 10.1093/cercor/bhg084."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M W Howard and D S Rizzuto and J B Caplan and J R Madsen and J Lisman and R Aschenbrenner-Scheibe and A Schulze-Bonhage and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<LastName>Howard</LastName><ForeName>Marc W</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<LastName>Rizzuto</LastName><ForeName>Daniel S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<LastName>Caplan</LastName><ForeName>Jeremy B</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<LastName>Madsen</LastName><ForeName>Joseph R</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<LastName>Lisman</LastName><ForeName>John</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<LastName>Aschenbrenner-Scheibe</LastName><ForeName>Richard</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<LastName>Schulze-Bonhage</LastName><ForeName>Andreas</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<LastName>Kahana</LastName><ForeName>Michael J</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Gamma oscillations correlate with working memory load in humans",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "Gamma oscillations correlate with working memory load in humans."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<Year>2003</Year><Month>Dec</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<Volume>13</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<Issue>12</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1369--1374",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<StartPage>1369</StartPage><EndPage>1374</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhg084",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14615302&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhg084</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Two author errors fixed: Caplan is J B (Jeremy B), not J C; Schultze-Bonhage -> Schulze-Bonhage. Issue 12 and DOI added. Crossref lists only the first author."
+ },
+ {
+  "key": "ItieTayl04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14704210&retmode=xml",
+   "quote": "N170 or N1? Spatiotemporal differences between object and face processing using ERPs.",
+   "why": "PubMed 14704210: same title, authors, Cerebral Cortex 14(2):132--142, DOI 10.1093/cercor/bhg111."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R J Itier and M J Taylor",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14704210&retmode=xml",
+      "quote": "<LastName>Itier</LastName><ForeName>Roxane J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14704210&retmode=xml",
+      "quote": "<LastName>Taylor</LastName><ForeName>Margot J</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{N170} or {N1}? Spatiotemporal differences between object and face processing using {ERPs}",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14704210&retmode=xml",
+      "quote": "N170 or N1? Spatiotemporal differences between object and face processing using ERPs."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14704210&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14704210&retmode=xml",
+      "quote": "<Year>2004</Year><Month>Feb</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14704210&retmode=xml",
+      "quote": "<Volume>14</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14704210&retmode=xml",
+      "quote": "<Issue>2</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "132--142",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14704210&retmode=xml",
+      "quote": "<StartPage>132</StartPage><EndPage>142</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhg111",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14704210&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhg111</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Volume field held \"14(2)\"; split into volume 14 and number 2. DOI added."
+ },
+ {
+  "key": "JensEtal02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+   "quote": "Oscillations in the alpha band (9-12 Hz) increase with memory load during retention in a short-term memory task.",
+   "why": "PubMed 12122036: same title, authors, Cerebral Cortex 12(8):877--882, DOI 10.1093/cercor/12.8.877."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "O Jensen and J Gelfand and J Kounios and J E Lisman",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "<LastName>Jensen</LastName><ForeName>Ole</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "<LastName>Gelfand</LastName><ForeName>Jack</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "<LastName>Kounios</LastName><ForeName>John</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "<LastName>Lisman</LastName><ForeName>John E</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Oscillations in the alpha band (9--12 {H}z) increase with memory load during retention in a short-term memory task",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "Oscillations in the alpha band (9-12 Hz) increase with memory load during retention in a short-term memory task."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "<Year>2002</Year><Month>Aug</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "<Volume>12</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "<Issue>8</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "877--882",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "<StartPage>877</StartPage><EndPage>882</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/12.8.877",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12122036&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/12.8.877</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Issue 8 and DOI added. Title kept with house bracing (9--12 {H}z)."
+ },
+ {
+  "key": "McEvEtal98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+   "quote": "Dynamic cortical networks of verbal and spatial working memory: effects of memory load and task practice.",
+   "why": "PubMed 9823478: same title, authors, Cerebral Cortex 8(7):563--574, DOI 10.1093/cercor/8.7.563."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L K McEvoy and M E Smith and A Gevins",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+      "quote": "<LastName>McEvoy</LastName><ForeName>L K</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+      "quote": "<LastName>Smith</LastName><ForeName>M E</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+      "quote": "<LastName>Gevins</LastName><ForeName>A</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Dynamic cortical networks of verbal and spatial working memory: effects of memory load and task practice",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+      "quote": "Dynamic cortical networks of verbal and spatial working memory: effects of memory load and task practice."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+      "quote": "<Year>1998</Year><Season>Oct-Nov</Season>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+      "quote": "<Volume>8</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+      "quote": "<Issue>7</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "563--574",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+      "quote": "<StartPage>563</StartPage><EndPage>574</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/8.7.563",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=9823478&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/8.7.563</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added."
+ },
+ {
+  "key": "MeyeEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+   "quote": "Evidence That Default Network Connectivity During Rest Consolidates Social Information.",
+   "why": "PubMed 29668862: same title, authors, Cerebral Cortex 29(5):1910--1920, DOI 10.1093/cercor/bhy071."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M L Meyer and L Davachi and K N Ochsner and M D Lieberman",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "<LastName>Meyer</LastName><ForeName>Meghan L</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "<LastName>Davachi</LastName><ForeName>Lila</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "<LastName>Ochsner</LastName><ForeName>Kevin N</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "<LastName>Lieberman</LastName><ForeName>Matthew D</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Evidence that default network connectivity during rest consolidates social information",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "Evidence That Default Network Connectivity During Rest Consolidates Social Information."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "<Year>2019</Year><Month>May</Month>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/bhy071",
+      "quote": "\"published-print\":{\"date-parts\":[[2019,"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "29",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "<Volume>29</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "<Issue>5</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1910--1920",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "<StartPage>1910</StartPage><EndPage>1920</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhy071",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29668862&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhy071</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Volume field held the DOI. Published online 2018-04-13; print 29(5):1910-1920, May 2019, so year 2019 (print year). Key rename MeyeEtal18 -> MeyeEtal19: key collision, MeyeEtal19a (Meyers et al., College Teaching) and MeyeEtal19b (Meyer, Zhao & Tamir, JEP:General) are different works in HEAD, so next free key MeyeEtal19c."
+ },
+ {
+  "key": "MillEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+   "quote": "A recurrent network model of somatosensory parametric working memory in the prefrontal cortex.",
+   "why": "PubMed 14576212: same title, authors, Cerebral Cortex 13(11):1208--1218, DOI 10.1093/cercor/bhg101."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "P Miller and C D Brody and R Romo and X J Wang",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "<LastName>Miller</LastName><ForeName>Paul</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "<LastName>Brody</LastName><ForeName>Carlos D</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "<LastName>Romo</LastName><ForeName>Ranulfo</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "<LastName>Wang</LastName><ForeName>Xiao-Jing</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A recurrent network model of somatosensory parametric working memory in the prefrontal cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "A recurrent network model of somatosensory parametric working memory in the prefrontal cortex."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "<Year>2003</Year><Month>Nov</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "<Volume>13</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "<Issue>11</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1208--1218",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "<StartPage>1208</StartPage><EndPage>1218</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhg101",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14576212&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhg101</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Issue 11 and DOI added. An erratum exists (Cereb Cortex 2005 May;15(5):679, doi 10.1093/cercor/bhi102; PubMed CommentsCorrections ErratumIn) - a correction notice, not a retraction; the cited article is unchanged."
+ },
+ {
+  "key": "MortEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+   "quote": "Category-specific neural oscillations predict recall organization during memory search.",
+   "why": "PubMed 22875859: same title, authors, Cerebral Cortex 23(10):2407--2422, DOI 10.1093/cercor/bhs229."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "N W Morton and M J Kahana and E A Rosenberg and G H Baltuch and B Litt and A D Sharan and M R Sperling and S M Polyn",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<LastName>Morton</LastName><ForeName>Neal W</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<LastName>Kahana</LastName><ForeName>Michael J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<LastName>Rosenberg</LastName><ForeName>Emily A</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<LastName>Baltuch</LastName><ForeName>Gordon H</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<LastName>Litt</LastName><ForeName>Brian</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<LastName>Sharan</LastName><ForeName>Ashwini D</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<LastName>Sperling</LastName><ForeName>Michael R</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<LastName>Polyn</LastName><ForeName>Sean M</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Category-specific neural oscillations predict recall organization during memory search",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "Category-specific neural oscillations predict recall organization during memory search."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<Year>2013</Year><Month>Oct</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "23",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<Volume>23</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<Issue>10</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2407--2422",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<StartPage>2407</StartPage><EndPage>2422</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhs229",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=22875859&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhs229</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Author list was missing G H Baltuch and B Litt and had Sharan/Sperling swapped; corrected to the 8-author list (PubMed and Crossref agree). Print 23(10) Oct 2013 (online 2012-08-08). DOI added."
+ },
+ {
+  "key": "NarrEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+   "quote": "Mapping cortical thickness and gray matter concentration in first episode schizophrenia.",
+   "why": "PubMed 15371291: same title, authors, Cerebral Cortex 15(6):708--719, DOI 10.1093/cercor/bhh172."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "K L Narr and R M Bilder and A W Toga and R P Woods and D E Rex and P R Szeszko and D Robinson and S Sevy and H Gunduz-Bruce and Y-P Wang and H DeLuca and P M Thompson",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Narr</LastName><ForeName>Katherine L</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Bilder</LastName><ForeName>Robert M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Toga</LastName><ForeName>Arthur W</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Woods</LastName><ForeName>Roger P</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Rex</LastName><ForeName>David E</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Szeszko</LastName><ForeName>Philip R</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Robinson</LastName><ForeName>Delbert</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Sevy</LastName><ForeName>Serge</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Gunduz-Bruce</LastName><ForeName>Handan</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Wang</LastName><ForeName>Yung-Ping</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>DeLuca</LastName><ForeName>Heather</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<LastName>Thompson</LastName><ForeName>Paul M</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Mapping cortical thickness and gray matter concentration in first episode schizophrenia",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "Mapping cortical thickness and gray matter concentration in first episode schizophrenia."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<Year>2005</Year><Month>Jun</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<Volume>15</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<Issue>6</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "708--719",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<StartPage>708</StartPage><EndPage>719</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhh172",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15371291&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhh172</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "\"and others\" replaced by the full 12-author list (adds H DeLuca and P M Thompson; Wang is Yung-Ping so Y-P). Pages completed 708--719. Print 15(6) June 2005 (online 2004-09-15). DOI added."
+ },
+ {
+  "key": "PlonEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+   "quote": "Lesions affecting the parahippocampal cortex yield spatial memory deficits in humans.",
+   "why": "PubMed 11073870: same title, authors, Cerebral Cortex 10(12):1211--1216, DOI 10.1093/cercor/10.12.1211."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C J Ploner and B M Gaymard and S Rivaud-P{\\'e}choux and M Baulac and S Cl{\\'e}menceau and S Samson and C Pierrot-Deseilligny",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<LastName>Ploner</LastName><ForeName>C J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<LastName>Gaymard</LastName><ForeName>B M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<LastName>Rivaud-Péchoux</LastName><ForeName>S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<LastName>Baulac</LastName><ForeName>M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<LastName>Clémenceau</LastName><ForeName>S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<LastName>Samson</LastName><ForeName>S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<LastName>Pierrot-Deseilligny</LastName><ForeName>C</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Lesions affecting the parahippocampal cortex yield spatial memory deficits in humans",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "Lesions affecting the parahippocampal cortex yield spatial memory deficits in humans."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<Year>2000</Year><Month>Dec</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<Volume>10</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<Issue>12</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1211--1216",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<StartPage>1211</StartPage><EndPage>1216</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/10.12.1211",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=11073870&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/10.12.1211</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added."
+ },
+ {
+  "key": "RissEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+   "quote": "Dynamic adjustments in prefrontal, hippocampal, and inferior temporal interactions with increasing visual working memory load.",
+   "why": "PubMed 17999985: same title, authors, Cerebral Cortex 18(7):1618--1629, DOI 10.1093/cercor/bhm195."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "J Rissman and A Gazzaley and M D'Esposito",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+      "quote": "<LastName>Rissman</LastName><ForeName>Jesse</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+      "quote": "<LastName>Gazzaley</LastName><ForeName>Adam</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+      "quote": "<LastName>D'Esposito</LastName><ForeName>Mark</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Dynamic adjustments in prefrontal, hippocampal, and inferior temporal interactions with increasing visual working memory load",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+      "quote": "Dynamic adjustments in prefrontal, hippocampal, and inferior temporal interactions with increasing visual working memory load."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+      "quote": "<Year>2008</Year><Month>Jul</Month>"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/bhm195",
+      "quote": "\"published-print\":{\"date-parts\":[[2008,"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+      "quote": "<Volume>18</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+      "quote": "<Issue>7</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1618--1629",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+      "quote": "<StartPage>1618</StartPage><EndPage>1629</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhm195",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17999985&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhm195</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Cited as Epub ahead of print (online 2007-11-13); print 18(7):1618-1629, July 2008, so year 2008 and volume/number/pages filled. Author brace form M {D'Es}posito normalised to the common house form M D'Esposito. Key rename RissEtal07 -> RissEtal08 (not in HEAD; no collision)."
+ },
+ {
+  "key": "SchaEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+   "quote": "Local-Global Parcellation of the Human Cerebral Cortex from Intrinsic Functional Connectivity MRI.",
+   "why": "PubMed 28981612: same title, authors, Cerebral Cortex 28(9):3095--3114, DOI 10.1093/cercor/bhx179."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "A Schaefer and R Kong and E M Gordon and T O Laumann and X-N Zuo and A J Holmes and S B Eickhoff and B T T Yeo",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<LastName>Schaefer</LastName><ForeName>Alexander</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<LastName>Kong</LastName><ForeName>Ru</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<LastName>Gordon</LastName><ForeName>Evan M</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<LastName>Laumann</LastName><ForeName>Timothy O</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<LastName>Zuo</LastName><ForeName>Xi-Nian</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<LastName>Holmes</LastName><ForeName>Avram J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<LastName>Eickhoff</LastName><ForeName>Simon B</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<LastName>Yeo</LastName><ForeName>B T Thomas</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Local-global parcellation of the human cerebral cortex from intrinsic functional connectivity {MRI}",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "Local-Global Parcellation of the Human Cerebral Cortex from Intrinsic Functional Connectivity MRI."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<Year>2018</Year><Month>Sep</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "28",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<Volume>28</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<Issue>9</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "3095--3114",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<StartPage>3095</StartPage><EndPage>3114</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhx179",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28981612&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhx179</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Fifth author truncated as \"X-N Z\": is Xi-Nian Zuo. Issue 9 and DOI added. Print 28(9) Sep 2018 (online 2017-07-18). Crossref has-preprint 10.1101/135632 (bioRxiv) - the cited journal version is correct."
+ },
+ {
+  "key": "SchuEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10731222&retmode=xml",
+   "quote": "Reward processing in primate orbitofrontal cortex and basal ganglia.",
+   "why": "PubMed 10731222: same title, authors, Cerebral Cortex 10(3):272--283, DOI 10.1093/cercor/10.3.272."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "W Schultz and L Tremblay and J R Hollerman",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10731222&retmode=xml",
+      "quote": "<LastName>Schultz</LastName><ForeName>W</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10731222&retmode=xml",
+      "quote": "<LastName>Tremblay</LastName><ForeName>L</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10731222&retmode=xml",
+      "quote": "<LastName>Hollerman</LastName><ForeName>J R</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Reward processing in primate orbitofrontal cortex and basal ganglia",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10731222&retmode=xml",
+      "quote": "Reward processing in primate orbitofrontal cortex and basal ganglia."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10731222&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10731222&retmode=xml",
+      "quote": "<Year>2000</Year><Month>Mar</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10731222&retmode=xml",
+      "quote": "<Volume>10</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10731222&retmode=xml",
+      "quote": "<Issue>3</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "272--283",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/cercor/10.3.272",
+      "quote": "\"page\":\"272-283\""
+     },
+     {
+      "url": "https://academic.oup.com/cercor/article/10/3/272/449584",
+      "quote": "Pages 272–283"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/10.3.272",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10731222&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/10.3.272</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "Initials JR -> J R. Pages completed as 272--283 per Crossref and the OUP article page (\"Pages 272-283\"); PubMed/Europe PMC say 272-284 (the next article, 10.1093/cercor/10.3.284, starts on 284). DOI added."
+ },
+ {
+  "key": "SedeEtal07a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+   "quote": "Hippocampal and neocortical gamma oscillations predict memory formation in humans.",
+   "why": "PubMed 16831858: same title, authors, Cerebral Cortex 17(5):1190--1196, DOI 10.1093/cercor/bhl030."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "P B Sederberg and A Schulze-Bonhage and J R Madsen and E B Bromfield and D C McCarthy and A Brandt and M S Tully and M J Kahana",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<LastName>Sederberg</LastName><ForeName>Per B</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<LastName>Schulze-Bonhage</LastName><ForeName>Andreas</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<LastName>Madsen</LastName><ForeName>Joseph R</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<LastName>Bromfield</LastName><ForeName>Edward B</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<LastName>McCarthy</LastName><ForeName>David C</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<LastName>Brandt</LastName><ForeName>Armin</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<LastName>Tully</LastName><ForeName>Michele S</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<LastName>Kahana</LastName><ForeName>Michael J</ForeName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Hippocampal and neocortical gamma oscillations predict memory formation in humans",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "Hippocampal and neocortical gamma oscillations predict memory formation in humans."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Cerebral Cortex",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<Title>Cerebral cortex (New York, N.Y. : 1991)</Title>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<Year>2007</Year><Month>May</Month>"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<Volume>17</Volume>"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<Issue>5</Issue>"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1190--1196",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<StartPage>1190</StartPage><EndPage>1196</EndPage>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/cercor/bhl030",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+      "quote": "<ArticleId IdType=\"doi\">10.1093/cercor/bhl030</ArticleId>"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; print 17(5) May 2007 (online 2006-06-13). DOI added."
+ }
+]

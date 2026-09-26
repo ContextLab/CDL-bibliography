@@ -1,0 +1,1870 @@
+[
+ {
+  "key": "PavlEtal88",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/3359196/",
+   "quote": "Long-term potentiation in the dentate gyrus is induced preferentially on the positive phase of theta-rhythm.",
+   "why": "Same title, the four authors, Brain Research 439:383-387, 1988 (PMID 3359196)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Long-term potentiation in the dentate gyrus is induced preferentially on the positive phase of theta-rhythm",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3359196/",
+      "quote": "Long-term potentiation in the dentate gyrus is induced preferentially on the positive phase of theta-rhythm."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C Pavlides and Y J Greenstein and M Grudman and J Winson",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3359196/",
+      "quote": "C Pavlides, Y J Greenstein, M Grudman, J Winson"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Research",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(88)91499-0",
+      "quote": "\"container-title\":[\"Brain Research\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(88)91499-0",
+      "quote": "\"published-print\":{\"date-parts\":[[1988"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "439",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(88)91499-0",
+      "quote": "\"volume\":\"439\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1--2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(88)91499-0",
+      "quote": "\"issue\":\"1-2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "383--387",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(88)91499-0",
+      "quote": "\"page\":\"383-387\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0006-8993(88)91499-0",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(88)91499-0",
+      "quote": "\"page\":\"383-387\""
+     }
+    ]
+   }
+  },
+  "notes": "Added issue 1--2 and DOI. The printed title uses the Greek letter (Crossref: \"positive phase of θ-rhythm\"); PubMed spells it \"theta-rhythm\", kept as cited. Crossref gives full given names Constantine, Yoram J., Mark, Jonathan."
+ },
+ {
+  "key": "SlawKasi95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/7620881/",
+   "quote": "Theta-like rhythm in depth EEG activity of hypothalamic areas during spontaneous or electrically induced locomotion in the rat.",
+   "why": "Same authors, Brain Research 678:117-126, 1995; only the last word of the title differs (PMID 7620881)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Theta-like rhythm in depth {EEG} activity of hypothalamic areas during spontaneous or electrically induced locomotion in the rat",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7620881/",
+      "quote": "Theta-like rhythm in depth EEG activity of hypothalamic areas during spontaneous or electrically induced locomotion in the rat."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "U S{\\l}awi{\\'n}ska and S Kasicki",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7620881/",
+      "quote": "U Sławińska, S Kasicki"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Research",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(95)00174-o",
+      "quote": "\"container-title\":[\"Brain Research\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(95)00174-o",
+      "quote": "\"published-print\":{\"date-parts\":[[1995"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "678",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(95)00174-o",
+      "quote": "\"volume\":\"678\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1--2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(95)00174-o",
+      "quote": "\"issue\":\"1-2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "117--126",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(95)00174-o",
+      "quote": "\"page\":\"117-126\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0006-8993(95)00174-o",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(95)00174-o",
+      "quote": "\"page\":\"117-126\""
+     }
+    ]
+   }
+  },
+  "notes": "Title ends \"in the rat\" (cited: \"in rats\"). Author: accented surname Sławińska kept; full given names (Urszula, Stefan per Crossref) reduced to house initials. Added issue and DOI. Crossref author record is garbled (mis-encoded surname), PubMed used for names."
+ },
+ {
+  "key": "YiEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16507300/",
+   "quote": "Attentional modulation of repetition attenuation is anatomically dissociable for scenes and faces.",
+   "why": "Same title and four authors, Brain Research 2006 (PMID 16507300)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Attentional modulation of repetition attenuation is anatomically dissociable for scenes and faces",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16507300/",
+      "quote": "Attentional modulation of repetition attenuation is anatomically dissociable for scenes and faces."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "D-J Yi and T A Kelley and R Marois and M M Chun",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16507300/",
+      "quote": "Do-Joon Yi, Todd A Kelley, René Marois, Marvin M Chun"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Research",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2006.01.090",
+      "quote": "\"container-title\":[\"Brain Research\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2006.01.090",
+      "quote": "\"published-print\":{\"date-parts\":[[2006"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "1080",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2006.01.090",
+      "quote": "\"volume\":\"1080\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2006.01.090",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "53--62",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2006.01.090",
+      "quote": "\"page\":\"53-62\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.brainres.2006.01.090",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2006.01.090",
+      "quote": "\"page\":\"53-62\""
+     }
+    ]
+   }
+  },
+  "notes": "Missing volume/issue/pages/DOI added. First author Do-Joon Yi: hyphenated initials per house rule (D-J)."
+ },
+ {
+  "key": "BuzsEtal83",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/6357356/",
+   "quote": "Cellular bases of hippocampal EEG in the behaving rat.",
+   "why": "Same title, Buzsaki/Leung/Vanderwolf, 1983, pp 139-171 (PMID 6357356)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Cellular bases of hippocampal {EEG} in the behaving rat",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6357356/",
+      "quote": "Cellular bases of hippocampal EEG in the behaving rat."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "G Buzs\\'aki and L-W S Leung and C H Vanderwolf",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6357356/",
+      "quote": "G Buzsáki, L W Leung, C H Vanderwolf"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(83)90037-1",
+      "quote": "\"given\":\"Leung\",\"family\":\"Lai-Wo S.\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Brain Research Reviews",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(83)90037-1",
+      "quote": "\"container-title\":[\"Brain Research Reviews\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1983",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(83)90037-1",
+      "quote": "\"published-print\":{\"date-parts\":[[1983"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(83)90037-1",
+      "quote": "\"volume\":\"6\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(83)90037-1",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "139--171",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(83)90037-1",
+      "quote": "\"page\":\"139-171\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0165-0173(83)90037-1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(83)90037-1",
+      "quote": "\"page\":\"139-171\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal is Brain Research Reviews (Crossref container-title; the cited \"Brain Research: Brain Research Reviews\" is the NLM catalogue form; cdl.bib uses both forms). PubMed indexes it as Brain Research vol 287(2), the combined numbering; Brain Research Reviews numbering is vol 6(2), kept. Second author: PubMed \"L W Leung\", Crossref given/family swapped as \"Lai-Wo S.\" (Lai-Wo Stan Leung); proposed \"L-W S Leung\" per hyphenated-initial rule; NOTE cdl.bib writes this person \"L S Leung\" in two other entries (his usual byline), reviewer may prefer house consistency."
+ },
+ {
+  "key": "Ekst10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20026191/",
+   "quote": "How and when the fMRI BOLD signal relates to underlying neural activity: the danger in dissociation.",
+   "why": "Same title, single author Ekstrom, Brain Res Rev 62(2):233-244, 2010 (PMID 20026191)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "How and when the {fMRI} {BOLD} signal relates to underlying neural activity: the danger in dissociation",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20026191/",
+      "quote": "How and when the fMRI BOLD signal relates to underlying neural activity: the danger in dissociation."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A D Ekstrom",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20026191/",
+      "quote": "Arne Ekstrom"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Brain Research Reviews",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20026191/",
+      "quote": "Brain research reviews Brain Res Rev"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainresrev.2009.12.004",
+      "quote": "\"published-print\":{\"date-parts\":[[2010"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "62",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainresrev.2009.12.004",
+      "quote": "\"volume\":\"62\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainresrev.2009.12.004",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "233--244",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainresrev.2009.12.004",
+      "quote": "\"page\":\"233-244\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.brainresrev.2009.12.004",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainresrev.2009.12.004",
+      "quote": "\"page\":\"233-244\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal is Brain Research Reviews (PubMed and Crossref). PubMed and Crossref give only \"Arne Ekstrom\"; the middle initial D is not shown by either but not contradicted, so kept (not confirmed by these sources). Added DOI. PMC3546820."
+ },
+ {
+  "key": "KessEtal01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11423159/",
+   "quote": "Varieties of human spatial memory: a meta-analysis on the effects of hippocampal lesions.",
+   "why": "Same title and four authors, 2001, 35(3):295-303 (PMID 11423159)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Varieties of human spatial memory: a meta-analysis on the effects of hippocampal lesions",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11423159/",
+      "quote": "Varieties of human spatial memory: a meta-analysis on the effects of hippocampal lesions."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "R P C Kessels and E H F {de Haan} and L J Kappelle and A Postma",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(01)00058-3",
+      "quote": "\"given\":\"Roy P.C.\",\"family\":\"Kessels\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(01)00058-3",
+      "quote": "\"given\":\"Edward H.F.\",\"family\":\"de Haan\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(01)00058-3",
+      "quote": "\"given\":\"L.Jaap\",\"family\":\"Kappelle\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(01)00058-3",
+      "quote": "\"given\":\"Albert\",\"family\":\"Postma\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Brain Research Reviews",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(01)00058-3",
+      "quote": "\"container-title\":[\"Brain Research Reviews\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(01)00058-3",
+      "quote": "\"published-print\":{\"date-parts\":[[2001"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "35",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(01)00058-3",
+      "quote": "\"volume\":\"35\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(01)00058-3",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "295--303",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(01)00058-3",
+      "quote": "\"page\":\"295-303\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0165-0173(01)00058-3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(01)00058-3",
+      "quote": "\"page\":\"295-303\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref gives full initials Roy P.C. Kessels and Edward H.F. de Haan (PubMed: R P, E H); added the extra initials. Journal Brain Research Reviews (Crossref container-title). Added DOI."
+ },
+ {
+  "key": "Klim99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10209231/",
+   "quote": "EEG alpha and theta oscillations reflect cognitive and memory performance: a review and analysis.",
+   "why": "Same title, Klimesch, 1999, 29:169-195 (PMID 10209231)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{EEG} alpha and theta oscillations reflect cognitive and memory performance: a review and analysis",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10209231/",
+      "quote": "EEG alpha and theta oscillations reflect cognitive and memory performance: a review and analysis."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "W Klimesch",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10209231/",
+      "quote": "W Klimesch"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Brain Research Reviews",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(98)00056-3",
+      "quote": "\"container-title\":[\"Brain Research Reviews\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(98)00056-3",
+      "quote": "\"published-print\":{\"date-parts\":[[1999"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "29",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(98)00056-3",
+      "quote": "\"volume\":\"29\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2--3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(98)00056-3",
+      "quote": "\"issue\":\"2-3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "169--195",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(98)00056-3",
+      "quote": "\"page\":\"169-195\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0165-0173(98)00056-3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0165-0173(98)00056-3",
+      "quote": "\"page\":\"169-195\""
+     }
+    ]
+   }
+  },
+  "notes": "Author given name reduced to house initial. Journal Brain Research Reviews (Crossref). Added issue 2--3 and DOI."
+ },
+ {
+  "key": "PareHazr95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/7711765/",
+   "quote": "Functional anatomy of the basal ganglia. II. The place of subthalamic nucleus and external pallidum in basal ganglia circuitry.",
+   "why": "Same authors, Brain Res Rev 20(1):128-154, 1995 (PMID 7711765)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Functional anatomy of the basal ganglia. {II}. The place of subthalamic nucleus and external pallidum in basal ganglia circuitry",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7711765/",
+      "quote": "Functional anatomy of the basal ganglia. II. The place of subthalamic nucleus and external pallidum in basal ganglia circuitry."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A Parent and L-N Hazrati",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7711765/",
+      "quote": "A Parent, L N Hazrati"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(94)00008-d",
+      "quote": "\"given\":\"Lili-Naz\",\"family\":\"Hazrati\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Brain Research Reviews",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(94)00008-d",
+      "quote": "\"container-title\":[\"Brain Research Reviews\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(94)00008-d",
+      "quote": "\"published-print\":{\"date-parts\":[[1995"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "20",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(94)00008-d",
+      "quote": "\"volume\":\"20\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(94)00008-d",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "128--154",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(94)00008-d",
+      "quote": "\"page\":\"128-154\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0165-0173(94)00008-d",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0165-0173(94)00008-d",
+      "quote": "\"page\":\"128-154\""
+     }
+    ]
+   }
+  },
+  "notes": "Printed title is part II of a two-part series (\"... basal ganglia. II. The place of subthalamic nucleus ...\"), no \"the\" before subthalamic; cited title paraphrased it. Crossref misspells \"pallidium\"; PubMed \"pallidum\" used. Hazrati given name Lili-Naz -> L-N per hyphen rule. Companion part I is 10.1016/0165-0173(94)00007-c (pp 91-127), a different work."
+ },
+ {
+  "key": "DezfDali20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/31363879/",
+   "quote": "Single-Trial Decoding from Local Field Potential Using Bag of Word Representation.",
+   "why": "Same title, authors, Brain Topography 33(1):10-21 (PMID 31363879)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Single-trial decoding from local field potential using bag of word representation",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31363879/",
+      "quote": "Single-Trial Decoding from Local Field Potential Using Bag of Word Representation."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M {Parto Dezfouli} and M R Daliri",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31363879/",
+      "quote": "Mohsen Parto Dezfouli, Mohammad Reza Daliri"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Topography",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-019-00726-8",
+      "quote": "\"container-title\":[\"Brain Topography\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-019-00726-8",
+      "quote": "\"published-print\":{\"date-parts\":[[2020"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "33",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-019-00726-8",
+      "quote": "\"volume\":\"33\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-019-00726-8",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "10--21",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-019-00726-8",
+      "quote": "\"page\":\"10-21\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/s10548-019-00726-8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-019-00726-8",
+      "quote": "\"page\":\"10-21\""
+     }
+    ]
+   }
+  },
+  "notes": "First author surname is \"Parto Dezfouli\" (PubMed LastName and Crossref family), not \"Dezfouli\" with initial P. KEY RENAME: DezfDali20 -> PartDali20 (not in HEAD cdl.bib; no collision). Year 2020 is the print issue (online first 2019-07-30). Added issue and DOI."
+ },
+ {
+  "key": "JerbEtal09a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/19234780/",
+   "quote": "Saccade related gamma-band activity in intracerebral EEG: dissociating neural from ocular muscle activity.",
+   "why": "Same title and seven authors, Brain Topogr 22(1):18-23 (PMID 19234780)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Saccade related gamma-band activity in intracerebral {EEG}: dissociating neural from ocular muscle activity",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19234780/",
+      "quote": "Saccade related gamma-band activity in intracerebral EEG: dissociating neural from ocular muscle activity."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "K Jerbi and S Freyermuth and S Dalal and P Kahane and O Bertrand and A Berthoz and J-P Lachaux",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19234780/",
+      "quote": "Karim Jerbi, Samson Freyermuth, Sarang Dalal, Philippe Kahane, Olivier Bertrand, Alain Berthoz, Jean-Philippe Lachaux"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Topography",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-009-0078-5",
+      "quote": "\"container-title\":[\"Brain Topography\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-009-0078-5",
+      "quote": "\"published-print\":{\"date-parts\":[[2009"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-009-0078-5",
+      "quote": "\"volume\":\"22\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-009-0078-5",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "18--23",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-009-0078-5",
+      "quote": "\"page\":\"18-23\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/s10548-009-0078-5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/s10548-009-0078-5",
+      "quote": "\"page\":\"18-23\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change: Jean-Philippe Lachaux -> J-P (hyphen rule); added DOI. Print year 2009 (online Feb 2009)."
+ },
+ {
+  "key": "MartFedi83",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/6860932/",
+   "quote": "Word production and comprehension in Alzheimer's disease: the breakdown of semantic knowledge.",
+   "why": "Same title, Martin and Fedio, Brain Lang 19(1):124-141, 1983 (PMID 6860932)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Word production and comprehension in {Alzheimer's} disease: the breakdown of semantic knowledge",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6860932/",
+      "quote": "Word production and comprehension in Alzheimer's disease: the breakdown of semantic knowledge."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Martin and P Fedio",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6860932/",
+      "quote": "A Martin, P Fedio"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0093-934x(83)90059-7",
+      "quote": "\"container-title\":[\"Brain and Language\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1983",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0093-934x(83)90059-7",
+      "quote": "\"published-print\":{\"date-parts\":[[1983"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0093-934x(83)90059-7",
+      "quote": "\"volume\":\"19\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0093-934x(83)90059-7",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "124--141",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0093-934x(83)90059-7",
+      "quote": "\"page\":\"124-141\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0093-934x(83)90059-7",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0093-934x(83)90059-7",
+      "quote": "\"page\":\"124-141\""
+     }
+    ]
+   }
+  },
+  "notes": "Crossref title has a typo (\"diseáse\"); PubMed title matches the citation. Only change: DOI added."
+ },
+ {
+  "key": "TeasRuss83",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/6626789/",
+   "quote": "Differential effects of induced mood on the recall of positive, negative and neutral words.",
+   "why": "Same title, Teasdale and Russell, 1983, 22:163-171 (PMID 6626789)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Differential effects of induced mood on the recall of positive, negative and neutral words",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6626789/",
+      "quote": "Differential effects of induced mood on the recall of positive, negative and neutral words."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J D Teasdale and M L Russell",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6626789/",
+      "quote": "J D Teasdale, M L Russell"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8260.1983.tb00597.x",
+      "quote": "\"given\":\"M. Louise\",\"family\":\"Russell\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "British Journal of Clinical Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8260.1983.tb00597.x",
+      "quote": "\"container-title\":[\"British Journal of Clinical Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1983",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8260.1983.tb00597.x",
+      "quote": "\"published-print\":{\"date-parts\":[[1983"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8260.1983.tb00597.x",
+      "quote": "\"volume\":\"22\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8260.1983.tb00597.x",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "163--171",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8260.1983.tb00597.x",
+      "quote": "\"page\":\"163-171\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.2044-8260.1983.tb00597.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8260.1983.tb00597.x",
+      "quote": "\"page\":\"163-171\""
+     }
+    ]
+   }
+  },
+  "notes": "Second author is M. Louise Russell (initials M L; cited \"Louise M\" reversed); names to house initials. Added issue 3 (PubMed \"22 (Pt 3)\") and DOI."
+ },
+ {
+  "key": "Stol49",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15396389/",
+   "quote": "Slowing of the alpha-rhythm of the electroencephalogram and its association with mental deterioration and epilepsy.",
+   "why": "Same title (bar hyphen), Stoller, 1949, 95(401):972-984 (PMID 15396389)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Slowing of the alpha-rhythm of the electroencephalogram and its association with mental deterioration and epilepsy",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15396389/",
+      "quote": "Slowing of the alpha-rhythm of the electroencephalogram and its association with mental deterioration and epilepsy."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Stoller",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15396389/",
+      "quote": "A STOLLER"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Mental Science",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1192/bjp.95.401.972",
+      "quote": "\"container-title\":[\"Journal of Mental Science\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1949",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1192/bjp.95.401.972",
+      "quote": "\"published-print\":{\"date-parts\":[[1949"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "95",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1192/bjp.95.401.972",
+      "quote": "\"volume\":\"95\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "401",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1192/bjp.95.401.972",
+      "quote": "\"issue\":\"401\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "972--984",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1192/bjp.95.401.972",
+      "quote": "\"page\":\"972-984\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1192/bjp.95.401.972",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1192/bjp.95.401.972",
+      "quote": "\"page\":\"972-984\""
+     }
+    ]
+   }
+  },
+  "notes": "In 1949 the journal was the Journal of Mental Science (renamed British Journal of Psychiatry in 1963; the DOI prefix bjp reflects the later name). Title word is \"electroencephalogram\" (no hyphen). Added DOI."
+ },
+ {
+  "key": "Bart37",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1937.tb00863.x",
+   "quote": "\"title\":[\"THE STATISTICAL CONCEPTION OF MENTAL FACTORS\"]",
+   "why": "Crossref record: same title, M S Bartlett, vol 28 pp 97-104, 1937."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The statistical conception of mental factors",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1937.tb00863.x",
+      "quote": "\"title\":[\"THE STATISTICAL CONCEPTION OF MENTAL FACTORS\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M S Bartlett",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1937.tb00863.x",
+      "quote": "\"given\":\"M. S.\",\"family\":\"BARTLETT\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "British Journal of Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1937.tb00863.x",
+      "quote": "\"container-title\":[\"British Journal of Psychology. General Section\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1937",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1937.tb00863.x",
+      "quote": "\"published-print\":{\"date-parts\":[[1937"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "28",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1937.tb00863.x",
+      "quote": "\"volume\":\"28\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1937.tb00863.x",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "97--104",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1937.tb00863.x",
+      "quote": "\"page\":\"97-104\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.2044-8295.1937.tb00863.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1937.tb00863.x",
+      "quote": "\"page\":\"97-104\""
+     }
+    ]
+   }
+  },
+  "notes": "Added issue 1 and DOI. Crossref/Wiley container is \"British Journal of Psychology. General Section\" (the 1920-1952 series title); kept the house form \"British Journal of Psychology\"; reviewer may prefer the section title. Not in PubMed."
+ },
+ {
+  "key": "BurtBruc92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/1559145/",
+   "quote": "I recognize your face but I can't remember your name: a simple explanation?",
+   "why": "Same title, Burton and Bruce, 1992, 83:45-60 (PMID 1559145)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{I} recognize your face but {I} can't remember your name: a simple explanation?",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1559145/",
+      "quote": "I recognize your face but I can't remember your name: a simple explanation?"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A M Burton and V Bruce",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1559145/",
+      "quote": "A M Burton, V Bruce"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "British Journal of Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1992.tb02424.x",
+      "quote": "\"container-title\":[\"British Journal of Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1992.tb02424.x",
+      "quote": "\"published-print\":{\"date-parts\":[[1992"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "83",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1992.tb02424.x",
+      "quote": "\"volume\":\"83\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1992.tb02424.x",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "45--60",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1992.tb02424.x",
+      "quote": "\"page\":\"45-60\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.2044-8295.1992.tb02424.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1992.tb02424.x",
+      "quote": "\"page\":\"45-60\""
+     }
+    ]
+   }
+  },
+  "notes": "Author \"A Mike Burton\" -> house initials A M Burton. Added issue 1 (PubMed \"83 ( Pt 1)\") and DOI."
+ },
+ {
+  "key": "Gibs58",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/13572790/",
+   "quote": "Visually controlled locomotion and visual orientation in animals.",
+   "why": "Same title, J J Gibson, Br J Psychol 49(3):182-194, 1958 (PMID 13572790)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Visually controlled locomotion and visual orientation in animals",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13572790/",
+      "quote": "Visually controlled locomotion and visual orientation in animals."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J J Gibson",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/13572790/",
+      "quote": "J J GIBSON"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "British Journal of Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1958.tb00656.x",
+      "quote": "\"container-title\":[\"British Journal of Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1958",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1958.tb00656.x",
+      "quote": "\"published-print\":{\"date-parts\":[[1958"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "49",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1958.tb00656.x",
+      "quote": "\"volume\":\"49\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1958.tb00656.x",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "182--194",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1958.tb00656.x",
+      "quote": "\"page\":\"182-194\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.2044-8295.1958.tb00656.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1958.tb00656.x",
+      "quote": "\"page\":\"182-194\""
+     }
+    ]
+   }
+  },
+  "notes": "Added issue 3 and DOI. (Crossref title carries a footnote asterisk.) A 2009 reprint exists in the same journal (10.1348/000712608x336077, vol 100) - different version, not the cited one."
+ },
+ {
+  "key": "GoddBadd75",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+   "quote": "DEPENDENT MEMORY IN TWO NATURAL ENVIRONMENTS: ON LAND AND UNDERWATER",
+   "why": "Crossref record: Godden and Baddeley, Br J Psychol 66(3):325-331, 1975; title differs only in underwater/under water."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Context-dependent memory in two natural environments: on land and underwater",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+      "quote": "DEPENDENT MEMORY IN TWO NATURAL ENVIRONMENTS: ON LAND AND UNDERWATER"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+      "quote": "\"title\":[\"CONTEXT"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D R Godden and A D Baddeley",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+      "quote": "\"given\":\"D. R.\",\"family\":\"GODDEN\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+      "quote": "\"given\":\"A. D.\",\"family\":\"BADDELEY\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "British Journal of Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+      "quote": "\"container-title\":[\"British Journal of Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1975",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+      "quote": "\"published-print\":{\"date-parts\":[[1975"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "66",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+      "quote": "\"volume\":\"66\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "325--331",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+      "quote": "\"page\":\"325-331\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.2044-8295.1975.tb01468.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1975.tb01468.x",
+      "quote": "\"page\":\"325-331\""
+     }
+    ]
+   }
+  },
+  "notes": "Printed title ends \"ON LAND AND UNDERWATER\" (one word); also seen on page 325 of the local PDF file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/GoddBadd75.pdf (image-only scan, not machine-quotable; header \"Br. J. Psychol. (1975), 66, 3, pp. 325-331\"). Added issue 3 and DOI."
+ },
+ {
+  "key": "GoddBadd80",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1980.tb02735.x",
+   "quote": "\"title\":[\"When does context influence recognition memory?\"]",
+   "why": "Crossref record: same title, Godden and Baddeley, 71:99-104, 1980."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "When does context influence recognition memory?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1980.tb02735.x",
+      "quote": "\"title\":[\"When does context influence recognition memory?\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D R Godden and A D Baddeley",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1980.tb02735.x",
+      "quote": "\"given\":\"Duncan\",\"family\":\"Godden\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1980.tb02735.x",
+      "quote": "\"given\":\"Alan\",\"family\":\"Baddeley\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "British Journal of Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1980.tb02735.x",
+      "quote": "\"container-title\":[\"British Journal of Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1980",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1980.tb02735.x",
+      "quote": "\"published-print\":{\"date-parts\":[[1980"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "71",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1980.tb02735.x",
+      "quote": "\"volume\":\"71\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1980.tb02735.x",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "99--104",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1980.tb02735.x",
+      "quote": "\"page\":\"99-104\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.2044-8295.1980.tb02735.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8295.1980.tb02735.x",
+      "quote": "\"page\":\"99-104\""
+     }
+    ]
+   }
+  },
+  "notes": "Added issue 1 and DOI. Crossref gives given names Duncan and Alan only; the cited middle initials R and D are kept (same people as GoddBadd75, where Crossref gives D. R. and A. D.)."
+ },
+ {
+  "key": "Sina07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
+   "quote": "\"title\":[\"Brain Mapping of Language Using High Frequency Gamma Oscillations in the Electrocorticography\"]",
+   "why": "Crossref book-chapter record: A Sinai, in Brain Research in Language, pp 247-273; the cited title is truncated (\"electrocorticophy\") and the cited venue is this book, not a journal."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Brain mapping of language using high frequency gamma oscillations in the electrocorticography",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
+      "quote": "\"title\":[\"Brain Mapping of Language Using High Frequency Gamma Oscillations in the Electrocorticography\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Sinai",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
+      "quote": "\"given\":\"Alon\",\"family\":\"Sinai\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Brain Research in Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
+      "quote": "\"container-title\":[\"Brain Research in Language\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "Z Breznitz",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8",
+      "quote": "\"given\":\"Zvia\",\"family\":\"Breznitz\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
+      "quote": "\"publisher\":\"Springer US\""
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Boston, {MA}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
+      "quote": "\"publisher-location\":\"Boston, MA\""
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
+      "quote": "\"published-print\":{\"date-parts\":[[2008]]}"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "247--273",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
+      "quote": "\"page\":\"247-273\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-0-387-74980-8_10",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
+      "quote": "\"page\":\"247-273\""
+     }
+    ]
+   }
+  },
+  "notes": "Book chapter, not an article: convert to @incollection, drop the journal field. KEY RENAME: print year 2008 (Crossref published-print 2008; Springer shows first-online Dec 2007) -> Sina07 -> Sina08 (not in HEAD cdl.bib; no collision). Publisher house form \"Springer\" (Crossref \"Springer US\", Boston, MA). Title completed (\"electrocorticophy\" was truncated). The book is in Springer's Literacy Studies series vol 1 (not quoted; not proposed)."
+ },
+ {
+  "key": "CronEtal94",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1006/brln.1994.1057",
+   "quote": "\"title\":[\"Abstracts\"]",
+   "why": "Brain and Language 47(3), Oct 1994, carries the Academy of Aphasia meeting abstracts; the block 10.1006/brln.1994.1057 spans pp 409-490, which contains the cited pp 466-468, but the individual abstract could not be read."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain and Language",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/brln.1994.1057",
+      "quote": "\"container-title\":[\"Brain and Language\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "47",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/brln.1994.1057",
+      "quote": "\"volume\":\"47\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/brln.1994.1057",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1994",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1006/brln.1994.1057",
+      "quote": "\"published-print\":{\"date-parts\":[[1994"
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Conference abstract (Academy of Aphasia 1994, Cambridge MA; schedule 10.1006/brln.1994.1055) printed in the Brain and Language 47(3) abstracts section, in the collective item \"Abstracts\" 10.1006/brln.1994.1057 (pp 409-490), which has no per-abstract DOI. ScienceDirect (403) and the Elsevier API were not readable, so title, authors and pages 466--468 could not be verified; not in PubMed; Crossref has no separate record. If kept: issue 3; house rule drops the suffix, so \"J {Hart Jr}\" -> \"J Hart\"; consider @inproceedings/abstract note. Do not use 10.1006/brln.1994.1057 as the DOI of this abstract without confirming it lies in that block."
+ }
+]

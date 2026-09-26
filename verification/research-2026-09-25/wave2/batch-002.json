@@ -1,0 +1,2182 @@
+[
+ {
+  "key": "BorzEtal23b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/28bf1419b9a1f908c15f6195f58cb865-Abstract-Conference.html",
+   "quote": "content=\"Distributed Inference and Fine-tuning of Large Language Models Over The Internet\"",
+   "why": "NeurIPS 2023 proceedings page: same title, same eight authors, Advances in NeurIPS 36, pages 12312-12331."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/21538-/bibtex",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/21538-/bibtex",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Distributed inference and fine-tuning of large language models over the internet",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/28bf1419b9a1f908c15f6195f58cb865-Abstract-Conference.html",
+      "quote": "content=\"Distributed Inference and Fine-tuning of Large Language Models Over The Internet\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Borzunov and M Ryabinin and A Chumachenko and D Baranchuk and T Dettmers and Y Belkada and P Samygin and C A Raffel",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/21538-/bibtex",
+      "quote": "author = {Borzunov, Alexander and Ryabinin, Max and Chumachenko, Artem and Baranchuk, Dmitry and Dettmers, Tim and Belkada, Younes and Samygin, Pavel and Raffel, Colin},"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "36",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/28bf1419b9a1f908c15f6195f58cb865-Abstract-Conference.html",
+      "quote": "<meta name=\"citation_volume\" content=\"36\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "12312--12331",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/21538-/bibtex",
+      "quote": "pages = {12312--12331},"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/075280-0540",
+      "quote": "\"page\":\"12312-12331\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2023",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/21538-/bibtex",
+      "quote": "year = {2023}"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/075280-0540",
+      "quote": "\"published-print\":{\"date-parts\":[[2023]]}"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "A Oh and T Naumann and A Globerson and K Saenko and M Hardt and S Levine",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/21538-/bibtex",
+      "quote": "editor = {A. Oh and T. Naumann and A. Globerson and K. Saenko and M. Hardt and S. Levine},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/21538-/bibtex",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.52202/075280-0540",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/21538-/bibtex",
+      "quote": "doi = {10.52202/075280-0540},"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/075280-0540",
+      "quote": "\"page\":\"12312-12331\""
+     }
+    ]
+   }
+  },
+  "notes": "Conference paper: @article -> @inproceedings with Journal moved to Booktitle (as wave-1 BeckBurg01 / house RaoHowa08). DOI 10.52202/075280-0540 resolves (handle 200) and its Crossref record is this paper (Curran print of NeurIPS 36). Source gives 'Colin Raffel'; the cited middle initial A is kept (never drop). Publisher written in house short form 'Curran Associates' (the only house entry spells it 'Curran Associates, Incorporated'). Key unchanged."
+ },
+ {
+  "key": "ShihEtal23",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/0d1986a61e30e5fa408c81216a616e20-Abstract-Conference.html",
+   "quote": "content=\"Parallel Sampling of Diffusion Models\"",
+   "why": "NeurIPS 2023 proceedings page: same title, same five authors, volume 36, pages 4263-4276."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/20589-/bibtex",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/20589-/bibtex",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Parallel sampling of diffusion models",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/0d1986a61e30e5fa408c81216a616e20-Abstract-Conference.html",
+      "quote": "content=\"Parallel Sampling of Diffusion Models\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Shih and S Belkhale and S Ermon and D Sadigh and N Anari",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/20589-/bibtex",
+      "quote": "author = {Shih, Andy and Belkhale, Suneel and Ermon, Stefano and Sadigh, Dorsa and Anari, Nima},"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "36",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/0d1986a61e30e5fa408c81216a616e20-Abstract-Conference.html",
+      "quote": "<meta name=\"citation_volume\" content=\"36\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "4263--4276",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/20589-/bibtex",
+      "quote": "pages = {4263--4276},"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/075280-0188",
+      "quote": "\"page\":\"4263-4276\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2023",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/20589-/bibtex",
+      "quote": "year = {2023}"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/075280-0188",
+      "quote": "\"published-print\":{\"date-parts\":[[2023]]}"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "A Oh and T Naumann and A Globerson and K Saenko and M Hardt and S Levine",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/20589-/bibtex",
+      "quote": "editor = {A. Oh and T. Naumann and A. Globerson and K. Saenko and M. Hardt and S. Levine},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/20589-/bibtex",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.52202/075280-0188",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/20589-/bibtex",
+      "quote": "doi = {10.52202/075280-0188},"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/075280-0188",
+      "quote": "\"page\":\"4263-4276\""
+     }
+    ]
+   }
+  },
+  "notes": "@article -> @inproceedings (Journal -> Booktitle). DOI resolves (handle 200), Crossref record is this paper. cdl.bib also has TangEtal24 whose title contains 'parallel sampling of diffusion' - a different work (not a duplicate). Key unchanged."
+ },
+ {
+  "key": "ChenEtal24b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/f162fa05675e3db4a733aafc081653cf-Abstract-Conference.html",
+   "quote": "content=\"Accelerating Diffusion Models with Parallel Sampling: Inference at Sub-Linear Time Complexity\"",
+   "why": "NeurIPS 2024 proceedings page: same title and four authors, volume 37."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/25596-/bibtex",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/25596-/bibtex",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Accelerating diffusion models with parallel sampling: inference at sub-linear time complexity",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/f162fa05675e3db4a733aafc081653cf-Abstract-Conference.html",
+      "quote": "content=\"Accelerating Diffusion Models with Parallel Sampling: Inference at Sub-Linear Time Complexity\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "H Chen and Y Ren and L Ying and G M Rotskoff",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/25596-/bibtex",
+      "quote": "author = {Chen, Haoxuan and Ren, Yinuo and Ying, Lexing and Rotskoff, Grant},"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "37",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/f162fa05675e3db4a733aafc081653cf-Abstract-Conference.html",
+      "quote": "<meta name=\"citation_volume\" content=\"37\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "133661--133709",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/25596-/bibtex",
+      "quote": "pages = {133661--133709},"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/079017-4248",
+      "quote": "\"page\":\"133661-133709\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2024",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/25596-/bibtex",
+      "quote": "year = {2024}"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/079017-4248",
+      "quote": "\"published-print\":{\"date-parts\":[[2024]]}"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "A Globerson and L Mackey and D Belgrave and A Fan and U Paquet and J Tomczak and C Zhang",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/25596-/bibtex",
+      "quote": "editor = {A. Globerson and L. Mackey and D. Belgrave and A. Fan and U. Paquet and J. Tomczak and C. Zhang},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/25596-/bibtex",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.52202/079017-4248",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/25596-/bibtex",
+      "quote": "doi = {10.52202/079017-4248},"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/079017-4248",
+      "quote": "\"page\":\"133661-133709\""
+     }
+    ]
+   }
+  },
+  "notes": "Cited pages 126955--126983 are wrong: the NeurIPS BibTeX, the page's citation_firstpage/lastpage and the Crossref record all give 133661-133709. @article -> @inproceedings. Source gives 'Grant Rotskoff'; cited middle initial M kept. DOI resolves (handle 200). Key unchanged."
+ },
+ {
+  "key": "ChenEtal24c",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/ad15848baa3932c0d2deabf0e11d1dcd-Abstract-Conference.html",
+   "quote": "content=\"AsyncDiff: Parallelizing Diffusion Models by Asynchronous Denoising\"",
+   "why": "NeurIPS 2024 proceedings page: same title, same five authors, volume 37."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/26006-/bibtex",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/26006-/bibtex",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{AsyncDiff}: parallelizing diffusion models by asynchronous denoising",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/ad15848baa3932c0d2deabf0e11d1dcd-Abstract-Conference.html",
+      "quote": "content=\"AsyncDiff: Parallelizing Diffusion Models by Asynchronous Denoising\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Z Chen and X Ma and G Fang and Z Tan and X Wang",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/26006-/bibtex",
+      "quote": "author = {Chen, Zigeng and Ma, Xinyin and Fang, Gongfan and Tan, Zhenxiong and Wang, Xinchao},"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "37",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/ad15848baa3932c0d2deabf0e11d1dcd-Abstract-Conference.html",
+      "quote": "<meta name=\"citation_volume\" content=\"37\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "95170--95197",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/26006-/bibtex",
+      "quote": "pages = {95170--95197},"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/079017-3015",
+      "quote": "\"page\":\"95170-95197\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2024",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/26006-/bibtex",
+      "quote": "year = {2024}"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/079017-3015",
+      "quote": "\"published-print\":{\"date-parts\":[[2024]]}"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "A Globerson and L Mackey and D Belgrave and A Fan and U Paquet and J Tomczak and C Zhang",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/26006-/bibtex",
+      "quote": "editor = {A. Globerson and L. Mackey and D. Belgrave and A. Fan and U. Paquet and J. Tomczak and C. Zhang},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/26006-/bibtex",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.52202/079017-3015",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/26006-/bibtex",
+      "quote": "doi = {10.52202/079017-3015},"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.52202/079017-3015",
+      "quote": "\"page\":\"95170-95197\""
+     }
+    ]
+   }
+  },
+  "notes": "Pages added (entry had none). @article -> @inproceedings. DOI resolves (handle 200). Key unchanged."
+ },
+ {
+  "key": "ChanEtal09a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2009/hash/f92586a25bb3145facd64ab20fd554ff-Abstract.html",
+   "quote": "content=\"Reading Tea Leaves: How Humans Interpret Topic Models\"",
+   "why": "NeurIPS 2009 (Advances in NIPS 22) page for the same title and five authors; the Curran print TOC puts it at page 288."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/f92586a25bb3145facd64ab20fd554ff-Bibtex.bib",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/f92586a25bb3145facd64ab20fd554ff-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Reading tea leaves: how humans interpret topic models",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/hash/f92586a25bb3145facd64ab20fd554ff-Abstract.html",
+      "quote": "content=\"Reading Tea Leaves: How Humans Interpret Topic Models\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J Chang and J L Boyd-Graber and S Gerrish and C Wang and D M Blei",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/007/007333webtoc.pdf",
+      "quote": "Reading Tea Leaves: How Humans Interpret Topic Models, Jonathan Chang, Jordan Boyd-Graber, Sean Gerrish, Chong Wang, and David Blei"
+     },
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/f92586a25bb3145facd64ab20fd554ff-Paper.pdf",
+      "quote": "Sean Gerrish, Chong Wang, David M. Blei"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/hash/f92586a25bb3145facd64ab20fd554ff-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"22\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "288--296",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/007/007333webtoc.pdf",
+      "quote": "David Blei, Princeton University . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 288 A Parameter-free Hedging"
+     },
+     {
+      "url": "https://www.proceedings.com/content/007/007333webtoc.pdf",
+      "quote": "University of California . . . . . . 297"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/f92586a25bb3145facd64ab20fd554ff-Bibtex.bib",
+      "quote": "year = {2009}"
+     },
+     {
+      "url": "https://www.proceedings.com/content/007/007333webtoc.pdf",
+      "quote": "Copyright© (2009) by Neural Information Processing Systems"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "Y Bengio and D Schuurmans and J Lafferty and C K I Williams and A Culotta",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/f92586a25bb3145facd64ab20fd554ff-Bibtex.bib",
+      "quote": "editor = {Y. Bengio and D. Schuurmans and J. Lafferty and C. Williams and A. Culotta},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/f92586a25bb3145facd64ab20fd554ff-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   }
+  },
+  "notes": "Author ORDER: the paper PDF byline and the Curran print TOC both read Chang, Boyd-Graber, Gerrish, Wang, Blei (Chang and Boyd-Graber equal contribution); the cited order (and the NeurIPS site metadata) puts Boyd-Graber fourth. Proposed order follows the paper. Pages 288--296: the Curran print TOC gives start 288 and the next paper starts at 297 (end page inferred from that). Year: NeurIPS site and volume copyright 2009; Curran printed vol 22 in 2010 ('Printed by Curran Associates, Inc. (2010)'); house MozeEtal09 (same volume) uses 2009, so 2009 kept (a switch to 2010 would rename to ChanEtal10, which already exists as a different work -> key collision). Editors in house form of MozeEtal09 (C K I Williams; the site prints 'C. Williams'). @article -> @inproceedings; volume 22 added. No DOI exists for this volume."
+ },
+ {
+  "key": "SochEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2009/hash/efe937780e95574250dabe07151bdc23-Abstract.html",
+   "quote": "content=\"A Bayesian Analysis of Dynamics in Free Recall\"",
+   "why": "NeurIPS 2009 (vol 22) page for the same title and six authors; paper PDF byline matches the cited order."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/efe937780e95574250dabe07151bdc23-Bibtex.bib",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/efe937780e95574250dabe07151bdc23-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A {B}ayesian analysis of dynamics in free recall",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/hash/efe937780e95574250dabe07151bdc23-Abstract.html",
+      "quote": "content=\"A Bayesian Analysis of Dynamics in Free Recall\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "R Socher and S J Gershman and A J Perotte and P B Sederberg and D M Blei and K A Norman",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/efe937780e95574250dabe07151bdc23-Paper.pdf",
+      "quote": "Richard Socher Samuel J. Gershman, Adler J. Perotte, Per B. Sederberg"
+     },
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/efe937780e95574250dabe07151bdc23-Paper.pdf",
+      "quote": "David M. Blei Kenneth A. Norman"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/hash/efe937780e95574250dabe07151bdc23-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"22\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1714--1722",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/007/007333webtoc.pdf",
+      "quote": "David Blei, and Kenneth Norman, Princeton University . . . . 1714"
+     },
+     {
+      "url": "https://www.proceedings.com/content/007/007333webtoc.pdf",
+      "quote": "Camille Coti, INRIA Saclay-Ile de France 1723"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/efe937780e95574250dabe07151bdc23-Bibtex.bib",
+      "quote": "year = {2009}"
+     },
+     {
+      "url": "https://www.proceedings.com/content/007/007333webtoc.pdf",
+      "quote": "Copyright© (2009) by Neural Information Processing Systems"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "Y Bengio and D Schuurmans and J Lafferty and C K I Williams and A Culotta",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/efe937780e95574250dabe07151bdc23-Bibtex.bib",
+      "quote": "editor = {Y. Bengio and D. Schuurmans and J. Lafferty and C. Williams and A. Culotta},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2009/file/efe937780e95574250dabe07151bdc23-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   }
+  },
+  "notes": "Cited author order matches the paper PDF and the Curran TOC (the NeurIPS site metadata lists a different order; not followed). Middle initials added from the PDF byline (Samuel J. Gershman, Adler J. Perotte, Per B. Sederberg, David M. Blei, Kenneth A. Norman). Pages 1714--1722 from the Curran print TOC (start 1714; next paper starts 1723; end page 1722 inferred, no source prints it). Year 2009 (site, copyright; Curran printed 2010, as for ChanEtal09a; SochEtal10 would be free). @article -> @inproceedings."
+ },
+ {
+  "key": "KrizEtal12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+   "quote": "content=\"ImageNet Classification with Deep Convolutional Neural Networks\"",
+   "why": "NeurIPS 2012 (vol 25) page, same title and three authors; Curran print TOC places it at page 1097."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Bibtex.bib",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{ImageNet} classification with deep convolutional neural networks",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+      "quote": "content=\"ImageNet Classification with Deep Convolutional Neural Networks\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Krizhevsky and I Sutskever and G E Hinton",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Bibtex.bib",
+      "quote": "author = {Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E},"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "25",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"25\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1097--1105",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/017/017576webtoc.pdf",
+      "quote": "and Geoff Hinton, University of Toronto . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1097"
+     },
+     {
+      "url": "https://www.proceedings.com/content/017/017576webtoc.pdf",
+      "quote": "UC San Diego . . . . . . 1106"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Bibtex.bib",
+      "quote": "year = {2012}"
+     },
+     {
+      "url": "https://www.proceedings.com/content/017/017576webtoc.pdf",
+      "quote": "Copyright© (2012) by Neural Information Processing Systems"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "F Pereira and C J Burges and L Bottou and K Weinberger",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Bibtex.bib",
+      "quote": "editor = {F. Pereira and C.J. Burges and L. Bottou and K. Weinberger},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   }
+  },
+  "notes": "@article -> @inproceedings (Journal -> Booktitle). Pages: Curran TOC start 1097, next paper 1106 (end page 1105 inferred from the next start; no source prints it). Curran printed vol 25 in 2013; site and copyright 2012, kept. DIFFERENT WORK/VERSION: the 2017 Communications of the ACM reprint (doi 10.1145/3065386, 60(6):84-90) is a separate publication, not this entry; no DOI exists for the NeurIPS 2012 paper. Key unchanged."
+ },
+ {
+  "key": "KiroEtal15",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2015/hash/f442d33fa06832082290ad8544a8da27-Abstract.html",
+   "quote": "content=\"Skip-Thought Vectors\"",
+   "why": "NeurIPS 2015 (vol 28) page, same title and seven authors; Curran print TOC places it at page 3294."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/file/f442d33fa06832082290ad8544a8da27-Bibtex.bib",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/file/f442d33fa06832082290ad8544a8da27-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Skip-thought vectors",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/hash/f442d33fa06832082290ad8544a8da27-Abstract.html",
+      "quote": "content=\"Skip-Thought Vectors\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "R Kiros and Y Zhu and R R Salakhutdinov and R S Zemel and A Torralba and R Urtasun and S Fidler",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/file/f442d33fa06832082290ad8544a8da27-Paper.pdf",
+      "quote": "Ryan Kiros 1 , Yukun Zhu 1 , Ruslan Salakhutdinov 1,2 , Richard S. Zemel 1,2"
+     },
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/file/f442d33fa06832082290ad8544a8da27-Paper.pdf",
+      "quote": "Antonio Torralba 3 , Raquel Urtasun 1 , Sanja Fidler 1"
+     },
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/hash/f442d33fa06832082290ad8544a8da27-Abstract.html",
+      "quote": "content=\"Salakhutdinov, Russ R.\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "28",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/hash/f442d33fa06832082290ad8544a8da27-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"28\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "3294--3302",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/030/030770webtoc.pdf",
+      "quote": "Sanja Fidler, University of Toronto . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3294"
+     },
+     {
+      "url": "https://www.proceedings.com/content/030/030770webtoc.pdf",
+      "quote": "Freeman, The Mind Research Network, Vince Calhoun, MRN . . . . . . . . . . . . 3303"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2015",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/file/f442d33fa06832082290ad8544a8da27-Bibtex.bib",
+      "quote": "year = {2015}"
+     },
+     {
+      "url": "https://www.proceedings.com/content/030/030770webtoc.pdf",
+      "quote": "Copyright© (2015) by Neural Information Processing Systems"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "C Cortes and N D Lawrence and D D Lee and M Sugiyama and R Garnett",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/file/f442d33fa06832082290ad8544a8da27-Bibtex.bib",
+      "quote": "editor = {C. Cortes and N. Lawrence and D. Lee and M. Sugiyama and R. Garnett},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2015/file/f442d33fa06832082290ad8544a8da27-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   }
+  },
+  "notes": "Cited author order (Torralba before Urtasun) matches the paper PDF byline; the site metadata and Curran TOC swap them - PDF followed. Added initials: R R Salakhutdinov (site 'Russ R.'), R S Zemel (PDF 'Richard S. Zemel'). Pages: Curran TOC start 3294, next paper 3303 (end page 3302 inferred from the next start; no source prints it). Year 2015 (site, copyright; Curran printed 2016). Editors in house form of ChenEtal15a (same volume). @article -> @inproceedings; volume 28 added. Key unchanged."
+ },
+ {
+  "key": "PaszEtal19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2019/hash/bdbca288fee7f92f2bfa9f7012727740-Abstract.html",
+   "quote": "content=\"PyTorch: An Imperative Style, High-Performance Deep Learning Library\"",
+   "why": "NeurIPS 2019 (vol 32) page, same title and the same 21 authors in the same order."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/bdbca288fee7f92f2bfa9f7012727740-Bibtex.bib",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/bdbca288fee7f92f2bfa9f7012727740-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{PyTorch}: an imperative style, high-performance deep learning library",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/hash/bdbca288fee7f92f2bfa9f7012727740-Abstract.html",
+      "quote": "content=\"PyTorch: An Imperative Style, High-Performance Deep Learning Library\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Paszke and S Gross and F Massa and A Lerer and J Bradbury and G Chanan and T Killeen and Z Lin and N Gimelshein and L Antiga and A Desmaison and A K{\\\"o}pf and E Yang and Z DeVito and M Raison and A Tejani and S Chilamkurthy and B Steiner and L Fang and J Bai and S Chintala",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/bdbca288fee7f92f2bfa9f7012727740-Bibtex.bib",
+      "quote": "author = {Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca"
+     },
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/bdbca288fee7f92f2bfa9f7012727740-Bibtex.bib",
+      "quote": "Desmaison, Alban and Kopf, Andreas and Yang, Edward and DeVito, Zachary and Raison, Martin and Tejani, Alykhan and Chilamkurthy, Sasank and Steiner, Benoit and Fang, Lu and Bai, Junjie and Chintala, Soumith},"
+     },
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/bdbca288fee7f92f2bfa9f7012727740-Paper.pdf",
+      "quote": "Luca Antiga Alban Desmaison Andreas Köpf"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "32",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/hash/bdbca288fee7f92f2bfa9f7012727740-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"32\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "7994--8005"
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/bdbca288fee7f92f2bfa9f7012727740-Bibtex.bib",
+      "quote": "year = {2019}"
+     },
+     {
+      "url": "https://www.proceedings.com/content/053/053719webtoc.pdf",
+      "quote": "Copyright© (2019) by individual authors and Neural Information Processing Systems Foundation Inc."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/bdbca288fee7f92f2bfa9f7012727740-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   }
+  },
+  "notes": "Pages NOT confirmed: the cited 8026--8037 appears in no fetched source (the NeurIPS site gives no pages); the Curran print TOC puts the paper at 7994 with the next paper at 8006, i.e. 7994--8005 (suggestion only; the user decides whether to adopt print pagination). Accent kept: the PDF prints 'Andreas Köpf' (site ASCII 'Kopf'). Editors (H Wallach, H Larochelle, A Beygelzimer, F d'Alché-Buc, E Fox, R Garnett per the NeurIPS BibTeX) not proposed because the BibTeX spells d'Alché-Buc with \\textquotesingle, which a quote check cannot match; add by hand if wanted. Curran printed vol 32 in 2020; year 2019 kept. @article -> @inproceedings; volume 32 added. Key unchanged."
+ },
+ {
+  "key": "MairEtal09b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2008/hash/c0f168ce8900fa56e57789e2a2f2c9d0-Abstract.html",
+   "quote": "content=\"Supervised Dictionary Learning\"",
+   "why": "NeurIPS 2008 conference, Advances in NIPS 21 page: same title and five authors."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/file/c0f168ce8900fa56e57789e2a2f2c9d0-Bibtex.bib",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/file/c0f168ce8900fa56e57789e2a2f2c9d0-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Supervised dictionary learning",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/hash/c0f168ce8900fa56e57789e2a2f2c9d0-Abstract.html",
+      "quote": "content=\"Supervised Dictionary Learning\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J Mairal and F R Bach and J Ponce and G Sapiro and A Zisserman",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/005/005012webtoc.pdf",
+      "quote": "Julien Mairal, Francis Bach, Jean Ponce, Guillermo Sapiro, Andrew Zisserman"
+     },
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/file/c0f168ce8900fa56e57789e2a2f2c9d0-Paper.pdf",
+      "quote": "Julien Mairal Francis Bach"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/hash/c0f168ce8900fa56e57789e2a2f2c9d0-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"21\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "1036--1043"
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/005/005012webtoc.pdf",
+      "quote": "Copyright (2009) by Neural Information Processing Systems."
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "D Koller and D Schuurmans and Y Bengio and L Bottou",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/file/c0f168ce8900fa56e57789e2a2f2c9d0-Bibtex.bib",
+      "quote": "editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/file/c0f168ce8900fa56e57789e2a2f2c9d0-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   }
+  },
+  "notes": "Author ORDER: paper PDF byline (Mairal, Bach / Ponce, Sapiro, Zisserman) and the Curran print TOC both put Bach second; the cited order (Bach last) follows the NeurIPS site metadata. Proposed order follows the paper; cited middle initial R of Bach kept. Year: conference Dec 2008 (site year 2008) but the volume (only print edition, Curran) carries 'Copyright (2009)', which supports the cited 2009; switching to the site year would rename to MairEtal08 (free). Pages NOT confirmed: cited 1033--1040 is in no fetched source; the Curran print TOC gives 1036 with the next paper at 1044, i.e. 1036--1043 (suggestion). @article -> @inproceedings; volume 21 added."
+ },
+ {
+  "key": "MnihHint09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2008/hash/1e056d2b0ebd5c878c550da6ac5d3724-Abstract.html",
+   "quote": "content=\"A Scalable Hierarchical Distributed Language Model\"",
+   "why": "NeurIPS 2008 conference, Advances in NIPS 21 page: same title and two authors."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/file/1e056d2b0ebd5c878c550da6ac5d3724-Bibtex.bib",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/file/1e056d2b0ebd5c878c550da6ac5d3724-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A scalable hierarchical distributed language model",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/hash/1e056d2b0ebd5c878c550da6ac5d3724-Abstract.html",
+      "quote": "content=\"A Scalable Hierarchical Distributed Language Model\""
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A Mnih and G E Hinton",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/file/1e056d2b0ebd5c878c550da6ac5d3724-Bibtex.bib",
+      "quote": "author = {Mnih, Andriy and Hinton, Geoffrey E},"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/hash/1e056d2b0ebd5c878c550da6ac5d3724-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"21\">"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "1084--1091"
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/005/005012webtoc.pdf",
+      "quote": "Copyright (2009) by Neural Information Processing Systems."
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "D Koller and D Schuurmans and Y Bengio and L Bottou",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/file/1e056d2b0ebd5c878c550da6ac5d3724-Bibtex.bib",
+      "quote": "editor = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou},"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Curran Associates",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/file/1e056d2b0ebd5c878c550da6ac5d3724-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ]
+   }
+  },
+  "notes": "Initial E added to Hinton (site 'Hinton, Geoffrey E.'). Year: site 2008, volume copyright 2009 (only print edition, Curran) supports cited 2009; site year would rename to MnihHint08 (free). Pages (entry has none): Curran print TOC 1084, next paper 1092, i.e. 1084--1091, left as a suggestion for consistency with MairEtal09b (same volume, where the cited pagination differs from Curran's). @article -> @inproceedings; volume 21 added."
+ },
+ {
+  "key": "SanbGrif08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2007/hash/89d4402dc03d3b7318bbac10203034ab-Abstract.html",
+   "quote": "content=\"Markov Chain Monte Carlo with People\"",
+   "why": "NeurIPS 2007 conference, Advances in NIPS 20 page: same title and two authors; PDF byline 'Adam N. Sanborn Thomas L. Griffiths'."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2007/file/89d4402dc03d3b7318bbac10203034ab-Bibtex.bib",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2007/file/89d4402dc03d3b7318bbac10203034ab-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{Markov} chain {Monte} {Carlo} with people",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2007/hash/89d4402dc03d3b7318bbac10203034ab-Abstract.html",
+      "quote": "content=\"Markov Chain Monte Carlo with People\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A N Sanborn and T L Griffiths",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2007/file/89d4402dc03d3b7318bbac10203034ab-Paper.pdf",
+      "quote": "Adam N. Sanborn Thomas L. Griffiths"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "20",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2007/hash/89d4402dc03d3b7318bbac10203034ab-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"20\">"
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": [],
+    "value": "2008"
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "J C Platt and D Koller and Y Singer and S Roweis",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2007/file/89d4402dc03d3b7318bbac10203034ab-Bibtex.bib",
+      "quote": "editor = {J. Platt and D. Koller and Y. Singer and S. Roweis},"
+     }
+    ]
+   }
+  },
+  "notes": "@article -> @inproceedings with the same volume/editors as house RaoHowa08 (Advances in NIPS 20, year 2008, Publisher {MIT} Press). Year NOT settled: site year 2007 (conference), the Curran reprint TOC says 'Copyright (2009)', and no fetched catalogue record states 2008 (Open Library's Curran edition, from an Amazon feed, says Sep 18 2008). Cited 2008 left unchanged; 2007 would rename to SanbGrif07 (free). Publisher not proposed: the NeurIPS BibTeX says Curran, house RaoHowa08 says {MIT} Press for the same volume. Pages: Curran reprint TOC gives 321 (RaoHowa08 uses a different, original pagination), so none proposed. Editors in house form of RaoHowa08."
+ },
+ {
+  "key": "GrifStey03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.neurips.cc/paper_files/paper/2002/hash/cb8da6767461f2812ae4290eac7cbc42-Abstract.html",
+   "quote": "content=\"Prediction and Semantic Association\"",
+   "why": "NIPS 2002 conference, Advances in NIPS 15 page: same title and authors (PDF byline Thomas L. Griffiths & Mark Steyvers)."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "inproceedings",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2002/file/cb8da6767461f2812ae4290eac7cbc42-Bibtex.bib",
+      "quote": "@inproceedings{"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Advances in Neural Information Processing Systems",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2002/file/cb8da6767461f2812ae4290eac7cbc42-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Prediction and semantic association",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2002/hash/cb8da6767461f2812ae4290eac7cbc42-Abstract.html",
+      "quote": "content=\"Prediction and Semantic Association\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T L Griffiths and M Steyvers",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2002/file/cb8da6767461f2812ae4290eac7cbc42-Paper.pdf",
+      "quote": "Thomas L. Griffiths & Mark Steyvers"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2002/hash/cb8da6767461f2812ae4290eac7cbc42-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"15\">"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL22553261M.json",
+      "quote": "\"title\": \"Advances in neural information processing systems 15\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL22553261M.json",
+      "quote": "\"publish_date\": \"2003\", \"publishers\": [\"MIT Press\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "S Becker and S Thrun and K Obermayer",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2002/file/cb8da6767461f2812ae4290eac7cbc42-Bibtex.bib",
+      "quote": "editor = {S. Becker and S. Thrun and K. Obermayer},"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL22553261M.json",
+      "quote": "edited by Suzanna Becker, Sebastian Thrun and Klaus Obermayer."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2002/file/cb8da6767461f2812ae4290eac7cbc42-Bibtex.bib",
+      "quote": "publisher = {MIT Press},"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL22553261M.json",
+      "quote": "\"publishers\": [\"MIT Press\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Cambridge, {MA}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL22553261M.json",
+      "quote": "\"publish_places\": [\"Cambridge, MA\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Year 2003 is the print year of the MIT Press volume 15 ('proceedings of the 2002 conference'; Open Library edition record derived from the University of Toronto MARC record); the site year is the 2002 conference year. Switching to 2002 would collide with existing GrifStey02 (a different work). Pages not proposed: the site BibTeX has empty pages and the PDF has no page numbers. @article -> @inproceedings."
+ },
+ {
+  "key": "MayeEtal92b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)60886-9",
+   "quote": "\"title\":[\"Chapter 4 Mathematical Misunderstandings: Qualitative Reasoning About Quantitative Problems\"]",
+   "why": "The cited DOI's Crossref record is this chapter (Mayer, Lewis, Hegarty; pp. 137-153; 1992) in the edited book The Nature and Origins of Mathematical Skills (Advances in Psychology series)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Mathematical misunderstandings: qualitative reasoning about quantitative problems",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)60886-9",
+      "quote": "\"title\":[\"Chapter 4 Mathematical Misunderstandings: Qualitative Reasoning About Quantitative Problems\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R E Mayer and A B Lewis and M Hegarty",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)60886-9",
+      "quote": "\"given\":\"Richard E.\",\"family\":\"Mayer\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)60886-9",
+      "quote": "\"given\":\"Anne Bovenmyer\",\"family\":\"Lewis\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)60886-9",
+      "quote": "\"given\":\"Mary\",\"family\":\"Hegarty\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "137--153",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)60886-9",
+      "quote": "\"page\":\"137-153\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)60886-9",
+      "quote": "\"published-print\":{\"date-parts\":[[1992]]}"
+     },
+     {
+      "url": "https://openlibrary.org/books/OL1715016M.json",
+      "quote": "\"publish_date\": \"1992\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.1016/s0166-4115(08)60886-9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)60886-9",
+      "quote": "\"page\":\"137-153\""
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)60886-9",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "The Nature and Origins of Mathematical Skills",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0166-4115(08)60886-9",
+      "quote": "\"container-title\":[\"Advances in Psychology\",\"The Nature and Origins of Mathematical Skills\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "J I D Campbell",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1715016M.json",
+      "quote": "\"by_statement\": \"edited by Jamie I.D. Campbell.\""
+     }
+    ]
+   },
+   "series": {
+    "status": "corrected",
+    "value": "Advances in Psychology",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1715016M.json",
+      "quote": "\"series\": [\"Advances in psychology ;\", \"91\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "91",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1715016M.json",
+      "quote": "\"series\": [\"Advances in psychology ;\", \"91\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "North Holland",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1715016M.json",
+      "quote": "\"publishers\": [\"North-Holland\"]"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Amsterdam",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL1715016M.json",
+      "quote": "\"publish_places\": [\"Amsterdam\", \"New York\"]"
+     }
+    ]
+   }
+  },
+  "notes": "A chapter in an edited volume, not a journal article: @article -> @incollection; Journal 'Advances in Psychology' is the book SERIES (volume 91), booktitle = The Nature and Origins of Mathematical Skills, ed. J I D Campbell (North-Holland, Amsterdam, 1992; Open Library edition record built from LoC and Harvard MARC records, LCCN 92017326). Publisher in house form 'North Holland'. Crossref title carries a 'Chapter 4' prefix, dropped. DOI resolves (handle 200); lowercase form proposed per protocol. Key unchanged."
+ },
+ {
+  "key": "McGe36",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+   "quote": "TI - The Direction and Extent of Intra-Serial Associations at Recall",
+   "why": "JSTOR citation record for doi 10.2307/1415745: McGeoch, Am J Psychol 48(2), 221-245, April 1936."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "The direction and extent of intra-serial associations at recall",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+      "quote": "TI - The Direction and Extent of Intra-Serial Associations at Recall"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J A McGeoch",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+      "quote": "AU - McGeoch, John A."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "American Journal of Psychology",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+      "quote": "T2 - The American Journal of Psychology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "48",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+      "quote": "VL - 48"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+      "quote": "IS - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "221--245",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+      "quote": "SP - 221"
+     },
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+      "quote": "EP - 245"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1936",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+      "quote": "PY - 1936"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.2307/1415745",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+      "quote": "DO - 10.2307/1415745"
+     }
+    ]
+   }
+  },
+  "notes": "Journal typo 'Americal' fixed (house has no other form of this journal; 'The' dropped as for most house journal names). Title hyphenation 'intra-serial' as printed. Issue 2 and DOI added (DOI handle 200; Crossref record is this article). Key unchanged."
+ },
+ {
+  "key": "Spea04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+   "quote": "TI - \"General Intelligence,\" Objectively Determined and Measured",
+   "why": "JSTOR citation record for doi 10.2307/1412107: Spearman, Am J Psychol 15(2), 201-292, April 1904."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "``General intelligence,'' objectively determined and measured",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+      "quote": "TI - \"General Intelligence,\" Objectively Determined and Measured"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C Spearman",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+      "quote": "AU - Spearman, C."
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "American Journal of Psychology",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+      "quote": "T2 - The American Journal of Psychology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+      "quote": "VL - 15"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+      "quote": "IS - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "201--292",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+      "quote": "SP - 201"
+     },
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+      "quote": "EP - 292"
+     },
+     {
+      "url": "https://archive.org/metadata/jstor-1412107",
+      "quote": "\"pagerange\":\"201-292\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1904",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+      "quote": "PY - 1904"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.2307/1412107",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+      "quote": "DO - 10.2307/1412107"
+     }
+    ]
+   }
+  },
+  "notes": "Journal typo 'Americal' fixed. The printed title puts 'General Intelligence,' in quotation marks; proposed with house ``...'' quotes (as in other cdl.bib titles). Issue 2 and DOI added (handle 200; Crossref record is this article). Key unchanged."
+ },
+ {
+  "key": "CaoWors99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+   "quote": "content=\"The geometry of correlation fields with an application to functional connectivity of the brain\"",
+   "why": "Project Euclid article page: Cao and Worsley, Ann Appl Probab 9(4), 1021-1057, 1999."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "The geometry of correlation fields with an application to functional connectivity of the brain",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+      "quote": "content=\"The geometry of correlation fields with an application to functional connectivity of the brain\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Cao and K J Worsley",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+      "quote": "content=\"Jin Cao\""
+     },
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+      "quote": "content=\"Keith Worsley\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Annals of Applied Probability",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+      "quote": "content=\"The Annals of Applied Probability\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+      "quote": "<meta name=\"citation_volume\" content=\"9\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+      "quote": "<meta name=\"citation_issue\" content=\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1021--1057",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+      "quote": "<meta name=\"citation_firstpage\" content=\"1021\""
+     },
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+      "quote": "<meta name=\"citation_lastpage\" content=\"1057\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+      "quote": "<meta name=\"citation_publication_date\" content=\"1999/11\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1214/aoap/1029962864",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.short",
+      "quote": "<meta name=\"citation_doi\" content=\"10.1214/aoap/1029962864\""
+     }
+    ]
+   }
+  },
+  "notes": "Title has no comma after 'fields' at the publisher (and Crossref); comma removed. Source gives 'Keith Worsley'; cited middle initial J kept. DOI added (handle 200). Key unchanged."
+ },
+ {
+  "key": "FuldEtal82",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+   "quote": "Intrusions as a sign of Alzheimer dementia: chemical and pathological verification.",
+   "why": "PubMed 7073248: Fuld, Katzman, Davies, Terry, Ann Neurol 1982 Feb;11(2):155-9, doi 10.1002/ana.410110208."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Intrusions as a sign of {A}lzheimer dementia: chemical and pathological verification",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "Intrusions as a sign of Alzheimer dementia: chemical and pathological verification."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "P A Fuld and R Katzman and P Davies and R D Terry",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "FAU - Fuld, P A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "FAU - Katzman, R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "FAU - Davies, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "FAU - Terry, R D"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Annals of Neurology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "JT - Annals of neurology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "VI - 11"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "IP - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "155--159",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "PG - 155-9"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1002/ana.410110208",
+      "quote": "\"page\":\"155-159\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1982",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "DP - 1982 Feb"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/ana.410110208",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7073248/",
+      "quote": "AID - 10.1002/ana.410110208 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Title says 'Alzheimer dementia' (not 'Alzheimer's'); also the capital C after the colon is lowered per house rule. Issue 2 and DOI added (handle 200; Crossref record matches). Key unchanged."
+ },
+ {
+  "key": "Efro79",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.short",
+   "quote": "content=\"Bootstrap Methods: Another Look at the Jackknife\"",
+   "why": "Project Euclid article page: B. Efron, Ann Stat 7(1), 1-26, 1979."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Bootstrap methods: another look at the jackknife",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.short",
+      "quote": "content=\"Bootstrap Methods: Another Look at the Jackknife\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B Efron",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.short",
+      "quote": "content=\"B. Efron\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Annals of Statistics",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.short",
+      "quote": "content=\"The Annals of Statistics\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.short",
+      "quote": "<meta name=\"citation_volume\" content=\"7\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.short",
+      "quote": "<meta name=\"citation_issue\" content=\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1--26",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.short",
+      "quote": "<meta name=\"citation_firstpage\" content=\"1\""
+     },
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.short",
+      "quote": "<meta name=\"citation_lastpage\" content=\"26\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1979",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.short",
+      "quote": "<meta name=\"citation_publication_date\" content=\"1979/01\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1214/aos/1176344552",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.short",
+      "quote": "<meta name=\"citation_doi\" content=\"10.1214/aos/1176344552\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; only the DOI is added (handle 200; Crossref record is this article). The queue's page mismatch was Crossref lacking pages. Key unchanged."
+ },
+ {
+  "key": "Schw78",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.short",
+   "quote": "content=\"Estimating the Dimension of a Model\"",
+   "why": "Project Euclid article page: Gideon Schwarz, Ann Stat 6(2), 461-464, 1978."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Estimating the dimension of a model",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.short",
+      "quote": "content=\"Estimating the Dimension of a Model\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "G Schwarz",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.short",
+      "quote": "content=\"Gideon Schwarz\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Annals of Statistics",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.short",
+      "quote": "content=\"The Annals of Statistics\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.short",
+      "quote": "<meta name=\"citation_volume\" content=\"6\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.short",
+      "quote": "<meta name=\"citation_issue\" content=\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "461--464",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.short",
+      "quote": "<meta name=\"citation_firstpage\" content=\"461\""
+     },
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.short",
+      "quote": "<meta name=\"citation_lastpage\" content=\"464\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1978",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.short",
+      "quote": "<meta name=\"citation_publication_date\" content=\"1978/03\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1214/aos/1176344136",
+    "evidence": [
+     {
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.short",
+      "quote": "<meta name=\"citation_doi\" content=\"10.1214/aos/1176344136\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume field '6 (2)' split into Volume 6 and Number 2. DOI added (handle 200). Key unchanged."
+ }
+]

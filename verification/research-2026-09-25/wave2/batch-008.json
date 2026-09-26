@@ -1,0 +1,1878 @@
+[
+ {
+  "key": "PenfPero63",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/14090522/",
+   "quote": "THE BRAIN'S RECORD OF AUDITORY AND VISUAL EXPERIENCE. A FINAL SUMMARY AND DISCUSSION.",
+   "why": "Same title, authors Penfield and Perot, Brain 86(4), 1963 (PMID 14090522, DOI 10.1093/brain/86.4.595)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "The brain's record of auditory and visual experience: a final summary and discussion",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14090522/",
+      "quote": "THE BRAIN'S RECORD OF AUDITORY AND VISUAL EXPERIENCE. A FINAL SUMMARY AND DISCUSSION."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W Penfield and P Perot",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14090522/",
+      "quote": "W PENFIELD, P PEROT"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14090522/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1963",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14090522/",
+      "quote": "DP  - 1963 Dec"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "86",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/86.4.595",
+      "quote": "\"volume\":\"86\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/86.4.595",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "595--696",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/86.4.595",
+      "quote": "\"page\":\"595-696\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/86.4.595",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14090522/",
+      "quote": "10.1093/brain/86.4.595 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "PubMed and the OUP article page give the full title with subtitle 'A final summary and discussion'; Crossref gives the main title only. Crossref gives the full given names Wilder and Phanor (single initials, unchanged). DOI added."
+ },
+ {
+  "key": "RogeEtal98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9619187/",
+   "quote": "Dissociating executive mechanisms of task control following frontal lobe damage and Parkinson's disease.",
+   "why": "Same title, six authors, Brain 121(5), 1998 (PMID 9619187)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Dissociating executive mechanisms of task control following frontal lobe damage and {Parkinson}'s disease",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9619187/",
+      "quote": "Dissociating executive mechanisms of task control following frontal lobe damage and Parkinson's disease."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R D Rogers and B J Sahakian and J R Hodges and C E Polkey and C Kennard and T W Robbins",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9619187/",
+      "quote": "R D Rogers, B J Sahakian, J R Hodges, C E Polkey, C Kennard, T W Robbins"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9619187/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9619187/",
+      "quote": "DP  - 1998 May"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "121",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/121.5.815",
+      "quote": "\"volume\":\"121\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/121.5.815",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "815--842",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/121.5.815",
+      "quote": "\"page\":\"815-842\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/121.5.815",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9619187/",
+      "quote": "10.1093/brain/121.5.815 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Only additions: number 5 and DOI. Crossref lists only the first author (hence the author mismatch); PubMed lists all six, matching the citation."
+ },
+ {
+  "key": "SaykEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10506097/",
+   "quote": "Functional differentiation of medial temporal and frontal regions involved in processing novel and familiar words: an fMRI study.",
+   "why": "Same title, Saykin et al., Brain 122(10), 1999 (PMID 10506097)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Functional differentiation of medial temporal and frontal regions involved in processing novel and familiar words: an f{MRI} study",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10506097/",
+      "quote": "Functional differentiation of medial temporal and frontal regions involved in processing novel and familiar words: an fMRI study."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A J Saykin and S C Johnson and L A Flashman and T W McAllister and M Sparling and T M Darcey and C H Moritz and S J Guerin and J Weaver and A Mamourian",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10506097/",
+      "quote": "A J Saykin, S C Johnson, L A Flashman, T W McAllister, M Sparling, T M Darcey, C H Moritz, S J Guerin, J Weaver, A Mamourian"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/122.10.1963",
+      "quote": "\"given\":\"Sterling C.\",\"family\":\"Johnson\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/122.10.1963",
+      "quote": "\"given\":\"Alexander\",\"family\":\"Mamourian\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10506097/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10506097/",
+      "quote": "DP  - 1999 Oct"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "122",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/122.10.1963",
+      "quote": "\"volume\":\"122\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/122.10.1963",
+      "quote": "\"issue\":\"10\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1963--1971",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/122.10.1963",
+      "quote": "\"page\":\"1963-1971\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/122.10.1963",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10506097/",
+      "quote": "10.1093/brain/122.10.1963 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Author list fixed: 'Sternling' is 'Sterling' C Johnson and 'Momourian' is Mamourian; names converted to house initials (the cited full forenames Andrew J, Sterling C, ... are all present in Crossref, so no initial is dropped). Number 10 and DOI added."
+ },
+ {
+  "key": "ShohEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15013954/",
+   "quote": "Cortico-striatal contributions to feedback-based learning: converging data from neuroimaging and neuropsychology.",
+   "why": "Same title, Shohamy, Myers, Grossman, Sage, Gluck, Poldrack, Brain 127(4), 2004 (PMID 15013954)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Cortico-striatal contributions to feedback-based learning: converging data from neuroimaging and neuropsychology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15013954/",
+      "quote": "Cortico-striatal contributions to feedback-based learning: converging data from neuroimaging and neuropsychology."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D Shohamy and C E Myers and S Grossman and J Sage and M A Gluck and R A Poldrack",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15013954/",
+      "quote": "D Shohamy, C E Myers, S Grossman, J Sage, M A Gluck, R A Poldrack"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15013954/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15013954/",
+      "quote": "DP  - 2004 Apr"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "127",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awh100",
+      "quote": "\"volume\":\"127\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awh100",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "851--859",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awh100",
+      "quote": "\"page\":\"851-859\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/awh100",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15013954/",
+      "quote": "10.1093/brain/awh100 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Only addition: DOI. Crossref lists only the first author; PubMed lists all six. Crossref online date 2004-01-14; print issue April 2004, same year."
+ },
+ {
+  "key": "SilbEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12937079/",
+   "quote": "Patterning of globus pallidus local field potentials differs between Parkinson's disease and dystonia.",
+   "why": "Same title, Silberstein et al., Brain 126(12), 2003 (PMID 12937079)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Patterning of globus pallidus local field potentials differs between {Parkinson's} disease and dystonia",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12937079/",
+      "quote": "Patterning of globus pallidus local field potentials differs between Parkinson's disease and dystonia."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "P Silberstein and A A K{\\\"u}hn and A Kupsch and T Trottenberg and J K Krauss and J C W{\\\"o}hrle and P Mazzone and A Insola and V {Di Lazzaro} and A Oliviero and T Aziz and P Brown",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12937079/",
+      "quote": "Paul Silberstein, Andrea A Kühn, Andreas Kupsch, Thomas Trottenberg, Joachim K Krauss, Johannes C Wöhrle, Paolo Mazzone, Angelo Insola, Vincenzo Di Lazzaro, Antonio Oliviero, Tipu Aziz, Peter Brown"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12937079/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12937079/",
+      "quote": "DP  - 2003 Dec"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "126",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awg267",
+      "quote": "\"volume\":\"126\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awg267",
+      "quote": "\"issue\":\"12\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "2597--2608",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awg267",
+      "quote": "\"page\":\"2597-2608\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/awg267",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12937079/",
+      "quote": "10.1093/brain/awg267 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "'and others' replaced by the full 12-author list (adds T Aziz and P Brown); accents restored (K\\\"uhn, W\\\"ohrle). Pages completed 2597--2608. DOI added. Key unchanged (still Etal)."
+ },
+ {
+  "key": "SpieEtal01b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11701601/",
+   "quote": "Unilateral temporal lobectomy patients show lateralized topographical and episodic memory deficits in a virtual town.",
+   "why": "Same title, Spiers, Burgess, Maguire, Baxendale, Hartley, Thompson, O'Keefe, Brain 124(12), 2001 (PMID 11701601)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Unilateral temporal lobectomy patients show lateralized topographical and episodic memory deficits in a virtual town",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11701601/",
+      "quote": "Unilateral temporal lobectomy patients show lateralized topographical and episodic memory deficits in a virtual town."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "H J Spiers and N Burgess and E A Maguire and S A Baxendale and T Hartley and P J Thompson and J O'Keefe",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11701601/",
+      "quote": "H J Spiers, N Burgess, E A Maguire, S A Baxendale, T Hartley, P J Thompson, J O'Keefe"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11701601/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11701601/",
+      "quote": "DP  - 2001 Dec"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "124",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/124.12.2476",
+      "quote": "\"volume\":\"124\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/124.12.2476",
+      "quote": "\"issue\":\"12\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "2476--2489",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/124.12.2476",
+      "quote": "\"page\":\"2476-2489\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/124.12.2476",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11701601/",
+      "quote": "10.1093/brain/124.12.2476 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Number 'Pt 12' normalised to '12' (Crossref issue; house mostly writes plain issue numbers for Brain). DOI added. Crossref lists only the first author; PubMed lists all seven."
+ },
+ {
+  "key": "TowlEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18669510/",
+   "quote": "ECoG gamma activity during a language task: differentiating expressive and receptive speech areas.",
+   "why": "Same title, Towle et al., Brain 131(8), 2008 (PMID 18669510)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{ECoG} gamma activity during a language task: differentiating expressive and receptive speech areas",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18669510/",
+      "quote": "ECoG gamma activity during a language task: differentiating expressive and receptive speech areas."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "V L Towle and H-A Yoon and M Castelle and J C Edgar and N M Biassou and D M Frim and J-P Spire and M H Kohrman",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18669510/",
+      "quote": "Vernon L Towle, Hyun-Ah Yoon, Michael Castelle, J Christopher Edgar, Nadia M Biassou, David M Frim, Jean-Paul Spire, Michael H Kohrman"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awn147",
+      "quote": "\"given\":\"H.-A.\",\"family\":\"Yoon\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awn147",
+      "quote": "\"given\":\"J.-P.\",\"family\":\"Spire\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18669510/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18669510/",
+      "quote": "DP  - 2008 Aug"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "131",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awn147",
+      "quote": "\"volume\":\"131\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awn147",
+      "quote": "\"issue\":\"8\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "2013--2027",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awn147",
+      "quote": "\"page\":\"2013-2027\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/awn147",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18669510/",
+      "quote": "10.1093/brain/awn147 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Hyphenated initials per house rule: Hyun-Ah Yoon -> H-A, Jean-Paul Spire -> J-P. Pages completed 2013--2027. DOI added. Crossref's 'published-online' 2008-01-10 is odd; print issue August 2008 (same year)."
+ },
+ {
+  "key": "VignEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17142246/",
+   "quote": "The dreamy state: hallucinations of autobiographic memory evoked by temporal lobe stimulations and seizures.",
+   "why": "Same title, Vignal, Maillard, McGonigal, Chauvel, Brain 130(1), January 2007 (PMID 17142246)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The dreamy state: hallucinations of autobiographic memory evoked by temporal lobe stimulations and seizures",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17142246/",
+      "quote": "The dreamy state: hallucinations of autobiographic memory evoked by temporal lobe stimulations and seizures."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J-P Vignal and L Maillard and A McGonigal and P Chauvel",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17142246/",
+      "quote": "Jean-Pierre Vignal, Louis Maillard, Aileen McGonigal, Patrick Chauvel"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awl329",
+      "quote": "\"given\":\"J.-P.\",\"family\":\"Vignal\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17142246/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17142246/",
+      "quote": "DP  - 2007 Jan"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "130",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awl329",
+      "quote": "\"volume\":\"130\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awl329",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "88--99",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awl329",
+      "quote": "\"page\":\"88-99\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/awl329",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17142246/",
+      "quote": "10.1093/brain/awl329 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Jean-Pierre Vignal -> hyphenated initials J-P. Pages completed 88--99. Year stays 2007 (print issue Jan 2007; online first 2006-11-21, print year wins). DOI added."
+ },
+ {
+  "key": "WarrShal84",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/6206910/",
+   "quote": "Category specific semantic impairments.",
+   "why": "Same title, Warrington and Shallice, Brain 107(3), 1984 (PMID 6206910)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Category specific semantic impairments",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6206910/",
+      "quote": "Category specific semantic impairments."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E K Warrington and T Shallice",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6206910/",
+      "quote": "E K Warrington, T Shallice"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6206910/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1984",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6206910/",
+      "quote": "DP  - 1984 Sep"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "107",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/107.3.829",
+      "quote": "\"volume\":\"107\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/107.3.829",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "829--853",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/107.3.829",
+      "quote": "\"page\":\"829-853\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/107.3.829",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/6206910/",
+      "quote": "10.1093/brain/107.3.829 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "End page conflict: Crossref (OUP deposit), OpenAlex and the OUP article page give 829-853; PubMed gives 829-54. Proposed 829--853 per publisher. DOI added."
+ },
+ {
+  "key": "WildRugg96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8673500/",
+   "quote": "An event-related potential study of recognition memory with and without retrieval of source.",
+   "why": "Same title, Wilding and Rugg, Brain 119(3), 1996 (PMID 8673500)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "An event-related potential study of recognition memory with and without retrieval of source",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8673500/",
+      "quote": "An event-related potential study of recognition memory with and without retrieval of source."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "E L Wilding and M D Rugg",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8673500/",
+      "quote": "E L Wilding, M D Rugg"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8673500/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8673500/",
+      "quote": "DP  - 1996 Jun"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "119",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/119.3.889",
+      "quote": "\"volume\":\"119\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/119.3.889",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "889--905",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/119.3.889",
+      "quote": "\"page\":\"889-905\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/119.3.889",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8673500/",
+      "quote": "10.1093/brain/119.3.889 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Middle initials added (E L Wilding, M D Rugg; Crossref Edward L., Michael D.). Pages 889--905 (cited 906 is wrong). Number 3 and DOI added. The flagged notice is an erratum, not a retraction: PubMed 'ErratumIn Brain 1996 Aug;119(Pt 4):1416', Crossref 10.1093/brain/119.4.1415-a (same title, page 1416). Erratum content not inspected; the article stands."
+ },
+ {
+  "key": "WillEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12847073/",
+   "quote": "Behavioural cues are associated with modulations of synchronous oscillations in the human subthalamic nucleus.",
+   "why": "Same title, Williams et al., Brain 126(9), 2003 (PMID 12847073)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Behavioural cues are associated with modulations of synchronous oscillations in the human subthalamic nucleus",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12847073/",
+      "quote": "Behavioural cues are associated with modulations of synchronous oscillations in the human subthalamic nucleus."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "D Williams and A K{\\\"u}hn and A Kupsch and M Tijssen and G {van Bruggen} and H Speelman and G Hotton and K Yarrow and P Brown",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12847073/",
+      "quote": "David Williams, Andrea Kühn, Andreas Kupsch, Marina Tijssen, Gerard van Bruggen, Hans Speelman, Gary Hotton, Kielan Yarrow, Peter Brown"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12847073/",
+      "quote": "JT  - Brain : a journal of neurology"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2003",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12847073/",
+      "quote": "DP  - 2003 Sep"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "126",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awg194",
+      "quote": "\"volume\":\"126\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awg194",
+      "quote": "\"issue\":\"9\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1975--1985",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/awg194",
+      "quote": "\"page\":\"1975-1985\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/brain/awg194",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12847073/",
+      "quote": "10.1093/brain/awg194 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Accent restored (K\\\"uhn); otherwise authors unchanged. Pages completed 1975--1985. DOI added."
+ },
+ {
+  "key": "HuxEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11076136/",
+   "quote": "Effect of training frequency on face-name recall by adults with traumatic brain injury.",
+   "why": "Same title, Hux, Manasse, Wright, Snell, Brain Injury 14(10), 2000 (PMID 11076136)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Effect of training frequency on face-name recall by adults with traumatic brain injury",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11076136/",
+      "quote": "Effect of training frequency on face-name recall by adults with traumatic brain injury."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "K Hux and N Manasse and S Wright and J Snell",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11076136/",
+      "quote": "K Hux, N Manasse, S Wright, J Snell"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Injury",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11076136/",
+      "quote": "JT  - Brain injury"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11076136/",
+      "quote": "DP  - 2000 Oct"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "14",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026990500445727",
+      "quote": "\"volume\":\"14\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026990500445727",
+      "quote": "\"issue\":\"10\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "907--920",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1080/026990500445727",
+      "quote": "\"page\":\"907-920\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1080/026990500445727",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11076136/",
+      "quote": "10.1080/026990500445727 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Authors converted from full forenames to house initials (PubMed gives K, N, S, J; Crossref's author record is a single malformed string). DOI added."
+ },
+ {
+  "key": "SchaTurk15",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/b978-0-12-397025-1.00276-1",
+   "quote": "\"title\":[\"Statistical Learning\"]",
+   "why": "Crossref book-chapter record: Statistical Learning by A. Schapiro and N. Turk-Browne, pages 501-506, in Brain Mapping (Elsevier, 2015)."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-397025-1.00276-1",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Statistical learning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-397025-1.00276-1",
+      "quote": "\"title\":[\"Statistical Learning\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Schapiro and N Turk-Browne",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-397025-1.00276-1",
+      "quote": "\"given\":\"A.\",\"family\":\"Schapiro\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-397025-1.00276-1",
+      "quote": "\"given\":\"N.\",\"family\":\"Turk-Browne\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Brain Mapping: An Encyclopedic Reference",
+    "evidence": [
+     {
+      "url": "https://shop.elsevier.com/books/brain-mapping/toga/978-0-12-397025-1",
+      "quote": "Brain Mapping An Encyclopedic Reference 1st Edition"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "A W Toga",
+    "evidence": [
+     {
+      "url": "https://shop.elsevier.com/books/brain-mapping/toga/978-0-12-397025-1",
+      "quote": "Editor: Arthur W. Toga"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Elsevier",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-397025-1.00276-1",
+      "quote": "\"publisher\":\"Elsevier\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://shop.elsevier.com/books/brain-mapping/toga/978-0-12-397025-1",
+      "quote": "Volume 3: Social Cognitive Neuroscience, Cognitive Neuroscience, Clinical Brain Mapping"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "501--506",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-397025-1.00276-1",
+      "quote": "\"page\":\"501-506\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2015",
+    "evidence": [
+     {
+      "url": "https://shop.elsevier.com/books/brain-mapping/toga/978-0-12-397025-1",
+      "quote": "February 14, 2015"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/b978-0-12-397025-1.00276-1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-0-12-397025-1.00276-1",
+      "quote": "\"DOI\":\"10.1016\\/b978-0-12-397025-1.00276-1\""
+     }
+    ]
+   }
+  },
+  "notes": "An encyclopedia chapter, not an article: convert to @incollection with Booktitle 'Brain Mapping: An Encyclopedic Reference' (Elsevier product page title) and drop Journal. Volume 3: on the Elsevier page's table of contents the 'Statistical Learning' chapter falls after the 'Volume 3: Social Cognitive Neuroscience, Cognitive Neuroscience, Clinical Brain Mapping' heading (only 3 volumes). Editor-in-chief A W Toga (the authors' CVs say eds Toga & Poldrack; Poldrack was a section editor, not confirmed by a catalogue). Imprint is Academic Press (Elsevier page JSON 'copyrightHolder: Academic Press', not in visible text); Crossref publisher is Elsevier; choose per house style. Address not found. LoC LCCN 2015932182 (catalogue page blocked scripts)."
+ },
+ {
+  "key": "ChanEtal12b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+   "quote": "The effects of acute exercise on cognitive performance: a meta-analysis.",
+   "why": "Same title, Chang, Labban, Gapin, Etnier, Brain Research 1453, 2012 (PMID 22480735)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The effects of acute exercise on cognitive performance: a meta-analysis",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+      "quote": "The effects of acute exercise on cognitive performance: a meta-analysis."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Y K Chang and J D Labban and J I Gapin and J L Etnier",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+      "quote": "Y K Chang, J D Labban, J I Gapin, J L Etnier"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Research",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+      "quote": "JT  - Brain research"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+      "quote": "DP  - 2012 May 9"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "1453",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2012.02.068",
+      "quote": "\"volume\":\"1453\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "87--101",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2012.02.068",
+      "quote": "\"page\":\"87-101\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.brainres.2012.02.068",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+      "quote": "10.1016/j.brainres.2012.02.068 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Only addition: DOI. Flagged notice is a corrigendum, not a retraction: 10.1016/j.brainres.2012.06.039, Brain Res 1470 (2012) 159 ('Corrigendum to ... [Brain Res. 1453 (2012) 87-101]'). Article stands; no issue number exists."
+ },
+ {
+  "key": "GramEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16996041/",
+   "quote": "The neural basis of ego- and allocentric reference frames in spatial navigation: evidence from spatio-temporal coupled current density reconstruction.",
+   "why": "Same title, Gramann, Mueller, Schoenebeck, Debus, Brain Research 1118(1), 2006 (PMID 16996041)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "The neural basis of ego- and allocentric reference frames in spatial navigation: evidence from spatio-temporal coupled current density reconstruction",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16996041/",
+      "quote": "The neural basis of ego- and allocentric reference frames in spatial navigation: evidence from spatio-temporal coupled current density reconstruction."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "K Gramann and H J M{\\\"u}ller and B Sch{\\\"o}nebeck and G Debus",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16996041/",
+      "quote": "K Gramann, H J Müller, B Schönebeck, G Debus"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Research",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16996041/",
+      "quote": "JT  - Brain research"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16996041/",
+      "quote": "DP  - 2006 Nov 6"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "1118",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2006.08.005",
+      "quote": "\"volume\":\"1118\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2006.08.005",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "116--129",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2006.08.005",
+      "quote": "\"page\":\"116-129\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.brainres.2006.08.005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16996041/",
+      "quote": "10.1016/j.brainres.2006.08.005 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Title: 'ego-and' -> 'ego- and'. Accents restored (M\\\"uller, Sch\\\"onebeck). Number 1 and DOI added."
+ },
+ {
+  "key": "HowaEtal96b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8828578/",
+   "quote": "A chronic microelectrode investigation of the tonotopic organization of human auditory cortex.",
+   "why": "Same title, Howard, Volkov, Abbas, Damasio, Ollendieck, Granner, Brain Research 724(2), 1996 (PMID 8828578)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "A chronic microelectrode investigation of the tonotopic organization of human auditory cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8828578/",
+      "quote": "A chronic microelectrode investigation of the tonotopic organization of human auditory cortex."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M A Howard and I O Volkov and P J Abbas and H M Damasio and M C Ollendieck and M A Granner",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8828578/",
+      "quote": "M A Howard, I O Volkov, P J Abbas, H Damasio, M C Ollendieck, M A Granner"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Research",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8828578/",
+      "quote": "JT  - Brain research"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8828578/",
+      "quote": "DP  - 1996 Jun 17"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "724",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(96)00315-0",
+      "quote": "\"volume\":\"724\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(96)00315-0",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "260--264",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(96)00315-0",
+      "quote": "\"page\":\"260-264\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0006-8993(96)00315-0",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8828578/",
+      "quote": "10.1016/0006-8993(96)00315-0 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Only addition: DOI. Author mismatch is Damasio: the citation has 'H M', PubMed 'H' and Crossref 'Hanna' (no middle initial). Kept H M per the never-drop-an-initial rule; reviewer may drop the M (no source prints it)."
+ },
+ {
+  "key": "KojiGold82",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/7127141/",
+   "quote": "Delay-related activity of prefrontal neurons in rhesus monkeys performing delayed response.",
+   "why": "Same title, Kojima and Goldman-Rakic, Brain Research 248(1), 1982 (PMID 7127141)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Delay-related activity of prefrontal neurons in rhesus monkeys performing delayed response",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7127141/",
+      "quote": "Delay-related activity of prefrontal neurons in rhesus monkeys performing delayed response."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S Kojima and P S Goldman-Rakic",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7127141/",
+      "quote": "S Kojima, P S Goldman-Rakic"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Research",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7127141/",
+      "quote": "JT  - Brain research"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1982",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7127141/",
+      "quote": "DP  - 1982 Sep 23"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "248",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(82)91145-3",
+      "quote": "\"volume\":\"248\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(82)91145-3",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0006-8993(82)91145-3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7127141/",
+      "quote": "10.1016/0006-8993(82)91145-3 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Only addition: DOI. Pages unresolved: PubMed/Europe PMC give 43-49 (as cited); Crossref (Elsevier deposit) and OpenAlex give 43-50. ScienceDirect blocks scripts and the Elsevier API full-text XML carries no page range; left as cited."
+ },
+ {
+  "key": "LeunBors87",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/3580857/",
+   "quote": "Electrical activity of the cingulate cortex. I. Generating mechanisms and relations to behavior.",
+   "why": "Same title, Leung and Borst, Brain Research 407(1), 1987 (PMID 3580857)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Electrical activity of the cingulate cortex. {I}. generating mechanisms and relations to behavior",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3580857/",
+      "quote": "Electrical activity of the cingulate cortex. I. Generating mechanisms and relations to behavior."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "L-W S Leung and J G G Borst",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(87)91220-0",
+      "quote": "\"given\":\"L.-W.S.\",\"family\":\"Leung\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(87)91220-0",
+      "quote": "\"given\":\"J.G.G.\",\"family\":\"Borst\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Research",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3580857/",
+      "quote": "JT  - Brain research"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1987",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3580857/",
+      "quote": "DP  - 1987 Mar 24"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "407",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(87)91220-0",
+      "quote": "\"volume\":\"407\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(87)91220-0",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "68--80",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(87)91220-0",
+      "quote": "\"page\":\"68-80\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0006-8993(87)91220-0",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3580857/",
+      "quote": "10.1016/0006-8993(87)91220-0 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Author field was malformed ('L-{ W } S Leung'); fixed to L-W S Leung (Crossref 'L.-W.S.'; PubMed 'L W'). J G G Borst per Crossref (PubMed 'J G'). DOI added. Title words confirmed; capitalisation after the 'I.' left as cited for the reviewer."
+ },
+ {
+  "key": "LeunYim86",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/3008923/",
+   "quote": "Intracellular records of theta rhythm in hippocampal CA1 cells of the rat.",
+   "why": "Same title, Leung and Yim, Brain Research 367(1-2), 1986 (PMID 3008923)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Intracellular records of theta rhythm in hippocampal {CA}1 cells of the rat",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3008923/",
+      "quote": "Intracellular records of theta rhythm in hippocampal CA1 cells of the rat."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "L-W S Leung and C Y Yim",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(86)91611-2",
+      "quote": "\"given\":\"Lai-Wo S.\",\"family\":\"Leung\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3008923/",
+      "quote": "L S Leung, C Y Yim"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Research",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3008923/",
+      "quote": "JT  - Brain research"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1986",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3008923/",
+      "quote": "DP  - 1986 Mar 5"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "367",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(86)91611-2",
+      "quote": "\"volume\":\"367\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1--2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(86)91611-2",
+      "quote": "\"issue\":\"1-2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "323--327",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(86)91611-2",
+      "quote": "\"page\":\"323-327\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0006-8993(86)91611-2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3008923/",
+      "quote": "10.1016/0006-8993(86)91611-2 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Leung's given name is Lai-Wo S. (Crossref), so L-W S (PubMed 'L S'); other cdl.bib entries write 'L S Leung' - reviewer may prefer consistency. Number 1--2 and DOI added."
+ },
+ {
+  "key": "NuneEtal87",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/3620962/",
+   "quote": "Intracellular theta-rhythm generation in identified hippocampal pyramids.",
+   "why": "Same title, Nunez, Garcia-Austt, Buno, Brain Research 416(2), 1987 (PMID 3620962)."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Intracellular \\(\\theta\\)-rhythm generation in identified hippocampal pyramids",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3620962/",
+      "quote": "Intracellular theta-rhythm generation in identified hippocampal pyramids."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A N\\'{u}\\~{n}ez and E Garc\\'{i}a-Austt and W Bu{\\~n}o",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3620962/",
+      "quote": "A Núñez, E García-Austt, W Buño"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Brain Research",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3620962/",
+      "quote": "JT  - Brain research"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1987",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3620962/",
+      "quote": "DP  - 1987 Jul 28"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "416",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(87)90909-7",
+      "quote": "\"volume\":\"416\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(87)90909-7",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "289--300",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(87)90909-7",
+      "quote": "\"page\":\"289-300\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/0006-8993(87)90909-7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3620962/",
+      "quote": "10.1016/0006-8993(87)90909-7 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Title hyphenated '\\(\\theta\\)-rhythm' (Crossref 'theta-rhythm' with Greek theta, PubMed 'theta-rhythm'). Number 2 and DOI added."
+ }
+]
