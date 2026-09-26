@@ -2158,14 +2158,14 @@
    "title": "Evoked potential correlates of semantic meaning--- A brain mapping study",
    "pages": "173--183",
    "journal": "Cognitive Brain Research",
-   "author": "Wolfgang Skandries",
+   "author": "W Skandries",
    "ENTRYTYPE": "article",
    "ID": "Skan98"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Wolfgang Skandries",
+    "current": "W Skandries",
     "proposed": "W Skrandies",
     "source": "reviewer",
     "evidence": [
@@ -2599,14 +2599,14 @@
    "pages": "255--267",
    "number": "2",
    "journal": "Cognitive Psychology",
-   "author": "Christopher J Darwin and M T Turvey and R C Crowder",
+   "author": "C J Darwin and M T Turvey and R C Crowder",
    "ENTRYTYPE": "article",
    "ID": "DarwEtal72"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Christopher J Darwin and M T Turvey and R C Crowder",
+    "current": "C J Darwin and M T Turvey and R C Crowder",
     "proposed": "C J Darwin and M T Turvey and R G Crowder",
     "source": "researcher",
     "evidence": [
@@ -2685,25 +2685,11 @@
    "title": "Modeling response signal and response time data",
    "pages": "195--237",
    "journal": "Cognitive Psychology",
-   "author": "Roger Ratcliff",
+   "author": "R Ratcliff",
    "ENTRYTYPE": "article",
    "ID": "Ratc06"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Roger Ratcliff",
-    "proposed": "R Ratcliff",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1016/j.cogpsych.2005.10.002%22&resultType=core&format=json",
-      "quote": "\"fullName\":\"Ratcliff R\",\"lastName\":\"Ratcliff\",\"firstName\":\"Roger\""
-     }
-    ],
-    "normalised_from": "Roger Ratcliff",
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -2800,14 +2786,14 @@
    "pages": "219--250",
    "number": "3",
    "journal": "Cognitive Psychology",
-   "author": "L J Schooler and JR Anderson",
+   "author": "L J Schooler and J Anderson",
    "ENTRYTYPE": "article",
    "ID": "SchoAnde97"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "L J Schooler and JR Anderson",
+    "current": "L J Schooler and J Anderson",
     "proposed": "L J Schooler and J R Anderson",
     "source": "researcher",
     "evidence": [
@@ -2911,7 +2897,7 @@
    "title": "Interactions between the frontal cortex and basal ganglia in working memory: a computational model",
    "pages": "137--160",
    "journal": "Cognitive, Affective, and Behavioral Neuroscience",
-   "author": "Michael J Frank and B Loughry and Randall C O'Reilly",
+   "author": "M J Frank and B Loughry and R C O'Reilly",
    "ENTRYTYPE": "article",
    "ID": "FranEtal01"
   },
@@ -3872,7 +3858,7 @@
    "pages": "36--37",
    "number": "26",
    "journal": "Computer Dealer News",
-   "author": "David Seachrist",
+   "author": "D Seachrist",
    "ENTRYTYPE": "article",
    "ID": "Seac97"
   },
@@ -4820,7 +4806,7 @@
    "volume": "https://www.class-central.com/mooc/398/coursera-neural-networks-for-machine-learning",
    "title": "Neural networks for machine learning",
    "journal": "Coursera",
-   "author": "Geoffrey Hinton",
+   "author": "G Hinton",
    "ENTRYTYPE": "article",
    "ID": "Hint12"
   },
@@ -4837,19 +4823,6 @@
      }
     ],
     "reviewer": "agree"
-   },
-   {
-    "field": "author",
-    "current": "Geoffrey Hinton",
-    "proposed": "G Hinton",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://archive.org/metadata/academictorrents_743c16a18756557a67478a7570baf24a59f9cda6/metadata",
-      "quote": "\"creator\":\"Geoffrey Hinton\""
-     }
-    ],
-    "reviewer": "agree (G E Hinton would match his other HEAD entries; optional)"
    },
    {
     "field": "howpublished",
@@ -8902,14 +8875,14 @@
    "volume": "4",
    "title": "Object repetition leads to local increases in the temporal coordination of neural responses",
    "journal": "Frontiers in Human Neuroscience",
-   "author": "JR Gilbert and S J Gotts and F W Carver and A Martin",
+   "author": "J Gilbert and S J Gotts and F W Carver and A Martin",
    "ENTRYTYPE": "article",
    "ID": "GilbEtal10"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "JR Gilbert and S J Gotts and F W Carver and A Martin",
+    "current": "J Gilbert and S J Gotts and F W Carver and A Martin",
     "proposed": "J R Gilbert and S J Gotts and F W Carver and A Martin",
     "source": "researcher",
     "evidence": [
@@ -9445,14 +9418,14 @@
    "pages": "12",
    "number": "0",
    "journal": "Frontiers in Human Neuroscience",
-   "author": "Juan R Vidal and Tomas Ossandon and Karim Jerbi and Sarang S Dalal and Lorella Minotti and Philippe Ryvlin and Philippe Kahane and Jean-Philippe Lachaux",
+   "author": "J R Vidal and T Ossandon and K Jerbi and S S Dalal and L Minotti and P Ryvlin and P Kahane and J-P Lachaux",
    "ENTRYTYPE": "article",
    "ID": "VidaEtal10"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Juan R Vidal and Tomas Ossandon and Karim Jerbi and Sarang S Dalal and Lorella Minotti and Philippe Ryvlin and Philippe Kahane and Jean-Philippe Lachaux",
+    "current": "J R Vidal and T Ossandon and K Jerbi and S S Dalal and L Minotti and P Ryvlin and P Kahane and J-P Lachaux",
     "proposed": "J R Vidal and T Ossand{\\'o}n and K Jerbi and S S Dalal and L Minotti and P Ryvlin and P Kahane and J-P Lachaux",
     "source": "researcher",
     "evidence": [
@@ -9797,14 +9770,14 @@
    "volume": "3",
    "title": "Hippocampal sleep features: relations to human memory function",
    "journal": "Frontiers in Neurology",
-   "author": "Michele Ferrara and Fabio Moroni and Luigi {De Gennaro} and Lino Nobili and others",
+   "author": "M Ferrara and F Moroni and L {De Gennaro} and L Nobili and others",
    "ENTRYTYPE": "article",
    "ID": "FerrEtal12"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Michele Ferrara and Fabio Moroni and Luigi {De Gennaro} and Lino Nobili and others",
+    "current": "M Ferrara and F Moroni and L {De Gennaro} and L Nobili and others",
     "proposed": "M Ferrara and F Moroni and L {De Gennaro} and L Nobili",
     "source": "researcher",
     "evidence": [
@@ -10429,7 +10402,7 @@
    "title": "Comparative architectonic analysis of the human and the macaque frontal cortex",
    "pages": "17--58",
    "journal": "Handbook of Neuropsychology",
-   "author": "Michael Petrides and Deepak N Pandya",
+   "author": "M Petrides and D N Pandya",
    "ENTRYTYPE": "article",
    "ID": "PetrPand94"
   },
@@ -11256,24 +11229,11 @@
    "title": "What is the function of hippocampal theta rhythm?--- {L}inking behavioral data to phasic properties of field potential and unit recording data",
    "pages": "936--949",
    "journal": "Hippocampus",
-   "author": "Michael E Hasselmo",
+   "author": "M E Hasselmo",
    "ENTRYTYPE": "article",
    "ID": "Hass05"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Michael E Hasselmo",
-    "proposed": "M E Hasselmo",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/16158423/",
-      "quote": "FAU - Hasselmo, Michael E"
-     }
-    ],
-    "normalised_from": "Michael E Hasselmo"
-   },
    {
     "field": "doi",
     "current": null,
@@ -13359,37 +13319,11 @@
    "year": "2012",
    "title": "Differential functional response in the posteromedial cortices and hippocampus to stimulus repetition during successful memory encoding",
    "journal": "Human Brain Mapping",
-   "author": "Patrizia Vannini and Trey Hedden and Caroline Sullivan and Reisa A Sperling",
+   "author": "P Vannini and T Hedden and C Sullivan and R A Sperling",
    "ENTRYTYPE": "article",
    "ID": "VannEtal12"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Patrizia Vannini and Trey Hedden and Caroline Sullivan and Reisa A Sperling",
-    "proposed": "P Vannini and T Hedden and C Sullivan and R A Sperling",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/22344847/",
-      "quote": "FAU - Vannini, Patrizia"
-     },
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/22344847/",
-      "quote": "FAU - Hedden, Trey"
-     },
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/22344847/",
-      "quote": "FAU - Sullivan, Caroline"
-     },
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/22344847/",
-      "quote": "FAU - Sperling, Reisa A"
-     }
-    ],
-    "normalised_from": "Patrizia Vannini and Trey Hedden and Caroline Sullivan and Reisa A Sperling",
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -13516,25 +13450,11 @@
    "title": "Measures and interpretations of vigilance performance: evidence against the detection criterion",
    "pages": "601--623",
    "journal": "Human Factors",
-   "author": "Jerry D Balakrishnan",
+   "author": "J D Balakrishnan",
    "ENTRYTYPE": "article",
    "ID": "Bala98a"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Jerry D Balakrishnan",
-    "proposed": "J D Balakrishnan",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/9974232/",
-      "quote": "FAU - Balakrishnan, J D"
-     }
-    ],
-    "normalised_from": "Jerry D Balakrishnan",
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -13743,14 +13663,14 @@
    "pages": "295--306",
    "number": "5",
    "journal": "Image and Vision Computing",
-   "author": "P Jonathon Phillips and Harry Wechsler and Jeffery Huang and Patrick J Rauss",
+   "author": "P Jonathon Phillips and H Wechsler and J Huang and P J Rauss",
    "ENTRYTYPE": "article",
    "ID": "PhilEtal98"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "P Jonathon Phillips and Harry Wechsler and Jeffery Huang and Patrick J Rauss",
+    "current": "P Jonathon Phillips and H Wechsler and J Huang and P J Rauss",
     "proposed": "P J Phillips and H Wechsler and J Huang and P J Rauss",
     "source": "researcher",
     "evidence": [
@@ -14561,14 +14481,14 @@
    "pages": "623--637",
    "number": "5",
    "journal": "International Journal of Neuroscience",
-   "author": "Zeki Ari and Necip Kutlu and Bekir Sami Uyanik and Fatma Taneli and Gurbuz Buyukyazi and Talat Tavli",
+   "author": "Z Ari and N Kutlu and Bekir Sami Uyanik and F Taneli and G Buyukyazi and T Tavli",
    "ENTRYTYPE": "article",
    "ID": "AriEtal04"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Zeki Ari and Necip Kutlu and Bekir Sami Uyanik and Fatma Taneli and Gurbuz Buyukyazi and Talat Tavli",
+    "current": "Z Ari and N Kutlu and Bekir Sami Uyanik and F Taneli and G Buyukyazi and T Tavli",
     "proposed": "Z Ari and N Kutlu and B S Uyanik and F Taneli and G Buyukyazi and T Tavli",
     "source": "researcher",
     "evidence": [
@@ -14800,14 +14720,14 @@
    "title": "P300-response: possible psychophysiological correlates in delta and theta frequency channels. {A} review",
    "pages": "161--179",
    "journal": "International Journal of Phychophysiology",
-   "author": "Canan Basar-Eroglu and Erol Basar and Tamer Demiralp and Martin {Schurman n}",
+   "author": "C Basar-Eroglu and E Basar and T Demiralp and M {Schurman n}",
    "ENTRYTYPE": "article",
    "ID": "BasaEtal92"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Canan Basar-Eroglu and Erol Basar and Tamer Demiralp and Martin {Schurman n}",
+    "current": "C Basar-Eroglu and E Basar and T Demiralp and M {Schurman n}",
     "proposed": "C Ba{\\c{s}}ar-Eroglu and E Ba{\\c{s}}ar and T Demiralp and M Sch{\\\"u}rmann",
     "source": "researcher",
     "evidence": [
@@ -14919,23 +14839,11 @@
    "pages": "205--214",
    "number": "3",
    "journal": "International Journal of Phychophysiology",
-   "author": "Jan W {Van Strien} and Peter P J L Verkoeijen and Nelly {Van der Meer} and Ingmar H A Franken",
+   "author": "J W {Van Strien} and P P J L Verkoeijen and N {Van der Meer} and I H A Franken",
    "ENTRYTYPE": "article",
    "ID": "VanSEtal07"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Jan W {Van Strien} and Peter P J L Verkoeijen and Nelly {Van der Meer} and Ingmar H A Franken",
-    "proposed": "J W {Van Strien} and P P J L Verkoeijen and N {Van der Meer} and I H A Franken",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/17688964/",
-      "quote": "Jan W Van Strien, Peter P J L Verkoeijen, Nelly Van der Meer, Ingmar H A Franken"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -15921,14 +15829,14 @@
    "title": "Affective valence of words, explicity and implicit memory in clinical depression",
    "pages": "227--234",
    "journal": "Journal of Affective Disorders",
-   "author": "Jean-Marie Danion and Francoise Kauffmann-Muller and Danielle Grange and Marie-Agathe Zimmerman",
+   "author": "J-M Danion and F Kauffmann-Muller and D Grange and M-A Zimmerman",
    "ENTRYTYPE": "article",
    "ID": "DaniEtal95"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Jean-Marie Danion and Francoise Kauffmann-Muller and Danielle Grange and Marie-Agathe Zimmerman",
+    "current": "J-M Danion and F Kauffmann-Muller and D Grange and M-A Zimmerman",
     "proposed": "J-M Danion and F Kauffmann-Muller and D Grang{\\'e} and M-A Zimmermann and P Greth",
     "source": "researcher",
     "evidence": [
@@ -16044,14 +15952,14 @@
    "pages": "35--66",
    "number": "1",
    "journal": "Journal of Anatomy",
-   "author": "Morris Moscovitch and R Shayna Rosenbaum and Asaf Gilboa and Donna Rose Addis and Robyn Westmacott and Cheryl Grady and Mary Pat McAndrews and Brian Levine and Sandra Black and Gordon Winocur and Lynn Nadel",
+   "author": "M Moscovitch and R Shayna Rosenbaum and A Gilboa and Donna Rose Addis and R Westmacott and C Grady and Mary Pat McAndrews and B Levine and S Black and G Winocur and L Nadel",
    "ENTRYTYPE": "article",
    "ID": "MoscEtal05"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Morris Moscovitch and R Shayna Rosenbaum and Asaf Gilboa and Donna Rose Addis and Robyn Westmacott and Cheryl Grady and Mary Pat McAndrews and Brian Levine and Sandra Black and Gordon Winocur and Lynn Nadel",
+    "current": "M Moscovitch and R Shayna Rosenbaum and A Gilboa and Donna Rose Addis and R Westmacott and C Grady and Mary Pat McAndrews and B Levine and S Black and G Winocur and L Nadel",
     "proposed": "M Moscovitch and R S Rosenbaum and A Gilboa and D R Addis and R Westmacott and C Grady and M P McAndrews and B Levine and S Black and G Winocur and L Nadel",
     "source": "researcher",
     "evidence": [
