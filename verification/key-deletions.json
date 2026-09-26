@@ -1,0 +1,571 @@
+[
+ {
+  "key": "Adey67b",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "BranEtal04",
+  "reason": "user (wave 1, wrong): \"drop this, it's an abstract\"",
+  "decision_source": "research-2026-09-25/wave1/decisions/BranEtal04.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "BurkEtal12",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-BurkEtal12: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "BurkKaha13",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-BurkKaha13: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Cofe71",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "ContPrev24",
+  "reason": "user (wave 1, wrong): 'drop this one'",
+  "decision_source": "research-2026-09-25/wave1/decisions/ContPrev24.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "CronEtal98c",
+  "reason": "duplicate of CronEtal98a (approved merge; keeper unchanged)",
+  "decision_source": "research-2026-09-25/crosswave/decisions/dup-CronEtal98c-CronEtal98a.json",
+  "date": "2026-09-26",
+  "keeper": "CronEtal98a",
+  "batch": "wave1"
+ },
+ {
+  "key": "CrutEtal12",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-CrutEtal12: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "DawKenj06",
+  "reason": "duplicate of DawDoya06 (approved merge; keeper unchanged)",
+  "decision_source": "research-2026-09-25/crosswave/decisions/dup-DawKenj06-DawDoya06.json",
+  "date": "2026-09-26",
+  "keeper": "DawDoya06",
+  "batch": "wave1"
+ },
+ {
+  "key": "DerdEtal06",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-DerdEtal06: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "DetrEtal07",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-DetrEtal07: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Devl76",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "EskrEtal12",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-EskrEtal12: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Este76",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Gede24",
+  "reason": "user (wave 1, wrong): 'drop this'",
+  "decision_source": "research-2026-09-25/wave1/decisions/Gede24.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "GoenEtal08",
+  "reason": "duplicate of GoenLogo08 (approved merge; keeper unchanged)",
+  "decision_source": "research-2026-09-25/crosswave/decisions/dup-GoenEtal08-GoenLogo08.json",
+  "date": "2026-09-26",
+  "keeper": "GoenLogo08",
+  "batch": "wave1"
+ },
+ {
+  "key": "GratEtal11",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-GratEtal11: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "GreeEtal13",
+  "reason": "user (wave 1, wrong): \"drop this if we can't confirm\"",
+  "decision_source": "research-2026-09-25/wave1/decisions/GreeEtal13.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Greg76",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "HartEtal05",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-HartEtal05: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "HealEtal12a",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-HealEtal12a: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "HealEtal12b",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-HealEtal12b: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "HeraCE",
+  "reason": "user (wave 1, wrong): 'drop this one'",
+  "decision_source": "research-2026-09-25/wave1/decisions/HeraCE.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "HowaKaha00",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-HowaKaha00: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "JacoEtal05b",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-JacoEtal05b: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "JensTesc00",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-JensTesc00: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "JohnRedi07b",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-JohnRedi07b: correct; j-JohnRedi07b: wrong (remove-- it's a conference abstract))",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Kaha09",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "KahaEtal08b",
+  "reason": "duplicate of KahaEtal08a (approved merge; keeper unchanged)",
+  "decision_source": "research-2026-09-25/crosswave/decisions/dup-KahaEtal08b-KahaEtal08a.json",
+  "date": "2026-09-26",
+  "keeper": "KahaEtal08a",
+  "batch": "wave1"
+ },
+ {
+  "key": "KahaMill10",
+  "reason": "duplicate of KahaMill13 (approved merge; keeper unchanged)",
+  "decision_source": "research-2026-09-25/crosswave/decisions/dup-KahaMill10-KahaMill13.json",
+  "date": "2026-09-26",
+  "keeper": "KahaMill13",
+  "batch": "wave1"
+ },
+ {
+  "key": "KahaSeku99",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-KahaSeku99: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Kami69",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Kapl76",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Keck07",
+  "reason": "user (wave 1, wrong): 'drop this'",
+  "decision_source": "research-2026-09-25/wave1/decisions/Keck07.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Khan04",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "KinsWood75",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "KoroEtal05",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-KoroEtal05: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "KrauEtal12",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-KrauEtal12: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Land95",
+  "reason": "user (wave 1, wrong): 'drop this'",
+  "decision_source": "research-2026-09-25/wave1/decisions/Land95.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "LimoEtal95c",
+  "reason": "duplicate of LimoEtal95a (approved merge; keeper unchanged)",
+  "decision_source": "research-2026-09-25/crosswave/decisions/dup-LimoEtal95c-LimoEtal95a.json",
+  "date": "2026-09-26",
+  "keeper": "LimoEtal95a",
+  "batch": "wave1"
+ },
+ {
+  "key": "LohnEtal09",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-LohnEtal09: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "LohnEtal10",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-LohnEtal10: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "LongEtal11",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-LongEtal11: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "LongKaha12a",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-LongKaha12a: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "LongKaha12b",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-LongKaha12b: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "LongKaha13",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-LongKaha13: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "LongKaha14",
+  "reason": "user (wave 1, wrong): 'drop *all* abstracts'",
+  "decision_source": "research-2026-09-25/wave1/decisions/LongKaha14.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "MakeEtal00",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-MakeEtal00: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "MannEtal09b",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-MannEtal09b: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "MerzEtal12",
+  "reason": "user (wave 1, wrong): 'drop this one'",
+  "decision_source": "research-2026-09-25/wave1/decisions/MerzEtal12.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "MillEtal07e",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-MillEtal07e: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "MollEtal06",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-MollEtal06: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "MortEtal07",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-MortEtal07: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "MoscWino92",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Nati24a",
+  "reason": "user (wave 1, wrong): 'drop this one'",
+  "decision_source": "research-2026-09-25/wave1/decisions/Nati24a.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Nati24b",
+  "reason": "user (wave 1, wrong): 'remove'",
+  "decision_source": "research-2026-09-25/wave1/decisions/Nati24b.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "PolyEtal05b",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-PolyEtal05b: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "PolyEtal06",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-PolyEtal06: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "PolyEtal07",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-PolyEtal07: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Post76",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "RaghEtal99",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "RamaEtal10",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-RamaEtal10: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "RamaEtal12a",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-RamaEtal12a: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "RamaEtal12b",
+  "reason": "conference abstract (SfN abstract verified by the planner); rule: drop all conference abstracts",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions; LongKaha14 note)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "RamaEtal13",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-RamaEtal13: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "ReccOKee89",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-ReccOKee89: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Rugg00",
+  "reason": "duplicate of RuggAlla00 (approved merge; keeper unchanged)",
+  "decision_source": "research-2026-09-25/crosswave/decisions/dup-Rugg00-RuggAlla00.json",
+  "date": "2026-09-26",
+  "keeper": "RuggAlla00",
+  "batch": "wave1"
+ },
+ {
+  "key": "SedeNorm07",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-SedeNorm07: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "ShifRaai92",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "SiapEtal00",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-SiapEtal00: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "SommEtal12",
+  "reason": "conference abstract (SfN abstract verified by the planner); rule: drop all conference abstracts",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions; LongKaha14 note)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "WatrEtal09",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-WatrEtal09: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Wayn96",
+  "reason": "duplicate of Dona96 (approved merge; keeper unchanged)",
+  "decision_source": "research-2026-09-25/crosswave/decisions/dup-Wayn96-Dona96.json",
+  "date": "2026-09-26",
+  "keeper": "Dona96",
+  "batch": "wave1"
+ },
+ {
+  "key": "Wech81",
+  "reason": "Wechsler: WAIS-R (1981), an earlier edition of the WAIS kept as Wech08 (WAIS-IV, verified); no source found (user: keep ONE WAIS entry, drop the others)",
+  "decision_source": "research-2026-09-25/wave1/decisions/Wech81.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "Wech97",
+  "reason": "Wechsler: WAIS-III (1997), an earlier edition of the WAIS kept as Wech08 (WAIS-IV, verified) (user on Wech81: keep ONE WAIS entry, drop the others)",
+  "decision_source": "research-2026-09-25/wave1/decisions/Wech81.json",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "WhitEtal96",
+  "reason": "duplicate of WitmEtal96 (approved merge; keeper unchanged)",
+  "decision_source": "research-2026-09-25/crosswave/decisions/dup-WhitEtal96-WitmEtal96.json",
+  "date": "2026-09-26",
+  "keeper": "WitmEtal96",
+  "batch": "wave1"
+ },
+ {
+  "key": "WilsEtal79",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "WilsEtal80",
+  "reason": "no source found (wave 1 no_source, unanswered); rule: any entry without a source is dropped",
+  "decision_source": "verification/resolution-plan-2026-09-22/README.md (Wave 1 decisions)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "vanVEtal05",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-vanVEtal05: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ },
+ {
+  "key": "vanVEtal06",
+  "reason": "conference abstract (approved removal)",
+  "decision_source": "research-2026-09-25/crosswave/removals.json (a-vanVEtal06: correct)",
+  "date": "2026-09-26",
+  "batch": "wave1"
+ }
+]

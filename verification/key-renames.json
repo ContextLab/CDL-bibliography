@@ -217,5 +217,153 @@
   "kind": "replacement",
   "reason": "replace001: published version replaces preprint (user-approved 2026-09-25); preprint ZhenEtal19 replaced by the published version, DOI 10.1073/pnas.1922248117",
   "commit": "replace001"
+ },
+ {
+  "old_key": "HealKaha14b",
+  "new_key": "HealKaha16",
+  "date": "2026-09-26",
+  "kind": "replacement",
+  "reason": "wave1: user (wave 1, wrong): 'replace with replacement candidate HealKaha16 (Psych Rev 123:23-69, 10.1037/rev0000015)'; published version replaces the undated-venue 2014 entry; DOI 10.1037/rev0000015",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "BayeGlim07",
+  "new_key": "BayeEtal07",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "EchaEtal00",
+  "new_key": "EchaEtal04",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "Frie06",
+  "new_key": "Frie08b",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata; Frie08 is taken by a different work (Frie08); house suffix rule: Frie08 -> Frie08a, new entry Frie08b (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "HemmShen19",
+  "new_key": "HemmShen22",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "HerrEtal09",
+  "new_key": "HerrEtal10b",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata; HerrEtal10 is taken by a different work (HerrEtal10); house suffix rule: HerrEtal10 -> HerrEtal10a, new entry HerrEtal10b (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "LincNati81",
+  "new_key": "Linc81",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "LittEtal98",
+  "new_key": "LittEtal03",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "LopevanL77",
+  "new_key": "LopeStor77",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "ShriEtal90",
+  "new_key": "SchrEtal90",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "Titc16",
+  "new_key": "Titc15",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "TummEtal16",
+  "new_key": "TummEtal17",
+  "date": "2026-09-26",
+  "reason": "wave1: key does not follow the corrected metadata (wave1 merged.json (user: correct))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "Frie08",
+  "new_key": "Frie08a",
+  "date": "2026-09-26",
+  "reason": "wave1: suffix rule: Frie06 becomes Frie08b (wave1 key plan of Frie06 (collision, house suffix rule))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "HerrEtal10",
+  "new_key": "HerrEtal10a",
+  "date": "2026-09-26",
+  "reason": "wave1: suffix rule: HerrEtal09 becomes HerrEtal10b (wave1 key plan of HerrEtal09 (collision, house suffix rule))",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "Adey67a",
+  "new_key": "Adey67",
+  "date": "2026-09-26",
+  "reason": "wave1: suffix rule: Adey67b removed (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "HealKaha14a",
+  "new_key": "HealKaha14",
+  "date": "2026-09-26",
+  "reason": "wave1: suffix rule: HealKaha14b replaced by HealKaha16 (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "JacoEtal05d",
+  "new_key": "JacoEtal05b",
+  "date": "2026-09-26",
+  "reason": "wave1: suffix rule: JacoEtal05b removed (conference abstract); key reused for a different work (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "JohnRedi07a",
+  "new_key": "JohnRedi07",
+  "date": "2026-09-26",
+  "reason": "wave1: suffix rule: JohnRedi07b removed (conference abstract) (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "KahaEtal08c",
+  "new_key": "KahaEtal08b",
+  "date": "2026-09-26",
+  "reason": "wave1: suffix rule: KahaEtal08b removed (duplicate of KahaEtal08a); key reused for a different work (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "MannEtal09a",
+  "new_key": "MannEtal09",
+  "date": "2026-09-26",
+  "reason": "wave1: suffix rule: MannEtal09b removed (conference abstract) (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave1"
+ },
+ {
+  "old_key": "PolyEtal05a",
+  "new_key": "PolyEtal05",
+  "date": "2026-09-26",
+  "reason": "wave1: suffix rule: PolyEtal05b removed (conference abstract) (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave1"
  }
 ]

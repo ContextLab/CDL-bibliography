@@ -31,9 +31,15 @@ REVIEW = {r["key"]: r for r in json.loads((WAVE / "review.json").read_text())}
 VALIDATION = {e["key"]: e for e in json.loads((WAVE / "validation.json").read_text())["report"]}
 
 
+# The bibliography as committed before wave 1 was applied (a9c7f16). The rows, reviews and
+# decisions under test were made against it; reading HEAD instead would break these tests
+# every time an approved batch is committed.
+FROZEN_BIB = str(ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib")
+
+
 @pytest.fixture(scope="module")
 def bib():
-    return pc.load_bib("HEAD")
+    return pc.load_bib(FROZEN_BIB)
 
 
 def ctx_for(bib):
@@ -344,7 +350,7 @@ def test_reviewer_key_agreement(bib):
 # ---------------------------------------------------------------- whole wave
 
 def test_wave1_run_measures_review(tmp_path):
-    post, page, rules_only, merged = pc.run(WAVE, write=False)
+    post, page, rules_only, merged = pc.run(WAVE, write=False, bib=FROZEN_BIB)
     m = post["measurement"]
     assert m["findings"] == 29 and m["random_sample_findings"] == 10
     caught = {r["key"] for r in m["rows"] if r["caught"]}
@@ -528,7 +534,7 @@ def test_reviewer_agreement_releases_fetch_blocked_hold(bib):
 
 
 def test_wave2_review_resolution():
-    post, page, rules_only, merged = pc.run(WAVE2, write=False)
+    post, page, rules_only, merged = pc.run(WAVE2, write=False, bib=FROZEN_BIB)
     res = post["review_resolution"]
     fixed = {r["key"] for r in res["rows"] if r["resolved"]}
     assert {"DezfDali20", "DupoEtal00", "SilbEtal03", "PaszEtal19", "AllpEtal94", "CronEtal98a", "WoodEtal00b",
@@ -570,7 +576,7 @@ def test_author_changes_only_as_researcher_proposed(bib):
     """Every researcher author/editor that is applied ends as the researcher's value in
     house FORMAT: the same number of initials per name (rules alone, waves 1-3)."""
     for folder in (WAVE, WAVE2, WAVE3):
-        post, page, rules_only, merged = pc.run(folder, write=False, offline=True)
+        post, page, rules_only, merged = pc.run(folder, write=False, offline=True, bib=FROZEN_BIB)
         rows_, _, _ = load_wave(folder)
         for k, rec in rules_only.items():
             for field in pc.NAME_FIELDS:
@@ -696,7 +702,7 @@ def test_single_source_surname_hold_keeps_cited_name(bib):
 
 @pytest.mark.parametrize("folder,findings", [(WAVE3, 8)])
 def test_wave3_review_resolution(folder, findings):
-    post, page, rules_only, merged = pc.run(folder, write=False, offline=True)
+    post, page, rules_only, merged = pc.run(folder, write=False, offline=True, bib=FROZEN_BIB)
     res = post["review_resolution"]
     assert res["findings"] == findings and res["unresolved"] == [], res["unresolved"]
     assert not any(f["code"] == "initials_from_source" for r in merged.values() for f in r["flags"])
@@ -1195,7 +1201,7 @@ def test_duplicate_keeps_the_rule_conforming_key(bib):
     into the other. RuggAlla00 fits the ID rule for the corrected metadata and stays."""
     assert checkw(bib, "8", "RuggAlla00")["key_plan"]["action"] == "keep"
     assert checkw(bib, "8", "Rugg00")["key_plan"]["merge_into"] == "RuggAlla00"
-    post, page, rules_only, merged = pc.run(WAVE8, write=False, offline=True)
+    post, page, rules_only, merged = pc.run(WAVE8, write=False, offline=True, bib=FROZEN_BIB)
     for recs in (rules_only, merged):
         dup = {k: r["key_plan"]["merge_into"] for k, r in recs.items() if r["key_plan"]["action"] == "duplicate"}
         assert dup.get("Rugg00") == "RuggAlla00" and "RuggAlla00" not in dup
@@ -1358,7 +1364,7 @@ def test_other_version_detection_is_conservative(bib):
     assert pc.other_version_named("the 2025 re-depositions, not the published version; no DOI") is None
     assert pc.other_version_named("A bioRxiv preprint exists; the journal version is the one cited.") is None
     assert "other_version_named" not in codes(checkw(bib, "7", "XieEtal21"))
-    post, page, rules_only, merged = pc.run(WAVE7, write=False, offline=True)
+    post, page, rules_only, merged = pc.run(WAVE7, write=False, offline=True, bib=FROZEN_BIB)
     needs = {p["key"]: p["needs_user"] for p in page}
     assert needs["TsitEtal19"] and needs["LiEtal24b"] and needs["JainHuth18"]
 
@@ -1464,7 +1470,7 @@ _RUNS = {}
 
 def wave_run(n):
     if n not in _RUNS:
-        _RUNS[n] = pc.run(ROOT / f"verification/research-2026-09-25/wave{n}", write=False, offline=True)
+        _RUNS[n] = pc.run(ROOT / f"verification/research-2026-09-25/wave{n}", write=False, offline=True, bib=FROZEN_BIB)
     return _RUNS[n]
 
 
