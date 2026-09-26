@@ -1,0 +1,1453 @@
+[
+ {
+  "key": "_summary",
+  "reviewed": 93,
+  "yes": 68,
+  "partly": 25,
+  "no": 0,
+  "error_rate_random_sample": 0.111,
+  "random_sample_size": 54,
+  "random_sample_with_disagreement": [
+   "AllpEtal94",
+   "CronEtal98a",
+   "DupoEtal00",
+   "Hint84",
+   "SilbEtal03",
+   "WoodEtal00b"
+  ],
+  "set_a_size": 39,
+  "set_b_size": 54,
+  "sampling_method": "pool=sorted keys not in A; B=random.Random(20260926).sample(pool, round(len(pool)/3)); A = key rename/collision/duplicate, ENTRYTYPE change, identity_quote_failed, verdict ambiguous/no_source, plus title/journal work changes (KutaFede11, CoheEtal93, Stol49, LadoEtal02, Wils88, PareHazr95, KumaEtal21)",
+  "missing": [],
+  "systematic_findings": [
+   "Type conversions never remove Journal: all 16 @article->@inproceedings/@incollection rows keep Journal next to the new Booktitle (removals empty; postcheck.py has no such rule; researchers cannot propose a removal). Not caught by the post-check.",
+   "initials_from_source reads the first word of a compound surname as a given name and adds it as an initial: DezfDali20 (M P {Parto Dezfouli}), DupoEtal00 (D L {Le Bihan}), SilbEtal03 (V D {Di Lazzaro}), and outside the review set HoltEtal12 (P R {Riva Posse}), TingEtal02 (M-L T {Ting Lee}), CassEtal02 (V D {Di Lazzaro}), CowaEtal04 (S D {Della Sala}); PaszEtal19 got 'A A D A K{\\\"o}pf'. 8 of the 10 applications are wrong (AllpEtal94 S L Hsieh and MillEtal03 X-J Wang are right). Introduced by the post-check itself.",
+   "Duplicates across the same wave are missed: CronEtal98a and CronEtal98c (HEAD) are one work and both are proposed DOI 10.1093/brain/121.12.2301; the duplicate rule only checks renamed keys and DOIs already in HEAD.",
+   "Lowercase 'entrytype' field (AllpEtal94) is passed through as a field; the type conversion never happens.",
+   "Correct values held only because the validator cannot fetch Project Euclid (CaoWors99, Schw78) or a quote was mis-scoped (Hint84 volume 16), leaving known-wrong values in place; the doi_title_mismatch rule dropped WoodEtal00b's correct DOI because Crossref appends a footnote to the title."
+  ],
+  "outside_review_set_findings": [
+   "HoltEtal12, TingEtal02, CassEtal02, CowaEtal04: same initials_from_source compound-surname bug (see systematic_findings); CronEtal98c: same duplicate as CronEtal98a."
+  ]
+ },
+ {
+  "key": "BerrEtal02",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref 10.1037/0735-7044.116.3.434 authors Asaka, Griffin, Berry; issue 3; page 434-442; title keeps publisher's 'inactivitation' (PubMed corrects to 'inactivation' - either defensible). AsakEtal02 absent in HEAD (only AsakEtal00)."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "BoisEtal06",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "PubMed 16984899 LastName 'du Boisgueheneuc' (Crossref splits it as given 'F. d.'); pages 3315-3328 in both. Particle key duBoEtal06 follows house delaEtal07/vanEEtal11; surname hold (single source) is appropriate, Crossref's 'F. d.' corroborates the particle."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "BorzEtal23b",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the @article -> @inproceedings conversion leaves Journal in place (removals is empty; postcheck.py only removes publisher on @article and pages on @book), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check (no rule).",
+   "Crossref 10.52202/075280-0540: proceedings-article, NeurIPS 36, pages 12312-12331, same 8 authors."
+  ],
+  "suggested_value": {},
+  "sampled_as": "a"
+ },
+ {
+  "key": "CaoWors99",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "disagree (held but correct)",
+   "doi": "disagree (held but correct)"
+  },
+  "problems": [
+   "All changes held only because Project Euclid blocks the validator; Crossref 10.1214/aoap/1029962864 (fetched) title 'The geometry of correlation fields with an application to functional connectivity of the brain' (no comma). Final state (no change) leaves the wrong comma and no DOI."
+  ],
+  "suggested_value": {
+   "title": "The geometry of correlation fields with an application to functional connectivity of the brain",
+   "doi": "10.1214/aoap/1029962864"
+  },
+  "sampled_as": "a"
+ },
+ {
+  "key": "ChanEtal09a",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "volume": "agree",
+   "year": "agree (2009 per house MozeEtal09)",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "NeurIPS PDF byline fetched: Chang, Boyd-Graber, Gerrish, Wang, Blei - order change correct (printed byline beats site metadata)."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "ChanEtal12a",
+  "agree": "yes",
+  "field_verdicts": {
+   "year": "agree",
+   "doi": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref published-print 2013-03-01, PubMed PubDate 2013, 23(3):739-749. No ChanEtal13* in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "ChenEtal24b",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "pages": "agree",
+   "doi": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "booktitle": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "Crossref 10.52202/079017-4248 page 133661-133709 confirms the page correction."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "ChenEtal24c",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "pages": "agree",
+   "doi": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "booktitle": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "Crossref 10.52202/079017-3015 page 95170-95197, five authors match."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "CoheEtal93",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.3758/bf03204507 title 'PsyScope: An interactive graphic system for designing and controlling experiments in the psychology laboratory using Macintosh computers'; same vol/issue/pages/authors. Same work, cited title was a miscitation. {M}acintosh matches the one house use."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "CronEtal94",
+  "agree": "yes",
+  "field_verdicts": {
+   "number": "agree",
+   "verdict": "agree (ambiguous)"
+  },
+  "problems": [
+   "Crossref 10.1006/brln.1994.1057 is the collective 'Abstracts' item, issue 3, pages 409-490 (contains 466-468); no per-abstract record; Crossref bibliographic search finds nothing. Conference abstract: belongs on the user's abstract-removal list (README decision). Existing 'J {Hart Jr}' suffix is untouched because author is not a changed field - should become 'J Hart' under the no-suffix rule if the entry is kept."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "DahmEtal11",
+  "agree": "yes",
+  "field_verdicts": {
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "doi": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref 10.3758/s13428-011-0158-9 and PubMed 22045563: 44(2):447-454, print June 2012. DahmEtal12 absent in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "DezfDali20",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "disagree: post-check added a spurious initial",
+   "doi": "agree",
+   "number": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "POST-CHECK BUG: initials_from_source turned the researcher's correct 'M {Parto Dezfouli}' into 'M P {Parto Dezfouli}' by reading the first word of the compound surname as a given name. PubMed 31363879 XML: LastName 'Parto Dezfouli', ForeName 'Mohsen', Initials 'M'; Crossref given 'Mohsen', family 'Parto Dezfouli'. Same bug hits HoltEtal12, TingEtal02, CassEtal02, CowaEtal04, DupoEtal00, SilbEtal03 (and PaszEtal19 'A A D A').",
+   "Key PartDali20 is right for surname 'Parto Dezfouli' (absent in HEAD)."
+  ],
+  "suggested_value": {
+   "author": "M {Parto Dezfouli} and M R Daliri"
+  },
+  "sampled_as": "a"
+ },
+ {
+  "key": "GranWals16",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref 10.1002/acp.3215 given 'Janie', family 'Busby Grant'; 30(3):472-478. BusbWals16 absent in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "GrifStey03",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "NeurIPS page (researcher) + MIT Press vol 15 (2003) consistent; year 2003 kept is defensible, GrifStey02 is a different work in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "GrubMatt05",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "PubMed 15238442: authors 'T Gruber','MM Müller', 15(1):109-116, PubDate 2005 (Crossref issued is online 2004-07-06, the doi_record_conflict flag is only the online date). GrubMull05 absent in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "HirsAly22",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref published-print 2023-07, 85(5):1517-1549; PubMed 36303020 same. HirsAly23 absent in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "JoniEtal07",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref published-print 2008-01-01, 59:193-224; PubMed 17854286 same. JoniEtal08 absent in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "KiroEtal15",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "volume": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "PDF byline fetched: Kiros, Zhu, Salakhutdinov, Zemel (Richard S.), Torralba, Urtasun, Fidler - cited order right; NeurIPS BibTeX gives 'Salakhutdinov, Russ R' and editors C Cortes..R Garnett, vol 28."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "KrizEtal12",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "NeurIPS BibTeX fetched: editors 'F. Pereira and C.J. Burges and L. Bottou and K. Weinberger', Curran, vol 25, 2012 - matches."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "KumaEtal21",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "journal": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "volume": "agree",
+   "year": "agree (2021)"
+  },
+  "problems": [
+   "Publisher page fetched: citation_publication_date 2021/12/15, 'Vol. 1, 2021'; PubMed 35939268 vol 1, 2021, 'P C Chen' (Crossref 'Po-Hsuan Cameron'), 'Capotă'. Crossref's volume '2021' / print 2022-02-16 is a deposit artefact; year 2021 right."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "KutaFede11",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref/PubMed 20809790: 'Thirty years and counting: finding meaning in the N400 component of the event-related brain potential (ERP)', 62:621-647, Kutas & Federmeier - same work, cited title a short form."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "LadoEtal02",
+  "agree": "yes",
+  "field_verdicts": {
+   "journal": "agree",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed 12023433 and Crossref 10.1136/jnnp.72.6.812: J Neurol Neurosurg Psychiatry 72(6):812-815; house form used twice in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MairEtal09b",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "volume": "agree",
+   "pages": "not_found, left (agree)",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "NeurIPS PDF byline fetched (layout): Mairal, Bach / Ponce, Sapiro, Zisserman - order change correct."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MayeEtal92b",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "series": "agree",
+   "doi": "agree",
+   "journal": "disagree: must be removed (moved to series)"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check. Here Journal 'Advances in Psychology' duplicates the new Series.",
+   "Crossref 10.1016/s0166-4115(08)60886-9: book-chapter, containers 'Advances in Psychology' / 'The Nature and Origins of Mathematical Skills', 137-153, 1992. House uses 'North Holland' / 'Amsterdam' twice."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MeyeEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree",
+   "key": "agree (MeyeEtal19c)"
+  },
+  "problems": [
+   "Crossref published-print 2019-05-01, 29(5):1910-1920; PubMed 29668862 same. HEAD has MeyeEtal19a and MeyeEtal19b (no unsuffixed MeyeEtal19), so MeyeEtal19c is the next free key."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "MnihHint09",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "volume": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "Same NeurIPS 21 volume/editors as MairEtal09b; site gives 'Hinton, Geoffrey E.'."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "OjemEtal09",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref published-print 2010-01, 133(1):46-59; PubMed 19773355 PubDate 2010. OjemEtal10 absent in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "OwenEtal97",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "volume": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref 10.1093/brain/119.5.1597 and PubMed 8931583: Brain 1996 119(5):1597-1615. OwenEtal96 absent in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "PareHazr95",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "journal": "agree (house has both 'Brain Research Reviews' x3 and 'Brain Research: Brain Research Reviews' x5)",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "PubMed 7711765 title 'Functional anatomy of the basal ganglia. II. The place of subthalamic nucleus and external pallidum in basal ganglia circuitry.'; Crossref given 'Lili-Naz' -> L-N; 20(1):128-154. Part II is the cited pages, so same work."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "PaszEtal19",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "publisher": "agree",
+   "volume": "agree",
+   "author": "disagree: post-check corrupted K{\\\"o}pf's initials",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "POST-CHECK BUG: initials_from_source rewrote 'A K{\\\"o}pf' as 'A A D A K{\\\"o}pf'. NeurIPS page fetched lists 'Alban Desmaison, Andreas Kopf, Edward Yang' - Andreas Köpf has one given name. The researcher's list (21 authors, order matches the page) was right apart from this.",
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check."
+  ],
+  "suggested_value": {
+   "author": "A Paszke and S Gross and F Massa and A Lerer and J Bradbury and G Chanan and T Killeen and Z Lin and N Gimelshein and L Antiga and A Desmaison and A K{\\\"o}pf and E Yang and Z DeVito and M Raison and A Tejani and S Chilamkurthy and B Steiner and L Fang and J Bai and S Chintala"
+  },
+  "sampled_as": "a"
+ },
+ {
+  "key": "RissEtal07",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree",
+   "year": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "Crossref published-print 2008-07-01, 18(7):1618-1629; PubMed 17999985 same; HEAD writes D'Esposito 13 times vs {D'Es}posito once. RissEtal08 absent in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "SanbGrif08",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "year": "not_found, kept (agree)",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "Editors match house RaoHowa08 (same NIPS 20 volume)."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "SchaTurk15",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check. The researcher's notes explicitly say 'drop Journal', but the protocol has no way to express a removal and the post-check does not add it.",
+   "Crossref 10.1016/b978-0-12-397025-1.00276-1: book-chapter 'Statistical Learning', Schapiro & Turk-Browne, 501-506, 2015."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Schw78",
+  "agree": "partly",
+  "field_verdicts": {
+   "volume": "disagree (held but correct)",
+   "number": "disagree (held but correct)",
+   "doi": "disagree (held but correct)"
+  },
+  "problems": [
+   "All changes held only because Project Euclid blocks the validator. Crossref 10.1214/aos/1176344136 (fetched): 'Estimating the Dimension of a Model', Gideon Schwarz, volume 6, issue 2, issued 1978-03. Final state leaves volume '6 (2)' (house-invalid) and no DOI."
+  ],
+  "suggested_value": {
+   "volume": "6",
+   "number": "2",
+   "doi": "10.1214/aos/1176344136"
+  },
+  "sampled_as": "a"
+ },
+ {
+  "key": "ShihEtal23",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "Crossref 10.52202/075280-0188: proceedings-article, 4263-4276, same five authors."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Sina07",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "address": "agree",
+   "booktitle": "agree",
+   "doi": "agree",
+   "editor": "agree",
+   "pages": "agree",
+   "publisher": "agree",
+   "title": "agree",
+   "year": "agree",
+   "key": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "Crossref 10.1007/978-0-387-74980-8_10: book-chapter, container 'Brain Research in Language', 247-273, published-print 2008, Springer US; Sina08 absent in HEAD."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "SochEtal09",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "journal": "disagree: must be removed"
+  },
+  "problems": [
+   "SYSTEMATIC: the type conversion leaves the old Journal field in place (removals empty; postcheck.py has no rule removing journal when @article becomes @inproceedings/@incollection), so the final entry carries both Journal and Booktitle. Journal must be removed. Not caught by the post-check.",
+   "PDF byline fetched: Socher; Samuel J. Gershman, Adler J. Perotte, Per B. Sederberg; David M. Blei; Kenneth A. Norman - initials and order right."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Stol49",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1192/bjp.95.401.972 container 'Journal of Mental Science', 95(401):972-984, 1949; PubMed 15396389 'electroencephalogram'."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Wils88",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.3758/bf03202594: 'MRC psycholinguistic database: Machine-usable dictionary, version 2.00', 20(1):6-10."
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "AllpEtal94",
+  "agree": "partly",
+  "field_verdicts": {
+   "entrytype": "disagree: lowercase 'entrytype' passed through as a BibTeX field; ENTRYTYPE stays @article",
+   "booktitle": "agree",
+   "editor": "agree",
+   "doi": "agree",
+   "author": "agree (S L from NCKU 'SL HSIEH', applied by the post-check, not the researcher)",
+   "journal": "disagree: must be removed",
+   "volume": "disagree: series number 15 should go (it is in the booktitle XV)",
+   "pages": "agree (kept 421--452)"
+  },
+  "problems": [
+   "POST-CHECK GAP: the researcher wrote the type change as field 'entrytype' (lowercase); the post-check does not recognise it, so the merged row adds a field named 'entrytype' and the type conversion rules (and this review's set-A filter) never fire. Journal 'Attention and Performance' and Volume 15 remain although the notes say to drop them.",
+   "Pages: NCKU record (fetched) citation_firstpage 421 / lastpage 452 and RIS SP 421 EP 452, MIT Press 1994, editors C Umilta and M Moscovitch; Crossref's 411-442 (the doi_record_conflict flag) is the digital re-pagination - keeping 421--452 is right."
+  ],
+  "suggested_value": {
+   "ENTRYTYPE": "incollection"
+  },
+  "sampled_as": "b"
+ },
+ {
+  "key": "AndeEtal90",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/0004-3702(90)90093-f: 42(1):7-49, four authors."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "AstuEtal02",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree",
+   "number": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "PubMed 11853860 / Crossref: Behavioural Brain Research 132(1):77-84, 2002."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BallEtal04",
+  "agree": "yes",
+  "field_verdicts": {
+   "number": "agree"
+  },
+  "problems": [
+   "Lab-hosted PDF fetched: footer 'Biomedizinische Technik • Band 49 • Ergänzungsband 2 • 2004'; no Crossref/PubMed record. 'Suppl 2' is a reasonable rendering (house has no single supplement form)."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BancEtal94",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed 8149215 and Crossref 10.1093/brain/117.1.71: 117(1):71-90."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BateDOli03",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Surname hold can be released: D'Oliveiro is printed by both PubMed 14748500 ('L D'Oliveiro') and Crossref 10.3758/bf03195535 (family 'D’Oliveiro', given 'Timothy C.' for Bates) - two hosts. Volume 35(4):565-576."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BungEtal01",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 11571223: 'KN Ochsner'; 124(10):2074-2086."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "BurtBruc92",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref: 'A. Mike' Burton, issue 1, 83:45-60."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Burw00",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 10911865 'RD Burwell'; Crossref 911(1):25-42."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "CartWang07",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref given 'E.' Carter, 'X.-J.' Wang, issue 'suppl 1', i16-i26; PubMed 17725998 'E Carter'."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "CovaEtal07",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "PubMed 17224438 and Crossref: four authors (no Lovell), title without ': commentary'; pages '370-4; discussion 374'."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "CravEtal00",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/s0004-3702(00)00004-7: issue '1-2', 118:69-113."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "CronEtal98a",
+  "agree": "partly",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree",
+   "key": "disagree: duplicate of CronEtal98c, should be merged"
+  },
+  "problems": [
+   "DUPLICATE MISSED BY THE POST-CHECK: HEAD cdl.bib line 26751 CronEtal98c is the same work (same Part II title, Brain 121, pages 2301--2315). The researcher's notes say so, but merged.json has no duplicate flag and key_plan 'keep' - the post-check only looks for duplicates on a key rename or a shared DOI, and CronEtal98c has no DOI. Adding the DOI here would create two entries for one work.",
+   "PubMed 9874481 / Crossref 10.1093/brain/121.12.2301: 121(12):2301-2315."
+  ],
+  "suggested_value": {},
+  "sampled_as": "b"
+ },
+ {
+  "key": "DupoEtal00",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "disagree: post-check added spurious 'L' to Le Bihan",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "POST-CHECK BUG: initials_from_source turned 'D {Le Bihan}' into 'D L {Le Bihan}' (compound surname read as given name). PubMed 10908201 author 'D Le Bihan' (Denis). The researcher's Leh{\\'e}ricy accent is from PubMed ('Lehéricy'), fine under the keep-accents rule."
+  ],
+  "suggested_value": {
+   "author": "S Dupont and P F {Van de Moortele} and S Samson and D Hasboun and J B Poline and C Adam and S Leh{\\'e}ricy and D {Le Bihan} and Y Samson and M Baulac"
+  },
+  "sampled_as": "b"
+ },
+ {
+  "key": "EuseEtal09",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Crossref: 'Jean-Philippe' Azulay, 132(8):2139-2150, print Aug 2009."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "FaboEtal08",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 18083752 and Crossref 10.1093/brain/awm297: 131(2):485-499."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "FedoVarl16",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1111/nyas.13046 1369(1):132-153; PubMed 27096882."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Fish15",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/2331838 (JSTOR): correct title, R A Fisher, 10(4), first page 507 only (hence the doi_record_conflict flag; not a real conflict). OUP 10.1093/biomet/10.4.507 is the publisher's alternative; JSTOR follows house precedent Wilc45."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "FletEtal96",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "Crossref 'R. S. J.' Frackowiak, 119(5):1587-1596; PubMed 8931582."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "FrieEtal02b",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 12003857: KA Cameron, JW Morrow, 12(6):575-584."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "FuldEtal82",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "PubMed 7073248 'Intrusions as a sign of Alzheimer dementia: chemical and pathological verification.' 11(2):155-159."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "GeorEtal99",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Surname hold can be released: PubMed 10355900 'Georges-François' and Crossref family 'Georges-Francois' (second host, unaccented) both contradict 'Francios'."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "GeviSmit00",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 10982744 / Crossref: 10(9):829-839."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Gibs58",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 13572790 / Crossref 10.1111/j.2044-8295.1958.tb00656.x: 49(3):182-194, 1958 (not the 2009 reprint)."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "HalgEtal78c",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref page 83-115 (publisher) vs PubMed 638728 83-117; publisher range chosen, reasonable. HalgEtal78a/b in HEAD are different works."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "HallWals02",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1017/s0267190502000107: Hall & Walsh, 22:186-203; '10.' title prefix is the chapter number."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Hint84",
+  "agree": "partly",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree",
+   "volume": "disagree (held, but 16 is correct)"
+  },
+  "problems": [
+   "Volume 16 is held by a quote-check failure, so the final entry keeps the wrong volume 26 alongside a DOI whose record says 16. Crossref 10.3758/bf03202365 (fetched): volume '16', issue '2', page 96-101, published-print 1984-03. Behavior Research Methods, Instruments, & Computers vol 26 is 1994, so 26 cannot be right for 1984."
+  ],
+  "suggested_value": {
+   "volume": "16"
+  },
+  "sampled_as": "b"
+ },
+ {
+  "key": "HoorEtal98",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 10.3758/bf03209420 family 'Hoormann'; 30(1):103-109. Surname hold (single host) is procedurally right; value correct (Springer page did not return author meta to a script, so no second host found by me)."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "ItieTayl04",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "volume": "agree"
+  },
+  "problems": [
+   "PubMed 14704210 / Crossref: 14(2):132-142."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Jack79",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree",
+   "author": "not_found, left (agree)"
+  },
+  "problems": [
+   "Crossref 10.1093/brain/2.3.323: 2(3):323-356, 1879, byline 'J.' 'HUGHLINGS-JACKSON'; leaving author for the user is appropriate."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "JacoEtal90",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 14589543 authors Jacobs D; Salmon D P; Tröster A I; Butters N - matches; Crossref 10.1093/arclin/5.1.49 5(1):49-57."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "JensEtal02",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 12122036 / Crossref: 12(8):877-882."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KamiBlin91",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "PubMed 1912013 and Crossref: '...of the information flow in the brain structures', 65(3):203-210."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KeenEtal22",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref published-print 2022-11, 84(8):2472-2482; PubMed 36138300."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KessEtal01",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "journal": "agree"
+  },
+  "problems": [
+   "Crossref 'Roy P.C.' Kessels, 'Edward H.F.' de Haan, container 'Brain Research Reviews', 35(3):295-303."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "KuhnEtal04",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 'Kühn', 'Gerd‐Helge' Schneider; PubMed 14960502 'AA Kühn'; 127(4):735-746."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "LeunYim86",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 'Lai-Wo S.' Leung (hyphen rule gives L-W S), issue '1-2', 367:323-327; PubMed 3008923."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Ligh91",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "PubMed 2018397 'Memory and aging: four hypotheses in search of data', 'LL Light'; Crossref 'Leah L.'."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "MasoSuri12",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref published-print 2012-03, 44(1):1-23; PubMed 21717266 'Amazon's Mechanical Turk'."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "McGe36",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "JSTOR RIS fetched: TI 'The Direction and Extent of Intra-Serial Associations at Recall', VL 48, IS 2, SP 221, EP 245, Apr 1936. HEAD's other use of this journal is also the 'Americal' typo (2 entries)."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Moun97",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "PubMed 9153131 / Crossref: 120(4):701-722."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "MurdEtal77",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "verdict": "should be correction (flagged)"
+  },
+  "problems": [
+   "Crossref 10.1037/h0081652: Canadian Journal of Psychology 31(2):71-89, 1977; verdict_inconsistent flag is right but harmless."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "OtteEtal01",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 11157567 / Crossref: 124(2):399-412."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "PlonEtal00",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 11073870 / Crossref: 10(12):1211-1216, authors match with accents."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "RendCrai00",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree",
+   "pages": "not_found, left (agree)"
+  },
+  "problems": [
+   "Crossref 10.1002/acp.770: 14(7), no page data; pages left as cited."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "RogeEtal98",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "PubMed 9619187 / Crossref: 121(5):815-842."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "SchaEtal18",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref 'Xi-Nian' Zuo; published-print 2018-09, 28(9):3095-3114; PubMed 28981612."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "SchuEtal00",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref page 272-283 (publisher); PubMed 10731222 says 272-84 but the next article starts at 284; 283 is right."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "Shim95",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "PubMed 8595022 'Memory and the prefrontal cortex.'; Crossref title's trailing 'a' is a footnote marker; 769(1):151-160."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "SilbEtal03",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "disagree: post-check added spurious 'D' to Di Lazzaro",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "POST-CHECK BUG: initials_from_source turned 'V {Di Lazzaro}' into 'V D {Di Lazzaro}'. PubMed 12937079 lists 12 authors incl. 'V Di Lazzaro' (LastName 'Di Lazzaro'), 'AA Kühn', 'JC Wöhrle', 'T Aziz', 'P Brown' - the researcher's list was right."
+  ],
+  "suggested_value": {
+   "author": "P Silberstein and A A K{\\\"u}hn and A Kupsch and T Trottenberg and J K Krauss and J C W{\\\"o}hrle and P Mazzone and A Insola and V {Di Lazzaro} and A Oliviero and T Aziz and P Brown"
+  },
+  "sampled_as": "b"
+ },
+ {
+  "key": "Spea04",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "journal": "agree",
+   "number": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Crossref 10.2307/1412107: '\"General Intelligence,\" Objectively Determined and Measured', 15(2), first page 201 (JSTOR gives only SP; researcher's RIS quote gives 201-292)."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "TeasRuss83",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "number": "agree"
+  },
+  "problems": [
+   "Crossref given 'M. Louise' Russell; PubMed 6626789 'ML Russell'; 22(3):163-171."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "VignEtal07",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 'J.-P.' Vignal, 130(1):88-99; PubMed 17142246 PubDate 2007 (Crossref 2006 is online-first)."
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ },
+ {
+  "key": "WoodEtal00b",
+  "agree": "partly",
+  "field_verdicts": {
+   "doi": "disagree: correct DOI wrongly dropped by the post-check"
+  },
+  "problems": [
+   "POST-CHECK FALSE DROP: doi_title_mismatch dropped 10.1016/s0006-3223(00)00917-3 because Crossref appends a footnote ('11The percentage of nights...') to the title. The record (fetched) has the exact title as its prefix, authors Woodward/Arsenault/Murray/Bliwise, 48(11):1081-1087, and PubMed 11094141 lists this DOI. The title rule should accept a registry title that starts with the entry title (same class as wave-1 BoddEtal97)."
+  ],
+  "suggested_value": {
+   "doi": "10.1016/s0006-3223(00)00917-3"
+  },
+  "sampled_as": "b"
+ }
+]

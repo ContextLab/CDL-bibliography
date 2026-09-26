@@ -1,0 +1,2216 @@
+[
+ {
+  "key": "_summary",
+  "reviewed": 117,
+  "yes": 88,
+  "partly": 29,
+  "no": 0,
+  "error_rate_random_sample": 0.238,
+  "random_sample_size": 42,
+  "random_sample_with_disagreement": [
+   "ChenEtal22",
+   "EchaEtal00",
+   "EngeFrie10",
+   "GoebLewa91",
+   "GoldEtal05",
+   "Hawk99",
+   "KansEtal15",
+   "LittEtal98",
+   "PetzHaub04",
+   "WardEtal09"
+  ],
+  "set_a_size": 75,
+  "set_b_size": 42,
+  "sampling_method": "pool=sorted keys not in A; B=random.Random(20260925).sample(pool, round(len(pool)/3))",
+  "missing": [],
+  "outside_review_set_findings": [
+   "All 8 Taylor & Francis chapter DOIs proposed in wave 1 return 404 at https://doi.org/api/handles/<doi> (unregistered; taken from taylorfrancis.com URL paths): KleiEtal07b 10.4324/9780203837672-11, WardEtal09 10.4324/9780203938966-9, PetzHaub04 10.4324/9781410610744-5, Este91 10.4324/9780203772331-16, GoebLewa91 10.4324/9780203772331-36, Mand91 10.4324/9780203772331-20, NilsGard91 10.4324/9780203772331-10, JacoEtal97 10.4324/9781315806563-4 (last three are outside the review set). The other 110 proposed DOIs resolve (200)."
+  ]
+ },
+ {
+  "key": "GreeEtal13",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "no_source warranted: Crossref query.bibliographic for the exact title (https://api.crossref.org/works?query.bibliographic=Frontal+theta+activity+distinguishes+memory+encoding+of+items+and+associations+Greenberg) returns only unrelated items plus the different 2015 NeuroImage paper 10.1016/j.neuroimage.2015.03.077 ('Decreases in theta and increases in high frequency activity underlie associative memory encoding', 5 authors); SfN archive API returned only an HTML page to a scripted POST. Likely a poster; the 2015 paper is a different work, not a replacement to apply silently."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "HealKaha14b",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "no_source warranted: Crossref query.bibliographic (https://api.crossref.org/works?query.bibliographic=A+new+approach+to+understanding+age-related+memory+impairments+Healey+Kahana) returns only 10.1037/rev0000015 'A four-component model of age-related memory change' (Psych Rev 2016) and later Broitman et al. papers; PubMed esearch Healey MK[au] Kahana MJ[au] 2014 gives only J Neurosci/JEPG papers with other titles. Replacement candidate HealKaha16 (Psych Rev 123:23-69, 10.1037/rev0000015) is not in cdl.bib; user decision."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "HeatEtal93",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "year": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "edition": "agree",
+   "author": "disagree"
+  },
+  "problems": [
+   "author left not_found but resolvable: publisher page https://www.parinc.com/products/WCST states 'Professional Manual by Robert K. Heaton, PhD, Gordon J. Chelune, PhD, Jack L. Talley, PhD, Gary G. Kay, PhD, and Glenn Curtiss, PhD' -> all five authors with full initials",
+   "LoC 94100793 (lx2.loc.gov SRU) confirms 'Rev. and expanded', 'Odessa, Fla.', 'Psychological Assessment Resources, c1993', 'iv, 230 p.'; @book with no pages is right"
+  ],
+  "suggested_value": {
+   "author": "R K Heaton and G J Chelune and J L Talley and G G Kay and G Curtiss"
+  }
+ },
+ {
+  "key": "LohnEtal14",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree"
+  },
+  "problems": [],
+  "suggested_value": {},
+  "note": "Ambiguous warranted: https://api.crossref.org/works/10.1037/a0039036 states title 'Expanding the scope of memory search: Modeling intralist and interlist effects in free recall.', Psychological Review 122(2) 337-363, issued 2015-04, authors Lohnas, Polyn, Kahana. HEAD entry has no venue (unpublished manuscript). Replacement by LohnEtal15 is the right candidate (user approval queue)."
+ },
+ {
+  "key": "LongKaha14",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "number": "agree",
+   "address": "agree",
+   "organization": "agree"
+  },
+  "problems": [
+   "Validator failed booktitle only because 'Society for Neuroscience Abstracts' is the house form (cdl.bib HEAD has 10+ SfN @inproceedings with Booktitle = {Society for Neuroscience Abstracts}, e.g. RamaEtal12b), not source text; SfN 2014 PDF (https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf) prints 'Program#/Poster#: 172.07/MM14', 'Title: Spectral correlates of contextual processing during memory encoding', 'Authors: *N. M. LONG, M. J. KAHANA', citation template 'Washington, DC: Society for Neuroscience, 2014'. Note: conference abstracts are on the user's flag-for-removal list (README decision); converting is fine but removal decision still pending."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "MerzEtal12",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "no_source warranted: Crossref query.bibliographic (https://api.crossref.org/works?query.bibliographic=Repetition+suppression+human+high-gamma+electrocorticographic+Merzagora) returns only 10.1016/j.neuroimage.2013.07.006 'Repeated stimuli elicit diminished high-gamma electrocorticographic responses' (2014, Rodriguez Merzagora, Coffey, Sperling, Sharan, Litt, Baltuch, Jacobs), a different title/year/author list. Replacement with that paper is a user decision, not a correction."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "SerrDono04",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Identity is a judgement: https://api.crossref.org/works/10.1142/9789812561763_0040 titles the chapter 'DESIGN PRINCIPLES OF A NEUROMOTOR PROSTHETIC DEVICE' (Mijail Serruya; John Donoghue, pp 1158-1196, 2004); cited title differs in wording but it is the only 2004 Serruya-Donoghue design-principles work. Crossref container is just 'Neuroprosthetics'; 'Neuroprosthetics: Theory and Practice' is the book's full title (book DOI 10.1142/4987, editors Kenneth W Horch; Gurpreet S Dhillon)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Wech45",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "unsure",
+   "author": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Resolvable rather than ambiguous: cited as @article 1945, and the only 1945 article is Crossref 10.1080/00223980.1945.9917223 (type journal-article, 'A Standardized Memory Scale for Clinical Use', The Journal of Psychology 19(1):87-95, issued 1945-01, David Wechsler). The PsycTESTS 10.1037/t27207-000 is a 'dataset' record published 2014, not a citable 1945 publication. Still a title change, so user confirmation needed. cdl.bib writes the venue 'Journal of Psychology' (6 entries)."
+  ],
+  "suggested_value": {
+   "title": "A standardized memory scale for clinical use",
+   "journal": "Journal of Psychology",
+   "volume": "19",
+   "number": "1",
+   "pages": "87--95",
+   "doi": "10.1080/00223980.1945.9917223"
+  }
+ },
+ {
+  "key": "Wech81",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "disagree",
+   "author": "unsure",
+   "year": "disagree",
+   "ENTRYTYPE": "agree"
+  },
+  "problems": [
+   "no_source not fully warranted: Harvard LibraryCloud (https://api.lib.harvard.edu/v2/items.dc.json?title=Wechsler%20adult%20intelligence%20scale-revised) returns 'Wechsler Adult Intelligence Scale-Revised (WAIS-R)', publisher 'The Psychological Corporation', oclc 83219852; the same Harvard MARC record via Open Library (https://openlibrary.org/works/OL44864374W/editions.json) gives publish_date '1981', publish_places 'San Antonio, Texas'. Researcher's note says Harvard LibraryCloud had only WAIS 1955 and WAIS-III, which is wrong.",
+   "That catalogue record has no creator, so Wechsler as author is not confirmed by it; the researcher's proposed address New York, {NY} conflicts with the catalogue's San Antonio, Texas (1981 printings exist with both imprints; unsure).",
+   "Title typography: cited '--- revised' has a stray em dash + space; catalogue hyphenates 'Scale-Revised'."
+  ],
+  "suggested_value": {
+   "ENTRYTYPE": "book",
+   "title": "{Wechsler} adult intelligence scale--revised ({WAIS-R})",
+   "year": "1981",
+   "publisher": "Psychological Corporation"
+  }
+ },
+ {
+  "key": "BlasEtal96",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Minor: {\\k{e}} has no precedent in HEAD cdl.bib (0 occurrences); confirm bibcheck accepts it."
+  ],
+  "suggested_value": {},
+  "note": "https://api.crossref.org/works/10.55782/ane-1996-1116 states authors Marcin Błaszczyk, Robert Grabowski, Barbara Eckersdorf, Henryk Gołębiewski, Jan Konopacki; volume 56 issue 1 page 161-164. Key unchanged (Blas)."
+ },
+ {
+  "key": "SchoBekk67",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {}
+ },
+ {
+  "key": "BeckBurg01",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "volume": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "year": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "https://papers.nips.cc/paper_files/paper/2000/file/65fc52ed8f88c81323a418ca94cec2ed-Bibtex.bib states 'editor = {T. Leen and T. Dietterich and V. Tresp}', 'volume = {13}', 'year = {2000}', 'pages = {}'. The only fetched source says year 2000; 2001 (print year of vol 13) is not source-backed, and pages 96--102 remain unverified. Entry cannot be verified until year and pages have a source (e.g. the MIT Press volume TOC); if the site year is adopted the key becomes BeckBurg00."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "GoenEtal08",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree",
+   "key": "disagree"
+  },
+  "problems": [
+   "DUPLICATE missed: cdl.bib HEAD already holds GoenLogo08 (line ~36703) with Author {J B M Goense and N K Logothetis}, Doi 10.1016/j.cub.2008.03.054, 18(9) 631--640 - exactly the corrected entry. With the 'and others' removed the key rule gives GoenLogo08, which collides with that entry; GoenEtal08 should be merged into GoenLogo08 (log rename), not kept as a second copy. Values themselves match Crossref 10.1016/j.cub.2008.03.054 (Jozien B.M. Goense; Nikos K. Logothetis; 18(9) 631-640)."
+  ],
+  "suggested_value": {
+   "key": "GoenLogo08 (merge into existing duplicate)"
+  }
+ },
+ {
+  "key": "CohnRang17",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {}
+ },
+ {
+  "key": "DawKenj06",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree",
+   "key": "disagree"
+  },
+  "problems": [
+   "DUPLICATE: cdl.bib HEAD already has @article{DawDoya06} (line ~49044) with identical corrected metadata (N D Daw and K Doya, CONB 16(2):199--204, doi 10.1016/j.conb.2006.03.006). The proposed rename to DawDoya06 collides; the right action is to merge DawKenj06 into DawDoya06 (remove the duplicate, log DawKenj06 -> DawDoya06), not to correct it in place.",
+   "Values themselves confirmed at PubMed efetch 16563737: LastName 'Doya' ForeName 'Kenji', Volume 16, Issue 2, MedlinePgn 199-204."
+  ],
+  "suggested_value": {
+   "action": "remove as duplicate of DawDoya06; key-renames DawKenj06 -> DawDoya06"
+  }
+ },
+ {
+  "key": "PeruGaun98",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree"
+  },
+  "problems": [],
+  "suggested_value": {},
+  "note": "https://pascal-francis.inist.fr/vibad/index.php?action=getRecordDetail&idt=2421536 states 'Virtual environments as a promising tool for investigating human spatial cognition', PERUCH, P; GAUNET, F; 'Cahiers de psychologie cognitive . = Current psychology of cognition. 1998, Vol 17, Num 4-5, pp 881-899'. Key unchanged."
+ },
+ {
+  "key": "Land95",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {},
+  "problems": [
+   "no_source warranted: my web search for the 1895 Deutsches Wochenschach volume found only secondary citations (Wikipedia, Google Scholar lookup) and no scan; unresolvable without a library scan (e.g. MDZ/BSB) or Landau's Collected Works reprint (Thales, 1985) - pages 366--369 vs 'No. 42:51-54' (Sinn & Ziegler arXiv:2210.17300) conflict remains open. Route to user/human."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "TummEtal16",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed: https://api.crossref.org/works/10.1111/desc.12474 published-print 2017-09, volume 20, issue 5, article-number e12474. Key rename TummEtal16 -> TummEtal17 (no TummEtal17 in HEAD cdl.bib)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "ShriEtal90",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "doi": "agree",
+   "key": "agree"
+  },
+  "problems": [],
+  "suggested_value": {
+   "key": "SchrEtal90"
+  }
+ },
+ {
+  "key": "TurlWhit03",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "unsure",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "All non-author fields and DOI are right (Crossref 10.1016/s0749-596x(03)00095-0: JML 49(4) 446-468, 2003). 'ambiguous' overstates it: identity is not in doubt, only the second author is missing from Crossref's deposit. OpenAlex https://api.openalex.org/works/doi:10.1016/s0749-596x(03)00095-0 gives 'Kandi Jo Turley-Ames' (supports K J) and Semantic Scholar gives 'Michelle M. Whitfield' (supports M M Whitfield), neither acceptable as sole evidence; cited author list should be kept (never drop an author because Crossref omits one) and treated as verified-with-author-hold, not ambiguous."
+  ],
+  "suggested_value": {
+   "doi": "10.1016/s0749-596x(03)00095-0"
+  }
+ },
+ {
+  "key": "Jell02",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "pages": "unsure",
+   "year": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Pages conflict left marked 'confirmed': PubMed efetch 12456078 MedlinePgn '347-76' (Issue 62, 'Journal of neural transmission. Supplementum'), but the publisher's Crossref record https://api.crossref.org/works/10.1007/978-3-7091-6139-5_33 gives page '347-384' (type book-chapter). Springer page not reachable to settle; the publisher range normally wins for the chapter extent, so 347--376 should not be recorded as confirmed without the printed page.",
+   "Work form: Crossref types it as a book-chapter in 'Ageing and Dementia Current and Future Concepts' (Journal of Neural Transmission. Supplementa); @article with journal '... Supplementum' and volume 62 is the PubMed form -- acceptable, but an entry-type decision for the user."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "BayeGlim07",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {
+   "key": "BayeEtal07"
+  },
+  "note": "PubMed efetch 17615124 states ArticleTitle 'Statistics of midbrain dopamine neuron spike trains in the awake primate.', authors Bayer HM, Lau B, Glimcher PW, 98(3) 1428-1439, 2007 Sep, doi 10.1152/jn.01140.2006. Rename to BayeEtal07 (no collision in HEAD)."
+ },
+ {
+  "key": "BasaEtal99",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed via PubMed efetch 10025584: ArticleTitle 'Are cognitive processes manifested in event-related gamma, alpha, theta and delta oscillations in the EEG?', LastNames Başar / Başar-Eroğlu / Karakaş / Schürmann, Issue 3. Key unaffected (first 4 letters still Basa). Other cdl.bib entries (lines ~15625, 27130) write the same authors unaccented - consistency sweep may be wanted."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "HerrEtal09",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed: https://api.crossref.org/works/10.1016/j.neubiorev.2009.09.001 published-print 2010-06, vol 34, issue 7, page 981-992, authors Herrmann, Fründ, Lenz. HerrEtal10 exists in HEAD cdl.bib (line ~56489), so rename to a suffixed key (HerrEtal10a/b per collision rule)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "LucaEtal08",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 18812960 PG '487-97; discussion 497' and FAU 'Lucas, Timothy H 2nd' (suffix correctly omitted per no-suffix rule); Crossref lists 4 authors Lucas, Drane, Dodrill, Ojemann."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "RaghEtal99",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {},
+  "problems": [
+   "no_source plausible: 1999 SfN abstracts are not in the SfN online archive (2000+) per researcher; I found no Crossref/PubMed record for the title. Falls under the conference-abstract removal/confirmation list in README (user decision), not a resolvable correction."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "SiapEtal00",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "number": "agree",
+   "address": "agree",
+   "ENTRYTYPE": "agree",
+   "volume": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "Confirmed at the SfN archive detail page (AbsYear=2000&AbsID=7330): 'Neuroscience 2000 Abstract Presentation Number: 467.1', title 'Prefrontal phase-locking to hippocampal theta oscillations.', authors 'Siapas, A. G.; Lee, A. K.; Lubenov, E. V.; Wilson, M. A.'. Conversion to @inproceedings matches the majority house form (17 Booktitle = {Society for Neuroscience Abstracts} vs 8 Journal = ...; e.g. RamaEtal12b). Dropping volume 26 / page 1256 loses the printed-abstract locator, which is unverified rather than wrong -- user choice."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "WilsEtal79",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {},
+  "problems": [
+   "no_source warranted but unresolvable online: Crossref query.bibliographic (https://api.crossref.org/works?query.bibliographic=Sensory+afferent+response+of+human+limbic+neurons+Wilson+Babb+Halgren+Crandall) returns only the related 1984 Exp Neurol and 1977 papers; PubMed esearch for Wilson CL/Babb TL/Halgren E/Crandall PH returns no 1979 abstract. It is a 1979 SfN abstract: per the user decision it belongs on the conference-abstract removal/confirmation list; if kept, house form is @inproceedings with Booktitle {Society for Neuroscience Abstracts} (HEAD writes it as Booktitle 4 of 5 times)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "WilsEtal80",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {},
+  "problems": [
+   "no_source warranted: 1980 SfN abstracts (Soc Neurosci Abstr vol 6) are not in SfN's online archive (2000-2005) or OASIS; it is a conference abstract and falls under the user's 'flag conference abstracts for removal' decision (README). Title typo 'reponses' should be fixed to 'responses' if kept."
+  ],
+  "suggested_value": {
+   "title": "Habituation of human limbic sensory responses"
+  }
+ },
+ {
+  "key": "EngeEtal93",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "edition": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "author": "disagree",
+   "editor": "disagree",
+   "pages": "unsure",
+   "title": "unsure"
+  },
+  "problems": [
+   "Host book confirmed by LoC SRU (https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&query=dc.title%3D%22surgical%20treatment%20of%20the%20epilepsies%22&recordSchema=mods): 'Surgical treatment of the epilepsies', Engel, Jerome, 'New York', 'Raven Press', 'c1993', '2nd ed.', 'xxix, 786 p.' (1987 1st ed. is a different edition). Chapter title/pages still unsourced, so 'ambiguous' is warranted.",
+   "Suggested form keeps 'J {Engel Jr}' in author and editor; house rule (README 2026-09-24/25) is no name suffixes, so it must be 'J Engel'."
+  ],
+  "suggested_value": {
+   "ENTRYTYPE": "incollection",
+   "author": "J Engel and P C {Van Ness} and T B Rasmussen and L M Ojemann",
+   "editor": "J Engel",
+   "booktitle": "Surgical Treatment of the Epilepsies",
+   "edition": "2\\textsuperscript{nd}",
+   "publisher": "Raven Press",
+   "address": "New York, {NY}"
+  }
+ },
+ {
+  "key": "HemmShen19",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Researcher left the year/key to the reviewer; house rules settle it: print year wins (Crossref 10.1093/bjps/axz038 published-print 2022-03-01, 73(1) 85-107) and keys follow corrected metadata -> key HemmShen22 (no collision in HEAD)."
+  ],
+  "suggested_value": {
+   "key": "HemmShen22"
+  }
+ },
+ {
+  "key": "LincNati81",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "disagree",
+   "publisher": "agree",
+   "year": "agree",
+   "address": "agree"
+  },
+  "problems": [
+   "LoC MODS https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=81080827&maximumRecords=1&recordSchema=mods: statement of responsibility 'Gary H. Lincoff ; visual key by Carol Nehring.'; 'National Audubon Society' is only a corporate added entry (and part of the series/title), so it is not a printed author. Per 'corporate authors: match the printed byline exactly' the author should be 'G H Lincoff' alone, which renames the key LincNati81 -> Linc81 (researcher left this as optional). Minor: 'Audubon Society' is a proper name, so '{Audubon Society}' braces would be safer than '{Audubon} society'."
+  ],
+  "suggested_value": {
+   "author": "G H Lincoff",
+   "key": "Linc81",
+   "address": "New York, {NY}"
+  }
+ },
+ {
+  "key": "BaayEtal95",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "title": "unsure",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed independently: DataCite https://api.datacite.org/dois/10.35111/gs6s-gm48 creators 'Baayen, R H.', 'Piepenbrock, R', 'Gulikers, L', publisher 'Linguistic Data Consortium', publicationYear 1995, title 'CELEX2', bibtex type 'misc'; LDC page LDC96L14 'Author(s): R H. Baayen, R Piepenbrock, L Gulikers'.",
+   "Title: registry title is 'CELEX2'; the cited conventional title is not printed by any acceptable source, so title stays unverified (needs user decision; researcher correctly flagged). Entry type @book vs @misc (DataCite: Dataset) is also a user decision."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "McGeIrio52",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "edition": "agree",
+   "author": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Irion is the reviser, not on the LoC MODS name list (https://lx2.loc.gov/sru/lcdb?...bath.lccn=52005644 lists only McGeoch, John Alexander; edition 2d ed.); Open Library OL6109747M edition_name states \"2d ed. revised by Arthur L. Irion\". Keeping him as second author is conventional; key unchanged."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Titc16",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "LoC SRU LCCN 15026892 (MODS): 'beginner's psychology', 'Titchener, Edward Bradford', 'New York', 'The Macmillan company', dateIssued '[c1915]'. Internet Archive search returns 1915 Macmillan copies (beginnerspsychol00titc etc.) and later 1923/1926/1928 printings; no 1916 edition. 1916 is likely a reprint year of the c1915 edition, so 1915 is correct for the edition. Key rename Titc16 -> Titc15 needed (no Titc15 in HEAD cdl.bib); log in key-renames.json."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Wech08",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "edition": "agree",
+   "author": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "address": "unsure"
+  },
+  "problems": [
+   "https://api.crossref.org/works/10.1037/t15169-000 title 'Wechsler Adult Intelligence Scale--Fourth Edition', issued 2008, author David Wechsler: supports edition 4\\textsuperscript{th}. PsycTests DOI is a database record, correctly not assigned as the published DOI. Address San Antonio, {TX} still unsourced."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Kani79",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "LoC SRU LCCN 79011851 (https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=79011851&recordSchema=mods): title 'Organization in vision', subTitle 'essays on gestalt perception', namePart 'Kanizsa, Gaetano.', New York, Praeger, 1979. Keep the subtitle and brace {Gestalt} as cdl.bib does elsewhere ('{Gestalt} psychology'). Surname change is single-source (LoC) but no other cdl.bib entry spells it either way; key unchanged."
+  ],
+  "suggested_value": {
+   "title": "Organization in vision: essays on {Gestalt} perception"
+  }
+ },
+ {
+  "key": "Rayp68",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "editor": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "address": "unsure",
+   "title": "unsure",
+   "author": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "Ambiguous warranted: Open Library OL58323499M (LCCN 69084467) by_statement 'Published in honor of Leo M. Davidoff. Editor, Mark Rayport' confirms Rayport as editor and Davidoff as honoree, publish_country 'au'; the chapter itself is not reachable. Address form 'Horn, {AT}' has no precedent in cdl.bib (the one Austrian address is 'Vienna, Austria'); house form needs a decision."
+  ],
+  "suggested_value": {
+   "editor": "M Rayport"
+  }
+ },
+ {
+  "key": "DeliEtal00",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "edition": "agree",
+   "author": "agree",
+   "year": "agree",
+   "publisher": "unsure"
+  },
+  "problems": [
+   "Crossref https://api.crossref.org/works/10.1037/t15072-000 gives title 'California Verbal Learning Test--Second Edition' and authors Dean C. Delis, Joel H. Kramer, Edith Kaplan, Beth A. Ober (issued 1987 is the PsycTests record date, not the edition date; researcher rightly did not use it for year). Publisher still unsourced: LoC SRU and Harvard LibraryCloud have no record of the 2000 manual; stays not_found."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Chri92",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "unsure",
+   "editor": "agree",
+   "author": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Subtitle 'research and theory' is marked confirmed but the LoC record (https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=91026351&maximumRecords=1&recordSchema=mods) has title 'handbook of emotion and memory' with no subTitle; the validator also flags research/theory missing from quotes. The subtitle is unverified, so title should be not_found for the subtitle part, not confirmed.",
+   "Editor move and Erlbaum / Hillsdale, {NJ} are right: LoC states 'edited by Sven-Åke Christianson', 'L. Erlbaum Associates', 'Hillsdale, N.J', 1992. S-{\\AA} matches the house hyphenated-initial form (e.g. 'P-H A ...' in HEAD)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Khan04",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {},
+  "problems": [
+   "no_source as a @book is warranted: no catalogue record of a 2004 book 'The Khan Academy' exists (LoC/Open Library per researcher; khanacademy.org returns a bot 'Client Challenge' page to curl, so live-page check not possible by script). Entry is a website citation, resolvable only as @misc with Howpublished = {\\url{https://www.khanacademy.org}} after the user picks the year/purpose; the 'force = True' field is a bibcheck override that should not survive a conversion. Route to user."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Kaha09",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {},
+  "problems": [
+   "no_source warranted: Crossref query (query.bibliographic=associative symmetry, query.author=Kahana) returns only the journal papers 10.3758/bf03195769 (Mem Cogn 2002) and 10.1016/s0925-2312(00)00268-x (Neurocomputing 2000); no Encyclopedia of the Mind (10.4135/9781452257044) entry. Needs user decision (retire or re-cite). Side issue: current editor 'Hal Pashler' is not house initials form (H Pashler)."
+  ],
+  "suggested_value": {
+   "editor": "H Pashler"
+  }
+ },
+ {
+  "key": "KahaMill10",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "year": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "doi": "agree",
+   "pages": "unsure",
+   "volume": "unsure"
+  },
+  "problems": [
+   "Correctly identified as a duplicate of KahaMill13 in HEAD (Doi 10.4135/9781452257044.n183, Title 'Memory recall, dynamics', 2013); Crossref confirms reference-entry 'Memory Recall, Dynamics' in 'Encyclopedia of the Mind', SAGE, 2013. Merge into KahaMill13 (key rename logged). Pages/volume rest only on the author's lab page and failed the validator quote check; they are copied from KahaMill13 anyway."
+  ],
+  "suggested_value": {
+   "key": "KahaMill13 (merge)"
+  }
+ },
+ {
+  "key": "Devl76",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Book-level fields confirmed at https://openlibrary.org/books/OL4877514M.json ('edited by Gary T. Moore, Reginald G. Golledge', 'Dowden, Hutchinson & Ross', 'Stroudsburg, Pa', 1976); chapter title/pages not reachable, so no_source for the chapter is fair. Cited author 'Ann S Devlin' should become 'A S Devlin' under the initials rule even without a source."
+  ],
+  "suggested_value": {
+   "address": "Stroudsburg, {PA}",
+   "editor": "G T Moore and R G Golledge",
+   "author": "A S Devlin"
+  }
+ },
+ {
+  "key": "Kapl76",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "title": "unsure",
+   "author": "unsure",
+   "pages": "unsure",
+   "chapter": "unsure"
+  },
+  "problems": [
+   "LoC SRU bath.lccn=76004942 confirms 'Environmental knowing : theories, research, and methods / edited by Gary T. Moore, Reginald G. Golledge', 'Stroudsburg, Pa. : Dowden, Hutchinson & Ross, c1976' (address typo Stroudsberg correctly fixed). Chapter-level fields: no TOC reachable (IA items environmentalkno00moor / environmentalkno0000unse are lending-restricted), so no_source for the chapter is warranted; resolvable only via a scan/TOC or user sign-off.",
+   "House format: cited author 'Stephen Kaplan' should become 'S Kaplan' whichever way the chapter is verified."
+  ],
+  "suggested_value": {
+   "author": "S Kaplan",
+   "editor": "G T Moore and R G Golledge",
+   "address": "Stroudsburg, {PA}"
+  }
+ },
+ {
+  "key": "Jenk79",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "author": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "author and pages are not_found with empty value: the applier must keep the cited J J Jenkins and 429--446, not blank them. Crossref https://api.crossref.org/works/10.4324/9781315796192-33 states title \"Four Points to Remember: A Tetrahedral Model of Memory Experiments\", page 445-462 (2014 reissue, no authors). LoC 1979 record: \"edited by Laird S. Cermak, Fergus I. M. Craik\", Hillsdale, N.J, Lawrence Erlbaum Associates, xii, 479 p."
+  ],
+  "suggested_value": {
+   "author": "J J Jenkins",
+   "pages": "429--446"
+  }
+ },
+ {
+  "key": "Tulv07",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "unsure",
+   "pages": "agree"
+  },
+  "problems": [
+   "Open Library OL18287995M TOC lists 'On the law of primacy / Endel Tulving'; Crossref 10.4324/9780203809983 editors Mark A. Gluck, John R. Anderson, Stephen M. Kosslyn, issued 2007-09-07. Year conflict the researcher flagged is real: LoC SRU record (LCCN 2007031289, ISBN 9780805863444) gives dateIssued 'c2008', while Open Library OL7938700M (same ISBN 0805863443) gives 'September 7, 2007'. 2007 is the release date; 2008 the copyright date - user/house choice. If 2008 is chosen, key becomes Tulv08 (no collision in HEAD). @inbook -> @incollection matches the README decision."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "ShifRaai92",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "title": "unsure",
+   "author": "unsure",
+   "volume": "unsure",
+   "booktitle": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "https://openlibrary.org/books/OL16717034M.json is Vol 2: title 'From learning processes to cognitive processes', publish_places 'Hillsdale, N.J', publishers 'L. Erlbaum', 1992, 'edited by Alice F. Healy, Stephen M. Kosslyn, Richard M. Shiffrin' - supports address Hillsdale, {NJ}. Crossref has no chapter record; chapter-level fields remain unsourced, so no_source for the chapter is warranted. Cited volume 1 and booktitle likely wrong (chapter reportedly in Vol 2)."
+  ],
+  "suggested_value": {
+   "address": "Hillsdale, {NJ}"
+  }
+ },
+ {
+  "key": "Cofe71",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "booktitle": "agree",
+   "edition": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "title": "unsure",
+   "author": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "no_source for the chapter is warranted: both IA scans (woodworthschlosb0000wood, isbn_9780030028069_2) are access-restricted (metadata access-restricted-item true; full-text search returns 'Item not available'). Open Library OL5757350M confirms the book: title \"Woodworth & Schlosberg's Experimental psychology\", 1971, Holt, Rinehart and Winston, New York, edition_name '3d ed. [by] J. W. Kling & Lorrin A. Riggs'. Chapter title/pages need the printed contents page or the user."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Este76",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "unsure",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Book confirmed at https://openlibrary.org/books/OL4875688M.json ('edited by Charles N. Cofer.', publishers 'W. H. Freeman', 'San Francisco', 1976); @inbook->@incollection is the recorded house rule. Publisher: cdl.bib uses both 'Freeman' (2) and 'W H Freeman' (2); the README decision writes 'W H Freeman', so 'W H Freeman' may be preferred. Chapter itself unverified (no_source for chapter fields warranted)."
+  ],
+  "suggested_value": {
+   "ENTRYTYPE": "incollection",
+   "title": "Structural aspects of associative models for memory",
+   "booktitle": "The Structure of Human Memory",
+   "address": "San Francisco, {CA}"
+  }
+ },
+ {
+  "key": "Buzs01",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "publisher": "agree",
+   "editor": "unsure",
+   "volume": "unsure",
+   "pages": "unsure",
+   "year": "unsure",
+   "address": "unsure"
+  },
+  "problems": [
+   "Ambiguous verdict warranted: Open Library OL3957852M (LCCN 2001091214) gives 'Frontiers of life', 'advisory board, editorial directors, David Baltimore ... [et al.]', Academic Press / Treccani, San Diego / Roma, 2002, v.3 'Intelligent systems', v.4 'The living world'; OL9280210M gives the 4-volume set 'October 2001'. No Crossref chapter record. Only the author's lab page gives Vol. 4, 2000, pp. 575-588, which conflicts with the catalogue dates; needs the printed volume.",
+   "Address: catalogue imprint is San Diego (and Roma), not New York; the researcher's 'confirmed New York, {NY}' rests only on the lab page."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Kami69",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "title": "unsure",
+   "author": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "Verdict no_source understates it: the booktitle correction is real and should be applied even though the chapter itself stays unverified. LoC (https://lx2.loc.gov/sru/lcdb?...bath.title=\"fundamental issues in associative learning\") states \"Fundamental issues in associative learning\", \"edited by N. J. Mackintosh and W. K. Honig\", Halifax, Dalhousie University Press, 1969, 203 p. Chapter/pages need the printed volume (user sign-off)."
+  ],
+  "suggested_value": {
+   "booktitle": "Fundamental Issues in Associative Learning"
+  }
+ },
+ {
+  "key": "RuggEtal02",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "edition": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "pages": "unsure"
+  },
+  "problems": [
+   "Lab page https://fnim.utdallas.edu/publications/book-chapters/ states 'Rugg MD, Herron JE, Morcom AM. (2002). Electrophysiological studies of retrieval processing. In LR Squire, DL Schacter (Eds.), Neuropsychology of Memory (3rd Ed.). Guilford Press.' - confirms title/authors/editors/edition. Pages: cited 156--165 vs secondary 'pp. 154-165' (web search summary); no TOC reachable (Guilford contents page returned nothing, no IA scan of the 2002 edition). Pages stay unverified; needs a TOC/PDF. @inbook -> @incollection with chapter title in title and edition split out follows the README decision."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "MoscWino92",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "title": "unsure",
+   "author": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "https://openlibrary.org/books/OL1559632M.json: 'The handbook of aging and cognition', 'Hillsdale, N.J', 'L. Erlbaum Associates', 1992, 'edited by Fergus I.M. Craik, Timothy A.Salthouse', 'ix, 586 p.' - book fields confirmed; chapter unsourced, so no_source is warranted."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Frie06",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "series": "agree",
+   "volume": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "publisher": "agree",
+   "address": "unsure",
+   "doi": "agree",
+   "key": "disagree"
+  },
+  "problems": [
+   "Year 2006->2008 renames the key, and Frie08 already exists in HEAD (David Friedman, 'The components of aging', Oxford Handbook of ERP Components); the proposal does not address the key collision - needs a suffixed key (e.g. Frie08a) per the ID rule. Crossref 10.1007/978-3-540-33037-0_2 confirms 'A Brief History of Data Visualization', Michael Friendly, 'Handbook of Data Visualization', pp 15-56, 2008, publisher 'Springer Berlin Heidelberg' (address Berlin vs Heidelberg both defensible)."
+  ],
+  "suggested_value": {
+   "key": "Frie08a (collision with existing Frie08)"
+  }
+ },
+ {
+  "key": "KleiEtal07b",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "chapter": "agree",
+   "title": "agree",
+   "editor": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "doi": "disagree"
+  },
+  "problems": [
+   "Proposed DOI 10.4324/9780203837672-11 is NOT registered: https://doi.org/10.4324/9780203837672-11 returns HTTP 404 and https://api.crossref.org/works/10.4324/9780203837672-11 returns 'Resource not found.' (the string only appears in a taylorfrancis.com URL path). The registered DOI is the 2011 e-book monograph 10.4324/9780203837672 (Crossref: 'The Foundations of Remembering', editor James S. Nairne, issued 2011-12-06); either omit the DOI or use that book DOI, not the chapter string. Structural change to @incollection with editor J S Nairne is right."
+  ],
+  "suggested_value": {
+   "ENTRYTYPE": "incollection",
+   "title": "Putting context in context",
+   "editor": "J S Nairne",
+   "doi": null
+  }
+ },
+ {
+  "key": "VandEtal99",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "chapter": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "title": "disagree",
+   "editor": "disagree",
+   "publisher": "disagree",
+   "address": "agree",
+   "doi": "unsure",
+   "ENTRYTYPE": "disagree"
+  },
+  "problems": [
+   "Ambiguous is resolvable for the CITED book form: LoC record LCCN 00361028 (SRU http://lx2.loc.gov:210/LCDB?...query=bath.lccn%3D00361028) gives 'Neuroimaging and memory / edited by Jonathan K. Foster', 'Hove : Psychology Press, c1999', 'A special issue of Memory', pagination 'iv p., p. 514-744' -- the book keeps the journal's continuous pagination, so the chapter is pp. 549--560 in the book too (PubMed 10659086: Memory 7(5-6), MedlinePgn 549-60). Book title, editor J K Foster, publisher Psychology Press are catalogue-confirmed (researcher marked them not_found).",
+   "Researcher's recommendation to convert to @article changes the cited work form; not needed. Keep the book chapter as @incollection (house: titled chapter @inbook -> @incollection) with title = chapter title, booktitle 'Neuroimaging and Memory', address Hove, {UK}. The journal DOI 10.1080/096582199387742 is for the journal issue form; whether to attach it to the book form is a house decision (unsure)."
+  ],
+  "suggested_value": {
+   "ENTRYTYPE": "incollection",
+   "title": "The neural correlates of updating information in verbal working memory",
+   "booktitle": "Neuroimaging and Memory",
+   "editor": "J K Foster",
+   "publisher": "Psychology Press",
+   "address": "Hove, {UK}",
+   "pages": "549--560",
+   "year": "1999"
+  }
+ },
+ {
+  "key": "Greg76",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "address": "agree",
+   "author": "unsure",
+   "title": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "no_source for the chapter is warranted (volume MARC has no 505 contents note). The address fix is real: LoC MODS https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=75008770&maximumRecords=1&recordSchema=mods states placeTerm 'London' / 'New York', c1976; IA MARC 'Recall and recognition / edited by John Brown', 'London ; New York : Wiley', 'x, 275 p.'. Apply London, {UK} even though the verdict is no_source; chapter needs printed volume/sign-off."
+  ],
+  "suggested_value": {
+   "address": "London, {UK}"
+  }
+ },
+ {
+  "key": "Post76",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "address": "agree",
+   "author": "unsure",
+   "title": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "no_source for the chapter is warranted: IA MARC/metadata for recallrecognitio0000unse (https://archive.org/metadata/recallrecognitio0000unse) gives 'London ; New York : Wiley', 1976, 'x, 275 p.', editor 'Brown, John, 1925-' but no contents note; the scan is lending-only (search-inside not reachable). Web search found only secondary citations 'Postman, L. (1976). Interference theory revisited... (pp. 157-181)'. Address Oxford -> London correction is right (first place in imprint). Resolvable only from the printed TOC (library/PDF)."
+  ],
+  "suggested_value": {
+   "address": "London, {UK}"
+  }
+ },
+ {
+  "key": "Este91",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "editor": "agree",
+   "booktitle": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "author": "agree",
+   "title": "agree",
+   "pages": "unsure",
+   "doi": "disagree",
+   "ENTRYTYPE": "agree"
+  },
+  "problems": [
+   "Proposed doi 10.4324/9780203772331-16 is not a registered DOI: https://doi.org/api/handles/10.4324/9780203772331-16 returns HTTP 404 and https://api.crossref.org/works/10.4324/9780203772331-16 returns 404 (other chapter suffixes -1..-36 also 404). Only the book-level 10.4324/9780203772331 (Crossref: 'Relating Theory and Data', issued 2013-06-17, a 2013 e-book reissue) and 10.4324/9781315799636 (2014) are registered. Do not add the chapter DOI.",
+   "Verdict 'verified' is inconsistent with a proposed new DOI and the @inbook -> @incollection conversion the notes call for; should be 'correction'."
+  ],
+  "suggested_value": {
+   "ENTRYTYPE": "incollection"
+  }
+ },
+ {
+  "key": "Adey67b",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "year": "agree",
+   "address": "agree",
+   "author": "unsure",
+   "chapter": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "no_source for the chapter is warranted (IA scan lending-restricted). IA MARC https://archive.org/download/neurosciencesstu0000unse/neurosciencesstu0000unse_marc.xml: 'planned and edited by Gardner C. Quarton, Theodore Melnechuk, Francis O. Schmitt', New York: Rockefeller University Press, 1967 - editor correction G C Quarton and T Melnechuk and F O Schmitt is right. When converted, it should be @incollection with title = chapter (sentence case) and booktitle = 'The Neurosciences: A Study Program' (title case, house booktitle rule), not the book title in `title`."
+  ],
+  "suggested_value": {
+   "ENTRYTYPE": "incollection",
+   "title": "Intrinsic organization of cerebral tissue in alerting, orienting, and discriminative responses",
+   "booktitle": "The Neurosciences: A Study Program"
+  }
+ },
+ {
+  "key": "KinsWood75",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "title": "unsure",
+   "author": "unsure",
+   "pages": "unsure"
+  },
+  "problems": [
+   "no_source for the chapter warranted: Crossref query.bibliographic for 'Short-term memory processes and the amnesic syndrome Kinsbourne Wood 1975' finds nothing; the 1975 Academic Press volume has no Crossref chapter records. Book confirmed by https://archive.org/metadata/shorttermmemory0000deut (creator 'Deutsch, Diana', 'New York : Academic Press', 1975), supporting editor D Deutsch (not D D). Title 'syndrom' is at minimum a typo -> 'syndrome'; the full-title change is only from reference lists. @inbook->@incollection per house rule."
+  ],
+  "suggested_value": {
+   "editor": "D Deutsch and J A Deutsch",
+   "ENTRYTYPE": "incollection"
+  }
+ },
+ {
+  "key": "MannEtal23b",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "unsure",
+   "year": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Zenodo API (https://zenodo.org/api/records?q=conceptrecid:8152315&all_versions=true) lists v0.1.0, v0.1.1, v0.2.0 (creators 'Jeremy Manning', 'Hemu', 'Konrad Kording') and v0.2.1 2023-08-22 (adds 'Yaroslav Halchenko'); titles are 'ContextLab/chatify: vX.Y.Z (...)'. Cited title appears nowhere (README says only 'Chatify is a python package that enables ipython magic commands...'), so title not_found and the software-form replacement are right.",
+   "Author 'Manjunatha' rests only on the GitHub profile blog link (api.github.com/users/HemuManju: name 'Hemu', blog 'https://hemumanju.github.io/portfolio/'), not an acceptable source; per the single-source surname rule this needs corroboration or the user's sign-off (he is a lab collaborator, so the user can confirm). Also: if the latest version v0.2.1 is chosen per 'latest version' rule, author list gains Y Halchenko (4 authors, key stays MannEtal23b)."
+  ],
+  "suggested_value": {
+   "title": "{ContextLab}/chatify: {v0.2.1}",
+   "doi": "10.5281/zenodo.8274025",
+   "author": "J R Manning and H Manjunatha and Y Halchenko and K Kording",
+   "howpublished": "\\url{https://github.com/ContextLab/chatify}"
+  }
+ },
+ {
+  "key": "Mann06",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "school": "agree",
+   "year": "agree",
+   "address": "agree",
+   "ENTRYTYPE": "agree"
+  },
+  "problems": [
+   "Diagnosis correct: https://context-lab.com/documents/JRM_CV.html states 'B.S. in Neuroscience (High honors, Magna cum laude ), Brandeis University , Waltham, MA (2006) Advisor: Robert Sekuler, Ph.D. Dissertation: Modeling human spatial navigation using a degraded ideal navigator'. But the proposed ENTRYTYPE value is a sentence offering options, not an applicable value; @phdthesis would be wrong for a bachelor's thesis. Needs one concrete choice (user decision)."
+  ],
+  "suggested_value": {
+   "ENTRYTYPE": "mastersthesis",
+   "type": "{B.S.} honors thesis"
+  }
+ },
+ {
+  "key": "ContPrev24",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "unsure",
+   "year": "unsure"
+  },
+  "problems": [
+   "ambiguous warranted: Wayback snapshot https://web.archive.org/web/20241201084440/https://www.cdc.gov/nchs/fastats/suicide.htm shows 'Source: National Vital Statistics System - Mortality Data (2022) via CDC WONDER' (2022 data in the Dec 2024 page), so '(2023)' in the title and year 2024 cannot both be from one page version. Needs the user to say which figures the citing paper used (2025 page with 2023 data -> year 2025, key change ContPrev25/Cent25 per house key rule; or 2024 page -> title '(2022)')."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Nati24b",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "unsure"
+  },
+  "problems": [
+   "Archived page https://web.archive.org/web/20241206003543/https://www.ptsd.va.gov/professional/treat/essentials/epidemiology.asp prints 'Epidemiology and Impact of PTSD Paula P. Schnurr, PhD' and footer 'Last updated August 9, 2023'. Author P P Schnurr is right; year 2024 has no source (page date 2023), and the author change forces a key rename (Schn23 or Schn24, no collision in HEAD). Year/key need a user decision."
+  ],
+  "suggested_value": {
+   "author": "P P Schnurr"
+  }
+ },
+ {
+  "key": "HeraCE",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "ambiguous is warranted: a quotation attribution with no document of record; Perseus Plato Cratylus 402a gives 'you cannot step twice into the same stream', not the cited wording, and '535 BCE' is a birth-year estimate. Needs a user decision (cite a translation such as Burnet or keep as a misc attribution)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Keck07",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "unsure",
+   "title": "agree",
+   "year": "unsure"
+  },
+  "problems": [
+   "Ambiguous warranted: https://sourceforge.net/rest/p/activewire-osx/ gives name 'ActiveWire Driver & Interfaces for OS X', creation_date 2006-11-29, developers ['Aaron Geller','David Keck']; the RSS file list shows the only release dated 2008-04-01. Nothing dates to 2007 and the byline has two developers; user decision."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Gede24",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "unsure",
+   "author": "unsure",
+   "year": "unsure",
+   "howpublished": "disagree"
+  },
+  "problems": [
+   "Ambiguous warranted: the cited URL is the FRENZ vendor advertorial (no byline, different title). Web search attributes the headline 'I used this weird AI 'brainband' for a month, and it cured my insomnia' to Mashable (Kimberly Gedeon, East Coast Tech Editor) but no mashable.com URL surfaced; mashable search and Wayback CDX (504) were not reachable. Resolvable only by locating the Mashable article URL (then Howpublished should point to it, not frenzband.com) or by user sign-off.",
+   "The stray 'force = True' field in the current entry is not a BibTeX field and should be dropped."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "IyyeEtal15",
+  "sampled_as": "a",
+  "agree": "partly",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "author": "disagree",
+   "year": "agree",
+   "booktitle": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "author keeps the suffix 'III' ({Daum\\'{e} III}); the user rule (README 2026-09-24/25) is 'No name suffixes (Jr, Sr, II, III, IV): never added; the 27 existing ones are stripped'. ACL Anthology BibTeX https://aclanthology.org/P15-1162.bib gives 'Daum{\\'e} III, Hal'; strip III.",
+   "Other values match the Anthology BibTeX: pages 1681--1691, doi 10.3115/v1/P15-1162, booktitle 'Proceedings of the 53rd Annual Meeting ... (Volume 1: Long Papers)' (dropping the volume suffix is acceptable)."
+  ],
+  "suggested_value": {
+   "author": "M Iyyer and V Manjunatha and J Boyd-Graber and H {Daum\\'{e}}"
+  }
+ },
+ {
+  "key": "ScheEtal02",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "organization": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1145/564376.564421: container-title 'Proceedings of the 25th annual international ACM SIGIR conference on Research and development in information retrieval', page '253-260', publisher 'ACM', publisher-location 'New York, NY, USA', authors Andrew I. Schein, Alexandrin Popescul, Lyle H. Ungar, David M. Pennock. Proposal matches; @conference -> @inproceedings per README."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "BranEtal04",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "year": "agree",
+   "author": "unsure",
+   "journal": "agree",
+   "booktitle": "unsure"
+  },
+  "problems": [
+   "Confirmed in http://www.cogneurosociety.org/wp-content/uploads/2016/06/CNS2004_Abstracts.xls: 'Proactive interference resolution during nonverbal working memory: Evidence for domain-general processing in LIFG.' Co-authors not in the file, so 'ambiguous' is warranted. House form for CNS abstracts elsewhere (LongKaha12a) is Booktitle {Cognitive Neuroscience Society Abstracts}, Organization {Cognitive Neuroscience Society}; per README this is a conference abstract, i.e. in the removal-confirmation class."
+  ],
+  "suggested_value": {
+   "journal": ""
+  }
+ },
+ {
+  "key": "HewiMann19",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.18653/v1/n19-1419: proceedings-article, John Hewitt; Christopher D. Manning, pp 4129-4138, 2019; booktitle without year/volume matches house NAACL form (HEAD line 4107)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Etha19",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {}
+ },
+ {
+  "key": "PennEtal14",
+  "sampled_as": "a",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed at https://aclanthology.org/D14-1162.bib: pages \"1532--1543\", doi \"10.3115/v1/D14-1162\", booktitle 'Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing ({EMNLP})' (year dropped per house rule; house form matches 2 existing cdl.bib booktitles). Keeping C D Manning from the paper's own byline follows the 'never drop an initial' rule."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "AchiEtal17",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "organization": "agree"
+  },
+  "problems": [],
+  "suggested_value": {},
+  "note": "https://proceedings.mlr.press/v70/achiam17a.html meta: citation_title 'Constrained Policy Optimization', authors Joshua Achiam, David Held, Aviv Tamar, Pieter Abbeel, firstpage 22, lastpage 31, date 2017/07/17."
+ },
+ {
+  "key": "AllaEtal98",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {}
+ },
+ {
+  "key": "BlisColl93",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed via PubMed efetch id=8421494: Volume 361, Issue 6407, MedlinePgn 31-9."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "BrisEtal02",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 12096929: IP 9, PG 555-66, FAU 'Rene, Arcelin' - the cited 'A Ren\\'{e}' matches the source byline; accent kept per house rule."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "ChenEtal22",
+  "sampled_as": "b",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "disagree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Editor fix correct (https://aclanthology.org/2022.naacl-main.60.bib: 'de Marneffe, Marie-Catherine', 'Meza Ruiz, Ivan Vladimir'). Address 'Seattle, United States' was marked confirmed although README keeps the house address form 'City, {ST}' for US addresses; it should be 'Seattle, {WA}'."
+  ],
+  "suggested_value": {
+   "address": "Seattle, {WA}"
+  }
+ },
+ {
+  "key": "CheuChan12",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed: PubMed efetch 22814190 ArticleTitle 'Real-time, time-frequency mapping of event-related cortical activation.', Volume 9, Issue 4, MedlinePgn 046018; Crossref 10.1088/1741-2560/9/4/046018 title uses en dash 'time–frequency', page 046018, published-print 2012-08."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "DougPeuc73",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "journal rests on history, not a quote: Crossref https://api.crossref.org/works/10.3138/fm57-6770-u75u-7727 gives container-title 'Cartographica' (current name) with volume 10 issue 2 page 112-122, 1973-12-01, authors DAVID H DOUGLAS, THOMAS K PEUCKER. Keeping 'The Canadian Cartographer' (1973 name) is right; needs a documented journal-variant rule or sign-off, not an automatic verify."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "EchaEtal00",
+  "sampled_as": "b",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "disagree"
+  },
+  "problems": [
+   "Google Patents https://patents.google.com/patent/US6678548B1/en meta: DC.contributor 'Javier Ramón Echauz', 'Rosana Esteller', 'Brian Litt', 'George John Vachtsevanos'; DC.date '2000-10-20' (filing) and '2004-01-13' (grant); 'B1' kind code = no pre-grant publication, so the only published document is the 2004 grant. A patent is cited by its issue date; 2000 is only the filing date. Researcher 'confirmed' 2000 from the filing date. Year should be 2004 (key EchaEtal00 -> EchaEtal04, no collision in HEAD) and the entry should identify the patent (house precedent CoopEtal04 uses Publisher = {Us Patent}; better Howpublished = {U.S. Patent 6,678,548})."
+  ],
+  "suggested_value": {
+   "year": "2004",
+   "howpublished": "U.S. Patent 6,678,548"
+  }
+ },
+ {
+  "key": "ElleEtal06",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed: https://api.crossref.org/works/10.1016/j.cub.2006.05.024 page 1290-1294, vol 16, issue 13, authors Jeffrey M. Ellenbogen, Justin C. Hulbert, Robert Stickgold, David F. Dinges, Sharon L. Thompson-Schill. Dropping Address on @article is reasonable."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "EngeFrie10",
+  "sampled_as": "b",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "disagree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Title change is a house-style change, not a correction: the only edit is removing the space after '---', but cdl.bib HEAD writes 22 titles as 'word--- word' (including this one) versus 3 as 'word---word'; the source (Crossref 10.1016/j.conb.2010.02.015) prints a spaced dash 'Beta-band oscillations — signalling the status quo?'. Keep the cited title unless the user decides the dash form globally. Volume 20, number 2, pages 156-165 and DOI confirmed by Crossref."
+  ],
+  "suggested_value": {
+   "title": "Beta-band oscillations--- signalling the status quo?"
+  }
+ },
+ {
+  "key": "EskaEtal92",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {}
+ },
+ {
+  "key": "FaraEtal18",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "organization": "agree"
+  },
+  "problems": [
+   "Confirmed at https://proceedings.mlr.press/v80/farajtabar18a.html: 'Proceedings of the 35th International Conference on Machine Learning', 'PMLR 80:1447-1456', Mehrdad Farajtabar et al."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "FitzEtal25",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "year": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {},
+  "note": "DataCite https://api.datacite.org/dois/10.5281/zenodo.17783435: title 'ContextLab/efficient-learning-khan: v1.0.0', creators Paxton Fitzpatrick, Max Bluestone, Jeremy R. Manning, Will Baxley, 2025; Zenodo versions/latest is still this record (v1.0.0)."
+ },
+ {
+  "key": "Gall06",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Open Library OL18212486M (LCCN 2006016486): 'Associative illusions of memory', subtitle 'false memory research in DRM and related tasks', by 'David A. Gallo', New York, Psychology Press, 2006. LoC SRU title query returned no record (server gap), so OL MARC copy is the best catalogue source."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "GileZeli86",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed: https://api.crossref.org/works/10.1037/10057-008 'Questionnaire assessment of memory complaints.', container 'Handbook for clinical memory assessment of older adults.', 1986, page 93-107, Michael J. Gilewski, Elizabeth M. Zelinski."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "GoebLewa91",
+  "sampled_as": "b",
+  "agree": "partly",
+  "field_verdicts": {
+   "editor": "agree",
+   "booktitle": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "author": "agree",
+   "title": "agree",
+   "pages": "unsure",
+   "doi": "disagree"
+  },
+  "problems": [
+   "Proposed DOI 10.4324/9780203772331-36 is NOT a registered DOI: https://doi.org/api/handles/10.4324/9780203772331-36 returns responseCode 100 (handle not found), https://doi.org/10.4324/9780203772331-36 returns HTTP 404, and https://api.crossref.org/works/10.4324/9780203772331-36 returns 404. The identifier only appears inside the taylorfrancis.com page JSON; tested -1, -2, -10, -35, -37 are all unregistered too, so no chapter of this T&F reissue has a working DOI. Only the book DOI 10.4324/9780203772331 (2013 e-book reissue) resolves. Also, even a working DOI would be of the 2013 reissue, not the 1991 print edition cited (another researcher, Murd92b, declined to add a reissue DOI to a 1992 citation - inconsistent treatment). Drop the doi."
+  ],
+  "suggested_value": {
+   "doi": ""
+  }
+ },
+ {
+  "key": "GoldEtal05",
+  "sampled_as": "b",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "disagree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed efetch id=15891000 gives ForeName 'Jean-Pierre' for Michel and Crossref 10.1161/01.str.0000166052.89772.b5 gives given 'Jean-Pierre'. House form for hyphenated given names is hyphenated initials (cdl.bib: J-P Changeux, J-P Lachaux, J-P Poline, J-P Tardif, J-P Thiran; researchers themselves used W-N, L-G elsewhere), so 'J P Michel' should be 'J-P Michel'. K{\\\"o}vari and pages 1184--1188 correct."
+  ],
+  "suggested_value": {
+   "author": "G Gold and E K{\\\"o}vari and F R Herrmann and A Canuto and P R Hof and J-P Michel and C Bouras and P Giannakopoulos"
+  }
+ },
+ {
+  "key": "Hawk99",
+  "sampled_as": "b",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "disagree",
+   "title": "unsure",
+   "year": "agree",
+   "howpublished": "agree"
+  },
+  "problems": [
+   "https://www.hawking.org.uk/in-words/lectures/does-god-play-dice prints 'Does God Play Dice' (no question mark), '1999', and 'the intellectual property of Professor S.W.Hawking'. Verdict 'verified' with author 'S Hawking' breaks the house rule 'all initials the source gives': should be S W Hawking. Title marked 'confirmed' with a '?' the source does not print (the '?' is conventional but unsupported by the cited source)."
+  ],
+  "suggested_value": {
+   "author": "S W Hawking",
+   "howpublished": "Public lecture, \\url{https://www.hawking.org.uk/in-words/lectures/does-god-play-dice}"
+  }
+ },
+ {
+  "key": "HopkEtal12",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {},
+  "note": "Crossref https://api.crossref.org/works/10.1016/j.neuroscience.2012.04.056: authors M.E. Hopkins, F.C. Davis, M.R. VanTieghem, P.J. Whalen, D.J. Bucci; Neuroscience 215, 59-68, 2012."
+ },
+ {
+  "key": "HowaEtal97",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 9711723: Volume 68, Issue '1-4 Pt 1', 1997, 236-42, six authors as cited. Number 1--4 (dropping 'Pt 1') is an acceptable house simplification; cited '1' was wrong."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "InouEtal94",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed: https://api.crossref.org/works/10.1016/0304-3940(94)90377-8 volume 169, issue '1-2', page 145-148, six authors as cited."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "JensEtal09",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1214/08-aoas228 confirms title, three authors, Ann Appl Stat 3(2), 2009 (no pages in Crossref; pages from Project Euclid)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "KansEtal15",
+  "sampled_as": "b",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "year": "unsure",
+   "doi": "agree"
+  },
+  "problems": [
+   "Year conflict left open: Crossref https://api.crossref.org/works/10.1007/7854_2015_412 has published-print 2015 and published-online 2015-11-25, but PubMed 26602249 dates the printed Current Topics in Behavioral Neurosciences vol 30 to 2017 ('<Volume>30', '<PubDate><Year>2017'). Under 'print year wins' this may need year 2017 and key KansEtal17; needs a decision on which print date to trust, not a silent keep. Series/volume (Current Topics in Behavioral Neurosciences 30) should be added if print year is adopted."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "KarpRoed07",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/j.jml.2006.09.004: volume 57, issue 2, page 151-162, published-print 2007-08; authors garbled ('J','KARPICKE'; 'H','ROEDIGERIII') so the ERIC record for full initials is appropriate; 'H L Roediger' matches 30 existing cdl.bib uses (suffix III omitted per no-suffix rule)."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Katz36",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "pages": "unsure",
+   "doi": "agree"
+  },
+  "problems": [
+   "pages left unverified (not_found), correctly: Crossref https://api.crossref.org/works/10.1016/s0001-6918(36)90053-7 gives page 'IN1-240', title 'Georg Elias Müller', Acta Psychologica vol 1, 1936, author D. Katz. Start page 234 needs the ScienceDirect page/PDF."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "LeSa99",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "https://www.spatial-econometrics.com/html/mbook.pdf title page: 'Applied Econometrics using MATLAB / James P. LeSage / ... October, 1999'; preface: 'I use the term Econometrics Toolbox to refer to the collection of function libraries described in this book.' Supports the entry; adding Howpublished = {\\url{https://www.spatial-econometrics.com/}} is advisable since the @misc has no locator."
+  ],
+  "suggested_value": {
+   "howpublished": "\\url{https://www.spatial-econometrics.com/}"
+  }
+ },
+ {
+  "key": "LeeEtal20a",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed: https://api.crossref.org/works/10.1016/j.cobeha.2020.02.007 'What can narratives tell us about the neural bases of human memory?', vol 32, page 111-119, Hongmi Lee, Buddhika Bellana, Janice Chen."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "LeutEtal07a",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 17415162: IP '4 Suppl 2', PG '260-70; discussion 270-1', TA Neurosurgery; Crossref 10.1227/01.neu.0000255413.70807.6e: 8 authors, 60(4) 260-271 (filed under 'Operative Neurosurgery'). Journal 'Neurosurgery' is right for 2007."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "LiZhou18",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {}
+ },
+ {
+  "key": "LittEtal98",
+  "sampled_as": "b",
+  "agree": "partly",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "disagree",
+   "howpublished": "disagree"
+  },
+  "problems": [
+   "Google Patents US6658287B1 page: title 'Method and apparatus for predicting the onset of seizures based on features derived from signals indicative of brain activity', inventors Brian Litt, George Vachtsevanos, Javier Echauz, Rosana Esteller; DC.date dateSubmitted 1999-08-24, issue 2003-12-02. 1998 is only the provisional priority date, not a date of this document; the only house patent precedent CoopEtal04 (Personal virtual assistant, US 6,757,362, granted 2004) uses the grant year. Year should be 2003 (key LittEtal98 -> LittEtal03, no collision in HEAD) with the patent number recorded; researcher 'confirmed' 1998 from a priority date.",
+   "Title correction itself is right (cited title was a paraphrase)."
+  ],
+  "suggested_value": {
+   "year": "2003",
+   "howpublished": "{U.S.} Patent 6,658,287",
+   "key": "LittEtal03"
+  }
+ },
+ {
+  "key": "Mann11",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "school": "agree",
+   "year": "agree",
+   "address": "agree"
+  },
+  "problems": [],
+  "suggested_value": {},
+  "note": "https://repository.upenn.edu/edissertations/993/ states 'Acquisition, Storage, and Retrieval in Digital and Biological Brains', 'Degree type Doctor of Philosophy (PhD) Graduate group Neuroscience', date of degree 2011-05-16."
+ },
+ {
+  "key": "McGe42",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "LoC SRU LCCN 42020553: 'The psychology of human learning, an introducation' (LoC typo), 'McGeoch, John Alexander', New York; London [etc.], 'Longmans, Green and co.', 1942. Verified as cited."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "McKi10",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "editor": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Confirmed: https://api.crossref.org/works/10.25080/majora-92bf1922-00a container 'Proceedings of the 9th Python in Science Conference', 2010, page 56-61, author Wes McKinney. The '9th' is a meeting number, not a year, so the booktitle keeps it."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Murd92b",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "booktitle": "agree",
+   "volume": "agree",
+   "editor": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "title": "agree",
+   "author": "agree",
+   "pages": "unsure"
+  },
+  "problems": [
+   "Open Library OL16718746M: 'From learning theory to connectionist theory', 1992, L. Erlbaum, Hillsdale, N.J., series 'Essays in honor of William K. Estes -- v. 1', 'edited by Alice F. Healy, Stephen M. Kosslyn, Richard M. Shiffrin', x, 281 p. (pages 201--225 fit). Note three other HEAD entries (lines ~12552, 44606, 52541) use the bare booktitle 'Essays in Honor of {William} {K}. {Estes}' and will need the same fix."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "NishEtal11",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {}
+ },
+ {
+  "key": "PetzHaub04",
+  "sampled_as": "b",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "pages": "agree",
+   "editor": "agree",
+   "booktitle": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree",
+   "doi": "disagree"
+  },
+  "problems": [
+   "DOI 10.4324/9781410610744-5 is NOT a registered DOI: https://doi.org/api/handles/10.4324/9781410610744-5 returns responseCode 100 (handle not found) and https://doi.org/10.4324/9781410610744-5 returns 404. It was read off a taylorfrancis.com URL path. Only the book DOI 10.4324/9781410610744 resolves (and it is the 2011 e-book reissue).",
+   "Editors confirmed by LoC MARC via archive.org (LCCN 2003044891): 'edited by Christian Kaernbach, Erich Schröger, Hermann Müller', 'Mahwah, N.J. : Lawrence Erlbaum, 2004'."
+  ],
+  "suggested_value": {
+   "doi": null
+  }
+ },
+ {
+  "key": "ReynRich05",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {},
+  "note": "Crossref https://api.crossref.org/works/10.1037/0012-1649.41.4.598: 'Familiarization, Attention, and Recognition Memory in Infancy: An Event-Related Potential and Cortical Source Localization Study.', 41(4) 598-615, Greg D. Reynolds, John E. Richards."
+ },
+ {
+  "key": "SommLewi99",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "title": "agree",
+   "journal": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "year": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "Crossref 10.1006/jmla.1998.2614: title 'Who Really Lives Next Door: Creating False Memories with Phonological Neighbors', authors 'Mitchell S.' Sommers and 'Bryan P.' Lewis, issue 1, page 83-108. The R -> P initial change rests on Crossref alone (OpenAlex repeats Crossref, not independent; ScienceDirect blocked scripted fetch); acceptable under the 'a source prints a different initial' rule but a PDF byline check would be ideal."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "Spea27",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "year": "agree"
+  },
+  "problems": [
+   "Confirmed: LoC SRU bath.lccn=27010830 MODS: title 'abilities of man', subTitle 'their nature and measurement', 'Spearman, C. (Charles),', 'New York', 'The Macmillan Company', 1927."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "StewVelu21",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "journal": "agree",
+   "year": "agree",
+   "volume": "agree",
+   "number": "agree",
+   "pages": "agree",
+   "doi": "agree"
+  },
+  "problems": [
+   "PubMed 32895453: VI 46, IP 1, PG 252-253."
+  ],
+  "suggested_value": {}
+ },
+ {
+  "key": "TianEtal17",
+  "sampled_as": "b",
+  "agree": "yes",
+  "field_verdicts": {
+   "title": "agree",
+   "author": "agree",
+   "year": "agree",
+   "pages": "agree",
+   "booktitle": "agree",
+   "doi": "agree"
+  },
+  "problems": [],
+  "suggested_value": {}
+ },
+ {
+  "key": "WardEtal09",
+  "sampled_as": "b",
+  "agree": "partly",
+  "field_verdicts": {
+   "author": "agree",
+   "chapter": "agree",
+   "title": "agree",
+   "editor": "agree",
+   "year": "agree",
+   "publisher": "agree",
+   "address": "agree",
+   "pages": "unsure",
+   "doi": "disagree",
+   "ENTRYTYPE": "unsure"
+  },
+  "problems": [
+   "DOI 10.4324/9780203938966-9 is NOT registered: https://doi.org/api/handles/10.4324/9780203938966-9 returns responseCode 100 (handle not found); doi.org returns 404. Taken from a taylorfrancis.com URL path; only the book DOI 10.4324/9780203938966 resolves.",
+   "Entry is @inbook with chapter field; house convention is @incollection (title = chapter title, booktitle = book title) -- researcher did not propose the type conversion here though it did for KleiEtal07b."
+  ],
+  "suggested_value": {
+   "doi": null,
+   "ENTRYTYPE": "incollection"
+  }
+ }
+]
