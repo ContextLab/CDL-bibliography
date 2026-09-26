@@ -116,6 +116,16 @@
     "Younes Belkada",
     "Pavel Samygin",
     "Colin Raffel"
+   ],
+   "families": [
+    "Borzunov",
+    "Ryabinin",
+    "Chumachenko",
+    "Baranchuk",
+    "Dettmers",
+    "Belkada",
+    "Samygin",
+    "Raffel"
    ]
   },
   "reviewer": {
@@ -251,6 +261,13 @@
     "Stefano Ermon",
     "Dorsa Sadigh",
     "Nima Anari"
+   ],
+   "families": [
+    "Shih",
+    "Belkhale",
+    "Ermon",
+    "Sadigh",
+    "Anari"
    ]
   },
   "reviewer": {
@@ -402,6 +419,12 @@
     "Yinuo Ren",
     "Lexing Ying",
     "Grant Rotskoff"
+   ],
+   "families": [
+    "Chen",
+    "Ren",
+    "Ying",
+    "Rotskoff"
    ]
   },
   "reviewer": {
@@ -554,6 +577,13 @@
     "Gongfan Fang",
     "Zhenxiong Tan",
     "Xinchao Wang"
+   ],
+   "families": [
+    "Chen",
+    "Ma",
+    "Fang",
+    "Tan",
+    "Wang"
    ]
   },
   "reviewer": {
@@ -1855,6 +1885,11 @@
     "Richard E. Mayer",
     "Anne Bovenmyer Lewis",
     "Mary Hegarty"
+   ],
+   "families": [
+    "Mayer",
+    "Lewis",
+    "Hegarty"
    ]
   },
   "reviewer": {
@@ -1976,6 +2011,9 @@
    "type": "journal-article",
    "authors": [
     "John A. McGeoch"
+   ],
+   "families": [
+    "McGeoch"
    ]
   },
   "reviewer": {
@@ -2092,6 +2130,9 @@
    "type": "journal-article",
    "authors": [
     "C. Spearman"
+   ],
+   "families": [
+    "Spearman"
    ]
   },
   "reviewer": {
@@ -2234,6 +2275,10 @@
    "authors": [
     "Jin Cao",
     "Keith Worsley"
+   ],
+   "families": [
+    "Cao",
+    "Worsley"
    ]
   },
   "reviewer": {
@@ -2334,6 +2379,12 @@
     "Robert Katzman",
     "Peter Davies",
     "Robert D. Terry"
+   ],
+   "families": [
+    "Fuld",
+    "Katzman",
+    "Davies",
+    "Terry"
    ]
   },
   "reviewer": {
@@ -2403,6 +2454,9 @@
    "type": "journal-article",
    "authors": [
     "B. Efron"
+   ],
+   "families": [
+    "Efron"
    ]
   },
   "reviewer": null,
@@ -2544,6 +2598,9 @@
    "type": "journal-article",
    "authors": [
     "Gideon Schwarz"
+   ],
+   "families": [
+    "Schwarz"
    ]
   },
   "reviewer": {
@@ -2618,6 +2675,9 @@
    "type": "journal-article",
    "authors": [
     "REBECCA D. BURWELL"
+   ],
+   "families": [
+    "BURWELL"
    ]
   },
   "reviewer": {
@@ -2688,6 +2748,10 @@
    "authors": [
     "Evelina Fedorenko",
     "Rosemary Varley"
+   ],
+   "families": [
+    "Fedorenko",
+    "Varley"
    ]
   },
   "reviewer": {
@@ -2769,6 +2833,9 @@
    "type": "journal-article",
    "authors": [
     "ARTHUR P. SHIMAMURA"
+   ],
+   "families": [
+    "SHIMAMURA"
    ]
   },
   "reviewer": {
@@ -2850,6 +2917,9 @@
    "type": "journal-article",
    "authors": [
     "WENDY A. SUZUKI"
+   ],
+   "families": [
+    "SUZUKI"
    ]
   },
   "reviewer": null,
@@ -2908,6 +2978,10 @@
    "authors": [
     "Giulio Tononi",
     "Christof Koch"
+   ],
+   "families": [
+    "Tononi",
+    "Koch"
    ]
   },
   "reviewer": null,
@@ -2966,6 +3040,10 @@
    "authors": [
     "Joan Kelly Hall",
     "Meghan Walsh"
+   ],
+   "families": [
+    "Hall",
+    "Walsh"
    ]
   },
   "reviewer": {
@@ -2999,7 +3077,7 @@
    {
     "field": "author",
     "current": "S Nicola and J Suremeier and R Malenka",
-    "proposed": "S M Nicola and J Suremeier and R C Malenka",
+    "proposed": "S M Nicola and D J Surmeier and R C Malenka",
     "source": "researcher",
     "evidence": [
      {
@@ -3037,10 +3115,10 @@
   },
   "flags": [
    {
-    "code": "surname_single_source",
+    "code": "surname_corroborated",
     "field": "author",
-    "detail": "surname 'suremeier' -> 'surmeier' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'J Suremeier' is kept",
-    "action": "held"
+    "detail": "surname 'suremeier' -> 'surmeier': released by the cdl.bib rule, ['api.crossref.org'] plus cdl.bib's own spelling for this person in FranSurm09, HernEtal00, HernEtal97 (the cited spelling is in no other entry)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -3061,10 +3139,15 @@
     "Saleem M. Nicola",
     "D. James Surmeier",
     "Robert C. Malenka"
+   ],
+   "families": [
+    "Nicola",
+    "Surmeier",
+    "Malenka"
    ]
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "WehnMenz90",
@@ -3118,6 +3201,10 @@
    "authors": [
     "R Wehner",
     "R Menzel"
+   ],
+   "families": [
+    "Wehner",
+    "Menzel"
    ]
   },
   "reviewer": null,
@@ -3174,6 +3261,9 @@
    "type": "journal-article",
    "authors": [
     "W Singer"
+   ],
+   "families": [
+    "Singer"
    ]
   },
   "reviewer": null,
@@ -3230,6 +3320,9 @@
    "type": "journal-article",
    "authors": [
     "J. D. E. Gabrieli"
+   ],
+   "families": [
+    "Gabrieli"
    ]
   },
   "reviewer": null,
@@ -3306,6 +3399,10 @@
    "authors": [
     "Alice F. Healy",
     "Danielle S. McNamara"
+   ],
+   "families": [
+    "Healy",
+    "McNamara"
    ]
   },
   "reviewer": null,
@@ -3414,6 +3511,14 @@
     "Cindy A. Lustig",
     "Marc G. Berman",
     "Katherine Sledge Moore"
+   ],
+   "families": [
+    "Jonides",
+    "Lewis",
+    "Nee",
+    "Lustig",
+    "Berman",
+    "Moore"
    ]
   },
   "reviewer": {
@@ -3512,6 +3617,10 @@
    "authors": [
     "Marta Kutas",
     "Kara D. Federmeier"
+   ],
+   "families": [
+    "Kutas",
+    "Federmeier"
    ]
   },
   "reviewer": {
@@ -3611,6 +3720,9 @@
    "type": "journal-article",
    "authors": [
     "Leah L. Light"
+   ],
+   "families": [
+    "Light"
    ]
   },
   "reviewer": {
@@ -3680,6 +3792,9 @@
    "type": "journal-article",
    "authors": [
     "Henry L. Roediger, III"
+   ],
+   "families": [
+    "Roediger, III"
    ]
   },
   "reviewer": null,
@@ -3999,6 +4114,46 @@
     "Nicholas B. Turk-Browne",
     "Theodore L. Willke",
     "Kenneth A. Norman"
+   ],
+   "families": [
+    "Kumar",
+    "Anderson",
+    "Antony",
+    "Baldassano",
+    "Brooks",
+    "Cai",
+    "Chen",
+    "Ellis",
+    "Henselman-Petrusek",
+    "Huberdeau",
+    "Hutchinson",
+    "Li",
+    "Lu",
+    "Manning",
+    "Mennen",
+    "Nastase",
+    "Richard",
+    "Schapiro",
+    "Schuck",
+    "Shvartsman",
+    "Sundaram",
+    "Suo",
+    "Turek",
+    "Turner",
+    "Vo",
+    "Wallace",
+    "Wang",
+    "Williams",
+    "Zhang",
+    "Zhu",
+    "Capota˘",
+    "Cohen",
+    "Hasson",
+    "Li",
+    "Ramadge",
+    "Turk-Browne",
+    "Willke",
+    "Norman"
    ]
   },
   "reviewer": {
@@ -4074,6 +4229,11 @@
     "Arnaud D'Argembeau",
     "Christine Comblain",
     "Martial Van der Linden"
+   ],
+   "families": [
+    "D'Argembeau",
+    "Comblain",
+    "Van der Linden"
    ]
   },
   "reviewer": null,
@@ -4159,6 +4319,10 @@
    "authors": [
     "Janie Busby Grant",
     "Erin Walsh"
+   ],
+   "families": [
+    "Busby Grant",
+    "Walsh"
    ]
   },
   "reviewer": {
@@ -4249,6 +4413,10 @@
    "authors": [
     "Peter G. Rendell",
     "Fergus I. M. Craik"
+   ],
+   "families": [
+    "Rendell",
+    "Craik"
    ]
   },
   "reviewer": {
@@ -4396,6 +4564,10 @@
    "authors": [
     "Herbert Jasper",
     "Wilder Penfield"
+   ],
+   "families": [
+    "Jasper",
+    "Penfield"
    ]
   },
   "reviewer": null,
@@ -4489,6 +4661,9 @@
    "type": "journal-article",
    "authors": [
     "Hans Berger"
+   ],
+   "families": [
+    "Berger"
    ]
   },
   "reviewer": null,
@@ -4575,6 +4750,12 @@
     "D. P. Salmon",
     "A. I. Troster",
     "N. Butters"
+   ],
+   "families": [
+    "Jacobs",
+    "Salmon",
+    "Troster",
+    "Butters"
    ]
   },
   "reviewer": {
@@ -4679,6 +4860,9 @@
    "type": "journal-article",
    "authors": [
     "Paul E. Holtzheimer"
+   ],
+   "families": [
+    "Holtzheimer"
    ]
   },
   "reviewer": null,
@@ -4859,6 +5043,9 @@
    "type": "journal-article",
    "authors": [
     "Matthew P. Herring"
+   ],
+   "families": [
+    "Herring"
    ]
   },
   "reviewer": null,
@@ -4946,6 +5133,9 @@
    "type": "journal-article",
    "authors": [
     "W. R. ADEY"
+   ],
+   "families": [
+    "ADEY"
    ]
   },
   "reviewer": null,
@@ -5057,6 +5247,15 @@
     "Thomas Schnell",
     "Joachim Klosterkoetter",
     "Volker Sturm"
+   ],
+   "families": [
+    "Freund",
+    "Kuhn",
+    "Lenartz",
+    "Mai",
+    "Schnell",
+    "Klosterkoetter",
+    "Sturm"
    ]
   },
   "reviewer": null,
@@ -5174,6 +5373,9 @@
    "type": "journal-article",
    "authors": [
     "HERBERT H. JASPER"
+   ],
+   "families": [
+    "JASPER"
    ]
   },
   "reviewer": null,
@@ -5299,6 +5501,12 @@
     "C.Franklin Boyle",
     "Albert T. Corbett",
     "Matthew W. Lewis"
+   ],
+   "families": [
+    "Anderson",
+    "Boyle",
+    "Corbett",
+    "Lewis"
    ]
   },
   "reviewer": {
@@ -5400,6 +5608,15 @@
     "Tom Mitchell",
     "Kamal Nigam",
     "Seán Slattery"
+   ],
+   "families": [
+    "Craven",
+    "DiPasquo",
+    "Freitag",
+    "McCallum",
+    "Mitchell",
+    "Nigam",
+    "Slattery"
    ]
   },
   "reviewer": {
@@ -5557,7 +5774,8 @@
    "volume": null,
    "issue": null,
    "type": "book-chapter",
-   "authors": []
+   "authors": [],
+   "families": []
   },
   "reviewer": {
    "agree": "partly",
@@ -5695,6 +5913,10 @@
    "authors": [
     "Zall Hirschstein",
     "Mariam Aly"
+   ],
+   "families": [
+    "Hirschstein",
+    "Aly"
    ]
   },
   "reviewer": {
@@ -5771,6 +5993,12 @@
     "Megan T. deBettencourt",
     "Edward Awh",
     "Edward K. Vogel"
+   ],
+   "families": [
+    "Keene",
+    "deBettencourt",
+    "Awh",
+    "Vogel"
    ]
   },
   "reviewer": {
@@ -5894,6 +6122,18 @@
     "Douglas L. Nelson",
     "Greg B. Simpson",
     "Rebecca Treiman"
+   ],
+   "families": [
+    "Balota",
+    "Yap",
+    "Hutchison",
+    "Cortese",
+    "Kessler",
+    "Loftis",
+    "Neely",
+    "Nelson",
+    "Simpson",
+    "Treiman"
    ]
   },
   "reviewer": null,
@@ -6016,6 +6256,12 @@
     "Andrée-Anne Ledoux",
     "Patrice Boyer",
     "Véronique D. Bohbot"
+   ],
+   "families": [
+    "Dahmani",
+    "Ledoux",
+    "Boyer",
+    "Bohbot"
    ]
   },
   "reviewer": {
@@ -6103,6 +6349,10 @@
    "authors": [
     "Winter Mason",
     "Siddharth Suri"
+   ],
+   "families": [
+    "Mason",
+    "Suri"
    ]
   },
   "reviewer": {
@@ -6199,6 +6449,12 @@
     "Mitzi Lewis",
     "Richard Kane",
     "R. Michael Haynes"
+   ],
+   "families": [
+    "Nimon",
+    "Lewis",
+    "Kane",
+    "Haynes"
    ]
   },
   "reviewer": null,
@@ -6303,7 +6559,14 @@
    "target_base": "BateDOli03",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "surname_corroborated",
+    "field": "author",
+    "detail": "surname 'd olivero' -> 'd oliveiro': released by the DOI record rule, the api.crossref.org record of the kept DOI is the second host ['api.crossref.org', 'eutils.ncbi.nlm.nih.gov']",
+    "action": "applied"
+   }
+  ],
   "doi_status": {
    "doi": "10.3758/bf03195535",
    "registered": true,
@@ -6321,6 +6584,10 @@
    "authors": [
     "Timothy C. Bates",
     "Lawrence D’Oliveiro"
+   ],
+   "families": [
+    "Bates",
+    "D’Oliveiro"
    ]
   },
   "reviewer": {
@@ -6409,6 +6676,12 @@
     "Brian MacWhinney",
     "Matthew Flatt",
     "Jefferson Provost"
+   ],
+   "families": [
+    "Cohen",
+    "MacWhinney",
+    "Flatt",
+    "Provost"
    ]
   },
   "reviewer": {
@@ -6524,6 +6797,9 @@
    "type": "journal-article",
    "authors": [
     "Douglas L. Hintzman"
+   ],
+   "families": [
+    "Hintzman"
    ]
   },
   "reviewer": {
@@ -6650,6 +6926,12 @@
     "M. Falkenstein",
     "P. Schwarzenau",
     "J. Hohnsbein"
+   ],
+   "families": [
+    "Hoormann",
+    "Falkenstein",
+    "Schwarzenau",
+    "Hohnsbein"
    ]
   },
   "reviewer": {
@@ -6735,6 +7017,13 @@
     "Chris Schunn",
     "Ping Li",
     "Walter Schneider"
+   ],
+   "families": [
+    "MacWhinney",
+    "St. James",
+    "Schunn",
+    "Li",
+    "Schneider"
    ]
   },
   "reviewer": null,
@@ -6815,6 +7104,9 @@
    "type": "journal-article",
    "authors": [
     "David C. Rubin"
+   ],
+   "families": [
+    "Rubin"
    ]
   },
   "reviewer": null,
@@ -6899,6 +7191,9 @@
    "type": "journal-article",
    "authors": [
     "Michael Wilson"
+   ],
+   "families": [
+    "Wilson"
    ]
   },
   "reviewer": {
@@ -7011,6 +7306,13 @@
     "Adam N Mamelak",
     "Linda Philpott",
     "Robert J Sutherland"
+   ],
+   "families": [
+    "Astur",
+    "Taylor",
+    "Mamelak",
+    "Philpott",
+    "Sutherland"
    ]
   },
   "reviewer": {
@@ -7118,6 +7420,11 @@
     "Robert S Astur",
     "Maria L Ortiz",
     "Robert J Sutherland"
+   ],
+   "families": [
+    "Astur",
+    "Ortiz",
+    "Sutherland"
    ]
   },
   "reviewer": null,
@@ -7220,6 +7527,11 @@
     "Jean-Marc Edeline",
     "N. Neuenschwander-El Massioui",
     "G. Dutrieux"
+   ],
+   "families": [
+    "Edeline",
+    "Neuenschwander-El Massioui",
+    "Dutrieux"
    ]
   },
   "reviewer": null,
@@ -7336,6 +7648,13 @@
     "Nicole E. DeAngeli",
     "Roman Huszár",
     "David J. Bucci"
+   ],
+   "families": [
+    "Fournier",
+    "Eddy",
+    "DeAngeli",
+    "Huszár",
+    "Bucci"
    ]
   },
   "reviewer": null,
@@ -7537,6 +7856,11 @@
     "Yukiko Asaka",
     "Amy L. Griffin",
     "Stephen D. Berry"
+   ],
+   "families": [
+    "Asaka",
+    "Griffin",
+    "Berry"
    ]
   },
   "reviewer": {
@@ -7614,6 +7938,9 @@
    "type": "journal-article",
    "authors": [
     "Romain Brette"
+   ],
+   "families": [
+    "Brette"
    ]
   },
   "reviewer": null,
@@ -7678,6 +8005,10 @@
    "authors": [
     "Johannes B. Mahr",
     "Gergely Csibra"
+   ],
+   "families": [
+    "Mahr",
+    "Csibra"
    ]
   },
   "reviewer": null,
@@ -7756,6 +8087,11 @@
     "Howard Eichenbaum",
     "Tim Otto",
     "Neal J. Cohen"
+   ],
+   "families": [
+    "Eichenbaum",
+    "Otto",
+    "Cohen"
    ]
   },
   "reviewer": null,
@@ -7840,6 +8176,11 @@
     "R. Jonathan Robitsek",
     "John A. White",
     "Howard Eichenbaum"
+   ],
+   "families": [
+    "Robitsek",
+    "White",
+    "Eichenbaum"
    ]
   },
   "reviewer": null,
@@ -7945,6 +8286,15 @@
     "Junying Gao",
     "Ting Wu",
     "Ming Xiao"
+   ],
+   "families": [
+    "Wang",
+    "Xu",
+    "Tang",
+    "Sun",
+    "Gao",
+    "Wu",
+    "Xiao"
    ]
   },
   "reviewer": null,
@@ -8020,6 +8370,15 @@
     "W. Kruse",
     "M. Munk",
     "H. J. Reitboeck"
+   ],
+   "families": [
+    "Eckhorn",
+    "Bauer",
+    "Jordan",
+    "Brosch",
+    "Kruse",
+    "Munk",
+    "Reitboeck"
    ]
   },
   "reviewer": null,
@@ -8104,6 +8463,10 @@
    "authors": [
     "M. J. Kaminski",
     "K. J. Blinowska"
+   ],
+   "families": [
+    "Kaminski",
+    "Blinowska"
    ]
   },
   "reviewer": {
@@ -8179,7 +8542,14 @@
    "target_base": "SerrEtal03",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "surname_corroborated",
+    "field": "author",
+    "detail": "surname 'hatsopolous' -> 'hatsopoulos': released by the DOI record rule, the api.crossref.org record of the kept DOI is the second host ['api.crossref.org', 'pubmed.ncbi.nlm.nih.gov']",
+    "action": "applied"
+   }
+  ],
   "doi_status": {
    "doi": "10.1007/s00422-002-0374-6",
    "registered": true,
@@ -8200,6 +8570,13 @@
     "Liam Paninski",
     "John Donoghue",
     "Nicholas Hatsopoulos"
+   ],
+   "families": [
+    "Serruya",
+    "Fellows",
+    "Paninski",
+    "Donoghue",
+    "Hatsopoulos"
    ]
   },
   "reviewer": null,
@@ -8262,6 +8639,12 @@
     "Ned J Arsenault",
     "Catherine Murray",
     "Donald L Bliwise"
+   ],
+   "families": [
+    "Woodward",
+    "Arsenault",
+    "Murray",
+    "Bliwise"
    ]
   },
   "reviewer": {
@@ -8400,6 +8783,12 @@
     "Martha L. Bulyk",
     "G. A. Whitmore",
     "George M. Church"
+   ],
+   "families": [
+    "Lee",
+    "Bulyk",
+    "Whitmore",
+    "Church"
    ]
   },
   "reviewer": null,
@@ -8452,6 +8841,9 @@
    "type": "journal-article",
    "authors": [
     "Frank Wilcoxon"
+   ],
+   "families": [
+    "Wilcoxon"
    ]
   },
   "reviewer": null,
@@ -8517,6 +8909,9 @@
    "type": "journal-article",
    "authors": [
     "R. A. Fisher"
+   ],
+   "families": [
+    "Fisher"
    ]
   },
   "reviewer": {
@@ -8613,6 +9008,9 @@
    "type": "journal-article",
    "authors": [
     "P. A. P. Moran"
+   ],
+   "families": [
+    "Moran"
    ]
   },
   "reviewer": null,
@@ -8698,6 +9096,10 @@
    "authors": [
     "E. D. ADRIAN",
     "K. YAMAGIWA"
+   ],
+   "families": [
+    "ADRIAN",
+    "YAMAGIWA"
    ]
   },
   "reviewer": null,
@@ -8757,6 +9159,11 @@
     "N. Axmacher",
     "C. E. Elger",
     "J. Fell"
+   ],
+   "families": [
+    "Axmacher",
+    "Elger",
+    "Fell"
    ]
   },
   "reviewer": null,
@@ -8831,6 +9238,12 @@
     "F. Brunet-Bourgin",
     "P. Chauvel",
     "E. Halgren"
+   ],
+   "families": [
+    "Bancaud",
+    "Brunet-Bourgin",
+    "Chauvel",
+    "Halgren"
    ]
   },
   "reviewer": {
@@ -8913,6 +9326,12 @@
   },
   "flags": [
    {
+    "code": "surname_corroborated",
+    "field": "author",
+    "detail": "surname 'boisgueheneuc' -> 'du boisgueheneuc': released by the DOI record rule, the api.crossref.org record of the kept DOI is the second host ['api.crossref.org', 'pubmed.ncbi.nlm.nih.gov']",
+    "action": "applied"
+   },
+   {
     "code": "key_rename",
     "field": "key",
     "detail": "BoisEtal06 -> duBoEtal06 (key does not follow the corrected metadata)",
@@ -8943,6 +9362,17 @@
     "Y. Samson",
     "S. Zhang",
     "B. Dubois"
+   ],
+   "families": [
+    "Boisgueheneuc",
+    "Levy",
+    "Volle",
+    "Seassau",
+    "Duffau",
+    "Kinkingnehun",
+    "Samson",
+    "Zhang",
+    "Dubois"
    ]
   },
   "reviewer": {
@@ -9027,6 +9457,9 @@
    "type": "journal-article",
    "authors": [
     "S. A. Bunge"
+   ],
+   "families": [
+    "Bunge"
    ]
   },
   "reviewer": {
@@ -9113,6 +9546,15 @@
     "Pietro Tonali",
     "Vincenzo Di Lazzaro",
     "Peter Brown"
+   ],
+   "families": [
+    "Cassidy",
+    "Mazzone",
+    "Oliviero",
+    "Insola",
+    "Tonali",
+    "Lazzaro",
+    "Brown"
    ]
   },
   "reviewer": null,
@@ -9200,6 +9642,15 @@
     "Ghislaine Dehaene-Lambertz",
     "Marie-Anne Hénaff",
     "François Michel"
+   ],
+   "families": [
+    "Cohen",
+    "Dehaene",
+    "Naccache",
+    "Lehéricy",
+    "Dehaene-Lambertz",
+    "Hénaff",
+    "Michel"
    ]
   },
   "reviewer": null,
@@ -9269,6 +9720,9 @@
    "type": "journal-article",
    "authors": [
     "N. Cowan"
+   ],
+   "families": [
+    "Cowan"
    ]
   },
   "reviewer": null,
@@ -9351,6 +9805,9 @@
    "type": "journal-article",
    "authors": [
     "N. Crone"
+   ],
+   "families": [
+    "Crone"
    ]
   },
   "reviewer": {
@@ -9432,6 +9889,9 @@
    "type": "journal-article",
    "authors": [
     "N. Crone"
+   ],
+   "families": [
+    "Crone"
    ]
   },
   "reviewer": null,
@@ -9501,6 +9961,9 @@
    "type": "journal-article",
    "authors": [
     "N. Crone"
+   ],
+   "families": [
+    "Crone"
    ]
   },
   "reviewer": null,
@@ -9586,6 +10049,12 @@
     "E. C. Hirsch",
     "Y. Agid",
     "A. M. Graybiel"
+   ],
+   "families": [
+    "Damier",
+    "Hirsch",
+    "Agid",
+    "Graybiel"
    ]
   },
   "reviewer": null,
@@ -9688,6 +10157,12 @@
     "E. C. Hirsch",
     "Y. Agid",
     "A. M. Graybiel"
+   ],
+   "families": [
+    "Damier",
+    "Hirsch",
+    "Agid",
+    "Graybiel"
    ]
   },
   "reviewer": null,
@@ -9788,6 +10263,16 @@
     "RICHARD WISE",
     "ANDRÉ RASCOL",
     "RICHARD FRACKOWIAK"
+   ],
+   "families": [
+    "DÉMONET",
+    "CHOLLET",
+    "RAMSAY",
+    "CARDEBAT",
+    "NESPOULOUS",
+    "WISE",
+    "RASCOL",
+    "FRACKOWIAK"
    ]
   },
   "reviewer": null,
@@ -9873,6 +10358,9 @@
    "type": "journal-article",
    "authors": [
     "S. Dupont"
+   ],
+   "families": [
+    "Dupont"
    ]
   },
   "reviewer": {
@@ -10007,6 +10495,18 @@
     "Patricia Limousin",
     "Jean-Philippe Azulay",
     "Peter Brown"
+   ],
+   "families": [
+    "Eusebio",
+    "Pogosyan",
+    "Wang",
+    "Averbeck",
+    "Gaynor",
+    "Cantiniaux",
+    "Witjas",
+    "Limousin",
+    "Azulay",
+    "Brown"
    ]
   },
   "reviewer": {
@@ -10097,6 +10597,27 @@
     "E. Halgren",
     "G. Karmos",
     "I. Ulbert"
+   ],
+   "families": [
+    "Fabo",
+    "Magloczky",
+    "Wittner",
+    "Pek",
+    "Eross",
+    "Czirjak",
+    "Vajda",
+    "Solyom",
+    "Rasonyi",
+    "Szucs",
+    "Kelemen",
+    "Juhos",
+    "Grand",
+    "Dombovari",
+    "Halasz",
+    "Freund",
+    "Halgren",
+    "Karmos",
+    "Ulbert"
    ]
   },
   "reviewer": {
@@ -10203,6 +10724,16 @@
     "Carlo Schaller",
     "Christian E. Elger",
     "Christoph Helmstaedter"
+   ],
+   "families": [
+    "Fell",
+    "Fernández",
+    "Lutz",
+    "Kockelmann",
+    "Burr",
+    "Schaller",
+    "Elger",
+    "Helmstaedter"
    ]
   },
   "reviewer": null,
@@ -10320,6 +10851,13 @@
     "C. D. Frith",
     "R. S. J. Frackowiak",
     "R. J. Dolan"
+   ],
+   "families": [
+    "Fletcher",
+    "Shallice",
+    "Frith",
+    "Frackowiak",
+    "Dolan"
    ]
   },
   "reviewer": {
@@ -10403,6 +10941,9 @@
    "type": "journal-article",
    "authors": [
     "P. Fletcher"
+   ],
+   "families": [
+    "Fletcher"
    ]
   },
   "reviewer": null,
@@ -10472,6 +11013,9 @@
    "type": "journal-article",
    "authors": [
     "P. Fletcher"
+   ],
+   "families": [
+    "Fletcher"
    ]
   },
   "reviewer": null,
@@ -10546,6 +11090,12 @@
     "RICHARD D. WALTER",
     "DIANA G. CHERLOW",
     "PAUL H. CRANDALL"
+   ],
+   "families": [
+    "HALGREN",
+    "WALTER",
+    "CHERLOW",
+    "CRANDALL"
    ]
   },
   "reviewer": {
@@ -10667,6 +11217,11 @@
     "R. N. A. Henson",
     "T. Shallice",
     "R. J. Dolan"
+   ],
+   "families": [
+    "Henson",
+    "Shallice",
+    "Dolan"
    ]
   },
   "reviewer": null,
@@ -10751,6 +11306,12 @@
     "KARALYN PATTERSON",
     "SUSAN OXBURY",
     "ELAINE FUNNELL"
+   ],
+   "families": [
+    "HODGES",
+    "PATTERSON",
+    "OXBURY",
+    "FUNNELL"
    ]
   },
   "reviewer": null,
@@ -10829,6 +11390,9 @@
    "type": "journal-article",
    "authors": [
     "J. HUGHLINGS-JACKSON"
+   ],
+   "families": [
+    "HUGHLINGS-JACKSON"
    ]
   },
   "reviewer": {
@@ -10910,6 +11474,9 @@
    "type": "journal-article",
    "authors": [
     "J. D. Jirsch"
+   ],
+   "families": [
+    "Jirsch"
    ]
   },
   "reviewer": null,
@@ -10983,6 +11550,25 @@
     "István Ulbert",
     "Eric Halgren",
     "Sydney S. Cash"
+   ],
+   "families": [
+    "Keller",
+    "Truccolo",
+    "Gale",
+    "Eskandar",
+    "Thesen",
+    "Carlson",
+    "Devinsky",
+    "Kuzniecky",
+    "Doyle",
+    "Madsen",
+    "Schomer",
+    "Mehta",
+    "Brown",
+    "Hochberg",
+    "Ulbert",
+    "Halgren",
+    "Cash"
    ]
   },
   "reviewer": null,
@@ -11082,6 +11668,16 @@
     "Gerd‐Helge Schneider",
     "Kielan Yarrow",
     "Peter Brown"
+   ],
+   "families": [
+    "Kühn",
+    "Williams",
+    "Kupsch",
+    "Limousin",
+    "Hariz",
+    "Schneider",
+    "Yarrow",
+    "Brown"
    ]
   },
   "reviewer": {
@@ -11165,6 +11761,9 @@
    "type": "journal-article",
    "authors": [
     "V. Mountcastle"
+   ],
+   "families": [
+    "Mountcastle"
    ]
   },
   "reviewer": {
@@ -11302,6 +11901,15 @@
     "Andrew Poliakov",
     "Leona Zamora",
     "Stavros Zanos"
+   ],
+   "families": [
+    "Ojemann",
+    "Corina",
+    "Corrigan",
+    "Schoenfield-McNeill",
+    "Poliakov",
+    "Zamora",
+    "Zanos"
    ]
   },
   "reviewer": {
@@ -11388,6 +11996,9 @@
    "type": "journal-article",
    "authors": [
     "L. J. Otten"
+   ],
+   "families": [
+    "Otten"
    ]
   },
   "reviewer": {
@@ -11500,6 +12111,13 @@
     "Barbara J. Sahakian",
     "Charles E. Polkey",
     "Trevor W. Robbins"
+   ],
+   "families": [
+    "Owen",
+    "Morris",
+    "Sahakian",
+    "Polkey",
+    "Robbins"
    ]
   },
   "reviewer": {
@@ -11583,6 +12201,10 @@
    "authors": [
     "WILDER PENFIELD",
     "PHANOR PEROT"
+   ],
+   "families": [
+    "PENFIELD",
+    "PEROT"
    ]
   },
   "reviewer": null,
@@ -11653,6 +12275,9 @@
    "type": "journal-article",
    "authors": [
     "R. Rogers"
+   ],
+   "families": [
+    "Rogers"
    ]
   },
   "reviewer": {
@@ -11761,6 +12386,18 @@
     "Stephen J. Guerin",
     "John Weaver",
     "Alexander Mamourian"
+   ],
+   "families": [
+    "Saykin",
+    "Johnson",
+    "Flashman",
+    "McAllister",
+    "Sparling",
+    "Darcey",
+    "Moritz",
+    "Guerin",
+    "Weaver",
+    "Mamourian"
    ]
   },
   "reviewer": null,
@@ -11818,6 +12455,9 @@
    "type": "journal-article",
    "authors": [
     "D. Shohamy"
+   ],
+   "families": [
+    "Shohamy"
    ]
   },
   "reviewer": null,
@@ -11903,6 +12543,9 @@
    "type": "journal-article",
    "authors": [
     "P. Silberstein"
+   ],
+   "families": [
+    "Silberstein"
    ]
   },
   "reviewer": {
@@ -11986,6 +12629,9 @@
    "type": "journal-article",
    "authors": [
     "H. J. Spiers"
+   ],
+   "families": [
+    "Spiers"
    ]
   },
   "reviewer": null,
@@ -12082,6 +12728,16 @@
     "D. M. Frim",
     "J.-P. Spire",
     "M. H. Kohrman"
+   ],
+   "families": [
+    "Towle",
+    "Yoon",
+    "Castelle",
+    "Edgar",
+    "Biassou",
+    "Frim",
+    "Spire",
+    "Kohrman"
    ]
   },
   "reviewer": null,
@@ -12180,6 +12836,12 @@
     "L. Maillard",
     "A. McGonigal",
     "P. Chauvel"
+   ],
+   "families": [
+    "Vignal",
+    "Maillard",
+    "McGonigal",
+    "Chauvel"
    ]
   },
   "reviewer": {
@@ -12262,6 +12924,10 @@
    "authors": [
     "ELIZABETH K. WARRINGTON",
     "T. SHALLICE"
+   ],
+   "families": [
+    "WARRINGTON",
+    "SHALLICE"
    ]
   },
   "reviewer": null,
@@ -12355,6 +13021,10 @@
    "authors": [
     "Edward L. Wilding",
     "Michael D. Rugg"
+   ],
+   "families": [
+    "Wilding",
+    "Rugg"
    ]
   },
   "reviewer": null,
@@ -12436,6 +13106,9 @@
    "type": "journal-article",
    "authors": [
     "D. Williams"
+   ],
+   "families": [
+    "Williams"
    ]
   },
   "reviewer": null,
@@ -12492,6 +13165,9 @@
    "issue": "10",
    "type": "journal-article",
    "authors": [
+    "Karen Hux, Nancy Manasse, Shawna Wr"
+   ],
+   "families": [
     "Karen Hux, Nancy Manasse, Shawna Wr"
    ]
   },
@@ -12605,6 +13281,10 @@
    "authors": [
     "A. Schapiro",
     "N. Turk-Browne"
+   ],
+   "families": [
+    "Schapiro",
+    "Turk-Browne"
    ]
   },
   "reviewer": {
@@ -12680,6 +13360,12 @@
     "J.D. Labban",
     "J.I. Gapin",
     "J.L. Etnier"
+   ],
+   "families": [
+    "Chang",
+    "Labban",
+    "Gapin",
+    "Etnier"
    ]
   },
   "reviewer": null,
@@ -12782,6 +13468,12 @@
     "H.J. Müller",
     "B. Schönebeck",
     "G. Debus"
+   ],
+   "families": [
+    "Gramann",
+    "Müller",
+    "Schönebeck",
+    "Debus"
    ]
   },
   "reviewer": null,
@@ -12844,6 +13536,14 @@
     "Hanna Damasio",
     "Michael C. Ollendieck",
     "Mark A. Granner"
+   ],
+   "families": [
+    "Howard",
+    "Volkov",
+    "Abbas",
+    "Damasio",
+    "Ollendieck",
+    "Granner"
    ]
   },
   "reviewer": null,
@@ -12915,6 +13615,10 @@
    "authors": [
     "Shozo Kojima",
     "Patricia S. Goldman-Rakic"
+   ],
+   "families": [
+    "Kojima",
+    "Goldman-Rakic"
    ]
   },
   "reviewer": null,
@@ -12989,6 +13693,10 @@
    "authors": [
     "L.-W.S. Leung",
     "J.G.G. Borst"
+   ],
+   "families": [
+    "Leung",
+    "Borst"
    ]
   },
   "reviewer": null,
@@ -13076,6 +13784,10 @@
    "type": "journal-article",
    "authors": [
     "Lai-Wo S. Leung",
+    "Chi Yiu Yim"
+   ],
+   "families": [
+    "Leung",
     "Chi Yiu Yim"
    ]
   },
@@ -13171,6 +13883,11 @@
     "Angel Nu´n˜ez",
     "Elio Garci´a-Austt",
     "Washington Bun˜o"
+   ],
+   "families": [
+    "Nu´n˜ez",
+    "Garci´a-Austt",
+    "Bun˜o"
    ]
   },
   "reviewer": null,
@@ -13242,6 +13959,12 @@
     "Yoram J. Greenstein",
     "Mark Grudman",
     "Jonathan Winson"
+   ],
+   "families": [
+    "Pavlides",
+    "Greenstein",
+    "Grudman",
+    "Winson"
    ]
   },
   "reviewer": null,
@@ -13335,6 +14058,10 @@
    "authors": [
     "Urszula Sl&z.shtsls;;awińska",
     "Stefan Kasicki"
+   ],
+   "families": [
+    "Sl&z.shtsls;;awińska",
+    "Kasicki"
    ]
   },
   "reviewer": null,
@@ -13440,6 +14167,12 @@
     "Todd A. Kelley",
     "René Marois",
     "Marvin M. Chun"
+   ],
+   "families": [
+    "Yi",
+    "Kelley",
+    "Marois",
+    "Chun"
    ]
   },
   "reviewer": null,
@@ -13538,6 +14271,11 @@
     "György Buzsáki",
     "Leung Lai-Wo S.",
     "Cornelius H. Vanderwolf"
+   ],
+   "families": [
+    "Buzsáki",
+    "Lai-Wo S.",
+    "Vanderwolf"
    ]
   },
   "reviewer": null,
@@ -13607,6 +14345,9 @@
    "type": "journal-article",
    "authors": [
     "Arne Ekstrom"
+   ],
+   "families": [
+    "Ekstrom"
    ]
   },
   "reviewer": null,
@@ -13706,6 +14447,12 @@
     "Edward H.F. de Haan",
     "L.Jaap Kappelle",
     "Albert Postma"
+   ],
+   "families": [
+    "Kessels",
+    "de Haan",
+    "Kappelle",
+    "Postma"
    ]
   },
   "reviewer": {
@@ -13798,6 +14545,9 @@
    "type": "journal-article",
    "authors": [
     "Wolfgang Klimesch"
+   ],
+   "families": [
+    "Klimesch"
    ]
   },
   "reviewer": null,
@@ -13912,6 +14662,10 @@
    "authors": [
     "André Parent",
     "Lili-Naz Hazrati"
+   ],
+   "families": [
+    "Parent",
+    "Hazrati"
    ]
   },
   "reviewer": {
@@ -14021,6 +14775,10 @@
    "authors": [
     "Mohsen Parto Dezfouli",
     "Mohammad Reza Daliri"
+   ],
+   "families": [
+    "Parto Dezfouli",
+    "Daliri"
    ]
   },
   "reviewer": {
@@ -14112,6 +14870,15 @@
     "Olivier Bertrand",
     "Alain Berthoz",
     "Jean-Philippe Lachaux"
+   ],
+   "families": [
+    "Jerbi",
+    "Freyermuth",
+    "Dalal",
+    "Kahane",
+    "Bertrand",
+    "Berthoz",
+    "Lachaux"
    ]
   },
   "reviewer": null,
@@ -14170,6 +14937,10 @@
    "authors": [
     "Alex Martin",
     "Paul Fedio"
+   ],
+   "families": [
+    "Martin",
+    "Fedio"
    ]
   },
   "reviewer": null,
@@ -14258,6 +15029,10 @@
    "authors": [
     "John D. Teasdale",
     "M. Louise Russell"
+   ],
+   "families": [
+    "Teasdale",
+    "Russell"
    ]
   },
   "reviewer": {
@@ -14354,6 +15129,9 @@
    "type": "journal-article",
    "authors": [
     "Alan Stoller"
+   ],
+   "families": [
+    "Stoller"
    ]
   },
   "reviewer": {
@@ -14434,6 +15212,9 @@
    "type": "journal-article",
    "authors": [
     "M. S. BARTLETT"
+   ],
+   "families": [
+    "BARTLETT"
    ]
   },
   "reviewer": null,
@@ -14518,6 +15299,10 @@
    "authors": [
     "A. Mike Burton",
     "Vicki Bruce"
+   ],
+   "families": [
+    "Burton",
+    "Bruce"
    ]
   },
   "reviewer": {
@@ -14600,6 +15385,9 @@
    "type": "journal-article",
    "authors": [
     "JAMES J. GIBSON"
+   ],
+   "families": [
+    "GIBSON"
    ]
   },
   "reviewer": {
@@ -14703,6 +15491,10 @@
    "authors": [
     "D. R. GODDEN",
     "A. D. BADDELEY"
+   ],
+   "families": [
+    "GODDEN",
+    "BADDELEY"
    ]
   },
   "reviewer": null,
@@ -14772,6 +15564,10 @@
    "authors": [
     "Duncan Godden",
     "Alan Baddeley"
+   ],
+   "families": [
+    "Godden",
+    "Baddeley"
    ]
   },
   "reviewer": null,
@@ -14943,6 +15739,9 @@
    "type": "book-chapter",
    "authors": [
     "Alon Sinai"
+   ],
+   "families": [
+    "Sinai"
    ]
   },
   "reviewer": {
@@ -15079,6 +15878,9 @@
    "type": "journal-article",
    "authors": [
     "Timothy A. Salthouse"
+   ],
+   "families": [
+    "Salthouse"
    ]
   },
   "reviewer": null,
@@ -15211,6 +16013,12 @@
     "Leigh Weiss",
     "John Powell",
     "Christopher Womack"
+   ],
+   "families": [
+    "Covassin",
+    "Weiss",
+    "Powell",
+    "Womack"
    ]
   },
   "reviewer": {
@@ -15311,6 +16119,9 @@
    "type": "journal-article",
    "authors": [
     "F A Lado"
+   ],
+   "families": [
+    "Lado"
    ]
   },
   "reviewer": {
@@ -15399,6 +16210,10 @@
    "authors": [
     "Warren S. McCulloch",
     "Walter Pitts"
+   ],
+   "families": [
+    "McCulloch",
+    "Pitts"
    ]
   },
   "reviewer": null,
@@ -15464,6 +16279,10 @@
    "authors": [
     "Katherine Arbuthnott",
     "Janis Frank"
+   ],
+   "families": [
+    "Arbuthnott",
+    "Frank"
    ]
   },
   "reviewer": null,
@@ -15545,6 +16364,10 @@
    "authors": [
     "Arthur Wingfield",
     "Michael J. Kahana"
+   ],
+   "families": [
+    "Wingfield",
+    "Kahana"
    ]
   },
   "reviewer": null,
@@ -15624,6 +16447,11 @@
     "Bennet Murdock",
     "William Hockley",
     "Paul Muter"
+   ],
+   "families": [
+    "Murdock",
+    "Hockley",
+    "Muter"
    ]
   },
   "reviewer": {
@@ -15711,6 +16539,9 @@
    "type": "journal-article",
    "authors": [
     "Endel Tulving"
+   ],
+   "families": [
+    "Tulving"
    ]
   },
   "reviewer": null,
@@ -15783,6 +16614,12 @@
     "Yulia Oganian",
     "Jeffery Hall",
     "Edward F. Chang"
+   ],
+   "families": [
+    "Hamilton",
+    "Oganian",
+    "Hall",
+    "Chang"
    ]
   },
   "reviewer": null,
@@ -15870,7 +16707,14 @@
    "target_base": "AguiEtal96",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "surname_corroborated",
+    "field": "author",
+    "detail": "surname 'esposito' -> 'd esposito': released by the DOI record rule, the api.crossref.org record of the kept DOI is the second host ['api.crossref.org', 'pubmed.ncbi.nlm.nih.gov']",
+    "action": "applied"
+   }
+  ],
   "doi_status": {
    "doi": "10.1093/cercor/6.6.823",
    "registered": true,
@@ -15890,6 +16734,12 @@
     "John A. Detre",
     "David C. Alsop",
     "Mark D'Esposito"
+   ],
+   "families": [
+    "Aguirre",
+    "Detre",
+    "Alsop",
+    "D'Esposito"
    ]
   },
   "reviewer": null,
@@ -15999,6 +16849,9 @@
    "type": "journal-article",
    "authors": [
     "J.R. Binder"
+   ],
+   "families": [
+    "Binder"
    ]
   },
   "reviewer": null,
@@ -16057,6 +16910,10 @@
    "authors": [
     "Bradley R. Buchsbaum",
     "Mark D'Esposito"
+   ],
+   "families": [
+    "Buchsbaum",
+    "D'Esposito"
    ]
   },
   "reviewer": null,
@@ -16149,6 +17006,10 @@
    "authors": [
     "E. Carter",
     "X.-J. Wang"
+   ],
+   "families": [
+    "Carter",
+    "Wang"
    ]
   },
   "reviewer": {
@@ -16244,6 +17105,12 @@
     "T. Yarkoni",
     "M. W. Khaw",
     "A. G. Sanfey"
+   ],
+   "families": [
+    "Chang",
+    "Yarkoni",
+    "Khaw",
+    "Sanfey"
    ]
   },
   "reviewer": {
@@ -16320,6 +17187,9 @@
    "type": "journal-article",
    "authors": [
     "J. M. Chein"
+   ],
+   "families": [
+    "Chein"
    ]
   },
   "reviewer": null,
@@ -16424,6 +17294,9 @@
    "type": "journal-article",
    "authors": [
     "A. Compte"
+   ],
+   "families": [
+    "Compte"
    ]
   },
   "reviewer": null,
@@ -16516,6 +17389,9 @@
    "type": "journal-article",
    "authors": [
     "R. Cools"
+   ],
+   "families": [
+    "Cools"
    ]
   },
   "reviewer": null,
@@ -16613,6 +17489,14 @@
     "Markus Diesmann",
     "Alexa Riehle",
     "Sonja Grün"
+   ],
+   "families": [
+    "Denker",
+    "Roux",
+    "Lindén",
+    "Diesmann",
+    "Riehle",
+    "Grün"
    ]
   },
   "reviewer": null,
@@ -16712,6 +17596,9 @@
    "type": "journal-article",
    "authors": [
     "I. Fried"
+   ],
+   "families": [
+    "Fried"
    ]
   },
   "reviewer": {
@@ -16811,7 +17698,14 @@
    "target_base": "GeorEtal99",
    "action": "keep"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "surname_corroborated",
+    "field": "author",
+    "detail": "surname 'georges francios' -> 'georges francois': released by the DOI record rule, the api.crossref.org record of the kept DOI is the second host ['api.crossref.org', 'eutils.ncbi.nlm.nih.gov']",
+    "action": "applied"
+   }
+  ],
   "doi_status": {
    "doi": "10.1093/cercor/9.3.197",
    "registered": true,
@@ -16828,6 +17722,9 @@
    "type": "journal-article",
    "authors": [
     "P. Georges-Francois"
+   ],
+   "families": [
+    "Georges-Francois"
    ]
   },
   "reviewer": {
@@ -16898,6 +17795,9 @@
    "type": "journal-article",
    "authors": [
     "A Gevins"
+   ],
+   "families": [
+    "Gevins"
    ]
   },
   "reviewer": null,
@@ -16968,6 +17868,9 @@
    "type": "journal-article",
    "authors": [
     "A. Gevins"
+   ],
+   "families": [
+    "Gevins"
    ]
   },
   "reviewer": {
@@ -17048,6 +17951,9 @@
    "type": "journal-article",
    "authors": [
     "A. Gilboa"
+   ],
+   "families": [
+    "Gilboa"
    ]
   },
   "reviewer": null,
@@ -17154,6 +18060,9 @@
    "type": "journal-article",
    "authors": [
     "T. Gruber"
+   ],
+   "families": [
+    "Gruber"
    ]
   },
   "reviewer": {
@@ -17238,6 +18147,16 @@
     "R. Freunberger",
     "T. Pecherstorfer",
     "N. Birbaumer"
+   ],
+   "families": [
+    "Hanslmayr",
+    "Klimesch",
+    "Sauseng",
+    "Gruber",
+    "Doppelmayr",
+    "Freunberger",
+    "Pecherstorfer",
+    "Birbaumer"
    ]
   },
   "reviewer": null,
@@ -17317,6 +18236,11 @@
     "S. Hanslmayr",
     "B. Spitzer",
     "K.-H. Bauml"
+   ],
+   "families": [
+    "Hanslmayr",
+    "Spitzer",
+    "Bauml"
    ]
   },
   "reviewer": null,
@@ -17340,7 +18264,7 @@
    {
     "field": "author",
     "current": "M W Howard and D S Rizzuto and J C Caplan and J R Madsen and J Lisman and R Aschenbrenner-Scheibe and A Schultze-Bonhage and M J Kahana",
-    "proposed": "M W Howard and D S Rizzuto and J B Caplan and J R Madsen and J Lisman and R Aschenbrenner-Scheibe and A Schultze-Bonhage and M J Kahana",
+    "proposed": "M W Howard and D S Rizzuto and J B Caplan and J R Madsen and J Lisman and R Aschenbrenner-Scheibe and A Schulze-Bonhage and M J Kahana",
     "source": "researcher",
     "evidence": [
      {
@@ -17410,10 +18334,10 @@
   },
   "flags": [
    {
-    "code": "surname_single_source",
+    "code": "surname_corroborated",
     "field": "author",
-    "detail": "surname 'schultze bonhage' -> 'schulze bonhage' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'A Schultze-Bonhage' is kept",
-    "action": "held"
+    "detail": "surname 'schultze bonhage' -> 'schulze bonhage': released by the cdl.bib rule, ['eutils.ncbi.nlm.nih.gov'] plus cdl.bib's own spelling for this person in BallEtal04, BallEtal08, BallEtal09b, CaplEtal03, FrinEtal06a (the cited spelling is in no other entry)",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -17432,10 +18356,13 @@
    "type": "journal-article",
    "authors": [
     "M. W. Howard"
+   ],
+   "families": [
+    "Howard"
    ]
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "ItieTayl04",
@@ -17515,6 +18442,9 @@
    "type": "journal-article",
    "authors": [
     "R. J. Itier"
+   ],
+   "families": [
+    "Itier"
    ]
   },
   "reviewer": {
@@ -17597,6 +18527,9 @@
    "type": "journal-article",
    "authors": [
     "O. Jensen"
+   ],
+   "families": [
+    "Jensen"
    ]
   },
   "reviewer": {
@@ -17665,6 +18598,9 @@
    "type": "journal-article",
    "authors": [
     "L. McEvoy"
+   ],
+   "families": [
+    "McEvoy"
    ]
   },
   "reviewer": null,
@@ -17794,6 +18730,12 @@
     "Lila Davachi",
     "Kevin N Ochsner",
     "Matthew D Lieberman"
+   ],
+   "families": [
+    "Meyer",
+    "Davachi",
+    "Ochsner",
+    "Lieberman"
    ]
   },
   "reviewer": {
@@ -17877,6 +18819,9 @@
    "type": "journal-article",
    "authors": [
     "P. Miller"
+   ],
+   "families": [
+    "Miller"
    ]
   },
   "reviewer": null,
@@ -17981,6 +18926,16 @@
     "A. D. Sharan",
     "M. R. Sperling",
     "S. M. Polyn"
+   ],
+   "families": [
+    "Morton",
+    "Kahana",
+    "Rosenberg",
+    "Baltuch",
+    "Litt",
+    "Sharan",
+    "Sperling",
+    "Polyn"
    ]
   },
   "reviewer": null,
@@ -18117,6 +19072,20 @@
     "Yung-Ping Wang",
     "Heather DeLuca",
     "Paul M. Thompson"
+   ],
+   "families": [
+    "Narr",
+    "Bilder",
+    "Toga",
+    "Woods",
+    "Rex",
+    "Szeszko",
+    "Robinson",
+    "Sevy",
+    "Gunduz-Bruce",
+    "Wang",
+    "DeLuca",
+    "Thompson"
    ]
   },
   "reviewer": null,
@@ -18175,6 +19144,9 @@
    "type": "journal-article",
    "authors": [
     "C. J. Ploner"
+   ],
+   "families": [
+    "Ploner"
    ]
   },
   "reviewer": {
@@ -18329,6 +19301,11 @@
     "J. Rissman",
     "A. Gazzaley",
     "M. D'Esposito"
+   ],
+   "families": [
+    "Rissman",
+    "Gazzaley",
+    "D'Esposito"
    ]
   },
   "reviewer": {
@@ -18463,6 +19440,16 @@
     "Avram J Holmes",
     "Simon B Eickhoff",
     "B T Thomas Yeo"
+   ],
+   "families": [
+    "Schaefer",
+    "Kong",
+    "Gordon",
+    "Laumann",
+    "Zuo",
+    "Holmes",
+    "Eickhoff",
+    "Yeo"
    ]
   },
   "reviewer": {
@@ -18571,6 +19558,9 @@
    "type": "journal-article",
    "authors": [
     "W. Schultz"
+   ],
+   "families": [
+    "Schultz"
    ]
   },
   "reviewer": {
@@ -18654,6 +19644,16 @@
     "A. Brandt",
     "M. S. Tully",
     "M. J. Kahana"
+   ],
+   "families": [
+    "Sederberg",
+    "Schulze-Bonhage",
+    "Madsen",
+    "Bromfield",
+    "McCarthy",
+    "Brandt",
+    "Tully",
+    "Kahana"
    ]
   },
   "reviewer": null,

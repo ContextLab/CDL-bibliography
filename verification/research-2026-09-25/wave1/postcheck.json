@@ -18,12 +18,13 @@
    "patent_filing_year": 2,
    "patent_number_missing": 2,
    "print_year_conflict": 3,
-   "quote_check_failed": 13,
+   "quote_check_failed": 10,
    "reviewer_action": 1,
    "reviewer_disagrees": 1,
    "reviewer_dropped": 4,
    "style_only_change": 2,
-   "surname_single_source": 4,
+   "surname_corroborated": 4,
+   "surname_single_source": 3,
    "unverified_suggestions": 20,
    "verdict_inconsistent": 5,
    "verdict_understated": 1,
@@ -1862,6 +1863,10 @@
     "authors": [
      "T. V. P. Bliss",
      "G. L. Collingridge"
+    ],
+    "families": [
+     "Bliss",
+     "Collingridge"
     ]
    },
    "batch": "batch-001"
@@ -1973,6 +1978,9 @@
     "type": "journal-article",
     "authors": [
      "Massihullah Hamidi"
+    ],
+    "families": [
+     "Hamidi"
     ]
    },
    "batch": "batch-001"
@@ -2142,14 +2150,7 @@
   "LongKaha14": {
    "key": "LongKaha14",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "quote_check_failed",
-     "field": "booktitle",
-     "detail": "validator: booktitle not covered by its quotes (missing ['abstracts']; failures [])",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
     {
@@ -2171,6 +2172,23 @@
      "proposed": "Washington, {DC}",
      "source": "researcher",
      "evidence": [
+      {
+       "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+       "quote": "Washington, DC: Society for Neuroscience, 2014. Online."
+      }
+     ],
+     "reviewer": "agree"
+    },
+    {
+     "field": "booktitle",
+     "current": null,
+     "proposed": "Society for Neuroscience Abstracts",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
+       "quote": "Program No. XXX.XX. 2014 Neuroscience Meeting Planner."
+      },
       {
        "url": "https://www.sfn.org/-/media/SfN/Documents/Annual-Meeting/FinalProgram/NS2014/FullAbstractPDFs_2014/SFN2014_Abstracts_PDF_Sun_AM.pdf",
        "quote": "Washington, DC: Society for Neuroscience, 2014. Online."
@@ -2206,9 +2224,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "booktitle": "quote check failed"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "LongKaha14",
@@ -2321,6 +2337,9 @@
     "type": "journal-article",
     "authors": [
      "J L McGaugh"
+    ],
+    "families": [
+     "McGaugh"
     ]
    },
    "batch": "batch-001"
@@ -2405,6 +2424,10 @@
     "authors": [
      "Scott D. Moffat",
      "Elizabeth Hampson"
+    ],
+    "families": [
+     "Moffat",
+     "Hampson"
     ]
    },
    "batch": "batch-001"
@@ -2498,6 +2521,11 @@
      "Lloyd R. Peterson",
      "Margaret Jean Peterson",
      "Arthur Miller"
+    ],
+    "families": [
+     "Peterson",
+     "Peterson",
+     "Miller"
     ]
    },
    "batch": "batch-001"
@@ -2637,6 +2665,10 @@
     "authors": [
      "Mijail Serruya",
      "John Donoghue"
+    ],
+    "families": [
+     "Serruya",
+     "Donoghue"
     ]
    },
    "batch": "batch-001"
@@ -2734,6 +2766,11 @@
      "Benjamin C. Storm",
      "Elizabeth L. Bjork",
      "Robert A. Bjork"
+    ],
+    "families": [
+     "Storm",
+     "Bjork",
+     "Bjork"
     ]
    },
    "batch": "batch-001"
@@ -2861,6 +2898,9 @@
     "type": "journal-article",
     "authors": [
      "David Wechsler"
+    ],
+    "families": [
+     "Wechsler"
     ]
    },
    "batch": "batch-001"
@@ -3052,6 +3092,13 @@
      "Barbara Eckersdorf",
      "Henryk Gołębiewski",
      "Jan Konopacki"
+    ],
+    "families": [
+     "Błaszczyk",
+     "Grabowski",
+     "Eckersdorf",
+     "Gołębiewski",
+     "Konopacki"
     ]
    },
    "batch": "batch-001"
@@ -3102,6 +3149,11 @@
      "Kevin Allan",
      "Edward L. Wilding",
      "Michael D Rugg"
+    ],
+    "families": [
+     "Allan",
+     "L. Wilding",
+     "Rugg"
     ]
    },
    "batch": "batch-001"
@@ -3163,6 +3215,9 @@
     "type": "journal-article",
     "authors": [
      "D. Katz"
+    ],
+    "families": [
+     "Katz"
     ]
    },
    "batch": "batch-001"
@@ -3233,6 +3288,10 @@
     "authors": [
      "J.F. Schouten",
      "J.A.M. Bekker"
+    ],
+    "families": [
+     "Schouten",
+     "Bekker"
     ]
    },
    "batch": "batch-001"
@@ -3404,6 +3463,18 @@
      "Noam Sobel",
      "Yadin Dudai",
      "Yuval Nir"
+    ],
+    "families": [
+     "Bar",
+     "Marmelshtein",
+     "Arzi",
+     "Perl",
+     "Livne",
+     "Hizmi",
+     "Paz",
+     "Sobel",
+     "Dudai",
+     "Nir"
     ]
    },
    "batch": "batch-015"
@@ -3456,6 +3527,13 @@
      "Robert Stickgold",
      "David F. Dinges",
      "Sharon L. Thompson-Schill"
+    ],
+    "families": [
+     "Ellenbogen",
+     "Hulbert",
+     "Stickgold",
+     "Dinges",
+     "Thompson-Schill"
     ]
    },
    "batch": "batch-015"
@@ -3539,6 +3617,10 @@
     "authors": [
      "Jozien B.M. Goense",
      "Nikos K. Logothetis"
+    ],
+    "families": [
+     "Goense",
+     "Logothetis"
     ]
    },
    "batch": "batch-015"
@@ -3611,6 +3693,15 @@
      "C.L. Grady",
      "R. Sekuler",
      "P.J. Bennett"
+    ],
+    "families": [
+     "McIntosh",
+     "Sekuler",
+     "Penpeci",
+     "Rajah",
+     "Grady",
+     "Sekuler",
+     "Bennett"
     ]
    },
    "batch": "batch-015"
@@ -3703,6 +3794,14 @@
      "Yuval Benjamini",
      "Bin Yu",
      "Jack L. Gallant"
+    ],
+    "families": [
+     "Nishimoto",
+     "Vu",
+     "Naselaris",
+     "Benjamini",
+     "Yu",
+     "Gallant"
     ]
    },
    "batch": "batch-015"
@@ -3769,6 +3868,10 @@
     "authors": [
      "Brendan I Cohn-Sheehy",
      "Charan Ranganath"
+    ],
+    "families": [
+     "Cohn-Sheehy",
+     "Ranganath"
     ]
    },
    "batch": "batch-015"
@@ -3832,6 +3935,11 @@
      "Hongmi Lee",
      "Buddhika Bellana",
      "Janice Chen"
+    ],
+    "families": [
+     "Lee",
+     "Bellana",
+     "Chen"
     ]
    },
    "batch": "batch-015"
@@ -3879,6 +3987,9 @@
     "type": "journal-article",
     "authors": [
      "T Collett"
+    ],
+    "families": [
+     "Collett"
     ]
    },
    "batch": "batch-015"
@@ -3993,6 +4104,10 @@
     "authors": [
      "Nathaniel D Daw",
      "Kenji Doya"
+    ],
+    "families": [
+     "Daw",
+     "Doya"
     ]
    },
    "batch": "batch-015"
@@ -4052,6 +4167,9 @@
     "type": "journal-article",
     "authors": [
      "Howard Eichenbaum"
+    ],
+    "families": [
+     "Eichenbaum"
     ]
    },
    "batch": "batch-015"
@@ -4140,6 +4258,10 @@
     "authors": [
      "Andreas K Engel",
      "Pascal Fries"
+    ],
+    "families": [
+     "Engel",
+     "Fries"
     ]
    },
    "batch": "batch-015"
@@ -4201,6 +4323,11 @@
      "Matthew L Shapiro",
      "Pamela J Kennedy",
      "Janina Ferbinteanu"
+    ],
+    "families": [
+     "Shapiro",
+     "Kennedy",
+     "Ferbinteanu"
     ]
    },
    "batch": "batch-015"
@@ -4280,6 +4407,10 @@
     "authors": [
      "M. Izaute",
      "P. Bonin"
+    ],
+    "families": [
+     "Izaute",
+     "Bonin"
     ]
    },
    "batch": "batch-015"
@@ -4441,6 +4572,17 @@
      "David Salsberg",
      "Martha Sarno",
      "Ajax George"
+    ],
+    "families": [
+     "Nass",
+     "Boyce",
+     "Leventhal",
+     "Levine",
+     "Allen",
+     "Maxfield",
+     "Salsberg",
+     "Sarno",
+     "George"
     ]
    },
    "batch": "batch-015"
@@ -4517,6 +4659,14 @@
      "Jason Brandt",
      "Beth Ober",
      "Milton Strauss"
+    ],
+    "families": [
+     "Kramer",
+     "Delis",
+     "Blusewicz",
+     "Brandt",
+     "Ober",
+     "Strauss"
     ]
    },
    "batch": "batch-015"
@@ -4605,6 +4755,10 @@
     "authors": [
      "Greg D. Reynolds",
      "John E. Richards"
+    ],
+    "families": [
+     "Reynolds",
+     "Richards"
     ]
    },
    "batch": "batch-015"
@@ -4653,6 +4807,10 @@
     "authors": [
      "Hilary Richardson",
      "Rebecca Saxe"
+    ],
+    "families": [
+     "Richardson",
+     "Saxe"
     ]
    },
    "batch": "batch-015"
@@ -4730,6 +4888,12 @@
      "Dima Amso",
      "Robert M. French",
      "Natasha Z. Kirkham"
+    ],
+    "families": [
+     "Tummeltshammer",
+     "Amso",
+     "French",
+     "Kirkham"
     ]
    },
    "batch": "batch-015"
@@ -4790,6 +4954,13 @@
      "Jan Noyes",
      "Mihaly Racsma'ny",
      "Clive R Frankish"
+    ],
+    "families": [
+     "Conway",
+     "Harries",
+     "Noyes",
+     "Racsma'ny",
+     "Frankish"
     ]
    },
    "batch": "batch-030"
@@ -4849,6 +5020,9 @@
     "type": "journal-article",
     "authors": [
      "N COWAN"
+    ],
+    "families": [
+     "COWAN"
     ]
    },
    "batch": "batch-030"
@@ -4923,6 +5097,12 @@
      "J.Scott Saults",
      "Emily M Elliott",
      "Matthew V Moreno"
+    ],
+    "families": [
+     "Cowan",
+     "Saults",
+     "Elliott",
+     "Moreno"
     ]
    },
    "batch": "batch-030"
@@ -4995,6 +5175,10 @@
     "authors": [
      "David A. Gallo",
      "Henry L. Roediger, III"
+    ],
+    "families": [
+     "Gallo",
+     "Roediger, III"
     ]
    },
    "batch": "batch-030"
@@ -5061,6 +5245,9 @@
     "type": "journal-article",
     "authors": [
      "C Hulme"
+    ],
+    "families": [
+     "Hulme"
     ]
    },
    "batch": "batch-030"
@@ -5120,6 +5307,9 @@
     "type": "journal-article",
     "authors": [
      "R Reed Hunt"
+    ],
+    "families": [
+     "Reed Hunt"
     ]
    },
    "batch": "batch-030"
@@ -5182,6 +5372,10 @@
     "authors": [
      "J KARPICKE",
      "H ROEDIGERIII"
+    ],
+    "families": [
+     "KARPICKE",
+     "ROEDIGERIII"
     ]
    },
    "batch": "batch-030"
@@ -5254,6 +5448,10 @@
     "authors": [
      "Gail McKoon",
      "Roger Ratcliff"
+    ],
+    "families": [
+     "McKoon",
+     "Ratcliff"
     ]
    },
    "batch": "batch-030"
@@ -5356,6 +5554,11 @@
      "H. Schriefers",
      "A.S. Meyer",
      "W.J.M. Levelt"
+    ],
+    "families": [
+     "Schriefers",
+     "Meyer",
+     "Levelt"
     ]
    },
    "batch": "batch-030"
@@ -5448,6 +5651,10 @@
     "authors": [
      "Mitchell S. Sommers",
      "Bryan P. Lewis"
+    ],
+    "families": [
+     "Sommers",
+     "Lewis"
     ]
    },
    "batch": "batch-030"
@@ -5504,6 +5711,9 @@
     "type": "journal-article",
     "authors": [
      "K Turley-Ames"
+    ],
+    "families": [
+     "Turley-Ames"
     ]
    },
    "batch": "batch-030"
@@ -5563,6 +5773,9 @@
     "type": "journal-article",
     "authors": [
      "Nash Unsworth"
+    ],
+    "families": [
+     "Unsworth"
     ]
    },
    "batch": "batch-030"
@@ -5638,6 +5851,10 @@
     "authors": [
      "Connie Cheung",
      "Edward F Chang"
+    ],
+    "families": [
+     "Cheung",
+     "Chang"
     ]
    },
    "batch": "batch-030"
@@ -5719,6 +5936,9 @@
     "type": "book-chapter",
     "authors": [
      "K. A. Jellinger"
+    ],
+    "families": [
+     "Jellinger"
     ]
    },
    "batch": "batch-030"
@@ -5778,6 +5998,9 @@
     "type": "journal-article",
     "authors": [
      "J Tian"
+    ],
+    "families": [
+     "Tian"
     ]
    },
    "batch": "batch-030"
@@ -5876,6 +6099,11 @@
      "Hannah M. Bayer",
      "Brian Lau",
      "Paul W. Glimcher"
+    ],
+    "families": [
+     "Bayer",
+     "Lau",
+     "Glimcher"
     ]
    },
    "batch": "batch-030"
@@ -5964,6 +6192,11 @@
      "E. N. Eskandar",
      "B. J. Richmond",
      "L. M. Optican"
+    ],
+    "families": [
+     "Eskandar",
+     "Richmond",
+     "Optican"
     ]
    },
    "batch": "batch-030"
@@ -6048,6 +6281,10 @@
     "authors": [
      "John D. Green",
      "Arnaldo A. Arduini"
+    ],
+    "families": [
+     "Green",
+     "Arduini"
     ]
    },
    "batch": "batch-030"
@@ -6141,6 +6378,11 @@
      "Steve Kunec",
      "Michael E. Hasselmo",
      "Nancy Kopell"
+    ],
+    "families": [
+     "Kunec",
+     "Hasselmo",
+     "Kopell"
     ]
    },
    "batch": "batch-030"
@@ -6148,7 +6390,14 @@
   "YeoEtal11": {
    "key": "YeoEtal11",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "surname_corroborated",
+     "field": "author",
+     "detail": "surname 'polimieni' -> 'polimeni': released by the DOI record rule, the api.crossref.org record of the kept DOI is the second host ['api.crossref.org', 'eutils.ncbi.nlm.nih.gov']",
+     "action": "applied"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -6260,6 +6509,21 @@
      "Bruce Fischl",
      "Hesheng Liu",
      "Randy L. Buckner"
+    ],
+    "families": [
+     "Thomas Yeo",
+     "Krienen",
+     "Sepulcre",
+     "Sabuncu",
+     "Lashkari",
+     "Hollinshead",
+     "Roffman",
+     "Smoller",
+     "Zöllei",
+     "Polimeni",
+     "Fischl",
+     "Liu",
+     "Buckner"
     ]
    },
    "batch": "batch-030"
@@ -6323,6 +6587,13 @@
      "Ian Dobbins",
      "Michele Lazzara",
      "Robert T. Knight"
+    ],
+    "families": [
+     "Yonelinas",
+     "Kroll",
+     "Dobbins",
+     "Lazzara",
+     "Knight"
     ]
    },
    "batch": "batch-045"
@@ -6385,6 +6656,10 @@
     "authors": [
      "Robert Stewart",
      "Sumithra Velupillai"
+    ],
+    "families": [
+     "Stewart",
+     "Velupillai"
     ]
    },
    "batch": "batch-045"
@@ -6400,10 +6675,10 @@
      "action": "dropped"
     },
     {
-     "code": "surname_single_source",
+     "code": "surname_corroborated",
      "field": "author",
-     "detail": "surname 'beojinga' -> 'boeijinga' rests on 1 source host(s) ['eutils.ncbi.nlm.nih.gov']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'P H Beojinga' is kept",
-     "action": "held"
+     "detail": "surname 'beojinga' -> 'boeijinga': released by the cdl.bib rule, ['eutils.ncbi.nlm.nih.gov'] plus cdl.bib's own spelling for this person in ArnoEtal80 (the cited spelling is in no other entry)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -6411,7 +6686,7 @@
     {
      "field": "author",
      "current": "H Boddeke and R Best and P H Beojinga",
-     "proposed": "H W Boddeke and R Best and P H Beojinga",
+     "proposed": "H W Boddeke and R Best and P H Boeijinga",
      "source": "researcher",
      "evidence": [
       {
@@ -6442,9 +6717,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: P H Beojinga"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "BoddEtal97",
@@ -6465,7 +6738,8 @@
     "volume": "76",
     "issue": "3",
     "type": "journal-article",
-    "authors": []
+    "authors": [],
+    "families": []
    },
    "batch": "batch-045"
   },
@@ -6553,6 +6827,10 @@
     "authors": [
      "A.A. Grace",
      "B.S. Bunney"
+    ],
+    "families": [
+     "Grace",
+     "Bunney"
     ]
    },
    "batch": "batch-045"
@@ -6638,6 +6916,13 @@
      "M.R. VanTieghem",
      "P.J. Whalen",
      "D.J. Bucci"
+    ],
+    "families": [
+     "Hopkins",
+     "Davis",
+     "VanTieghem",
+     "Whalen",
+     "Bucci"
     ]
    },
    "batch": "batch-045"
@@ -6725,6 +7010,13 @@
      "P. Tiihonen",
      "A. Pääkkönen",
      "J. Karhu"
+    ],
+    "families": [
+     "Löfberg",
+     "Julkunen",
+     "Tiihonen",
+     "Pääkkönen",
+     "Karhu"
     ]
    },
    "batch": "batch-045"
@@ -6791,6 +7083,12 @@
      "E.G. Cape",
      "J. Gotman",
      "B.E. Jones"
+    ],
+    "families": [
+     "Maloney",
+     "Cape",
+     "Gotman",
+     "Jones"
     ]
    },
    "batch": "batch-045"
@@ -6880,6 +7178,12 @@
      "Canan Başar-Eroğlu",
      "Sirel Karakaş",
      "Martin Schürmann"
+    ],
+    "families": [
+     "Başar",
+     "Başar-Eroğlu",
+     "Karakaş",
+     "Schürmann"
     ]
    },
    "batch": "batch-045"
@@ -6946,6 +7250,14 @@
      "Yuko Matsumoto",
      "Seigo Toi",
      "Tsutomu Ishihara"
+    ],
+    "families": [
+     "Inouye",
+     "Shinosaki",
+     "Iyama",
+     "Matsumoto",
+     "Toi",
+     "Ishihara"
     ]
    },
    "batch": "batch-045"
@@ -7035,6 +7347,10 @@
     "authors": [
      "F.H. Lopes Da Silva",
      "W. Storm Van Leeuwen"
+    ],
+    "families": [
+     "Lopes Da Silva",
+     "Storm Van Leeuwen"
     ]
    },
    "batch": "batch-045"
@@ -7095,6 +7411,10 @@
     "authors": [
      "W. Skrandies",
      "M.J. Chiu"
+    ],
+    "families": [
+     "Skrandies",
+     "Chiu"
     ]
    },
    "batch": "batch-045"
@@ -7187,6 +7507,18 @@
      "György Rásonyi",
      "József Janszky",
      "Péter Halász"
+    ],
+    "families": [
+     "Clemens",
+     "Borbély",
+     "Weiss",
+     "Erőss",
+     "Szűcs",
+     "Kelemen",
+     "Fabó",
+     "Rásonyi",
+     "Janszky",
+     "Halász"
     ]
    },
    "batch": "batch-045"
@@ -7305,6 +7637,17 @@
      "W.-N Zhang",
      "H.H.J Pothuizen",
      "J Feldon"
+    ],
+    "families": [
+     "Bannerman",
+     "Rawlins",
+     "McHugh",
+     "Deacon",
+     "Yee",
+     "Bast",
+     "Zhang",
+     "Pothuizen",
+     "Feldon"
     ]
    },
    "batch": "batch-045"
@@ -7427,6 +7770,11 @@
      "Christoph S. Herrmann",
      "Ingo Fründ",
      "Daniel Lenz"
+    ],
+    "families": [
+     "Herrmann",
+     "Fründ",
+     "Lenz"
     ]
    },
    "batch": "batch-045"
@@ -7500,6 +7848,11 @@
      "Travis P. Todd",
      "Danielle I. Fournier",
      "David J. Bucci"
+    ],
+    "families": [
+     "Todd",
+     "Fournier",
+     "Bucci"
     ]
    },
    "batch": "batch-045"
@@ -7563,6 +7916,13 @@
      "Michael Shamseldin",
      "Etorre Lettich",
      "George A. Ojemann"
+    ],
+    "families": [
+     "Haglund",
+     "Berger",
+     "Shamseldin",
+     "Lettich",
+     "Ojemann"
     ]
    },
    "batch": "batch-045"
@@ -7648,6 +8008,16 @@
      "John Miller",
      "Daniel W. Moran",
      "Jeff G. Ojemann"
+    ],
+    "families": [
+     "Leuthardt",
+     "Miller",
+     "Anderson",
+     "Schalk",
+     "Dowling",
+     "Miller",
+     "Moran",
+     "Ojemann"
     ]
    },
    "batch": "batch-045"
@@ -7709,6 +8079,11 @@
      "Nir Lipsman",
      "Joseph S. Neimat",
      "Andres M. Lozano"
+    ],
+    "families": [
+     "Lipsman",
+     "Neimat",
+     "Lozano"
     ]
    },
    "batch": "batch-045"
@@ -7798,6 +8173,12 @@
      "Daniel L. Drane",
      "Carl B. Dodrill",
      "George A. Ojemann"
+    ],
+    "families": [
+     "Lucas",
+     "Drane",
+     "Dodrill",
+     "Ojemann"
     ]
    },
    "batch": "batch-045"
@@ -7910,6 +8291,11 @@
      "Joseph R. Madsen",
      "P. David Adelson",
      "Michael M. Haglund"
+    ],
+    "families": [
+     "Madsen",
+     "Adelson",
+     "Haglund"
     ]
    },
    "batch": "batch-045"
@@ -8107,6 +8493,9 @@
     "type": "journal-article",
     "authors": [
      "Linton C. Freeman"
+    ],
+    "families": [
+     "Freeman"
     ]
    },
    "batch": "batch-060"
@@ -8149,6 +8538,10 @@
     "authors": [
      "Steffen Werner",
      "Kristine Schmidt"
+    ],
+    "families": [
+     "Werner",
+     "Schmidt"
     ]
    },
    "batch": "batch-060"
@@ -8212,6 +8605,11 @@
      "Jeanick Brisswalter",
      "Maya Collardeau",
      "Arcelin Ren??"
+    ],
+    "families": [
+     "Brisswalter",
+     "Collardeau",
+     "Ren??"
     ]
    },
    "batch": "batch-060"
@@ -8287,6 +8685,9 @@
     "type": "journal-article",
     "authors": [
      "John S. Raglin"
+    ],
+    "families": [
+     "Raglin"
     ]
    },
    "batch": "batch-060"
@@ -8294,7 +8695,20 @@
   "BenaEtal87": {
    "key": "BenaEtal87",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "surname_corroborated",
+     "field": "author",
+     "detail": "surname 'pollack' -> 'pollak': released by the DOI record rule, the api.crossref.org record of the kept DOI is the second host ['api.crossref.org', 'eutils.ncbi.nlm.nih.gov']",
+     "action": "applied"
+    },
+    {
+     "code": "surname_corroborated",
+     "field": "author",
+     "detail": "surname 'loveau' -> 'louveau': released by the DOI record rule, the api.crossref.org record of the kept DOI is the second host ['api.crossref.org', 'eutils.ncbi.nlm.nih.gov']",
+     "action": "applied"
+    }
+   ],
    "normalisations": [],
    "changes": [
     {
@@ -8402,6 +8816,13 @@
      "A. Louveau",
      "S. Henry",
      "J. de Rougemont"
+    ],
+    "families": [
+     "Benabid",
+     "Pollak",
+     "Louveau",
+     "Henry",
+     "de Rougemont"
     ]
    },
    "batch": "batch-060"
@@ -8475,6 +8896,14 @@
      "Mark A. Granner",
      "Roman Mirsky",
      "P. Charles Garell"
+    ],
+    "families": [
+     "Howard",
+     "Volkov",
+     "Noh",
+     "Granner",
+     "Mirsky",
+     "Garell"
     ]
    },
    "batch": "batch-060"
@@ -8595,6 +9024,22 @@
      "Matthew B. Stern",
      "Gordon H. Baltuch",
      "Gordon H. Baltuch"
+    ],
+    "families": [
+     "Jaggi",
+     "Jaggi",
+     "Umemura",
+     "Umemura",
+     "Hurtig",
+     "Hurtig",
+     "Siderowf",
+     "Siderowf",
+     "Colcher",
+     "Colcher",
+     "Stern",
+     "Stern",
+     "Baltuch",
+     "Baltuch"
     ]
    },
    "batch": "batch-060"
@@ -8677,6 +9122,16 @@
      "Jean-Pierre Michel",
      "Constantin Bouras",
      "Panteleimon Giannakopoulos"
+    ],
+    "families": [
+     "Gold",
+     "Kövari",
+     "Herrmann",
+     "Canuto",
+     "Hof",
+     "Michel",
+     "Bouras",
+     "Giannakopoulos"
     ]
    },
    "batch": "batch-060"
@@ -8875,6 +9330,11 @@
      "A. Saltelli",
      "S. Tarantola",
      "K. P.-S. Chan"
+    ],
+    "families": [
+     "Saltelli",
+     "Tarantola",
+     "Chan"
     ]
    },
    "batch": "batch-060"
@@ -8938,6 +9398,11 @@
      "Shane T. Jensen",
      "Kenneth E. Shirley",
      "Abraham J. Wyner"
+    ],
+    "families": [
+     "Jensen",
+     "Shirley",
+     "Wyner"
     ]
    },
    "batch": "batch-060"
@@ -8985,6 +9450,9 @@
     "type": "journal-article",
     "authors": [
      "Charles E. Antoniak"
+    ],
+    "families": [
+     "Antoniak"
     ]
    },
    "batch": "batch-060"
@@ -9034,6 +9502,11 @@
      "Björn Böttcher",
      "Martin Keller-Ressel",
      "René L. Schilling"
+    ],
+    "families": [
+     "Böttcher",
+     "Keller-Ressel",
+     "Schilling"
     ]
    },
    "batch": "batch-060"
@@ -9149,6 +9622,10 @@
     "authors": [
      "Meir Hemmo",
      "Orly Shenker"
+    ],
+    "families": [
+     "Hemmo",
+     "Shenker"
     ]
    },
    "batch": "batch-060"
@@ -9191,6 +9668,10 @@
     "authors": [
      "DAVID H DOUGLAS",
      "THOMAS K PEUCKER"
+    ],
+    "families": [
+     "DOUGLAS",
+     "PEUCKER"
     ]
    },
    "batch": "batch-060"
@@ -9361,6 +9842,11 @@
      "Baayen, R H.",
      "Piepenbrock, R",
      "Gulikers, L"
+    ],
+    "families": [
+     "Baayen",
+     "Piepenbrock",
+     "Gulikers"
     ],
     "issued_year": "1995",
     "type": "Dataset"
@@ -10179,7 +10665,8 @@
     "volume": null,
     "issue": null,
     "type": "reference-entry",
-    "authors": []
+    "authors": [],
+    "families": []
    },
    "batch": "batch-082"
   },
@@ -10999,6 +11486,10 @@
     "authors": [
      "Michael J. Gilewski",
      "Elizabeth M. Zelinski"
+    ],
+    "families": [
+     "Gilewski",
+     "Zelinski"
     ]
    },
    "batch": "batch-082"
@@ -11179,6 +11670,10 @@
     "authors": [
      "Charles R. Gerfen",
      "Charles J. Wilson"
+    ],
+    "families": [
+     "Gerfen",
+     "Wilson"
     ]
    },
    "batch": "batch-082"
@@ -11321,6 +11816,9 @@
     "type": "book-chapter",
     "authors": [
      "Michael Friendly"
+    ],
+    "families": [
+     "Friendly"
     ]
    },
    "batch": "batch-082"
@@ -11404,6 +11902,12 @@
      "Bing Jing",
      "Kelly M. Addis",
      "Michael J. Kahana"
+    ],
+    "families": [
+     "Howard",
+     "Jing",
+     "Addis",
+     "Kahana"
     ]
    },
    "batch": "batch-082"
@@ -11460,6 +11964,11 @@
      "M. Karl Healey",
      "Karen L. Campbell",
      "Lynn Hasher"
+    ],
+    "families": [
+     "Healey",
+     "Campbell",
+     "Hasher"
     ]
    },
    "batch": "batch-086"
@@ -11682,6 +12191,15 @@
      "Christian Degueldre",
      "A. Luxen",
      "G. Franck"
+    ],
+    "families": [
+     "De Linden",
+     "Collette",
+     "Salmon",
+     "Delfiore",
+     "Degueldre",
+     "Luxen",
+     "Franck"
     ]
    },
    "batch": "batch-086"
@@ -11862,6 +12380,9 @@
     "type": "book-chapter",
     "authors": [
      "Leo Postman"
+    ],
+    "families": [
+     "Postman"
     ]
    },
    "batch": "batch-086"
@@ -12369,6 +12890,9 @@
     "type": "book-chapter",
     "authors": [
      "David Bordwell"
+    ],
+    "families": [
+     "Bordwell"
     ]
    },
    "batch": "batch-086"
@@ -12542,6 +13066,11 @@
      "Philipp Kanske",
      "Anne Böckler",
      "Tania Singer"
+    ],
+    "families": [
+     "Kanske",
+     "Böckler",
+     "Singer"
     ]
    },
    "batch": "batch-086"
@@ -12613,6 +13142,9 @@
     "type": "book-chapter",
     "authors": [
      "Timothy P. McNamara"
+    ],
+    "families": [
+     "McNamara"
     ]
    },
    "batch": "batch-086"
@@ -12685,6 +13217,10 @@
     "authors": [
      "Glenn Gunzelmann",
      "Don R. Lyon"
+    ],
+    "families": [
+     "Gunzelmann",
+     "Lyon"
     ]
    },
    "batch": "batch-086"
@@ -12692,20 +13228,7 @@
   "Mont98": {
    "key": "Mont98",
    "verdict": "correction",
-   "flags": [
-    {
-     "code": "quote_check_failed",
-     "field": "publisher",
-     "detail": "validator: publisher not covered by its quotes (missing ['press']; failures [])",
-     "action": "held"
-    },
-    {
-     "code": "quote_check_failed",
-     "field": "address",
-     "detail": "validator: address not covered by its quotes (missing ['new']; failures [])",
-     "action": "held"
-    }
-   ],
+   "flags": [],
    "normalisations": [],
    "changes": [
     {
@@ -12722,10 +13245,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "publisher": "quote check failed",
-    "address": "quote check failed"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Mont98",
@@ -12748,6 +13268,9 @@
     "type": "book-chapter",
     "authors": [
      "Daniel R Montello"
+    ],
+    "families": [
+     "Montello"
     ]
    },
    "batch": "batch-086"
@@ -12772,6 +13295,12 @@
     "ra": "DataCite",
     "title": "ContextLab/efficient-learning-khan: v1.0.0",
     "authors": [
+     "Paxton Fitzpatrick",
+     "Max Bluestone",
+     "Jeremy R. Manning",
+     "Will Baxley"
+    ],
+    "families": [
      "Paxton Fitzpatrick",
      "Max Bluestone",
      "Jeremy R. Manning",
@@ -12903,6 +13432,12 @@
      "Hemu",
      "Halchenko, Yaroslav",
      "Kording, Konrad"
+    ],
+    "families": [
+     "Manning",
+     "Hemu",
+     "Halchenko",
+     "Kording"
     ],
     "issued_year": "2023",
     "type": "Software"
@@ -13529,6 +14064,10 @@
     "authors": [
      "Tianxing Li",
      "Xia Zhou"
+    ],
+    "families": [
+     "Li",
+     "Zhou"
     ]
    },
    "batch": "batch-095"
@@ -13681,6 +14220,13 @@
      "Ruchir A. Patel",
      "Xing-Dong Yang",
      "Xia Zhou"
+    ],
+    "families": [
+     "Li",
+     "Li",
+     "Patel",
+     "Yang",
+     "Zhou"
     ]
    },
    "batch": "batch-095"
@@ -13800,6 +14346,16 @@
      "Kate Ching-Ju Lin",
      "Changxi Zheng",
      "Xia Zhou"
+    ],
+    "families": [
+     "Tian",
+     "Wei",
+     "Xiong",
+     "Chang",
+     "Tsai",
+     "Lin",
+     "Zheng",
+     "Zhou"
     ]
    },
    "batch": "batch-095"
@@ -13861,6 +14417,9 @@
     "type": "proceedings-article",
     "authors": [
      "Wes McKinney"
+    ],
+    "families": [
+     "McKinney"
     ]
    },
    "batch": "batch-095"
@@ -13966,6 +14525,12 @@
      "Varun Manjunatha",
      "Jordan Boyd-Graber",
      "Hal Daumé III"
+    ],
+    "families": [
+     "Iyyer",
+     "Manjunatha",
+     "Boyd-Graber",
+     "Daumé III"
     ]
    },
    "batch": "batch-095"
@@ -14082,6 +14647,12 @@
      "Alexandrin Popescul",
      "Lyle H. Ungar",
      "David M. Pennock"
+    ],
+    "families": [
+     "Schein",
+     "Popescul",
+     "Ungar",
+     "Pennock"
     ]
    },
    "batch": "batch-095"
@@ -14444,6 +15015,12 @@
      "Vicky Zayats",
      "Daniel Walker",
      "Dirk Padfield"
+    ],
+    "families": [
+     "Chen",
+     "Zayats",
+     "Walker",
+     "Padfield"
     ]
    },
    "batch": "batch-095"
@@ -14506,6 +15083,10 @@
     "authors": [
      "John Hewitt",
      "Christopher D. Manning"
+    ],
+    "families": [
+     "Hewitt",
+     "Manning"
     ]
    },
    "batch": "batch-095"
@@ -14554,6 +15135,10 @@
     "authors": [
      "Andrew Heusser",
      "Jeremy Manning"
+    ],
+    "families": [
+     "Heusser",
+     "Manning"
     ]
    },
    "batch": "batch-095"
@@ -14628,6 +15213,9 @@
     "type": "proceedings-article",
     "authors": [
      "Kawin Ethayarajh"
+    ],
+    "families": [
+     "Ethayarajh"
     ]
    },
    "batch": "batch-095"
@@ -14704,6 +15292,11 @@
      "Jeffrey Pennington",
      "Richard Socher",
      "Christopher Manning"
+    ],
+    "families": [
+     "Pennington",
+     "Socher",
+     "Manning"
     ]
    },
    "batch": "batch-095"
@@ -14787,6 +15380,9 @@
     "type": "proceedings-article",
     "authors": [
      "Michael Kipp"
+    ],
+    "families": [
+     "Kipp"
     ]
    },
    "batch": "batch-095"
@@ -14808,9 +15404,7 @@
    "unverified_suggestions",
    "needs_user:verdict"
   ],
-  "LongKaha14": [
-   "quote_check_failed:booktitle"
-  ],
+  "LongKaha14": [],
   "McGa89": [],
   "MerzEtal12": [
    "needs_user:verdict"
@@ -14906,12 +15500,14 @@
   "EskaEtal92": [],
   "GreeArdu54": [],
   "KuneEtal05": [],
-  "YeoEtal11": [],
+  "YeoEtal11": [
+   "surname_corroborated:author"
+  ],
   "YoneEtal98": [],
   "StewVelu21": [],
   "BoddEtal97": [
    "doi_title_mismatch:doi",
-   "surname_single_source:author"
+   "surname_corroborated:author"
   ],
   "GracBunn83": [],
   "HopkEtal12": [],
@@ -14959,7 +15555,10 @@
   ],
   "BrisEtal02": [],
   "Ragl90": [],
-  "BenaEtal87": [],
+  "BenaEtal87": [
+   "surname_corroborated:author",
+   "surname_corroborated:author"
+  ],
   "HowaEtal97": [
    "doi_record_conflict:year"
   ],
@@ -15170,10 +15769,7 @@
   ],
   "McNa03": [],
   "GunzLyon07": [],
-  "Mont98": [
-   "quote_check_failed:publisher",
-   "quote_check_failed:address"
-  ],
+  "Mont98": [],
   "FitzEtal25": [],
   "Depo18": [],
   "Eust19": [],
