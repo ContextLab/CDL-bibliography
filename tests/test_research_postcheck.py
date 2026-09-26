@@ -1576,8 +1576,10 @@ def test_country_only_address_is_left_out(bib):
     row["fields"]["address"] = {"status": "corrected", "value": "Leipzig",
                                 "evidence": [{"url": "https://example.org", "quote": "Leipzig"}]}
     assert checkw(bib, "8", "Ripl81", row=row)["final_entry"]["address"] == "Leipzig"
+    # the formatter never adds a country (user, 2026-09-26; e920c54): a quote that prints
+    # 'Leipzig, Germany' leaves the researcher's 'Leipzig' as it is
     row["fields"]["address"]["evidence"][0]["quote"] = "Leipzig, Germany"
-    assert checkw(bib, "8", "Ripl81", row=row)["final_entry"]["address"] == "Leipzig, Germany"
+    assert checkw(bib, "8", "Ripl81", row=row)["final_entry"]["address"] == "Leipzig"
 
 
 # --- rule 3: per-entry decisions (crosswave/applied-decisions.json), source 'user'
