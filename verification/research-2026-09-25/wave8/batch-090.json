@@ -1,0 +1,1724 @@
+[
+ {
+  "key": "NybeCabe00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
+   "quote": "\"title\":[\"Brain Imaging of Memory\"],\"prefix\":\"10.1093\",\"author\":[{\"given\":\"Lars\",\"family\":\"Nyberg\"",
+   "why": "Crossref chapter record: Brain Imaging of Memory by L Nyberg and R Cabeza in The Oxford Handbook of Memory (OUP, 2000); LoC TOC lists \"31. Brain Imaging of Memory, Lars Nyberg and Roberto Cabeza\"."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L Nyberg and R Cabeza",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
+      "quote": "\"given\":\"Lars\",\"family\":\"Nyberg\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
+      "quote": "\"given\":\"Roberto\",\"family\":\"Cabeza\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Brain imaging of memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
+      "quote": "\"title\":[\"Brain Imaging of Memory\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "The {Oxford} Handbook of Memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
+      "quote": "\"container-title\":[\"The Oxford Handbook of Memory\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "E Tulving and F I M Craik",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.001.0001",
+      "quote": "\"editor\":[{\"given\":\"Endel\",\"family\":\"Tulving\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.001.0001",
+      "quote": "\"given\":\"Fergus I M\",\"family\":\"Craik\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "501--520",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
+      "quote": "\"page\":\"501-520\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{Oxford} {University} Press",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
+      "quote": "\"publisher\":\"Oxford University PressNew York, NY\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
+      "quote": "\"published-print\":{\"date-parts\":[[2000,5,4]]}"
+     },
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D99027533",
+      "quote": "<subfield code=\"c\">2000.</subfield>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/oso/9780195122657.003.0031",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0031",
+      "quote": "\"DOI\":\"10.1093\\/oso\\/9780195122657.003.0031\""
+     }
+    ]
+   }
+  },
+  "notes": "Editor was written \"Tulving E\" (surname/initial swapped); fixed to house form. Booktitle gains \"The\" as in Kaha00/MitcJohn00. Pages: Crossref (publisher deposit) gives 501-520; the next chapter (Rugg & Allan, .003.0032) starts at 521, so 519 in the citation is likely off by one. Only one source for the end page. No duplicate of this chapter elsewhere in cdl.bib."
+ },
+ {
+  "key": "Rugg00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+   "quote": "\"title\":[\"Event-Related Potential Studies of Memory\"],\"prefix\":\"10.1093\",\"author\":[{\"given\":\"Michael D\",\"family\":\"Rugg\"",
+   "why": "Crossref chapter record: Event-Related Potential Studies of Memory, M D Rugg and K Allan, The Oxford Handbook of Memory (OUP, 2000), pp. 521-538."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M D Rugg and K Allan",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"given\":\"Michael D\",\"family\":\"Rugg\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"given\":\"Kevin\",\"family\":\"Allan\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Event-related potential studies of memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"title\":[\"Event-Related Potential Studies of Memory\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "The {Oxford} Handbook of Memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"container-title\":[\"The Oxford Handbook of Memory\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "E Tulving and F I M Craik",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.001.0001",
+      "quote": "\"editor\":[{\"given\":\"Endel\",\"family\":\"Tulving\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.001.0001",
+      "quote": "\"given\":\"Fergus I M\",\"family\":\"Craik\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "521--538",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"page\":\"521-538\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{Oxford} {University} Press",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"publisher\":\"Oxford University PressNew York, NY\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"publisher\":\"Oxford University PressNew York, NY\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"published-print\":{\"date-parts\":[[2000,5,4]]}"
+     },
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D99027533",
+      "quote": "<subfield code=\"c\">2000.</subfield>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/oso/9780195122657.003.0032",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"DOI\":\"10.1093\\/oso\\/9780195122657.003.0032\""
+     }
+    ]
+   }
+  },
+  "notes": "DUPLICATE of RuggAlla00: same chapter (same title, editors, book, pages 521--537 in both). Adding the missing second author (K Allan) changes the author count, so the key would become RuggAlla00, which already exists for this same work: duplicate of RuggAlla00. Recommend removing Rugg00 and citing RuggAlla00 (log Rugg00 -> RuggAlla00 in key-renames). Pages: Crossref gives 521-538; next chapter (.003.0033) starts at 539."
+ },
+ {
+  "key": "RuggAlla00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+   "quote": "\"title\":[\"Event-Related Potential Studies of Memory\"],\"prefix\":\"10.1093\",\"author\":[{\"given\":\"Michael D\",\"family\":\"Rugg\"",
+   "why": "Crossref chapter record: Event-Related Potential Studies of Memory, M D Rugg and K Allan, The Oxford Handbook of Memory (OUP, 2000), pp. 521-538."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M D Rugg and K Allan",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"given\":\"Michael D\",\"family\":\"Rugg\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"given\":\"Kevin\",\"family\":\"Allan\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Event-related potential studies of memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"title\":[\"Event-Related Potential Studies of Memory\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "The {Oxford} Handbook of Memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"container-title\":[\"The Oxford Handbook of Memory\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "E Tulving and F I M Craik",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.001.0001",
+      "quote": "\"editor\":[{\"given\":\"Endel\",\"family\":\"Tulving\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.001.0001",
+      "quote": "\"given\":\"Fergus I M\",\"family\":\"Craik\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "521--538",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"page\":\"521-538\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{Oxford} {University} Press",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"publisher\":\"Oxford University PressNew York, NY\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Oxford, {UK}",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D99027533",
+      "quote": "<subfield code=\"a\">Oxford ;</subfield>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"published-print\":{\"date-parts\":[[2000,5,4]]}"
+     },
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D99027533",
+      "quote": "<subfield code=\"c\">2000.</subfield>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/oso/9780195122657.003.0032",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/oso/9780195122657.003.0032",
+      "quote": "\"DOI\":\"10.1093\\/oso\\/9780195122657.003.0032\""
+     }
+    ]
+   }
+  },
+  "notes": "Rugg00 is a duplicate of this entry (same chapter, missing K Allan). Address: LoC imprint is \"Oxford ; New York\", Crossref gives New York, NY; both places are on the imprint, cited Oxford, {UK} kept (other chapters of this book in cdl.bib use New York, {NY}; reviewer may unify). Pages: Crossref 521-538 vs cited 521--537; next chapter starts at 539; single source for end page."
+ },
+ {
+  "key": "BravEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0004",
+   "quote": "\"title\":[\"Explaining the Many Varieties of Working Memory Variation: Dual Mechanisms of Cognitive Control\"]",
+   "why": "Crossref chapter record (Braver, Gray, Burgess; Variation in Working Memory, OUP, pp. 76-106); LoC TOC lists it as chapter 4 of the 2007 book."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "Variation in Working Memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0004",
+      "quote": "\"container-title\":[\"Variation in Working Memory\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "A R A Conway and C Jarrold and M J Kane and A Miyake and J N Towse",
+    "evidence": [
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0611/2006009858.html",
+      "quote": "Conway, Andrew R. A."
+     },
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0611/2006009858.html",
+      "quote": "Jarrold, Chris"
+     },
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0611/2006009858.html",
+      "quote": "Kane, Michael J."
+     },
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0611/2006009858.html",
+      "quote": "Miyake, A."
+     },
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0611/2006009858.html",
+      "quote": "Towse, John N."
+     },
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2006009858",
+      "quote": "edited by Andrew R.A. Conway ... [et al.]."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{Oxford} {University} Press",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2006009858",
+      "quote": "<subfield code=\"b\">Oxford University Press,</subfield>"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0004",
+      "quote": "\"publisher\":\"Oxford University PressNew York\""
+     },
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2006009858",
+      "quote": "<subfield code=\"a\">New York :</subfield>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2006009858",
+      "quote": "<subfield code=\"c\">2007.</subfield>"
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0004",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T S Braver and J R Gray and G C Burgess",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0004",
+      "quote": "\"given\":\"Todd S.\",\"family\":\"Braver\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0004",
+      "quote": "\"given\":\"Jeremy R.\",\"family\":\"Gray\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0004",
+      "quote": "\"given\":\"Gregory C.\",\"family\":\"Burgess\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Explaining the many varieties of working memory variation: dual mechanisms of cognitive control",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0004",
+      "quote": "\"title\":[\"Explaining the Many Varieties of Working Memory Variation: Dual Mechanisms of Cognitive Control\"]"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "76--106",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0004",
+      "quote": "\"page\":\"76-106\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/acprof:oso/9780195168648.003.0004",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0004",
+      "quote": "\"DOI\":\"10.1093\\/acprof:oso\\/9780195168648.003.0004\""
+     }
+    ]
+   }
+  },
+  "remove": [
+   "chapter"
+  ],
+  "notes": "Titled chapter in an edited book: @inbook -> @incollection per the user rule; chapter title moves to title, book title to booktitle, drop the chapter field. Editors gain the middle initials the LoC TOC gives (A R A Conway, M J Kane, J N Towse). Year: LoC print record says 2007; Crossref 2008-03-13 is the OSO online date (print year wins). Address added from imprint (as in the sibling Hasher-Lustig-Zacks chapter entry, which uses New York, {NY})."
+ },
+ {
+  "key": "KaneEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+   "quote": "\"title\":[\"Variation in Working Memory Capacity as Variation in Executive Attention and Control\"]",
+   "why": "Crossref chapter record (Kane, Conway, Hambrick, Engle; Variation in Working Memory, OUP, pp. 21-48); LoC TOC lists it as chapter 2 of the 2007 book."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "Variation in Working Memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+      "quote": "\"container-title\":[\"Variation in Working Memory\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "A R A Conway and C Jarrold and M J Kane and A Miyake and J N Towse",
+    "evidence": [
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0611/2006009858.html",
+      "quote": "Conway, Andrew R. A."
+     },
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0611/2006009858.html",
+      "quote": "Jarrold, Chris"
+     },
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0611/2006009858.html",
+      "quote": "Kane, Michael J."
+     },
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0611/2006009858.html",
+      "quote": "Miyake, A."
+     },
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0611/2006009858.html",
+      "quote": "Towse, John N."
+     },
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2006009858",
+      "quote": "edited by Andrew R.A. Conway ... [et al.]."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{Oxford} {University} Press",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2006009858",
+      "quote": "<subfield code=\"b\">Oxford University Press,</subfield>"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+      "quote": "\"publisher\":\"Oxford University PressNew York\""
+     },
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2006009858",
+      "quote": "<subfield code=\"a\">New York :</subfield>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2006009858",
+      "quote": "<subfield code=\"c\">2007.</subfield>"
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M J Kane and A R A Conway and D Z Hambrick and R W Engle",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+      "quote": "\"given\":\"Michael J.\",\"family\":\"Kane\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+      "quote": "\"given\":\"Andrew R. A.\",\"family\":\"Conway\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+      "quote": "\"given\":\"David Z.\",\"family\":\"Hambrick\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+      "quote": "\"given\":\"Randall W.\",\"family\":\"Engle\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Variation in working memory capacity as variation in executive attention and control",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+      "quote": "\"title\":[\"Variation in Working Memory Capacity as Variation in Executive Attention and Control\"]"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "21--48",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+      "quote": "\"page\":\"21-48\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/acprof:oso/9780195168648.003.0002",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0002",
+      "quote": "\"DOI\":\"10.1093\\/acprof:oso\\/9780195168648.003.0002\""
+     }
+    ]
+   }
+  },
+  "remove": [
+   "chapter"
+  ],
+  "notes": "Chapter title was missing \"capacity\" and had a trailing period (LoC TOC: \"Variation in working-memory capacity as variation in executive attention and control\"). @inbook -> @incollection; drop chapter field. Editor J Towse -> J N Towse (only change to editors). Year 2007 per LoC print record (Crossref 2008 is the online date)."
+ },
+ {
+  "key": "TulvRose06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://catdir.loc.gov/catdir/toc/ecip0513/2005015500.html",
+   "quote": "18. What Do Explanations of the Distinctiveness Effect Need to Explain?",
+   "why": "LoC TOC of Distinctiveness and Memory (Hunt & Worthen, OUP 2006) lists chapter 18 by Endel Tulving and R. Shayna Rosenbaum; Crossref chapter DOI matches."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "E Tulving and R S Rosenbaum",
+    "evidence": [
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0513/2005015500.html",
+      "quote": "Endel Tulving and R. Shayna Rosenbaum"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195169669.003.0018",
+      "quote": "\"given\":\"Endel\",\"family\":\"Tulving\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "What do explanations of the distinctiveness effect need to explain?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195169669.003.0018",
+      "quote": "\"title\":[\"What Do Explanations of the Distinctiveness Effect Need to Explain?\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Distinctiveness and Memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195169669.003.0018",
+      "quote": "\"container-title\":[\"Distinctiveness and Memory\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "R R Hunt and J B Worthen",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2005015500",
+      "quote": "edited by R. Reed Hunt, James B. Worthen."
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "406--423",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195169669.003.0018",
+      "quote": "\"page\":\"406-423\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{Oxford} {University} Press",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195169669.003.0018",
+      "quote": "\"publisher\":\"Oxford University Press\""
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2005015500",
+      "quote": "<subfield code=\"a\">New York :</subfield>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2005015500",
+      "quote": "<subfield code=\"c\">2006.</subfield>"
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195169669.003.0018",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/acprof:oso/9780195169669.003.0018",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195169669.003.0018",
+      "quote": "\"DOI\":\"10.1093\\/acprof:oso\\/9780195169669.003.0018\""
+     }
+    ]
+   }
+  },
+  "remove": [
+   "chapter"
+  ],
+  "notes": "Second author: printed \"R. Shayna Rosenbaum\" = given names R + Shayna, surname Rosenbaum (Crossref wrongly files \"Shayna Rosenbaum\" as the family name); house form R S Rosenbaum (cdl.bib already has R S Rosenbaum elsewhere; MoscEtal05 writes \"R Shayna Rosenbaum\"). @inbook -> @incollection, drop chapter. Pages: Crossref 406-423 vs cited 407--423; previous chapter ends at 404 (Crossref .003.0017), single source for the start page."
+ },
+ {
+  "key": "HallGree08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+   "quote": "\"title\":[\"Conceptual Learning\"]",
+   "why": "Crossref SAGE Reference chapter record: Conceptual Learning by Rogers Hall and James G. Greeno in 21st Century Education: A Reference Handbook (2008), vol. I pp. 212-224; LoC TOC lists chapter 23 by the same authors."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "R Hall and J G Greeno",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+      "quote": "\"given\":\"Rogers\",\"family\":\"Hall\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+      "quote": "\"given\":\"James G.\",\"family\":\"Greeno\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Conceptual learning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+      "quote": "\"title\":[\"Conceptual Learning\"]"
+     },
+     {
+      "url": "https://catdir.loc.gov/catdir/toc/ecip0818/2008020266.html",
+      "quote": "23. Conceptual Learning"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "21\\textsuperscript{st} Century Education: A Reference Handbook",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+      "quote": "\"container-title\":[\"21st Century Education: A Reference Handbook\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "T L Good",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2008020266",
+      "quote": "edited by Thomas L. Good."
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+      "quote": "\"page\":\"I-212-I-224\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "212--224",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+      "quote": "\"page\":\"I-212-I-224\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{SAGE} Publications",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2008020266",
+      "quote": "<subfield code=\"b\">SAGE Publications,</subfield>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2008020266",
+      "quote": "<subfield code=\"c\">c2008.</subfield>"
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.4135/9781412964012.n23",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+      "quote": "\"DOI\":\"10.4135\\/9781412964012.n23\""
+     }
+    ]
+   }
+  },
+  "remove": [
+   "chapter"
+  ],
+  "notes": "@inbook -> @incollection (chapter title to title, book title to booktitle, drop chapter). The chapter is in volume I of the 2-volume set (Crossref pages I-212-I-224); cited end page 221 corrected to 224 (single source). Address (Los Angeles, {CA}, LoC) could be added; not proposed."
+ },
+ {
+  "key": "SnijBosk12",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
+   "quote": "<subfield code=\"c\">Tom A.B. Snijders, Roel J. Bosker.</subfield>",
+   "why": "LoC record of Multilevel analysis, 2nd ed. (Sage, c2012) by Snijders and Bosker; the authors' book site TOC lists the chapter \"Testing and Model Specification\"."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "T A B Snijders and R J Bosker",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
+      "quote": "<subfield code=\"c\">Tom A.B. Snijders, Roel J. Bosker.</subfield>"
+     }
+    ]
+   },
+   "chapter": {
+    "status": "confirmed",
+    "value": "Testing and model specification",
+    "evidence": [
+     {
+      "url": "https://www.stats.ox.ac.uk/~snijders/SnBos_contents.html",
+      "quote": "Testing and Model Specification"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Multilevel analysis: an introduction to basic and advanced multilevel modeling",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
+      "quote": "<subfield code=\"a\">Multilevel analysis :</subfield>"
+     },
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
+      "quote": "<subfield code=\"b\">an introduction to basic and advanced multilevel modeling /</subfield>"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "2\\textsuperscript{nd}",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
+      "quote": "<subfield code=\"a\">2nd ed.</subfield>"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{SAGE} Publications",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
+      "quote": "<subfield code=\"b\">Sage,</subfield>"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Los Angeles, {CA}",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
+      "quote": "<subfield code=\"a\">Los Angeles :</subfield>"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
+      "quote": "<subfield code=\"c\">c2012.</subfield>"
+     },
+     {
+      "url": "https://www.stats.ox.ac.uk/~snijders/mlbook.htm",
+      "quote": "The official publication year, however, is 2012."
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Authored monograph, so @inbook with chapter is kept (not an edited collection). The \", 2nd edition\" suffix moves out of the title into edition = 2\\textsuperscript{nd}. Chapter is chapter 6 (the authors' TOC page misnumbers it \"5.\"). Page range of the chapter not found in a scriptable source; entry has no pages, none proposed. Publisher kept in house form ({SAGE} Publications; LoC \"Sage\"). Address added from LoC imprint (optional)."
+ },
+ {
+  "key": "BenaEtal04",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=10&recordSchema=marcxml&query=dc.title%3D%22youmans%20neurological%20surgery%22",
+   "quote": "Youmans neurological surgery /",
+   "why": "Only the host book is identified: LoC record of Youmans Neurological Surgery, 5th ed., ed. H. Richard Winn (W.B. Saunders, Philadelphia, c2004), 4 v., v. 3 = functional neurosurgery. The chapter itself (title, 13 authors, pages 2803-2827) was not found in any scriptable source."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "corrected",
+    "value": "{Youmans} Neurological Surgery",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=10&recordSchema=marcxml&query=dc.title%3D%22youmans%20neurological%20surgery%22",
+      "quote": "Youmans neurological surgery /"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "5\\textsuperscript{th}",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=10&recordSchema=marcxml&query=dc.title%3D%22youmans%20neurological%20surgery%22",
+      "quote": "5th ed."
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "H R Winn",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=10&recordSchema=marcxml&query=dc.title%3D%22youmans%20neurological%20surgery%22",
+      "quote": "[edited by] H. Richard Winn."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Saunders",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=10&recordSchema=marcxml&query=dc.title%3D%22youmans%20neurological%20surgery%22",
+      "quote": "W.B. Saunders,"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Philadelphia, {PA}",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=10&recordSchema=marcxml&query=dc.title%3D%22youmans%20neurological%20surgery%22",
+      "quote": "Philadelphia, Pa. :"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2004",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=10&recordSchema=marcxml&query=dc.title%3D%22youmans%20neurological%20surgery%22",
+      "quote": "c2004."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=10&recordSchema=marcxml&query=dc.title%3D%22youmans%20neurological%20surgery%22",
+      "quote": "v. 3. Functional neurosurgery"
+     }
+    ]
+   },
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Booktitle is wrong in cdl.bib: \"Youman's Neurosurgical Surgery\" should be \"Youmans Neurological Surgery\" (5th ed., 2004); add edition. Chapter-level fields (title, author list, pages) unverified: no Crossref/PubMed record for 5th-edition chapters, OUP/Elsevier pages not scriptable, local PDF library has no copy. Author \"P Pollack\" is probably Pierre Pollak (cdl.bib has both spellings), not changed without a source. Needs a TOC of v.3 or the chapter PDF."
+ },
+ {
+  "key": "AdamEtal10",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.2172/991842",
+   "quote": "\"title\":[\"DAKOTA : a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis. Version 5.0, user's manual.\"]",
+   "why": "Sandia 2010 report series (OSTI/Crossref) with this exact title and the same nine authors; but three 2010 manuals share the title (user's SAND2010-2183, reference SAND2010-2184, developers SAND2010-2185) and the cited author order matches none of their printed bylines."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{DAKOTA}: a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2172/991842",
+      "quote": "\"title\":[\"DAKOTA : a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis. Version 5.0, user's manual.\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2172/991842",
+      "quote": "\"issued\":{\"date-parts\":[[2010,5,1]]}"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Livermore, {CA}",
+    "evidence": [
+     {
+      "url": "https://www.osti.gov/servlets/purl/991842",
+      "quote": "Albuquerque, New Mexico 87185 and Livermore, California 94550"
+     }
+    ]
+   }
+  },
+  "notes": "Candidate: DAKOTA Version 5.0 User's Manual, SAND2010-2183, Sandia National Laboratories, doi 10.2172/991842 (printed byline: \"Brian M. Adams, William J. Bohnhoff, Keith R. Dalbey, John P. Eddy, Michael S. Eldred, David M. Gay, Karen Haskell, Patricia D. Hough, Laura P. Swiler\"). The cited order (Adams, Dalbey, Eldred, Gay, Swiler, Bohnhoff, Eddy, Haskell, Hough) matches no 2010 OSTI record; it may come from the Version 5.1 manual (Dec 2010), not on OSTI. Either way the first author's middle initial is M, not A (\"B A Adams\" -> \"B M Adams\"). Entry also lacks institution (Sandia National Laboratories) and number. Needs a decision on which manual/version is cited."
+ },
+ {
+  "key": "Alva02",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://web.archive.org/web/20040518230226/http://www.cs.bc.edu:80/~alvarez/publications.html",
+   "quote": "Technical Report BC-CS-2002-01, Computer Science Department,",
+   "why": "Author's archived publication list (Boston College CS) lists this exact title as Technical Report BC-CS-2002-01, June 2002; the archived PDF carries the same title and author."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S A Alvarez",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20040622162102/http://www.cs.bc.edu:80/~alvarez/APR/aprformula.pdf",
+      "quote": "Sergio A. Alvarez"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "An exact analytical relation among recall, precision, and classification accuracy in information retrieval",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20040622162102/http://www.cs.bc.edu:80/~alvarez/APR/aprformula.pdf",
+      "quote": "An exact analytical relation among recall, precision,"
+     },
+     {
+      "url": "http://web.archive.org/web/20040622162102/http://www.cs.bc.edu:80/~alvarez/APR/aprformula.pdf",
+      "quote": "and classification accuracy in information retrieval"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "BC-CS-2002-01",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20040518230226/http://www.cs.bc.edu:80/~alvarez/publications.html",
+      "quote": "Technical Report BC-CS-2002-01, Computer Science Department,"
+     }
+    ]
+   },
+   "institution": {
+    "status": "confirmed",
+    "value": "Boston College",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20040518230226/http://www.cs.bc.edu:80/~alvarez/publications.html",
+      "quote": "Boston College, June 2002"
+     }
+    ]
+   },
+   "type": {
+    "status": "confirmed",
+    "value": "Technical Report",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20040518230226/http://www.cs.bc.edu:80/~alvarez/publications.html",
+      "quote": "Technical Report BC-CS-2002-01, Computer Science Department,"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20040518230226/http://www.cs.bc.edu:80/~alvarez/publications.html",
+      "quote": "Boston College, June 2002"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Report number printed as BC-CS-2002-01 (cited BCCS-02-01). Pages 1--22 not quoted: the archived PDF has 22 pages (pdfinfo; last page number 22) but no quotable page-range string; left unchanged. Live cs.bc.edu URLs now 404; Wayback copies used."
+ },
+ {
+  "key": "Amer23c",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://aasm.org/wp-content/uploads/2023/05/Summary-of-Updates-Scoring-Manual-v3.pdf",
+   "quote": "Summary of Updates in Version 3 | February 2023",
+   "why": "The cited URL resolves to the AASM PDF \"The AASM Manual for the Scoring of Sleep and Associated Events, Summary of Updates in Version 3, February 2023\"."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "The {AASM} manual for the scoring of sleep and associated events: summary of updates in version 3",
+    "evidence": [
+     {
+      "url": "https://aasm.org/wp-content/uploads/2023/05/Summary-of-Updates-Scoring-Manual-v3.pdf",
+      "quote": "The AASM Manual for the Scoring of Sleep and Associated Events"
+     },
+     {
+      "url": "https://aasm.org/wp-content/uploads/2023/05/Summary-of-Updates-Scoring-Manual-v3.pdf",
+      "quote": "Summary of Updates in Version 3 | February 2023"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "{American Academy of Sleep Medicine}",
+    "evidence": [
+     {
+      "url": "https://aasm.org/wp-content/uploads/2023/05/Summary-of-Updates-Scoring-Manual-v3.pdf",
+      "quote": "The American Academy of Sleep Medicine (AASM) is committed to ensuring"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2023",
+    "evidence": [
+     {
+      "url": "https://aasm.org/wp-content/uploads/2023/05/Summary-of-Updates-Scoring-Manual-v3.pdf",
+      "quote": "Summary of Updates in Version 3 | February 2023"
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "confirmed",
+    "value": "\\url{https://aasm.org/wp-content/uploads/2023/05/Summary-of-Updates-Scoring-Manual-v3.pdf}",
+    "evidence": [
+     {
+      "url": "https://aasm.org/wp-content/uploads/2023/05/Summary-of-Updates-Scoring-Manual-v3.pdf",
+      "quote": "Summary of Updates in Version 3 | February 2023"
+     }
+    ]
+   }
+  },
+  "notes": "Title rewritten to the printed wording (\"Summary of Updates in Version 3\") instead of the paraphrase \"(version 3) --- summary of updates\". Distinct work from Amer23a/Amer23b (the manual itself). Live URL returns the PDF (checked 2026-09-26)."
+ },
+ {
+  "key": "Baas05",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "http://web.archive.org/web/20051215064337/http://pyode.sourceforge.net:80/",
+   "quote": "PyODE is a set of open-source Python bindings for",
+   "why": "Archived PyODE homepage (Dec 2005) describes the software; PyODE 1.1.0 was released 2005-07-08. Authorship is shared: the 2003 readme names Timothy Stranex as author and the 2005 ChangeLog entries are by Matthias Baas."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Py{ODE}: {Python} bindings for the {O}pen {D}ynamics {E}ngine",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20051215064337/http://pyode.sourceforge.net:80/",
+      "quote": "PyODE is a set of open-source Python bindings for"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20051215064337/http://pyode.sourceforge.net:80/",
+      "quote": "PyODE 1.1.0 was released on 2005-07-08."
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Crediting M Baas alone is doubtful: pyode readme (2004 capture) says \"Authors Timothy Stranex\" and PyPI lists timothy@stranex.com; ChangeLog-1.1.0 shows 2005 work by Matthias Baas <baas@ira.uka.de> and Timothy Stranex. A correct entry might be \"T Stranex and M Baas\" with howpublished \\url{http://pyode.sourceforge.net} (live site now 403 to scripts). Needs a decision on the author credit."
+ },
+ {
+  "key": "BradLang99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
+   "quote": "Technical Report C-1, The Center for Research in",
+   "why": "PDF of the 1999 ANEW report itself (title page, byline Margaret M. Bradley and Peter J. Lang, suggested citation \"Technical Report C-1, The Center for Research in Psychophysiology, University of Florida\")."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M M Bradley and P J Lang",
+    "evidence": [
+     {
+      "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
+      "quote": "Margaret M. Bradley and Peter J. Lang"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Affective norms for {E}nglish words ({ANEW}): instruction manual and affective ratings",
+    "evidence": [
+     {
+      "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
+      "quote": "Affective Norms for English Words (ANEW):"
+     },
+     {
+      "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
+      "quote": "Instruction Manual and Affective Ratings"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
+      "quote": "Bradley, M.M., & Lang, P.J. (1999). Affective norms for English words (ANEW):"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "C-1",
+    "evidence": [
+     {
+      "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
+      "quote": "Technical Report C-1, The Center for Research in"
+     }
+    ]
+   },
+   "institution": {
+    "status": "corrected",
+    "value": "The Center for Research in Psychophysiology, University of Florida",
+    "evidence": [
+     {
+      "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
+      "quote": "Technical Report C-1, The Center for Research in"
+     },
+     {
+      "url": "https://pdodds.w3.uvm.edu/teaching/courses/2009-08UVM-300/docs/others/everything/bradley1999a.pdf",
+      "quote": "Psychophysiology, University of Florida."
+     }
+    ]
+   }
+  },
+  "notes": "The 1999 report's printed title is \"Affective Norms for English Words (ANEW): Instruction Manual and Affective Ratings\"; \"stimuli, instruction manual and affective ratings\" is not on the 1999 report (it appears to be the wording of a later edition; not verified). Adds number C-1 and institution from the report's own suggested citation. Source is a course-site copy of the report PDF (UVM); no publisher/DOI exists. Address Gainesville, {FL} could be added."
+ },
+ {
+  "key": "CannEtal16",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://peps.python.org/api/peps.json",
+   "quote": "\"title\": \"Specifying Minimum Build System Requirements for Python Projects\",",
+   "why": "Official PEP index JSON: PEP 518, authors Brett Cannon, Nathaniel J. Smith, Donald Stufft, created 10-May-2016."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "B Cannon and N J Smith and D Stufft",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/api/peps.json",
+      "quote": "\"authors\": \"Brett Cannon, Nathaniel J. Smith, Donald Stufft\","
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Specifying minimum build system requirements for {Python} projects",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/api/peps.json",
+      "quote": "\"title\": \"Specifying Minimum Build System Requirements for Python Projects\","
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "518",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/api/peps.json",
+      "quote": "\"number\": 518,"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/api/peps.json",
+      "quote": "\"created\": \"10-May-2016\","
+     }
+    ]
+   },
+   "type": {
+    "status": "confirmed",
+    "value": "PEP",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/api/peps.json",
+      "quote": "\"url\": \"https://peps.python.org/pep-0518/\""
+     }
+    ]
+   },
+   "institution": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Title to sentence case (was per-word braced capitals); second author gains middle initial J (Nathaniel J. Smith). Institution \"Python Software Foundation\" is conventional but not printed on the PEP (left unverified, as for Shan20 in the pilot). A url field https://peps.python.org/pep-0518/ could be added."
+ },
+ {
+  "key": "CapoEtal17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+   "quote": "\"title\":\"Brain Imaging Analysis Kit v0.2\"",
+   "why": "DataCite record of the Zenodo release of BrainIAK (Brain Imaging Analysis Kit v0.2) whose nine creators match the cited list exactly, in order; the only Zenodo version, published 2016-08-03."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M Capota and J Turek and P-H Chen and X Zhu and J R Manning and N Sundaram and B Keller and Y Wang and Y S Shin",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"name\":\"Capotă, Mihai\""
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"name\":\"Turek, Javier\""
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"name\":\"Chen, Po-Hsuan\""
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"name\":\"Zhu, Xia\""
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"name\":\"Manning, Jeremy Rothman\""
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"name\":\"Sundaram, Narayanan\""
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"name\":\"Keller, Bryn\""
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"name\":\"Wang, Yida\""
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"name\":\"Shin, Yeon Soon\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Brain imaging analysis kit",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"title\":\"Brain Imaging Analysis Kit v0.2\""
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"publicationYear\":2016"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.5281/zenodo.59780",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.59780",
+      "quote": "\"doi\":\"10.5281/zenodo.59780\""
+     }
+    ]
+   }
+  },
+  "notes": "Year 2017 -> 2016 renames the key CapoEtal17 -> CapoEtal16 (no collision in HEAD cdl.bib; log in key-renames.json). Last author \"Yeon Soon Shin\" -> Y S Shin (house initials). Zenodo prints \"Capota\" with a breve (Capotă); cdl.bib writes M Capota in 3 entries, kept (reviewer may add the accent: Capot{\\u{a}}). Release is v0.2 (title could read \"Brain imaging analysis kit v0.2\"); concept DOI 10.5281/zenodo.639778. Different work from KumaEtal21 (the 2021 BrainIAK Aperture paper). If the 2017 citation intended a later GitHub release (e.g. v0.5), no archived record with this author list exists."
+ },
+ {
+  "key": "ChanLin01",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://web.archive.org/web/20070204005417/http://www.csie.ntu.edu.tw:80/~cjlin/libsvm/faq.html",
+   "quote": "Chih-Chung Chang and Chih-Jen Lin, LIBSVM",
+   "why": "LIBSVM FAQ (2007 capture) gives the authors' requested citation: Chang and Lin, LIBSVM: a library for support vector machines, 2001, software available at csie.ntu.edu.tw/~cjlin/libsvm."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "C-C Chang and C-J Lin",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20070204005417/http://www.csie.ntu.edu.tw:80/~cjlin/libsvm/faq.html",
+      "quote": "author =\t {Chih-Chung Chang and Chih-Jen Lin},"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{LIBSVM}: a library for support vector machines",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20070204005417/http://www.csie.ntu.edu.tw:80/~cjlin/libsvm/faq.html",
+      "quote": "title =\t {{LIBSVM}: a library for support vector machines},"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20070204005417/http://www.csie.ntu.edu.tw:80/~cjlin/libsvm/faq.html",
+      "quote": "year =\t {2001},"
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "corrected",
+    "value": "\\url{http://www.csie.ntu.edu.tw/~cjlin/libsvm}",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20070204005417/http://www.csie.ntu.edu.tw:80/~cjlin/libsvm/faq.html",
+      "quote": "Software available at http://www.csie.ntu.edu.tw/~cjlin/libsvm"
+     }
+    ]
+   }
+  },
+  "notes": "Hyphenated given names become hyphenated initials (C-C Chang, C-J Lin; cdl.bib already writes C-J Lin twice). Adds the software URL. The authors now ask for the 2011 ACM TIST paper (doi 10.1145/1961189.1961199), a different work, not in cdl.bib."
+ },
+ {
+  "key": "ChatGPT",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://web.archive.org/web/20230101000602/https://openai.com/blog/chatgpt/",
+   "quote": "We’ve trained a model called ChatGPT which interacts in a conversational way.",
+   "why": "OpenAI's ChatGPT announcement (Jan 2023 capture) names the service and its address chat.openai.com."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{ChatGPT}",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20230101000602/https://openai.com/blog/chatgpt/",
+      "quote": "We’ve trained a model called ChatGPT which interacts in a conversational way."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "OpenAI",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20230101000602/https://openai.com/blog/chatgpt/",
+      "quote": "We’ve trained a model called ChatGPT which interacts in a conversational way."
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "corrected",
+    "value": "\\url{https://chat.openai.com}",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20230101000602/https://openai.com/blog/chatgpt/",
+      "quote": "Try it now at chat.openai.com"
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "howpublished wrapped in \\url{} (house form). Year 2023 is presumably the version/access year; the service was released November 30, 2022 (per the announcement), so the year cannot be confirmed from a source; left as is. Live openai.com/chatgpt.com pages return 403 to scripts; Wayback capture used. Key \"ChatGPT\" does not follow the ID rule (would be Open23); not renamed."
+ },
+ {
+  "key": "CoghStuf13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://peps.python.org/api/peps.json",
+   "quote": "\"title\": \"Version Identification and Dependency Specification\",",
+   "why": "Official PEP index JSON: PEP 440, created 18-Mar-2013; the 2014 source file in python/peps names Nick Coghlan and Donald Stufft."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "N Coghlan and D Stufft",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/python/peps/42b4a722d411d056781e52f6ca30c666df1f2e90/pep-0440.txt",
+      "quote": "Author: Nick Coghlan <ncoghlan@gmail.com>,"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/python/peps/42b4a722d411d056781e52f6ca30c666df1f2e90/pep-0440.txt",
+      "quote": "Donald Stufft <donald@stufft.io>"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Version identification and dependency specification",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/api/peps.json",
+      "quote": "\"title\": \"Version Identification and Dependency Specification\","
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "440",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/api/peps.json",
+      "quote": "\"number\": 440,"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/api/peps.json",
+      "quote": "\"created\": \"18-Mar-2013\","
+     },
+     {
+      "url": "https://raw.githubusercontent.com/python/peps/42b4a722d411d056781e52f6ca30c666df1f2e90/pep-0440.txt",
+      "quote": "Created: 18 Mar 2013"
+     }
+    ]
+   },
+   "type": {
+    "status": "confirmed",
+    "value": "PEP",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/python/peps/42b4a722d411d056781e52f6ca30c666df1f2e90/pep-0440.txt",
+      "quote": "PEP: 440"
+     }
+    ]
+   },
+   "institution": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Title to sentence case. The current PEP index lists the first author as \"Alyssa Coghlan\" (later name of the same person); the PEP as published (2013-2014 source) reads \"Nick Coghlan\", so N Coghlan is kept per the printed-byline rule; reviewer may prefer the current name. Institution not printed on the PEP (unverified)."
+ },
+ {
+  "key": "ContPrev23",
+  "verdict": "verified",
+  "identity": {
+   "url": "http://web.archive.org/web/20230810184132/https://www.cdc.gov/media/releases/2023/s0810-US-Suicide-Deaths-2022.html",
+   "quote": "Provisional Suicide Deaths in the United States, 2022",
+   "why": "Wayback capture (10 Aug 2023) of the cited CDC URL: CDC media statement \"Provisional Suicide Deaths in the United States, 2022\", released Thursday, August 10, 2023."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Provisional suicide deaths in the {United States}, 2022",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20230810184132/https://www.cdc.gov/media/releases/2023/s0810-US-Suicide-Deaths-2022.html",
+      "quote": "Provisional Suicide Deaths in the United States, 2022"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "{Centers for Disease Control and Prevention}",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20230810184132/https://www.cdc.gov/media/releases/2023/s0810-US-Suicide-Deaths-2022.html",
+      "quote": "Centers for Disease Control and Prevention. CDC twenty four seven."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2023",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20230810184132/https://www.cdc.gov/media/releases/2023/s0810-US-Suicide-Deaths-2022.html",
+      "quote": "For Immediate Release: Thursday, August 10, 2023"
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "confirmed",
+    "value": "\\url{https://www.cdc.gov/media/releases/2023/s0810-US-Suicide-Deaths-2022.html}",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20230810184132/https://www.cdc.gov/media/releases/2023/s0810-US-Suicide-Deaths-2022.html",
+      "quote": "Provisional Suicide Deaths in the United States, 2022"
+     }
+    ]
+   }
+  },
+  "notes": "Live cdc.gov URL returns 403 to scripts (Akamai); verified from the Wayback capture of that exact URL made on the release date."
+ }
+]

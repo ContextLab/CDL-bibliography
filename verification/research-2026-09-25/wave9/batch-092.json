@@ -1,0 +1,1259 @@
+[
+ {
+  "key": "WolzEtal88",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.datacite.org/dois/10.7916/d8k07cdw",
+   "quote": "\"titles\":[{\"title\":\"Automated Tutoring in Interactive Environments: A Task Centered Approach\"}],\"publisher\":\"Columbia University\"",
+   "why": "DataCite record (Columbia Academic Commons, resource type Reports) with the same title, the three authors Wolz, McKeown and Kaiser, and issue year 1988."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "U Wolz and K Mc{K}eown and G E Kaiser",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.7916/d8k07cdw",
+      "quote": "\"givenName\":\"Ursula\",\"familyName\":\"Wolz\""
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.7916/d8k07cdw",
+      "quote": "\"givenName\":\"Kathleen\",\"familyName\":\"McKeown\""
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.7916/d8k07cdw",
+      "quote": "\"givenName\":\"Gail E.\",\"familyName\":\"Kaiser\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Automated tutoring in interactive environments: a task centered approach",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.7916/d8k07cdw",
+      "quote": "Automated Tutoring in Interactive Environments: A Task Centered Approach"
+     }
+    ]
+   },
+   "institution": {
+    "status": "confirmed",
+    "value": "Columbia University",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.7916/d8k07cdw",
+      "quote": "\"publisher\":\"Columbia University\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1988",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.7916/d8k07cdw",
+      "quote": "\"publicationYear\":1988"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.7916/d8k07cdw",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.7916/d8k07cdw",
+      "quote": "\"doi\":\"10.7916/d8k07cdw\""
+     }
+    ]
+   }
+  },
+  "notes": "Add Doi (resolves, doi.org handle API 200; Columbia Academic Commons, Computer Science technical reports). Report number (CUCS series) not found: Academic Commons page is bot-blocked. No duplicate of this title in cdl.bib."
+ },
+ {
+  "key": "Yama08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+   "quote": "The Brain Computation Based on Synchronization of Nonlinear Oscillations: On Theta Rhythms in Rat Hippocampus and Human Scalp EEG",
+   "why": "Crossref chapter record: same title, sole author Yoko Yamaguchi, 2008, pp. 1-12 in Dynamic Brain - from Neural Spikes to Behaviors (Springer LNCS, eds Marinaro, Scarpetta, Yamaguchi)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "Y Yamaguchi",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+      "quote": "\"given\":\"Yoko\",\"family\":\"Yamaguchi\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The brain computation based on synchronization of nonlinear oscillations: on theta rhythms in rat hippocampus and human scalp {EEG}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+      "quote": "The Brain Computation Based on Synchronization of Nonlinear Oscillations: On Theta Rhythms in Rat Hippocampus and Human Scalp EEG"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+      "quote": "\"published-print\":{\"date-parts\":[[2008]]}"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Dynamic Brain -- from Neural Spikes to Behaviors",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+      "quote": "\"container-title\":[\"Lecture Notes in Computer Science\",\"Dynamic Brain - from Neural Spikes to Behaviors\"]"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "M Marinaro and S Scarpetta and Y Yamaguchi",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6",
+      "quote": "\"given\":\"Maria\",\"family\":\"Marinaro\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6",
+      "quote": "\"given\":\"Silvia\",\"family\":\"Scarpetta\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6",
+      "quote": "\"given\":\"Yoko\",\"family\":\"Yamaguchi\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1--12",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+      "quote": "\"page\":\"1-12\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+      "quote": "\"publisher\":\"Springer Berlin Heidelberg\""
+     }
+    ]
+   },
+   "series": {
+    "status": "corrected",
+    "value": "Lecture Notes in Computer Science",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+      "quote": "\"container-title\":[\"Lecture Notes in Computer Science\",\"Dynamic Brain - from Neural Spikes to Behaviors\"]"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-3-540-88853-6_1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+      "quote": "\"DOI\":\"10.1007\\/978-3-540-88853-6_1\""
+     }
+    ]
+   },
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   }
+  },
+  "notes": "Change @misc to @incollection (a chapter with a booktitle). LNCS volume number not confirmed (Springer page bot-blocked; commonly given as vol 5286, not verified), so no volume proposed. Publisher short house form Springer. Key unchanged; no duplicate in cdl.bib."
+ },
+ {
+  "key": "deBr24",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://catalogue.bnf.fr/api/SRU?version=1.2&operation=searchRetrieve&query=bib.persistentid%20all%20%22ark:/12148/cb31876421v%22&recordSchema=unimarcxchange&maximumRecords=1",
+   "quote": "pour obtenir le grade de docteur ès sciences physiques, par Louis de Broglie",
+   "why": "BnF catalogue record of the 1924 printed thesis (Paris, Masson, 112 p.), thèse de doctorat, Faculté des sciences de Paris, same title and author."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "L {de Broglie}",
+    "evidence": [
+     {
+      "url": "https://catalogue.bnf.fr/api/SRU?version=1.2&operation=searchRetrieve&query=bib.persistentid%20all%20%22ark:/12148/cb31876421v%22&recordSchema=unimarcxchange&maximumRecords=1",
+      "quote": "Louis de Broglie"
+     },
+     {
+      "url": "https://api.archives-ouvertes.fr/search/?q=halId_s:tel-00006807&fl=*",
+      "quote": "\"authLastName_s\":[\"de Broglie\"]"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Recherches sur la th\\'{e}orie des quanta",
+    "evidence": [
+     {
+      "url": "https://catalogue.bnf.fr/api/SRU?version=1.2&operation=searchRetrieve&query=bib.persistentid%20all%20%22ark:/12148/cb31876421v%22&recordSchema=unimarcxchange&maximumRecords=1",
+      "quote": "Recherches sur la théorie des quanta..."
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1924",
+    "evidence": [
+     {
+      "url": "https://catalogue.bnf.fr/api/SRU?version=1.2&operation=searchRetrieve&query=bib.persistentid%20all%20%22ark:/12148/cb31876421v%22&recordSchema=unimarcxchange&maximumRecords=1",
+      "quote": "<mxc:subfield code=\"d\">1924</mxc:subfield>"
+     }
+    ]
+   },
+   "school": {
+    "status": "corrected",
+    "value": "Facult\\'{e} des sciences de Paris",
+    "evidence": [
+     {
+      "url": "https://catalogue.bnf.fr/api/SRU?version=1.2&operation=searchRetrieve&query=bib.persistentid%20all%20%22ark:/12148/cb31876421v%22&recordSchema=unimarcxchange&maximumRecords=1",
+      "quote": "Faculté des sciences de Paris"
+     }
+    ]
+   }
+  },
+  "notes": "The current School 'Migration - université en cours d'affectation' is a HAL placeholder (HAL tel-00006807), not an institution; BnF gives Faculté des sciences de Paris (Thèses présentées à la Faculté des sciences de l'Université de Paris, n° d'ordre 1819). The HAL PDF reproduces the 1925 Annales de Physique extract (10e série, tome III, Crossref 10.1051/anphys/192510030022), which is the journal version, a different version; not proposed as a DOI for the thesis. Particle surname kept as {de Broglie} per cdl.bib. No duplicate in cdl.bib."
+ },
+ {
+  "key": "Nola11",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://api.core.ac.uk/v3/search/works?q=title:%22learning%20and%20recalling%20paths%22",
+   "quote": "\"title\":\"A Hippocampal Model for Learning and Recalling Paths: From Place Cells to Path Cells\"",
+   "why": "CORE harvest of the UQ eSpace record UQ:263388 (thesis, author Christopher Nolan, The University of Queensland, School of ITEE, published 2011-11)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C Nolan",
+    "evidence": [
+     {
+      "url": "https://api.core.ac.uk/v3/search/works?q=title:%22learning%20and%20recalling%20paths%22",
+      "quote": "\"authors\":[{\"name\":\"Christopher Nolan\"}]"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A hippocampal model for learning and recalling paths: from place cells to path cells",
+    "evidence": [
+     {
+      "url": "https://api.core.ac.uk/v3/search/works?q=title:%22learning%20and%20recalling%20paths%22",
+      "quote": "A Hippocampal Model for Learning and Recalling Paths: From Place Cells to Path Cells"
+     }
+    ]
+   },
+   "school": {
+    "status": "confirmed",
+    "value": "The University of Queensland",
+    "evidence": [
+     {
+      "url": "https://api.core.ac.uk/v3/search/works?q=title:%22learning%20and%20recalling%20paths%22",
+      "quote": "\"publisher\":\"The University of Queensland, School of Information Technology and Electrical Engineering\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://api.core.ac.uk/v3/search/works?q=title:%22learning%20and%20recalling%20paths%22",
+      "quote": "\"yearPublished\":2011"
+     }
+    ]
+   }
+  },
+  "notes": "Source is the CORE API harvest of UQ eSpace (oai:espace.library.uq.edu.au:uq:263388); the eSpace page itself is a JavaScript app and not script-fetchable. The record says 'thesis' but does not state the degree; @phdthesis kept. OpenAlex (lead only) gives the full name Christopher Raymond Nolan; the middle initial R is not added because no acceptable source was fetched that prints it. No DOI; no duplicate in cdl.bib."
+ },
+ {
+  "key": "Nota17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://search.library.dartmouth.edu/primaws/rest/pub/pnxs?blendFacetsSeparately=false&disableCache=false&getMore=0&inst=01DCL_INST&lang=en&limit=10&newspapersActive=false&newspapersSearch=false&offset=0&pcAvailability=true&q=any,contains,Notaro%20bio-measurement&qExclude=&qInclude=&rapido=false&refEntryActive=false&rtaLinks=true&scope=MyInst_and_CI&searchInFulltextUserSelection=true&skipDelivery=Y&sort=rank&tab=Everything&vid=01DCL_INST:01DCL",
+   "quote": "\"title\" : [ \"Development and integration of low-cost bio-measurement systems for neuroscientific research.\" ]",
+   "why": "Dartmouth Library (Alma/Primo) record of the thesis by Gina Marie Notaro, Thesis (Ph.D.)--Dartmouth College, 2017 (ProQuest ISBN 9780438239456)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "G M Notaro",
+    "evidence": [
+     {
+      "url": "https://search.library.dartmouth.edu/primaws/rest/pub/pnxs?blendFacetsSeparately=false&disableCache=false&getMore=0&inst=01DCL_INST&lang=en&limit=10&newspapersActive=false&newspapersSearch=false&offset=0&pcAvailability=true&q=any,contains,Notaro%20bio-measurement&qExclude=&qInclude=&rapido=false&refEntryActive=false&rtaLinks=true&scope=MyInst_and_CI&searchInFulltextUserSelection=true&skipDelivery=Y&sort=rank&tab=Everything&vid=01DCL_INST:01DCL",
+      "quote": "\"creator\" : [ \"Notaro, Gina Marie$$QNotaro, Gina Marie\" ]"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Development and integration of low-cost bio-measurement systems for neuroscientific research",
+    "evidence": [
+     {
+      "url": "https://search.library.dartmouth.edu/primaws/rest/pub/pnxs?blendFacetsSeparately=false&disableCache=false&getMore=0&inst=01DCL_INST&lang=en&limit=10&newspapersActive=false&newspapersSearch=false&offset=0&pcAvailability=true&q=any,contains,Notaro%20bio-measurement&qExclude=&qInclude=&rapido=false&refEntryActive=false&rtaLinks=true&scope=MyInst_and_CI&searchInFulltextUserSelection=true&skipDelivery=Y&sort=rank&tab=Everything&vid=01DCL_INST:01DCL",
+      "quote": "Development and integration of low-cost bio-measurement systems for neuroscientific research."
+     }
+    ]
+   },
+   "school": {
+    "status": "corrected",
+    "value": "Dartmouth College",
+    "evidence": [
+     {
+      "url": "https://search.library.dartmouth.edu/primaws/rest/pub/pnxs?blendFacetsSeparately=false&disableCache=false&getMore=0&inst=01DCL_INST&lang=en&limit=10&newspapersActive=false&newspapersSearch=false&offset=0&pcAvailability=true&q=any,contains,Notaro%20bio-measurement&qExclude=&qInclude=&rapido=false&refEntryActive=false&rtaLinks=true&scope=MyInst_and_CI&searchInFulltextUserSelection=true&skipDelivery=Y&sort=rank&tab=Everything&vid=01DCL_INST:01DCL",
+      "quote": "\"lds06\" : [ \"Thesis (Ph.D.)--Dartmouth College, 2017.\" ]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://search.library.dartmouth.edu/primaws/rest/pub/pnxs?blendFacetsSeparately=false&disableCache=false&getMore=0&inst=01DCL_INST&lang=en&limit=10&newspapersActive=false&newspapersSearch=false&offset=0&pcAvailability=true&q=any,contains,Notaro%20bio-measurement&qExclude=&qInclude=&rapido=false&refEntryActive=false&rtaLinks=true&scope=MyInst_and_CI&searchInFulltextUserSelection=true&skipDelivery=Y&sort=rank&tab=Everything&vid=01DCL_INST:01DCL",
+      "quote": "Thesis (Ph.D.)--Dartmouth College, 2017."
+     }
+    ]
+   }
+  },
+  "notes": "Ph.D. thesis confirmed (@phdthesis correct). The degree-granting institution in the catalogue is Dartmouth College; 'Thayer School of Engineering' is plausible (subject Engineering) but no fetched source names it, so the school is proposed in the catalogue form. If the reviewer prefers to keep the Thayer wording, the only change is none. Source is the Dartmouth Primo public JSON API (the catalogue page itself is JavaScript). Not in Dartmouth Digital Commons OAI (engineering theses/dissertations sets searched). No DOI; no duplicate in cdl.bib."
+ },
+ {
+  "key": "Poly05",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://catalog.princeton.edu/catalog.json?q=Polyn+memory+targeting&search_field=all_fields",
+   "quote": "Neuroimaging, behavioral, and computational investigations of memory targeting / Sean Matthew Polyn",
+   "why": "Princeton University Library catalogue record of the dissertation (Ph.D. Princeton University 2005, Department of Psychology, advisor J D Cohen)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S M Polyn",
+    "evidence": [
+     {
+      "url": "https://catalog.princeton.edu/catalog/9945081473506421.json",
+      "quote": "Polyn, Sean Matthew, 1977-"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Neuroimaging, behavioral, and computational investigations of memory targeting",
+    "evidence": [
+     {
+      "url": "https://catalog.princeton.edu/catalog.json?q=Polyn+memory+targeting&search_field=all_fields",
+      "quote": "Neuroimaging, behavioral, and computational investigations of memory targeting"
+     }
+    ]
+   },
+   "school": {
+    "status": "confirmed",
+    "value": "Princeton University",
+    "evidence": [
+     {
+      "url": "https://catalog.princeton.edu/catalog/9945081473506421.json",
+      "quote": "Ph.D. Princeton University 2005"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://catalog.princeton.edu/catalog/9945081473506421.json",
+      "quote": "Ph.D. Princeton University 2005"
+     }
+    ]
+   }
+  },
+  "notes": "All fields confirmed by the Princeton catalogue (call number PRIN 685 2005.7305). No duplicate in cdl.bib."
+ },
+ {
+  "key": "RussJenk54",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://archive.org/metadata/DTIC_AD0043237/metadata",
+   "quote": "STUDIES ON THE ROLE OF LANGUAGE IN BEHAVIOR - THE COMPLETE MINNESOTA NORMS FOR RESPONSES TO 100 WORDS FROM THE KENT-ROSANOFF WORD ASSOCIATION TEST",
+   "why": "Internet Archive copy of DTIC AD0043237: University of Minnesota technical report No. 11 (Studies on the Role of Language in Behavior), August 1954, by W A Russell and J J Jenkins, ONR contract N8onr-66216."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The complete {M}innesota norms for responses to 100 words from the {K}ent-{R}osanoff word association test",
+    "evidence": [
+     {
+      "url": "https://archive.org/metadata/DTIC_AD0043237/metadata",
+      "quote": "THE COMPLETE MINNESOTA NORMS FOR RESPONSES TO 100 WORDS FROM THE KENT-ROSANOFF WORD ASSOCIATION TEST"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1954",
+    "evidence": [
+     {
+      "url": "https://archive.org/metadata/DTIC_AD0043237/metadata",
+      "quote": "\"year\":\"1954\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/DTIC_AD0043237/DTIC_AD0043237_djvu.txt",
+      "quote": "Technical  Report  No.  11"
+     }
+    ]
+   },
+   "institution": {
+    "status": "corrected",
+    "value": "University of Minnesota",
+    "evidence": [
+     {
+      "url": "https://archive.org/metadata/DTIC_AD0043237/metadata",
+      "quote": "MINNESOTA UNIV MINNEAPOLIS"
+     },
+     {
+      "url": "https://archive.org/download/DTIC_AD0043237/DTIC_AD0043237_djvu.txt",
+      "quote": "students  in  beginning  psychology  classes  at  the  University \nof  Minnesota"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "value": "W A Russell and J J Jenkins",
+    "evidence": [
+     {
+      "url": "https://archive.org/metadata/DTIC_AD0043237/metadata",
+      "quote": "RUSSELL, WALLACE A."
+     }
+    ]
+   }
+  },
+  "notes": "Add Institution (missing). Russell (Wallace A.) is confirmed by the DTIC/Archive metadata; the second author's name appears only in badly OCR'd text ('j£unes J. Jenkii..'), so the author field is left as is (not_found for Jenkins, not contradicted). Report is the University of Minnesota series 'Studies on the Role of Language in Behavior', Technical Report No. 11, August 1954, ONR contract N8 onr-66216 (the OCR prints '1854', an OCR error; metadata year 1954). A reviewer could add Type = {Technical Report} / Address = {Minneapolis, {MN}}. Different later version: Jenkins (1970) 'The 1952 Minnesota word association norms' in Postman and Keppel, Norms of Word Association (Academic Press, 10.1016/b978-0-12-563050-4.50005-4) is a separate work; not present in cdl.bib. No DOI; no duplicate in cdl.bib."
+ },
+ {
+  "key": "Wech97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/t49755-000",
+   "quote": "\"title\":[\"Wechsler Adult Intelligence Scale--Third Edition\"]",
+   "why": "APA PsycTests Crossref record of the test: Wechsler Adult Intelligence Scale--Third Edition (WAIS-III), author David Wechsler, content created/issued 1997."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D Wechsler",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t49755-000",
+      "quote": "\"given\":\"David\",\"family\":\"Wechsler\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "{Wechsler} adult intelligence scale",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t49755-000",
+      "quote": "Wechsler Adult Intelligence Scale--Third Edition"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "3\\textsuperscript{rd}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t49755-000",
+      "quote": "Wechsler Adult Intelligence Scale--Third Edition"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/t49755-000",
+      "quote": "\"content-created\":{\"date-parts\":[[1997]]}"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "not_found",
+    "value": "The Psychological Corporation",
+    "evidence": []
+   }
+  },
+  "notes": "The cited title '{Wechsler} adult intelligence {Scale-III} {(WAIS-III})' has a misplaced brace; proposed form follows the sibling entry Wech08 (title '{Wechsler} adult intelligence scale' with an edition field), here 3\\textsuperscript{rd}. If the reviewer prefers to keep the acronym in the title, '{Wechsler} adult intelligence scale--third edition ({WAIS-III})' is the equivalent; 'WAIS-III' itself is not in the fetched record. Publisher (The Psychological Corporation, San Antonio, TX) not found on an acceptable page (LoC SRU title searches 'WAIS-III' and 'Wechsler adult intelligence scale', Open Library: no record of the test kit). APA PsycTests DOI 10.1037/t49755-000 (resolves, handle 200) is a database record of the test, not the publisher's; offered as a DOI candidate only, as was done for Wech08. No duplicate of WAIS-III in cdl.bib (Wech08 = WAIS-IV, Wech81 = WAIS-R, Wech45 = WMS)."
+ },
+ {
+  "key": "OGra11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://themoth.org/stories/pie-man",
+   "quote": "<meta content=\"Pie Man | Stories\" property=\"og:title\">",
+   "why": "The Moth story page: 'Pie Man', storyteller Jim O'Grady, recorded November 18, 2008, featured (podcast) November 24, 2008."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J O'Grady",
+    "evidence": [
+     {
+      "url": "https://themoth.org/stories/pie-man",
+      "quote": "Jim O’Grady"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Pie man",
+    "evidence": [
+     {
+      "url": "https://themoth.org/stories/pie-man",
+      "quote": "Pie Man | Stories"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://themoth.org/stories/pie-man",
+      "quote": "November 18, 2008"
+     },
+     {
+      "url": "https://themoth.org/stories/pie-man",
+      "quote": ">November 24, 2008</a>"
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "corrected",
+    "value": "\\url{https://www.themoth.org/stories/pie-man}",
+    "evidence": [
+     {
+      "url": "https://themoth.org/stories/pie-man",
+      "quote": "content=\"https://www.themoth.org/stories/pie-man\" property=\"og:url\""
+     }
+    ]
+   }
+  },
+  "notes": "Key would change OGra11 -> OGra08 (no collision in cdl.bib; no other Pie Man entry). The Moth gives recording date 2008-11-18 and podcast date 2008-11-24; no 2011 release was found on the page (the 2011 year may refer to a later Moth Radio Hour airing or to the date the story was used as a stimulus, not verifiable), so a reviewer may keep 2011 if a 2011 broadcast is intended. This is the 'Pieman' naturalistic-listening stimulus. The page gives no publisher beyond The Moth."
+ },
+ {
+  "key": "Qwen26",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://huggingface.co/Qwen/Qwen3.5-27B/raw/main/README.md",
+   "quote": "title  = {{Qwen3.5}: Towards Native Multimodal Agents},",
+   "why": "Official Qwen3.5 model card (Hugging Face, Qwen organisation) gives the recommended citation for the release blog: Qwen Team, February 2026, https://qwen.ai/blog?id=qwen3.5."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "{Qwen Team}",
+    "evidence": [
+     {
+      "url": "https://huggingface.co/Qwen/Qwen3.5-27B/raw/main/README.md",
+      "quote": "author = {{Qwen Team}},"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "{Qwen3.5}: towards native multimodal agents",
+    "evidence": [
+     {
+      "url": "https://huggingface.co/Qwen/Qwen3.5-27B/raw/main/README.md",
+      "quote": "title  = {{Qwen3.5}: Towards Native Multimodal Agents},"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2026",
+    "evidence": [
+     {
+      "url": "https://huggingface.co/Qwen/Qwen3.5-27B/raw/main/README.md",
+      "quote": "year   = {2026},"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/QwenLM/Qwen3.5/main/README.md",
+      "quote": "2026-02-16: We release Qwen3.5."
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "confirmed",
+    "value": "\\url{https://qwen.ai/blog?id=qwen3.5}",
+    "evidence": [
+     {
+      "url": "https://huggingface.co/Qwen/Qwen3.5-27B/raw/main/README.md",
+      "quote": "url    = {https://qwen.ai/blog?id=qwen3.5}"
+     }
+    ]
+   }
+  },
+  "notes": "Only change: brace the model name ({Qwen3.5}), as cdl.bib does for {Qwen2.5}/{Qwen3} technical reports. The blog page itself is a JavaScript app and not script-fetchable; the official model card and the QwenLM/Qwen3.5 GitHub README (release 2026-02-16) link to it. No arXiv technical report for Qwen3.5 found in the README; no duplicate in cdl.bib."
+ },
+ {
+  "key": "RCor12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
+   "quote": "title = \"R: A Language and Environment for Statistical Computing\",",
+   "why": "The citation file shipped with R 2.15 (released 2012) gives this manual entry: R Core Team, R Foundation for Statistical Computing, Vienna, Austria, year = version year."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "{R Core Team}",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
+      "quote": "author = person(\"R Core Team\"),"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "{R}: a language and environment for statistical computing",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
+      "quote": "R: A Language and Environment for Statistical Computing"
+     }
+    ]
+   },
+   "organization": {
+    "status": "confirmed",
+    "value": "{R Foundation for Statistical Computing}",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
+      "quote": "organization = \"R Foundation for Statistical Computing\","
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Vienna, Austria",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
+      "quote": "address      = \"Vienna, Austria\","
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
+      "quote": "year         = version$year,"
+     },
+     {
+      "url": "https://cran.r-project.org/src/base/R-2/",
+      "quote": "<a href=\"R-2.15.0.tar.gz\">R-2.15.0.tar.gz</a></td><td align=\"right\">2012-03-30"
+     }
+    ]
+   }
+  },
+  "notes": "Fixes a stray leading space in the author ('{ R Core Team}' -> '{R Core Team}') and applies the lowercase-after-colon rule ('{A}' -> 'a', see the project note on capital A after a colon). Year is the R version year; R 2.15.0 was released 2012-03-30 (2.14.x also had 2012 patch releases). The 2012 citation also carried ISBN 3-900051-07-0 and URL http://www.R-project.org/ (could be added as note/url). Crossref DOI 10.32614/r.manuals is the R manuals database record (issued 2000, not version-specific); not proposed. No duplicate R entry in cdl.bib."
+ },
+ {
+  "key": "Stan13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://github.com/stan-dev/stan/releases/download/v2.1.0/stan-reference-2.1.0.pdf",
+   "quote": "Stan Development Team. 2013. Stan Modeling Language: User’s Guide",
+   "why": "The Stan 2.1.0 reference manual PDF attached to the official stan-dev/stan v2.1.0 release (published 2013-12-23): title page and its own suggested citation."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "{Stan Development Team}",
+    "evidence": [
+     {
+      "url": "https://github.com/stan-dev/stan/releases/download/v2.1.0/stan-reference-2.1.0.pdf",
+      "quote": "Copyright © 2011–2013, Stan Development Team."
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "{Stan} modeling language: user's guide and reference manual, version 2.1.0",
+    "evidence": [
+     {
+      "url": "https://github.com/stan-dev/stan/releases/download/v2.1.0/stan-reference-2.1.0.pdf",
+      "quote": "Stan Modeling Language: User’s Guide"
+     },
+     {
+      "url": "https://github.com/stan-dev/stan/releases/download/v2.1.0/stan-reference-2.1.0.pdf",
+      "quote": "and Reference Manual. Version 2.1.0"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://github.com/stan-dev/stan/releases/download/v2.1.0/stan-reference-2.1.0.pdf",
+      "quote": "Friday 20th December, 2013"
+     },
+     {
+      "url": "https://api.github.com/repos/stan-dev/stan/releases/tags/v2.1.0",
+      "quote": "\"published_at\":\"2013-12-23T20:57:43Z\""
+     }
+    ]
+   }
+  },
+  "notes": "Title aligned with the manual's own citation ('Stan Modeling Language: User's Guide and Reference Manual. Version 2.1.0'): colon after 'language', possessive 'user's', full version 2.1.0, {Stan} braced as a proper name. A url (http://mc-stan.org/) could be added. No duplicate Stan manual entry in cdl.bib."
+ },
+ {
+  "key": "TorvHama05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://raw.githubusercontent.com/git/git/master/README.md",
+   "quote": "Git - fast, scalable, distributed revision control system",
+   "why": "The Git source tree's own README (git/git): Git, originally written by Linus Torvalds; the first commit of the repository is by Linus Torvalds on 2005-04-07; Junio C Hamano is the maintainer (howto/maintain-git)."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "L Torvalds and J C Hamano",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/git/git/master/README.md",
+      "quote": "It was originally written by Linus\nTorvalds with help of a group of hackers around the net."
+     },
+     {
+      "url": "https://raw.githubusercontent.com/git/git/master/Documentation/howto/maintain-git.adoc",
+      "quote": "From: Junio C Hamano <gitster@pobox.com>"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Git: fast, scalable, distributed revision control system",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/git/git/master/README.md",
+      "quote": "Git - fast, scalable, distributed revision control system"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://api.github.com/repos/git/git/commits/e83c5163316f89bfbde7d9ab23ca2e25604af290",
+      "quote": "\"date\":\"2005-04-07T22:13:13Z\""
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "not_found",
+    "value": "\\url{https://git.kernel.org/pub/scm/git/git.git}",
+    "evidence": []
+   }
+  },
+  "notes": "Software entry. Hamano's middle initial C added as printed ('Junio C Hamano'). Title: the project's README names it 'Git - fast, scalable, distributed revision control system'; the cited 'Git: Fast version control system' matches no fetched source (it echoes the old git-scm.com tagline), so the README form is proposed; a reviewer may keep the shorter title. The git.kernel.org URL is behind a bot check (not script-fetchable), left as cited; https://github.com/git/git is the official mirror. Year 2005 = first commit (e83c516, Linus Torvalds, 2005-04-07). No duplicate Git entry in cdl.bib."
+ },
+ {
+  "key": "Varo10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.github.com/repos/joblib/joblib",
+   "quote": "\"description\":\"Computing with Python functions.\"",
+   "why": "GitHub API record of the joblib/joblib repository (the cited URL): description 'Computing with Python functions.', created 2010-05-07; PyPI lists Gael Varoquaux as author."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "G Varoquaux",
+    "evidence": [
+     {
+      "url": "https://pypi.org/pypi/joblib/json",
+      "quote": "\"author_email\":\"Gael Varoquaux <gael.varoquaux@normalesup.org>\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Joblib: computing with {P}ython functions",
+    "evidence": [
+     {
+      "url": "https://api.github.com/repos/joblib/joblib",
+      "quote": "\"name\":\"joblib\",\"full_name\":\"joblib/joblib\""
+     },
+     {
+      "url": "https://api.github.com/repos/joblib/joblib",
+      "quote": "\"description\":\"Computing with Python functions.\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://api.github.com/repos/joblib/joblib",
+      "quote": "\"created_at\":\"2010-05-07T06:48:26Z\""
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "confirmed",
+    "value": "\\url{https://github.com/joblib/joblib}",
+    "evidence": [
+     {
+      "url": "https://api.github.com/repos/joblib/joblib",
+      "quote": "\"html_url\":\"https://github.com/joblib/joblib\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change: lowercase after the colon ('{C}omputing' -> 'computing'). Year 2010 is the GitHub repository creation date; earlier PyPI pre-releases exist from 2008-10-26 (0.1a.dev), so a reviewer could argue for 2008, but the cited GitHub project dates from 2010. No DOI; no duplicate joblib entry in cdl.bib."
+ },
+ {
+  "key": "Scav05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://raw.githubusercontent.com/thestk/rtaudio/master/README.md",
+   "quote": "By Gary P. Scavone, 2001-2023 (and many other developers!)",
+   "why": "Official RtAudio repository (thestk/rtaudio) README: RtAudio C++ realtime audio classes by Gary P. Scavone; release history lists v3.0.2 and v3.0.3 in 2005."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "G P Scavone",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/thestk/rtaudio/master/README.md",
+      "quote": "By Gary P. Scavone"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Rt{A}udio",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/thestk/rtaudio/master/README.md",
+      "quote": "# RtAudio"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/thestk/rtaudio/master/doc/release.txt",
+      "quote": "v3.0.2: (14 October 2005)"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/thestk/rtaudio/master/doc/release.txt",
+      "quote": "v3.0.3: (18 November 2005)"
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "corrected",
+    "value": "\\url{https://github.com/thestk/rtaudio}",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/thestk/rtaudio/master/README.md",
+      "quote": "https://github.com/thestk/rtaudio/actions/workflows/ci.yml/badge.svg"
+     }
+    ]
+   }
+  },
+  "notes": "Software entry; all cited fields confirmed, only a URL added (the McGill page www.music.mcgill.ca/~gary/rtaudio/ currently redirects to an offline/search page). The year matches RtAudio 3.0.2/3.0.3 (2005). Related paper, a different work: G P Scavone and P R Cook (2005) 'RtMidi, RtAudio, and a synthesis toolkit (STK) update', Proceedings of the International Computer Music Conference - not verified here and not in cdl.bib. No duplicate in cdl.bib."
+ },
+ {
+  "key": "Schl07",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://sourceforge.net/rest/p/biosig",
+   "quote": "\"external_homepage\": \"http://biosig.sourceforge.net/\"",
+   "why": "SourceForge project record of BioSig (shortname biosig, created 2000-06-17, developer Alois Schloegl); the 2011 BioSig paper (Vidaurre, Sander, Schlögl) refers to it as 'the BioSig project'."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A Schl{\\\"{o}}gl",
+    "evidence": [
+     {
+      "url": "https://sourceforge.net/rest/p/biosig",
+      "quote": "\"name\": \"Alois Schloegl\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1155/2011/935364",
+      "quote": "\"given\":\"Alois\",\"family\":\"Schlögl\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The {Biosig} project",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3061298/fullTextXML",
+      "quote": "The aim of the BioSig project is to foster research in biomedical signal processing"
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "corrected",
+    "value": "\\url{http://biosig.sourceforge.net/}",
+    "evidence": [
+     {
+      "url": "https://sourceforge.net/rest/p/biosig",
+      "quote": "\"external_homepage\": \"http://biosig.sourceforge.net/\""
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2007",
+    "evidence": []
+   }
+  },
+  "notes": "Software/website entry. The project dates from 2000 (SourceForge creation 2000-06-17) and is still maintained; no source ties the cited year 2007 to a specific release or page version (biosig.sourceforge.net and the SourceForge files page are behind a bot check). Year left as cited. Consider '{BioSig}' (the project's own capitalisation) instead of '{Biosig}'. Related journal paper, a different work: C Vidaurre, T H Sander and A Schl\\\"{o}gl (2011) 'BioSig: the free and open source software library for biomedical signal processing', Computational Intelligence and Neuroscience 2011:935364, doi 10.1155/2011/935364 (not in cdl.bib) - a citable replacement candidate if the user prefers a paper. No duplicate in cdl.bib."
+ },
+ {
+  "key": "Smit05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.ode.org/",
+   "quote": "ODE is Copyright (C) 2001-2004 Russell L. Smith. All rights reserved.",
+   "why": "Official ODE homepage: Open Dynamics Engine, open source rigid-body physics library by Russell L. Smith (project README: Copyright (C) 2001-2007 Russell L. Smith)."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "R L Smith",
+    "evidence": [
+     {
+      "url": "https://www.ode.org/",
+      "quote": "Copyright (C) 2001-2004 Russell L. Smith"
+     },
+     {
+      "url": "https://bitbucket.org/odedevs/ode/raw/master/README.md",
+      "quote": "Copyright (C) 2001-2007 Russell L. Smith."
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Open {D}ynamics {E}ngine",
+    "evidence": [
+     {
+      "url": "https://bitbucket.org/odedevs/ode/raw/master/README.md",
+      "quote": "The Open Dynamics Engine (ODE)"
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "corrected",
+    "value": "\\url{https://www.ode.org/}",
+    "evidence": [
+     {
+      "url": "https://www.ode.org/",
+      "quote": "ODE is an open source, high performance library for simulating rigid body dynamics"
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2005",
+    "evidence": []
+   }
+  },
+  "notes": "Adds the middle initial L as printed ('Russell L. Smith') and a URL. Year 2005 is not tied to a release: ODE 0.5 dates from 2004 (user guide 'Copyright 2001-2004'), 2005 has only changelog entries; year left as cited. Project now at https://github.com/odedevs/ode. No duplicate in cdl.bib."
+ },
+ {
+  "key": "Stra06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pypi.org/pypi/visionegg/json",
+   "quote": "\"upload_time\":\"2006-01-05T08:49:45\"",
+   "why": "PyPI record of the visionegg package (author Andrew Straw, summary '2D/3D visual stimulus generation'): release 1.0 uploaded 2006-01-05; project README calls it 'the Vision Egg' with site www.visionegg.org."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A Straw",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/visionegg/visionegg/master/setup.py",
+      "quote": "author           = \"Andrew Straw\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "The {Vision Egg}",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/visionegg/visionegg/master/README.txt",
+      "quote": "Welcome to the Vision Egg!"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pypi.org/pypi/visionegg/json",
+      "quote": "\"upload_time\":\"2006-01-05T08:49:45\""
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "corrected",
+    "value": "\\url{http://www.visionegg.org/}",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/visionegg/visionegg/master/README.txt",
+      "quote": "http://www.visionegg.org/"
+     }
+    ]
+   }
+  },
+  "notes": "The software's own name is 'the Vision Egg' (two words); 'VisionEgg' is only the package/module name. If the reviewer prefers the bare name, '{Vision Egg}' is fine. Year 2006 = Vision Egg 1.0 (PyPI upload 2006-01-05). Related journal paper, a different work and a citable replacement candidate: A D Straw (2008) 'Vision Egg: an open-source library for realtime visual stimulus generation', Frontiers in Neuroinformatics 2:4, doi 10.3389/neuro.11.004.2008 (not in cdl.bib); that record gives the middle initial D, not added here because the software sources print 'Andrew Straw'. No duplicate in cdl.bib."
+ },
+ {
+  "key": "deCa05a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://raw.githubusercontent.com/libsndfile/libsamplerate/master/README.md",
+   "quote": "libsamplerate (also known as Secret Rabbit Code) is a library for performing sample rate conversion of audio data.",
+   "why": "Official libsamplerate repository (libsndfile/libsamplerate): original author Erik de Castro Lopo."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E {de Castro Lopo}",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/libsndfile/libsamplerate/master/AUTHORS",
+      "quote": "Erik de Castro Lopo <erikd@mega-nerd.com>"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{libsamplerate}",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/libsndfile/libsamplerate/master/README.md",
+      "quote": "This is libsamplerate"
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "corrected",
+    "value": "\\url{https://github.com/libsndfile/libsamplerate}",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/libsndfile/libsamplerate/master/README.md",
+      "quote": "[GitHub](https://github.com/libsndfile/libsamplerate)"
+     }
+    ]
+   },
+   "year": {
+    "status": "not_found",
+    "value": "2005",
+    "evidence": []
+   }
+  },
+  "notes": "Software entry. Surname kept as {de Castro Lopo}, as cdl.bib writes it (also in deCa05b, libsndfile). Year 2005 matches no release: NEWS lists 0.1.2 (2004-09-12) then 0.1.3 (2008-03-23); the 2005 ChangeLog has only development entries, so the year is left as cited (a reviewer may prefer 2004 for the release then current). No duplicate libsamplerate entry in cdl.bib."
+ },
+ {
+  "key": "SingEtal24",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+   "quote": "title={Llama 3 Model Card},",
+   "why": "Meta's official Llama 3 model card (meta-llama/llama3 MODEL_CARD.md), 2024; its Contributors section is exactly the cited 331-name list in the same order (Aaditya Singh ... Zoe Papakipos)."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "A Singh and A Grattafiori and A Dubey and A Jauhri and A Pandey and A Kadian and A Kelsey and A Gangidi and A Al-Dahle and A Sangani and A Goldstand and A Letman and A Menon and A Mathur and A Schelten and A Vaughan and A Yang and A Lupu and A Alvarado and A Gallagher and A Gu and A Ho and A Poulton and A Ryan and A Fan and A Ramchandani and A Hartshorn and A Mitra and A Sravankumar and A Korenev and A Rao and A Gabriel and A Bharambe and A Eisenman and A Zhang and A JJhaveri and A Rodriguez and A Gregerson and A Spataru and B Roziere and B Maurer and B Leonhardi and B Huang and B Paranjape and B Liu and B Tang and B Chern and B Stojkovic and B Fuller and C {Mejia Arenas} and C Zhou and C Caucheteux and C Nayak and C-H Chu and C Bi and C Cai and C Cox and C Marra and C McConnell and C Keller and C Feichtenhofer and C Touret and C Wu and C Wong and C {Canton Ferrer} and D Allonsius and D Kreymer and D Haziza and D Li and D Pintz and D Livshits and D Wyatt and D Adkins and D Esiobu and D Xu and D Testuggine and D David and D Parikh and D Choudhary and D Mahajan and D Liskovich and D Garcia-Olano and D Perino and D Hupkes and D Wang and D Holland and E Lakomkin and E Lobanova and X E Tan and E Dinan and E Smith and E Brinkman and E Arcaute and F Radenovic and F Ozgenel and F Caggioni and F Seide and F Zhang and G Synnaeve and G Schwarz and G Lee and G Badeer and G Anderson and G Nail and G Mialon and G Pang and G Cucurell and H Nguyen and H Shojanazeri and H Korevaar and H Wang and H Habeeb and H Rudolph and H Aspegren and H Xu and H Touvron and I Kozlowska and I Molybog and I Tufanov and I Zarov and I {Arrieta Ibarra} and I-E Veliche and I Kloumann and I Misra and I Evtimov and J Copet and J Weissman and J Geffert and J Vranes and J Asher and J Park and J Mahadeokar and J-B Gaya and J Shah and J van der Linde and J Chan and J Hong and J Lee and J Fu and J Teboul and J Chi and J Huang and J Wang and J Yu and J Bitton and J Spisak and J Pineau and J Carvill and J Park and J Rocca and J Johnstun and J Jia and K Vasuden Alwala and K Hou U and K Plawiak and K Upasani and K Veeraraghavan and K Li and K Heafield and K Stone and K El-Arini and K Iyer and K Malik and K Chiu and K Bhalla and K Huang and L Garg and L Rantala-Yeary and L van der Maaten and L Chen and L Silva and L Bell and L Zhang and L Tan and L Martin and L Madaan and L Wehrstedt and L Blecher and L de Oliveira and M Muzzi and M Khabsa and M Avlani and M Singh and M Paluri and M Zuckerberg and M Kardas and M Mankus and M Oldham and M Rita and M Lennie and M Pavlova and M Keneally and M Kambadur and M Patel and M Samvelyan and M Clark and M Lewis and M Si and M K Singh and M Metanat and M Hassan and N Goyal and N Torabi and N Usunier and N Bashlykov and N Bogoychev and N Chatterji and N Dong and O A Yang and O Duchenne and O Celebi and P Parekh and P Alrassy and P Saab and P Balaji and P Rittner and P Zhang and P Li and P Vasic and P Weng and P Zvyagina and P Bhargava and P Dubal and P Krishnan and P S Koura and P Xu and Q He and R Rodriguez and R Srinivasan and R Mitra and R Calderer and R Li and R Stojnic and R Raileanu and R Battey and R Wang and R Girdhar and R Patel and R Sauvestre and R Polidoro and R Sumbaly and R Taylor and R Silva and R Hou and R Wang and R Howes and R Rinott and S Hosseini and S J Bondu and S Datta and S Singh and S Chugh and S Dhillon and S Pan and S Bell and S Edunov and S Nie and S Narang and S Raparthy and S Lindsay and S Feng and S Shen and S Lin and S Shankar and S Bhosale and S Zhang and S Vandenhende and S Wang and S S Kim and S Batra and S Sootla and S Kehoe and S Gururangan and S Gupta and S Virk and S Borodinsky and T Glaser and T Herman and T Best and T Fowler and T Georgiou and T Scialom and T Li and T Mihaylov and T Xiao and U Karn and V Goswami and V Gupta and V Ramanathan and V Kerkez and V Satish Kumar and V Gonguet and V Vogeti and V Poenaru and V T Mihailescu and V Petrovic and V Ivanov and W Li and W Chu and W Xiong and W Fu and W Bouaziz and W Meers and W Constable and X Martinet and X Wu and X Gao and X Xie and X Jia and Y Goldschlag and Y LeCun and Y Gaur and Y Babaei and Y Qi and Y Li and Y Wen and Y Song and Y Nam and Y Hao and Y Zhang and Y Wang and Y Mao and Y He and Z {Delpierre Coudert} and Z DeVito and Z Hankir and Z Wen and Z Yan and Z Chen and Z Yang and Z Papakipos",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Aaditya Singh; Aaron Grattafiori; Abhimanyu Dubey; Abhinav Jauhri; Abhinav Pandey; Abhishek Kadian; Adam Kelsey; Adi Gangidi; Ahmad Al-Dahle; Amit Sangani; Ahuva Goldstand; Aiesha Letman; Ajay Menon; Akhil Mathur; Alan Schelten"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Alex Vaughan; Amy Yang; Andrei Lupu; Andres Alvarado; Andrew Gallagher; Andrew Gu; Andrew Ho; Andrew Poulton; Andrew Ryan; Angela Fan; Ankit Ramchandani; Anthony Hartshorn; Archi Mitra; Archie Sravankumar; Artem Korenev"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Arun Rao; Ashley Gabriel; Ashwin Bharambe; Assaf Eisenman; Aston Zhang; Ash JJhaveri; Aurelien Rodriguez; Austen Gregerson; Ava Spataru; Baptiste Roziere; Ben Maurer; Benjamin Leonhardi; Bernie Huang; Bhargavi Paranjape; Bing Liu"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Binh Tang; Bobbie Chern; Brani Stojkovic; Brian Fuller; Catalina Mejia Arenas; Chao Zhou; Charlotte Caucheteux; Chaya Nayak; Ching-Hsiang Chu; Chloe Bi; Chris Cai; Chris Cox; Chris Marra; Chris McConnell; Christian Keller"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Christoph Feichtenhofer; Christophe Touret; Chunyang Wu; Corinne Wong; Cristian Canton Ferrer; Damien Allonsius; Daniel Kreymer; Daniel Haziza; Daniel Li; Danielle Pintz; Danny Livshits; Danny Wyatt; David Adkins; David Esiobu; David Xu"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Davide Testuggine; Delia David; Devi Parikh; Dhruv Choudhary; Dhruv Mahajan; Diana Liskovich; Diego Garcia-Olano; Diego Perino; Dieuwke Hupkes; Dingkang Wang; Dustin Holland; Egor Lakomkin; Elina Lobanova; Xiaoqing Ellen Tan; Emily Dinan"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Eric Smith; Erik Brinkman; Esteban Arcaute; Filip Radenovic; Firat Ozgenel; Francesco Caggioni; Frank Seide; Frank Zhang; Gabriel Synnaeve; Gabriella Schwarz; Gabrielle Lee; Gada Badeer; Georgia Anderson; Graeme Nail; Gregoire Mialon"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Guan Pang; Guillem Cucurell; Hailey Nguyen; Hamid Shojanazeri; Hannah Korevaar; Hannah Wang; Haroun Habeeb; Harrison Rudolph; Henry Aspegren; Hu Xu; Hugo Touvron; Iga Kozlowska; Igor Molybog; Igor Tufanov; Iliyan Zarov"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Imanol Arrieta Ibarra; Irina-Elena Veliche; Isabel Kloumann; Ishan Misra; Ivan Evtimov; Jade Copet; Jake Weissman; Jan Geffert; Jana Vranes; Japhet Asher; Jason Park; Jay Mahadeokar; Jean-Baptiste Gaya; Jeet Shah; Jelmer van der Linde"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Jennifer Chan; Jenny Hong; Jenya Lee; Jeremy Fu; Jeremy Teboul; Jianfeng Chi; Jianyu Huang; Jie Wang; Jiecao Yu; Joanna Bitton; Joe Spisak; Joelle Pineau; Jon Carvill; Jongsoo Park; Joseph Rocca"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Joshua Johnstun; Junteng Jia; Kalyan Vasuden Alwala; Kam Hou U; Kate Plawiak; Kartikeya Upasani; Kaushik Veeraraghavan; Ke Li; Kenneth Heafield; Kevin Stone; Khalid El-Arini; Krithika Iyer; Kshitiz Malik; Kuenley Chiu; Kunal Bhalla"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Kyle Huang; Lakshya Garg; Lauren Rantala-Yeary; Laurens van der Maaten; Lawrence Chen; Leandro Silva; Lee Bell; Lei Zhang; Liang Tan; Louis Martin; Lovish Madaan; Luca Wehrstedt; Lukas Blecher; Luke de Oliveira; Madeline Muzzi"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Madian Khabsa; Manav Avlani; Mannat Singh; Manohar Paluri; Mark Zuckerberg; Marcin Kardas; Martynas Mankus; Mathew Oldham; Mathieu Rita; Matthew Lennie; Maya Pavlova; Meghan Keneally; Melanie Kambadur; Mihir Patel; Mikayel Samvelyan"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Mike Clark; Mike Lewis; Min Si; Mitesh Kumar Singh; Mo Metanat; Mona Hassan; Naman Goyal; Narjes Torabi; Nicolas Usunier; Nikolay Bashlykov; Nikolay Bogoychev; Niladri Chatterji; Ning Dong; Oliver Aobo Yang; Olivier Duchenne"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Onur Celebi; Parth Parekh; Patrick Alrassy; Paul Saab; Pavan Balaji; Pedro Rittner; Pengchuan Zhang; Pengwei Li; Petar Vasic; Peter Weng; Polina Zvyagina; Prajjwal Bhargava; Pratik Dubal; Praveen Krishnan; Punit Singh Koura"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Puxin Xu; Qing He; Rachel Rodriguez; Ragavan Srinivasan; Rahul Mitra; Ramon Calderer; Raymond Li; Robert Stojnic; Roberta Raileanu; Robin Battey; Rocky Wang; Rohit Girdhar; Rohit Patel; Romain Sauvestre; Ronnie Polidoro"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Roshan Sumbaly; Ross Taylor; Ruan Silva; Rui Hou; Rui Wang; Russ Howes; Ruty Rinott; Saghar Hosseini; Sai Jayesh Bondu; Samyak Datta; Sanjay Singh; Sara Chugh; Sargun Dhillon; Satadru Pan; Sean Bell"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Sergey Edunov; Shaoliang Nie; Sharan Narang; Sharath Raparthy; Shaun Lindsay; Sheng Feng; Sheng Shen; Shenghao Lin; Shiva Shankar; Shruti Bhosale; Shun Zhang; Simon Vandenhende; Sinong Wang; Seohyun Sonia Kim; Soumya Batra"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Sten Sootla; Steve Kehoe; Suchin Gururangan; Sumit Gupta; Sunny Virk; Sydney Borodinsky; Tamar Glaser; Tamar Herman; Tamara Best; Tara Fowler; Thomas Georgiou; Thomas Scialom; Tianhe Li; Todor Mihaylov; Tong Xiao"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Ujjwal Karn; Vedanuj Goswami; Vibhor Gupta; Vignesh Ramanathan; Viktor Kerkez; Vinay Satish Kumar; Vincent Gonguet; Vish Vogeti; Vlad Poenaru; Vlad Tiberiu Mihailescu; Vladan Petrovic; Vladimir Ivanov; Wei Li; Weiwei Chu; Wenhan Xiong"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Wenyin Fu; Wes Bouaziz; Whitney Meers; Will Constable; Xavier Martinet; Xiaojian Wu; Xinbo Gao; Xinfeng Xie; Xuchao Jia; Yaelle Goldschlag; Yann LeCun; Yashesh Gaur; Yasmine Babaei; Ye Qi; Yenda Li"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Yi Wen; Yiwen Song; Youngjin Nam; Yuchen Hao; Yuchen Zhang; Yun Wang; Yuning Mao; Yuzi He; Zacharie Delpierre Coudert; Zachary DeVito; Zahra Hankir; Zhaoduo Wen; Zheng Yan; Zhengxing Chen; Zhenyu Yang"
+     },
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "Zoe Papakipos"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "{Llama 3} model card",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "title={Llama 3 Model Card},"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2024",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "year={2024},"
+     }
+    ]
+   },
+   "howpublished": {
+    "status": "corrected",
+    "value": "\\url{https://github.com/meta-llama/llama3/blob/main/MODEL_CARD.md}",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+      "quote": "url = {https://github.com/meta-llama/llama3/blob/main/MODEL_CARD.md}"
+     }
+    ]
+   }
+  },
+  "notes": "Author changes only: hyphenated initials C-H Chu, I-E Veliche, J-B Gaya; middle initials added as printed for X E Tan (Xiaoqing Ellen Tan), M K Singh, O A Yang, P S Koura, S J Bondu, S S Kim, V T Mihailescu; compound surnames braced as cdl.bib does ({Mejia Arenas}, {Canton Ferrer}, {Arrieta Ibarra}, {Delpierre Coudert}); particles kept unbraced as cdl.bib writes L J P van der Maaten (van der Linde, van der Maaten, de Oliveira). Left as cited because it is unclear whether the middle word is part of the surname: K Vasuden Alwala, K Hou U, V Satish Kumar. 'A JJhaveri' (Ash JJhaveri) is the source's own spelling. The list follows the GitHub MODEL_CARD.md (331 names); the current Hugging Face card for Meta-Llama-3-8B lists 328 (no Amit Sangani, Ash JJhaveri, Hamid Shojanazeri, Puxin Xu; adds Jacob Xu), so Howpublished is changed from 'Hugging Face Model Card' to the GitHub URL. The card's own suggested citation is title 'Llama 3 Model Card', author 'AI@Meta', 2024. Different work: the Llama 3 paper, A Grattafiori et al. (2024) 'The Llama 3 herd of models', arXiv 2407.21783 - not in cdl.bib. Key unchanged."
+ }
+]

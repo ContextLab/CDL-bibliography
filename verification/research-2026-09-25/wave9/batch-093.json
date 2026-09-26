@@ -1,0 +1,1766 @@
+[
+ {
+  "key": "deCa05b",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://www.mega-nerd.com/libsndfile/",
+   "quote": "Libsndfile is a C library for reading and writing files containing sampled sound",
+   "why": "The libsndfile home page by its author Erik de Castro Lopo; the release history lists version 1.0.12 released Sep 30 2005."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "http://www.mega-nerd.com/libsndfile/",
+      "quote": "Erik de Castro Lopo"
+     }
+    ],
+    "value": "E {de Castro Lopo}"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "http://www.mega-nerd.com/libsndfile/",
+      "quote": "Libsndfile is a C library for reading and writing files"
+     }
+    ],
+    "value": "{libsndfile}"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "http://www.mega-nerd.com/libsndfile/",
+      "quote": "Version 1.0.12 (Sep 30 2005) Add FLAC and CAF file support, virtual I/O interface."
+     }
+    ],
+    "value": "2005"
+   },
+   "howpublished": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "http://www.mega-nerd.com/libsndfile/",
+      "quote": "Libsndfile is a C library for reading and writing files containing sampled sound"
+     }
+    ],
+    "value": "\\url{http://www.mega-nerd.com/libsndfile/}"
+   }
+  },
+  "notes": "Software, no DOI (the queue's Crossref hits are unrelated). Year 2005 corresponds to release 1.0.12 (Sep 30 2005), the only 2005 release; the software has releases 2002-2009+ on this page and continues at github.com/libsndfile/libsndfile, so the year is a version choice, not a publication date. Adds Howpublished with the author's home page (optional; reviewer may prefer the current https://libsndfile.github.io/libsndfile/). Particle surname kept as cdl.bib writes it ({de Castro Lopo}, as deCa05a). No duplicate (deCa05a is libsamplerate). Key unchanged."
+ },
+ {
+  "key": "vanREtal14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://peps.python.org/pep-0484/",
+   "quote": "PEP 484 – Type Hints",
+   "why": "The PEP itself: PEP 484 'Type Hints' by Guido van Rossum, Jukka Lehtosalo and Łukasz Langa, created 29-Sep-2014."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0484/",
+      "quote": "Author : Guido van Rossum <guido at python.org>, Jukka Lehtosalo <jukka.lehtosalo at iki.fi>, Łukasz Langa <lukasz at python.org>"
+     }
+    ],
+    "value": "G {van Rossum} and J Lehtosalo and {\\L} Langa"
+   },
+   "title": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0484/",
+      "quote": "PEP 484 – Type Hints"
+     }
+    ],
+    "value": "Type hints"
+   },
+   "number": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0484/",
+      "quote": "PEP 484 – Type Hints"
+     }
+    ],
+    "value": "484"
+   },
+   "type": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0484/",
+      "quote": "PEP 484 – Type Hints"
+     }
+    ],
+    "value": "PEP"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0484/",
+      "quote": "Created : 29-Sep-2014"
+     }
+    ],
+    "value": "2014"
+   },
+   "institution": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "howpublished": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://peps.python.org/pep-0484/",
+      "quote": "PEP 484 – Type Hints"
+     }
+    ],
+    "value": "\\url{https://peps.python.org/pep-0484/}"
+   }
+  },
+  "notes": "Third author was written as a full given name ({\\L}ukasz Langa); house form is the initial, {\\L} Langa (keeps the diacritic). Title braces removed: sentence case 'Type hints'. Institution 'Python Software Foundation' is not stated on the PEP page (left unchanged, reasonable as the PEP publisher). Optional: add URL (techreport may prefer Url over Howpublished). Year 2014 is the Created date; the PEP was finalised with Python 3.5 (2015). No DOI. No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "vond81",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+   "quote": "\"title\":[\"The Correlation Theory of Brain Function\"]",
+   "why": "Crossref record of the 1994 reprint (Models of Neural Networks II, Springer, pp. 95-119) by Christoph von der Malsburg; the cited 1981 internal report itself has no fetchable record."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+      "quote": "\"given\":\"Christoph\",\"family\":\"von der Malsburg\""
+     }
+    ],
+    "value": "C {von der Malsburg}"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+      "quote": "\"title\":[\"The Correlation Theory of Brain Function\"]"
+     }
+    ],
+    "value": "The correlation theory of brain function"
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "number": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "address": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "The cited work is the 1981 Internal Report 81-2 (Dept of Neurobiology, Max-Planck-Institute for Biophysical Chemistry, Göttingen), known widely but with no fetchable catalogue or repository record: MPG PuRe has no item, Springer blocks scripts (cookie wall), Internet Archive/scholar.archive.org and OpenAlex list only the 1994 reprint, Google Books API quota exhausted. Title and author confirmed via the reprint (same text). DIFFERENT VERSION available: reprint in E Domany, J L van Hemmen and K Schulten (eds), Models of Neural Networks (Physics of Neural Networks series), Springer 1994, pp. 95-119, DOI 10.1007/978-1-4612-4320-5_2 (would be key vond94 if the reviewer prefers citing the reprint). Entry lacks an Institution field (Max-Planck-Institut für Biophysikalische Chemie) but no fetchable source states it, so not proposed. No duplicate in cdl.bib (vondSchn86 is a different paper)."
+ },
+ {
+  "key": "Weic96",
+  "verdict": "ambiguous",
+  "identity": {
+   "url": "https://pub.orcid.org/v3.0/0000-0002-6408-718X/educations",
+   "quote": "City University of New York Graduate School and University Center",
+   "why": "Thomas W Weickert's ORCID education record lists a PhD from the CUNY Graduate School and University Center ending 1996, consistent with the cited dissertation; the dissertation record itself was not found."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pub.orcid.org/v3.0/0000-0002-6408-718X/person",
+      "quote": "Thomas W Weickert"
+     }
+    ],
+    "value": "T W Weickert"
+   },
+   "school": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pub.orcid.org/v3.0/0000-0002-6408-718X/educations",
+      "quote": "City University of New York Graduate School and University Center"
+     }
+    ],
+    "value": "City University of New York"
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "journal": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "volume": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "number": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "ORCID (author-maintained) gives PhD, CUNY Graduate School and University Center, 1988-1996, which fits the entry, but no fetchable source gives the dissertation title or the Dissertation Abstracts International citation (57(1-B):757): ProQuest/PsycINFO records are behind logins, HathiTrust full-text search returned no snippet, Open Library/OpenAlex/Crossref have no record, Google Books API quota exhausted. DAI vol 57 no 1 would be July 1996, consistent with year 1996. House question for the reviewer: the entry is @phdthesis with Journal/Volume/Number/Pages carrying the DAI abstract citation; other batches removed Journal only when converting entry types, so left as is. No duplicate in cdl.bib."
+ },
+ {
+  "key": "DiazEtal15",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+   "quote": "TI - Fitbit(R): An accurate and reliable device for wireless physical activity tracking.",
+   "why": "PubMed 25795203: same title and eight authors, Int J Cardiol 185:138-40, 2015."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.ijcard.2015.03.038",
+      "quote": "\"type\":\"journal-article\""
+     }
+    ],
+    "value": "article"
+   },
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "AU - Diaz KM"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "AU - Krupka DJ"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "AU - Chang MJ"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "AU - Peacock J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "AU - Ma Y"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "AU - Goldsmith J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "AU - Schwartz JE"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "AU - Davidson KW"
+     }
+    ],
+    "value": "K M Diaz and D J Krupka and M J Chang and J Peacock and Y Ma and J Goldsmith and J E Schwartz and K W Davidson"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "Fitbit(R): An accurate and reliable device for wireless physical activity tracking."
+     }
+    ],
+    "value": "Fitbit: an accurate and reliable device for wireless physical activity tracking"
+   },
+   "journal": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.ijcard.2015.03.038",
+      "quote": "\"container-title\":[\"International Journal of Cardiology\"]"
+     }
+    ],
+    "value": "International Journal of Cardiology"
+   },
+   "volume": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "VI - 185"
+     }
+    ],
+    "value": "185"
+   },
+   "pages": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.ijcard.2015.03.038",
+      "quote": "\"page\":\"138-140\""
+     }
+    ],
+    "value": "138--140"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "DP - 2015 Apr 15"
+     }
+    ],
+    "value": "2015"
+   },
+   "doi": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+      "quote": "AID - 10.1016/j.ijcard.2015.03.038 [doi]"
+     }
+    ],
+    "value": "10.1016/j.ijcard.2015.03.038"
+   }
+  },
+  "remove": [
+   "booktitle"
+  ],
+  "notes": "@misc -> @article; the journal name sat in Booktitle, so move it to Journal (remove booktitle). Adds DOI (resolves, handle 200). Title: source has a registered-trademark sign after Fitbit; omitted as cited (reviewer may add {\\textregistered} as GusmEtal14 does). No issue number in PubMed or Crossref. No duplicate in cdl.bib (DontEtal15, GusmEtal14 are different Fitbit papers). Key unchanged."
+ },
+ {
+  "key": "WilsEmmo03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
+   "quote": "TI - The effect of irrelevant visual input on working memory for sign language.",
+   "why": "PubMed 15448060: same title, Wilson M and Emmorey K, J Deaf Stud Deaf Educ 8(2):97-103, 2003."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/deafed/eng010",
+      "quote": "\"type\":\"journal-article\""
+     }
+    ],
+    "value": "article"
+   },
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
+      "quote": "FAU - Wilson, Margaret"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
+      "quote": "FAU - Emmorey, Karen"
+     }
+    ],
+    "value": "M Wilson and K Emmorey"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
+      "quote": "The effect of irrelevant visual input on working memory for sign language."
+     }
+    ],
+    "value": "The effect of irrelevant visual input on working memory for sign language"
+   },
+   "journal": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/deafed/eng010",
+      "quote": "\"container-title\":[\"Journal of Deaf Studies and Deaf Education\"]"
+     }
+    ],
+    "value": "Journal of Deaf Studies and Deaf Education"
+   },
+   "volume": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
+      "quote": "VI - 8"
+     }
+    ],
+    "value": "8"
+   },
+   "number": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
+      "quote": "IP - 2"
+     }
+    ],
+    "value": "2"
+   },
+   "pages": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
+      "quote": "PG - 97-103"
+     }
+    ],
+    "value": "97--103"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
+      "quote": "DP - 2003 Spring"
+     }
+    ],
+    "value": "2003"
+   },
+   "doi": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
+      "quote": "AID - 10.1093/deafed/eng010 [doi]"
+     }
+    ],
+    "value": "10.1093/deafed/eng010"
+   }
+  },
+  "remove": [
+   "publisher"
+  ],
+  "notes": "@misc -> @article; drop Publisher (no publisher on @article). Adds DOI (resolves). Crossref lists only Wilson as author (incomplete deposit); PubMed has both. No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "FellEtal01a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+   "quote": "\"title\":[\"Frequency Dependence of Spike Timing Reliability in Cortical Pyramidal Cells and Interneurons\"]",
+   "why": "Crossref record: same title, same six authors, J Neurophysiol 85(4):1782-1787, 2001."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"type\":\"journal-article\""
+     }
+    ],
+    "value": "article"
+   },
+   "author": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"given\":\"J.-M.\",\"family\":\"Fellous\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"given\":\"A. R.\",\"family\":\"Houweling\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"given\":\"R. H.\",\"family\":\"Modi\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"given\":\"R.P.N.\",\"family\":\"Rao\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"given\":\"P.H.E.\",\"family\":\"Tiesinga\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"given\":\"T. J.\",\"family\":\"Sejnowski\""
+     }
+    ],
+    "value": "J-M Fellous and A R Houweling and R H Modi and R P N Rao and P H E Tiesinga and T J Sejnowski"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"title\":[\"Frequency Dependence of Spike Timing Reliability in Cortical Pyramidal Cells and Interneurons\"]"
+     }
+    ],
+    "value": "Frequency dependence of spike timing reliability in cortical pyramidal cells and interneurons"
+   },
+   "journal": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"container-title\":[\"Journal of Neurophysiology\"]"
+     }
+    ],
+    "value": "Journal of Neurophysiology"
+   },
+   "volume": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"volume\":\"85\""
+     }
+    ],
+    "value": "85"
+   },
+   "number": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"issue\":\"4\""
+     }
+    ],
+    "value": "4"
+   },
+   "pages": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+      "quote": "\"page\":\"1782-1787\""
+     }
+    ],
+    "value": "1782--1787"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11287500/",
+      "quote": "DP - 2001 Apr"
+     }
+    ],
+    "value": "2001"
+   },
+   "doi": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11287500/",
+      "quote": "AID - 10.1152/jn.2001.85.4.1782 [doi]"
+     }
+    ],
+    "value": "10.1152/jn.2001.85.4.1782"
+   }
+  },
+  "remove": [
+   "publisher"
+  ],
+  "notes": "@misc -> @article; drop Publisher. First author initial is hyphenated J-M (Crossref 'J.-M.', Jean-Marc Fellous), house hyphenated-initial rule. Adds DOI (resolves). PubMed abbreviates Rao/Tiesinga to two initials; Crossref gives R.P.N. and P.H.E., as cited. No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "SpenEtal03",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+   "quote": "TI - Abnormal neural synchrony in schizophrenia.",
+   "why": "PubMed 12917376: same title and six authors, J Neurosci 23(19):7407-11, 2003."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.23-19-07407.2003",
+      "quote": "\"type\":\"journal-article\""
+     }
+    ],
+    "value": "article"
+   },
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "AU - Spencer KM"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "AU - Nestor PG"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "AU - Niznikiewicz MA"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "AU - Salisbury DF"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "AU - Shenton ME"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "AU - McCarley RW"
+     }
+    ],
+    "value": "K M Spencer and P G Nestor and M A Niznikiewicz and D F Salisbury and M E Shenton and R W McCarley"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "Abnormal neural synchrony in schizophrenia."
+     }
+    ],
+    "value": "Abnormal neural synchrony in schizophrenia"
+   },
+   "journal": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.23-19-07407.2003",
+      "quote": "\"container-title\":[\"The Journal of Neuroscience\"]"
+     }
+    ],
+    "value": "The Journal of Neuroscience"
+   },
+   "volume": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "VI - 23"
+     }
+    ],
+    "value": "23"
+   },
+   "number": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "IP - 19"
+     }
+    ],
+    "value": "19"
+   },
+   "pages": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1523/jneurosci.23-19-07407.2003",
+      "quote": "\"page\":\"7407-7411\""
+     }
+    ],
+    "value": "7407--7411"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "DP - 2003 Aug 13"
+     }
+    ],
+    "value": "2003"
+   },
+   "doi": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+      "quote": "AID - 10.1523/JNEUROSCI.23-19-07407.2003 [doi]"
+     }
+    ],
+    "value": "10.1523/jneurosci.23-19-07407.2003"
+   }
+  },
+  "remove": [
+   "publisher"
+  ],
+  "notes": "@misc -> @article; drop Publisher. All bibliographic fields match; adds DOI (resolves). No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "CoopEtal04",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://patents.google.com/patent/US6757362B1/en",
+   "quote": "<meta name=\"citation_patent_number\" content=\"US:6757362\">",
+   "why": "Google Patents record US 6,757,362 B1 'Personal virtual assistant', inventors Cooper, McElroy, Rolandi, Sanders, Ulmer, Peebles; granted 2004-06-29."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://patents.google.com/patent/US6757362B1/en",
+      "quote": "content=\"Robert S. Cooper\""
+     },
+     {
+      "url": "https://patents.google.com/patent/US6757362B1/en",
+      "quote": "content=\"Jeff F. McElroy\""
+     },
+     {
+      "url": "https://patents.google.com/patent/US6757362B1/en",
+      "quote": "content=\"Walter Rolandi\""
+     },
+     {
+      "url": "https://patents.google.com/patent/US6757362B1/en",
+      "quote": "content=\"Derek Sanders\""
+     },
+     {
+      "url": "https://patents.google.com/patent/US6757362B1/en",
+      "quote": "content=\"Richard M. Ulmer\""
+     },
+     {
+      "url": "https://patents.google.com/patent/US6757362B1/en",
+      "quote": "content=\"Edward Peebles\""
+     }
+    ],
+    "value": "R S Cooper and J F McElroy and W Rolandi and D Sanders and R M Ulmer and E Peebles"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://patents.google.com/patent/US6757362B1/en",
+      "quote": "US6757362B1 - Personal virtual assistant"
+     }
+    ],
+    "value": "Personal virtual assistant"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://patents.google.com/patent/US6757362B1/en",
+      "quote": "2004-06-29 Publication of US6757362B1"
+     }
+    ],
+    "value": "2004"
+   },
+   "howpublished": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://patents.google.com/patent/US6757362B1/en",
+      "quote": "<meta name=\"citation_patent_number\" content=\"US:6757362\">"
+     }
+    ],
+    "value": "{US} Patent 6,757,362"
+   }
+  },
+  "remove": [
+   "publisher"
+  ],
+  "notes": "US patent 6,757,362 B1, filed 2000-03-06 (application 09/519,075), GRANTED 2004-06-29, so year 2004 (grant year) is right. Replace the bogus Publisher 'Us Patent' with Howpublished {US} Patent 6,757,362 (cdl.bib has no @patent entries; entry type left @misc). Assignee on the record is Avaya Technology LLC (later Conita Technologies). No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "Mann21d",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.datacite.org/dois/10.5281/zenodo.5182775",
+   "quote": "\"titles\":[{\"title\":\"Storytelling with Data\"}],\"publisher\":\"Zenodo\"",
+   "why": "DataCite record of the Zenodo deposit: Storytelling with Data by Jeremy R. Manning, Zenodo, 2021 (version Spring (2021)); the GitHub repo README carries this DOI badge."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.5182775",
+      "quote": "\"givenName\":\"Jeremy R.\",\"familyName\":\"Manning\""
+     }
+    ],
+    "value": "J R Manning"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.5182775",
+      "quote": "\"titles\":[{\"title\":\"Storytelling with Data\"}]"
+     }
+    ],
+    "value": "Storytelling with data"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.5182775",
+      "quote": "\"publicationYear\":2021"
+     }
+    ],
+    "value": "2021"
+   },
+   "publisher": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.5182775",
+      "quote": "\"publisher\":\"Zenodo\""
+     }
+    ],
+    "value": "Zenodo"
+   },
+   "doi": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.5281/zenodo.5182775",
+      "quote": "\"doi\":\"10.5281/zenodo.5182775\""
+     },
+     {
+      "url": "https://raw.githubusercontent.com/ContextLab/storytelling-with-data/master/README.md",
+      "quote": "zenodo.org/badge/DOI/10.5281/zenodo.5182775.svg"
+     }
+    ],
+    "value": "10.5281/zenodo.5182775"
+   },
+   "howpublished": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/ContextLab/storytelling-with-data/master/README.md",
+      "quote": "Storytelling with Data"
+     }
+    ],
+    "value": "\\url{https://github.com/ContextLab/storytelling-with-data}"
+   }
+  },
+  "notes": "Adds the Zenodo version DOI 10.5281/zenodo.5182775 (resolves; the only version; concept DOI is 10.5281/zenodo.5182774). The repo README (github.com/ContextLab/storytelling-with-data, 'Course materials for Dartmouth Course: Storytelling with Data') shows this DOI badge, so Howpublished points at the same work. Released 2021-06-09. Related Zenodo course deposits Mann21b/Mann21c are written as @article with Journal {Zenodo} and the DOI in Volume; this one stays @misc (reviewer may harmonise). No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "LiuEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://papers.nips.cc/paper_files/paper/2018/hash/dda04f9d634145a9c68d5dfe53b21272-Abstract.html",
+   "quote": "content=\"Breaking the Curse of Horizon: Infinite-Horizon Off-Policy Estimation\"",
+   "why": "NeurIPS proceedings page: same title, authors Liu, Li, Tang, Zhou; Advances in NeurIPS 31 (2018)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2018/file/dda04f9d634145a9c68d5dfe53b21272-Bibtex.bib",
+      "quote": "author = {Liu, Qiang and Li, Lihong and Tang, Ziyang and Zhou, Dengyong},"
+     }
+    ],
+    "value": "Q Liu and L Li and Z Tang and D Zhou"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2018/file/dda04f9d634145a9c68d5dfe53b21272-Bibtex.bib",
+      "quote": "title = {Breaking the Curse of Horizon: Infinite-Horizon Off-Policy Estimation},"
+     }
+    ],
+    "value": "Breaking the curse of horizon: infinite-horizon off-policy estimation"
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2018/file/dda04f9d634145a9c68d5dfe53b21272-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ],
+    "value": "Advances in Neural Information Processing Systems"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2018/file/dda04f9d634145a9c68d5dfe53b21272-Bibtex.bib",
+      "quote": "year = {2018}"
+     },
+     {
+      "url": "https://www.proceedings.com/content/048/048413webtoc.pdf",
+      "quote": "Copyright© (2018) by individual authors and NIPS"
+     }
+    ],
+    "value": "2018"
+   },
+   "volume": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2018/hash/dda04f9d634145a9c68d5dfe53b21272-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"31\">"
+     }
+    ],
+    "value": "31"
+   },
+   "pages": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/048/048413webtoc.pdf",
+      "quote": "Estimation, qiang liu, lihong li, and ziyang tang, denny zhou . . . . . 5356"
+     },
+     {
+      "url": "https://www.proceedings.com/content/048/048413webtoc.pdf",
+      "quote": "seshia . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5367"
+     }
+    ],
+    "value": "5356--5366"
+   },
+   "editor": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2018/file/dda04f9d634145a9c68d5dfe53b21272-Bibtex.bib",
+      "quote": "editor = {S. Bengio and H. Wallach and H. Larochelle and K. Grauman and N. Cesa-Bianchi and R. Garnett},"
+     }
+    ],
+    "value": "S Bengio and H Wallach and H Larochelle and K Grauman and N Cesa-Bianchi and R Garnett"
+   },
+   "publisher": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2018/file/dda04f9d634145a9c68d5dfe53b21272-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ],
+    "value": "Curran Associates"
+   },
+   "doi": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Adds Volume 31, Editor, Publisher (same pattern as earlier NeurIPS corrections). Pages: the NeurIPS site gives none; the Curran print TOC (vol 31, printed 2019) gives start 5356 and the next paper starts 5367, so the end page 5366 is inferred. No DOI exists for NeurIPS 2018 papers (Crossref search found none). No duplicate in cdl.bib (LiuEtal19 is a different paper). Key unchanged."
+ },
+ {
+  "key": "LiuWang16",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://papers.nips.cc/paper_files/paper/2016/hash/b3ba8f1bee1238a2f37603d90b58898d-Abstract.html",
+   "quote": "content=\"Stein Variational Gradient Descent: A General Purpose Bayesian Inference Algorithm\"",
+   "why": "NeurIPS proceedings page: same title, authors Qiang Liu and Dilin Wang, Advances in NeurIPS 29 (2016)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2016/file/b3ba8f1bee1238a2f37603d90b58898d-Bibtex.bib",
+      "quote": "author = {Liu, Qiang and Wang, Dilin},"
+     }
+    ],
+    "value": "Q Liu and D Wang"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2016/file/b3ba8f1bee1238a2f37603d90b58898d-Bibtex.bib",
+      "quote": "title = {Stein Variational Gradient Descent: A General Purpose Bayesian Inference Algorithm},"
+     }
+    ],
+    "value": "{Stein} variational gradient descent: a general purpose {Bayesian} inference algorithm"
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2016/file/b3ba8f1bee1238a2f37603d90b58898d-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ],
+    "value": "Advances in Neural Information Processing Systems"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2016/file/b3ba8f1bee1238a2f37603d90b58898d-Bibtex.bib",
+      "quote": "year = {2016}"
+     },
+     {
+      "url": "https://www.proceedings.com/content/034/034099webtoc.pdf",
+      "quote": "Copyright© (2016) by individual authors and NIPS"
+     }
+    ],
+    "value": "2016"
+   },
+   "volume": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2016/hash/b3ba8f1bee1238a2f37603d90b58898d-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"29\">"
+     }
+    ],
+    "value": "29"
+   },
+   "pages": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/034/034099webtoc.pdf",
+      "quote": "Inference Algorithm, Qiang Liu, Dilin Wang, Dartmouth College . . . . . 2378"
+     },
+     {
+      "url": "https://www.proceedings.com/content/034/034099webtoc.pdf",
+      "quote": "Jian Xu, Zhi Yang, University of Minnesota . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2387"
+     }
+    ],
+    "value": "2378--2386"
+   },
+   "editor": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2016/file/b3ba8f1bee1238a2f37603d90b58898d-Bibtex.bib",
+      "quote": "editor = {D. Lee and M. Sugiyama and U. Luxburg and I. Guyon and R. Garnett},"
+     },
+     {
+      "url": "https://www.proceedings.com/content/034/034099webtoc.pdf",
+      "quote": "Daniel D. Lee"
+     },
+     {
+      "url": "https://www.proceedings.com/content/034/034099webtoc.pdf",
+      "quote": "Ulrike von Luxburg"
+     }
+    ],
+    "value": "D D Lee and M Sugiyama and U {von Luxburg} and I Guyon and R Garnett"
+   },
+   "publisher": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2016/file/b3ba8f1bee1238a2f37603d90b58898d-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ],
+    "value": "Curran Associates"
+   },
+   "doi": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Adds Volume 29, Editor, Publisher. Pages from the Curran print TOC (vol 29, printed 2017): start 2378, next paper 2387, so end 2386 inferred. Editor names: the NeurIPS BibTeX writes 'D. Lee' and 'U. Luxburg'; the Curran front matter prints Daniel D. Lee and Ulrike von Luxburg, so D D Lee and U {von Luxburg} (braced particle as cdl.bib writes {von der Malsburg}). No DOI for NeurIPS 2016. No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "ParkPill12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://papers.nips.cc/paper_files/paper/2012/hash/4588e674d3f0faf985047d4c3f13ed0d-Abstract.html",
+   "quote": "content=\"Bayesian active learning with localized priors for fast receptive field characterization\"",
+   "why": "NeurIPS proceedings page: same title, authors Mijung Park and Jonathan Pillow, Advances in NeurIPS 25 (2012)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2012/file/4588e674d3f0faf985047d4c3f13ed0d-Bibtex.bib",
+      "quote": "author = {Park, Mijung and Pillow, Jonathan},"
+     }
+    ],
+    "value": "M Park and J W Pillow"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2012/file/4588e674d3f0faf985047d4c3f13ed0d-Bibtex.bib",
+      "quote": "title = {Bayesian active learning with localized priors for fast receptive field characterization},"
+     }
+    ],
+    "value": "{Bayesian} active learning with localized priors for fast receptive field characterization"
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2012/file/4588e674d3f0faf985047d4c3f13ed0d-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ],
+    "value": "Advances in Neural Information Processing Systems"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2012/file/4588e674d3f0faf985047d4c3f13ed0d-Bibtex.bib",
+      "quote": "year = {2012}"
+     },
+     {
+      "url": "https://www.proceedings.com/content/017/017576webtoc.pdf",
+      "quote": "Copyright© (2012) by Neural Information Processing Systems"
+     }
+    ],
+    "value": "2012"
+   },
+   "pages": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://www.proceedings.com/content/017/017576webtoc.pdf",
+      "quote": "Pillow, UT Austin . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2348"
+     },
+     {
+      "url": "https://www.proceedings.com/content/017/017576webtoc.pdf",
+      "quote": "University . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2357"
+     }
+    ],
+    "value": "2348--2356"
+   },
+   "volume": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2012/hash/4588e674d3f0faf985047d4c3f13ed0d-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"25\">"
+     }
+    ],
+    "value": "25"
+   },
+   "editor": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2012/file/4588e674d3f0faf985047d4c3f13ed0d-Bibtex.bib",
+      "quote": "editor = {F. Pereira and C.J. Burges and L. Bottou and K. Weinberger},"
+     }
+    ],
+    "value": "F Pereira and C J Burges and L Bottou and K Weinberger"
+   },
+   "publisher": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2012/file/4588e674d3f0faf985047d4c3f13ed0d-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ],
+    "value": "Curran Associates"
+   },
+   "doi": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Adds Volume 25, Editor (same editors as KrizEtal12 correction), Publisher. Pages: Curran print TOC start 2348; next paper starts 2357, so 2356 end is inferred and matches the citation. Author: source gives 'Jonathan Pillow'; the citation's W kept (never drop an initial). No DOI for NeurIPS 2012. The related journal paper (Park and Pillow 2011, PLoS Comput Biol, 10.1371/journal.pcbi.1002219, 'Receptive field inference with localized priors') is a DIFFERENT work. Key unchanged."
+ },
+ {
+  "key": "RaoHowa08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://papers.nips.cc/paper_files/paper/2007/hash/b3967a0e938dc2a6340e258630febd5a-Abstract.html",
+   "quote": "content=\"Retrieved context and the discovery of semantic structure\"",
+   "why": "NeurIPS proceedings page: same title, Vinayak Rao and Marc Howard, Advances in NIPS 20 (NIPS 2007 conference)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2007/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "author = {Rao, Vinayak and Howard, Marc},"
+     }
+    ],
+    "value": "V A Rao and M W Howard"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2007/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "title = {Retrieved context and the discovery of semantic structure},"
+     }
+    ],
+    "value": "Retrieved context and the discovery of semantic structure"
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2007/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ],
+    "value": "Advances in Neural Information Processing Systems"
+   },
+   "editor": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2007/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "editor = {J. Platt and D. Koller and Y. Singer and S. Roweis},"
+     }
+    ],
+    "value": "J C Platt and D Koller and Y Singer and S Roweis"
+   },
+   "volume": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2007/hash/b3967a0e938dc2a6340e258630febd5a-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"20\">"
+     }
+    ],
+    "value": "20"
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "publisher": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "doi": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Adds Volume 20 (matches SanbGrif08 correction). Year: the NeurIPS site dates it 2007 (conference year) and the Curran reprint TOC says 'Copyright (2009)'; no fetched source states 2008 (the MIT Press print year); cited 2008 left unchanged (2007 would rename to RaoHowa07). Pages: the Curran reprint TOC gives a different pagination ('Retrieved Context and the Discovery of Semantic Structure......393', next paper 401, i.e. 393--400); the cited 1193--1200 presumably follows the original MIT Press volume, which I could not fetch. Publisher: NeurIPS BibTeX says Curran Associates, Inc.; cited {MIT} Press not confirmed. Editors: source gives J. Platt; cited J C kept. No DOI. No duplicate in cdl.bib."
+ },
+ {
+  "key": "VaswEtal17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://papers.nips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+   "quote": "content=\"Attention is All you Need\"",
+   "why": "NeurIPS proceedings page: same title, same eight authors, Advances in NeurIPS 30 (2017)."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+      "quote": "@inproceedings{NIPS2017_3f5ee243,"
+     }
+    ],
+    "value": "inproceedings"
+   },
+   "author": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+      "quote": "content=\"Kaiser, Łukasz\""
+     },
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+      "quote": "content=\"Polosukhin, Illia\""
+     },
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+      "quote": "author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser,"
+     }
+    ],
+    "value": "A Vaswani and N Shazeer and N Parmar and J Uszkoreit and L Jones and A N Gomez and {\\L} Kaiser and I Polosukhin"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+      "quote": "title = {Attention is All you Need},"
+     }
+    ],
+    "value": "Attention is all you need"
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+      "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+     }
+    ],
+    "value": "Advances in Neural Information Processing Systems"
+   },
+   "volume": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+      "quote": "<meta name=\"citation_volume\" content=\"30\">"
+     }
+    ],
+    "value": "30"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+      "quote": "year = {2017}"
+     },
+     {
+      "url": "https://www.proceedings.com/content/039/039083webtoc.pdf",
+      "quote": "Copyright© (2017) by individual authors and NIPS"
+     }
+    ],
+    "value": "2017"
+   },
+   "editor": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+      "quote": "editor = {I. Guyon and U. Von Luxburg and S. Bengio and H. Wallach and R. Fergus and S. Vishwanathan and R. Garnett},"
+     }
+    ],
+    "value": "I Guyon and U {von Luxburg} and S Bengio and H Wallach and R Fergus and S Vishwanathan and R Garnett"
+   },
+   "publisher": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ],
+    "value": "Curran Associates"
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "doi": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "@conference -> @inproceedings. Author: seventh author is Łukasz Kaiser (source), so the initial keeps its diacritic as {\\L} (house 'keep accents'; reviewer may prefer plain L). Adds Editor and Publisher. PAGES CONFLICT: the Curran print TOC (vol 30, printed 2018) gives start 5999 ('Illia Polosukhin . . . 5999') with the next paper at 6010, i.e. 5999--6009, while the cited 5998--6008 is the widely used electronic-proceedings pagination that no fetchable source here states; left unchanged, reviewer to decide. The 10.65215/* Crossref records for this title are 2025 re-depositions, not the published version; no DOI exists for the NeurIPS paper. The arXiv preprint (1706.03762) is a different version. No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "YangEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "http://web.archive.org/web/20150215160113/http://lytics.stanford.edu/datadriveneducation",
+   "quote": "Diyii Yang, Tanmay Sinha, David Adamson and Carolyn Penstein Rose",
+   "why": "Archived accepted-papers list of the NIPS 2013 Workshop on Data Driven Education (Dec 10, 2013) lists this paper by the same four authors; the PDF is on the first author's site."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20150215160113/http://lytics.stanford.edu/datadriveneducation",
+      "quote": "Diyii Yang, Tanmay Sinha, David Adamson and Carolyn Penstein Rose"
+     },
+     {
+      "url": "https://cs.stanford.edu/~diyiy/docs/nips13.pdf",
+      "quote": "Diyi Yang1 Tanmay Sinha2 David Adamson1 Carolyn Penstein Rose1"
+     }
+    ],
+    "value": "D Yang and T Sinha and D Adamson and C P Rose"
+   },
+   "title": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://cs.stanford.edu/~diyiy/docs/nips13.pdf",
+      "quote": "Tune in, Drop out”: Anticipating student dropouts in Massive Open Online Courses"
+     },
+     {
+      "url": "http://web.archive.org/web/20150215160113/http://lytics.stanford.edu/datadriveneducation",
+      "quote": "“Turn on, Tune in, Drop out”: Anticipating student dropouts in Massive Open Online Courses"
+     }
+    ],
+    "value": "``Turn on, tune in, drop out'': anticipating student dropouts in massive open online courses"
+   },
+   "booktitle": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20150215160113/http://lytics.stanford.edu/datadriveneducation",
+      "quote": "NIPS Workshop on Data Driven Education (2013)"
+     }
+    ],
+    "value": "{NIPS} Workshop on Data Driven Education"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "http://web.archive.org/web/20150215160113/http://lytics.stanford.edu/datadriveneducation",
+      "quote": "NIPS Workshop on Data Driven Education (2013)"
+     },
+     {
+      "url": "http://web.archive.org/web/20150215160113/http://lytics.stanford.edu/datadriveneducation",
+      "quote": "Tuesday December 10, 2013"
+     }
+    ],
+    "value": "2013"
+   }
+  },
+  "remove": [
+   "volume"
+  ],
+  "notes": "Workshop paper, NOT part of the Advances in NIPS proceedings (the workshop had no archival proceedings; the paper is linked from the workshop page as papers/yangetal.pdf). Title word is 'dropouts' (plural), not 'dropout'; source title carries the quotation marks. Volume 11 is not supported by any source (likely a Google Scholar artefact), so remove it. Booktitle changed to the workshop name. Author: the PDF prints 'Carolyn Penstein Rose' without accent (her usual spelling is Rosé); kept as cited. Workshop page misspells 'Diyii'. No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "RangEtal14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+   "quote": "<meta name=\"citation_title\" content=\"Black Box Variational Inference\"/>",
+   "why": "PMLR volume 33 (AISTATS 2014) page: same title, Ranganath, Gerrish and Blei, pages 814-822."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+      "quote": "author = {Ranganath, Rajesh and Gerrish, Sean and Blei, David},"
+     }
+    ],
+    "value": "R Ranganath and S Gerrish and D M Blei"
+   },
+   "title": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+      "quote": "title = {{Black Box Variational Inference}},"
+     }
+    ],
+    "value": "Black box variational inference"
+   },
+   "booktitle": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+      "quote": "booktitle = {Proceedings of the Seventeenth International Conference on Artificial Intelligence and Statistics},"
+     }
+    ],
+    "value": "Proceedings of the 17\\textsuperscript{th} International Conference on Artificial Intelligence and Statistics"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+      "quote": "year = {2014},"
+     }
+    ],
+    "value": "2014"
+   },
+   "pages": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+      "quote": "pages = {814--822},"
+     }
+    ],
+    "value": "814--822"
+   },
+   "volume": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+      "quote": "volume = {33},"
+     }
+    ],
+    "value": "33"
+   },
+   "series": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+      "quote": "series = {Proceedings of Machine Learning Research},"
+     }
+    ],
+    "value": "Proceedings of Machine Learning Research"
+   },
+   "editor": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+      "quote": "editor = {Kaski, Samuel and Corander, Jukka},"
+     }
+    ],
+    "value": "S Kaski and J Corander"
+   },
+   "address": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+      "quote": "address = {Reykjavik, Iceland},"
+     }
+    ],
+    "value": "Reykjavik, Iceland"
+   },
+   "publisher": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+      "quote": "publisher = {PMLR},"
+     }
+    ],
+    "value": "PMLR"
+   },
+   "doi": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Booktitle 'Artificial Intellience and Statistics' was misspelled; replaced by the PMLR proceedings name with ordinal in house form (as ParkEtal13 in wave 6). Adds pages, volume 33, series, editors, address, publisher (reviewer may drop address/publisher if house PMLR entries omit them). Author: source 'David Blei'; cited M kept. No DOI (PMLR). No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "WolfEtal20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+   "quote": "title = \"Transformers: State-of-the-Art Natural Language Processing\",",
+   "why": "ACL Anthology record 2020.emnlp-demos.6: same title, Wolf, Debut, Sanh et al., EMNLP 2020 System Demonstrations, pages 38-45."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+      "quote": "author = \"Wolf, Thomas and Debut, Lysandre and Sanh, Victor and Chaumond, Julien and Delangue, Clement and Moi, Anthony and Cistac, Pierric and Rault, Tim and Louf, Remi and Funtowicz, Morgan and Davison, Joe and"
+     },
+     {
+      "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+      "quote": "Shleifer, Sam and von Platen, Patrick and Ma, Clara and Jernite, Yacine and Plu, Julien and Xu, Canwen and Le Scao, Teven and Gugger, Sylvain and Drame, Mariama and Lhoest, Quentin and Rush, Alexander\","
+     }
+    ],
+    "value": "T Wolf and L Debut and V Sanh and J Chaumond and C Delangue and A Moi and P Cistac and T Rault and R Louf and M Funtowicz and J Davison and S Shleifer and P {von Platen} and C Ma and Y Jernite and J Plu and C Xu and T {Le Scao} and S Gugger and M Drame and Q Lhoest and A M Rush"
+   },
+   "title": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+      "quote": "title = \"Transformers: State-of-the-Art Natural Language Processing\","
+     }
+    ],
+    "value": "Transformers: state-of-the-art natural language processing"
+   },
+   "booktitle": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+      "quote": "booktitle = \"Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations\","
+     }
+    ],
+    "value": "Proceedings of the Conference on Empirical Methods in Natural Language Processing: System Demonstrations"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+      "quote": "year = \"2020\","
+     }
+    ],
+    "value": "2020"
+   },
+   "pages": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+      "quote": "pages = \"38--45\""
+     }
+    ],
+    "value": "38--45"
+   },
+   "publisher": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+      "quote": "publisher = \"Association for Computational Linguistics\","
+     }
+    ],
+    "value": "Association for Computational Linguistics"
+   },
+   "editor": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+      "quote": "editor = \"Liu, Qun and Schlangen, David\","
+     }
+    ],
+    "value": "Q Liu and D Schlangen"
+   },
+   "address": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+      "quote": "address = \"Online\","
+     }
+    ],
+    "value": "Online"
+   },
+   "doi": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+      "quote": "doi = \"10.18653/v1/2020.emnlp-demos.6\","
+     }
+    ],
+    "value": "10.18653/v1/2020.emnlp-demos.6"
+   }
+  },
+  "notes": "Cited author list had 16 of 22 authors: it omits Rault, Louf, Funtowicz, Davison, Shleifer and von Platen (between Cistac and Ma), and misspelled Pierric as 'Perric' (now initials only). von Platen braced as a particle surname like {van Rossum}; {Le Scao} kept as cdl.bib writes it. Cited A M Rush keeps M (source 'Rush, Alexander'). Missing booktitle added (house EMNLP form without year). Title was over-braced; now sentence case, lowercase after colon. DOI resolves (doi.org handle 200) and Crossref lists the same 22 authors and pages 38-45. No duplicate in cdl.bib. Key unchanged. Address 'Online' optional."
+ },
+ {
+  "key": "Laks01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
+   "quote": "Speech given by the Chairman of the \"Organization of the Mengele Twins\" Jona Laks, Tel Aviv, on the occasion of the opening of the symposium",
+   "why": "Max Planck Society's own posting (archived 2002) of Jona Laks's opening speech at the symposium 'Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes - The Auschwitz Connection', Berlin, June 7, 2001."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
+      "quote": "Speech given by the Chairman of the \"Organization of the Mengele Twins\" Jona Laks, Tel Aviv"
+     }
+    ],
+    "value": "J Laks"
+   },
+   "title": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
+      "quote": "Speech given by the Chairman of the \"Organization of the Mengele Twins\" Jona Laks"
+     }
+    ],
+    "value": "Speech given by the chairman of the ``{Organization of the Mengele Twins}''"
+   },
+   "booktitle": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
+      "quote": "entitled \"Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes - The Auschwitz Connection\""
+     }
+    ],
+    "value": "Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes: The Auschwitz Connection"
+   },
+   "organization": {
+    "status": "corrected",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
+      "quote": "I will begin by thanking the Max Planck Society and Dr. Carola Sachse"
+     }
+    ],
+    "value": "Max Planck Society"
+   },
+   "address": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
+      "quote": "The Auschwitz Connection\" Berlin, June 7, 2001"
+     }
+    ],
+    "value": "Berlin"
+   },
+   "year": {
+    "status": "confirmed",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
+      "quote": "The Auschwitz Connection\" Berlin, June 7, 2001"
+     }
+    ],
+    "value": "2001"
+   }
+  },
+  "notes": "An opening SPEECH (not an abstract or paper), given June 7, 2001 at the Max Planck Society symposium in Berlin (Harnack-Haus / Fritz-Haber-Institut, June 7-8, 2001). The cited title 'Lecture on behalf of the organization of mengele twins' is a description, not a title; proposed title follows the MPG page heading, with the proper noun braced (Mengele was lowercased). Organization: the host was the Max Planck Society (Max-Planck-Gesellschaft), not a 'Max Planck Institute'. No proceedings volume in English: a German version appears as 'Erinnerung gegen das Vergessen' in C Sachse (ed), Die Verbindung nach Auschwitz (Wallstein, Göttingen, 2003; archived KWG Band 6 contents page), a DIFFERENT version. Reviewer may prefer @misc with Howpublished = speech + URL over @conference/@inproceedings since no proceedings exist. No duplicate in cdl.bib. Key unchanged."
+ },
+ {
+  "key": "HealEtal12b",
+  "verdict": "no_source",
+  "identity": {},
+  "fields": {
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "title": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "booktitle": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "organization": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "address": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "year": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "CONFERENCE ABSTRACT (Cognitive Aging Conference, Atlanta, April 2012): per house rule it goes on the REMOVAL list. Searched: Crossref (queue hits are unrelated), Wayback captures of cac.gatech.edu (earliest 2013; no 2012 program), psychology.gatech.edu/cogaging (captures end 2006), the Kahana lab Publications page as archived 2012-09-30 (abstracts not listed); memory.psych.upenn.edu was unreachable live; web search quota exhausted. Related but DIFFERENT work: HealEtal12a 'Modeling age-related changes in episodic memory' (journal article, already in cdl.bib). Author form note: cdl.bib writes this author as 'M K Healey' 12 times and 'M Karl Healey' 3 times."
+ }
+]

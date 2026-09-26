@@ -1,0 +1,2116 @@
+[
+ {
+  "key": "BoraEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
+   "quote": "Oscillations in the Basal Ganglia: The good, the bad, and the unexpected",
+   "why": "Crossref chapter record: Boraud, Brown, Goldberg, Graybiel and Magill, in The Basal Ganglia VIII (eds Bolam, Ingham, Magill; Springer US, Boston, 2005)."
+  },
+  "remove": [
+   "chapter"
+  ],
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Oscillations in the basal ganglia: the good, the bad, and the unexpected",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
+      "quote": "Oscillations in the Basal Ganglia: The good, the bad, and the unexpected"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "The Basal Ganglia {VIII}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9",
+      "quote": "\"title\":[\"The Basal Ganglia VIII\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T Boraud and P Brown and J A Goldberg and A M Graybiel and P J Magill",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
+      "quote": "\"given\":\"Thomas\",\"family\":\"Boraud\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
+      "quote": "\"given\":\"Peter\",\"family\":\"Brown\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
+      "quote": "\"given\":\"Joshua A.\",\"family\":\"Goldberg\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
+      "quote": "\"given\":\"Ann M.\",\"family\":\"Graybiel\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
+      "quote": "\"given\":\"Peter J.\",\"family\":\"Magill\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "J P Bolam and C A Ingham and P J Magill",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9",
+      "quote": "\"given\":\"J. Paul\",\"family\":\"Bolam\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9",
+      "quote": "\"given\":\"Cali A.\",\"family\":\"Ingham\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9",
+      "quote": "\"given\":\"Peter J.\",\"family\":\"Magill\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1--24",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
+      "quote": "\"page\":\"1-24\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9",
+      "quote": "\"publisher\":\"Springer US\""
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Boston, {MA}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9",
+      "quote": "\"publisher-location\":\"Boston, MA\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9",
+      "quote": "\"published-print\":{\"date-parts\":[[2005]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/0-387-28066-9_1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/0-387-28066-9_1",
+      "quote": "\"DOI\":\"10.1007\\/0-387-28066-9_1\""
+     }
+    ]
+   }
+  },
+  "notes": "Titled-chapter @inbook -> @incollection: Title = chapter title, Booktitle = old Title, drop Chapter. Editor surname typo Magil -> Magill. Springer/Crossref give pages 1-24 (cited 3--24, likely the first text page after the chapter title page). Address Boston (Springer US), not New York. Book is in the series Advances in Behavioral Biology (series not added). DOI handle resolves (200)."
+ },
+ {
+  "key": "Farb06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3_05",
+   "quote": "TOPOLOGY OF ROBOT MOTION PLANNING",
+   "why": "Crossref chapter record: M Farber, pp 185-230 in Morse Theoretic Methods in Nonlinear Analysis and in Symplectic Topology (eds Biran, Cornea, Lalonde), Springer, Dordrecht, 2006."
+  },
+  "remove": [
+   "chapter"
+  ],
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3_05",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Topology of robot motion planning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3_05",
+      "quote": "TOPOLOGY OF ROBOT MOTION PLANNING"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "{Morse} Theoretic Methods in Nonlinear Analysis and in Symplectic Topology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3",
+      "quote": "Morse Theoretic Methods in Nonlinear Analysis and in Symplectic Topology"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Farber",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3_05",
+      "quote": "\"given\":\"MICHAEL\",\"family\":\"FARBER\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "P Biran and O Cornea and F Lalonde",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3",
+      "quote": "\"given\":\"Paul\",\"family\":\"Biran\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3",
+      "quote": "\"given\":\"Octav\",\"family\":\"Cornea\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3",
+      "quote": "\"family\":\"Lalonde\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "185--230",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3_05",
+      "quote": "\"page\":\"185-230\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/1-4020-4266-3_05",
+      "quote": "Publisher Name : Springer, Dordrecht"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Dordrecht",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3",
+      "quote": "\"publisher-location\":\"Dordrecht\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3",
+      "quote": "\"published-print\":{\"date-parts\":[[2006]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/1-4020-4266-3_05",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/1-4020-4266-3_05",
+      "quote": "\"DOI\":\"10.1007\\/1-4020-4266-3_05\""
+     }
+    ]
+   }
+  },
+  "notes": "Titled-chapter @inbook -> @incollection: Title = chapter title, Booktitle = old Title, drop Chapter. Editors added (book record: Paul Biran, Octav Cornea, Francois Lalonde). Crossref names the chapter publisher Kluwer Academic Publishers but the Springer page gives Springer, Dordrecht (NATO Science Series II volume). Address Dordrecht added in the one existing house form. DOI handle resolves (200)."
+ },
+ {
+  "key": "Gall08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9_8",
+   "quote": "Dead Reckoning, Cognitive Maps, Animal Navigation and the Representation of Space: An Introduction",
+   "why": "Crossref chapter record: Charles R. Gallistel, pp 137-143 in Robotics and Cognitive Approaches to Spatial Mapping (eds Jefferies, Yeap), Springer Tracts in Advanced Robotics vol 38, Springer Berlin Heidelberg, 2008."
+  },
+  "remove": [
+   "chapter"
+  ],
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9_8",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Dead reckoning, cognitive maps, animal navigation and the representation of space: an introduction",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9_8",
+      "quote": "Dead Reckoning, Cognitive Maps, Animal Navigation and the Representation of Space: An Introduction"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Robotics and Cognitive Approaches to Spatial Mapping",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9",
+      "quote": "\"title\":[\"Robotics and Cognitive Approaches to Spatial Mapping\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C R Gallistel",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9_8",
+      "quote": "\"given\":\"Charles R.\",\"family\":\"Gallistel\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "M E Jefferies and W-K Yeap",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9",
+      "quote": "\"given\":\"Margaret E.\",\"family\":\"Jefferies\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9",
+      "quote": "\"given\":\"Wai-Kiang\",\"family\":\"Yeap\""
+     }
+    ]
+   },
+   "series": {
+    "status": "corrected",
+    "value": "Springer Tracts in Advanced Robotics",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/book/10.1007/978-3-540-75388-9",
+      "quote": "Springer Tracts in Advanced Robotics (STAR, volume 38)"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "38",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/book/10.1007/978-3-540-75388-9",
+      "quote": "Springer Tracts in Advanced Robotics (STAR, volume 38)"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "137--143",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9_8",
+      "quote": "\"page\":\"137-143\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-540-75388-9_8",
+      "quote": "Publisher Name : Springer, Berlin, Heidelberg"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Berlin",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9",
+      "quote": "\"publisher-location\":\"Berlin, Heidelberg\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9",
+      "quote": "\"published-print\":{\"date-parts\":[[2008]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-3-540-75388-9_8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-75388-9_8",
+      "quote": "\"DOI\":\"10.1007\\/978-3-540-75388-9_8\""
+     }
+    ]
+   }
+  },
+  "notes": "Titled-chapter @inbook -> @incollection: Title = chapter title (sentence case), Booktitle = old Title (cited 'Robotics and cognitive approaches...' is the book title), drop Chapter. Editors, pages, series added. eBook online 23 Sept 2007 but hardcover published 10 January 2008 (Springer book page) and Crossref print year 2008, so 2008 stands. Address in the house form 'Berlin' (4 uses). Editor Wai-Kiang Yeap written W-K per hyphenated-initials rule. DOI handle resolves (200)."
+ },
+ {
+  "key": "MandEtal89",
+  "verdict": "correction",
+  "new_key": "Mand89",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2_5",
+   "quote": "Memory: Conscious and Unconscious",
+   "why": "Crossref chapter record: George Mandler (sole author), pp 84-106 in Memory: Interdisciplinary Approaches (eds Solomon, Goethals, Kelley, Stephens), Springer New York, 1989."
+  },
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2_5",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Memory: conscious and unconscious",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2_5",
+      "quote": "Memory: Conscious and Unconscious"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Memory: Interdisciplinary Approaches",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
+      "quote": "\"title\":[\"Memory: Interdisciplinary Approaches\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "G Mandler",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2_5",
+      "quote": "\"given\":\"George\",\"family\":\"Mandler\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "P R Solomon and G R Goethals and C M Kelley and B R Stephens",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
+      "quote": "\"given\":\"Paul R.\",\"family\":\"Solomon\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
+      "quote": "\"given\":\"George R.\",\"family\":\"Goethals\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
+      "quote": "\"given\":\"Colleen M.\",\"family\":\"Kelley\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
+      "quote": "\"given\":\"Benjamin R.\",\"family\":\"Stephens\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "84--106",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2_5",
+      "quote": "\"page\":\"84-106\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
+      "quote": "\"publisher\":\"Springer New York\""
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
+      "quote": "\"publisher-location\":\"New York, NY\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1989",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2",
+      "quote": "\"published-print\":{\"date-parts\":[[1989]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-1-4612-3500-2_5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-3500-2_5",
+      "quote": "\"DOI\":\"10.1007\\/978-1-4612-3500-2_5\""
+     }
+    ]
+   }
+  },
+  "notes": "The cited author list wrongly merges the book's co-editors (Goethals, Kelley, Stephens) into the byline; the chapter is by Mandler alone and all four are editors. @inbook -> @incollection with Booktitle = Memory: Interdisciplinary Approaches. Author count changes, so key becomes Mand89 (checked: no Mand89 in cdl.bib; no other entry for this chapter). DOI handle resolves (200)."
+ },
+ {
+  "key": "McKeBuzs16",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4_1",
+   "quote": "Hippocampal Mechanisms for the Segmentation of Space by Goals and Boundaries",
+   "why": "Crossref chapter record: Sam McKenzie and György Buzsáki, pp 1-21 in Micro-, Meso- and Macro-Dynamics of the Brain (eds Buzsáki, Christen), Research and Perspectives in Neurosciences, Springer, Cham, 2016."
+  },
+  "remove": [
+   "chapter"
+  ],
+  "fields": {
+   "ENTRYTYPE": {
+    "status": "corrected",
+    "value": "incollection",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4_1",
+      "quote": "\"type\":\"book-chapter\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Hippocampal mechanisms for the segmentation of space by goals and boundaries",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4_1",
+      "quote": "Hippocampal Mechanisms for the Segmentation of Space by Goals and Boundaries"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "Micro-, Meso- and Macro-Dynamics of the Brain",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4",
+      "quote": "\"title\":[\"Micro-, Meso- and Macro-Dynamics of the Brain\"]"
+     }
+    ]
+   },
+   "series": {
+    "status": "corrected",
+    "value": "Research and Perspectives in Neurosciences",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/book/10.1007/978-3-319-28802-4",
+      "quote": "Research and Perspectives in Neurosciences"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S McKenzie and G Buzs\\'{a}ki",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-319-28802-4_1",
+      "quote": "Sam McKenzie"
+     },
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-319-28802-4_1",
+      "quote": "György Buzsáki"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "G Buzs\\'{a}ki and Y Christen",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/book/10.1007/978-3-319-28802-4",
+      "quote": "Editors: György Buzsáki 0 , Yves Christen 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1--21",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4_1",
+      "quote": "\"page\":\"1-21\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-319-28802-4_1",
+      "quote": "Publisher Name : Springer, Cham"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Cham",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4",
+      "quote": "\"publisher-location\":\"Cham\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4_1",
+      "quote": "\"published-print\":{\"date-parts\":[[2016]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-3-319-28802-4_1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-319-28802-4_1",
+      "quote": "\"DOI\":\"10.1007\\/978-3-319-28802-4_1\""
+     }
+    ]
+   }
+  },
+  "notes": "@inbook -> @incollection: Title = chapter title, Booktitle = the book title only (the cited Title ran the series name into it), drop Chapter; series added as its own field. Editors, pages added. Hardcover published 11 May 2016. No existing Cham address in cdl.bib, so 'Cham' is new (could be omitted). Open access. DOI handle resolves (200)."
+ },
+ {
+  "key": "GalaBush59",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Some%20T-maze%20experiments%22&hits_per_page=10",
+   "quote": "EUGENE GALANTER and ROBERT R. BUSH",
+   "why": "Internet Archive full-text index of the scanned book Studies in mathematical learning theory (Bush & Estes, 1959): chapter 14 'Some T-Maze Experiments' by Eugene Galanter and Robert R. Bush; LoC record LCCN 59007672 gives the book's editors, publisher and year."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Some {T}-maze experiments",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Some%20T-maze%20experiments%22&hits_per_page=10",
+      "quote": "SOME T-MAZE EXPERIMENTS"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E Galanter and R R Bush",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Some%20T-maze%20experiments%22&hits_per_page=10",
+      "quote": "EUGENE GALANTER and ROBERT R. BUSH"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Studies in Mathematical Learning Theory",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+      "quote": "Studies in mathematical learning theory"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "R R Bush and W K Estes",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+      "quote": "edited by Robert R. Bush and William K. Estes"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Stanford {University} Press",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+      "quote": "Stanford University Press"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Stanford, {CA}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+      "quote": "Stanford, Calif"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1959",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+      "quote": "1959"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   }
+  },
+  "notes": "Editors added (book is edited by R R Bush and W K Estes; Stanford Mathematical Studies in the Social Sciences 3). Pages not added: the IA full-text index (scan is lending-only, full text not downloadable) shows page 265 immediately before the '266 GALANTER AND BUSH' running head and running heads up to 'SOME T-MAZE EXPERIMENTS 289', so the chapter starts on p 265 and runs to at least p 289 (commonly cited 265-289), but the last page could not be confirmed. Another chapter of the same book is in cdl.bib at line 18896 (different work, not a duplicate). No DOI exists."
+ },
+ {
+  "key": "Lash50",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://archive.org/download/dli.scoerat.6544theneuropsychologyoflashley1960/dli.scoerat.6544theneuropsychologyoflashley1960_djvu.txt",
+   "quote": "In search of the engram. In Symp. Soc. exp. Biol. No. 4. Cambridge, Eng.: Cambridge Univ. Press, 1950. Pp. 454-482.",
+   "why": "The 1960 collection 'The Neuropsychology of Lashley' (selected papers, with the list 'Publications of K. S. Lashley') gives item 100: In search of the engram, Symp. Soc. exp. Biol. No. 4, Cambridge Univ. Press, 1950, pp 454-482."
+  },
+  "remove": [
+   "number"
+  ],
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "In search of the engram",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/dli.scoerat.6544theneuropsychologyoflashley1960/dli.scoerat.6544theneuropsychologyoflashley1960_djvu.txt",
+      "quote": "In search of the engram. In Symp. Soc. exp. Biol. No. 4. Cambridge, Eng.: Cambridge Univ. Press, 1950. Pp. 454-482."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K S Lashley",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/dli.scoerat.6544theneuropsychologyoflashley1960/dli.scoerat.6544theneuropsychologyoflashley1960_djvu.txt",
+      "quote": "PUBLICATIONS OF K. S. LASHLEY"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Symposia of the Society for Experimental Biology",
+    "evidence": [
+     {
+      "url": "https://archive.org/metadata/dli.ernet.288565",
+      "quote": "\"title\":\"Symposia Of The Society For Experimental Biology Number-iv\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/dli.scoerat.6544theneuropsychologyoflashley1960/dli.scoerat.6544theneuropsychologyoflashley1960_djvu.txt",
+      "quote": "In search of the engram. In Symp. Soc. exp. Biol. No. 4. Cambridge, Eng.: Cambridge Univ. Press, 1950. Pp. 454-482."
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "454--482",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/dli.scoerat.6544theneuropsychologyoflashley1960/dli.scoerat.6544theneuropsychologyoflashley1960_djvu.txt",
+      "quote": "In search of the engram. In Symp. Soc. exp. Biol. No. 4. Cambridge, Eng.: Cambridge Univ. Press, 1950. Pp. 454-482."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Cambridge {University} Press",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/dli.scoerat.6544theneuropsychologyoflashley1960/dli.scoerat.6544theneuropsychologyoflashley1960_djvu.txt",
+      "quote": "In search of the engram. In Symp. Soc. exp. Biol. No. 4. Cambridge, Eng.: Cambridge Univ. Press, 1950. Pp. 454-482."
+     },
+     {
+      "url": "https://archive.org/metadata/dli.ernet.288565",
+      "quote": "\"publisher\":\"The University Press, Cambridge\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1950",
+    "evidence": [
+     {
+      "url": "https://archive.org/metadata/dli.ernet.288565",
+      "quote": "\"date\":\"1950\""
+     },
+     {
+      "url": "https://archive.org/download/dli.scoerat.6544theneuropsychologyoflashley1960/dli.scoerat.6544theneuropsychologyoflashley1960_djvu.txt",
+      "quote": "In search of the engram. In Symp. Soc. exp. Biol. No. 4. Cambridge, Eng.: Cambridge Univ. Press, 1950. Pp. 454-482."
+     }
+    ]
+   }
+  },
+  "notes": "Cited entry has the page range in Number (454-482) and a stray Pages = {30}: set Pages = {454--482} and remove Number. Publisher added (Cambridge University Press). The volume's own title is Physiological Mechanisms in Animal Behaviour (SEB Symposium No. 4); the Internet Archive scan of that volume (dli.ernet.288565) has unusable OCR, so the page range rests on the author's publication list printed in the 1960 Lashley collection (itself a later reprint with different pagination, not the cited version). No DOI for the original. No duplicate in cdl.bib."
+ },
+ {
+  "key": "Herb34",
+  "verdict": "correction",
+  "new_key": "Herb91",
+  "identity": {
+   "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+   "quote": "Lehrbuch zur Psychologie. [1816. 1834.] S- 295—436.",
+   "why": "Internet Archive scan of Joh. Fr. Herbart's Sämtliche Werke in chronologischer Reihenfolge, ed. Karl Kehrbach, vol 4 (Langensalza: Hermann Beyer & Söhne, 1891): Lehrbuch zur Psychologie, text of the 1816 edition with the 1834 variants, pp 295-436."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Lehrbuch zur {P}sychologie",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+      "quote": "Lehrbuch zur Psychologie. [1816. 1834.] S- 295—436."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J F Herbart",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+      "quote": "JOH. FR. HERBART’s SÄMTLICHE WERKE. IN CHRONOLOGISCHER REIHENFOLGE"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "S{\\\"{a}}mtliche {W}erke",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+      "quote": "JOH. FR. HERBART’s SÄMTLICHE WERKE. IN CHRONOLOGISCHER REIHENFOLGE"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "K Kehrbach",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+      "quote": "KARL KEHRBACH. VIERTER BAND. LANGENSALZA, DRUCK und VERLAG von HERMANN BEYER & SÖHNE. 1891."
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+      "quote": "KARL KEHRBACH. VIERTER BAND. LANGENSALZA, DRUCK und VERLAG von HERMANN BEYER & SÖHNE. 1891."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "376--377",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+      "quote": "Lehrbuch zur Psychologie. [1816. 1834.] S- 295—436."
+     },
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+      "quote": "Von den Vorstellungen etc. 3. Cap. 377 flufs. Sie kann gleichsam"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Hermann Beyer \\& S{\\\"{o}}hne",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+      "quote": "KARL KEHRBACH. VIERTER BAND. LANGENSALZA, DRUCK und VERLAG von HERMANN BEYER & SÖHNE. 1891."
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Langensalza, Germany",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+      "quote": "KARL KEHRBACH. VIERTER BAND. LANGENSALZA, DRUCK und VERLAG von HERMANN BEYER & SÖHNE. 1891."
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "1891",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+      "quote": "KARL KEHRBACH. VIERTER BAND. LANGENSALZA, DRUCK und VERLAG von HERMANN BEYER & SÖHNE. 1891."
+     }
+    ]
+   }
+  },
+  "notes": "The cited entry mixes two versions: Editor Kehrbach, Booktitle Sämtliche Werke, Volume 4 and Pages 376--377 are the Kehrbach edition (vol 4, 1891; the Lehrbuch occupies pp 295-436, so 376-377 is a passage within it; page 377's running head is in the scan, 376's number is lost in OCR), while Year 1834, Publisher August Wilhelm Unzer and Address Königsberg belong to the 2nd edition of the Lehrbuch itself (Königsberg: Unzer, 1834). Proposed: keep the Kehrbach volume and set Year 1891, Publisher Hermann Beyer & Söhne, Address Langensalza, Germany (house form as for Leipzig, Germany); key becomes Herb91 (checked: not in cdl.bib; no other Herbart entry). Alternative if the user wants the 1834 book: convert to @book Lehrbuch zur Psychologie, 2nd ed, Königsberg: August Wilhelm Unzer, 1834, dropping editor/booktitle/volume, and the pages would then differ. Booktitle brace fixed from {w}erke to {W}erke (German noun, title case). Validator notes: Volume 4 is printed as 'VIERTER BAND' (fourth volume); 'Germany' in the address is the house country form, not printed; page 376's number is lost in the OCR."
+ },
+ {
+  "key": "BuzsEtal94",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3_9",
+   "quote": "Oscillatory and Intermittent Synchrony in the Hippocampus: Relevance to Memory Trace Formation",
+   "why": "Crossref chapter record: Buzsáki, Bragin, Chrobak, Nádasdy, Sik, Hsu, Ylinen, pp 145-172 in Temporal Coding in the Brain (eds Buzsáki, Llinás, Singer, Berthoz, Christen), Springer Berlin Heidelberg, 1994."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Oscillatory and intermittent synchrony in the hippocampus: relevance to memory trace formation",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3_9",
+      "quote": "Oscillatory and Intermittent Synchrony in the Hippocampus: Relevance to Memory Trace Formation"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "G Buzs\\'{a}ki and A Bragin and J J Chrobak and Z N\\'{a}dasdy and A Sik and M Hsu and A Ylinen",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-642-85148-3_9",
+      "quote": "G. Buzsáki"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3_9",
+      "quote": "\"family\":\"Bragin\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3_9",
+      "quote": "\"given\":\"J. J.\",\"family\":\"Chrobak\""
+     },
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-642-85148-3_9",
+      "quote": "Z. Nádasdy"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3_9",
+      "quote": "\"family\":\"Sik\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3_9",
+      "quote": "\"family\":\"Hsu\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3_9",
+      "quote": "\"family\":\"Ylinen\""
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "G Buzs\\'{a}ki and R Llin\\'{a}s and W Singer and A Berthoz and Y Christen",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/book/10.1007/978-3-642-85148-3",
+      "quote": "Editors: G. Buzsáki 0 , R. Llinás 1 , W. Singer 2 , A. Berthoz 3 , … Y. Christen 4"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Temporal Coding in the Brain",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3",
+      "quote": "\"title\":[\"Temporal Coding in the Brain\"]"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "145--172",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3_9",
+      "quote": "\"page\":\"145-172\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Springer",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-642-85148-3_9",
+      "quote": "Publisher Name : Springer, Berlin, Heidelberg"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Heidelberg, Germany",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/chapter/10.1007/978-3-642-85148-3_9",
+      "quote": "Publisher Name : Springer, Berlin, Heidelberg"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1994",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3_9",
+      "quote": "\"published-print\":{\"date-parts\":[[1994]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/978-3-642-85148-3_9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-642-85148-3_9",
+      "quote": "\"DOI\":\"10.1007\\/978-3-642-85148-3_9\""
+     }
+    ]
+   }
+  },
+  "notes": "Editors: cited 'A Singer and W Berthoz' has the initials swapped (W Singer, A Berthoz); Llinás takes its accent. Author Nádasdy takes the accent as printed (other cdl.bib entries write 'Z Nadasdy' unaccented; not changed here). Title: lowercase after the colon. Address left as Heidelberg, Germany (Springer lists Berlin, Heidelberg). Book is Research and Perspectives in Neurosciences (series not added). DOI handle resolves (200). 'Germany' in the address is the existing house form, not printed by the source."
+ },
+ {
+  "key": "Hofs01",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.7551/mitpress/1251.003.0020",
+   "quote": "Epilogue: Analogy as the Core of Cognition",
+   "why": "Crossref chapter record: Douglas R. Hofstadter, pp 499-538 in The Analogical Mind (eds Gentner, Holyoak, Kokinov), MIT Press, 2001; the only Hofstadter chapter in that book, so the cited 'Analogies as the core of cognition' is a misremembered title."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Epilogue: analogy as the core of cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1251.003.0020",
+      "quote": "Epilogue: Analogy as the Core of Cognition"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D R Hofstadter",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1251.003.0020",
+      "quote": "\"given\":\"Douglas R.\",\"family\":\"Hofstadter\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "The Analogical Mind",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=00057889&maximumRecords=1&recordSchema=mods",
+      "quote": "analogical mind"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "D Gentner and K J Holyoak and B N Kokinov",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=00057889&maximumRecords=1&recordSchema=mods",
+      "quote": "edited by Dedre Gentner, Keith J. Holyoak, and Boicho N. Kokinov"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "499--538",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1251.003.0020",
+      "quote": "\"page\":\"499-538\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=00057889&maximumRecords=1&recordSchema=mods",
+      "quote": "MIT Press"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Cambridge, {MA}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=00057889&maximumRecords=1&recordSchema=mods",
+      "quote": "Cambridge, Mass"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2001",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=00057889&maximumRecords=1&recordSchema=mods",
+      "quote": "c2001"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.7551/mitpress/1251.003.0020",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/1251.003.0020",
+      "quote": "\"DOI\":\"10.7551\\/mitpress\\/1251.003.0020\""
+     }
+    ]
+   }
+  },
+  "notes": "Title corrected to the printed chapter title (Epilogue: Analogy as the Core of Cognition); pages and DOI added. Book subtitle 'Perspectives from Cognitive Science' not added (house booktitle kept). LoC LCCN 00057889 for place/publisher/year/editors. DOI handle resolves (200). No duplicate in cdl.bib."
+ },
+ {
+  "key": "Bron95",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Principles%20of%20Electroencephalography%22%20201&hits_per_page=30",
+   "quote": "Principles of Electroencephalography",
+   "why": "Internet Archive full-text index of the 1995 first edition of The Biomedical Engineering Handbook (scan biomedicalengine0000unse_u8g7): contents list chapter 15 'Principles of Electroencephalography, Joseph D. Bronzino', chapter opening on p 201; LoC LCCN 95006294 gives editor, Boca Raton, CRC Press, c1995."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Principles of electroencephalography",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Principles%20of%20Electroencephalography%22%20201&hits_per_page=30",
+      "quote": "Principles of Electroencephalography"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J D Bronzino",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Principles%20of%20Electroencephalography%22%20201&hits_per_page=30",
+      "quote": "Joseph D. Bronzino"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "The Biomedical Engineering Handbook",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95006294&maximumRecords=1&recordSchema=mods",
+      "quote": "biomedical engineering handbook"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "J D Bronzino",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95006294&maximumRecords=1&recordSchema=mods",
+      "quote": "editor-in-chief, Joseph D. Bronzino."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{CRC} Press",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95006294&maximumRecords=1&recordSchema=mods",
+      "quote": "CRC Press"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Boca Raton, {FL}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95006294&maximumRecords=1&recordSchema=mods",
+      "quote": "Boca Raton"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=95006294&maximumRecords=1&recordSchema=mods",
+      "quote": "c1995"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   }
+  },
+  "notes": "Cited version is the 1995 first edition (CRC Press with IEEE Press). Pages 201--212 left as cited: the scan (lending-only; searchable through the IA full-text index only) shows the chapter opening at p 201 (index 'Electroencephalography, principles of, 201-211'), but the last page (211 or 212, references) could not be confirmed. The Crossref record 10.1201/9781420049510.ch15 is the 2000 second edition (different version) and has no page numbers; no DOI exists for the 1995 edition. No duplicate in cdl.bib."
+ },
+ {
+  "key": "NormEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1017/cbo9780511816772.011",
+   "quote": "Computational Models of Episodic Memory",
+   "why": "Crossref chapter record: Kenneth A. Norman, Greg Detre, Sean M. Polyn, pp 189-225 in The Cambridge Handbook of Computational Psychology (ed Ron Sun), Cambridge University Press; LoC LCCN 2007026278 dates the book 2008."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Computational models of episodic memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/cbo9780511816772.011",
+      "quote": "Computational Models of Episodic Memory"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K A Norman and G J Detre and S M Polyn",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/cbo9780511816772.011",
+      "quote": "\"given\":\"Kenneth A.\",\"family\":\"Norman\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1017/cbo9780511816772.011",
+      "quote": "\"given\":\"Greg\",\"family\":\"Detre\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1017/cbo9780511816772.011",
+      "quote": "\"given\":\"Sean M.\",\"family\":\"Polyn\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "The Cambridge Handbook of Computational Psychology",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2007026278&maximumRecords=1&recordSchema=mods",
+      "quote": "Cambridge handbook of computational psychology"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "R Sun",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2007026278&maximumRecords=1&recordSchema=mods",
+      "quote": "edited by Ron Sun."
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "189--225",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/cbo9780511816772.011",
+      "quote": "\"page\":\"189-225\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Cambridge {University} Press",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2007026278&maximumRecords=1&recordSchema=mods",
+      "quote": "Cambridge University Press"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2007026278&maximumRecords=1&recordSchema=mods",
+      "quote": "2008"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1017/cbo9780511816772.011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/cbo9780511816772.011",
+      "quote": "\"DOI\":\"10.1017\\/cbo9780511816772.011\""
+     }
+    ]
+   }
+  },
+  "notes": "Booktitle corrected: the 2008 book is The Cambridge Handbook of Computational Psychology ('...Computational Cognitive Modeling' is not its title; the 2023 second edition is '...Computational Cognitive Sciences', where the episodic-memory chapter is by Sederberg and Darby, a different work). Crossref's 2001 issued date for this book is an artefact; LoC gives 2008. Author G J Detre keeps the middle initial (Crossref gives only 'Greg'). DOI handle resolves (200). No duplicate in cdl.bib."
+ },
+ {
+  "key": "Gall95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Adaptive%20Specializations%22%20GALLISTEL%201255&hits_per_page=50",
+   "quote": "General-Purpose Theories with Adaptive Specializations C. R. GALLISTEL 1255",
+   "why": "Internet Archive full-text index of the 1995 first edition of The Cognitive Neurosciences (scan cognitiveneurosc0000unse_a9n8): contents list chapter 83 by C. R. Gallistel at p 1255, next chapter (Daly and Wilson) at p 1269; LoC LCCN 93040288 for the book (one volume, xiv, 1447 p., MIT Press, c1995)."
+  },
+  "remove": [
+   "volume"
+  ],
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The replacement of general-purpose theories with adaptive specializations",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Replacement%20of%20General-Purpose%20Theories%22&hits_per_page=50",
+      "quote": "83. The Replacement of General-Purpose Theories with Adaptive Specializations"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "C R Gallistel",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Adaptive%20Specializations%22%20GALLISTEL%201255&hits_per_page=50",
+      "quote": "General-Purpose Theories with Adaptive Specializations C. R. GALLISTEL 1255"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "The Cognitive Neurosciences",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
+      "quote": "cognitive neurosciences"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "M S Gazzaniga",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
+      "quote": "Michael S. Gazzaniga, editor-in-chief"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
+      "quote": "MIT Press"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Cambridge, {MA}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
+      "quote": "Cambridge, Mass"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
+      "quote": "c1995"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   }
+  },
+  "notes": "Remove Volume = {1}: the 1995 first edition is a single volume (LoC: xiv, 1447 p.). Pages 1255--1267 left as cited: the contents list confirms the start (1255) and the next chapter starts at 1269, so the chapter ends at 1267 or 1268, but the last page could not be read in the lending-only scan. No DOI for the 1995 edition (the MIT Press DOIs are for the 2009 4th edition). No duplicate in cdl.bib."
+ },
+ {
+  "key": "Shim94",
+  "verdict": "correction",
+  "new_key": "Shim95a",
+  "identity": {
+   "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22ARTHUR%20P.%20SHIMAMURA%20803%22&hits_per_page=50",
+   "quote": "51. Memory and Frontal Lobe Function ARTHUR P. SHIMAMURA 803",
+   "why": "Internet Archive full-text index of the first edition of The Cognitive Neurosciences (scan cognitiveneurosc0000unse_a9n8): contents list chapter 51 by Arthur P. Shimamura at p 803, next chapter (Schacter, Implicit memory) at p 815; LoC LCCN 93040288 dates the book c1995."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Memory and frontal lobe function",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22ARTHUR%20P.%20SHIMAMURA%20803%22&hits_per_page=50",
+      "quote": "51. Memory and Frontal Lobe Function ARTHUR P. SHIMAMURA 803"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A P Shimamura",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22ARTHUR%20P.%20SHIMAMURA%20803%22&hits_per_page=50",
+      "quote": "51. Memory and Frontal Lobe Function ARTHUR P. SHIMAMURA 803"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "The Cognitive Neurosciences",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
+      "quote": "cognitive neurosciences"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "M S Gazzaniga",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
+      "quote": "Michael S. Gazzaniga, editor-in-chief"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
+      "quote": "MIT Press"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Cambridge, {MA}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
+      "quote": "Cambridge, Mass"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=93040288&maximumRecords=1&recordSchema=mods",
+      "quote": "c1995"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   }
+  },
+  "notes": "Year: the first edition's imprint is c1995 (LoC; the NLM call number 'WL 300 C6765 1994' reflects a late-1994 release), and cdl.bib already dates Gall95 from the same book 1995. Key collision: Shim95 exists and is a different work (Memory and the prefrontal cortex, Ann NY Acad Sci 769), so the new key needs a suffix (e.g. Shim95a; not in cdl.bib). If the user prefers the 1994 release date, keep year and key. Pages: 803--815 is wrong at the end, since p 815 is the first page of the next chapter (Schacter, 'Implicit Memory: A New Frontier for Cognitive Neuroscience', evidence: \"https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22MEMORY%20AND%20FRONTAL%20LOBE%20FUNCTION%22%20815&hits_per_page=50\"); the chapter ends at 813 or 814, which could not be read in the lending-only scan, so pages are left for review. No DOI for the 1995 edition."
+ },
+ {
+  "key": "MannEtal15",
+  "verdict": "correction",
+  "new_key": "MannEtal14c",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.7551/mitpress/9504.003.0061",
+   "quote": "The Role of Context in Episodic Memory",
+   "why": "Crossref chapter record (MIT Press): Jeremy R. Manning, Michael J. Kahana, Kenneth A. Norman, in The Cognitive Neurosciences (5th ed, eds Gazzaniga and Mangun), published 2014."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "The role of context in episodic memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/9504.003.0061",
+      "quote": "The Role of Context in Episodic Memory"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J R Manning and M J Kahana and K A Norman",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/9504.003.0061",
+      "quote": "\"given\":\"Jeremy R.\",\"family\":\"Manning\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/9504.003.0061",
+      "quote": "\"given\":\"Michael J.\",\"family\":\"Kahana\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/9504.003.0061",
+      "quote": "\"given\":\"Kenneth A.\",\"family\":\"Norman\""
+     },
+     {
+      "url": "file:/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers/MannEtal15.pdf#page=1",
+      "quote": "Jeremy R. Manning, Michael J. Kahana, and Kenneth A. Norman"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "The Cognitive Neurosciences",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2013048606&maximumRecords=1&recordSchema=mods",
+      "quote": "cognitive neurosciences"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "5\\textsuperscript{th}",
+    "evidence": [
+     {
+      "url": "https://www.context-lab.com/publications",
+      "quote": "Appears in Gazzaniga M, Ed. The Cognitive Neurosciences, 5th Edition."
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "M S Gazzaniga and G R Mangun",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2013048606&maximumRecords=1&recordSchema=mods",
+      "quote": "Michael S. Gazzaniga and George R. Mangun, editors-in-chief"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2013048606&maximumRecords=1&recordSchema=mods",
+      "quote": "The MIT Press"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Cambridge, {MA}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2013048606&maximumRecords=1&recordSchema=mods",
+      "quote": "Cambridge, Massachusetts"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2014",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2013048606&maximumRecords=1&recordSchema=mods",
+      "quote": "[2014]"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/9504.003.0061",
+      "quote": "\"published-print\":{\"date-parts\":[[2014,10,24]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.7551/mitpress/9504.003.0061",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.7551/mitpress/9504.003.0061",
+      "quote": "\"DOI\":\"10.7551\\/mitpress\\/9504.003.0061\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   }
+  },
+  "notes": "Author order: Crossref (MIT Press) and the authors' submitted manuscript (local PDF, Aug 2013) both give Manning, Kahana, Norman; the cited order Manning, Norman, Kahana matches only the Manning lab publications page, so the user may want to confirm against the printed book. Editors: the 5th edition is edited by M S Gazzaniga and G R Mangun. Year: the 5th edition was published October 2014 (LoC imprint [2014]; Crossref print date 2014-10-24), so the key becomes MannEtal14c (MannEtal14a and MannEtal14b exist and are different works: MAGELLAN; topographic factor analysis). Pages 557--566 left as cited: no fetchable source prints the chapter's page range (the MIT Press site blocks scripts; Crossref has no pages). DOI handle resolves (200)."
+ },
+ {
+  "key": "John02",
+  "verdict": "correction",
+  "new_key": "John99",
+  "identity": {
+   "url": "https://www.taylorfrancis.com/books/9781134649433/chapters/10.4324/9780203016862-4",
+   "quote": "Introducing and supporting change towards more flexible teaching approaches",
+   "why": "Taylor & Francis chapter page: Sue Johnston's chapter in The Convergence of Distance and Conventional Education (eds Tait and Mills, Routledge); LoC LCCN 98039659 dates the printed book 1999 (London/New York: Routledge)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Introducing and supporting change towards more flexible teaching approaches",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/books/9781134649433/chapters/10.4324/9780203016862-4",
+      "quote": "Introducing and supporting change towards more flexible teaching approaches"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "S Johnston",
+    "evidence": [
+     {
+      "url": "https://www.taylorfrancis.com/books/9781134649433/chapters/10.4324/9780203016862-4",
+      "quote": "Sue Johnston"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "The Convergence of Distance and Conventional Education",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98039659&maximumRecords=1&recordSchema=mods",
+      "quote": "convergence of distance and conventional education"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "A Tait and R Mills",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98039659&maximumRecords=1&recordSchema=mods",
+      "quote": "edited by Alan Tait and Roger Mills."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Routledge",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98039659&maximumRecords=1&recordSchema=mods",
+      "quote": "Routledge"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "London",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98039659&maximumRecords=1&recordSchema=mods",
+      "quote": "London"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98039659&maximumRecords=1&recordSchema=mods",
+      "quote": "1999"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   },
+   "doi": {
+    "status": "not_found"
+   }
+  },
+  "notes": "Year: 2002 is the Routledge eBook date (Crossref/T&F 2002-03-11); the printed book is 1999 (LoC), so the key becomes John99 (checked: no John99 in cdl.bib; no other entry for this chapter). Editors and address added. DOI and pages NOT proposed because the registries conflict: the T&F landing page reached through DOI 10.4324/9780203016862-4 shows this chapter by Sue Johnston at pp 39-50, while Crossref registers 10.4324/9780203016862-6 under this title at pp 51-62 (and DOI -6 lands on Roger Mills' chapter); the print pagination was not seen."
+ },
+ {
+  "key": "Heal14",
+  "verdict": "correction",
+  "new_key": "Heal16",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1002/9781118521373.wbeaa067",
+   "quote": "\"given\":\"M.\",\"family\":\"Karl Healey\"",
+   "why": "Crossref record for the entry 'Interference' by M. Karl Healey in The Encyclopedia of Adulthood and Aging (ed Susan K. Whitbourne, Wiley), online 2015-12-21; the printed set (LCCN 2015023990) is dated 2016."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Interference",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/9781118521373.wbeaa067",
+      "quote": "\"title\":[\"Interference\"]"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M K Healey",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/9781118521373.wbeaa067",
+      "quote": "\"given\":\"M.\",\"family\":\"Karl Healey\""
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "The Encyclopedia of Adulthood and Aging",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL30396906M.json",
+      "quote": "The encyclopedia of adulthood and aging"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "S K Whitbourne",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL30396906M.json",
+      "quote": "edited by Susan Krauss Whitbourne"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Hoboken, {NJ}",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL30396906M.json",
+      "quote": "Hoboken, NJ"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://openlibrary.org/books/OL30396906M.json",
+      "quote": "\"publish_date\": \"2016\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/9781118521373.wbeaa067",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/9781118521373.wbeaa067",
+      "quote": "\"DOI\":\"10.1002\\/9781118521373.wbeaa067\""
+     }
+    ]
+   },
+   "publisher": {
+    "status": "not_found"
+   }
+  },
+  "notes": "Year: online 2015-12-21 (Crossref), print set 2016 (Open Library record from the LoC MARC, LCCN 2015023990; LC class HQ799.95 .E53 2016); never 2014. Print year wins, so the key becomes Heal16 (checked: not in cdl.bib; no other entry for this work). Address: the imprint is Chichester, West Sussex, UK and Hoboken, NJ, not New York. Publisher left as Wiley-Blackwell (the set's imprint name was not seen in a fetchable source; Crossref says 'Wiley', the catalogue 'John Wiley & Sons, Inc.'). Crossref splits the name as given 'M.', family 'Karl Healey' (i.e. M Karl Healey = M K Healey). The online entry paginates 1-6 (not print pages), so pages are not added. DOI handle resolves (200)."
+ },
+ {
+  "key": "WingStin00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Arthur%20Wingfield%20and%20Elizabeth%20A.%20L.%20Stine-Morrow%22&hits_per_page=50",
+   "quote": "6 Language and Speech 359 Arthur Wingfield and Elizabeth A. L. Stine-Morrow",
+   "why": "Internet Archive full-text index of The Handbook of Aging and Cognition, 2nd ed (2000; scan handbookofagingc0000unse): contents list chapter 6 by Arthur Wingfield and Elizabeth A. L. Stine-Morrow at p 359; LoC LCCN 99031065 for the book."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "confirmed",
+    "value": "The Handbook of Aging and Cognition",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "handbook of aging and cognition"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "2\\textsuperscript{nd}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "2nd ed."
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "F I M Craik and T A Salthouse",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "edited by Fergus I.M. Craik, Timothy A. Salthouse."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "Lawrence Erlbaum Associates"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Mahwah, {NJ}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "Mahwah, N.J"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "2000"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Language and speech",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Arthur%20Wingfield%20and%20Elizabeth%20A.%20L.%20Stine-Morrow%22&hits_per_page=50",
+      "quote": "6 Language and Speech 359 Arthur Wingfield and Elizabeth A. L. Stine-Morrow"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Wingfield and E A Stine-Morrow",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Arthur%20Wingfield%20and%20Elizabeth%20A.%20L.%20Stine-Morrow%22&hits_per_page=50",
+      "quote": "6 Language and Speech 359 Arthur Wingfield and Elizabeth A. L. Stine-Morrow"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "359--416",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Arthur%20Wingfield%20and%20Elizabeth%20A.%20L.%20Stine-Morrow%22&hits_per_page=50",
+      "quote": "6 Language and Speech 359 Arthur Wingfield and Elizabeth A. L. Stine-Morrow"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22416%20WINGFIELD%20AND%20STINE-MORROW%22&hits_per_page=50",
+      "quote": "416 WINGFIELD AND STINE-MORROW"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Metacognition%20in%20Adulthood%22&hits_per_page=50",
+      "quote": "7 Metacognition in Adulthood and Old Age 417"
+     }
+    ]
+   }
+  },
+  "notes": "Pages confirmed: chapter 6 opens at 359, p 416 carries the running head 'WINGFIELD AND STINE-MORROW', and chapter 7 opens at 417. Edition (2nd) added. The source prints Elizabeth A. L. Stine-Morrow; the third initial is not added because the surname is compound (house rule). No duplicate in cdl.bib (CraiJenn92 is a 1992 first-edition chapter by other authors)."
+ },
+ {
+  "key": "ZackEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Human%20Memory%22%20Zacks%20Hasher&hits_per_page=50",
+   "quote": "5 Human Memory 20s Rose T. Zacks, Lynn Hasher, and Karen Z. H. Li",
+   "why": "Internet Archive full-text index of The Handbook of Aging and Cognition, 2nd ed (2000; scan handbookofagingc0000unse): contents list chapter 5 'Human Memory' by Rose T. Zacks, Lynn Hasher and Karen Z. H. Li (page number OCR'd as '20s'); the next chapter starts at 359; LoC LCCN 99031065 for the book."
+  },
+  "fields": {
+   "booktitle": {
+    "status": "confirmed",
+    "value": "The Handbook of Aging and Cognition",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "handbook of aging and cognition"
+     }
+    ]
+   },
+   "edition": {
+    "status": "corrected",
+    "value": "2\\textsuperscript{nd}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "2nd ed."
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "F I M Craik and T A Salthouse",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "edited by Fergus I.M. Craik, Timothy A. Salthouse."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Erlbaum",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "Lawrence Erlbaum Associates"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Mahwah, {NJ}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "Mahwah, N.J"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99031065&maximumRecords=1&recordSchema=mods",
+      "quote": "2000"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Human memory",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Human%20Memory%22%20Zacks%20Hasher&hits_per_page=50",
+      "quote": "5 Human Memory 20s Rose T. Zacks, Lynn Hasher, and Karen Z. H. Li"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "R T Zacks and L Hasher and K Z H Li",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Human%20Memory%22%20Zacks%20Hasher&hits_per_page=50",
+      "quote": "5 Human Memory 20s Rose T. Zacks, Lynn Hasher, and Karen Z. H. Li"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   }
+  },
+  "notes": "Author: Zacks gains her middle initial (Rose T. Zacks). Edition (2nd) added. Pages 293--358 left as cited: the index shows the running head '5. HUMAN MEMORY 357' with references continuing and chapter 6 opening at 359, so the end is 357 or 358; the start page is OCR'd '20s' in the contents (odd running heads from 295 on fit a start at 293), so neither end could be confirmed exactly. No duplicate in cdl.bib."
+ },
+ {
+  "key": "BrowChat95",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Thomas%20H.%20Brown%20and%20Sumantra%20Chattarji%22&hits_per_page=50",
+   "quote": "Thomas H. Brown and Sumantra Chattarji",
+   "why": "Internet Archive full-text index of the 1995 first edition of The Handbook of Brain Theory and Neural Networks (scan handbookofbraint0000unse): article 'Hebbian Synaptic Plasticity' by Thomas H. Brown and Sumantra Chattarji, listed at p 454; LoC LCCN 94044408 for the book."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{Hebbian} synaptic plasticity",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Hebbian%20Synaptic%20Plasticity%22&hits_per_page=50",
+      "quote": "Multidimensional Modeling 450 Hebbian Synaptic Plasticity 454"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T H Brown and S Chattarji",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Thomas%20H.%20Brown%20and%20Sumantra%20Chattarji%22&hits_per_page=50",
+      "quote": "Thomas H. Brown and Sumantra Chattarji"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "The Handbook of Brain Theory and Neural Networks",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=94044408&maximumRecords=1&recordSchema=mods",
+      "quote": "handbook of brain theory and neural networks"
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "M A Arbib",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=94044408&maximumRecords=1&recordSchema=mods",
+      "quote": "edited by Michael A. Arbib"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "{MIT} Press",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=94044408&maximumRecords=1&recordSchema=mods",
+      "quote": "MIT Press"
+     }
+    ]
+   },
+   "address": {
+    "status": "corrected",
+    "value": "Cambridge, {MA}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=94044408&maximumRecords=1&recordSchema=mods",
+      "quote": "Cambridge, Mass"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=94044408&maximumRecords=1&recordSchema=mods",
+      "quote": "c1995"
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   }
+  },
+  "notes": "Address gains the state (house form Cambridge, {MA}). Pages 454--459 left as cited: the contents list confirms the start (454) and the next article (Hebbian Synaptic Plasticity: Comparative and Developmental Aspects) at 459; articles in this handbook run on continuously, so the end is 458 or 459 and could not be read in the lending-only scan. Not the 2003 2nd edition. No DOI for the 1995 edition. No duplicate in cdl.bib."
+ }
+]
