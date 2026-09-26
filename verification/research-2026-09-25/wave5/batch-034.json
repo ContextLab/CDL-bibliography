@@ -1,0 +1,2068 @@
+[
+ {
+  "key": "Raym69",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(69)80106-4",
+   "quote": "\"title\":[\"Short-term storage and long-term storage in free recall\"]",
+   "why": "Same sole author (Raymond), identical title, JVLB 8, 1969, pp. 567-574."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "B J Raymond",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(69)80106-4",
+      "quote": "\"given\":\"Beth\",\"family\":\"Raymond\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Short-term storage and long-term storage in free recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(69)80106-4",
+      "quote": "\"title\":[\"Short-term storage and long-term storage in free recall\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(69)80106-4",
+      "quote": "\"container-title\":[\"Journal of Verbal Learning and Verbal Behavior\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1969",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(69)80106-4",
+      "quote": "\"issued\":{\"date-parts\":[[1969"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(69)80106-4",
+      "quote": "\"volume\":\"8\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(69)80106-4",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "567--574",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(69)80106-4",
+      "quote": "\"page\":\"567-574\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(69)80106-4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(69)80106-4",
+      "quote": "\"DOI\":\"10.1016\\/s0022-5371(69)80106-4\""
+     }
+    ]
+   }
+  },
+  "notes": "Added number 5 and DOI. Crossref prints the given name \"Beth\" with no middle initial; the cited J is kept (not contradicted)."
+ },
+ {
+  "key": "RoedEtal82",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+   "quote": "\"title\":[\"Hypermnesia as determined by level of recall\"]",
+   "why": "Same four authors, identical title, JVLB 21, 1982, starting p. 635."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "H L Roediger and D G Payne and G L Gillespie and D S Lean",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"given\":\"Henry L.\",\"family\":\"Roediger\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"given\":\"David G.\",\"family\":\"Payne\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"given\":\"Gerald L.\",\"family\":\"Gillespie\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"given\":\"Debra S.\",\"family\":\"Lean\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Hypermnesia as determined by level of recall",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"title\":[\"Hypermnesia as determined by level of recall\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"container-title\":[\"Journal of Verbal Learning and Verbal Behavior\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1982",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"issued\":{\"date-parts\":[[1982"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"volume\":\"21\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "635--655",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"page\":\"635-655\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(82)90810-6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(82)90810-6",
+      "quote": "\"DOI\":\"10.1016\\/s0022-5371(82)90810-6\""
+     }
+    ]
+   }
+  },
+  "notes": "End page 665 -> 655; D Payne -> D G Payne; added number 6 and DOI."
+ },
+ {
+  "key": "SchaEtal84",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+   "quote": "\"title\":[\"Retrieval without recollection: An experimental analysis of source amnesia\"]",
+   "why": "Same authors (Schacter, Harbluk, McLachlan), identical title, JVLB 23, 1984, pp. 593-611."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "D L Schacter and J L Harbluk and D R McLachlan",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+      "quote": "\"given\":\"Daniel L.\",\"family\":\"Schacter\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+      "quote": "\"given\":\"Joanne L.\",\"family\":\"Harbluk\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+      "quote": "\"given\":\"Donald R.\",\"family\":\"McLachlan\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Retrieval without recollection: an experimental analysis of source amnesia",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+      "quote": "\"title\":[\"Retrieval without recollection: An experimental analysis of source amnesia\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+      "quote": "\"container-title\":[\"Journal of Verbal Learning and Verbal Behavior\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1984",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+      "quote": "\"issued\":{\"date-parts\":[[1984"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "23",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+      "quote": "\"volume\":\"23\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+      "quote": "\"issue\":\"5\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "593--611",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+      "quote": "\"page\":\"593-611\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(84)90373-6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(84)90373-6",
+      "quote": "\"DOI\":\"10.1016\\/s0022-5371(84)90373-6\""
+     }
+    ]
+   }
+  },
+  "notes": "Third author lacked initials: McLachlan -> D R McLachlan. Added number 5 and DOI."
+ },
+ {
+  "key": "ShifCook78",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
+   "quote": "\"title\":[\"Short-term forgetting of item and order information\"]",
+   "why": "Same authors (Shiffrin, Cook), identical title, JVLB 17(2), 1978, pp. 189-218."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "R M Shiffrin and J R Cook",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
+      "quote": "\"given\":\"Richard M.\",\"family\":\"Shiffrin\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
+      "quote": "\"given\":\"James R.\",\"family\":\"Cook\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Short-term forgetting of item and order information",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
+      "quote": "\"title\":[\"Short-term forgetting of item and order information\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
+      "quote": "\"container-title\":[\"Journal of Verbal Learning and Verbal Behavior\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1978",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
+      "quote": "\"issued\":{\"date-parts\":[[1978"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
+      "quote": "\"volume\":\"17\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "189--218",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
+      "quote": "\"page\":\"189-218\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(78)90146-9",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(78)90146-9",
+      "quote": "\"DOI\":\"10.1016\\/s0022-5371(78)90146-9\""
+     }
+    ]
+   }
+  },
+  "notes": "Author \"JR Cook\" -> \"J R Cook\" (one initial per given name). Added DOI."
+ },
+ {
+  "key": "SlamFevr83",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3",
+   "quote": "\"title\":[\"The generation effect when generation fails\"]",
+   "why": "Same title, JVLB 22(2), 1983, pp. 153-163, authors Norman J. Slamecka (misspelt \"Slamucka\" in Crossref) and Jacobo Fevreiski."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "N J Slamecka and J Fevreiski",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3",
+      "quote": "\"given\":\"Norman J.\",\"family\":\"Slamucka\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3",
+      "quote": "\"given\":\"Jacobo\",\"family\":\"Fevreiski\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.4.6.592",
+      "quote": "\"given\":\"Norman J.\",\"family\":\"Slamecka\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The generation effect when generation fails",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3",
+      "quote": "\"title\":[\"The generation effect when generation fails\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3",
+      "quote": "\"container-title\":[\"Journal of Verbal Learning and Verbal Behavior\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1983",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3",
+      "quote": "\"issued\":{\"date-parts\":[[1983"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3",
+      "quote": "\"volume\":\"22\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "153--163",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3",
+      "quote": "\"page\":\"153-163\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(83)90112-3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3",
+      "quote": "\"DOI\":\"10.1016\\/s0022-5371(83)90112-3\""
+     }
+    ]
+   }
+  },
+  "notes": "First author lacked initials: \"Slamecka\" -> \"N J Slamecka\". This work's Crossref record misspells the surname \"Slamucka\" (given \"Norman J.\"); the Slamecka spelling is quoted from the same author's Crossref record for Slamecka & Graf 1978 (JEP:HLM, a different work, used only for the surname spelling). ScienceDirect returned 403. Added number 2 and DOI."
+ },
+ {
+  "key": "TulvEtal91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+   "quote": "\"title\":[\"Long-lasting perceptual priming and semantic learning in amnesia: A case experiment.\"]",
+   "why": "Authors Tulving, Hayman, Macdonald, 1991, vol 17, pp. 595-617 all match this JEP:LMC article; only the title (and journal) in the citation are wrong."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E Tulving and C A G Hayman and C A Macdonald",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+      "quote": "\"given\":\"Endel\",\"family\":\"Tulving\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+      "quote": "\"given\":\"C. A.\",\"family\":\"Hayman\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+      "quote": "\"given\":\"Carol A.\",\"family\":\"Macdonald\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1832430/",
+      "quote": "FAU - Hayman, C A"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Long-lasting perceptual priming and semantic learning in amnesia: a case experiment",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+      "quote": "\"title\":[\"Long-lasting perceptual priming and semantic learning in amnesia: A case experiment.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology: Learning, Memory, and Cognition",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology: Learning, Memory, and Cognition\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+      "quote": "\"issued\":{\"date-parts\":[[1991"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+      "quote": "\"volume\":\"17\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "595--617",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+      "quote": "\"page\":\"595-617\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1832430/",
+      "quote": "PG  - 595-617"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/0278-7393.17.4.595",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0278-7393.17.4.595",
+      "quote": "\"DOI\":\"10.1037\\/0278-7393.17.4.595\""
+     }
+    ]
+   }
+  },
+  "notes": "The cited title belongs to Tulving & Psotka 1971 (J Exp Psychol 87:1-8, 10.1037/h0030185), which is already in cdl.bib as TulvPsot71 with that title. Key, authors, year, volume 17 and pages 595-617 identify Tulving, Hayman & Macdonald 1991, JEP:LMC 17(4):595-617, \"Long-lasting perceptual priming and semantic learning in amnesia: a case experiment\" (PubMed 1832430). Corrected title, journal (was JVLB, which ceased in 1984), number 4, DOI. REVIEWER: confirm from the citing context which work was intended; if the 1971 paper was meant, cite TulvPsot71 and drop TulvEtal91. Hayman's middle initial G (C A G Hayman = Gordon Hayman) is kept; sources print only C A. No other entry of the 1991 work exists in cdl.bib."
+ },
+ {
+  "key": "WatkPeyn83",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2",
+   "quote": "\"title\":[\"Three recency effects at the same time\"]",
+   "why": "Same authors (Watkins, Peynircioglu), identical title, JVLB 22(4), 1983, pp. 375-384."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M J Watkins and Z F Peynircio\\u{g}lu",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2",
+      "quote": "\"given\":\"Michael J.\",\"family\":\"Watkins\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2",
+      "quote": "\"given\":\"Zehra F.\",\"family\":\"Peynrco\\u011flu\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.2307/1422314",
+      "quote": "\"given\":\"Zehra F.\",\"family\":\"Peynircioglu\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Three recency effects at the same time",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2",
+      "quote": "\"title\":[\"Three recency effects at the same time\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Verbal Learning and Verbal Behavior",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2",
+      "quote": "\"container-title\":[\"Journal of Verbal Learning and Verbal Behavior\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1983",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2",
+      "quote": "\"issued\":{\"date-parts\":[[1983"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2",
+      "quote": "\"volume\":\"22\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "375--384",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2",
+      "quote": "\"page\":\"375-384\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/s0022-5371(83)90237-2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2",
+      "quote": "\"DOI\":\"10.1016\\/s0022-5371(83)90237-2\""
+     }
+    ]
+   }
+  },
+  "notes": "Only change to author: the accent on g is a breve (Turkish ğ, LaTeX \\u{g}), not a caron (\\v{g}); this work's Crossref record prints \"Peynrcoğlu\" (letter i dropped, ğ with breve). Surname spelling Peynircioglu confirmed from her 1983 Am J Psychol Crossref record (different work, spelling only). Added number 4 and DOI."
+ },
+ {
+  "key": "WollEtal70",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0030171",
+   "quote": "\"title\":[\"Variations in asymmetry as a function of degree of forward learning.\"]",
+   "why": "Same three authors (Wollen, Fox, Lowry), identical title, vol 86, pp. 416-419, 1970, but in J Exp Psychol, not JVLB."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "K A Wollen and R A Fox and D H Lowry",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030171",
+      "quote": "\"given\":\"Keith A.\",\"family\":\"Wollen\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030171",
+      "quote": "\"given\":\"Robert A.\",\"family\":\"Fox\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030171",
+      "quote": "\"given\":\"Douglas H.\",\"family\":\"Lowry\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Variations in asymmetry as a function of degree of forward learning",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030171",
+      "quote": "\"title\":[\"Variations in asymmetry as a function of degree of forward learning.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of Experimental Psychology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030171",
+      "quote": "\"container-title\":[\"Journal of Experimental Psychology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1970",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030171",
+      "quote": "\"issued\":{\"date-parts\":[[1970"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "86",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030171",
+      "quote": "\"volume\":\"86\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030171",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "416--419",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030171",
+      "quote": "\"page\":\"416-419\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0030171",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0030171",
+      "quote": "\"DOI\":\"10.1037\\/h0030171\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal JVLB -> Journal of Experimental Psychology (JVLB never reached vol 86). Added number 3 and DOI."
+ },
+ {
+  "key": "NabeEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1167/13.2.11",
+   "quote": "\"title\":[\"Pupil size signals novelty and predicts later retrieval success for declarative memories of natural scenes\"]",
+   "why": "Same four authors, identical title, J Vis 13(2), 2013."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M Naber and S Fr{\\\"{a}}ssle and U Rutishauser and W Einh{\\\"{a}}user",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23397036/",
+      "quote": "FAU - Naber, Marnix"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23397036/",
+      "quote": "FAU - Frassle, Stefan"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23397036/",
+      "quote": "FAU - Rutishauser, Ueli"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23397036/",
+      "quote": "FAU - Einhauser, Wolfgang"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Pupil size signals novelty and predicts later retrieval success for declarative memories of natural scenes",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/13.2.11",
+      "quote": "\"title\":[\"Pupil size signals novelty and predicts later retrieval success for declarative memories of natural scenes\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Vision",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/13.2.11",
+      "quote": "\"container-title\":[\"Journal of Vision\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/13.2.11",
+      "quote": "\"issued\":{\"date-parts\":[[2013"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/13.2.11",
+      "quote": "\"volume\":\"13\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/13.2.11",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/13.2.11",
+      "quote": "\"page\":\"11-11\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23397036/",
+      "quote": "PG  - 11"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1167/13.2.11",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/13.2.11",
+      "quote": "\"DOI\":\"10.1167\\/13.2.11\""
+     }
+    ]
+   }
+  },
+  "notes": "Pages 1--20 -> article number 11 (house form for J Vis entries is the bare article number, e.g. SpieEtal18 Pages {37}). Sources print Frassle/Einhauser without umlauts; the cited umlauts (Frässle, Einhäuser) are the authors' real spellings and are kept. Added DOI."
+ },
+ {
+  "key": "SpieEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1167/18.10.37",
+   "quote": "\"title\":[\"Direct Neural Read-Out of Binocular Rivalry Dynamics in Autism using EEG\"]",
+   "why": "Same five authors, identical title, J Vis 18(10):37, 2018 (VSS abstract)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "A Spiegel and J Lee and A J Haskins and N Kanwisher and C Robertson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"given\":\"Alina\",\"family\":\"Spiegel\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"given\":\"Jackson\",\"family\":\"Lee\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"given\":\"AJ\",\"family\":\"Haskins\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"given\":\"Nancy\",\"family\":\"Kanwisher\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"given\":\"Caroline\",\"family\":\"Robertson\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Direct neural read-out of binocular rivalry dynamics in autism using {EEG}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"title\":[\"Direct Neural Read-Out of Binocular Rivalry Dynamics in Autism using EEG\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of Vision",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"container-title\":[\"Journal of Vision\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"issued\":{\"date-parts\":[[2018"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"volume\":\"18\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"issue\":\"10\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "37",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"page\":\"37\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1167/18.10.37",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1167/18.10.37",
+      "quote": "\"DOI\":\"10.1167\\/18.10.37\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; added DOI only. This is a VSS 2018 meeting abstract published in J Vis 18(10)."
+ },
+ {
+  "key": "SellEtal82",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1121/1.387996",
+   "quote": "\"title\":[\"Measurement of basilar membrane motion in the guinea pig using the M\\u00f6ssbauer technique\"]",
+   "why": "Same three authors (Sellick, Patuzzi, Johnstone), same title, J Acoust Soc Am 72(1), 1982, pp. 131-141."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "P M Sellick and R Patuzzi and B M Johnstone",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.387996",
+      "quote": "\"given\":\"P. M.\",\"family\":\"Sellick\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.387996",
+      "quote": "\"given\":\"R.\",\"family\":\"Patuzzi\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.387996",
+      "quote": "\"given\":\"B. M.\",\"family\":\"Johnstone\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Measurement of basilar membrane motion in the guinea pig using the {M\\\"{o}ssbauer} technique",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.387996",
+      "quote": "\"title\":[\"Measurement of basilar membrane motion in the guinea pig using the M\\u00f6ssbauer technique\"]"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7108035/",
+      "quote": "TI  - Measurement of basilar membrane motion in the guinea pig using the Mossbauer"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of the Acoustical Society of America",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.387996",
+      "quote": "\"container-title\":[\"The Journal of the Acoustical Society of America\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1982",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.387996",
+      "quote": "\"issued\":{\"date-parts\":[[1982"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "72",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.387996",
+      "quote": "\"volume\":\"72\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.387996",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "131--141",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.387996",
+      "quote": "\"page\":\"131-141\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1121/1.387996",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.387996",
+      "quote": "\"DOI\":\"10.1121\\/1.387996\""
+     }
+    ]
+   }
+  },
+  "notes": "Title Mossbauer -> Mössbauer (Crossref: \"M\\u00f6ssbauer\"). Journal \"Acoustic\" -> \"Acoustical\" (cdl.bib has both; official name is Acoustical). Added number 1 and DOI."
+ },
+ {
+  "key": "ViemWake91",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1121/1.401953",
+   "quote": "\"title\":[\"Temporal integration and multiple looks\"]",
+   "why": "Same authors (Viemeister, Wakefield), identical title, J Acoust Soc Am 90(2), 1991, pp. 858-865."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "N F Viemeister and G H Wakefield",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.401953",
+      "quote": "\"given\":\"Neal F.\",\"family\":\"Viemeister\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.401953",
+      "quote": "\"given\":\"Gregory H.\",\"family\":\"Wakefield\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Temporal integration and multiple looks",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.401953",
+      "quote": "\"title\":[\"Temporal integration and multiple looks\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of the Acoustical Society of America",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.401953",
+      "quote": "\"container-title\":[\"The Journal of the Acoustical Society of America\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1991",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.401953",
+      "quote": "\"issued\":{\"date-parts\":[[1991"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "90",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.401953",
+      "quote": "\"volume\":\"90\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.401953",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "858--865",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.401953",
+      "quote": "\"page\":\"858-865\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1121/1.401953",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1121/1.401953",
+      "quote": "\"DOI\":\"10.1121\\/1.401953\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal \"Acoustic\" -> \"Acoustical\". Added DOI. PubMed gives issue \"2 Pt 1\"; kept 2 as Crossref."
+ },
+ {
+  "key": "LindEtal21",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1017/s1355617720001009",
+   "quote": "\"title\":[\"Worth the Wait: Delayed Recall after 1 Week Predicts Cognitive and Medial Temporal Lobe Trajectories in Older Adults\"]",
+   "why": "Same 19 named authors, identical title, JINS 27(4), 2021, pp. 382-388."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C A Lindbergh and N Walker and R {La Joie} and S Weiner-Light and A M Staffaroni and K B Casaletto and F Elahi and S M Walters and M You and D Cotter and B Asken and A C Apple and E Tsoy and J Neuhaus and C Fonseca and A Wolf and Y Cobigo and H Rosen and J H Kramer",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Lindbergh, Cutter A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Walker, Nicole"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - La Joie, Renaud"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Weiner-Light, Sophia"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Staffaroni, Adam M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Casaletto, Kaitlin B"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Elahi, Fanny"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Walters, Samantha M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - You, Michelle"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Cotter, Devyn"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Asken, Breton"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Apple, Alexandra C"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Tsoy, Elena"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Neuhaus, John"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Fonseca, Corrina"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Wolf, Amy"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Cobigo, Yann"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Rosen, Howie"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "FAU - Kramer, Joel H"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Worth the wait: delayed recall after 1 week predicts cognitive and medial temporal lobe trajectories in older adults",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/s1355617720001009",
+      "quote": "\"title\":[\"Worth the Wait: Delayed Recall after 1 Week Predicts Cognitive and Medial Temporal Lobe Trajectories in Older Adults\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of the International Neuropsychological Society",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/s1355617720001009",
+      "quote": "\"container-title\":[\"Journal of the International Neuropsychological Society\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2021",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/s1355617720001009",
+      "quote": "\"published-print\":{\"date-parts\":[[2021"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33050976/",
+      "quote": "DP  - 2021 Apr"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "27",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/s1355617720001009",
+      "quote": "\"volume\":\"27\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/s1355617720001009",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "382--388",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/s1355617720001009",
+      "quote": "\"page\":\"382-388\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1017/s1355617720001009",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1017/s1355617720001009",
+      "quote": "\"DOI\":\"10.1017\\/s1355617720001009\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed (print year 2021; online 2020). DOI only lowercased. Crossref also lists a group author \"the Hillblom Aging Network\"; not added (reviewer may choose)."
+ },
+ {
+  "key": "HartWong79",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.2307/2346830",
+   "quote": "\"title\":[\"Algorithm AS 136: A K-Means Clustering Algorithm\"]",
+   "why": "Same authors (Hartigan, Wong), identical title, vol 28(1), 1979, starting p. 100, in Applied Statistics (JRSS Series C)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J A Hartigan and M A Wong",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2346830",
+      "quote": "\"given\":\"J. A.\",\"family\":\"Hartigan\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.2307/2346830",
+      "quote": "\"given\":\"M. A.\",\"family\":\"Wong\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "{Algorithm AS 136}: a k-means clustering algorithm",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2346830",
+      "quote": "\"title\":[\"Algorithm AS 136: A K-Means Clustering Algorithm\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Applied Statistics",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2346830",
+      "quote": "\"container-title\":[\"Applied Statistics\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1979",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2346830",
+      "quote": "\"issued\":{\"date-parts\":[[1979"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "28",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2346830",
+      "quote": "\"volume\":\"28\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2346830",
+      "quote": "\"issue\":\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.2307/2346830",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2346830",
+      "quote": "\"DOI\":\"10.2307\\/2346830\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal \"Journal of the Optical Society of America\" is wrong -> \"Applied Statistics\" (Journal of the Royal Statistical Society Series C). Pages: Crossref/OpenAlex give only first page 100; JSTOR blocked scripted fetch, so end page 108 not confirmed (left as is). Added DOI 10.2307/2346830."
+ },
+ {
+  "key": "PellFare99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1364/josaa.16.000647",
+   "quote": "\"title\":[\"Why use noise?\"]",
+   "why": "Same authors (Pelli, Farell), same title, JOSA A 16(3), 1999, p. 647; PubMed 10069051 carries this DOI."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "D G Pelli and B J Farell",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10069051/",
+      "quote": "FAU - Pelli, D G"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10069051/",
+      "quote": "FAU - Farell, B"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Why use noise?",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.16.000647",
+      "quote": "\"title\":[\"Why use noise?\"]"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10069051/",
+      "quote": "TI  - Why use noise?"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of the Optical Society of America {A}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.16.000647",
+      "quote": "\"container-title\":[\"Journal of the Optical Society of America A\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.16.000647",
+      "quote": "\"issued\":{\"date-parts\":[[1999"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.16.000647",
+      "quote": "\"volume\":\"16\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.16.000647",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "647--653",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10069051/",
+      "quote": "PG  - 647-53"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1364/josaa.16.000647",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.16.000647",
+      "quote": "\"DOI\":\"10.1364\\/josaa.16.000647\""
+     }
+    ]
+   }
+  },
+  "notes": "Title adds the question mark. Journal -> JOSA A (house form \"Journal of the Optical Society of America {A}\" already used once). Added number 3, DOI. Sources print B / Bart Farell with no middle initial; cited J kept (not contradicted), reviewer may drop."
+ },
+ {
+  "key": "SekuBall86",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
+   "quote": "\"title\":[\"Visual localization: age and practice\"]",
+   "why": "Same authors (Sekuler, Ball), identical title, JOSA A 3(6), 1986, p. 864."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "R Sekuler and K Ball",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
+      "quote": "\"given\":\"Robert\",\"family\":\"Sekuler\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
+      "quote": "\"given\":\"Karlene\",\"family\":\"Ball\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Visual localization: age and practice",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
+      "quote": "\"title\":[\"Visual localization: age and practice\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of the Optical Society of America {A}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
+      "quote": "\"container-title\":[\"Journal of the Optical Society of America A\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1986",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
+      "quote": "\"issued\":{\"date-parts\":[[1986"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
+      "quote": "\"volume\":\"3\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
+      "quote": "\"issue\":\"6\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "864--867",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3734925/",
+      "quote": "PG  - 864-7"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1364/josaa.3.000864",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1364/josaa.3.000864",
+      "quote": "\"DOI\":\"10.1364\\/josaa.3.000864\""
+     }
+    ]
+   }
+  },
+  "notes": "Volume \"3(6)\" split into volume 3, number 6. Journal -> JOSA A. Added DOI."
+ },
+ {
+  "key": "Buck60",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1960.tb00375.x",
+   "quote": "\"title\":[\"A Method of Estimation of Missing Values in Multivariate Data Suitable for Use with an Electronic Computer\"]",
+   "why": "Same author (Buck), identical title, JRSS B 22(2), 1960, pp. 302-306."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S F Buck",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1960.tb00375.x",
+      "quote": "\"given\":\"S. F.\",\"family\":\"Buck\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "A method of estimation of missing values in multivariate data suitable for use with an electronic computer",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1960.tb00375.x",
+      "quote": "\"title\":[\"A Method of Estimation of Missing Values in Multivariate Data Suitable for Use with an Electronic Computer\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of the Royal Statistical Society, Series {B}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1960.tb00375.x",
+      "quote": "\"container-title\":[\"Journal of the Royal Statistical Society Series B: Statistical Methodology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1960",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1960.tb00375.x",
+      "quote": "\"issued\":{\"date-parts\":[[1960"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1960.tb00375.x",
+      "quote": "\"volume\":\"22\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1960.tb00375.x",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "302--306",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1960.tb00375.x",
+      "quote": "\"page\":\"302-306\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.2517-6161.1960.tb00375.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1960.tb00375.x",
+      "quote": "\"DOI\":\"10.1111\\/j.2517-6161.1960.tb00375.x\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal adds Series B (1960 name: Series B (Methodological); Crossref gives the modern title). Added DOI."
+ },
+ {
+  "key": "NeldWedd72",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.2307/2344614",
+   "quote": "\"title\":[\"Generalized Linear Models\"]",
+   "why": "Same authors (Nelder, Wedderburn), identical title, JRSS A 135(3), 1972, starting p. 370."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "J A Nelder and R W M Wedderburn",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2344614",
+      "quote": "\"given\":\"J. A.\",\"family\":\"Nelder\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.2307/2344614",
+      "quote": "\"given\":\"R. W. M.\",\"family\":\"Wedderburn\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Generalized linear models",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2344614",
+      "quote": "\"title\":[\"Generalized Linear Models\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Journal of the Royal Statistical Society, Series {A}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2344614",
+      "quote": "\"container-title\":[\"Journal of the Royal Statistical Society. Series A (General)\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1972",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2344614",
+      "quote": "\"issued\":{\"date-parts\":[[1972"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "135",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2344614",
+      "quote": "\"volume\":\"135\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2344614",
+      "quote": "\"issue\":\"3\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found"
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.2307/2344614",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.2307/2344614",
+      "quote": "\"DOI\":\"10.2307\\/2344614\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal adds Series A (General). Pages: Crossref/OpenAlex give only first page 370; JSTOR blocked scripted fetch, so 384 not confirmed (left as is). Added DOI."
+ },
+ {
+  "key": "NasrEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1111/j.1532-5415.2005.53221.x",
+   "quote": "\"title\":[\"The Montreal Cognitive Assessment, MoCA: A Brief Screening Tool For Mild Cognitive Impairment\"]",
+   "why": "Same eight authors, identical title, JAGS 53(4), 2005, pp. 695-699."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "Z S Nasreddine and N A Phillips and V B{\\'e}dirian and S Charbonneau and V Whitehead and I Collin and J L Cummings and H Chertkow",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15817019/",
+      "quote": "FAU - Nasreddine, Ziad S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15817019/",
+      "quote": "FAU - Phillips, Natalie A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15817019/",
+      "quote": "FAU - Bedirian, Valerie"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15817019/",
+      "quote": "FAU - Charbonneau, Simon"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15817019/",
+      "quote": "FAU - Whitehead, Victor"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15817019/",
+      "quote": "FAU - Collin, Isabelle"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15817019/",
+      "quote": "FAU - Cummings, Jeffrey L"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15817019/",
+      "quote": "FAU - Chertkow, Howard"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The {Montreal} cognitive assessment, {MoCA}: a brief screening tool for mild cognitive impairment",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1532-5415.2005.53221.x",
+      "quote": "\"title\":[\"The Montreal Cognitive Assessment, MoCA: A Brief Screening Tool For Mild Cognitive Impairment\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Journal of the {American} Geriatrics Society",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1532-5415.2005.53221.x",
+      "quote": "\"container-title\":[\"Journal of the American Geriatrics Society\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1532-5415.2005.53221.x",
+      "quote": "\"published-print\":{\"date-parts\":[[2005"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "53",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1532-5415.2005.53221.x",
+      "quote": "\"volume\":\"53\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1532-5415.2005.53221.x",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "695--699",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1532-5415.2005.53221.x",
+      "quote": "\"page\":\"695-699\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1111/j.1532-5415.2005.53221.x",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.1532-5415.2005.53221.x",
+      "quote": "\"DOI\":\"10.1111\\/j.1532-5415.2005.53221.x\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; added DOI. The flagged notice is a Corrigendum (10.1111/jgs.15925, 2019), not a retraction; Crossref \"updated-by\" type \"correction\". It does not change the citation. No duplicate of the work in cdl.bib (the other MoCA entry is a normative-data paper)."
+ },
+ {
+  "key": "DetrMa16",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1001/jama.2015.19394",
+   "quote": "\"title\":[\"Analyzing Repeated Measurements Using Mixed Models\"]",
+   "why": "Same authors (Detry, Ma), identical title, JAMA 315(4), 2016, p. 407; PubMed 26813213 carries this DOI."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M A Detry and Y Ma",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1001/jama.2015.19394",
+      "quote": "\"given\":\"Michelle A.\",\"family\":\"Detry\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1001/jama.2015.19394",
+      "quote": "\"given\":\"Yan\",\"family\":\"Ma\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Analyzing repeated measurements using mixed models",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1001/jama.2015.19394",
+      "quote": "\"title\":[\"Analyzing Repeated Measurements Using Mixed Models\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "{JAMA}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1001/jama.2015.19394",
+      "quote": "\"container-title\":[\"JAMA\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1001/jama.2015.19394",
+      "quote": "\"issued\":{\"date-parts\":[[2016"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "315",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1001/jama.2015.19394",
+      "quote": "\"volume\":\"315\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1001/jama.2015.19394",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "407--408",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26813213/",
+      "quote": "PG  - 407-8"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1001/jama.2015.19394",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1001/jama.2015.19394",
+      "quote": "\"DOI\":\"10.1001\\/jama.2015.19394\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal \"Journal of the {American} Medical Association\" -> \"{JAMA}\" (official title since 2012; Crossref and NLM both \"JAMA\"; cdl.bib has both forms, reviewer may keep the old one). Added DOI."
+ }
+]

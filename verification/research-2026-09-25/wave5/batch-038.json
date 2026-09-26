@@ -1,0 +1,2268 @@
+[
+ {
+  "key": "GaraEtal00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+   "quote": "Practice-related functional activation changes in a working memory task.",
+   "why": "PubMed 11002353: same title, five authors (Garavan, Kelley, Rosen, Rao, Stein), Microsc Res Tech 2000;51(1):54-63."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Practice-related functional activation changes in a working memory task",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "Practice-related functional activation changes in a working memory task."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "H Garavan and D Kelley and A C Rosen and S M Rao and E A Stein",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "FAU - Garavan, H"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "FAU - Kelley, D"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "FAU - Rosen, A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "FAU - Rao, S M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "FAU - Stein, E A"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Microscopy Research and Technique",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "Microscopy research and technique"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "51",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "VI  - 51"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "IP  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "54--63",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "PG  - 54-63"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "DP  - 2000 Oct 1"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/1097-0029(20001001)51:1<54::aid-jemt6>3.0.co;2-j",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1002/1097-0029%2820001001%2951:1%3C54::aid-jemt6%3E3.0.co%3B2-j",
+      "quote": "\"handle\":\"10.1002/1097-0029(20001001)51:1<54::aid-jemt6>3.0.co;2-j\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11002353/",
+      "quote": "10.1002/1097-0029(20001001)51:1<54::AID-JEMT6>3.0.CO;2-J [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Issue and DOI added. Crossref and PubMed give Rosen's first initial only ('Allyson' / 'A'); the entry's middle initial C is kept (never drop an initial only because a source omits it). Crossref also holds a second DOI for the same article (...3.3.co;2-a); the 3.0.co;2-j DOI is the one PubMed lists. No duplicate in cdl.bib."
+ },
+ {
+  "key": "Turi50",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1093/mind/lix.236.433",
+   "quote": "\"title\":[\"I.\\u2014COMPUTING MACHINERY AND INTELLIGENCE\"]",
+   "why": "Crossref record of the DOI: A. M. Turing, Mind, issue 236, pp. 433-460, published 1950-10."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Computing machinery and intelligence",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/mind/lix.236.433",
+      "quote": "COMPUTING MACHINERY AND INTELLIGENCE"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A M Turing",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/mind/lix.236.433",
+      "quote": "\"given\":\"A. M.\",\"family\":\"TURING\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Mind",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/mind/lix.236.433",
+      "quote": "\"container-title\":[\"Mind\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "not_found",
+    "value": "59",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/mind/lix.236.433",
+      "quote": "\"volume\":\"LIX\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "236",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/mind/lix.236.433",
+      "quote": "\"issue\":\"236\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "433--460",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/mind/lix.236.433",
+      "quote": "\"page\":\"433-460\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1950",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/mind/lix.236.433",
+      "quote": "\"published-print\":{\"date-parts\":[[1950,10,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1093/mind/lix.236.433",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1093/mind/lix.236.433",
+      "quote": "\"handle\":\"10.1093/mind/lix.236.433\""
+     }
+    ]
+   }
+  },
+  "notes": "DOI added; everything else stands. Volume is printed in Roman numerals only (Crossref 'LIX', OUP page 'Volume LIX'), i.e. 59; left as is (status not_found only because no source prints the Arabic form). The 'I.---' prefix in the Crossref title is the article's numbering in the issue, not part of the title. The local PDF Papers/Turi50.pdf is a reprint (chapter 3 of an edited book with commentaries), a different version, not used as evidence. No duplicate in cdl.bib."
+ },
+ {
+  "key": "GoldWhel00",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10833204/",
+   "quote": "Statistical tests of gamma-distributed rate heterogeneity in models of sequence evolution in phylogenetics.",
+   "why": "PubMed 10833204: same title, Goldman N and Whelan S, Mol Biol Evol 2000;17(6):975-8."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Statistical tests of {Gamma}-distributed rate heterogeneity in models of sequence evolution in phylogenetics",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10833204/",
+      "quote": "Statistical tests of gamma-distributed rate heterogeneity in models of sequence evolution in phylogenetics."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "N Goldman and S Whelan",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10833204/",
+      "quote": "FAU - Goldman, N"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10833204/",
+      "quote": "FAU - Whelan, S"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Molecular Biology and Evolution",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10833204/",
+      "quote": "Molecular biology and evolution"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10833204/",
+      "quote": "VI  - 17"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10833204/",
+      "quote": "IP  - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "975--978",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10833204/",
+      "quote": "PG  - 975-8"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10833204/",
+      "quote": "DP  - 2000 Jun"
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.1093/oxfordjournals.molbev.a026378",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1093/oxfordjournals.molbev.a026378",
+      "quote": "\"handle\":\"10.1093/oxfordjournals.molbev.a026378\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10833204/",
+      "quote": "10.1093/oxfordjournals.molbev.a026378 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "All fields confirmed. The author mismatch came from a Crossref glitch (second author's given name recorded as 'and Simon'); PubMed has Goldman N, Whelan S. No duplicate in cdl.bib."
+ },
+ {
+  "key": "DiazEtal19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+   "quote": "Dopamine Neurotransmission in the Ventral Tegmental Area Promotes Active Forgetting of Cocaine-Associated Memory.",
+   "why": "PubMed 30739236: same title and four authors, Mol Neurobiol 2019;56(9):6206-6217."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Dopamine neurotransmission in the ventral tegmental area promotes active forgetting of cocaine-associated memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "Dopamine Neurotransmission in the Ventral Tegmental Area Promotes Active Forgetting of Cocaine-Associated Memory."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "F {Castillo D\\'{i}az} and M A Hernandez and T Capell\\'{a} and J H Medina",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "FAU - Castillo Diaz, Fernando"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "FAU - Hernandez, Micaela A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "FAU - Capella, Tomas"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "FAU - Medina, Jorge H"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/s12035-019-1516-3",
+      "quote": "\"family\":\"Castillo D\\u00edaz\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/s12035-019-1516-3",
+      "quote": "\"family\":\"Capell\\u00e1\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Molecular Neurobiology",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "Molecular neurobiology"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "56",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "VI  - 56"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "IP  - 9"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "6206--6217",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "PG  - 6206-6217"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "DP  - 2019 Sep"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/s12035-019-1516-3",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1007/s12035-019-1516-3",
+      "quote": "\"handle\":\"10.1007/s12035-019-1516-3\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30739236/",
+      "quote": "10.1007/s12035-019-1516-3 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages 1--12 were the online-first pagination; print is 56(9):6206-6217 (online 2019-02-09, print Sep 2019, same year). First author's surname is the compound 'Castillo D\\'{i}az' (PubMed 'Castillo Diaz, Fernando'; Crossref family 'Castillo D\\u00edaz'); the entry parsed 'Castillo' as a given name, so the surname is now braced. KEY: with the corrected first surname the house key is CastEtal19 (bibcheck authors2key gives CastEtal19); CastEtal19 is not in cdl.bib, so rename DiazEtal19 -> CastEtal19. Accents kept as in Crossref (D\\'{i}az, Capell\\'{a}). No duplicate in cdl.bib."
+ },
+ {
+  "key": "ToluEtal12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+   "quote": "Co-activation of VTA DA and GABA neurons mediates nicotine reinforcement.",
+   "why": "PubMed 22751493: same title, Tolu S ... Maskos U, Mol Psychiatry 2013;18(3):382-93 (online 2012-07-03)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Co-activation of {VTA} {DA} and {GABA} neurons mediates nicotine reinforcement",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "Co-activation of VTA DA and GABA neurons mediates nicotine reinforcement."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Tolu, S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Eddine, R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Marti, F"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - David, V"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Graupner, M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Pons, S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Baudonnat, M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Husson, M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Besson, M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Reperant, C"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Zemdegs, J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Pages, C"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Hay, Y A H"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Lambolez, B"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Caboche, J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Gutkin, B"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Gardier, A M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Changeux, J-P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Faure, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "FAU - Maskos, U"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1038/mp.2012.83",
+      "quote": "\"family\":\"Pag\\u00e8s\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Molecular Psychiatry",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "Molecular psychiatry"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1038/mp.2012.83",
+      "quote": "\"container-title\":[\"Molecular Psychiatry\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "VI  - 18"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "382--393",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "PG  - 382-93"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "DP  - 2013 Mar"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/mp.2012.83",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1038/mp.2012.83",
+      "quote": "\"handle\":\"10.1038/mp.2012.83\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22751493/",
+      "quote": "10.1038/mp.2012.83 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Journal misspelled ('Physchiatry'). Print year 2013 (vol 18 no 3, Mar 2013) beats online-first 2012-07-03. Author list: M Husson was missing (8th author), 'Y A Hay' -> 'Y A H Hay', 'J P Cangeux' -> 'J-P Changeux' (hyphenated initials), 'Pages' -> 'Pag\\`{e}s' (Crossref 'Pag\\u00e8s'). KEY: year change gives ToluEtal13; not in cdl.bib -> rename ToluEtal12 -> ToluEtal13. No duplicate in cdl.bib. Crossref lists an F1000 review (10.3410/f.717955552.793460552), not a different version."
+ },
+ {
+  "key": "ZagaEtal13a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23911794/",
+   "quote": "Regular treadmill exercise prevents sleep deprivation-induced disruption of synaptic plasticity and associated signaling cascade in the dentate gyrus.",
+   "why": "PubMed 23911794: same title, Zagaar, Dao, Alhaider, Alkadhi, Mol Cell Neurosci 2013;56:375-83."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Regular treadmill exercise prevents sleep deprivation-induced disruption of synaptic plasticity and associated signaling cascade in the dentate gyrus",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23911794/",
+      "quote": "Regular treadmill exercise prevents sleep deprivation-induced disruption of synaptic plasticity and associated signaling cascade in the dentate gyrus."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M Zagaar and A Dao and I Alhaider and K Alkadhi",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23911794/",
+      "quote": "FAU - Zagaar, Munder"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23911794/",
+      "quote": "FAU - Dao, An"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23911794/",
+      "quote": "FAU - Alhaider, Ibrahim"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23911794/",
+      "quote": "FAU - Alkadhi, Karim"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Molecular and Cellular Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.mcn.2013.07.011",
+      "quote": "\"container-title\":[\"Molecular and Cellular Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "56",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23911794/",
+      "quote": "VI  - 56"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "375--383",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23911794/",
+      "quote": "PG  - 375-83"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23911794/",
+      "quote": "DP  - 2013 Sep"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.mcn.2013.07.011",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1016/j.mcn.2013.07.011",
+      "quote": "\"handle\":\"10.1016/j.mcn.2013.07.011\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23911794/",
+      "quote": "10.1016/j.mcn.2013.07.011 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "DOI added; full given names reduced to house initials. The flagged notice is a corrigendum, not a retraction: 'Corrigendum to \"Regular treadmill exercise prevents ...\"', Mol Cell Neurosci 2018;88:353, doi 10.1016/j.mcn.2017.12.007 (PubMed EIN line). No issue number in PubMed or Crossref. ZagaEtal13b is a different work (Sleep 36(5)). No duplicate in cdl.bib."
+ },
+ {
+  "key": "RuizGonz97",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://link.springer.com/article/10.1023/A:1024438701205",
+   "quote": "Effects of Level of Processing on Implicit and Explicit Memory in Depressed Mood",
+   "why": "Springer article page (DOI 10.1023/A:1024438701205): same title, Ruiz-Caballero and Gonzalez, Motivation and Emotion 21(2):195-209, 1997."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Effects of level of processing on implicit and explicit memory in depressed mood",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1023/A:1024438701205",
+      "quote": "Effects of Level of Processing on Implicit and Explicit Memory in Depressed Mood"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J A Ruiz-Caballero and P Gonz\\'{a}lez",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1023/A:1024438701205",
+      "quote": "Ruiz-Caballero, Jos&#233; A."
+     },
+     {
+      "url": "https://link.springer.com/article/10.1023/A:1024438701205",
+      "quote": "Gonz&#225;lez, Piedad"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Motivation and Emotion",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1023/A:1024438701205",
+      "quote": "name=\"citation_journal_title\" content=\"Motivation and Emotion\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1023/A:1024438701205",
+      "quote": "name=\"citation_volume\" content=\"21\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1023/A:1024438701205",
+      "quote": "name=\"citation_issue\" content=\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "195--209",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1023/A:1024438701205",
+      "quote": "name=\"citation_firstpage\" content=\"195\""
+     },
+     {
+      "url": "https://link.springer.com/article/10.1023/A:1024438701205",
+      "quote": "name=\"citation_lastpage\" content=\"209\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1997",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1023/A:1024438701205",
+      "quote": "name=\"citation_publication_date\" content=\"1997/06\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1023/a:1024438701205",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1023/a:1024438701205",
+      "quote": "\"handle\":\"10.1023/a:1024438701205\""
+     }
+    ]
+   }
+  },
+  "notes": "Title typo 'implicity' -> 'implicit'. Author 'Jose A Ruiz-Caballero' -> house initials 'J A'; 'Gonzalez' -> 'Gonz\\'{a}lez' (accent as printed). Not indexed in PubMed. Key unchanged (RuizGonz97). No duplicate in cdl.bib."
+ },
+ {
+  "key": "BalaEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18074361/",
+   "quote": "Participation of the subthalamic nucleus in executive functions: An intracerebral recording study.",
+   "why": "PubMed 18074361: same title, Balaz, Rektor, Pulkrabek, Mov Disord 2008;23(4):553-7."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Participation of the subthalamic nucleus in executive functions: an intracerebral recording study",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18074361/",
+      "quote": "Participation of the subthalamic nucleus in executive functions: An intracerebral recording study."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M Bal\\'{a}\\v{z} and I Rektor and J Pulkr\\'{a}bek",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18074361/",
+      "quote": "FAU - Balaz, Marek"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18074361/",
+      "quote": "FAU - Rektor, Ivan"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18074361/",
+      "quote": "FAU - Pulkrabek, Jiri"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.21873",
+      "quote": "\"family\":\"Bal\\u00e1\\u017e\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.21873",
+      "quote": "\"family\":\"Pulkr\\u00e1bek\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Movement Disorders",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.21873",
+      "quote": "\"container-title\":[\"Movement Disorders\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "23",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18074361/",
+      "quote": "VI  - 23"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18074361/",
+      "quote": "IP  - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "553--557",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18074361/",
+      "quote": "PG  - 553-7"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18074361/",
+      "quote": "DP  - 2008 Mar 15"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/mds.21873",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1002/mds.21873",
+      "quote": "\"handle\":\"10.1002/mds.21873\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18074361/",
+      "quote": "10.1002/mds.21873 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "DOI added; Czech diacritics restored as Crossref prints them (Bal\\u00e1\\u017e, Pulkr\\u00e1bek). Online 2007-12-11, print 2008-03-15: year 2008 stands. No duplicate in cdl.bib."
+ },
+ {
+  "key": "GrosEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
+   "quote": "Electrophysiological mapping for the implantation of deep brain stimulators for Parkinson's disease and tremor.",
+   "why": "PubMed 16810720: same title and five authors, Mov Disord 2006;21 Suppl 14:S259-83."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Electrophysiological mapping for the implantation of deep brain stimulators for {Parkinson's} disease and tremor",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
+      "quote": "Electrophysiological mapping for the implantation of deep brain stimulators for Parkinson's disease and tremor."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R E Gross and P Krack and M C Rodriguez-Oroz and A R Rezai and A L Benabid",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
+      "quote": "FAU - Gross, Robert E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
+      "quote": "FAU - Krack, Paul"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
+      "quote": "FAU - Rodriguez-Oroz, Maria C"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
+      "quote": "FAU - Rezai, Ali R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
+      "quote": "FAU - Benabid, Alim-Louis"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Movement Disorders",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.20960",
+      "quote": "\"container-title\":[\"Movement Disorders\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
+      "quote": "VI  - 21 Suppl 14"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "S14",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.20960",
+      "quote": "\"issue\":\"S14\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "S259--S283",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.20960",
+      "quote": "\"page\":\"S259-S283\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
+      "quote": "DP  - 2006 Jun"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/mds.20960",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1002/mds.20960",
+      "quote": "\"handle\":\"10.1002/mds.20960\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810720/",
+      "quote": "10.1002/mds.20960 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Issue is supplement S14 (Crossref issue 'S14'; PubMed '21 Suppl 14'), written S14 as in the companion entry MachEtal06; pages S259--S283 (was '259'). Author 'A L Benabid' kept (PubMed 'Alim-Louis', a hyphenated given name; entry form matches other cdl.bib Benabid entries). No duplicate in cdl.bib."
+ },
+ {
+  "key": "KracEtal98",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+   "quote": "Treatment of tremor in Parkinson's disease by subthalamic nucleus stimulation.",
+   "why": "PubMed 9827614: same title, Krack P ... Benabid AL, Mov Disord 1998;13(6):907-14."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Treatment of tremor in {Parkinson}'s disease by subthalamic nucleus stimulation",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "Treatment of tremor in Parkinson's disease by subthalamic nucleus stimulation."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "P Krack and A Benazzouz and P Pollak and P Limousin and B Piallat and D Hoffmann and J Xie and A L Benabid",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "FAU - Krack, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "FAU - Benazzouz, A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "FAU - Pollak, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "FAU - Limousin, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "FAU - Piallat, B"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "FAU - Hoffmann, D"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "FAU - Xie, J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "FAU - Benabid, A L"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Movement Disorders",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.870130608",
+      "quote": "\"container-title\":[\"Movement Disorders\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "VI  - 13"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "IP  - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "907--914",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "PG  - 907-14"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "DP  - 1998 Nov"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/mds.870130608",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1002/mds.870130608",
+      "quote": "\"handle\":\"10.1002/mds.870130608\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9827614/",
+      "quote": "10.1002/mds.870130608 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Surnames misspelled: 'Pollack' -> 'Pollak', 'Hoffman' -> 'Hoffmann'. End page 913 -> 914; issue and DOI added. Crossref online date 2004 is the Wiley digitisation; print 1998. No duplicate in cdl.bib."
+ },
+ {
+  "key": "LimoEtal95a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+   "quote": "Bilateral subthalamic nucleus stimulation for severe Parkinson's disease.",
+   "why": "PubMed 8552123: same title, Limousin P ... Benabid AL, Mov Disord 1995;10(5):672-4."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Bilateral subthalamic nucleus stimulation for severe {Parkinson}'s disease",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "Bilateral subthalamic nucleus stimulation for severe Parkinson's disease."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "P Limousin and P Pollak and A Benazzouz and D Hoffmann and E Broussolle and J E Perret and A L Benabid",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Limousin, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Pollak, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Benazzouz, A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Hoffmann, D"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Broussolle, E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Perret, J E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Benabid, A L"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Movement Disorders",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.870100523",
+      "quote": "\"container-title\":[\"Movement Disorders\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "VI  - 10"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "672--674",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "PG  - 672-4"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "DP  - 1995 Sep"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/mds.870100523",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1002/mds.870100523",
+      "quote": "\"handle\":\"10.1002/mds.870100523\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "10.1002/mds.870100523 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages and DOI added; all other fields confirmed. DUPLICATE: LimoEtal95c (same batch) is the same work with a garbled title ('Bilateraly ... sever') and misspelled authors; merge LimoEtal95c into LimoEtal95a. LimoEtal95b is a different work (Lancet 345:91-95)."
+ },
+ {
+  "key": "LimoEtal95c",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+   "quote": "Bilateral subthalamic nucleus stimulation for severe Parkinson's disease.",
+   "why": "PubMed 8552123: same title, Limousin P ... Benabid AL, Mov Disord 1995;10(5):672-4."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Bilateral subthalamic nucleus stimulation for severe {Parkinson}'s disease",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "Bilateral subthalamic nucleus stimulation for severe Parkinson's disease."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "P Limousin and P Pollak and A Benazzouz and D Hoffmann and E Broussolle and J E Perret and A L Benabid",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Limousin, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Pollak, P"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Benazzouz, A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Hoffmann, D"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Broussolle, E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Perret, J E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "FAU - Benabid, A L"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Movement Disorders",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.870100523",
+      "quote": "\"container-title\":[\"Movement Disorders\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "VI  - 10"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "672--674",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "PG  - 672-4"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1995",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "DP  - 1995 Sep"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/mds.870100523",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1002/mds.870100523",
+      "quote": "\"handle\":\"10.1002/mds.870100523\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8552123/",
+      "quote": "10.1002/mds.870100523 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "DUPLICATE of LimoEtal95a: same article (Mov Disord 10(5):672-674, 1995, DOI 10.1002/mds.870100523); merge LimoEtal95c into LimoEtal95a and remove LimoEtal95c. Corrections if kept: title typos 'Bilateraly'/'sever', surnames 'Pollack' -> 'Pollak', 'Hoffman' -> 'Hoffmann', initials 'E J Perret' -> 'J E Perret' (PubMed 'Perret, J E'; Crossref given 'Jean Edmond'), issue 5 added."
+ },
+ {
+  "key": "MachEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+   "quote": "Deep brain stimulation for Parkinson's disease: surgical technique and perioperative management.",
+   "why": "PubMed 16810722: same title and six authors, Mov Disord 2006;21 Suppl 14:S247-58."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Deep brain stimulation for {Parkinson's} disease: surgical technique and perioperative management",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+      "quote": "Deep brain stimulation for Parkinson's disease: surgical technique and perioperative management."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Machado and A R Rezai and B H Kopell and R E Gross and A D Sharan and A L Benabid",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+      "quote": "FAU - Machado, Andre"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+      "quote": "FAU - Rezai, Ali R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+      "quote": "FAU - Kopell, Brian H"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+      "quote": "FAU - Gross, Robert E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+      "quote": "FAU - Sharan, Ashwini D"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+      "quote": "FAU - Benabid, Alim-Louis"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Movement Disorders",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.20959",
+      "quote": "\"container-title\":[\"Movement Disorders\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+      "quote": "VI  - 21 Suppl 14"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "S14",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.20959",
+      "quote": "\"issue\":\"S14\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "S247--S258",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1002/mds.20959",
+      "quote": "\"page\":\"S247-S258\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+      "quote": "DP  - 2006 Jun"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1002/mds.20959",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1002/mds.20959",
+      "quote": "\"handle\":\"10.1002/mds.20959\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16810722/",
+      "quote": "10.1002/mds.20959 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Only the DOI is added; all other fields confirmed. 'A L Benabid' kept (given name Alim-Louis). No duplicate in cdl.bib."
+ },
+ {
+  "key": "deAnEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+   "quote": "Photo annotation: a survey",
+   "why": "Springer article page (DOI 10.1007/s11042-016-4281-6): same title and six authors, Multimedia Tools and Applications 77(1):423-457, 2018."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Photo annotation: a survey",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "name=\"citation_title\" content=\"Photo annotation: a survey\""
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D O S de Andrade and L F Maia and H F de Figueir{\\^e}do and W Viana and F Trinta and C {de Souza Baptista}",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "de Andrade, Davi Oliveira Serrano"
+     },
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "Maia, Luis Fernando"
+     },
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "de Figueir&#234;do, Hugo Feitosa"
+     },
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "Viana, Windson"
+     },
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "Trinta, Fernando"
+     },
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "de Souza Baptista, Cl&#225;udio"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Multimedia Tools and Applications",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "name=\"citation_journal_title\" content=\"Multimedia Tools and Applications\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "77",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "name=\"citation_volume\" content=\"77\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "name=\"citation_issue\" content=\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "423--457",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "name=\"citation_firstpage\" content=\"423\""
+     },
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "name=\"citation_lastpage\" content=\"457\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://link.springer.com/article/10.1007/s11042-016-4281-6",
+      "quote": "name=\"citation_publication_date\" content=\"2018/01\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1007/s11042-016-4281-6",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1007/s11042-016-4281-6",
+      "quote": "\"handle\":\"10.1007/s11042-016-4281-6\""
+     }
+    ]
+   }
+  },
+  "notes": "Issue and DOI added. Online 2016-12-28, print Jan 2018 (print year wins; key unchanged). Particle surnames left as written (de Andrade, de Figueir{\\^e}do, {de Souza Baptista}); no initials added. No duplicate in cdl.bib (StonEtal18 is a different work)."
+ },
+ {
+  "key": "MotlEtal11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+   "quote": "Cognitive dysfunction and multiple sclerosis: developing a rationale for considering the efficacy of exercise training.",
+   "why": "PubMed 21685231: same title, Motl, Sandroff, Benedict, Mult Scler 2011;17(9):1034-40."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Cognitive dysfunction and multiple sclerosis: developing a rationale for considering the efficacy of exercise training",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+      "quote": "Cognitive dysfunction and multiple sclerosis: developing a rationale for considering the efficacy of exercise training."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "R W Motl and B M Sandroff and R H B Benedict",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+      "quote": "FAU - Motl, Robert W"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+      "quote": "FAU - Sandroff, Brian M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+      "quote": "FAU - Benedict, Ralph H B"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Multiple Sclerosis",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+      "quote": "Multiple sclerosis (Houndmills, Basingstoke, England)"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+      "quote": "VI  - 17"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+      "quote": "IP  - 9"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1034--1040",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+      "quote": "PG  - 1034-40"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+      "quote": "DP  - 2011 Sep"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1177/1352458511409612",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1177/1352458511409612",
+      "quote": "\"handle\":\"10.1177/1352458511409612\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21685231/",
+      "quote": "10.1177/1352458511409612 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "DOI added; full given names reduced to house initials ('Ralph Hb' -> 'R H B', PubMed 'Ralph H B'). Journal: PubMed/NLM title 'Multiple sclerosis'; Crossref uses the current name 'Multiple Sclerosis Journal' - kept 'Multiple Sclerosis' (the only cdl.bib use), reviewer may prefer the Crossref form. PubMed CIN line is an editorial comment (Mult Scler 17(9):1032-3), not a correction. No duplicate in cdl.bib."
+ },
+ {
+  "key": "AfraEtal06",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+   "quote": "Microstimulation of inferotemporal cortex influences face categorization.",
+   "why": "PubMed 16878143: same title, Afraz, Kiani, Esteky, Nature 2006;442(7103):692-5."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Microstimulation of inferotemporal cortex influences face categorization",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "Microstimulation of inferotemporal cortex influences face categorization."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "S-R Afraz and R Kiani and H Esteky",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "FAU - Afraz, Seyed-Reza"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "FAU - Kiani, Roozbeh"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "FAU - Esteky, Hossein"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "JT  - Nature"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "442",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "VI  - 442"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "7103",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "IP  - 7103"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "692--695",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "PG  - 692-5"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "DP  - 2006 Aug 10"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nature04982",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1038/nature04982",
+      "quote": "\"handle\":\"10.1038/nature04982\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "10.1038/nature04982 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "'SR Afraz' -> 'S-R Afraz' (hyphenated given name Seyed-Reza, house hyphenated initials). DOI added. Flagged notice is an erratum (PubMed EIN: Nature 2006 Oct 5;443(7111):598), not a retraction; CIN line is a News and Views comment (nature05000). No duplicate in cdl.bib."
+ },
+ {
+  "key": "BarrEtal12b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+   "quote": "Models of grid cells and theta oscillations.",
+   "why": "PubMed 22859210: same title, Barry, Bush, O'Keefe, Burgess, Nature 2012;488(7409):E1-2 (Brief Communication Arising)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Models of grid cells and theta oscillations",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "Models of grid cells and theta oscillations."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "C Barry and D Bush and J O'Keefe and N Burgess",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "FAU - Barry, Caswell"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "FAU - Bush, Daniel"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "FAU - O'Keefe, John"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "FAU - Burgess, Neil"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "JT  - Nature"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "488",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "VI  - 488"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "7409",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "IP  - 7409"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "E1--E2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "PG  - E1-2; discussion E2-3"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "DP  - 2012 Aug 2"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nature11276",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1038/nature11276",
+      "quote": "\"handle\":\"10.1038/nature11276\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22859210/",
+      "quote": "10.1038/nature11276 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Full given names reduced to house initials. Pages: PubMed 'E1-2; discussion E2-3' (the comment is E1-E2, the authors' reply E2-E3); Crossref gives only 'E1-E1'. DOI added. It comments on Nature 479:103-107 (10.1038/nature10583). BarrEtal12a/12c are different works. No duplicate in cdl.bib."
+ },
+ {
+  "key": "BoucEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+   "quote": "Functional organization of human sensorimotor cortex for speech articulation.",
+   "why": "PubMed 23426266: same title, Bouchard, Mesgarani, Johnson, Chang, Nature 2013;495(7441):327-32."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Functional organization of human sensorimotor cortex for speech articulation",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "Functional organization of human sensorimotor cortex for speech articulation."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K E Bouchard and N Mesgarani and K Johnson and E F Chang",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "FAU - Bouchard, Kristofer E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "FAU - Mesgarani, Nima"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "FAU - Johnson, Keith"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "FAU - Chang, Edward F"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "JT  - Nature"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "495",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "VI  - 495"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "7441",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "IP  - 7441"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "327--332",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "PG  - 327-32"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "DP  - 2013 Mar 21"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nature11911",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1038/nature11911",
+      "quote": "\"handle\":\"10.1038/nature11911\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23426266/",
+      "quote": "10.1038/nature11911 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Only the DOI is added. Flagged notice is a corrigendum (Nature 2013;498(7455):526, doi 10.1038/nature12182), not a retraction. No duplicate in cdl.bib."
+ },
+ {
+  "key": "BunsEich96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/8538790/",
+   "quote": "Conservation of hippocampal memory function in rats and humans.",
+   "why": "PubMed 8538790: same title, Bunsey M and Eichenbaum H, Nature 1996;379(6562):255-7."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Conservation of hippocampal memory function in rats and humans",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8538790/",
+      "quote": "Conservation of hippocampal memory function in rats and humans."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M Bunsey and H B Eichenbaum",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8538790/",
+      "quote": "FAU - Bunsey, M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8538790/",
+      "quote": "FAU - Eichenbaum, H"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8538790/",
+      "quote": "JT  - Nature"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "379",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8538790/",
+      "quote": "VI  - 379"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6562",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8538790/",
+      "quote": "IP  - 6562"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "255--257",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8538790/",
+      "quote": "PG  - 255-7"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8538790/",
+      "quote": "DP  - 1996 Jan 18"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/379255a0",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1038/379255a0",
+      "quote": "\"handle\":\"10.1038/379255a0\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8538790/",
+      "quote": "10.1038/379255a0 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "'Howard B Eichenbaum' reduced to house initials 'H B' (sources print only 'H'; the B is kept, never dropped; cdl.bib already uses 'H B Eichenbaum' twice). DOI added. BunsEich95 is a different work (Hippocampus). No duplicate in cdl.bib."
+ },
+ {
+  "key": "CardEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+   "quote": "Driving fast-spiking cells induces gamma rhythm and controls sensory responses.",
+   "why": "PubMed 19396156: same title and eight authors, Nature 2009;459(7247):663-7."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Driving fast-spiking cells induces gamma rhythm and controls sensory responses",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "Driving fast-spiking cells induces gamma rhythm and controls sensory responses."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J A Cardin and M Carl{\\'e}n and K Meletis and U Knoblich and F Zhang and K Deisseroth and L-H Tsai and C I Moore",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "FAU - Cardin, Jessica A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "FAU - Carlen, Marie"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "FAU - Meletis, Konstantinos"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "FAU - Knoblich, Ulf"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "FAU - Zhang, Feng"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "FAU - Deisseroth, Karl"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "FAU - Tsai, Li-Huei"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "FAU - Moore, Christopher I"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "JT  - Nature"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "459",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "VI  - 459"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "7247",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "IP  - 7247"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "663--667",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "PG  - 663-7"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "DP  - 2009 Jun 4"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nature08002",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1038/nature08002",
+      "quote": "\"handle\":\"10.1038/nature08002\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19396156/",
+      "quote": "10.1038/nature08002 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Volume, issue, pages and DOI added (online 2009-04-26, print 2009-06-04). 'L H Tsai' -> 'L-H Tsai' (given name Li-Huei, hyphenated initials). Carl{\\'e}n accent kept (Crossref 'Carl\\u00e9n'). No duplicate in cdl.bib."
+ }
+]

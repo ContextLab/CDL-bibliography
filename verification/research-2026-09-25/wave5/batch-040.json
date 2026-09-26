@@ -1,0 +1,1854 @@
+[
+ {
+  "key": "BellEtal20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/31740749/",
+   "quote": "Deforming the metric of cognitive maps distorts memory.",
+   "why": "PubMed 31740749: same title (published version) and authors, Nature human behaviour 4(2):177-188, DOI 10.1038/s41562-019-0767-3."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Deforming the metric of cognitive maps distorts memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31740749/",
+      "quote": "Deforming the metric of cognitive maps distorts memory."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J L S Bellmund and W {de Cothi} and T A Ruiter and M Nau and C Barry and C F Doeller",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31740749/",
+      "quote": "Jacob L S Bellmund, William de Cothi, Tom A Ruiter, Matthias Nau, Caswell Barry, Christian F Doeller"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Nature Human Behaviour",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31740749/",
+      "quote": "Nature human behaviour"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31740749/",
+      "quote": "VI  - 4"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31740749/",
+      "quote": "IP  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "177--188",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31740749/",
+      "quote": "PG  - 177-188"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31740749/",
+      "quote": "DP  - 2020 Feb"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/s41562-019-0767-3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31740749/",
+      "quote": "10.1038/s41562-019-0767-3 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Journal spelling corrected to Nature Human Behaviour (PubMed JT); issue 2 and DOI added. Online first 2019-11-18, print Feb 2020, so year 2020 stands. bioRxiv preprint 10.1101/391201 is a different version, not cited. No duplicate in cdl.bib (title and DOI searched)."
+ },
+ {
+  "key": "GagnEtal20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/31844272/",
+   "quote": "Collective memory shapes the organization of individual memories in the medial prefrontal cortex.",
+   "why": "PubMed 31844272: same title (published version) and authors, Nature human behaviour 4(2):189-200, DOI 10.1038/s41562-019-0779-z."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Collective memory shapes the organization of individual memories in the medial prefrontal cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31844272/",
+      "quote": "Collective memory shapes the organization of individual memories in the medial prefrontal cortex."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "P Gagnepain and T Vall\\'{e}e and S Heiden and M Decorde and J-L Gauvain and A Laurent and C Klein-Peschanski and F Viader and D Peschanski and F Eustache",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31844272/",
+      "quote": "Pierre Gagnepain, Thomas Vallée, Serge Heiden, Matthieu Decorde, Jean-Luc Gauvain, Antoine Laurent, Carine Klein-Peschanski, Fausto Viader, Denis Peschanski, Francis Eustache"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Nature Human Behaviour",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31844272/",
+      "quote": "Nature human behaviour"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31844272/",
+      "quote": "VI  - 4"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31844272/",
+      "quote": "IP  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "189--200",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31844272/",
+      "quote": "PG  - 189-200"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31844272/",
+      "quote": "DP  - 2020 Feb"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/s41562-019-0779-z",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31844272/",
+      "quote": "10.1038/s41562-019-0779-z [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Journal spelling corrected to Nature Human Behaviour; issue 2 and DOI added. Online 2019-12-16, print Feb 2020 (year stands). Vallée accent confirmed from PubMed XML. No duplicate in cdl.bib."
+ },
+ {
+  "key": "MaheEtal22",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/35501360/",
+   "quote": "Rational arbitration between statistics and rules in human sequence processing.",
+   "why": "PubMed 35501360: same title (published version) and authors, Nature human behaviour 6(8):1087-1103, DOI 10.1038/s41562-021-01259-6."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Rational arbitration between statistics and rules in human sequence processing",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35501360/",
+      "quote": "Rational arbitration between statistics and rules in human sequence processing."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M Maheu and F Meyniel and S Dehaene",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35501360/",
+      "quote": "Maxime Maheu, Florent Meyniel, Stanislas Dehaene"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Human Behaviour",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35501360/",
+      "quote": "Nature human behaviour"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35501360/",
+      "quote": "VI  - 6"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35501360/",
+      "quote": "IP  - 8"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1087--1103",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35501360/",
+      "quote": "PG  - 1087-1103"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2022",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35501360/",
+      "quote": "DP  - 2022 Aug"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/s41562-021-01259-6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35501360/",
+      "quote": "10.1038/s41562-021-01259-6 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages 1--17 were the online-first article pagination; print is 6(8):1087-1103 (Aug 2022). Volume, issue, DOI added; full given names reduced to initials. bioRxiv preprint 10.1101/2020.02.06.937706 is a different version. No duplicate in cdl.bib."
+ },
+ {
+  "key": "GhosEtal11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21909102/",
+   "quote": "Miniaturized integration of a fluorescence microscope.",
+   "why": "PubMed 21909102: same title (published version) and authors, Nature methods 8(10):871-878, DOI 10.1038/nmeth.1694."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Miniaturized integration of a fluorescence microscope",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21909102/",
+      "quote": "Miniaturized integration of a fluorescence microscope."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K K Ghosh and L D Burns and E D Cocker and A Nimmerjahn and Y Ziv and A {El Gamal} and M J Schnitzer",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21909102/",
+      "quote": "Kunal K Ghosh, Laurie D Burns, Eric D Cocker, Axel Nimmerjahn, Yaniv Ziv, Abbas El Gamal, Mark J Schnitzer"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Methods",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21909102/",
+      "quote": "Nature methods"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21909102/",
+      "quote": "VI  - 8"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21909102/",
+      "quote": "IP  - 10"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "871--878",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21909102/",
+      "quote": "PG  - 871-8"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nmeth.1694",
+      "quote": "\"published-print\":{\"date-parts\":[[2011,10]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nmeth.1694",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21909102/",
+      "quote": "10.1038/nmeth.1694 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Surname is the compound 'El Gamal' (Crossref/PubMed mis-split it as given 'Abbas El', family 'Gamal'); kept as A {El Gamal}. Print issue Oct 2011 (online 2011-09-11). Issue and DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "VirtEtal20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+   "quote": "SciPy 1.0: fundamental algorithms for scientific computing in Python.",
+   "why": "PubMed 32015543: same title (published version) and authors, Nature methods 17(3):261-272, DOI 10.1038/s41592-019-0686-2."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{SciPy} 1.0: fundamental algorithms for scientific computing in {Python}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "SciPy 1.0: fundamental algorithms for scientific computing in Python."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "P Virtanen and R Gommers and T E Oliphant and M Haberland and T Reddy and D Cournapeau and E Burovski and P Peterson and W Weckesser and J Bright and S J {van der Walt} and M Brett and J Wilson and K J Millman and N Mayorov and A R J Nelson and E Jones and R Kern and E Larson and C J Carey and {\\.I} Polat and Y Feng and E W Moore and J {VanderPlas} and D Laxalde and J Perktold and R Cimrman and I Henriksen and E A Quintero and C R Harris and A M Archibald and A H Ribeiro and F Pedregosa and P {van Mulbregt} and {SciPy 1.0 Contributors}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "Pauli Virtanen, Ralf Gommers, Travis E Oliphant, Matt Haberland, Tyler Reddy, David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan Bright, Stéfan J van der Walt, Matthew Brett, Joshua Wilson, K Jarrod Millman"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "Nikolay Mayorov, Andrew R J Nelson, Eric Jones, Robert Kern, Eric Larson, C J Carey, İlhan Polat, Yu Feng, Eric W Moore, Jake VanderPlas, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "E A Quintero, Charles R Harris, Anne M Archibald, Antônio H Ribeiro, Fabian Pedregosa, Paul van Mulbregt"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "SciPy 1.0 Contributors"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Methods",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "Nature methods"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "17",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "VI  - 17"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "261--272",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "PG  - 261-272"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "DP  - 2020 Mar"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/s41592-019-0686-2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32015543/",
+      "quote": "10.1038/s41592-019-0686-2 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Author Correction 10.1038/s41592-020-0772-5 (Nat Methods 17(3):352) is content-only (corresponding-author designation, an affiliation, Box 1 text); metadata unchanged, so verified with notice kept in report only. Full given names reduced to initials; İlhan written {\\.I} (the old {\\I} is not a valid LaTeX accent). Corporate author restored to the printed 'SciPy 1.0 Contributors' (the entry had '1 0'); if bibcheck strips the period, keep the old form. Byline = 34 named authors + the collective; the ~80 individual contributors listed after it in Crossref/PubMed are members of the collective, not byline authors. No duplicate in cdl.bib."
+ },
+ {
+  "key": "BranEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
+   "quote": "Segregation of cortical head direction cell assemblies on alternating θ cycles.",
+   "why": "PubMed 23603709: same title (published version) and authors, Nature neuroscience 16(6):739-748, DOI 10.1038/nn.3383."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Segregation of cortical head direction cell assemblies on alternating theta cycles",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nn.3383",
+      "quote": "Segregation of cortical head direction cell assemblies on alternating theta cycles"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M P Brandon and A R Bogaard and N W Schultheiss and M E Hasselmo",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
+      "quote": "Mark P Brandon, Andrew R Bogaard, Nathan W Schultheiss, Michael E Hasselmo"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
+      "quote": "VI  - 16"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
+      "quote": "IP  - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "739--748",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
+      "quote": "PG  - 739-48"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
+      "quote": "DP  - 2013 Jun"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn.3383",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23603709/",
+      "quote": "10.1038/nn.3383 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Volume, issue, pages and DOI added; full given names reduced to initials. No duplicate in cdl.bib (other Brandon/Hasselmo entries are different works)."
+ },
+ {
+  "key": "CareEtal19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
+   "quote": "Reward revaluation biases hippocampal replay content away from the preferred outcome.",
+   "why": "PubMed 31427771: same title (published version) and authors, Nature neuroscience 22(9):1450-1459, DOI 10.1038/s41593-019-0464-6."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Reward revaluation biases hippocampal replay content away from the preferred outcome",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
+      "quote": "Reward revaluation biases hippocampal replay content away from the preferred outcome."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A A Carey and Y Tanaka and M A {van der Meer}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
+      "quote": "Alyssa A Carey, Youki Tanaka, Matthijs A A van der Meer"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
+      "quote": "VI  - 22"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
+      "quote": "IP  - 9"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1450--1459",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
+      "quote": "PG  - 1450-1459"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
+      "quote": "DP  - 2019 Sep"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/s41593-019-0464-6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31427771/",
+      "quote": "10.1038/s41593-019-0464-6 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "The cited title ('hippocampal sequence content') is the bioRxiv preprint title (10.1101/397950); the Nature Neuroscience version, which this entry cites (journal/year), is titled 'hippocampal replay content'. Volume '2019' corrected to 22; issue, pages, DOI added. Sources give 'Matthijs A A van der Meer'; the extra initial was NOT added (braced particle surname rule). No duplicate in cdl.bib."
+ },
+ {
+  "key": "ChenEtal17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/27918531/",
+   "quote": "Shared memories reveal shared structure in neural activity across individuals.",
+   "why": "PubMed 27918531: same title (published version) and authors, Nature neuroscience 20(1):115-125, DOI 10.1038/nn.4450."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Shared memories reveal shared structure in neural activity across individuals",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27918531/",
+      "quote": "Shared memories reveal shared structure in neural activity across individuals."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J Chen and Y C Leong and C J Honey and C H Yong and K A Norman and U Hasson",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27918531/",
+      "quote": "Janice Chen, Yuan Chang Leong, Christopher J Honey, Chung H Yong, Kenneth A Norman, Uri Hasson"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27918531/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "20",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27918531/",
+      "quote": "VI  - 20"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27918531/",
+      "quote": "IP  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "115--125",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27918531/",
+      "quote": "PG  - 115-125"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27918531/",
+      "quote": "DP  - 2017 Jan"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn.4450",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27918531/",
+      "quote": "10.1038/nn.4450 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages completed 115--125; DOI added. bioRxiv preprint 10.1101/035931 is a different version. No duplicate in cdl.bib."
+ },
+ {
+  "key": "ChowEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23525044/",
+   "quote": "Dopamine restores reward prediction errors in old age.",
+   "why": "PubMed 23525044: same title (published version) and authors, Nature neuroscience 16(5):648-653, DOI 10.1038/nn.3364."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Dopamine restores reward prediction errors in old age",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23525044/",
+      "quote": "Dopamine restores reward prediction errors in old age."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "R Chowdhury and M Guitart-Masip and C Lambert and P Dayan and Q Huys and E D{\\\"u}zel and R J Dolan",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23525044/",
+      "quote": "Rumana Chowdhury, Marc Guitart-Masip, Christian Lambert, Peter Dayan, Quentin Huys, Emrah Düzel, Raymond J Dolan"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23525044/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23525044/",
+      "quote": "VI  - 16"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23525044/",
+      "quote": "IP  - 5"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "648--653",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23525044/",
+      "quote": "PG  - 648-53"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23525044/",
+      "quote": "DP  - 2013 May"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn.3364",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23525044/",
+      "quote": "10.1038/nn.3364 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Corrigendum 10.1038/nn1214-1840c (Nat Neurosci 2014;17(12):1840) exists; its Crossref record does not state the change and the text was not retrieved, so the reviewer should decide per the errata rule (metadata here fully matches). Düzel accent restored from publisher/PubMed. DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "DerdEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/19749749/",
+   "quote": "Fragmentation of grid cell maps in a multicompartment environment.",
+   "why": "PubMed 19749749: same title (published version) and authors, Nature neuroscience 12(10):1325-1332, DOI 10.1038/nn.2396."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Fragmentation of grid cell maps in a multicompartment environment",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19749749/",
+      "quote": "Fragmentation of grid cell maps in a multicompartment environment."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "D Derdikman and J R Whitlock and A Tsao and M Fyhn and T Hafting and M-B Moser and E I Moser",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19749749/",
+      "quote": "Dori Derdikman, Jonathan R Whitlock, Albert Tsao, Marianne Fyhn, Torkel Hafting, May-Britt Moser, Edvard I Moser"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19749749/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19749749/",
+      "quote": "VI  - 12"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19749749/",
+      "quote": "IP  - 10"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1325--1332",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19749749/",
+      "quote": "PG  - 1325-32"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19749749/",
+      "quote": "DP  - 2009 Oct"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn.2396",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19749749/",
+      "quote": "10.1038/nn.2396 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "'JR' split to 'J R'; May-Britt Moser written M-B (hyphenated initials rule; cdl.bib uses both M B and M-B). DOI added. DerdEtal06 (SfN abstract) and DerdMose10 are different works."
+ },
+ {
+  "key": "GautEtal99",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10448223/",
+   "quote": "Activation of the middle fusiform 'face area' increases with expertise in recognizing novel objects.",
+   "why": "PubMed 10448223: same title (published version) and authors, Nature neuroscience 2(6):568-573, DOI 10.1038/9224."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Activation of the middle fusiform `face area' increases with expertise in recognizing novel objects",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10448223/",
+      "quote": "Activation of the middle fusiform 'face area' increases with expertise in recognizing novel objects."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "I Gauthier and M J Tarr and A W Anderson and P Skudlarski and J C Gore",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10448223/",
+      "quote": "I Gauthier, M J Tarr, A W Anderson, P Skudlarski, J C Gore"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10448223/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10448223/",
+      "quote": "VI  - 2"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10448223/",
+      "quote": "IP  - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "568--573",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10448223/",
+      "quote": "PG  - 568-73"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1999",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10448223/",
+      "quote": "DP  - 1999 Jun"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/9224",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10448223/",
+      "quote": "10.1038/9224 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages were cited as '569'; print range is 568--573. Missing middle initial of Tarr added (M J Tarr per PubMed and Crossref). DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "GazzEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16158065/",
+   "quote": "Top-down suppression deficit underlies working memory impairment in normal aging.",
+   "why": "PubMed 16158065: same title (published version) and authors, Nature neuroscience 8(10):1298-1300, DOI 10.1038/nn1543."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Top-down suppression deficit underlies working memory impairment in normal aging",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16158065/",
+      "quote": "Top-down suppression deficit underlies working memory impairment in normal aging."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A Gazzaley and J W Cooney and J Rissman and M D'Esposito",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16158065/",
+      "quote": "Adam Gazzaley, Jeffrey W Cooney, Jesse Rissman, Mark D'Esposito"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16158065/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16158065/",
+      "quote": "VI  - 8"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16158065/",
+      "quote": "IP  - 10"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1298--1300",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16158065/",
+      "quote": "PG  - 1298-300"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16158065/",
+      "quote": "DP  - 2005 Oct"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn1543",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16158065/",
+      "quote": "10.1038/nn1543 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Erratum 10.1038/nn1205-1791c (Nat Neurosci 2005;8(12):1791) exists; text not retrieved, metadata fully matches, reviewer to decide per errata rule. Full given names reduced to initials; DOI added. The cdl.bib entry 'Age-related top-down suppression deficit in the early stages of cortical visual memory processing' is a different work."
+ },
+ {
+  "key": "GonsPall00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+   "quote": "Neural events that underlie remembering something that never happened.",
+   "why": "PubMed 11100153: same title (published version) and authors, Nature neuroscience 3(12):1316-1321, DOI 10.1038/81851."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Neural events that underlie remembering something that never happened",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "Neural events that underlie remembering something that never happened."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B Gonsalves and K A Paller",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "B Gonsalves, K A Paller"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "VI  - 3"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "IP  - 12"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1316--1321",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "PG  - 1316-21"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "DP  - 2000 Dec"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/81851",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "10.1038/81851 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Erratum 10.1038/82837 ('Errata', page 109, Crossref update date 2001-01-01) exists; text not retrieved, metadata fully matches. Needless brace '{N}eural' removed from title. DOI added. No duplicate in cdl.bib (other Gonsalves entries are different works)."
+ },
+ {
+  "key": "GrilEtal06b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16892057/",
+   "quote": "High-resolution imaging reveals highly selective nonface clusters in the fusiform face area.",
+   "why": "PubMed 16892057: same title (published version) and authors, Nature neuroscience 9(9):1177-1185, DOI 10.1038/nn1745."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "High-resolution imaging reveals highly selective nonface clusters in the fusiform face area",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16892057/",
+      "quote": "High-resolution imaging reveals highly selective nonface clusters in the fusiform face area."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K Grill-Spector and R Sayres and D Ress",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16892057/",
+      "quote": "Kalanit Grill-Spector, Rory Sayres, David Ress"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16892057/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16892057/",
+      "quote": "VI  - 9"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16892057/",
+      "quote": "IP  - 9"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1177--1185",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16892057/",
+      "quote": "PG  - 1177-85"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16892057/",
+      "quote": "DP  - 2006 Sep"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn1745",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16892057/",
+      "quote": "10.1038/nn1745 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages completed 1177--1185. Erratum 10.1038/nn0107-133 (Nat Neurosci 2007;10(1):133) exists; text not retrieved, metadata fully matches. DOI added. GrilEtal06a is a different work."
+ },
+ {
+  "key": "HeusEtal16",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
+   "quote": "Episodic sequence memory is supported by a theta-gamma phase code.",
+   "why": "PubMed 27571010: same title (published version) and authors, Nature neuroscience 19(10):1374-1380, DOI 10.1038/nn.4374."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Episodic sequence memory is supported by a theta-gamma phase code",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
+      "quote": "Episodic sequence memory is supported by a theta-gamma phase code."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A C Heusser and D Poeppel and Y Ezzyat and L Davachi",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
+      "quote": "Andrew C Heusser, David Poeppel, Youssef Ezzyat, Lila Davachi"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "19",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
+      "quote": "VI  - 19"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
+      "quote": "IP  - 10"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1374--1380",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
+      "quote": "PG  - 1374-80"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2016",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
+      "quote": "DP  - 2016 Oct"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn.4374",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27571010/",
+      "quote": "10.1038/nn.4374 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Volume held the advance-online note; print is 19(10):1374-1380 (Oct 2016). Volume, issue, pages and DOI set. Publisher prints an en dash 'theta–gamma'; house form theta-gamma kept. HeusEtal17/18a/18b/21 are different works."
+ },
+ {
+  "key": "LoffEtal05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16136037/",
+   "quote": "fMRI evidence for the neural representation of faces.",
+   "why": "PubMed 16136037: same title (published version) and authors, Nature neuroscience 8(10):1386-1391, DOI 10.1038/nn1538."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "f{MRI} evidence for the neural representation of faces",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16136037/",
+      "quote": "fMRI evidence for the neural representation of faces."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "G Loffler and G Yourganov and F Wilkinson and H R Wilson",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16136037/",
+      "quote": "Gunter Loffler, Grigori Yourganov, Frances Wilkinson, Hugh R Wilson"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16136037/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16136037/",
+      "quote": "VI  - 8"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16136037/",
+      "quote": "IP  - 10"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1386--1391",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nn1538",
+      "quote": "\"page\":\"1386-1391\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16136037/",
+      "quote": "DP  - 2005 Oct"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn1538",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16136037/",
+      "quote": "10.1038/nn1538 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages conflict: publisher (Crossref and nature.com citation_lastpage) give 1386-1391, PubMed gives 1386-90; publisher value used. DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "MontEtal19",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30643291/",
+   "quote": "Precise temporal memories are supported by the lateral entorhinal cortex in humans.",
+   "why": "PubMed 30643291: same title (published version) and authors, Nature neuroscience 22(2):284-288, DOI 10.1038/s41593-018-0303-1."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Precise temporal memories are supported by the lateral entorhinal cortex in humans",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30643291/",
+      "quote": "Precise temporal memories are supported by the lateral entorhinal cortex in humans."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M E Montchal and Z M Reagh and M A Yassa",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30643291/",
+      "quote": "Maria E Montchal, Zachariah M Reagh, Michael A Yassa"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30643291/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "22",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30643291/",
+      "quote": "VI  - 22"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30643291/",
+      "quote": "IP  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "284--288",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30643291/",
+      "quote": "PG  - 284-288"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2019",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30643291/",
+      "quote": "DP  - 2019 Feb"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/s41593-018-0303-1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30643291/",
+      "quote": "10.1038/s41593-018-0303-1 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Volume held a DOI string; print is 22(2):284-288 (Feb 2019). Volume, issue, pages and DOI set. No duplicate in cdl.bib."
+ },
+ {
+  "key": "OrrEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
+   "quote": "Adenosine A(2A) receptor mediates microglial process retraction.",
+   "why": "PubMed 19525944: same title (published version) and authors, Nature neuroscience 12(7):872-878, DOI 10.1038/nn.2341."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Adenosine {A2A} receptor mediates microglial process retraction",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nn.2341",
+      "quote": "Adenosine A2A receptor mediates microglial process retraction"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A G Orr and A L Orr and X-J Li and R E Gross and S F Traynelis",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
+      "quote": "Anna G Orr, Adam L Orr, Xiao-Jiang Li, Robert E Gross, Stephen F Traynelis"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
+      "quote": "VI  - 12"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
+      "quote": "IP  - 7"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "872--878",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
+      "quote": "PG  - 872-8"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
+      "quote": "DP  - 2009 Jul"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn.2341",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19525944/",
+      "quote": "10.1038/nn.2341 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Title had a garbled '{A2(2A})'; publisher title 'Adenosine A2A receptor...' (A2A with subscript 2A on the page; PubMed 'A(2A)'). Proposed {A2A}; a reviewer may prefer {A$_{2A}$}. Xiao-Jiang Li written X-J. Issue and DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "PanEtal13",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/23222913/",
+   "quote": "Neural signals of extinction in the inhibitory microcircuit of the ventral midbrain.",
+   "why": "PubMed 23222913: same title (published version) and authors, Nature neuroscience 16(1):71-78, DOI 10.1038/nn.3283."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Neural signals of extinction in the inhibitory microcircuit of the ventral midbrain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23222913/",
+      "quote": "Neural signals of extinction in the inhibitory microcircuit of the ventral midbrain."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "W-X Pan and J Brown and J T Dudman",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23222913/",
+      "quote": "Wei-Xing Pan, Jennifer Brown, Joshua Tate Dudman"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23222913/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23222913/",
+      "quote": "VI  - 16"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23222913/",
+      "quote": "IP  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "71--78",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23222913/",
+      "quote": "PG  - 71-8"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2013",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23222913/",
+      "quote": "DP  - 2013 Jan"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn.3283",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23222913/",
+      "quote": "10.1038/nn.3283 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Wei-Xing Pan written W-X (hyphenated initials). DOI added. No duplicate in cdl.bib."
+ },
+ {
+  "key": "SoltWang10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20010823/",
+   "quote": "Synaptic computation underlying probabilistic inference.",
+   "why": "PubMed 20010823: same title (published version) and authors, Nature neuroscience 13(1):112-119, DOI 10.1038/nn.2450."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Synaptic computation underlying probabilistic inference",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20010823/",
+      "quote": "Synaptic computation underlying probabilistic inference."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A Soltani and X-J Wang",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20010823/",
+      "quote": "Alireza Soltani, Xiao-Jing Wang"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20010823/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20010823/",
+      "quote": "VI  - 13"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20010823/",
+      "quote": "IP  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "112--119",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20010823/",
+      "quote": "PG  - 112-9"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20010823/",
+      "quote": "DP  - 2010 Jan"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn.2450",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20010823/",
+      "quote": "10.1038/nn.2450 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Xiao-Jing Wang written X-J (hyphenated initials; cdl.bib elsewhere uses X J Wang 15 times, not changed here). Issue 1 and DOI added. Print Jan 2010 (online 2009-12-13). No duplicate in cdl.bib."
+ }
+]

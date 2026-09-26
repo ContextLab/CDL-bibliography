@@ -1,0 +1,2106 @@
+[
+ {
+  "key": "TarrGaut00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
+   "quote": "FFA: a flexible fusiform area for subordinate-level visual processing automatized by expertise",
+   "why": "PubMed 10903568: same title and both authors, Nat Neurosci 2000;3(8):764-9."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "{FFA}: a flexible fusiform area for subordinate-level visual processing automatized by expertise",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
+      "quote": "FFA: a flexible fusiform area for subordinate-level visual processing automatized by expertise"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "M J Tarr and I Gauthier",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
+      "quote": "FAU - Tarr, M J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
+      "quote": "FAU - Gauthier, I"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
+      "quote": "JT  - Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
+      "quote": "VI  - 3"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
+      "quote": "IP  - 8"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "764--769",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/77666",
+      "quote": "\"page\":\"764-769\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
+      "quote": "PG  - 764-9"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
+      "quote": "DP  - 2000 Aug"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/77666",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10903568/",
+      "quote": "10.1038/77666 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Last page is 769, not 770 (Crossref and PubMed agree). Added middle initial J (Michael J. Tarr per Crossref), issue 8 and DOI. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "TianEtal20a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+   "quote": "Topographic organization of the human subcortex unveiled with functional connectivity gradients",
+   "why": "PubMed 32989295: same title, four authors, Nat Neurosci 2020;23(11):1421-1432."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Topographic organization of the human subcortex unveiled with functional connectivity gradients",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "Topographic organization of the human subcortex unveiled with functional connectivity gradients"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "Y Tian and D S Margulies and M Breakspear and A Zalesky",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "FAU - Tian, Ye"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "FAU - Margulies, Daniel S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "FAU - Breakspear, Michael"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "FAU - Zalesky, Andrew"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "JT  - Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "23",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "VI  - 23"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "IP  - 11"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1421--1432",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "PG  - 1421-1432"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "DP  - 2020 Nov"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/s41593-020-00711-6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32989295/",
+      "quote": "10.1038/s41593-020-00711-6 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. A bioRxiv preprint (10.1101/2020.01.13.903542) exists; the journal version is the one cited. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "Wall12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22101646/",
+   "quote": "Cross-species studies of orbitofrontal cortex and value-based decision-making.",
+   "why": "PubMed 22101646: same title and author, Nat Neurosci 15(1):13-9."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Cross-species studies of orbitofrontal cortex and value-based decision-making",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22101646/",
+      "quote": "Cross-species studies of orbitofrontal cortex and value-based decision-making."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "J D Wallis",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22101646/",
+      "quote": "FAU - Wallis, Jonathan D"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22101646/",
+      "quote": "JT  - Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "15",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22101646/",
+      "quote": "VI  - 15"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22101646/",
+      "quote": "IP  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "13--19",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nn.2956",
+      "quote": "\"page\":\"13-19\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nn.2956",
+      "quote": "\"published-print\":{\"date-parts\":[[2012,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn.2956",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22101646/",
+      "quote": "10.1038/nn.2956 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Online 20 Nov 2011, print issue January 2012; print year kept. DOI added. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "WimbEtal15",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+   "quote": "Retrieval induces adaptive forgetting of competing memories via cortical pattern suppression",
+   "why": "PubMed 25774450: same title and five authors, Nat Neurosci 2015;18(4):582-9."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Retrieval induces adaptive forgetting of competing memories via cortical pattern suppression",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "Retrieval induces adaptive forgetting of competing memories via cortical pattern suppression"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M Wimber and A Alink and I Charest and N Kriegeskorte and M C Anderson",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "FAU - Wimber, Maria"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "FAU - Alink, Arjen"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "FAU - Charest, Ian"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "FAU - Kriegeskorte, Nikolaus"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "FAU - Anderson, Michael C"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "JT  - Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "VI  - 18"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "IP  - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "582--589",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nn.3973",
+      "quote": "\"page\":\"582-589\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "PG  - 582-9"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2015",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "DP  - 2015 Apr"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nn.3973",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25774450/",
+      "quote": "10.1038/nn.3973 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages were only '582'; full range 582--589. The linked notice 10.1038/s41593-018-0220-3 is an Author Correction (Nat Neurosci 21:1493, 2018), not a retraction; cite the original article unchanged. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "WittEtal18",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+   "quote": "Attention improves memory by suppressing spiking-neuron activity in the human anterior temporal lobe",
+   "why": "PubMed 29786083: same title and five authors, Nat Neurosci 2018;21(6):808-810."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Attention improves memory by suppressing spiking-neuron activity in the human anterior temporal lobe",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "Attention improves memory by suppressing spiking-neuron activity in the human anterior temporal lobe"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J H Wittig and A I Jang and J B Cocjin and S K Inati and K A Zaghloul",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "FAU - Wittig, John H Jr"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "FAU - Jang, Anthony I"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "FAU - Cocjin, John B"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "FAU - Inati, Sara K"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "FAU - Zaghloul, Kareem A"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "JT  - Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "21",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "VI  - 21"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "IP  - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "808--810",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "PG  - 808-810"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2018",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "DP  - 2018 Jun"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/s41593-018-0148-7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29786083/",
+      "quote": "10.1038/s41593-018-0148-7 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Full given names reduced to house initials; suffix Jr dropped per house rule. Issue 6 and DOI added. Linked notice 10.1038/s41593-018-0224-z is a Publisher Correction (Nat Neurosci 22:143, 2019), not a retraction; cite the original. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "BorcEtal12",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.nature.com/articles/nrn3140",
+   "quote": "Direct electrical stimulation of human cortex — the gold standard for mapping brain functions?",
+   "why": "Nature Reviews Neuroscience article page: same title (minus 'the'), four authors, 13(1):63-70, 2012."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Direct electrical stimulation of human cortex --- the gold standard for mapping brain functions?",
+    "evidence": [
+     {
+      "url": "https://www.nature.com/articles/nrn3140",
+      "quote": "Direct electrical stimulation of human cortex — the gold standard for mapping brain functions?"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "S Borchers and M Himmelbach and N K Logothetis and H-O Karnath",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22127300/",
+      "quote": "FAU - Borchers, Svenja"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22127300/",
+      "quote": "FAU - Himmelbach, Marc"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22127300/",
+      "quote": "FAU - Logothetis, Nikos"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22127300/",
+      "quote": "FAU - Karnath, Hans-Otto"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Reviews Neuroscience",
+    "evidence": [
+     {
+      "url": "https://www.nature.com/articles/nrn3140",
+      "quote": "content=\"Nature Reviews Neuroscience\""
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://www.nature.com/articles/nrn3140",
+      "quote": "name=\"citation_volume\" content=\"13\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://www.nature.com/articles/nrn3140",
+      "quote": "name=\"citation_issue\" content=\"1\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "63--70",
+    "evidence": [
+     {
+      "url": "https://www.nature.com/articles/nrn3140",
+      "quote": "name=\"citation_firstpage\" content=\"63\""
+     },
+     {
+      "url": "https://www.nature.com/articles/nrn3140",
+      "quote": "name=\"citation_lastpage\" content=\"70\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2012",
+    "evidence": [
+     {
+      "url": "https://www.nature.com/articles/nrn3140",
+      "quote": "name=\"citation_publication_date\" content=\"2012/01\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nrn3140",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22127300/",
+      "quote": "10.1038/nrn3140 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Title has no 'the' before 'human cortex' and uses an em dash (house '---'). Surname typos fixed: Himmelback -> Himmelbach, Karanath -> Karnath; Hans-Otto gives hyphenated initials H-O. Logothetis keeps middle initial K (sources print only 'Nikos'; not dropped). Online Nov 2011, print Jan 2012. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "BullSpor09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/19190637/",
+   "quote": "Complex brain networks: graph theoretical analysis of structural and functional systems",
+   "why": "PubMed 19190637: same title and both authors, Nat Rev Neurosci 2009;10(3):186-98."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Complex brain networks: graph theoretical analysis of structural and functional systems",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190637/",
+      "quote": "Complex brain networks: graph theoretical analysis of structural and functional systems"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "E Bullmore and O Sporns",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190637/",
+      "quote": "FAU - Bullmore, Ed"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190637/",
+      "quote": "FAU - Sporns, Olaf"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Reviews Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nrn2575",
+      "quote": "\"container-title\":[\"Nature Reviews Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190637/",
+      "quote": "VI  - 10"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190637/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "186--198",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nrn2575",
+      "quote": "\"page\":\"186-198\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2009",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190637/",
+      "quote": "DP  - 2009 Mar"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nrn2575",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19190637/",
+      "quote": "10.1038/nrn2575 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. Linked notice 10.1038/nrn2618 is an Erratum (Nat Rev Neurosci 10(4):312), not a retraction; cite the original. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "PessAdol10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20959860/",
+   "quote": "Emotion processing and the amygdala: from a 'low road' to 'many roads' of evaluating biological significance",
+   "why": "PubMed 20959860: same title and both authors, Nat Rev Neurosci 2010;11(11)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Emotion processing and the amygdala: from a 'low road' to 'many roads' of evaluating biological significance",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20959860/",
+      "quote": "Emotion processing and the amygdala: from a 'low road' to 'many roads' of evaluating biological significance"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "L Pessoa and R Adolphs",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20959860/",
+      "quote": "FAU - Pessoa, Luiz"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20959860/",
+      "quote": "FAU - Adolphs, Ralph"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Reviews Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nrn2920",
+      "quote": "\"container-title\":[\"Nature Reviews Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20959860/",
+      "quote": "VI  - 11"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20959860/",
+      "quote": "IP  - 11"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "773--782",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nrn2920",
+      "quote": "\"page\":\"773-782\""
+     },
+     {
+      "url": "https://www.nature.com/articles/nrn2920",
+      "quote": "name=\"citation_lastpage\" content=\"782\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20959860/",
+      "quote": "DP  - 2010 Nov"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nrn2920",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20959860/",
+      "quote": "10.1038/nrn2920 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages conflict: publisher page and Crossref give 773-782, PubMed 773-83; publisher value used. Full given names reduced to house initials; DOI added. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "RangEtal08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
+   "quote": "A framework for studying the neurobiology of value-based decision making.",
+   "why": "PubMed 18545266: same title and three authors, Nat Rev Neurosci 2008;9(7):545-56."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "A framework for studying the neurobiology of value-based decision making",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
+      "quote": "A framework for studying the neurobiology of value-based decision making."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "A Rangel and C F Camerer and P R Montague",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
+      "quote": "FAU - Rangel, Antonio"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
+      "quote": "FAU - Camerer, Colin"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
+      "quote": "FAU - Montague, P Read"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Reviews Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nrn2357",
+      "quote": "\"container-title\":[\"Nature Reviews Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
+      "quote": "VI  - 9"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
+      "quote": "IP  - 7"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "545--556",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nrn2357",
+      "quote": "\"page\":\"545-556\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
+      "quote": "DP  - 2008 Jul"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nrn2357",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18545266/",
+      "quote": "10.1038/nrn2357 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Pages and issue were missing. 'P Read Montague' -> 'P R Montague' (one initial per given name; cdl.bib has both forms, P R 2x, P Read 6x; reviewer may prefer to keep 'P Read'). Camerer keeps middle initial F (sources print only 'Colin'; not dropped). DOI added. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "SquiEtal07",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17948032/",
+   "quote": "Recognition memory and the medial temporal lobe: a new perspective.",
+   "why": "PubMed 17948032: same title and three authors, Nat Rev Neurosci 2007;8(11):872-83."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Recognition memory and the medial temporal lobe: a new perspective",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17948032/",
+      "quote": "Recognition memory and the medial temporal lobe: a new perspective."
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "L R Squire and J T Wixted and R E Clark",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17948032/",
+      "quote": "FAU - Squire, Larry R"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17948032/",
+      "quote": "FAU - Wixted, John T"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17948032/",
+      "quote": "FAU - Clark, Robert E"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Reviews Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nrn2154",
+      "quote": "\"container-title\":[\"Nature Reviews Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17948032/",
+      "quote": "VI  - 8"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "11",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17948032/",
+      "quote": "IP  - 11"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "872--883",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nrn2154",
+      "quote": "\"page\":\"872-883\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17948032/",
+      "quote": "DP  - 2007 Nov"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nrn2154",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17948032/",
+      "quote": "10.1038/nrn2154 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Full given names reduced to house initials. Address 'San Diego, {CA}' is the authors' location, not house style on @article; remove. DOI added. No duplicate elsewhere in cdl.bib.",
+  "remove": [
+   "address"
+  ]
+ },
+ {
+  "key": "deCh08",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/18714327/",
+   "quote": "Applications of real-time fMRI.",
+   "why": "PubMed 18714327: same title and author, Nat Rev Neurosci 2008;9(9):720-9."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Applications of real-time {fMRI}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18714327/",
+      "quote": "Applications of real-time fMRI."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "R C deCharms",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18714327/",
+      "quote": "FAU - deCharms, R Christopher"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Reviews Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nrn2414",
+      "quote": "\"container-title\":[\"Nature Reviews Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18714327/",
+      "quote": "VI  - 9"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18714327/",
+      "quote": "IP  - 9"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "720--729",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1038/nrn2414",
+      "quote": "\"page\":\"720-729\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18714327/",
+      "quote": "DP  - 2008 Sep"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/nrn2414",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18714327/",
+      "quote": "10.1038/nrn2414 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; the author mismatch was Crossref storing 'Christopher deCharms' as the family name. DOI added. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "GersvanH92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1088/0954-898x_3_2_004/transform/application/vnd.crossref.unixsd+xml",
+   "quote": "Associative memory in a network of ‘spiking’ neurons",
+   "why": "Crossref record: same title and both authors, Network: Computation in Neural Systems 3(2):139-164, 1992."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Associative memory in a network of 'spiking' neurons",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_3_2_004/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "Associative memory in a network of ‘spiking’ neurons"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "W Gerstner and J L {van Hemmen}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_3_2_004",
+      "quote": "\"given\":\"Wulfram\",\"family\":\"Gerstner\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_3_2_004",
+      "quote": "\"given\":\"J Leo\",\"family\":\"van Hemmen\""
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Network: Computation in Neural Systems",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_3_2_004",
+      "quote": "\"container-title\":[\"Network: Computation in Neural Systems\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_3_2_004",
+      "quote": "\"volume\":\"3\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_3_2_004",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "139--164",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_3_2_004",
+      "quote": "\"page\":\"139-164\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1992",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_3_2_004",
+      "quote": "\"published-print\":{\"date-parts\":[[1992,1]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1088/0954-898x_3_2_004",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_3_2_004",
+      "quote": "\"DOI\":\"10.1088\\/0954-898X_3_2_004\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal's full name is 'Network: Computation in Neural Systems' (cdl.bib uses both 'Network' 3x and the full name 1x; reviewer may keep 'Network' if that is the house short form). Issue and DOI added. Not in PubMed. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "OlshFiel96",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16754394/",
+   "quote": "Natural image statistics and efficient coding.",
+   "why": "PubMed 16754394: same title and both authors, Network 1996;7(2):333-9."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Natural image statistics and efficient coding",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16754394/",
+      "quote": "Natural image statistics and efficient coding."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B A Olshausen and D J Field",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16754394/",
+      "quote": "FAU - Olshausen, B A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16754394/",
+      "quote": "FAU - Field, D J"
+     }
+    ]
+   },
+   "journal": {
+    "status": "corrected",
+    "value": "Network: Computation in Neural Systems",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_7_2_014",
+      "quote": "\"container-title\":[\"Network: Computation in Neural Systems\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16754394/",
+      "quote": "VI  - 7"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16754394/",
+      "quote": "IP  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "333--339",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_7_2_014",
+      "quote": "\"page\":\"333-339\""
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1996",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16754394/",
+      "quote": "DP  - 1996 May"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1088/0954-898x_7_2_014",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1088/0954-898x_7_2_014",
+      "quote": "\"DOI\":\"10.1088\\/0954-898X_7_2_014\""
+     }
+    ]
+   }
+  },
+  "notes": "Journal's full name is 'Network: Computation in Neural Systems' (cdl.bib uses both forms; reviewer may keep 'Network'). DOI added (PubMed lists the alias 10.1088/0954-898X/7/2/014; the Crossref DOI is used). No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "FallEtal20",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+   "quote": "Timescales of spontaneous fMRI fluctuations relate to structural connectivity in the brain",
+   "why": "PubMed 33615091: same title, Netw Neurosci 2020;4(3):788-806; first four authors match, three more follow."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Timescales of spontaneous {fMRI} fluctuations relate to structural connectivity in the brain",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "Timescales of spontaneous fMRI fluctuations relate to structural connectivity in the brain"
+     }
+    ]
+   },
+   "author": {
+    "status": "corrected",
+    "value": "J Fallon and P G D Ward and L Parkes and S Oldham and A Arnatkevi\\v{c}i\\={u}t\\.{e} and A Fornito and B D Fulcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "FAU - Fallon, John"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "FAU - Ward, Phillip G D"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "FAU - Parkes, Linden"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "FAU - Oldham, Stuart"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1162/netn_a_00151/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "Aurina Arnatkevičiūtė"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "FAU - Fornito, Alex"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "FAU - Fulcher, Ben D"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Network Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1162/netn_a_00151",
+      "quote": "\"container-title\":[\"Network Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "VI  - 4"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "788--806",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "PG  - 788-806"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "DP  - 2020"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1162/netn_a_00151",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33615091/",
+      "quote": "10.1162/netn_a_00151 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Entry listed only 4 of 7 authors; added Arnatkevičiūtė (accents per Crossref), Fornito, Fulcher. Key unchanged (still 3+ authors). DOI added. bioRxiv preprint 10.1101/655050 exists; journal version cited. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "LuriEtal20",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+   "quote": "Questions and controversies in the study of time-varying functional connectivity in resting fMRI",
+   "why": "PubMed 32043043: same title and 23 authors, Netw Neurosci 2020;4(1):30-69."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Questions and controversies in the study of time-varying functional connectivity in resting {fMRI}",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "Questions and controversies in the study of time-varying functional connectivity in resting fMRI"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "D J Lurie and D Kessler and D S Bassett and R F Betzel and M Breakspear and S Keilholz and A Kucyi and R Li\\'{e}geois and M A Lindquist and A R {McIntosh} and R A Poldrack and J M Shine and W H Thompson and N Z Bielczyk and L Douw and D Kraft and R L Miller and M Muthuraman and L Pasquini and A Razi and D Vidaurre and H Xie and V D Calhoun",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Lurie, Daniel J"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Kessler, Daniel"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Bassett, Danielle S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Betzel, Richard F"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Breakspear, Michael"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.31234/osf.io/xtzre",
+      "quote": "\"given\":\"Shella\",\"family\":\"Keilholz\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Kucyi, Aaron"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1162/netn_a_00116/transform/application/vnd.crossref.unixsd+xml",
+      "quote": "Raphaël Liégeois"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Lindquist, Martin A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - McIntosh, Anthony Randal"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Poldrack, Russell A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Shine, James M"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Thompson, William Hedley"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Bielczyk, Natalia Z"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Douw, Linda"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Kraft, Dominik"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Miller, Robyn L"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Muthuraman, Muthuraman"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Pasquini, Lorenzo"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Razi, Adeel"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Vidaurre, Diego"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Xie, Hua"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "FAU - Calhoun, Vince D"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Network Neuroscience",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1162/netn_a_00116",
+      "quote": "\"container-title\":[\"Network Neuroscience\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "VI  - 4"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "IP  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "30--69",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "PG  - 30-69"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2020",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "DP  - 2020"
+     }
+    ]
+   },
+   "doi": {
+    "status": "confirmed",
+    "value": "10.1162/netn_a_00116",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32043043/",
+      "quote": "10.1162/netn_a_00116 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Author mismatch is a publisher misspelling: Crossref and PubMed print 'Shella Kheilholz'; her name is Keilholz (as in the PsyArXiv preprint's Crossref record 10.31234/osf.io/xtzre, same author list). Keep 'S Keilholz'. Liégeois accent per Crossref (PubMed strips it). Entry correct as is. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "NormEtal06a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+   "quote": "How inhibitory oscillations can train neural networks and punish competitors.",
+   "why": "PubMed 16764515: same title and four authors, Neural Comput 2006;18(7):1577-610."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "How inhibitory oscillations can train neural networks and punish competitors",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "How inhibitory oscillations can train neural networks and punish competitors."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "K A Norman and E Newman and G Detre and S M Polyn",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "FAU - Norman, Kenneth A"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "FAU - Newman, Ehren"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "FAU - Detre, Greg"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "FAU - Polyn, Sean"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neural Computation",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "JT  - Neural computation"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "VI  - 18"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "7",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "IP  - 7"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1577--1610",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "PG  - 1577-610"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2006",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "DP  - 2006 Jul"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1162/neco.2006.18.7.1577",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16764515/",
+      "quote": "10.1162/neco.2006.18.7.1577 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Author mismatch is only the middle initial of S M Polyn (sources print 'Sean'); kept, not dropped. Issue 7 and DOI added. NormEtal06b is a different work (Trends Cogn Sci 2006); no duplicate of this title elsewhere in cdl.bib."
+ },
+ {
+  "key": "SohaHass98a",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
+   "quote": "Changes in GABAB modulation during a theta cycle may be analogous to the fall of temperature during annealing.",
+   "why": "PubMed 9573410: same title and both authors, Neural Comput 1998;10(4):869-82."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Changes in {GABA$_B$} modulation during a theta cycle may be analogous to the fall of temperature during annealing",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
+      "quote": "Changes in GABAB modulation during a theta cycle may be analogous to the fall of temperature during annealing."
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1162/089976698300017539",
+      "quote": "Changes in GABA"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "V S Sohal and M E Hasselmo",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
+      "quote": "FAU - Sohal, V S"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
+      "quote": "FAU - Hasselmo, M E"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neural Computation",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
+      "quote": "JT  - Neural computation"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
+      "quote": "VI  - 10"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
+      "quote": "IP  - 4"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "869--882",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
+      "quote": "PG  - 869-82"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1998",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
+      "quote": "DP  - 1998 May 15"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1162/089976698300017539",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9573410/",
+      "quote": "10.1162/089976698300017539 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Title mismatch was only Crossref's markup of GABA<sub>B</sub>; all cited fields match. DOI added. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "HassEich05",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
+   "quote": "Hippocampal mechanisms for the context-dependent retrieval of episodes.",
+   "why": "PubMed 16263240: same title and both authors, Neural Netw 2005;18(9):1172-90."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Hippocampal mechanisms for the context-dependent retrieval of episodes",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
+      "quote": "Hippocampal mechanisms for the context-dependent retrieval of episodes."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "M E Hasselmo and H Eichenbaum",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
+      "quote": "FAU - Hasselmo, Michael E"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
+      "quote": "FAU - Eichenbaum, Howard"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neural Networks",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
+      "quote": "JT  - Neural networks : the official journal"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "18",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
+      "quote": "VI  - 18"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "9",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
+      "quote": "IP  - 9"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1172--1190",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
+      "quote": "PG  - 1172-90"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
+      "quote": "DP  - 2005 Nov"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neunet.2005.08.007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16263240/",
+      "quote": "10.1016/j.neunet.2005.08.007 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Author mismatch was Crossref storing 'Howard Eichenbaum' as a family name. All cited fields match; DOI added. No duplicate elsewhere in cdl.bib."
+ },
+ {
+  "key": "LegaEtal09",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+   "quote": "Deep brain stimulation in the treatment of refractory epilepsy: update on current data and future directions.",
+   "why": "PubMed 19631750: same title and four authors, Neurobiol Dis 2010;38(3):354-60."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Deep brain stimulation in the treatment of refractory epilepsy: update on current data and future directions",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "Deep brain stimulation in the treatment of refractory epilepsy: update on current data and future directions."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B C Lega and C H Halpern and J L Jaggi and G H Baltuch",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "FAU - Lega, Bradley C"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "FAU - Halpern, Casey H"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "FAU - Jaggi, Jurg L"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "FAU - Baltuch, Gordon H"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neurobiology of Disease",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "JT  - Neurobiology of disease"
+     }
+    ]
+   },
+   "volume": {
+    "status": "corrected",
+    "value": "38",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "VI  - 38"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "354--360",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "PG  - 354-60"
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "DP  - 2010 Jun"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.nbd.2009.07.007",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19631750/",
+      "quote": "10.1016/j.nbd.2009.07.007 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Online 2009 (DOI year), print issue June 2010: print year wins -> 2010, so key becomes LegaEtal10 (not in cdl.bib; no collision). Volume, issue, pages and DOI added. No duplicate elsewhere in cdl.bib.",
+  "new_key": "LegaEtal10"
+ },
+ {
+  "key": "RobbEver02",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
+   "quote": "Limbic-striatal memory systems and drug addiction.",
+   "why": "PubMed 12559840: same title and both authors, Neurobiol Learn Mem 2002;78(3):625-36."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Limbic-striatal memory systems and drug addiction",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
+      "quote": "Limbic-striatal memory systems and drug addiction."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "T W Robbins and B J Everitt",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
+      "quote": "FAU - Robbins, T W"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
+      "quote": "FAU - Everitt, B J"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neurobiology of Learning and Memory",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
+      "quote": "JT  - Neurobiology of learning and memory"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "78",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
+      "quote": "VI  - 78"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
+      "quote": "IP  - 3"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "625--636",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
+      "quote": "PG  - 625-36"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2002",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
+      "quote": "DP  - 2002 Nov"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1006/nlme.2002.4103",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12559840/",
+      "quote": "10.1006/nlme.2002.4103 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Author mismatch was Crossref listing only 'T Robbins'; PubMed gives both authors. All cited fields match; DOI added. No duplicate elsewhere in cdl.bib."
+ }
+]
