@@ -2519,25 +2519,11 @@
    "pages": "25--42",
    "number": "1",
    "journal": "Annals of the New York Academy of Sciences",
-   "author": "Rebecca D Burwell",
+   "author": "R D Burwell",
    "ENTRYTYPE": "article",
    "ID": "Burw00"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Rebecca D Burwell",
-    "proposed": "R D Burwell",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1111/j.1749-6632.2000.tb06717.x",
-      "quote": "\"given\":\"REBECCA D.\",\"family\":\"BURWELL\""
-     }
-    ],
-    "normalised_from": "Rebecca D Burwell",
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -2664,25 +2650,11 @@
    "pages": "151--160",
    "number": "1",
    "journal": "Annals of the New York Academy of Sciences",
-   "author": "Arthur P Shimamura",
+   "author": "A P Shimamura",
    "ENTRYTYPE": "article",
    "ID": "Shim95"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Arthur P Shimamura",
-    "proposed": "A P Shimamura",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1111/j.1749-6632.1995.tb38136.x",
-      "quote": "\"given\":\"ARTHUR P.\",\"family\":\"SHIMAMURA\""
-     }
-    ],
-    "normalised_from": "Arthur P Shimamura",
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -2757,25 +2729,12 @@
    "title": "Making new memories: the role of the hippocampus in new associative learning",
    "pages": "1--11",
    "journal": "Annals of the New York Academy of Sciences",
-   "author": "Wendy A Suzuki",
+   "author": "W A Suzuki",
    "address": "New York, {NY}",
    "ENTRYTYPE": "article",
    "ID": "Suzu07"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Wendy A Suzuki",
-    "proposed": "W A Suzuki",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/17413005/",
-      "quote": "Wendy A Suzuki"
-     }
-    ],
-    "normalised_from": "Wendy A Suzuki"
-   },
    {
     "field": "doi",
     "current": null,
@@ -3034,24 +2993,11 @@
    "title": "Do insects have cognitive maps?",
    "pages": "403--414",
    "journal": "Annual Review of Neuroscience",
-   "author": "R{\\\"u}diger Wehner and Randolf Menzel",
+   "author": "R Wehner and R Menzel",
    "ENTRYTYPE": "article",
    "ID": "WehnMenz90"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "R{\\\"u}diger Wehner and Randolf Menzel",
-    "proposed": "R Wehner and R Menzel",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/2183682/",
-      "quote": "R Wehner, R Menzel"
-     }
-    ],
-    "normalised_from": "R{\\\"u}diger Wehner and Randolf Menzel"
-   },
    {
     "field": "doi",
     "current": null,
@@ -3100,24 +3046,11 @@
    "title": "Synchronization of cortical activity and its putative role in information processing and learning",
    "pages": "349--374",
    "journal": "Annual Review of Physiology",
-   "author": "Wolf Singer",
+   "author": "W Singer",
    "ENTRYTYPE": "article",
    "ID": "Sing93"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Wolf Singer",
-    "proposed": "W Singer",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1146/annurev.ph.55.030193.002025",
-      "quote": "\"given\":\"W\",\"family\":\"Singer\""
-     }
-    ],
-    "normalised_from": "Wolf Singer"
-   },
    {
     "field": "doi",
     "current": null,
@@ -3166,24 +3099,11 @@
    "title": "Cognitive neuroscience of human memory",
    "pages": "87--115",
    "journal": "Annual Review of Psychology",
-   "author": "John D E Gabrieli",
+   "author": "J D E Gabrieli",
    "ENTRYTYPE": "article",
    "ID": "Gabr98"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "John D E Gabrieli",
-    "proposed": "J D E Gabrieli",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1146/annurev.psych.49.1.87",
-      "quote": "\"given\":\"J. D. E.\",\"family\":\"Gabrieli\""
-     }
-    ],
-    "normalised_from": "John D E Gabrieli"
-   },
    {
     "field": "doi",
     "current": null,
@@ -3956,32 +3876,11 @@
    "pages": "281--294",
    "number": "3",
    "journal": "Applied Cognitive Psychology",
-   "author": "Arnaud D'Argembeau and Christine Comblain and Martial {Van der Linden}",
+   "author": "A D'Argembeau and C Comblain and M {Van der Linden}",
    "ENTRYTYPE": "article",
    "ID": "DArgEtal03"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Arnaud D'Argembeau and Christine Comblain and Martial {Van der Linden}",
-    "proposed": "A D'Argembeau and C Comblain and M {Van der Linden}",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1002/acp.856",
-      "quote": "\"given\":\"Arnaud\",\"family\":\"D'Argembeau\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1002/acp.856",
-      "quote": "\"given\":\"Christine\",\"family\":\"Comblain\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1002/acp.856",
-      "quote": "\"given\":\"Martial\",\"family\":\"Van der Linden\""
-     }
-    ],
-    "normalised_from": "Arnaud D'Argembeau and Christine Comblain and Martial {Van der Linden}"
-   },
    {
     "field": "doi",
     "current": null,
@@ -5717,27 +5616,11 @@
    "pages": "445--459",
    "number": "3",
    "journal": "Behavior Research Methods",
-   "author": "David A Balota and Melvin J Yap and Michael J Cortese and Keith A Hutchison and Brett Kessler and Bjorn Loftis and James H Neely and Douglas L Nelson and Greg B Simpson and Rebecca Treiman",
+   "author": "D A Balota and M J Yap and M J Cortese and K A Hutchison and B Kessler and B Loftis and J H Neely and D L Nelson and G B Simpson and R Treiman",
    "ENTRYTYPE": "article",
    "ID": "BaloEtal07"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "David A Balota and Melvin J Yap and Michael J Cortese and Keith A Hutchison and Brett Kessler and Bjorn Loftis and James H Neely and Douglas L Nelson and Greg B Simpson and Rebecca Treiman",
-    "proposed": "D A Balota and M J Yap and M J Cortese and K A Hutchison and B Kessler and B Loftis and J H Neely and D L Nelson and G B Simpson and R Treiman",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/17958156/",
-      "quote": "David A Balota, Melvin J Yap, Michael J Cortese, Keith A Hutchison, Brett Kessler"
-     },
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/17958156/",
-      "quote": "Bjorn Loftis, James H Neely, Douglas L Nelson, Greg B Simpson, Rebecca Treiman"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -5918,28 +5801,11 @@
    "pages": "1--23",
    "number": "1",
    "journal": "Behavior Research Methods",
-   "author": "Winter Mason and Siddharth Suri",
+   "author": "W Mason and S Suri",
    "ENTRYTYPE": "article",
    "ID": "MasoSuri12"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Winter Mason and Siddharth Suri",
-    "proposed": "W Mason and S Suri",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.3758/s13428-011-0124-6",
-      "quote": "\"given\":\"Winter\",\"family\":\"Mason\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.3758/s13428-011-0124-6",
-      "quote": "\"given\":\"Siddharth\",\"family\":\"Suri\""
-     }
-    ],
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -6015,14 +5881,14 @@
    "pages": "457--466",
    "number": "2",
    "journal": "Behavior Research Methods",
-   "author": "Kim Nimon and Mitzi Lewis and Richard Kane and R Michael Haynes",
+   "author": "K Nimon and M Lewis and R Kane and R Michael Haynes",
    "ENTRYTYPE": "article",
    "ID": "NimoEtal08"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Kim Nimon and Mitzi Lewis and Richard Kane and R Michael Haynes",
+    "current": "K Nimon and M Lewis and R Kane and R Michael Haynes",
     "proposed": "K Nimon and M Lewis and R Kane and R M Haynes",
     "source": "researcher",
     "evidence": [
@@ -7668,14 +7534,14 @@
    "title": "{Voluntary exercise counteracts {A$\\beta$25-35}-induced memory impairment in mice}",
    "pages": "618--625",
    "journal": "Behavioural Brain Research",
-   "author": "Qin Wang and Zhiqiang Xu and Jinrong Tang and Jianguo Sun and Junying Gao and Ting Wu and Ming Xiao",
+   "author": "Q Wang and Z Xu and J Tang and J Sun and J Gao and Ting Wu and M Xiao",
    "ENTRYTYPE": "article",
    "ID": "WangEtal13"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Qin Wang and Zhiqiang Xu and Jinrong Tang and Jianguo Sun and Junying Gao and Ting Wu and Ming Xiao",
+    "current": "Q Wang and Z Xu and J Tang and J Sun and J Gao and Ting Wu and M Xiao",
     "proposed": "Q Wang and Z Xu and J Tang and J Sun and J Gao and T Wu and M Xiao",
     "source": "researcher",
     "evidence": [
@@ -8468,23 +8334,11 @@
    "pages": "1806--1817",
    "number": "7",
    "journal": "Brain",
-   "author": "Nikolai Axmacher and Christian E Elger and Juergen Fell",
+   "author": "N Axmacher and C E Elger and J Fell",
    "ENTRYTYPE": "article",
    "ID": "AxmaEtal08"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Nikolai Axmacher and Christian E Elger and Juergen Fell",
-    "proposed": "N Axmacher and C E Elger and J Fell",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/18503077/",
-      "quote": "Nikolai Axmacher, Christian E Elger, Juergen Fell"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -10301,14 +10155,14 @@
    "pages": "1783",
    "number": "6",
    "journal": "Brain",
-   "author": "JR Hodges and K Patterson and S Oxbury and E Funnell",
+   "author": "J Hodges and K Patterson and S Oxbury and E Funnell",
    "ENTRYTYPE": "article",
    "ID": "HodgEtal92"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "JR Hodges and K Patterson and S Oxbury and E Funnell",
+    "current": "J Hodges and K Patterson and S Oxbury and E Funnell",
     "proposed": "J R Hodges and K Patterson and S Oxbury and E Funnell",
     "source": "researcher",
     "evidence": [
@@ -11227,14 +11081,14 @@
    "title": "Functional differentiation of medial temporal and frontal regions involved in processing novel and familiar words: an f{MRI} study",
    "pages": "1963--1971",
    "journal": "Brain",
-   "author": "Andrew J Saykin and Sternling C Johnson and Laura A Flashman and Thomas W Mc{A}llister and Molly Sparling and Terrance M Darcey and Chad H Moritz and Stephen J Guerin and John Weaver and Alexander Momourian",
+   "author": "A J Saykin and S C Johnson and L A Flashman and T W Mc{A}llister and M Sparling and T M Darcey and C H Moritz and S J Guerin and J Weaver and A Momourian",
    "ENTRYTYPE": "article",
    "ID": "SaykEtal99"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Andrew J Saykin and Sternling C Johnson and Laura A Flashman and Thomas W Mc{A}llister and Molly Sparling and Terrance M Darcey and Chad H Moritz and Stephen J Guerin and John Weaver and Alexander Momourian",
+    "current": "A J Saykin and S C Johnson and L A Flashman and T W Mc{A}llister and M Sparling and T M Darcey and C H Moritz and S J Guerin and J Weaver and A Momourian",
     "proposed": "A J Saykin and S C Johnson and L A Flashman and T W McAllister and M Sparling and T M Darcey and C H Moritz and S J Guerin and J Weaver and A Mamourian",
     "source": "researcher",
     "evidence": [
@@ -11952,23 +11806,11 @@
    "pages": "907--920",
    "number": "10",
    "journal": "Brain Injury",
-   "author": "Karen Hux and Nancy Manasse and Shawna Wright and Jeff Snell",
+   "author": "K Hux and N Manasse and S Wright and J Snell",
    "ENTRYTYPE": "article",
    "ID": "HuxEtal00"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Karen Hux and Nancy Manasse and Shawna Wright and Jeff Snell",
-    "proposed": "K Hux and N Manasse and S Wright and J Snell",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/11076136/",
-      "quote": "K Hux, N Manasse, S Wright, J Snell"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -12719,14 +12561,14 @@
    "title": "Theta-like rhythm in depth {EEG} activity of hypothalamic areas during spontaneous or electrically induced locomotion in rats",
    "pages": "117--126",
    "journal": "Brain Research",
-   "author": "Urszula Slawinska and Stefan Kasicki",
+   "author": "U Slawinska and S Kasicki",
    "ENTRYTYPE": "article",
    "ID": "SlawKasi95"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Urszula Slawinska and Stefan Kasicki",
+    "current": "U Slawinska and S Kasicki",
     "proposed": "U S{\\l}awi{\\'n}ska and S Kasicki",
     "source": "researcher",
     "evidence": [
@@ -13171,23 +13013,11 @@
    "title": "{EEG} alpha and theta oscillations reflect cognitive and memory performance: a review and analysis",
    "pages": "169--195",
    "journal": "Brain Research: Brain Research Reviews",
-   "author": "Wolfgang Klimesch",
+   "author": "W Klimesch",
    "ENTRYTYPE": "article",
    "ID": "Klim99"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Wolfgang Klimesch",
-    "proposed": "W Klimesch",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/10209231/",
-      "quote": "W Klimesch"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -13611,14 +13441,14 @@
    "title": "Differential effects of induced mood on the recall of positive, negative and neutral words",
    "pages": "163--171",
    "journal": "British Journal of Clinical Psychology",
-   "author": "John D Teasdale and Louise M Russell",
+   "author": "J D Teasdale and L M Russell",
    "ENTRYTYPE": "article",
    "ID": "TeasRuss83"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "John D Teasdale and Louise M Russell",
+    "current": "J D Teasdale and L M Russell",
     "proposed": "J D Teasdale and M L Russell",
     "source": "researcher",
     "evidence": [
@@ -14436,23 +14266,11 @@
    "pages": "171--199",
    "number": "2",
    "journal": "British Journal of Psychology",
-   "author": "Timothy A Salthouse",
+   "author": "T A Salthouse",
    "ENTRYTYPE": "article",
    "ID": "Salt93"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Timothy A Salthouse",
-    "proposed": "T A Salthouse",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/8319054/",
-      "quote": "FAU - Salthouse, T A"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -15361,27 +15179,11 @@
    "pages": "1474--1485",
    "number": "6",
    "journal": "Cerebral Cortex",
-   "author": "Bradley R Buchsbaum and Mark D'Esposito",
+   "author": "B R Buchsbaum and M D'Esposito",
    "ENTRYTYPE": "article",
    "ID": "BuchDEsp09"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Bradley R Buchsbaum and Mark D'Esposito",
-    "proposed": "B R Buchsbaum and M D'Esposito",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
-      "quote": "FAU - Buchsbaum, Bradley R"
-     },
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/18987393/",
-      "quote": "FAU - D'Esposito, Mark"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -17739,14 +17541,14 @@
    "pages": "272",
    "number": "3",
    "journal": "Cerebral Cortex",
-   "author": "W Schultz and L Tremblay and JR Hollerman",
+   "author": "W Schultz and L Tremblay and J Hollerman",
    "ENTRYTYPE": "article",
    "ID": "SchuEtal00"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "W Schultz and L Tremblay and JR Hollerman",
+    "current": "W Schultz and L Tremblay and J Hollerman",
     "proposed": "W Schultz and L Tremblay and J R Hollerman",
     "source": "researcher",
     "evidence": [

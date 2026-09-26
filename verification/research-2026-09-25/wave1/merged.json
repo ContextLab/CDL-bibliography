@@ -576,23 +576,11 @@
   "current": {
    "year": "1989",
    "title": "Involvement of hormonal of memory storage",
-   "author": "James L McGaugh",
+   "author": "J L McGaugh",
    "ENTRYTYPE": "article",
    "ID": "McGa89"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "James L McGaugh",
-    "proposed": "J L McGaugh",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2564756&retmode=xml",
-      "quote": "<LastName>McGaugh</LastName><ForeName>J L</ForeName>"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -743,27 +731,11 @@
    "title": "Salivary testosterone levels in left- and right-handed adults",
    "pages": "225--233",
    "number": "3",
-   "author": "Scott D Moffat and Elizabeth Hampson",
+   "author": "S D Moffat and E Hampson",
    "ENTRYTYPE": "article",
    "ID": "MoffHamp96"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Scott D Moffat and Elizabeth Hampson",
-    "proposed": "S D Moffat and E Hampson",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
-      "quote": "<LastName>Moffat</LastName><ForeName>S D</ForeName>"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8868279&retmode=xml",
-      "quote": "<LastName>Hampson</LastName><ForeName>E</ForeName>"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -823,14 +795,14 @@
    "volume": "15",
    "title": "Short-term retention and meaningfulness",
    "pages": "143--147",
-   "author": "Lloyd R Peterson and Margaret Jean Peterson and Arthur Miller",
+   "author": "L R Peterson and Margaret Jean Peterson and A Miller",
    "ENTRYTYPE": "article",
    "ID": "PeteEtal61"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Lloyd R Peterson and Margaret Jean Peterson and Arthur Miller",
+    "current": "L R Peterson and Margaret Jean Peterson and A Miller",
     "proposed": "L R Peterson and M J Peterson and A Miller",
     "source": "researcher",
     "evidence": [
@@ -1424,14 +1396,14 @@
    "title": "The rhythmic slow activity recorded from entorhinal cortex in freely moving cats",
    "pages": "161--164",
    "journal": "Acta Neurobiologiae Experimentalis",
-   "author": "Marcin Blaszcyk and Robert Grabowski and Barbara Exckersdorf and Henryk Golebiewski and Jan Konopacki",
+   "author": "M Blaszcyk and R Grabowski and B Exckersdorf and H Golebiewski and J Konopacki",
    "ENTRYTYPE": "article",
    "ID": "BlasEtal96"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Marcin Blaszcyk and Robert Grabowski and Barbara Exckersdorf and Henryk Golebiewski and Jan Konopacki",
+    "current": "M Blaszcyk and R Grabowski and B Exckersdorf and H Golebiewski and J Konopacki",
     "proposed": "M B{\\l}aszczyk and R Grabowski and B Eckersdorf and H Go{\\l}{\\k{e}}biewski and J Konopacki",
     "source": "reviewer",
     "evidence": [
@@ -1995,29 +1967,12 @@
    "pages": "1290--1294",
    "number": "13",
    "journal": "Current Biology",
-   "author": "Jeffrey M Ellenbogen and Justin C Hulbert and Robert Stickgold and David F Dinges and Sharon L Thompson-Schill",
+   "author": "J M Ellenbogen and J C Hulbert and R Stickgold and D F Dinges and S L Thompson-Schill",
    "address": "Boston, {MA}",
    "ENTRYTYPE": "article",
    "ID": "ElleEtal06"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Jeffrey M Ellenbogen and Justin C Hulbert and Robert Stickgold and David F Dinges and Sharon L Thompson-Schill",
-    "proposed": "J M Ellenbogen and J C Hulbert and R Stickgold and D F Dinges and S L Thompson-Schill",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
-      "quote": "Jeffrey M Ellenbogen, Justin C Hulbert, Robert Stickgold"
-     },
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/16824917/",
-      "quote": "David F Dinges, Sharon L Thompson-Schill"
-     }
-    ],
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -2736,23 +2691,11 @@
    "pages": "187--195",
    "number": "2",
    "journal": "Current Opinion in Neurobiology",
-   "author": "Howard Eichenbaum",
+   "author": "H Eichenbaum",
    "ENTRYTYPE": "article",
    "ID": "Eich96"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Howard Eichenbaum",
-    "proposed": "H Eichenbaum",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/8725960/",
-      "quote": "FAU - Eichenbaum, H"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -2924,23 +2867,11 @@
    "pages": "701",
    "number": "6",
    "journal": "Current Opinion in Neurobiology",
-   "author": "Matthew L Shapiro and Pamela J Kennedy and Janina Ferbinteanu",
+   "author": "M L Shapiro and P J Kennedy and J Ferbinteanu",
    "ENTRYTYPE": "article",
    "ID": "ShapEtal06"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Matthew L Shapiro and Pamela J Kennedy and Janina Ferbinteanu",
-    "proposed": "M L Shapiro and P J Kennedy and J Ferbinteanu",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/17084616/",
-      "quote": "Matthew L Shapiro, Pamela J Kennedy, Janina Ferbinteanu"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -3085,14 +3016,14 @@
    "title": "Virtual environments as a promising tool for investigation human spatial cognition",
    "pages": "445--463",
    "journal": "Current Psychology of Cognition",
-   "author": "Patrick P\\'{e}ruch and Florence Gaunet",
+   "author": "P P\\'{e}ruch and F Gaunet",
    "ENTRYTYPE": "article",
    "ID": "PeruGaun98"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Patrick P\\'{e}ruch and Florence Gaunet",
+    "current": "P P\\'{e}ruch and F Gaunet",
     "proposed": "P P{\\'e}ruch and F Gaunet",
     "source": "researcher",
     "evidence": [
@@ -3362,24 +3293,11 @@
    "title": "Familiarization, attention, and recognition memory in infancy; an event-related potential and cortical source localization study",
    "pages": "598--615",
    "journal": "Developmental Psychology",
-   "author": "Greg D Reynolds and John E Richards",
+   "author": "G D Reynolds and J E Richards",
    "ENTRYTYPE": "article",
    "ID": "ReynRich05"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Greg D Reynolds and John E Richards",
-    "proposed": "G D Reynolds and J E Richards",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/16060807/",
-      "quote": "Greg D Reynolds, John E Richards"
-     }
-    ],
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -3696,23 +3614,11 @@
    "title": "The role of verbal output time in the effects of word length on immediate memory",
    "pages": "1--17",
    "journal": "Journal of Memory and Language",
-   "author": "Nelson Cowan",
+   "author": "N Cowan",
    "ENTRYTYPE": "article",
    "ID": "Cowa92"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Nelson Cowan",
-    "proposed": "N Cowan",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1016/0749-596x(92)90002-f",
-      "quote": "\"given\":\"N\",\"family\":\"COWAN\""
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -3774,14 +3680,14 @@
    "pages": "153--177",
    "number": "1",
    "journal": "Journal of Memory and Language",
-   "author": "Nelson Cowan and J Scott Saults and Emily M Elliott and Matthew V Moreno",
+   "author": "N Cowan and J Scott Saults and E M Elliott and M V Moreno",
    "ENTRYTYPE": "article",
    "ID": "CowaEtal02"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Nelson Cowan and J Scott Saults and Emily M Elliott and Matthew V Moreno",
+    "current": "N Cowan and J Scott Saults and E M Elliott and M V Moreno",
     "proposed": "N Cowan and J S Saults and E M Elliott and M V Moreno",
     "source": "researcher",
     "evidence": [
@@ -5000,14 +4906,14 @@
    "pages": "1277--1295",
    "number": "4",
    "journal": "Journal of Neurophysiology",
-   "author": "Emad N Eskandar and Barry J Richmond and Lance M Optician",
+   "author": "E N Eskandar and B J Richmond and L M Optician",
    "ENTRYTYPE": "article",
    "ID": "EskaEtal92"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Emad N Eskandar and Barry J Richmond and Lance M Optician",
+    "current": "E N Eskandar and B J Richmond and L M Optician",
     "proposed": "E N Eskandar and B J Richmond and L M Optican",
     "source": "researcher",
     "evidence": [
@@ -5105,27 +5011,11 @@
    "year": "1954",
    "title": "Hippocampal electrical activity in arousal",
    "journal": "Journal of Neurophysiology",
-   "author": "John D Green and Arnaldo A Arduini",
+   "author": "J D Green and A A Arduini",
    "ENTRYTYPE": "article",
    "ID": "GreeArdu54"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "John D Green and Arnaldo A Arduini",
-    "proposed": "J D Green and A A Arduini",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1152/jn.1954.17.6.533",
-      "quote": "\"given\":\"John D.\",\"family\":\"Green\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1152/jn.1954.17.6.533",
-      "quote": "\"given\":\"Arnaldo A.\",\"family\":\"Arduini\""
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -5757,14 +5647,14 @@
    "title": "Differential effects of acute and regular physical exercise on cognition and affect",
    "pages": "59--68",
    "journal": "Neuroscience",
-   "author": "Michael E Hopkins and F Caroline Davis and Michelle R VanTieghem and Paul J Whalen and David J Bucci",
+   "author": "M E Hopkins and F Caroline Davis and M R VanTieghem and P J Whalen and D J Bucci",
    "ENTRYTYPE": "article",
    "ID": "HopkEtal12"
   },
   "final_changes": [
    {
     "field": "author",
-    "current": "Michael E Hopkins and F Caroline Davis and Michelle R VanTieghem and Paul J Whalen and David J Bucci",
+    "current": "M E Hopkins and F Caroline Davis and M R VanTieghem and P J Whalen and D J Bucci",
     "proposed": "M E Hopkins and F C Davis and M R VanTieghem and P J Whalen and D J Bucci",
     "source": "researcher",
     "evidence": [
@@ -6368,59 +6258,11 @@
    "year": "2013",
    "title": "Increased mesiotemporal delta activity characterizes virtual navigation in humans",
    "journal": "Neuroscience Research",
-   "author": "Zs{\\'o}fia Clemens and Csaba Borb{\\'e}ly and B{\\'e}la Weiss and Lor{\\'a}nd Er{\\H{o}}ss and Anna Sz{\\H{u}}cs and Anna Kelemen and D{\\'a}niel Fab{\\'o} and Gy{\\\"o}rgy R{\\'a}sonyi and J{\\'o}zsef Janszky and P{\\'e}ter Hal{\\'a}sz",
+   "author": "Z Clemens and C Borb{\\'e}ly and B Weiss and L Er{\\H{o}}ss and A Sz{\\H{u}}cs and A Kelemen and D Fab{\\'o} and G R{\\'a}sonyi and J Janszky and P Hal{\\'a}sz",
    "ENTRYTYPE": "article",
    "ID": "ClemEtal13"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Zs{\\'o}fia Clemens and Csaba Borb{\\'e}ly and B{\\'e}la Weiss and Lor{\\'a}nd Er{\\H{o}}ss and Anna Sz{\\H{u}}cs and Anna Kelemen and D{\\'a}niel Fab{\\'o} and Gy{\\\"o}rgy R{\\'a}sonyi and J{\\'o}zsef Janszky and P{\\'e}ter Hal{\\'a}sz",
-    "proposed": "Z Clemens and C Borb{\\'e}ly and B Weiss and L Er{\\H{o}}ss and A Sz{\\H{u}}cs and A Kelemen and D Fab{\\'o} and G R{\\'a}sonyi and J Janszky and P Hal{\\'a}sz",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
-      "quote": "<LastName>Clemens</LastName><ForeName>Zs&#xf3;fia</ForeName>"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
-      "quote": "<LastName>Borb&#xe9;ly</LastName><ForeName>Csaba</ForeName>"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
-      "quote": "<LastName>Weiss</LastName><ForeName>B&#xe9;la</ForeName>"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
-      "quote": "<LastName>Er&#x151;ss</LastName><ForeName>Lor&#xe1;nd</ForeName>"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
-      "quote": "<LastName>Sz&#x171;cs</LastName><ForeName>Anna</ForeName>"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
-      "quote": "<LastName>Kelemen</LastName><ForeName>Anna</ForeName>"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
-      "quote": "<LastName>Fab&#xf3;</LastName><ForeName>D&#xe1;niel</ForeName>"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
-      "quote": "<LastName>R&#xe1;sonyi</LastName><ForeName>Gy&#xf6;rgy</ForeName>"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
-      "quote": "<LastName>Janszky</LastName><ForeName>J&#xf3;zsef</ForeName>"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23524244&retmode=xml",
-      "quote": "<LastName>Hal&#xe1;sz</LastName><ForeName>P&#xe9;ter</ForeName>"
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -8655,28 +8497,11 @@
    "year": "2019",
    "title": "The second law of thermodynamics and the psychological arrow of time",
    "journal": "The British Journal for the Philosophy of Science",
-   "author": "Meir Hemmo and Orly Shenker",
+   "author": "M Hemmo and O Shenker",
    "ENTRYTYPE": "article",
    "ID": "HemmShen19"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Meir Hemmo and Orly Shenker",
-    "proposed": "M Hemmo and O Shenker",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1093/bjps/axz038",
-      "quote": "\"given\":\"Meir\",\"family\":\"Hemmo\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1093/bjps/axz038",
-      "quote": "\"given\":\"Orly\",\"family\":\"Shenker\""
-     }
-    ],
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -10052,27 +9877,13 @@
   "current": {
    "year": "2009",
    "title": "Associative symmetry",
-   "editor": "Hal Pashler",
+   "editor": "H Pashler",
    "booktitle": "Encyclopedia of the Mind",
    "author": "M J Kahana",
    "ENTRYTYPE": "incollection",
    "ID": "Kaha09"
   },
-  "final_changes": [
-   {
-    "field": "editor",
-    "current": "Hal Pashler",
-    "proposed": "H Pashler",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "no_source warranted: Crossref query (query.bibliographic=associative symmetry, query.author=Kahana) returns only the journal papers 10.3758/bf03195769 (Mem Cogn 2002) and 10.1016/s0925-2312(00)00268-x (Neurocomputing 2000); no Encyclopedia of the Mind (10.4135/9781452257044) entry. Needs user decision (retire or re-cite). Side issue: current editor 'Hal Pashler' is not house initials form (H Pashler)."
-      ]
-     }
-    ]
-   }
-  ],
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "Kaha09",
@@ -10108,7 +9919,7 @@
   "current": {
    "year": "2010",
    "title": "Recall dynamics",
-   "editor": "Hal Pashler",
+   "editor": "H Pashler",
    "booktitle": "Encyclopedia of the Mind",
    "author": "M J Kahana and J F Miller",
    "ENTRYTYPE": "incollection",
@@ -10124,19 +9935,6 @@
      {
       "url": "https://api.crossref.org/works/10.4135/9781452257044.n183",
       "quote": "\"DOI\":\"10.4135\\/9781452257044.n183\""
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "editor",
-    "current": "Hal Pashler",
-    "proposed": "H Pashler",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.4135/9781452257044",
-      "quote": "\"given\":\"Harold\",\"family\":\"Pashler\""
      }
     ],
     "reviewer": "agree"
@@ -10275,10 +10073,10 @@
    "title": "The ``small town'' cognitive map: adjusting to a new environment",
    "publisher": "Dowden, Hutchinson, and Ross",
    "pages": "58--66",
-   "editor": "Gary T Moore and Reginald G Golledge",
+   "editor": "G T Moore and R G Golledge",
    "chapter": "4",
    "booktitle": "Environmental Knowing: Theories, Research, and Methods",
-   "author": "Ann S Devlin",
+   "author": "A S Devlin",
    "address": "Stroudsberg, {PA}",
    "ENTRYTYPE": "incollection",
    "ID": "Devl76"
@@ -10288,33 +10086,6 @@
     "field": "address",
     "current": "Stroudsberg, {PA}",
     "proposed": "Stroudsburg, {PA}",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Book-level fields confirmed at https://openlibrary.org/books/OL4877514M.json ('edited by Gary T. Moore, Reginald G. Golledge', 'Dowden, Hutchinson & Ross', 'Stroudsburg, Pa', 1976); chapter title/pages not reachable, so no_source for the chapter is fair. Cited author 'Ann S Devlin' should become 'A S Devlin' under the initials rule even without a source."
-      ]
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "author",
-    "current": "Ann S Devlin",
-    "proposed": "A S Devlin",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Book-level fields confirmed at https://openlibrary.org/books/OL4877514M.json ('edited by Gary T. Moore, Reginald G. Golledge', 'Dowden, Hutchinson & Ross', 'Stroudsburg, Pa', 1976); chapter title/pages not reachable, so no_source for the chapter is fair. Cited author 'Ann S Devlin' should become 'A S Devlin' under the initials rule even without a source."
-      ]
-     }
-    ]
-   },
-   {
-    "field": "editor",
-    "current": "Gary T Moore and Reginald G Golledge",
-    "proposed": "G T Moore and R G Golledge",
     "source": "reviewer",
     "evidence": [
      {
@@ -10336,7 +10107,7 @@
    {
     "code": "unverified_suggestions",
     "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): editor='G T Moore and R G Golledge', address='Stroudsburg, {PA}'",
+    "detail": "values left not_found or suggested by the rules (never applied): address='Stroudsburg, {PA}'",
     "action": "flag"
    },
    {
@@ -10377,10 +10148,10 @@
    "title": "Adaptation, structure, and knowledge",
    "publisher": "Dowden, Hutchinson, and Ross",
    "pages": "32--45",
-   "editor": "Gary T Moore and Reginald G Golledge",
+   "editor": "G T Moore and R G Golledge",
    "chapter": "2",
    "booktitle": "Environmental Knowing: Theories, Research, and Methods",
-   "author": "Stephen Kaplan",
+   "author": "S Kaplan",
    "address": "Stroudsberg, {PA}",
    "ENTRYTYPE": "incollection",
    "ID": "Kapl76"
@@ -10390,36 +10161,6 @@
     "field": "address",
     "current": "Stroudsberg, {PA}",
     "proposed": "Stroudsburg, {PA}",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "LoC SRU bath.lccn=76004942 confirms 'Environmental knowing : theories, research, and methods / edited by Gary T. Moore, Reginald G. Golledge', 'Stroudsburg, Pa. : Dowden, Hutchinson & Ross, c1976' (address typo Stroudsberg correctly fixed). Chapter-level fields: no TOC reachable (IA items environmentalkno00moor / environmentalkno0000unse are lending-restricted), so no_source for the chapter is warranted; resolvable only via a scan/TOC or user sign-off.",
-       "House format: cited author 'Stephen Kaplan' should become 'S Kaplan' whichever way the chapter is verified."
-      ]
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "author",
-    "current": "Stephen Kaplan",
-    "proposed": "S Kaplan",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "LoC SRU bath.lccn=76004942 confirms 'Environmental knowing : theories, research, and methods / edited by Gary T. Moore, Reginald G. Golledge', 'Stroudsburg, Pa. : Dowden, Hutchinson & Ross, c1976' (address typo Stroudsberg correctly fixed). Chapter-level fields: no TOC reachable (IA items environmentalkno00moor / environmentalkno0000unse are lending-restricted), so no_source for the chapter is warranted; resolvable only via a scan/TOC or user sign-off.",
-       "House format: cited author 'Stephen Kaplan' should become 'S Kaplan' whichever way the chapter is verified."
-      ]
-     }
-    ],
-    "reviewer": "unsure"
-   },
-   {
-    "field": "editor",
-    "current": "Gary T Moore and Reginald G Golledge",
-    "proposed": "G T Moore and R G Golledge",
     "source": "reviewer",
     "evidence": [
      {
@@ -10442,7 +10183,7 @@
    {
     "code": "unverified_suggestions",
     "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): editor='G T Moore and R G Golledge', address='Stroudsburg, {PA}'",
+    "detail": "values left not_found or suggested by the rules (never applied): address='Stroudsburg, {PA}'",
     "action": "flag"
    },
    {
@@ -10592,7 +10333,7 @@
    "year": "2007",
    "title": "Memory and mind: a festschrift for {Gordon} {H}. {Bower}",
    "publisher": "Erlbaum",
-   "editor": "M A Gluck and JR Anderson and S M Kosslyn",
+   "editor": "M A Gluck and J Anderson and S M Kosslyn",
    "chapter": "On the law of primacy",
    "author": "E Tulving",
    "ENTRYTYPE": "inbook",
@@ -10644,7 +10385,7 @@
    },
    {
     "field": "editor",
-    "current": "M A Gluck and JR Anderson and S M Kosslyn",
+    "current": "M A Gluck and J Anderson and S M Kosslyn",
     "proposed": "M A Gluck and J R Anderson and S M Kosslyn",
     "source": "researcher",
     "evidence": [
@@ -13588,27 +13329,15 @@
    "title": "A new framework for understanding the acquisition of spatial knowledge in large-scale environments",
    "publisher": "{Oxford} {University} Press",
    "pages": "143--154",
-   "editor": "Max J Egenhofer and Reginald G Golledge",
+   "editor": "M J Egenhofer and R G Golledge",
    "chapter": "11",
    "booktitle": "Spatial and Temporal Reasoning in Geographic Information Systems",
-   "author": "Daniel R Montello",
+   "author": "D R Montello",
    "address": "New York, {NY}",
    "ENTRYTYPE": "incollection",
    "ID": "Mont98"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Daniel R Montello",
-    "proposed": "D R Montello",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
-      "quote": "\"given\":\"Daniel R\",\"family\":\"Montello\""
-     }
-    ]
-   },
    {
     "field": "doi",
     "current": null,
@@ -13618,22 +13347,6 @@
      {
       "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.003.0011",
       "quote": "\"DOI\":\"10.1093"
-     }
-    ]
-   },
-   {
-    "field": "editor",
-    "current": "Max J Egenhofer and Reginald G Golledge",
-    "proposed": "M J Egenhofer and R G Golledge",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.001.0001",
-      "quote": "\"given\":\"Max J\",\"family\":\"Egenhofer\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1093/oso/9780195103427.001.0001",
-      "quote": "\"given\":\"Reginald G\",\"family\":\"Golledge\""
      }
     ]
    }
@@ -13752,29 +13465,11 @@
    "year": "2019",
    "title": "Poetry: {Python} packaging and dependency management made easy",
    "howpublished": "\\url{https://github.com/python-poetry/poetry}",
-   "author": "S{\\'{e}}bastien Eustace",
+   "author": "S Eustace",
    "ENTRYTYPE": "misc",
    "ID": "Eust19"
   },
-  "final_changes": [
-   {
-    "field": "author",
-    "current": "S{\\'{e}}bastien Eustace",
-    "proposed": "S Eustace",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.github.com/users/sdispater",
-      "quote": "\"name\":\"Sébastien Eustace\""
-     },
-     {
-      "url": "https://pypi.org/pypi/poetry/1.0.0/json",
-      "quote": "\"author\":\"Sébastien Eustace\""
-     }
-    ],
-    "normalised_from": "S{\\'{e}}bastien Eustace"
-   }
-  ],
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "Eust19",
@@ -13895,24 +13590,11 @@
    "year": "2004",
    "title": "The cellular networks underlying human spatial navigation",
    "school": "Brandeis University",
-   "author": "Arne D Ekstrom",
+   "author": "A D Ekstrom",
    "ENTRYTYPE": "phdthesis",
    "ID": "Ekst04"
   },
-  "final_changes": [
-   {
-    "field": "author",
-    "current": "Arne D Ekstrom",
-    "proposed": "A D Ekstrom",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.proquest.com/openview/83d5a6b1c4b2d24b0e9d36d531cc572e/1.pdf?cbl=18750&diss=y&pq-origsite=gscholar",
-      "quote": "Ekstrom, Arne David"
-     }
-    ]
-   }
-  ],
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "Ekst04",
@@ -15161,26 +14843,13 @@
    "year": "2010",
    "title": "Data structures for statistical computing in {Python}",
    "pages": "56--61",
-   "editor": "St\\'efan van der Walt and Jarrod Millman",
+   "editor": "S van der Walt and J Millman",
    "booktitle": "Proceedings of the 9\\textsuperscript{th} {Python} in Science Conference",
-   "author": "Wes McKinney",
+   "author": "W McKinney",
    "ENTRYTYPE": "inproceedings",
    "ID": "McKi10"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "Wes McKinney",
-    "proposed": "W McKinney",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-92bf1922-00a",
-      "quote": "Wes McKinney"
-     }
-    ],
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -15196,7 +14865,7 @@
    },
    {
     "field": "editor",
-    "current": "St\\'efan van der Walt and Jarrod Millman",
+    "current": "S van der Walt and J Millman",
     "proposed": "S {van der Walt} and J Millman",
     "source": "researcher",
     "evidence": [
