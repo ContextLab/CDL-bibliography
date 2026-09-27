@@ -137,9 +137,9 @@ Each of the 87 held entries in `notices.json` was checked against the notice its
 
 ## Mop-up classification (2026-09-27, later)
 
-Rows appended to `notices-classified.json` (now 108 rows). Each notice was read at its URL; the quotes were
+Rows appended to `notices-classified.json` (now 109 rows). Each notice was read at its URL; the quotes were
 re-checked against a scripted fetch of the same page (PMC pages need a browser user agent; the text matched
-up to whitespace). No retraction or expression of concern was found: no Crossref `update-to`/`updated-by` of
+up to whitespace; ChanEtal12's corrigendum surfaced once its post-check residue was settled). No retraction or expression of concern was found: no Crossref `update-to`/`updated-by` of
 that type and no Europe PMC `isRetracted`/"Retraction in"/"Expression of concern in" on any cited DOI.
 
 | key | notice | class | point |
@@ -161,6 +161,7 @@ that type and no Europe PMC `isRetracted`/"Retraction in"/"Expression of concern
 | LeVaEtal08 | - | no_notice | PubMed author suffix 'Engel J Jr'; suffixes are never added |
 | PfurEtal96 | - | no_notice | PubMed author suffix 'Stancák A Jr'; suffixes are never added |
 | Buzs02b | - | unrelated | author-suffix record of an unrelated search candidate (Bragin et al. 1999, Hippocampus) |
+| ChanEtal12 | 10.1016/j.brainres.2012.06.039 | unread | Brain Res 1470:159 corrigendum; ScienceDirect 403 to scripts and the automated browser. Not a retraction. For the user: its Crossref title quotes the article as 'A meta-analytic review'; the article prints 'a meta-analysis' |
 
 ### Record identities for notices with no DOI
 

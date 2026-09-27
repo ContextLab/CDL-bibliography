@@ -1179,6 +1179,181 @@ def test_a_no_doi_entry_names_every_record_of_its_candidates(entries2, bundles2,
     assert put_later(tmp_path / 'other.sqlite3', entry, result2, [other])['status'] == 'needs_review'
 
 
+# ---- rename walk: batches keyed as committed
+
+def git_repo(path):
+    """A real git work tree at ``path`` with the repository's research layout."""
+    import subprocess
+    env = dict(__import__('os').environ, GIT_AUTHOR_NAME='t', GIT_AUTHOR_EMAIL='t@t', GIT_COMMITTER_NAME='t',
+               GIT_COMMITTER_EMAIL='t@t')
+    def git(*args):
+        subprocess.run(['git', *args], cwd=path, env=env, check=True, capture_output=True)
+    path.mkdir(parents=True)
+    git('init', '-q')
+    return git
+
+
+def write_json(path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=1) + '\n', encoding='utf-8')
+
+
+def batch_row(key, editor):
+    return {'key': key, 'wave': None, 'decision': 'apply', 'set': {'editor': {
+        'value': editor, 'url': 'https://example.org/' + key, 'quote': editor}}, 'remove': [], 'notes': ''}
+
+
+def rename(old, new):
+    return {'old_key': old, 'new_key': new, 'date': '2026-09-26', 'reason': 'test'}
+
+
+def test_later_batches_follow_only_renames_logged_after_their_commit(tmp_path):
+    # The live case: batch 23 (written against older keys) names Friedman's chapter Frie08,
+    # which became Frie08a and then Frie12; batch 30 (written against the cdl.bib of its
+    # commit, after Friendly's Frie08b became Frie08) names Friendly's chapter Frie08. A
+    # rename logged after batch 30 was committed is still followed.
+    root = tmp_path / 'repo'
+    git = git_repo(root)
+    renames = [rename('Frie08', 'Frie08a'), rename('Frie06', 'Frie08b'), rename('Frie08a', 'Frie12'),
+               rename('Frie08b', 'Frie08')]
+    write_json(root / R.RENAMES, renames)
+    write_json(root / R.RESOLUTIONS / 'batch-23.json', [batch_row('Frie08', 'S J Luck and E S Kappenman')])
+    write_json(root / R.RESOLUTIONS / 'batch-30.json', [batch_row('Frie08', 'C Chen and W H\\"ardle and A Unwin'),
+                                                        batch_row('Hay20', 'A Editor')])
+    git('add', '-A')
+    git('commit', '-q', '-m', 'batches')
+    write_json(root / R.RENAMES, renames + [rename('Hay20', 'HayEtal20')])
+    git('add', '-A')
+    git('commit', '-q', '-m', 'a later rename')
+    assert R.renames_when_committed(root, R.RESOLUTIONS + '/batch-30.json', renames) == 4
+    bundles = R.load_evidence(root)
+    editors = lambda key: [(c['origin'], c['value']) for c in bundles[key]['claims'] if c['field'] == 'editor']
+    assert editors('Frie12') == [('resolution/batch-23', 'S J Luck and E S Kappenman')]
+    assert editors('Frie08') == [('resolution/batch-30', 'C Chen and W H\\"ardle and A Unwin')]
+    assert editors('HayEtal20') == [('resolution/batch-30', 'A Editor')] and 'Hay20' not in bundles
+    # Negative control, the former behaviour: a layout git cannot date (not the top of a
+    # work tree) follows the whole log, and batch 30's row lands on Frie12.
+    frozen = tmp_path / 'frozen'
+    shutil.copytree(root, frozen, ignore=shutil.ignore_patterns('.git'))
+    assert R.renames_when_committed(frozen, R.RESOLUTIONS + '/batch-30.json', renames) is None
+    whole = R.load_evidence(frozen)
+    assert sorted(c['origin'] for c in whole['Frie12']['claims']) == ['resolution/batch-23', 'resolution/batch-30']
+    assert 'Frie08' not in whole
+
+
+def test_rename_cut_refuses_a_rewritten_log(tmp_path):
+    root = tmp_path / 'repo'
+    git = git_repo(root)
+    write_json(root / R.RENAMES, [rename('A01', 'B01')])
+    write_json(root / R.RESOLUTIONS / 'batch-31.json', [batch_row('B01', 'A Editor')])
+    git('add', '-A')
+    git('commit', '-q', '-m', 'batch')
+    write_json(root / R.RENAMES, [rename('A01', 'C01')])   # the logged rename changed afterwards
+    git('add', '-A')
+    git('commit', '-q', '-m', 'rewrite')
+    with pytest.raises(ValueError, match='not a prefix'):
+        R.load_evidence(root)
+    # An uncommitted batch has no commit to date it: the whole log is followed.
+    assert R.renames_when_committed(root, R.RESOLUTIONS + '/batch-32.json', []) is None
+
+
+def test_mopup_batch_is_the_newest_resolution(tmp_path):
+    # verification/research-route-2026-09-27/batch-40.json is read as resolution batch 40:
+    # its value outranks batch 39's, and it follows renames logged after its commit.
+    root = tmp_path / 'repo'
+    git = git_repo(root)
+    write_json(root / R.RENAMES, [rename('Mann05', 'Mann06')])
+    write_json(root / R.RESOLUTIONS / 'batch-39.json', [batch_row('Mann06', 'A Older')])
+    write_json(root / R.MOPUP, [batch_row('Mann06', 'B Newer')])
+    git('add', '-A')
+    git('commit', '-q', '-m', 'batches')
+    assert R.MOPUP in R.evidence_files(root)
+    claims = sorted((c for c in R.load_evidence(root)['Mann06']['claims'] if c['field'] == 'editor'), key=R._rank)
+    assert [(c['origin'], c['value']) for c in claims] == [('resolution/batch-40', 'B Newer'),
+                                                          ('resolution/batch-39', 'A Older')]
+    # An uncommitted mop-up file is evidence another session may still be writing.
+    write_json(root / R.MOPUP, [batch_row('Mann06', 'C Draft')])
+    assert R.uncommitted_evidence(root) == [R.MOPUP]
+
+
+# ---- post-check needs_user residue a later resolution settles
+
+def needs_user_issues(bundle, fields):
+    return [i for i in R.gates(bundle, fields) if i.startswith('research: needs_user')]
+
+
+def test_duplicate_residue_is_settled_by_the_merge_and_a_resolution(entries, bundles):
+    # ChanEtal12: the wave-2 needs_user row is the duplicate ChanEtal12b ('not_in_bib',
+    # 'duplicate', key plan 'duplicate' merging into ChanEtal12); batch 29 then applied
+    # the entry. The frozen wave-2 row carries its reasons.
+    b = bundles['ChanEtal12']
+    fields = entries['ChanEtal12']['fields']
+    m = b['merged'][0]
+    assert m['key'] == 'ChanEtal12b' and m['needs_user']
+    assert {(r['kind'], r.get('code')) for r in m['residue']} == {('flag', 'not_in_bib'), ('flag', 'duplicate'),
+                                                                   ('key_plan', 'duplicate')}
+    assert all(r['merged_into'] for r in m['residue'])
+    # No resolution decision: the residue stays with the user.
+    assert needs_user_issues(b, fields) == ['research: needs_user (wave2/merged)']
+    settled = deepcopy(b)
+    settled['resolutions'].append({'origin': 'resolution/batch-29', 'key': 'ChanEtal12', 'decision': 'apply',
+                                   'notes': ''})
+    assert needs_user_issues(settled, fields) == []
+    # Negative controls: a drop beside it, a plan that merged into another entry, a residue
+    # of any other kind, and a row saved without its reasons are not settled.
+    dropped = deepcopy(settled)
+    dropped['resolutions'].append({'origin': 'resolution/batch-30', 'key': 'ChanEtal12', 'decision': 'drop',
+                                   'notes': ''})
+    assert needs_user_issues(dropped, fields)
+    elsewhere = deepcopy(settled)
+    for r in elsewhere['merged'][0]['residue']:
+        r['merged_into'] = False
+    assert needs_user_issues(elsewhere, fields)
+    for code in ('quote_check_failed', 'doi_record_conflict', 'unverified_suggestions', 'key_rename'):
+        other = deepcopy(settled)
+        other['merged'][0]['residue'].append({'kind': 'flag', 'code': code, 'field': 'title', 'merged_into': True})
+        assert needs_user_issues(other, fields), code
+    bare = deepcopy(settled)
+    del bare['merged'][0]['residue']
+    assert needs_user_issues(bare, fields)
+
+
+def test_needs_user_residue_reasons():
+    # The post-check's own reasons (postcheck.needs_user), from rows shaped as merged.json.
+    row = {'key': 'DougPeuc73', 'verdict': 'verified', 'key_plan': {'action': 'keep'},
+           'flags': [{'code': 'field_not_found', 'field': 'journal', 'action': 'flag'},
+                     {'code': 'style_only_change', 'field': 'title', 'action': 'applied'}]}
+    assert R.needs_user_residue(row, 'DougPeuc73') == [
+        {'kind': 'flag', 'code': 'field_not_found', 'field': 'journal', 'merged_into': False}]
+    assert R.residue_settled(R.needs_user_residue(row, 'DougPeuc73')[0], {})
+    # McCaEtal06: a resolved row needs the user only for the resolution's residue.
+    mcca = {'key': 'McCaEtal06', 'verdict': 'correction', 'key_plan': {'action': 'keep'},
+            'flags': [{'code': 'doi_title_unavailable', 'field': 'doi', 'action': 'held'}],
+            'resolution': {'decision': 'apply', 'residue': [
+                "doi: the resolution's value '10.1609/aimag.v27i4.1904' did not survive the post-check (final None)",
+                'doi_title_unavailable on doi is held and the resolution does not address it']}}
+    reasons = R.needs_user_residue(mcca, 'McCaEtal06')
+    assert [r['kind'] for r in reasons] == ['residue', 'residue']
+    # The DOI default keeps a DOI the publisher prints: settled only when the entry has it.
+    assert all(R.residue_settled(r, {'doi': '10.1609/aimag.v27i4.1904'}) for r in reasons)
+    assert not any(R.residue_settled(r, {}) for r in reasons)
+    assert not R.residue_settled({'kind': 'residue', 'detail': 'pages: the resolution value did not survive'},
+                                 {'doi': '10.1609/aimag.v27i4.1904'})
+    # An unresolved verdict and a key plan other than keep are reasons too.
+    amb = {'key': 'X01', 'verdict': 'ambiguous', 'key_plan': {'action': 'rename'}, 'flags': []}
+    reasons = R.needs_user_residue(amb, 'X01')
+    assert [(r['kind'], r.get('code')) for r in reasons] == [('verdict', None), ('key_plan', 'rename')]
+    assert R.residue_settled(reasons[0], {}) and not R.residue_settled(reasons[1], {})
+
+
+def test_rows_the_user_marked_correct_keep_their_saved_shape(entries2, bundles2):
+    # Este91's wave-1 needs_user row was answered 'correct' on the wave-1 page: nothing is
+    # added to it, so stored approvals (whose saved bundle includes it) re-derive unchanged.
+    m = bundles2['Este91']['merged'][0]
+    assert m['needs_user'] and 'residue' not in m
+    assert set(m) == {'origin', 'key', 'verdict', 'needs_user', 'remove_entry'}
+
+
 # ---- rule 5: braced group names
 
 def test_braced_group_author_compares_equal(entries2, bundles2, cities2):

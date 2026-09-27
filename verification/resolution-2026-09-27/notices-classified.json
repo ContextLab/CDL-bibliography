@@ -1050,5 +1050,13 @@
     "identity": "d16062354c73b213f2160042799bfe89ee153c2a6e65391900426ad67ab1b07f"
    }
   ]
+ },
+ {
+  "key": "ChanEtal12",
+  "notice_doi": "10.1016/j.brainres.2012.06.039",
+  "class": "unread",
+  "quote": "Corrigendum to “The effects of acute exercise on cognitive performance: A meta-analytic review” [Brain Res. 1453 (2012) 87–101]",
+  "url": "https://api.crossref.org/works/10.1016/j.brainres.2012.06.039",
+  "notes": "Brain Res 1470:159 corrigendum (Europe PMC 'Erratum in: Brain Res. 2012 Aug 27;1470:159' on PMID 22480735; the Crossref journal/volume/page search gave this DOI). Notice text not retrieved: ScienceDirect returns 403/'Just a moment...' to scripts and to the automated browser (2026-09-27); Crossref has no abstract and no update-to; OpenAlex has no abstract. Not a retraction: Crossref has no retraction/expression_of_concern update on the cited DOI and Europe PMC isRetracted is empty with no 'Retraction in' link. Point for the user: the corrigendum's Crossref title quotes the article as 'A meta-analytic review', while Crossref and PubMed of the article (and the entry) print 'a meta-analysis'; whether the corrigendum concerns the title is unknown until it is read. Surfaced by the needs_user settlement (the wave-2 residue belonged to the merged duplicate ChanEtal12b)."
  }
 ]

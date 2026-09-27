@@ -86,6 +86,11 @@ MANUAL = 'verification/research-2026-09-26-manual/proposals.json'
 NOTICES = 'verification/resolution-2026-09-27/notices-classified.json'
 RENAMES = 'verification/key-renames.json'
 DELETIONS = 'verification/key-deletions.json'
+# The mop-up resolution batch (2026-09-27, research route final): resolution rows in the
+# batch schema for entries the route still held, kept beside the route's own records. It
+# is read as resolution batch 40 (newest), keyed as committed like batches 27 on.
+MOPUP = 'verification/research-route-2026-09-27/batch-40.json'
+MOPUP_BATCH = 'batch-40'
 
 # Structural fields: the key is not metadata, and the entry type is a judgment the
 # validator does not quote-check (validate.py JUDGMENT); any evidence naming a type
@@ -271,17 +276,58 @@ def _claim(field, value, items, origin, row_key, lenient=False, next_start=None,
 
 
 def rename_walk(renames, deleted):
-    """old key -> current key, following key-renames.json in log order; a deleted key
-    maps to None (never followed)."""
-    def walk(key):
+    """old key -> current key, following key-renames.json in log order from entry
+    ``start`` (default: the whole log); a deleted key maps to None (never followed)."""
+    def walk(key, start=0):
         if key in deleted:
             return None
         cur = key
-        for r in renames:
+        for r in renames[start:]:
             if r['old_key'] == cur:
                 cur = r['new_key']
         return cur
     return walk
+
+
+# Resolution batches from number 27 on were written against the cdl.bib of their commit:
+# each row's key names the entry as it was then (apply-2026-09-30-final README: "Every key
+# was found in cdl.bib as written"). Their rows follow only the renames logged after the
+# batch was committed. Batch 30's Frie08 is Friendly's handbook chapter (keyed Frie08 since
+# the wave-8 renames); following the whole log took it through Frie08 -> Frie08a -> Frie12
+# to Friedman's chapter. Earlier batches name entries by older keys (batch 23's Frie08 is
+# the Frie08 that became Frie12) and follow the whole log.
+KEYED_AS_COMMITTED_FROM = 27
+
+
+def _git(root, *args):
+    import subprocess
+    env = dict(os.environ)
+    if 'DEVELOPER_DIR' not in env and Path('/Library/Developer/CommandLineTools').is_dir():
+        env['DEVELOPER_DIR'] = '/Library/Developer/CommandLineTools'
+    return subprocess.run(['git', *args], cwd=root, env=env, capture_output=True, text=True)
+
+
+def renames_when_committed(root, rel, renames):
+    """How many entries key-renames.json had in the commit that added ``rel``: the rows of
+    ``rel`` follow only the renames after them. None when ``root`` is not the top of a git
+    work tree (a frozen test layout) or ``rel`` was never committed; then the whole log is
+    followed. Raises when the log of that commit is not a prefix of the current one (the
+    log is append-only: a rewritten log would silently re-key rows)."""
+    try:
+        top = _git(root, 'rev-parse', '--show-toplevel')
+    except OSError:
+        return None
+    if top.returncode or Path(top.stdout.strip()).resolve() != Path(root).resolve():
+        return None
+    added = _git(root, 'log', '--diff-filter=A', '--format=%H', '--', rel).stdout.split()
+    if not added:
+        return None
+    then = _git(root, 'show', '%s:%s' % (added[-1], RENAMES))
+    old = json.loads(then.stdout) if then.returncode == 0 else []
+    if [(r['old_key'], r['new_key']) for r in old] != [(r['old_key'], r['new_key']) for r in renames[:len(old)]]:
+        raise ValueError('%s: the rename log of the commit that added %s is not a prefix of the current log'
+                         % (RENAMES, rel))
+    return len(old)
 
 
 def evidence_files(root=ROOT):
@@ -297,6 +343,7 @@ def evidence_files(root=ROOT):
     for wave in waves:
         files += sorted((wave / 'decisions').glob('*.json'))
     files += sorted((root / RESOLUTIONS).glob('batch-*.json'))
+    files += [root / MOPUP]
     files += [root / MANUAL, root / NOTICES, root / RENAMES, root / DELETIONS]
     return [f.relative_to(root).as_posix() for f in files if f.exists()]
 
@@ -328,12 +375,21 @@ def load_evidence(root=ROOT, bib_keys=None, exclude=()):
     walk = rename_walk(renames, deleted)
     bundles = {}
 
-    def bundle(key):
-        cur = walk(key)
+    def bundle(key, start=0):
+        cur = walk(key, start)
         if cur is None or (bib_keys is not None and cur not in bib_keys):
             return None
         return bundles.setdefault(cur, {'rows': [], 'claims': [], 'merged': [], 'resolutions': [],
                                         'decisions': []})
+
+    # The user's answers on the wave pages, read first: a merged needs_user row the user
+    # did not mark correct keeps the reasons the post-check left it to the user.
+    answers = {}
+    for rel in files:
+        parts = Path(rel).parts
+        if len(parts) >= 3 and parts[-2] == 'decisions' and rel.startswith(WAVES + '/wave'):
+            d = read(rel)
+            answers[(parts[-3], d['key'])] = d.get('verdict')
 
     for rel in files:
         path = Path(rel)
@@ -369,9 +425,11 @@ def load_evidence(root=ROOT, bib_keys=None, exclude=()):
                 b = bundle(row['key'])
                 if b is None:
                     continue
-                b['merged'].append({'origin': wave + '/merged', 'key': row['key'], 'verdict': row.get('verdict'),
-                                    'needs_user': bool(row.get('needs_user')),
-                                    'remove_entry': row.get('remove_entry')})
+                m = {'origin': wave + '/merged', 'key': row['key'], 'verdict': row.get('verdict'),
+                     'needs_user': bool(row.get('needs_user')), 'remove_entry': row.get('remove_entry')}
+                if m['needs_user'] and answers.get((wave, row['key'])) != 'correct':
+                    m['residue'] = needs_user_residue(row, walk(row['key']))
+                b['merged'].append(m)
                 for ch in row.get('final_changes') or []:
                     if ch.get('proposed') not in (None, ''):
                         b['claims'].append(_claim(ch['field'], ch['proposed'], _items(ch.get('evidence') or []),
@@ -412,10 +470,14 @@ def load_evidence(root=ROOT, bib_keys=None, exclude=()):
             if b is not None:
                 b['decisions'].append({'origin': parts[-3] + '/decisions', 'key': d['key'],
                                        'remove_entry': None, 'verdict': d.get('verdict')})
-        elif rel.startswith(RESOLUTIONS + '/batch-'):
-            origin = 'resolution/' + path.stem
+        elif rel.startswith(RESOLUTIONS + '/batch-') or rel == MOPUP:
+            stem = MOPUP_BATCH if rel == MOPUP else path.stem
+            origin = 'resolution/' + stem
+            number = re.fullmatch(r'batch-(\d+)', stem)
+            start = (renames_when_committed(root, rel, renames)
+                     if number and int(number[1]) >= KEYED_AS_COMMITTED_FROM else None) or 0
             for row in read(rel):
-                b = bundle(row['key'])
+                b = bundle(row['key'], start)
                 if b is None:
                     continue
                 notes = row.get('notes') or ''
@@ -607,8 +669,62 @@ def _rank(claim):
     return (4, 0, 0, o)
 
 
-def gates(bundle):
+def needs_user_residue(row, current_key):
+    """Why the post-check left a merged row to the user (postcheck.needs_user): the
+    resolution's residue lines, else the unresolved verdict, each held or open flag and a
+    key plan other than 'keep'. ``current_key`` is the entry the row's key now names."""
+    if row.get('resolution'):
+        return [{'kind': 'residue', 'detail': str(line)} for line in row['resolution'].get('residue') or []]
+    out = []
+    if row.get('verdict') in ('ambiguous', 'no_source') and not row.get('user_resolved'):
+        out.append({'kind': 'verdict', 'detail': row['verdict']})
+    plan = row.get('key_plan') or {}
+    for f in row.get('flags') or []:
+        if f.get('action') in ('held', 'flag'):
+            out.append({'kind': 'flag', 'code': f.get('code'), 'field': f.get('field'),
+                        'merged_into': plan.get('merge_into') == current_key != row.get('key')})
+    if plan.get('action') != 'keep':
+        out.append({'kind': 'key_plan', 'code': plan.get('action'),
+                    'merged_into': plan.get('merge_into') == current_key != row.get('key')})
+    return out
+
+
+# Residue a later resolution decision settles under the recorded rules (resolution-plan
+# README). Anything else stays with the user.
+DOI_RESIDUE = re.compile(r"^(?:doi: the resolution's value .* did not survive the post-check|"
+                         r"doi_title_unavailable on doi is held)")
+
+
+def residue_settled(reason, fields):
+    """True when one needs_user reason (``needs_user_residue``) is settled for an entry
+    whose resolution decision is apply/keep:
+
+    - an unresolved verdict: the resolution decision settles it (as for any row);
+    - ``field_not_found``: the every-field rule quotes each field the entry has, so a
+      field the researcher did not find is either quoted by later evidence or absent;
+    - ``not_in_bib`` / ``duplicate`` flags and a ``duplicate`` key plan, when the row's key
+      was merged into the entry now assessed (the cross-wave duplicate decision; the row
+      key walks to this entry and the plan named it);
+    - the DOI residue of an unavailable Crossref record (``doi_title_unavailable``), when
+      the entry carries its DOI: the (default) "A DOI that doi.org registers and the
+      publisher's own article page prints ... keep it" (McCaEtal06), with the DOI value
+      itself quoted by the every-field rule."""
+    kind, code = reason.get('kind'), reason.get('code')
+    if kind == 'verdict':
+        return True
+    if kind == 'flag' and code == 'field_not_found':
+        return True
+    if kind in ('flag', 'key_plan') and code in ('not_in_bib', 'duplicate'):
+        return bool(reason.get('merged_into'))
+    if (kind == 'flag' and code == 'doi_title_unavailable') or (
+            kind == 'residue' and DOI_RESIDUE.match(reason.get('detail') or '')):
+        return bool(str(fields.get('doi') or '').strip())
+    return False
+
+
+def gates(bundle, fields=None):
     """Issues that stop an approval whatever the fields say."""
+    fields = fields or {}
     issues = []
     rows = [r for r in bundle['rows'] if r['origin'] != 'manual']
     manual = any(r['origin'] == 'manual' for r in bundle['rows'])
@@ -637,7 +753,8 @@ def gates(bundle):
         # correct was applied as proposed (apply-2026-09-28-wave1), which settles its
         # needs_user. Held fields stayed as cited and are checked like any other field.
         if m['needs_user'] and user.get((wave, m['key'])) != 'correct':
-            issues.append('research: needs_user (%s)' % m['origin'])
+            if not (settled and m.get('residue') and all(residue_settled(r, fields) for r in m['residue'])):
+                issues.append('research: needs_user (%s)' % m['origin'])
         if m['remove_entry']:
             issues.append('research: marked for removal (%s)' % m['origin'])
     for d in bundle['decisions']:
@@ -764,7 +881,7 @@ def assess_research(fields, bundle, bodies=None, cities=None):
             candidate['doi'] = normalize_doi(fields['doi'])
     except ValueError as exc:
         issues.append('doi: ' + str(exc))
-    issues += gates(bundle)
+    issues += gates(bundle, fields)
     claims = bundle['claims']
     types = sorted((c for c in claims if c['field'] == 'ENTRYTYPE' and c['kind'] == 'value'), key=_rank)
     if types and canon('entrytype', types[0]['value']) != canon('entrytype', fields.get('ENTRYTYPE')):
@@ -1379,7 +1496,7 @@ def uncommitted_evidence(root=ROOT):
     env = dict(os.environ)
     if 'DEVELOPER_DIR' not in env and Path('/Library/Developer/CommandLineTools').is_dir():
         env['DEVELOPER_DIR'] = '/Library/Developer/CommandLineTools'
-    dirs = [PILOT, WAVES, RESOLUTIONS, str(Path(MANUAL).parent), NOTICES, RENAMES, DELETIONS]
+    dirs = [PILOT, WAVES, RESOLUTIONS, str(Path(MANUAL).parent), NOTICES, RENAMES, DELETIONS, MOPUP]
     out = subprocess.run(['git', 'status', '--porcelain', '--untracked-files=all', '--'] + dirs, cwd=root, env=env,
                          check=True, capture_output=True, text=True).stdout
     changed = {line[3:].strip().strip('"') for line in out.splitlines() if line.strip()}

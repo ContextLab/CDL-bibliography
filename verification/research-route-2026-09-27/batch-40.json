@@ -1,0 +1,40 @@
+[
+ {
+  "key": "ElliAshb88",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "H C Ellis and P W Ashbrook",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2834574/",
+    "quote": "Ellis H. C., & Ashbrook P. W. (1988). Resource allocation model of the effects of depressed mood states on memory. In Fiedler K. & Forgas J. (Eds.), Affect, cognition and social behavior (pp. 25–43)."
+   },
+   "title": {
+    "value": "Resource allocation model of the effects of depressed mood states on memory",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8490806/",
+    "quote": "Ellis H. C., Ashbrook P. W. (1988). “Resource allocation model of the effects of depressed mood states on memory,” in"
+   },
+   "address": {
+    "value": "Toronto",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=87026602&maximumRecords=1&recordSchema=marcxml",
+    "quote": "Toronto ;"
+   }
+  },
+  "remove": [],
+  "notes": "Mop-up 2026-09-27. Kept (resolution-plan README, 'NOTE for final apply: ElliAshb88': batch 18 wins). The book itself confirms the chapter: batch 18 recorded its Google Books contents ('Contents 2 25 3 44', chapter 2 from p. 25) and the chapter title found in the book's full text on p. 33. Under the (default) 'When the book itself (contents/full text) confirms a chapter's start page, the author's own later publication list or reference list may supply the chapter's remaining fields (author, title, end page) (RaaiShif81b)', author and title are quoted from reference lists of PMC full texts (PMC2834574, PMC8490806; both give pp. 25-43, matching the contents). Address: the LoC record 87026602 prints '260 $a Toronto ; $a Lewiston, NY : $b C.J. Hogrefe, $c c1988.' and no country, so under the cross-wave rule 'drop a country when the source does not print it' the address is Toronto (was 'Toronto, Canada'). Booktitle/editor stay batch 18's; publisher/year the wave-8 researcher's (LoC). No pages added (none cited)."
+ },
+ {
+  "key": "Mann06",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "type": {
+    "value": "Senior thesis",
+    "url": "https://www.context-lab.com/publications",
+    "quote": "Manning JR (2006) Modeling human spatial navigation using a degraded ideal navigator. Senior thesis: Brandeis University , Waltham, MA."
+   }
+  },
+  "remove": [],
+  "notes": "Mop-up 2026-09-27. The manual research set Type 'Senior honors thesis' from a composite of sources (the CV's 'High honors' for the degree, another student's thesis cited as 'Senior Honors Thesis'), and that quote is in no saved body. The thesis PDF's title page prints no type. The only record that prints a type for this work is the author's own publication list (context-lab.com/publications): 'Senior thesis: Brandeis University, Waltham, MA.' Rule 3 (as printed in the record): Type = Senior thesis. The other fields keep the manual research's evidence."
+ }
+]

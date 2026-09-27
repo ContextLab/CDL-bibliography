@@ -1,0 +1,128 @@
+{
+ "batch": "mopup",
+ "generated": "2026-09-27 11:33:47",
+ "input": [
+  {
+   "file": "verification/research-route-2026-09-27/batch-40.json",
+   "sha256": "8cec36e0b99d392fda4d3034c4d8b5870946d1a4e0ee06e754effe4db2212154",
+   "rows": 2
+  }
+ ],
+ "count": 2,
+ "counts": {
+  "edit": 2,
+  "remove": 0
+ },
+ "renames": {},
+ "key_mismatch": {},
+ "followed_renames": {},
+ "noops": {},
+ "skipped": {},
+ "set_not_applied": {},
+ "house_form_check_bib": [
+  {
+   "key": "HeniEtal19",
+   "field": "journal",
+   "value": "eNeuro",
+   "applied": "{eNeuro}",
+   "note": "the value as cited: no change"
+  },
+  {
+   "key": "RangEtal14",
+   "field": "publisher",
+   "value": "PMLR",
+   "applied": "{PMLR}",
+   "note": "the value as cited: no change"
+  }
+ ],
+ "check_bib_rejects": [],
+ "held_changes": [],
+ "flags": {},
+ "conflicts": [],
+ "held_forms": [
+  {
+   "wave": "wave3",
+   "key": "HeniEtal19",
+   "field": "pages",
+   "proposed": "ENEURO.0306-19.2019",
+   "outcome": "already in the entry"
+  },
+  {
+   "wave": "wave3",
+   "key": "HeniEtal19",
+   "field": "journal",
+   "proposed": "eNeuro",
+   "outcome": "applied: 'eNeuro'"
+  },
+  {
+   "wave": "wave6",
+   "key": "Calk96",
+   "field": "pages",
+   "proposed": "i--56",
+   "outcome": "already in the entry"
+  },
+  {
+   "wave": "wave7",
+   "key": "Youn12",
+   "field": "url",
+   "proposed": "https://www.chronicle.com/article/inside-the-coursera-contract-how-an-upstart-company-might-profit-from-free-courses/",
+   "outcome": "still rejected: url is not a house field (bibcheck/keep_fields.txt; check_bib 'non-essential fields'); 9f84506 did not change that"
+  },
+  {
+   "wave": "wave9",
+   "key": "RangEtal14",
+   "field": "publisher",
+   "proposed": "PMLR",
+   "outcome": "applied: 'PMLR'"
+  },
+  {
+   "wave": "wave9",
+   "key": "BartEtal04c",
+   "field": "address",
+   "proposed": "La Jolla, {CA}",
+   "outcome": "already in the entry"
+  }
+ ],
+ "questions": {},
+ "normalised": {},
+ "proposals": [
+  {
+   "key": "ElliAshb88",
+   "fingerprint": "v2:cf784398b383eb8ce5894e08c3753550aa1bd0cbfb09ca7c8ebc8dbfe75e04ab",
+   "kind": "edit",
+   "origin": "resolution batch-40 (apply)",
+   "changes": {
+    "address": {
+     "before": "Toronto, Canada",
+     "after": "Toronto",
+     "source": "resolution batch-40",
+     "evidence": [
+      {
+       "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=87026602&maximumRecords=1&recordSchema=marcxml",
+       "quote": "Toronto ;"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Mann06",
+   "fingerprint": "v2:b726e3ccdc3679dbf7b4ff53c30c47e79ccac3cdceaadbb8ad80dfe02c2199e4",
+   "kind": "edit",
+   "origin": "resolution batch-40 (apply)",
+   "changes": {
+    "type": {
+     "before": "Senior honors thesis",
+     "after": "Senior thesis",
+     "source": "resolution batch-40",
+     "evidence": [
+      {
+       "url": "https://www.context-lab.com/publications",
+       "quote": "Manning JR (2006) Modeling human spatial navigation using a degraded ideal navigator. Senior thesis: Brandeis University , Waltham, MA."
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

@@ -291,6 +291,32 @@ the hook. Names that do not fit the class, malformed names and names of absent r
 named retraction record is still refused. Este91 (no DOI) is kept only with the unrelated candidate's record
 named, and another unnamed record reopens it. Existing DOI declarations keep their four keys.
 
+### Mop-up rules (2026-09-27, later)
+
+**Renames for batches keyed as committed.** Resolution batches from 27 on were written against the cdl.bib of
+their commit (apply-2026-09-30-final README: "Every key was found in cdl.bib as written"). Their rows now follow
+only the renames logged after the batch was committed (`renames_when_committed`: the length of
+`key-renames.json` in the commit that added the batch, by git; the old log must be a prefix of the current one,
+or the route raises). Before this, batch 30's `Frie08` row (Friendly's *Handbook of Data Visualization* chapter,
+keyed Frie08 since the wave-8 renames) followed Frie08 -> Frie08a -> Frie12 and landed on Friedman's chapter:
+Frie12 was held because its editors were not Chen, Härdle and Unwin, and Frie08 because nothing quoted them.
+FINAL.md's "apply batch 30's editor value to Frie12" would have given Friedman's chapter Friendly's editors; it
+was not applied. Batches 1-26 name entries by older keys (batch 23's `Frie08` is the Frie08 that became Frie12)
+and still follow the whole log. A layout that is not the top of a git work tree (the frozen test fixtures)
+follows the whole log, as before.
+
+**Post-check residue a resolution settles.** A merged `needs_user` row that the user did not mark correct now
+keeps the post-check's reasons (`residue`, from `postcheck.needs_user`: the resolution residue, the unresolved
+verdict, held/open flags, a key plan other than keep). Rows the user marked correct are unchanged, so stored
+approvals re-derive the same bundle. With a later resolution decision `apply`/`keep` (and no `drop`), the row
+no longer holds the entry when every reason is one of: an unresolved verdict; `field_not_found` (the every-field
+rule quotes each field the entry has); `not_in_bib`/`duplicate` flags or a `duplicate` key plan when the row's key
+was merged into this entry (ChanEtal12b, LegaEtal11a); the DOI residue of an unavailable Crossref record when
+the entry carries the DOI (the McCaEtal06 DOI default). Any other reason still goes to the user.
+
+**Mop-up batch.** `batch-40.json` in this folder holds resolution rows in the batch schema (ElliAshb88, Mann06),
+read as resolution batch 40 (newest, keyed as committed) and listed by `uncommitted_evidence`.
+
 ### Dry run (`dry-run-2.json`; cdl.bib and evidence at 6a6f7e3, a copy of the verification cache)
 
 `bibcheck.py crossref status cdl.bib` before: 6390 entries: human_verified=31, metadata_verified=6023,

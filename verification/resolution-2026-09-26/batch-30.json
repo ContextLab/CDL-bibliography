@@ -88,11 +88,10 @@
  {
   "key": "ElliAshb88",
   "wave": null,
-  "decision": "drop",
+  "decision": "keep",
   "set": {},
   "remove": [],
-  "notes": "Book confirmed by LoC; the chapter's authors appear only in other works' reference lists. Conflicts with the batch-18 'apply' (reconciled on the Google Books title hit), so reconciliation must choose; under the README default the chapter is unverified.",
-  "drop_reason": "no evidence found after: Crossref, LoC (book only: LCCN 87026602), IA full-text search (hits only in other works' reference lists), OpenAlex (garbled record), Google Books (the book's own index matches the title on p. 33 but shows no byline; every author statement is another work's reference list), Google Scholar/PsycNET (captcha/JS). Chapter authors evidenced only by reference lists -> README default (reference-list default names ElliAshb88)."
+  "notes": "Decision changed from 'drop' to 'keep' (2026-09-27): the resolution-plan decision log (verification/resolution-plan-2026-09-22/README.md, 'NOTE for final apply: ElliAshb88') says 'batch 18 (reconciled) keeps it because Google's full text of the book itself shows the chapter title (p. 33); batch 30 drops it on reference-list grounds. The book's own text is primary evidence: keep (batch 18 wins).' Batch 18's booktitle/editor values stand; this row sets nothing. Original batch-30 note: Book confirmed by LoC; the chapter's authors appear only in other works' reference lists. Conflicts with the batch-18 'apply' (reconciled on the Google Books title hit), so reconciliation must choose; under the README default the chapter is unverified. Original drop_reason: no evidence found after: Crossref, LoC (book only: LCCN 87026602), IA full-text search (hits only in other works' reference lists), OpenAlex (garbled record), Google Books (the book's own index matches the title on p. 33 but shows no byline; every author statement is another work's reference list), Google Scholar/PsycNET (captcha/JS). Chapter authors evidenced only by reference lists -> README default (reference-list default names ElliAshb88)."
  },
  {
   "key": "ElliEtal95",
