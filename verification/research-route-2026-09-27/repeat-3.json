@@ -1,0 +1,417 @@
+{
+ "counts": {
+  "all_reasons": {
+   "DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation": 1,
+   "DOI-linked source correction/retraction notice requires adjudication": 8,
+   "No unambiguous, fully supported metadata match": 16,
+   "field never researched (author)": 2,
+   "field never researched (title)": 1,
+   "needs_user (post-check residue)": 5,
+   "quote not found in the saved body (type)": 1,
+   "research gate: conflicting resolution decisions ['apply', 'drop']": 1,
+   "resolution drops it": 1,
+   "route approves; Cache.retain_notices reopens it (DOI-linked notice)": 16,
+   "value differs from the latest evidence (editor)": 1,
+   "value words not in the quotes (address)": 1,
+   "value words not in the quotes (editor)": 1,
+   "verdict ambiguous/no_source, no resolution": 1
+  },
+  "first_reason": {
+   "field never researched (author)": 1,
+   "needs_user (post-check residue)": 5,
+   "quote not found in the saved body (type)": 1,
+   "resolution drops it": 1,
+   "route approves; Cache.retain_notices reopens it (DOI-linked notice)": 16,
+   "value differs from the latest evidence (editor)": 1,
+   "value words not in the quotes (editor)": 1
+  },
+  "flags": {
+   "notice: notice_content_only": 2,
+   "notice: notice_crossref_wins": 1,
+   "notice: notice_metadata_correction": 1,
+   "notice: notice_none": 3,
+   "notice: notice_unread": 5,
+   "notice: notice_unrelated": 1,
+   "pages: browser_or_scan": 1
+  },
+  "outcomes": {
+   "not_approved": 10,
+   "unchanged": 28
+  },
+  "writes": 0
+ },
+ "dry_run": false,
+ "excluded_files": [],
+ "rows": {
+  "BarrEtal18": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "BisbBurg14": {
+   "flags": [
+    "notice: notice_metadata_correction"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "Buzs02b": {
+   "flags": [],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "ChanEtal12": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "research: needs_user (wave2/merged)"
+   ],
+   "status_before": "needs_review"
+  },
+  "DougPeuc73": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "research: needs_user (wave1/merged)"
+   ],
+   "status_before": "needs_review"
+  },
+  "ElliAshb88": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "research: a resolution decision drops this entry",
+    "research: conflicting resolution decisions ['apply', 'drop']",
+    "research: verdict no_source (wave8/batch-079) and no resolution decision",
+    "address: value words ['canada'] are not in the quotes",
+    "author: no research evidence for this field",
+    "title: no research evidence for this field"
+   ],
+   "status_before": "needs_review"
+  },
+  "Este91": {
+   "flags": [
+    "notice: notice_unrelated"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "Fred04": {
+   "flags": [
+    "notice: notice_crossref_wins"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "Frie08": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "editor: value words ['chen', 'hardle'] are not in the quotes"
+   ],
+   "status_before": "needs_review"
+  },
+  "Frie12": {
+   "flags": [
+    "pages: browser_or_scan"
+   ],
+   "outcome": "not_approved",
+   "reasons": [
+    "editor: the entry value differs from the latest evidenced value (resolution/batch-30)"
+   ],
+   "status_before": "needs_review"
+  },
+  "FrieEtal99": {
+   "flags": [
+    "notice: notice_none"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "HubeEtal01": {
+   "flags": [
+    "notice: notice_unread"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "JohnEtal98": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "KahaEtal06": {
+   "flags": [
+    "notice: notice_unread"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "Kolo13": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "research: needs_user (wave1/merged)"
+   ],
+   "status_before": "needs_review"
+  },
+  "KossEtal99": {
+   "flags": [
+    "notice: notice_unread"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "LeVaEtal08": {
+   "flags": [],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "LegaEtal11": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "research: needs_user (wave7/merged)"
+   ],
+   "status_before": "needs_review"
+  },
+  "MankEtal12": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "Mann06": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "type: quote not found in the saved body"
+   ],
+   "status_before": "needs_review"
+  },
+  "MarkEtal95a": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "MarsEtal00": {
+   "flags": [
+    "notice: notice_unread"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "McCaEtal06": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "research: needs_user (wave7/merged)"
+   ],
+   "status_before": "needs_review"
+  },
+  "McDoEtal10": {
+   "flags": [
+    "notice: notice_none"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "MonaAbbo11": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "Murd56": {
+   "flags": [
+    "notice: notice_none"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "ParkEtal08": {
+   "flags": [
+    "notice: notice_content_only"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "PfurEtal96": {
+   "flags": [],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "PurcEtal10": {
+   "flags": [
+    "notice: notice_content_only"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "RebeEtal02": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "RutiEtal08": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "SohnEtal00": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "StarDava06": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "SvenEtal24": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "author: no research evidence for this field"
+   ],
+   "status_before": "needs_review"
+  },
+  "VargEtal97": {
+   "flags": [
+    "notice: notice_unread"
+   ],
+   "outcome": "unchanged",
+   "reasons": [
+    "The research route approves this entry (its notice is settled by the classification), but Cache.retain_notices reopens every machine approval with a known DOI-linked notice",
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ],
+   "route_granted": true,
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "VirtEtal20": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "WangBuzs96": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  },
+  "WheeEtal00": {
+   "flags": [],
+   "outcome": "unchanged",
+   "status": "needs_review",
+   "status_before": "needs_review"
+  }
+ }
+}
