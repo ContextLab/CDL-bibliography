@@ -1,0 +1,371 @@
+[
+ {
+  "key": "MazaJens06",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Proceedings of the National Academy of Sciences, {USA}",
+    "url": "https://api.crossref.org/works/10.1073/pnas.0505785103",
+    "quote": "\"short-container-title\":[\"Proc. Natl. Acad. Sci. U.S.A.\"]",
+    "extra_evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1073/pnas.0505785103",
+      "quote": "\"container-title\":[\"Proceedings of the National Academy of Sciences\"]"
+     }
+    ]
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the entry's DOI prints container 'Proceedings of the National Academy of Sciences' and short title 'Proc. Natl. Acad. Sci. U.S.A.'; house form confirmed, value unchanged."
+ },
+ {
+  "key": "McCaEtal06",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "12--14",
+    "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802",
+    "quote": "12 AI MAGAZINE",
+    "extra_evidence": [
+     {
+      "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802",
+      "quote": "WINTER 2006 13"
+     },
+     {
+      "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802",
+      "quote": "orderly thinking. 14 AI MAGAZINE"
+     }
+    ]
+   },
+   "doi": {
+    "value": "10.1609/aimag.v27i4.1904",
+    "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/1904",
+    "quote": "citation_doi\" content=\"10.1609/aimag.v27i4.1904"
+   }
+  },
+  "remove": [],
+  "notes": "Re-quoted batch-14 evidence (publisher PDF folios 12-14; OJS page prints citation_doi). The remaining block is wave7/merged needs_user from doi_title_unavailable (Crossref API 404); README default (McCaEtal06 named) says keep a DOI doi.org registers and the publisher page prints, but postcheck still holds it."
+ },
+ {
+  "key": "McMa65",
+  "wave": null,
+  "decision": "apply",
+  "set": {},
+  "remove": [
+   "number"
+  ],
+  "notes": "Number '3, Pt. 2' is printed by no fetchable official record: Crossref gives issue '3_suppl' (SAGE's code; DOI suffix '3c'), PubMed does not index the work (esearch McManis 1965 finds only two other papers), SAGE and PsycNET pages are blocked/not found. Optional field unconfirmable -> removed."
+ },
+ {
+  "key": "MeckEtal99",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Journal of Clinical and Experimental Neuropsychology",
+    "url": "https://api.crossref.org/works/10.1076/jcen.21.5.606.873",
+    "quote": "\"container-title\":[\"Journal of Clinical and Experimental Neuropsychology\"]"
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the entry's DOI prints the journal; house form."
+ },
+ {
+  "key": "Mill10",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "The Journal of Neuroscience",
+    "url": "https://api.crossref.org/works/10.1523/jneurosci.6401-09.2010",
+    "quote": "\"container-title\":[\"The Journal of Neuroscience\"]"
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the entry's DOI prints the journal; house form."
+ },
+ {
+  "key": "MillEtal07b",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "{arXiv}",
+    "url": "https://arxiv.org/abs/0712.0846",
+    "quote": "arXiv:0712.0846"
+   }
+  },
+  "remove": [],
+  "notes": "arXiv abstract page prints the identifier arXiv:0712.0846; journal {arXiv} per house preprint form."
+ },
+ {
+  "key": "MillEtal07d",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "K J Miller and S Makeig and A O Hebb and R P N Rao and M {den Nijs} and J G Ojemann",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17343918/",
+    "quote": "Kai J Miller, Scott Makeig, Adam O Hebb, Rajesh P N Rao, Marcel denNijs, Jeffrey G Ojemann",
+    "extra_evidence": [
+     {
+      "url": "https://arxiv.org/abs/0712.0846",
+      "quote": "Kai J. Miller , Larry B. Sorensen , Jeffrey G. Ojemann , Marcel den Nijs"
+     }
+    ]
+   }
+  },
+  "remove": [],
+  "notes": "PubMed 17343918 prints all six authors ('Marcel denNijs'); the author's correct name 'Marcel den Nijs' is quoted from his own arXiv record 0712.0846 (rule: author's correct, most complete name with evidence from other records). HEAD value confirmed."
+ },
+ {
+  "key": "Mins75",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "A framework for representing knowledge",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Marvin%20Minsky%22%20identifier%3Apsychologyofcomp0000wins&hits_per_page=5",
+    "quote": "A FRAMEWORK FOR REPRESENTING KNOWLEDGE"
+   },
+   "author": {
+    "value": "M Minsky",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22framework%20for%20representing%20knowledge%22%20identifier%3Apsychologyofcomp0000wins&hits_per_page=5",
+    "quote": "Marvin Minsky\\n6.1 FRAMES\\nIt seems"
+   },
+   "pages": {
+    "value": "211--277",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Language%2C%20Understanding%22%20identifier%3Apsychologyofcomp0000wins&hits_per_page=5",
+    "quote": "6.1 Frames 211",
+    "next_start": {
+     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Control%22%20identifier%3Apsychologyofcomp0000wins&hits_per_page=5",
+     "quote": "6.5 Spatial Imagery 267\\nBibliography 278"
+    }
+   }
+  },
+  "remove": [],
+  "notes": "IA full-text search of The Psychology of Computer Vision (psychologyofcomp0000wins) prints the chapter opening 'A FRAMEWORK FOR REPRESENTING KNOWLEDGE / Marvin Minsky / 6.1 FRAMES' and contents '6.1 Frames 211' ... '6.5 Spatial Imagery 267 / Bibliography 278', so end = 278-1 = 277 (next_start rule). Quotes avoid the search highlight markers; newline escapes are verbatim from the JSON body. HEAD confirmed."
+ },
+ {
+  "key": "MiraKihl05",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Cognition and Emotion",
+    "url": "https://api.crossref.org/works/10.1080/02699930500202967",
+    "quote": "\"container-title\":[\"Cognition &amp; Emotion\"]"
+   }
+  },
+  "remove": [],
+  "notes": "Crossref prints 'Cognition &amp; Emotion'; house form 'Cognition and Emotion' (& = and). Value unchanged."
+ },
+ {
+  "key": "MonaAbbo11",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "The Journal of Neuroscience",
+    "url": "https://api.crossref.org/works/10.1523/jneurosci.1433-11.2011",
+    "quote": "\"container-title\":[\"Journal of Neuroscience\"]"
+   }
+  },
+  "remove": [],
+  "notes": "Crossref prints 'Journal of Neuroscience'; house form 'The Journal of Neuroscience' (checker accepts). Value unchanged."
+ },
+ {
+  "key": "MoscEtal05",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Journal of Anatomy",
+    "url": "https://api.crossref.org/works/10.1111/j.1469-7580.2005.00421.x",
+    "quote": "\"container-title\":[\"Journal of Anatomy\"]"
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the entry's DOI prints the journal; house form."
+ },
+ {
+  "key": "MoseEtal93",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "The Journal of Neuroscience",
+    "url": "https://api.crossref.org/works/10.1523/jneurosci.13-09-03916.1993",
+    "quote": "\"container-title\":[\"The Journal of Neuroscience\"]"
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the entry's DOI prints the journal; house form."
+ },
+ {
+  "key": "MullPilz00",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "1--300",
+    "url": "https://archive.org/download/b28111916/b28111916_djvu.txt",
+    "quote": "Seite \n1—  3 \n3—  7",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/download/b28111916/b28111916_djvu.txt",
+      "quote": "300 \n\n\nAnhang."
+     },
+     {
+      "url": "https://api.wellcomecollection.org/catalogue/v2/works/d68pp8k8",
+      "quote": "xiv, 300 pages ; 24 cm."
+     }
+    ]
+   }
+  },
+  "remove": [],
+  "notes": "Scan djvu text (b28111916): the Müller-Pilzecker contents give 'Seite 1-3' for the Einleitung, and the last text page prints 300 before 'Anhang.'; Wellcome catalogue (d68pp8k8) gives extent 'xiv, 300 pages'. HEAD 1--300 confirmed."
+ },
+ {
+  "key": "MullSchu94",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "81--190, 257--339",
+    "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
+    "quote": "suchung des  Gedächtnisses 81  u.  257",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
+      "quote": "190  ^*  ^  Müller  und  F.  Schumann."
+     },
+     {
+      "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
+      "quote": "Experimentelle  Beiträge  zur  Untersuchung  des  Gedächtnisses.         339"
+     }
+    ]
+   }
+  },
+  "remove": [],
+  "notes": "Batch-14 two-part evidence re-quoted (contents 'Gedächtnisses 81 u. 257'; part 1 ends 190, part 2 ends 339). HEAD has only part 2 (257--339); README default 'article printed in two parts: both ranges' -> value changes to 81--190, 257--339."
+ },
+ {
+  "key": "MullWehn94",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "M M{\\\"u}ller and R Wehner",
+    "url": "https://link.springer.com/article/10.1007/BF00199474",
+    "quote": "Müller, M.",
+    "extra_evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/bf00199474",
+      "quote": "\"given\":\"R.\",\"family\":\"Wehner\""
+     }
+    ]
+   }
+  },
+  "remove": [],
+  "notes": "Springer article page (citation_author 'Müller, M.'; saved body, originally read in a browser per batch-06) plus Crossref author 'Wehner' (Crossref's first-author name is mojibake). HEAD confirmed."
+ },
+ {
+  "key": "MurEtal12",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "The Journal of Neuroscience",
+    "url": "https://api.crossref.org/works/10.1523/jneurosci.2334-11.2012",
+    "quote": "\"container-title\":[\"Journal of Neuroscience\"]"
+   }
+  },
+  "remove": [],
+  "notes": "Crossref prints 'Journal of Neuroscience'; house form 'The Journal of Neuroscience'. Value unchanged."
+ },
+ {
+  "key": "Murd92b",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "201--225",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22202%22%20identifier%3Aessaysinhonorofw0000unse_f7z3&hits_per_page=5",
+    "quote": "organization or chunking in any simple or natural way.\\n201",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22609-626%22%20identifier%3Aessaysinhonorofw0000unse_f7z3&hits_per_page=5",
+      "quote": "10. CHUNKING MODEL 225\\nMurdock, B. B. (1983)."
+     }
+    ]
+   }
+  },
+  "remove": [],
+  "notes": "IA full-text search of Essays in honor of W K Estes v. 1 (essaysinhonorofw0000unse_f7z3): chapter's first page folio 201 then '202 MURDOCK'; references page with running head '10. CHUNKING MODEL 225'; contents list 201 then 227 (Sloman & Rumelhart). The index puts Murdock's last reference (Young, R. K.) on 225, so 226 is blank; HEAD 201--225 kept rather than next-start-1 = 226."
+ },
+ {
+  "key": "Newm87",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "S E Newman",
+    "url": "https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22Slater+E.+Newman%22",
+    "quote": "2 pages matching \"Slater E. Newman\" in this book Page vii Page 77"
+   },
+   "title": {
+    "value": "{Ebbinghaus}' ``on memory'': some effects on early {American} research",
+    "url": "https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22Ebbinghaus%27+On+Memory:+Some+effects+on+early+American+research%22",
+    "quote": "2 pages matching \"Ebbinghaus' On Memory: Some effects on early American research\" in this book Page vii Page 77"
+   },
+   "pages": {
+    "value": "77--87",
+    "url": "https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22early+American+research%22",
+    "quote": "4 pages matching \"early American research\" in this book Page 77 Page 85 Page 87"
+   }
+  },
+  "remove": [],
+  "notes": "Google Books full-text search of the printed book (6S5-AAAAMAAJ), read in a real browser (plain fetches get HTTP 429): the full chapter title and 'Slater E. Newman' each match only the contents (p. vii) and p. 77; 'early American research' (running head) matches pp. 77, 85, 87. Start page confirmed, end page partly confirmed (partly-confirmed chapter pages default keeps the cited range)."
+ },
+ {
+  "key": "NguyEtal16a",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Proceedings of the National Academy of Sciences, {USA}",
+    "url": "https://api.crossref.org/works/10.1073/pnas.1507110112",
+    "quote": "\"short-container-title\":[\"Proc. Natl. Acad. Sci. U.S.A.\"]",
+    "extra_evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1073/pnas.1507110112",
+      "quote": "\"container-title\":[\"Proceedings of the National Academy of Sciences\"]"
+     }
+    ]
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the entry's DOI prints container 'Proceedings of the National Academy of Sciences' and short title 'Proc. Natl. Acad. Sci. U.S.A.'; house form confirmed."
+ },
+ {
+  "key": "NilsGard91",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "57--74",
+    "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+    "quote": "Lars-Goran Nilsson and John M. Gardiner      57",
+    "next_start": {
+     "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+     "quote": "Jerome R. Busemeyer                          75"
+    }
+   }
+  },
+  "remove": [],
+  "notes": "Contents page of the book (T&F sample PDF 10.4324/9780203772331): Nilsson & Gardiner chapter at 57, next chapter (Weber, Goldstein & Busemeyer) at 75 -> end 74 (next_start rule). HEAD confirmed."
+ }
+]

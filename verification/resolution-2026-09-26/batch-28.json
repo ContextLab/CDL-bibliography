@@ -1,0 +1,488 @@
+[
+ {
+  "key": "Asch68",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "S E Asch",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Solomon%20E.%20Asch%22%20identifier%3Averbalbehaviorge0000unse_w3v2&hits_per_page=5",
+    "quote": "214\\n{{{SOLOMON E. ASCH}}}"
+   },
+   "pages": {
+    "value": "214--228",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Solomon%20E.%20Asch%22%20identifier%3Averbalbehaviorge0000unse_w3v2&hits_per_page=5",
+    "quote": "214\\n{{{SOLOMON E. ASCH}}}",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22228%20Solomon%22%20identifier%3Averbalbehaviorge0000unse_w3v2&hits_per_page=5",
+      "quote": "228 Solomon}}} E. Asch"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=229%20identifier%3Averbalbehaviorge0000unse_w3v2&hits_per_page=10",
+      "quote": "172\\n214\\n{{{229}}}\\n230"
+     }
+    ]
+   },
+   "title": {
+    "value": "The doctrinal tyranny of associationism: or what is wrong with rote learning",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=Doctrinal%20identifier%3Averbalbehaviorge0000unse_w3v2&hits_per_page=5",
+    "quote": "9 The {{{Doctrinal}}} Tyranny of Associationism: Or What is Wrong with",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=Sotomon%20identifier%3Averbalbehaviorge0000unse_w3v2&hits_per_page=5",
+      "quote": "Associationism: Or What is Wrong with Rote Learning"
+     }
+    ]
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "IA full-text index of Dixon & Horton (1968) scan verbalbehaviorge0000unse_w3v2: contents '9 The Doctrinal Tyranny of Associationism: Or What is Wrong with Rote Learning SOLOMON ASCH'; contents page column '172 214 229 230' (Keppel 172, Asch 214, Part III 229, Bourne 230); chapter-opening page '214 SOLOMON E. ASCH' (same caps form as Keppel's opening 172 and Bourne's 230) and last running head '228 Solomon E. Asch'. HEAD confirmed.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "AtkiJuol74",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Search and decision processes in recognition memory",
+    "url": "https://escholarship.org/content/qt40x8f9s7/qt40x8f9s7.pdf",
+    "quote": "SEARCH AND DECISION PROCESSES IN RECOGNITION MEMORY"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Title as printed on the Stanford IMSSS Technical Report 194 (eScholarship), which states it is 'To be pUblished in: Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.) Contemporary Developments in Mathematical Psychology' (the batch-19 source for authors/editors). HEAD title confirmed.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "BaayEtal95",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "{CELEX2}",
+    "url": "https://api.datacite.org/dois/10.35111/gs6s-gm48",
+    "quote": "\"title\":\"CELEX2\"",
+    "extra_evidence": [
+     {
+      "url": "https://catalog.ldc.upenn.edu/LDC96L14",
+      "quote": "Item Name: CELEX2"
+     }
+    ]
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "The official records (DataCite 10.35111/gs6s-gm48 and LDC catalogue LDC96L14, Baayen, Piepenbrock and Gulikers, Linguistic Data Consortium, Philadelphia, 1995) print the title 'CELEX2'; no official record prints 'The CELEX lexical database' (LDC describes it as 'updated versions of the CELEX lexical databases'). Title set as printed.",
+  "questions": [
+   "A dataset cited by its conventional name ('The CELEX lexical database') whose only registry record prints a different item name ('CELEX2'): use the registered name (done here), or keep the conventional name?"
+  ],
+  "wave": null
+ },
+ {
+  "key": "Bank00",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [
+   "address"
+  ],
+  "notes": "Address = {Claremont, {CA}} is the author's affiliation, not printed as a place of publication in Crossref 10.1111/1467-9280.00254 and not a house field for @article; removed as unconfirmable.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "BarrEtal18",
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "{PLoS} Biology",
+    "url": "https://api.crossref.org/works/10.1371/journal.pbio.2005479",
+    "quote": "\"container-title\":[\"PLOS Biology\"]"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref container-title 'PLOS Biology'; house form {PLoS} Biology. HEAD confirmed.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "Bastvand06",
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Experimental Aging Research",
+    "url": "https://api.crossref.org/works/10.1080/03610730500326291",
+    "quote": "\"container-title\":[\"Experimental Aging Research\"]"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref container-title confirms HEAD journal.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "Beaz96",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "{SWIG}: an easy to use tool for integrating scripting languages with {C} and {C++}",
+    "url": "https://www.usenix.org/legacy/publications/library/proceedings/tcl96/beazley.html",
+    "quote": "SWIG : An Easy to Use Tool For Integrating Scripting Languages",
+    "extra_evidence": [
+     {
+      "url": "https://www.usenix.org/legacy/publications/library/proceedings/tcl96/beazley.html",
+      "quote": "with C and C++"
+     }
+    ]
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "USENIX proceedings page prints 'SWIG : An Easy to Use Tool For Integrating Scripting Languages' ... 'with C and C++'. HEAD confirmed.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "BeckBurg01",
+  "decision": "apply",
+  "new_key": "BeckBurg00",
+  "set": {
+   "year": {
+    "value": "2000",
+    "url": "https://papers.nips.cc/paper_files/paper/2000/file/65fc52ed8f88c81323a418ca94cec2ed-Bibtex.bib",
+    "quote": "year = {2000}",
+    "extra_evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2000/hash/65fc52ed8f88c81323a418ca94cec2ed-Abstract.html",
+      "quote": "<meta name=\"citation_publication_date\" content=\"2000\">"
+     }
+    ]
+   }
+  },
+  "withdraw": [],
+  "remove": [
+   "pages"
+  ],
+  "notes": "NeurIPS proceedings site (official publisher) dates NIPS 13 to the conference year 2000 (default: NIPS conference year, e.g. NIPS 18 = 2005), so year 2000 and the key follows (BeckBurg00, free in HEAD). The site's BibTeX prints 'pages = {}' and the paper PDF carries no page numbers, so pages 96--102 (Curran/MIT print TOC) cannot be confirmed from the official source: removed.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "BirdEtal09",
+  "decision": "apply",
+  "set": {
+   "publisher": {
+    "value": "O'Reilly",
+    "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2010455716&maximumRecords=1&recordSchema=mods",
+    "quote": "O'Reilly"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "LoC LCCN 2010455716 prints the publisher 'O'Reilly'; HEAD 'Reilly Media, Inc.' is a mangled form (apostrophe-O lost). Set to the catalogue form (wave 1 researcher value).",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "Boll98",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "1998",
+    "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98010160&maximumRecords=1&recordSchema=mods",
+    "quote": "c1998"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "LoC LCCN 98010160 (Encyclopedia of biostatistics, eds Armitage and Colton, Wiley) prints 'c1998'. HEAD year confirmed.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "Bord08",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Three dimensions of film narrative",
+    "url": "https://api.crossref.org/works/10.4324/9780203941898-6",
+    "quote": "\"title\":[\"Three Dimensions of Film Narrative\"]"
+   },
+   "booktitle": {
+    "value": "Poetics of Cinema",
+    "url": "https://api.crossref.org/works/10.4324/9780203941898-6",
+    "quote": "\"container-title\":[\"Poetics of Cinema\"]"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref chapter record 10.4324/9780203941898-6 prints title and container title; HEAD confirmed. (Crossref dates this DOI 2012, the T&F e-book, with the print pagination 85-134; print year 2008 from the book's copyright page per the wave-1 researcher.)",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "Bowe72",
+  "decision": "apply",
+  "set": {
+   "chapter": {
+    "value": "5",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22ENCODING%20VARIABILITY%22%20identifier%3Acodingprocessesi0000unse&hits_per_page=10",
+    "quote": "5  STIMULUS-SAMPLING  THEORY  OF"
+   },
+   "pages": {
+    "value": "85--124",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22ENCODING%20VARIABILITY%22%20identifier%3Acodingprocessesi0000unse&hits_per_page=10",
+    "quote": "Cordon  H.  Bower .  85",
+    "next_start": {
+     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=125%20identifier%3Acodingprocessesi0000unse&hits_per_page=10",
+     "quote": "Neal  F.  Johnson  .  {{{125}}}"
+    }
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "IA contents of Coding Processes in Human Memory (codingprocessesi0000unse): '5 STIMULUS-SAMPLING THEORY OF ENCODING VARIABILITY, Cordon H. Bower . 85' and the next chapter '... CONCEPT OF A MEMORY CODE, Neal F. Johnson . 125'. HEAD 85--121 is wrong: p. 123 still carries Bower's running head 'THEORY OF ENCODING VARIABILITY 123' in his reference list; no page prints the end, so end = next start - 1 = 124.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "BranEtal79",
+  "decision": "apply",
+  "set": {
+   "chapter": {
+    "value": "15",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Chapter%2015%22%20identifier%3Aisbn_9780470266519&hits_per_page=10",
+    "quote": "{{{Chapter  15}}}  by  Bransford, Franks,  Morris,  and  Stein"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "IA full text of Levels of Processing in Human Memory (isbn_9780470266519) cross-references 'Chapter 15 by Bransford, Franks, Morris, and Stein' (also 'Bransford et al., Chapter 15'). HEAD chapter confirmed.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "Brin65",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Cognitive sets, speed and accuracy of performance in the elderly",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Cognitive%20sets%2C%20speed%20and%20accuracy%22&hits_per_page=10",
+    "quote": "{{{COGNITIVE SETS, SPEED AND ACCURACY}}} OF PERFORMANCE IN THE ELDERLY"
+   },
+   "pages": {
+    "value": "114--149",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Cognitive%20sets%2C%20speed%20and%20accuracy%22&hits_per_page=10",
+    "quote": "is gratefully acknowledged.\\n114",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=149%20identifier%3Abehavioragingner0000jame&hits_per_page=10",
+      "quote": "Cognitive Sets, Speed and. Accuracy of Performance {{{149}}}"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=150%20identifier%3Abehavioragingner0000jame&hits_per_page=10",
+      "quote": "Klaus F. Riegel ........ {{{150}}}"
+     }
+    ]
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "IA full text of Welford & Birren (1965) scans behavioragingner0000jame/0000atwe: chapter heading '8 COGNITIVE SETS, SPEED AND ACCURACY OF PERFORMANCE IN THE ELDERLY JOSEPH F. BRINLEY'; opening page ends '...is gratefully acknowledged. 114'; last running head 'Cognitive Sets, Speed and. Accuracy of Performance 149'; contents list the next chapter (Riegel) at 150. HEAD confirmed.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "BrinCrag72",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "28P--29P",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=4625702&rettype=medline&retmode=text",
+    "quote": "PG  - 28P-29P"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "PubMed 4625702 prints J Physiol 223(1):28P-29P (1972 May); HEAD '28' is the first page only. Set to the printed range. The P-pages are the Proceedings of the Physiological Society section; PubMed types it 'Journal Article' and nothing reached shows it is a meeting abstract, so it is not dropped.",
+  "questions": [
+   "Journal of Physiology 'P' pages (Proceedings of the Physiological Society communications, e.g. BrinCrag72 28P-29P): treat as conference abstracts (drop) or as journal articles (keep)?"
+  ],
+  "wave": null
+ },
+ {
+  "key": "Bron95",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "201--212",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=201%20identifier%3Abiomedicalengine0000unse_u8g7&hits_per_page=10",
+    "quote": "by CRC Press, Inc. {{{201}}}",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=212%20identifier%3Abiomedicalengine0000unse_u8g7&hits_per_page=10",
+      "quote": "{{{212}}} Bioelectric Phenomena\\nReferences\\nBrazier M. 1968"
+     }
+    ]
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "IA full text of The Biomedical Engineering Handbook (1995, biomedicalengine0000unse_u8g7): chapter-opening page footer '...by CRC Press, Inc. 201' (index 'Electroencephalography, principles of, 201-211'); p. 212 is the chapter's reference list ('212 Bioelectric Phenomena References Brazier M. 1968'). HEAD 201--212 confirmed.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "BrowChat95",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "454--459",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Hebbian%20Synaptic%20Plasticity%22%20identifier%3Ahandbookofbraint0000unse&hits_per_page=10",
+    "quote": "Multidimensional  Modeling  450 {{{Hebbian  Synaptic  Plasticity}}}  454",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=459%20identifier%3Ahandbookofbraint0000unse&hits_per_page=10",
+      "quote": "Hebbian  Synaptic  Plasticity:  Comparative  Aspects  {{{459}}}\\nJohnston,  D.,  Williams,  S.,  Jaffe,  D.  B., "
+     }
+    ]
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "IA scan of the 1995 Handbook (handbookofbraint0000unse): contents 'Hebbian Synaptic Plasticity 454'; page 459 (running head of the next article, which starts on that page) still carries this article's alphabetical reference list ('Hebb ... Organization of Behavior', 'Jaffe, D. B., Fisher, S. A., and Brown, T. H., 1994', 'Johnston, D., Williams, S., Jaffe, D. B.'), so the article runs on to 459. HEAD 454--459 confirmed (articles in this handbook start mid-page).",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "Bull90",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "J C Bullington",
+    "url": "https://psycnet.apa.org/record/1991-00341-001",
+    "quote": "Bullington, J. C. (1990)."
+   },
+   "title": {
+    "value": "Mood congruent memory: a replication of symmetrical effects for both positive and negative moods",
+    "url": "https://psycnet.apa.org/record/1991-00341-001",
+    "quote": "Mood congruent memory: A replication of symmetrical effects for both positive and negative moods."
+   },
+   "journal": {
+    "value": "Journal of Social Behavior and Personality",
+    "url": "https://psycnet.apa.org/record/1991-00341-001",
+    "quote": "Journal of Social Behavior & Personality, 5(4), 123–134."
+   },
+   "volume": {
+    "value": "5",
+    "url": "https://psycnet.apa.org/record/1991-00341-001",
+    "quote": "Journal of Social Behavior & Personality, 5(4), 123–134."
+   },
+   "number": {
+    "value": "4",
+    "url": "https://psycnet.apa.org/record/1991-00341-001",
+    "quote": "Journal of Social Behavior & Personality, 5(4), 123–134."
+   },
+   "pages": {
+    "value": "123--134",
+    "url": "https://psycnet.apa.org/record/1991-00341-001",
+    "quote": "Journal of Social Behavior & Personality, 5(4), 123–134."
+   },
+   "year": {
+    "value": "1990",
+    "url": "https://psycnet.apa.org/record/1991-00341-001",
+    "quote": "Bullington, J. C. (1990)."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "APA PsycInfo record 1991-00341-001 read in a real browser (plain fetch gets a bot wall): 'Bullington, J. C. (1990). Mood congruent memory: A replication of symmetrical effects for both positive and negative moods. Journal of Social Behavior & Personality, 5(4), 123–134.' Abstracting-index record accepted (round 2). Title and author also in the IA full text of the Sage reprint Mood and Memory (Kuiken, 1991; isbn_0803940939), 'Joseph C. Bullington, Psychology Department, Georgia Southern College', whose book pagination differs. No DOI.",
+  "questions": [
+   "An entry whose researcher identity quote was browser-read (no saved body), like Bull90 and BunnEtal99: may a resolution row's browser/scan title quote stand in as identity, as it does for entries researched only by a resolution?"
+  ],
+  "wave": null
+ },
+ {
+  "key": "BunnEtal99",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "J K Bunnell and D M Baken and L A Richards-Ward",
+    "url": "https://www.psychology.org.nz/journal-archive/NZJP-Vol281-1999-4-Bunnell.pdf",
+    "quote": "Julie K. Bunnell Donald M. Baken Llewellyn A. Richards-Ward"
+   },
+   "title": {
+    "value": "The effect of age on metamemory for working memory",
+    "url": "https://api.openalex.org/works/W1785987719",
+    "quote": "\"title\":\"The effect of age on metamemory for working memory.\""
+   },
+   "journal": {
+    "value": "New Zealand Journal of Psychology",
+    "url": "https://www.psychology.org.nz/journal-archive/NZJP-Vol281-1999-4-Bunnell.pdf",
+    "quote": "New Zealand Journal of Psychology Vol. 28 No. 1 June 1999"
+   },
+   "volume": {
+    "value": "28",
+    "url": "https://www.psychology.org.nz/journal-archive/NZJP-Vol281-1999-4-Bunnell.pdf",
+    "quote": "New Zealand Journal of Psychology Vol. 28 No. 1 June 1999"
+   },
+   "number": {
+    "value": "1",
+    "url": "https://www.psychology.org.nz/journal-archive/NZJP-Vol281-1999-4-Bunnell.pdf",
+    "quote": "New Zealand Journal of Psychology Vol. 28 No. 1 June 1999"
+   },
+   "year": {
+    "value": "1999",
+    "url": "https://www.psychology.org.nz/journal-archive/NZJP-Vol281-1999-4-Bunnell.pdf",
+    "quote": "New Zealand Journal of Psychology Vol. 28 No. 1 June 1999"
+   },
+   "pages": {
+    "value": "23--29",
+    "url": "https://www.psychology.org.nz/journal-archive/NZJP-Vol281-1999-4-Bunnell.pdf",
+    "quote": "New Zealand Journal of Psychology Vol. 28 No. 1 June 1999 • 23 •",
+    "extra_evidence": [
+     {
+      "url": "https://www.psychology.org.nz/journal-archive/NZJP-Vol281-1999-4-Bunnell.pdf",
+      "quote": "New Zealand Journal of Psychology Vol. 28 No. 1 June 1999 • 29 •"
+     }
+    ]
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Publisher's image-only scan (psychology.org.nz NZJP-Vol281-1999-4-Bunnell.pdf, 7 pages), quotes transcribed from a scan (page images 1 and 7 rendered and read 2026-09-27): byline 'Julie K. Bunnell / Donald M. Baken / Llewellyn A. Richards-Ward', footer 'New Zealand Journal of Psychology Vol. 28 No. 1 June 1999' with folios 23 (first page) and 29 (last page, references). Title also in the fetchable OpenAlex record W1785987719. HEAD confirmed.",
+  "wave": null,
+  "questions": []
+ },
+ {
+  "key": "Buse01",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "147--191",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=147%20identifier%3Acomputationalgeo0000unse&hits_per_page=10",
+    "quote": "revolves around the\\n{{{147}}}\\n148 BUSEY",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=191%20identifier%3Acomputationalgeo0000unse&hits_per_page=10",
+      "quote": "FORMAL MODELS OF FAMILIARITY AND MEMORABILITY {{{191}}}"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=193%20identifier%3Acomputationalgeo0000unse&hits_per_page=10",
+      "quote": "Vii\\n39\\n83\\n115\\n147\\n{{{193}}}"
+     }
+    ]
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "IA full text of the 2001 Erlbaum book (computationalgeo0000unse): contents page numbers 'Vii 39 83 115 147 193' (ch. 5 Busey at 147, ch. 6 at 193); p. 147 followed by '148 BUSEY'; p. 191 running head 'FORMAL MODELS OF FAMILIARITY AND MEMORABILITY 191' over the reference list (192 blank). HEAD 147--191 confirmed; the Crossref 2005 reissue (154-198) is a different edition.",
+  "wave": null,
+  "questions": []
+ }
+]

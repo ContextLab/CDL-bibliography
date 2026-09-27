@@ -292,3 +292,4 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - (default) When the book itself (contents/full text) confirms a chapter's start page, the author's own later publication list or reference list may supply the chapter's remaining fields (author, title, end page) (RaaiShif81b); a reference list alone, without the book's confirmation, is still not enough.
 - (default) Notices that cannot be read (paywall/CAPTCHA/no notice DOI) where Crossref and Europe PMC record no retraction or expression of concern: treat as errata; the entry is verified with a `notice_unread` flag and listed for the user (verification/resolution-2026-09-27/NOTICES.md).
 - REPORT to user: GrilEtal06b — a correction (not a retraction) that withdraws the paper's headline claim.
+- (default) Registry deposit codes that are not printed issue labels (SAGE `3_suppl`) are not evidence for Number; if the printed label ("3, Pt. 2") cannot be confirmed, remove Number.

@@ -1,0 +1,314 @@
+[
+ {
+  "key": "GerfWils96",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "address": {
+    "value": "Amsterdam",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=8&recordSchema=marcxml&query=dc.title%3D%22integrated%20systems%20of%20the%20CNS%22",
+    "quote": "Amsterdam ;"
+   },
+   "volume": {
+    "value": "12",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=8&recordSchema=marcxml&query=dc.title%3D%22integrated%20systems%20of%20the%20CNS%22",
+    "quote": "v. &lt;7, 12&gt;",
+    "extra_evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=8&recordSchema=marcxml&query=dc.title%3D%22integrated%20systems%20of%20the%20CNS%22",
+      "quote": "Handbook of chemical neuroanatomy ;"
+     }
+    ]
+   }
+  },
+  "remove": [],
+  "notes": "LoC 87030342 (Integrated systems of the CNS, Bjorklund/Hokfelt/Swanson; Amsterdam ; New York : Elsevier; series Handbook of chemical neuroanatomy v. <7, 12>, pt. 3 Cerebellum, basal ganglia, olfactory system) confirms the place and volume 12. Crossref's chapter record names the container 'Integraded systems of the CNS, part III - Cerebellum, basal ganglia, olfactory system', i.e. pt. 3 = v. 12."
+ },
+ {
+  "key": "GoebLewa91",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "509--528",
+    "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+    "quote": "R. Patrick Goebel and Stephan Lewandowsky 509",
+    "next_start": {
+     "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9780203772331&type=googlepdf",
+     "quote": "BIBLIOGRAPHY OF BENNET B. MURDOCK 529"
+    }
+   }
+  },
+  "remove": [],
+  "notes": "The 1991 contents page (T&F preview PDF of the facsimile e-book) prints the chapter at 509 and the next item, the Bibliography of Bennet B. Murdock, at 529; no source prints the end page (the e-book's Crossref range 523-542 is offset digital pagination, whose end 542-14 = 528 agrees), so the end page is 529-1 = 528 (user rule), not the cited 527."
+ },
+ {
+  "key": "GrosMorl85",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "address": {
+    "value": "Singapore",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=8&recordSchema=marcxml&query=dc.title%3D%22lectures%20on%20recent%20results%22",
+    "quote": "Singapore ;"
+   }
+  },
+  "remove": [],
+  "notes": "LoC 85009249: Mathematics + physics : lectures on recent results / editor, L. Streit. Singapore ; Philadelphia : World Scientific, c1985-c1986."
+ },
+ {
+  "key": "HalgEtal77a",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Epilepsia",
+    "url": "https://api.crossref.org/works/10.1111/j.1528-1157.1977.tb05590.x",
+    "quote": "\"container-title\":[\"Epilepsia\"]"
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the cited DOI names the journal."
+ },
+ {
+  "key": "Hara96",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "203--214",
+    "url": "https://archive.org/details/computernetworki0000unse_q8a0/page/n7/mode/2up?q=Hypermedia",
+    "quote": "Online Education: The Future 203 Linda Harasim",
+    "next_start": {
+     "url": "https://archive.org/details/computernetworki0000unse_q8a0/page/n7/mode/2up?q=Hypermedia",
+     "quote": "Hypermedia and Higher Education 215"
+    }
+   }
+  },
+  "remove": [],
+  "notes": "Contents page (n8) of the Internet Archive copy (lending-restricted item; read in a real browser via its search-inside view, 2026-09-27): 'Online Education: The Future 203 Linda Harasim' and the next chapter 'Hypermedia and Higher Education 215 J. L. Lemke'; end page = 215-1 = 214 (user rule), so the cited 203--214 stands."
+ },
+ {
+  "key": "Hass16",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "howpublished": {
+    "value": "\\url{https://www.ted.com/talks/uri_hasson_this_is_your_brain_on_communication}",
+    "url": "https://www.ted.com/talks/uri_hasson_this_is_your_brain_on_communication",
+    "quote": "Uri Hasson: This is your brain on communication | TED Talk"
+   }
+  },
+  "remove": [],
+  "notes": "The cited URL is the live TED talk page (title 'Uri Hasson: This is your brain on communication | TED Talk')."
+ },
+ {
+  "key": "Hawk99",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "S W Hawking",
+    "url": "https://www.hawking.org.uk/in-words/lectures/does-god-play-dice",
+    "quote": "This lecture is the intellectual property of Professor S.W.Hawking"
+   },
+   "howpublished": {
+    "value": "\\url{https://www.hawking.org.uk/in-words/lectures/does-god-play-dice}",
+    "url": "https://www.hawking.org.uk/in-words/lectures/does-god-play-dice",
+    "quote": "This lecture is the intellectual property of Professor S.W.Hawking"
+   }
+  },
+  "remove": [],
+  "notes": "Stephen Hawking Estate page for the lecture prints 'Professor S.W.Hawking' (all initials). The site files it under 'Academic Lectures' and nowhere prints 'Public lecture', so the unprinted descriptor is dropped from howpublished (URL only, as Hass16)."
+ },
+ {
+  "key": "HealEtal08",
+  "wave": null,
+  "decision": "apply",
+  "set": {},
+  "remove": [
+   "organization"
+  ],
+  "notes": "Organization 'Amsterdam: Elsevier' is not an organization of the work but a place+publisher string; the publisher Elsevier is already in Publisher (Crossref 10.1016/s0079-6123(07)00022-2 publisher 'Elsevier'). Removed as unprinted."
+ },
+ {
+  "key": "Heat03",
+  "wave": null,
+  "decision": "apply",
+  "set": {},
+  "remove": [
+   "address"
+  ],
+  "notes": "Address 'Callaghan, AU' on a journal article is the author's affiliation (University of Newcastle, Callaghan), not a field of the citation; removed."
+ },
+ {
+  "key": "HeatEtal93",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "R K Heaton and G J Chelune and J L Talley and G G Kay and G Curtiss",
+    "url": "https://www.parinc.com/products/WCST",
+    "quote": "Professional Manual by Robert K. Heaton, PhD, Gordon J. Chelune, PhD, Jack L. Talley, PhD, Gary G. Kay, PhD, and Glenn Curtiss, PhD"
+   }
+  },
+  "remove": [],
+  "notes": "The publisher's (PAR) WCST product page names the five manual authors with middle initials; LoC 94100793 ('Robert K. Heaton ... [et al.]', rev. and expanded, c1993) confirms the edition and first author."
+ },
+ {
+  "key": "Herb91",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "address": {
+    "value": "Langensalza",
+    "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+    "quote": "LANGENSALZA, DRUCK und VERLAG von HERMANN BEYER & SÖHNE. 1891."
+   },
+   "pages": {
+    "value": "376--377",
+    "url": "https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt",
+    "quote": "Von den Vorstellungen etc. 3. Cap. 377 flufs. Sie kann gleichsam",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/download/johannfriedrichh04unse_0/page/n403.jpg",
+      "quote": "376 II. Lehrbuch zur Psychologie."
+     }
+    ]
+   }
+  },
+  "remove": [],
+  "notes": "Kehrbach vol. 4 title page (IA djvu text) prints LANGENSALZA. Pages: folio 377 is in the djvu OCR; folio 376 (even-page head '376 II. Lehrbuch zur Psychologie.', OCR'd as '1') is transcribed from the scan page image n403 (image-only)."
+ },
+ {
+  "key": "Hint84",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "volume": {
+    "value": "16",
+    "url": "https://api.crossref.org/works/10.3758/bf03202365",
+    "quote": "\"volume\":\"16\""
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the cited DOI gives volume 16 (issue 2, pages 96-101)."
+ },
+ {
+  "key": "HowaEtal07b",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "121--141",
+    "url": "https://memory.psych.upenn.edu/files/pages/pubs.html",
+    "quote": "Handbook of latent semantic analysis &nbsp;(pp.&nbsp;121&ndash;141)."
+   }
+  },
+  "remove": [],
+  "notes": "The Kahana lab publication list prints '(pp. 121-141)'; the lab's image-only scan of the printed chapter (memory.psych.upenn.edu/files/pubs/HowaEtal07c.pdf) agrees: chapter opening folio 121, last reference page headed '7. SEMANTIC STRUCTURE AND EPISODIC MEMORY 141'. Crossref's chapter record has no pages."
+ },
+ {
+  "key": "HuggEtal06",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "organization": {
+    "value": "IEEE",
+    "url": "https://api.crossref.org/works/10.1109/icassp.2006.1659988",
+    "quote": "\"publisher\":\"IEEE\""
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the cited DOI gives publisher IEEE, the proceedings' issuing organization."
+ },
+ {
+  "key": "HutcEtal04",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "The Journal of Neuroscience",
+    "url": "https://api.crossref.org/works/10.1523/jneurosci.3366-04.2004",
+    "quote": "\"container-title\":[\"The Journal of Neuroscience\"]"
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the cited DOI names the journal."
+ },
+ {
+  "key": "IzauBoni01",
+  "wave": null,
+  "decision": "apply",
+  "set": {},
+  "remove": [
+   "volume",
+   "pages"
+  ],
+  "notes": "No official record prints a volume or pages: OpenEdition (journals.openedition.org/cpl/201), Crossref and OpenAlex give only the issue designation '2001/3, 6' (third issue of 2001, issue no. 6); the online article and its PDF carry no print pagination; HAL has no record. Unconfirmable optional fields removed (user rule).",
+  "questions": [
+   "Online-first journals that number issues only as 'YYYY/n, N' (OpenEdition's Current Psychology Letters) with no volume and no print pages: should Number carry the running issue number (6), or are volume/number/pages all left out, as done here?"
+  ]
+ },
+ {
+  "key": "JacoEtal10b",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "The Journal of Neuroscience",
+    "url": "https://www.context-lab.com/publications",
+    "quote": "The Journal of Neuroscience , 30: Online."
+   }
+  },
+  "remove": [],
+  "notes": "Online eLetter in J Neurosci (no DOI/PubMed record); the lab publication page, the source already used for volume 30, names the journal."
+ },
+ {
+  "key": "Jenk79",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "J J Jenkins",
+    "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315796192-26/four-points-remember-tetrahedral-model-memory-experiments-james-jenkins",
+    "quote": "<meta property=\"citation_author\" content=\"James J. Jenkins\">"
+   },
+   "pages": {
+    "value": "429--446",
+    "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315796192-26/four-points-remember-tetrahedral-model-memory-experiments-james-jenkins",
+    "quote": "<meta name=\"citation_firstpage\" content=\"429\"><meta name=\"citation_lastpage\" content=\"446\">"
+   }
+  },
+  "remove": [],
+  "notes": "Publisher (Taylor & Francis) chapter page for the facsimile reissue (DOI 10.4324/9781315796192-26, 'First Published 1979'), read in a real browser (Cloudflare blocks scripts): byline 'James J. Jenkins', citation_firstpage 429, citation_lastpage 446 (the 1979 print pagination; same form as the cached Tulving chapter page, 405-428). The -33 Crossref record's 445-462 is the reissue's offset pagination and is not used; no DOI added (different edition)."
+ },
+ {
+  "key": "JerbEtal09c",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "International Review of Neurobiology",
+    "url": "https://api.crossref.org/works/10.1016/s0074-7742(09)86012-1",
+    "quote": "\"container-title\":[\"International Review of Neurobiology\"]"
+   }
+  },
+  "remove": [],
+  "notes": "Crossref record of the cited DOI names the serial."
+ },
+ {
+  "key": "JianEtal24",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "{arXiv}",
+    "url": "https://arxiv.org/abs/2401.04088",
+    "quote": "arXiv:2401.04088"
+   }
+  },
+  "remove": [],
+  "notes": "arXiv abstract page of the cited preprint (house form Journal = {arXiv})."
+ }
+]
