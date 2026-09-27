@@ -301,7 +301,53 @@
     "PresEtal93": "PresEtal92",
     "TuftGrav83": "Tuft83"
    }
+  },
+  {
+   "batch": "wave8",
+   "removed": [
+    "Crai77",
+    "KaneHash95",
+    "McGi63"
+   ],
+   "renames": {
+    "HawkBlak05": "HawkBlak04",
+    "Wern84": "Wern94",
+    "Ship46": "Ship40",
+    "BendPier01": "BendPier00",
+    "Chos05": "ChosEtal05",
+    "KurzEtal90": "Kurz90",
+    "TellPalm98": "TellPalm99",
+    "RaveEtal98": "PenrRave36",
+    "LeeWang08": "LeeWang09",
+    "SkagEtal93": "SkagEtal92",
+    "SteyEtal04": "SteyEtal05",
+    "Howa08": "Howa09",
+    "BoydEtal14": "BoydEtal15",
+    "NichHolm03": "NichHolm04",
+    "MontEtal04": "MontEtal03",
+    "Luce59": "Luce63",
+    "GoldEtal08": "GoldEtal09",
+    "Stey01": "Stey03",
+    "MandEtal89": "Mand89",
+    "Herb34": "Herb91",
+    "Shim94": "Shim95b",
+    "MannEtal15": "MannEtal14c",
+    "John02": "John99",
+    "Heal14": "Heal16",
+    "ZimmEtal11": "ZimeEtal11",
+    "CrowGree98": "CrowGree00",
+    "HashEtal07": "HashEtal08",
+    "ShapOlto95": "ShapOlto94",
+    "Frie08a": "Frie12",
+    "BravEtal07": "BravEtal08",
+    "KaneEtal07": "KaneEtal08",
+    "Baas05": "StraEtal04",
+    "CapoEtal17": "CapoEtal16",
+    "ChatGPT": "Open22",
+    "Shim95": "Shim95a",
+    "Frie08b": "Frie08"
+   }
   }
  ],
- "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave7-staged.bib"
+ "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave8-staged.bib"
 }

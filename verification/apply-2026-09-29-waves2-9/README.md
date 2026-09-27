@@ -236,3 +236,4 @@ Library counts come from `bibcheck.py crossref status cdl.bib`.
 | wave5 | 195: 194 edited, 10 renamed (1 rename only), 0 deleted | 0 | 210 / 0 | 675 / 0 | 1008 / 733 | 6,398 entries: 4,857 verified, 1,510 needs_review, 31 human |
 | wave6 | 199: 198 edited, 15 renamed (1 rename only), 0 deleted; needs_user resolved: MairEtal09a -> MairEtal09 | 0 | 215 / 0 | 674 / 0 | 1000 / 724 | 6,398 entries: 4,950 verified, 1,417 needs_review, 31 human |
 | wave7 | 384: 381 edited, 35 renamed (0 rename only), 3 deleted (PailEtal00, MannEtal97, Kele99); needs_user resolved: McCaEtal06 -> McCaEtal06, LegaEtal11a -> LegaEtal11 | 0 | 478 / 0 | 1429 / 0 | 1350 / 701 | 6,395 entries: 5,084 verified, 1,280 needs_review, 31 human |
+| wave8 | 206: 201 edited, 36 renamed (2 rename only), 3 deleted (KaneHash95, McGi63, Crai77) | 0 | 271 / 0 | 1000 / 0 | 1075 / 684 | 6,392 entries: 5,092 verified, 1,269 needs_review, 31 human |

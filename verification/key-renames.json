@@ -1100,5 +1100,257 @@
   "date": "2026-09-26",
   "reason": "wave7: key does not follow the corrected metadata; resolution (batch-17): key Tuft83 confirmed (wave7 merged.json (correction; resolution apply batch-17))",
   "commit": "wave7"
+ },
+ {
+  "old_key": "HawkBlak05",
+  "new_key": "HawkBlak04",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-17): key HawkBlak04 confirmed (wave8 merged.json (ambiguous; resolution apply batch-17))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Wern84",
+  "new_key": "Wern94",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-17): key Wern94 confirmed (wave8 merged.json (correction; resolution apply batch-17))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Ship46",
+  "new_key": "Ship40",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-17): key Ship40 confirmed (wave8 merged.json (ambiguous; resolution apply batch-17))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "BendPier01",
+  "new_key": "BendPier00",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-17): key BendPier00 confirmed (wave8 merged.json (correction; resolution apply batch-17))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Chos05",
+  "new_key": "ChosEtal05",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-18): key ChosEtal05 confirmed (wave8 merged.json (correction; resolution apply batch-18))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "KurzEtal90",
+  "new_key": "Kurz90",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-18): key Kurz90 confirmed (wave8 merged.json (correction; resolution apply batch-18))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "TellPalm98",
+  "new_key": "TellPalm99",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-18): key TellPalm99 confirmed (wave8 merged.json (ambiguous; resolution apply batch-18))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "RaveEtal98",
+  "new_key": "PenrRave36",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-18): key PenrRave36 confirmed (wave8 merged.json (ambiguous; resolution apply batch-18))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "LeeWang08",
+  "new_key": "LeeWang09",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-18): key LeeWang09 confirmed (wave8 merged.json (correction; resolution apply batch-18))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "SkagEtal93",
+  "new_key": "SkagEtal92",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-18): key SkagEtal92 confirmed (wave8 merged.json (verified; resolution apply batch-18))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "SteyEtal04",
+  "new_key": "SteyEtal05",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-19): key SteyEtal05 confirmed (wave8 merged.json (correction; resolution apply batch-19))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Howa08",
+  "new_key": "Howa09",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-20): key Howa09 confirmed (wave8 merged.json (correction; resolution apply batch-20))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "BoydEtal14",
+  "new_key": "BoydEtal15",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-20): key BoydEtal15 confirmed (wave8 merged.json (correction; resolution apply batch-20))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "NichHolm03",
+  "new_key": "NichHolm04",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-20): key NichHolm04 confirmed (wave8 merged.json (correction; resolution apply batch-20))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "MontEtal04",
+  "new_key": "MontEtal03",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-20): key MontEtal03 confirmed (wave8 merged.json (correction; resolution apply batch-20))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Luce59",
+  "new_key": "Luce63",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-20): key Luce63 confirmed (wave8 merged.json (correction; resolution apply batch-20))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "GoldEtal08",
+  "new_key": "GoldEtal09",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-20): key GoldEtal09 confirmed (wave8 merged.json (correction; resolution apply batch-20))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Stey01",
+  "new_key": "Stey03",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-20): key Stey03 confirmed (wave8 merged.json (ambiguous; resolution apply batch-20))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "MandEtal89",
+  "new_key": "Mand89",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-21): key Mand89 confirmed (wave8 merged.json (correction; resolution apply batch-21))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Herb34",
+  "new_key": "Herb91",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-21): key Herb91 confirmed (wave8 merged.json (correction; resolution apply batch-21))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Shim94",
+  "new_key": "Shim95b",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; Shim95 is taken by a different work (Shim95); house suffix rule: Shim95 -> Shim95a, new entry Shim95b; resolution (batch-22): key Shim95b confirmed (wave8 merged.json (correction; resolution apply batch-22))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "MannEtal15",
+  "new_key": "MannEtal14c",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; MannEtal14 is taken by a different work (MannEtal14a, MannEtal14b); resolution (batch-22): key MannEtal14c confirmed (wave8 merged.json (correction; resolution apply batch-22))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "John02",
+  "new_key": "John99",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-22): key John99 confirmed (wave8 merged.json (correction; resolution apply batch-22))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Heal14",
+  "new_key": "Heal16",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-22): key Heal16 confirmed (wave8 merged.json (correction; resolution apply batch-22))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "ZimmEtal11",
+  "new_key": "ZimeEtal11",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-22): key ZimeEtal11 confirmed (wave8 merged.json (correction; resolution apply batch-22))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "CrowGree98",
+  "new_key": "CrowGree00",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-22): key CrowGree00 confirmed (wave8 merged.json (correction; resolution apply batch-22))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "HashEtal07",
+  "new_key": "HashEtal08",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-23): key HashEtal08 confirmed (wave8 merged.json (correction; resolution apply batch-23))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "ShapOlto95",
+  "new_key": "ShapOlto94",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-23): key ShapOlto94 confirmed (wave8 merged.json (correction; resolution apply batch-23))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Frie08a",
+  "new_key": "Frie12",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-23): key Frie12 confirmed (wave8 merged.json (correction; resolution apply batch-23))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "BravEtal07",
+  "new_key": "BravEtal08",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-23): key BravEtal08 confirmed (wave8 merged.json (correction; resolution apply batch-23))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "KaneEtal07",
+  "new_key": "KaneEtal08",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-23): key KaneEtal08 confirmed (wave8 merged.json (correction; resolution apply batch-23))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Baas05",
+  "new_key": "StraEtal04",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-23): key StraEtal04 confirmed (wave8 merged.json (ambiguous; resolution apply batch-23))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "CapoEtal17",
+  "new_key": "CapoEtal16",
+  "date": "2026-09-26",
+  "reason": "wave8: key does not follow the corrected metadata; resolution (batch-23): key CapoEtal16 confirmed (wave8 merged.json (correction; resolution apply batch-23))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "ChatGPT",
+  "new_key": "Open22",
+  "date": "2026-09-26",
+  "reason": "wave8: key already differed from the rule before this correction; resolution (batch-23): key Open22 confirmed (wave8 merged.json (correction; resolution apply batch-23))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Shim95",
+  "new_key": "Shim95a",
+  "date": "2026-09-26",
+  "reason": "wave8: suffix rule: Shim94 becomes Shim95b (wave8 key plan of Shim94 (collision, house suffix rule))",
+  "commit": "wave8"
+ },
+ {
+  "old_key": "Frie08b",
+  "new_key": "Frie08",
+  "date": "2026-09-26",
+  "reason": "wave8: suffix rule: Frie08a renamed to Frie12 (wave-1 README: 'Frie08b should become Frie08') (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave8"
  }
 ]

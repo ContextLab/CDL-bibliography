@@ -609,5 +609,26 @@
   "decision_source": "verification/resolution-2026-09-26/batch-17.json (drop; post-check research-2026-09-25/wave7/merged.json): 1999 Charles University diploma thesis has no catalogue or index record; rule 1: drop.",
   "date": "2026-09-26",
   "batch": "wave7"
+ },
+ {
+  "key": "KaneHash95",
+  "reason": "known only from reference lists of other publications (reference-list default: not a verifiable record); no scan or index record of the 1995 Encyclopedia of Aging (2nd ed) entry; OpenAlex search found none",
+  "decision_source": "verification/resolution-2026-09-26/batch-20.json (drop; post-check research-2026-09-25/wave8/merged.json): Entry evidenced by the reference list of Working Memory and Human Cognition (OUP 1996, Hasher a co-author): 'Kane, M. J., & Hasher, L. (in press). Interference. In G. Maddox (Ed...'; the 2006 Encyclopedia of Aging also cites 'previous entries (Kane & Hasher, 1995...)'. Host book LoC 2nd ed. c1995. Pages 514--516 not printed in any source reached: removed (optional-field rule). Apply edition/editor post-check. RECONCILED 2026-09-26: Host book is catalogued, but the chapter itself has no catalogue, contents-page or abstracting-index record; reference-list citations do not count (default, WallEtal57 precedent).",
+  "date": "2026-09-26",
+  "batch": "wave8"
+ },
+ {
+  "key": "McGi63",
+  "reason": "known only from reference lists of other publications (reference-list default: not a verifiable record); IA full text of Handbook of Mathematical Psychology vol II (handbookofmathem017893mbp) has no vol I contents; vol I scans lending-only; OpenAlex/Semantic Scholar rate-limited or no record",
+  "decision_source": "verification/resolution-2026-09-26/batch-20.json (drop; post-check research-2026-09-25/wave8/merged.json): Host volume confirmed (LoC; Science review: vol. 1, Wiley, New York, 1963). Chapter author/title/pages confirmed only by printed reference lists (vol. I scans lending-only; Scholar CAPTCHA): ERIC ED086305 'McGill, W. J. Stochastic latency mechanisms. In R. D. Luce, R. R. Bush ... Vol. I. New York: Wiley, 1963. Pp. 309-360.' (IA full-text search); also Mathematics in the Behavioral and Social Sciences 1970, Binocular Vision 1991. Accepted as index-level evidence like DaPo67. RECONCILED 2026-09-26: Host book is catalogued, but the chapter itself has no catalogue, contents-page or abstracting-index record; reference-list citations do not count (default, WallEtal57 precedent).",
+  "date": "2026-09-26",
+  "batch": "wave8"
+ },
+ {
+  "key": "Crai77",
+  "reason": "known only from reference lists of other publications (reference-list default: not a verifiable record); no scan of the 1977 Handbook of the Psychology of Aging; OpenAlex search (top 50) has no record",
+  "decision_source": "verification/resolution-2026-09-26/batch-20.json (drop; post-check research-2026-09-25/wave8/merged.json): Host book confirmed by LoC 77001991 (Birren & Schaie, Van Nostrand Reinhold, c1977). Chapter confirmed by printed reference lists (no scan of the 1977 edition; Scholar CAPTCHA): DTIC ADA133594 'Craik, F. I. M. 1977. Age differences in human memory. In: J. E. Birren and K. ... Van Nostrand Reinhold Co., pp 384-420', and Brain Function in Old Age (1979) with the same pages. HEAD matches. RECONCILED 2026-09-26: Host book is catalogued, but the chapter itself has no catalogue, contents-page or abstracting-index record; reference-list citations do not count (default, WallEtal57 precedent).",
+  "date": "2026-09-26",
+  "batch": "wave8"
  }
 ]
