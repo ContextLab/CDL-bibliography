@@ -235,7 +235,28 @@
     "HankEtal08": "HankEtal09b",
     "HankEtal09": "HankEtal09a"
    }
+  },
+  {
+   "batch": "wave6",
+   "removed": [],
+   "renames": {
+    "Arch11b": "Arch12",
+    "AmarEtal10": "AmarEtal00",
+    "FujiGrab05": "FujiGray05",
+    "HaynEtal09": "HaynEtal11",
+    "Mosc95": "MoscEtal95",
+    "GrunSher01": "GrunSher02",
+    "GarrEtal12": "GarrEtal13",
+    "Hint81": "Hint80",
+    "Metc82": "Eich82",
+    "Metc85": "Eich85",
+    "RatcStar08": "RatcStar09",
+    "PansKori03": "PansKori04",
+    "VonR33": "vonR33",
+    "LaVoLigh92": "LaVoLigh94",
+    "Arch11a": "Arch11"
+   }
   }
  ],
- "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave5-staged.bib"
+ "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave6-staged.bib"
 }

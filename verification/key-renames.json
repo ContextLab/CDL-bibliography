@@ -750,5 +750,110 @@
   "date": "2026-09-26",
   "reason": "wave5: suffix rule: HankEtal08 becomes HankEtal09b (wave5 key plan of HankEtal08 (collision, house suffix rule))",
   "commit": "wave5"
+ },
+ {
+  "old_key": "Arch11b",
+  "new_key": "Arch12",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-09): key Arch12 confirmed (wave6 merged.json (correction; resolution apply batch-09))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "AmarEtal10",
+  "new_key": "AmarEtal00",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-10): key AmarEtal00 confirmed (wave6 merged.json (correction; resolution apply batch-10))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "FujiGrab05",
+  "new_key": "FujiGray05",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-10): key FujiGray05 confirmed (wave6 merged.json (correction; resolution apply batch-10))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "HaynEtal09",
+  "new_key": "HaynEtal11",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-10): key HaynEtal11 confirmed (wave6 merged.json (correction; resolution apply batch-10))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "Mosc95",
+  "new_key": "MoscEtal95",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-10): key MoscEtal95 confirmed (wave6 merged.json (correction; resolution apply batch-10))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "GrunSher01",
+  "new_key": "GrunSher02",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-10): key GrunSher02 confirmed (wave6 merged.json (correction; resolution apply batch-10))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "GarrEtal12",
+  "new_key": "GarrEtal13",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-11): key GarrEtal13 confirmed (wave6 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "Hint81",
+  "new_key": "Hint80",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-11): key Hint80 confirmed (wave6 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "Metc82",
+  "new_key": "Eich82",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-11): key Eich82 confirmed (wave6 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "Metc85",
+  "new_key": "Eich85",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-11): key Eich85 confirmed (wave6 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "RatcStar08",
+  "new_key": "RatcStar09",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-11): key RatcStar09 confirmed (wave6 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "PansKori03",
+  "new_key": "PansKori04",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-11): key PansKori04 confirmed (wave6 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "VonR33",
+  "new_key": "vonR33",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-11): key vonR33 confirmed (wave6 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "LaVoLigh92",
+  "new_key": "LaVoLigh94",
+  "date": "2026-09-26",
+  "reason": "wave6: key does not follow the corrected metadata; resolution (batch-11): key LaVoLigh94 confirmed (wave6 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave6"
+ },
+ {
+  "old_key": "Arch11a",
+  "new_key": "Arch11",
+  "date": "2026-09-26",
+  "reason": "wave6: suffix rule: Arch11b renamed to Arch12 (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave6"
  }
 ]
