@@ -87,6 +87,11 @@
     "value": "{word\\_cloud}",
     "url": "https://api.datacite.org/dois/text/x-bibliography/10.5281/zenodo.49907?style=apa",
     "quote": "<i>word_cloud: 1.2.1</i>"
+   },
+   "year": {
+    "value": "2016",
+    "url": "https://api.datacite.org/dois/text/x-bibliography/10.5281/zenodo.49907?style=apa",
+    "quote": "Smith, J. S. (2016)."
    }
   },
   "withdraw": [],
@@ -163,7 +168,7 @@
    "pages": {
     "value": "609--628",
     "url": "https://www.jstor.org/citation/ris/10.2307/1421970",
-    "quote": "EP  - 628"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1421970\nEP  - 628\nIS  - 4\nPB  - University of Illinois Press\nPY  - 1974\nSN  - 00029556\nSP  - 609\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],
@@ -178,7 +183,7 @@
    "pages": {
     "value": "516--556",
     "url": "https://www.jstor.org/citation/ris/10.2307/1418869",
-    "quote": "EP  - 556"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1418869\nEP  - 556\nIS  - 4\nPB  - University of Illinois Press\nPY  - 1950\nSN  - 00029556\nSP  - 516\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],
@@ -193,7 +198,7 @@
    "pages": {
     "value": "111--118",
     "url": "https://www.jstor.org/citation/ris/10.2307/1418075",
-    "quote": "EP  - 118"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1418075\nEP  - 118\nIS  - 1\nPB  - University of Illinois Press\nPY  - 1954\nSN  - 00029556\nSP  - 111\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],
@@ -208,7 +213,7 @@
    "pages": {
     "value": "436--445",
     "url": "https://www.jstor.org/citation/ris/10.2307/1419785",
-    "quote": "EP  - 445"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1419785\nEP  - 445\nIS  - 3\nPB  - University of Illinois Press\nPY  - 1963\nSN  - 00029556\nSP  - 436\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],
@@ -223,7 +228,7 @@
    "pages": {
     "value": "217--221",
     "url": "https://www.jstor.org/citation/ris/10.2307/1413823",
-    "quote": "EP  - 221"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1413823\nEP  - 221\nIS  - 2\nPB  - University of Illinois Press\nPY  - 1924\nSN  - 00029556\nSP  - 217\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],
@@ -238,7 +243,7 @@
    "pages": {
     "value": "22--40",
     "url": "https://www.jstor.org/citation/ris/10.2307/1419114",
-    "quote": "EP  - 40"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1419114\nEP  - 40\nIS  - 1\nPB  - University of Illinois Press\nPY  - 1960\nSN  - 00029556\nSP  - 22\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],
@@ -253,7 +258,7 @@
    "pages": {
     "value": "485--491",
     "url": "https://www.jstor.org/citation/ris/10.2307/1419876",
-    "quote": "EP  - 491"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1419876\nEP  - 491\nIS  - 3\nPB  - University of Illinois Press\nPY  - 1962\nSN  - 00029556\nSP  - 485\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],
@@ -268,7 +273,7 @@
    "pages": {
     "value": "317--326",
     "url": "https://www.jstor.org/citation/ris/10.2307/1423212",
-    "quote": "EP  - 326"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1423212\nEP  - 326\nIS  - 3\nPB  - University of Illinois Press\nPY  - 1990\nSN  - 00029556\nSP  - 317\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],
@@ -283,7 +288,7 @@
    "pages": {
     "value": "441--449",
     "url": "https://www.jstor.org/citation/ris/10.2307/1422530",
-    "quote": "EP  - 449"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1422530\nEP  - 449\nIS  - 3\nPB  - University of Illinois Press\nPY  - 1984\nSN  - 00029556\nSP  - 441\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],
@@ -298,7 +303,7 @@
    "pages": {
     "value": "138--140",
     "url": "https://www.jstor.org/citation/ris/10.2307/1418080",
-    "quote": "EP  - 140"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1418080\nEP  - 140\nIS  - 1\nPB  - University of Illinois Press\nPY  - 1954\nSN  - 00029556\nSP  - 138\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],
@@ -313,7 +318,7 @@
    "pages": {
     "value": "389--397",
     "url": "https://www.jstor.org/citation/ris/10.2307/1421449",
-    "quote": "EP  - 397"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/1421449\nEP  - 397\nIS  - 2\nPB  - University of Illinois Press\nPY  - 1973\nSN  - 00029556\nSP  - 389\nT2  - The American Journal of Psychology"
    }
   },
   "withdraw": [],

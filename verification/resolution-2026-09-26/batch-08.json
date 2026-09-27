@@ -6,7 +6,7 @@
    "pages": {
     "value": "370--384",
     "url": "https://www.jstor.org/citation/ris/10.2307/2344614",
-    "quote": "EP  - 384"
+    "quote": "DB  - JSTOR\nDO  - 10.2307/2344614\nEP  - 384\nIS  - 3\nPB  - [Royal Statistical Society, Oxford University Press]\nPY  - 1972\nSN  - 00359238, 23972327\nSP  - 370\nT2  - Journal of the Royal Statistical Society."
    }
   },
   "notes": "JSTOR's RIS record (the publisher's archive) prints 'SP  - 370' and 'EP  - 384'; Crossref deposits only the first page. The next item in 135(3) (10.2307/2344615) starts at 385 in Crossref, which fits. Printed range wins; HEAD's 370--384 stays."
@@ -47,7 +47,7 @@
    "editor": {
     "value": "B Sch{\\\"o}lkopf and K Tsuda and J-P Vert",
     "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22kernel%20methods%20in%20computational%20biology%22",
-    "quote": "Koji Tsuda, Jean-Philippe Vert."
+    "quote": "edited by Bernhard Scho&#x308;lkopf, Koji Tsuda, Jean-Philippe Vert."
    }
   },
   "notes": "Library of Congress MARC record for the book: 245 'edited by Bernhard Schölkopf, Koji Tsuda, Jean-Philippe Vert.', 260 'Cambridge, Mass. : MIT Press, c2004.' Replaces the 403 MIT Press page; the reviewer's editor value is confirmed."
@@ -215,8 +215,8 @@
   "set": {
    "volume": {
     "value": "59",
-    "url": "https://api.crossref.org/works/10.1093/mind/lix.236.433",
-    "quote": "\"volume\":\"LIX\""
+    "url": "https://www.jstor.org/citation/ris/10.2307/2251299",
+    "quote": "VL  - 59"
    }
   },
   "notes": "Crossref: Mind vol LIX, issue 236, 433-460, 1950-10, A M Turing; the DOI is this work (the 'I.—' section prefix broke the title match). HEAD writes 59 in arabic, as do the other Mind entries in HEAD. RECONCILED 2026-09-26: Question answered by rule: roman volume -> arabic (default); value already conforms."

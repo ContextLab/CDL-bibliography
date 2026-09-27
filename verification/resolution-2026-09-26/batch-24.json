@@ -47,7 +47,7 @@
    "author": {
     "value": "L Torvalds",
     "url": "https://api.github.com/repos/git/git/commits/e83c5163316f89bfbde7d9ab23ca2e25604af290",
-    "quote": "\"name\": \"Linus Torvalds\""
+    "quote": "MTZmODliZmJkZTdkOWFiMjNjYTJlMjU2MDRhZjI5MA==\",\"commit\":{\"author\":{\"name\":\"Linus Torvalds\",\"email\":\"torvalds@ppc970.osdl.org\",\"date\":\"2005-04-07T22:13:13Z\"},\"committer\":"
    }
   },
   "notes": "HEAD URL resolves (HTTP 200 to curl) to the git.git repository. Year 2005 = initial commit e83c516. Post-check title/author (README 'Git - fast, scalable, distributed revision control system'; 'Junio C Hamano') applied, pending the software question. RECONCILED 2026-09-26: Software default: title/authors as in the first release (initial commit e83c516, 2005-04-07, by Linus Torvalds; its README reads 'GIT - the stupid content tracker'); the later README title and Hamano are not in the first version. Key Torv05 (free in HEAD).",
@@ -165,7 +165,7 @@
    "editor": {
     "value": "E Domany and J L {van Hemmen} and K Schulten",
     "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5",
-    "quote": "\"given\":\"J. Leo\",\"family\":\"van Hemmen\""
+    "quote": "0.1007\\/978-1-4612-4320-5\"}},\"subtitle\":[],\"editor\":[{\"given\":\"Eytan\",\"family\":\"Domany\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"J. Leo\",\"family\":\"van Hemmen\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"Klaus\",\"family\":\"Schulten\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
    }
   },
   "notes": "The 1981 report has no catalogue record reachable (MPG PuRe none; Springer, Scholar, IA Scholar, WorldCat behind walls); it is evidenced by a peer-reviewed reference list (Front Comput Neurosci 2011, PMC3167096) printing 'Internal Report 81-2', 1981, Göttingen, MPI Biophysical Chemistry. Country 'Germany' is not printed, so dropped. Title matches the registered 1994 reprint (10.1007/978-1-4612-4320-5_2, pp 95-119). RECONCILED 2026-09-26: Internal-report default: the 1981 report is known only from reference lists, so it is replaced by its registered reprint (Springer 1994 chapter, pp 95-119, eds Domany, van Hemmen, Schulten). Crossref registers the volume title only as 'Models of Neural Networks' (the printed volume is 'Models of Neural Networks II'; not confirmed by a fetchable page). Key vond94 (free in HEAD).",

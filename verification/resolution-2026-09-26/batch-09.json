@@ -25,7 +25,7 @@
    "author": {
     "value": "S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos",
     "url": "https://www.nature.com/articles/mp201283",
-    "quote": "content=\"Changeux, J-P\""
+    "quote": "rendsLicenceType\":null}},\"articleInPress\":\"false\"},\"contentInfo\":{\"authors\":[\"S Tolu\",\"R Eddine\",\"F Marti\",\"V David\",\"M Graupner\",\"S Pons\",\"M Baudonnat\",\"M Husson\",\"M Besson\",\"C Reperant\",\"J Zemdegs\",\"C Pagès\",\"Y A H Hay\",\"B Lambolez\",\"J Caboche\",\"B Gutkin\",\"A M Gardier\",\"J-P Changeux\",\"P Faure\",\"U Maskos\"],\"publishedAt\":1341273600,\"publishedAtString\":\"2012-07-03\",\"title\":\"Co-activat"
    }
   },
   "notes": "Publisher page (nature.com meta, needs a cookie-accepting fetch) lists 'Hay, Y A H' and 'Changeux, J-P' plus Husson; Crossref agrees. Printed issue March 2013, 18(3) 382-393, so key ToluEtal13 (free in HEAD)."
@@ -67,8 +67,8 @@
   "set": {
    "author": {
     "value": "K Nader and G E Schafe and J E LeDoux",
-    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10845062&rettype=medline&retmode=text",
-    "quote": "FAU - LeDoux, J E"
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11257912/",
+    "quote": "labile nature of consolidation theory. K Nader, G E Schafe, J E LeDoux Nature reviews. Neuroscience Nat Rev Neurosci"
    }
   },
   "notes": "The publisher page byline reads 'Joseph E. Le Doux' (nature.com, data-author-search=\"Le Doux, Joseph E.\"), as do Crossref and PubMed 10963596 ('Le Doux JE'); so this paper prints 'Le Doux', not 'LeDoux'. Particle surname braced as house form ({de Cothi}). Key unchanged. RECONCILED 2026-09-26: Author-name rule (round 1): the author's correct, most complete name, 'LeDoux' (e.g. PubMed 10845062 'Emotion circuits in the brain', FAU 'LeDoux, J E'), not this paper's 'Le Doux'."

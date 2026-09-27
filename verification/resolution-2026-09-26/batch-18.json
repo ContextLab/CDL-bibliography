@@ -58,7 +58,7 @@
    "year": {
     "value": "1999",
     "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=99011115&maximumRecords=1&recordSchema=marcxml",
-    "quote": "MIT Press,"
+    "quote": "<subfield code=\"b\">MIT Press,</subfield>\n    <subfield code=\"c\">c1999.</subfield>"
    },
    "pages": {
     "value": "691--692",
@@ -78,7 +78,7 @@
    "author": {
     "value": "L S Penrose and J C Raven",
     "url": "https://api.crossref.org/works/10.1111/j.2044-8341.1936.tb00690.x",
-    "quote": "\"given\":\"J. C.\",\"family\":\"RAVEN\""
+    "quote": "ICATION\"],\"prefix\":\"10.1111\",\"volume\":\"16\",\"author\":[{\"given\":\"L. S.\",\"family\":\"PENROSE\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"J. C.\",\"family\":\"RAVEN\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
    },
    "title": {
     "value": "A new series of perceptual tests: preliminary communication",
@@ -127,27 +127,13 @@
   "set": {
    "editor": {
     "value": "A R A Conway and C Jarrold and M J Kane and A Miyake and J N Towse",
-    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2006009858&maximumRecords=1&recordSchema=marcxml",
-    "quote": "Conway, Andrew R. A.",
-    "extra_evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1037/0096-3445.132.1.47",
-      "quote": "\"given\":\"Michael J.\",\"family\":\"Kane\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0005",
-      "quote": "\"given\":\"John N.\",\"family\":\"Towse\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.001.0001",
-      "quote": "\"given\":\"Chris\",\"family\":\"Jarrold\""
-     }
-    ]
+    "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.001.0001",
+    "quote": "mic.oup.com\\/book\\/25561\"}},\"subtitle\":[],\"editor\":[{\"given\":\"Andrew\",\"family\":\"Conway\",\"sequence\":\"first\",\"affiliation\":[{\"name\":\"University of Princeton\"}],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"Chris\",\"family\":\"Jarrold\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"Fylde College, Bristol University\"}],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"Michael\",\"family\":\"Kane\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"University of North Carolina at Greensboro\"}],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"Akira\",\"family\":\"Miyake\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"University of Colorado at Boulder\"}],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"John\",\"family\":\"Towse\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"University"
    },
    "year": {
     "value": "2007",
     "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2006009858&maximumRecords=1&recordSchema=marcxml",
-    "quote": "Oxford University Press,"
+    "quote": "<subfield code=\"b\">Oxford University Press,</subfield>\n    <subfield code=\"c\">2007.</subfield>"
    }
   },
   "notes": "Edited volume: names move to editor (post-check removes author). Year stays 2007: LoC 2006009858 hardback '$c 2007'; Crossref's 2008 is the paperback. Kane's J and Towse's N from their own records (Towse's from his chapter in this very volume), per the most-complete-name rule."
@@ -160,7 +146,7 @@
    "title": {
     "value": "Mechanisms for stochastic decision making in the primate frontal cortex: single-neuron recording and circuit modeling",
     "url": "https://www.cns.nyu.edu/wanglab/publications/pdf/neuroeconomics_chap.pdf",
-    "quote": "in the Primate Frontal Cortex: Single-neuron"
+    "quote": "31\n      Mechanisms for Stochastic Decision Making\n     in the Primate Frontal Cortex: Single-neuron\n            Recording and Circuit Modeling"
    },
    "year": {
     "value": "2009",
@@ -178,13 +164,7 @@
    "pages": {
     "value": "460--468",
     "url": "https://web.archive.org/web/20160331161552/http://papers.nips.cc/paper/5855-a-reduced-dimension-fmri-shared-response-model",
-    "quote": "<meta name=\"citation_firstpage\" content=\"460\">",
-    "extra_evidence": [
-     {
-      "url": "https://web.archive.org/web/20160331161552/http://papers.nips.cc/paper/5855-a-reduced-dimension-fmri-shared-response-model",
-      "quote": "<meta name=\"citation_lastpage\" content=\"468\">"
-     }
-    ]
+    "quote": "in Neural Information Processing Systems 460 468 http://papers.nips.cc/paper/5855-a-reduced-dimension-fmri-shared-response-model"
    }
   },
   "notes": "Pages 460--468 as printed by the NeurIPS Foundation's own proceedings page (archived papers.nips.cc record: citation_firstpage 460, citation_lastpage 468, 'Advances in Neural Information Processing Systems 28 (NIPS 2015)'); the official proceedings site beats DBLP (NeurIPS default; same source as SanbGrif08 in batch 01). The current site's BibTeX prints 'pages = {}'. Other post-check changes apply. RECONCILED 2026-09-26 (NeurIPS entry type): @incollection -> @inproceedings with booktitle 'Advances in Neural Information Processing Systems', the form every other NeurIPS/NIPS entry in the resolution batches ends with (batch 16 AlvaEtal05, batch 17 JainHuth18; the wave-2 post-check converts the batch-01 @article entries; batch 24 ParkPill12, LiuEtal18, LiuWang16, RaoHowa08 are @inproceedings, VaswEtal17 @conference -> @inproceedings). Editor, publisher and volume stay."
@@ -197,13 +177,7 @@
    "pages": {
     "value": "1321--1329",
     "url": "https://web.archive.org/web/20150523062030/http://papers.nips.cc/paper/3731-predicting-the-optimal-spacing-of-study-a-multiscale-context-model-of-memory",
-    "quote": "<meta name=\"citation_firstpage\" content=\"1321\">",
-    "extra_evidence": [
-     {
-      "url": "https://web.archive.org/web/20150523062030/http://papers.nips.cc/paper/3731-predicting-the-optimal-spacing-of-study-a-multiscale-context-model-of-memory",
-      "quote": "<meta name=\"citation_lastpage\" content=\"1329\">"
-     }
-    ]
+    "quote": "in Neural Information Processing Systems 1321 1329 http://papers.nips.cc/paper/3731-predicting-the-optimal-spacing-of-study-a-mult"
    }
   },
   "notes": "Pages 1321--1329 as printed by the NeurIPS Foundation's archived proceedings page ('Advances in Neural Information Processing Systems 22 (NIPS 2009)'); official site beats DBLP (NeurIPS default). Author order stays as in HEAD: the paper PDF byline reads 'Michael C. Mozer, Harold Pashler, Nicholas Cepeda, Robert Lindsey, & Ed Vul' (the site's metadata lists Mozer last, but the printed paper wins). Other post-check changes apply. RECONCILED 2026-09-26 (NeurIPS entry type): @incollection -> @inproceedings with booktitle 'Advances in Neural Information Processing Systems', the form every other NeurIPS/NIPS entry in the resolution batches ends with (batch 16 AlvaEtal05, batch 17 JainHuth18; the wave-2 post-check converts the batch-01 @article entries; batch 24 ParkPill12, LiuEtal18, LiuWang16, RaoHowa08 are @inproceedings, VaswEtal17 @conference -> @inproceedings). Editor, publisher and volume stay."
@@ -216,13 +190,7 @@
    "pages": {
     "value": "1030--1037",
     "url": "https://web.archive.org/web/20160411054441/http://papers.nips.cc/paper/671-an-information-theoretic-approach-to-deciphering-the-hippocampal-code",
-    "quote": "<meta name=\"citation_firstpage\" content=\"1030\">",
-    "extra_evidence": [
-     {
-      "url": "https://web.archive.org/web/20160411054441/http://papers.nips.cc/paper/671-an-information-theoretic-approach-to-deciphering-the-hippocampal-code",
-      "quote": "<meta name=\"citation_lastpage\" content=\"1037\">"
-     }
-    ]
+    "quote": "in Neural Information Processing Systems 1030 1037 http://papers.nips.cc/paper/671-an-information-theoretic-approach-to-decipherin"
    },
    "address": {
     "value": "San Mateo, {CA}",

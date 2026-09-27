@@ -37,7 +37,7 @@
    "author": {
     "value": "D J Berndt and J Clifford",
     "url": "https://api.openalex.org/works/W116902681",
-    "quote": "\"display_name\":\"Donald J. Berndt\""
+    "quote": "74\"]}],\"countries\":[\"US\"],\"is_corresponding\":false,\"raw_author_name\":\"Donald J. Berndt\",\"raw_affiliation_strings\":[\"Information Systems Department, Stern School of Business, New York University, New York#TAB#\"],\"raw_orcid\":\"https://orcid.org/0000-0002-4900-8244\",\"affiliations\":[{\"raw_affiliation_string\":\"Information Systems Department, Stern School of Business, New York University, New York#TAB#\",\"institution_ids\":[\"https://openalex.org/I57206974\"]}]},{\"author_position\":\"last\",\"author\":{\"id\":\"https://openalex.org/A5109331690\",\"display_name\":\"James Clifford\",\"orcid\":null,\"observed_orcids\":[]},\"institutions\":[{\"id\":\"https://openalex.org"
    },
    "title": {
     "value": "Using dynamic time warping to find patterns in time series",
@@ -84,8 +84,8 @@
   "set": {
    "author": {
     "value": "{Project Jupyter} and M Bussonnier and J Forde and J Freeman and B Granger and T Head and C Holdgraf and K Kelley and G Nalvarte and A Osheroff and M Pacer and Y Panda and F P{\\'e}rez and B Ragan-Kelley and C Willing",
-    "url": "https://pub.orcid.org/v3.0/0000-0002-1725-9815/personal-details",
-    "quote": "Fernando Pérez"
+    "url": "https://api.crossref.org/works/10.25080/Majora-4af1f417-011",
+    "quote": "scale\"],\"prefix\":\"10.25080\",\"author\":[{\"given\":\"Project\",\"family\":\"Jupyter\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Matthias\",\"family\":\"Bussonnier\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Jessica\",\"family\":\"Forde\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Jeremy\",\"family\":\"Freeman\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Brian\",\"family\":\"Granger\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Tim\",\"family\":\"Head\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Chris\",\"family\":\"Holdgraf\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Kyle\",\"family\":\"Kelley\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Gladys\",\"family\":\"Nalvarte\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Andrew\",\"family\":\"Osheroff\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"M\",\"family\":\"Pacer\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Yuvi\",\"family\":\"Panda\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Fernando\",\"family\":\"Perez\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Benjamin\",\"family\":\"Ragan-Kelley\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Carol\",\"family\":\"Willing\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
    }
   },
   "withdraw": [],

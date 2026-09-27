@@ -44,7 +44,7 @@
    "pages": {
     "value": "305--329",
     "url": "https://eric.ed.gov/?id=EJ764970",
-    "quote": "Journal for Research in Mathematics Education, v35 n5 p305-329 Nov 2004"
+    "quote": "p305-329"
    }
   },
   "withdraw": [],
@@ -128,7 +128,7 @@
    "author": {
     "value": "G W Evans and M A Skorpanich and T G{\\\"a}rling and K J Bryant and B Bresolin",
     "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
-    "quote": "Skorpanich"
+    "quote": "Gary W. \n                     Evans \n                   \n                   \n                     Mary Anne \n                     Skorpanich \n                   \n                   \n                     Tommy \n                     Gärling \n                   \n                   \n                     Kendall J. \n                     Bryant \n                   \n                   \n                     Brian \n                     Bresolin"
    }
   },
   "withdraw": [],
@@ -216,7 +216,7 @@
    "author": {
     "value": "H P Bahrick and E Phelps",
     "url": "https://gwern.net/doc/psychology/spaced-repetition/1987-bahrick.pdf",
-    "quote": "Elizabeth Phelps"
+    "quote": "HARRY P. BAHRICK AND ELIZABETH PHELPS\n\nrecall test, together with five alternative"
    }
   },
   "withdraw": [],

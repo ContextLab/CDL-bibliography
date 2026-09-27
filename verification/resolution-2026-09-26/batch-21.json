@@ -231,7 +231,14 @@
   "key": "Herb34",
   "decision": "apply",
   "new_key": "Herb91",
-  "notes": "Pages 376--377 confirmed in the Kehrbach vol. 4 scan (https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt). The running heads '... 3. Cap. 375' and '... 3. Cap. 377' bracket p. 376, whose even-page head 'II. Lehrbuch zur Psychologie.' has its numeral OCR'd as '1'. Post-check changes apply: year 1891, publisher Hermann Beyer & Söhne, address Langensalza (no unprinted country), booktitle Sämtliche Werke. Key Herb91."
+  "notes": "Pages 376--377 confirmed in the Kehrbach vol. 4 scan (https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt). The running heads '... 3. Cap. 375' and '... 3. Cap. 377' bracket p. 376, whose even-page head 'II. Lehrbuch zur Psychologie.' has its numeral OCR'd as '1'. Post-check changes apply: year 1891, publisher Hermann Beyer & Söhne, address Langensalza (no unprinted country), booktitle Sämtliche Werke. Key Herb91. EVIDENCE 2026-09-26: p. 376 folio transcribed from the scan page image (archive.org page n403, header '376 II. Lehrbuch zur Psychologie.'), which the djvu OCR misread.",
+  "set": {
+   "pages": {
+    "value": "376--377",
+    "url": "https://archive.org/download/johannfriedrichh04unse_0/page/n403.jpg",
+    "quote": "376 II. Lehrbuch zur Psychologie."
+   }
+  }
  },
  {
   "key": "Bron95",

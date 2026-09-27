@@ -44,7 +44,7 @@
    "author": {
     "value": "R L Cilibrasi and P M B Vitanyi",
     "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
-    "quote": "\"given\":\"Rudi L.\",\"family\":\"Cilibrasi\""
+    "quote": "tance\"],\"prefix\":\"10.1109\",\"volume\":\"19\",\"author\":[{\"given\":\"Rudi L.\",\"family\":\"Cilibrasi\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Paul M.B.\",\"family\":\"Vitanyi\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
    }
   },
   "notes": "HEAD's 'Calibrasi' is a misprint: Crossref gives 'Rudi L. Cilibrasi' and arXiv cs/0412098 gives 'Rudi Cilibrasi'. Crossref 19(3) 370-383, published-print 2007-03. Corrected surname and year drive key CiliVita07 (free in HEAD)."
@@ -170,10 +170,7 @@
   "key": "LiEtal24b",
   "decision": "apply",
   "new_key": "LiEtal25",
-  "withdraw": [
-   "doi",
-   "volume"
-  ],
+  "withdraw": [],
   "set": {
    "journal": {
     "value": "{IEEE} Reviews in Biomedical Engineering",

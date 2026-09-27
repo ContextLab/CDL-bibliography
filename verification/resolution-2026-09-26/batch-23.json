@@ -36,8 +36,8 @@
   "set": {
    "author": {
     "value": "P S Goldman-Rakic",
-    "url": "https://api.crossref.org/works/10.1002/cphy.cp010509",
-    "quote": "\"given\":\"Patricia S.\",\"family\":\"Goldman\\u2010Rakic\""
+    "url": "https://pubmed.ncbi.nlm.nih.gov/3318747/",
+    "quote": "cortex and its relevance to dementia. P S Goldman-Rakic Archives of gerontology and geriatrics Arch"
    },
    "editor": {
     "value": "F Plum",
@@ -203,7 +203,7 @@
    "booktitle": {
     "value": "Multilevel Analysis: An Introduction to Basic and Advanced Multilevel Modeling",
     "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
-    "quote": "<subfield code=\"b\">an introduction to basic and advanced multilevel modeling /</subfield>"
+    "quote": "Snijders, T. A. B. \n   \n   \n     Multilevel analysis : \n     an introduction to basic and advanced multilevel modeling / \n     Tom A.B. Snijders, Roel J. Bosker."
    }
   },
   "withdraw": [],
@@ -248,7 +248,7 @@
    "title": {
     "value": "{DAKOTA}, a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis: version 5.0 user's manual",
     "url": "https://www.osti.gov/servlets/purl/991842",
-    "quote": "Version 5.0 User’s Manual"
+    "quote": "Release\nPrinted Updated May 7, 2010\n\n\n\n\nDAKOTA, A Multilevel Parallel\nObject-Oriented Framework for\nDesign Optimization, Parameter\nEstimation, Uncertainty\nQuantification, and Sensitivity\nAnalysis\nVersion 5.0 User’s Manual\nBrian M. Adams, William J. Bohnhoff, Keith"
    },
    "number": {
     "value": "SAND2010-2183",
@@ -300,6 +300,11 @@
     "value": "\\url{http://pyode.sourceforge.net}",
     "url": "https://pyode.sourceforge.net/",
     "quote": "PyODE is a set of open-source Python bindings for"
+   },
+   "title": {
+    "value": "Py{ODE}: {Python} bindings for the {O}pen {D}ynamics {E}ngine",
+    "url": "https://pypi.org/pypi/PyODE/json",
+    "quote": "Modules\"],\"description\":\"PyODE\\r\\n=====\\r\\n\\r\\nPyODE is a set of open-source Python bindings for The Open Dynamics Engine, an\\r\\nopen-source physics engine. PyODE also includes an XODE parser.\\r\\n\\r\\nThis"
    }
   },
   "withdraw": [],

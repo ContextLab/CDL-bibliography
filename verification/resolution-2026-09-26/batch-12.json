@@ -74,7 +74,7 @@
    "author": {
     "value": "L Eggermont and D Swaab and P Luiten and E Scherder",
     "url": "https://api.crossref.org/works/10.1016/j.neubiorev.2005.10.004",
-    "quote": "\"given\":\"Laura\",\"family\":\"Eggermont\""
+    "quote": "better\"],\"prefix\":\"10.1016\",\"volume\":\"30\",\"author\":[{\"given\":\"Laura\",\"family\":\"Eggermont\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Dick\",\"family\":\"Swaab\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Paul\",\"family\":\"Luiten\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Erik\",\"family\":\"Scherder\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
    }
   },
   "notes": "The 2007 Research and Practice in Alzheimer's Disease vol 12 (Serdi reprint series) printing is in no catalogue: Open Library lists vols 5, 9, 10 only, and Crossref, PubMed and LoC have nothing. The original is Neurosci Biobehav Rev 30(4):562-575, 2006. Replaced by it (fixes the 'Excercise' typo); EggeEtal06 is free. Authors per Crossref/PubMed FAU (Laura, Dick, Paul, Erik). RECONCILED 2026-09-26: Question answered by rule: reprint not found -> original (default)."
@@ -126,8 +126,8 @@
   "set": {
    "author": {
     "value": "B L Waszczak and J R Walters",
-    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8102308&rettype=medline&retmode=text",
-    "quote": "FAU - Waszczak, B L"
+    "url": "https://pubmed.ncbi.nlm.nih.gov/3944613/",
+    "quote": "iontophoresis or striatal stimulation. B L Waszczak, J R Walters The Journal of neuroscience : the official"
    }
   },
   "notes": "PubMed 6828891 (FAU 'Waszcak, B L', 'Walters, J R') and Crossref (family 'Waszcak', given 'Barbara L.') both print 'Waszcak'. HEAD's 'Waszczak' is the author's usual spelling but not the record's. Set as printed per rule 3, pending the question. The key is unaffected. RECONCILED 2026-09-26: Author-name rule: 'Waszcak' in this record is a misprint; the author's other records spell 'Waszczak' (PubMed 8102308, 1993, FAU 'Waszczak, B L')."

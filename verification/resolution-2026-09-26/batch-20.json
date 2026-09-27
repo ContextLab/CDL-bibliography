@@ -6,7 +6,7 @@
    "author": {
     "value": "B B Murdock",
     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Final%20Remarks%22%20%22Learning%20in%20a%20Distributed%20Memory%20Model%22",
-    "quote": "Implications for Other Models 63 {{{Final Remarks}}} 66\n{{{Learning in a Distributed Memory Model}}} 69 Bennet B. Murdock, Jr"
+    "quote": "Distributed  Memory  Model}}}\\nBennet  B.  Murdock\",\"for  the  past  10  years. \\u201c{{{Learning"
    },
    "pages": {
     "value": "69--106",
@@ -176,8 +176,8 @@
    },
    "pages": {
     "value": "103--189",
-    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=Luce%20%22Detection%20and%20recognition%22%20%22103-189%22",
-    "quote": ")  R.  D.  {{{Luce}}},  R.  R.  Bush,  \"and” E.  Galanter.  New  York:  Wiley,  1963,  {{{103—189}}}-\nShepard,  R"
+    "url": "https://api.openalex.org/works/W3036946786",
+    "quote": "\"biblio\":{\"volume\":\"1\",\"issue\":null,\"first_page\":\"103\",\"last_page\":\"189\"}"
    }
   },
   "notes": "Vol. II of the Handbook itself cites 'Chapter 3, Vol. 1, by Luce'; OpenAlex index record: 'Detection and recognition', R. Duncan Luce, 1963, volume 1, pp. 103-189; DTIC ADA071806 reference list prints 'Luce, R. D. Detection and recognition. In Handbook of Mathematical ... New York: Wiley, 1963, 103-189'. Year 1963, volume 1, key Luce63 (free).",

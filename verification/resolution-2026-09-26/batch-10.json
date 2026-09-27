@@ -17,6 +17,31 @@
     "value": "R G Knight and J McMahon and T J Green and C M Skeaff",
     "url": "https://portal.sahmriresearch.org/en/publications/some-normative-and-psychometric-data-for-the-geriatric-depression",
     "quote": "Knight, \\{Robert G.\\} and Jennifer McMahon and Tim Green and Skeaff, \\{C. Murray\\}"
+   },
+   "title": {
+    "value": "Some normative and psychometric data for the geriatric depression scale and the cognitive failures questionnaire from a sample of healthy older persons",
+    "url": "https://portal.sahmriresearch.org/en/publications/some-normative-and-psychometric-data-for-the-geriatric-depression",
+    "quote": "<meta name=\"citation_title\" content=\"Some normative and psychometric data for the geriatric depression scale and the cognitive failures questionnaire from a sample of healthy older persons\">"
+   },
+   "journal": {
+    "value": "New Zealand Journal of Psychology",
+    "url": "https://portal.sahmriresearch.org/en/publications/some-normative-and-psychometric-data-for-the-geriatric-depression",
+    "quote": "<meta name=\"citation_journal_title\" content=\"New Zealand Journal of Psychology\">"
+   },
+   "volume": {
+    "value": "33",
+    "url": "https://portal.sahmriresearch.org/en/publications/some-normative-and-psychometric-data-for-the-geriatric-depression",
+    "quote": "<meta name=\"citation_volume\" content=\"33\">"
+   },
+   "number": {
+    "value": "3",
+    "url": "https://portal.sahmriresearch.org/en/publications/some-normative-and-psychometric-data-for-the-geriatric-depression",
+    "quote": "<meta name=\"citation_issue\" content=\"3\">"
+   },
+   "year": {
+    "value": "2004",
+    "url": "https://portal.sahmriresearch.org/en/publications/some-normative-and-psychometric-data-for-the-geriatric-depression",
+    "quote": "<meta name=\"citation_publication_date\" content=\"2004/11\">"
    }
   },
   "notes": "SAHMRI research portal (Pure) prints title, NZ J Psychol 33(3), Nov 2004, pp 163-170 and byline 'C. Murray Skeaff' (so C M Skeaff). It gives 'Tim Green'; the publisher's image-only scan reads 'Timothy J. Green', so HEAD's T J is kept (same initial rule as batch 03 q4)."
@@ -32,8 +57,8 @@
   "set": {
    "journal": {
     "value": "Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences",
-    "url": "https://api.crossref.org/works/10.1098/rstb.2005.1654",
-    "quote": "\"container-title\":[\"Philosophical Transactions of the Royal Society B: Biological Sciences\"]"
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16087441/",
+    "quote": "Melie-Garc&#xed;a, Erick Canales-Rodr&#xed;guez Philosophical transactions of the Royal Society of London. Series B, Biological sciences Philos Trans R Soc Lond B Biol Sci 2005"
    }
   },
   "notes": "Printed name is 'Philosophical Transactions of the Royal Society B: Biological Sciences'; bibcheck's journal table maps exactly that string to '...of London Series B: Biological Sciences' (hence the missing 'london','series'). Post-check author/DOI/number 1457 apply."
@@ -66,7 +91,14 @@
  {
   "key": "Sten95",
   "decision": "apply",
-  "notes": "Title and pages unchanged from HEAD. The IJCAI TOC misprints 'Replannig' and '1662'; the paper PDF (ijcai.org/Proceedings/95-2/Papers/082.pdf) text layer reads 'R e a l - T i m e R e p l a n n i n g' and its 8 page footers OCR as 1662(=1652), 1663, 1654, 1666, 1666, 1657, 1658, 1669(=1659), i.e. 1652--1659 as in HEAD. Post-check inproceedings/booktitle/journal removal apply."
+  "notes": "Title and pages unchanged from HEAD. The IJCAI TOC misprints 'Replannig' and '1662'; the paper PDF (ijcai.org/Proceedings/95-2/Papers/082.pdf) text layer reads 'R e a l - T i m e R e p l a n n i n g' and its 8 page footers OCR as 1662(=1652), 1663, 1654, 1666, 1666, 1657, 1658, 1669(=1659), i.e. 1652--1659 as in HEAD. Post-check inproceedings/booktitle/journal removal apply.",
+  "set": {
+   "title": {
+    "value": "The focussed {D}* algorithm for real-time replanning",
+    "url": "https://api.openalex.org/works/W2145089737",
+    "quote": "\"display_name\":\"The focussed D* algorithm for real-time replanning\""
+   }
+  }
  },
  {
   "key": "HaynEtal09",
@@ -92,9 +124,19 @@
     "value": "1",
     "url": "https://insa.nic.in/writereaddata/UpLoadedFiles/PINSA/Vol02_1936_1_Art05.pdf",
     "quote": "VOL. II—No. 1. [Published April 15th, 1936."
+   },
+   "title": {
+    "value": "On the generalized distance in statistics",
+    "url": "https://insa.nic.in/writereaddata/UpLoadedFiles/PINSA/Vol02_1936_1_Art05.pdf",
+    "quote": "ON THE GENERALIZED DISTANCE IN STATISTICS"
+   },
+   "pages": {
+    "value": "49--55",
+    "url": "https://insa.nic.in/writereaddata/UpLoadedFiles/PINSA/Vol02_1936_1_Art05.pdf",
+    "quote": "DISTANCE IN STATISTICS. 55"
    }
   },
-  "notes": "HEAD's 'Proceedings of the National Academy of Sciences, India' vol 12 is wrong. The INSA archive scan (image-only; my local OCR: 'ON THE GENERALIZED DISTANCE IN STATISTICS', 'VOL. II—No. 1. [Published April 1?th, 1936', page headers 50 and 55, imprint 'Published by the National Institute of Sciences of India') confirms title, 1936, pp 49--55 and the journal. These quotes will fail the text validator; no text-fetchable record found (Springer reprint page bot-walled, archive.org has no vol II). Apply depends on the scan rule. RECONCILED 2026-09-26: Question answered by rule: image-only scans accepted (round 2)."
+  "notes": "HEAD's 'Proceedings of the National Academy of Sciences, India' vol 12 is wrong. The INSA archive scan (image-only; my local OCR: 'ON THE GENERALIZED DISTANCE IN STATISTICS', 'VOL. II—No. 1. [Published April 1?th, 1936', page headers 50 and 55, imprint 'Published by the National Institute of Sciences of India') confirms title, 1936, pp 49--55 and the journal. These quotes will fail the text validator; no text-fetchable record found (Springer reprint page bot-walled, archive.org has no vol II). Apply depends on the scan rule. RECONCILED 2026-09-26: Question answered by rule: image-only scans accepted (round 2). EVIDENCE 2026-09-26: title and end page transcribed from the INSA image-only scan (re-OCR of PDF pages 1 and 7: 'ON THE GENERALIZED DISTANCE IN STATISTICS', running head 'DISTANCE IN STATISTICS. 55'); pages 49--55 over 7 scan pages."
  },
  {
   "key": "MankEtal12",

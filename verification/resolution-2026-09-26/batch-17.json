@@ -23,7 +23,7 @@
    "author": {
     "value": "K Vodrahalli and P-H Chen and Y Liang and C Baldassano and J Chen and E Yong and C Honey and U Hasson and P Ramadge and K A Norman and S Arora",
     "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
-    "quote": "\"given\":\"Kenneth A.\",\"family\":\"Norman\""
+    "quote": "ations\"],\"prefix\":\"10.1016\",\"volume\":\"180\",\"author\":[{\"given\":\"Kiran\",\"family\":\"Vodrahalli\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Po-Hsuan\",\"family\":\"Chen\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Yingyu\",\"family\":\"Liang\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Christopher\",\"family\":\"Baldassano\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Janice\",\"family\":\"Chen\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Esther\",\"family\":\"Yong\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Christopher\",\"family\":\"Honey\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Uri\",\"family\":\"Hasson\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Peter\",\"family\":\"Ramadge\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Kenneth A.\",\"family\":\"Norman\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Sanjeev\",\"family\":\"Arora\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
    },
    "title": {
     "value": "Mapping between {fMRI} responses to movies and their natural language annotations",
@@ -257,7 +257,7 @@
    "title": {
     "value": "Numerical recipes in {C}: the art of scientific computing",
     "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D94105607",
-    "quote": "<subTitle>the art of scientific computing</subTitle>"
+    "quote": "Numerical recipes in C \n     the art of scientific computing"
    },
    "address": {
     "value": "Cambridge",

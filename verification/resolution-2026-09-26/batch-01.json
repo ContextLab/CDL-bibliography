@@ -155,6 +155,31 @@
     "value": "1021--1057",
     "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
     "quote": "<meta name=\"citation_firstpage\" content=\"1021\"  /> <meta name=\"citation_lastpage\" content=\"1057\"  />"
+   },
+   "author": {
+    "value": "J Cao and K J Worsley",
+    "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
+    "quote": "<meta name=\"citation_author\" content=\"Jin Cao\"  />\n<meta name=\"citation_author\" content=\"Keith Worsley\"  />"
+   },
+   "journal": {
+    "value": "Annals of Applied Probability",
+    "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
+    "quote": "<meta name=\"citation_journal_title\" content=\"The Annals of Applied Probability\"  />"
+   },
+   "volume": {
+    "value": "9",
+    "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
+    "quote": "<meta name=\"citation_volume\" content=\"9\"  />"
+   },
+   "number": {
+    "value": "4",
+    "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
+    "quote": "<meta name=\"citation_issue\" content=\"4\"  />"
+   },
+   "year": {
+    "value": "1999",
+    "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
+    "quote": "<meta name=\"citation_publication_date\" content=\"1999/11\"  />"
    }
   },
   "notes": "Project Euclid now serves the article page to a browser UA: DOI, title without the comma, 9(4), 1021-1057, 1999/11 confirmed. Author kept as 'K J Worsley' (Euclid prints 'Keith Worsley'; not dropping an initial on an omission)."
@@ -182,6 +207,26 @@
     "value": "461--464",
     "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
     "quote": "<meta name=\"citation_firstpage\" content=\"461\"  /> <meta name=\"citation_lastpage\" content=\"464\"  />"
+   },
+   "title": {
+    "value": "Estimating the dimension of a model",
+    "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+    "quote": "<title>Estimating the Dimension of a Model</title>"
+   },
+   "author": {
+    "value": "G Schwarz",
+    "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+    "quote": "<meta name=\"citation_author\" content=\"Gideon Schwarz\"  />"
+   },
+   "journal": {
+    "value": "Annals of Statistics",
+    "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+    "quote": "<meta name=\"citation_journal_title\" content=\"The Annals of Statistics\"  />"
+   },
+   "year": {
+    "value": "1978",
+    "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+    "quote": "<meta name=\"citation_publication_date\" content=\"1978/03\"  />"
    }
   },
   "notes": "Project Euclid article page (browser UA) confirms Gideon Schwarz, Annals of Statistics 6(2), 461-464, 1978/03; volume '6 (2)' split into volume 6, number 2; DOI added."
@@ -228,7 +273,7 @@
    "pages": {
     "value": "S43--S62",
     "url": "http://web.archive.org/web/20220709200648/https://onlinelibrary.wiley.com/doi/abs/10.1002/acp.770",
-    "quote": "<meta name=\"citation_firstpage\" content=\"S43\""
+    "quote": "S43-S62."
    }
   }
  },

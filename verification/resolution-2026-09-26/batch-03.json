@@ -17,7 +17,7 @@
     "quote": "The substantia nigra of the human brain: I. Nigrosomes and the nigral matrix, a compartmental organization based on calbindin D28K immunohistochemistry"
    }
   },
-  "notes": "Title unchanged from HEAD; the publisher page prints 'calbindin D28K' (PubMed writes 'D(28K)', which failed the quote check). OUP page is behind Cloudflare for curl but loads via WebFetch; PubMed 10430829 corroborates the rest ('TI  - The substantia nigra of the human brain. I. Nigrosomes...'). Post-check author and DOI changes stand.",
+  "notes": "Title unchanged from HEAD; the publisher page prints 'calbindin D28K' (PubMed writes 'D(28K)', which failed the quote check). OUP page is behind Cloudflare for curl but loads via WebFetch; PubMed 10430829 corroborates the rest ('TI  - The substantia nigra of the human brain. I. Nigrosomes...'). Post-check author and DOI changes stand. EVIDENCE 2026-09-26: title quote re-read in a browser (Playwright, academic.oup.com behind Cloudflare for scripts): citation_title meta prints the quoted title verbatim.",
   "questions": []
  },
  {
@@ -92,7 +92,7 @@
    "author": {
     "value": "M {Parto Dezfouli} and M R Daliri",
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31363879&rettype=medline&retmode=text",
-    "quote": "AU  - Parto Dezfouli M"
+    "quote": "FAU - Parto Dezfouli, Mohsen\nAU  - Parto Dezfouli M\nAD  - Neuroscience & Neuroengineering Research Lab., Biomedical Engineering Department, \n      School of Electrical Engineering, Iran University of Science and Technology \n      (IUST), Narmak, Tehran, 16846-13114, Iran.\nFAU - Daliri, Mohammad Reza\nAU  - Daliri MR\nAD  - Neuroscience"
    }
   },
   "notes": "Compound surname 'Parto Dezfouli' (PubMed LastName; Crossref family 'Parto Dezfouli'); reviewer's value replaces the post-check's spurious 'M P'. PartDali20 absent in HEAD.",
@@ -143,7 +143,7 @@
    "author": {
     "value": "W S McCulloch and W H Pitts",
     "url": "https://api.crossref.org/works/10.1007/bf02478259",
-    "quote": "\"given\":\"Warren S.\",\"family\":\"McCulloch\""
+    "quote": "vity\"],\"prefix\":\"10.1007\",\"volume\":\"5\",\"author\":[{\"given\":\"Warren S.\",\"family\":\"McCulloch\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Walter\",\"family\":\"Pitts\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
    }
   },
   "notes": "Surname corroborated on a second host: PubMed 2185863 (1990 reprint) 'FAU - McCulloch, W S'. Both sources print Pitts as 'Walter'/'W'; the cited middle initial H (Walter Harry Pitts) is kept per 'never drop an initial only because a source omits it'. DOI and number 4 apply. RECONCILED 2026-09-26: Initials question answered by the author-name rule (round 1: most complete name; keep known middle initials)."
