@@ -135,9 +135,9 @@
  {
   "key": "SvenEtal24",
   "decision": "apply",
-  "notes": "DOI applied (Crossref and PubMed 38382312 confirm 115:251-263, Mar 2024). The byline prints 'Hoang NT': Crossref gives given 'Hoang', family 'NT' and PubMed 'Nt, Hoang'. HEAD's 'N T Hoang' treats Hoang as the surname. The HEAD author is left unchanged pending the name-order question.",
+  "notes": "DOI applied (Crossref and PubMed 38382312 confirm 115:251-263, Mar 2024). The byline prints 'Hoang NT': Crossref gives given 'Hoang', family 'NT' and PubMed 'Nt, Hoang'. HEAD's 'N T Hoang' treats Hoang as the surname. The HEAD author is left unchanged pending the name-order question. RECONCILED 2026-09-26 (unsettled entries): Evidence found: the author's own researchmap record (https://api.researchmap.jp/hoangnt, self-registered) gives family_name {\"ja\": \"NT\", \"ja-Kana\": \"グエンタイ\", \"en\": \"NT\"}, given_name {\"en\": \"Hoang\"}; his page https://gearons.org/about/ ('Hoang NT', lists this Sleep Medicine paper) and Crossref (given 'Hoang', family 'NT') agree. So HEAD's 'N T Hoang' (surname Hoang) is wrong, but the correct surname 'NT' cannot be held by the house formatter and the spelled-out 'Nguyen Thai' is not printed in Latin script anywhere reachable: not settled by the rules; HEAD left unchanged.",
   "questions": [
-   "When the official record's author name is an evident misspelling or a name-order inversion (Crossref/PubMed 'Waszcak' for Waszczak; Crossref family 'NT', given 'Hoang' for the byline 'Hoang NT'), do we copy the record literally or keep the author's own usual spelling/order?"
+   "An author whose registered family name is itself initials (the byline 'Hoang NT'; the author's own researchmap record: family_name en 'NT', kana グエンタイ = Nguyen Thai; given_name 'Hoang'): write the surname as printed ('H {NT}', which bibcheck's formatter currently turns into initials 'H N T'), spell it out from its registered reading ('H {Nguyen Thai}', a transliteration no Latin-script record prints), or keep the byline as printed?"
   ]
  },
  {

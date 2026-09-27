@@ -1345,24 +1345,50 @@ def normalise_emdash(value):
     return new, ([f"em dash house form: {v!r} -> {new!r}"] if new != v else [])
 
 
-def build_resolution_removals(resolutions, bib, deleted=None):
+def follow_renames(key, bib, renames, deleted=None):
+    """(current key, chain) for a resolution key that cdl.bib has since renamed: when
+    `key` is not in the bibliography, follow key-renames.json ({old: new}) until a key
+    that is (HerrEtal10 -> HerrEtal10a, Adey67a -> Adey67, Frie08 -> Frie08a). A key
+    listed in key-deletions.json is never followed from (the work was deleted; its key
+    may since name another work, as KahaEtal08b and JacoEtal05b do), a cycle stops the
+    walk, and a chain that ends outside the bibliography is no redirect. Returns
+    (key, []) when there is no redirect; chain lists every key walked, first to last."""
+    deleted = deleted or {}
+    chain, cur = [key], key
+    while cur not in bib and cur not in deleted and cur in (renames or {}):
+        nxt = renames[cur]
+        if nxt in chain:
+            break
+        chain.append(nxt)
+        cur = nxt
+    return (cur, chain) if len(chain) > 1 and cur in bib else (key, [])
+
+
+def build_resolution_removals(resolutions, bib, deleted=None, renames=None):
     """Entries the resolution batches drop (like crosswave/removals.json): key, reason,
-    batch, merge_into. A drop whose key is absent from the bib, or listed in
-    key-deletions.json (already deleted; a key still present there names another work
-    renamed into it, as KahaEtal08b and JacoEtal05b do), is a no-op and listed apart."""
+    batch, merge_into. A drop whose key cdl.bib has renamed (key-renames.json) removes
+    the entry under its current key ('renamed_from' names the chain). A drop whose key is
+    absent from the bib, or listed in key-deletions.json (already deleted; a key still
+    present there names another work renamed into it, as KahaEtal08b and JacoEtal05b
+    do), is a no-op and listed apart."""
     deleted = load_deleted() if deleted is None else deleted
+    renames = renamed_away() if renames is None else renames
     out, noop = [], []
-    for k in sorted(resolutions, key=str.lower):
-        r = resolutions[k]
+    for k0 in sorted(resolutions, key=str.lower):
+        r = resolutions[k0]
         if r.get("decision") != "drop":
             continue
-        if k not in bib or k in deleted:
+        k, chain = follow_renames(k0, bib, renames, deleted)
+        # a renamed work that landed on a key once deleted (JacoEtal05d -> JacoEtal05b) is that work
+        if k not in bib or (k in deleted and not chain):
             noop.append({"key": k, "batch": r.get("_batch"),
                          "why": "already deleted (key-deletions.json)" + ("; the key now names another work"
                                                                           if k in bib else "")
                          if k in deleted else "not in the bibliography"})
             continue
         e = {"key": k, "reason": r.get("drop_reason") or "", "batch": r.get("_batch")}
+        if chain:
+            e["renamed_from"] = " -> ".join(chain)
         if r.get("merge_into"):
             e["merge_into"] = r["merge_into"]
         out.append(e)
@@ -3009,6 +3035,10 @@ def apply_resolutions(records, resolutions, bib, deleted=None, reserved=None):
     or already deleted: a no-op); keep -> key kept; merge_into -> a duplicate plan;
     new_key -> a rename, checked against the bibliography's keys and every other planned
     key (a collision gets the next free suffix by the house rule, and is reported).
+    `reserved` is key-renames.json ({old: new}): a resolution key the bibliography has
+    renamed since is followed to its current key (follow_renames; never from a key in
+    key-deletions.json), the decision applies there and the redirect is recorded in
+    the record's resolution ('redirect') and flagged resolution_redirect.
     Anything left unresolved is added to the record's resolution residue."""
     deleted = {} if deleted is None else deleted
     reserved = {} if reserved is None else reserved
@@ -3033,6 +3063,18 @@ def apply_resolutions(records, resolutions, bib, deleted=None, reserved=None):
         plan, flags, residue = rec["key_plan"], rec["flags"], info["residue"]
         dec, batch = res.get("decision"), res.get("_batch")
         before = f"{plan.get('action')} {plan.get('new_key') or plan.get('merge_into') or ''}".strip()
+        # a key cdl.bib has renamed since (key-renames.json): the decision is about the
+        # work, so it applies under the current key; never from a deleted key
+        wave_key = k
+        k, chain = follow_renames(wave_key, bib, reserved, deleted)
+        if chain:
+            info["redirect"] = {"from": wave_key, "to": k, "chain": chain}
+            flag(flags, "resolution_redirect", "key",
+                 f"resolution '{dec}' ({batch}): {wave_key} was renamed to {k} in the bibliography "
+                 f"({' -> '.join(chain)}, key-renames.json); the decision applies to {k}", "applied")
+            if rec.get("key") != k:
+                residue.append(f"the entry was checked as {wave_key}, which is not in the bibliography: its field "
+                               f"changes were not checked against {k}")
 
         def keep_plan(why):
             for x in ("new_key", "merge_into", "existing", "also_rename", "rename_reason"):
@@ -3043,7 +3085,7 @@ def apply_resolutions(records, resolutions, bib, deleted=None, reserved=None):
             keep_plan(f"resolution '{dec}': not in the bibliography")
             info["noop"] = "not in the bibliography"
             continue
-        if k in deleted and dec in ("drop", "apply") and (dec == "drop" or res.get("merge_into")):
+        if k in deleted and not chain and dec in ("drop", "apply") and (dec == "drop" or res.get("merge_into")):
             renamed_in = sorted(old for old, new in reserved.items() if new == k)
             keep_plan(f"resolution '{dec}': {k} was already deleted (key-deletions.json)")
             info["noop"] = "already deleted (key-deletions.json)" + (
@@ -3053,7 +3095,7 @@ def apply_resolutions(records, resolutions, bib, deleted=None, reserved=None):
                  + (f"the key now names another work (renamed from {', '.join(renamed_in)}): not removed"
                     if renamed_in else "the entry in this bibliography is not removed again"), "applied")
             continue
-        if k in deleted:
+        if k in deleted and not chain:
             residue.append(f"{k} is listed in key-deletions.json but is in the bibliography: the resolution's "
                            "changes may be about the deleted work")
         if dec in ("keep", "apply") and rec.get("remove_entry"):
@@ -3078,7 +3120,7 @@ def apply_resolutions(records, resolutions, bib, deleted=None, reserved=None):
         target = key_target(rec["final_entry"])
         if res.get("merge_into"):
             into = res["merge_into"]
-            if into not in bib and into not in planned(k):
+            if into not in bib and into not in planned(wave_key):
                 residue.append(f"merge_into {into}: no such key in the bibliography or among the planned keys")
             for x in ("new_key", "existing", "also_rename", "rename_reason"):
                 plan.pop(x, None)
@@ -3099,7 +3141,7 @@ def apply_resolutions(records, resolutions, bib, deleted=None, reserved=None):
             plan["resolution"] = f"resolution ({batch}): key {want} confirmed"
             flag(flags, "resolution_decision", "key", f"resolution ({batch}): {k} -> {want}, as planned", "applied")
             continue
-        others = planned(k)
+        others = planned(wave_key)
         holders = sorted(x for x in set(bib) | others if x == want and x != k)
         if not holders:
             for x in ("merge_into", "existing", "also_rename"):
@@ -3233,10 +3275,12 @@ def resolution(review_rows, merged, bib):
 
 
 def run(folder, bib="HEAD", review_path=None, offline=False, write=True, decisions_path=None,
-        resolutions=None, deleted=None):
+        resolutions=None, deleted=None, renames=None):
     """`resolutions`: None (none read), a {key: row} dict, or a path (a directory of
     resolution batch-*.json or one file; the CLI passes RESOLUTION_DIR by default).
-    `deleted`: {key: record} of keys already deleted (default key-deletions.json)."""
+    `deleted`: {key: record} of keys already deleted (default key-deletions.json).
+    `renames`: {old: new} of keys renamed in cdl.bib (default key-renames.json)."""
+    renames = renamed_away() if renames is None else renames
     folder = Path(folder)
     bibd = load_bib(bib)
     decisions = load_decisions(decisions_path)
@@ -3264,16 +3308,20 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True, decisio
     index = work_index(bibd)
 
     def pass_(with_review):
-        ctx = {"doi": doi, "cities": city_states(bibd), "taken": set(), "reserved": renamed_away(),
+        ctx = {"doi": doi, "cities": city_states(bibd), "taken": set(), "reserved": renames,
                "index": index, "fetch": lambda url: http_get(url, offline), "offline": offline}
         out = {}
         for stem, row in rows:
             # the user's decisions are not rules: the rules-alone pass never sees them
-            rec = check_entry(row, bibd.get(row["key"]), bibd, ctx,
+            res = resolutions.get(row["key"]) if with_review else None
+            # a resolution key renamed in the bibliography since (key-renames.json) is
+            # checked, and decided, under its current key
+            cur, chain = follow_renames(row["key"], bibd, ctx["reserved"], deleted) if res else (row["key"], [])
+            rec = check_entry(dict(row, key=cur) if chain else row, bibd.get(cur), bibd, ctx,
                               review=reviews.get(row["key"]) if with_review else None,
                               validation=validation.get(row["key"]),
                               decision=decisions.get(row["key"]) if with_review else None,
-                              resolution=resolutions.get(row["key"]) if with_review else None)
+                              resolution=res)
             rec["batch"] = stem
             out[row["key"]] = rec
         wave_duplicates(out)
@@ -3320,8 +3368,11 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True, decisio
                         for k, r in sorted(merged.items()) if r.get("resolution")},
         "resolution_residue": {k: r["resolution"]["residue"] for k, r in sorted(merged.items())
                                if r.get("resolution") and r["resolution"]["residue"]},
-        "resolution_removals": sorted(k for k, r in merged.items()
+        "resolution_removals": sorted(r["key"] for k, r in merged.items()
                                       if str(r.get("remove_entry_source") or "").startswith("resolution")),
+        "resolution_redirects": {k: dict(r["resolution"]["redirect"], decision=r["resolution"]["decision"])
+                                 for k, r in sorted(merged.items())
+                                 if r.get("resolution") and r["resolution"].get("redirect")},
         "resolution_noops": {k: r["resolution"].get("noop") or "not in the bibliography"
                              for k, r in sorted(merged.items()) if r.get("resolution")
                              and (r["resolution"].get("noop") or any(f["code"] == "resolution_noop" for f in r["flags"]))},
@@ -3389,7 +3440,7 @@ def main(argv=None):
     if args.write_resolution_removals:
         if res_path is None:
             ap.error("--write-resolution-removals needs the resolution decisions")
-        rows, noop = build_resolution_removals(load_resolutions(res_path), load_bib(args.bib))
+        rows, noop = build_resolution_removals(load_resolutions(res_path), load_bib(args.bib), renames=renamed_away())
         out = (res_path if res_path.is_dir() else res_path.parent) / RESOLUTION_REMOVALS.name
         out.write_text(json.dumps({
             "about": "Entries the resolution batches drop (decision 'drop'), for the later apply step; cdl.bib is "

@@ -41,10 +41,15 @@
  {
   "key": "Kura81",
   "decision": "apply",
-  "notes": "DOI and issue 1-2 apply (Crossref). Journal left as HEAD 'Physica {A}: Statistical and Theoretical Physics': the ISSN portal lists 'Physica. A, Statistical and theoretical physics' and '...Statistical mechanics and its applications' as undated variants, NLM Catalog 9890571 likewise; Crossref gives only the current name; ScienceDirect 403s. Which subtitle vol 106 (1981) carried is unconfirmed.",
-  "questions": [
-   "When Crossref gives only a journal's current name and catalogues (ISSN portal, NLM Catalog) list an older subtitle as an undated variant, which name is cited: Crossref's current name, the older variant already canonical in bibcheck's journal table, or the bare common title?"
-  ]
+  "notes": "DOI and issue 1-2 apply (Crossref). Journal left as HEAD 'Physica {A}: Statistical and Theoretical Physics': the ISSN portal lists 'Physica. A, Statistical and theoretical physics' and '...Statistical mechanics and its applications' as undated variants, NLM Catalog 9890571 likewise; Crossref gives only the current name; ScienceDirect 403s. Which subtitle vol 106 (1981) carried is unconfirmed. RECONCILED 2026-09-26 (unsettled entries): Renamed-journal rule (the name as printed at publication): the German union catalogue (ZDB 189951-X, via lobid/hbz) dates the subtitles: 'Theoretical and statistical physics' for vols 79.1975-152.1988, 'Statistical and theoretical physics' for 153.1988-254.1998, then 'Statistical mechanics and its applications'. Vol. 106 (1981) carried 'Theoretical and Statistical Physics', so HEAD's word order (the 1988-1998 name) is corrected.",
+  "questions": [],
+  "set": {
+   "journal": {
+    "value": "Physica {A}: Theoretical and Statistical Physics",
+    "url": "https://lobid.org/resources/990054575850206441.json",
+    "quote": "\"Physica / A\", \"Statistical mechanics and its applications\", \"Theoretical and statistical physics ( Sachl. Benennung 79.1975 - 152.1988 )\""
+   }
+  }
  },
  {
   "key": "AmarEtal10",

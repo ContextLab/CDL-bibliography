@@ -388,7 +388,18 @@ Per key (source `resolution`, flag `resolution_decision`):
   as `resolution_key_collision` (summary `resolution_key_collisions`). A final key that does
   not follow the ID rule for the corrected metadata is residue. Planned keys of other waves
   are not visible to one wave's run.
-- A key not in the bibliography: every decision is a no-op; an `apply` with changes is residue.
+- A key the bibliography has renamed since the resolution was written (`key-renames.json`,
+  e.g. the wave-1 apply's HerrEtal10 -> HerrEtal10a, Adey67a -> Adey67, Frie08 -> Frie08a) is
+  followed along the rename chain to its current key (`follow_renames`), and the decision is
+  checked and applied there: the entry is checked under the current key, its key plan starts
+  from it, and a drop removes it under that key (`renamed_from` in `removals.json`). Each
+  redirect is flagged `resolution_redirect` and listed in summary `resolution_redirects`
+  (`from`, `to`, `chain`, `decision`). A key listed in `key-deletions.json` is never followed
+  from (KahaEtal08b, JacoEtal05b: deleted, suffix reused), a cycle (SilvEtal19's
+  self-replacement) stops the walk, and a chain that ends outside the bibliography is no
+  redirect. `run(..., renames=)` takes the ledger (default `key-renames.json`).
+- A key not in the bibliography (and not renamed): every decision is a no-op; an `apply` with
+  changes is residue.
 
 An entry with a resolution needs the user only for its residue (`resolution.residue` in
 `merged.json`, summary `resolution_residue`); its verdict is resolved. Tests
@@ -396,7 +407,9 @@ An entry with a resolution needs the user only for its residue (`resolution.resi
 pre-wave-1 bibliography fixture, an empty deletion ledger unless the test gives one): BairNoma78
 (apply with set, withdraw, remove, entrytype), Howa08 (title over the chapter move, key
 confirmed), GoldEtal08 (house names), Seac97 (drop), DaPo67 (keep), WhitEtal96 (merge), KahaEtal08b
-(drop of a deleted, reused key); negative controls: a set without a quote is refused, a failing
+(drop of a deleted, reused key), Frie08 (apply followed to its renamed key Frie08a through
+`run()`, with frozen `key-renames.json` rows); negative controls: without the rename ledger the
+Frie08 decision is a no-op, a deleted key is never followed, a set without a quote is refused, a failing
 quote holds unless the notes say browser or scan, a drop of an absent key is a no-op, a new key
 held by another work or planned by another entry collides, a missing merge target is residue,
 and unreadable batches stop the run.

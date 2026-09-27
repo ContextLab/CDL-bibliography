@@ -191,3 +191,47 @@ WhitEtal96, Wayn96; keep -> apply DaPo67, Yone96.
   use @inproceedings.
 - HEAD YangEtal25b (Qwen3 report) lists individuals, while YangEtal24 now follows the
   organizational-byline default, `{Qwen Team}`, as HEAD Qwen26 already does.
+
+## Follow-up (2026-09-26): NeurIPS entry type and the unsettled entries
+
+### NeurIPS/NIPS entry type
+
+Every NeurIPS/NIPS entry in the resolution batches now ends as @inproceedings with Booktitle
+`Advances in Neural Information Processing Systems`. HEAD cdl.bib (23 entries) currently has 13
+@article/Journal, 5 @inproceedings (plus YangEtal13, a NIPS workshop), 3 @incollection and 1 @conference.
+All 13 @article entries are planned as @inproceedings/booktitle by the wave post-checks: wave 2 for
+ChanEtal09a, SochEtal09, KrizEtal12, KiroEtal15, PaszEtal19, MairEtal09b, MnihHint09, SanbGrif08,
+BorzEtal23b, ShihEtal23, ChenEtal24b, ChenEtal24c and GrifStey03. Wave 9 plans VaswEtal17 as
+@conference -> @inproceedings, and batches 16/17 set AlvaEtal05 and JainHuth18 to @inproceedings. After
+the planned changes, @inproceedings is the form of every NeurIPS entry except batch 18's three.
+
+| Key | Batch | Change | Rule | Evidence |
+|-|-|-|-|-|
+| ChenEtal15a | 18 | entrytype @incollection -> @inproceedings (booktitle, editor, publisher, volume unchanged) | Cross-batch consistency (NeurIPS form) | wave-2/7/9 postcheck.json plans; batches 16, 17 |
+| MozeEtal09 | 18 | entrytype @incollection -> @inproceedings | Cross-batch consistency (NeurIPS form) | same |
+| SkagEtal93 | 18 | entrytype @incollection -> @inproceedings | Cross-batch consistency (NeurIPS form) | same |
+
+No other batch disagrees. The earlier note "batch-18 cites NeurIPS papers as @incollection" is resolved.
+
+### The unsettled entries
+
+| Key | Batch | Outcome | Rule | Evidence |
+|-|-|-|-|-|
+| JaspPenf49 | 01 | Number = 1 (question closed) | Conflicting official records: publisher page first, then Crossref | https://web.archive.org/web/20251204150514id_/https://link.springer.com/article/10.1007/BF01062488 (`<meta name="citation_issue" content="1"/>`); Crossref deposits `1-2` |
+| RaskCook37 | 06 | author stays `E Raskin and S W Cook` (question closed) | Author names: correct, most complete name, evidence from the same author's other records | Crossref: 'Stuart W. Cook' on 10.1037/h0063120 (1936), 10.1080/00224545.1938.9921689 (1938), 10.1176/ajp.95.6.1259 (1939), 10.1037/h0049639 (1940). 'Stuart A.' appears only on APA's 1937-1940 deposits (h0061612, h0063197, h0054598, h0061199) |
+| Kura81 | 10 | journal -> `Physica {A}: Theoretical and Statistical Physics` (question closed) | Renamed journals: the name as printed at publication | https://lobid.org/resources/990054575850206441.json (ZDB 189951-X: 'Theoretical and statistical physics ( Sachl. Benennung 79.1975 - 152.1988 )'; 'Statistical and theoretical physics' only for 153.1988-254.1998) |
+| MallEtal02 | 08 | Volume 16 stays, now with direct evidence (question closed) | Unconfirmable optional fields are removed; this one is confirmed (an abstracting-index record is accepted, round 2) | https://api.openalex.org/works/W179268414 (`"biblio":{"volume":"16",...,"first_page":"24","last_page":"28"}`); lobid numbering 1.1987; Crossref KI 2010 = volume 24 |
+| Newm08 | 13 | batch values stand: print-dated record, pages 4059--4064, 2nd ed., DOI kept (question closed) | Print-edition defaults (encyclopedia; print book vs e-book reissue; offset digital pagination) | Crossref 10.1007/978-1-349-58802-2_1061: published-print 2008, page 4059-4064, ISBN 9781349588022 |
+| SvenEtal24 | 12 | NOT settled. HEAD unchanged, new evidence added, question rewritten | see below | https://api.researchmap.jp/hoangnt (self-registered: family_name en 'NT', kana グエンタイ; given 'Hoang'); https://gearons.org/about/ |
+| vand95 | 07 | NOT settled. Batch decision (re-point to van der Kolk & Fisler 1995 by its locators) left as written | see below | (batch notes) |
+
+Still needing a rule:
+
+- SvenEtal24: when an author's registered family name is itself initials ('Hoang NT', family 'NT' read
+  Nguyen Thai), do we write the surname as printed ('H {NT}', which bibcheck's formatter currently turns
+  into the initials 'H N T'), spell it out from the registered reading ('H {Nguyen Thai}'), or keep the
+  byline as printed? HEAD's 'N T Hoang' makes 'Hoang' the surname. The author's own record says that is
+  wrong.
+- vand95: when a citation's journal, year, volume, issue and pages identify one work, but its title and
+  author list belong to a different work by the same first author, do the locators win (re-point the
+  entry), does the title win, or is the entry dropped?

@@ -134,10 +134,8 @@
     "quote": "\"published-print\":{\"date-parts\":[[2008]]}"
    }
   },
-  "notes": "Entry in The New Palgrave Dictionary of Economics, 2nd ed (not an encyclopedia article). Of three Crossref versions I chose the one with a 2008 print date (pp 4059-4064, continuous pagination of the 8-volume set); the online version gives 465-470 and the living-reference version 1-8. HEAD '2, 1--12' matches none. Address omitted (Crossref London vs catalogue Basingstoke).",
-  "questions": [
-   "Reference-work entries with several Crossref versions (online dictionary, 2008 print-dated record, living reference) giving different pages: cite the print-dated record's pages (chosen for Newm08), or omit pages?"
-  ]
+  "notes": "Entry in The New Palgrave Dictionary of Economics, 2nd ed (not an encyclopedia article). Of three Crossref versions I chose the one with a 2008 print date (pp 4059-4064, continuous pagination of the 8-volume set); the online version gives 465-470 and the living-reference version 1-8. HEAD '2, 1--12' matches none. Address omitted (Crossref London vs catalogue Basingstoke). RECONCILED 2026-09-26 (unsettled entries): Print-edition defaults (encyclopedia article / print book with a later e-book reissue / offset digital pagination: the print edition's year and pages win): Crossref 10.1007/978-1-349-58802-2_1061 is the 2nd edition's print-dated record (published-print 2008, ISBN 9781349588022, published online 2017) with the continuous print pagination 4059-4064 of the 8-volume set; the online-dictionary (465-470) and living-reference (1-8) versions are later editions. HEAD '2, 1--12' matches no version. Pages 4059--4064 stand; the DOI stays because this record carries the print edition's own year and pages.",
+  "questions": []
  },
  {
   "key": "BeamJone98",

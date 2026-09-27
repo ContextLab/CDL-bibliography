@@ -150,10 +150,8 @@
   "set": {},
   "withdraw": [],
   "remove": [],
-  "notes": "Journal (JEP), issue 4 and DOI come from Crossref and PsycNet ('Journal of Experimental Psychology, 20(4), 381–395'). The author is not confirmed: PsycNet prints 'Raskin, E., & Cook, S. A.' against HEAD's 'S W Cook', no printed PDF was reachable, and HEAD is left unchanged.",
-  "questions": [
-   "When the publisher's own records (APA PsycNet and Crossref agree) print an author name that differs from the name the author is known by and the printed PDF cannot be reached (Madigna vs Madigan, Tulvig vs Tulving, 'S. A.' vs 'S. W.' Cook), do we keep the cited spelling or copy the publisher record?"
-  ]
+  "notes": "Journal (JEP), issue 4 and DOI come from Crossref and PsycNet ('Journal of Experimental Psychology, 20(4), 381–395'). The author is not confirmed: PsycNet prints 'Raskin, E., & Cook, S. A.' against HEAD's 'S W Cook', no printed PDF was reachable, and HEAD is left unchanged. RECONCILED 2026-09-26 (unsettled entries): Author-name rule (round 1: the author's correct, most complete name, with evidence from other records of the same author): HEAD 'S W Cook' stays. Crossref shows APA printing 'Stuart A. Cook' only on its 1937-1940 deposits (10.1037/h0061612 this paper; 10.1037/h0063197 GSR conditioning 1937; 10.1037/h0054598 1939; 10.1037/h0061199 polls 1940), while the same author's other records of those years print 'Stuart W. Cook': APA itself on 10.1037/h0063120 (JAP 1936) and 10.1037/h0049639 (JASP 1940), Journal of Social Psychology 10.1080/00224545.1938.9921689 (1938, attitude toward Fascism) and American Journal of Psychiatry 10.1176/ajp.95.6.1259 (1939). Crossref (query.author 'Stuart Cook', to 1945) lists no 'Stuart A. Cook' outside those APA 1937-1940 deposits, and the topics (attitudes, polls, conditioning, experimental neurosis) are one research line: the 'A.' is APA's metadata misprint.",
+  "questions": []
  },
  {
   "key": "TulvHast72",

@@ -63,14 +63,22 @@
    },
    "volume": {
     "value": "16",
-    "url": "https://lobid.org/resources/search?q=issn:09331875&format=json",
-    "quote": "1.1987,4; 2.1988 -"
+    "url": "https://api.openalex.org/works/W179268414",
+    "quote": "\"biblio\":{\"volume\":\"16\",\"issue\":null,\"first_page\":\"24\",\"last_page\":\"28\"}",
+    "extra_evidence": [
+     {
+      "url": "https://lobid.org/resources/search?q=issn:09331875&format=json",
+      "quote": "1.1987,4; 2.1988 -"
+     },
+     {
+      "url": "https://api.crossref.org/works?filter=issn:0933-1875,from-pub-date:2010,until-pub-date:2010&rows=1&select=volume,published-print,published,container-title,publisher",
+      "quote": "\"volume\":\"24\",\"published-print\":{\"date-parts\":[[2010,7]]}"
+     }
+    ]
    }
   },
-  "notes": "Not no_source: the authors' copy of the printed article (Loomis's site) prints title, byline and footer 'Künstliche Intelligenz, Heft 4/02, Seiten 24-28, ISSN 0933-1875, arendtap Verlag, Bremen' (OCR 'Kiinstliche'). The page prints no volume; the German union catalogue (lobid/hbz, ISSN 0933-1875) numbers volumes 1.1987, 2.1988, ..., so 2002 = 16, matching HEAD.",
-  "questions": [
-   "When the printed article gives only issue/year (e.g. 'Heft 4/02') and the library catalogue's numbering statement (e.g. '1.1987; 2.1988 -') implies the volume, may Volume be derived from the catalogue, or should Volume be omitted?"
-  ]
+  "notes": "Not no_source: the authors' copy of the printed article (Loomis's site) prints title, byline and footer 'Künstliche Intelligenz, Heft 4/02, Seiten 24-28, ISSN 0933-1875, arendtap Verlag, Bremen' (OCR 'Kiinstliche'). The page prints no volume; the German union catalogue (lobid/hbz, ISSN 0933-1875) numbers volumes 1.1987, 2.1988, ..., so 2002 = 16, matching HEAD. RECONCILED 2026-09-26 (unsettled entries): Volume 16 is confirmed, not only derived: the index record for this exact article (OpenAlex W179268414, 'Mechanisms of Spatial Cognition: Behavioral Experiments in Virtual Environments.', Künstliche Intell. 2002) prints volume 16, pages 24-28; the catalogue numbering (1.1987; 2.1988 -) and the publisher's continuing numbering (Springer's KI - Künstliche Intelligenz 2010 = volume 24, Crossref) agree. Abstracting-index evidence is accepted (round 2); the field is not unconfirmable, so it stays.",
+  "questions": []
  },
  {
   "key": "AshbEtal88",

@@ -247,9 +247,14 @@
  {
   "key": "JaspPenf49",
   "decision": "apply",
-  "notes": "DOI and journal name apply. Number left absent: Crossref deposits issue '1-2' while Springer's article page prints citation_issue '1' (Issue Date January 1949, archived 2022).",
-  "questions": [
-   "Crossref issue ('1-2') and the publisher's article page issue ('1') disagree and no printed issue cover is fetchable: which wins, or should Number be omitted?"
-  ]
+  "notes": "DOI and journal name apply. Number left absent: Crossref deposits issue '1-2' while Springer's article page prints citation_issue '1' (Issue Date January 1949, archived 2022). RECONCILED 2026-09-26 (unsettled entries): Conflicting official records rule (round 1: publisher page / Crossref wins, publisher page first): Springer's own article page (archived 2025-12-04) prints citation_issue '1' (Issue date January 1949, volume 183, pages 163-174); Crossref's deposit '1-2' yields to it. Number = 1.",
+  "questions": [],
+  "set": {
+   "number": {
+    "value": "1",
+    "url": "https://web.archive.org/web/20251204150514id_/https://link.springer.com/article/10.1007/BF01062488",
+    "quote": "<meta name=\"citation_issue\" content=\"1\"/>"
+   }
+  }
  }
 ]

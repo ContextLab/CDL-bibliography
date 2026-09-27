@@ -2030,3 +2030,107 @@ def test_run_reads_resolutions_in_the_final_pass_only(tmp_path):
     assert not any(f["code"].startswith("resolution_") for r in rules_only.values() for f in r["flags"])
     post, page, rules_only, merged = pc.run(wave, bib=FROZEN_BIB, write=False)
     assert post["summary"]["resolutions"] == {} and any(p["needs_user"] for p in page)
+
+
+# ---------------------------------------------------------------- resolutions on renamed keys
+
+# Frozen rows of verification/key-renames.json (wave-1 apply, 2026-09-26, and the
+# replace001 self-rename of SilvEtal19) and the batch-23 resolution of Frie08, written
+# while its HEAD key was Frie08a.
+FROZEN_RENAMES = {"Frie08": "Frie08a", "HerrEtal10": "HerrEtal10a", "Adey67a": "Adey67",
+                  "KahaEtal08c": "KahaEtal08b", "JacoEtal05d": "JacoEtal05b", "SilvEtal19": "SilvEtal19"}
+FROZEN_DELETIONS = {"KahaEtal08b": {"key": "KahaEtal08b", "reason": "duplicate of KahaEtal08a (approved merge)"},
+                    "JacoEtal05b": {"key": "JacoEtal05b", "reason": "conference abstract (approved removal)"}}
+FRIE08_RESOLUTION = json.loads(r'''{
+ "key": "Frie08",
+ "decision": "apply",
+ "new_key": "Frie12",
+ "set": {
+  "year": {
+   "value": "2012",
+   "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn=9780195374148",
+   "quote": "c2012."
+  },
+  "pages": {
+   "value": "514--536",
+   "url": "https://academic.oup.com/edited-volume/34558/chapter-abstract/293244662",
+   "quote": "Pages 514–536"
+  }
+ },
+ "withdraw": [],
+ "remove": [],
+ "notes": "Publisher page (browser; citation_publication_date=2011/12/15, 'Pages 514–536') and Crossref published-print 2011-12-15 beat the LoC imprint c2012, so year 2011 (not the post-check's 2012) and key Frie11 (free in HEAD). Post-check DOI and journal removal stand. RECONCILED 2026-09-26: Print-year rule, consistent with BoydEtal15/Rugg95/MontEtal03 (batch 20): the printed book is 'Oxford : Oxford University Press, c2012.' (LoC 2010053196); Crossref/OUP 2011-12-15 is the Oxford Handbooks Online date. Key Frie12 (free). NOTE: this entry's HEAD key is now Frie08a (key-renames.json).",
+ "questions": []
+}''')
+
+
+def renamed_bib(tmp_path, old, new):
+    """The frozen bibliography with one entry renamed as the wave-1 apply renamed it."""
+    text = Path(FROZEN_BIB).read_text()
+    head = next(line for line in text.splitlines() if line.startswith("@") and line.endswith("{" + old + ","))
+    path = tmp_path / "renamed.bib"
+    path.write_text(text.replace(head, head[:-len(old) - 1] + new + ",", 1))
+    return path
+
+
+def test_resolution_follows_key_renames_to_the_current_key(tmp_path):
+    """Frie08 (batch-23) was renamed Frie08a by the wave-1 apply (key-renames.json). The
+    resolution applies to Frie08a: its set year and pages land, the key plan renames
+    Frie08a -> Frie12, and the summary reports the redirect. Negative control: without the
+    rename ledger the same decision is a no-op on an absent key, as before the fix."""
+    bibpath = renamed_bib(tmp_path, "Frie08", "Frie08a")
+    wave = tmp_path / "wave"
+    wave.mkdir()
+    (wave / "batch-001.json").write_text(json.dumps([ROWS8["Frie08"]]))
+    res = {"Frie08": dict(FRIE08_RESOLUTION, _batch="batch-23")}
+    post, page, rules_only, merged = pc.run(wave, bib=str(bibpath), write=False, resolutions=res,
+                                            deleted=NO_DELETIONS, renames=FROZEN_RENAMES)
+    s = post["summary"]
+    assert s["resolution_redirects"] == {"Frie08": {"from": "Frie08", "to": "Frie08a", "chain": ["Frie08", "Frie08a"],
+                                                    "decision": "apply"}}
+    rec = merged["Frie08"]
+    assert rec["key"] == "Frie08a" and "resolution_redirect" in codes(rec) and "not_in_bib" not in codes(rec)
+    assert rec["final_entry"]["year"] == "2012" and rec["final_entry"]["pages"] == "514--536"
+    plan = rec["key_plan"]
+    assert plan["current_key"] == "Frie08a" and plan["action"] == "rename" and plan["new_key"] == "Frie12"
+    assert s["renames"] == {"Frie08a": "Frie12"} and "Frie08" not in s["resolution_noops"]
+    assert rec["resolution"]["residue"] == []
+    # negative control: no rename ledger -> the key is absent and the decision is a no-op
+    post, page, rules_only, merged = pc.run(wave, bib=str(bibpath), write=False, resolutions=res,
+                                            deleted=NO_DELETIONS, renames={})
+    assert post["summary"]["resolution_redirects"] == {} and "Frie08" in post["summary"]["resolution_noops"]
+    assert merged["Frie08"]["key_plan"]["action"] == "keep" and "resolution_redirect" not in codes(merged["Frie08"])
+
+
+def test_follow_renames_never_from_a_deleted_key(bib):
+    """Redirects follow key-renames.json only from a key that is absent and not deleted:
+    Adey67a -> Adey67 and HerrEtal10 -> HerrEtal10a are followed on a bibliography where
+    they were renamed; a renamed work landing on a once-deleted key (JacoEtal05d ->
+    JacoEtal05b) is followed; KahaEtal08b, deleted with its suffix reused, is never
+    followed from, and its drop stays a no-op; SilvEtal19's self-rename is no cycle."""
+    after = {("Adey67" if k == "Adey67a" else "HerrEtal10a" if k == "HerrEtal10" else
+              "JacoEtal05b" if k == "JacoEtal05d" else k): v
+             for k, v in bib.items() if k not in ("Adey67", "JacoEtal05b", "SilvEtal19")}
+    assert pc.follow_renames("Adey67a", after, FROZEN_RENAMES, FROZEN_DELETIONS) == ("Adey67", ["Adey67a", "Adey67"])
+    assert pc.follow_renames("HerrEtal10", after, FROZEN_RENAMES, FROZEN_DELETIONS)[0] == "HerrEtal10a"
+    assert pc.follow_renames("JacoEtal05d", after, FROZEN_RENAMES, FROZEN_DELETIONS)[0] == "JacoEtal05b"
+    assert pc.follow_renames("SilvEtal19", after, FROZEN_RENAMES, FROZEN_DELETIONS) == ("SilvEtal19", [])
+    assert pc.follow_renames("Seac97", after, FROZEN_RENAMES, FROZEN_DELETIONS) == ("Seac97", [])
+    # a key listed in key-deletions.json is never followed, even when a rename row names it
+    assert pc.follow_renames("KahaEtal08b", {}, {"KahaEtal08b": "KahaEtal08a"}, FROZEN_DELETIONS) == ("KahaEtal08b", [])
+    res = dict(RESOLUTION["KahaEtal08b"])
+    no_kaha = {k: v for k, v in bib.items() if k != "KahaEtal08b"}
+    rows_, noop = pc.build_resolution_removals({"KahaEtal08b": res}, no_kaha, FROZEN_DELETIONS,
+                                               dict(FROZEN_RENAMES, KahaEtal08b="KahaEtal08a"))
+    assert rows_ == [] and noop[0]["key"] == "KahaEtal08b"
+    rec = pc.check_entry(ROWS8["KahaEtal08b"], None, no_kaha, ctx_for(no_kaha),
+                         validation=VALIDATION8.get("KahaEtal08b"), resolution=res)
+    pc.apply_resolutions({"KahaEtal08b": rec}, {"KahaEtal08b": res}, no_kaha, FROZEN_DELETIONS,
+                         dict(FROZEN_RENAMES, KahaEtal08b="KahaEtal08a"))
+    assert not rec.get("remove_entry") and "redirect" not in rec["resolution"]
+    assert "resolution_redirect" not in codes(rec)
+    # a drop of a renamed key removes the entry under its current key
+    drop = dict(RESOLUTION["Seac97"], key="HerrEtal10")
+    rows_, noop = pc.build_resolution_removals({"HerrEtal10": drop}, after, FROZEN_DELETIONS, FROZEN_RENAMES)
+    assert [(r["key"], r["renamed_from"]) for r in rows_] == [("HerrEtal10a", "HerrEtal10 -> HerrEtal10a")]
+    assert noop == []
