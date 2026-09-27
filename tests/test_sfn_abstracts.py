@@ -21,6 +21,14 @@ DATA = json.loads((ROOT / 'verification/routes-2026-09-25/fixtures/sfn_abstracts
 CONTACT = 'jeremy.r.manning@dartmouth.edu'
 
 
+@pytest.fixture(autouse=True)
+def frozen_library(monkeypatch):
+    # The surname-consensus check reads the library; use the bibliography as frozen before
+    # the research waves were applied, so correcting an entry never changes these tests.
+    import correction_proposals as cp
+    monkeypatch.setattr(cp, 'LIBRARY_BIB', ROOT / 'tests/fixtures/cdl-prewave1-2026-09-26.bib')
+
+
 def case(key):
     return deepcopy(DATA[key])
 
