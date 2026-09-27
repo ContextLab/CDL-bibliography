@@ -567,5 +567,12 @@
   "decision_source": "research-2026-09-25/crosswave/removals.json (a-vanVEtal06: correct)",
   "date": "2026-09-26",
   "batch": "wave1"
+ },
+ {
+  "key": "CronEtal94",
+  "reason": "item inside a journal's collective 'Abstracts' record (Crossref 10.1006/brln.1994.1057 title 'Abstracts', Brain and Language 47(3) pp 409-490): abstracts -> drop (default); no item-level record",
+  "decision_source": "verification/resolution-2026-09-26/batch-03.json (drop; post-check research-2026-09-25/wave2/merged.json): User decision (crosswave a-CronEtal94): real article, keep. Only record: Crossref 10.1006/brln.1994.1057 \"title\":[\"Abstracts\"], Brain and Language 47(3), Oct 1994, pp 409-490 (contains 466-468), no per-item DOI; ScienceDirect 403 and Elsevier API give no text, so title/authors/pages 466--468 remain unverified. Number 3 applies; 'J {Hart Jr}' should lose the suffix (J Hart) under the no-suffix rule. No DOI added. RECONCILED 2026-09-26: Default: items inside a collective Abstracts record are abstracts -> drop; rule 1 also beats the earlier keep.",
+  "date": "2026-09-26",
+  "batch": "wave2"
  }
 ]

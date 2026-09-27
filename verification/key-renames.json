@@ -365,5 +365,138 @@
   "date": "2026-09-26",
   "reason": "wave1: suffix rule: PolyEtal05b removed (conference abstract) (house suffix rule (helpers.check_key_suffixes) after this batch)",
   "commit": "wave1"
+ },
+ {
+  "old_key": "MairEtal09b",
+  "new_key": "MairEtal08",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-01): key MairEtal08 confirmed (wave2 merged.json (correction; resolution apply batch-01))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "MnihHint09",
+  "new_key": "MnihHint08",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-01): key MnihHint08 confirmed (wave2 merged.json (correction; resolution apply batch-01))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "SanbGrif08",
+  "new_key": "SanbGrif07",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-01): key SanbGrif07 confirmed (wave2 merged.json (correction; resolution apply batch-01))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "JoniEtal07",
+  "new_key": "JoniEtal08",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-01): key JoniEtal08 confirmed (wave2 merged.json (correction; resolution apply batch-01))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "GranWals16",
+  "new_key": "BusbWals16",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-01): key BusbWals16 confirmed (wave2 merged.json (correction; resolution apply batch-01))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "HirsAly22",
+  "new_key": "HirsAly23",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-02): key HirsAly23 confirmed (wave2 merged.json (correction; resolution apply batch-02))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "DahmEtal11",
+  "new_key": "DahmEtal12",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-02): key DahmEtal12 confirmed (wave2 merged.json (correction; resolution apply batch-02))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "BerrEtal02",
+  "new_key": "AsakEtal02",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-02): key AsakEtal02 confirmed (wave2 merged.json (correction; resolution apply batch-02))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "BoisEtal06",
+  "new_key": "duBoEtal06",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-02): key duBoEtal06 confirmed (wave2 merged.json (correction; resolution apply batch-02))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "Jack79",
+  "new_key": "Hugh79",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-03): key Hugh79 confirmed (wave2 merged.json (correction; resolution apply batch-03))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "OjemEtal09",
+  "new_key": "OjemEtal10",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-03): key OjemEtal10 confirmed (wave2 merged.json (correction; resolution apply batch-03))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "OwenEtal97",
+  "new_key": "OwenEtal96",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-03): key OwenEtal96 confirmed (wave2 merged.json (correction; resolution apply batch-03))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "ChanEtal12b",
+  "new_key": "ChanEtal12",
+  "date": "2026-09-26",
+  "reason": "wave2: suffix rule: ChanEtal12a renamed to ChanEtal13 (wave2 merged.json (correction))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "Sina07",
+  "new_key": "Sina08",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-03): key Sina08 confirmed (wave2 merged.json (correction; resolution apply batch-03))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "ChanEtal12a",
+  "new_key": "ChanEtal13",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-03): key ChanEtal13 confirmed (wave2 merged.json (correction; resolution apply batch-03))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "GrubMatt05",
+  "new_key": "GrubMull05",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-03): key GrubMull05 confirmed (wave2 merged.json (correction; resolution apply batch-03))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "MeyeEtal18",
+  "new_key": "MeyeEtal19c",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; MeyeEtal19 is taken by a different work (MeyeEtal19a, MeyeEtal19b); resolution (batch-04): key MeyeEtal19c confirmed (wave2 merged.json (correction; resolution apply batch-04))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "RissEtal07",
+  "new_key": "RissEtal08",
+  "date": "2026-09-26",
+  "reason": "wave2: key does not follow the corrected metadata; resolution (batch-04): key RissEtal08 confirmed (wave2 merged.json (correction; resolution apply batch-04))",
+  "commit": "wave2"
+ },
+ {
+  "old_key": "MairEtal09a",
+  "new_key": "MairEtal09",
+  "date": "2026-09-26",
+  "reason": "wave2: suffix rule: MairEtal09b renamed to MairEtal08 (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave2"
  }
 ]
