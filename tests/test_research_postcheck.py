@@ -1702,3 +1702,331 @@ def test_removals_file_is_the_approved_abstracts(bib):
     assert "JohnRedi07b" in keys and all(e["in_head_bib"] for e in built)
     assert not keys & {"BeckEtal09", "CronEtal94", "MannEtal97", "PailEtal00", "SpieEtal18", "TongEtal95"}
     assert keys == {k for k, e in APPLIED.items() if e.get("remove_entry")}
+
+
+# ---------------------------------------------------------------- resolution decisions (2026-09-26)
+# Real rows from verification/resolution-2026-09-26/batch-NN.json, frozen here (the batches
+# are still being reconciled; a test must not break when a row is corrected there).
+
+RESOLUTION = json.loads(r'''{
+ "BairNoma78": {
+  "key": "BairNoma78",
+  "decision": "apply",
+  "entrytype": "book",
+  "set": {
+   "title": {
+    "value": "Fundamentals of scaling and psychophysics",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22fundamentals%20of%20scaling%20and%20psychophysics%22",
+    "quote": "<subfield code=\"a\">Fundamentals of scaling and psychophysics /</subfield>"
+   },
+   "address": {
+    "value": "New York, {NY}",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=4&recordSchema=marcxml&query=dc.title%3D%22fundamentals%20of%20scaling%20and%20psychophysics%22",
+    "quote": "<subfield code=\"a\">New York :</subfield>"
+   }
+  },
+  "withdraw": [
+   "booktitle"
+  ],
+  "remove": [
+   "chapter",
+   "pages"
+  ],
+  "notes": "The authored book is confirmed (LoC 78006011, Wiley, New York, c1978). The cited chapter 'Multidimensional scaling' pp. 177-205 has no source: archive.org copy is lending-only, HathiTrust search-only returns no snippets, Scholar/Open Library/Crossref have no contents. Cited as the whole book with the unconfirmable chapter and pages removed.",
+  "questions": [
+   "When a chapter of an authored (single-work) book cannot be confirmed but the book is, should the entry cite the whole book (chapter and pages removed) or be dropped?"
+  ],
+  "_batch": "batch-23"
+ },
+ "Howa08": {
+  "key": "Howa08",
+  "decision": "apply",
+  "new_key": "Howa09",
+  "entrytype": "incollection",
+  "set": {
+   "title": {
+    "value": "Memory: computational models",
+    "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.00754-3",
+    "quote": "\"title\":[\"Memory: Computational Models\"]"
+   },
+   "year": {
+    "value": "2009",
+    "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.00754-3",
+    "quote": "\"published-print\":{\"date-parts\":[[2009]]}"
+   }
+  },
+  "notes": "Crossref (pp. 771-777, 2009) and Howard's own publication list give the printed title 'Memory: Computational Models'; the cited 'Computational models of working memory' is a variant. Title set to the printed one (reviewer's correction), year 2009 (LoC c2009), key Howa09 (free in HEAD).",
+  "questions": [],
+  "_batch": "batch-20"
+ },
+ "GoldEtal08": {
+  "key": "GoldEtal08",
+  "decision": "apply",
+  "new_key": "GoldEtal09",
+  "entrytype": "incollection",
+  "set": {
+   "title": {
+    "value": "Neural integrator models",
+    "url": "https://api.crossref.org/works/10.1016/b978-008045046-9.01434-0",
+    "quote": "\"title\":[\"Neural Integrator Models\"]"
+   },
+   "editor": {
+    "value": "L R Squire",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=8&recordSchema=marcxml&query=dc.title%3D%22encyclopedia%20of%20neuroscience%22%20and%20dc.creator%3D%22squire%22",
+    "quote": "editor-in-chief, Larry R. Squire."
+   }
+  },
+  "notes": "Crossref prints 'Neural Integrator Models', pp. 165-178, 2009 (the cited title was a draft). Editor: the printed work names only the editor-in-chief (LoC 2009923450 'editor-in-chief, Larry R. Squire.'); the other four cited names are unconfirmable and removed (same as Howa09). Key GoldEtal09 (free).",
+  "questions": [],
+  "_batch": "batch-20"
+ },
+ "Seac97": {
+  "key": "Seac97",
+  "decision": "drop",
+  "drop_reason": "no evidence found after: Crossref bibliographic search, OpenAlex, Internet Archive (Computer Dealer News collection has no accessible 1997 issues), local PDF library; trade magazine indexed only in ProQuest/Gale",
+  "notes": "No fetchable record of the article exists.",
+  "_batch": "batch-04"
+ },
+ "DaPo67": {
+  "key": "DaPo67",
+  "decision": "keep",
+  "notes": "Real Indiana University doctoral dissertation (F J DaPolito, 1966), not a conference abstract. The DAI citation as in HEAD (27, 2522-2523, 1967) is printed identically in two independent books' reference lists (Internet Archive full text: Foundations of Human Memory; Human Memory: a constructivist view: 'Proactive effects with independent retrieval of competing responses. Dissertation Abstracts International, 27, 2522-2523.'), search URL https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=DaPolito%20%22Proactive%20effects%22%202522 ; the DAI page itself is behind ProQuest/HathiTrust bot walls. Kept pending the DAI rule question.",
+  "questions": [
+   "Dissertation Abstracts International (DAI) entries: when the DAI volume/page cannot be reached (ProQuest/HathiTrust bot walls) but the dissertation itself is documented, should the entry (a) stay an @article in DAI when independent citing works agree on the DAI volume/pages, (b) be converted to @phdthesis (School, Year of the degree) from a catalogue/DataCite record of the thesis, or (c) be dropped?"
+  ],
+  "_batch": "batch-05"
+ },
+ "WhitEtal96": {
+  "key": "WhitEtal96",
+  "decision": "apply",
+  "merge_into": "WitmEtal96",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "HEAD WitmEtal96 holds the same work (same DOI 10.1006/ijhc.1996.0060, Witmer, Bailey, Knerr, Parsons, IJHCS 45(4) 413-428, title as Crossref). WitmEtal96 is the keeper; WhitEtal96 (misspelled Whitmer) merges into it.",
+  "questions": [],
+  "_batch": "batch-06"
+ },
+ "KahaEtal08b": {
+  "key": "KahaEtal08b",
+  "decision": "drop",
+  "merge_into": "KahaEtal08a",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "drop_reason": "duplicate of KahaEtal08a (user-approved merge); already deleted in HEAD (verification/key-deletions.json, keeper KahaEtal08a)",
+  "notes": "The queued KahaEtal08b (chapter 'Associative processes in episodic memory') is the same chapter as KahaEtal08a and was removed in 282d321. CAUTION: the key KahaEtal08b in HEAD now names a different work (Kahana, Sederberg and Howard 2008, Psychological Review 115(4), renamed from KahaEtal08c per key-renames.json); do NOT delete it.",
+  "questions": [],
+  "_batch": "batch-19"
+ }
+}''')
+NO_DELETIONS = {}  # a frozen, empty deletion ledger: the fixture bib predates every deletion
+
+
+def checkr(bib, wave, key, res=None, row=None, current=None):
+    """A real wave row through check_entry with its review, validation and a resolution row,
+    then the key-level resolution step (as run() does in the final pass). current={} runs
+    it on a bibliography without the key."""
+    rows_, review_, validation_ = {"3": (ROWS3, REVIEW3, VALIDATION3), "8": (ROWS8, REVIEW8, VALIDATION8)}[wave]
+    res = copy.deepcopy(RESOLUTION[key]) if res is None else res
+    bib_ = bib if current is None else {k: v for k, v in bib.items() if k != key}
+    rec = pc.check_entry(row or rows_[key], bib_.get(key), bib_, ctx_for(bib_), review=review_.get(key),
+                         validation=validation_.get(key), resolution=res)
+    pc.apply_resolutions({key: rec}, {key: res}, bib_, NO_DELETIONS, pc.renamed_away())
+    return rec
+
+
+def residue(rec):
+    return rec["resolution"]["residue"]
+
+
+def test_resolution_apply_set_withdraw_remove_entrytype(bib):
+    """BairNoma78 (batch-23): the whole authored book. The set title and address are source
+    'resolution' with their LoC quotes checked; the withdrawn booktitle is not added; chapter
+    and pages are removed; entrytype book. Nothing is left for the user."""
+    rec = checkr(bib, "8", "BairNoma78")
+    fin = rec["final_entry"]
+    assert fin["ENTRYTYPE"] == "book" and fin["title"] == "Fundamentals of scaling and psychophysics"
+    assert fin["address"] == "New York, {NY}" and fin["publisher"] == "Wiley"
+    assert "booktitle" not in fin and "chapter" not in fin and "pages" not in fin
+    assert set(rec["removals"]) == {"chapter", "pages"}
+    assert sources(rec) == {"ENTRYTYPE": "resolution", "title": "resolution", "address": "resolution"}
+    assert all(q["ok"] for q in rec["resolution"]["quotes"].values())
+    assert residue(rec) == [] and not pc.needs_user(rec)
+    assert not any(f["action"] == "held" for f in rec["flags"])
+    # negative control: without the resolution the no_source row changes nothing and needs the user
+    plain = checkw(bib, "8", "BairNoma78", review=True)
+    assert plain["final_entry"].get("ENTRYTYPE") == "inbook" and pc.needs_user(plain)
+
+
+def test_resolution_values_override_research_and_confirm_key(bib):
+    """Howa08 (batch-20): the resolution's printed title beats the cited chapter field the
+    titled-chapter move would otherwise use; year 2009 from Crossref; new_key Howa09 is the
+    post-check's own plan (confirmed); the researcher's other corrections stand."""
+    rec = checkr(bib, "8", "Howa08")
+    fin = rec["final_entry"]
+    assert fin["title"] == "Memory: computational models" and fin["year"] == "2009"
+    assert fin["ENTRYTYPE"] == "incollection" and fin["pages"] == "771--777"
+    assert sources(rec)["title"] == "resolution" and sources(rec)["pages"] == "researcher"
+    plan = rec["key_plan"]
+    assert plan["action"] == "rename" and plan["new_key"] == "Howa09" and "confirmed" in plan["resolution"]
+    assert residue(rec) == [] and not pc.needs_user(rec)
+
+
+def test_resolution_values_get_house_form(bib):
+    """Resolution values go through the house rules: an em dash in a title is a---b with no
+    spaces; a name loses its suffix and full given names become initials (GoldEtal08's
+    editor quote prints 'Larry R. Squire.')."""
+    res = copy.deepcopy(RESOLUTION["Howa08"])
+    res["set"]["title"]["value"] = "Memory — computational models"
+    assert checkr(bib, "8", "Howa08", res=res)["final_entry"]["title"] == "Memory---computational models"
+    res["set"]["title"]["value"] = "Memory --- computational models"
+    assert checkr(bib, "8", "Howa08", res=res)["final_entry"]["title"] == "Memory---computational models"
+    res = copy.deepcopy(RESOLUTION["GoldEtal08"])
+    res["set"]["editor"]["value"] = "Larry R. Squire"
+    rec = checkr(bib, "8", "GoldEtal08", res=res)
+    assert rec["final_entry"]["editor"] == "L R Squire" and residue(rec) == []
+    # a suffix the quote does not print: unverified, applied only because the notes say
+    # the page was read in a browser, and then without the suffix
+    res["set"]["editor"]["value"] = "Larry R. Squire Jr."
+    res["notes"] += " Read in a browser."
+    rec = checkr(bib, "8", "GoldEtal08", res=res)
+    assert rec["final_entry"]["editor"] == "L R Squire"
+    assert any(f["code"] == "resolution_quote_unverified" and f["action"] == "applied" for f in rec["flags"])
+
+
+def test_resolution_drop_marks_the_entry_for_removal(bib):
+    """Seac97 (batch-04): no evidence found; the entry is marked remove_entry with the
+    drop reason, and nothing else changes."""
+    rec = checkr(bib, "3", "Seac97")
+    assert rec["remove_entry"].startswith("no evidence found after: Crossref bibliographic search")
+    assert rec["changes"] == [] and rec["removals"] == {} and rec["key_plan"]["action"] == "keep"
+    assert not pc.needs_user(rec)
+    rows_, noop = pc.build_resolution_removals({"Seac97": RESOLUTION["Seac97"]}, bib, NO_DELETIONS)
+    assert [r["key"] for r in rows_] == ["Seac97"] and noop == []
+
+
+def test_resolution_drop_of_absent_or_deleted_key_is_a_noop(bib):
+    """Negative controls: a drop of a key that is not in the bibliography removes nothing;
+    KahaEtal08b (batch-19) is in key-deletions.json and its key now names another work
+    (renamed from KahaEtal08c), so it is not removed again."""
+    rec = checkr(bib, "3", "Seac97", current={})
+    assert not rec.get("remove_entry") and "resolution_noop" in codes(rec) and not pc.needs_user(rec)
+    rows_, noop = pc.build_resolution_removals({"Seac97": RESOLUTION["Seac97"]},
+                                               {k: v for k, v in bib.items() if k != "Seac97"}, NO_DELETIONS)
+    assert rows_ == [] and noop[0]["key"] == "Seac97"
+    deleted = {"KahaEtal08b": {"key": "KahaEtal08b", "reason": "duplicate of KahaEtal08a (approved merge)"}}
+    res = RESOLUTION["KahaEtal08b"]
+    rec = pc.check_entry(ROWS8["KahaEtal08b"], bib.get("KahaEtal08b"), bib, ctx_for(bib),
+                         validation=VALIDATION8.get("KahaEtal08b"), resolution=res)
+    pc.apply_resolutions({"KahaEtal08b": rec}, {"KahaEtal08b": res}, bib, deleted, {"KahaEtal08c": "KahaEtal08b"})
+    assert not rec.get("remove_entry") and rec["key_plan"]["action"] == "keep"
+    assert "renamed from KahaEtal08c" in rec["resolution"]["noop"]
+    rows_, noop = pc.build_resolution_removals({"KahaEtal08b": res}, bib, deleted)
+    assert rows_ == [] and "another work" in noop[0]["why"]
+
+
+def test_resolution_keep_changes_nothing(bib):
+    """DaPo67 (batch-05): keep means the entry stays exactly as it is, holds are
+    superseded and it does not need the user."""
+    rec = checkr(bib, "3", "DaPo67")
+    assert rec["changes"] == [] and rec["removals"] == {} and rec["final_entry"] == dict(bib["DaPo67"])
+    assert rec["key_plan"]["action"] == "keep" and not pc.needs_user(rec)
+    assert not any(f["action"] == "held" for f in rec["flags"])
+
+
+def test_resolution_merge(bib):
+    """WhitEtal96 (batch-06): merge into WitmEtal96 (the same work, same DOI)."""
+    rec = checkr(bib, "3", "WhitEtal96")
+    assert rec["key_plan"]["action"] == "duplicate" and rec["key_plan"]["merge_into"] == "WitmEtal96"
+    assert residue(rec) == [] and not pc.needs_user(rec)
+    # negative control: a merge target that is neither in the bibliography nor planned is residue
+    res = dict(RESOLUTION["WhitEtal96"], merge_into="NoSuchKey99")
+    rec = checkr(bib, "3", "WhitEtal96", res=res)
+    assert any("NoSuchKey99" in r for r in residue(rec)) and pc.needs_user(rec)
+
+
+def test_resolution_set_without_quote_is_refused(bib):
+    """Negative control: a set value without a verbatim quote is refused, the field keeps
+    the bibliography's value and the entry needs the user."""
+    res = copy.deepcopy(RESOLUTION["BairNoma78"])
+    del res["set"]["title"]["quote"]
+    rec = checkr(bib, "8", "BairNoma78", res=res)
+    assert rec["final_entry"]["title"] == bib["BairNoma78"]["title"]
+    assert "resolution_set_refused" in codes(rec) and pc.needs_user(rec)
+    assert any(r.startswith("title:") for r in residue(rec))
+
+
+def test_resolution_quote_that_fails_blocks_unless_browser_or_scan(bib):
+    """A quote the validator does not find at its URL holds the value (residue); when the
+    notes say the page was read in a browser or transcribed from a scan (user rule, round
+    2), it is applied and flagged."""
+    res = copy.deepcopy(RESOLUTION["BairNoma78"])
+    res["set"]["title"]["quote"] = "Fundamentals of scaling and psychophysics, second edition"
+    rec = checkr(bib, "8", "BairNoma78", res=res)
+    assert rec["final_entry"]["title"] == bib["BairNoma78"]["title"] and pc.needs_user(rec)
+    assert any(f["code"] == "resolution_quote_unverified" and f["action"] == "held" for f in rec["flags"])
+    res["notes"] += " Title page transcribed from a scan (image-only)."
+    rec = checkr(bib, "8", "BairNoma78", res=res)
+    assert rec["final_entry"]["title"] == "Fundamentals of scaling and psychophysics" and not pc.needs_user(rec)
+    assert any(f["code"] == "resolution_quote_unverified" and f["action"] == "applied" for f in rec["flags"])
+
+
+def test_resolution_new_key_collisions(bib):
+    """A new key held by a different work in the bibliography gets the next free suffix by
+    the house rule (Howa04 -> Howa04a, new Howa04b) and is reported; a new key another
+    entry already plans (Howa09, planned for Howa08) collides the same way."""
+    res = dict(copy.deepcopy(RESOLUTION["Howa08"]), new_key="Howa04")
+    rec = checkr(bib, "8", "Howa08", res=res)
+    plan = rec["key_plan"]
+    assert plan["action"] == "collision" and plan["new_key"] == "Howa04b"
+    assert plan["also_rename"] == {"Howa04": "Howa04a"} and rec["resolution"]["key_collision"]["held_by"] == ["Howa04"]
+    assert any("ID rule" in r for r in residue(rec))  # Howa04b does not fit the corrected year 2009
+    howa = checkr(bib, "8", "Howa08")
+    res = dict(copy.deepcopy(RESOLUTION["GoldEtal08"]), new_key="Howa09")
+    gold = pc.check_entry(ROWS8["GoldEtal08"], bib["GoldEtal08"], bib, ctx_for(bib), review=REVIEW8.get("GoldEtal08"),
+                          validation=VALIDATION8.get("GoldEtal08"), resolution=res)
+    pc.apply_resolutions({"Howa08": howa, "GoldEtal08": gold}, {"GoldEtal08": res}, bib, NO_DELETIONS, {})
+    assert howa["key_plan"]["new_key"] == "Howa09"
+    assert gold["key_plan"]["action"] == "collision" and gold["key_plan"]["new_key"] == "Howa09b"
+    # negative control: a free key is simply taken
+    assert checkr(bib, "8", "GoldEtal08")["key_plan"]["new_key"] == "GoldEtal09"
+
+
+def test_load_resolutions_refuses_unreadable_batches(tmp_path):
+    """A half-written batch or a key decided two ways is an error, never 'no decision'."""
+    (tmp_path / "batch-01.json").write_text(json.dumps([RESOLUTION["Seac97"], RESOLUTION["DaPo67"]]))
+    got = pc.load_resolutions(tmp_path)
+    assert set(got) == {"Seac97", "DaPo67"} and got["Seac97"]["_batch"] == "batch-01"
+    assert pc.load_resolutions(tmp_path / "absent") == {}
+    (tmp_path / "batch-02.json").write_text('[{"key": "Seac97", "decision": "keep"}')
+    with pytest.raises(ValueError, match="not valid JSON"):
+        pc.load_resolutions(tmp_path)
+    (tmp_path / "batch-02.json").write_text(json.dumps([{"key": "Seac97", "decision": "keep"}]))
+    with pytest.raises(ValueError, match="decided differently"):
+        pc.load_resolutions(tmp_path)
+    (tmp_path / "batch-02.json").write_text(json.dumps([{"key": "Seac97", "decision": "maybe"}]))
+    with pytest.raises(ValueError, match="apply.drop.keep"):
+        pc.load_resolutions(tmp_path)
+
+
+def test_run_reads_resolutions_in_the_final_pass_only(tmp_path):
+    """run() with a resolution directory: the final pass applies it (needs_user false, the
+    drop in resolution_removals), the rules-alone pass never sees it; without one nothing
+    changes (the default of run(); the CLI passes RESOLUTION_DIR when it exists)."""
+    wave = tmp_path / "wave"
+    wave.mkdir()
+    (wave / "batch-001.json").write_text(json.dumps([ROWS3["Seac97"], ROWS3["DaPo67"], ROWS8["BairNoma78"]]))
+    res_dir = tmp_path / "res"
+    res_dir.mkdir()
+    (res_dir / "batch-01.json").write_text(json.dumps([RESOLUTION[k] for k in ("Seac97", "DaPo67", "BairNoma78")]))
+    post, page, rules_only, merged = pc.run(wave, bib=FROZEN_BIB, write=False, resolutions=res_dir,
+                                            deleted=NO_DELETIONS)
+    rows_ = {p["key"]: p for p in page}
+    assert not any(r["needs_user"] for r in rows_.values())
+    assert post["summary"]["resolution_removals"] == ["Seac97"] and rows_["Seac97"]["remove_entry"]
+    assert post["summary"]["resolution_residue"] == {}
+    assert rows_["BairNoma78"]["resolution"]["decision"] == "apply"
+    assert not any(f["code"].startswith("resolution_") for r in rules_only.values() for f in r["flags"])
+    post, page, rules_only, merged = pc.run(wave, bib=FROZEN_BIB, write=False)
+    assert post["summary"]["resolutions"] == {} and any(p["needs_user"] for p in page)

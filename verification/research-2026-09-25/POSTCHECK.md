@@ -66,6 +66,7 @@ Each rule records a flag `{code, field, detail, action}`; `action` is `applied`,
 | Software releases (user rule, 2026-09-26) | `software_first_version`, `software_first_version_authors`, `software_first_version_unresolved`, `software_version_removed` | Software is cited by its FIRST version, with the first version's year and no version number. For a Zenodo DOI (proposed or already in the entry), `zenodo.org/api/records/<id>` gives the release series (`conceptrecid`; a concept DOI redirects to its latest version) and the record whose `relations.version` index is 0 is the first (paged through `/versions`, 25 per page): its DOI replaces the cited one after a registration check and its `publication_date` year replaces the year, which renames the key (MuelEtal18 -> MuelEtal16). A first version whose creator list differs from the entry's is flagged, the authors are left for the user. The version number is removed from the title and note of a software entry (Zenodo DOI, `@software`, or `@misc` pointing at GitHub) and a `version` field is removed (`strip_version`: a trailing `{v0.2.1}`, `v0.2`, `: {Version 1.0}`, Zenodo's `(August, 2023)`, or a dotted version before a colon; not `Llama 3` or `{V1} alpha`). In the DOI title check of a Zenodo DOI, versions are not part numbers (CapoEtal17's `Brain Imaging Analysis Kit v0.2` is the entry's title) |
 | Countries in addresses (user rule, 2026-09-26) | `country_dropped` | A country at the end of an applied address (a name such as `Germany`, `UK`, `England`, or a braced non-US code such as `{UK}`, `{FR}`, `{AT}`; `{IN}`, `{LA}`, `{DE}` are US states) that no quote of the address or publisher prints (as the country, its English name or `England`/`Britain` for the UK) is dropped: `Langensalza, Germany` -> `Langensalza` (Herb34), `Heidelberg, Germany` -> `Heidelberg` (BuzsEtal94), `London, {UK}` -> `London`. A quote-check hold whose only missing words are that country is released without it (BuzsEtal94). An address that is only a country is left out. The house address key does not add one back (`Leipzig` stays, not `Leipzig, Germany`). A printed country stays (Rayp68 `Horn, {AT}` from `Horn, Austria`; Addi02 `Bristol, UK`; Smit88 `Chichester [England]`). Addresses nobody proposed or confirmed are not touched |
 | User decisions (2026-09-26) | `user_decision`, `user_evidence_unverified` | `crosswave/applied-decisions.json` (the user's answers on the cross-wave page, raw rows in `crosswave/decisions/`) is read in the final pass only, never the rules-alone pass. Per key: `set` values are source `user` (with their own quotes, fetched and checked, else the researcher's evidence for the same value) and supersede holds on those fields; `withdraw` drops research proposals; `resolves_verdict` clears an ambiguous verdict's `needs_user`; `key` fixes the key plan; `merge_into`/`keeper_of` confirm a duplicate (the plan is overridden, with a note, if the post-check planned otherwise); `drop_suffix_if_only` renames a keeper to its base key when no other key with that base is in HEAD cdl.bib; `remove_entry` marks the entry for removal (listed in `crosswave/removals.json`, written by `postcheck.py --write-removals`); `not_abstract` and `names_as_printed` are recorded. `postcheck.json` summary: `user_decisions`, `remove_entries`, `software_first_version`, `country_dropped`; `merged.json` rows: `remove_entry`, `user_decisions` |
+| Resolution decisions (2026-09-26) | `resolution_decision`, `resolution_set_refused`, `resolution_quote_unverified`, `resolution_noop`, `resolution_key_collision` | `verification/resolution-2026-09-26/batch-NN.json` (schema in its `BRIEF.md`) is read in the final pass only, after the user's cross-wave decisions, and overrides researcher, reviewer and user values for the fields it touches (source `resolution`). `apply`: each `set` value needs a URL and verbatim quote (else refused) and goes through the house rules (names, pages, booktitle, address, DOI, title and journal form; em dash `a---b`); `withdraw` keeps the bibliography's value; `remove` removes the field; `entrytype`, `new_key`, `merge_into` as given. `drop`: `remove_entry` = `drop_reason`. `keep`: no change at all. The entry's `needs_user` is its residue only (see below) |
 
 The rules run twice: once without the review (measurement) and once with it (final
 output). House normalisations run after the merge, so reviewer values are normalised too.
@@ -338,3 +339,64 @@ The post-check now applies them, each with a regression test and a negative cont
   only on the unprinted country); the held-address case is tested with a quote check that fails on
   the city.
 
+## Resolution decisions (2026-09-26)
+
+The resolution agents (`verification/resolution-2026-09-26/BRIEF.md`) decide every entry the
+waves left unresolved. `postcheck.py <wave>` reads their `batch-*.json` from
+`verification/resolution-2026-09-26/` by default when the directory exists (`--resolutions
+DIR` for another directory or file, `--no-resolutions` to leave them out); `run()` reads
+none unless it is given `resolutions=` (a directory, a file or a `{key: row}` dict). A batch
+that is not valid JSON, a row whose decision is not apply/drop/keep, or a key decided two
+ways in two batches stops the run (`ValueError`): a half-written batch is never read as "no
+decision". Like the user's cross-wave decisions they are not rules: the rules-alone pass never
+sees them.
+
+Per key (source `resolution`, flag `resolution_decision`):
+
+- `apply` starts from the post-check's final changes. Each `set` value replaces the research
+  value and supersedes its hold. Its quote is checked with the research validator's matching
+  (`verification/research-pilot-2026-09-24/validate.py`, imported: `check` for the quote at its
+  URL, cache first under `.bibcheck/research-pilot/`, then `value_supported` for the value's
+  words in the quote); `--offline` never fetches an uncached URL, and NCBI requests are paced to
+  at most one per second. A value without a URL or quote is refused (`resolution_set_refused`,
+  held). A quote that fails is `resolution_quote_unverified`: held, unless the row's notes say
+  the page was read in a browser or transcribed from a scan (the user accepted both, resolution
+  plan README round 2), when it is applied with the flag. Set values run through the same house
+  rules as any other value (no name suffixes, initials, pages, booktitle, address, DOI, title,
+  journal and publisher form) plus the em-dash rule `a---b` for titles and booktitles; the
+  resolution's title is the chapter title in the titled-chapter move (Howa08). `withdraw`
+  keeps the bibliography's value (or its absence), `remove` removes the field (listed under
+  removals; a removed journal is never moved to booktitle or series), `entrytype` is the type.
+  After every rule, a set value that did not survive (a DOI dropped by the registry check, a
+  booktitle held with its type) is residue; held flags on the fields the resolution set,
+  withdrew or removed are dropped as superseded; any other held flag is residue.
+- `drop` marks `remove_entry` with the `drop_reason` (summary `resolution_removals`;
+  `postcheck.py --write-resolution-removals` writes the list, with the no-ops apart, to
+  `removals.json` in the resolution directory, like `crosswave/removals.json`). A drop of a key
+  that is not in the bibliography, or that `verification/key-deletions.json` lists as already
+  deleted, is a no-op (`resolution_noop`, summary `resolution_noops`): KahaEtal08b and
+  JacoEtal05b were deleted and their keys now name other works renamed into them
+  (`key-renames.json`), so they are never removed again. With `merge_into` the key plan is also
+  a merge.
+- `keep` changes nothing: the entry is exactly the bibliography's, the key is kept, held flags
+  are superseded. A duplicate the post-check found is residue.
+- `merge_into` makes the key plan a merge into that key (residue when it is neither in the
+  bibliography nor another entry's planned key). `new_key` is checked against the bibliography's
+  keys and every other planned key of the run: the post-check's own plan is confirmed; a free
+  key is a rename; a key held by the same work is a merge (residue); a key held by a different
+  work gets the next free suffix by the house rule (an unsuffixed holder becomes `a`), reported
+  as `resolution_key_collision` (summary `resolution_key_collisions`). A final key that does
+  not follow the ID rule for the corrected metadata is residue. Planned keys of other waves
+  are not visible to one wave's run.
+- A key not in the bibliography: every decision is a no-op; an `apply` with changes is residue.
+
+An entry with a resolution needs the user only for its residue (`resolution.residue` in
+`merged.json`, summary `resolution_residue`); its verdict is resolved. Tests
+(`tests/test_research_postcheck.py`, resolution section; real rows frozen in the test, the
+pre-wave-1 bibliography fixture, an empty deletion ledger unless the test gives one): BairNoma78
+(apply with set, withdraw, remove, entrytype), Howa08 (title over the chapter move, key
+confirmed), GoldEtal08 (house names), Seac97 (drop), DaPo67 (keep), WhitEtal96 (merge), KahaEtal08b
+(drop of a deleted, reused key); negative controls: a set without a quote is refused, a failing
+quote holds unless the notes say browser or scan, a drop of an absent key is a no-op, a new key
+held by another work or planned by another entry collides, a missing merge target is residue,
+and unreadable batches stop the run.

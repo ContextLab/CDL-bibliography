@@ -1,7 +1,9 @@
 """Deterministic post-check for the agent research route (2026-09-25).
 
 Usage: postcheck.py <wave folder> [--bib PATH|HEAD] [--review PATH] [--offline]
+                    [--resolutions DIR | --no-resolutions]
        postcheck.py --write-removals
+       postcheck.py --write-resolution-removals [--resolutions DIR]
 
 Reads every batch-*.json in the wave folder (schema:
 verification/research-pilot-2026-09-24/PROTOCOL.md), the folder's validation.json
@@ -1228,6 +1230,145 @@ def build_removals(decisions_dir=None, bib=None):
     return [out[k] for k in sorted(out, key=str.lower)]
 
 
+# ---------------------------------------------------------------- resolution decisions (2026-09-26)
+# verification/resolution-2026-09-26/batch-NN.json (schema in its BRIEF.md): per key
+# decision apply | drop | keep, set {field: {value, url, quote}}, withdraw [], remove [],
+# entrytype, new_key, merge_into, drop_reason, notes. Source 'resolution'; read in the
+# final pass only, after the user's cross-wave decisions, and it overrides researcher,
+# reviewer and user values for the fields it touches.
+
+RESOLUTION_DIR = ROOT / "verification/resolution-2026-09-26"
+RESOLUTION_REMOVALS = RESOLUTION_DIR / "removals.json"
+DELETIONS = ROOT / "verification/key-deletions.json"
+RESOLUTION_DECISIONS = ("apply", "drop", "keep")
+# The user accepted evidence read in a real browser (fetches blocked) and quotes
+# transcribed from image-only scans (resolution-plan README, round 2): a quote the
+# validator cannot find is then flagged, never blocking.
+BROWSER_OR_SCAN = re.compile(r"\b(?:browser|scan(?:s|ned)?|transcri\w+|page images?)\b", re.I)
+VALIDATE_PY = ROOT / "verification/research-pilot-2026-09-24/validate.py"
+_VALIDATOR = None
+
+
+def load_resolutions(path=None):
+    """{key: row} from the resolution batch files (a directory of batch-*.json, or one
+    file); each row gets '_batch'. {} when the path does not exist. A file that is not
+    valid JSON, a row with an unknown decision, or one key decided differently in two
+    batches raises ValueError: a half-written batch must never be read as no decision."""
+    path = Path(path) if path else RESOLUTION_DIR
+    if not path.exists():
+        return {}
+    files = [path] if path.is_file() else sorted(path.glob("batch-*.json"))
+    out, errors = {}, []
+    for p in files:
+        try:
+            rows = json.loads(p.read_text())
+        except ValueError as err:
+            errors.append(f"{p.name}: not valid JSON ({err})")
+            continue
+        for r in rows:
+            k = r.get("key")
+            if not k or r.get("decision") not in RESOLUTION_DECISIONS:
+                errors.append(f"{p.name}: row {k!r} has decision {r.get('decision')!r} (apply|drop|keep)")
+                continue
+            r = dict(r, _batch=p.stem)
+            if k in out and {x: y for x, y in out[k].items() if x != "_batch"} != \
+                    {x: y for x, y in r.items() if x != "_batch"}:
+                errors.append(f"{k}: decided differently in {out[k]['_batch']} and {p.stem}")
+                continue
+            out.setdefault(k, r)
+    if errors:
+        raise ValueError("resolution files unreadable: " + "; ".join(errors))
+    return out
+
+
+def load_deleted(path=None):
+    """{key: record} of keys already deleted from cdl.bib (verification/key-deletions.json)."""
+    path = Path(path) if path else DELETIONS
+    if not path.exists():
+        return {}
+    return {r["key"]: r for r in json.loads(path.read_text())}
+
+
+class _NcbiPace:
+    """validate.py's `time`, with every sleep at least 1.05 s: its PubMed reader makes two
+    E-utilities requests 0.5 s apart, and NCBI allows at most 1 request per second."""
+
+    def __getattr__(self, name):
+        return getattr(time, name)
+
+    @staticmethod
+    def sleep(seconds):
+        time.sleep(max(float(seconds), 1.05))
+
+
+def validator():
+    """The research validator (verification/research-pilot-2026-09-24/validate.py), its own
+    module instance, paced for NCBI."""
+    global _VALIDATOR
+    if _VALIDATOR is None:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("research_validate_for_postcheck", VALIDATE_PY)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        mod.time = _NcbiPace()
+        _VALIDATOR = mod
+    return _VALIDATOR
+
+
+def resolution_quote(field, spec, offline=False):
+    """Check a resolution `set` value with the research validator's matching: the quote
+    must occur at its URL (validate.check: fetched text normalised, cache first under
+    .bibcheck/research-pilot/) and the value's words must be in the quote
+    (validate.value_supported). Offline, a URL not in the cache is not fetched.
+    Returns {"ok", "why"}; "refused" when the spec has no URL or quote."""
+    url, quote_ = spec.get("url"), spec.get("quote")
+    if not url or not quote_:
+        return {"ok": False, "refused": True, "why": "no URL or quote"}
+    V = validator()
+    path = V.CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".txt")
+    if offline and (not path.exists() or V.transient_error(path.read_text())):
+        return {"ok": False, "why": "offline and the URL is not in the validator cache"}
+    r = V.check({"url": url, "quote": quote_}, [0])
+    if not r["ok"]:
+        return {"ok": False, "why": r["why"]}
+    if field.lower() in V.JUDGMENT:
+        return {"ok": True, "why": None}
+    supported, missing = V.value_supported(field, spec.get("value"), [quote_], [url])
+    return {"ok": bool(supported), "why": None if supported else f"value words {missing} are not in the quote"}
+
+
+def normalise_emdash(value):
+    """Em dashes in titles are written a---b, no spaces (user rule, 2026-09-26)."""
+    v = str(value or "")
+    new = v.replace("—", "---").replace("\\textemdash{}", "---").replace("\\textemdash ", "---")
+    new = re.sub(r"\s*---\s*", "---", new)
+    return new, ([f"em dash house form: {v!r} -> {new!r}"] if new != v else [])
+
+
+def build_resolution_removals(resolutions, bib, deleted=None):
+    """Entries the resolution batches drop (like crosswave/removals.json): key, reason,
+    batch, merge_into. A drop whose key is absent from the bib, or listed in
+    key-deletions.json (already deleted; a key still present there names another work
+    renamed into it, as KahaEtal08b and JacoEtal05b do), is a no-op and listed apart."""
+    deleted = load_deleted() if deleted is None else deleted
+    out, noop = [], []
+    for k in sorted(resolutions, key=str.lower):
+        r = resolutions[k]
+        if r.get("decision") != "drop":
+            continue
+        if k not in bib or k in deleted:
+            noop.append({"key": k, "batch": r.get("_batch"),
+                         "why": "already deleted (key-deletions.json)" + ("; the key now names another work"
+                                                                          if k in bib else "")
+                         if k in deleted else "not in the bibliography"})
+            continue
+        e = {"key": k, "reason": r.get("drop_reason") or "", "batch": r.get("_batch")}
+        if r.get("merge_into"):
+            e["merge_into"] = r["merge_into"]
+        out.append(e)
+    return out, noop
+
+
 # ---------------------------------------------------------------- field rules
 
 def roman(n):
@@ -1649,10 +1790,13 @@ def fetch_blocked(vfield, validation):
         all(f in ("quote not found at url",) or str(f).startswith("fetch failed") for f in fails)
 
 
-def check_entry(row, current, bib, ctx, review=None, validation=None, decision=None):
+def check_entry(row, current, bib, ctx, review=None, validation=None, decision=None, resolution=None):
     """Post-check one researcher row. Returns the per-key record. `decision` is the
     user's per-entry decision from crosswave/applied-decisions.json (field values it
-    sets or withdraws; source 'user')."""
+    sets or withdraws; source 'user'). `resolution` is the key's row from the
+    resolution batches (verification/resolution-2026-09-26; source 'resolution'),
+    applied after the user's decision; its key-level parts (new_key, merge_into,
+    removal) are applied by apply_resolutions after the wave's key plans."""
     key = row["key"]
     verdict = row.get("verdict")
     fields = canonical_fields(row.get("fields"))
@@ -1866,6 +2010,69 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
                      ([f"research proposals withdrawn for {', '.join(n for n in withdraw if n not in chosen)}"]
                       if any(n not in chosen for n in withdraw) else [])), "applied")
 
+    # --- the resolution decision (verification/resolution-2026-09-26): `set` values are
+    # source 'resolution' (each quote checked with the research validator), `withdraw`
+    # drops a proposal, `remove` and keep/drop are enforced after the house rules
+    res_info = None
+    res_withdraw, res_remove, res_set = [], [], {}
+    if resolution:
+        dec = resolution.get("decision")
+        notes = str(resolution.get("notes") or "")
+        res_info = {"decision": dec, "batch": resolution.get("_batch"), "notes": notes, "residue": [],
+                    "quotes": {}}
+        if dec == "apply" and current:
+            res_withdraw = [field_name(n) for n in resolution.get("withdraw") or []]
+            res_remove = [field_name(n) for n in resolution.get("remove") or []]
+            chosen = {field_name(n): s for n, s in (resolution.get("set") or {}).items()}
+            for n in res_withdraw + res_remove:
+                applied.pop(n, None)
+                held.pop(n, None)
+                suggestions.pop(n, None)
+            lenient = BROWSER_OR_SCAN.search(notes)
+            offline = bool(ctx.get("offline"))
+            for n, spec in chosen.items():
+                spec = spec if isinstance(spec, dict) else {"value": spec}
+                if spec.get("value") in (None, "") or not str(spec.get("value")).strip():
+                    applied.pop(n, None)
+                    held[n] = "resolution set an empty value"
+                    flag(flags, "resolution_set_refused", n, f"resolution set an empty {n}; refused", "held")
+                    res_info["residue"].append(f"{n}: the resolution's set has no value")
+                    continue
+                q = resolution_quote(n, spec, offline)
+                res_info["quotes"][n] = q
+                if q.get("refused"):
+                    applied.pop(n, None)
+                    held[n] = "resolution value without a URL and quote"
+                    flag(flags, "resolution_set_refused", n,
+                         f"resolution sets {n} = {spec['value']!r} without a URL and verbatim quote; refused", "held")
+                    res_info["residue"].append(f"{n}: set {spec['value']!r} has no URL/quote (refused)")
+                    continue
+                if not q["ok"] and not lenient:
+                    applied.pop(n, None)
+                    held[n] = f"resolution quote unverified: {q['why']}"
+                    flag(flags, "resolution_quote_unverified", n,
+                         f"{n} = {spec['value']!r}: quote {spec['quote']!r} at {spec['url']}: {q['why']}; not applied "
+                         "(the notes do not say it was read in a browser or transcribed from a scan)", "held")
+                    res_info["residue"].append(f"{n}: quote unverified ({q['why']})")
+                    continue
+                if not q["ok"]:
+                    flag(flags, "resolution_quote_unverified", n,
+                         f"{n} = {spec['value']!r}: quote {spec['quote']!r} at {spec['url']}: {q['why']}; applied: the "
+                         f"notes say it was read in a browser or transcribed from a scan ({lenient[0]!r}; user rule)",
+                         "applied")
+                applied[n] = {"value": str(spec["value"]), "source": "resolution",
+                              "evidence": [{"url": spec["url"], "quote": spec["quote"]}],
+                              "decision": f"resolution {resolution.get('_batch') or ''}".strip()}
+                held.pop(n, None)
+                suggestions.pop(n, None)
+                res_set[n] = str(spec["value"])
+            if resolution.get("entrytype"):
+                applied["ENTRYTYPE"] = {"value": str(resolution["entrytype"]).lstrip("@"), "source": "resolution",
+                                        "evidence": [], "decision": f"resolution {resolution.get('_batch') or ''}".strip()}
+                held.pop("ENTRYTYPE", None)
+                suggestions.pop("ENTRYTYPE", None)
+                res_set["ENTRYTYPE"] = applied["ENTRYTYPE"]["value"]
+
     # --- DOI registration and record match
     doi_status = None
     if "doi" in applied and clean_doi(applied["doi"]["value"]) == clean_doi(current.get("doi")) \
@@ -1911,7 +2118,7 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
                 issue=(applied.get("number") or {}).get("value") or current.get("number"),
                 journal=(applied.get("journal") or {}).get("value") or current.get("journal"))
             rv_doi = str(((review or {}).get("field_verdicts") or {}).get("doi") or "")
-            confirmed = applied["doi"]["source"] == "reviewer" or reviewer_confirms(rv_doi) \
+            confirmed = applied["doi"]["source"] in ("reviewer", "resolution") or reviewer_confirms(rv_doi) \
                 or "but correct" in rv_doi.lower()
             if title_verdict in ("part_number", "short") and not confirmed:
                 del applied["doi"]
@@ -2111,7 +2318,7 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
     elif final.get("ENTRYTYPE") in ("inbook", "incollection") and chap and not re.fullmatch(r"[\dIVXivx]+", chap):
         bt_now = final.get("booktitle")
         rt = (applied.get("title") or {}).get("value") \
-            if (applied.get("title") or {}).get("source") in ("researcher", "reviewer") else None
+            if (applied.get("title") or {}).get("source") in ("researcher", "reviewer", "resolution") else None
         if rt and bt_now and titles_match(rt, bt_now):
             rt = None  # the researcher's title is the book's
         researcher_book = (fields.get("booktitle") or {}).get("value")
@@ -2156,7 +2363,7 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
     # a contained type never loses its last venue: when the proposed booktitle is held
     # or dropped, the type change and the journal removal are not applied either
     # (GatyEtal16, IsolEtal17, LiEtal24a ended as @inproceedings with no venue)
-    researcher_removes = {field_name(n) for n in row.get("remove") or []}
+    researcher_removes = {field_name(n) for n in row.get("remove") or []} | set(res_remove)
     booktitle_lost = "booktitle" in held or any(f["field"] == "booktitle" and f["action"] in ("held", "dropped")
                                                 for f in flags)
     if final.get("ENTRYTYPE") in CONTAINED_TYPES and final.get("ENTRYTYPE") != current.get("ENTRYTYPE") \
@@ -2339,6 +2546,9 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
     for name in list(applied):
         a = applied[name]
         v = a["value"]
+        if name in ("title", "booktitle") and a["source"] == "resolution":
+            set_norm(name, *normalise_emdash(v))
+            v = a["value"]
         if name == "number":
             set_norm(name, *normalise_number(v))
         elif name == "pages":
@@ -2482,7 +2692,7 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
     # --- a no_source row never changes: the post-check's own house rules are not applied
     # either (BairNoma78's chapter move); only the reviewer's values remain
     if verdict == "no_source":
-        for name in [n for n, a in applied.items() if a["source"] != "reviewer"]:
+        for name in [n for n, a in applied.items() if a["source"] not in ("reviewer", "resolution")]:
             applied.pop(name)
         final = dict(current)
         for name, a in applied.items():
@@ -2511,6 +2721,77 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
     if other:
         flag(flags, "other_version_named", None,
              f"the researcher's notes name another version ({other!r}): replacement is the user's decision")
+
+    # --- the resolution, after every rule: keep / drop change nothing; apply enforces its
+    # withdrawals and removals, checks that each value it set survived, and clears the
+    # holds it addresses. What it leaves unresolved is its residue (needs_user).
+    if res_info:
+        dec = res_info["decision"]
+        residue = res_info["residue"]
+        if not current:
+            applied, final, removals, norms = {}, {}, {}, []
+            for f in flags:
+                if f["action"] == "held":
+                    f["action"] = "dropped"
+                    f["detail"] += f"; the key is not in the bibliography: resolution '{dec}' is a no-op"
+            held.clear()
+            if dec == "apply" and (resolution.get("set") or resolution.get("remove") or resolution.get("entrytype")
+                                   or resolution.get("new_key")) and not resolution.get("merge_into"):
+                residue.append(f"{key} is not in the bibliography: the resolution's changes cannot be applied")
+            flag(flags, "resolution_noop", None,
+                 f"resolution '{dec}' ({res_info['batch']}): {key} is not in the bibliography; nothing to do",
+                 "applied")
+        elif dec in ("keep", "drop"):
+            applied, final, removals, norms = {}, dict(current), {}, []
+            for f in flags:
+                if f["action"] == "held":
+                    f["action"] = "dropped"
+                    f["detail"] += f"; superseded by the resolution ('{dec}', {res_info['batch']})"
+            held.clear()
+            suggestions.clear()
+            flag(flags, "resolution_decision", None,
+                 f"resolution '{dec}' ({res_info['batch']}): "
+                 + ("the entry stays exactly as it is" if dec == "keep" else
+                    f"remove the entry ({resolution.get('drop_reason') or 'no reason given'})"), "applied")
+        elif dec == "apply":
+            for n in res_withdraw:
+                applied.pop(n, None)
+                removals.pop(n, None)
+                if n in current:
+                    final[n] = current[n]
+                else:
+                    final.pop(n, None)
+            for n in res_remove:
+                applied.pop(n, None)
+                final.pop(n, None)
+                if n in current:
+                    removals[n] = f"resolution asked to remove it (current {current[n]!r})"
+            landed = set()
+            for n, v in res_set.items():
+                a = applied.get(n)
+                if a and a["source"] == "resolution" and n in final and final[n] == a["value"]:
+                    landed.add(n)
+                else:
+                    residue.append(f"{n}: the resolution's value {v!r} did not survive the post-check "
+                                   f"(final {final.get(n)!r})")
+            resolved = landed | set(res_withdraw) | set(res_remove)
+            for f in flags:
+                if f["action"] != "held" or f["code"].startswith("resolution_"):
+                    continue
+                fs = {field_name(x.strip()) for x in str(f["field"] or "").split(",") if x.strip()}
+                if fs and fs <= resolved:
+                    f["action"] = "dropped"
+                    f["detail"] += f"; superseded by the resolution ({res_info['batch']})"
+                else:
+                    residue.append(f"{f['code']} on {f['field']} is held and the resolution does not address it")
+            for n in resolved:
+                held.pop(n, None)
+            parts = [f"{n} = {final.get(n)!r}" for n in sorted(landed)] + \
+                [f"withdrawn {n}" for n in res_withdraw] + [f"removed {n}" for n in res_remove]
+            flag(flags, "resolution_decision", ", ".join(sorted(resolved)) or None,
+                 f"resolution 'apply' ({res_info['batch']}): " + ("; ".join(parts) or
+                                                                 "the post-check's final changes stand"),
+                 "applied")
 
     # --- changes vs current
     changes = []
@@ -2551,7 +2832,11 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
              "values left not_found or suggested by the rules (never applied): " +
              ", ".join(f"{k}={v!r}" for k, v in suggestions.items()))
     user_resolved = bool((decision or {}).get("resolves_verdict"))
-    if verdict in ("ambiguous", "no_source") and not user_resolved:
+    if verdict in ("ambiguous", "no_source") and not user_resolved and res_info:
+        user_resolved = True
+        flag(flags, "resolution_decision", "verdict",
+             f"verdict {verdict} resolved by the resolution ('{res_info['decision']}', {res_info['batch']})", "applied")
+    elif verdict in ("ambiguous", "no_source") and not user_resolved:
         flag(flags, "needs_user", "verdict", f"verdict {verdict}: user decision")
     elif verdict in ("ambiguous", "no_source"):
         flag(flags, "user_decision", "verdict",
@@ -2560,7 +2845,7 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
     return {"key": key, "verdict": verdict, "flags": flags, "normalisations": norms,
             "changes": changes, "removals": removals, "held": held,
             "suggestions": suggestions, "key_plan": plan, "doi_status": doi_status,
-            "user_resolved": user_resolved, "software": software,
+            "user_resolved": user_resolved, "software": software, "resolution": res_info,
             "final_entry": final}
 
 
@@ -2712,6 +2997,148 @@ def apply_entry_decisions(records, decisions, bib, taken):
                  f"{why}: each paper keeps the author's printed name (no unification across papers)", "applied")
 
 
+def key_base(key):
+    """'Howa09b' -> 'Howa09'; a key without a trailing year keeps its letters."""
+    m = re.match(r"(.*\d)[a-z]*$", key)
+    return m[1] if m else key
+
+
+def apply_resolutions(records, resolutions, bib, deleted=None, reserved=None):
+    """The key-level parts of the resolution decisions, after the key plans, the wave's
+    duplicates and the user's decisions: drop -> remove_entry (unless the key is absent
+    or already deleted: a no-op); keep -> key kept; merge_into -> a duplicate plan;
+    new_key -> a rename, checked against the bibliography's keys and every other planned
+    key (a collision gets the next free suffix by the house rule, and is reported).
+    Anything left unresolved is added to the record's resolution residue."""
+    deleted = {} if deleted is None else deleted
+    reserved = {} if reserved is None else reserved
+
+    def planned(skip):
+        out = set()
+        for k, r in records.items():
+            if k == skip:
+                continue
+            p = r["key_plan"]
+            if p.get("action") in ("rename", "collision") and p.get("new_key"):
+                out.add(p["new_key"])
+            out.update((p.get("also_rename") or {}).values())
+        return out
+
+    for k in sorted(records):
+        res = resolutions.get(k)
+        rec = records[k]
+        info = rec.get("resolution")
+        if not res or not info:
+            continue
+        plan, flags, residue = rec["key_plan"], rec["flags"], info["residue"]
+        dec, batch = res.get("decision"), res.get("_batch")
+        before = f"{plan.get('action')} {plan.get('new_key') or plan.get('merge_into') or ''}".strip()
+
+        def keep_plan(why):
+            for x in ("new_key", "merge_into", "existing", "also_rename", "rename_reason"):
+                plan.pop(x, None)
+            plan.update(action="keep", resolution=why)
+
+        if k not in bib:
+            keep_plan(f"resolution '{dec}': not in the bibliography")
+            info["noop"] = "not in the bibliography"
+            continue
+        if k in deleted and dec in ("drop", "apply") and (dec == "drop" or res.get("merge_into")):
+            renamed_in = sorted(old for old, new in reserved.items() if new == k)
+            keep_plan(f"resolution '{dec}': {k} was already deleted (key-deletions.json)")
+            info["noop"] = "already deleted (key-deletions.json)" + (
+                f"; {k} now names another work (renamed from {', '.join(renamed_in)})" if renamed_in else "")
+            flag(flags, "resolution_noop", "key",
+                 f"resolution '{dec}' ({batch}): {k} is listed in key-deletions.json ({deleted[k].get('reason')}); "
+                 + (f"the key now names another work (renamed from {', '.join(renamed_in)}): not removed"
+                    if renamed_in else "the entry in this bibliography is not removed again"), "applied")
+            continue
+        if k in deleted:
+            residue.append(f"{k} is listed in key-deletions.json but is in the bibliography: the resolution's "
+                           "changes may be about the deleted work")
+        if dec in ("keep", "apply") and rec.get("remove_entry"):
+            residue.append(f"the user's decision removes {k} ({rec['remove_entry']}); the resolution says '{dec}'")
+        if dec == "keep":
+            if plan.get("action") == "duplicate":
+                residue.append(f"the post-check plans to merge {k} into {plan.get('merge_into')}; 'keep' does not "
+                               "address the duplicate")
+            keep_plan(f"resolution 'keep' ({batch})")
+            if before != "keep":
+                plan["overridden"] = before
+            continue
+        if dec == "drop":
+            rec["remove_entry"] = res.get("drop_reason") or "dropped by the resolution"
+            rec["remove_entry_source"] = f"resolution {batch}"
+            if res.get("merge_into"):
+                plan.update(action="duplicate", merge_into=res["merge_into"], resolution=f"resolution 'drop' ({batch})")
+            else:
+                keep_plan(f"resolution 'drop' ({batch}): the entry is removed")
+            continue
+        # apply
+        target = key_target(rec["final_entry"])
+        if res.get("merge_into"):
+            into = res["merge_into"]
+            if into not in bib and into not in planned(k):
+                residue.append(f"merge_into {into}: no such key in the bibliography or among the planned keys")
+            for x in ("new_key", "existing", "also_rename", "rename_reason"):
+                plan.pop(x, None)
+            plan.update(action="duplicate", merge_into=into, resolution=f"resolution 'apply' ({batch})")
+            flag(flags, "resolution_decision", "key", f"resolution ({batch}): merge {k} into {into}"
+                 + (f" (the post-check planned {before})" if before != f"duplicate {into}" else ""), "applied")
+            continue
+        want = res.get("new_key")
+        if not want:
+            if plan.get("action") == "duplicate":
+                residue.append(f"the post-check plans to merge {k} into {plan.get('merge_into')}; the resolution "
+                               "names no merge")
+            continue
+        if want == k:
+            keep_plan(f"resolution ({batch}): key {k} kept")
+            continue
+        if plan.get("action") in ("rename", "collision") and plan.get("new_key") == want:
+            plan["resolution"] = f"resolution ({batch}): key {want} confirmed"
+            flag(flags, "resolution_decision", "key", f"resolution ({batch}): {k} -> {want}, as planned", "applied")
+            continue
+        others = planned(k)
+        holders = sorted(x for x in set(bib) | others if x == want and x != k)
+        if not holders:
+            for x in ("merge_into", "existing", "also_rename"):
+                plan.pop(x, None)
+            plan.update(action="rename", new_key=want, rename_reason=f"resolution ({batch})",
+                        resolution=f"resolution ({batch}): key {want}")
+            if want in reserved:
+                plan["reserved_warning"] = f"{want} was renamed away to {reserved[want]}; citing papers may still use it"
+            flag(flags, "resolution_decision", "key", f"resolution ({batch}): {k} -> {want}"
+                 + (f" (the post-check planned {before})" if before not in ("keep", f"rename {want}") else ""),
+                 "applied")
+        else:
+            base = key_base(want)
+            same = [x for x in holders if x in bib and same_work(bib[x], rec["final_entry"])]
+            if same:
+                plan.update(action="duplicate", merge_into=same[0], resolution=f"resolution ({batch})")
+                for x in ("new_key", "existing", "also_rename"):
+                    plan.pop(x, None)
+                residue.append(f"new_key {want} is held by {same[0]}, the same work: merge {k} into {same[0]}?")
+                flag(flags, "resolution_key_collision", "key",
+                     f"resolution ({batch}): new key {want} is {same[0]}, the same work; planned as a merge", "held")
+                continue
+            group = sorted({x for x in set(bib) | others if x != k and key_fits(x, base)})
+            used = {x[len(base):] for x in group}
+            new = base + next_suffix(used - {""} | ({"a"} if "" in used else set()))
+            plan.update(action="collision", new_key=new, existing=group, resolution=f"resolution ({batch})",
+                        detail=f"resolution new key {want} is taken ({', '.join(holders)}); next free key {new}")
+            plan.pop("merge_into", None)
+            if "" in used:
+                plan["also_rename"] = {base: base + "a"}
+            info["key_collision"] = {"wanted": want, "held_by": holders, "new_key": new}
+            flag(flags, "resolution_key_collision", "key",
+                 f"resolution ({batch}): new key {want} is taken by {', '.join(holders)}; house suffix rule gives "
+                 f"{new}" + (f" ({base} -> {base}a)" if "" in used else ""), "applied")
+        final_key = plan.get("new_key") or k
+        if target and not key_fits(final_key, target) and H.key_overrides.get(final_key) != target:
+            residue.append(f"key {final_key} does not follow the ID rule for the corrected metadata ({target})")
+
+
 def measure(review_rows, rules_only):
     """For each reviewer finding (agree != yes): is a disputed field touched by the rules?"""
     rows = [r for r in review_rows if r.get("key") != "_summary" and r.get("agree") != "yes"]
@@ -2805,10 +3232,18 @@ def resolution(review_rows, merged, bib):
             "not_checkable": [o["key"] for o in out if o["resolved"] is None], "rows": out}
 
 
-def run(folder, bib="HEAD", review_path=None, offline=False, write=True, decisions_path=None):
+def run(folder, bib="HEAD", review_path=None, offline=False, write=True, decisions_path=None,
+        resolutions=None, deleted=None):
+    """`resolutions`: None (none read), a {key: row} dict, or a path (a directory of
+    resolution batch-*.json or one file; the CLI passes RESOLUTION_DIR by default).
+    `deleted`: {key: record} of keys already deleted (default key-deletions.json)."""
     folder = Path(folder)
     bibd = load_bib(bib)
     decisions = load_decisions(decisions_path)
+    if resolutions is not None and not isinstance(resolutions, dict):
+        resolutions = load_resolutions(resolutions)
+    resolutions = resolutions or {}
+    deleted = load_deleted() if deleted is None and resolutions else (deleted or {})
     review_path = Path(review_path) if review_path else folder / "review.json"
     review_rows = json.loads(review_path.read_text()) if review_path.exists() else []
     reviews = {r["key"]: r for r in review_rows if r.get("key") != "_summary"}
@@ -2830,19 +3265,21 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True, decisio
 
     def pass_(with_review):
         ctx = {"doi": doi, "cities": city_states(bibd), "taken": set(), "reserved": renamed_away(),
-               "index": index, "fetch": lambda url: http_get(url, offline)}
+               "index": index, "fetch": lambda url: http_get(url, offline), "offline": offline}
         out = {}
         for stem, row in rows:
             # the user's decisions are not rules: the rules-alone pass never sees them
             rec = check_entry(row, bibd.get(row["key"]), bibd, ctx,
                               review=reviews.get(row["key"]) if with_review else None,
                               validation=validation.get(row["key"]),
-                              decision=decisions.get(row["key"]) if with_review else None)
+                              decision=decisions.get(row["key"]) if with_review else None,
+                              resolution=resolutions.get(row["key"]) if with_review else None)
             rec["batch"] = stem
             out[row["key"]] = rec
         wave_duplicates(out)
         if with_review:
             apply_entry_decisions(out, decisions, bibd, ctx["taken"])
+            apply_resolutions(out, resolutions, bibd, deleted, ctx["reserved"])
         return out
 
     rules_only = pass_(False)
@@ -2876,6 +3313,22 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True, decisio
                                    for k, r in sorted(merged.items()) if r.get("software")},
         "country_dropped": sorted(f"{k}: {f['detail']}" for k, r in merged.items() for f in r["flags"]
                                   if f["code"] == "country_dropped"),
+        "resolutions": {k: {"decision": r["resolution"]["decision"], "batch": r["resolution"]["batch"],
+                            "residue": r["resolution"]["residue"], "noop": r["resolution"].get("noop"),
+                            "key_plan": r["key_plan"]["action"],
+                            "key": r["key_plan"].get("new_key") or r["key_plan"].get("merge_into") or k}
+                        for k, r in sorted(merged.items()) if r.get("resolution")},
+        "resolution_residue": {k: r["resolution"]["residue"] for k, r in sorted(merged.items())
+                               if r.get("resolution") and r["resolution"]["residue"]},
+        "resolution_removals": sorted(k for k, r in merged.items()
+                                      if str(r.get("remove_entry_source") or "").startswith("resolution")),
+        "resolution_noops": {k: r["resolution"].get("noop") or "not in the bibliography"
+                             for k, r in sorted(merged.items()) if r.get("resolution")
+                             and (r["resolution"].get("noop") or any(f["code"] == "resolution_noop" for f in r["flags"]))},
+        "resolution_key_collisions": {k: r["resolution"]["key_collision"] for k, r in sorted(merged.items())
+                                      if r.get("resolution") and r["resolution"].get("key_collision")},
+        "resolution_quotes_unverified": sorted(f"{k}: {f['detail']}" for k, r in merged.items() for f in r["flags"]
+                                               if f["code"] == "resolution_quote_unverified"),
     }
     post = {"summary": summary, "measurement": meas,
             "review_resolution": resolution(review_rows, merged, bibd) if review_rows else None,
@@ -2895,16 +3348,27 @@ def run(folder, bib="HEAD", review_path=None, offline=False, write=True, decisio
             "doi_status": r["doi_status"],
             "remove_entry": r.get("remove_entry"),
             "user_decisions": [f["detail"] for f in r["flags"] if f["code"] == "user_decision"],
+            "resolution": ({"decision": r["resolution"]["decision"], "batch": r["resolution"]["batch"],
+                            "notes": r["resolution"]["notes"], "residue": r["resolution"]["residue"],
+                            "noop": r["resolution"].get("noop")} if r.get("resolution") else None),
             "reviewer": ({"agree": rv.get("agree"), "sampled_as": rv.get("sampled_as"),
                           "field_verdicts": rv.get("field_verdicts"), "problems": rv.get("problems"),
                           "suggested_value": rv.get("suggested_value")} if rv else None),
-            "needs_user": bool((r["verdict"] in ("ambiguous", "no_source") and not r.get("user_resolved")) or
-                               any(f["action"] in ("held", "flag") for f in r["flags"]) or r["key_plan"]["action"] != "keep"),
+            "needs_user": needs_user(r),
         })
     if write:
         (folder / "postcheck.json").write_text(json.dumps(post, indent=1, ensure_ascii=False) + "\n")
         (folder / "merged.json").write_text(json.dumps(page, indent=1, ensure_ascii=False) + "\n")
     return post, page, rules_only, merged
+
+
+def needs_user(r):
+    """A resolved entry needs the user only for its residue; any other entry when its
+    verdict is unresolved, a flag is held or open, or its key changes."""
+    if r.get("resolution"):
+        return bool(r["resolution"]["residue"])
+    return bool((r["verdict"] in ("ambiguous", "no_source") and not r.get("user_resolved")) or
+                any(f["action"] in ("held", "flag") for f in r["flags"]) or r["key_plan"]["action"] != "keep")
 
 
 def main(argv=None):
@@ -2915,7 +3379,25 @@ def main(argv=None):
     ap.add_argument("--offline", action="store_true", help="use cached network responses only")
     ap.add_argument("--write-removals", action="store_true",
                     help="write crosswave/removals.json (entries the user approved for removal) and exit")
+    ap.add_argument("--resolutions", default=str(RESOLUTION_DIR),
+                    help="resolution batch directory or file, read when it exists (default: %(default)s)")
+    ap.add_argument("--no-resolutions", action="store_true", help="do not read the resolution decisions")
+    ap.add_argument("--write-resolution-removals", action="store_true",
+                    help="write the resolution drops to removals.json in the resolution directory and exit")
     args = ap.parse_args(argv)
+    res_path = None if args.no_resolutions else Path(args.resolutions)
+    if args.write_resolution_removals:
+        if res_path is None:
+            ap.error("--write-resolution-removals needs the resolution decisions")
+        rows, noop = build_resolution_removals(load_resolutions(res_path), load_bib(args.bib))
+        out = (res_path if res_path.is_dir() else res_path.parent) / RESOLUTION_REMOVALS.name
+        out.write_text(json.dumps({
+            "about": "Entries the resolution batches drop (decision 'drop'), for the later apply step; cdl.bib is "
+                     "not edited here. Built by postcheck.py --write-resolution-removals. 'noop': drops of keys "
+                     "absent from the bibliography or already deleted (key-deletions.json).",
+            "count": len(rows), "entries": rows, "noop": noop}, indent=1, ensure_ascii=False) + "\n")
+        print(out, len(rows), "removals,", len(noop), "no-ops")
+        return 0
     if args.write_removals:
         rows = build_removals(bib=load_bib(args.bib))
         REMOVALS.write_text(json.dumps({
@@ -2927,7 +3409,8 @@ def main(argv=None):
         return 0
     if not args.folder:
         ap.error("folder is required unless --write-removals is given")
-    post, _, _, _ = run(args.folder, args.bib, args.review, args.offline)
+    post, _, _, _ = run(args.folder, args.bib, args.review, args.offline,
+                        resolutions=res_path if res_path is not None and res_path.exists() else None)
     s = post["summary"]
     print(json.dumps({k: v for k, v in s.items() if k != "doi_requests_uncached"}, indent=1))
     if post["measurement"]:
