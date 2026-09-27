@@ -493,6 +493,25 @@ def valid_page(p):  # single page, no hyphens
     if re.fullmatch(r"[A-Za-z][A-Za-z0-9]*(?:\.[A-Za-z0-9]+)+", p) and re.search(r"\d", p):
         return True, "article-number", None
 
+    # Society for Neuroscience eLocator (held form 2026-09-27, HeniEtal19:
+    # "ENEURO.0306-19.2019"): JOURNAL.NNNN-YY.YYYY. Its hyphen is part of the
+    # identifier, so it is matched whole here, before any range splitting.
+    if re.fullmatch(r"[A-Z]+\.\d{4}-\d{2}\.\d{4}", p):
+        return True, "elocator", None
+
+    # Science-family article number (held form 2026-09-27, ViveEtal10: Sci
+    # Transl Med "24ra22" = issue 24, research article 22): issue digits, a
+    # two-letter lowercase article type, then the article digits.
+    if re.fullmatch(r"[1-9]\d*[a-z]{2}[1-9]\d*", p):
+        return True, "article-number", None
+
+    # page number with a capital-letter suffix (held form 2026-09-27,
+    # BrinCrag72: proceedings abstracts printed as "28P--29P", PubMed
+    # "PG  - 28P-29P"). A range needs the same suffix on both ends.
+    x = re.fullmatch(r"(?P<digits>[1-9]\d*)(?P<suffix>[A-Z])", p)
+    if x is not None:
+        return True, "suffixed", [x.group("suffix"), int(x.group("digits"))]
+
     # prefix of one or more letters, followed by a sequence of digits
     r1 = re.compile(r"""(?P<prefix>[a-zA-Z]+)(?P<digits>\d+)""")
     x = r1.fullmatch(p)
@@ -564,6 +583,21 @@ def valid_pages(p):
         first, last, electronic = electronic_range.groups()
         return int(first) < int(last), [p, first + "--" + last + electronic]
 
+    # An article printed in two or more parts (held form 2026-09-27,
+    # MullSchu94: "81--190, 257--339"; user default: cite every part). Each
+    # part must be valid on its own and the parts must run forward.
+    if "," in p:
+        parts = [x.strip() for x in p.split(",")]
+        checked = [valid_pages(x) for x in parts]
+        target = ", ".join(c[1][1] for c in checked)
+        if not all(len(x) > 0 and c[0] for x, c in zip(parts, checked)):
+            return False, [p, target]
+        bounds = [[valid_page(y)[1:] for y in c[1][1].split("--")] for c in checked]
+        ordered = all(
+            b1[-1][0] == "int" and b2[0][0] == "int" and b1[-1][1] < b2[0][1]
+            for b1, b2 in zip(bounds, bounds[1:]))
+        return ordered, [p, target]
+
     valid, kind, val = valid_page(p)
     if valid:  # "single" page
         return True, [p, p]
@@ -576,6 +610,14 @@ def valid_pages(p):
 
             valid1, kind1, val1 = valid_page(ps[0])
             valid2, kind2, val2 = valid_page(ps[1])
+
+            # front matter through body text (held form 2026-09-27, Perr14
+            # "i--97", Unde45, Ward37, Webb17, Calk96): a lowercase roman
+            # first page and an arabic last page. The two numberings cannot be
+            # compared, so the order is fixed by the forms: roman first.
+            if (valid1 and valid2 and kind1 == "roman" and kind2 == "int"
+                    and ps[0] == ps[0].lower() and val2 > 0):
+                return True, [p, "--".join(ps)]
 
             if (not (valid1 and valid2)) or (not (kind1 == kind2)):
                 if (kind1 == "prefixed") and (kind2 == "int"):
@@ -595,7 +637,7 @@ def valid_pages(p):
                     if len(p2) < len(p1):
                         return False, [p, "--".join([p1, p1[: -len(p2)] + p2])]
                     return False, [p, "--".join(ps)]
-            elif kind1 in ["prefixed", "conference"]:
+            elif kind1 in ["prefixed", "conference", "suffixed"]:
                 if (val1[0] == val2[0]) and (val1[1] < val2[1]):
                     return True, [p, "--".join(ps)]
                 else:
@@ -701,7 +743,8 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
         alias = drop_added_country(n, alias)  # an alias never adds an unprinted country
     cuts_suffix = alias is not None and re.fullmatch(
         re.escape(alias.lower()) + r"-\w[\w ]*", n.lower()) is not None
-    if n.lower() not in preserve_identity and alias is not None and not cuts_suffix:
+    aliased = n.lower() not in preserve_identity and alias is not None and not cuts_suffix
+    if aliased:
         n = alias
         as_given = n.split(" ")
     else:
@@ -712,12 +755,46 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
     # next line isn't working...
     # words = ['-'.join([format_journal_name(x) for x in w.split('-')]) if len(w.split('-')) > 1 else w for w in words] #deal with hyphens
 
+    # Addresses: the words before the first comma name the city, and a city
+    # word given in mixed case is not a state code (held form 2026-09-27,
+    # BartEtal04c "La Jolla, {CA}" was read as "{LA} Jolla"). An all-capital
+    # word there ("Washington DC") is still matched against the codes.
+    city_words = -1
+    if force_caps is address_codes and not aliased and "," in n:
+        city_words = len(n.split(",")[0].split(" "))
+
     for i, w in enumerate(words):
         if dotted_initials and DOTTED_INITIALS.fullmatch(as_given[i]):
             words[i] = " ".join(re.findall(r"[A-Z]", as_given[i]))
             continue
         # Check if word is fully braced (starts and ends with braces around the whole word)
         is_fully_braced = before_letters(w, "{") and after_letters(w, "}")
+
+        if not aliased:
+            given = as_given[i]
+            # A braced word is protected exactly as given (held forms
+            # 2026-09-27: RangEtal14 "{PMLR}" became "{pmlr}", HeniEtal19
+            # "{eNeuro}" became "{eneuro}"); a word in caps.txt keeps its
+            # caps.txt form below.
+            given_braced = before_letters(given, "{") and after_letters(given, "}")
+            core = strip_leading_trailing_non_letters(
+                remove_curlies(given, join=" ") if given_braced else given)[1]
+            listed = core and any(f.lower() == remove_non_letters(core.lower())
+                                  for f in force_caps)
+            if given_braced and core and not listed:
+                words[i] = given
+                continue
+            # the article "a", given in lower case inside a name, stays an
+            # article (held form 2026-09-27, Fish22 "Containing Papers of a
+            # Mathematical or Physical Character" became "of {A} Mathematical");
+            # a capital "A" ("Series A") is still the caps.txt letter, and so
+            # is "a" opening a subtitle ("{EEG}: a Guide" -> "{EEG}: {A} Guide").
+            if (0 < i < len(words) - 1 and given == "a"
+                    and as_given[i - 1][-1:].isalnum()):
+                words[i] = "a"
+                continue
+        city_word = (not aliased and i < city_words and not is_fully_braced
+                     and as_given[i] != as_given[i].upper())
 
         if is_fully_braced:
             # Remove outer braces for processing, we'll check caps on the content
@@ -734,7 +811,7 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
 
         correct_caps = [
             f for f in force_caps if f.lower() == remove_non_letters(core.lower())
-        ]
+        ] if not city_word else []
 
         if len(correct_caps) >= 1:
             c = correct_caps[-1]
@@ -755,6 +832,13 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
 
             if (i > 0) and (w.lower() in uncaps):
                 words[i] = words[i].lower()
+
+            # a name with a one-letter elided prefix keeps the capital given
+            # after the apostrophe (held form 2026-09-27, BirdEtal09 "O'Reilly"
+            # became "O'reilly"); "Scribner's", or "L'année" given in lower case, is unaffected.
+            if not aliased and re.fullmatch(r"[A-Z]'[A-Z][a-z]+\W*", as_given[i]) \
+                    and re.fullmatch(r"[A-Z]'[a-z]+\W*", words[i]):
+                words[i] = words[i][:2] + words[i][2].upper() + words[i][3:]
     return " ".join(words)
 
 
@@ -771,9 +855,30 @@ LETTER_UNIT = re.compile(r"\{\\[^A-Za-z\s]\{?[A-Za-z]\}?\}|\\[^A-Za-z\s]\{?[A-Za
                          r"|\{\\[A-Za-z]+\s*\{?[A-Za-z]\}?\}|\\[A-Za-z]+\{[A-Za-z]\}|.")
 
 
+def fully_braced(s):
+    """True when the brace opening ``s`` is the one closing it: ``{RNS Group}``,
+    not ``{\\.I} Polat`` or ``{A} and {B}``."""
+    if len(s) < 2 or s[0] != "{" or s[-1] != "}":
+        return False
+    depth = 0
+    for i, c in enumerate(s):
+        depth += (c == "{") - (c == "}")
+        if depth == 0:
+            return i == len(s) - 1
+    return False
+
+
 def reformat_author(author, fragment=False):
     if len(author.split(" and ")) > 1:
         return " and ".join([reformat_author(a) for a in author.split(" and ")])
+
+    # A name braced whole is a corporate or group author and is kept exactly
+    # as given (held form 2026-09-27, KingEtal11 "{RNS System in Epilepsy
+    # Study Group}"): splitting its capitals as clumped initials turned it
+    # into "{ R N S System ...}". An unbraced group name is still read as a
+    # personal name.
+    if not fragment and fully_braced(author.strip()):
+        return author.strip()
 
     # BibTeX's explicit ``family, suffix, given`` form must retain the suffix.
     # rearrange() deliberately removes suffixes for citation-key construction;
