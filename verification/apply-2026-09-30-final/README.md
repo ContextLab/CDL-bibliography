@@ -42,3 +42,58 @@ worktree at HEAD first, where the full pytest suite and `verification/benchmark/
   final apply" says batch 18 wins.
 - HeniEtal19 gets pages `ENEURO.0306-19.2019` (`../resolution-2026-09-27/NOTICES.md`: "pages missing;
   Crossref=PubMed=PMC give ENEURO.0306-19.2019, so add it").
+- The 15 fields check_bib rejected in waves 2-9 (`../apply-2026-09-29-waves2-9/README.md`, "Fields check_bib
+  rejects"), with the formatter of 9f84506:
+  - applied from the batch rows here (the later row, written against the current entry, decides the value):
+    KingEtal11 author `M J Morrell and {RNS System in Epilepsy Study Group}` (and with it the key MorrRNSS11),
+    BrinCrag72 `28P--29P`, Fish22's full journal title, Unde45 `i--33`, Ward37 `i--64`, Webb17 `i--90`,
+    ViveEtal10 `24ra22`, MullSchu94 `81--190, 257--339`; Perr14 takes batch 35's `1--97` (catalogue extent
+    `97 p.`) over the wave's `i--97` (conflict, the later row wins);
+  - applied from the wave's final change: HeniEtal19 pages `ENEURO.0306-19.2019`, Calk96 `i--56`, BartEtal04c
+    `La Jolla, {CA}`, and in the braced form the formatter now keeps: HeniEtal19 journal `{eNeuro}`, RangEtal14
+    publisher `{PMLR}`;
+  - still rejected: Youn12's `url` (not a house field; `bibcheck/keep_fields.txt`).
+
+## Exceptions check_bib forces (build.py)
+
+- `HOUSE_FORM`: BaayEtal95 title `{CELEX2}` -> `{C}{ELEX2}` (the formatter strips a fully braced title, as
+  `{B}{ASIC}` in wave 8); HeniEtal19 `{eNeuro}`, RangEtal14 `{PMLR}` (above). AzizEtal91's title keeps the cited
+  `{Parkinsonism}` (the formatter's form is the value as cited: no change).
+- `HOLD_CHANGE`: FoodAdmi20a and FoodAdmi20b keep `Force`. Removing it exposes the group author
+  `{U.S. Food and Drug Administration}`, which the author formatter still splits at ` and `
+  (`{ U S Food and Drug Administration}`); `{U.S. Food {and} Drug Administration}` survives the formatter but
+  changes the key base. Their howpublished values already equal the rows' values.
+
+## Conflicts between rows
+
+Every one is listed under `conflicts` in the proposals files:
+
+- ElliAshb88: batch 18 apply vs batch 30 drop -> kept (README NOTE for final apply).
+- Decision changes where an earlier batch said `keep` and a batch here says `apply` (the later row wins):
+  Beaz96 (25), Bull90 (07), BunnEtal99 (10), Kroh35 (14), Puff79 (21), Tulv68 (22), Tulv72 (21), Youn68 (22),
+  ZackHash94 (20).
+- Perr14 pages: wave 6 `i--97` vs batch 35 `1--97` -> batch 35.
+- No field is set to different values by an earlier resolution batch and a batch here, and no batch-27 key has a
+  wave row.
+
+## Open questions in the rows
+
+The rows of BaayEtal95, BrinCrag72, Bull90, Frie79, IzauBoni01, RaaiShif81b, RescWagn72, Unde45, ViveEtal10, Ward37
+and Webb17 carry `questions` for the user. Their decisions were applied as written; the questions are copied into
+the proposals files (`questions`).
+
+## Results
+
+Library counts come from `bibcheck.py crossref status cdl.bib`.
+
+| Batch | Proposals | Requests (run / repeat) | Review writes (run / repeat) | Seconds (run / repeat) | Library after |
+|-|-|-|-|-|-|
+| start | | | | | 6,390 entries: 6,023 verified, 336 needs_review, 31 human |
+| res27 | 21: 21 edited, 3 renamed, 0 deleted | 25 / 0 | 70 / 0 | 731 / 671 | 6,390 entries: 6,042 verified, 317 needs_review, 31 human |
+| res28to33 | 26: 24 edited, 5 renamed (1 rename only), 1 deleted (EngeEtal93) | 10 / 0 | 107 / 0 | 710 / 675 | 6,389 entries: 6,046 verified, 312 needs_review, 31 human |
+| res34to39 | 24: 23 edited, 0 renamed, 1 deleted (Rayp68) | 6 / 0 | 80 / 0 | 705 / 669 | 6,388 entries: 6,052 verified, 305 needs_review, 31 human |
+
+In res34to39, BartEtal04c, Calk96 and RangEtal14 (batch keys) went from verified to needs_review: the address,
+pages and publisher added from the waves are not in the record that verified them. Most rows of batches 28-39 set
+values the entries already hold; those entries wait for the research route (`bibcheck/research_route.py`,
+3a4532f), which is not part of this pipeline.

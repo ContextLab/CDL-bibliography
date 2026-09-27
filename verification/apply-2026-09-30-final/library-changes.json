@@ -22,7 +22,14 @@
     "LohnEtal14": "LohnEtal15",
     "Buzs02": "Buzs02a"
    }
+  },
+  {
+   "batch": "res34to39",
+   "removed": [
+    "Rayp68"
+   ],
+   "renames": {}
   }
  ],
- "last_staged": ".bibcheck/apply-2026-09-30-final/res28to33-staged.bib"
+ "last_staged": ".bibcheck/apply-2026-09-30-final/res34to39-staged.bib"
 }

@@ -651,5 +651,12 @@
   "decision_source": "verification/resolution-2026-09-26/batch-30.json (drop): Also mis-typed (@article with the book as journal); if kept it would be @incollection in Engel (ed.) 1993, but no record of the chapter itself was found.",
   "date": "2026-09-27",
   "batch": "res28to33"
+ },
+ {
+  "key": "Rayp68",
+  "reason": "no evidence found after: Crossref, PubMed, LoC/Open Library (host volume only: Proc Rudolf Virchow Med Soc Suppl to vol 26, ed. Rayport, Ferdinand Berger 1968), Internet Archive full text and HathiTrust (Cloudflare): the chapter (Suppl 26:301-324) is known only from other works' reference lists (reference-list default). The only indexed version, PubMed 4170243 (Electroencephalogr Clin Neurophysiol 24(3):287, 1968), is a conference abstract: it sits inside Crossref 10.1016/0013-4694(68)90008-4 'American electroencephalographic society', pp. 281-291 (society meeting proceedings).",
+  "decision_source": "verification/resolution-2026-09-26/batch-35.json (drop): Dropped: no verifiable record of the cited chapter; the EEG 1968 item is a society-meeting abstract.",
+  "date": "2026-09-27",
+  "batch": "res34to39"
  }
 ]

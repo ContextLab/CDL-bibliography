@@ -1,6 +1,6 @@
 {
  "batch": "res34to39",
- "generated": "2026-09-27 07:57:55",
+ "generated": "2026-09-27 09:20:47",
  "input": [
   {
    "file": "verification/resolution-2026-09-26/batch-34.json",
@@ -156,9 +156,9 @@
    "resolution_inferred_value: pages = '211--277': end page = next item's printed start - 1"
   ],
   "Newm87": [
-   "resolution_quote_unverified: author = 'S E Newman': offline and https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22Slater+E.+Newman%22 is not in the validator cache; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
-   "resolution_quote_unverified: title = \"{Ebbinghaus}' ``on memory'': some effects on early {American} research\": offline and https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22Ebbinghaus%27+On+Memory:+Some+effects+on+early+American+research%22 is not in the validator cache; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
-   "resolution_quote_unverified: pages = '77--87': offline and https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22early+American+research%22 is not in the validator cache; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)"
+   "resolution_quote_unverified: author = 'S E Newman': fetch failed: HTTPError: HTTP Error 429: Too Many Requests; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "resolution_quote_unverified: title = \"{Ebbinghaus}' ``on memory'': some effects on early {American} research\": fetch failed: HTTPError: HTTP Error 429: Too Many Requests; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "resolution_quote_unverified: pages = '77--87': fetch failed: HTTPError: HTTP Error 429: Too Many Requests; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)"
   ],
   "NilsGard91": [
    "resolution_inferred_value: pages = '57--74': end page = next item's printed start - 1"
@@ -197,8 +197,8 @@
    "resolution_inferred_value: pages = '1--60': monograph pages 1--N from the catalogue extent 'N p.'"
   ],
   "Slam87": [
-   "resolution_quote_unverified: author = 'N J Slamecka': offline and https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22Norman+J.+Slamecka%22 is not in the validator cache; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
-   "resolution_quote_unverified: title = 'The law of frequency': offline and https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22law+of+frequency%22 is not in the validator cache; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)"
+   "resolution_quote_unverified: author = 'N J Slamecka': fetch failed: HTTPError: HTTP Error 429: Too Many Requests (https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22Norman+J.+Slamecka%22); applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "resolution_quote_unverified: title = 'The law of frequency': fetch failed: HTTPError: HTTP Error 429: Too Many Requests; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)"
   ],
   "Swet98": [
    "resolution_quote_unverified: pages = '635--702': quote not found at url (https://books.google.com/books?id=1LvJ4x3QCsYC&pg=PR6); applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)"
