@@ -1,0 +1,2156 @@
+{
+ "stages": [
+  {
+   "cycle": "run",
+   "seconds": 1075.71,
+   "network_requests": 221,
+   "added_review_records": 666,
+   "batch_statuses_before": {
+    "needs_review": 188,
+    "metadata_verified": 1
+   },
+   "batch_statuses_after": {
+    "metadata_verified": 71,
+    "needs_review": 118
+   },
+   "batch_verified_before_and_after": 1,
+   "batch_newly_verified": [
+    "BaddLong78",
+    "BasaEtal01",
+    "BasaEtal87",
+    "BasaEtal92",
+    "Boro01",
+    "BotvEtal09",
+    "BragEtal99",
+    "BrowEtal99",
+    "BrunHaus03",
+    "CarlEtal05",
+    "CaveSqui92",
+    "ChkhEtal04",
+    "ConwFthe03",
+    "CookEtal16",
+    "CoopEtal03",
+    "CradEtal12",
+    "CrimEtal00",
+    "CurrFrie04",
+    "DaniEtal95",
+    "DarwEtal72",
+    "DeBr12",
+    "DeadEtal13",
+    "DennHunt92",
+    "DonoRado99",
+    "FabiEtal90",
+    "FerrEtal12",
+    "FoxGrei10",
+    "FranEtal01",
+    "GaneGosh02",
+    "GilbEtal10",
+    "HankEtal09",
+    "HansEtal12a",
+    "Hass05",
+    "JayaEtal23",
+    "JobsEtal10",
+    "JohnEtal08",
+    "JungEtal08",
+    "Kaba03",
+    "KamoEtal98",
+    "KensScha99",
+    "KitaEtal76",
+    "KlasEtal15",
+    "KorzEtal08",
+    "LachEtal00a",
+    "LachEtal07a",
+    "Lewa99",
+    "LuuEtal04",
+    "LuuTuck01",
+    "MainEtal08",
+    "McNaEtal83",
+    "Mill95",
+    "MuntEtal07",
+    "NastEtal18",
+    "Nied90",
+    "Nied91",
+    "RobeEtal99",
+    "RuggEtal96",
+    "Scha12",
+    "SchoAnde97",
+    "ShinEtal99",
+    "Skra98",
+    "SquiZola98",
+    "SteiEtal10",
+    "TervEtal00",
+    "ThomEtal02",
+    "TlauWils96",
+    "TulaEtal07",
+    "VannEtal13",
+    "VidaEtal10",
+    "VolaEtal67"
+   ],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [
+    "Seac97",
+    "TongEtal95"
+   ],
+   "library_statuses_before": {
+    "metadata_verified": 4590,
+    "needs_review": 1777,
+    "human_verified": 31
+   },
+   "library_statuses": {
+    "metadata_verified": 4660,
+    "needs_review": 1707,
+    "human_verified": 31
+   }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 756.43,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch_statuses_before": {
+    "needs_review": 188,
+    "metadata_verified": 1
+   },
+   "batch_statuses_after": {
+    "metadata_verified": 71,
+    "needs_review": 118
+   },
+   "batch_verified_before_and_after": 1,
+   "batch_newly_verified": [
+    "BaddLong78",
+    "BasaEtal01",
+    "BasaEtal87",
+    "BasaEtal92",
+    "Boro01",
+    "BotvEtal09",
+    "BragEtal99",
+    "BrowEtal99",
+    "BrunHaus03",
+    "CarlEtal05",
+    "CaveSqui92",
+    "ChkhEtal04",
+    "ConwFthe03",
+    "CookEtal16",
+    "CoopEtal03",
+    "CradEtal12",
+    "CrimEtal00",
+    "CurrFrie04",
+    "DaniEtal95",
+    "DarwEtal72",
+    "DeBr12",
+    "DeadEtal13",
+    "DennHunt92",
+    "DonoRado99",
+    "FabiEtal90",
+    "FerrEtal12",
+    "FoxGrei10",
+    "FranEtal01",
+    "GaneGosh02",
+    "GilbEtal10",
+    "HankEtal09",
+    "HansEtal12a",
+    "Hass05",
+    "JayaEtal23",
+    "JobsEtal10",
+    "JohnEtal08",
+    "JungEtal08",
+    "Kaba03",
+    "KamoEtal98",
+    "KensScha99",
+    "KitaEtal76",
+    "KlasEtal15",
+    "KorzEtal08",
+    "LachEtal00a",
+    "LachEtal07a",
+    "Lewa99",
+    "LuuEtal04",
+    "LuuTuck01",
+    "MainEtal08",
+    "McNaEtal83",
+    "Mill95",
+    "MuntEtal07",
+    "NastEtal18",
+    "Nied90",
+    "Nied91",
+    "RobeEtal99",
+    "RuggEtal96",
+    "Scha12",
+    "SchoAnde97",
+    "ShinEtal99",
+    "Skra98",
+    "SquiZola98",
+    "SteiEtal10",
+    "TervEtal00",
+    "ThomEtal02",
+    "TlauWils96",
+    "TulaEtal07",
+    "VannEtal13",
+    "VidaEtal10",
+    "VolaEtal67"
+   ],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [
+    "Seac97",
+    "TongEtal95"
+   ],
+   "library_statuses_before": {
+    "metadata_verified": 4590,
+    "needs_review": 1777,
+    "human_verified": 31
+   },
+   "library_statuses": {
+    "metadata_verified": 4660,
+    "needs_review": 1707,
+    "human_verified": 31
+   }
+  }
+ ],
+ "entries": {
+  "AfshEtal13": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:743d68a4ab801902c6a5cc5aa204f2b915399bd35a69d0d4cbba51c0c9e0e08e",
+   "fingerprint": "v2:21dd79802a867c86dcb1af792b1fa769232a40478ba13f1ba052b593c5759271",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "AlloEtal12": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:54172419487bc9a15b3ec2b6554271d97c53b07afcdd2ecfc7255411260625d4",
+   "fingerprint": "v2:bc0ee5ad6e567d4da3feebb72c140c95fa40c1350713fd3a65607e8a6a3f9588",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "AlonGarc87": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:3e0367cd1ade80ca413dfb9947fa816fb1d95f1d3e7d0bd29483f57ead86156e",
+   "fingerprint": "v2:81b3c5921cc70f16764745e3a8dc49e751932dda5fb1f110cfbefa90863d5b9f",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "AriEtal04": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:49ab8ba5b96cd31d1cdca59422a435cdc7b5f9eadef4a6434ab0e2e1db8c973a",
+   "fingerprint": "v2:710de9cf2e483b2fefee8bf4331c8756a2e5cb58214e65117be645af125d85cf",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "BaddLong78": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:531a9ae2eec22689388c6f5842a9046c3053eed9a5e5faab2326cdd03d0b5d87",
+   "fingerprint": "v2:5c1ed6800ff6552c00cd868077fcaac0c2ce513b1058828d41ca5ce02afa3ee7",
+   "accepted_doi": "10.1080/00140137808931764",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "Bala98a": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:82fc8953f69259b2c4bfd2ebbe9b343b09a13c626421ec5bb3325b7f5fac1cb8",
+   "fingerprint": "v2:60bdc4b132e8a764f5dc6e5f4831b8e092e25287a885a975dd5e85428bdfc5a9",
+   "accepted_doi": "10.1518/001872098779649337",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "BasaEtal01": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:f242f5f99e077378b444fafd9be140bcc4cb9dec63c612099d3d6cf6fd2bb2dc",
+   "fingerprint": "v2:291f112ce00530bcef694383903f8e284d14b9b921ceafda5d0a282586468aaa",
+   "accepted_doi": "10.1016/s0167-8760(00)00145-8",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "BasaEtal87": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:9e5fdd5114611f6b82961c86679244431a24fd875e6a1d1ff8fcd11f147ac98a",
+   "fingerprint": "v2:fe15515d354739c95e635744c25077511d7ab8063531069d7fcafa1f1c434024",
+   "accepted_doi": "10.3109/00207458708985933",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "BasaEtal92": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:062730833dc53bdbca3f5bbc2dbd6f173e9d503d863d703d9632748c7fed4eed",
+   "fingerprint": "v2:691dd13eccccafa7cd431c903949bc9563c7df5134ccb78afbc720d8afabe858",
+   "accepted_doi": "10.1016/0167-8760(92)90055-g",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "Bastvand06": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:15c6882245dea6541bcd8eb524592973f16ba2bf8878fa2c32f99698ef8d9a8f",
+   "fingerprint": "v2:6388165bd24bcdbd62f0d584a9cd54db99452e64a69e98dc98de485daf13cc17",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Bazi03": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:68a5cdfd987dc753a0e340d959a2e4665df6aab1511f9aca22ff21778fc9b305",
+   "fingerprint": "v2:44aee9fef3035a1025821a34e1c3be5af990f0aa3be34d59253f591bb9f0f964",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "BeieAcke04": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:d6d069f89ec20629c63c968d4be2ff7986781c42ac28538d78f589ce4b2db95a",
+   "fingerprint": "v2:b841ad3edb1d983ec3ddb8a8e216b700db0fe1822e0519c3b52cdd877c48d5a7",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "BodiEtal01": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:a6343e459ffd2fbe3c4eb271170c69c40bea8be34e553906e3350fada60253a3",
+   "fingerprint": "v2:89a1323e4f16fc17a3e9676ecbb40e9c20db7dc1c55693d6b52bf7cbd5ba9fcf",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Boro01": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:6bdbe4ed6c1bd6455e205a9124de8805c5948ac26a4c5536c695db33c8b9b41f",
+   "fingerprint": "v2:03b2e3f2f8b267e432ee3dc1596a12885694833b755f918c2304efdc14591ed3",
+   "accepted_doi": "10.1006/cogp.2001.0748",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "BoseEtal92": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:9f88c6d134f88da5e972c9e1558d3baf32e288e287769aa46f2c4a9c2fb8ad8d",
+   "fingerprint": "v2:09afaf62b4878ba8d2b8a713bd2e75fbfa04c0294c6bdd450219da92d9c5d0b6",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "BotvEtal09": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:2f4e06e682aa63a200fb8ce6e04c619956f08e45e496d7862998768b1f099b5a",
+   "fingerprint": "v2:943c77eb4b5694faae0390aa74c588fba4040a4944adc8fbf251611c24bed135",
+   "accepted_doi": "10.1016/j.cognition.2008.08.011",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "BotvPlau03": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:81bbcbb6a69aa0ec088d6475ba389d8b2c7b5b0800791df87e5f14e90b624598",
+   "fingerprint": "v2:6aa1ac98f738790e246df673dc9bc49b6c4ca10a963a017236dd9232f8f286d5",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "BragEtal99": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:90689f7fc53f41329ac230958fc23d65d347d4fd39aaa41ae86fb857b73084fa",
+   "fingerprint": "v2:2947d801a3a2c9fd1018e589a816c3ff0b9b22d47191dea5d7c07526936de2e1",
+   "accepted_doi": "10.1002/(sici)1098-1063(1999)9:2<137::aid-hipo5>3.0.co;2-0",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "BranEtal96": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:38ceea1c212f96c2764dfc5f4898489cecd73a0327e10343b644f5648cefb633",
+   "fingerprint": "v2:8832c507079b945dde1d46166ae9588882a670a9e822ef67d1eb25ee8ae805f6",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "BrazEtal02": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:de2d98b98588f76c1157a4aefd7c27a711f1bec524120e31ff979e23ee01dc5e",
+   "fingerprint": "v2:0cb58b27e9fe76a1a72ee633df69b6376342da397d46023f2b7c7750e2bb6c98",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Brem35": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:29f74286f4494206de12b5072df7e96fb65bb7cd5db9dff1078787c2e4f033eb",
+   "fingerprint": "v2:1f2eb0eb3c9888345557285f2b82abcf08da7d8f9b356708489e9e68a1f68919",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "BrowEtal92": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:392c58b38929c75368cabf9889dac344b77837095acfba6bb9b3ffc5e1a0a074",
+   "fingerprint": "v2:bc263ae4d237345920f5c4de32f0473060d4579e75ae0b325ea2a1fa66e1ed93",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "BrowEtal99": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:b6b6dd0cde06c4964e6ebf3172d54a463512a65e22e89d35e3e3e656951b5099",
+   "fingerprint": "v2:8c1b481d2a226bbd36fc50b74bb5cb2ee0600cbb4b8254049860986d0ff11b1f",
+   "accepted_doi": "10.1080/002075999399747",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "BrunHaus03": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:ab15d176b09c602a18d8f88a25c32e3ba3f5d40dd473576733ca2bb51ab7f9e6",
+   "fingerprint": "v2:7306536eeb8b4264fb5ff6485f04d4c6c8a0caa5c09f725891b1041c0aa97152",
+   "accepted_doi": "10.1046/j.1528-1157.44.s10.3.x",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "BurkEtal15": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:7c0152f4b4e5f3a60ab47b5a0889e7259cac32df1bc9751fb10117df4e559683",
+   "fingerprint": "v2:1feb64ae78a7653c4c77231d37dd7886ee08f4dfe8cea9930f98e313b02ef622",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Buse01": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:675b9088ea9f2683b21e016f8137fb7cc383ded2783ac5939dcbf199e8700fce",
+   "fingerprint": "v2:b770656ad2c448691893c48007bfe25d13e687b177ecd95a7c77491a4518a4e7",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "CalhEtal01": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:2a85652f5c5798a3e5babfa94a32d33f2d67b7a7f2989bc20329137f90e620eb",
+   "fingerprint": "v2:6d247bf37ae995521031360241370f73b174a2cad658200c2e309a7481f8ea74",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ]
+  },
+  "CarlEtal05": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:c1fa287835d3456d161d3f690d46bcf66fa8fe3c83ad7a1982c338be166a1bcc",
+   "fingerprint": "v2:132d63b7a798594d898f964f401aff3ff897a961fabf4c2881b43bfa09ab1922",
+   "accepted_doi": "10.1142/s0218654305000761",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "CaveSqui92": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:946560b808bc7b1f8e8c6591b7e9cb27336cb1039a41d62171ed6ccafe5e61bf",
+   "fingerprint": "v2:60383b0eee9bab81197fcf971f059b6e13a28192f317c04fbf2847908974b324",
+   "accepted_doi": "10.1002/hipo.450020207",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "ChaoEtal95": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:4b8d04adf0626bfe00af43d901127195aff91cfc9ef4d7a6342bb83d4ad6930c",
+   "fingerprint": "v2:95bf9f2a11623e4ecd7e8001700361c1ba3f0790c32f7ef2bbfdf544d6de5219",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "ChatEtal96": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:cdd6d418236417be1e36b1eb68aab484e75f97a74f62c31e3e2ab47305277e8e",
+   "fingerprint": "v2:5d7d44c6fbe81c986a60e39499550a880fb902f944c59f78b6d353b3f63701d7",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "ChkhEtal04": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:d3e2d150566ffa287a3b6a4bead37cc76f1bf6ea5a26e5c6bdba4a731d9886f1",
+   "fingerprint": "v2:cb1612d03d21308935b1a42f8e969f87ed098f1cde6e59af81f352a898dae457",
+   "accepted_doi": "10.1016/j.clineuro.2004.01.009",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "ConwFthe03": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:ef20b13b331f344072576148ba2c28605b8dee2f87edb5adcbc8dc2a817520e3",
+   "fingerprint": "v2:77a84431c1544f8797ab5e58d5f722ab6a09bf47f36f195b84245684a738617d",
+   "accepted_doi": "10.1016/s0010-9452(08)70859-1",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "CookEtal16": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:09c788044c0c4bf277ba5fc629d1d4687b72b5cc71240625de0a04396ea2c9de",
+   "fingerprint": "v2:57e052a64813913d553f5b1575037e0b85abf00dd3600a37aa5a97ff341b2182",
+   "accepted_doi": "10.1155/2016/8708434",
+   "accepted_source": "pmc-jats",
+   "issues": []
+  },
+  "CoopEtal03": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:5856ce78cf5899fc7e3dc8254a45c6301eac7dba3d0f0096dea085c9013415f3",
+   "fingerprint": "v2:1bcbdff3e7725164bcc799221cdd1a2d3f7a235c12e08336cdcf8f51366e4dde",
+   "accepted_doi": "10.1016/s0167-8760(02)00107-1",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "CoopEtal07": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:ba38f08bdf198369308dfea4ec3dd8db60f5303d7b5012409ff2ceabbe9d53d7",
+   "fingerprint": "v2:b5aa7d4e88c7bd600ff5095510e00710d9df3d80efe8e76f170646098e33042d",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "CradEtal12": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:b46735b0c6893c245db1271522aa557f59f480244da9755d25a0f8ebf67499ad",
+   "fingerprint": "v2:3bd2d4e356fdc37e250fadbee1ee295bb3d1ccf4b7546fd611a0129f7a8c802e",
+   "accepted_doi": "10.1002/hbm.21333",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "CrimEtal00": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:dc94462b3876d34735d7e7977565fd32769abe0b6afd1ee9d35a6071611219b1",
+   "fingerprint": "v2:d8a43c31c2d70a08cf3049f79e084c2f11f03f989072bbb58a284c8ccc539ee0",
+   "accepted_doi": "10.1023/a:1026598000963",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "CurrFrie04": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:c2741335ec9d51308a2101aa15aa9f2d0714d892d1ce4008a20b16ee8a455326",
+   "fingerprint": "v2:adb0ad32e999da9cfd6be3c79aa297d74a6632a7fb7264b62e4a0e5e2b8ddd07",
+   "accepted_doi": "10.1016/j.cogbrainres.2003.09.006",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "DaPo66": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:dd24bbfd1a60862edb6ea2a80a9c69ef55dfe0a36081fcfc1bb5beab8add35e0",
+   "fingerprint": "v2:3ed414f1cb8fec40ec6cc7f82f3b5e435013e50442e6f1dcee2ae2d115039c96",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "DaniEtal95": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:e978e0bc98077132e53501ad5a20d1dafb47194a6214e85320aad31a17253cdb",
+   "fingerprint": "v2:65eed45052003152279703f0846c71c899e72079969e30e3f7d8645f632e39c7",
+   "accepted_doi": "10.1016/0165-0327(95)00021-e",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "DarwEtal72": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:fd699afe3c6323420d0c4e1e4a5b537e78260aa380340e2398c2da1908da2bc5",
+   "fingerprint": "v2:93b917bf2e7e391b620f838d86351706abd1d20c352e127632abe1d0dfe9bf29",
+   "accepted_doi": "10.1016/0010-0285(72)90007-2",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "DaviEtal11": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:2d2d852949380a76b9a691b3fde3e235181511357fd452f12b60a15757f8e3ac",
+   "fingerprint": "v2:2da54c02f9a14e8471e5921ad780f7a5bcae8a300c857375db62417114d7b341",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "DeBr12": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:738b7c7297ee0d5d1904d848fe42d66f60c1b6447ef3327e50381a9110d0b869",
+   "fingerprint": "v2:2f0361a2fcd077cbdd35e4cc7ad1909981d36c6c9ca5801a7f2fcc9da49c2a03",
+   "accepted_doi": "10.3389/fpsyg.2012.00420",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "DeadEtal13": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:c33eadc4845c94677fbcf0ad1fb802791aaf1059865236c4ecdf29ba14ddd654",
+   "fingerprint": "v2:5d70ac19a26cd2c6055fc1fa341673412f7a2bb9c0875dc7d9726b0e2e30b082",
+   "accepted_doi": "10.3389/fnsys.2013.00120",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "DehaNacc01": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:c6e5bdec52d7b66b12d20cde1b569b88ada6ca375df3939d63125436c93ae57c",
+   "fingerprint": "v2:bb6447d7ce2b210b78d9248837820faa70d05124b622a82a4b4419e2a7369cd1",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "DennHunt92": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:8aba13b22d0ad9dbf7ae6d32492e146c6a18122f826e935272ff1196ebf264d4",
+   "fingerprint": "v2:70412522fdf01fb0b132f32cf0b4c923a3d538ec1e8822084ce4d1b8112d4373",
+   "accepted_doi": "10.1037/0021-843x.101.3.575",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "DesaEtal12": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:55c220e1641dc1ae301581db6c3e841c7fb9317bb3086debe67383f3c34a26ad",
+   "fingerprint": "v2:d41e9e4553f86a0fe32e4c0b7cae9ee8e90ddbdeab734c6511f13495a3c4e5aa",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "DonoRado99": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:6a0253b2fa3b34a8adf8e493197731e976d6a4552fc10b30c6dc057220974df9",
+   "fingerprint": "v2:f3364f329d536fb9d477a15cb8a3c37c7dd802268f386d5a40ee248657728877",
+   "accepted_doi": "10.1037/0021-9010.84.5.795",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "DoveEtal00": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:a5db56c399c346866f220ec7bcd8a95c9cd1172cff1654fad8c9689474f0773a",
+   "fingerprint": "v2:454bfc0922ed8692872c94ca6590a5d5127fa027c10aa894b373569d1e4a1581",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "EkstEtal07": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:929387070f7c62070640e582a5a583561b7a8a0ce46031a261ab0b1832ec15c0",
+   "fingerprint": "v2:9ecc8b630edbe0ae4b621630230d57c5c43fd9daf1364f594e8d859e3349924b",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "FabiEtal90": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:363ae2907239a2c87dc79eb4ce6cfc0de518500d855e44f95d602f70d63251b0",
+   "fingerprint": "v2:a14e6457fc86096270ef4f9e6b11894d6f8a2d293c46b26b83b05ef1fbb96217",
+   "accepted_doi": "10.1016/0013-4694(90)90149-e",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "FernEtal99b": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:230fceea9385376e05408d080da7119d60f02ab17399e67f58fbac0ca32f6083",
+   "fingerprint": "v2:4aee0fd430bdbfe193a889192584aea56befeb9be5035fc0f16d8e52a9ffdf03",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "FerrEtal12": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:66d16cf4279742b24095d99ef55c7c8f02a9ba301452536c5be7b6c2b1314fa5",
+   "fingerprint": "v2:e55447ac93f8af0235b6b3e055c7c37095b1309e8114ef35723e9a82d5d13395",
+   "accepted_doi": "10.3389/fneur.2012.00057",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "FiscEtal99": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:70a7e59291e210cedc524decb4017ae9987276ce1535a34e8bed98c28e8a9a93",
+   "fingerprint": "v2:db2ac853926dba76054bd22a86be0379a6c8c44348914e4d244f183092f06764",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "FishEtal10": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:72404b712e0d79baee6bfbc9aa69698cda7f8faeff95cd7cc19f580ec69f27e9",
+   "fingerprint": "v2:c15cf4e66167625fc9820fbfcd3009a88f9755e90b690503bcd45e02ce5303dd",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "FoxGrei10": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:e4f4c5881a2a2e44c172c1ddc4835e5be384a4b2c92bdd5287f1aee5ca5696b2",
+   "fingerprint": "v2:d2f7cbae16787fe9966745a009d1e2e55cb73016a8089901c4160bffd38e3ca3",
+   "accepted_doi": "10.3389/fnsys.2010.00019",
+   "accepted_source": "pmc-jats",
+   "issues": []
+  },
+  "FranEtal01": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:da27f006576480b30a48b0326a05e1d5a2f889ee9991c201e8c92142d3c84705",
+   "fingerprint": "v2:8da789efab33424691b0e6304143d592ce68e2f8be301bc1da87445552ba4b46",
+   "accepted_doi": "10.3758/cabn.1.2.137",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "Free92": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:8c3efd43c4d172732323168380ccaf5e44bdedc6a7d5b4b8e22b8cfbbad51555",
+   "fingerprint": "v2:7a69a1eef47c609fb84cc3323a0590ce2614be61097ab74d82b9a25ae19a9005",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "FreeEtal03b": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:b501c33f3a1eecdcafabfda2595bc17acff3c973ece0b1e6cd018d0ddee7ee0e",
+   "fingerprint": "v2:db48522c29ea9331dc72ef1e952c0401f107df7227d9414091c46b6ef9754e60",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "GammEtal04": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:32ee65cec9cf63b63434abe4a7a3969e853ae712fea5b07df9728c02d02b49ed",
+   "fingerprint": "v2:0c5c50b6cd3047a591d133dd30fcfe91a3829616a0665157be52eb5948b6c06a",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "GaneGosh02": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:2f461b6362a45ce5a92913fdc3bca2aa330f4c1d3a1f87665dbfbfef264beef9",
+   "fingerprint": "v2:7e0caf6598cfc50be8bdecea062745f7d9b66c02bef4baa33321b206e1311ac8",
+   "accepted_doi": "10.1037/0096-1523.28.4.854",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "GautLogo00": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:441eecf91ab8322550d9ab83a47a0d2b1ff79a0c2c2176f54ba5439e606c59d1",
+   "fingerprint": "v2:d836e94442234e39cae79c54d0ab178bc263e0623e4a03cab86c52bfbf983925",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "GilbEtal10": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:c7f0daba82943d38c75950e710c3d6f65966dd660099b9449fb74d1d402d1eb0",
+   "fingerprint": "v2:6f124c02ee332badbf49e8131f973c7fba3b385a192e6a67ea71d399c62cc06d",
+   "accepted_doi": "10.3389/fnhum.2010.00030",
+   "accepted_source": "pmc-jats",
+   "issues": []
+  },
+  "Gran69": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:ad8cb49f03c4a4f644fb33d9551802c06b2532527241dee701eb0b2d2d2e0a64",
+   "fingerprint": "v2:a972e02cb2fcee289d9480d10ef6f88b3e3a946afcd89c567a14a0cf506b9dd4",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "GrubEtal99": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:2c791ec7abb696bf94e8e8fb30fccf776240adf241104d99ea27ef1eb6bcef9e",
+   "fingerprint": "v2:8e13d176e01e8f67e045c7fcdb4b8f54829fbe58d9b1988afa3367ea933efbbc",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "HalgEtal77a": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:caa69ac21dc45abab0130f124c8a91d5b225da252d7922926afb9b9cadf3c5e0",
+   "fingerprint": "v2:cbd1df15a61e373ad825d3effee2c5188ddd2d00073c914cf36b02adc26ab543",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "HankEtal09": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:a6f126838c3a003a54ac77576a6c5590698e35562fb7e15f932deb63415ddfe4",
+   "fingerprint": "v2:f52f371904792288db6368d0e2c1b5606ec1d12eeddbba9e0a3a6cbe5b822a51",
+   "accepted_doi": "10.3389/neuro.11.003.2009",
+   "accepted_source": "pmc-jats",
+   "issues": []
+  },
+  "HansEtal12a": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:363a41fa238a1bbeb60495a9a6ae87fd5d761f9389a48056f08ef1c8e9fb6314",
+   "fingerprint": "v2:1793f71567f727034590523996e9c93c963153812622c323135f272767d28145",
+   "accepted_doi": "10.3389/fnhum.2012.00074",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "Hara96": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:d865d4a964d6eb5e9d3b6f1a73472f9a37cd80d1d4a97852a82e28da2ce8538e",
+   "fingerprint": "v2:76aa4fe2f4e19181bc442d8a5eca78b612b45a98ea496703e808bdf5f3055168",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Hass05": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:e04c2c74cd16a12627188a4c586a4501e350c53a41296de7e3afda1d33de80ef",
+   "fingerprint": "v2:1214960206a4fa6e26369f09ffbf343f859757a8d53416f83df303edfea08e5a",
+   "accepted_doi": "10.1002/hipo.20116",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "HeniEtal19": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:31923623c40b0f1839e46c949baf280b07e99e1aedee318dda08317e1142eb43",
+   "fingerprint": "v2:9d197a304a98dccd210d5f2fed51484f502dea5bdebb18bf3a2320d712a1db90",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked publisher/PubMed article coordinates conflict with or are missing from the citation"
+   ]
+  },
+  "Hint12": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:2be2da31c329448a26adbe740365a934f74bf3dad357c48402bc1a53f01bad1b",
+   "fingerprint": "v2:87b2720ca57536f77aaa36236163423eaba394d3482ad3e477fdc97d96373ec3",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "HollWels77": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:1a7e0f18ad23cac3a4ddfb6d7cfff98ed39ffba43d1a5e8bf03d4e00c19faf1c",
+   "fingerprint": "v2:64782bb1dfc9b5ec85ac353a6bfc9c31c92717a0f7ae8a84014af4e4a3af37dc",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Hunt07": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:c2bcaa53b35d113d5e66363a29dba59bd202f8afac4d7dc5115a671e9ea327fe",
+   "fingerprint": "v2:2f7197d9d489c2c9a55bc3e50426c3ca7959ef336dd0de24e82fa36a3ae7d598",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "IshiEtal75": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:7414020f2335555dada2e9ac79b1c219f19548d1f42e9e0612f8bdb1b5ef0088",
+   "fingerprint": "v2:4c4a746c8a787b70d73ce8f96c3307d2f035c98d24ab195b416b68d0c82dfcbd",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "JayaEtal23": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:0a24b089a9af1cd4a17416d5fab832838cc258c1197bb75f73e94475bb539447",
+   "fingerprint": "v2:e1c4b0f08a466e620d1265e5743c0aca11cd8e495907119f7c41fc174d546874",
+   "accepted_doi": "10.1016/j.cognition.2023.105408",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "JerbEtal09c": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:036458c3065b3717218bb221458034596764e94343f14ea77b3a8ec5448e07df",
+   "fingerprint": "v2:034634e951c82a61b3525606590c0b12812d528eb64e0e6d913d91f35ff80f31",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "JobsEtal10": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:2800d857fc8cef3c2a958069eb485360ba0e21e25b14fecf0c6dcc2f7982a0bc",
+   "fingerprint": "v2:0894b5bcb081e191fd231070fab22d5e3b8a76b6e5731171d3b746ed2552f799",
+   "accepted_doi": "10.1111/j.1528-1167.2010.02618.x",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "JohnEtal08": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:3ce897e94b83f490f793aceae7fb8da018359a971625b265176f78757d6d020c",
+   "fingerprint": "v2:4cdfe06ce032993b684dfb3787613f19964b39d419252fd03e0bd781beebe9e1",
+   "accepted_doi": "10.1002/hipo.20456",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "JohnEtal98": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:34036721c386a16fd4c6fc6e548a08e6e01beddfb34809c7447d8acd284f531d",
+   "fingerprint": "v2:337c828444f9cd62917d3418708d3f2b9012bc54eb6ece2ed80a8c211a237d38",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ]
+  },
+  "JungEtal08": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:5a4fdb33e5f108706c7fcf729000cd048e55839c38aa373540605be6f2092b71",
+   "fingerprint": "v2:254e0271279832178742a77be265a95b2208045bd58480a55ba3c8745d0bcb5a",
+   "accepted_doi": "10.1002/hbm.20454",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "Kaba03": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:53e5def93ca7b54967d6c2e87f96a425d9a6fc537dc3f00d2759a191d3643e63",
+   "fingerprint": "v2:fcfd24a81a00bab248d80ac3ae115f967c67c2514a49ae59ba207ea748d5dace",
+   "accepted_doi": "10.1093/clipsy.bpg016",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "KahaEtal06": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:4e1ec4a2fc43b1ac3460fe791243d8e4f3473ba9b9f885ed66ca4a3b771b2d29",
+   "fingerprint": "v2:f072dbbfa40188f2788b563e1ed667e80471b2f833b475ff80f0a9ef25568c48",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ]
+  },
+  "KamoEtal98": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:e7c86c0978ec62610fd735a73544e11bc80d31763cf9159607fb52aec467ef6a",
+   "fingerprint": "v2:3b50c21c9d06c30466e4e749db6b43cc454610bb795e2a65153752ed7c91e1ee",
+   "accepted_doi": "10.1002/(sici)1098-1063(1998)8:3<244::aid-hipo7>3.0.co;2-j",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "KatzEtal89": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:8ee35167ebfeb175d0378ae8fd383834f820364385a87580eaa22b9d7a6a9dce",
+   "fingerprint": "v2:8b08b2b2f7cd630e93bfd8f27aecdd427a4d6c06ecac0c16b836552c3e6ed11d",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "KensScha99": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:929eaf980b0d7caaf9ad358942267efe2a5c07b6649eca44119c1a433b6d87a4",
+   "fingerprint": "v2:f2f2d5e5c088acb4b1c23feabcbe4fdfce3abdb96780e2bc8a5b59eb2fca654c",
+   "accepted_doi": "10.1080/026432999380852",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "Kerb14": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:f57bf6f5ab2b32a67c45b763be961db211a414c19e432807c38d4417eba366f9",
+   "fingerprint": "v2:d20012594081fddf3b516c588b9d0c9f3b82b39148c4c144f81594f16c77a399",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "KingEtal02": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:bc0dec679755434add3f95ce73ecc38598c59e69f0bb32f084ee5be7b0fc30e8",
+   "fingerprint": "v2:fc9ae97afb96c49deda1604ca19e370f3191778ff0d15f90e8ae9da08f151fc2",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "KitaEtal76": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:5614e553c6e269b5ee13c02147f1f41bef4d02afcdeab6dd33077de59a03accd",
+   "fingerprint": "v2:8824d2bd2d111d2ccca6bd3f0f006ff04e47262e0232647cde65c5c1364fa089",
+   "accepted_doi": "10.1007/bf00235003",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "KlasEtal15": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:1aafbbea012d43883c4477d292fc92f720842e9ff761b67b689b834a60953d2a",
+   "fingerprint": "v2:6a15f7eac21d3020009f94c9504e76f6ac4ead5a76ec85b2ba894e17f8411698",
+   "accepted_doi": "10.1037/hea0000305",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "Klei06": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:0104a7133d648f23f022e7a2c89925d5fc416b7b531472eb134e37764ccd2c11",
+   "fingerprint": "v2:2017dbd516a9e2a03f553bc4561b03d93248ef3e6ea4a772330281d7c46f8530",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "KorzEtal08": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:021cce2f8a4b1c450c08258cc83fab6e5726a95d50cbe33a51b5e4f485dee31d",
+   "fingerprint": "v2:3d521969daee50db6bbefca53cc41d8e86c4d9684762d743003ff87cbbb5c56d",
+   "accepted_doi": "10.1002/hbm.20458",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "KramEtal75": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:348d08c678398e3de99503be21d5cc4d795f83ffd89d0d577e363c43f4cc2e89",
+   "fingerprint": "v2:4a3bd70e4ad0b433d673125ef39fc13dcfe897d4f81f042ead08cdec198cfce7",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "KrieEtal08b": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:8b97c55cc3f5d26277e6b84810ba459512ac73010ccc3ba92f02ae5e32ea7da2",
+   "fingerprint": "v2:85d1d1a4ff6677651db4851fad8b172dee77bc208029696fa6a2a47c29762d6d",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "KrzyEtal09": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:e095f2863e742f5cd21983074269af05a110585419d02933950e4a8d70f70319",
+   "fingerprint": "v2:0ba9a853141b8c910cd026583f6c7500d0318f4d0de925d5aa8f086fe8b84333",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "LachEtal00a": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:e1bbf9c8da35330f638a77f79e34c35d8fe1add59c2f137312f00361ec750294",
+   "fingerprint": "v2:d7d784c11491469149455da9819c1c58427e9cfd2c2f7d7cb10774e0f3cc1181",
+   "accepted_doi": "10.1142/s0218127400001560",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "LachEtal07a": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:3da5125a336c6945e05f9aa2fa7200ffbc913fd3049813f42547c1cb3cb713c8",
+   "fingerprint": "v2:713c3c1ff43999006f03785bc59aa3cf905b8a4723da76dbcb50a681444ebc6e",
+   "accepted_doi": "10.1002/hbm.20352",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "LegaEtal11": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:4d29e235746b4d9b569ee13c684c35cc704e806f8547e544365a01e753ef8450",
+   "fingerprint": "v2:4d29e235746b4d9b569ee13c684c35cc704e806f8547e544365a01e753ef8450",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "LegaEtal12": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:6136b6d77665c152de0095fd4954e6d6b2e9f422c0363a180bd47ad73e87b263",
+   "fingerprint": "v2:d56296663384d42ee614ec6658353f8cf957c80180ac2975531d7bf775748731",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Lewa99": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:2ee31adefe63fcc445c3c9c3f8ee60fb7f1a3fc00add3b5d9dda39c880b9cd69",
+   "fingerprint": "v2:2bd5826620785dc1403045dac89d7472f0756a83636666026bb1967bff16cb56",
+   "accepted_doi": "10.1080/002075999399792",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "Lope91": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:67ad02b4664ae4d4db3bb5f59a5c9bac88aff0ebb239a1ff6603f94b707775da",
+   "fingerprint": "v2:701f79132bd469eca696b2eb5f67040dfe188868ded650fbe5aa9dbb30236a83",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "LopeEtal73": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:5efc464c1f5517a8d9cf3afc70da64e42dcdf795d0d0b8c957a5163a55fedbd3",
+   "fingerprint": "v2:ec40e3dbd228d28b31606b2303a5fb89cf9733aa10de2f2df7f24d29a3e84e55",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "LuuEtal04": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:17d30396c18f6dbfd9abcdcbfae8324f1a49a69593a91f4d4a495bca92bf4035",
+   "fingerprint": "v2:46b60604a8d80d979906596b8037767e3a5d2ad4b6cfe014a298eb70ebf13749",
+   "accepted_doi": "10.1016/j.clinph.2004.03.031",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "LuuTuck01": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:a1b293c98eddef089d2ad6caa860ed238a923c73dd2c6333f60160856b00707e",
+   "fingerprint": "v2:e0af8419e0471859854d4b566aa56f7660f60ade95b139e2e70e549547beb86c",
+   "accepted_doi": "10.1016/s1388-2457(01)00559-4",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "MainEtal08": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:b1505d02bf8552152d9bde99fec3d3b23fd9d8f8b5df88f2dbbb0f80805048e1",
+   "fingerprint": "v2:2905018890e5a5a9506e730accd7c333da64a6a1c5da271a99fb5ada64cf5753",
+   "accepted_doi": "10.1002/hbm.20457",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "MarcEtal07": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:b91269655a264b274fa7304b9ae5cda767d49cfc8c700b4a8f8afa6d575705e7",
+   "fingerprint": "v2:dc759ebc5a2c1575338c9288b173829bbdafa50a6fe9526d237fcfc637e4c77f",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "MattEtal92": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:d3bad8ea8968df2c552de4be5af79bd573274fa30ddc87ecbad2204067bb54e0",
+   "fingerprint": "v2:25b6fdbbdda577555c8b999801c90645c582609ea61f9d363986a85fbb3572e9",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "McNaEtal83": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:bc57fad0e9c125da356d5689014255f39a3c362f8e84c6c9e94bd749e1f2e1c2",
+   "fingerprint": "v2:5040c67a05bf57235ffa83951966cc9b55546095de043810bc1693a5f37ca93d",
+   "accepted_doi": "10.1007/bf00237147",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "MeckEtal99": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:590f8d97a8aa0bddb0070c2823e07e7b3b319d5a25277e36bcc68cf7799a33a8",
+   "fingerprint": "v2:658ee0d748c6ae7d7d90965b5f4b75aa0bde3291daa7f1bf2cee9ee1a4fa3e4f",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "MenoEtal96": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:895498ce6cd3f2354b9cec74eca1413859c3c0c3f479f9122b38f9120e496be9",
+   "fingerprint": "v2:275488b5abdce60cf0a434bba3420eb959a7df7998208f9d22ca8f2a03c82f21",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ]
+  },
+  "Mill95": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:edf25346303cc15dd5df9b942b52bac717456435a822f4376721d3105ebeec6e",
+   "fingerprint": "v2:13857710cc0a42b4c090f3c94affc8e612367ba3137c091a788b5fbefbd92403",
+   "accepted_doi": "10.1145/219717.219748",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "MiraKihl05": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:6cbe081644eacb90cbc67ffa75a1234ef29a50b88684f4b260211750e98d2e0d",
+   "fingerprint": "v2:43ddfedd08c4c79fd368cf150469abd611995f71ed7964aa0a31c475d3685f1a",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "MormEtal08b": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:0a2bde16af5dcc160293e85660fad912f480cd3b82b1b491c8030e6fba9fbb70",
+   "fingerprint": "v2:0f28cc042b2adc7757b72ab9b7f4e8467fb8fda31f9fe85776c6643559690d44",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "MoscEtal05": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:b5f7f75a29eaeaf4b9a47147c48cbc77efc5640eb243f159da7d1766969b5461",
+   "fingerprint": "v2:8b2425c597f5c26d5fd4da7224113e2f6a5fe5b1e7a6a283d8cdd3505d356290",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "MuntEtal07": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:cb062c4310a7c20d8c3e854e1ae1f50cf10ad79abd8bbb50b6a686fe637960d3",
+   "fingerprint": "v2:332dade499f6f6d64761905ad68b3ed214d891eee7b501b7146537264ab4408c",
+   "accepted_doi": "10.3389/neuro.09.011.2007",
+   "accepted_source": "pmc-jats",
+   "issues": []
+  },
+  "MurpEtal00": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:6e237aa5d2813efbe669360e7f25d9d0f5aaa1422bdeec2845fc170486f78003",
+   "fingerprint": "v2:a2ad96dd2bb72ce81c50137d1262da7328fef2badba7d869c18c8e27bb7a82d8",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "NastEtal18": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:433a23c3ed0caf5c7102ea133ffd803a7c3fc2e4acac0527600cbda7d463cb69",
+   "fingerprint": "v2:31dbd9574369724d1562795f20baf0c85c753239d811a44c2081bf7f5aafe481",
+   "accepted_doi": "10.3389/fnins.2018.00316",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "Nied90": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:d2705395c68e0005a712cf82933a8806769bb71c4e94c8125190d4f45e8771dc",
+   "fingerprint": "v2:2d836c9865837ac5386bc2499ea30a98dc0cecce5e6d5e400b1ebaad3b04afb9",
+   "accepted_doi": "10.1177/155005949002100410",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "Nied91": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:e512c7c149e6d387f774abf7ef6da094637dfe1e18a7ff988d124ee2ebd10b9a",
+   "fingerprint": "v2:7aea12ff81c77c8e1e8becf17ae43baf4110dce7aba497360db166505a19156d",
+   "accepted_doi": "10.1177/155005949102200208",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "NuneEtal97": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:57314ff2d823b6f8a04144f90b1b5cad9e234d6b96c3ae307084200ffe152e07",
+   "fingerprint": "v2:a3de4be2c800d3d59b5d94376ea2249e915a75901bdafb3f20c4daa160dc64d1",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "OlesEtal25": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:e852ab1f016423ba87e21fd054fb0289dddc9f6ce3d8ea5fd9cf67958f246a82",
+   "fingerprint": "v2:e89aa0cf6411297159f002dee31bf012c527b763417ced17750d632a9761326d",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "OntoEtal18": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:218c97f65f061a35e9fc53118d99f059512f4464ddcbc9143f48385d8a616617",
+   "fingerprint": "v2:ec9fda909db6a64fb0d8f98818dd4c3a7521d948c8dc1c3b2a4e64607f940769",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PellEtal88": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:7587371f7f6a277271619286be825c4ba8b3fc03423424f35665fc960e60f32c",
+   "fingerprint": "v2:714558467ea55b6e30832e17f4c584ff8948ad6bbd029246ebfae20bd481ef9c",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PeloEtal95": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:e95d584eb2e2db9de1354c8f94011e8136f154e63bb8bfc8f0eb97b0582f8772",
+   "fingerprint": "v2:d82867b3beb6e711ac295d2a95ab05b25c75232a4618b1a513feeb67424bd33c",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PereGran07": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:4632bf1b1b4cd7bcfcffa419db8e03f54283a06b03b5f52c3ce630da9b0462e9",
+   "fingerprint": "v2:288f0261c2afdacc55677ef70e58372986de2a9688fcb9b7a81bade2fc5d8e00",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PetrPand94": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:c4c882713aeaa590c50823023d348a1f3a7ce59426627e3b9b1393134e385161",
+   "fingerprint": "v2:f7fef7dfce056b8e100f6c40ee8dabbade145d7e66417eaeb84185db3361f0dd",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PfurEtal96": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:13b19d58558ed33ff513b48f3c50b106c170cd32cf57bc4faec14dbab6b88fa6",
+   "fingerprint": "v2:1213ecde74723a6481ef147b937461b37464d7a5509930a899154299c068d799",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PhilEtal98": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:39c1e94f268b2f55832ad6aefe92ee782c77f0b300114177fb35af6f59945e58",
+   "fingerprint": "v2:b727135bde4683bcc35e1265ee9d2b392c8dcdd7012753fe891ed423c8fa7460",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PollEtal00": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:98a8f47afa85cfc088c01522d69de7f0c59f2c082b31e96672d8afd0232834d0",
+   "fingerprint": "v2:9b698995cda7f280ce2454d0cc4cb33dd11929b85eaf0303fadd2e66b0b5a4d5",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Poph99": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:78578e2ed6213ae14410168e641951ee19b38dbe38c7771f757da56fb605c21f",
+   "fingerprint": "v2:55819cd86aead796557786e25eee992cde03c53bd21638306b6bffa124068c0b",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PradEtal93": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:0403feccba26f7cae8243484627aab76b79765c13938ebc1e8e0547586f54ba3",
+   "fingerprint": "v2:2915d10ee7a1a93e5932dead3c8df40a7e609dae44ba5416cf9eb8c780a306f4",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PribEtal74": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:943169ba586c4a4ab03d71de5c3d30fcb1d58552a94031a9d7bc70fbc8ffdf4f",
+   "fingerprint": "v2:4bcdece8ee4d4f796ba54d6b5dc52b10d9a77c4cadff70efb740c539e6f640e0",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PruiEtal20": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:9942efccae6ecc349500a7ab88d9d363e9079c4e79cebb576f76c1e16c0a2fa3",
+   "fingerprint": "v2:ad9aae18e43d6a915059c8fd9cf048c4032ec2833c126caed759295cf454a098",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Ratc06": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:e9a9c10a9bedcd58b7a20cafc9c672ea9554bca1c74aa859393cc04074934de9",
+   "fingerprint": "v2:2d586b5e768622055ec3f033c25a3c96948c6210197611716c18acdbce5e99f8",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "RhoaEtal13": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:052a3da0d2a10baec9a5bd5aaa395c5cc03824cce856f3717fb2cfb404440cd3",
+   "fingerprint": "v2:539e1ac2b1b681a812a01c93f42fab74aac2c67ca0640edc744a40f91ec5d5ef",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "RobeEtal99": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:c7811c719c1449c475c62800626f54fcfe22921984c37af1bf9bc2eed1954914",
+   "fingerprint": "v2:31c6c5003c6aad53ffdcbed618453a947cfa1594f5b6e59ba689c94aab39b4f6",
+   "accepted_doi": "10.1002/(sici)1098-1063(1999)9:3<206::aid-hipo2>3.0.co;2-h",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "RoedMcDe93": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:bcd8054bc3791356aa129c1cb1af3fa0d339194c8763075f5be53d8417c8c663",
+   "fingerprint": "v2:b0c3504cbc459fb739ab6b2a89f22f5faf7d0ab6444ce969fb08b32599718e80",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "RogeEvan93": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:ce156a0f1340d009d5b9ec1df44ad5cd290a7398564f1f3d4045810dd36a59ec",
+   "fingerprint": "v2:3efe55ba380883fdb47df09e71c9bd229344395a72a11c1411bbf5c517fc0043",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "RosaEtal07": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:d72f77163cd233f1fb97e695589e416a9be1349288801c7dc2b1780f84eb53b1",
+   "fingerprint": "v2:cfeb9f22e894a3935c1f749110a4012ddac76eb8e3aa48eb5585d84ad39f4243",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ]
+  },
+  "RuggEtal92": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:ddcab0daff2e8d83e6ec54649df2fa620dc9241e01214373e32a7258cc7be06f",
+   "fingerprint": "v2:e80e1e4e702a6cbcb8ed62bdb4c08ff6eabf59c14f291a02b87612c7a731c093",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "RuggEtal96": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:bab6d9d76c1ebab59e41b1c299c4e8732d22c310c64b009be69ae1f5cacc03dc",
+   "fingerprint": "v2:00b5e76f2248a89c3ab9f1587c6270c9572e2fc9d11db95022a1610e0e4f9d33",
+   "accepted_doi": "10.1016/s0926-6410(96)00067-5",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "RuthEtal21": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:3759957c696140721defba05670d7f2fc0fde395dcbd00396520e1bdb7fb6dde",
+   "fingerprint": "v2:dcabf044fbddfd8f29878718f569aeacc94d8793fdced83277eb5faa9a398de3",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ]
+  },
+  "SaltEtal93": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:9261b1cec6c41e7c05fad58d8bee8ffae81daa1c08df9b63243276aebd832774",
+   "fingerprint": "v2:ce23d0d49f51237cebc1911a65bad602459b797b4146e965e666d551fdf02220",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "SandEtal98": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:1d93843913d43195dbe361f1fe4f02a8b8a4414b8c59dab11e2c769d7ac7748c",
+   "fingerprint": "v2:476b7817441f008463ceaccdf05d58c0f8088efaf89b6e56069513a3c5533447",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Sate14": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:8c911a76c3a3fb336976bb066d428dd2c9c6d4c4349fe705bbc3e3356789718c",
+   "fingerprint": "v2:f8ad72a4b61752e71df9f261d2dffeb958cf5815f895c3b8600b1969bb7b7348",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "ScanEtal21": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:371969046fa6ee2265aeef2ecb9d77505fdd35c3cd90bcac43f91acf57dfc3a9",
+   "fingerprint": "v2:226233220f3a71db0d7f4b6ca153f1a9a233b21c39187763d7ece843f43413f2",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Scha12": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:28f548d074754c37ade485603c76e5969e6d1a412bdb3e38b4b7aca3ee20b694",
+   "fingerprint": "v2:d6111bd480cbf61a7a75d71250537a062f4bccca8c5badae1fc6ca43141577a5",
+   "accepted_doi": "10.31887/dcns.2012.14.1/dschacter",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "SchoAnde97": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:b24a178d8b083ba44f4c70c45866a468fd96c978a8543cb2694d64726a693dee",
+   "fingerprint": "v2:685b76cb4dec4827e13bb76ff7f2eaadacaa05b72c21761c183bb8bac7cf6294",
+   "accepted_doi": "10.1006/cogp.1997.0652",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "SchuEtal83": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:87d5293b75f202fd3837041edb3f462bb99b18816a39cfab44fa67abfa0562ee",
+   "fingerprint": "v2:b5ce546195356dbf98c090d4349dd437fd663b9357e6651fb60aa10d257aa39a",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "SekuEtal05": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:720dfee42c0b698a022c207317ec8365f06361c91b2c0faed5774b61aecae606",
+   "fingerprint": "v2:abf774938821d352999facba52d76d4fdba7496c88dbc9eb0fcf2c3e23853936",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "ShahEtal04": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:90cb7e5999b25e9ca8158be0dda2c2e84caabb51b17b46bda642c937bd943575",
+   "fingerprint": "v2:417125261a329efc54694cf7a58334b4ee5bd1c8cc41f5dbf2822f996837a096",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "ShinEtal99": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:71e807aa6d0eef4ac7882de727b93d79bac23d4ce2f20a4c3c95016d78f13455",
+   "fingerprint": "v2:c754f458e05ecaff7949d7f5c1b009d89d01bbab17d6df448927cd94d887970c",
+   "accepted_doi": "10.1177/155005949903000405",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "SkagEtal96": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:a9dc131d432344b03eb5c4195ca6378cc81bd4722eecd811e10dac1151f9d1f6",
+   "fingerprint": "v2:3a9867baa273e74eb2ae55c78148edfeeb5b7a821e04e86837d0a8a7d748f0a5",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Skra98": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:40886b3721da5675abee63c1a2a64c9021f814860feec0f4df4100ce3f20007f",
+   "fingerprint": "v2:3246838beb15e6290f4cac663192c67ea96a129028f632d537d463bddd1d57a7",
+   "accepted_doi": "10.1016/s0926-6410(97)00033-5",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "Snyd91": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:8e078a98f9b98ca2e02832ff1facce352b3c0e031588e8104054f2989cbc586e",
+   "fingerprint": "v2:2e61c9d806f9d4e6c604fd56b2a895ca766cddbaa847daef2edfe8ccb73cb621",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "SohaHass98b": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:a7bae899556c97f96685ffa671ca34825e9ba5829fc9afa15b300677f69c45f2",
+   "fingerprint": "v2:b1e5a364f7a0fa259e2237ac4a92e9f1af7155e599eaab2c9a59fbd9a389551a",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Spen94": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:13602718b24e6c130382dfc6ca3203ca3c400150cf35ffcb77da65a4d724a2b0",
+   "fingerprint": "v2:502d71cad97f0c9fb7da5133b1fd2e3541965e360ad5f1c3f1efd6d0bd06f07a",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Sper97": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:25f01a85f9973c5f9dd134798deaebbed57f5a9f467bb21b9deac6bd95e1f06d",
+   "fingerprint": "v2:81224a5ae623e71912649a72f70fd5176d9960b8b8cd74182be2dbd340d2260c",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "SpinEtal88": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:546b3ff41a091c8ce921715300973ee23452dbc1f8178f8ce0d6aa59d4f6cf21",
+   "fingerprint": "v2:1b954c6959d35b898c7c33ac79c4d2e459af21ccd3ad263a33dabf577d049412",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "SquiZola98": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:92fd71be29e8426286cf46194002160b2169dd3392b6fb0f0980f05c088fbcd4",
+   "fingerprint": "v2:5447ac877eb0cc8d6f8347e2a40b6f8b3d1fe6d769e128c1587fe65202a7b3ed",
+   "accepted_doi": "10.1002/(sici)1098-1063(1998)8:3<205::aid-hipo3>3.0.co;2-i",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "Srin99": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:4824dcc1f51e123809be1d6c924e069d98238f379c3743efb9f650b61a2c2cbc",
+   "fingerprint": "v2:1cf591dac994e7edd9accb29cbd1c4a1ead327131594bc53fe526c1d887a24e2",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "SteiEtal10": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:bdc2e314501c61d2d1c89d8986853ff99666ebb84172ae700927a78a0a6b8516",
+   "fingerprint": "v2:34ac3795eb18457cfe7a617159a180910315232929276cb1bf92095d1ba86e89",
+   "accepted_doi": "10.1002/hipo.20597",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "StepEtal05": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:65dba64b13ecfcda95db5eeedbc0f5cbaa6b0db37a00c8643e3206a3e10c4dd0",
+   "fingerprint": "v2:c42986e1ed93f01cc249ca34c9ae0fa58078fde6151e2c29f4d009a86fc917ce",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Terr10": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:d4cd3dba820aac814d6574068016fc5134834e0f4445f8fb6ae886dde7179e10",
+   "fingerprint": "v2:7c029937bfd320bb68473a4ea1399b931ce7c2621575973e68f9181a1caba2d1",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "TervEtal00": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:04318a8bb27dd2430c2bf8cee4b86a2b6ae736b73f91a840949ee353403ae345",
+   "fingerprint": "v2:5e7a321c21134c84abb4208c4236ce044105721ffd3280ad2b6278564a7b3b9d",
+   "accepted_doi": "10.1002/(sici)1097-0193(200006)10:2<74::aid-hbm30>3.0.co;2-2",
+   "accepted_source": "pmc-jats",
+   "issues": []
+  },
+  "ThomEtal02": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:17dcef78e4fa49db2506534aa6ae0a2639fc863c27b86954e0f190d1983967e1",
+   "fingerprint": "v2:69fd8f22cc371d6cc8a6554cb395aafcc021a6ae7f0315d9a97d0e3d5e7c302d",
+   "accepted_doi": "10.3758/cabn.2.2.109",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "TlauWils96": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:bdd1c5ae694d8114c3582aabf60b35aab1c40dcc29a6708e7e85f9099da9f177",
+   "fingerprint": "v2:c9f3d1edd58890ed7d5a3281576f4b4f53d4e07e35c8adaf5487aeaec0d4628a",
+   "accepted_doi": "10.1177/001391659602800504",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "TsodEtal96": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:e6720dd73635600aff6f5dc1da50285325045bb3c8d8c834af4d246bb169c879",
+   "fingerprint": "v2:cc88145277410d16ac704f7edf6621d4ef3157669f5156d0b3ba7e52542febd6",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "TulaEtal07": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:bf844b89a70744b938b2a831f70a24c62d701e4d53e84bf5e42ecaa0db44e976",
+   "fingerprint": "v2:081fb714333e3bfea2c147a82d87c63652004bd43649d3d4393a9c5216488010",
+   "accepted_doi": "10.1002/hbm.20306",
+   "accepted_source": "pmc-jats",
+   "issues": []
+  },
+  "UlbeEtal04": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:2a70f1af1a823ea187376da63abeafc651fecab475d38674b47c5a2c53722314",
+   "fingerprint": "v2:f85f99b7fb899bd3f0b6851ea9edfd00cf715ad7730128f2bd1147aa16c167f1",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "VanSEtal07": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:97867b7c434e28ca94f2be338f66f915ec82a70e8ce1f90417be657d9e7765ee",
+   "fingerprint": "v2:195836c907b4b285247275d0971ad2187eed27e35a49ff17f92a57a8a3aaa3aa",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Vand88": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:f7cd28a6733744b20ba46b154ecebc954af1352eef546caa67898fc9f62091fa",
+   "fingerprint": "v2:d7bde515681e028c061b3571968f1537279b4f8cd39767ecd80d386c4a842008",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "VannEtal13": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:f688a76446ab4ba0aec7ce34936c3944d26e3ff64e6f9c5b51bf7a4841b5b210",
+   "fingerprint": "v2:3dfe05642f9d1037dcf8d190cd27fc9ddd3db72580c8779a290bf729c3e4808b",
+   "accepted_doi": "10.1002/hbm.22011",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "VidaEtal10": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:c930be3421b32a769128c7fc77268daa450a7288ea0e415999144cb2bace0307",
+   "fingerprint": "v2:60aa6e815bc3b9df1354944852d3430a9a5b7027c7255a098ec6d25019ecc0a8",
+   "accepted_doi": "10.3389/fnhum.2010.00195",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "VieiEtal03": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:0f3c397711836cd68315a9c1d6e88f25322b151a8f9536e26dd7f404b4ccf8ec",
+   "fingerprint": "v2:b47eefe7347f65d3ed8ff0f4a53804068608db58d2a6035ea4185646260f68da",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "VolaEtal67": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:0027f839899d0920bb30826984ccac95e14fb1f025603b125b0965ec55e37f71",
+   "fingerprint": "v2:6db7920670e6584b7b19c4f3c06bb05eb84b5e3aeb94ffb6630929f5345ba1f7",
+   "accepted_doi": "10.1016/0013-4694(67)90158-7",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "WageSmit03": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:fccb2c4b321be69ce1e0f543aae70914b0bf106ad418ee2335530cc5db48ef43",
+   "fingerprint": "v2:79c3942983fd7a1252fa416ce6a268369a44a2e7def2e0ae8d18e475f288f3f4",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Warr98": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:ffef87ab32900eb006855185d6fd9069dbdf320970e2730d4b3ffd73b92a4594",
+   "fingerprint": "v2:7d96c0454451fbfc2fa4bca58c6057993a728be2cf799a3fdd5de298f126d636",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "WeisEtal16": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:4e3a397f024a166a50f6b2e348a64da78b928ac07427ba15b5479d44840356dc",
+   "fingerprint": "v2:77c88f55f90f63999b02a1ae86c98ed27a80e96586d5b2f09ce1e2c0181313e0",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "WichEtal99": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:46d92bd04af4caf8c9e999c8fb92d41ff33acf409716b80cdf5c2d4adb20f73e",
+   "fingerprint": "v2:b72b1d00e84eba2f872bdcb3714f5314567d85db13b40f0a8eb07be648d11a7d",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "WilsEtal90": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:0404b28e0e558f49185b01c71d9862861f9e3920599f7e26dabd7e1886bec184",
+   "fingerprint": "v2:1f417ebf1aafacc69c0c4d2fdb80f79de747773a3dffb6df6c4e224476045acd",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "WingEtal88": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:e50472c61d2e1a73c21cbd1f87f5bd750d4f649ceb74c57e4e89d567f261cadd",
+   "fingerprint": "v2:c9ba66f478e5e6849964c351aee3b91dc23964669635415a69285f90531528bf",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "WrigBeck83": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:1bbf34e3f378eac59f8a3fd20364612b3cbd81c1624b2c499ddd51bf0295c5af",
+   "fingerprint": "v2:1f5c7b7993a92503d0411c0662290865e5653778db8233302c9bdc20445ebfb6",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Yone95": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:d69eb4b44f2b4f9a595ba6dcab4de741e7a44e91388689d053fc26fc795d4be4",
+   "fingerprint": "v2:821569ecb265d0412ae5fc445098560126a99164a64f6f15e891dd0df5eead13",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "YoneEtal96": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:35f0ec1e1654b7d11ab5bb8dd1f9d0a1fadb5b68586f8a05b742828e60827039",
+   "fingerprint": "v2:3579fd2685eb818374e8de9e478ad298536b0942f02ccb5f4b7982a6b0070c02",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "ZaraEtal05": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:2f144ccfffef2a7fccd7f3c32227d76b9b0221688a324919c98413c6a3fc779b",
+   "fingerprint": "v2:8dbaffe074c8f759cbd8e7f49077d5583f81ff55876c620c43a02525844ab850",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "vandEtal17": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:0b98ee1874e5c44c310d866e8337ae4a580f727f9e24b5cac80f6ef3964a8229",
+   "fingerprint": "v2:6dfc2fe322f1a554c016350e9a5912401a497d067851229b92f15034c5c41d48",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "vonSEtal99": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:216e1edd8eecf782bcc6c919f7c53cd58fba0f6f4895d59f53a06a9eb8d61fbb",
+   "fingerprint": "v2:34da70e169ee88cbf4086cb55ee6dd46dcfa4d082afe30a51161c42472793219",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  }
+ }
+}

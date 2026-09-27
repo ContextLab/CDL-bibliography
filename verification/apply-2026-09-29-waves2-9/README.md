@@ -14,7 +14,9 @@ the resolution batches in `../resolution-2026-09-26/`), one batch and one commit
   evidence is being strengthened) and will be applied later.
 
 The merged files were frozen at the start (2026-09-26 22:29 ET) under
-`.bibcheck/apply-2026-09-29-waves2-9/inputs/`, and each proposals file records the sha256 of its input.
+`.bibcheck/apply-2026-09-29-waves2-9/inputs/`, and each proposals file records the sha256 of its input. The frozen
+files are the ones committed in f8e9e5d ("Post-check waves 2-9 with resolution decisions"); later post-check and
+resolution commits (9f44dd0, 71b157b, f1bd122 and on) are not in these batches.
 
 ## Why one commit per wave
 
@@ -47,8 +49,9 @@ pointed at this folder:
    previous validator is kept as `.bibcheck/apply-2026-09-29-waves2-9/validate-current-checkpoint.py.bak`.
 9. The committed state is proven first: a scratch worktree at HEAD gets the batch's files and a commit, and the
    full pytest suite and `verification/benchmark/run.py` must pass there. Only then is the batch committed here.
-   The suite's gate tests take the Crossref contact from `CROSSREF_MAILTO`, set from the main cache (the
-   worktree has no `.bibcheck/`).
+   The worktree has no `.bibcheck/`: the suite's gate tests take the Crossref contact from `CROSSREF_MAILTO`
+   (read from the main cache), and the network caches the suite reads (`research-postcheck`, `research-pilot`,
+   `pdf-benchmark`) are linked in. Without them two tests fetch live records and fail.
 
 ## Five pending entries verified with wave 2
 
@@ -91,3 +94,4 @@ Library counts come from `bibcheck.py crossref status cdl.bib`.
 |-|-|-|-|-|-|-|
 | start | | | | | | 6,401 entries: 4,537 verified, 1,828 needs_review, 5 pending, 31 human |
 | wave2 | 191: 189 edited, 19 renamed (1 rename only), 1 deleted (CronEtal94); 5 pending entries verified with it | 8 | 5 / 0 (first attempt 220) | 22 / 0 (first attempt 702) | 809 / 773 | 6,400 entries: 4,590 verified, 1,779 needs_review, 31 human |
+| wave3 | 191: 188 edited, 14 renamed (1 rename only), 2 deleted (Seac97, TongEtal95) | 4 | 221 / 0 | 666 / 0 | 1076 / 756 | 6,398 entries: 4,660 verified, 1,707 needs_review, 31 human |

@@ -574,5 +574,19 @@
   "decision_source": "verification/resolution-2026-09-26/batch-03.json (drop; post-check research-2026-09-25/wave2/merged.json): User decision (crosswave a-CronEtal94): real article, keep. Only record: Crossref 10.1006/brln.1994.1057 \"title\":[\"Abstracts\"], Brain and Language 47(3), Oct 1994, pp 409-490 (contains 466-468), no per-item DOI; ScienceDirect 403 and Elsevier API give no text, so title/authors/pages 466--468 remain unverified. Number 3 applies; 'J {Hart Jr}' should lose the suffix (J Hart) under the no-suffix rule. No DOI added. RECONCILED 2026-09-26: Default: items inside a collective Abstracts record are abstracts -> drop; rule 1 also beats the earlier keep.",
   "date": "2026-09-26",
   "batch": "wave2"
+ },
+ {
+  "key": "Seac97",
+  "reason": "no evidence found after: Crossref bibliographic search, OpenAlex, Internet Archive (Computer Dealer News collection has no accessible 1997 issues), local PDF library; trade magazine indexed only in ProQuest/Gale",
+  "decision_source": "verification/resolution-2026-09-26/batch-04.json (drop; post-check research-2026-09-25/wave3/merged.json): No fetchable record of the article exists.",
+  "date": "2026-09-26",
+  "batch": "wave3"
+ },
+ {
+  "key": "TongEtal95",
+  "reason": "no evidence found after: Crossref bibliographic query, OpenAlex search, and wave-3 researcher and reviewer searches. IOVS 36 page S1679 is a 1995 ARVO supplement page, and no record of the work exists online.",
+  "decision_source": "verification/resolution-2026-09-26/batch-06.json (drop; post-check research-2026-09-25/wave3/merged.json): The cited journal is misspelled ('Investigatie Opthalmology') and the page 'S1679' is a supplement page; the reviewer noted the 1995 ARVO abstract book is not online. No source confirms any field.",
+  "date": "2026-09-26",
+  "batch": "wave3"
  }
 ]

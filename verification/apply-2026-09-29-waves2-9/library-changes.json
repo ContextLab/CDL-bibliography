@@ -172,7 +172,30 @@
     "RissEtal07": "RissEtal08",
     "MairEtal09a": "MairEtal09"
    }
+  },
+  {
+   "batch": "wave3",
+   "removed": [
+    "Seac97",
+    "TongEtal95"
+   ],
+   "renames": {
+    "BotvEtal04": "BotvEtal09",
+    "DehaNacc00": "DehaNacc01",
+    "Skan98": "Skra98",
+    "DaPo67": "DaPo66",
+    "Yone96": "Yone95",
+    "Allo12": "AlloEtal12",
+    "Braz03": "Bazi03",
+    "Bastvand05": "Bastvand06",
+    "Brig12": "DeBr12",
+    "LegaEtal11b": "LegaEtal12",
+    "SteiEtal09": "SteiEtal10",
+    "VannEtal12": "VannEtal13",
+    "DennReed92": "DennHunt92",
+    "LegaEtal11a": "LegaEtal11"
+   }
   }
  ],
- "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave2-staged.bib"
+ "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave3-staged.bib"
 }

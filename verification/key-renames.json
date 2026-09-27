@@ -498,5 +498,103 @@
   "date": "2026-09-26",
   "reason": "wave2: suffix rule: MairEtal09b renamed to MairEtal08 (house suffix rule (helpers.check_key_suffixes) after this batch)",
   "commit": "wave2"
+ },
+ {
+  "old_key": "BotvEtal04",
+  "new_key": "BotvEtal09",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-04): key BotvEtal09 confirmed (wave3 merged.json (correction; resolution apply batch-04))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "DehaNacc00",
+  "new_key": "DehaNacc01",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-04): key DehaNacc01 confirmed (wave3 merged.json (correction; resolution apply batch-04))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "Skan98",
+  "new_key": "Skra98",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-04): key Skra98 confirmed (wave3 merged.json (correction; resolution apply batch-04))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "DaPo67",
+  "new_key": "DaPo66",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-05): key DaPo66 confirmed (wave3 merged.json (no_source; resolution apply batch-05))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "Yone96",
+  "new_key": "Yone95",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-05): key Yone95 confirmed (wave3 merged.json (ambiguous; resolution apply batch-05))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "Allo12",
+  "new_key": "AlloEtal12",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-05): key AlloEtal12 confirmed (wave3 merged.json (correction; resolution apply batch-05))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "Braz03",
+  "new_key": "Bazi03",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-05): key Bazi03 confirmed (wave3 merged.json (correction; resolution apply batch-05))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "Bastvand05",
+  "new_key": "Bastvand06",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-05): key Bastvand06 confirmed (wave3 merged.json (correction; resolution apply batch-05))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "Brig12",
+  "new_key": "DeBr12",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-05): key DeBr12 confirmed (wave3 merged.json (correction; resolution apply batch-05))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "LegaEtal11b",
+  "new_key": "LegaEtal12",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-05): key LegaEtal12 confirmed (wave3 merged.json (correction; resolution apply batch-05))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "SteiEtal09",
+  "new_key": "SteiEtal10",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-05): key SteiEtal10 confirmed (wave3 merged.json (correction; resolution apply batch-05))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "VannEtal12",
+  "new_key": "VannEtal13",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-06): key VannEtal13 confirmed (wave3 merged.json (correction; resolution apply batch-06))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "DennReed92",
+  "new_key": "DennHunt92",
+  "date": "2026-09-26",
+  "reason": "wave3: key does not follow the corrected metadata; resolution (batch-06): key DennHunt92 confirmed (wave3 merged.json (correction; resolution apply batch-06))",
+  "commit": "wave3"
+ },
+ {
+  "old_key": "LegaEtal11a",
+  "new_key": "LegaEtal11",
+  "date": "2026-09-26",
+  "reason": "wave3: suffix rule: LegaEtal11b renamed to LegaEtal12 (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave3"
  }
 ]
