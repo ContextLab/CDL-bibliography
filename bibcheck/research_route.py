@@ -455,7 +455,8 @@ def load_evidence(root=ROOT, bib_keys=None, exclude=()):
         cur = walk(row.get('key', ''))
         if cur in bundles:
             bundles[cur].setdefault('notices', []).append(
-                {k: row.get(k) for k in ('key', 'notice_doi', 'class', 'quote', 'url', 'corrected_fields', 'notes')
+                {k: row.get(k) for k in ('key', 'notice_doi', 'class', 'quote', 'url', 'corrected_fields', 'notes',
+                                          'records')
                  if k in row})
     return bundles
 
@@ -1035,33 +1036,104 @@ def notice_links(candidate):
     return links
 
 
+RECORD_IDENTITY = re.compile(r'[0-9a-f]{64}')
+
+
+def _named_records(rows):
+    """{(doi, identity): class} for the exact DOI-linked records the classification rows
+    name (``records``: [{'doi', 'identity'}], identity = verification.notice_record_identity,
+    the digest of the record as the cache stores it). None when a name is malformed."""
+    named = {}
+    for row in rows:
+        for rec in row.get('records') or []:
+            if not isinstance(rec, dict) or not RECORD_IDENTITY.fullmatch(str(rec.get('identity') or '')):
+                return None
+            try:
+                named[(normalize_doi(rec.get('doi')), rec['identity'])] = str(row.get('class') or '')
+            except (ValueError, TypeError, AttributeError):
+                return None
+    return named
+
+
+def _passive_locator(c, fields):
+    """A matching article-locator record, which Cache.retain_notices passes over (it is
+    no negative evidence): listed in a declaration, but it needs no classification."""
+    from auto_review import secondary_notice_flags, secondary_suffix_dois
+    from source_locators import locator_dois, locator_conflicts
+    return bool(locator_dois([c]) and not locator_conflicts(fields, [c])
+                and not secondary_notice_flags([c]) and not secondary_suffix_dois([c]))
+
+
 def notices_declaration(candidate, candidates):
     """What this approval accounts for, for Cache.retain_notices (verification.py,
-    NOTICE_ACCOUNTING): the DOIs of the notices the classification settled for the cited
-    DOI, and the DOI-linked records of that DOI they were settled beside. None when the
-    entry has no DOI, no classified notice, or an unsettled one, or when a record links
-    more notices (``notice_links``) than the classification settled for the entry: a
-    notice listed after the classification was made is not accounted for."""
+    NOTICE_ACCOUNTING): the notices the classification settled for the entry and the
+    DOI-linked records it settled them beside. None when the entry has no classified
+    notice, an unsettled one, or a classification row that identifies nothing.
+
+    A row identifies its notice by the notice's DOI (``notice_doi``) or, when the notice
+    has no registered DOI or the record is no notice at all (a PubMed author-suffix or
+    article-locator record, another work's record), by the exact records it was made
+    beside (``records``, the identity the cache stores; never a URL). A record named by
+    identity must be one the row's class describes: a record of a no-notice class
+    carries no notice link, and an 'unrelated' record is filed under another DOI than
+    the cited one. Every DOI-linked record the approval stands beside must be named by a
+    row, or (as before, for notices with DOIs) link no more notices (``notice_links``)
+    than the classification settled: a notice listed after the classification was made,
+    or a record nobody classified, is not accounted for. An entry without a DOI is
+    checked against every candidate DOI (as retain_notices does), so each of its
+    records must be named."""
     notice = candidate.get('notice')
     rows = (candidate.get('raw_record') or {}).get('notices') or []
     doi = candidate.get('doi')
-    if not doi or not notice or notice.get('issues') or not rows:
+    if not notice or notice.get('issues') or not rows:
         return None
-    notice_dois = sorted({str(r.get('notice_doi') or '').lower() for r in rows} - {''})
-    if not notice_dois:
+    named = _named_records(rows)
+    if named is None or any(not r.get('notice_doi') and not r.get('records') for r in rows):
+        return None
+    notice_dois = sorted({str(r.get('notice_doi') or '').lower() for r in rows} - {''}) if doi else []
+    if not doi and any(r.get('notice_doi') for r in rows):
+        return None
+    if not notice_dois and not named:
         return None
     slots = sum(1 for r in rows if r.get('class') in NOTICE_SLOTS)
-    records = []
+    records, seen = [], set()
     for c in candidates:
-        if c.get('source') == SOURCE or doi not in _table_dois(c):
+        if c.get('source') == SOURCE:
             continue
-        if len(notice_links(c)) > slots:
+        table = _table_dois(c)
+        filed = sorted(table & {doi}) if doi else sorted(table)
+        if not filed:
+            continue
+        identity = notice_record_identity(c)
+        links = notice_links(c)
+        if len(links) > slots:
             return None  # the record links a notice the classification did not see
-        record = {'doi': doi, 'identity': notice_record_identity(c)}
-        if record not in records:
-            records.append(record)
-    return {'source': SOURCE, 'doi': doi, 'notice_dois': notice_dois,
-            'records': sorted(records, key=lambda r: r['identity'])}
+        for d in filed:
+            kind = named.get((d, identity))
+            if kind is None:
+                if not notice_dois and not _passive_locator(c, candidate.get('checked_fields') or {}):
+                    return None  # a record no classification row names
+            elif kind not in NOTICE_SLOTS and links:
+                return None  # a record classified as no notice links one
+            elif kind == 'unrelated' and d == doi:
+                return None  # the cited work's own record is not another work's
+            elif kind in ('no_notice', 'coordinate_conflict') and d != doi:
+                return None
+            seen.add((d, identity))
+            record = {'doi': d, 'identity': identity}
+            if record not in records:
+                records.append(record)
+    declared = {'source': SOURCE, 'doi': doi, 'notice_dois': notice_dois,
+                'records': sorted(records, key=lambda r: (r['identity'], r['doi']))}
+    if named:
+        # Only the named records the approval stands beside; a name with no such record
+        # accounts for nothing (and cannot stand in for a notice DOI).
+        used = [{'doi': d, 'identity': i} for d, i in sorted(named) if (d, i) in seen]
+        if used:
+            declared['notice_records'] = used
+        elif not notice_dois:
+            return None
+    return declared
 
 
 def accounts_for_notices(entry, result):

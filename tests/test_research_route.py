@@ -993,6 +993,192 @@ def test_retain_notices_unchanged_for_other_routes(entries2, bundles2, cities2, 
         v.register_notice_accounting('x', None)
 
 
+# ---- notice accounting by record identity (no notice DOI)
+
+def own_records(context, doi, source=None):
+    """The entry's stored DOI-linked records filed under ``doi`` (the cache's tables)."""
+    return [c for c in context if doi in R._table_dois(c) and (source is None or c['source'] == source)]
+
+
+def named(bundle, records, row=0):
+    """``bundle`` with its classification row ``row`` naming ``records`` by the identity
+    the cache stores (notices-classified.json ``records``)."""
+    b = deepcopy(bundle)
+    b['notices'][row]['records'] = [{'doi': d, 'identity': v.notice_record_identity(c)}
+                                     for c in records for d in sorted(R._table_dois(c))]
+    return b
+
+
+def test_existing_declarations_are_unchanged_by_record_identity(entries2, bundles2, cities2, context2, v2_bodies):
+    # A classification by notice DOI declares exactly what it declared before: stored
+    # approvals re-derive the same declaration, so none is reopened by the extension.
+    declared = settle(entries2, bundles2, cities2, context2, 'AfraEtal06')['notices_accounted']
+    assert set(declared) == {'source', 'doi', 'notice_dois', 'records'}
+
+
+@pytest.mark.parametrize('key,kind', [('McDoEtal10', 'no_notice'), ('Fred04', 'coordinate_conflict')])
+def test_a_record_named_by_identity_keeps_the_approval(entries2, bundles2, cities2, context2, v2_bodies, tmp_path,
+                                                        key, kind):
+    # McDoEtal10: a PubMed author-suffix record ('Hagler DJ Jr'); Fred04: a PMC
+    # article-locator record (1367-1378, Crossref 1367-1377). Neither has a notice DOI.
+    entry, doi = entries2[key], v.normalize_doi(entries2[key]['fields']['doi'])
+    records = own_records(context2[key], doi)
+    assert records and all(not R.notice_links(c) for c in records)
+    assert bundles2[key]['notices'][0]['class'] == kind and not bundles2[key]['notices'][0].get('notice_doi')
+    # Before: the classification identifies nothing, so nothing is declared and the
+    # cache reopens the approval.
+    plain = settle(entries2, bundles2, cities2, context2, key)
+    assert plain['status'] == 'metadata_verified' and 'notices_accounted' not in plain
+    assert put_later(tmp_path / 'plain.sqlite3', entry, plain)['status'] == 'needs_review'
+    # Named by the stored record identity: declared, kept, and valid offline.
+    b = named(bundles2[key], records)
+    result = settle(entries2, bundles2, cities2, context2, key, bundle=b)
+    declared = result['notices_accounted']
+    assert declared['notice_dois'] == [] and declared['doi'] == doi
+    identities = sorted({v.notice_record_identity(c) for c in records})
+    assert [r['identity'] for r in declared['notice_records']] == identities
+    assert {r['identity'] for r in declared['records']} == set(identities)
+    stored = put_later(tmp_path / 'named.sqlite3', entry, result)
+    assert stored['status'] == 'metadata_verified' and stored['accepted_source'] == R.SOURCE
+    assert v.route_approval_valid(roundtrip(stored))
+
+
+def other_suffix_record(record):
+    """The same PubMed record as it would read with one more suffixed author: another
+    record (a new identity) of the cited DOI that no classification row names."""
+    later = deepcopy(record)
+    later['raw_record']['authorList']['author'].append({'fullName': 'Smith J Jr', 'lastName': 'Smith',
+                                                       'initials': 'J', 'firstName': 'John'})
+    return later
+
+
+def test_a_different_record_with_no_classification_still_reopens(entries2, bundles2, cities2, context2, v2_bodies,
+                                                                 tmp_path):
+    entry, doi = entries2['McDoEtal10'], '10.1016/j.neuroimage.2010.06.069'
+    records = own_records(context2['McDoEtal10'], doi)
+    result = settle(entries2, bundles2, cities2, context2, 'McDoEtal10', bundle=named(bundles2['McDoEtal10'], records))
+    assert result['status'] == 'metadata_verified'
+    other = other_suffix_record(records[0])
+    assert doi in R._table_dois(other) and v.notice_record_identity(other) != v.notice_record_identity(records[0])
+    # Learned before the put, or after it: either way the approval is reopened.
+    stored = put_later(tmp_path / 'a.sqlite3', entry, result, [other])
+    assert stored['status'] == 'needs_review' and 'accepted_source' not in stored
+    cache = v.Cache(tmp_path / 'b.sqlite3')
+    try:
+        assert cache.put(V2 / 'entries.bib', entry, deepcopy(result))['status'] == 'metadata_verified'
+        cache.remember_notices([other])
+        assert cache.get(V2 / 'entries.bib', entry)['status'] == 'needs_review'
+    finally:
+        cache.close()
+    # The route itself declares nothing beside an unnamed record, and a hand-made
+    # declaration that lists it is refused by the hook.
+    forged = deepcopy(result)
+    forged['candidates'].insert(0, other)
+    own = [c for c in forged['candidates'] if c['source'] == R.SOURCE][0]
+    assert R.notices_declaration(own, forged['candidates']) is None
+    forged['notices_accounted']['records'].append({'doi': doi, 'identity': v.notice_record_identity(other)})
+    assert not R.accounts_for_notices(entry, forged)
+    assert put_later(tmp_path / 'c.sqlite3', entry, forged, [other])['status'] == 'needs_review'
+
+
+def test_a_notice_without_doi_is_named_by_its_records(entries2, bundles2, cities2, context2, v2_bodies, tmp_path):
+    # AfraEtal06's erratum as if it had no registered DOI (HubeEtal01's case): the row
+    # names the Europe PMC record whose 'Erratum in' link it read. A later erratum link
+    # changes the record identity, so the approval reopens (as with a notice DOI).
+    entry, doi = entries2['AfraEtal06'], '10.1038/nature04982'
+    records = own_records(context2['AfraEtal06'], doi)
+    b = named(bundles2['AfraEtal06'], records)
+    b['notices'][0]['notice_doi'] = None
+    result = settle(entries2, bundles2, cities2, context2, 'AfraEtal06', bundle=b)
+    assert result['status'] == 'metadata_verified'
+    assert result['notices_accounted']['notice_dois'] == [] and result['notices_accounted']['notice_records']
+    assert put_later(tmp_path / 'ok.sqlite3', entry, result)['status'] == 'metadata_verified'
+    later = later_erratum(records[0])
+    assert put_later(tmp_path / 'later.sqlite3', entry, result, [later])['status'] == 'needs_review'
+    # Without the names, a row with no notice DOI identifies nothing.
+    b2 = deepcopy(bundles2['AfraEtal06'])
+    b2['notices'][0]['notice_doi'] = None
+    plain = settle(entries2, bundles2, cities2, context2, 'AfraEtal06', bundle=b2)
+    assert 'notices_accounted' not in plain
+    assert put_later(tmp_path / 'plain.sqlite3', entry, plain)['status'] == 'needs_review'
+
+
+def test_record_names_must_fit_the_class(entries2, bundles2, cities2, context2, v2_bodies):
+    doi = '10.1038/nature04982'
+    records = own_records(context2['AfraEtal06'], doi)
+    own = lambda b: [c for c in settle(entries2, bundles2, cities2, context2, 'AfraEtal06', bundle=b)['candidates']
+                     if c['source'] == R.SOURCE][0]
+    for kind in ('no_notice', 'coordinate_conflict', 'unrelated'):
+        # A record that links an erratum is not 'no notice'; the cited work's own record
+        # is not another work's ('unrelated').
+        b = named(bundles2['AfraEtal06'], records)
+        b['notices'][0].update(notice_doi=None, **{'class': kind})
+        if kind == 'coordinate_conflict':
+            b['notices'][0]['quote'] = 'Crossref page "692-695"'
+        c = own(b)
+        assert R.notices_declaration(c, context2['AfraEtal06'] + [c]) is None, kind
+    # Malformed names (a URL, a short digest, no DOI) identify nothing.
+    for bad in ({'doi': doi, 'identity': 'https://europepmc.org/abstract/MED/16929304'},
+                {'doi': doi, 'identity': v.notice_record_identity(records[0])[:16]},
+                {'doi': None, 'identity': v.notice_record_identity(records[0])}):
+        b = deepcopy(bundles2['AfraEtal06'])
+        b['notices'][0].update(notice_doi=None, records=[bad])
+        c = own(b)
+        assert R.notices_declaration(c, context2['AfraEtal06'] + [c]) is None, bad
+    # A name for a record the approval does not stand beside accounts for nothing.
+    b = deepcopy(bundles2['AfraEtal06'])
+    b['notices'][0].update(notice_doi=None, records=[{'doi': doi, 'identity': '0' * 64}])
+    c = own(b)
+    assert R.notices_declaration(c, context2['AfraEtal06'] + [c]) is None
+
+
+def test_record_identity_does_not_admit_a_retraction(entries2, bundles2, cities2, context2, v2_bodies, tmp_path):
+    entry, doi = entries2['AfraEtal06'], '10.1038/nature04982'
+    record = deepcopy(own_records(context2['AfraEtal06'], doi)[0])
+    record['raw_record']['commentCorrectionList']['commentCorrection'].append(
+        {'id': '99999998', 'orderIn': 3, 'reference': 'Nature. 2027 Jan 1;600(1):2', 'source': 'MED',
+         'type': 'Retraction in'})
+    # Even with the retraction record named by identity (and the link counted), merge
+    # refuses the approval and the offline validator rejects a forged one.
+    b = named(bundles2['AfraEtal06'], [record])
+    b['notices'][0]['notice_doi'] = None
+    b['notices'].append(dict(b['notices'][0], quote='x'))
+    held = settle(entries2, bundles2, cities2, context2, 'AfraEtal06', bundle=b, context=[record])
+    assert held['status'] == 'needs_review' and 'notices_accounted' not in held
+    forged = settle(entries2, bundles2, cities2, context2, 'AfraEtal06', bundle=b)
+    forged['candidates'].insert(0, record)
+    assert not R.valid_research_approval(roundtrip(forged))
+    assert put_later(tmp_path / 'db.sqlite3', entry, forged, [record])['status'] == 'needs_review'
+
+
+def test_a_no_doi_entry_names_every_record_of_its_candidates(entries2, bundles2, cities2, v2_bodies, tmp_path):
+    # Este91 (no DOI): retain_notices checks every candidate DOI, so the author-suffix
+    # record of the unrelated Murdock 1963 candidate must be named ('unrelated').
+    entry = entries2['Este91']
+    assert not entry['fields'].get('doi') and bundles2['Este91']['notices'][0]['class'] == 'unrelated'
+    record = {'source': 'europepmc', 'doi': '10.1037/h0046262', 'raw_record': {
+        'id': '14087627', 'source': 'MED', 'doi': '10.1037/h0046262', 'pubYear': '1963',
+        'title': 'Interpolated recall in short-term memory.',
+        'authorList': {'author': [{'fullName': 'MURDOCK BB Jr', 'lastName': 'MURDOCK', 'initials': 'BB'}]}}}
+    assert R._table_dois(record) == {'10.1037/h0046262'}
+    previous = v.outcome('needs_review', ['No unambiguous, fully supported metadata match'], [record])
+    plain = R.merge(previous, assess2(entries2, bundles2, cities2, 'Este91'))
+    assert plain['status'] == 'metadata_verified' and 'notices_accounted' not in plain
+    assert put_later(tmp_path / 'plain.sqlite3', entry, plain, [record])['status'] == 'needs_review'
+    b = named(bundles2['Este91'], [record])
+    result = R.merge(previous, assess2(entries2, bundles2, cities2, 'Este91', bundle=b))
+    assert result['notices_accounted']['doi'] is None
+    assert result['notices_accounted']['notice_records'] == [
+        {'doi': '10.1037/h0046262', 'identity': v.notice_record_identity(record)}]
+    assert put_later(tmp_path / 'named.sqlite3', entry, result, [record])['status'] == 'metadata_verified'
+    # Another candidate's record that nobody named reopens it.
+    other = deepcopy(record)
+    other['raw_record']['pubYear'] = '1964'
+    result2 = deepcopy(result)
+    result2['candidates'].insert(0, other)
+    assert put_later(tmp_path / 'other.sqlite3', entry, result2, [other])['status'] == 'needs_review'
+
+
 # ---- rule 5: braced group names
 
 def test_braced_group_author_compares_equal(entries2, bundles2, cities2):

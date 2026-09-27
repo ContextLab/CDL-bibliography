@@ -2180,6 +2180,7 @@ def builtin_approval_validators():
 #
 #   result["notices_accounted"] = {"source": <accepted_source>, "doi": <cited DOI>,
 #       "notice_dois": [<DOI of each notice it classified>, ...],
+#       "notice_records": [{"doi": <table DOI>, "identity": ...}, ...],   # optional
 #       "records": [{"doi": <table DOI>, "identity": notice_record_identity(record)}, ...]}
 #
 # and registers ``accounts(entry, result) -> bool`` for its accepted_source. The approval
@@ -2189,6 +2190,11 @@ def builtin_approval_validators():
 # new "Erratum in" link, changes the record identity and is not listed), and (4) the
 # route's hook accepts the result with every known record attached. No other route and no
 # undeclared record is affected.
+#
+# A notice with no registered DOI (an old erratum PubMed lists only as "Erratum in"), or a
+# DOI-linked record that is no notice (a PubMed author-suffix or article-locator record,
+# another candidate's record), is identified in "notice_records" by the exact record
+# identity the cache stores, never by a URL; a changed record has a new identity.
 NOTICE_ACCOUNTING = {}
 # Routes whose hook is imported on demand, so that a caller that did not import the route
 # (Cache.get from any script) never reopens and rewrites an approval the route kept.
@@ -2219,7 +2225,7 @@ def notices_accounted_for(entry, result, records):
         import importlib
         importlib.import_module(NOTICE_ACCOUNTING_MODULES[source])
     accounts = NOTICE_ACCOUNTING.get(source)
-    if accounts is None or not declared.get("notice_dois"):
+    if accounts is None or not (declared.get("notice_dois") or declared.get("notice_records")):
         return False
     try:
         listed = {(r["doi"], r["identity"]) for r in declared.get("records") or []}

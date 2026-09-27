@@ -253,13 +253,43 @@ Notice links are Europe PMC "Erratum in"/"Retraction in"/... and JATS `correctio
 `content_only`, `metadata_correction` or `unread`. The saved links carry no notice DOI, so a notice is
 matched to its record by this count and by the record identity, not by DOI. Entries without a DOI (Este91,
 FrieEtal99, GellEtal14, McDoEtal10, Murd56), and entries whose only record the classification does not
-cover, are still reopened as before.
+cover, were still reopened (until the record-identity extension below).
 
 Tests (`tests/test_research_route.py`): the kept approval (AfraEtal06, a Cache.put, a later get and the
 backfill), and five negative controls. A notice learned later reopens the entry, before and after it is
 stored. A missing, emptied or self-extended declaration reopens it, and so does an approval made for other
 field values. A retraction record reopens it even when declared. Other `accepted_source` values carrying
 the same declaration are still reopened.
+
+### Notices with no DOI: record identity (2026-09-27, mop-up)
+
+A classification row can now name the exact DOI-linked records it was made beside, in `records`:
+`[{"doi": <DOI the record is filed under>, "identity": <notice_record_identity(record)>}]`. The identity is
+the digest the cache's notice, PubMed-suffix and article-locator tables store for the record, so any change
+to the record (a new "Erratum in" link, another author) gives a new identity. URLs are never used. This is
+for notices with no registered DOI (old errata that PubMed lists only as "Erratum in") and for records that
+are no notice at all: PubMed author-suffix records (`no_notice`), PMC article-locator records
+(`coordinate_conflict`), and another candidate's record (`unrelated`). The declaration then carries
+`notice_records` (only when a row names one), and `notices_accounted_for` accepts `notice_dois` or
+`notice_records`. Declarations by notice DOI alone are unchanged, so stored approvals re-derive the same
+declaration.
+
+`notices_declaration` refuses (declares nothing) when a row identifies nothing (no notice DOI and no
+`records`), a name is malformed (not a 64-hex identity, no DOI), a record named by a no-notice class carries
+a notice link, an `unrelated` name is filed under the cited DOI, a `no_notice`/`coordinate_conflict` name is
+filed under another DOI, or none of the names is a record the approval stands beside. Without a notice DOI,
+every DOI-linked record must be named, except matching article-locator records, which `retain_notices`
+passes over. An entry without a DOI is checked against every candidate DOI (as `retain_notices` does), so
+Este91-like entries must name each record. The link-count rule still applies to every record, and
+`valid_research_approval` still rejects any retraction signal.
+
+Tests: McDoEtal10 (suffix record) and Fred04 (locator record) named by identity are kept, and are reopened
+without the names. AfraEtal06's erratum stripped of its DOI and named by its Europe PMC record is kept, and
+a later erratum link reopens it. A different suffix record of the same DOI with no classification reopens
+the approval, whether learned before or after the put, and a hand-made declaration listing it is refused by
+the hook. Names that do not fit the class, malformed names and names of absent records declare nothing. A
+named retraction record is still refused. Este91 (no DOI) is kept only with the unrelated candidate's record
+named, and another unnamed record reopens it. Existing DOI declarations keep their four keys.
 
 ### Dry run (`dry-run-2.json`; cdl.bib and evidence at 6a6f7e3, a copy of the verification cache)
 
