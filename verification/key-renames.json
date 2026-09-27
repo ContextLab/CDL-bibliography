@@ -1457,5 +1457,40 @@
   "date": "2026-09-27",
   "reason": "res27: house key rule (authors2key of author/editor and year, suffix rule) (resolution batch-27 (apply))",
   "commit": "res27"
+ },
+ {
+  "old_key": "BeckBurg01",
+  "new_key": "BeckBurg00",
+  "date": "2026-09-27",
+  "reason": "res28to33: house key rule (authors2key of author/editor and year, suffix rule) (resolution batch-28 (apply))",
+  "commit": "res28to33"
+ },
+ {
+  "old_key": "Buzs01",
+  "new_key": "Buzs02b",
+  "date": "2026-09-27",
+  "reason": "res28to33: house key rule (authors2key of author/editor and year, suffix rule) (resolution batch-29 (apply))",
+  "commit": "res28to33"
+ },
+ {
+  "old_key": "KingEtal11",
+  "new_key": "MorrRNSS11",
+  "date": "2026-09-27",
+  "reason": "res28to33: house key rule (authors2key of author/editor and year, suffix rule) (resolution batch-32 (apply))",
+  "commit": "res28to33"
+ },
+ {
+  "old_key": "LohnEtal14",
+  "new_key": "LohnEtal15",
+  "date": "2026-09-27",
+  "reason": "res28to33: house key rule (authors2key of author/editor and year, suffix rule) (resolution batch-33 (apply))",
+  "commit": "res28to33"
+ },
+ {
+  "old_key": "Buzs02",
+  "new_key": "Buzs02a",
+  "date": "2026-09-27",
+  "reason": "res28to33: suffix rule: another entry moves to this key base (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "res28to33"
  }
 ]

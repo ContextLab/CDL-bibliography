@@ -644,5 +644,12 @@
   "decision_source": "verification/resolution-2026-09-26/batch-25.json (drop; post-check research-2026-09-25/wave9/merged.json): A 1957 Signal Corps technical report (Project No. 1320, Institute for Cooperative Research, Univ. of Pennsylvania); citing works disagree on the project number (1320 vs 132C). Under round-2 rule 1 (no verifiable record -> drop) it is dropped; see question. RECONCILED 2026-09-26: Question answered by rule: reference-list-only -> drop (default).",
   "date": "2026-09-26",
   "batch": "wave9"
+ },
+ {
+  "key": "EngeEtal93",
+  "reason": "no evidence found after: LoC (book only: Surgical treatment of the epilepsies, 2nd ed., Raven Press, c1993, ed. Jerome Engel Jr), Crossref, IA full-text search (chapter only in other works' reference lists), Google Books (rate-limited/captcha). Chapter in a catalogue-confirmed edited book evidenced only by reference lists -> README reference-list default.",
+  "decision_source": "verification/resolution-2026-09-26/batch-30.json (drop): Also mis-typed (@article with the book as journal); if kept it would be @incollection in Engel (ed.) 1993, but no record of the chapter itself was found.",
+  "date": "2026-09-27",
+  "batch": "res28to33"
  }
 ]

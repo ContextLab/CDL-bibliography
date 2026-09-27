@@ -1,6 +1,6 @@
 {
  "batch": "res28to33",
- "generated": "2026-09-27 07:57:05",
+ "generated": "2026-09-27 08:38:34",
  "input": [
   {
    "file": "verification/resolution-2026-09-26/batch-28.json",
@@ -225,8 +225,8 @@
    "resolution_quote_unverified: pages = '376--377': quote not found at url (https://archive.org/download/johannfriedrichh04unse_0/page/n403.jpg); applied: the notes say it was read in a browser or transcribed from a scan ('transcribed'; user rule)"
   ],
   "Jenk79": [
-   "resolution_quote_unverified: author = 'J J Jenkins': offline and https://www.taylorfrancis.com/chapters/edit/10.4324/9781315796192-26/four-points-remember-tetrahedral-model-memory-experiments-james-jenkins is not in the validator cache; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
-   "resolution_quote_unverified: pages = '429--446': offline and https://www.taylorfrancis.com/chapters/edit/10.4324/9781315796192-26/four-points-remember-tetrahedral-model-memory-experiments-james-jenkins is not in the validator cache; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)"
+   "resolution_quote_unverified: author = 'J J Jenkins': fetch failed: HTTPError: HTTP Error 403: Forbidden; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "resolution_quote_unverified: pages = '429--446': fetch failed: HTTPError: HTTP Error 403: Forbidden; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)"
   ],
   "Jost97": [
    "resolution_inferred_value: pages = '436--472': end page = next item's printed start - 1"
@@ -239,7 +239,7 @@
    "resolution_inferred_value: pages = '207--226': end page = next item's printed start - 1"
   ],
   "MannEtal14c": [
-   "resolution_quote_unverified: pages = '557--566': offline and https://doi.org/10.7551/mitpress/9504.003.0061 is not in the validator cache; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)"
+   "resolution_quote_unverified: pages = '557--566': fetch failed: HTTPError: HTTP Error 403: Forbidden (https://doi.org/10.7551/mitpress/9504.003.0061); applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)"
   ]
  },
  "conflicts": [

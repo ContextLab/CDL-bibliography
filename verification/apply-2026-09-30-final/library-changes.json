@@ -9,7 +9,20 @@
     "HameChid08": "HameChid09",
     "Luca83": "Luca81"
    }
+  },
+  {
+   "batch": "res28to33",
+   "removed": [
+    "EngeEtal93"
+   ],
+   "renames": {
+    "BeckBurg01": "BeckBurg00",
+    "Buzs01": "Buzs02b",
+    "KingEtal11": "MorrRNSS11",
+    "LohnEtal14": "LohnEtal15",
+    "Buzs02": "Buzs02a"
+   }
   }
  ],
- "last_staged": ".bibcheck/apply-2026-09-30-final/res27-staged.bib"
+ "last_staged": ".bibcheck/apply-2026-09-30-final/res28to33-staged.bib"
 }
