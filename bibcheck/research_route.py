@@ -69,7 +69,7 @@ import re
 import sys
 import unicodedata
 
-from verification import normalize_doi, outcome
+from verification import normalize_doi, notice_record_identity, outcome
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = 'research-evidence'
@@ -964,9 +964,12 @@ def merge(previous, result):
     conflict, registry update notice) stays needs_review, as for every route approval."""
     from preprint_review import context_issues
     result = deepcopy(result)
+    # The research candidate, or None when the entry has lost its research row (a
+    # withdrawal: the outcome carries no candidate, and the last earlier candidate is
+    # another source's).
+    candidate = result['candidates'][-1] if result['candidates'] else None
     result['candidates'] = [c for c in previous.get('candidates', []) if c.get('source') != SOURCE] + result['candidates']
     result['attempts'] = previous.get('attempts', []) + [{'source': SOURCE, 'url': None}]
-    candidate = result['candidates'][-1]
     adjudicated = False
     if result['status'] == 'metadata_verified':
         issues = context_issues(candidate['checked_fields'], result['candidates'], result.get('accepted_doi'))
@@ -978,13 +981,104 @@ def merge(previous, result):
             for name in ('accepted_doi', 'accepted_source', 'accepted_record_id'):
                 result.pop(name, None)
         adjudicated = bool(issues) and not blocks
+    if result['status'] == 'metadata_verified':
+        declared = notices_declaration(candidate, result['candidates'])
+        if declared:
+            result['notices_accounted'] = declared
     for name in PRESERVED:
         if name in previous:
             result[name] = deepcopy(previous[name])
-    result[NAME] = {'policy': POLICY, 'category': candidate['category']}
+    result[NAME] = {'policy': POLICY, 'category': candidate['category'] if candidate else 'no_research_row'}
     if adjudicated:
         result[NAME]['notice'] = 'settled by the notice classification'
     return result
+
+
+def _table_dois(candidate):
+    """The DOIs under which Cache.remember_notices files ``candidate`` (its notice,
+    PubMed-suffix and article-locator tables), normalised as retain_notices queries them."""
+    from auto_review import secondary_notice_flags, secondary_suffix_dois
+    from source_locators import locator_dois
+    out = set()
+    for found in (secondary_notice_flags([candidate]), secondary_suffix_dois([candidate]), locator_dois([candidate])):
+        if found:
+            try:
+                out.add(normalize_doi(next(iter(found))))
+            except (ValueError, TypeError):
+                pass
+    return out
+
+
+# Forward links by which a saved record says that a notice exists for its work: Europe PMC
+# commentCorrection types ('Erratum in', 'Retraction in', 'Expression of concern in', ...;
+# not 'Comment in' or 'Preprint in') and JATS related-article types ('correction-forward',
+# 'retraction-forward', ...; not 'commentary', 'companion' or 'final-edited-article').
+NOTICE_LINK_EPMC = re.compile(r'(erratum|corrigendum|correct|retract|concern|withdraw|update|republish)\w*\b.*\bin$', re.I)
+NOTICE_LINK_JATS = re.compile(r'(erratum|corrigend|correct|retract|concern|withdraw|addend|update)(?!.*article$)', re.I)
+# Classes that stand for a notice of the cited work (the others say the record is none).
+NOTICE_SLOTS = ('content_only', 'metadata_correction', 'unread')
+
+
+def notice_links(candidate):
+    """The distinct notice links (kind, type, reference) one saved record carries."""
+    links = set()
+    raw = candidate.get('raw_record')
+    if candidate.get('source') == 'europepmc' and isinstance(raw, dict):
+        for r in (raw.get('commentCorrectionList') or {}).get('commentCorrection') or []:
+            if isinstance(r, dict) and NOTICE_LINK_EPMC.search(str(r.get('type') or '')):
+                links.add(('europepmc', str(r.get('type')), str(r.get('id') or r.get('reference') or '')))
+    for tag in re.findall(r'<related-article\b[^>]*>', str(candidate.get('raw_xml') or '')):
+        kind = re.search(r'related-article-type="([^"]*)"', tag)
+        if kind and NOTICE_LINK_JATS.search(kind[1]):
+            href = re.search(r'href="([^"]*)"', tag)
+            links.add(('pmc-jats', kind[1], href[1] if href else tag))
+    return links
+
+
+def notices_declaration(candidate, candidates):
+    """What this approval accounts for, for Cache.retain_notices (verification.py,
+    NOTICE_ACCOUNTING): the DOIs of the notices the classification settled for the cited
+    DOI, and the DOI-linked records of that DOI they were settled beside. None when the
+    entry has no DOI, no classified notice, or an unsettled one, or when a record links
+    more notices (``notice_links``) than the classification settled for the entry: a
+    notice listed after the classification was made is not accounted for."""
+    notice = candidate.get('notice')
+    rows = (candidate.get('raw_record') or {}).get('notices') or []
+    doi = candidate.get('doi')
+    if not doi or not notice or notice.get('issues') or not rows:
+        return None
+    notice_dois = sorted({str(r.get('notice_doi') or '').lower() for r in rows} - {''})
+    if not notice_dois:
+        return None
+    slots = sum(1 for r in rows if r.get('class') in NOTICE_SLOTS)
+    records = []
+    for c in candidates:
+        if c.get('source') == SOURCE or doi not in _table_dois(c):
+            continue
+        if len(notice_links(c)) > slots:
+            return None  # the record links a notice the classification did not see
+        record = {'doi': doi, 'identity': notice_record_identity(c)}
+        if record not in records:
+            records.append(record)
+    return {'source': SOURCE, 'doi': doi, 'notice_dois': notice_dois,
+            'records': sorted(records, key=lambda r: r['identity'])}
+
+
+def accounts_for_notices(entry, result):
+    """Cache.retain_notices hook: keep a research approval beside known DOI-linked records
+    only when the approval re-validates offline with every such record attached (so the
+    classification settles each notice and no saved record signals a retraction), it was
+    made for this entry's current fields, and its declaration is the one its own saved
+    classification and records give."""
+    try:
+        own = [c for c in result.get('candidates', []) if c.get('source') == SOURCE]
+        if len(own) != 1 or own[0].get('checked_fields') != entry['fields']:
+            return False
+        if result.get('notices_accounted') != notices_declaration(own[0], result['candidates']):
+            return False
+        return valid_research_approval(result)
+    except (KeyError, TypeError, AttributeError, ValueError):
+        return False
 
 
 def recheck(candidate, bodies=None):
@@ -1220,5 +1314,6 @@ def uncommitted_evidence(root=ROOT):
     return sorted(set(evidence_files(root)) & changed)
 
 
-from verification import register_approval_validator  # noqa: E402  (hook contract 2026-09-25)
-register_approval_validator(valid_research_approval)
+from verification import register_approval_validator, register_notice_accounting  # noqa: E402
+register_approval_validator(valid_research_approval)      # hook contract 2026-09-25
+register_notice_accounting(SOURCE, accounts_for_notices)  # hook contract 2026-09-27

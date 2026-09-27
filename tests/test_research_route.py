@@ -821,17 +821,57 @@ def test_notice_adjudication_is_part_of_the_evidence_id(entries2, bundles2, citi
     assert not v.route_approval_valid(bad)
 
 
-def test_backfill_reports_the_approval_retain_notices_reopens(entries2, tmp_path):
-    # AfraEtal06: the route settles its Europe PMC erratum (content-only), but
-    # Cache.retain_notices (bibcheck/verification.py) reopens every machine approval with
-    # a known DOI-linked notice. The dry run says so instead of calling it approved.
-    context = json.loads((V2 / 'context.json').read_text())['AfraEtal06']
+def later_erratum(record):
+    """The AfraEtal06 Europe PMC record as it would read once PubMed links one more
+    erratum: a DOI-linked notice learned after the classification (a new record identity)."""
+    later = deepcopy(record)
+    later['raw_record']['commentCorrectionList']['commentCorrection'].append(
+        {'id': '99999999', 'orderIn': 3, 'reference': 'Nature. 2027 Jan 1;600(1):1', 'source': 'MED',
+         'type': 'Erratum in'})
+    return later
+
+
+def afra_bib(entries2, tmp_path):
     bib = tmp_path / 'lib.bib'
     bib.write_text(entries2['AfraEtal06']['raw'] + '\n', encoding='utf-8')
+    return bib
+
+
+def test_backfill_approves_what_the_notice_classification_settles(entries2, v2_bodies, tmp_path):
+    # AfraEtal06: the route settles its Europe PMC erratum (content-only) and declares so
+    # (notices_accounted); Cache.retain_notices keeps the approval. A repeat writes nothing.
+    context = json.loads((V2 / 'context.json').read_text())['AfraEtal06']
+    bib = afra_bib(entries2, tmp_path)
     cache = v.Cache(tmp_path / 'db.sqlite3')
     try:
         entry = v.load_entries(bib)['AfraEtal06']
         cache.put(bib, entry, v.outcome('needs_review', ['No unambiguous, fully supported metadata match'], context))
+        dry = R.run_research_approve(bib, cache, dry_run=True, root=V2 / 'root', bodies=R.Bodies(V2 / 'bodies'))
+        row = dry['rows']['AfraEtal06']
+        assert row['outcome'] == 'approved' and not row.get('route_granted') and dry['counts']['writes'] == 0
+        assert 'notice: notice_content_only' in row['flags']
+        assert cache.get(bib, entry)['status'] == 'needs_review'
+        run = R.run_research_approve(bib, cache, root=V2 / 'root', bodies=R.Bodies(V2 / 'bodies'))
+        assert run['rows']['AfraEtal06']['outcome'] == 'approved' and run['counts']['writes'] == 1
+        stored = cache.get(bib, entry)
+        assert stored['status'] == 'metadata_verified' and stored['accepted_source'] == R.SOURCE
+        assert stored['notices_accounted']['notice_dois'] == ['10.1038/nature05153']
+        repeat = R.run_research_approve(bib, cache, root=V2 / 'root', bodies=R.Bodies(V2 / 'bodies'))
+        assert repeat['counts']['writes'] == 0 and 'AfraEtal06' not in repeat['rows']
+    finally:
+        cache.close()
+
+
+def test_backfill_reports_the_approval_retain_notices_reopens(entries2, v2_bodies, tmp_path):
+    # Negative control: the cache also knows a notice record the classification never saw
+    # (a later erratum link). The route approves, retain_notices reopens, the dry run says so.
+    context = json.loads((V2 / 'context.json').read_text())['AfraEtal06']
+    bib = afra_bib(entries2, tmp_path)
+    cache = v.Cache(tmp_path / 'db.sqlite3')
+    try:
+        entry = v.load_entries(bib)['AfraEtal06']
+        cache.put(bib, entry, v.outcome('needs_review', ['No unambiguous, fully supported metadata match'], context))
+        cache.remember_notices([later_erratum([c for c in context if c['source'] == 'europepmc'][0])])
         dry = R.run_research_approve(bib, cache, dry_run=True, root=V2 / 'root', bodies=R.Bodies(V2 / 'bodies'))
         row = dry['rows']['AfraEtal06']
         assert row['outcome'] == 'held_by_notice' and row['route_granted'] and row['reasons'][0] == R.RETAINED
@@ -841,17 +881,116 @@ def test_backfill_reports_the_approval_retain_notices_reopens(entries2, tmp_path
         cache.close()
 
 
-@pytest.mark.xfail(strict=True, reason='Cache.retain_notices (bibcheck/verification.py, not this module) has no hook '
-                                       'for a route approval whose notice is settled; it reopens it (see README)')
+def put_later(db, entry, result, extra=()):
+    """Cache.put of ``result`` into a fresh cache that already knows the records ``extra``."""
+    cache = v.Cache(db)
+    try:
+        cache.remember_notices(list(extra))
+        return cache.put(V2 / 'entries.bib', entry, deepcopy(result))
+    finally:
+        cache.close()
+
+
 def test_retain_notices_keeps_a_settled_research_approval(entries2, bundles2, cities2, context2, v2_bodies, tmp_path):
     cache = v.Cache(tmp_path / 'db.sqlite3')
     try:
         result = settle(entries2, bundles2, cities2, context2, 'AfraEtal06')
         assert result['status'] == 'metadata_verified'
+        declared = result['notices_accounted']
+        assert declared['source'] == R.SOURCE and declared['doi'] == '10.1038/nature04982'
+        assert declared['notice_dois'] == ['10.1038/nature05153'] and declared['records']
         stored = cache.put(V2 / 'entries.bib', entries2['AfraEtal06'], result)
         assert stored['status'] == 'metadata_verified'
+        assert cache.get(V2 / 'entries.bib', entries2['AfraEtal06'])['status'] == 'metadata_verified'
+        assert v.route_approval_valid(roundtrip(stored))   # and the stored row re-validates offline
+        # A caller that never imported the route (Cache.get from any script) keeps it too:
+        # the hook module is imported on demand. Only this route has a hook.
+        assert v.NOTICE_ACCOUNTING_MODULES == {R.SOURCE: 'research_route'}
+        assert set(v.NOTICE_ACCOUNTING) == {R.SOURCE}
     finally:
         cache.close()
+
+
+def test_retain_notices_reopens_on_a_notice_learned_later(entries2, bundles2, cities2, context2, v2_bodies, tmp_path):
+    entry = entries2['AfraEtal06']
+    result = settle(entries2, bundles2, cities2, context2, 'AfraEtal06')
+    later = later_erratum([c for c in context2['AfraEtal06'] if c['source'] == 'europepmc'][0])
+    stored = put_later(tmp_path / 'a.sqlite3', entry, result, [later])
+    assert stored['status'] == 'needs_review' and 'accepted_source' not in stored
+    assert 'DOI-linked source correction/retraction notice requires adjudication' in stored['issues']
+    # Also after the approval was stored: the next read reopens it.
+    cache = v.Cache(tmp_path / 'b.sqlite3')
+    try:
+        assert cache.put(V2 / 'entries.bib', entry, deepcopy(result))['status'] == 'metadata_verified'
+        cache.remember_notices([later])
+        assert cache.get(V2 / 'entries.bib', entry)['status'] == 'needs_review'
+    finally:
+        cache.close()
+
+
+def test_retain_notices_reopens_without_a_valid_declaration(entries2, bundles2, cities2, context2, v2_bodies, tmp_path):
+    entry = entries2['AfraEtal06']
+    result = settle(entries2, bundles2, cities2, context2, 'AfraEtal06')
+    assert put_later(tmp_path / 'ok.sqlite3', entry, result)['status'] == 'metadata_verified'
+    later = later_erratum([c for c in context2['AfraEtal06'] if c['source'] == 'europepmc'][0])
+    undeclared = deepcopy(result)
+    del undeclared['notices_accounted']
+    no_notice_dois = deepcopy(result)
+    no_notice_dois['notices_accounted']['notice_dois'] = []
+    # Declaring the later record by hand is refused: the declaration must be the one the
+    # saved classification and records give ... (the declaration below is not)
+    self_declared = deepcopy(result)
+    self_declared['candidates'].insert(0, later)
+    self_declared['notices_accounted']['records'].append(
+        {'doi': '10.1038/nature04982', 'identity': v.notice_record_identity(later)})
+    # ... and an approval made for other field values is not this entry's.
+    edited = dict(entry, fields=dict(entry['fields'], pages='692--696'))
+    for n, (e, bad) in enumerate(((entry, undeclared), (entry, no_notice_dois), (edited, result))):
+        assert put_later(tmp_path / ('%d.sqlite3' % n), e, bad)['status'] == 'needs_review', n
+    # self_declared lists every record the cache knows, so it is the route's hook that
+    # refuses it: the later record links a second erratum, one notice was classified.
+    own = [c for c in self_declared['candidates'] if c['source'] == R.SOURCE][0]
+    assert len(R.notice_links(later)) == 2 and R.notices_declaration(own, self_declared['candidates']) is None
+    assert not R.accounts_for_notices(entry, self_declared)
+    assert put_later(tmp_path / 'self.sqlite3', entry, self_declared, [later])['status'] == 'needs_review'
+
+
+def test_retain_notices_reopens_on_a_retraction_even_if_declared(entries2, bundles2, cities2, context2, v2_bodies,
+                                                               tmp_path):
+    entry = entries2['AfraEtal06']
+    record = deepcopy([c for c in context2['AfraEtal06'] if c['source'] == 'europepmc'][0])
+    record['raw_record']['commentCorrectionList']['commentCorrection'].append(
+        {'id': '99999998', 'orderIn': 3, 'reference': 'Nature. 2027 Jan 1;600(1):2', 'source': 'MED',
+         'type': 'Retraction in'})
+    assert R.retraction_signals([record])
+    held = settle(entries2, bundles2, cities2, context2, 'AfraEtal06', context=context2['AfraEtal06'] + [record])
+    assert held['status'] == 'needs_review'   # merge refuses it
+    # The route declares nothing beside it, and a declaration that lists the retraction
+    # record anyway does not keep the approval.
+    forged = settle(entries2, bundles2, cities2, context2, 'AfraEtal06')
+    forged['candidates'].insert(0, record)
+    assert R.notices_declaration([c for c in forged['candidates'] if c['source'] == R.SOURCE][0],
+                                 forged['candidates']) is None
+    forged['notices_accounted']['records'].append({'doi': '10.1038/nature04982',
+                                                   'identity': v.notice_record_identity(record)})
+    assert not R.accounts_for_notices(entry, forged)
+    assert not R.valid_research_approval(roundtrip(forged))   # retraction_signals, whatever is declared
+    stored = put_later(tmp_path / 'db.sqlite3', entry, forged)
+    assert stored['status'] == 'needs_review' and 'accepted_source' not in stored
+
+
+def test_retain_notices_unchanged_for_other_routes(entries2, bundles2, cities2, context2, v2_bodies, tmp_path):
+    # Another route's approval carrying the same declaration is reopened as before: no hook
+    # is registered for its accepted_source.
+    entry = entries2['AfraEtal06']
+    result = settle(entries2, bundles2, cities2, context2, 'AfraEtal06')
+    for source in ('crossref', 'osf-preprint', 'loc-catalogue'):
+        other = deepcopy(result)
+        other['accepted_source'] = source
+        other['notices_accounted']['source'] = source
+        assert put_later(tmp_path / (source + '.sqlite3'), entry, other)['status'] == 'needs_review', source
+    with pytest.raises(TypeError):
+        v.register_notice_accounting('x', None)
 
 
 # ---- rule 5: braced group names
@@ -881,3 +1020,28 @@ def test_braced_group_author_compares_equal(entries2, bundles2, cities2):
     assert R.canon('author', 'RNS System in Epilepsy Study Group') != R.canon('author', '{RNS System in Epilepsy Study Group}')
     assert R.canon('author', 'R {La Joie}', groups=R.braced_groups('R {La Joie}')) == R.canon('author', 'R La Joie')
     assert R.braced_groups('R {La Joie} and {Jupyter Development Team}') == {'jupyter development team'}
+
+
+def test_withdrawal_when_the_research_row_is_gone_and_another_candidate_is_last(entries, bundles, cities, tmp_path):
+    # A research approval whose entry later has no research row (its evidence left out),
+    # after another route appended a candidate: merge used to take that candidate as the
+    # research one (KeyError 'category'). Real run: US20a/b's rename not yet committed.
+    approval = assess(entries, bundles, cities, 'Tulv74')
+    other = json.loads((FIX / 'context.json').read_text())['DamaEtal96'][0]
+    previous = dict(deepcopy(approval), candidates=approval['candidates'] + [other])
+    again = R.merge(previous, v.outcome('needs_review', ['research: no research row for this entry']))
+    assert again['status'] == 'needs_review' and again[R.NAME]['category'] == 'no_research_row'
+    assert [c for c in again['candidates'] if c.get('source') == R.SOURCE] == []
+    # through the backfill: the entry is withdrawn, not a crash
+    bib = write_bib(tmp_path, entries, ['Tulv74'])
+    cache = v.Cache(tmp_path / 'db.sqlite3')
+    try:
+        entry = v.load_entries(bib)['Tulv74']
+        cache.store(bib, entry, dict(previous, checked_at=v.now(), key='Tulv74', fingerprint=entry['fingerprint'],
+                                     policy=v.POLICY))
+        empty = tmp_path / 'no-evidence'
+        empty.mkdir()
+        run = R.run_research_approve(bib, cache, root=empty, bodies=R.Bodies(BODIES))
+        assert run['rows']['Tulv74']['outcome'] == 'withdrawn' and cache.get(bib, entry)['status'] == 'needs_review'
+    finally:
+        cache.close()

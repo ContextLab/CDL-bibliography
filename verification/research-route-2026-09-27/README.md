@@ -227,23 +227,39 @@ classification in `../resolution-2026-09-27/NOTICES.md`. Tests use real rows fro
    (`{RNS System in Epilepsy Study Group}`, or double-braced) as that group, braced or not, instead of
    initialling it.
 
-### Cache.retain_notices: open
+### Cache.retain_notices: the notice-accounting hook (resolved 2026-09-27)
 
-`Cache.retain_notices` is in `bibcheck/verification.py`, which this update does not change. It reopens
-every machine approval, except `human_verified` and LoC book approvals, for which a DOI-linked notice,
-suffix or locator record is known in the cache. It has no route hook. Approvals the route grants on a
-settled Crossref registry notice survive, because such a notice is not in its tables: Pyly73, Eich85,
-Pike84, GonsPall00, McKiNoso96, Brun04, RubiEtal17, ThomEtal18, TokeSomm19, YoneJaco96a and YoneJaco97.
-The 78 that carry a Europe PMC, JATS or suffix record are reopened. The dry run marks those rows
-`route_granted` with the reason `RETAINED`. `test_retain_notices_keeps_a_settled_research_approval` is
-`xfail(strict=True)` until the hook exists. A hook that does not weaken the rule for other routes would
-work as follows:
+`Cache.retain_notices` (`bibcheck/verification.py`) reopens a machine approval when the cache knows a
+DOI-linked notice, PubMed-suffix or article-locator record for its DOI. A route can now declare that its
+approval already accounts for specific notices, and `retain_notices` keeps it only when all of this holds:
 
-- In `retain_notices`, before `select_result` reopens the approval, keep a `metadata_verified` result
-  whose `accepted_source` is `research-evidence`.
-- Keep it only when `route_approval_valid(dict(result, candidates=candidates + added))` holds. That is
-  the route's own validator, which applies the notice classification and the retraction check to the
-  added records.
+- The route registered a hook for its `accepted_source` (`register_notice_accounting`). Only the research
+  route has one (`research-evidence` → `research_route.accounts_for_notices`). `verification.py` imports
+  that module on demand, so a script that never imported the route does not reopen and rewrite the row.
+- The result carries `notices_accounted`: the route, the cited DOI, the DOIs of the notices the
+  classification settled (`notice_dois`), and the identity of each DOI-linked record of the cited DOI
+  the classification was applied beside (`records`, the identity the notice tables store).
+- Every record the cache knows for the entry is in `records`. A record learned later has a new identity,
+  for example a Europe PMC record that now lists a second "Erratum in", so it reopens the entry.
+- The hook accepts the result with every known record attached. It requires that the approval was made
+  for the entry's current fields and that the declaration is the one the approval's own saved
+  classification and records give (`notices_declaration`). `valid_research_approval` must then hold,
+  which covers the classification and `retraction_signals`.
+
+`notices_declaration` declares nothing in these cases: the entry has no DOI, no notice is classified, a
+classified notice is unsettled, or a record carries more notice links than the classification settled.
+Notice links are Europe PMC "Erratum in"/"Retraction in"/... and JATS `correction-forward`/
+`retraction-forward`/..., not comments, preprints or companions. The slots are the rows classed
+`content_only`, `metadata_correction` or `unread`. The saved links carry no notice DOI, so a notice is
+matched to its record by this count and by the record identity, not by DOI. Entries without a DOI (Este91,
+FrieEtal99, GellEtal14, McDoEtal10, Murd56), and entries whose only record the classification does not
+cover, are still reopened as before.
+
+Tests (`tests/test_research_route.py`): the kept approval (AfraEtal06, a Cache.put, a later get and the
+backfill), and five negative controls. A notice learned later reopens the entry, before and after it is
+stored. A missing, emptied or self-extended declaration reopens it, and so does an approval made for other
+field values. A retraction record reopens it even when declared. Other `accepted_source` values carrying
+the same declaration are still reopened.
 
 ### Dry run (`dry-run-2.json`; cdl.bib and evidence at 6a6f7e3, a copy of the verification cache)
 

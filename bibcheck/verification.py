@@ -377,7 +377,7 @@ class Cache:
             ) if k in candidate}
             retained.update(evidence={}, issues=["Retained DOI-linked source evidence requires assessment"])
             body = dumps(retained)
-            identity = digest(dumps(retained.get("raw_record", retained.get("raw_xml"))))
+            identity = notice_record_identity(retained)
             with self.db:
                 if flagged:
                     self.db.execute("INSERT OR IGNORE INTO source_notices VALUES (?,?,?)",
@@ -459,7 +459,7 @@ class Cache:
                 pass
         existing = {dumps(c.get("raw_record", c.get("raw_xml"))) for c in candidates
                     if c.get("source") in {"europepmc", "pmc-jats", "biorxiv-preprint", "arxiv-repository"}}
-        added, known = [], False
+        added, known, records = [], False, []
         for doi in dois:
             try:
                 doi = normalize_doi(doi)
@@ -473,6 +473,7 @@ class Cache:
                     if not secondary_notice_flags([candidate]) and not secondary_suffix_dois([candidate]):
                         continue  # Matching locators are not transferable positive judgments.
                 known = True
+                records.append((doi, notice_record_identity(candidate)))
                 raw = dumps(candidate.get("raw_record", candidate.get("raw_xml")))
                 if raw not in existing:
                     added.append(candidate)
@@ -480,6 +481,11 @@ class Cache:
         if not added and not known:
             return result
         result = dict(result, candidates=candidates + added)
+        if result.get("status") == "metadata_verified" and notices_accounted_for(entry, result, records):
+            # The approving route declared (by notice DOI, beside these exact records)
+            # that its approval already adjudicates every DOI-linked record known here.
+            # Any record it did not declare (a notice learned later) still reopens it.
+            return result
         if result.get("status") == "metadata_verified":
             from auto_review import select_result
             checked = select_result(entry["fields"], result["candidates"], result.get("attempts", []))
@@ -2165,6 +2171,63 @@ def builtin_approval_validators():
     from arxiv_review import valid_arxiv_approval
     return [valid_catalogue_approval, valid_preprint_approval, valid_arxiv_approval,
             valid_print_year_approval]
+
+
+# Notice accounting (hook contract 2026-09-27). Cache.retain_notices reopens a machine
+# approval when the cache knows DOI-linked negative evidence (a notice, PubMed suffix or
+# article-locator record) for its DOI. A route whose approval already adjudicates specific
+# notices declares so in the result:
+#
+#   result["notices_accounted"] = {"source": <accepted_source>, "doi": <cited DOI>,
+#       "notice_dois": [<DOI of each notice it classified>, ...],
+#       "records": [{"doi": <table DOI>, "identity": notice_record_identity(record)}, ...]}
+#
+# and registers ``accounts(entry, result) -> bool`` for its accepted_source. The approval
+# survives retain_notices only when (1) the route registered a hook for the result's
+# accepted_source, (2) the declaration names that source, (3) every DOI-linked record the
+# cache knows for the entry is one the declaration lists (a record learned later, e.g. a
+# new "Erratum in" link, changes the record identity and is not listed), and (4) the
+# route's hook accepts the result with every known record attached. No other route and no
+# undeclared record is affected.
+NOTICE_ACCOUNTING = {}
+# Routes whose hook is imported on demand, so that a caller that did not import the route
+# (Cache.get from any script) never reopens and rewrites an approval the route kept.
+NOTICE_ACCOUNTING_MODULES = {"research-evidence": "research_route"}
+
+
+def notice_record_identity(candidate):
+    """The identity source_notices/source_author_suffixes/source_article_locators store."""
+    return digest(dumps(candidate.get("raw_record", candidate.get("raw_xml"))))
+
+
+def register_notice_accounting(source, accounts):
+    """Register ``accounts(entry, result) -> bool`` for approvals whose accepted_source is ``source``."""
+    if not callable(accounts):
+        raise TypeError("A notice-accounting hook must be callable")
+    NOTICE_ACCOUNTING[source] = accounts
+    return accounts
+
+
+def notices_accounted_for(entry, result, records):
+    """True when the approving route declared every known DOI-linked record ``records``
+    ([(doi, identity)]) as adjudicated and its registered hook accepts ``result``."""
+    source = result.get("accepted_source")
+    declared = result.get("notices_accounted")
+    if not isinstance(source, str) or not isinstance(declared, dict) or declared.get("source") != source:
+        return False
+    if source not in NOTICE_ACCOUNTING and source in NOTICE_ACCOUNTING_MODULES:
+        import importlib
+        importlib.import_module(NOTICE_ACCOUNTING_MODULES[source])
+    accounts = NOTICE_ACCOUNTING.get(source)
+    if accounts is None or not declared.get("notice_dois"):
+        return False
+    try:
+        listed = {(r["doi"], r["identity"]) for r in declared.get("records") or []}
+    except (KeyError, TypeError):
+        return False
+    if not records or not set(records) <= listed:
+        return False
+    return bool(accounts(entry, result))
 
 
 def route_approval_valid(result):
