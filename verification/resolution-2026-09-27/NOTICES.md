@@ -134,3 +134,41 @@ Each of the 87 held entries in `notices.json` was checked against the notice its
 | YoneJaco97 | 10.1037/0096-3445.126.1.18 | cited_work_is_notice |
 | ZagaEtal13a | 10.1016/j.mcn.2017.12.007 | unread |
 | ZhanEtal13 | 10.1126/science.340.6130.273-b | unread |
+
+## Mop-up classification (2026-09-27, later)
+
+Rows appended to `notices-classified.json` (now 108 rows). Each notice was read at its URL; the quotes were
+re-checked against a scripted fetch of the same page (PMC pages need a browser user agent; the text matched
+up to whitespace). No retraction or expression of concern was found: no Crossref `update-to`/`updated-by` of
+that type and no Europe PMC `isRetracted`/"Retraction in"/"Expression of concern in" on any cited DOI.
+
+| key | notice | class | point |
+|-|-|-|-|
+| BarrEtal18 | 10.1371/journal.pbio.2005479 | new_version | PLOS replaced the uncorrected proof under the same DOI; no citation field changes (entry 16(7) e2005479 matches PMC) |
+| JohnEtal98 | 10.1016/s0167-8760(98)00054-3 | unread | Int J Psychophysiol 30(3):367 "Erratum"; ScienceDirect captcha, Elsevier API needs a key. Not a retraction |
+| MankEtal12 | 10.1073/pnas.1502758112 | content_only | Fig. 5 and one passage |
+| MarkEtal95a | 10.1523/jneurosci.16-09-j0001.1996 | content_only | three reference-list corrections |
+| MonaAbbo11 | - (PMC6623099) | metadata_correction | "Larry F. Abbott" should have read "L. F. Abbott"; entry already L F Abbott |
+| RebeEtal02 | 10.1523/jneurosci.23-01-00001.2003 | metadata_correction | third author Gitleman -> Gitelman; entry already D R Gitelman |
+| RutiEtal08 | 10.1073/pnas.0805446105 | content_only | Fig. 2 panels E and F transposed |
+| SohnEtal00 | 10.1073/pnas.081083198 | content_only | sign of x coordinates in Tables 2 and 3 |
+| SohnEtal00 | 10.1073/pnas.081087498 | unrelated | the correction for Le et al. (PMC55944) on the same page; Crossref deposited the page's targets on each notice |
+| StarDava06 | - (PMC6674442) | content_only | overlapping lettering in Figure 4 |
+| WangBuzs96 | 10.1523/jneurosci.18-17-j0002.1998 | content_only | Figure 11 current values |
+| WheeEtal00 | 10.1073/pnas.0400883101 | content_only | Fig. 3f plotted from another region; "does not affect the conclusions" |
+| VirtEtal20 | 10.1038/s41592-020-0772-5 | content_only | corresponding-author marks, an affiliation, wording; the author list is unchanged |
+| PurcEtal10 | - (third link) | unread | PubMed "Psychol Rev. 2010 Oct;117(4):following 1143"; Crossref and PsycNET list only the two classified notices. Not a retraction |
+| LeVaEtal08 | - | no_notice | PubMed author suffix 'Engel J Jr'; suffixes are never added |
+| PfurEtal96 | - | no_notice | PubMed author suffix 'Stancák A Jr'; suffixes are never added |
+| Buzs02b | - | unrelated | author-suffix record of an unrelated search candidate (Bragin et al. 1999, Hippocampus) |
+
+### Record identities for notices with no DOI
+
+A row without a notice DOI now names the exact DOI-linked records it was classified beside, in `records`
+(`[{doi, identity}]`, the identity the cache's notice, PubMed-suffix and article-locator tables store; see
+`verification/research-route-2026-09-27/README.md`, "Notices with no DOI: record identity"). The rows named
+this way: BisbBurg14, ParkEtal08, HubeEtal01, KahaEtal06, KossEtal99, MarsEtal00, VargEtal97 (errata with no
+registered DOI), Fred04 (article-locator record), FrieEtal99, McDoEtal10, Murd56, LeVaEtal08, PfurEtal96
+(author-suffix records), Este91, Buzs02b (an unrelated candidate's suffix record), MonaAbbo11, StarDava06 and
+PurcEtal10's third link (notices with no DOI found). A record that changes, or any other record of the same
+DOI, has another identity and reopens the entry.
