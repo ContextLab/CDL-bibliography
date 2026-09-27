@@ -1827,7 +1827,8 @@ def checkr(bib, wave, key, res=None, row=None, current=None):
     """A real wave row through check_entry with its review, validation and a resolution row,
     then the key-level resolution step (as run() does in the final pass). current={} runs
     it on a bibliography without the key."""
-    rows_, review_, validation_ = {"3": (ROWS3, REVIEW3, VALIDATION3), "8": (ROWS8, REVIEW8, VALIDATION8)}[wave]
+    rows_, review_, validation_ = {"2": (ROWS2, REVIEW2, VALIDATION2), "3": (ROWS3, REVIEW3, VALIDATION3),
+                                   "7": (ROWS7, REVIEW7, VALIDATION7), "8": (ROWS8, REVIEW8, VALIDATION8)}[wave]
     res = copy.deepcopy(RESOLUTION[key]) if res is None else res
     bib_ = bib if current is None else {k: v for k, v in bib.items() if k != key}
     rec = pc.check_entry(row or rows_[key], bib_.get(key), bib_, ctx_for(bib_), review=review_.get(key),
@@ -2134,3 +2135,301 @@ def test_follow_renames_never_from_a_deleted_key(bib):
     rows_, noop = pc.build_resolution_removals({"HerrEtal10": drop}, after, FROZEN_DELETIONS, FROZEN_RENAMES)
     assert [(r["key"], r["renamed_from"]) for r in rows_] == [("HerrEtal10a", "HerrEtal10 -> HerrEtal10a")]
     assert noop == []
+
+
+# ---------------------------------------------------------------- resolution evidence rules (2026-09-26)
+# Real rows from verification/resolution-2026-09-26/batch-NN.json after the evidence pass,
+# frozen here: the user's rules for next-start end pages, several quotes, catalogue
+# extents, roman page prefixes, and resolution values that a removal must not delete.
+
+RESOLUTION_RULES = json.loads(r'''{
+ "Gomu53": {
+  "key": "Gomu53",
+  "decision": "apply",
+  "notes": "Work confirmed (Harvard/LoC LCCN 53011675: Gomulicki, Bronislaw R., 1953, series 'British journal of psychology. Monograph supplements ; 29'). Pages unconfirmed and conflicting: Harvard/LoC '94 p.' with 'Bibliography: pages [86]-91'; BJPS review 10.1093/bjps/vi.24.346 says 'pp. 85'. HEAD 1--91 left unchanged; no DOI exists. RECONCILED 2026-09-26: HEAD 1--91 is confirmed by no record; LoC catalogue extent '94 p.' gives 1--94, the same catalogue-extent form Gate17 (batch 02) uses for a numbered monograph issue.",
+  "questions": [
+   "For numbered monograph supplements catalogued as books (a whole issue by one author, e.g. BJP Monograph Supplements no. 29, '94 p.'), should pages be the catalogue extent (1--94), the text through the bibliography, or should the entry become @book with series/number and no pages?"
+  ],
+  "set": {
+   "pages": {
+    "value": "1--94",
+    "url": "https://www.loc.gov/item/53011675/?fo=json",
+    "quote": "94 p."
+   }
+  },
+  "_batch": "batch-03"
+ },
+ "McCaEtal06": {
+  "key": "McCaEtal06",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "12--14",
+    "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802",
+    "quote": "12 AI MAGAZINE",
+    "extra_evidence": [
+     {
+      "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802",
+      "quote": "WINTER 2006 13"
+     },
+     {
+      "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802",
+      "quote": "orderly thinking. 14 AI MAGAZINE"
+     }
+    ]
+   },
+   "doi": {
+    "value": "10.1609/aimag.v27i4.1904",
+    "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/1904",
+    "quote": "citation_doi\" content=\"10.1609/aimag.v27i4.1904"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Publisher PDF (3 pages) prints page footers 12 ('12 AI MAGAZINE'), 'WINTER 2006 13' and 14; OJS meta tags wrongly give lastpage 12. DOI registered with Crossref (doiRA) and resolves to the AAAI OJS page, which prints it; the Crossref API returns 404 for the record. EVIDENCE 2026-09-26 (several-quotes rule): pages from the three PDF footers '12 AI MAGAZINE', 'WINTER 2006 13', '14 AI MAGAZINE'. DOI: doi.org resolves 10.1609/aimag.v27i4.1904 (HTTP 302 to the AAAI OJS article; handle API responseCode 1), so it is registered; only Crossref's REST API returns 404 for the record.",
+  "questions": [],
+  "_batch": "batch-14"
+ },
+ "VodrEtal16": {
+  "key": "VodrEtal16",
+  "decision": "apply",
+  "new_key": "VodrEtal18",
+  "entrytype": "article",
+  "set": {
+   "author": {
+    "value": "K Vodrahalli and P-H Chen and Y Liang and C Baldassano and J Chen and E Yong and C Honey and U Hasson and P Ramadge and K A Norman and S Arora",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "ations\"],\"prefix\":\"10.1016\",\"volume\":\"180\",\"author\":[{\"given\":\"Kiran\",\"family\":\"Vodrahalli\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Po-Hsuan\",\"family\":\"Chen\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Yingyu\",\"family\":\"Liang\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Christopher\",\"family\":\"Baldassano\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Janice\",\"family\":\"Chen\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Esther\",\"family\":\"Yong\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Christopher\",\"family\":\"Honey\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Uri\",\"family\":\"Hasson\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Peter\",\"family\":\"Ramadge\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Kenneth A.\",\"family\":\"Norman\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Sanjeev\",\"family\":\"Arora\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
+   },
+   "title": {
+    "value": "Mapping between {fMRI} responses to movies and their natural language annotations",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "Mapping between fMRI responses to movies and their natural language annotations"
+   },
+   "journal": {
+    "value": "{NeuroImage}",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "\"container-title\":[\"NeuroImage\"]"
+   },
+   "volume": {
+    "value": "180",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "\"volume\":\"180\""
+   },
+   "pages": {
+    "value": "223--231",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "\"page\":\"223-231\""
+   },
+   "year": {
+    "value": "2018",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "\"published-print\":{\"date-parts\":[[2018,10]]}"
+   },
+   "doi": {
+    "value": "10.1016/j.neuroimage.2017.06.042",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "10.1016\\/j.neuroimage.2017.06.042"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Preprint published: NeuroImage 180:223-231 (print Oct 2018), same title and the same 11 authors as arXiv v3, whose comment reads 'in submission to NeuroImage'. Replaced by the published version per the preprint rule (supersedes the post-check's arXiv doi/volume/2017). VodrEtal18 free in HEAD; junk Pages URL replaced.",
+  "questions": [],
+  "_batch": "batch-17"
+ },
+ "Lovr80": {
+  "key": "Lovr80",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "J H Lovrinic",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Chapter%203%22%20AND%20identifier%3Aaudiologyforphys0000unse",
+    "quote": "Speech Audiometry Jean H. Lovrinic, Ph.D. 13"
+   },
+   "title": {
+    "value": "Pure tone and speech audiometry",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Speech%20Audiometry%22%20AND%20identifier%3Aaudiologyforphys0000unse",
+    "quote": "Pure Tone and {{{Speech Audiometry}}} Jean H. Lovrinic"
+   },
+   "pages": {
+    "value": "13--32",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Chapter%203%22%20AND%20identifier%3Aaudiologyforphys0000unse",
+    "quote": "Speech Audiometry Jean H. Lovrinic, Ph.D. 13",
+    "next_start": {
+     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Chapter%203%22%20AND%20identifier%3Aaudiologyforphys0000unse",
+     "quote": "Diagnostic Audiometry Robert W. Keith, Ph.D. 33"
+    }
+   }
+  },
+  "notes": "Printed book (Internet Archive full text of Audiology for the Physician, Williams & Wilkins 1980): contents 'Chapter 2 Pure Tone and Speech Audiometry Jean H. Lovrinic, Ph.D. 13 / Chapter 3 Diagnostic Audiometry Robert W. Keith, Ph.D. 33', so pages 13--32 by the next-item rule (HEAD had 13--31). Editor R W Keith per post-check. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
+  "_batch": "batch-18"
+ },
+ "KahaEtal08a": {
+  "key": "KahaEtal08a",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "467--490",
+    "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+    "quote": "490 Associative Retrieval Processes in Episodic Memory",
+    "extra_evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "Our power to remember this feature. 467 Author's personal copy"
+     }
+    ]
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Printed record wins over Crossref '1-24': the authors' copy of the Elsevier chapter carries page folios 467 (first page) and '490 Associative Retrieval Processes in Episodic Memory' (last), and Crossref's preceding chapter (Raaijmakers) ends at 466. Keeps suffix 'a' because HEAD has another KahaEtal08 (KahaEtal08b, the Psychological Review reply renamed from KahaEtal08c). Apply the post-check (DOI, pages). EVIDENCE 2026-09-26 (several-quotes rule): pages evidence is several quotes from the same official record whose union prints every page number of the value.",
+  "questions": [],
+  "_batch": "batch-19"
+ },
+ "HallGree08": {
+  "key": "HallGree08",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "212--224",
+    "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+    "quote": "\"page\":\"I-212-I-224\""
+   },
+   "booktitle": {
+    "value": "21\\textsuperscript{st} Century Education: A Reference Handbook",
+    "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+    "quote": "\"container-title\":[\"21st Century Education: A Reference Handbook\"]"
+   },
+   "volume": {
+    "value": "1",
+    "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+    "quote": "\"page\":\"I-212-I-224\""
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref pages I-212-I-224 (the I- prefix is the volume) give 212--224; booktitle title case checked and correct. Volume 1 is not added: no fetchable page prints it (SAGE Knowledge requires login; the LoC TOC does not split volumes), and HEAD has no volume. RECONCILED 2026-09-26: Volume 1 from the 'I-' page prefix, as the ICASSP volume-prefix default does for HuggEtal06/YingEtal93 (batch 26).",
+  "questions": [],
+  "_batch": "batch-23"
+ }
+}
+''')
+
+
+def rules_row(key, **change):
+    return dict(copy.deepcopy(RESOLUTION_RULES[key]), **change)
+
+
+def test_resolution_next_start_infers_the_end_page(bib):
+    """Lovr80 (batch-18): the contents print the chapter's start (13) and the next chapter's
+    start (33); no source prints 32. With next_start the end page is next start - 1 (user
+    rule, round 2): applied, flagged resolution_inferred_value, nothing left for the user."""
+    res = rules_row("Lovr80")
+    assert res["set"]["pages"]["next_start"]["quote"].endswith("33")
+    rec = checkr(bib, "8", "Lovr80", res=res)
+    assert rec["final_entry"]["pages"] == "13--32" and sources(rec)["pages"] == "resolution"
+    assert any(f["code"] == "resolution_inferred_value" and f["field"] == "pages" for f in rec["flags"])
+    assert residue(rec) == [] and not pc.needs_user(rec)
+    # negative controls: an end page that is not next start - 1; a start page the quote
+    # does not print; next_start on a field other than pages; no next_start at all
+    for value in ("13--31", "14--32"):
+        bad = copy.deepcopy(res)
+        bad["set"]["pages"]["value"] = value
+        rec = checkr(bib, "8", "Lovr80", res=bad)
+        assert sources(rec).get("pages") != "resolution" and pc.needs_user(rec)
+        assert any(f["code"] == "resolution_quote_unverified" and f["action"] == "held" for f in rec["flags"])
+        assert any(r.startswith("pages: quote unverified") for r in residue(rec))
+    q = pc.resolution_quote("volume", dict(res["set"]["pages"], value="13"))
+    assert q.get("refused") and not q["ok"]
+    plain = copy.deepcopy(res)
+    del plain["set"]["pages"]["next_start"]
+    assert not pc.resolution_quote("pages", plain["set"]["pages"])["ok"]
+
+
+def test_resolution_value_from_several_quotes(bib):
+    """KahaEtal08a (batch-19): the first and last folios (467, 490) sit about 150k
+    characters apart in the authors' PDF; the union of two verified quotes covers
+    467--490. Negative controls: the last-page quote alone does not; an extra quote that
+    is not at its URL fails the whole value."""
+    res = rules_row("KahaEtal08a")
+    assert len(pc.evidence_items(res["set"]["pages"])) == 2
+    rec = checkr(bib, "8", "KahaEtal08a", res=res)
+    assert rec["final_entry"]["pages"] == "467--490" and residue(rec) == []
+    assert rec["resolution"]["quotes"]["pages"]["ok"] and not rec["resolution"]["quotes"]["pages"].get("rule")
+    one = copy.deepcopy(res)
+    del one["set"]["pages"]["extra_evidence"]
+    q = pc.resolution_quote("pages", one["set"]["pages"])
+    assert not q["ok"] and "467" in q["why"]
+    rec = checkr(bib, "8", "KahaEtal08a", res=one)
+    assert pc.needs_user(rec) and any(r.startswith("pages: quote unverified") for r in residue(rec))
+    wrong = copy.deepcopy(res)
+    wrong["set"]["pages"]["extra_evidence"][0]["quote"] = "Our power to remember this feature. 466 Author's personal copy"
+    q = pc.resolution_quote("pages", wrong["set"]["pages"])
+    assert not q["ok"] and "quote not found" in q["why"]
+
+
+def test_resolution_catalogue_extent_gives_monograph_pages(bib):
+    """Gomu53 (batch-03): a numbered monograph supplement catalogued '94 p.' (LoC 53011675)
+    is pages 1--94 (README default, as Gate17). Negative controls: a range not starting at
+    1, and an N the extent does not print."""
+    rec = checkr(bib, "2", "Gomu53", res=rules_row("Gomu53"))
+    assert rec["final_entry"]["pages"] == "1--94" and residue(rec) == [] and not pc.needs_user(rec)
+    assert any(f["code"] == "resolution_inferred_value" and "catalogue extent" in f["detail"] for f in rec["flags"])
+    spec = RESOLUTION_RULES["Gomu53"]["set"]["pages"]
+    for value in ("2--94", "1--91", "1--9"):
+        assert not pc.resolution_quote("pages", dict(spec, value=value))["ok"], value
+
+
+def test_resolution_volume_from_roman_page_prefix(bib):
+    """HallGree08 (batch-23): SAGE prints pages 'I-212-I-224'; the 'I-' prefix is Volume 1
+    (README default for ICASSP-style prefixes). The held quote_check_failed on volume is
+    superseded. Negative controls: volume 2 from the same quote; a lower-case or unjoined
+    numeral is no prefix."""
+    rec = checkr(bib, "8", "HallGree08", res=rules_row("HallGree08"))
+    assert rec["final_entry"]["volume"] == "1" and rec["final_entry"]["pages"] == "212--224"
+    assert residue(rec) == [] and not pc.needs_user(rec)
+    spec = RESOLUTION_RULES["HallGree08"]["set"]["volume"]
+    assert not pc.resolution_quote("volume", dict(spec, value="2"))["ok"]
+    V = pc.validator()
+    assert pc.roman_page_prefix(V, "1", ['"page":"I-212-I-224"'])[0]
+    assert not pc.roman_page_prefix(V, "1", ['"page":"i-212"'])[0]
+    assert not pc.roman_page_prefix(V, "1", ["Part I 212"])[0]
+    assert pc.roman_page_prefix(V, "2", ['"page":"II-5"'])[0]
+    assert not pc.roman_page_prefix(V, "1", ['"page":"II-5"'])[0]
+
+
+def test_resolution_set_survives_the_researchers_removal(bib):
+    """VodrEtal16 (batch-17): HEAD's Pages holds a junk DOI URL, which the researcher asked to
+    remove; the resolution sets the published pages 223--231. Resolution decisions are
+    final: the removal never deletes the resolution's value. Negative control: without the
+    resolution the researcher's removal still removes the junk value."""
+    assert "pages" in ROWS7["VodrEtal16"].get("remove", [])
+    rec = checkr(bib, "7", "VodrEtal16", res=rules_row("VodrEtal16"))
+    assert rec["final_entry"]["pages"] == "223--231" and "pages" not in rec["removals"]
+    assert not any("did not survive" in r for r in residue(rec))
+    plain = checkw(bib, "7", "VodrEtal16")
+    assert "pages" not in plain["final_entry"] and "pages" in plain["removals"]
+
+
+def test_resolution_pages_from_pdf_footers_and_unregistered_doi(bib):
+    """McCaEtal06 (batch-14): pages 12--14 from the three PDF footers (several quotes).
+    Its DOI is registered at doi.org (only Crossref's REST API has no record), so it is not
+    dropped: it stays held for the registry title. A resolution DOI that doi.org does not
+    register (10.4324/9780203837672-11, a Taylor & Francis URL path) is dropped, with no
+    residue for it (never cite an unregistered DOI)."""
+    res = rules_row("McCaEtal06")
+    rec = checkr(bib, "7", "McCaEtal06", res=res)
+    assert rec["final_entry"]["pages"] == "12--14"
+    assert not any(r.startswith("pages:") for r in residue(rec))
+    assert rec["doi_status"]["registered"] is True
+    assert any(r.startswith("doi:") for r in residue(rec)) and "resolution_doi_unregistered" not in codes(rec)
+    bad = copy.deepcopy(res)
+    bad["set"]["doi"] = {"value": "10.4324/9780203837672-11",
+                         "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/1904",
+                         "quote": "citation_doi\" content=\"10.1609/aimag.v27i4.1904"}
+    bad["notes"] += " Read in a browser."
+    rec = checkr(bib, "7", "McCaEtal06", res=bad)
+    assert "resolution_doi_unregistered" in codes(rec)
+    assert rec["final_entry"].get("doi") != "10.4324/9780203837672-11"
+    assert not any(r.startswith("doi:") and "did not survive" in r for r in residue(rec))

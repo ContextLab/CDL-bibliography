@@ -37,12 +37,22 @@
    "pages": {
     "value": "81--190, 257--339",
     "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
-    "quote": "suchung des  Gedächtnisses 81  u.  257"
+    "quote": "suchung des  Gedächtnisses 81  u.  257",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
+      "quote": "190  ^*  ^  Müller  und  F.  Schumann."
+     },
+     {
+      "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
+      "quote": "Experimentelle  Beiträge  zur  Untersuchung  des  Gedächtnisses.         339"
+     }
+    ]
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Bd 6 prints the paper in two parts: contents 'suchung des  Gedächtnisses 81  u.  257'; part 1 runs 81--190 (ends '(Schlufs  folgt.)', Höpfner starts 191), part 2 257--339 (Meinong starts 340). HEAD pages 257--339 is part 2 only; kept pending the rule question. Number '80-191' removal stands. RECONCILED 2026-09-26: Two-part article: both ranges (default); part 1 81--190 (ends \"Schlufs folgt\", next item 191), part 2 257--339 (next item 340), per the batch evidence."
+  "notes": "Bd 6 prints the paper in two parts: contents 'suchung des  Gedächtnisses 81  u.  257'; part 1 runs 81--190 (ends '(Schlufs  folgt.)', Höpfner starts 191), part 2 257--339 (Meinong starts 340). HEAD pages 257--339 is part 2 only; kept pending the rule question. Number '80-191' removal stands. RECONCILED 2026-09-26: Two-part article: both ranges (default); part 1 81--190 (ends \"Schlufs folgt\", next item 191), part 2 257--339 (next item 340), per the batch evidence. EVIDENCE 2026-09-26 (several-quotes rule): pages evidence is several quotes from the same official record whose union prints every page number of the value."
  },
  {
   "key": "Rans02",
@@ -56,12 +66,18 @@
    "pages": {
     "value": "39--86",
     "url": "https://archive.org/download/zeitschriftfrps02psycgoog/zeitschriftfrps02psycgoog_djvu.txt",
-    "quote": "86 Paul Ranschbw'g."
+    "quote": "86 Paul Ranschbw'g.",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/download/zeitschriftfrps02psycgoog/zeitschriftfrps02psycgoog_djvu.txt",
+      "quote": "Hemmung gleichzeitiger Reizwirkungen ... 39"
+     }
+    ]
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Re-quoted: running head on p. 54 'Faul Ranschburg.' (OCR of Paul Ranschburg); p. 86 running head '86 Paul Ranschbw\\'g.' is the article's last page (contents: start 39, Losskij 'Eine Willenstheorie' starts 87). HEAD values confirmed.",
+  "notes": "Re-quoted: running head on p. 54 'Faul Ranschburg.' (OCR of Paul Ranschburg); p. 86 running head '86 Paul Ranschbw\\'g.' is the article's last page (contents: start 39, Losskij 'Eine Willenstheorie' starts 87). HEAD values confirmed. EVIDENCE 2026-09-26 (several-quotes rule): pages evidence is several quotes from the same official record whose union prints every page number of the value.",
   "questions": []
  },
  {
@@ -148,7 +164,17 @@
    "pages": {
     "value": "12--14",
     "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802",
-    "quote": "WINTER 2006 13"
+    "quote": "12 AI MAGAZINE",
+    "extra_evidence": [
+     {
+      "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802",
+      "quote": "WINTER 2006 13"
+     },
+     {
+      "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802",
+      "quote": "orderly thinking. 14 AI MAGAZINE"
+     }
+    ]
    },
    "doi": {
     "value": "10.1609/aimag.v27i4.1904",
@@ -158,7 +184,7 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Publisher PDF (3 pages) prints page footers 12 ('12 AI MAGAZINE'), 'WINTER 2006 13' and 14; OJS meta tags wrongly give lastpage 12. DOI registered with Crossref (doiRA) and resolves to the AAAI OJS page, which prints it; the Crossref API returns 404 for the record.",
+  "notes": "Publisher PDF (3 pages) prints page footers 12 ('12 AI MAGAZINE'), 'WINTER 2006 13' and 14; OJS meta tags wrongly give lastpage 12. DOI registered with Crossref (doiRA) and resolves to the AAAI OJS page, which prints it; the Crossref API returns 404 for the record. EVIDENCE 2026-09-26 (several-quotes rule): pages from the three PDF footers '12 AI MAGAZINE', 'WINTER 2006 13', '14 AI MAGAZINE'. DOI: doi.org resolves 10.1609/aimag.v27i4.1904 (HTTP 302 to the AAAI OJS article; handle API responseCode 1), so it is registered; only Crossref's REST API returns 404 for the record.",
   "questions": []
  },
  {

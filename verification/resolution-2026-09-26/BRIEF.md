@@ -84,3 +84,24 @@ byline prints it (TrenEtal93 in batch 9 was wrong to).
 - End page not printed anywhere: infer from the next item's printed start page − 1 (cite the TOC/next item).
 - Dissertation Abstracts International entries → @phdthesis (school, degree year) from a catalogue/DataCite record.
 - Follow the "Defaults chosen by Claude" list in the README for supplements, roman volumes, subtitles, ×, ACM volumes, two-part articles, software titles, web-only articles, "and others" lists, multi-volume editors, quoted titles, compounds, renamed journals, collective abstract records, society-proceedings years, reprints, and title misprints.
+
+## Evidence forms the post-check accepts (2026-09-26, user rules)
+A `set` item may also carry:
+- `"evidence"` or `"extra_evidence"`: a list of more `{"url", "quote"}` items, all from official
+  records. Each quote must verify at its URL; the value's words must be in the union of all the
+  quotes. Use it when the record prints the value's parts far apart (first and last folios of a
+  chapter PDF, contents start page and running-head end page, two-part articles).
+- `"next_start": {"url", "quote"}` (pages only): when no source prints the end page. The item's
+  own quote prints the start page; the next_start quote prints the next item's start page as
+  its LAST number (a contents line such as `Diagnostic Audiometry Robert W. Keith, Ph.D. 33`),
+  and the end page must be that number minus 1.
+- Pages 1--N of a numbered monograph issued whole: quote the catalogue extent `N p.`.
+- A volume printed as a roman page prefix (`"page":"I-212-I-224"`): quote the prefixed pages;
+  the value is the numeral in arabic.
+
+```json
+"pages": {"value": "13--32", "url": "<contents page>", "quote": "Speech Audiometry Jean H. Lovrinic, Ph.D. 13",
+          "next_start": {"url": "<contents page>", "quote": "Diagnostic Audiometry Robert W. Keith, Ph.D. 33"}}
+```
+A resolution value is final: a researcher's or reviewer's removal of that field does not delete it.
+A DOI that doi.org does not register (handle 404) is dropped, never cited.

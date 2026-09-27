@@ -134,11 +134,17 @@
   "set": {
    "pages": {
     "value": "79--108",
-    "url": "https://openlibrary.org/search/inside.json?q=%22Curriculum%20and%20instruction%20in%20automated%20tutors%22",
-    "quote": "Curriculum  and  Instruction  in  Automated  Tutors}}}  79"
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Automated%20Tutors%2079%22%20AND%20identifier%3Aisbn_9780805800548",
+    "quote": "Curriculum and Instruction in Automated Tutors 79",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=10&user_query=%22108%20HALFF%22%20AND%20identifier%3Aisbn_9780805800548",
+      "quote": "108 HALFF"
+     }
+    ]
    }
   },
-  "notes": "Printed TOC of the 1988 Erlbaum volume (Internet Archive isbn_9780805800548, search-inside) lists ch. 4 Halff at p. 79 and ch. 5 Burton ('The Environment Module of Intelligent Tutoring Systems 1 09') at p. 109, so the chapter spans 79-108 as in HEAD. RECONCILED 2026-09-26: Question answered by rule: end page from next start - 1 (round 2)."
+  "notes": "Printed TOC of the 1988 Erlbaum volume (Internet Archive isbn_9780805800548, search-inside) lists ch. 4 Halff at p. 79 and ch. 5 Burton ('The Environment Module of Intelligent Tutoring Systems 1 09') at p. 109, so the chapter spans 79-108 as in HEAD. RECONCILED 2026-09-26: Question answered by rule: end page from next start - 1 (round 2). EVIDENCE 2026-09-26 (several-quotes rule): contents 'Curriculum and Instruction in Automated Tutors 79' and the running head '108 HALFF' on the chapter's reference list (IA isbn_9780805800548); the next chapter's contents entry is OCR'd '1 09'."
  },
  {
   "key": "MuntEtal07",

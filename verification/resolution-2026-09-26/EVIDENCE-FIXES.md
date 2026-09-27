@@ -126,3 +126,40 @@ Dry run (`postcheck.run(wave, write=False)` for waves 2-9, nothing written): 81 
 - HallGree08: volume 1 comes from Crossref's 'I-212' page prefix (default rule); the validator reads roman numerals only after 'vol'.
 - McCaEtal06: pages 12--14 only as PDF folios on three separate pages; DOI held because the Crossref API returns 404 for 10.1609/aimag.v27i4.1904 (post-check needs the registry title).
 - VodrEtal16 (pages), JainHuth18 (volume), GoldEtal21 (pages), TsitEtal19 (volume): HEAD's field holds a junk URL/DOI; the researcher's or reviewer's removal of that field runs after the resolution and drops the resolution's `set` (postcheck.py, researcher/reviewer removal blocks exempt only reviewer-sourced values). Needs a post-check change; not fixable in the batch files.
+
+## Post-check evidence rules (2026-09-26, later)
+
+The post-check now implements the user's approved rules (POSTCHECK.md, "Evidence rules for
+`set`"): several quotes per value (`extra_evidence`), `next_start` for inferred end pages,
+catalogue extent `N p.` for monograph pages 1--N, roman page prefixes for volumes, resolution
+values that a researcher/reviewer removal cannot delete, and unregistered resolution DOIs dropped.
+Rows updated with new evidence (each checked with `postcheck.resolution_quote`):
+
+| Batch | Key | Field | Rule | Evidence |
+|-|-|-|-|-|
+| batch-05 | Half88 | pages | several quotes | IA isbn_9780805800548: contents 'Curriculum and Instruction in Automated Tutors 79' + running head '108 HALFF' (next start OCR'd '1 09') |
+| batch-14 | MullSchu94 | pages | several quotes | contents '81 u. 257' + running heads '190 ... Müller und F. Schumann.' and '... des Gedächtnisses. 339' |
+| batch-14 | Rans02 | pages | several quotes | '86 Paul Ranschbw'g.' + contents 'Hemmung gleichzeitiger Reizwirkungen ... 39' |
+| batch-14 | McCaEtal06 | pages | several quotes | PDF footers '12 AI MAGAZINE', 'WINTER 2006 13', 'orderly thinking. 14 AI MAGAZINE' |
+| batch-18 | TellPalm98 | pages | next start | 'Psychophysics 691' / 'Qualia 693' |
+| batch-18 | CraiRabi84 | pages, title, volume | next start; several quotes | 'Abstract 471' / 'Abstract 501'; contents title + 'A Tutorial Review'; IA note 'Tenth International Symposium on Attention and Performance' |
+| batch-18 | Shal75 | pages | next start | 'Introduction . 269' / 'Introduction . 281' |
+| batch-18 | Lovr80 | pages | next start | '... Lovrinic, Ph.D. 13' / '... Keith, Ph.D. 33' |
+| batch-19 | KahaEtal08a | pages | several quotes | folios '... this feature. 467' + '490 Associative Retrieval Processes ...' |
+| batch-20 | Murd89 | pages | next start | '... Distributed Memory Model 69 Bennet B. Murdock' / '... Dynamic Decision Behavior 107' (re-fetched; old quote had a raw newline) |
+| batch-21 | Murd99, OhrtGron99 | pages | next start | T&F contents '(TODAM) 35' / '... Retrospective 59'; 'Confounds and 105' / '... Tasks 127' |
+| batch-21 | Jord86 | pages | next start | 'Processing 365\nM. I. JORDAN' / '10 The Logic of Activation Functions 423' |
+| batch-23 | Bjor89, BenaEtal04 | pages | next start | '... Human Memory 309' / '17. ... 331'; '... Movement Disorders 2803' / '... Nervous System 2829' |
+
+Gomu53 (catalogue extent), HallGree08 (roman prefix) and VodrEtal16, JainHuth18, GoldEtal21,
+TsitEtal19 (removal no longer deletes the resolution's value) needed no batch change.
+
+Dry run (`postcheck.run(wave, write=False, resolutions=RESOLUTION_DIR)`, waves 2-9, nothing
+written): 1 entry still needs the user:
+
+- McCaEtal06 (doi): doi.org registers 10.1609/aimag.v27i4.1904 (HTTP 302 to the AAAI OJS page;
+  handle responseCode 1), so the unregistered-DOI drop rule does not apply; Crossref's REST API
+  returns 404, so the post-check has no registry title (`doi_title_unavailable`, held). Needs a
+  rule for DOIs registered at doi.org without an agency record (keep on the landing page's
+  printed DOI, or drop).
+

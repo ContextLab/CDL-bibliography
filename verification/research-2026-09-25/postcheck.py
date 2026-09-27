@@ -1315,26 +1315,122 @@ def validator():
     return _VALIDATOR
 
 
-def resolution_quote(field, spec, offline=False):
-    """Check a resolution `set` value with the research validator's matching: the quote
-    must occur at its URL (validate.check: fetched text normalised, cache first under
-    .bibcheck/research-pilot/) and the value's words must be in the quote
-    (validate.value_supported). Offline, a URL not in the cache is not fetched.
-    Returns {"ok", "why"}; "refused" when the spec has no URL or quote."""
-    url, quote_ = spec.get("url"), spec.get("quote")
-    if not url or not quote_:
-        return {"ok": False, "refused": True, "why": "no URL or quote"}
-    V = validator()
-    path = V.CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".txt")
+def evidence_items(spec):
+    """The evidence items of a resolution `set`, first to last: its own url/quote, then
+    every {url, quote} in `evidence` and `extra_evidence` (a list, or one item). A value
+    whose words an official record prints far apart on one page (KahaEtal08a's first and
+    last folios, Rans02's contents start and running-head end) is covered by the union
+    of several quotes (user rule 2026-09-26)."""
+    items = []
+    if spec.get("url") or spec.get("quote"):
+        items.append({"url": spec.get("url"), "quote": spec.get("quote")})
+    for name in ("evidence", "extra_evidence"):
+        extra = spec.get(name) or []
+        for x in [extra] if isinstance(extra, dict) else extra:
+            items.append({"url": (x or {}).get("url"), "quote": (x or {}).get("quote")} if isinstance(x, dict)
+                         else {"url": None, "quote": None})
+    return items
+
+
+PAGE_RANGE = re.compile(r"^\s*(\d+)\s*(?:-{1,3}|–)\s*(\d+)\s*$")
+
+
+def _check_item(V, item, offline):
+    """validate.check on one evidence item; offline, a URL not in the cache is not fetched."""
+    path = V.CACHE / (hashlib.sha256(item["url"].encode()).hexdigest() + ".txt")
     if offline and (not path.exists() or V.transient_error(path.read_text())):
-        return {"ok": False, "why": "offline and the URL is not in the validator cache"}
-    r = V.check({"url": url, "quote": quote_}, [0])
-    if not r["ok"]:
-        return {"ok": False, "why": r["why"]}
+        return {"ok": False, "why": f"offline and {item['url']} is not in the validator cache"}
+    r = V.check(item, [0])
+    return {"ok": r["ok"], "why": None if r["ok"] else f"{r['why']} ({item['url']})"}
+
+
+def inferred_end_page(V, value, quotes, urls, next_quote):
+    """(ok, why) for pages S--E whose end page no source prints (user rule, round 2: 'infer
+    it from the next item's printed start page - 1'): S must be in the quotes, and the
+    next item's printed start page -- the LAST number of the next_start quote, the page
+    column of a contents line ('Diagnostic Audiometry Robert W. Keith, Ph.D. 33') -- must
+    be E + 1."""
+    m = PAGE_RANGE.match(str(value or ""))
+    if not m:
+        return False, f"next_start: {value!r} is not one page range S--E"
+    start, end = int(m[1]), int(m[2])
+    if end < start:
+        return False, f"next_start: end page {end} is before start page {start}"
+    ok, _ = V.value_supported("pages", str(start), quotes, urls)
+    if not ok:
+        return False, f"next_start: start page {start} is not in the quote"
+    nums = re.findall(r"(?<!\d)\d+(?!\d)", V.norm(next_quote))
+    if not nums or int(nums[-1]) != end + 1:
+        return False, (f"next_start: the next item's printed start page is {nums[-1] if nums else 'missing'}, "
+                       f"not {end + 1} (end page {end} + 1)")
+    return True, None
+
+
+def catalogue_extent(V, value, quotes):
+    """(ok, why) for pages 1--N of a numbered monograph issued whole (Gomu53, Gate17): the
+    library catalogue's physical extent 'N p.' (README default: monograph pages are the
+    catalogue extent). Only a range starting at page 1, only the 'N p.' form."""
+    m = PAGE_RANGE.match(str(value or ""))
+    if not m or m[1] != "1":
+        return False, None
+    hit = any(re.search(r"(?<![\d\[\]-])" + m[2] + r"\s*p\.", V.norm(q)) for q in quotes)
+    return hit, None if hit else f"no catalogue extent '{m[2]} p.' in the quote"
+
+
+def roman_page_prefix(V, value, quotes):
+    """(ok, why) for a volume printed as the roman-numeral prefix of its page numbers
+    (ICASSP 'I-185-I-188', SAGE 'I-212-I-224'; README default: the prefix is the Volume,
+    in arabic). The numeral must be upper case and joined to a page number by a hyphen."""
+    v = str(value or "").strip()
+    if not v.isdigit() or int(v) < 1:
+        return False, None
+    numeral = V.int_to_roman(int(v)).upper()
+    hit = any(re.search(r"(?<![A-Za-z])" + numeral + r"-\d+", q) for q in quotes)
+    return hit, None if hit else f"no page prefix '{numeral}-<page>' in the quote"
+
+
+def resolution_quote(field, spec, offline=False):
+    """Check a resolution `set` value with the research validator's matching: each quote
+    must occur at its URL (validate.check: fetched text normalised, cache first under
+    .bibcheck/research-pilot/) and the value's words must be in the union of the quotes
+    (validate.value_supported; one item, or several via `evidence` / `extra_evidence`).
+    Offline, a URL not in the cache is not fetched. The user's inference rules, each
+    reported in "rule": pages S--E with a `next_start` {url, quote} (end = next start - 1),
+    pages 1--N from a catalogue extent 'N p.', a volume from a roman page prefix 'I-212'.
+    Returns {"ok", "why", "rule"}; "refused" when an item has no URL or quote."""
+    items = evidence_items(spec)
+    nxt = spec.get("next_start")
+    if not items or any(not i["url"] or not i["quote"] for i in items):
+        return {"ok": False, "refused": True, "why": "no URL or quote"}
+    if nxt is not None and (field.lower() != "pages" or not isinstance(nxt, dict)
+                            or not nxt.get("url") or not nxt.get("quote")):
+        return {"ok": False, "refused": True, "why": "next_start needs a pages value and its own URL and quote"}
+    V = validator()
+    for item in items + ([{"url": nxt["url"], "quote": nxt["quote"]}] if nxt else []):
+        r = _check_item(V, item, offline)
+        if not r["ok"]:
+            return {"ok": False, "why": r["why"] if len(items) > 1 or nxt else r["why"].rsplit(" (", 1)[0]}
     if field.lower() in V.JUDGMENT:
         return {"ok": True, "why": None}
-    supported, missing = V.value_supported(field, spec.get("value"), [quote_], [url])
-    return {"ok": bool(supported), "why": None if supported else f"value words {missing} are not in the quote"}
+    quotes, urls = [i["quote"] for i in items], [i["url"] for i in items]
+    value = spec.get("value")
+    supported, missing = V.value_supported(field, value, quotes, urls)
+    if supported:
+        return {"ok": True, "why": None}
+    why = f"value words {missing} are not in the quote" + ("s" if len(items) > 1 else "")
+    if field.lower() == "pages" and nxt:
+        ok, w = inferred_end_page(V, value, quotes, urls, nxt["quote"])
+        return {"ok": ok, "why": w, "rule": "end page = next item's printed start - 1"} if ok else \
+            {"ok": False, "why": f"{why}; {w}"}
+    if field.lower() == "pages":
+        ok, w = catalogue_extent(V, value, quotes)
+        if ok:
+            return {"ok": True, "why": None, "rule": "monograph pages 1--N from the catalogue extent 'N p.'"}
+    if field.lower() == "volume":
+        ok, w = roman_page_prefix(V, value, quotes)
+        if ok:
+            return {"ok": True, "why": None, "rule": "volume from the roman page prefix"}
+    return {"ok": False, "why": why}
 
 
 def normalise_emdash(value):
@@ -2077,17 +2173,21 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
                     applied.pop(n, None)
                     held[n] = f"resolution quote unverified: {q['why']}"
                     flag(flags, "resolution_quote_unverified", n,
-                         f"{n} = {spec['value']!r}: quote {spec['quote']!r} at {spec['url']}: {q['why']}; not applied "
+                         f"{n} = {spec['value']!r}: quote {spec.get('quote')!r} at {spec.get('url')}: {q['why']}; not applied "
                          "(the notes do not say it was read in a browser or transcribed from a scan)", "held")
                     res_info["residue"].append(f"{n}: quote unverified ({q['why']})")
                     continue
                 if not q["ok"]:
                     flag(flags, "resolution_quote_unverified", n,
-                         f"{n} = {spec['value']!r}: quote {spec['quote']!r} at {spec['url']}: {q['why']}; applied: the "
+                         f"{n} = {spec['value']!r}: quote {spec.get('quote')!r} at {spec.get('url')}: {q['why']}; applied: the "
                          f"notes say it was read in a browser or transcribed from a scan ({lenient[0]!r}; user rule)",
                          "applied")
+                if q.get("rule"):
+                    flag(flags, "resolution_inferred_value", n,
+                         f"{n} = {spec['value']!r}: {q['rule']} (user rule); applied", "applied")
                 applied[n] = {"value": str(spec["value"]), "source": "resolution",
-                              "evidence": [{"url": spec["url"], "quote": spec["quote"]}],
+                              "evidence": evidence_items(spec) + ([dict(spec["next_start"], role="next_start")]
+                                                                  if spec.get("next_start") else []),
                               "decision": f"resolution {resolution.get('_batch') or ''}".strip()}
                 held.pop(n, None)
                 suggestions.pop(n, None)
@@ -2695,9 +2795,12 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
             norms.append({"field": name, "note": why})
             if current.get(name):
                 removals[name] = why
-    # the researcher's own removals (top-level "remove" list); a reviewer value wins
+    # the researcher's own removals (top-level "remove" list); a reviewer value wins, and a
+    # resolution `set` is final: a removal of the field it replaces (a junk URL in Pages,
+    # VodrEtal16) never deletes the resolution's value
     for name in [field_name(n) for n in row.get("remove") or []]:
-        if (applied.get(name) or {}).get("source") == "reviewer" or name in removals \
+        if (applied.get(name) or {}).get("source") in ("reviewer", "resolution") or name in res_set \
+                or name in removals \
                 or name not in researcher_removes:
             continue
         if current.get(name) or final.get(name):
@@ -2726,8 +2829,13 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
         removals = {}
         norms = [n for n in norms if n["field"] in applied]
 
-    # --- fields the reviewer asked to remove
+    # --- fields the reviewer asked to remove (never a field the resolution sets: its
+    # decision is final, and the removal is of the value it replaces)
     for name in sorted(reviewer_removes):
+        if name in res_set:
+            flag(flags, "resolution_supersedes_removal", name,
+                 f"the reviewer asked to remove {name}; the resolution sets {res_set[name]!r}, which stands", "applied")
+            continue
         applied.pop(name, None)
         final.pop(name, None)
         if name in current:
@@ -2792,15 +2900,27 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
                 final.pop(n, None)
                 if n in current:
                     removals[n] = f"resolution asked to remove it (current {current[n]!r})"
-            landed = set()
+            landed, unregistered = set(), set()
             for n, v in res_set.items():
                 a = applied.get(n)
                 if a and a["source"] == "resolution" and n in final and final[n] == a["value"]:
                     landed.add(n)
+                elif n == "doi" and (doi_status or {}).get("registered") is False \
+                        and clean_doi(doi_status.get("doi")) == clean_doi(v):
+                    # doi.org does not know the DOI: never cite an unregistered DOI (user
+                    # rule); the resolution's DOI is dropped, and so is the same DOI in the entry
+                    unregistered.add(n)
+                    if clean_doi(final.get("doi")) == clean_doi(v):
+                        final.pop("doi", None)
+                        if current.get("doi"):
+                            removals["doi"] = f"unregistered DOI ({doi_status.get('error')}; current {current['doi']!r})"
+                    flag(flags, "resolution_doi_unregistered", "doi",
+                         f"resolution sets doi {v!r}, which doi.org does not register ({doi_status.get('error')}): "
+                         "dropped (never cite an unregistered DOI)", "applied")
                 else:
                     residue.append(f"{n}: the resolution's value {v!r} did not survive the post-check "
                                    f"(final {final.get(n)!r})")
-            resolved = landed | set(res_withdraw) | set(res_remove)
+            resolved = landed | unregistered | set(res_withdraw) | set(res_remove)
             for f in flags:
                 if f["action"] != "held" or f["code"].startswith("resolution_"):
                     continue

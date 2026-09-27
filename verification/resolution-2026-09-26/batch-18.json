@@ -63,10 +63,14 @@
    "pages": {
     "value": "691--692",
     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Qualia%20693%22%20AND%20identifier%3Amitencyclopediao0000unse",
-    "quote": "Qualia  693"
+    "quote": "Psychophysics  691",
+    "next_start": {
+     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Qualia%20693%22%20AND%20identifier%3Amitencyclopediao0000unse",
+     "quote": "Qualia  693"
+    }
    }
   },
-  "notes": "The work is the 'Psychophysics' entry of MITECS (Internet Archive full-text of the printed book: contents 'Psychophysics 691' then 'Qualia 693'; entry signed '— Davida Teller and John Palmer'). @incollection per house form, year c1999 per LoC 99011115 (the '$c c1999' subfield follows 'MIT Press,'); end page = next entry's start - 1 (rule). Teller's middle initial Y from her own work cited in the same volume ('Teller, D. Y. (1997). First glances'). Key follows year: TellPalm99, free in HEAD."
+  "notes": "The work is the 'Psychophysics' entry of MITECS (Internet Archive full-text of the printed book: contents 'Psychophysics 691' then 'Qualia 693'; entry signed '— Davida Teller and John Palmer'). @incollection per house form, year c1999 per LoC 99011115 (the '$c c1999' subfield follows 'MIT Press,'); end page = next entry's start - 1 (rule). Teller's middle initial Y from her own work cited in the same volume ('Teller, D. Y. (1997). First glances'). Key follows year: TellPalm99, free in HEAD. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2)."
  },
  {
   "key": "RaveEtal98",
@@ -279,27 +283,31 @@
   "set": {
    "title": {
     "value": "Age differences in the acquisition and use of verbal information: a tutorial review",
-    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Verbal%20Information%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
-    "quote": "A  Tutorial  Review\\nFergus  I.  M.  Craik"
-   },
-   "pages": {
-    "value": "471--500",
-    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Abstract%20%20501%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
-    "quote": "Abstract  501}}} Introduction  501",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Age%20Differences%20in%20the%20Acquisition%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+    "quote": "29.  {{{Age  Differences  in  the  Acquisition}}}  and  Use  of  Verbal Information",
     "extra_evidence": [
      {
-      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Introduction%20472%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
-      "quote": "and  Jan  C.  Rabinowitz .\\nAbstract  471"
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Verbal%20Information%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+      "quote": "A  Tutorial  Review\\nFergus  I.  M.  Craik"
      }
     ]
    },
+   "pages": {
+    "value": "471--500",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Introduction%20472%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+    "quote": "and  Jan  C.  Rabinowitz .\\nAbstract  471",
+    "next_start": {
+     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Abstract%20%20501%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+     "quote": "Abstract  501}}} Introduction  501"
+    }
+   },
    "volume": {
     "value": "10",
-    "url": "https://archive.org/metadata/attentionperform0000unse_t7d8/metadata/title",
-    "quote": "Attention and performance X"
+    "url": "https://archive.org/metadata/attentionperform0000unse_t7d8/metadata/description",
+    "quote": "of the Tenth International Symposium on Attention and Performance, Venlo, The Netherlands"
    }
   },
-  "notes": "Printed volume (Internet Archive full text of Attention and Performance X, Erlbaum 1984): chapter heading 'Age Differences in the Acquisition and Use of Verbal Information / A Tutorial Review / Fergus I. M. Craik and Jan C. Rabinowitz', contents 'Abstract 471'; next chapter (Cohen and Faulkner) 'Abstract 501', so end page 500 by the next-item rule. Subtitle on its own line -> colon; roman volume X -> 10 (default). Title page imprint 'London Hillsdale'; address left as is."
+  "notes": "Printed volume (Internet Archive full text of Attention and Performance X, Erlbaum 1984): chapter heading 'Age Differences in the Acquisition and Use of Verbal Information / A Tutorial Review / Fergus I. M. Craik and Jan C. Rabinowitz', contents 'Abstract 471'; next chapter (Cohen and Faulkner) 'Abstract 501', so end page 500 by the next-item rule. Subtitle on its own line -> colon; roman volume X -> 10 (default). Title page imprint 'London Hillsdale'; address left as is. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2). Title: union of the contents line ('29. Age Differences in the Acquisition and Use of Verbal Information') and the chapter heading ('A Tutorial Review'). Volume 10: IA catalogue note 'Proceedings of the Tenth International Symposium on Attention and Performance' (the volume is 'Attention and performance X')."
  },
  {
   "key": "HashEtal99",
@@ -335,17 +343,15 @@
    },
    "pages": {
     "value": "269--280",
-    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Introduction%20.%20281%22%20AND%20identifier%3Aattentionperform0000unse",
-    "quote": "I.  {{{Introduction . 281}}}",
-    "extra_evidence": [
-     {
-      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=Shallice%20AND%20identifier%3Aattentionperform0000unse",
-      "quote": "I.  Introduction . 269"
-     }
-    ]
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=Shallice%20AND%20identifier%3Aattentionperform0000unse",
+    "quote": "I.  Introduction . 269",
+    "next_start": {
+     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Introduction%20.%20281%22%20AND%20identifier%3Aattentionperform0000unse",
+     "quote": "I.  {{{Introduction . 281}}}"
+    }
    }
   },
-  "notes": "Printed Attention and Performance V (Academic Press 1975; Internet Archive full text): contents '18. On the contents of primary memory (T. Shallice) I. Introduction . 269'; the next chapter's Introduction is at 281, so 269--280 (next-item rule). HEAD values confirmed."
+  "notes": "Printed Attention and Performance V (Academic Press 1975; Internet Archive full text): contents '18. On the contents of primary memory (T. Shallice) I. Introduction . 269'; the next chapter's Introduction is at 281, so 269--280 (next-item rule). HEAD values confirmed. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2)."
  },
  {
   "key": "RaaiShif81b",
@@ -400,9 +406,13 @@
    "pages": {
     "value": "13--32",
     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Chapter%203%22%20AND%20identifier%3Aaudiologyforphys0000unse",
-    "quote": "Diagnostic Audiometry Robert W. Keith, Ph.D. 33"
+    "quote": "Speech Audiometry Jean H. Lovrinic, Ph.D. 13",
+    "next_start": {
+     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Chapter%203%22%20AND%20identifier%3Aaudiologyforphys0000unse",
+     "quote": "Diagnostic Audiometry Robert W. Keith, Ph.D. 33"
+    }
    }
   },
-  "notes": "Printed book (Internet Archive full text of Audiology for the Physician, Williams & Wilkins 1980): contents 'Chapter 2 Pure Tone and Speech Audiometry Jean H. Lovrinic, Ph.D. 13 / Chapter 3 Diagnostic Audiometry Robert W. Keith, Ph.D. 33', so pages 13--32 by the next-item rule (HEAD had 13--31). Editor R W Keith per post-check."
+  "notes": "Printed book (Internet Archive full text of Audiology for the Physician, Williams & Wilkins 1980): contents 'Chapter 2 Pure Tone and Speech Audiometry Jean H. Lovrinic, Ph.D. 13 / Chapter 3 Diagnostic Audiometry Robert W. Keith, Ph.D. 33', so pages 13--32 by the next-item rule (HEAD had 13--31). Editor R W Keith per post-check. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2)."
  }
 ]

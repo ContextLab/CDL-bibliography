@@ -6,12 +6,16 @@
    "pages": {
     "value": "309--330",
     "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781315801841&type=googlepdf",
-    "quote": "17. Theoretical Issues in State Dependent Memory 331"
+    "quote": "16. Retrieval Inhibition as an Adaptive Mechanism in Human Memory 309",
+    "next_start": {
+     "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781315801841&type=googlepdf",
+     "quote": "17. Theoretical Issues in State Dependent Memory 331"
+    }
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Contents page of the book (T&F facsimile) prints ch. 16 Bjork at 309 and the next chapter (17, Eich) at 331, so the end page is 330 by the next-start-minus-one rule; HEAD 309--330 is confirmed, no change.",
+  "notes": "Contents page of the book (T&F facsimile) prints ch. 16 Bjork at 309 and the next chapter (17, Eich) at 331, so the end page is 330 by the next-start-minus-one rule; HEAD 309--330 is confirmed, no change. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
   "questions": []
  },
  {
@@ -227,13 +231,17 @@
    },
    "pages": {
     "value": "2803--2828",
-    "url": "https://www.google.com/books/feeds/volumes?max-results=20&q=Youmans%20Neurological%20Surgery%202004%20%22Cellular%20Transplantation%20in%20the%20Central%20Nervous%20System%22%20Funkiewiez",
-    "quote": "Funkiewiez 174 Cellular Transplantation in the Central Nervous System 2829"
+    "url": "https://www.google.com/books/feeds/volumes?max-results=20&q=%22Serge%20Pinto%22%20Benabid%20%22Deep%20Brain%20Stimulation%20for%20Movement%20Disorders%22%20Youmans%202803",
+    "quote": "Deep Brain Stimulation for Movement Disorders 2803 Alim L. Benabid",
+    "next_start": {
+     "url": "https://www.google.com/books/feeds/volumes?max-results=20&q=Youmans%20Neurological%20Surgery%202004%20%22Cellular%20Transplantation%20in%20the%20Central%20Nervous%20System%22%20Funkiewiez",
+     "quote": "Funkiewiez 174 Cellular Transplantation in the Central Nervous System 2829"
+    }
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Printed contents of Youmans Neurological Surgery 5th ed (2004, Google Books 4L07mfRg7qsC, Section V Functional Neurosurgery = v. 3): chapter 173 at 2803 with 14 authors (adds J F Le Bas, fixes Pollack->Pollak, Hoffman->Hoffmann); next chapter starts 2829, so end page 2828 (next-start rule). Post-check booktitle and edition stand.",
+  "notes": "Printed contents of Youmans Neurological Surgery 5th ed (2004, Google Books 4L07mfRg7qsC, Section V Functional Neurosurgery = v. 3): chapter 173 at 2803 with 14 authors (adds J F Le Bas, fixes Pollack->Pollak, Hoffman->Hoffmann); next chapter starts 2829, so end page 2828 (next-start rule). Post-check booktitle and edition stand. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
   "questions": []
  },
  {

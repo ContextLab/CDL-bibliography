@@ -183,12 +183,18 @@
    "pages": {
     "value": "467--490",
     "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
-    "quote": "490 Associative Retrieval Processes in Episodic Memory"
+    "quote": "490 Associative Retrieval Processes in Episodic Memory",
+    "extra_evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "Our power to remember this feature. 467 Author's personal copy"
+     }
+    ]
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Printed record wins over Crossref '1-24': the authors' copy of the Elsevier chapter carries page folios 467 (first page) and '490 Associative Retrieval Processes in Episodic Memory' (last), and Crossref's preceding chapter (Raaijmakers) ends at 466. Keeps suffix 'a' because HEAD has another KahaEtal08 (KahaEtal08b, the Psychological Review reply renamed from KahaEtal08c). Apply the post-check (DOI, pages).",
+  "notes": "Printed record wins over Crossref '1-24': the authors' copy of the Elsevier chapter carries page folios 467 (first page) and '490 Associative Retrieval Processes in Episodic Memory' (last), and Crossref's preceding chapter (Raaijmakers) ends at 466. Keeps suffix 'a' because HEAD has another KahaEtal08 (KahaEtal08b, the Psychological Review reply renamed from KahaEtal08c). Apply the post-check (DOI, pages). EVIDENCE 2026-09-26 (several-quotes rule): pages evidence is several quotes from the same official record whose union prints every page number of the value.",
   "questions": []
  },
  {

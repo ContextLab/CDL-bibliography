@@ -10,11 +10,15 @@
    },
    "pages": {
     "value": "69--106",
-    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Return%20to%20Dynamic%20Decision%22%20%22Summary%2099%22",
-    "quote": "(TODAM) 81\nApplications 88\n{{{Summary 99}}}\nApproach-Avoidance: {{{Return to Dynamic Decision}}} Behavior 107 James T."
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Final%20Remarks%22%20%22Learning%20in%20a%20Distributed%20Memory%20Model%22",
+    "quote": "Learning in a Distributed Memory Model 69 Bennet B. Murdock",
+    "next_start": {
+     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Return%20to%20Dynamic%20Decision%22%20%22Summary%2099%22",
+     "quote": "Approach-Avoidance: Return to Dynamic Decision Behavior 107"
+    }
    }
   },
-  "notes": "Printed contents of the 1989 Erlbaum book (IA full-text search, item currentissuesinc0000tula): 'Learning in a Distributed Memory Model 69 Bennet B. Murdock, Jr'; next chapter (Townsend, Approach-Avoidance) starts at 107, so HEAD 69--106 is confirmed (next start - 1). Suffix Jr dropped (house rule). Apply the post-check booktitle (Tulane Flowerree Symposium).",
+  "notes": "Printed contents of the 1989 Erlbaum book (IA full-text search, item currentissuesinc0000tula): 'Learning in a Distributed Memory Model 69 Bennet B. Murdock, Jr'; next chapter (Townsend, Approach-Avoidance) starts at 107, so HEAD 69--106 is confirmed (next start - 1). Suffix Jr dropped (house rule). Apply the post-check booktitle (Tulane Flowerree Symposium). EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
   "questions": []
  },
  {

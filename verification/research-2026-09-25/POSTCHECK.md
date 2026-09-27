@@ -370,6 +370,31 @@ Per key (source `resolution`, flag `resolution_decision`):
   After every rule, a set value that did not survive (a DOI dropped by the registry check, a
   booktitle held with its type) is residue; held flags on the fields the resolution set,
   withdrew or removed are dropped as superseded; any other held flag is residue.
+- Evidence rules for `set` (user rules, 2026-09-26; `resolution_quote`), each inferred value
+  flagged `resolution_inferred_value` (applied):
+  - **Several quotes.** A value may carry more items in `evidence` or `extra_evidence` (a list of
+    `{url, quote}`, all from official records). Every item must verify at its URL; the value's
+    words must be in the union of the quotes (KahaEtal08a's folios 467 and 490 far apart in one
+    PDF; Rans02's contents start 39 and running head 86; MullSchu94's two parts; McCaEtal06's
+    three PDF footers). One failing item fails the value.
+  - **End page from the next item.** A `pages` value S--E may carry `next_start: {url, quote}`
+    when no source prints E: S must be in the value's quotes, the next_start quote must verify
+    at its URL, and its LAST number (the page column of a contents line) must be E + 1
+    (Lovr80 13--32 from 'Keith, Ph.D. 33'; TellPalm98, Shal75, Murd89, Murd99, OhrtGron99,
+    Jord86, Bjor89, BenaEtal04, CraiRabi84). `next_start` on any other field is refused.
+  - **Catalogue extent.** Pages 1--N of a numbered monograph issued whole are supported by the
+    catalogue extent 'N p.' (Gomu53 '94 p.' -> 1--94; README default, as Gate17). Only a range
+    starting at 1.
+  - **Roman page prefix.** A volume is supported by an upper-case roman numeral joined to page
+    numbers ('I-212-I-224' -> Volume 1; README default for ICASSP-style prefixes; HallGree08).
+- Resolution values are final: a researcher's or reviewer's removal of a field (a junk URL in
+  Pages or Volume) never deletes the value the resolution sets for it (VodrEtal16, JainHuth18,
+  GoldEtal21, TsitEtal19; a reviewer removal it overrides is flagged
+  `resolution_supersedes_removal`). A resolution DOI that doi.org does not register (handle
+  404 / responseCode not 1) is dropped, with the same DOI in the entry, and flagged
+  `resolution_doi_unregistered` (never cite an unregistered DOI); it is not residue. A DOI that
+  doi.org registers but whose agency record is missing (McCaEtal06: Crossref REST 404) stays
+  held for the registry title check (residue).
 - `drop` marks `remove_entry` with the `drop_reason` (summary `resolution_removals`;
   `postcheck.py --write-resolution-removals` writes the list, with the no-ops apart, to
   `removals.json` in the resolution directory, like `crosswave/removals.json`). A drop of a key
@@ -412,4 +437,11 @@ confirmed), GoldEtal08 (house names), Seac97 (drop), DaPo67 (keep), WhitEtal96 (
 Frie08 decision is a no-op, a deleted key is never followed, a set without a quote is refused, a failing
 quote holds unless the notes say browser or scan, a drop of an absent key is a no-op, a new key
 held by another work or planned by another entry collides, a missing merge target is residue,
-and unreadable batches stop the run.
+and unreadable batches stop the run. Evidence rules (real rows frozen as `RESOLUTION_RULES`):
+Lovr80 (next start; negative controls: end not next start - 1, start not quoted, next_start on
+volume, no next_start), KahaEtal08a (several quotes; negative controls: one quote alone, a wrong
+extra quote), Gomu53 (catalogue extent; negative controls: 2--94, 1--91, 1--9), HallGree08
+(roman prefix; negative controls: volume 2, lower-case or unjoined numeral), VodrEtal16 (set
+survives the researcher's removal; negative control: without the resolution the junk Pages is
+removed), McCaEtal06 (PDF footers; registered DOI stays held; an unregistered resolution DOI is
+dropped without residue).

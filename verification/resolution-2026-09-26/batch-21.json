@@ -119,10 +119,14 @@
    "pages": {
     "value": "35--58",
     "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410603692&type=googlepdf",
-    "quote": "Distributed Associative Model (TODAM) 35"
+    "quote": "Distributed Associative Model (TODAM) 35",
+    "next_start": {
+     "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410603692&type=googlepdf",
+     "quote": "4. Models of Human Memory: A 30-Year Retrospective 59"
+    }
    }
   },
-  "notes": "Printed contents (T&F front-matter PDF of the Erlbaum 1999 book): chapter 3 starts at p. 35 and chapter 4 ('4. Models of Human Memory: A 30-Year Retrospective 59') at p. 59. No source prints the end page, so it is inferred as 58 (next item − 1, user rule). The e-book reissue agrees: Crossref 10.4324/9781410603692-9 gives 49-72 under a +14 front-matter offset, which is 24 pages = 35--58. The address change applies."
+  "notes": "Printed contents (T&F front-matter PDF of the Erlbaum 1999 book): chapter 3 starts at p. 35 and chapter 4 ('4. Models of Human Memory: A 30-Year Retrospective 59') at p. 59. No source prints the end page, so it is inferred as 58 (next item − 1, user rule). The e-book reissue agrees: Crossref 10.4324/9781410603692-9 gives 49-72 under a +14 front-matter offset, which is 24 pages = 35--58. The address change applies. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2)."
  },
  {
   "key": "OhrtGron99",
@@ -131,10 +135,14 @@
    "pages": {
     "value": "105--126",
     "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410603692&type=googlepdf",
-    "quote": "List-length Effect and Continuous Memory: Confounds and 105"
+    "quote": "List-length Effect and Continuous Memory: Confounds and 105",
+    "next_start": {
+     "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410603692&type=googlepdf",
+     "quote": "7. Cues and Codes in W orking Memory Tasks 127"
+    }
    }
   },
-  "notes": "Printed contents: chapter 6 starts at p. 105 and chapter 7 ('7. Cues and Codes in Working Memory Tasks 127') at p. 127. The end page is inferred as 126 (next item − 1, user rule), replacing HEAD's unconfirmed 125. The e-book reissue agrees: Crossref 10.4324/9781410603692-12 gives 119-140 under the +14 offset, 22 pages = 105--126. The title fix (singular 'effect') applies."
+  "notes": "Printed contents: chapter 6 starts at p. 105 and chapter 7 ('7. Cues and Codes in Working Memory Tasks 127') at p. 127. The end page is inferred as 126 (next item − 1, user rule), replacing HEAD's unconfirmed 125. The e-book reissue agrees: Crossref 10.4324/9781410603692-12 gives 119-140 under the +14 offset, 22 pages = 105--126. The title fix (singular 'effect') applies. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2)."
  },
  {
   "key": "Tulv72",
@@ -148,7 +156,11 @@
    "pages": {
     "value": "365--422",
     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22The%20Logic%20of%20Activation%20Functions%22&hits_per_page=50",
-    "quote": "Processing 365 M. I. JORDAN 10 The Logic of Activation Functions 423"
+    "quote": "Processing 365\\nM. I. JORDAN",
+    "next_start": {
+     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22The%20Logic%20of%20Activation%20Functions%22&hits_per_page=50",
+     "quote": "10 The Logic of Activation Functions 423"
+    }
    },
    "booktitle": {
     "value": "Parallel Distributed Processing: Explorations in the Microstructure of Cognition",
@@ -159,7 +171,7 @@
   "remove": [
    "editor"
   ],
-  "notes": "Contents of PDP vol. 1 (IA paralleldistribu00rume): '9 An Introduction to Linear Algebra in Parallel Distributed Processing 365 / M. I. JORDAN / 10 The Logic of Activation Functions 423', so 365--422 (next − 1). This confirms the author and title. LoC 85024073 gives the set's title, 'v. 1. Foundations' (Volume 1 kept), and Rumelhart, McClelland and the PDP Research Group as AUTHORS. No record prints editors, so Editor is removed (unconfirmable optional field)."
+  "notes": "Contents of PDP vol. 1 (IA paralleldistribu00rume): '9 An Introduction to Linear Algebra in Parallel Distributed Processing 365 / M. I. JORDAN / 10 The Logic of Activation Functions 423', so 365--422 (next − 1). This confirms the author and title. LoC 85024073 gives the set's title, 'v. 1. Foundations' (Volume 1 kept), and Rumelhart, McClelland and the PDP Research Group as AUTHORS. No record prints editors, so Editor is removed (unconfirmable optional field). EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2)."
  },
  {
   "key": "Wall09",
