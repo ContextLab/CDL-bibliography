@@ -279,3 +279,12 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - (default) Locators (journal/volume/pages/year) and title point to different works by the same authors: the locators win (the work actually at that location), with the title corrected to it; if the authors don't match either work, drop.
 - Open (single entry, kept as held for the user): SvenEtal24 third author printed with a family name written as initials ('Hoang NT').
 - (default) A DOI that doi.org registers and the publisher's own article page prints (citation_doi), but that Crossref's API lacks (another agency or a lapsed deposit): keep it; the publisher page stands in for the missing registry title (McCaEtal06, 10.1609/aimag.v27i4.1904).
+- (default) OCR that splits a printed number ('1 29' for 129) in a scan: treat as a scan transcription — the value may be set when the notes say "transcribed from a scan" and the context makes the reading unambiguous.
+- NOTE for final apply: ElliAshb88 — batch 18 (reconciled) keeps it because Google's full text of the book itself shows the chapter title (p. 33); batch 30 drops it on reference-list grounds. The book's own text is primary evidence: keep (batch 18 wins).
+- (default) OpenEdition-style issue designations ("2001/3, 6"): Number = the printed issue within the year (3); the running whole number is not cited.
+- (plan) Group/corporate authors mangled by the bibcheck author formatter (KingEtal11 {RNS System in Epilepsy Study Group}) and the other check_bib-held forms (two-part page ranges etc.): fix the formatter rather than using Force; do this in one formatter pass before the final apply.
+- (default) A corrected year that collides with an existing key of a different work (Buzs01→Buzs02): apply the house suffix rule to both (existing → a, new → b, by the key-order rule), as with Shim94/Shim95 (user: keys must be correct).
+- (default) Datasets: the name as registered (DataCite/catalogue), e.g. {CELEX2}.
+- (plan) Research route: a resolution title/author quote may serve as the identity quote when the researcher's identity quote has no saved body (browser/scan rule) — implement in the final route update.
+- OPEN (ask user): J Physiol "P" pages (Proceedings of the Physiological Society communications) — conference abstracts (drop) or proceedings (keep)? (BrinCrag72)
+- (default) Page numbers printed in lowercase roman (front matter, e.g. `i--xii`): as printed (roman); roman→arabic applies to volumes only. Article numbers like `24ra22` (Science Translational Medicine): as printed.

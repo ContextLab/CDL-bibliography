@@ -11,3 +11,6 @@ cdl.bib.sav.tmp
 .bibcheck/
 .venv/
 .pytest_cache/
+
+# Playwright MCP browser logs (agents run the browser from the repo root)
+.playwright-mcp/
