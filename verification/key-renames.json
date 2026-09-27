@@ -855,5 +855,250 @@
   "date": "2026-09-26",
   "reason": "wave6: suffix rule: Arch11b renamed to Arch12 (house suffix rule (helpers.check_key_suffixes) after this batch)",
   "commit": "wave6"
+ },
+ {
+  "old_key": "HartDunl11",
+  "new_key": "HartDunl12",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-11): key HartDunl12 confirmed (wave7 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "NairNeat95",
+  "new_key": "NeatNair95",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-11): key NeatNair95 confirmed (wave7 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "NormTurk18",
+  "new_key": "deBeEtal18",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-11): key deBeEtal18 confirmed (wave7 merged.json (correction; resolution apply batch-11))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "VoEtal07",
+  "new_key": "VoEtal08",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-12): key VoEtal08 confirmed (wave7 merged.json (correction; resolution apply batch-12))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "EggeEtal07",
+  "new_key": "EggeEtal06",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-12): key EggeEtal06 confirmed (wave7 merged.json (ambiguous; resolution apply batch-12))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "Seid07",
+  "new_key": "SeidShav07",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-12): key SeidShav07 confirmed (wave7 merged.json (correction; resolution apply batch-12))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "HiskEtal22",
+  "new_key": "HiskEtal23",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-12): key HiskEtal23 confirmed (wave7 merged.json (correction; resolution apply batch-12))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "DeadEtal80",
+  "new_key": "DeadEtal81",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-12): key DeadEtal81 confirmed (wave7 merged.json (correction; resolution apply batch-12))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "TulvScha91",
+  "new_key": "TulvScha90",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-12): key TulvScha90 confirmed (wave7 merged.json (correction; resolution apply batch-12))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "ThorTami20",
+  "new_key": "ThorTami21",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-12): key ThorTami21 confirmed (wave7 merged.json (correction; resolution apply batch-12))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "JollChan18",
+  "new_key": "JollChan19",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-13): key JollChan19 confirmed (wave7 merged.json (correction; resolution apply batch-13))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "GoodLee93",
+  "new_key": "GoodEtal93",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-13): key GoodEtal93 confirmed (wave7 merged.json (correction; resolution apply batch-13))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "BennBank89",
+  "new_key": "BurrEtal89",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-13): key BurrEtal89 confirmed (wave7 merged.json (correction; resolution apply batch-13))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "MuelEtal18",
+  "new_key": "MuelEtal16",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-14): key MuelEtal16 confirmed (wave7 merged.json (correction; resolution apply batch-14))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "AbdeEtal21",
+  "new_key": "AbdeEtal23",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-14): key AbdeEtal23 confirmed (wave7 merged.json (ambiguous; resolution apply batch-14))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "BaleEtal21",
+  "new_key": "BaleEtal22",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key BaleEtal22 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "ClauEtal04",
+  "new_key": "BabiEtal04",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key BabiEtal04 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "GaynEtal08",
+  "new_key": "DoylEtal08",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key DoylEtal08 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "LiEtal24a",
+  "new_key": "LiEtal24",
+  "date": "2026-09-26",
+  "reason": "wave7: suffix rule: LiEtal24b renamed to LiEtal25 (wave7 merged.json (correction))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "Lin09",
+  "new_key": "Lin91",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key Lin91 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "CaliVita05",
+  "new_key": "CiliVita07",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key CiliVita07 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "MaoEtal12",
+  "new_key": "HughEtal12",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key HughEtal12 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "GuoEtal20",
+  "new_key": "GuoEtal22",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key GuoEtal22 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "StonEtal18",
+  "new_key": "StonEtal08",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key StonEtal08 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "HansSchm10",
+  "new_key": "HansSchm11",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key HansSchm11 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "HansStau13",
+  "new_key": "HansStau14",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key HansStau14 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "DehaChan06",
+  "new_key": "DehaChan05",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key DehaChan05 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "LiEtal24b",
+  "new_key": "LiEtal25",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-16): key LiEtal25 confirmed (wave7 merged.json (correction; resolution apply batch-16))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "LiuEtal24",
+  "new_key": "Deep25",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-17): key Deep25 confirmed (wave7 merged.json (correction; resolution apply batch-17))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "VodrEtal16",
+  "new_key": "VodrEtal18",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-17): key VodrEtal18 confirmed (wave7 merged.json (correction; resolution apply batch-17))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "YangEtal24",
+  "new_key": "Qwen25",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-17): key Qwen25 confirmed (wave7 merged.json (correction; resolution apply batch-17))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "GoldEtal21",
+  "new_key": "GoldEtal22",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-17): key GoldEtal22 confirmed (wave7 merged.json (correction; resolution apply batch-17))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "TsitEtal19",
+  "new_key": "TsitEtal20",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-17): key TsitEtal20 confirmed (wave7 merged.json (correction; resolution apply batch-17))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "PresEtal93",
+  "new_key": "PresEtal92",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-17): key PresEtal92 confirmed (wave7 merged.json (ambiguous; resolution apply batch-17))",
+  "commit": "wave7"
+ },
+ {
+  "old_key": "TuftGrav83",
+  "new_key": "Tuft83",
+  "date": "2026-09-26",
+  "reason": "wave7: key does not follow the corrected metadata; resolution (batch-17): key Tuft83 confirmed (wave7 merged.json (correction; resolution apply batch-17))",
+  "commit": "wave7"
  }
 ]

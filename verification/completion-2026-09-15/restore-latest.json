@@ -1,15 +1,15 @@
 {
-  "restored": 6398,
+  "restored": 6395,
   "statuses": {
-    "metadata_verified": 4950,
-    "needs_review": 1417,
+    "metadata_verified": 5084,
+    "needs_review": 1280,
     "human_verified": 31
   },
   "repeat_imports": 0,
-  "original_keys_preserved": 6398,
+  "original_keys_preserved": 6395,
   "formatted_staging_matches_current": true,
-  "source_notices": 133,
+  "source_notices": 138,
   "source_author_suffixes": 51,
-  "source_article_locators": 331,
+  "source_article_locators": 341,
   "sqlite": "ok"
 }

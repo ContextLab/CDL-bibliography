@@ -256,7 +256,52 @@
     "LaVoLigh92": "LaVoLigh94",
     "Arch11a": "Arch11"
    }
+  },
+  {
+   "batch": "wave7",
+   "removed": [
+    "Kele99",
+    "MannEtal97",
+    "PailEtal00"
+   ],
+   "renames": {
+    "HartDunl11": "HartDunl12",
+    "NairNeat95": "NeatNair95",
+    "NormTurk18": "deBeEtal18",
+    "VoEtal07": "VoEtal08",
+    "EggeEtal07": "EggeEtal06",
+    "Seid07": "SeidShav07",
+    "HiskEtal22": "HiskEtal23",
+    "DeadEtal80": "DeadEtal81",
+    "TulvScha91": "TulvScha90",
+    "ThorTami20": "ThorTami21",
+    "JollChan18": "JollChan19",
+    "GoodLee93": "GoodEtal93",
+    "BennBank89": "BurrEtal89",
+    "MuelEtal18": "MuelEtal16",
+    "AbdeEtal21": "AbdeEtal23",
+    "BaleEtal21": "BaleEtal22",
+    "ClauEtal04": "BabiEtal04",
+    "GaynEtal08": "DoylEtal08",
+    "LiEtal24a": "LiEtal24",
+    "Lin09": "Lin91",
+    "CaliVita05": "CiliVita07",
+    "MaoEtal12": "HughEtal12",
+    "GuoEtal20": "GuoEtal22",
+    "StonEtal18": "StonEtal08",
+    "HansSchm10": "HansSchm11",
+    "HansStau13": "HansStau14",
+    "DehaChan06": "DehaChan05",
+    "LiEtal24b": "LiEtal25",
+    "LiuEtal24": "Deep25",
+    "VodrEtal16": "VodrEtal18",
+    "YangEtal24": "Qwen25",
+    "GoldEtal21": "GoldEtal22",
+    "TsitEtal19": "TsitEtal20",
+    "PresEtal93": "PresEtal92",
+    "TuftGrav83": "Tuft83"
+   }
   }
  ],
- "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave6-staged.bib"
+ "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave7-staged.bib"
 }

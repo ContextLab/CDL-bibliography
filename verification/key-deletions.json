@@ -588,5 +588,26 @@
   "decision_source": "verification/resolution-2026-09-26/batch-06.json (drop; post-check research-2026-09-25/wave3/merged.json): The cited journal is misspelled ('Investigatie Opthalmology') and the page 'S1679' is a supplement page; the reviewer noted the 1995 ARVO abstract book is not online. No source confirms any field.",
   "date": "2026-09-26",
   "batch": "wave3"
+ },
+ {
+  "key": "PailEtal00",
+  "reason": "no verifiable record: rule 1 overrides the earlier user keep (round 2); no Crossref/OpenAlex/Wiley record of Psychophysiology 37:S76 (batch 12 search), no index record found",
+  "decision_source": "verification/resolution-2026-09-26/batch-12.json (drop; post-check research-2026-09-25/wave7/merged.json): The user ruled it a real article (cross-wave a-PailEtal00: keep). No record found: Crossref (Psychophysiology ISSN, 2000), OpenAlex, and the Wiley 37(S1) TOC (403). WebSearch budget is exhausted. HEAD is left as is, pending the rule question. RECONCILED 2026-09-26: Round-2 rule: no verifiable record -> drop even if earlier marked a real article.",
+  "date": "2026-09-26",
+  "batch": "wave7"
+ },
+ {
+  "key": "MannEtal97",
+  "reason": "no verifiable record: rule 1 overrides the earlier user keep (round 2); Sleep Research 26 is indexed by no reachable source (batch 12 search)",
+  "decision_source": "verification/resolution-2026-09-26/batch-12.json (drop; post-check research-2026-09-25/wave7/merged.json): The user ruled it a real article (cross-wave a-MannEtal97: keep). Sleep Research 26 (1997) is the APSS printed volume, which PubMed, Crossref and OpenAlex do not index; no record was found and WebSearch is exhausted. HEAD is left as is, pending the rule question. RECONCILED 2026-09-26: Round-2 rule: no verifiable record -> drop even if earlier marked a real article.",
+  "date": "2026-09-26",
+  "batch": "wave7"
+ },
+ {
+  "key": "Kele99",
+  "reason": "no evidence found after: LoC SRU, Charles University DSpace (Kelemen appears only as a supervisor), CKIS catalogue, Google Scholar in a browser (only Kelemen et al. 2005 Hippocampus, a different work), research-wave searches",
+  "decision_source": "verification/resolution-2026-09-26/batch-17.json (drop; post-check research-2026-09-25/wave7/merged.json): 1999 Charles University diploma thesis has no catalogue or index record; rule 1: drop.",
+  "date": "2026-09-26",
+  "batch": "wave7"
  }
 ]
