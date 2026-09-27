@@ -247,3 +247,22 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - Society proceedings: the printed year of the bound part (print-year rule).
 - Cited reprint not found but the original is registered: replace with the original (new key).
 - Record title with an evident misprint ('unhibited'): correct spelling, with evidence (same principle as author names).
+- (default) NeurIPS/NIPS pages: the NeurIPS proceedings site (official publisher) beats Curran's reprint TOC.
+- (default) Bilingual journal titles: the full title as printed on the journal.
+- (default) A record giving only a first page is incomplete, not conflicting: keep the full range another official record (e.g. PubMed) prints.
+- (default) Conference proceedings (NeurIPS/NIPS etc.): the conference year the proceedings print (NIPS 18 = 2005), not the bound volume's later print year (the existing post-check rule).
+- (default) Organizational byline with individual contributors in metadata (DeepSeek-AI + 199 names): Author = the byline as printed on the paper (the organization alone), key from it (existing rule: corporate authors as printed).
+- (default) Preprint vs a later journal article by the same authors with a different title and no registered relation: replace with the article only when its abstract/content confirms it is the same work (quote the evidence); otherwise keep the preprint (latest version).
+- (default) A cited test/manual edition with no record: cite the original article that introduced the test (Wech45 precedent); if none, the PsycTESTS record.
+- (default) Chapter pages where an official contents list confirms the start page but nothing shows the end page or the next chapter's start: keep the cited range if its start page matches (the field is partly confirmed); remove pages only when no part is confirmed. (Revisit batch-19 removals, e.g. RescWagn72, in reconciliation.)
+- (default) Proceedings pages printed with a volume-numeral prefix (ICASSP 'I-185-I-188'): drop the prefix into Volume (Volume 1, pages 185--188).
+- (default) Unconfirmable chapter of a confirmed single-author book: cite the whole book (remove chapter and pages), consistent with removing unconfirmable fields.
+- (default) A title shared by several reports of one series (DAKOTA user's/reference/developers manuals) with nothing to tell them apart: cite the user's manual.
+- (default) Python PEPs: @misc with howpublished = \url{https://peps.python.org/pep-NNNN/}, no institution (never printed).
+- (default) Descriptive keys that never followed Author+YY (ChatGPT): rename to the rule key when corrected metadata applies ("keys must be correct", user).
+- (default) Software with no registered release (GitHub-only): year = earliest date the project itself prints (first release/tag or repository creation), title/authors as in that first release; remove what no source prints.
+- (default) Internal report known only from reference lists but reprinted in a registered book: replace with the registered reprint (verifiable), like published-replaces-preprint.
+- NOTE for reconciliation: NeurIPS year must be consistent across batches (conference year default): SanbGrif08 (batch 01) vs RaoHowa07 (batch 24).
+- (default) A work known only from reference lists of other publications (no catalogue, repository or abstracting-index record of its own): not a verifiable record → drop (WallEtal57). Abstracting-index records still count (user round 2).
+- (default) Encyclopedia article with a print edition (no DOI) and a later online edition (DOI): cite the print edition as cited (print year wins); no DOI.
+- NOTE for reconciliation: batch 20 keeps McGi63, Crai77 on reference-list evidence only → drop under the reference-list default.

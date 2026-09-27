@@ -1,0 +1,263 @@
+[
+ {
+  "key": "ChanEtal09a",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "288--296",
+    "url": "https://web.archive.org/web/20140902235245/http://papers.nips.cc/paper/3700-reading-tea-leaves-how-humans-interpret-topic-models",
+    "quote": "<meta name=\"citation_firstpage\" content=\"288\"> <meta name=\"citation_lastpage\" content=\"296\">"
+   }
+  },
+  "notes": "Pages 288--296 (unchanged) printed by the NeurIPS Foundation's archived proceedings page (same title); Curran reprint TOC agrees on start page 288. Post-check changes incl. journal removal apply.",
+  "questions": [
+   "When the NeurIPS Foundation's own proceedings pages (archived papers.nips.cc, citation_firstpage/lastpage) and Curran's 'printed from e-media' reprint TOC give different pagination (NIPS 21: 1033 vs 1036, 1081 vs 1084; NeurIPS 32: 8024 vs 7994), which pagination is 'as printed': the NeurIPS Foundation's (used here) or Curran's reprint?"
+  ]
+ },
+ {
+  "key": "SochEtal09",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "1714--1722",
+    "url": "https://web.archive.org/web/20140902235356/http://papers.nips.cc/paper/3720-a-bayesian-analysis-of-dynamics-in-free-recall",
+    "quote": "<meta name=\"citation_firstpage\" content=\"1714\"> <meta name=\"citation_lastpage\" content=\"1722\">"
+   }
+  },
+  "notes": "Pages 1714--1722 from the archived NeurIPS proceedings page (title matches); Curran reprint TOC also starts at 1714."
+ },
+ {
+  "key": "KrizEtal12",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "1097--1105",
+    "url": "https://web.archive.org/web/20140903001113/http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks",
+    "quote": "<meta name=\"citation_firstpage\" content=\"1097\"> <meta name=\"citation_lastpage\" content=\"1105\">"
+   }
+  },
+  "notes": "HEAD pages 1097--1105 confirmed by the archived NeurIPS proceedings page; Curran reprint TOC starts at 1097."
+ },
+ {
+  "key": "KiroEtal15",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "3294--3302",
+    "url": "https://web.archive.org/web/20160331222938/http://papers.nips.cc/paper/5950-skip-thought-vectors",
+    "quote": "<meta name=\"citation_firstpage\" content=\"3294\"> <meta name=\"citation_lastpage\" content=\"3302\">"
+   }
+  },
+  "notes": "HEAD pages 3294--3302 confirmed by the archived NeurIPS proceedings page; Curran reprint TOC starts at 3294."
+ },
+ {
+  "key": "PaszEtal19",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "8024--8035",
+    "url": "https://web.archive.org/web/20191208162228/http://papers.nips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library",
+    "quote": "<meta name=\"citation_firstpage\" content=\"8024\"> <meta name=\"citation_lastpage\" content=\"8035\">"
+   }
+  },
+  "notes": "HEAD 8026--8037 appears in no source; NeurIPS Foundation's archived page prints 8024--8035 (Curran reprint TOC starts at 7994, see question). No author change is in final_changes, so the post-check's K{\\\"o}pf initials bug does not apply.",
+  "questions": [
+   "When the NeurIPS Foundation's own proceedings pages (archived papers.nips.cc, citation_firstpage/lastpage) and Curran's 'printed from e-media' reprint TOC give different pagination (NIPS 21: 1033 vs 1036, 1081 vs 1084; NeurIPS 32: 8024 vs 7994), which pagination is 'as printed': the NeurIPS Foundation's (used here) or Curran's reprint?"
+  ]
+ },
+ {
+  "key": "MairEtal09b",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "1033--1040",
+    "url": "https://web.archive.org/web/20140903000252/http://papers.nips.cc/paper/3448-supervised-dictionary-learning",
+    "quote": "<meta name=\"citation_firstpage\" content=\"1033\"> <meta name=\"citation_lastpage\" content=\"1040\">"
+   },
+   "year": {
+    "value": "2009",
+    "url": "https://web.archive.org/web/20140903000252/http://papers.nips.cc/paper/3448-supervised-dictionary-learning",
+    "quote": "<meta name=\"citation_publication_date\" content=\"2009\">"
+   }
+  },
+  "notes": "HEAD pages 1033--1040 are printed by the NeurIPS Foundation's archived page; the unverified suggestion 1036--1043 was derived from Curran's reprint TOC (withdrawn). Year 2009 per the same page.",
+  "questions": [
+   "When the NeurIPS Foundation's own proceedings pages (archived papers.nips.cc, citation_firstpage/lastpage) and Curran's 'printed from e-media' reprint TOC give different pagination (NIPS 21: 1033 vs 1036, 1081 vs 1084; NeurIPS 32: 8024 vs 7994), which pagination is 'as printed': the NeurIPS Foundation's (used here) or Curran's reprint?"
+  ]
+ },
+ {
+  "key": "MnihHint09",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "1081--1088",
+    "url": "https://web.archive.org/web/20140903000116/http://papers.nips.cc/paper/3583-a-scalable-hierarchical-distributed-language-model",
+    "quote": "<meta name=\"citation_firstpage\" content=\"1081\"> <meta name=\"citation_lastpage\" content=\"1088\">"
+   },
+   "year": {
+    "value": "2009",
+    "url": "https://web.archive.org/web/20140903000116/http://papers.nips.cc/paper/3583-a-scalable-hierarchical-distributed-language-model",
+    "quote": "<meta name=\"citation_publication_date\" content=\"2009\">"
+   }
+  },
+  "notes": "Pages 1081--1088 from the NeurIPS Foundation's archived page (same pagination family as MairEtal09b's HEAD value); suggestion 1084--1091 (Curran reprint, derived end) not used.",
+  "questions": [
+   "When the NeurIPS Foundation's own proceedings pages (archived papers.nips.cc, citation_firstpage/lastpage) and Curran's 'printed from e-media' reprint TOC give different pagination (NIPS 21: 1033 vs 1036, 1081 vs 1084; NeurIPS 32: 8024 vs 7994), which pagination is 'as printed': the NeurIPS Foundation's (used here) or Curran's reprint?"
+  ]
+ },
+ {
+  "key": "SanbGrif08",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "2008",
+    "url": "https://web.archive.org/web/20140903001612/http://papers.nips.cc/paper/3214-markov-chain-monte-carlo-with-people",
+    "quote": "<meta name=\"citation_publication_date\" content=\"2008\">"
+   },
+   "pages": {
+    "value": "1265--1272",
+    "url": "https://web.archive.org/web/20140903001612/http://papers.nips.cc/paper/3214-markov-chain-monte-carlo-with-people",
+    "quote": "<meta name=\"citation_firstpage\" content=\"1265\"> <meta name=\"citation_lastpage\" content=\"1272\">"
+   }
+  },
+  "notes": "Year 2008 (unchanged) and pages 1265--1272 printed by the NeurIPS Foundation's archived proceedings page for this title; key unchanged."
+ },
+ {
+  "key": "McGe36",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "221--245",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1415745",
+    "quote": "EP - 245 IS - 2 PB - University of Illinois Press PY - 1936 SN - 00029556 SP - 221"
+   }
+  },
+  "notes": "Crossref deposits only the first page; JSTOR's RIS for the same DOI prints SP 221 / EP 245, so HEAD 221--245 stands."
+ },
+ {
+  "key": "Spea04",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "201--292",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1412107",
+    "quote": "EP - 292 IS - 2 PB - University of Illinois Press PY - 1904 SN - 00029556 SP - 201"
+   }
+  },
+  "notes": "Crossref deposits only the first page; JSTOR's RIS prints SP 201 / EP 292, so HEAD 201--292 stands."
+ },
+ {
+  "key": "CaoWors99",
+  "decision": "apply",
+  "set": {
+   "doi": {
+    "value": "10.1214/aoap/1029962864",
+    "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
+    "quote": "<meta name=\"citation_doi\" content=\"10.1214/aoap/1029962864\"  />"
+   },
+   "title": {
+    "value": "The geometry of correlation fields with an application to functional connectivity of the brain",
+    "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
+    "quote": "content=\"The geometry of correlation fields with an application to functional connectivity of the brain\""
+   },
+   "pages": {
+    "value": "1021--1057",
+    "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
+    "quote": "<meta name=\"citation_firstpage\" content=\"1021\"  /> <meta name=\"citation_lastpage\" content=\"1057\"  />"
+   }
+  },
+  "notes": "Project Euclid now serves the article page to a browser UA: DOI, title without the comma, 9(4), 1021-1057, 1999/11 confirmed. Author kept as 'K J Worsley' (Euclid prints 'Keith Worsley'; not dropping an initial on an omission)."
+ },
+ {
+  "key": "Schw78",
+  "decision": "apply",
+  "set": {
+   "doi": {
+    "value": "10.1214/aos/1176344136",
+    "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+    "quote": "<meta name=\"citation_doi\" content=\"10.1214/aos/1176344136\"  />"
+   },
+   "volume": {
+    "value": "6",
+    "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+    "quote": "<meta name=\"citation_volume\" content=\"6\"  />"
+   },
+   "number": {
+    "value": "2",
+    "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+    "quote": "<meta name=\"citation_issue\" content=\"2\"  />"
+   },
+   "pages": {
+    "value": "461--464",
+    "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+    "quote": "<meta name=\"citation_firstpage\" content=\"461\"  /> <meta name=\"citation_lastpage\" content=\"464\"  />"
+   }
+  },
+  "notes": "Project Euclid article page (browser UA) confirms Gideon Schwarz, Annals of Statistics 6(2), 461-464, 1978/03; volume '6 (2)' split into volume 6, number 2; DOI added."
+ },
+ {
+  "key": "Shim95",
+  "decision": "apply",
+  "notes": "No flags; PubMed 8595022 prints 'Memory and the prefrontal cortex.' (Crossref's trailing 'a' is a footnote marker). Apply post-check changes incl. the user-decided key Shim95 -> Shim95a."
+ },
+ {
+  "key": "HealMcNa96",
+  "decision": "apply",
+  "notes": "PubMed 15012480 prints 'Verbal learning and memory: does the modal model still work?' (Annu Rev Psychol 47:143-72); house colon form has no space before ':' so the title change and the DOI apply."
+ },
+ {
+  "key": "JoniEtal07",
+  "decision": "apply",
+  "new_key": "JoniEtal08",
+  "notes": "Crossref/PubMed: Annu Rev Psychol 59:193-224, published-print 2008; year 2008 drives key JoniEtal08 (absent in HEAD)."
+ },
+ {
+  "key": "KumaEtal21",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "2021",
+    "url": "https://apertureneuro.org/article/77474-brainiak-the-brain-imaging-analysis-kit",
+    "quote": "<meta name=\"citation_publication_date\" content=\"2021/12/15\">"
+   }
+  },
+  "notes": "Aperture Neuro is online-only; the publisher page prints Vol. 1, 2021, published 2021/12/15. Crossref's published-print 2022 (with volume '2021') is a deposit artefact, so year stays 2021 and the key is unchanged."
+ },
+ {
+  "key": "GranWals16",
+  "decision": "apply",
+  "new_key": "BusbWals16",
+  "notes": "Post-check author change (Crossref family 'Busby Grant') applies; corroborated by the author's ORCID record https://pub.orcid.org/v3.0/0000-0001-7330-0213/person: '<personal-details:family-name>Busby Grant</personal-details:family-name>', whose works list includes 10.1002/acp.3215. Key BusbWals16 (absent in HEAD)."
+ },
+ {
+  "key": "RendCrai00",
+  "decision": "apply",
+  "notes": "DOI and number 7 apply. Pages S43--S62 (HEAD) could not be confirmed: Crossref has no page data, Wiley (live and Wayback) returns 403, not in PubMed/Europe PMC; HEAD pages left unchanged.",
+  "questions": [
+   "An optional field already in HEAD (pages) that no fetchable official record prints (Crossref has no pages, publisher 403): keep the HEAD value or remove it?"
+  ]
+ },
+ {
+  "key": "HillEtal87",
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Architecture and Behaviour",
+    "url": "https://comportements.ch/en/journal-architecture-behaviour-2/",
+    "quote": "Architecture & Behaviour is a scientific quaterly"
+   }
+  },
+  "notes": "Editor's archive (comportements.ch) and the article PDF header ('Arch. & Comport./Arch. Behav., Vol. 3, n. 3, p. 233-250 (1987)') confirm the article; journal is the bilingual 'Architecture & Comportement / Architecture & Behaviour', cited by its English title with British spelling.",
+  "questions": [
+   "Bilingual journal titles ('Architecture & Comportement / Architecture & Behaviour'): cite the full bilingual title or only the part in the article's language?"
+  ]
+ },
+ {
+  "key": "JaspPenf49",
+  "decision": "apply",
+  "notes": "DOI and journal name apply. Number left absent: Crossref deposits issue '1-2' while Springer's article page prints citation_issue '1' (Issue Date January 1949, archived 2022).",
+  "questions": [
+   "Crossref issue ('1-2') and the publisher's article page issue ('1') disagree and no printed issue cover is fetchable: which wins, or should Number be omitted?"
+  ]
+ }
+]

@@ -1,0 +1,437 @@
+[
+ {
+  "key": "LiuEtal24",
+  "decision": "apply",
+  "new_key": "DeepEtal25",
+  "set": {
+   "author": {
+    "value": "{DeepSeek-AI} and A Liu and B Feng and B Xue and B Wang and B Wu and C Lu and C Zhao and C Deng and C Zhang and C Ruan and D Dai and D Guo and D Yang and D Chen and D Ji and E Li and F Lin and F Dai and F Luo and G Hao and G Chen and G Li and H Zhang and H Bao and H Xu and H Wang and H Zhang and H Ding and H Xin and H Gao and H Li and H Qu and J L Cai and J Liang and J Guo and J Ni and J Li and J Wang and J Chen and J Chen and J Yuan and J Qiu and J Li and J Song and K Dong and K Hu and K Gao and K Guan and K Huang and K Yu and L Wang and L Zhang and L Xu and L Xia and L Zhao and L Wang and L Zhang and M Li and M Wang and M Zhang and M Zhang and M Tang and M Li and N Tian and P Huang and P Wang and P Zhang and Q Wang and Q Zhu and Q Chen and Q Du and R J Chen and R L Jin and R Ge and R Zhang and R Pan and R Wang and R Xu and R Zhang and R Chen and S S Li and S Lu and S Zhou and S Chen and S Wu and S Ye and S Ye and S Ma and S Wang and S Zhou and S Yu and S Zhou and S Pan and T Wang and T Yun and T Pei and T Sun and W L Xiao and W Zeng and W Zhao and W An and W Liu and W Liang and W Gao and W Yu and W Zhang and X Q Li and X Jin and X Wang and X Bi and X Liu and X Wang and X Shen and X Chen and X Zhang and X Chen and X Nie and X Sun and X Wang and X Cheng and X Liu and X Xie and X Liu and X Yu and X Song and X Shan and X Zhou and X Yang and X Li and X Su and X Lin and Y K Li and Y Q Wang and Y X Wei and Y X Zhu and Y Zhang and Y Xu and Y Xu and Y Huang and Y Li and Y Zhao and Y Sun and Y Li and Y Wang and Y Yu and Y Zheng and Y Zhang and Y Shi and Y Xiong and Y He and Y Tang and Y Piao and Y Wang and Y Tan and Y Ma and Y Liu and Y Guo and Y Wu and Y Ou and Y Zhu and Y Wang and Y Gong and Y Zou and Y He and Y Zha and Y Xiong and Y Ma and Y Yan and Y Luo and Y You and Y Liu and Y Zhou and Z F Wu and Z Z Ren and Z Ren and Z Sha and Z Fu and Z Xu and Z Huang and Z Zhang and Z Xie and Z Zhang and Z Hao and Z Gou and Z Ma and Z Yan and Z Shao and Z Xu and Z Wu and Z Zhang and Z Li and Z Gu and Z Zhu and Z Liu and Z Li and Z Xie and Z Song and Z Gao and Z Pan",
+    "url": "https://api.datacite.org/dois/10.48550/arxiv.2412.19437",
+    "quote": "\"creators\":[{\"name\":\"DeepSeek-AI\",\"nameType\":\"Organizational\""
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Year 2025 = latest arXiv version (v2, 18 Feb 2025; DataCite 2024 is v1). The cited 14 names + 'others' truncate the registered list: DataCite/arXiv print the organizational author DeepSeek-AI first, then 199 people (arXiv API, 200 <name> entries; two names repeat as printed). Full list per the 'and others' default; authors2key gives DeepEtal25 (free in HEAD), superseding the post-check's LiuEtal25.",
+  "questions": [
+   "When an arXiv/DataCite record lists an organizational author first and then the individual contributors (DeepSeek-AI, Aixin Liu, ... 199 people; PDF byline 'DeepSeek-AI' only), should Author be the organization alone, the organization plus all individuals (key from the organization, e.g. DeepEtal25), or the individuals only (key LiuEtal25)? YangEtal25b (Qwen3) uses individuals only because arXiv prints 'Qwen' as a group label."
+  ]
+ },
+ {
+  "key": "VodrEtal16",
+  "decision": "apply",
+  "new_key": "VodrEtal18",
+  "entrytype": "article",
+  "set": {
+   "author": {
+    "value": "K Vodrahalli and P-H Chen and Y Liang and C Baldassano and J Chen and E Yong and C Honey and U Hasson and P Ramadge and K A Norman and S Arora",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "\"given\":\"Kenneth A.\",\"family\":\"Norman\""
+   },
+   "title": {
+    "value": "Mapping between {fMRI} responses to movies and their natural language annotations",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "Mapping between fMRI responses to movies and their natural language annotations"
+   },
+   "journal": {
+    "value": "{NeuroImage}",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "\"container-title\":[\"NeuroImage\"]"
+   },
+   "volume": {
+    "value": "180",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "\"volume\":\"180\""
+   },
+   "pages": {
+    "value": "223--231",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "\"page\":\"223-231\""
+   },
+   "year": {
+    "value": "2018",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "\"published-print\":{\"date-parts\":[[2018,10]]}"
+   },
+   "doi": {
+    "value": "10.1016/j.neuroimage.2017.06.042",
+    "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+    "quote": "10.1016\\/j.neuroimage.2017.06.042"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Preprint published: NeuroImage 180:223-231 (print Oct 2018), same title and the same 11 authors as arXiv v3, whose comment reads 'in submission to NeuroImage'. Replaced by the published version per the preprint rule (supersedes the post-check's arXiv doi/volume/2017). VodrEtal18 free in HEAD; junk Pages URL replaced.",
+  "questions": []
+ },
+ {
+  "key": "YangEtal24",
+  "decision": "apply",
+  "new_key": "YangEtal25c",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "Latest arXiv version v2 dated 3 Jan 2025 (arXiv API <updated>2025-01-03T02:18:21Z</updated>); DataCite 2024 is v1, so 2025 stands. arXiv/DataCite 'Qwen' + ':' are a group label, so the 42 individuals are used as in YangEtal25b. YangEtal25a/b are different works; YangEtal25c free.",
+  "questions": []
+ },
+ {
+  "key": "Plat99",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "1999",
+    "url": "http://lx2.loc.gov:210/lcdb?version=1.1&operation=searchRetrieve&query=bath.lccn=98040302&maximumRecords=1&recordSchema=marcxml",
+    "quote": "c1999."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Chapter version accepted (book, editors, MIT Press all match). Crossref's 1998-12 is an online/issue date; the printed book is c1999 (LoC 98040302), so the print-year rule keeps 1999 and key Plat99. Chapter pages unconfirmed and not in the entry.",
+  "questions": []
+ },
+ {
+  "key": "JainHuth18",
+  "decision": "apply",
+  "entrytype": "inproceedings",
+  "set": {
+   "booktitle": {
+    "value": "Advances in Neural Information Processing Systems",
+    "url": "https://papers.nips.cc/paper_files/paper/2018/hash/f471223d1a1614b58a7dc45c9d01df19-Abstract.html",
+    "quote": "citation_journal_title\" content=\"Advances in Neural Information Processing Systems"
+   },
+   "volume": {
+    "value": "31",
+    "url": "https://papers.nips.cc/paper_files/paper/2018/hash/f471223d1a1614b58a7dc45c9d01df19-Abstract.html",
+    "quote": "citation_volume\" content=\"31"
+   },
+   "year": {
+    "value": "2018",
+    "url": "https://papers.nips.cc/paper_files/paper/2018/hash/f471223d1a1614b58a7dc45c9d01df19-Abstract.html",
+    "quote": "citation_publication_date\" content=\"2018"
+   },
+   "title": {
+    "value": "Incorporating context into language encoding models for {fMRI}",
+    "url": "https://papers.nips.cc/paper_files/paper/2018/hash/f471223d1a1614b58a7dc45c9d01df19-Abstract.html",
+    "quote": "Incorporating Context into Language Encoding Models for fMRI"
+   }
+  },
+  "withdraw": [
+   "doi"
+  ],
+  "remove": [
+   "journal"
+  ],
+  "notes": "bioRxiv 327601 was published in NeurIPS 2018 (vol 31) with the same title and authors; replaced by the published version per the preprint rule (bioRxiv DOI withdrawn; NeurIPS 2018 has no DOI; NeurIPS record has no pages). A G Huth kept (bioRxiv byline 'Alexander G Huth', most-complete-name rule; NeurIPS prints 'Huth, Alexander'). Key unchanged.",
+  "questions": []
+ },
+ {
+  "key": "GoldEtal21",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "2021",
+    "url": "https://www.biorxiv.org/content/10.1101/2020.12.02.403477v4",
+    "quote": "Posted September 30, 2021."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Latest version v4 posted 30 Sep 2021 (read in a browser; plain fetches get 429); Crossref's 2020 is v1's posted date, so 2021 stands. No 'Now published' notice; bioRxiv pubs API: 'no articles found for published version'. Nat Neurosci 25:369-380 (2022) has the same 32 authors but a different title and no registry relation, so not substituted.",
+  "questions": [
+   "A preprint whose latest version has the same full author list as a later journal article with a different title, but no bioRxiv/Crossref relation (GoldEtal21 'Thinking ahead' vs Nat Neurosci 2022 'Shared computational principles...'): treat the article as the published version and replace, or keep the preprint?"
+  ]
+ },
+ {
+  "key": "TsitEtal19",
+  "decision": "apply",
+  "new_key": "TsitEtal20",
+  "entrytype": "article",
+  "set": {
+   "title": {
+    "value": "Single-neuron representations of spatial targets in humans",
+    "url": "https://api.crossref.org/works/10.1016/j.cub.2019.11.048",
+    "quote": "Single-Neuron Representations of Spatial Targets in Humans"
+   },
+   "journal": {
+    "value": "Current Biology",
+    "url": "https://api.crossref.org/works/10.1016/j.cub.2019.11.048",
+    "quote": "\"container-title\":[\"Current Biology\"]"
+   },
+   "volume": {
+    "value": "30",
+    "url": "https://api.crossref.org/works/10.1016/j.cub.2019.11.048",
+    "quote": "\"volume\":\"30\""
+   },
+   "number": {
+    "value": "2",
+    "url": "https://api.crossref.org/works/10.1016/j.cub.2019.11.048",
+    "quote": "\"issue\":\"2\""
+   },
+   "pages": {
+    "value": "245--253.e4",
+    "url": "https://api.crossref.org/works/10.1016/j.cub.2019.11.048",
+    "quote": "\"page\":\"245-253.e4\""
+   },
+   "year": {
+    "value": "2020",
+    "url": "https://api.crossref.org/works/10.1016/j.cub.2019.11.048",
+    "quote": "\"published-print\":{\"date-parts\":[[2020,1]]}"
+   },
+   "doi": {
+    "value": "10.1016/j.cub.2019.11.048",
+    "url": "https://api.crossref.org/works/10.1016/j.cub.2019.11.048",
+    "quote": "\"has-preprint\":[{\"id-type\":\"doi\",\"id\":\"10.1101\\/523753\""
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref: Current Biology 10.1016/j.cub.2019.11.048 has-preprint 10.1101/523753; same 13 authors as HEAD. Replaced by the published version (preprint rule); supersedes the post-check's bioRxiv doi. TsitEtal20 free in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "DaviHink97",
+  "decision": "apply",
+  "set": {
+   "series": {
+    "value": "Cambridge Series in Statistical and Probabilistic Mathematics",
+    "url": "https://www.cambridge.org/core/books/bootstrap-methods-and-their-application/ED2FD043579F27952363566DC09CBD6A",
+    "quote": "Cambridge Series in Statistical and Probabilistic Mathematics"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Cambridge Core book page (fetched with a browser UA, HTTP 200) lists the series (number 1). Series confirmed as in HEAD; post-check DOI lower-casing stands.",
+  "questions": []
+ },
+ {
+  "key": "PresEtal93",
+  "decision": "apply",
+  "new_key": "PresEtal92",
+  "set": {
+   "year": {
+    "value": "1992",
+    "url": "http://s3.amazonaws.com/nrbook.com/book_C210_pdf/chap00c.pdf",
+    "quote": "Second Edition originally published 1992."
+   },
+   "edition": {
+    "value": "2\\textsuperscript{nd}",
+    "url": "http://s3.amazonaws.com/nrbook.com/book_C210_pdf/chap00c.pdf",
+    "quote": "Second Edition"
+   },
+   "title": {
+    "value": "Numerical recipes in {C}: the art of scientific computing",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D94105607",
+    "quote": "<subTitle>the art of scientific computing</subTitle>"
+   },
+   "address": {
+    "value": "Cambridge",
+    "url": "http://s3.amazonaws.com/nrbook.com/book_C210_pdf/chap00c.pdf",
+    "quote": "CAMBRIDGE UNIVERSITY PRESS"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "The authors' own front-matter PDF (numerical.recipes obsolete-editions reader) prints the title page 'Numerical Recipes in C / The Art of Scientific Computing / Second Edition', authors Press, Teukolsky, Vetterling, Flannery (HEAD order), 'Cambridge', and 'Second Edition originally published 1992. Reprinted with corrections, 1993, ...'. 1993 is a corrected reprint, so the edition year 1992 is cited (as BendPier01). Address: title page prints Cambridge with no country (country rule). PresEtal92 free in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "Kele99",
+  "decision": "drop",
+  "drop_reason": "no evidence found after: LoC SRU, Charles University DSpace (Kelemen appears only as a supervisor), CKIS catalogue, Google Scholar in a browser (only Kelemen et al. 2005 Hippocampus, a different work), research-wave searches",
+  "notes": "1999 Charles University diploma thesis has no catalogue or index record; rule 1: drop.",
+  "questions": [],
+  "withdraw": [],
+  "remove": [],
+  "set": {}
+ },
+ {
+  "key": "TuftGrav83",
+  "decision": "apply",
+  "new_key": "Tuft83",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "LoC 83156861: sole author Edward R. Tufte, Graphics Press, c1983; spurious co-author, volume and number removed by the post-check. Tuft83 free in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "SaltEtal04",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "2004",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.lccn%3D2003021209",
+    "quote": "c2004."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "LoC 2003021209 prints 'Hoboken, NJ : Wiley, c2004.'; Crossref's 2002 published-print is not the printed date of this 2004 book (ISBN 9780470870938). Year and key stay; post-check publisher/address/DOI stand.",
+  "questions": []
+ },
+ {
+  "key": "MillEtal60",
+  "decision": "apply",
+  "set": {
+   "publisher": {
+    "value": "Holt, Rinehart, and Winston",
+    "url": "https://archive.org/download/plansstructureof00mill/plansstructureof00mill_djvu.txt",
+    "quote": "Copyright © 1960 by Holt, Rinehart and Winston, Inc."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Internet Archive scan (Univ. of Florida copy) title page: 'HOLT, RINEHART AND WINSTON, INC.' and 'Copyright © 1960 by Holt, Rinehart and Winston, Inc.'; HEAD publisher confirmed (house comma form kept; Crossref's 'Henry Holt and Co' is the predecessor firm name). Post-check DOI stands.",
+  "questions": []
+ },
+ {
+  "key": "HawkBlak05",
+  "decision": "apply",
+  "new_key": "HawkBlak04",
+  "set": {
+   "year": {
+    "value": "2004",
+    "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2004051640&maximumRecords=1&recordSchema=mods",
+    "quote": "<dateIssued>2004"
+   },
+   "publisher": {
+    "value": "Times Books",
+    "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2004051640&maximumRecords=1&recordSchema=mods",
+    "quote": "<namePart>Times Books"
+   },
+   "address": {
+    "value": "New York, {NY}",
+    "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=2004051640&maximumRecords=1&recordSchema=mods",
+    "quote": "<placeTerm type=\"text\">New York"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "No record of a 2005 St. Martin's Griffin issue (LoC, Open Library, Internet Archive: the 2005 paperback ISBN 0805078533 is 'New York : Henry Holt and Co.'); Macmillan page 403. Cited printing not found, original registered -> cite the 1st ed. (Times Books, New York, 2004; LoC 2004051640 'Jeff Hawkins with Sandra Blakeslee'). HawkBlak04 free in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "Este59",
+  "decision": "apply",
+  "entrytype": "incollection",
+  "set": {
+   "title": {
+    "value": "Component and pattern models with {M}arkovian interpretations",
+    "url": "https://scholar.google.com/scholar?hl=en&q=%22Component+and+pattern+models+with+Markovian+interpretations%22",
+    "quote": "Component and pattern models with Markovian interpretations, chap. 1 in Studies in Mathematical Learning Theory"
+   },
+   "booktitle": {
+    "value": "Studies in Mathematical Learning Theory",
+    "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+    "quote": "<title>Studies in mathematical learning theory"
+   },
+   "editor": {
+    "value": "R R Bush and W K Estes",
+    "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=59007672&maximumRecords=1&recordSchema=mods",
+    "quote": "edited by Robert R. Bush and William K. Estes"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Chapter 1 of Bush & Estes (eds) 1959, Stanford University Press (LoC 59007672); Google Scholar (read in a browser) indexes 'Component and pattern models with Markovian interpretations, chap. 1 in Studies in Mathematical Learning Theory, RR Bush and W. K Estes, eds'. Pages (often 9--52) unconfirmable (IA copy lending-only): not added. Publisher/address/year unchanged.",
+  "questions": []
+ },
+ {
+  "key": "Ebbi85",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "User decision: cite the 1885 German original. Post-check changes (title Über das Gedächtnis..., Duncker & Humblot, Leipzig) match IA metadata berdasgedcht00ebbi: 'Über das Gedächtnis. Untersuchungen zur experimentellen Psychologie', 'Leipzig, Duncker & Humblot', date 1885. The 1913 translation DOI is not in the final changes. Key Ebbi85 unchanged.",
+  "questions": []
+ },
+ {
+  "key": "Wern84",
+  "decision": "apply",
+  "new_key": "Wern94",
+  "set": {
+   "address": {
+    "value": "Leipzig",
+    "url": "https://archive.org/download/grundrissderpsyc00wern/grundrissderpsyc00wern_djvu.txt",
+    "quote": "Leipzig"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Theil I title page (IA scan): 'Psycho-physiologische Einleitung. Leipzig Verlag von Georg Thieme. 1894.' Year 1984 was a typo; Wern94 free. Address: the title page prints 'Leipzig' without a country, so 'Germany' is dropped (country rule).",
+  "questions": []
+ },
+ {
+  "key": "Ship46",
+  "decision": "apply",
+  "new_key": "Ship40",
+  "entrytype": "misc",
+  "set": {
+   "title": {
+    "value": "{Shipley Institute of Living Scale}",
+    "url": "https://api.crossref.org/works/10.1037/t07774-000",
+    "quote": "\"title\":[\"Shipley Institute of Living Scale\"]"
+   },
+   "year": {
+    "value": "1940",
+    "url": "https://api.crossref.org/works/10.1037/t07774-000",
+    "quote": "\"published\":{\"date-parts\":[[1940]]}"
+   },
+   "doi": {
+    "value": "10.1037/t07774-000",
+    "url": "https://api.crossref.org/works/10.1037/t07774-000",
+    "quote": "\"container-title\":[\"PsycTESTS Dataset\"]"
+   },
+   "howpublished": {
+    "value": "{PsycTESTS} Dataset",
+    "url": "https://api.crossref.org/works/10.1037/t07774-000",
+    "quote": "\"container-title\":[\"PsycTESTS Dataset\"]"
+   }
+  },
+  "withdraw": [],
+  "remove": [
+   "publisher",
+   "address"
+  ],
+  "notes": "No record of a 1946 Western Psychological Services edition (LoC, IA, Scholar in a browser). A 1946 'Manual of Directions and Scoring Key, Shipley-Institute of Living Scale...' is cited (Crossref reference in 10.2466/pr0.1965.16.2.417) but with no publisher; WPS published only the 1986 revised manual (Zachary). The test itself is registered: APA PsycTESTS 10.1037/t07774-000, Walter C. Shipley, 1940. Replaced by that record (reprint default). Ship40 free.",
+  "questions": [
+   "When a cited test edition/manual (Shipley 1946, Western Psychological Services) has no record but the test itself is registered in APA PsycTESTS (DOI, original year 1940), cite the PsycTESTS record (@misc, new key), cite the original journal article that introduced the test, or drop?"
+  ]
+ },
+ {
+  "key": "BendPier01",
+  "decision": "apply",
+  "new_key": "BendPier00",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "LoC 99029982: 3rd ed., New York: Wiley, c2000; no 2001 edition. BendPier00 free in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "Boll98",
+  "decision": "apply",
+  "entrytype": "incollection",
+  "set": {
+   "booktitle": {
+    "value": "Encyclopedia of Biostatistics",
+    "url": "https://api.crossref.org/works/10.1111/j.0081-1750.2003.00133.x",
+    "quote": "\"volume-title\":\"Encyclopedia of Biostatistics\",\"author\":\"Bollen Kenneth A.\",\"year\":\"1998\""
+   },
+   "editor": {
+    "value": "P Armitage and T Colton",
+    "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=98010160&maximumRecords=1&recordSchema=mods",
+    "quote": "editors-in-chief, Peter Armitage, Theodore Colton."
+   },
+   "title": {
+    "value": "Structural equation models",
+    "url": "https://scholar.google.com/scholar?hl=en&q=Bollen+%22Structural+equation+models%22+%22Encyclopedia+of+biostatistics%22+1998",
+    "quote": "in the 1998 edition of the Encyclopedia of Biostatistics"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Not a book: Bollen's article 'Structural Equation Models' in the 1998 Encyclopedia of Biostatistics (Wiley, eds Armitage & Colton, LoC 98010160 c1998). Google Scholar (browser) shows Bollen & Paxton 1998 citing '\"Structural Equation Models\" and \"Path Analysis\" in the 1998 edition of the Encyclopedia of Biostatistics'; Hipp & Bollen 2003 (Crossref refs) cite it at first page 3280. End page unconfirmed: no pages added. Key Boll98 unchanged.",
+  "questions": []
+ }
+]

@@ -44,3 +44,5 @@
 1. Em dash: '---' with no spaces (as printed) or '--- ' (27 of 34 HEAD em-dash titles)?
 2. Should PsycNET quotes read in a real browser (plain fetch blocked) count as verified evidence?
 3. Journal/year/volume/issue/pages identify one work but the title is another by the same first author: locators win, or drop?
+
+## batch 01 (answered by rules/defaults): NeurIPS vs Curran → NeurIPS site; unconfirmable optional field → remove; bilingual journal → full title; Crossref vs publisher issue → publisher.

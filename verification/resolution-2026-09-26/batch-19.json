@@ -1,0 +1,304 @@
+[
+ {
+  "key": "Brin65",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "J F Brinley",
+    "url": "https://scholar.google.com/scholar?hl=en&q=Brinley+1965+%22Cognitive+sets%2C+speed+and+accuracy+of+performance+in+the+elderly%22",
+    "quote": "Cognitive sets, speed and accuracy of performance in the elderly || JF Brinley - Behavior, aging and the nervous system, 1965"
+   }
+  },
+  "withdraw": [],
+  "remove": [
+   "pages"
+  ],
+  "notes": "Book confirmed by LoC 64022089 (Welford and Birren, Springfield, Ill., Thomas [1965]); chapter author and title confirmed by a Google Scholar citation record (abstracting-index evidence, round-2 rule c). Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 114--149 are not printed in any source reached (HathiTrust search-only returns no hits, Google Books snippet view shows no contents for this chapter), so removed per the unconfirmable-optional-field rule.",
+  "questions": []
+ },
+ {
+  "key": "ChunWolf01",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "272--310",
+    "url": "https://api.crossref.org/works/10.1002/9780470753477.ch9",
+    "quote": "\"page\":\"272-310\""
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref's chapter record (Chun and Wolfe, 'Visual Attention') is in the retitled reissue 'Blackwell Handbook of Sensation and Perception', which LoC records as 'Originally published: Blackwell handbook of perception' (a reprint of the 2001 book, same pagination); it prints 272-310, matching HEAD. Apply the post-check (@incollection, title, booktitle, editor E B Goldstein).",
+  "questions": []
+ },
+ {
+  "key": "Chai03",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "booktitle_case flag only: '{Vygotsky's} Educational Theory in Cultural Context' is already in correct title case (Crossref container-title \"Vygotsky's Educational Theory in Cultural Context\"); the braces only protect the proper noun. Apply the post-check as proposed.",
+  "questions": []
+ },
+ {
+  "key": "RescWagn72",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "R A Rescorla and A R Wagner",
+    "url": "https://books.google.com/books?vid=LCCN72177684",
+    "quote": "R A RESCORLA A R WAGNER 64"
+   }
+  },
+  "withdraw": [],
+  "remove": [
+   "pages"
+  ],
+  "notes": "Google Books contents of Classical Conditioning II (Appleton-Century-Crofts, 1972) print the chapter as 'R A RESCORLA A R WAGNER 64', confirming authors and the start page 64. The end page 99 and the next chapter's start page could not be seen (snippet view, no preview; HathiTrust search-only hides results), so pages are removed per the unconfirmable-optional-field rule. Apply the post-check (Pavlovian title fix, Appleton-Century-Crofts).",
+  "questions": [
+   "When an official contents list confirms a chapter's start page (e.g. Google Books contents 'R A RESCORLA A R WAGNER 64') but no source shows its end page or the next chapter's start, should Pages be removed, kept as the cited range, or reduced to the start page only?"
+  ]
+ },
+ {
+  "key": "Bowe72",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "G H Bower",
+    "url": "https://scholar.google.com/scholar?hl=en&q=allintitle%3A+%22Stimulus-sampling+theory+of+encoding+variability%22",
+    "quote": "Stimulus-sampling theory of encoding variability || GH Bower - Coding processes in human memory, 1972"
+   },
+   "title": {
+    "value": "Stimulus-sampling theory of encoding variability",
+    "url": "https://scholar.google.com/scholar?hl=en&q=allintitle%3A+%22Stimulus-sampling+theory+of+encoding+variability%22",
+    "quote": "Stimulus-sampling theory of encoding variability || GH Bower - Coding processes in human memory, 1972"
+   }
+  },
+  "withdraw": [],
+  "remove": [
+   "pages",
+   "chapter"
+  ],
+  "notes": "Author and full title confirmed by a Google Scholar citation record (Harvard's partial contents truncate the title to 'Stimulus-sampling theory of encoding'). Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 85--121 and chapter 5 are not printed in any source reached (Google Books snippet view, HathiTrust search-only, IA lending-only), so removed. Apply the post-check (Washington, DC; Winston).",
+  "questions": []
+ },
+ {
+  "key": "Este72",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "W K Estes",
+    "url": "https://scholar.google.com/scholar?hl=en&q=allintitle%3A+%22associative+basis+for+coding+and+organization+in+memory%22",
+    "quote": "An associative basis for coding and organization in memory || WK Estes - Coding processes in human memory, 1972"
+   }
+  },
+  "withdraw": [],
+  "remove": [
+   "pages"
+  ],
+  "notes": "Title in Harvard contents of Coding Processes in Human Memory; author confirmed by a Google Scholar citation record. Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 161--190 unconfirmable (snippet view only, IA lending-only), removed.",
+  "questions": []
+ },
+ {
+  "key": "John72a",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "N F Johnson",
+    "url": "https://scholar.google.com/scholar?hl=en&q=allintitle%3A+%22Organization+and+the+concept+of+a+memory+code%22",
+    "quote": "Organization and the concept of a memory code || NF Johnson - Coding processes in human memory, 1972"
+   }
+  },
+  "withdraw": [],
+  "remove": [
+   "pages"
+  ],
+  "notes": "Title in Harvard contents of Coding Processes in Human Memory; author confirmed by a Google Scholar citation record. Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 125--159 unconfirmable, removed.",
+  "questions": []
+ },
+ {
+  "key": "Unde72a",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "B J Underwood",
+    "url": "https://scholar.google.com/scholar?hl=en&q=allintitle%3A+%22Are+we+overloading+memory%22",
+    "quote": "Are we overloading memory || BJ Underwood - Coding processes in human memory, 1972"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Title is the first chapter in Harvard's contents of Coding Processes in Human Memory; author confirmed by a Google Scholar citation record. Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). HEAD has no pages. Apply the post-check (editor A W Melton).",
+  "questions": []
+ },
+ {
+  "key": "Wick72",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "D D Wickens",
+    "url": "https://scholar.google.com/scholar?hl=en&q=allintitle%3A+%22Characteristics+of+word+encoding%22",
+    "quote": "Characteristics of word encoding || DD Wickens - 1972 - VH Winston & Sons, Incorporated"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Title in Harvard contents of Coding Processes in Human Memory; author confirmed by a Google Scholar citation record (publisher V. H. Winston). Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). HEAD has no pages. Apply the post-check (Washington, DC).",
+  "questions": []
+ },
+ {
+  "key": "RockCera64",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [
+   "pages"
+  ],
+  "notes": "Authors and title confirmed by the IA catalogue contents ('Toward a cognitive theory of associative learning / Irvin Rock, John Ceraso') and a Google Scholar record ('I Rock, J Ceraso - Cognition: Theory, research, promise, 1964 - Harper & Row New York'). Pages 110--146 not printed in any source reached (IA lending-only, no Google Books preview), removed.",
+  "questions": []
+ },
+ {
+  "key": "Crai00",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "75--92",
+    "url": "https://books.google.com/books?id=LXJ3SeXoHvoC&pg=PA93",
+    "quote": "6. COGNITIVE NEUROPSYCHOLOGY OF AGING 93"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Google Books preview of the 2000 Psychology Press printing (ISBN 0863776922, LoC 99043572 pbk) shows chapter 5 'Age-related changes in human memory / Fergus I. M. Craik' opening on p. 75 (footer '5. MEMORY AND AGING 75', pg=PA75) and chapter 6 (Reuter-Lorenz) opening on p. 93; quotes transcribed from the page images (image-only). End page = next start - 1. Apply the post-check (editor D C Park).",
+  "questions": []
+ },
+ {
+  "key": "SteyEtal04",
+  "decision": "apply",
+  "new_key": "SteyEtal05",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref 10.1037/10895-018 (published-print 2005, pages 237-249, container 'Experimental cognitive psychology and its applications') and LoC c2005 confirm the corrected metadata; SteyEtal05 is free in HEAD. Apply the post-check and rename.",
+  "questions": []
+ },
+ {
+  "key": "Baum08",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "195--220",
+    "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00155-8",
+    "quote": "\"page\":\"195-220\""
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Publisher page (ScienceDirect) is Cloudflare-blocked; per precedence rule Crossref wins. Crossref's pages for vol. 2 of this set are print pagination for the other chapters (e.g. Raaijmakers 445-466, then Kahana printed 467); only the Kahana record (1-24) is anomalous. Apply the post-check (DOI).",
+  "questions": []
+ },
+ {
+  "key": "KahaEtal08a",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "467--490",
+    "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+    "quote": "490 Associative Retrieval Processes in Episodic Memory"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Printed record wins over Crossref '1-24': the authors' copy of the Elsevier chapter carries page folios 467 (first page) and '490 Associative Retrieval Processes in Episodic Memory' (last), and Crossref's preceding chapter (Raaijmakers) ends at 466. Keeps suffix 'a' because HEAD has another KahaEtal08 (KahaEtal08b, the Psychological Review reply renamed from KahaEtal08c). Apply the post-check (DOI, pages).",
+  "questions": []
+ },
+ {
+  "key": "KahaEtal08b",
+  "decision": "drop",
+  "merge_into": "KahaEtal08a",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "drop_reason": "duplicate of KahaEtal08a (user-approved merge); already deleted in HEAD (verification/key-deletions.json, keeper KahaEtal08a)",
+  "notes": "The queued KahaEtal08b (chapter 'Associative processes in episodic memory') is the same chapter as KahaEtal08a and was removed in 282d321. CAUTION: the key KahaEtal08b in HEAD now names a different work (Kahana, Sederberg and Howard 2008, Psychological Review 115(4), renamed from KahaEtal08c per key-renames.json); do NOT delete it.",
+  "questions": []
+ },
+ {
+  "key": "Shif75",
+  "decision": "apply",
+  "set": {
+   "volume": {
+    "value": "1",
+    "url": "https://books.google.com/books?id=hl8PEAAAQBAJ",
+    "quote": "Cognitive Theory: Volume 1: Cognitive Theory"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Google Books record of the Psychology Press facsimile reissue titles the book 'Cognitive Theory: Volume 1' and says 'This book contains the content of the Indiana Conference of 1974'; the IA MARC for the 1975 Erlbaum original lists the 1974 (7th) conference volume, ed. Restle, Shiffrin, Castellan, Lindman and Pisoni, as the first of the series. HEAD volume 1 confirmed.",
+  "questions": []
+ },
+ {
+  "key": "AtkiJuol74",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "R C Atkinson and J F Juola",
+    "url": "https://escholarship.org/content/qt40x8f9s7/qt40x8f9s7.pdf",
+    "quote": "James F. Juola"
+   },
+   "editor": {
+    "value": "D H Krantz and R C Atkinson and R D Luce and P Suppes",
+    "url": "https://escholarship.org/content/qt40x8f9s7/qt40x8f9s7.pdf",
+    "quote": "Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.)"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Stanford IMSSS Technical Report 194 (eScholarship) prints 'SEARCH AND DECISION PROCESSES IN RECOGNITION MEMORY / Richard C. Atkinson ... James F. Juola' and 'To be pUblished in: Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.) Contemporary Developments in Mathematical Psychology'. LoC 73021887 prints only 'Krantz [and others]'; the full editor list is expanded per the 'and others' default (adds R D Luce). Book (Freeman, San Francisco, 1974) confirmed by LoC.",
+  "questions": []
+ },
+ {
+  "key": "RehmNaus90",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [
+   "chapter"
+  ],
+  "notes": "SpringerLink chapter page (read in a browser) prints 'Chapter pp 23–35' with no chapter number (citation_firstpage 23, citation_lastpage 35); the '_3' DOI suffix is not a printed number, so chapter is removed. Apply the post-check (DOI, pages 23--35).",
+  "questions": []
+ },
+ {
+  "key": "BravCohe00",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "713--738",
+    "url": "https://api.crossref.org/works/10.7551/mitpress/1481.003.0044",
+    "quote": "\"page\":\"713-738\""
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Lab list 713-737 vs Crossref (MIT Press) 713-738; per precedence rule publisher/Crossref wins, and Crossref's next chapter (10.7551/mitpress/1481.003.0045) starts at 739. Apply the post-check (@incollection, booktitle, editors, MIT Press, DOI).",
+  "questions": []
+ },
+ {
+  "key": "BjorRich89",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "R A Bjork and A Richardson-Klavehn",
+    "url": "https://scholar.google.com/scholar?hl=en&q=Bjork+Richardson-Klavehn+%22On+the+puzzling+relationship+between+environmental+context+and+human+memory%22",
+    "quote": "On the puzzling relationship between environmental context and human memory || RA Bjork, A Richardson-Klavehn - Current issues in cognitive"
+   }
+  },
+  "withdraw": [],
+  "remove": [
+   "chapter"
+  ],
+  "notes": "Authors confirmed by a Google Scholar record of the chapter in Current Issues in Cognitive Processes (Izawa, ed.). Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Chapter number 9 is not printed in any source reached (the 1989 Erlbaum book is snippet-only; the reissue's Crossref metadata is scrambled), removed. HEAD has no pages. Apply the post-check (Tulane Flowerree booktitle, Hillsdale, NJ).",
+  "questions": []
+ }
+]
