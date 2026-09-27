@@ -680,5 +680,75 @@
   "date": "2026-09-26",
   "reason": "wave2to4: key does not follow the corrected metadata; resolution (batch-07): key vandFisl95 confirmed (wave4 merged.json (ambiguous; resolution apply batch-07))",
   "commit": "wave2to4"
+ },
+ {
+  "old_key": "AshbEtal88",
+  "new_key": "AshbGott88",
+  "date": "2026-09-26",
+  "reason": "wave5: key does not follow the corrected metadata; resolution (batch-08): key AshbGott88 confirmed (wave5 merged.json (correction; resolution apply batch-08))",
+  "commit": "wave5"
+ },
+ {
+  "old_key": "CohnEtal21",
+  "new_key": "CohnEtal22",
+  "date": "2026-09-26",
+  "reason": "wave5: key does not follow the corrected metadata; resolution (batch-08): key CohnEtal22 confirmed (wave5 merged.json (correction; resolution apply batch-08))",
+  "commit": "wave5"
+ },
+ {
+  "old_key": "Hock96",
+  "new_key": "Hock94",
+  "date": "2026-09-26",
+  "reason": "wave5: key does not follow the corrected metadata; resolution (batch-08): key Hock94 confirmed (wave5 merged.json (correction; resolution apply batch-08))",
+  "commit": "wave5"
+ },
+ {
+  "old_key": "RaaiJaka11",
+  "new_key": "RaaiJaka12",
+  "date": "2026-09-26",
+  "reason": "wave5: key does not follow the corrected metadata; resolution (batch-08): key RaaiJaka12 confirmed (wave5 merged.json (correction; resolution apply batch-08))",
+  "commit": "wave5"
+ },
+ {
+  "old_key": "DiazEtal19",
+  "new_key": "CastEtal19",
+  "date": "2026-09-26",
+  "reason": "wave5: key does not follow the corrected metadata; resolution (batch-09): key CastEtal19 confirmed (wave5 merged.json (correction; resolution apply batch-09))",
+  "commit": "wave5"
+ },
+ {
+  "old_key": "ToluEtal12",
+  "new_key": "ToluEtal13",
+  "date": "2026-09-26",
+  "reason": "wave5: key does not follow the corrected metadata; resolution (batch-09): key ToluEtal13 confirmed (wave5 merged.json (correction; resolution apply batch-09))",
+  "commit": "wave5"
+ },
+ {
+  "old_key": "PaleEtal93",
+  "new_key": "PaulEtal93",
+  "date": "2026-09-26",
+  "reason": "wave5: key does not follow the corrected metadata; resolution (batch-09): key PaulEtal93 confirmed (wave5 merged.json (correction; resolution apply batch-09))",
+  "commit": "wave5"
+ },
+ {
+  "old_key": "LegaEtal09",
+  "new_key": "LegaEtal10",
+  "date": "2026-09-26",
+  "reason": "wave5: key does not follow the corrected metadata; resolution (batch-09): key LegaEtal10 confirmed (wave5 merged.json (correction; resolution apply batch-09))",
+  "commit": "wave5"
+ },
+ {
+  "old_key": "HankEtal08",
+  "new_key": "HankEtal09b",
+  "date": "2026-09-26",
+  "reason": "wave5: key does not follow the corrected metadata; HankEtal09 is taken by a different work (HankEtal09); house suffix rule: HankEtal09 -> HankEtal09a, new entry HankEtal09b; resolution (batch-09): key HankEtal09b confirmed (wave5 merged.json (correction; resolution apply batch-09))",
+  "commit": "wave5"
+ },
+ {
+  "old_key": "HankEtal09",
+  "new_key": "HankEtal09a",
+  "date": "2026-09-26",
+  "reason": "wave5: suffix rule: HankEtal08 becomes HankEtal09b (wave5 key plan of HankEtal08 (collision, house suffix rule))",
+  "commit": "wave5"
  }
 ]

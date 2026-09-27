@@ -233,3 +233,4 @@ Library counts come from `bibcheck.py crossref status cdl.bib`.
 | wave3 | 191: 188 edited, 14 renamed (1 rename only), 2 deleted (Seac97, TongEtal95) | 4 | 221 / 0 | 666 / 0 | 1076 / 756 | 6,398 entries: 4,660 verified, 1,707 needs_review, 31 human |
 | wave4 | 189: 188 edited, 8 renamed (1 rename only), 0 deleted | 3 | 206 / 0 | 568 / 0 | 1003 / 744 | 6,398 entries: 4,763 verified, 1,604 needs_review, 31 human |
 | wave2to4 | 15: 15 edited, 4 renamed (0 rename only), 0 deleted; needs_user resolved: ChanEtal12b -> ChanEtal12 | 0 | 19 / 0 | 56 / 0 | 797 / 739 | 6,398 entries: 4,768 verified, 1,599 needs_review, 31 human |
+| wave5 | 195: 194 edited, 10 renamed (1 rename only), 0 deleted | 0 | 210 / 0 | 675 / 0 | 1008 / 733 | 6,398 entries: 4,857 verified, 1,510 needs_review, 31 human |

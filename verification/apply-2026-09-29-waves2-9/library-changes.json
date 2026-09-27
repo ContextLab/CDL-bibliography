@@ -219,7 +219,23 @@
     "BabiEtal08": "BabiEtal09",
     "vand95": "vandFisl95"
    }
+  },
+  {
+   "batch": "wave5",
+   "removed": [],
+   "renames": {
+    "AshbEtal88": "AshbGott88",
+    "CohnEtal21": "CohnEtal22",
+    "Hock96": "Hock94",
+    "RaaiJaka11": "RaaiJaka12",
+    "DiazEtal19": "CastEtal19",
+    "ToluEtal12": "ToluEtal13",
+    "PaleEtal93": "PaulEtal93",
+    "LegaEtal09": "LegaEtal10",
+    "HankEtal08": "HankEtal09b",
+    "HankEtal09": "HankEtal09a"
+   }
   }
  ],
- "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave2to4-staged.bib"
+ "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave5-staged.bib"
 }
