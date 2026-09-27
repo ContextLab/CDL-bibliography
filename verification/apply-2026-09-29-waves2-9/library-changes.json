@@ -209,7 +209,17 @@
     "Kopp78": "Kopp63",
     "CoheEtal08b": "CoheEtal08"
    }
+  },
+  {
+   "batch": "wave2to4",
+   "removed": [],
+   "renames": {
+    "DezfDali20": "PartDali20",
+    "BrigEtal18": "DeBrEtal19",
+    "BabiEtal08": "BabiEtal09",
+    "vand95": "vandFisl95"
+   }
   }
  ],
- "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave4-staged.bib"
+ "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave2to4-staged.bib"
 }

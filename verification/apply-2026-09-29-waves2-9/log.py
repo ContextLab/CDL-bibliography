@@ -19,7 +19,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 DATE = "2026-09-26"
-WAVES = tuple(f"wave{n}" for n in range(2, 10))
+WAVES = ("wave2", "wave3", "wave4", "wave2to4") + tuple(f"wave{n}" for n in range(5, 10))  # applied in this order
 
 
 def main():

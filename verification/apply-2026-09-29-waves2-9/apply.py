@@ -24,7 +24,7 @@ stage2d = wave1.stage2d
 base = runner.base
 runner.HERE = runner.runner.HERE = base.HERE = stage2d.HERE = wave1.HERE = HERE
 runner.WORK = runner.runner.WORK = base.WORK = stage2d.WORK = wave1.WORK = ROOT / ".bibcheck" / HERE.name
-runner.BATCHES = tuple(f"wave{n}" for n in range(2, 10))
+runner.BATCHES = ("wave2", "wave3", "wave4", "wave2to4") + tuple(f"wave{n}" for n in range(5, 10))  # wave2to4: the wave 2-4 rows left after the re-run post-check
 assert runner.stage is wave1.stage
 
 if __name__ == "__main__":

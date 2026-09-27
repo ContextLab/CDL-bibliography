@@ -1,0 +1,229 @@
+{
+ "stages": [
+  {
+   "cycle": "run",
+   "seconds": 797.07,
+   "network_requests": 19,
+   "added_review_records": 56,
+   "batch_statuses_before": {
+    "needs_review": 15
+   },
+   "batch_statuses_after": {
+    "metadata_verified": 5,
+    "needs_review": 10
+   },
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [
+    "BabiEtal09",
+    "DeBrEtal19",
+    "EvanEtal84",
+    "PartDali20",
+    "vandFisl95"
+   ],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [],
+   "library_statuses_before": {
+    "metadata_verified": 4763,
+    "needs_review": 1604,
+    "human_verified": 31
+   },
+   "library_statuses": {
+    "metadata_verified": 4768,
+    "needs_review": 1599,
+    "human_verified": 31
+   }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 738.77,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch_statuses_before": {
+    "needs_review": 15
+   },
+   "batch_statuses_after": {
+    "metadata_verified": 5,
+    "needs_review": 10
+   },
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [
+    "BabiEtal09",
+    "DeBrEtal19",
+    "EvanEtal84",
+    "PartDali20",
+    "vandFisl95"
+   ],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [],
+   "library_statuses_before": {
+    "metadata_verified": 4763,
+    "needs_review": 1604,
+    "human_verified": 31
+   },
+   "library_statuses": {
+    "metadata_verified": 4768,
+    "needs_review": 1599,
+    "human_verified": 31
+   }
+  }
+ ],
+ "entries": {
+  "BabiEtal09": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:7932081a695d3b7c7869147cd396c416c2ef018d2f8f2c1babe8c5426eeb6a0f",
+   "fingerprint": "v2:ea55ee330ddfc64a104e0330b7fbbd3285346cd8684aef459a2a5a1977747750",
+   "accepted_doi": "10.1002/hbm.20648",
+   "accepted_source": "pmc-jats",
+   "issues": []
+  },
+  "BahrPhel87": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:7a191dd0716e5b9664009acfa05b7afc9976ceab15585abb291083c63c46b04f",
+   "fingerprint": "v2:e8e26f476de0d765dfc994a4eff6fa8b3528687b92ab39347ad27767262cba9a",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "CaoWors99": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:1742360d7ae1f61c6d0d8ef7ea07fd5e196d0a8ba19481d7b2ee9fe2d010d7c8",
+   "fingerprint": "v2:86645ddcfc32add6fd315b555d196492df15c9f55d92b28f202853a23517fa9e",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "DamiEtal99a": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:5b9c17a1092ddd1c9fcc56b086e38141db3cf2f27d35b22903fea025dafea6ac",
+   "fingerprint": "v2:d68a0fc23c21fe38bd7f25ba044f0da3216bb86c6ba6cffb06b4fdb8bea84d50",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "DeBrEtal19": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:829715d92bbe872e0ea98c3b65028bb62423f62a9ac699d1788e8edd44a1a274",
+   "fingerprint": "v2:6b055e2186f2058d372eeb736fc4c6bbaeafdfeb9a3b732257f8aa185b0969a3",
+   "accepted_doi": "10.1080/02699931.2018.1478280",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "EvanEtal84": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:c0f054db8491bdb3d1af71245cb6e9ab15b2b08b94f106e3a0b824cd0ed5b5a8",
+   "fingerprint": "v2:007d640c09cacabb096726d198437e111f34a6901354da5dba416694facba443",
+   "accepted_doi": "10.1016/s0272-4944(84)80003-1",
+   "accepted_source": "crossref",
+   "issues": []
+  },
+  "Gomu53": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:2cbffc2c9a1408af535b96ce8a691063873b98ebd548d92aa1bee726c8c75903",
+   "fingerprint": "v2:35853450f222e7c886fa7bb64f384c45fc0fa20907edcd1911f399cbc6548631",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Half88": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:21fe0163a1928cd16d2729804fb301e6d8d154e1bd0c9486ab4f0fbbb1cc6ec7",
+   "fingerprint": "v2:65edfd492107e357f47bab28c8f2f8b698a20cf741d89d8ed3fd40cee36776d7",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "McCuPitt43": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:6d8db75216f0fa75bc19df296981eef1ee9b289ecc85777de8080828245dc3ce",
+   "fingerprint": "v2:5bcae00c280975e66d91871958ae61d516dbf139d1e37f7c456866806b0f8a9f",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PartDali20": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:44d2c8fe0d86a9e3346f6d6c7c9d39664685a0c0c54997bd5d29536f0c8f7043",
+   "fingerprint": "v2:566e0a26d19dc03de2912f9954723847bda3ec0578054dcf730e8dc775e4bbf7",
+   "accepted_doi": "10.1007/s10548-019-00726-8",
+   "accepted_source": "europepmc",
+   "issues": []
+  },
+  "RendCrai00": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:4ebd38fb1956da917de3a4970d976f935b99b14c10e69f827a8f641d99f1ecf6",
+   "fingerprint": "v2:5d0c5c884411245ca669cfd67610e36913f18d154601cbb511ef6caa44243fe0",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Schw78": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:fb425d0c6365120a16925aa667f7c8729af884e602612d7372335a062a5479cf",
+   "fingerprint": "v2:34b667c58d1b42d8f3e4ec2aa220384c31c2ade30a7464fc1c62c70f182c77a1",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "SimoEtal04": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:9e728ebb9407a26979f61c4476bda9302e261b8b85ae22d34f220b810af095d8",
+   "fingerprint": "v2:878ec7c75937ef86df5dac9f20d05be15d4f807227278619b7228b3c7ab65d41",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "WangEtal13": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:0e0d28e0d158206015844c65d2bfd2d1cb88a8719d1a403b8ce89b45be6b12a9",
+   "fingerprint": "v2:9537e9676f723bc1eda0f60f9e354e5f3edf277dec8dda0c9f2c6d68d0253063",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "vandFisl95": {
+   "status_before": "needs_review",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:6c8e37c74391b2bbb75cb9cf5b918f803babe87f8b2f7735f1ccfc9a16637ce3",
+   "fingerprint": "v2:7b32372b2dfcdaaf477a51b426b1b6041052e7fa7d92a2be2089665fd9aaa166",
+   "accepted_doi": "10.1002/jts.2490080402",
+   "accepted_source": "crossref",
+   "issues": []
+  }
+ }
+}

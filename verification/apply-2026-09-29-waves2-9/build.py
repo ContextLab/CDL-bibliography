@@ -5,6 +5,8 @@ Input: ``verification/research-2026-09-25/<wave>/merged.json`` as frozen on 2026
 ``.bibcheck/apply-2026-09-29-waves2-9/inputs/<wave>/merged.json`` (its sha256 is recorded in the
 proposals). The post-check read HEAD cdl.bib (after the wave-1 apply) and the resolution batches
 ``verification/resolution-2026-09-26/batch-*.json`` as committed.
+Batches ``wave2to4`` and ``wave5`` .. ``wave9`` read instead the re-run post-check (93ae192, against cdl.bib
+after waves 2-4), frozen on 2026-09-27 in ``.bibcheck/apply-2026-09-29-waves2-9/inputs-93ae192/``.
 
 Rules:
 - ``needs_user`` true: not touched (the entry stays exactly as in HEAD; listed under ``held_rows``).
@@ -37,6 +39,14 @@ from verification import load_entries  # noqa: E402
 
 INPUTS = ROOT / ".bibcheck" / HERE.name / "inputs"
 WAVES = tuple(f"wave{n}" for n in range(2, 10))
+# After waves 2-4 were applied, the post-check was re-run against that cdl.bib with the final evidence
+# rules (commit 93ae192). Its merged.json files (frozen 2026-09-27 under inputs-93ae192/) address every
+# row by its current key, so only the renames of the batches built from them are followed. The wave 2-4
+# rows that still carry changes (the rows held in waves 2-4 and the check_bib exceptions) form one batch.
+POSTCHECK_INPUTS = ROOT / ".bibcheck" / HERE.name / "inputs-93ae192"
+POSTCHECKED = ("wave2to4",) + tuple(f"wave{n}" for n in range(5, 10))
+BATCHES = WAVES[:3] + POSTCHECKED
+SOURCES = {"wave2to4": ("wave2", "wave3", "wave4")}
 NEVER_REMOVE = {"KahaEtal08b", "JacoEtal05b"}
 RESOLUTIONS = "verification/resolution-2026-09-26"
 
@@ -76,6 +86,9 @@ HOUSE_FORM = {
     ("wave7", "Amer23b", "publisher"): "{American} Academy of Sleep Medicine",
     # house software title "{Owner}/repo" ("{ContextLab}/chatify"); the formatter capitalises a fully braced title
     ("wave7", "ChanEtal20", "title"): "{naturalistic-data-analysis}/naturalistic\\_data\\_analysis",
+    # the formatter capitalises the fully braced repository name ("{word\\_cloud}" -> "Word\\_cloud"); a braced
+    # first word is its fixed point and prints the same lowercase name (as Chat{GPT}, {B}{ASIC})
+    ("wave7", "MuelEtal18", "title"): "{word}\\_cloud",
     # wave 8: Force removed (Mann23, Open22, Kurt81) exposes values to check_bib; "{A}" after a colon
     # (wave-1 Tulv07); the formatter lowercases braced names ({vygotsky's}, {tulane}) and keeps them unbraced;
     # it strips the braces of a fully braced title ("{ChatGPT}" -> "Chatgpt", "{BASIC}" -> "Basic")
@@ -87,6 +100,10 @@ HOUSE_FORM = {
     ("wave8", "BjorRich89", "booktitle"): "Current Issues in Cognitive Processes: the Tulane Flowerree Symposium on Cognition",
     ("wave8", "SzpuTulv11", "booktitle"): "Predictions in the Brain: Using Our Past to Generate {A} Future",
     ("wave8", "BrowMcCo06", "booktitle"): "Handbook of Binding and Memory: Perspectives From Cognitive Neuroscience",
+    ("wave8", "HallGree08", "booktitle"): "21\\textsuperscript{st} Century Education: {A} Reference Handbook",
+    ("wave8", "Murd89", "booktitle"): "Current Issues in Cognitive Processes: the Tulane Flowerree Symposium on Cognition",
+    # the formatter lowercases a braced "{W}erke"; the unbraced noun is its fixed point
+    ("wave8", "Herb34", "booktitle"): 'S{\\"{a}}mtliche Werke',   # renamed to Herb91
     ("wave8", "TalaTour88", "publisher"): "{Georg} Thieme",
     ("wave8", "Wern84", "publisher"): "{Georg} Thieme",
     # wave 9: braced acronyms lowercased as elsewhere; the formatter's fixed point is the value as cited for
@@ -155,10 +172,56 @@ HELD = {
                                          "every form tried; the entry keeps no address",
     ("wave7", "ViveEtal10", "pages"): "check_bib's page check cannot read the article number '24ra22' and raises; the "
                                       "entry keeps '1--9'",
+    ("wave7", "MullSchu94", "pages"): "check_bib's page check cannot read the two-part range '81--190, 257--339' (the "
+                                      "user-rule default for an article printed in two parts) in any separator tried "
+                                      "(', ', ',', '; ', ' and '); the entry keeps '257--339'",
+}
+# final_changes rows that name no bibliography field: field -> reason (never written to cdl.bib).
+PSEUDO_FIELDS = {
+    "needs_user": "not a bibliography field: the reviewer's request (TsitEtal19, wave 7) that the user decide the "
+                  "preprint -> published replacement, recorded as a change row; the row's resolution (batch-17, "
+                  "'apply', the user's preprint rule) already made that replacement and the row is not needs_user",
+}
+# needs_user rows of the re-run post-check, resolved here (2026-09-27): (source wave, row key) -> resolution.
+# ChanEtal12b, MairEtal09a and LegaEtal11a are flagged not_in_bib (and "duplicate" of the key they now have)
+# only because the wave-2/3 suffix rule renamed them (verification/key-renames.json); their approved values
+# are applied to the renamed entry, compared with its current fields. McCaEtal06 keeps its DOI by the
+# user-rule default of verification/resolution-plan-2026-09-22/README.md (line 281).
+NEEDS_USER = {
+    ("wave2", "ChanEtal12b"): {"key": "ChanEtal12", "why": "renamed ChanEtal12b -> ChanEtal12 in wave2 "
+                               "(key-renames.json, suffix rule); not a duplicate of another entry"},
+    ("wave6", "MairEtal09a"): {"key": "MairEtal09", "why": "renamed MairEtal09a -> MairEtal09 in wave2 "
+                               "(key-renames.json, suffix rule); not a duplicate of another entry",
+                               # the pre-post-check row (inputs/wave6/merged.json) saw the entry and removed it
+                               "removals": {"journal": "@inproceedings has no journal (names the same venue as the "
+                                            "booktitle 'Proceedings of the 26\\textsuperscript{th} Annual International "
+                                            "Conference on Machine Learning')"}},
+    ("wave7", "LegaEtal11a"): {"key": "LegaEtal11", "why": "renamed LegaEtal11a -> LegaEtal11 in wave3 "
+                               "(key-renames.json, suffix rule); not a duplicate of another entry"},
+    ("wave7", "McCaEtal06"): {"key": "McCaEtal06", "why": "user-rule default (resolution-plan-2026-09-22/README.md): a "
+                              "DOI that doi.org registers and the publisher's article page prints is kept although "
+                              "Crossref's API lacks it",
+                              "add": [{"field": "doi", "proposed": "10.1609/aimag.v27i4.1904", "source": "resolution",
+                                       "evidence": [
+                                           {"url": "https://doi.org/api/handles/10.1609/aimag.v27i4.1904",
+                                            "quote": "\"responseCode\":1,\"handle\":\"10.1609/aimag.v27i4.1904\"",
+                                            "checked": "2026-09-27"},
+                                           {"url": "https://doi.org/10.1609/aimag.v27i4.1904",
+                                            "quote": "HTTP 302 -> http://www.aaai.org/ojs/index.php/aimagazine/article/view/1904",
+                                            "checked": "2026-09-27"},
+                                           {"url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/1904",
+                                            "quote": "<meta name=\"citation_doi\" content=\"10.1609/aimag.v27i4.1904\"/>",
+                                            "checked": "2026-09-27"},
+                                           {"url": "https://api.crossref.org/works/10.1609/aimag.v27i4.1904",
+                                            "quote": "HTTP 404 (not in Crossref's API)", "checked": "2026-09-27"}]}]},
 }
 # Key renames of a ready row not applied in this wave (the house suffix rule forbids it here, or the
 # key-determining field is held): (wave, key) -> reason.
 DEFERRED_RENAMES = {
+    ("wave8", "KahaEtal08a"): "rename KahaEtal08a -> KahaEtal08 not applied: the user's decision (cross-wave "
+                              "dup-KahaEtal08b-KahaEtal08a) is conditional ('drop the \"a\" ... if this is the only "
+                              "KahaEtal08'), and KahaEtal08b (formerly KahaEtal08c, 'Putting short-term memory into "
+                              "context', a different work) is still in cdl.bib",
     ("wave5", "KingEtal11"): "rename KingEtal11 -> MorrRNSS11 held with the author list it follows (HELD)",
     ("wave2", "Shim95"): "rename Shim95 -> Shim95a deferred to wave 8, where Shim94 -> Shim95b is applied with "
                          "it (the same cross-wave q-shim decision, also_rename of Shim94's plan): a lone Shim95a "
@@ -173,6 +236,7 @@ SUFFIX_RENAMES = {
     "wave4": {"CoheEtal08b": ("CoheEtal08", "CoheEtal08a renamed to CoheEtal09c")},
     "wave6": {"Arch11a": ("Arch11", "Arch11b renamed to Arch12")},
     "wave9": {"deCa05b": ("deCa05", "deCa05a renamed to deCa04")},
+    "wave7": {"LiEtal24a": ("LiEtal24", "LiEtal24b renamed to LiEtal25")},
     "wave8": {"Frie08b": ("Frie08", "Frie08a renamed to Frie12 (wave-1 README: 'Frie08b should become Frie08')")},
 }
 
@@ -182,9 +246,11 @@ def sha256(path):
 
 
 def earlier_renames(wave):
-    """old -> new over the batches of this folder applied before ``wave`` (simultaneous per batch)."""
+    """old -> new over the batches of this folder applied before ``wave`` (simultaneous per batch); for a
+    batch built from the re-run post-check, only over the post-checked batches before it."""
     moved = {}
-    for earlier in WAVES[:WAVES.index(wave)]:
+    order = POSTCHECKED if wave in POSTCHECKED else WAVES
+    for earlier in order[:order.index(wave)]:
         path = HERE / f"{earlier}-proposals.json"
         if not path.exists():
             raise SystemExit(f"{earlier}-proposals.json missing: apply the waves in order")
@@ -206,9 +272,12 @@ def decision_source(row, wave):
 
 def main():
     wave = sys.argv[1]
-    assert wave in WAVES, wave
-    merged = INPUTS / wave / "merged.json"
-    rows = json.loads(merged.read_text())
+    assert wave in BATCHES, wave
+    if wave in POSTCHECKED:
+        merged = [POSTCHECK_INPUTS / src / "merged.json" for src in SOURCES.get(wave, (wave,))]
+    else:
+        merged = [INPUTS / wave / "merged.json"]
+    rows = [dict(r, _src=path.parent.name) for path in merged for r in json.loads(path.read_text())]
     entries = load_entries(ROOT / "cdl.bib")
     text = (ROOT / "cdl.bib").read_text()
     deleted = {d["key"] for d in json.loads((ROOT / "verification/key-deletions.json").read_text())}
@@ -216,9 +285,27 @@ def main():
 
     proposals, skipped, held_rows, held, noops = [], {}, {}, {}, {}
     also = {}
+    resolved_user = {}
     for r in rows:
+        src = r["_src"]
         key0 = r["key_plan"]["current_key"]
         key = moved.get(key0, key0)
+        if r["needs_user"] and wave in POSTCHECKED and (src, r["key"]) in NEEDS_USER:
+            nu = NEEDS_USER[src, r["key"]]
+            key = moved.get(nu["key"], nu["key"])
+            assert key in entries, key
+            flds = entries[key]["fields"]
+            fc = []
+            for c in r["final_changes"] + nu.get("add", []):
+                cur = flds.get(c["field"]) if c["field"] != "ENTRYTYPE" else flds["ENTRYTYPE"]
+                assert c.get("current") is None or c["current"] == cur, (key, c)
+                if cur != c["proposed"]:
+                    fc.append(dict(c, current=cur))
+            r = dict(r, final_changes=fc, removals={f: w for f, w in nu.get("removals", {}).items() if f in flds},
+                     needs_user=False, key_plan={"current_key": key, "target_base": key, "action": "keep"})
+            resolved_user[r["key"]] = {"key": key, "why": nu["why"],
+                                       "applied": [c["field"] for c in fc] + sorted(r["removals"]) or
+                                       "nothing: every approved value is already in the entry"}
         if r["needs_user"]:
             held_rows[r["key"]] = "needs_user (residue: " + json.dumps((r.get("resolution") or {}).get("residue"),
                                                                         ensure_ascii=False) + ")"
@@ -231,7 +318,7 @@ def main():
                 continue
             assert key not in NEVER_REMOVE and key not in deleted, key
             proposals.append({"key": key, "fingerprint": entries[key]["fingerprint"], "kind": "remove",
-                              "reason": r["remove_entry"], "decision": decision_source(r, wave),
+                              "reason": r["remove_entry"], "decision": decision_source(r, src),
                               **({"row_key": r["key"]} if key != r["key"] else {})})
             continue
         if key not in entries:
@@ -245,10 +332,13 @@ def main():
             field = c["field"]
             before = fields.get(field) if field != "ENTRYTYPE" else fields["ENTRYTYPE"]
             assert before == c["current"], (key, field, before, c["current"])
-            if (wave, key, field) in HELD:
-                held[f"{key}.{field}"] = HELD[wave, key, field]
+            if field in PSEUDO_FIELDS:
+                skipped[f"{key}.{field}"] = PSEUDO_FIELDS[field]
                 continue
-            after = HOUSE_FORM.get((wave, key, field), c["proposed"])
+            if (src, key, field) in HELD:
+                held[f"{key}.{field}"] = HELD[src, key, field]
+                continue
+            after = HOUSE_FORM.get((src, key, field), c["proposed"])
             if after == before:   # the house form is the value as cited: no change
                 skipped[f"{key}.{field}"] = f"proposed {c['proposed']!r}; house form (check_bib) is the value as cited"
                 continue
@@ -258,22 +348,24 @@ def main():
         for (w, k, field), value in HOUSE_FORM.items():
             # a house form of a field the research left unchanged, which check_bib reads once a change
             # (e.g. removing Force, its skip flag) exposes it
-            if w == wave and k == key and field not in {c["field"] for c in r["final_changes"]} \
+            if w == src and k == key and field not in {c["field"] for c in r["final_changes"]} \
                     and field not in r["removals"]:
-                assert field in fields and fields[field] != value, (key, field)
+                assert field in fields, (key, field)
+                if fields[field] == value:   # already applied by the wave-2/3/4 batch
+                    continue
                 changes[field] = {"before": fields[field], "after": value, "house_form": "check_bib",
                                   "reason": "house form of the unchanged value (check_bib)"}
         for field, why in r["removals"].items():
             assert field not in changes and field in fields, (key, field)
-            if (wave, key, field) in HELD:
-                held[f"{key}.{field}"] = HELD[wave, key, field]
+            if (src, key, field) in HELD:
+                held[f"{key}.{field}"] = HELD[src, key, field]
                 continue
             changes[field] = {"before": fields[field], "after": None, "reason": why}
         plan = r["key_plan"]
         rename = plan.get("new_key") if plan["action"] in ("rename", "collision") else None
         assert plan["action"] in ("keep", "rename", "collision"), (key, plan)
-        if (wave, key) in DEFERRED_RENAMES:
-            skipped[f"{key} (key)"] = DEFERRED_RENAMES[wave, key]
+        if (src, key) in DEFERRED_RENAMES:
+            skipped[f"{key} (key)"] = DEFERRED_RENAMES[src, key]
             rename = None
         for old, new in plan.get("also_rename", {}).items():
             also[moved.get(old, old)] = (new, key, rename)
@@ -284,7 +376,7 @@ def main():
             continue
         res = r.get("resolution")
         row = {"key": key, "fingerprint": entries[key]["fingerprint"], "kind": "edit",
-               "origin": f"{wave} merged.json ({r['verdict']}" + (f"; resolution {res['decision']} {res['batch']}" if res else "")
+               "origin": f"{src} merged.json ({r['verdict']}" + (f"; resolution {res['decision']} {res['batch']}" if res else "")
                          + ")", "changes": changes}
         if key != r["key"]:
             row["row_key"] = r["key"]
@@ -318,7 +410,8 @@ def main():
                           "rename": new, "origin": "house suffix rule (helpers.check_key_suffixes) after this batch",
                           "rename_reason": f"suffix rule: {why}"})
         by_key[old] = proposals[-1]
-    assert {(w, k, f) for (w, k, f) in HELD if w == wave} == {(wave, *h.split(".")) for h in held}
+    srcs = SOURCES.get(wave, (wave,))
+    assert {(k, f) for (w, k, f) in HELD if w in srcs} == {tuple(h.split(".")) for h in held}
 
     # A renamed or removed key must not be referenced from another entry (crossref and the like).
     for p in proposals:
@@ -328,14 +421,14 @@ def main():
 
     assert len({p["key"] for p in proposals}) == len(proposals)
     out = {"batch": wave, "generated": time.strftime("%Y-%m-%d %H:%M:%S"),
-           "input": {"merged": f".bibcheck/{HERE.name}/inputs/{wave}/merged.json", "sha256": sha256(merged),
-                     "rows": len(rows)},
+           "input": [{"merged": str(path.relative_to(ROOT)), "sha256": sha256(path),
+                      "rows": len(json.loads(path.read_text()))} for path in merged],
            "count": len(proposals),
            "counts": {kind: sum(p["kind"] == kind for p in proposals) for kind in ("edit", "remove")},
            "renames": {p["key"]: p["rename"] for p in proposals if p.get("rename")},
-           "held_rows": held_rows, "noops": noops, "skipped": skipped, "held_fields": held, "proposals": proposals}
+           "held_rows": held_rows, "needs_user_resolved": resolved_user, "noops": noops, "skipped": skipped, "held_fields": held, "proposals": proposals}
     (HERE / f"{wave}-proposals.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
-    print(json.dumps({k: out[k] for k in ("count", "counts", "renames")}), f"held_rows {len(held_rows)}",
+    print(json.dumps({k: out[k] for k in ("count", "counts", "renames", "needs_user_resolved")}), f"held_rows {len(held_rows)}",
           f"noops {len(noops)}", f"skipped {len(skipped)}", f"held_fields {len(held)}")
 
 

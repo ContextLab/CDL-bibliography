@@ -652,5 +652,33 @@
   "date": "2026-09-26",
   "reason": "wave4: suffix rule: CoheEtal08a renamed to CoheEtal09c (house suffix rule (helpers.check_key_suffixes) after this batch)",
   "commit": "wave4"
+ },
+ {
+  "old_key": "DezfDali20",
+  "new_key": "PartDali20",
+  "date": "2026-09-26",
+  "reason": "wave2to4: key does not follow the corrected metadata; resolution (batch-03): key PartDali20 confirmed (wave2 merged.json (correction; resolution apply batch-03))",
+  "commit": "wave2to4"
+ },
+ {
+  "old_key": "BrigEtal18",
+  "new_key": "DeBrEtal19",
+  "date": "2026-09-26",
+  "reason": "wave2to4: key does not follow the corrected metadata; resolution (batch-04): key DeBrEtal19 confirmed (wave3 merged.json (correction; resolution apply batch-04))",
+  "commit": "wave2to4"
+ },
+ {
+  "old_key": "BabiEtal08",
+  "new_key": "BabiEtal09",
+  "date": "2026-09-26",
+  "reason": "wave2to4: key does not follow the corrected metadata; resolution (batch-05): key BabiEtal09 confirmed (wave3 merged.json (correction; resolution apply batch-05))",
+  "commit": "wave2to4"
+ },
+ {
+  "old_key": "vand95",
+  "new_key": "vandFisl95",
+  "date": "2026-09-26",
+  "reason": "wave2to4: key does not follow the corrected metadata; resolution (batch-07): key vandFisl95 confirmed (wave4 merged.json (ambiguous; resolution apply batch-07))",
+  "commit": "wave2to4"
  }
 ]
