@@ -97,3 +97,16 @@ In res34to39, BartEtal04c, Calk96 and RangEtal14 (batch keys) went from verified
 pages and publisher added from the waves are not in the record that verified them. Most rows of batches 28-39 set
 values the entries already hold; those entries wait for the research route (`bibcheck/research_route.py`,
 3a4532f), which is not part of this pipeline.
+
+## Mop-up batch (`mopup/`, run 2026-09-27 after the research route's final run)
+
+`mopup/build.py` runs this folder's `build.py` rules on the research route's mop-up resolution batch
+(`../research-route-2026-09-27/batch-40.json`, read as batch 40; `OVERRIDE` is not applied, since batch 40 keeps
+ElliAshb88 too). `mopup/apply.py` is this folder's runner pointed at `mopup/` (work files under
+`.bibcheck/mopup-2026-09-27/`). There are 2 edits: ElliAshb88 `Address` `Toronto, Canada` -> `Toronto` (LoC
+87026602 prints no country) and Mann06 `Type` `Senior honors thesis` -> `Senior thesis` (as the author's
+publication list prints it). There were no renames or deletions, so `library-changes.json` is unchanged. The run
+made 0 requests and 6 review writes, and its repeat made 0 requests and 0 review writes. No accepted result
+outside the batch changed (`mopup/mopup-results.json`). `.bibcheck/validate-current-checkpoint.py` now applies
+the frozen mop-up proposals on top of the organization-keys state, and requires the result to equal the mop-up
+staged file and cdl.bib.

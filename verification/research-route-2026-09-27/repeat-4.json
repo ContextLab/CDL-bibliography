@@ -1,0 +1,27 @@
+{
+ "counts": {
+  "all_reasons": {
+   "field never researched (author)": 1
+  },
+  "first_reason": {
+   "field never researched (author)": 1
+  },
+  "flags": {},
+  "outcomes": {
+   "not_approved": 1
+  },
+  "writes": 0
+ },
+ "dry_run": false,
+ "excluded_files": [],
+ "rows": {
+  "SvenEtal24": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "author: no research evidence for this field"
+   ],
+   "status_before": "needs_review"
+  }
+ }
+}

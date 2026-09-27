@@ -5,7 +5,54 @@ notice-accounting hook") and the organization-author formatter fix. The five ren
 reviewed by the production pipeline before the route ran (`review_renamed.py`, `review-renamed.json`).
 The pipeline made 0 network requests, and its repeat added 0 review records.
 
-## Counts
+## Mop-up of the 38 (2026-09-27, later): 37 approved, 1 left
+
+`bibcheck.py crossref status cdl.bib`:
+
+- before: 6388 entries: human_verified=31, metadata_verified=6319, needs_review=38
+- after: 6388 entries: human_verified=31, metadata_verified=6356, needs_review=1
+
+| Run | Approved | Not approved | Review writes |
+|-|-|-|-|
+| dry run (`dry-run-4.json`) | 37 | 1 | 0 |
+| backfill (`backfill-4.json`) | 37 | 1 | 37 |
+| repeat (`repeat-4.json`) | | 1 | 0 |
+
+No evidence file was left out as uncommitted, and no earlier approval was re-approved or withdrawn. What
+cleared each group:
+
+- Notices with no DOI (11): classification rows now name the exact DOI-linked records they were made beside
+  (record identity, `README.md` "Notices with no DOI: record identity"; `Cache.retain_notices` keeps the
+  approval, and any other or changed record reopens it).
+- Unclassified DOI-linked records (12) and PurcEtal10, Buzs02b, LeVaEtal08, PfurEtal96, Este91: classified
+  (`../resolution-2026-09-27/NOTICES.md`, "Mop-up classification"). No retraction or expression of concern.
+  Unread (approved with `notice_unread`, listed for the user): JohnEtal98, PurcEtal10's third link, ChanEtal12.
+- ElliAshb88: batch 30's row is now `keep` (batch 18 wins). Its author and title are quoted from PMC reference
+  lists under the RaaiShif81b default, and its address became `Toronto`, since LoC prints no country (mop-up batch
+  `batch-40.json`).
+- Frie12, Frie08: the route took batch 30's `Frie08` row (Friendly) through the rename log to Frie12 (Friedman).
+  Batches 27 on now follow only renames logged after their commit. Batch 30's editors were not applied to Frie12,
+  because they are Friendly's book's editors.
+- Mann06: its Type is now `Senior thesis`, as the author's publication list prints it. The manual research's
+  composite quote was in no saved body (`batch-40.json`).
+- Post-check `needs_user` residue (5): each has a later resolution `apply`, and the residue is of a settled kind
+  (`README.md` "Post-check residue a resolution settles"). ChanEtal12 and LegaEtal11 had merged duplicates, and
+  DougPeuc73 and Kolo13 had `field_not_found`. McCaEtal06 had the DOI residue, which the DOI default settles.
+  ChanEtal12 then showed an unclassified corrigendum, which is now classified as unread.
+
+cdl.bib edits (mop-up apply, `../apply-2026-09-30-final/mopup/`): ElliAshb88 address and Mann06 type. There were
+no renames or deletions. The run made 0 requests, and its repeat made 0 requests and 0 review writes.
+
+### The 1 entry still needs_review
+
+- SvenEtal24: the author was never researched. The open 'Hoang NT' question is left for the user.
+
+### For the user
+
+- ChanEtal12: the Brain Res 1470:159 corrigendum is unread. Its Crossref title quotes the article as "A
+  meta-analytic review", but the article and the entry print "a meta-analysis".
+
+## Counts (first final run, before the mop-up)
 
 `bibcheck.py crossref status cdl.bib`:
 
