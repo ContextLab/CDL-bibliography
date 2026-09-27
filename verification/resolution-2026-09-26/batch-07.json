@@ -1,0 +1,282 @@
+[
+ {
+  "key": "Hirs86",
+  "decision": "apply",
+  "new_key": "HirsEtal86",
+  "notes": "Crossref 10.1037/0278-7393.12.3.445 lists six authors (Hirst, Johnson, Kim, Phelps, Risse, Volpe); JEP:LMC 12(3) 445-451, 1986. Reviewer agreed; HirsEtal86 is free in HEAD.",
+  "questions": [],
+  "set": {},
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "WalkHulm99",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "1999",
+    "url": "https://psycnet.apa.org/doiLanding?doi=10.1037%2F0278-7393.25.5.1256",
+    "quote": "Walker, I., & Hulme, C. (1999). Concrete words are easier to recall than abstract words: Evidence for a semantic contribution to short-term serial recall. Journal of Experimental Psychology: Learning, Memory, and Cognition, 25(5), 1256–1271."
+   }
+  },
+  "notes": "Year is unchanged (1999); APA's PsycArticles record (the publisher's own citation; page renders via JavaScript, read in a browser 2026-09-26) prints 1999 for vol 25 no 5. Title 'short-term' matches the printed title.",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "RadvEtal05",
+  "decision": "apply",
+  "set": {
+   "volume": {
+    "value": "60",
+    "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p276",
+    "quote": "\"volume\":\"60\""
+   }
+  },
+  "notes": "Printed volume is 60 (series B is carried by the journal name, not the volume): Crossref volume 60 issue 5 P276-P278; PubMed 16131622 'VI  - 60' (https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16131622&rettype=medline&retmode=text).",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "SuppEtal66",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "P Suppes and G Groen and M Schlag-Rey",
+    "url": "https://psycnet.apa.org/record/1966-04728-001",
+    "quote": "Suppes, P., Groen, G., & Schlag-Rey, M. (1966). A model for response latency in paired-associate learning. Journal of Mathematical Psychology, 3(1), 99–128."
+   }
+  },
+  "notes": "Second source for 'Groen': APA PsycInfo record 1966-04728-001 (JS-rendered, read in a browser 2026-09-26) agrees with Crossref '\"family\":\"Groen\"' (given Guy). 'Grown' is a typo.",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "ZhanEtal06",
+  "decision": "apply",
+  "withdraw": [
+   "title"
+  ],
+  "notes": "DOI applied (PubMed 16563517 'AID - 10.1016/j.jneumeth.2006.02.013 [doi]'). Title change is spacing-only around '---'; HEAD writes '--- ' in 27 of 34 em-dash titles, so the current house form is kept pending the rule question.",
+  "questions": [
+   "Should an em-dash in a title be written '---' with no spaces (as printed, e.g. Crossref 'signals—A combined') or '--- ' with a trailing space (the form 27 of 34 em-dash titles in HEAD cdl.bib use)? One rule for all such titles would let bibcheck normalise them."
+  ],
+  "set": {},
+  "remove": []
+ },
+ {
+  "key": "ParrSabi90",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "W G Parrott and J Sabini",
+    "url": "https://psycnet.apa.org/doiLanding?doi=10.1037%2F0022-3514.59.2.321",
+    "quote": "Parrott, W. G., & Sabini, J. (1990). Mood and memory under natural conditions: Evidence for mood incongruent recall."
+   }
+  },
+  "notes": "Second source for 'Parrott': APA PsycArticles record (publisher page, JS-rendered, read in a browser 2026-09-26) agrees with Crossref '\"family\":\"Parrott\"'. No other HEAD entry spells him 'Parrot'.",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "Aber40",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "E M Abernethy",
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/00223980.1940.9917005",
+    "quote": "Ethel Mary Abernethy"
+   }
+  },
+  "notes": "Taylor & Francis article page (read in a browser 2026-09-26; blocks plain scripts) prints 'Ethel Mary Abernethy' and 'Pages 293-301', agreeing with Crossref '\"family\":\"Abernethy\"'. Title fix 'changed ... examinations' is printed there too.",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "CranPari57",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "C W Crannell and J M Parrish",
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/00223980.1957.9713089",
+    "quote": "C. W. Crannell &J. M. Parrish"
+   }
+  },
+  "notes": "Taylor & Francis article page (read in a browser 2026-09-26) prints 'C. W. Crannell &J. M. Parrish', agreeing with Crossref '\"family\":\"Parrish\"'. The other HEAD 'Parish' entries are different people.",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "Bull90",
+  "decision": "keep",
+  "notes": "APA PsycInfo record 1991-00341-001 (JS-rendered; read in a browser 2026-09-26): 'Bullington, J. C. (1990). Mood congruent memory: A replication of symmetrical effects for both positive and negative moods. Journal of Social Behavior & Personality, 5(4), 123–134.' Every HEAD field matches; no DOI exists.",
+  "questions": [
+   "Records on APA PsycNET render only via JavaScript (a plain fetch gets an Incapsula 403), so a script validator cannot re-fetch their quotes. Should PsycNET quotes read in a real browser count as verified evidence, or must every value also have a script-fetchable source?"
+  ],
+  "set": {},
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "ElliEtal95",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Emotion and memory: effect of mood states on immediate and unexpected delayed recall",
+    "url": "https://psycnet.apa.org/record/1996-91222-001",
+    "quote": "Ellis, H. C., Seibert, P. S., & Varner, L. J. (1995). Emotion and memory: Effect of mood states on immediate and unexpected delayed recall. Journal of Social Behavior & Personality, 10(2), 349–362."
+   }
+  },
+  "notes": "Found: APA PsycInfo record 1996-91222-001 (JS-rendered, read in a browser 2026-09-26) confirms authors, journal, year, 10(2), 349-362; the only correction is 'Effects' -> 'Effect'. Not an abstract (PsycInfo 'Journal Article').",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "Knut07",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "973--978",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1519/r-505011.1&format=json&resultType=core",
+    "quote": "\"pageInfo\":\"973-978\""
+   }
+  },
+  "notes": "Crossref deposits the first page only; Europe PMC gives 973-978 and PubMed 17685726 'PG  - 973-8'. The page range is kept, not shortened.",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "Whal20",
+  "decision": "apply",
+  "new_key": "TrusWhal20",
+  "notes": "Crossref 10.70725/307718pkpjuu lists Torrey Trust and Jeromie Whalen; JTATE 28(2) 189-199, 2020. Reviewer agreed; TrusWhal20 is free in HEAD.",
+  "questions": [],
+  "set": {},
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "vand95",
+  "decision": "apply",
+  "new_key": "vandFisl95",
+  "set": {
+   "author": {
+    "value": "B A van der Kolk and R Fisler",
+    "url": "https://api.crossref.org/works/10.1002/jts.2490080402",
+    "quote": "\"family\":\"Fisler\""
+   },
+   "title": {
+    "value": "Dissociation and the fragmentary nature of traumatic memories: overview and exploratory study",
+    "url": "https://api.crossref.org/works/10.1002/jts.2490080402",
+    "quote": "\"title\":[\"Dissociation and the fragmentary nature of traumatic memories: Overview and exploratory study\"]"
+   },
+   "doi": {
+    "value": "10.1002/jts.2490080402",
+    "url": "https://api.crossref.org/works/10.1002/jts.2490080402",
+    "quote": "\"DOI\":\"10.1002\\/jts.2490080402\""
+   }
+  },
+  "notes": "Journal, year, volume 8, issue 4 and pages 505-525 all match van der Kolk & Fisler 1995 (Crossref; PubMed 8564271 'PG  - 505-25'); only the title/sole author point at the 1998 PCN paper or 1996 chapter 'Trauma and memory'. Five locator fields outweigh a generic title. vandFisl95 is free in HEAD.",
+  "questions": [
+   "When a citation's journal, year, volume, issue and pages all identify one work but its title (and author list) belong to a different work by the same first author, should the locators win (re-point the entry to the work they identify), or should such mixed entries be dropped?"
+  ],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "KeppEtal68",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Studies of learning to learn: {VIII}. The influence of massive amounts of training upon the learning and retention of paired-associate lists",
+    "url": "https://psycnet.apa.org/record/1969-01946-001",
+    "quote": "Keppel, G., Postman, L., & Zavortink, B. (1968). Studies of learning to learn: VIII. The influence of massive amounts of training upon the learning and retention of paired-associate lists. Journal of Verbal Learning & Verbal Behavior, 7(4), 790–796."
+   }
+  },
+  "notes": "Full title (unchanged from HEAD) confirmed by APA PsycInfo 1969-01946-001 (JS-rendered, read in a browser 2026-09-26), which also corroborates 'Zavortink' and issue 4.",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "Kopp78",
+  "decision": "apply",
+  "new_key": "Kopp63",
+  "notes": "JVLVB volume 2 is 1963: Crossref 10.1016/s0022-5371(63)80099-7 gives 2(4) 310-319, print year 1963. Reviewer agreed; Kopp63 is free in HEAD.",
+  "questions": [],
+  "set": {},
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "MurdMetc78",
+  "decision": "apply",
+  "notes": "'single- trial' is a broken hyphen; Crossref prints 'Controlled rehearsal in single-trial free recall', and HEAD writes 'single-trial' in five other titles. Not a house-style choice.",
+  "questions": [],
+  "set": {},
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "MurdOkad70",
+  "decision": "apply",
+  "notes": "Crossref 10.1037/h0029993: Journal of Experimental Psychology 86(2) 263-267, 1970, title 'Interresponse times in single-trial free recall.' Reviewer agreed with journal, number and title.",
+  "questions": [],
+  "set": {},
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "HartWong79",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "100--108",
+    "url": "https://www.jstor.org/stable/2346830",
+    "quote": "Vol. 28, No. 1 (1979), pp. 100-108 (9 pages)"
+   }
+  },
+  "notes": "Crossref deposits the first page only; the JSTOR page (read in a browser 2026-09-26; blocks plain scripts) prints pp. 100-108. The journal fix to Applied Statistics stands.",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "PellFare99",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "647--653",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1364/josaa.16.000647&format=json&resultType=core",
+    "quote": "\"pageInfo\":\"647-653\""
+   }
+  },
+  "notes": "Crossref gives the first page only; Europe PMC 647-653, PubMed 10069051 'PG  - 647-53', and Optica citation_lastpage 653.",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ },
+ {
+  "key": "SekuBall86",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "864--867",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1364/josaa.3.000864&format=json&resultType=core",
+    "quote": "\"pageInfo\":\"864-867\""
+   }
+  },
+  "notes": "Crossref gives the first page only; Europe PMC 864-867 and PubMed 3734925 'PG  - 864-7'.",
+  "questions": [],
+  "withdraw": [],
+  "remove": []
+ }
+]

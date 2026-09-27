@@ -1,0 +1,183 @@
+[
+ {
+  "key": "deBoEtal97",
+  "decision": "apply",
+  "notes": "PubMed 9186980 prints Psychopathology 30(3):149-54, 'DP  - 1997'; the Crossref date 2010 is Karger's online digitization of the back issue (no print date in the record). The printed year 1997 wins; the key is unchanged."
+ },
+ {
+  "key": "ZeliGile88",
+  "decision": "apply",
+  "notes": "No DOI exists: PubMed 3074313 (Psychopharmacol Bull 24(4):523-9, 1988) lists no DOI and a Crossref bibliographic search returns no match. Apply the issue number without a DOI."
+ },
+ {
+  "key": "PailEtal00",
+  "decision": "keep",
+  "notes": "The user ruled it a real article (cross-wave a-PailEtal00: keep). No record found: Crossref (Psychophysiology ISSN, 2000), OpenAlex, and the Wiley 37(S1) TOC (403). WebSearch budget is exhausted. HEAD is left as is, pending the rule question.",
+  "questions": [
+   "When the user ruled an item 'a real article, not an abstract' (keep) but no online record of it exists anywhere (e.g. meeting-supplement pages like Psychophysiology 37:S76 or Sleep Research 26:27), does standing rule 1 (no evidence -> drop) override that earlier keep decision?"
+  ]
+ },
+ {
+  "key": "VoEtal07",
+  "decision": "apply",
+  "new_key": "VoEtal08",
+  "notes": "PubMed 17910733 'DP  - 2008 Jan', 45(1):130-40, and Crossref published-print 2008 (online 2007). The key follows the print year; VoEtal08 is free in HEAD."
+ },
+ {
+  "key": "TaylEtal85",
+  "decision": "apply",
+  "notes": "No DOI exists: PubMed 3920718 (Public Health Rep 100(2):195-202, 1985 Mar-Apr; PMC1424736) lists no DOI and a Crossref search finds none. Every other field is confirmed; no change."
+ },
+ {
+  "key": "MartLeve91",
+  "decision": "apply",
+  "notes": "No DOI found: Crossref has no 1991 item for QJEP B (ISSN 0272-4995). The same-title 1991 Integr Physiol Behav Sci 26(2):127-131 (10.1007/bf02691035) is a different item. PubMed 1947200 prints 43(3):233-56."
+ },
+ {
+  "key": "EggeEtal07",
+  "decision": "apply",
+  "new_key": "EggeEtal06",
+  "set": {
+   "journal": {
+    "value": "Neuroscience and Biobehavioral Reviews",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16359729&rettype=medline&retmode=text",
+    "quote": "JT  - Neuroscience and biobehavioral reviews"
+   },
+   "volume": {
+    "value": "30",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16359729&rettype=medline&retmode=text",
+    "quote": "VI  - 30"
+   },
+   "number": {
+    "value": "4",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16359729&rettype=medline&retmode=text",
+    "quote": "IP  - 4"
+   },
+   "pages": {
+    "value": "562--575",
+    "url": "https://api.crossref.org/works/10.1016/j.neubiorev.2005.10.004",
+    "quote": "\"page\":\"562-575\""
+   },
+   "year": {
+    "value": "2006",
+    "url": "https://api.crossref.org/works/10.1016/j.neubiorev.2005.10.004",
+    "quote": "\"published-print\":{\"date-parts\":[[2006,1]]}"
+   },
+   "doi": {
+    "value": "10.1016/j.neubiorev.2005.10.004",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16359729&rettype=medline&retmode=text",
+    "quote": "AID - 10.1016/j.neubiorev.2005.10.004 [doi]"
+   },
+   "title": {
+    "value": "Exercise, cognition and {Alzheimer's} disease: more is not necessarily better",
+    "url": "https://api.crossref.org/works/10.1016/j.neubiorev.2005.10.004",
+    "quote": "\"title\":[\"Exercise, cognition and Alzheimer's disease: More is not necessarily better\"]"
+   },
+   "author": {
+    "value": "L Eggermont and D Swaab and P Luiten and E Scherder",
+    "url": "https://api.crossref.org/works/10.1016/j.neubiorev.2005.10.004",
+    "quote": "\"given\":\"Laura\",\"family\":\"Eggermont\""
+   }
+  },
+  "notes": "The 2007 Research and Practice in Alzheimer's Disease vol 12 (Serdi reprint series) printing is in no catalogue: Open Library lists vols 5, 9, 10 only, and Crossref, PubMed and LoC have nothing. The original is Neurosci Biobehav Rev 30(4):562-575, 2006. Replaced by it (fixes the 'Excercise' typo); EggeEtal06 is free. Authors per Crossref/PubMed FAU (Laura, Dick, Paul, Erik).",
+  "questions": [
+   "When the cited printing of a work cannot be found (e.g. a reprint in an edited annual series) but the original journal article by the same authors and title is registered, should the entry be replaced by the original (new key, original metadata) or dropped under rule 1?"
+  ]
+ },
+ {
+  "key": "Seid07",
+  "decision": "apply",
+  "new_key": "SeidShav07",
+  "notes": "Crossref 10.3102/0034654307310317 lists Tina Seidel and Richard J. Shavelson; RER 77(4):454-499, 2007. SeidShav07 is free in HEAD."
+ },
+ {
+  "key": "HiskEtal22",
+  "decision": "apply",
+  "new_key": "HiskEtal23",
+  "notes": "Crossref published-print 2023-09, 14(3):1099-1124 (online 2022). The key follows the print year; HiskEtal23 is free in HEAD. The bogus pages value 'doi.org/...' is replaced."
+ },
+ {
+  "key": "FirtEtal17",
+  "decision": "apply",
+  "notes": "The Crossref record is the 2016 advance article (page 'sbw115', no print date). PubMed 27521348 prints 'DP  - 2017 May 1', 'VI  - 43', 'IP  - 3', 'PG  - 546-556', which equals HEAD. Printed record wins; booktitle becomes journal."
+ },
+ {
+  "key": "AbboEtal97",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "221--224",
+    "url": "https://api.crossref.org/works/10.1126/science.275.5297.221",
+    "quote": "\"page\":\"221-224\""
+   }
+  },
+  "notes": "The publisher's Crossref deposit and OpenAlex give 221-224, and the DOI suffix encodes first page 221. PubMed 8985017 says 220-4 (1997 Jan 10, 275(5297)). The science.org page is 403 to fetches, so the print could not be seen; the publisher record is used."
+ },
+ {
+  "key": "DeadEtal80",
+  "decision": "apply",
+  "new_key": "DeadEtal81",
+  "notes": "PubMed 7466392 'DP  - 1981 Mar 13', Science 211(4487):1181-1183; Crossref published-print 1981. DeadEtal81 is free in HEAD."
+ },
+ {
+  "key": "TulvScha91",
+  "decision": "apply",
+  "new_key": "TulvScha90",
+  "notes": "PubMed 2296719 'DP  - 1990 Jan 19', 'PG  - 301-6', 247(4940); Crossref published-print 1990, page 301-306. TulvScha90 is free in HEAD."
+ },
+ {
+  "key": "WaszWalt83",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "B L Waszcak and J R Walters",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6828891&rettype=medline&retmode=text",
+    "quote": "FAU - Waszcak, B L"
+   }
+  },
+  "notes": "PubMed 6828891 (FAU 'Waszcak, B L', 'Walters, J R') and Crossref (family 'Waszcak', given 'Barbara L.') both print 'Waszcak'. HEAD's 'Waszczak' is the author's usual spelling but not the record's. Set as printed per rule 3, pending the question. The key is unaffected.",
+  "questions": [
+   "When the official record's author name is an evident misspelling or a name-order inversion (Crossref/PubMed 'Waszcak' for Waszczak; Crossref family 'NT', given 'Hoang' for the byline 'Hoang NT'), do we copy the record literally or keep the author's own usual spelling/order?"
+  ]
+ },
+ {
+  "key": "SvenEtal24",
+  "decision": "apply",
+  "notes": "DOI applied (Crossref and PubMed 38382312 confirm 115:251-263, Mar 2024). The byline prints 'Hoang NT': Crossref gives given 'Hoang', family 'NT' and PubMed 'Nt, Hoang'. HEAD's 'N T Hoang' treats Hoang as the surname. The HEAD author is left unchanged pending the name-order question.",
+  "questions": [
+   "When the official record's author name is an evident misspelling or a name-order inversion (Crossref/PubMed 'Waszcak' for Waszczak; Crossref family 'NT', given 'Hoang' for the byline 'Hoang NT'), do we copy the record literally or keep the author's own usual spelling/order?"
+  ]
+ },
+ {
+  "key": "MannEtal97",
+  "decision": "keep",
+  "notes": "The user ruled it a real article (cross-wave a-MannEtal97: keep). Sleep Research 26 (1997) is the APSS printed volume, which PubMed, Crossref and OpenAlex do not index; no record was found and WebSearch is exhausted. HEAD is left as is, pending the rule question.",
+  "questions": [
+   "When the user ruled an item 'a real article, not an abstract' (keep) but no online record of it exists anywhere (e.g. meeting-supplement pages like Psychophysiology 37:S76 or Sleep Research 26:27), does standing rule 1 (no evidence -> drop) override that earlier keep decision?"
+  ]
+ },
+ {
+  "key": "ThorTami20",
+  "decision": "apply",
+  "new_key": "ThorTami21",
+  "notes": "PubMed 32986080 'DP  - 2021 Aug 5', 16(8):807-815; Crossref published-print 2021-08-05 (online 2020). The title's missing space after the colon is a typo; PubMed prints 'happen: psychological'. ThorTami21 is free in HEAD."
+ },
+ {
+  "key": "MollEtal06",
+  "decision": "drop",
+  "drop_reason": "confirmed conference abstract: user decision a-MollEtal06 'correct' (crosswave/removals.json); HEAD journal 'Society for Mathematical Psychology Annual Meeting Abstracts'",
+  "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json, 'conference abstract (approved removal)')."
+ },
+ {
+  "key": "JacoEtal05b",
+  "decision": "drop",
+  "drop_reason": "confirmed conference abstract: SfN archive AbsYear=2005 AbsID=9688 'Neuroscience 2005 Abstract Presentation Number: 581.4'; user decision a-JacoEtal05b 'correct'",
+  "notes": "The Jacobs/Kahana abstract is already deleted (key-deletions.json). HEAD's current JacoEtal05b is a DIFFERENT work (Jacoby et al. 2005 JML 52(4):493-504, reused suffix); it must NOT be removed."
+ },
+ {
+  "key": "KoroEtal05",
+  "decision": "drop",
+  "drop_reason": "confirmed conference abstract: SfN archive AbsYear=2005 AbsID=1338 'Neuroscience 2005 Abstract Presentation Number: 65.16'; user decision a-KoroEtal05 'correct'",
+  "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json)."
+ }
+]

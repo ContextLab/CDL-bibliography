@@ -1,0 +1,162 @@
+[
+ {
+  "key": "BunnEtal99",
+  "decision": "keep",
+  "notes": "HEAD equals the publisher's scan (psychology.org.nz NZJP-Vol281-1999-4-Bunnell.pdf, 7 pages; my local OCR reads 'Julie K. Bunnell', 'Donald M. Baken', 'Llewellyn A. Richards-Ward', 'New Zealand Journal of Psychology Vol. 28 No.1 June 1999'). Text-fetchable OpenAlex/APA PsycInfo record W1785987719 confirms title, journal, 28(1), first page 23, 1999 but not last page 29 or middle initials; PsycNET itself is bot-walled. Kept pending the scan rule.",
+  "questions": [
+   "When the only copy printed by the publisher is an image-only scan (no text layer) that a person or local OCR can read, may it serve as the evidence for setting or keeping values, or must a text-fetchable record exist (otherwise hold or drop)?"
+  ]
+ },
+ {
+  "key": "KnigEtal04",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "163--170",
+    "url": "https://portal.sahmriresearch.org/en/publications/some-normative-and-psychometric-data-for-the-geriatric-depression",
+    "quote": "Pages (from-to)</th><td>163-170</td>"
+   },
+   "author": {
+    "value": "R G Knight and J McMahon and T J Green and C M Skeaff",
+    "url": "https://portal.sahmriresearch.org/en/publications/some-normative-and-psychometric-data-for-the-geriatric-depression",
+    "quote": "Knight, \\{Robert G.\\} and Jennifer McMahon and Tim Green and Skeaff, \\{C. Murray\\}"
+   }
+  },
+  "notes": "SAHMRI research portal (Pure) prints title, NZ J Psychol 33(3), Nov 2004, pp 163-170 and byline 'C. Murray Skeaff' (so C M Skeaff). It gives 'Tim Green'; the publisher's image-only scan reads 'Timothy J. Green', so HEAD's T J is kept (same initial rule as batch 03 q4)."
+ },
+ {
+  "key": "AdelEtal95",
+  "decision": "apply",
+  "notes": "Crossref 2008 is Karger's digitisation date (published-online 2008-03-06, no published-print); PubMed 7619717 prints <Volume>22</Volume><Issue>4</Issue><PubDate><Year>1995</Year> and 174-180. Year 1995 stays; post-check author/DOI/number apply."
+ },
+ {
+  "key": "ValdEtal05",
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences",
+    "url": "https://api.crossref.org/works/10.1098/rstb.2005.1654",
+    "quote": "\"container-title\":[\"Philosophical Transactions of the Royal Society B: Biological Sciences\"]"
+   }
+  },
+  "notes": "Printed name is 'Philosophical Transactions of the Royal Society B: Biological Sciences'; bibcheck's journal table maps exactly that string to '...of London Series B: Biological Sciences' (hence the missing 'london','series'). Post-check author/DOI/number 1457 apply."
+ },
+ {
+  "key": "Kura81",
+  "decision": "apply",
+  "notes": "DOI and issue 1-2 apply (Crossref). Journal left as HEAD 'Physica {A}: Statistical and Theoretical Physics': the ISSN portal lists 'Physica. A, Statistical and theoretical physics' and '...Statistical mechanics and its applications' as undated variants, NLM Catalog 9890571 likewise; Crossref gives only the current name; ScienceDirect 403s. Which subtitle vol 106 (1981) carried is unconfirmed.",
+  "questions": [
+   "When Crossref gives only a journal's current name and catalogues (ISSN portal, NLM Catalog) list an older subtitle as an undated variant, which name is cited: Crossref's current name, the older variant already canonical in bibcheck's journal table, or the bare common title?"
+  ]
+ },
+ {
+  "key": "AmarEtal10",
+  "decision": "apply",
+  "new_key": "AmarEtal00",
+  "notes": "PubMed 11005838 'DP  - 2000 Oct 10' and Crossref print 2000 (PNAS 97(21) 11149-11152) drive the key; AmarEtal00 is absent from HEAD."
+ },
+ {
+  "key": "FujiGrab05",
+  "decision": "apply",
+  "new_key": "FujiGray05",
+  "notes": "Second author is Graybiel (PubMed 15956185 'N Fujii, A M Graybiel'; Crossref agrees); FujiGray05 absent from HEAD."
+ },
+ {
+  "key": "Sten95",
+  "decision": "apply",
+  "notes": "Title and pages unchanged from HEAD. The IJCAI TOC misprints 'Replannig' and '1662'; the paper PDF (ijcai.org/Proceedings/95-2/Papers/082.pdf) text layer reads 'R e a l - T i m e R e p l a n n i n g' and its 8 page footers OCR as 1662(=1652), 1663, 1654, 1666, 1666, 1657, 1658, 1669(=1659), i.e. 1652--1659 as in HEAD. Post-check inproceedings/booktitle/journal removal apply."
+ },
+ {
+  "key": "HaynEtal09",
+  "decision": "apply",
+  "new_key": "HaynEtal11",
+  "notes": "Springer chapter in Robotics Research (STAR vol 70), Crossref published-print 2011, pp 105-121; the duplicated HEAD title is repaired. HaynEtal11 absent from HEAD."
+ },
+ {
+  "key": "Maha36",
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Proceedings of the National Institute of Sciences of India",
+    "url": "https://insa.nic.in/writereaddata/UpLoadedFiles/PINSA/Vol02_1936_1_Art05.pdf",
+    "quote": "Published by the National Institute of Sciences of India"
+   },
+   "volume": {
+    "value": "2",
+    "url": "https://insa.nic.in/writereaddata/UpLoadedFiles/PINSA/Vol02_1936_1_Art05.pdf",
+    "quote": "VOL. II—No. 1. [Published April 15th, 1936."
+   },
+   "number": {
+    "value": "1",
+    "url": "https://insa.nic.in/writereaddata/UpLoadedFiles/PINSA/Vol02_1936_1_Art05.pdf",
+    "quote": "VOL. II—No. 1. [Published April 15th, 1936."
+   }
+  },
+  "notes": "HEAD's 'Proceedings of the National Academy of Sciences, India' vol 12 is wrong. The INSA archive scan (image-only; my local OCR: 'ON THE GENERALIZED DISTANCE IN STATISTICS', 'VOL. II—No. 1. [Published April 1?th, 1936', page headers 50 and 55, imprint 'Published by the National Institute of Sciences of India') confirms title, 1936, pp 49--55 and the journal. These quotes will fail the text validator; no text-fetchable record found (Springer reprint page bot-walled, archive.org has no vol II). Apply depends on the scan rule.",
+  "questions": [
+   "When the only copy printed by the publisher is an image-only scan (no text layer) that a person or local OCR can read, may it serve as the evidence for setting or keeping values, or must a text-fetchable record exist (otherwise hold or drop)?"
+  ]
+ },
+ {
+  "key": "MankEtal12",
+  "decision": "apply",
+  "notes": "Only change is the DOI (PubMed 23132944 'AID - 10.1073/pnas.1214107109 [doi]'); Crossref PNAS 109(47) 19462-19467, 2012 matches HEAD. Verdict label is cosmetic."
+ },
+ {
+  "key": "Mosc95",
+  "decision": "apply",
+  "new_key": "MoscEtal95",
+  "notes": "PubMed 7731972 lists four authors (Moscovitch C, Kapur S, Köhler S, Houle S) and the title with 'a positron emission tomography study'; Crossref PNAS 92(9) 3721-3725. MoscEtal95 absent from HEAD."
+ },
+ {
+  "key": "RutiEtal08",
+  "decision": "apply",
+  "notes": "Only change is the DOI 10.1073/pnas.0706015105 (PubMed 18162554); Crossref PNAS 105(1) 329-334, 2008 matches HEAD."
+ },
+ {
+  "key": "GrunSher01",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "1902",
+    "url": "https://api.crossref.org/works/10.1098/rspl.1901.0100",
+    "quote": "\"published-print\":{\"date-parts\":[[1902,4,4]]}"
+   }
+  },
+  "new_key": "GrunSher02",
+  "notes": "Applied the standing print-year rule: Crossref published-print 1902-04-04 (vol 69, issues 451-458); the printed page says 'Received July 20,—Read November 21, 1901' (archive.org OCR). GrunSher02 is absent from HEAD. If the reading/part year should win instead, withdraw year and keep GrunSher01.",
+  "questions": [
+   "For society proceedings where a paper was read in one year but Crossref's published-print date for the bound part range is the next year (e.g. Proc R Soc Lond 69: 'Read November 21, 1901', published-print 1902-04-04, issues 451-458), does Crossref's published-print year win, or the year of the individual part/reading?"
+  ]
+ },
+ {
+  "key": "Adey67a",
+  "decision": "apply",
+  "notes": "Only change is the DOI 10.1016/s0079-6123(08)63102-7 (PubMed 4865089); Crossref pages 228-245, 1967 match HEAD. Key stays Adey67a (Adey67 exists)."
+ },
+ {
+  "key": "CronEtal06",
+  "decision": "apply",
+  "notes": "Only change is the DOI 10.1016/s0079-6123(06)59019-3 (PubMed 17071238); Crossref pages 275-295, 2006 match HEAD."
+ },
+ {
+  "key": "Dodr02",
+  "decision": "apply",
+  "notes": "Only change is the DOI 10.1016/s0079-6123(02)35037-4 (PubMed 12143358); Crossref pages 399-407, 2002 match HEAD."
+ },
+ {
+  "key": "Helm02",
+  "decision": "apply",
+  "notes": "Only change is the DOI 10.1016/s0079-6123(02)35041-6 (PubMed 12143363); Crossref pages 439-453, 2002 match HEAD."
+ },
+ {
+  "key": "RibaDash02",
+  "decision": "apply",
+  "notes": "Only change is the DOI 10.1016/s0079-6123(02)36027-8 (PubMed 12143392); Crossref pages 319-328, 2002 match HEAD (Crossref's 'Chapter 25' title prefix is not part of the title)."
+ },
+ {
+  "key": "SrinEtal06a",
+  "decision": "apply",
+  "notes": "Only change is the DOI 10.1016/s0079-6123(06)59003-x (PubMed 17071222); Crossref pages 29-42, 2006 match HEAD. Key keeps suffix a (SrinEtal06b exists)."
+ }
+]

@@ -1,0 +1,217 @@
+[
+ {
+  "key": "JensTesc00",
+  "decision": "drop",
+  "drop_reason": "confirmed conference abstract: 'Neuroscience 2000 Abstract Presentation Number: 263.10' (https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=4118)",
+  "notes": "SfN 2000 annual meeting abstract; user already approved removal as an abstract (a-JensTesc00, crosswave/removals.json)."
+ },
+ {
+  "key": "MakeEtal00",
+  "decision": "drop",
+  "drop_reason": "confirmed conference abstract: 'Neuroscience 2000 Abstract Presentation Number: 490.4' (https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2000&AbsID=7682)",
+  "notes": "SfN 2000 annual meeting abstract; user already approved removal as an abstract (a-MakeEtal00, crosswave/removals.json)."
+ },
+ {
+  "key": "Youn12",
+  "decision": "apply",
+  "remove": [
+   "volume",
+   "number",
+   "pages"
+  ],
+  "notes": "Web article, Chronicle of Higher Education, published 2012-07-19 (archived page: '\"datePublished\":\"2012-07-19T05:00:00Z\"'). No print volume/issue/pages found anywhere; HEAD's 19(7) 1--4 is not the Chronicle's 2012 volume (58) and is unconfirmable, so removed; url added by post-check.",
+  "questions": [
+   "Newspaper/magazine articles known only from their web version, print volume/issue/pages unconfirmable: remove them and cite with url and online year, or keep the cited print coordinates?"
+  ]
+ },
+ {
+  "key": "Tulv95",
+  "decision": "apply",
+  "notes": "Post-check changes (incollection in Gazzaniga, The Cognitive Neurosciences, MIT Press) confirmed. Pages 839--847 kept: OpenAlex W205754681 gives '\"first_page\":\"839\",\"last_page\":\"847\"'; the author's own list prints a typo 'pp. 753-847'; the book scan on archive.org (cognitiveneurosc0000unse_a9n8) is lending-restricted.",
+  "questions": [
+   "Book chapter pages that no official record (publisher, Crossref, catalogue) prints, only an index such as OpenAlex/MAG and the author's list agree with the cited value: keep the cited pages, or remove them? (Tulv95; same as batch 04 q1)"
+  ]
+ },
+ {
+  "key": "LeCuBeng95",
+  "decision": "apply",
+  "withdraw": [
+   "pages"
+  ],
+  "remove": [
+   "pages"
+  ],
+  "notes": "HEAD pages 1--14 are the page count of the authors' preprint PDF (yann.lecun.com/exdb/publis/pdf/lecun-bengio-95a.pdf, 14 pages), not the printed chapter; printed pages (commonly 255--258, ACM record of the 1998 reprint, 10.5555/303568.303704) unfetchable, so pages removed. Author bib (lecun.bib) gives no pages. Other post-check changes confirmed."
+ },
+ {
+  "key": "DeadEtal96",
+  "decision": "apply",
+  "notes": "Title fix removes a stray space inside 'delayed-nonmatch-to-sample' (a typo, not a style choice); PubMed 8613802 and Crossref print it without the space. DOI confirmed by Crossref."
+ },
+ {
+  "key": "JacoEtal10b",
+  "decision": "apply",
+  "remove": [
+   "number"
+  ],
+  "notes": "Online eLetter in J Neurosci 30 (context-lab.com: 'The Journal of Neuroscience , 30: Online.'); no issue exists for it: 19 is the issue of Miller's Journal Club it answers, so Number removed."
+ },
+ {
+  "key": "MurEtal12",
+  "decision": "apply",
+  "withdraw": [
+   "title"
+  ],
+  "notes": "DOI confirmed (PubMed 22723705). Title change is only em-dash spacing; withdrawn pending the open em-dash house-form rule (batch 02 q5, batch 06 q2). Sources disagree (PubMed 'graded--single', Crossref 'Graded - Single').",
+  "questions": [
+   "Em dash in titles: 'a---b' or 'a--- b' (cdl.bib has both: 16 vs 5)? Same as batch 02 q5 / batch 06 q2; MurEtal12 waits on it."
+  ]
+ },
+ {
+  "key": "UncaEtal11",
+  "decision": "apply",
+  "notes": "'attentionduring' is a typo (missing space), not a style choice; PubMed 21880922 and Crossref print 'attention during'. DOI, 31(35) 12613--12628 confirmed by PubMed."
+ },
+ {
+  "key": "SchmEtal03",
+  "decision": "apply",
+  "withdraw": [
+   "journal"
+  ],
+  "notes": "Title correction confirmed by PubMed 12917744. No DOI exists (PubMed lists none, Crossref search finds no record for this 2003 article). Journal change withdrawn: bibcheck's journal table keeps 'the journal of nutrition health and aging' as the house form."
+ },
+ {
+  "key": "Denn91",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "27--51",
+    "url": "https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051",
+    "quote": "citation_lastpage\" content=\"51\""
+   }
+  },
+  "notes": "Publisher page (PDC) prints first page 27, last page 51; Crossref's '27' is first page only. Pages unchanged from HEAD; DOI 10.2307/2027085 added."
+ },
+ {
+  "key": "Newm08",
+  "decision": "apply",
+  "entrytype": "incollection",
+  "remove": [
+   "journal",
+   "volume"
+  ],
+  "set": {
+   "title": {
+    "value": "Mathematics of networks",
+    "url": "https://api.crossref.org/works/10.1007/978-1-349-58802-2_1061",
+    "quote": "\"title\":[\"Mathematics of Networks\"]"
+   },
+   "booktitle": {
+    "value": "The New Palgrave Dictionary of Economics",
+    "url": "https://api.crossref.org/works/10.1007/978-1-349-58802-2_1061",
+    "quote": "\"container-title\":[\"The New Palgrave Dictionary of Economics\"]"
+   },
+   "pages": {
+    "value": "4059--4064",
+    "url": "https://api.crossref.org/works/10.1007/978-1-349-58802-2_1061",
+    "quote": "\"page\":\"4059-4064\""
+   },
+   "doi": {
+    "value": "10.1007/978-1-349-58802-2_1061",
+    "url": "https://api.crossref.org/works/10.1007/978-1-349-58802-2_1061",
+    "quote": "\"DOI\":\"10.1007\\/978-1-349-58802-2_1061\""
+   },
+   "publisher": {
+    "value": "Palgrave Macmillan",
+    "url": "https://api.crossref.org/works/10.1007/978-1-349-58802-2_1061",
+    "quote": "\"publisher\":\"Palgrave Macmillan UK\""
+   },
+   "editor": {
+    "value": "S N Durlauf and L E Blume",
+    "url": "https://openlibrary.org/books/OL23178263M.json",
+    "quote": "\"by_statement\": \"edited by Steven N. Durlauf and Lawrence E. Blume.\""
+   },
+   "edition": {
+    "value": "2\\textsuperscript{nd}",
+    "url": "https://openlibrary.org/books/OL23178263M.json",
+    "quote": "\"edition_name\": \"2nd ed.\""
+   },
+   "year": {
+    "value": "2008",
+    "url": "https://api.crossref.org/works/10.1007/978-1-349-58802-2_1061",
+    "quote": "\"published-print\":{\"date-parts\":[[2008]]}"
+   }
+  },
+  "notes": "Entry in The New Palgrave Dictionary of Economics, 2nd ed (not an encyclopedia article). Of three Crossref versions I chose the one with a 2008 print date (pp 4059-4064, continuous pagination of the 8-volume set); the online version gives 465-470 and the living-reference version 1-8. HEAD '2, 1--12' matches none. Address omitted (Crossref London vs catalogue Basingstoke).",
+  "questions": [
+   "Reference-work entries with several Crossref versions (online dictionary, 2008 print-dated record, living reference) giving different pages: cite the print-dated record's pages (chosen for Newm08), or omit pages?"
+  ]
+ },
+ {
+  "key": "BeamJone98",
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Quarterly Journal of Experimental Psychology",
+    "url": "https://api.crossref.org/works/10.1080/713755774",
+    "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section A\"]"
+   }
+  },
+  "notes": "Journal printed as 'The Quarterly Journal of Experimental Psychology Section A'; bibcheck's journal table maps that to 'quarterly journal of experimental psychology' (house form used by 28 entries). 51(3) 615-636, Aug 1998 confirmed."
+ },
+ {
+  "key": "Tipp85",
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Quarterly Journal of Experimental Psychology",
+    "url": "https://api.crossref.org/works/10.1080/14640748508400920",
+    "quote": "\"container-title\":[\"The Quarterly Journal of Experimental Psychology Section A\"]"
+   }
+  },
+  "notes": "Journal printed as '... Section A'; bibcheck's journal table maps it to the house form 'Quarterly Journal of Experimental Psychology'. 37(4) 571-590, Nov 1985 confirmed."
+ },
+ {
+  "key": "JollChan18",
+  "decision": "apply",
+  "new_key": "JollChan19",
+  "notes": "Printed issue 11(2) 433-454, April 2019 (Crossref '\"published-print\":{\"date-parts\":[[2019,4]]}', PubMed Year 2019), so key JollChan19; free in HEAD."
+ },
+ {
+  "key": "GoodLee93",
+  "decision": "apply",
+  "new_key": "GoodEtal93",
+  "notes": "Crossref lists three authors (Goodman, Lee, Tang), TAMS 338(2) 639-654, 1993, so key GoodEtal93; free in HEAD."
+ },
+ {
+  "key": "BradNakk25",
+  "decision": "keep",
+  "notes": "TMLR assigns no DOIs; OpenReview note zrWNtzSZsf ('Accepted by TMLR', published 2025-08-11) confirms title, authors Arwen Bradley and Preetum Nakkiran, and 2025. HEAD correct."
+ },
+ {
+  "key": "RazaEtal26",
+  "decision": "apply",
+  "notes": "TMLR assigns no DOIs. OpenReview 4iRx9b0Csu ('Accepted by TMLR', 2026-02-24) confirms the author order Razafindralambo, Sun, Garreau, Precioso, Mattei applied by the post-check."
+ },
+ {
+  "key": "BennBank89",
+  "decision": "apply",
+  "new_key": "BurrEtal89",
+  "notes": "Title, Vision Research 29(4) 419-431 (1989) all belong to Burr, Morrone and Spinelli (PubMed 2781732, Crossref 10.1016/0042-6989(89)90006-0); authors corrected, key BurrEtal89 free in HEAD."
+ },
+ {
+  "key": "HerrMeck01",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Gamma activity in human {EEG} is related to highspeed memory comparisons during object selective attention",
+    "url": "https://api.crossref.org/works/10.1080/13506280143000142",
+    "quote": "\"title\":[\"Gamma activity in human EEG is related to highspeed memory comparisons during object selective attention\"]"
+   }
+  },
+  "notes": "Every fetchable record prints 'highspeed' without hyphen: Crossref, MPG PuRe item_722740, OpenAlex; T&F page blocked (403). Printed PDF unseen.",
+  "questions": [
+   "Publisher metadata (Crossref and repositories) prints a compound closed up (highspeed) where the cited entry hyphenates it, and the printed PDF is unreachable: copy the metadata spelling or keep the hyphen?"
+  ]
+ }
+]

@@ -1,0 +1,200 @@
+[
+ {
+  "key": "HansEtal07",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "2007",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16452640&retmode=xml",
+    "quote": "<Volume>17</Volume><Issue>1</Issue><PubDate><Year>2007</Year><Month>Jan</Month></PubDate>"
+   }
+  },
+  "notes": "Crossref's 2006 is the online-first date; the print issue 17(1) is dated January 2007 (PubMed JournalIssue CitedMedium=Print), so the year stays 2007 and only the DOI is added."
+ },
+ {
+  "key": "MeyeEtal18",
+  "decision": "apply",
+  "new_key": "MeyeEtal19c",
+  "notes": "Print 2019, 29(5):1910-1920 per PubMed and Crossref published-print; HEAD has MeyeEtal19a and MeyeEtal19b (different works) and no bare MeyeEtal19, so the key becomes MeyeEtal19c."
+ },
+ {
+  "key": "RissEtal07",
+  "decision": "apply",
+  "new_key": "RissEtal08",
+  "notes": "Print issue 18(7) July 2008 (PubMed, Crossref published-print 2008); RissEtal08 is free in HEAD."
+ },
+ {
+  "key": "SedeEtal07a",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "2007",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16831858&retmode=xml",
+    "quote": "<Volume>17</Volume><Issue>5</Issue><PubDate><Year>2007</Year><Month>May</Month></PubDate>"
+   }
+  },
+  "notes": "Crossref's 2006 is the online-first date; the print issue 17(5) is dated May 2007, so the year stays 2007 and only the DOI is added."
+ },
+ {
+  "key": "ZaraEtal05",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "2005",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15342440&retmode=xml",
+    "quote": "<Volume>15</Volume><Issue>3</Issue><PubDate><Year>2005</Year><Month>Mar</Month></PubDate>"
+   },
+   "number": {
+    "value": "3",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15342440&retmode=xml",
+    "quote": "<Issue>3</Issue>"
+   },
+   "pages": {
+    "value": "303--316",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15342440&retmode=xml",
+    "quote": "<StartPage>303</StartPage><EndPage>316</EndPage>"
+   },
+   "title": {
+    "value": "Positive evidence against human hippocampal involvement in working memory maintenance of familiar stimuli",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15342440&retmode=xml",
+    "quote": "<ArticleTitle>Positive evidence against human hippocampal involvement in working memory maintenance of familiar stimuli.</ArticleTitle>"
+   }
+  },
+  "notes": "Crossref's 2004 is online-first; print issue 15(3) is March 2005, so year stays 2005. Number, pages and title re-quoted from PubMed efetch (the post-check quotes came from the pubmed.ncbi web page, which blocks scripts)."
+ },
+ {
+  "key": "Sate14",
+  "decision": "apply",
+  "notes": "PubMed prints 'disorders-third edition'; cdl.bib writes an em dash as '---' without spaces in 5 titles (vs 4 with spaces), so the unspaced form is applied as house style.",
+  "questions": [
+   "Should every title em dash be written '---' with no surrounding spaces (HEAD has 5 titles unspaced and 4 with ' --- ')? If yes, the 4 spaced ones should be normalized too."
+  ]
+ },
+ {
+  "key": "PellEtal88",
+  "decision": "apply",
+  "set": {
+   "number": {
+    "value": "3",
+    "url": "https://denispelli.com/pubs/pelli1988chart.pdf",
+    "quote": "Vol. 2, No.3"
+   }
+  },
+  "notes": "The author-hosted scan of the printed article header reads 'Clin .Vision Sci. Vol. 2, No.3, ... pp. 187-199, 1988' (text layer); title 'THE DESIGN OF A NEW LETTER CHART FOR MEASURING CONTRAST SENSITIVITY' confirms the post-check title. The host returns 406 without a browser User-Agent."
+ },
+ {
+  "key": "BotvEtal04",
+  "decision": "apply",
+  "new_key": "BotvEtal09",
+  "notes": "Crossref published-print 2009-12, 113(3):262-280, 'Andew G. Barto' (typo for Andrew; initials A G); BotvEtal09 free in HEAD."
+ },
+ {
+  "key": "DehaNacc00",
+  "decision": "apply",
+  "new_key": "DehaNacc01",
+  "notes": "Crossref and PubMed: Cognition 79(1-2):1-37, April 2001; DehaNacc01 free in HEAD."
+ },
+ {
+  "key": "BrigEtal18",
+  "decision": "apply",
+  "new_key": "DeBrEtal19",
+  "set": {
+   "author": {
+    "value": "F {De Brigard} and E Hanna and P L {St Jacques} and D L Schacter",
+    "url": "https://api.crossref.org/works/10.1080/02699931.2018.1478280",
+    "quote": "\"given\":\"Felipe\",\"family\":\"De Brigard\""
+   }
+  },
+  "notes": "Crossref family names De Brigard, Hanna, St Jacques, Schacter; print 2019 33(4):646-659. Key prefix follows house particle keys (DeBaVoge10, DeRoHass00); DeBrEtal19 free in HEAD."
+ },
+ {
+  "key": "Skan98",
+  "decision": "apply",
+  "new_key": "Skra98",
+  "notes": "Crossref: Wolfgang Skrandies, Cognitive Brain Research 6(3):173-183, 1998; Skra98 free in HEAD."
+ },
+ {
+  "key": "FranEtal01",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "M J Frank and B Loughry and R C O'Reilly",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.3758/cabn.1.2.137%22&resultType=core&format=json",
+    "quote": "\"authorString\":\"Frank MJ, Loughry B, O'Reilly RC.\""
+   }
+  },
+  "notes": "Authors confirmed by Europe PMC (PMID 12467110) and Crossref (M. J. FRANK, B. LOUGHRY, R. C. O'REILLY); HEAD value was already correct."
+ },
+ {
+  "key": "CookEtal16",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "8708434",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5056245/fullTextXML",
+    "quote": "<elocation-id>8708434</elocation-id>"
+   },
+   "author": {
+    "value": "B L Cook and A M Progovac and P Chen and B Mullin and S Hou and E Baca-Garcia",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1155/2016/8708434%22&resultType=core&format=json",
+    "quote": "\"authorString\":\"Cook BL, Progovac AM, Chen P, Mullin B, Hou S, Baca-Garcia E.\""
+   }
+  },
+  "notes": "Crossref's '1-8' is the page count of an article-numbered paper; the JATS elocation-id and PubMed give article 8708434, which the house article-number rule puts in pages (number removed by post-check)."
+ },
+ {
+  "key": "JohnRedi07b",
+  "decision": "drop",
+  "drop_reason": "confirmed conference abstract: user cross-wave decision (verification/resolution-plan-2026-09-22/README.md) 'JohnRedi07b is a conference abstract: remove.'; Cosyne 2007 is an abstract-only meeting and no paper exists",
+  "notes": "Cosyne 2007 program pages are no longer online (404); no journal or proceedings version found."
+ },
+ {
+  "key": "Buse01",
+  "decision": "apply",
+  "notes": "Chapter, editors, publisher and address confirmed by LoC; pages 147--191 left as is: the 2001 Erlbaum book exists only as a lending-restricted Internet Archive scan (computationalgeo0000unse) and the Crossref chapter record (10.4324/9781410612328-10) is the 2005 reissue with pages 154-198.",
+  "questions": [
+   "When a book chapter's pages (an optional field) cannot be confirmed by any fetchable source (the only copies are lending-restricted scans, and the Crossref record is a reissue with different pagination), should the existing pages value be kept or removed?"
+  ]
+ },
+ {
+  "key": "Seac97",
+  "decision": "drop",
+  "drop_reason": "no evidence found after: Crossref bibliographic search, OpenAlex, Internet Archive (Computer Dealer News collection has no accessible 1997 issues), local PDF library; trade magazine indexed only in ProQuest/Gale",
+  "notes": "No fetchable record of the article exists."
+ },
+ {
+  "key": "Hara96",
+  "decision": "apply",
+  "notes": "Book, editors, publisher, address confirmed by LoC and the SUNY Press TOC ('Online Education: The Future Linda Harasim'); the TOC prints no pages and no fetchable source gives them, so 203--214 is left as is.",
+  "questions": [
+   "When a book chapter's pages (an optional field) cannot be confirmed by any fetchable source (the only copies are lending-restricted scans, and the Crossref record is a reissue with different pagination), should the existing pages value be kept or removed?"
+  ]
+ },
+ {
+  "key": "PribEtal74",
+  "decision": "apply",
+  "set": {
+   "publisher": {
+    "value": "W H Freeman",
+    "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=73021887&maximumRecords=1&recordSchema=mods",
+    "quote": "<namePart>W. H. Freeman</namePart>"
+   }
+  },
+  "notes": "Editor left absent: LoC prints only 'Edited by David H. Krantz [and others]' and no fetchable source lists all editors correctly (karlpribram.com misprints 'R. C. Luce'). Publisher set to 'W H Freeman' per the user's publisher-initials rule. Sibling AtkiJuol74 (same book) lists editors 'D H Krantz and R C Atkinson and P Suppes' (omits Luce) and publisher 'Freeman'.",
+  "questions": [
+   "When the only fetchable catalogue record prints the editors as '<first editor> [and others]', should the editor field be omitted, set to '<first editor> and others', or completed from secondary citations? (Same book: AtkiJuol74 currently lists three of the four editors.)"
+  ]
+ },
+ {
+  "key": "EskrEtal12",
+  "decision": "drop",
+  "drop_reason": "confirmed conference abstract: CEMS 2012 page https://memory.psych.upenn.edu/CEMS_2012 'Submission of abstracts for both posters and talks has closed.'; no proceedings",
+  "notes": "Talk listed in the CEMS 2012 program; the symposium publishes no papers; user already approved removal."
+ },
+ {
+  "key": "HealEtal12a",
+  "decision": "drop",
+  "drop_reason": "confirmed conference abstract: CEMS 2012 page https://memory.psych.upenn.edu/CEMS_2012 'Submission of abstracts for both posters and talks has closed.'; no proceedings",
+  "notes": "Listed in the CEMS 2012 program ('Karl Healey, Lynn Lohnas & Michael J. Kahana ... Modeling age-related changes in episodic memory'); user already approved removal."
+ }
+]

@@ -1,0 +1,242 @@
+[
+ {
+  "key": "JenkDall24",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "605--612",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1414040",
+    "quote": "EP  - 612"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 605' and 'EP  - 612' (Oct., 1924, vol 35 issue 4); Crossref deposits only the first page. Printed range wins; HEAD's 605--612 stays, other post-check changes apply."
+ },
+ {
+  "key": "MandEtal81",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "209--222",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1422742",
+    "quote": "EP  - 222"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 209' and 'EP  - 222' (Jun., 1981, vol 94 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 209--222 stays, other post-check changes apply. RIS 'VL  - 94' supports the volume 92->94 fix."
+ },
+ {
+  "key": "Marm83",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "17--35",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1422206",
+    "quote": "EP  - 35"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 17' and 'EP  - 35' (Spring, 1983, vol 96 issue 1); Crossref deposits only the first page. Printed range wins; HEAD's 17--35 stays, other post-check changes apply. RIS byline 'Harvey H. C. Marmurek' supports H H C Marmurek."
+ },
+ {
+  "key": "MarmEtal78",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "483--490",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1421694",
+    "quote": "EP  - 490"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 483' and 'EP  - 490' (Sep., 1978, vol 91 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 483--490 stays, other post-check changes apply."
+ },
+ {
+  "key": "MeltIrwi40",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "173--203",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1417415",
+    "quote": "EP  - 203"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 173' and 'EP  - 203' (Apr., 1940, vol 53 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 173--203 stays, other post-check changes apply."
+ },
+ {
+  "key": "MeltvonL41",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "157--173",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1416789",
+    "quote": "EP  - 173"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 157' and 'EP  - 173' (Apr., 1941, vol 54 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 157--173 stays, other post-check changes apply."
+ },
+ {
+  "key": "NairEtal95",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "345--358",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1422894",
+    "quote": "EP  - 358"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 345' and 'EP  - 358' (Autumn, 1995, vol 108 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 345--358 stays, other post-check changes apply."
+ },
+ {
+  "key": "NewmBuck62",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "429--436",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1419866",
+    "quote": "EP  - 436"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 429' and 'EP  - 436' (Sep., 1962, vol 75 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 429--436 stays, other post-check changes apply."
+ },
+ {
+  "key": "Ober28",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "295--302",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1414490",
+    "quote": "EP  - 302"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 295' and 'EP  - 302' (Apr., 1928, vol 40 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 295--302 stays, other post-check changes apply. RIS byline 'Oberly, H. Sherman' supports the H S Oberly author fix."
+ },
+ {
+  "key": "PollGero68",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "303--313",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1420627",
+    "quote": "EP  - 313"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 303' and 'EP  - 313' (Sep., 1968, vol 81 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 303--313 stays, other post-check changes apply."
+ },
+ {
+  "key": "Post62",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "372--389",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1419861",
+    "quote": "EP  - 389"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 372' and 'EP  - 389' (Sep., 1962, vol 75 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 372--389 stays, other post-check changes apply."
+ },
+ {
+  "key": "Robi27",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "297--312",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1415419",
+    "quote": "EP  - 312"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 297' and 'EP  - 312' (Dec., 1927, vol 39 issue 1/4); Crossref deposits only the first page. Printed range wins; HEAD's 297--312 stays, other post-check changes apply. JSTOR prints issue '1/4' (combined issue); post-check's '1--4' follows the house form for combined issues (56 HEAD entries use '--', 3 use '/')."
+ },
+ {
+  "key": "Rock57",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "186--193",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1419320",
+    "quote": "EP  - 193"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 186' and 'EP  - 193' (Jun., 1957, vol 70 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 186--193 stays, other post-check changes apply."
+ },
+ {
+  "key": "RockHeim59",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "1--16",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1420207",
+    "quote": "EP  - 16"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 1' and 'EP  - 16' (Mar., 1959, vol 72 issue 1); Crossref deposits only the first page. Printed range wins; HEAD's 1--16 stays, other post-check changes apply."
+ },
+ {
+  "key": "SpecBied76",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "669--679",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1421465",
+    "quote": "EP  - 679"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 669' and 'EP  - 679' (Dec., 1976, vol 89 issue 4); Crossref deposits only the first page. Printed range wins; HEAD's 669--679 stays, other post-check changes apply."
+ },
+ {
+  "key": "UndeEtal62",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "353--371",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1419860",
+    "quote": "EP  - 371"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 353' and 'EP  - 371' (Sep., 1962, vol 75 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 353--371 stays, other post-check changes apply."
+ },
+ {
+  "key": "ViniNels79",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "257--276",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1421923",
+    "quote": "EP  - 276"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 257' and 'EP  - 276' (Jun., 1979, vol 92 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 257--276 stays, other post-check changes apply."
+ },
+ {
+  "key": "WatkEtal89",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "265--270",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1422957",
+    "quote": "EP  - 270"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 265' and 'EP  - 270' (Summer, 1989, vol 102 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 265--270 stays, other post-check changes apply."
+ },
+ {
+  "key": "Waug62",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "177--192",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1419602",
+    "quote": "EP  - 192"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 177' and 'EP  - 192' (Jun., 1962, vol 75 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 177--192 stays, other post-check changes apply."
+ },
+ {
+  "key": "WelcBurn24",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "396--401",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1414018",
+    "quote": "EP  - 401"
+   }
+  },
+  "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 396' and 'EP  - 401' (Jul., 1924, vol 35 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 396--401 stays, other post-check changes apply."
+ }
+]

@@ -1,0 +1,210 @@
+[
+ {
+  "key": "DaPo67",
+  "decision": "keep",
+  "notes": "Real Indiana University doctoral dissertation (F J DaPolito, 1966), not a conference abstract. The DAI citation as in HEAD (27, 2522-2523, 1967) is printed identically in two independent books' reference lists (Internet Archive full text: Foundations of Human Memory; Human Memory: a constructivist view: 'Proactive effects with independent retrieval of competing responses. Dissertation Abstracts International, 27, 2522-2523.'), search URL https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=DaPolito%20%22Proactive%20effects%22%202522 ; the DAI page itself is behind ProQuest/HathiTrust bot walls. Kept pending the DAI rule question.",
+  "questions": [
+   "Dissertation Abstracts International (DAI) entries: when the DAI volume/page cannot be reached (ProQuest/HathiTrust bot walls) but the dissertation itself is documented, should the entry (a) stay an @article in DAI when independent citing works agree on the DAI volume/pages, (b) be converted to @phdthesis (School, Year of the degree) from a catalogue/DataCite record of the thesis, or (c) be dropped?"
+  ]
+ },
+ {
+  "key": "Yone96",
+  "decision": "keep",
+  "notes": "DAI 57:2193 could not be found in any reachable source; the thesis is verified by DataCite 10.71548/12410 (Yonelinas, Andrew P., McMaster University, 1995, resourceType thesis) but the degree (PhD) is not printed there and MacSphere is behind a bot wall. Replacement by @phdthesis Yone95 (key free in HEAD) waits on the DAI rule question.",
+  "questions": [
+   "Dissertation Abstracts International (DAI) entries: when the DAI volume/page cannot be reached (ProQuest/HathiTrust bot walls) but the dissertation itself is documented, should the entry (a) stay an @article in DAI when independent citing works agree on the DAI volume/pages, (b) be converted to @phdthesis (School, Year of the degree) from a catalogue/DataCite record of the thesis, or (c) be dropped?"
+  ]
+ },
+ {
+  "key": "Gran69",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "424--438",
+    "url": "https://ideas.repec.org/a/ecm/emetrp/v37y1969i3p424-38.html",
+    "quote": "Econometric Society, vol. 37(3), pages 424-438"
+   }
+  },
+  "notes": "Crossref deposits only the first page (424); RePEc prints the full range 424-438 (JSTOR bot wall). HEAD pages stand; DOI added."
+ },
+ {
+  "key": "Allo12",
+  "decision": "apply",
+  "new_key": "AlloEtal12",
+  "notes": "Publisher page re-fetched: 'Tracy Packiam Alloway*, Gwyneth Doherty-Sneddon and Lynsey Forbes', Educational Research and Reviews Vol.7(6), pp. 138-142. Three authors drive AlloEtal12 (free in HEAD)."
+ },
+ {
+  "key": "HeniEtal19",
+  "decision": "apply",
+  "notes": "The flag is a false conflict: Crossref page 'ENEURO.0306-19.2019' equals the proposed pages. Journal 'eNeuro' as printed (Europe PMC/Crossref)."
+ },
+ {
+  "key": "Braz03",
+  "decision": "apply",
+  "new_key": "Bazi03",
+  "notes": "Printed record: PubMed 15346153 MedlinePgn 204-206 and PMC 321224 (scanned print, fpage 204 / lpage 206) agree; Crossref's 204-205 is the outlier, so HEAD pages 204--206 stand. Author Carl Bazil (PubMed/PMC); Bazi03 free in HEAD.",
+  "set": {
+   "pages": {
+    "value": "204--206",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&id=15346153",
+    "quote": "<MedlinePgn>204-206</MedlinePgn>"
+   }
+  }
+ },
+ {
+  "key": "RogeEvan93",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "65--102",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&id=8504850",
+    "quote": "<MedlinePgn>65-102</MedlinePgn>"
+   }
+  },
+  "notes": "Crossref '65???102' is a mis-encoded en dash; PubMed 8504850 prints 65-102 (vol 21, 1993). HEAD pages stand; DOI and issue added."
+ },
+ {
+  "key": "Bastvand05",
+  "decision": "apply",
+  "new_key": "Bastvand06",
+  "notes": "Print date 2006 (PubMed 16293569 '<Year>2006</Year><Season>Jan-Mar</Season>', Europe PMC printPublicationDate 2006-01-01) for vol 32(1); Crossref 2005 is the deposit date. Bastvand06 free in HEAD."
+ },
+ {
+  "key": "SchuEtal83",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "377--387",
+    "url": "https://citation-needed.springer.com/v2/references/10.1007/BF00237874?format=refman&flavour=citation",
+    "quote": "SP  - 377\nEP  - 387"
+   }
+  },
+  "notes": "Springer's own citation export for 10.1007/BF00237874 prints SP 377 / EP 387 (vol 51, issue 3, 1983); HEAD pages confirmed."
+ },
+ {
+  "key": "Half88",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "79--108",
+    "url": "https://openlibrary.org/search/inside.json?q=%22Curriculum%20and%20instruction%20in%20automated%20tutors%22",
+    "quote": "Curriculum  and  Instruction  in  Automated  Tutors}}}  79"
+   }
+  },
+  "notes": "Printed TOC of the 1988 Erlbaum volume (Internet Archive isbn_9780805800548, search-inside) lists ch. 4 Halff at p. 79 and ch. 5 Burton ('The Environment Module of Intelligent Tutoring Systems 1 09') at p. 109, so the chapter spans 79-108 as in HEAD.",
+  "questions": [
+   "Chapter page ranges: when a printed table of contents gives only chapter start pages, may the end page be taken as the next chapter's start page minus one (as for Half88 79--108, PetrPand94 17--58)?"
+  ]
+ },
+ {
+  "key": "MuntEtal07",
+  "decision": "apply",
+  "notes": "Frontiers in Human Neuroscience is online-only; vol 1 is 2007 (PubMed 18958225 '<Volume>1</Volume><PubDate><Year>2007</Year></PubDate>', Frontiers 'Front. Hum. Neurosci. 1 :11'). Crossref's 2008 published-print is not a print issue date, so the suggested year 2008 is not applied; year 2007 and key stand."
+ },
+ {
+  "key": "HankEtal09",
+  "decision": "apply",
+  "notes": "Online-only journal: PubMed 19212459 gives Volume 3, PubDate 2009 and Frontiers 'Front. Neuroinform. 3 :3'; there is no separate print year, so 2009 stands."
+ },
+ {
+  "key": "Brig12",
+  "decision": "apply",
+  "new_key": "DeBr12",
+  "remove": [
+   "number"
+  ],
+  "notes": "PubMed 23162493 'FAU - De Brigard, Felipe' and Crossref family 'De Brigard'; article number 420 goes in pages and Number is removed (Frontiers has no issue). DeBr12 free in HEAD."
+ },
+ {
+  "key": "PetrPand94",
+  "decision": "apply",
+  "entrytype": "incollection",
+  "set": {
+   "booktitle": {
+    "value": "Handbook of Neuropsychology",
+    "url": "https://archive.org/metadata/handbookofneurop0000unse_h8v4/metadata",
+    "quote": "Handbook of neuropsychology / 9"
+   },
+   "editor": {
+    "value": "F Boller and J Grafman",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=Spinnler%20Grafman%20Boller%20%22Handbook%20of%20neuropsychology%22",
+    "quote": "Franpois  {{{BOLLER}}} Jordan  {{{GRAFMAN}}}"
+   },
+   "publisher": {
+    "value": "Elsevier",
+    "url": "https://archive.org/metadata/handbookofneurop0000unse_h8v4/metadata",
+    "quote": "Amsterdam : Elsevier"
+   },
+   "address": {
+    "value": "Amsterdam",
+    "url": "https://archive.org/metadata/handbookofneurop0000unse_h8v4/metadata",
+    "quote": "Amsterdam : Elsevier"
+   },
+   "pages": {
+    "value": "17--58",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Frontal%20lobes%20and%20working%20memory%22%20Petrides",
+    "quote": "ides  and  D.N.  Pandya .  17"
+   }
+  },
+  "remove": [
+   "journal"
+  ],
+  "notes": "Internet Archive scan of Handbook of Neuropsychology vol 9 (Elsevier, Amsterdam, 1994, ISBN 0444899669): TOC '2. Comparative architectonic analysis of the human and the macaque frontal cortex M. Petrides and D.N. Pandya . 17'; chapter pages carry 'Handbook of Neuropsychology, Vol. 9. F. Boller and J. Grafman (Eds)' and running heads 'Ch. 2 M. Petrides and D.N. Pandya' on pp. 19-27; p. 59 is already Ch. 3, so 17--58 (also printed by many citing works). Volume 9 kept; @article -> @incollection, journal removed.",
+  "questions": [
+   "Chapter page ranges: when a printed table of contents gives only chapter start pages, may the end page be taken as the next chapter's start page minus one (as for Half88 79--108, PetrPand94 17--58)?"
+  ]
+ },
+ {
+  "key": "Hass05",
+  "decision": "apply",
+  "notes": "Printed title has an unspaced em dash (Crossref 'rhythm?—Linking'; PubMed 'rhythm?--Linking'), so '?---{L}inking' without the space is as printed; this is also the only spaced '?--- ' in HEAD.",
+  "questions": [
+   "Titles with em dashes: write '---' with spacing exactly as printed (unspaced when the publisher prints it unspaced)?"
+  ]
+ },
+ {
+  "key": "LegaEtal11b",
+  "decision": "apply",
+  "new_key": "LegaEtal12",
+  "notes": "Print issue Hippocampus 22(4) April 2012 (PubMed 'DP - 2012 Apr'; Crossref published-print 2012); 2011 is online-first. LegaEtal12 free in HEAD."
+ },
+ {
+  "key": "SohaHass98b",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "{GABA$_B$} modulation improves sequence disambiguation in computational models of hippocampal region {CA3}",
+    "url": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1998)8:2%3C171::aid-hipo9%3E3.0.co;2-o",
+    "quote": "GABAB modulation improves sequence disambiguation in computational models of hippocampal region CA3"
+   }
+  },
+  "notes": "Fixes the malformed '{GABA(B})' brace; subscript B written {GABA$_B$} as HEAD already does ('Changes in {GABA$_B$} modulation during a theta cycle...'). Re-quoted from Crossref, which prints 'GABAB' (PubMed 'GABA(B)')."
+ },
+ {
+  "key": "SteiEtal09",
+  "decision": "apply",
+  "new_key": "SteiEtal10",
+  "notes": "Print issue Hippocampus 20(1) January 2010, 166-173 (PubMed 'DP - 2010 Jan'; Crossref published-print 2010). SteiEtal10 free in HEAD."
+ },
+ {
+  "key": "TsodEtal96",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "1996",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&id=8841826",
+    "quote": "<Volume>6</Volume><Issue>3</Issue><PubDate><Year>1996</Year></PubDate>"
+   }
+  },
+  "notes": "Crossref's 1998 is the Wiley digitisation date; PubMed 8841826 prints Hippocampus 6(3) 1996, 271-80. Year 1996 and key stand; DOI, issue and the title correction (Population ... precession) apply."
+ },
+ {
+  "key": "BabiEtal08",
+  "decision": "apply",
+  "new_key": "BabiEtal09",
+  "notes": "Print issue Human Brain Mapping 30(7) July 2009 (PubMed 'DP - 2009 Jul'; Crossref published-print 2009). BabiEtal09 free in HEAD. HEAD truncates the 14 printed authors with 'and others' (Crossref lists all 14); left as is pending the rule question.",
+  "questions": [
+   "Author lists truncated with 'and others' in HEAD (14 entries): should they be expanded to the full printed author list when the record prints all authors (e.g. BabiEtal08, 14 authors in Crossref)?"
+  ]
+ }
+]

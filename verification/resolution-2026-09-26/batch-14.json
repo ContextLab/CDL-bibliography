@@ -1,0 +1,336 @@
+[
+ {
+  "key": "Jost97",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "Journal/title/volume changes confirmed by the IA scan of Bd 14 (1897). Pages 436--472 kept: contents prints the start ('der  Verteilung  der  Wiederholungen 436'); no page prints 472 in the OCR, but the Litteraturbericht (Dessoir review, index 'Dessoir,  U.  473.') starts at the top of p. 473 (line count after the '471' header = one full page), so the article ends on 472. End page inferred, not quoted.",
+  "questions": [
+   "When no page of the scan prints an article's end page as a number, may the end page be inferred from the next item's printed start page (next item starts at the top of the page after), or must pages stay unconfirmed?"
+  ]
+ },
+ {
+  "key": "Kroh35",
+  "decision": "keep",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "Work exists: Google Scholar citation record (PsycINFO-style, read in a browser) 'Kroh, O. (1935). Georg Elias Müller, ein Nachruf [GE Müller, in memoriam]. Zeitschrift für angewandte Psychologie und Charakterkunde, 134, 150-190.' (volume 134 and pages 150-190 match HEAD; the journal name there is wrong: ZfaP had no vol 134, Zeitschrift für Psychologie did). HathiTrust full-text search hits 'Zeitschrift für Psychologie ... Abt. 1, v.134 pt.1 1935' (search-only, Cloudflare-blocked, not quotable). No printed page is fetchable, so nothing is set; HEAD kept.",
+  "questions": [
+   "When the only fetchable evidence for a pre-1950 article is an abstracting-index citation (PsycINFO via Google Scholar) plus a search-only HathiTrust hit, keep the entry as is, or drop it as unverifiable?"
+  ]
+ },
+ {
+  "key": "MullPilz00",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "1--300",
+    "url": "https://archive.org/download/b28111916/b28111916_djvu.txt",
+    "quote": "300 \n\n\nAnhang."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Ergänzungsband 1 (Leipzig 1900) is a monograph-length supplement; the scan's last text page carries the printed page number 300 (followed by '[Eingegangen  am  26.  September  1900.)' on that page); text starts after the roman front matter. HEAD 1--300 confirmed.",
+  "questions": []
+ },
+ {
+  "key": "MullSchu94",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "257--339",
+    "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
+    "quote": "Experimentelle  Beiträge  zur  Untersuchung  des  Gedächtnisses.         339"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Bd 6 prints the paper in two parts: contents 'suchung des  Gedächtnisses 81  u.  257'; part 1 runs 81--190 (ends '(Schlufs  folgt.)', Höpfner starts 191), part 2 257--339 (Meinong starts 340). HEAD pages 257--339 is part 2 only; kept pending the rule question. Number '80-191' removal stands.",
+  "questions": [
+   "An article printed in two parts in one volume (81--190 and 257--339): Pages = both ranges ('81--190, 257--339'), the first part only, or the full span?"
+  ]
+ },
+ {
+  "key": "Rans02",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "P Ranschburg",
+    "url": "https://archive.org/download/zeitschriftfrps02psycgoog/zeitschriftfrps02psycgoog_djvu.txt",
+    "quote": "Faul Ranschburg."
+   },
+   "pages": {
+    "value": "39--86",
+    "url": "https://archive.org/download/zeitschriftfrps02psycgoog/zeitschriftfrps02psycgoog_djvu.txt",
+    "quote": "86 Paul Ranschbw'g."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Re-quoted: running head on p. 54 'Faul Ranschburg.' (OCR of Paul Ranschburg); p. 86 running head '86 Paul Ranschbw\\'g.' is the article's last page (contents: start 39, Losskij 'Eine Willenstheorie' starts 87). HEAD values confirmed.",
+  "questions": []
+ },
+ {
+  "key": "ChanEtal20",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "First version 10.5281/zenodo.3937849 (DataCite) lists the same 15 creators as the entry; the only difference is parsing: DataCite 'Vega, Alejandro De La' = house particle form A {de la Vega}. Geerligs fix stands. Existing extra initials (L J Chang, J R Manning) kept.",
+  "questions": []
+ },
+ {
+  "key": "MuelEtal18",
+  "decision": "apply",
+  "new_key": "MuelEtal16",
+  "set": {
+   "author": {
+    "value": "A Mueller and P Nechifor and M Corvellec and B Petrushev and K M Langner and {Alessio} and I Ozsvald and E Bailey and V Anand and T Jones and U Laserson and {Low Kian Seong} and J {Van Goey} and J S Smith",
+    "url": "https://api.datacite.org/dois/text/x-bibliography/10.5281/zenodo.49907?style=apa",
+    "quote": "Mueller, A., Nechifor, P., Corvellec, M., Baze Petrushev, Langner, K. M., , Alessio, Ozsvald, I., Bailey, E., Vaastav Anand, Jones, T., Laserson, U., Low Kian Seong, Van Goey, J., &amp; Smith, J. S. (2016)."
+   },
+   "title": {
+    "value": "{word\\_cloud}",
+    "url": "https://api.datacite.org/dois/text/x-bibliography/10.5281/zenodo.49907?style=apa",
+    "quote": "<i>word_cloud: 1.2.1</i>"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "User rule: software cites its first version (10.5281/zenodo.49907, 2016, v1.2.1), so its 14 DataCite creators and its title (version number dropped) replace those of v1.5.0. Key MuelEtal16 free in HEAD.",
+  "questions": [
+   "Software cited at its first version: when the first version's registered title lacks the '{owner}/repo' form later releases use ('word_cloud: 1.2.1' vs 'amueller/word_cloud: WordCloud 1.5.0'), use the first version's title as printed or the house '{owner}/repo' form?"
+  ]
+ },
+ {
+  "key": "AbdeEtal21",
+  "decision": "apply",
+  "new_key": "AbdeEtal23",
+  "set": {
+   "title": {
+    "value": "Targeted memory reactivation in human {REM} sleep elicits detectable reactivation",
+    "url": "https://api.crossref.org/works/10.7554/elife.84324",
+    "quote": "\"title\":[\"Targeted memory reactivation in human REM sleep elicits detectable reactivation\"]"
+   },
+   "journal": {
+    "value": "{eLife}",
+    "url": "https://api.crossref.org/works/10.7554/elife.84324",
+    "quote": "\"container-title\":[\"eLife\"]"
+   },
+   "volume": {
+    "value": "12",
+    "url": "https://api.crossref.org/works/10.7554/elife.84324",
+    "quote": "\"volume\":\"12\""
+   },
+   "pages": {
+    "value": "e84324",
+    "url": "https://api.crossref.org/works/10.7554/elife.84324",
+    "quote": "\"article-number\":\"e84324\""
+   },
+   "year": {
+    "value": "2023",
+    "url": "https://api.crossref.org/works/10.7554/elife.84324",
+    "quote": "\"published\":{\"date-parts\":[[2023,6,23]]}"
+   },
+   "doi": {
+    "value": "10.7554/elife.84324",
+    "url": "https://api.crossref.org/works/10.7554/elife.84324",
+    "quote": "\"DOI\":\"10.7554\\/elife.84324\""
+   }
+  },
+  "withdraw": [],
+  "remove": [
+   "force"
+  ],
+  "notes": "The cited bioRxiv title belongs to an earlier preprint version; bioRxiv 10.1101/2021.12.01.470530 is-preprint-of eLife 12:e84324 (2023), same four authors, title 'elicits detectable reactivation'. Published version cited (brief: other_version_named). Junk Force field removed. AbdeEtal23 free in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "McCaEtal06",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "12--14",
+    "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802",
+    "quote": "WINTER 2006 13"
+   },
+   "doi": {
+    "value": "10.1609/aimag.v27i4.1904",
+    "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/1904",
+    "quote": "citation_doi\" content=\"10.1609/aimag.v27i4.1904"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Publisher PDF (3 pages) prints page footers 12 ('12 AI MAGAZINE'), 'WINTER 2006 13' and 14; OJS meta tags wrongly give lastpage 12. DOI registered with Crossref (doiRA) and resolves to the AAAI OJS page, which prints it; the Crossref API returns 404 for the record.",
+  "questions": []
+ },
+ {
+  "key": "AndrEtal74",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "609--628",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1421970",
+    "quote": "EP  - 628"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 609' and 'EP  - 628' (fetched 2026-09-26), matching HEAD 609--628. Printed range wins.",
+  "questions": []
+ },
+ {
+  "key": "Attn50",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "516--556",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1418869",
+    "quote": "EP  - 556"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 516' and 'EP  - 556' (fetched 2026-09-26), matching HEAD 516--556. Printed range wins.",
+  "questions": []
+ },
+ {
+  "key": "BousEtal54",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "111--118",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1418075",
+    "quote": "EP  - 118"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 111' and 'EP  - 118' (fetched 2026-09-26), matching HEAD 111--118. Printed range wins.",
+  "questions": []
+ },
+ {
+  "key": "BowmThur63",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "436--445",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1419785",
+    "quote": "EP  - 445"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 436' and 'EP  - 445' (fetched 2026-09-26), matching HEAD 436--445. Printed range wins.",
+  "questions": []
+ },
+ {
+  "key": "Caso24",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "217--221",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1413823",
+    "quote": "EP  - 221"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 217' and 'EP  - 221' (fetched 2026-09-26), matching HEAD 217--221. Printed range wins.",
+  "questions": []
+ },
+ {
+  "key": "ClarEtal60",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "22--40",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1419114",
+    "quote": "EP  - 40"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 22' and 'EP  - 40' (fetched 2026-09-26), matching HEAD 22--40. Printed range wins.",
+  "questions": []
+ },
+ {
+  "key": "Corn62",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "485--491",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1419876",
+    "quote": "EP  - 491"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 485' and 'EP  - 491' (fetched 2026-09-26), matching HEAD 485--491. Printed range wins.",
+  "questions": []
+ },
+ {
+  "key": "Faw90",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "317--326",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1423212",
+    "quote": "EP  - 326"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 317' and 'EP  - 326' (fetched 2026-09-26), matching HEAD 317--326. Printed range wins.",
+  "questions": []
+ },
+ {
+  "key": "GreeCrow84",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "441--449",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1422530",
+    "quote": "EP  - 449"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 441' and 'EP  - 449' (fetched 2026-09-26), matching HEAD 441--449. Printed range wins.",
+  "questions": []
+ },
+ {
+  "key": "Hall54",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "138--140",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1418080",
+    "quote": "EP  - 140"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 138' and 'EP  - 140' (fetched 2026-09-26), matching HEAD 138--140. Printed range wins.",
+  "questions": []
+ },
+ {
+  "key": "Hash73",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "389--397",
+    "url": "https://www.jstor.org/citation/ris/10.2307/1421449",
+    "quote": "EP  - 397"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 389' and 'EP  - 397' (fetched 2026-09-26), matching HEAD 389--397. Printed range wins.",
+  "questions": []
+ }
+]

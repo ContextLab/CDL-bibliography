@@ -1,0 +1,212 @@
+[
+ {
+  "key": "FrenDoub74",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "More on measures of category clustering in free recall---although probably not the last word",
+    "url": "https://api.crossref.org/works/10.1037/h0035493",
+    "quote": "\"title\":[\"More on measures of category clustering in free recall-although probably not the last word.\"]"
+   }
+  },
+  "notes": "Crossref (APA) prints the dash closed ('recall-although'), so the closed '---although' is as printed; HEAD's '--- although' adds a space the source lacks. DOI, 81(1) 64-66 confirmed by Crossref.",
+  "questions": [
+   "Every title em dash written '---' with spacing exactly as printed (closed when the source prints it closed), replacing the '--- ' form that about 27 cdl.bib titles use?"
+  ]
+ },
+ {
+  "key": "GarrEtal12",
+  "decision": "apply",
+  "new_key": "GarrEtal13",
+  "notes": "Crossref 10.1037/a0030005: Psychological Methods 18(4) 454-474, issued 2013-12. GarrEtal13 is free in HEAD."
+ },
+ {
+  "key": "ShapPale70",
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Psychonomic Monograph Supplements",
+    "url": "https://psycnet.apa.org/record/1970-11832-001",
+    "quote": "Shipiro, S. I., & Palermo, D. S. (1970). Conceptual organization and class membership: Normative data for representatives of 100 categories. Psychonomic Monograph Supplements, 3(11), 107–127."
+   },
+   "number": {
+    "value": "11",
+    "url": "https://psycnet.apa.org/record/1970-11832-001",
+    "quote": "Psychonomic Monograph Supplements, 3(11), 107–127."
+   },
+   "pages": {
+    "value": "107--127",
+    "url": "https://psycnet.apa.org/record/1970-11832-001",
+    "quote": "Psychonomic Monograph Supplements, 3(11), 107–127."
+   }
+  },
+  "notes": "Found via Google Scholar: APA PsycInfo record 1970-11832-001 gives journal Psychonomic Monograph Supplements (not 'Psychological'), 3(11) 107-127; HEAD pages '43' is the whole number. Title and year match. PsycInfo spells the first author 'Shipiro'; author kept as S I Shapiro. PsycNet renders only with JavaScript, so a plain fetch may not show the quote.",
+  "questions": [
+   "When the only official record misspells an author's surname that the rest of the literature spells otherwise (PsycInfo 'Shipiro' for Shapiro, Crossref/PsycNet 'Wickelgran' for Wickelgren) and the printed page cannot be fetched, keep the conventional spelling or copy the record?"
+  ]
+ },
+ {
+  "key": "Hint81",
+  "decision": "apply",
+  "new_key": "Hint80",
+  "notes": "Crossref 10.1037/0033-295x.87.4.398: Psychological Review 87(4) 398-410, issued 1980. Hint80 is free in HEAD."
+ },
+ {
+  "key": "Mart65",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Transfer and verbal paired associates",
+    "url": "https://api.crossref.org/works/10.1037/h0022250",
+    "quote": "\"title\":[\"Transfer and verbal paired associates.\"]"
+   },
+   "doi": {
+    "value": "10.1037/h0022250",
+    "url": "https://api.crossref.org/works/10.1037/h0022250",
+    "quote": "\"DOI\":\"10.1037\\/h0022250\""
+   }
+  },
+  "notes": "Publisher records (Crossref and APA PsycNet doiLanding: 'Martin, E. (1965). Transfer and verbal paired associates. Psychological Review, 72(5), 327–343.') print 'Transfer and'; PubMed 5318085 has 'Transfer of'. The publisher wins, which also fixes HEAD's typo 'paried'. Volume 72, number 5 as in final changes."
+ },
+ {
+  "key": "Metc82",
+  "decision": "apply",
+  "new_key": "Eich82",
+  "notes": "Crossref 10.1037/0033-295x.89.6.627 prints the author as Janet M. Eich; Psychological Review 89(6) 627-661. Eich82 is free in HEAD (only Eich80 exists)."
+ },
+ {
+  "key": "Metc85",
+  "decision": "apply",
+  "new_key": "Eich85",
+  "notes": "Crossref and PubMed 3983302 print the author as Eich, J M; Psychological Review 92(1) 1-38. Eich85 is free in HEAD."
+ },
+ {
+  "key": "RatcStar08",
+  "decision": "apply",
+  "new_key": "RatcStar09",
+  "notes": "Crossref and PubMed 19159148 ('DP  - 2009 Jan'): Psychological Review 116(1) 59-83. RatcStar09 is free in HEAD."
+ },
+ {
+  "key": "Wick69",
+  "decision": "apply",
+  "notes": "DOI and number 1 confirmed by Crossref. Every official record (Crossref, APA PsycNet: 'Wickelgran, W. A. (1969). Context-sensitive coding...') spells the author 'Wickelgran'. The author's name is Wickelgren and the printed page could not be fetched, so author stays W A Wickelgren pending the rule question.",
+  "questions": [
+   "When the only official record misspells an author's surname that the rest of the literature spells otherwise (PsycInfo 'Shipiro' for Shapiro, Crossref/PsycNet 'Wickelgran' for Wickelgren) and the printed page cannot be fetched, keep the conventional spelling or copy the record?"
+  ]
+ },
+ {
+  "key": "BousRosn70",
+  "decision": "apply",
+  "set": {
+   "journal": {
+    "value": "Psychonomic Science",
+    "url": "https://web.archive.org/web/20230412122458/https://link.springer.com/article/10.3758/bf03335608",
+    "quote": "name=\"citation_journal_title\" content=\"Psychonomic Science\""
+   },
+   "doi": {
+    "value": "10.3758/bf03335608",
+    "url": "https://api.crossref.org/works/10.3758/bf03335608",
+    "quote": "\"DOI\":\"10.3758\\/bf03335608\""
+   }
+  },
+  "notes": "Springer page and Crossref give Psychonomic Science 20(2) 75-76, 1970, Bousfield and Rosner; HEAD bibcheck/journal_key_overrides.json already stops the old psychonomic->psychological alias. Both records title it 'Free vs unhibited recall', which looks like a deposit typo (the abstract says 'uninhibited recall instructions'). HEAD title 'Free versus uninhibited recall' is not confirmed by any fetchable source and is kept pending the rule question.",
+  "questions": [
+   "When the publisher record's title has an apparent typo ('Free vs unhibited recall') and the printed page cannot be fetched, copy the record's title or keep the cited title?"
+  ]
+ },
+ {
+  "key": "Dall65",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "237",
+    "url": "https://web.archive.org/web/20231022195553/https://link.springer.com/article/10.3758/BF03343114",
+    "quote": "name=\"citation_lastpage\" content=\"237\""
+   }
+  },
+  "remove": [
+   "number"
+  ],
+  "notes": "Springer and Crossref give first and last page 237 (the next article, 10.3758/bf03343115, starts at 239). Neither prints an issue number: Crossref has issue '1-12', Springer '1', so HEAD number 6 is removed. DOI, journal Psychonomic Science and the quoted title as in the final changes.",
+  "questions": [
+   "For 1960s Psychonomic Science items, Springer and Crossref list only a first page and a whole-volume issue ('1-12'). Should pages be that single page and number left out, or should the range be inferred from where the next article starts?"
+  ]
+ },
+ {
+  "key": "PansKori03",
+  "decision": "apply",
+  "new_key": "PansKori04",
+  "notes": "PubMed 14717832 ('DP  - 2004 Jan') and Crossref: Psychological Science 15(1) 52-59, titled 'The basic-level convergence effect in memory distortions'. PansKori04 is free in HEAD."
+ },
+ {
+  "key": "VonR33",
+  "decision": "apply",
+  "new_key": "vonR33",
+  "notes": "Crossref prints surname 'von Restorff' in Psychologische Forschung 18(1) 299-342, 1933. The rename changes only case and follows the particle precedent (vanEEtal11, delaEtal07)."
+ },
+ {
+  "key": "LaVoLigh92",
+  "decision": "apply",
+  "new_key": "LaVoLigh94",
+  "notes": "PubMed 7893425 ('DP  - 1994 Dec', 'FAU - La Voie, D') and Crossref ('Donna La Voie'): Psychology and Aging 9(4) 539-553. Neither prints HEAD's middle initial J, which is kept pending the initials rule already asked (batch 03 q4). LaVoLigh94 is free in HEAD.",
+  "questions": [
+   "Every official record prints a byline without a middle initial the cited entry has (La Voie 'D' vs 'D J'; chapter byline 'Arie Spirgel' vs 'A S', though other Crossref records give 'Arie S.'): does 'as printed' override 'never drop an initial only because a source omits it'?"
+  ]
+ },
+ {
+  "key": "DelaEtal10",
+  "decision": "apply",
+  "notes": "Archived ScienceDirect page prints 'Chapter 3 - Spacing and Testing Effects : A Deeply Critical, Lengthy, and At Times Discursive Review of the Literature' with byline 'Peter F. Delaney , Peter P.J.L. Verkoeijen , Arie Spirgel', and citation_firstpage 63 / lastpage 147 (https://web.archive.org/web/20240419215444/https://www.sciencedirect.com/science/article/abs/pii/S0079742110530032). Delaney and Verkoeijen are confirmed. The byline omits Spirgel's S, which other Crossref records give ('Arie S.'), so A S is kept.",
+  "questions": [
+   "Every official record prints a byline without a middle initial the cited entry has (La Voie 'D' vs 'D J'; chapter byline 'Arie Spirgel' vs 'A S', though other Crossref records give 'Arie S.'): does 'as printed' override 'never drop an initial only because a source omits it'?"
+  ]
+ },
+ {
+  "key": "HartDunl11",
+  "decision": "apply",
+  "new_key": "HartDunl12",
+  "notes": "Crossref published-print 2012-02 and PubMed 22083626 ('DP  - 2012 Feb'): PBR 19(1) 126-134. HartDunl12 is free in HEAD."
+ },
+ {
+  "key": "NairNeat95",
+  "decision": "apply",
+  "new_key": "NeatNair95",
+  "notes": "PubMed 24203783 and Crossref list Neath first, then Nairne; PBR 2(4) 429-441. NeatNair95 is free in HEAD."
+ },
+ {
+  "key": "NormTurk18",
+  "decision": "apply",
+  "new_key": "deBeEtal18",
+  "notes": "PubMed 28585055 and Crossref list deBettencourt, Norman, Turk-Browne; printed 2018 in 25(2) 605-611. The key follows the deBeEtal15/deBeEtal21 precedent, and deBeEtal18 is free in HEAD."
+ },
+ {
+  "key": "ShifStey97",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "A model for recognition memory: {REM}---retrieving effectively from memory",
+    "url": "https://api.crossref.org/works/10.3758/bf03209391",
+    "quote": "\"title\":[\"A model for recognition memory: REM\\u2014retrieving effectively from memory\"]"
+   }
+  },
+  "notes": "Crossref prints a closed em dash ('REM—retrieving') and 4(2) 145-166, so the closed dash and the full page range are as printed.",
+  "questions": [
+   "Every title em dash written '---' with spacing exactly as printed (closed when the source prints it closed), replacing the '--- ' form that about 27 cdl.bib titles use?"
+  ]
+ },
+ {
+  "key": "UnswEtal09",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "There's more to the working memory capacity---fluid intelligence relationship than just secondary memory",
+    "url": "https://api.crossref.org/works/10.3758/pbr.16.5.931",
+    "quote": "capacity\\u2014fluid intelligence relationship than just secondary memory"
+   }
+  },
+  "notes": "Crossref prints a closed em dash ('capacity—fluid'), so the closed '---fluid' is as printed. DOI and 16(5) 931-937 confirmed.",
+  "questions": [
+   "Every title em dash written '---' with spacing exactly as printed (closed when the source prints it closed), replacing the '--- ' form that about 27 cdl.bib titles use?"
+  ]
+ }
+]

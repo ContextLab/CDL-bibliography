@@ -1,0 +1,206 @@
+[
+ {
+  "key": "HoltEtal12",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "150--158",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:22213770%20AND%20SRC:MED&resultType=core&format=json",
+    "quote": "\"pageInfo\":\"150-158\""
+   }
+  },
+  "notes": "Crossref gives only the first page (150); PubMed/Europe PMC print 69(2):150-158, which also matches the DOI's first page. Printed range wins."
+ },
+ {
+  "key": "DelbBeau89",
+  "decision": "apply",
+  "notes": "No DOI exists: Crossref bibliographic search for the title returns no match and PubMed/Europe PMC 2757728 lists no DOI (Arch Gerontol Geriatr Suppl 1, 1989, 121-150). Apply post-check changes without a DOI.",
+  "questions": [
+   "The 1989 supplement series is indexed as 'Archives of gerontology and geriatrics. Supplement', which is not in bibcheck's journal table: should supplement series be cited under their own journal name ('... Supplement') or under the parent journal with the supplement in Number?"
+  ]
+ },
+ {
+  "key": "PoitEtal89",
+  "decision": "apply",
+  "notes": "No DOI exists: Crossref bibliographic search returns no match and PubMed/Europe PMC 2757730 lists no DOI (Arch Gerontol Geriatr Suppl 1:173-183, 1989). Apply without a DOI. Same journal-name question as DelbBeau89."
+ },
+ {
+  "key": "HerrEtal10",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "321--331",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:20177034%20AND%20SRC:MED&resultType=core&format=json",
+    "quote": "\"pageInfo\":\"321-331\""
+   }
+  },
+  "notes": "Crossref has first page only (321); PubMed prints 170(4):321-331, equal to HEAD. Title 'The effect...' confirmed by the Europe PMC record."
+ },
+ {
+  "key": "AdeyEtal62",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "194--207",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:13859405%20AND%20SRC:MED&resultType=core&format=json",
+    "quote": "\"pageInfo\":\"194-207\""
+   }
+  },
+  "notes": "HEAD pages 34--47 are wrong; PubMed 13859405 prints 194-207 and Crossref's first page 194 agrees (vol 6, issue 3)."
+ },
+ {
+  "key": "JaspAndr38",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "96--115",
+    "url": "https://jamanetwork.com/journals/archneurpsyc/article-abstract/647465",
+    "quote": "1938;39(1):96-115"
+   }
+  },
+  "notes": "JAMA Network article page (the publisher) prints 'Arch NeurPsych. 1938;39(1):96-115'; it returns 403 to scripted fetches but loads via a browser fetcher. Crossref has first page only."
+ },
+ {
+  "key": "Gate17",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "1--104",
+    "url": "https://www.loc.gov/item/17031875/?fo=json",
+    "quote": "4 p. l., 104 p. ill."
+   }
+  },
+  "notes": "LoC catalogue: 4 preliminary leaves + 104 numbered pages, 'Archives of psychology no. 40'. The issue itself prints only 'No. 40, SEPTEMBER, 1917'; volume VI appears only on the later bound-volume title page ('VOLUME VI 1917-1921', archive.org scan), so Volume is left absent.",
+  "questions": [
+   "For monographs issued as numbered series (Archives of Psychology, Psychological Monographs), should Pages be the numbered range 1--N (house majority) rather than a page count, and should Volume be taken from the bound-volume title page when the issue itself prints only a number?"
+  ]
+ },
+ {
+  "key": "AllpEtal94",
+  "decision": "apply",
+  "entrytype": "incollection",
+  "set": {
+   "pages": {
+    "value": "421--452",
+    "url": "https://researchoutput.ncku.edu.tw/en/publications/shifting-intentional-set-exploring-the-dynamic-control-of-tasks-2",
+    "quote": "pages     = \"421--452\""
+   }
+  },
+  "notes": "Crossref/OpenAlex (MIT Press Direct digital edition) give 411-442 and neighbouring chapters are likewise offset; the co-author's institutional record (NCKU) and Semantic Scholar give 421-452, the pagination cited for the print book. MIT Press Direct returns 403, so the print page could not be seen; kept HEAD 421--452.",
+  "questions": [
+   "When Crossref's chapter pagination for a digitised book (MIT Press Direct) differs from the pagination given by author/institutional records for the print book and the publisher page is unreachable, which pagination should win?"
+  ]
+ },
+ {
+  "key": "HirsAly22",
+  "decision": "apply",
+  "new_key": "HirsAly23",
+  "set": {
+   "year": {
+    "value": "2023",
+    "url": "https://api.crossref.org/works/10.3758/s13414-022-02593-1",
+    "quote": "\"published-print\":{\"date-parts\":[[2023,7]]}"
+   }
+  },
+  "notes": "Printed issue 85(5):1517-1549, July 2023 (Crossref, PubMed); online 2022. Key follows print year; HirsAly23 is free in HEAD."
+ },
+ {
+  "key": "KeriEtal07",
+  "decision": "apply",
+  "notes": "No DOI exists: Aviation, Space, and Environmental Medicine had no DOIs in 2007; PubMed/Europe PMC 17547316 lists none (78(5 Suppl):B153-64). Number '5 Suppl' as indexed.",
+  "questions": [
+   "Supplement issues appear in cdl.bib as '4 Suppl 2', 'Supplement 1' and 'Suppl 10': which single form should Number use for supplement issues?"
+  ]
+ },
+ {
+  "key": "DahmEtal11",
+  "decision": "apply",
+  "new_key": "DahmEtal12",
+  "notes": "Printed in 44(2):447-454, June 2012 (Crossref published-print, PubMed 22045563); online 2011. DahmEtal12 is free in HEAD."
+ },
+ {
+  "key": "BerrEtal02",
+  "decision": "apply",
+  "new_key": "AsakEtal02",
+  "notes": "Crossref and PubMed 12049324 list authors Asaka, Griffin, Berry; key follows first author. AsakEtal02 is free in HEAD (only AsakEtal00)."
+ },
+ {
+  "key": "Bret19",
+  "decision": "apply",
+  "notes": "Only change is adding DOI 10.1017/s0140525x19000049 (Crossref: vol 42, article e215, print 2019); flag was a verdict label only. Lowercase DOI matches house form."
+ },
+ {
+  "key": "MahrCsib18",
+  "decision": "apply",
+  "notes": "Only change is adding DOI 10.1017/s0140525x17000012 (Crossref: vol 41, article e1, print 2018); flag was a verdict label only."
+ },
+ {
+  "key": "EichEtal92",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "The hippocampus---what does it do?",
+    "url": "https://api.crossref.org/works/10.1016/0163-1047(92)90724-i",
+    "quote": "\"title\":[\"The hippocampus\\u2014what does it do?\"]"
+   }
+  },
+  "notes": "The publisher record prints a closed em dash (no space), so '---what' is as printed; HEAD's '--- what' adds a space the source lacks.",
+  "questions": [
+   "About 25 cdl.bib titles write an em dash as '--- ' (space after) where sources print a closed dash: should all titles use '---' with spacing exactly as printed?"
+  ]
+ },
+ {
+  "key": "WangEtal13",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Voluntary exercise counteracts {A$\\beta$25-35}-induced memory impairment in mice",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:24055357%20AND%20SRC:MED&resultType=core&format=json",
+    "quote": "\"title\":\"Voluntary exercise counteracts Aβ25-35-induced memory impairment in mice.\""
+   }
+  },
+  "notes": "Title matches the source except that the printed Greek beta is written $\\beta$ (the validator cannot map it); HEAD's outer braces around the whole title are removed. Author 'Ting Wu' -> 'T Wu' per Crossref."
+ },
+ {
+  "key": "Fish15",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "507--521",
+    "url": "https://api.crossref.org/works/10.1093/biomet/10.4.507",
+    "quote": "\"page\":\"507-521\""
+   }
+  },
+  "notes": "JSTOR DOI record has first page only; the OUP (publisher) Crossref record of the same article prints 507-521, equal to HEAD. JSTOR DOI kept per house precedent (Wilc45)."
+ },
+ {
+  "key": "Mora50",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "17--23",
+    "url": "https://api.crossref.org/works/10.1093/biomet/37.1-2.17",
+    "quote": "\"page\":\"17-23\""
+   }
+  },
+  "notes": "JSTOR DOI record has first page only; OUP Crossref record prints 37(1-2):17-23, equal to HEAD pages."
+ },
+ {
+  "key": "BoisEtal06",
+  "decision": "apply",
+  "new_key": "duBoEtal06",
+  "notes": "PubMed 16984899 lists surname 'du Boisgueheneuc'; Crossref pages 3315-3328. Particle key follows house precedent (delaEtal07, vanEEtal11); duBoEtal06 is free in HEAD."
+ },
+ {
+  "key": "CronEtal98a",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "2301--2315",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:9874481%20AND%20SRC:MED&resultType=core&format=json",
+    "quote": "\"pageInfo\":\"2301-2315\""
+   }
+  },
+  "notes": "The duplicate CronEtal98c was already merged into CronEtal98a in HEAD (commit 282d321; no CronEtal98c remains). CronEtal98a is the keeper; apply DOI 10.1093/brain/121.12.2301 and pages 2301--2315."
+ }
+]

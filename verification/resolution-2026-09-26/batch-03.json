@@ -1,0 +1,197 @@
+[
+ {
+  "key": "CronEtal98c",
+  "decision": "drop",
+  "merge_into": "CronEtal98a",
+  "drop_reason": "duplicate of CronEtal98a (user-approved merge); already deleted in HEAD (verification/key-deletions.json, keeper CronEtal98a)",
+  "notes": "CronEtal98c is absent from HEAD cdl.bib; key-deletions.json records the approved merge. The keeper CronEtal98a (queued in batch 2) still has Pages {2301} and no DOI; Crossref 10.1093/brain/121.12.2301 gives \"page\":\"2301-2315\" for it.",
+  "questions": []
+ },
+ {
+  "key": "DamiEtal99a",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "The substantia nigra of the human brain {I}. Nigrosomes and the nigral matrix, a compartmental organization based on calbindin {D28K} immunohistochemistry",
+    "url": "https://academic.oup.com/brain/article/122/8/1421/305054",
+    "quote": "The substantia nigra of the human brain: I. Nigrosomes and the nigral matrix, a compartmental organization based on calbindin D28K immunohistochemistry"
+   }
+  },
+  "notes": "Title unchanged from HEAD; the publisher page prints 'calbindin D28K' (PubMed writes 'D(28K)', which failed the quote check). OUP page is behind Cloudflare for curl but loads via WebFetch; PubMed 10430829 corroborates the rest ('TI  - The substantia nigra of the human brain. I. Nigrosomes...'). Post-check author and DOI changes stand.",
+  "questions": []
+ },
+ {
+  "key": "Jack79",
+  "decision": "apply",
+  "new_key": "Hugh79",
+  "set": {
+   "author": {
+    "value": "J Hughlings-Jackson",
+    "url": "https://api.crossref.org/works/10.1093/brain/2.3.323",
+    "quote": "\"family\":\"HUGHLINGS-JACKSON\""
+   },
+   "title": {
+    "value": "On affections of speech from disease of the brain",
+    "url": "https://archive.org/download/brainjournalofne02londuoft/brainjournalofne02londuoft_djvu.txt",
+    "quote": "On  Affections  of  Speech  from  Disease  of  the  Brain.     By  J.  Hughlings-"
+   }
+  },
+  "notes": "Scanned Brain vol 2 (archive.org OCR) prints the p.323 heading 'ON  AFFECTIONS  OF  SPEECH ... BY  J.   HUGHLINGS-JACKSOIT' and index 'HUGHLINGS-JACKSON,  J.'; Crossref/OUP byline 'J. HUGHLINGS-JACKSON'. So the printed surname is hyphenated (two hosts) and the title is plural 'affections' (Crossref's 'AFFECTION' is a metadata slip; parts 1.3.304 and 2.2.203 read 'AFFECTIONS'). Surname change renames the key Jack79 -> Hugh79 (absent in HEAD). DOI and pages 323--356 from post-check stand.",
+  "questions": []
+ },
+ {
+  "key": "OjemEtal09",
+  "decision": "apply",
+  "new_key": "OjemEtal10",
+  "notes": "Print year 2010 (PubMed 'DP  - 2010 Jan'; Crossref published-print 2010-01), 133(1):46-59; OjemEtal10 absent in HEAD. Rename per keys-follow-metadata rule.",
+  "questions": []
+ },
+ {
+  "key": "OwenEtal97",
+  "decision": "apply",
+  "new_key": "OwenEtal96",
+  "notes": "PubMed 8931583 'DP  - 1996 Oct', 'VI  - 119 ( Pt 5)'; Crossref published-print 1996. OwenEtal96 absent in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "VignEtal07",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "2007",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17142246&rettype=medline&retmode=text",
+    "quote": "DP  - 2007 Jan"
+   }
+  },
+  "notes": "Crossref's 2006 is the online-first date (no published-print); the print issue is Brain 130(1), January 2007 per PubMed. Print year wins; year and key unchanged. Post-check author J-P, DOI, pages 88--99 stand.",
+  "questions": []
+ },
+ {
+  "key": "GramEtal06",
+  "decision": "apply",
+  "notes": "'ego-and' in HEAD is a typo, not house style: PubMed 16996041 and Crossref both print 'ego- and allocentric'; apply the post-check title plus umlaut authors, DOI, number 1.",
+  "questions": []
+ },
+ {
+  "key": "KojiGold82",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "43--49",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7127141&rettype=medline&retmode=text",
+    "quote": "PG  - 43-9"
+   }
+  },
+  "notes": "HEAD pages kept: PubMed/Europe PMC give 43-49; Crossref/OpenAlex give 43-50 (next article starts p.51). Printed PDF not reachable (ScienceDirect 403, Elsevier API returns no pages). DOI from post-check applies.",
+  "questions": [
+   "When PubMed and Crossref disagree only on an article's last page and the printed PDF is unreachable, which record wins (PubMed's printed-index page range or the publisher's Crossref deposit)?"
+  ]
+ },
+ {
+  "key": "DezfDali20",
+  "decision": "apply",
+  "new_key": "PartDali20",
+  "set": {
+   "author": {
+    "value": "M {Parto Dezfouli} and M R Daliri",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31363879&rettype=medline&retmode=text",
+    "quote": "AU  - Parto Dezfouli M"
+   }
+  },
+  "notes": "Compound surname 'Parto Dezfouli' (PubMed LastName; Crossref family 'Parto Dezfouli'); reviewer's value replaces the post-check's spurious 'M P'. PartDali20 absent in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "GoddBadd75",
+  "decision": "apply",
+  "notes": "Printed title is 'ON LAND AND UNDERWATER' (one word): Crossref title, and the printed first page in the local PDF library (GoddBadd75.pdf p.1: 'ENVIRONMENTS: ON LAND AND UNDERWATER', 'Br. J. Psychol. (1975), 66, 3, pp. 325-331'). A source correction, not style; apply post-check.",
+  "questions": []
+ },
+ {
+  "key": "Sina07",
+  "decision": "apply",
+  "new_key": "Sina08",
+  "entrytype": "incollection",
+  "remove": [
+   "journal"
+  ],
+  "notes": "Crossref book-chapter in Brain Research in Language (ed. Z Breznitz, Springer US, Boston, MA), 247-273, published-print 2008; title as printed ends 'in the Electrocorticography'. Journal removed (booktitle carries it). Sina08 absent in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "CronEtal94",
+  "decision": "apply",
+  "notes": "User decision (crosswave a-CronEtal94): real article, keep. Only record: Crossref 10.1006/brln.1994.1057 \"title\":[\"Abstracts\"], Brain and Language 47(3), Oct 1994, pp 409-490 (contains 466-468), no per-item DOI; ScienceDirect 403 and Elsevier API give no text, so title/authors/pages 466--468 remain unverified. Number 3 applies; 'J {Hart Jr}' should lose the suffix (J Hart) under the no-suffix rule. No DOI added.",
+  "questions": [
+   "Items printed inside a journal's collective 'Abstracts' record (e.g. Academy of Aphasia papers in Brain and Language, one Crossref DOI for pp 409-490, text unreadable): is the collective record enough evidence to keep an entry the user marked as a real article, or must title/authors/pages be confirmed item by item?"
+  ]
+ },
+ {
+  "key": "Gomu53",
+  "decision": "apply",
+  "notes": "Work confirmed (Harvard/LoC LCCN 53011675: Gomulicki, Bronislaw R., 1953, series 'British journal of psychology. Monograph supplements ; 29'). Pages unconfirmed and conflicting: Harvard/LoC '94 p.' with 'Bibliography: pages [86]-91'; BJPS review 10.1093/bjps/vi.24.346 says 'pp. 85'. HEAD 1--91 left unchanged; no DOI exists.",
+  "questions": [
+   "For numbered monograph supplements catalogued as books (a whole issue by one author, e.g. BJP Monograph Supplements no. 29, '94 p.'), should pages be the catalogue extent (1--94), the text through the bibliography, or should the entry become @book with series/number and no pages?"
+  ]
+ },
+ {
+  "key": "McCuPitt43",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "W S McCulloch and W H Pitts",
+    "url": "https://api.crossref.org/works/10.1007/bf02478259",
+    "quote": "\"given\":\"Warren S.\",\"family\":\"McCulloch\""
+   }
+  },
+  "notes": "Surname corroborated on a second host: PubMed 2185863 (1990 reprint) 'FAU - McCulloch, W S'. Both sources print Pitts as 'Walter'/'W'; the cited middle initial H (Walter Harry Pitts) is kept per 'never drop an initial only because a source omits it'. DOI and number 4 apply.",
+  "questions": [
+   "When every official record prints a byline without a middle initial the cited entry has (Crossref 'Walter Pitts', PubMed 'Pitts W' vs cited 'W H Pitts'), does 'as printed' override 'never drop an initial only because a source omits it'?"
+  ]
+ },
+ {
+  "key": "ArbuFran00",
+  "decision": "apply",
+  "notes": "Only change is the DOI 10.1037/h0087328 (PubMed 10721237; handle resolves; Crossref 54(1):33-41, 2000). Verdict label should read 'correction'; no field conflicts.",
+  "questions": []
+ },
+ {
+  "key": "MurdEtal77",
+  "decision": "apply",
+  "notes": "DOI 10.1037/h0081652 and issue 2 from Crossref (31(2):71-89, 1977); reviewer agreed. Verdict label only.",
+  "questions": []
+ },
+ {
+  "key": "Tulv85b",
+  "decision": "apply",
+  "notes": "DOI 10.1037/h0080017 and issue 1 from Crossref (Canadian Psychology 26(1):1-12, 1985); handle resolves. Verdict label only; key unchanged (Tulv85a exists).",
+  "questions": []
+ },
+ {
+  "key": "ChanEtal12a",
+  "decision": "apply",
+  "new_key": "ChanEtal13",
+  "notes": "Print year 2013 (PubMed 'DP - 2013 Mar'; Crossref published-print 2013-03), 23(3):739-749. ChanEtal13 absent in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "CheiFiez01",
+  "decision": "apply",
+  "notes": "DOI 10.1093/cercor/11.11.1003 (PubMed 11590110; Crossref 11(11):1003-1014, 2001). Verdict label only.",
+  "questions": []
+ },
+ {
+  "key": "GrubMatt05",
+  "decision": "apply",
+  "new_key": "GrubMull05",
+  "set": {
+   "year": {
+    "value": "2005",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15238442&rettype=medline&retmode=text",
+    "quote": "DP  - 2005 Jan"
+   }
+  },
+  "notes": "Crossref 2004 is online-first (no published-print); print issue Cerebral Cortex 15(1), Jan 2005. Second author is M M Müller (PubMed XML), so key GrubMatt05 -> GrubMull05 (absent in HEAD).",
+  "questions": []
+ }
+]

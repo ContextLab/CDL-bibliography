@@ -1,0 +1,243 @@
+[
+ {
+  "key": "VannEtal12",
+  "decision": "apply",
+  "new_key": "VannEtal13",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref print date 2013-07 and PubMed 'DP  - 2013 Jul' give year 2013, 34(7) 1568-1578; VannEtal13 is not in HEAD cdl.bib, so the rename follows the corrected year.",
+  "questions": []
+ },
+ {
+  "key": "WhitEtal96",
+  "decision": "apply",
+  "merge_into": "WitmEtal96",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "HEAD WitmEtal96 holds the same work (same DOI 10.1006/ijhc.1996.0060, Witmer, Bailey, Knerr, Parsons, IJHCS 45(4) 413-428, title as Crossref). WitmEtal96 is the keeper; WhitEtal96 (misspelled Whitmer) merges into it.",
+  "questions": []
+ },
+ {
+  "key": "PfurEtal96",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [
+   "title"
+  ],
+  "remove": [],
+  "notes": "Author Stanc{\\'a}k, DOI and number 1--2 are backed by PubMed 8978434 and Crossref. The title change only moves the space around the dash. Crossref prints a spaced dash ('alpha band — an electrophysiological') and PubMed an unspaced '--'. HEAD cdl.bib mostly writes '--- ' (27 titles) against a few '---x', so the current title is withdrawn from the change pending a house rule.",
+  "questions": [
+   "House rule for em dashes in titles: write them as 'a--- b' (the most common form in cdl.bib), 'a---b', or 'a --- b' (matching a spaced dash in print)? One rule should cover every title with a dash."
+  ]
+ },
+ {
+  "key": "TongEtal95",
+  "decision": "drop",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "drop_reason": "no evidence found after: Crossref bibliographic query, OpenAlex search, and wave-3 researcher and reviewer searches. IOVS 36 page S1679 is a 1995 ARVO supplement page, and no record of the work exists online.",
+  "notes": "The cited journal is misspelled ('Investigatie Opthalmology') and the page 'S1679' is a supplement page; the reviewer noted the 1995 ARVO abstract book is not online. No source confirms any field.",
+  "questions": []
+ },
+ {
+  "key": "SimoEtal04",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "305--329",
+    "url": "https://eric.ed.gov/?id=EJ764970",
+    "quote": "Journal for Research in Mathematics Education, v35 n5 p305-329 Nov 2004"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref gives only the first page (305). ERIC EJ764970 prints the full range 305-329, which confirms the HEAD value. The DOI is added.",
+  "questions": []
+ },
+ {
+  "key": "DennReed92",
+  "decision": "apply",
+  "new_key": "DennHunt92",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref prints the second author as given 'R. Reed', family 'Hunt', and PubMed 1500616 as 'R R Hunt'. The surname is Hunt, so the key is DennHunt92, which is not in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "CoheEtal08a",
+  "decision": "apply",
+  "new_key": "CoheEtal09c",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "PubMed 18702577 'DP  - 2009 May' and Crossref (print 2009) give JOCN 21(5) 875-889, 2009. CoheEtal09a and CoheEtal09b are different works, and CoheEtal09b stays in 2009 (see its entry), so the next free key is CoheEtal09c.",
+  "questions": []
+ },
+ {
+  "key": "CoheEtal09b",
+  "decision": "apply",
+  "set": {
+   "year": {
+    "value": "2009",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=18510444&rettype=medline&retmode=text",
+    "quote": "DP  - 2009 Feb"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref's published-print 2008-02 is wrong: the MIT Press page (doi.org/10.1162/jocn.2008.21020) shows 'Volume 21, Issue 2 February 2009' with citation_publication_date=2009/02/01, and PubMed agrees. 2008 is only the online-first date, so the printed year 2009 stays. The DOI is added.",
+  "questions": []
+ },
+ {
+  "key": "DobbHan06",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "This is not spacing only: the title as printed (PubMed 16989546 and Crossref) uses a suspended hyphen, 'Cue- versus probe-dependent'. cdl.bib already writes suspended hyphens this way ('short- and long-term', 'left- and right-handed'). Pages 1439--1452 and the DOI are added.",
+  "questions": []
+ },
+ {
+  "key": "MarsEtal06",
+  "decision": "apply",
+  "new_key": "MarsEtal00",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "PubMed 11506653 'DP  - 2000' and Crossref give JOCN 12(Supplement 2) 130-144, 2000, so the key is MarsEtal00, which is not in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "MullWehn94",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "M M{\\\"u}ller and R Wehner",
+    "url": "https://link.springer.com/article/10.1007/BF00199474",
+    "quote": "Müller, M."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "The Springer article page meta tags (fetched via a browser; plain fetches get a cookie redirect) give citation_author 'Müller, M.' and 'Wehner, R.', pages 525-530. Crossref's name is mojibake. The local PDF reads 'J Comp Physiol A (1994) 175:525-530'. The umlaut uses the house form M{\\\"u}ller (7 of 13 in cdl.bib).",
+  "questions": []
+ },
+ {
+  "key": "EvanEtal84",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "G W Evans and M A Skorpanich and T G{\\\"a}rling and K J Bryant and B Bresolin",
+    "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
+    "quote": "Skorpanich"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "A second host confirms the spelling: PubMed 6736581 (Evans, Brennan, Skorpanich, Held, J Gerontol 1984) lists 'FAU - Skorpanich, M A'. PubMed has no author 'Skorpanovich'. OpenAlex raw author name is 'Mary Anne Skorpanich'. ScienceDirect blocked the fetch with a captcha.",
+  "questions": []
+ },
+ {
+  "key": "Madi71",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "Journal (JEP, before the 1975 split), issue 2 and DOI come from Crossref and APA PsycNet ('Journal of Experimental Psychology, 87(2), 294–296'). The author is not confirmed: PsycNet and Crossref both print 'Madigna, S. A.' and no printed PDF was reachable, so HEAD's 'S A Madigan' is left unchanged.",
+  "questions": [
+   "When the publisher's own records (APA PsycNet and Crossref agree) print an author name that differs from the name the author is known by and the printed PDF cannot be reached (Madigna vs Madigan, Tulvig vs Tulving, 'S. A.' vs 'S. W.' Cook), do we keep the cited spelling or copy the publisher record?"
+  ]
+ },
+ {
+  "key": "RaskCook37",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "Journal (JEP), issue 4 and DOI come from Crossref and PsycNet ('Journal of Experimental Psychology, 20(4), 381–395'). The author is not confirmed: PsycNet prints 'Raskin, E., & Cook, S. A.' against HEAD's 'S W Cook', no printed PDF was reachable, and HEAD is left unchanged.",
+  "questions": [
+   "When the publisher's own records (APA PsycNet and Crossref agree) print an author name that differs from the name the author is known by and the printed PDF cannot be reached (Madigna vs Madigan, Tulvig vs Tulving, 'S. A.' vs 'S. W.' Cook), do we keep the cited spelling or copy the publisher record?"
+  ]
+ },
+ {
+  "key": "TulvHast72",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "Journal (JEP), issue 3 and DOI come from Crossref and PsycNet ('Journal of Experimental Psychology, 92(3), 297–304'). The author is not confirmed: PsycNet, Crossref and Google Scholar all print 'Tulvig, E.', no printed PDF was reachable, and HEAD's 'E Tulving and R Hastie' is left unchanged.",
+  "questions": [
+   "When the publisher's own records (APA PsycNet and Crossref agree) print an author name that differs from the name the author is known by and the printed PDF cannot be reached (Madigna vs Madigan, Tulvig vs Tulving, 'S. A.' vs 'S. W.' Cook), do we keep the cited spelling or copy the publisher record?"
+  ]
+ },
+ {
+  "key": "Waug63b",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Two methods for testing serial memorization",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=13999258&rettype=medline&retmode=text",
+    "quote": "TI  - Two methods for testing serial memorization."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "PubMed 13999258 (J Exp Psychol 65, 1963 Feb, 215-6, WAUGH NC) prints the title with 'Two'; Crossref's '2 methods' is a data-entry artifact. The title is confirmed as it stands in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "YoneJaco97",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Response bias and the process-dissociation procedure: correction to {Yonelinas} and {Jacoby} (1996)",
+    "url": "https://api.crossref.org/v1/works/10.1037/0096-3445.126.1.18/transform/application/vnd.crossref.unixsd+xml",
+    "quote": "\"Response bias and the process-dissociation procedure\": Correction to Yonelinas and Jacoby (1996)."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "The quote is taken from the Crossref unixsd XML, where the title is plain text (the JSON escapes the quotation marks). The printed title puts the corrected article's title in quotation marks, which HEAD drops. Pages 18, issue 1 and DOI are added.",
+  "questions": [
+   "When a printed title quotes another title inside quotation marks (e.g. '\"X\": Correction to A and B (1996)'), should cdl.bib keep the marks as ``X'' or drop them?"
+  ]
+ },
+ {
+  "key": "WatkWatk75",
+  "decision": "apply",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "This is a spelling change, not a style change: Crossref prints 'Buildup of proactive inhibition as a cue-overload effect.' as one word, and cdl.bib writes 'buildup' elsewhere. The author typo (Watking), volume 1 (JEP:HLM) and issue 4 follow Crossref.",
+  "questions": []
+ },
+ {
+  "key": "YantMord91",
+  "decision": "apply",
+  "new_key": "MordYant91",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "notes": "PubMed 1830090 (FAU Mordkoff then Yantis) and Crossref ('J. Toby Mordkoff', 'Steven Yantis') list Mordkoff first. MordYant91 is not in HEAD.",
+  "questions": []
+ },
+ {
+  "key": "BahrPhel87",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "H P Bahrick and E Phelps",
+    "url": "https://gwern.net/doc/psychology/spaced-repetition/1987-bahrick.pdf",
+    "quote": "Elizabeth Phelps"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "The printed article PDF (header 'Learning, Memory, and Cognition 1987, Vol. 13, No. 2. 344-349') gives the byline 'Harry P. Bahrick' and 'Elizabeth Phelps'. PsycNet and Crossref misspell the second author as 'Phelphs'.",
+  "questions": []
+ }
+]
