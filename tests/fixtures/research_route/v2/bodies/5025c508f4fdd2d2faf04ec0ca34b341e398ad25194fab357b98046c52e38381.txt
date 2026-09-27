@@ -1,0 +1,133 @@
+Multimodal imaging of repetition priming: Using fMRI, MEG, and intracranial EEG to reveal spatiotemporal profiles of word processing. Carrie R McDonald, Thomas Thesen, Chad Carlson, Mark Blumberg, Holly M Girard, Amy Trongnetrpunya, Jason S Sherfey, Orrin Devinsky, Rubin Kuzniecky, Werner K Dolye, Sydney S Cash, Matthew K Leonard, Donald J Hagler, Anders M Dale, Eric Halgren NeuroImage Neuroimage 2010 2021 2010 2010 2010 2010 2010 2010 2010 2010 2011 53 2 707-17
+
+PMID- 20620212
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20101216
+LR  - 20211020
+IS  - 1095-9572 (Electronic)
+IS  - 1053-8119 (Print)
+IS  - 1053-8119 (Linking)
+VI  - 53
+IP  - 2
+DP  - 2010 Nov 1
+TI  - Multimodal imaging of repetition priming: Using fMRI, MEG, and intracranial EEG 
+      to reveal spatiotemporal profiles of word processing.
+PG  - 707-17
+LID - 10.1016/j.neuroimage.2010.06.069 [doi]
+AB  - Repetition priming is a core feature of memory processing whose anatomical 
+      correlates remain poorly understood. In this study, we use advanced multimodal 
+      imaging (functional magnetic resonance imaging (fMRI) and magnetoencephalography; 
+      MEG) to investigate the spatiotemporal profile of repetition priming. We use 
+      intracranial electroencephalography (iEEG) to validate our fMRI/MEG measurements. 
+      Twelve controls completed a semantic judgment task with fMRI and MEG that 
+      included words presented once (new, 'N') and words that repeated (old, 'O'). Six 
+      patients with epilepsy completed the same task during iEEG recordings. 
+      Blood-oxygen level dependent (BOLD) responses for N vs. O words were examined 
+      across the cortical surface and within regions of interest. MEG waveforms for N 
+      vs. O words were estimated using a noise-normalized minimum norm solution, and 
+      used to interpret the timecourse of fMRI. Spatial concordance was observed 
+      between fMRI and MEG repetition effects from 350 to 450 ms within bilateral 
+      occipitotemporal and medial temporal, left prefrontal, and left posterior 
+      temporal cortex. Additionally, MEG revealed widespread sources within left 
+      temporoparietal regions, whereas fMRI revealed bilateral reductions in 
+      occipitotemporal and left superior frontal, and increases in inferior parietal, 
+      precuneus, and dorsolateral prefrontal activity. BOLD suppression in left 
+      posterior temporal, left inferior prefrontal, and right occipitotemporal cortex 
+      correlated with MEG repetition-related reductions. IEEG responses from all three 
+      regions supported the timecourse of MEG and localization of fMRI. Furthermore, 
+      iEEG decreases to repeated words were associated with decreased gamma power in 
+      several regions, providing evidence that gamma oscillations are tightly coupled 
+      to cognitive phenomena and reflect regional activations seen in the BOLD signal.
+CI  - Copyright 2010 Elsevier Inc. All rights reserved.
+FAU - McDonald, Carrie R
+AU  - McDonald CR
+AD  - Department of Psychiatry, University of California, San Diego, CA, USA. 
+      camcdonald@ucsd.edu
+FAU - Thesen, Thomas
+AU  - Thesen T
+FAU - Carlson, Chad
+AU  - Carlson C
+FAU - Blumberg, Mark
+AU  - Blumberg M
+FAU - Girard, Holly M
+AU  - Girard HM
+FAU - Trongnetrpunya, Amy
+AU  - Trongnetrpunya A
+FAU - Sherfey, Jason S
+AU  - Sherfey JS
+FAU - Devinsky, Orrin
+AU  - Devinsky O
+FAU - Kuzniecky, Rubin
+AU  - Kuzniecky R
+FAU - Dolye, Werner K
+AU  - Dolye WK
+FAU - Cash, Sydney S
+AU  - Cash SS
+FAU - Leonard, Matthew K
+AU  - Leonard MK
+FAU - Hagler, Donald J Jr
+AU  - Hagler DJ Jr
+FAU - Dale, Anders M
+AU  - Dale AM
+FAU - Halgren, Eric
+AU  - Halgren E
+LA  - eng
+GR  - K23 NS056091/NS/NINDS NIH HHS/United States
+GR  - R01 NS018741/NS/NINDS NIH HHS/United States
+GR  - K23NS056091/NS/NINDS NIH HHS/United States
+GR  - NS18741/NS/NINDS NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+DEP - 20100708
+PL  - United States
+TA  - Neuroimage
+JT  - NeuroImage
+JID - 9215515
+SB  - IM
+MH  - Adolescent
+MH  - Adult
+MH  - Cerebral Cortex/*physiology
+MH  - Cues
+MH  - Data Interpretation, Statistical
+MH  - Decision Making/physiology
+MH  - Electroencephalography
+MH  - Epilepsy/physiopathology/surgery
+MH  - Evoked Potentials/physiology
+MH  - Female
+MH  - Functional Laterality/physiology
+MH  - Humans
+MH  - Image Processing, Computer-Assisted
+MH  - Language
+MH  - Magnetic Resonance Imaging
+MH  - Magnetoencephalography
+MH  - Male
+MH  - Mental Processes/*physiology
+MH  - Middle Aged
+MH  - Reading
+MH  - Reproducibility of Results
+MH  - Semantics
+MH  - Young Adult
+PMC - PMC2930128
+MID - NIHMS221895
+EDAT- 2010/07/14 06:00
+MHDA- 2010/12/17 06:00
+PMCR- 2011/11/01
+CRDT- 2010/07/13 06:00
+PHST- 2010/03/31 00:00 [received]
+PHST- 2010/06/10 00:00 [revised]
+PHST- 2010/06/26 00:00 [accepted]
+PHST- 2010/07/13 06:00 [entrez]
+PHST- 2010/07/14 06:00 [pubmed]
+PHST- 2010/12/17 06:00 [medline]
+PHST- 2011/11/01 00:00 [pmc-release]
+AID - S1053-8119(10)00946-8 [pii]
+AID - 10.1016/j.neuroimage.2010.06.069 [doi]
+PST - ppublish
+SO  - Neuroimage. 2010 Nov 1;53(2):707-17. doi: 10.1016/j.neuroimage.2010.06.069. Epub 
+      2010 Jul 8.
+
+ 
+ 
+ 
+   20620212   2010  12  16    2021  10  20     1095-9572   53  2   2010  Nov  01    NeuroImage  Neuroimage   Multimodal imaging of repetition priming: Using fMRI, MEG, and intracranial EEG to reveal spatiotemporal profiles of word processing.   707  717  707-17   10.1016/j.neuroimage.2010.06.069   Repetition priming is a core feature of memory processing whose anatomical correlates remain poorly understood. In this study, we use advanced multimodal imaging (functional magnetic resonance imaging (fMRI) and magnetoencephalography; MEG) to investigate the spatiotemporal profile of repetition priming. We use intracranial electroencephalography (iEEG) to validate our fMRI/MEG measurements. Twelve controls completed a semantic judgment task with fMRI and MEG that included words presented once (new, 'N') and words that repeated (old, 'O'). Six patients with epilepsy completed the same task during iEEG recordings. Blood-oxygen level dependent (BOLD) responses for N vs. O words were examined across the cortical surface and within regions of interest. MEG waveforms for N vs. O words were estimated using a noise-normalized minimum norm solution, and used to interpret the timecourse of fMRI. Spatial concordance was observed between fMRI and MEG repetition effects from 350 to 450 ms within bilateral occipitotemporal and medial temporal, left prefrontal, and left posterior temporal cortex. Additionally, MEG revealed widespread sources within left temporoparietal regions, whereas fMRI revealed bilateral reductions in occipitotemporal and left superior frontal, and increases in inferior parietal, precuneus, and dorsolateral prefrontal activity. BOLD suppression in left posterior temporal, left inferior prefrontal, and right occipitotemporal cortex correlated with MEG repetition-related reductions. IEEG responses from all three regions supported the timecourse of MEG and localization of fMRI. Furthermore, iEEG decreases to repeated words were associated with decreased gamma power in several regions, providing evidence that gamma oscillations are tightly coupled to cognitive phenomena and reflect regional activations seen in the BOLD signal.  Copyright 2010 Elsevier Inc. All rights reserved.     McDonald  Carrie R  CR   Department of Psychiatry, University of California, San Diego, CA, USA. camcdonald@ucsd.edu     Thesen  Thomas  T    Carlson  Chad  C    Blumberg  Mark  M    Girard  Holly M  HM    Trongnetrpunya  Amy  A    Sherfey  Jason S  JS    Devinsky  Orrin  O    Kuzniecky  Rubin  R    Dolye  Werner K  WK    Cash  Sydney S  SS    Leonard  Matthew K  MK    Hagler  Donald J  DJ  Jr    Dale  Anders M  AM    Halgren  Eric  E    eng    K23 NS056091  NS  NINDS NIH HHS  United States    R01 NS018741  NS  NINDS NIH HHS  United States    K23NS056091  NS  NINDS NIH HHS  United States    NS18741  NS  NINDS NIH HHS  United States     Journal Article  Research Support, N.I.H., Extramural    2010  07  08     United States  Neuroimage  9215515  1053-8119   IM    Adolescent    Adult    Cerebral Cortex  physiology    Cues    Data Interpretation, Statistical    Decision Making  physiology    Electroencephalography    Epilepsy  physiopathology  surgery    Evoked Potentials  physiology    Female    Functional Laterality  physiology    Humans    Image Processing, Computer-Assisted    Language    Magnetic Resonance Imaging    Magnetoencephalography    Male    Mental Processes  physiology    Middle Aged    Reading    Reproducibility of Results    Semantics    Young Adult        2010  3  31    2010  6  10    2010  6  26    2010  7  13  6  0    2010  7  14  6  0    2010  12  17  6  0    2011  11  1    ppublish   20620212  NIHMS221895  PMC2930128  10.1016/j.neuroimage.2010.06.069  S1053-8119(10)00946-8     Allison T, Puce A, Spencer DD, McCarthy G. Electrophysiological studies of human face perception. I: Potentials generated in occipitotemporal cortex by face and non-face stimuli. Cereb Cortex. 1999;9:415&#x2013;430.   10450888     Chee MW, Venkatraman V, Westphal C, Siong SC. Comparison of block and event-related fMRI designs in evaluating the word-frequency effect. Hum Brain Mapp. 2003;18:186&#x2013;193.   PMC6871864  12599276     Dalal SS, Baillet S, Adam C, Ducorps A, Schwartz D, Jerbi K, Bertrand O, Garnero L, Martinerie J, Lachaux JP. Simultaneous MEG and intracranial EEG recordings during attentive reading. Neuroimage. 2009;45:1289&#x2013;1304.   19349241     Dale AM, Fischl B, Sereno MI. Cortical surface-based analysis. I. Segmentation and surface reconstruction. Neuroimage. 1999;9:179&#x2013;194.   9931268     Dale AM, Halgren E. Spatiotemporal mapping of brain activity by integration of multiple imaging modalities. Curr Opin Neurobiol. 2001;11:202&#x2013;208.   11301240     Dale AM, Liu AK, Fischl BR, Buckner RL, Belliveau JW, Lewine JD, Halgren E. Dynamic statistical parametric mapping: combining fMRI and MEG for high-resolution imaging of cortical activity. Neuron. 2000;26:55&#x2013;67.   10798392     Devlin JT, Russell RP, Davis MH, Price CJ, Wilson J, Moss HE, Matthews PM, Tyler LK. Susceptibility-induced loss of signal: comparing PET and fMRI on a semantic task. Neuroimage. 2000;11:589&#x2013;600.   10860788     Dhond RP, Buckner RL, Dale AM, Marinkovic K, Halgren E. Spatiotemporal maps of brain activity underlying word generation and their modification during repetition priming. J Neurosci. 2001;21:3564&#x2013;3571.   PMC2390855  11331385     Fiebach CJ, Gruber T, Supp GG. Neuronal mechanisms of repetition priming in occipitotemporal cortex: spatiotemporal evidence from functional magnetic resonance imaging and electroencephalography. J Neurosci. 2005;25:3414&#x2013;3422.   PMC6724913  15800196     Fischl B, Salat DH, Busa E, Albert M, Dieterich M, Haselgrove C, van der Kouwe A, Killiany R, Kennedy D, Klaveness S, Montillo A, Makris N, Rosen B, Dale AM. Whole brain segmentation: automated labeling of neuroanatomical structures in the human brain. Neuron. 2002;33:341&#x2013;355.   11832223     Fischl B, Sereno MI, Dale AM. Cortical surface-based analysis. II: Inflation, flattening, and a surface-based coordinate system. Neuroimage. 1999a;9:195&#x2013;207.   9931269     Fischl B, Sereno MI, Tootell RB, Dale AM. High-resolution intersubject averaging and a coordinate system for the cortical surface. Hum Brain Mapp. 1999b;8:272&#x2013;284.   PMC6873338  10619420     Francis WN, Kucera H. Frequency analysis of English usage: Lexicon and grammar. Houghton Mifflin; Boston: 1982.    Gold BT, Buckner RL. Common prefrontal regions coactivate with dissociable posterior regions during controlled semantic and phonological tasks. Neuron. 2002;35:803&#x2013;812.   12194878     Hagler DJ, Jr, Saygin AP, Sereno MI. Smoothing and cluster thresholding for cortical surface-based group analysis of fMRI data. Neuroimage. 2006;33:1093&#x2013;1103.   PMC1785301  17011792     Halgren E. How can intracranial recordings assist MEG source localization? Neurol Clin Neurophysiol. 2004a;2004:86.   16012657     Halgren E. How can intracranial recordings assist MEG source localization? Neurology and Clinical Neurophysiology. 2004b;86:1&#x2013;18.   16012657     Halgren E, Baudena P, Heit G, Clarke JM, Marinkovic K, Clarke M. Spatio-temporal stages in face and word processing. I. Depth-recorded potentials in the human occipital, temporal and parietal lobes [corrected] J Physiol Paris. 1994;88:1&#x2013;50.   8019524     Halgren E, Wang C, Schomer DL, Knake S, Marinkovic K, Wu J, Ulbert I. Processing stages underlying word recognition in the anteroventral temporal lobe. Neuroimage. 2006;30:1401&#x2013;1413.   PMC1513618  16488158     Hamalainen M, Hari R, Ilmoniemi RJ, Knuutila J, Lounasmaa OV. Magnetoencephalography--theory, instrumentation, and applications to noninvasive studies of the working human brain. Rev Mod Phys. 1993;65:413&#x2013;497.    Horner AJ, Henson RN. Priming, response learning and repetition suppression. Neuropsychologia. 2008;46:1979&#x2013;1991.   PMC2430995  18328508     Jenkinson M, Bannister P, Brady M, Smith S. Improved optimization for the robust and accurate linear registration and motion correction of brain images. Neuroimage. 2002;17:825&#x2013;841.   12377157     Jenkinson M, Smith S. A global optimisation method for robust affine registration of brain images. Med Image Anal. 2001;5:143&#x2013;156.   11516708     Jerbi K, Ossandon T, Hamame CM, Senova S, Dalal SS, Jung J, Minotti L, Bertrand O, Berthoz A, Kahane P, Lachaux JP. Task-related gamma-band dynamics from an intracerebral perspective: review and implications for surface EEG and MEG. Hum Brain Mapp. 2009;30:1758&#x2013;1771.   PMC6870589  19343801     Klaver P, Schnaidt M, Fell J, Ruhlmann J, Elger CE, Fernandez G. Functional dissociations in top-down control dependent neural repetition priming. Neuroimage. 2007;34:1733&#x2013;1743.   17178236     Korsnes MS, Wright AA, Gabrieli JD. An fMRI analysis of object priming and workload in the precuneus complex. Neuropsychologia. 2008;46:1454&#x2013;1462.   18304592     Lachaux JP, Fonlupt P, Kahane P, Minotti L, Hoffmann D, Bertrand O, Baciu M. Relationship between task-related gamma oscillations and BOLD signal: new insights from combined fMRI and intracranial EEG. Hum Brain Mapp. 2007;28:1368&#x2013;1375.   PMC6871347  17274021     Lachaux JP, Rodriguez E, Martinerie J, Varela FJ. Measuring phase synchrony in brain signals. Hum Brain Mapp. 1999;8:194&#x2013;208.   PMC6873296  10619414     Manning JR, Jacobs J, Fried I, Kahana MJ. Broadband shifts in local field potential power spectra are correlated with single-neuron spiking in humans. J Neurosci. 2009;29:13613&#x2013;13620.   PMC3001247  19864573     Marinkovic K, Dhond RP, Dale AM, Glessner M, Carr V, Halgren E. Spatiotemporal dynamics of modality-specific and supramodal word processing. Neuron. 2003;38:487&#x2013;497.   PMC3746792  12741994     Maris E, Oostenveld R. Nonparametric statistical testing of EEG- and MEG-data. J Neurosci Methods. 2007;164:177&#x2013;190.   17517438     Matsumoto A, Iidaka T, Haneda K, Okada T, Sadato N. Linking semantic priming effect in functional MRI and event-related potentials. Neuroimage. 2005;24:624&#x2013;634.   15652298     Oldfield RC. The assessment and analysis of handedness: the Edinburgh inventory. Neuropsychologia. 1971;9:97&#x2013;113.   5146491     Oostendorp TF, Van Oosterom A. Source parameter estimation using realistic geometry in bioelectricity and biomagnetism. In: Nenonen J, Rajala HM, Katila T, editors. Biomagnetic Localization and 3D Modeling. Helsinki University of Technology; Helsinki: 1992. Report TKK-F-A689.    Ostergaard AL. The effects on priming of word frequency, number of repetitions, and delay depend on the magnitude of priming. Mem Cognit. 1998;26:40&#x2013;60.   9519696     Pilgrim LK, Fadili J, Fletcher P, Tyler LK. Overcoming confounds of stimulus blocking: an event-related fMRI design of semantic processing. Neuroimage. 2002;16:713&#x2013;723.   12169255     Schacter DL, Buckner RL. Priming and the brain. Neuron. 1998;20:185&#x2013;195.   9491981     Scheibe C, Wartenburger I, Wustenberg T, Kathmann N, Villringer A, Heekeren HR. Neural correlates of the interaction between transient and sustained processes: a mixed blocked/event-related fMRI study. Hum Brain Mapp. 2006;27:545&#x2013;551.   PMC6871370  16142781     Sederberg PB, Schulze-Bonhage A, Madsen JR, Bromfield EB, McCarthy DC, Brandt A, Tully MS, Kahana MJ. Hippocampal and neocortical gamma oscillations predict memory formation in humans. Cereb Cortex. 2007;17:1190&#x2013;1196.   16831858     Thompson-Schill SL, D&#x2019;Esposito M, Aguirre GK, Farah MJ. Role of left inferior prefrontal cortex in retrieval of semantic knowledge: a reevaluation. Proc Natl Acad Sci U S A. 1997;94:14792&#x2013;14797.   PMC25116  9405692     Wagner AD, Pare-Blagoev EJ, Clark J, Poldrack RA. Recovering meaning: left prefrontal cortex guides controlled semantic retrieval. Neuron. 2001;31:329&#x2013;338.   11502262     Wagner AD, Shannon BJ, Kahn I, Buckner RL. Parietal lobe contributions to episodic memory retrieval. Trends Cogn Sci. 2005;9:445&#x2013;453.   16054861     Weiss AP, Ellis CB, Roffman JL, Stufflebeam S, Hamalainen MS, Duff M, Goff DC, Schacter DL. Aberrant frontoparietal function during recognition memory in schizophrenia: a multimodal neuroimaging investigation. J Neurosci. 2009;29:11347&#x2013;11359.   PMC2768128  19741141     Whitham EM, Lewis T, Pope KJ, Fitzgibbon SP, Clark CR, Loveless S, DeLosAngeles D, Wallace AK, Broberg M, Willoughby JO. Thinking activates EMG in scalp electrical recordings. Clin Neurophysiol. 2008;119:1166&#x2013;1175.   18329954     Woolrich MW, Ripley BD, Brady M, Smith SM. Temporal autocorrelation in univariate linear modeling of FMRI data. Neuroimage. 2001;14:1370&#x2013;1386.   11707093     Worsley KJ, Marrett S, Neelin P, Vandal AC, Friston KJ, Evans AC. A unified statistical approach for determining significant signals in images of cerebral activation. Hum Brain Mapp. 1996;4:58&#x2013;73.   20408186     Yuval-Greenberg S, Tomer O, Keren AS, Nelken I, Deouell LY. Transient induced gamma-band response in EEG as a manifestation of miniature saccades. Neuron. 2008;58:429&#x2013;441.   18466752       

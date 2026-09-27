@@ -464,3 +464,420 @@ def test_backfill_withdraws_an_approval_the_evidence_no_longer_supports(entries,
         assert R.run_research_approve(bib, cache, root=root, bodies=R.Bodies(BODIES))['counts']['writes'] == 0
     finally:
         cache.close()
+
+
+# ---------------------------------------------------------------------------------------
+# Rules settled after the route was built (resolution-plan README, "(default)" and "(plan)"
+# lines; notice classification of 2026-09-27). Frozen by build.py v2 into v2/: real
+# entries, the rows of resolution batches 28-39, notices-classified.json rows, saved
+# bodies and stored DOI-linked candidates.
+
+V2 = FIX / 'v2'
+V2_APPROVED = ['Slam87', 'RescWagn72', 'Frie79', 'Bull90', 'Crai00', 'Perr14', 'Tulv72', 'GonsPall00', 'Brun04',
+               'RubiEtal17', 'YoneJaco97']
+
+
+@pytest.fixture(scope='module')
+def entries2():
+    return v.load_entries(V2 / 'entries.bib')
+
+
+@pytest.fixture(scope='module')
+def bundles2(entries2):
+    return R.load_evidence(V2 / 'root', set(entries2))
+
+
+@pytest.fixture(scope='module')
+def cities2(entries2):
+    return R.postcheck().city_states({k: e['fields'] for k, e in entries2.items()})
+
+
+@pytest.fixture(scope='module')
+def context2():
+    return json.loads((V2 / 'context.json').read_text())
+
+
+@pytest.fixture
+def v2_bodies(monkeypatch):
+    monkeypatch.setattr(R, 'BODY_DIR', V2 / 'bodies')
+    return R.Bodies(V2 / 'bodies')
+
+
+def assess2(entries2, bundles2, cities2, key, fields=None, bundle=None, bodies=None):
+    return R.assess_research(fields or entries2[key]['fields'], bundle or bundles2[key],
+                             bodies or R.Bodies(V2 / 'bodies'), cities2)
+
+
+def settle(entries2, bundles2, cities2, context2, key, bundle=None, context=None):
+    """The route's outcome beside the entry's stored DOI-linked candidates (merge)."""
+    previous = v.outcome('needs_review', ['DOI-linked source correction/retraction notice requires adjudication'],
+                         context2[key] if context is None else context)
+    return R.merge(previous, assess2(entries2, bundles2, cities2, key, bundle=bundle))
+
+
+@pytest.mark.parametrize('key', V2_APPROVED)
+def test_v2_real_entries_approve_and_revalidate(entries2, bundles2, cities2, context2, v2_bodies, key):
+    result = settle(entries2, bundles2, cities2, context2, key) if key in context2 else \
+        assess2(entries2, bundles2, cities2, key)
+    assert result['status'] == 'metadata_verified', result['issues']
+    c = [x for x in result['candidates'] if x['source'] == R.SOURCE][0]
+    assert set(c['fields']) == set(entries2[key]['fields']) - {'ID', 'ENTRYTYPE'}
+    assert v.route_approval_valid(roundtrip(result)), key
+
+
+# ---- rule 1: resolution batches 28-39 and the post-check's evidence forms
+
+def test_batches_28_to_39_are_read_with_the_postcheck_evidence_forms(entries2, bundles2, cities2):
+    origins = {c['origin'] for b in bundles2.values() for c in b['claims']}
+    assert {'resolution/batch-29', 'resolution/batch-35', 'resolution/batch-37'} <= origins
+    fields = {k: assess2(entries2, bundles2, cities2, k)['candidates'][0]['fields'] for k in ('Crai00', 'Perr14', 'Tulv72')}
+    # next_start (end = next item's printed start - 1), batch 29
+    assert fields['Crai00']['pages']['origin'] == 'resolution/batch-29'
+    assert fields['Crai00']['pages']['rule'] == "end page = next item's printed start - 1"
+    assert fields['Crai00']['pages']['next_start']['found']
+    # catalogue extent 'N p.' -> 1--N, batch 35, with an extra quote
+    assert fields['Perr14']['pages']['rule'] == "monograph pages 1--N from the catalogue extent 'N p.'"
+    # several quotes whose union covers the value (start in one, end in another), batch 37
+    pages = fields['Tulv72']['pages']
+    assert pages['origin'] == 'resolution/batch-37' and len(pages['evidence']) == 2 and 'rule' not in pages
+    assert all(e['found'] for e in pages['evidence'])
+
+
+def test_resolution_sets_are_read_by_the_postchecks_own_evidence_items(bundles2):
+    P = R.postcheck()
+    rows = json.loads((V2 / 'root/verification/resolution-2026-09-26/batch-37.json').read_text())
+    spec = next(r for r in rows if r['key'] == 'Tulv72')['set']['pages']
+    assert R._items(spec) == P.evidence_items(spec) and len(R._items(spec)) == 2
+    claim = next(c for c in bundles2['Tulv72']['claims']
+                 if c['origin'] == 'resolution/batch-37' and c['field'] == 'pages')
+    assert claim['items'] == P.evidence_items(spec) and claim['all_items']
+
+
+def test_each_quote_of_a_union_must_be_found_and_complete(entries2, bundles2, cities2):
+    # Negative controls on the real Tulv72 union: an item without its quote refuses the
+    # set (as postcheck.resolution_quote refuses it); a quote missing from its body too.
+    for mutate, why in ((lambda i: i.update(quote=None), 'an evidence item has no URL or quote'),
+                        (lambda i: i.update(quote='SEMANTIC MEMORY/9999'), 'quote not found in the saved body')):
+        b = deepcopy(bundles2['Tulv72'])
+        claim = next(c for c in b['claims'] if c['origin'] == 'resolution/batch-37' and c['field'] == 'pages')
+        claim['lenient'] = False  # batch 37's notes mention a scan: the browser/scan rule is tested above
+        mutate(claim['items'][1])
+        result = assess2(entries2, bundles2, cities2, 'Tulv72', bundle=b)
+        assert result['status'] == 'needs_review' and any(i.startswith('pages: ') and why in i for i in result['issues'])
+
+
+def test_next_start_must_be_the_end_page_plus_one(entries2, bundles2, cities2):
+    # Crai00's next item starts where the cited range ends + 1; a range one page longer
+    # (same claim, same quotes) is refused by postcheck.inferred_end_page.
+    b = deepcopy(bundles2['Crai00'])
+    fields = dict(entries2['Crai00']['fields'])
+    start, end = fields['pages'].split('--')
+    fields['pages'] = '%s--%d' % (start, int(end) + 1)
+    for c in b['claims']:
+        if c['field'] == 'pages' and c['kind'] == 'value':
+            c['value'] = fields['pages']
+    result = assess2(entries2, bundles2, cities2, 'Crai00', fields=fields, bundle=b)
+    assert result['status'] == 'needs_review'
+    assert any(i.startswith('pages: ') and 'next_start' in i for i in result['issues'])
+
+
+def test_apply_after_keep_is_not_a_conflict_but_drop_is(entries2, bundles2, cities2):
+    assert {r['decision'] for r in bundles2['Tulv72']['resolutions']} == {'apply', 'keep'}
+    assert assess2(entries2, bundles2, cities2, 'Tulv72')['status'] == 'metadata_verified'
+    b = deepcopy(bundles2['Tulv72'])
+    b['resolutions'][0]['decision'] = 'drop'
+    issues = assess2(entries2, bundles2, cities2, 'Tulv72', bundle=b)['issues']
+    assert 'research: a resolution decision drops this entry' in issues
+    assert any(i.startswith('research: conflicting resolution decisions') for i in issues)
+
+
+def test_invalid_json_evidence_file_is_refused_unless_left_out(tmp_path, entries2):
+    root = tmp_path / 'root'
+    shutil.copytree(V2 / 'root', root)
+    half = root / 'verification/resolution-2026-09-26/batch-34.json'
+    half.write_text('[{"key": "Slam87", "decision": "apply", "set": {')  # a file still being written
+    with pytest.raises(ValueError, match='batch-34.json is not valid JSON'):
+        R.load_evidence(root, set(entries2))
+    b = R.load_evidence(root, set(entries2), exclude={'verification/resolution-2026-09-26/batch-34.json'})
+    assert 'Slam87' in b
+
+
+# ---- rule 2: chapter pages whose start page an official contents list confirms
+
+@pytest.mark.parametrize('key,origin,quote', [
+    ('Slam87', 'resolution/batch-21', 'Page 105'),                        # its own pages quote (browser-read)
+    ('RescWagn72', 'resolution/batch-19', 'R A RESCORLA A R WAGNER 64'),  # the contents line its notes cite
+    ('Frie79', 'wave8/batch-084', None)])                                 # a wave quote; kept by batch 30
+def test_start_only_chapter_pages_are_approved_with_a_flag(entries2, bundles2, cities2, key, origin, quote):
+    result = assess2(entries2, bundles2, cities2, key)
+    assert result['status'] == 'metadata_verified', result['issues']
+    c = result['candidates'][0]
+    pages = c['fields']['pages']
+    assert pages['flag'] == 'pages_start_only' and 'pages: pages_start_only' in c['flags']
+    assert pages['rule'] == R.START_ONLY_RULE and pages['origin'] == origin and pages['value'] == entries2[key]['fields']['pages']
+    if quote:
+        assert [e['quote'] for e in pages['evidence']] == [quote]
+    # The full range is not in the quotes: only the start page is confirmed.
+    V = R.validator()
+    assert not V.value_supported('pages', pages['value'], [e['quote'] for e in pages['evidence']])[0]
+
+
+def test_start_only_refuses_another_start_page(entries2, bundles2, cities2):
+    for key in ('Slam87', 'RescWagn72', 'Frie79'):
+        fields = dict(entries2[key]['fields'])
+        start, end = fields['pages'].split('--')
+        fields['pages'] = '%d--%s' % (int(start) + 1, end)
+        b = deepcopy(bundles2[key])
+        for c in b['claims']:
+            if c['field'] == 'pages' and c['kind'] == 'value':
+                c['value'] = fields['pages']
+        result = assess2(entries2, bundles2, cities2, key, fields=fields, bundle=b)
+        assert result['status'] == 'needs_review', key
+        assert any(i.startswith('pages: ') for i in result['issues']), key
+
+
+def test_start_only_needs_a_chapter_and_the_partial_default(entries2, bundles2, cities2):
+    # An article's page range is never approved on its start page alone.
+    fields = dict(entries2['RescWagn72']['fields'], ENTRYTYPE='article')
+    result = assess2(entries2, bundles2, cities2, 'RescWagn72', fields=fields)
+    assert any(i.startswith('pages: ') for i in result['issues'])
+    # Without a resolution note keeping the range under the partial-confirmation default.
+    b = deepcopy(bundles2['RescWagn72'])
+    for r in b['resolutions']:
+        r['notes'] = 'Google Books contents print the chapter.'
+    result = assess2(entries2, bundles2, cities2, 'RescWagn72', bundle=b)
+    assert result['status'] == 'needs_review' and 'pages: no research evidence for this field' in result['issues']
+
+
+def test_start_only_refuses_a_quote_printing_another_end_page(entries2, bundles2, cities2, tmp_path):
+    # Frie79's contents quote, as if the page printed the chapter as 85-140: the saved
+    # body (a copy) and the quote both carry the other range, so the quote is found.
+    fields = entries2['Frie79']['fields']
+    start = fields['pages'].split('--')[0]
+    b = deepcopy(bundles2['Frie79'])
+    shutil.copytree(V2 / 'bodies', tmp_path / 'bodies')
+    changed = 0
+    for c in b['claims']:
+        if c['field'] == 'pages' and c['kind'] == 'value':
+            for item in c['items']:
+                path = tmp_path / 'bodies' / (hashlib.sha256(item['url'].encode()).hexdigest() + '.txt')
+                if item.get('quote') and path.exists():
+                    item['quote'] = item['quote'] + ' pp. %s-140' % start
+                    path.write_text(path.read_text() + '\n' + item['quote'] + '\n')
+                    changed += 1
+    assert changed
+    result = R.assess_research(fields, b, R.Bodies(tmp_path / 'bodies'), cities2)
+    assert result['status'] == 'needs_review'
+    assert 'pages' not in result['candidates'][0]['fields']
+    assert any(i.startswith('pages: ') for i in result['issues'])
+    # Control: the same copy without the other range approves on the start page.
+    assert assess2(entries2, bundles2, cities2, 'Frie79')['candidates'][0]['fields']['pages']['flag'] == 'pages_start_only'
+
+
+def test_partial_default_notes():
+    for notes in ("RECONCILED: an official contents list confirms the start page",
+                  "Pages 64--99 not set: the start page 64 is confirmed by the Google Books contents",
+                  "Reconciled (partly-confirmed chapter pages default)",
+                  "Left as HEAD (default: start page confirmed keeps the cited range)"):
+        assert R.PARTIAL_PAGES.search(notes), notes
+    for notes in ("the start page could not be confirmed", "the start page is not confirmed",
+                  "pages removed: no source prints them"):
+        assert not R.PARTIAL_PAGES.search(notes), notes
+
+
+# ---- rule 3: identity from a resolution title when the researcher's quote has no body
+
+def test_identity_from_a_resolution_title_when_the_researcher_quote_has_no_body(entries2, bundles2, cities2, tmp_path):
+    ident = bundles2['Bull90']['rows'][0]['identity']
+    shutil.copytree(V2 / 'bodies', tmp_path / 'bodies')
+    (tmp_path / 'bodies' / (hashlib.sha256(ident['url'].encode()).hexdigest() + '.txt')).unlink(missing_ok=True)
+    bodies = R.Bodies(tmp_path / 'bodies')
+    assert bodies.get(ident['url']) == (None, None)
+    result = assess2(entries2, bundles2, cities2, 'Bull90', bodies=bodies)
+    assert result['status'] == 'metadata_verified', result['issues']
+    c = result['candidates'][0]
+    assert c['identity'] == {'origin': 'resolution/batch-28', 'from_field': 'title'}
+    assert c['fields']['title']['origin'] == 'resolution/batch-28'
+    # Negative control: with no resolution/user/manual title quote the identity is open.
+    b = deepcopy(bundles2['Bull90'])
+    b['claims'] = [x for x in b['claims'] if not (x['field'] == 'title' and x['origin'].startswith('resolution/'))]
+    result = assess2(entries2, bundles2, cities2, 'Bull90', bundle=b, bodies=bodies)
+    assert result['status'] == 'needs_review'
+    assert 'identity: no identity quote found in a saved body' in result['issues']
+
+
+# ---- rule 4: the notice classification
+
+@pytest.mark.parametrize('key,flag', [('GonsPall00', 'notice_content_only'), ('Brun04', 'notice_unread'),
+                                      ('AfraEtal06', 'notice_content_only'), ('BarEtal06', 'notice_metadata_correction'),
+                                      ('Fred04', 'notice_crossref_wins'),
+                                      ('RubiEtal17', 'notice_new_version'), ('YoneJaco97', 'notice_is_the_cited_work'),
+                                      ('TompDava17', 'notice_unread'), ('KeleFent10', 'notice_content_only')])
+def test_classified_notices_settle_the_doi_linked_hold(entries2, bundles2, cities2, context2, v2_bodies, key, flag):
+    from preprint_review import context_issues
+    fields = entries2[key]['fields']
+    assert context_issues(fields, context2[key], v.normalize_doi(fields['doi']))  # the hold is real
+    result = settle(entries2, bundles2, cities2, context2, key)
+    assert result['status'] == 'metadata_verified', result['issues']
+    assert result[R.NAME]['notice'] == 'settled by the notice classification'
+    c = result['candidates'][-1]
+    assert 'notice: ' + flag in c['flags'] and c['notice']['issues'] == []
+    assert v.route_approval_valid(roundtrip(result))
+
+
+@pytest.mark.parametrize('key,kind', [('Este91', 'unrelated'), ('McDoEtal10', 'no_notice')])
+def test_records_that_are_no_notice_are_ignored(entries2, bundles2, cities2, key, kind):
+    # Held only by a PubMed author-suffix record (Cache.retain_notices' tables), on an
+    # unrelated candidate (Este91, no DOI) or on the cited DOI (McDoEtal10, 'Hagler DJ Jr').
+    result = assess2(entries2, bundles2, cities2, key)
+    assert result['status'] == 'metadata_verified', result['issues']
+    c = result['candidates'][0]
+    assert c['notice']['classes'] == [kind] and c['notice']['issues'] == []
+    assert 'notice: ' + R.NOTICE_FLAGS[kind] in c['flags']
+
+
+@pytest.mark.parametrize('kind', ['retraction', 'expression_of_concern'])
+def test_a_notice_classified_retraction_is_never_approved(entries2, bundles2, cities2, context2, v2_bodies, kind):
+    b = deepcopy(bundles2['GonsPall00'])
+    b['notices'][0]['class'] = kind
+    result = settle(entries2, bundles2, cities2, context2, 'GonsPall00', bundle=b)
+    assert result['status'] == 'needs_review' and 'accepted_source' not in result
+    assert any(i.startswith('notice: classified %s' % kind) for i in result['issues'])
+    approval = roundtrip(assess2(entries2, bundles2, cities2, 'GonsPall00', bundle=b))
+    approval['candidates'] = context2['GonsPall00'] + approval['candidates']
+    assert not v.route_approval_valid(approval)
+
+
+def test_a_retraction_on_the_cited_doi_holds_whatever_the_classification(entries2, bundles2, cities2, context2, v2_bodies):
+    # KeleFent10's stored candidates include another work's record with a Crossref
+    # retraction (the Savine & Braver candidate): ignored. The same record on the cited
+    # DOI holds the approval although the notice is classified content-only.
+    other = [c for c in context2['KeleFent10'] if R.retraction_signals([c])]
+    assert other and all(c['doi'] != entries2['KeleFent10']['fields']['doi'].lower() for c in other)
+    assert settle(entries2, bundles2, cities2, context2, 'KeleFent10')['status'] == 'metadata_verified'
+    moved = deepcopy(context2['KeleFent10'])
+    for c in moved:
+        if R.retraction_signals([c]):
+            c['doi'] = entries2['KeleFent10']['fields']['doi']
+    result = settle(entries2, bundles2, cities2, context2, 'KeleFent10', context=moved)
+    assert result['status'] == 'needs_review'
+    assert any(i.startswith('notice: Crossref record of') and 'retraction' in i for i in result['issues'])
+
+
+def test_unread_notice_needs_the_absence_of_a_retraction_recorded(entries2, bundles2, cities2, context2):
+    b = deepcopy(bundles2['Brun04'])
+    for n in b['notices']:
+        n['notes'] = 'Notice text not retrieved: ScienceDirect returns 403.'
+    result = settle(entries2, bundles2, cities2, context2, 'Brun04', bundle=b)
+    assert result['status'] == 'needs_review'
+    assert any('unread, and no absence of a retraction' in i for i in result['issues'])
+
+
+def test_metadata_correction_must_already_be_in_the_entry(entries2, bundles2, cities2, context2):
+    b = deepcopy(bundles2['BarEtal06'])
+    b['notices'][0]['corrected_fields']['author']['new'] = 'A M Schmidt'   # the uncorrected printing
+    result = settle(entries2, bundles2, cities2, context2, 'BarEtal06', bundle=b)
+    assert result['status'] == 'needs_review'
+    assert any("the corrected author 'A M Schmidt' is not in the entry" in i for i in result['issues'])
+
+
+def test_coordinate_conflict_needs_the_crossref_value_in_the_entry(entries2, bundles2, cities2, context2):
+    # HeniEtal19: Crossref's article number is not yet in the entry (pending edit).
+    result = settle(entries2, bundles2, cities2, context2, 'HeniEtal19')
+    assert result['status'] == 'needs_review'
+    assert any(i.startswith('notice: the corrected pages is not yet in the entry') for i in result['issues'])
+    # Fred04: the entry's 1367--1377 is Crossref's; a PubMed-like 1367--1378 is refused.
+    fields = dict(entries2['Fred04']['fields'], pages='1367--1378')
+    adj = R.notice_adjudication(fields, bundles2['Fred04']['notices'])
+    assert adj['issues'] == ['notice: the entry does not carry the Crossref pages of the conflict (%s)'
+                             % bundles2['Fred04']['notices'][0]['url']]
+    assert R.notice_adjudication(entries2['Fred04']['fields'], bundles2['Fred04']['notices'])['issues'] == []
+
+
+def test_unclassified_notice_still_holds(entries2, bundles2, cities2, context2):
+    assert not bundles2['BarrEtal18'].get('notices')
+    result = settle(entries2, bundles2, cities2, context2, 'BarrEtal18')
+    assert result['status'] == 'needs_review' and R.HELD_BY_CONTEXT in result['issues']
+    assert any(i.startswith('notice: no classification') for i in result['issues'])
+
+
+def test_notice_adjudication_is_part_of_the_evidence_id(entries2, bundles2, cities2, context2, v2_bodies, monkeypatch, tmp_path):
+    result = roundtrip(settle(entries2, bundles2, cities2, context2, 'GonsPall00'))
+    assert v.route_approval_valid(result)
+    # Minimal requirements (no body cache, no post-check): tampering with the saved
+    # adjudication still fails, through the evidence id.
+    monkeypatch.setattr(R, 'BODY_DIR', tmp_path / 'absent')
+    def missing():
+        raise ImportError('No module named pandas')
+    monkeypatch.setattr(R, 'postcheck', missing)
+    assert v.route_approval_valid(result)
+    bad = deepcopy(result)
+    c = [x for x in bad['candidates'] if x['source'] == R.SOURCE][0]
+    c['notice']['classes'] = ['content_only', 'retraction']
+    assert not v.route_approval_valid(bad)
+    bad = deepcopy(result)
+    c = [x for x in bad['candidates'] if x['source'] == R.SOURCE][0]
+    c['notice']['issues'] = ['notice: classified retraction (x): never approved; the user decides']
+    assert not v.route_approval_valid(bad)
+
+
+def test_backfill_reports_the_approval_retain_notices_reopens(entries2, tmp_path):
+    # AfraEtal06: the route settles its Europe PMC erratum (content-only), but
+    # Cache.retain_notices (bibcheck/verification.py) reopens every machine approval with
+    # a known DOI-linked notice. The dry run says so instead of calling it approved.
+    context = json.loads((V2 / 'context.json').read_text())['AfraEtal06']
+    bib = tmp_path / 'lib.bib'
+    bib.write_text(entries2['AfraEtal06']['raw'] + '\n', encoding='utf-8')
+    cache = v.Cache(tmp_path / 'db.sqlite3')
+    try:
+        entry = v.load_entries(bib)['AfraEtal06']
+        cache.put(bib, entry, v.outcome('needs_review', ['No unambiguous, fully supported metadata match'], context))
+        dry = R.run_research_approve(bib, cache, dry_run=True, root=V2 / 'root', bodies=R.Bodies(V2 / 'bodies'))
+        row = dry['rows']['AfraEtal06']
+        assert row['outcome'] == 'held_by_notice' and row['route_granted'] and row['reasons'][0] == R.RETAINED
+        assert 'notice: notice_content_only' in row['flags'] and dry['counts']['writes'] == 0
+        assert dry['counts']['first_reason'] == {R.reason_class(R.RETAINED): 1}
+    finally:
+        cache.close()
+
+
+@pytest.mark.xfail(strict=True, reason='Cache.retain_notices (bibcheck/verification.py, not this module) has no hook '
+                                       'for a route approval whose notice is settled; it reopens it (see README)')
+def test_retain_notices_keeps_a_settled_research_approval(entries2, bundles2, cities2, context2, v2_bodies, tmp_path):
+    cache = v.Cache(tmp_path / 'db.sqlite3')
+    try:
+        result = settle(entries2, bundles2, cities2, context2, 'AfraEtal06')
+        assert result['status'] == 'metadata_verified'
+        stored = cache.put(V2 / 'entries.bib', entries2['AfraEtal06'], result)
+        assert stored['status'] == 'metadata_verified'
+    finally:
+        cache.close()
+
+
+# ---- rule 5: braced group names
+
+def test_braced_group_author_compares_equal(entries2, bundles2, cities2):
+    # KingEtal11's byline as batch 32 sets it (pending in cdl.bib): Morrell + the braced group.
+    rows = json.loads((V2 / 'root/verification/resolution-2026-09-26/batch-32.json').read_text())
+    value = next(r for r in rows if r['key'] == 'KingEtal11')['set']['author']['value']
+    assert value == 'M J Morrell and {RNS System in Epilepsy Study Group}'
+    fields = dict(entries2['KingEtal11']['fields'], author=value)
+    c = assess2(entries2, bundles2, cities2, 'KingEtal11', fields=fields)['candidates'][0]
+    assert c['fields']['author']['origin'] == 'resolution/batch-32' and c['fields']['author']['value'] == value
+    # The formatter's double-braced form, and an unbraced claim of the same group.
+    for entry_value, claimed in (('M J Morrell and {{RNS System in Epilepsy Study Group}}', value),
+                                 (value, 'Martha J Morrell and RNS System in Epilepsy Study Group')):
+        b = deepcopy(bundles2['KingEtal11'])
+        for claim in b['claims']:
+            if claim['field'] == 'author' and claim['origin'] == 'resolution/batch-32':
+                claim['value'] = claimed
+        c = assess2(entries2, bundles2, cities2, 'KingEtal11', fields=dict(fields, author=entry_value),
+                    bundle=b)['candidates'][0]
+        assert 'author' in c['fields'], c['issues']
+    # Negative controls: another group, or the group's words read as a personal name.
+    c = assess2(entries2, bundles2, cities2, 'KingEtal11',
+                fields=dict(fields, author='M J Morrell and {RNS System Study Group}'))['candidates'][0]
+    assert any(i.startswith('author: the entry value differs') for i in c['issues'])
+    assert R.canon('author', 'RNS System in Epilepsy Study Group') != R.canon('author', '{RNS System in Epilepsy Study Group}')
+    assert R.canon('author', 'R {La Joie}', groups=R.braced_groups('R {La Joie}')) == R.canon('author', 'R La Joie')
+    assert R.braced_groups('R {La Joie} and {Jupyter Development Team}') == {'jupyter development team'}

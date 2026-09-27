@@ -13,6 +13,15 @@ never read the live cdl.bib, the live research folders or .bibcheck/:
   every URL those rows quote;
 * context.json: for the notice cases, the entry's stored DOI-linked candidates (the
   Europe PMC / Crossref records that carry the notice), taken from the verification cache.
+
+The second set (2026-09-27, the route's update for the rules settled since: resolution
+batches 28-39, start-only chapter pages, identity from a resolution title, the notice
+classification, braced group authors) is frozen the same way into ``v2/``:
+
+    .venv/bin/python tests/fixtures/research_route/build.py v2
+
+Its context.json also keeps another work's stored record when it signals a retraction
+(KeleFent10's rejected candidate), so that case is frozen too. The first set is left as it was built.
 """
 import hashlib
 import json
@@ -35,9 +44,30 @@ import research_route as R  # noqa: E402
 KEYS = ['Tulv74', 'vanPEtal21', 'AschEben62', 'YingEtal93', 'Post62', 'HartWong79', 'Zar10', 'Gomu53',
         'ChanEtal12', 'DamaEtal96', 'Pyly73', 'KahaEtal08b']
 NOTICE = ['DamaEtal96', 'Pyly73']
+# start-only chapter pages (browser-read quote; a quote of another field; a wave quote);
+# braced group author (pending batch-32 value); identity (researcher quote vs resolution
+# title); batches 28-39 (next_start, catalogue extent, several quotes, apply + keep);
+# every notice class present (content_only, unread, metadata_correction, new_version,
+# cited_work_is_notice, no_notice, unrelated, coordinate_conflict both ways), a
+# retraction on another work's record (KeleFent10) and an unclassified notice (BarrEtal18).
+KEYS2 = ['Slam87', 'RescWagn72', 'Frie79', 'KingEtal11', 'Bull90', 'Crai00', 'Perr14', 'Tulv72',
+         'GonsPall00', 'Brun04', 'AfraEtal06', 'BarEtal06', 'Fred04', 'HeniEtal19', 'McDoEtal10', 'RubiEtal17',
+         'YoneJaco97', 'KeleFent10', 'BarrEtal18', 'Este91', 'TompDava17']
+NOTICE2 = ['GonsPall00', 'Brun04', 'AfraEtal06', 'BarEtal06', 'Fred04', 'HeniEtal19', 'McDoEtal10', 'RubiEtal17',
+           'YoneJaco97', 'KeleFent10', 'BarrEtal18', 'Este91', 'TompDava17']
 
 
-def main():
+def main(argv=()):
+    if list(argv) == ['v2']:
+        build(KEYS2, NOTICE2, HERE / 'v2', every_doi=True)
+    elif not argv:
+        build(KEYS, NOTICE, HERE)
+    else:
+        raise SystemExit('usage: build.py [v2]')
+
+
+def build(KEYS, NOTICE, HERE, every_doi=False):
+    HERE.mkdir(parents=True, exist_ok=True)
     entries = load_entries(ROOT / 'cdl.bib')
     (HERE / 'entries.bib').write_text('\n\n'.join(entries[k]['raw'] for k in KEYS) + '\n', encoding='utf-8')
     renames = json.loads((ROOT / R.RENAMES).read_text())
@@ -91,15 +121,15 @@ def main():
     try:
         context = {}
         for key in NOTICE:
-            doi = normalize_doi(entries[key]['fields']['doi'])
+            doi = normalize_doi(entries[key]['fields']['doi']) if entries[key]['fields'].get('doi') else None
             previous = cache.get(ROOT / 'cdl.bib', entries[key])
             context[key] = [c for c in previous['candidates']
                             if c.get('source') in ('europepmc', 'crossref', 'pmc-jats') and c.get('doi')
-                            and normalize_doi(c['doi']) == doi]
+                            and (normalize_doi(c['doi']) == doi or every_doi and R.retraction_signals([c]))]
         (HERE / 'context.json').write_text(json.dumps(context, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     finally:
         cache.close()
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:])

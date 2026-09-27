@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>marcxml</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>01379cam a2200373   4500</leader>
+  <controlfield tag="001">1246301</controlfield>
+  <controlfield tag="005">20250606185947.0</controlfield>
+  <controlfield tag="008">720321s1972    nyua     b    001 0 eng  </controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">1246301</subfield>
+  </datafield>
+  <datafield tag="906" ind1=" " ind2=" ">
+    <subfield code="a">7</subfield>
+    <subfield code="b">cbc</subfield>
+    <subfield code="c">orignew</subfield>
+    <subfield code="d">2</subfield>
+    <subfield code="e">ncip</subfield>
+    <subfield code="f">19</subfield>
+    <subfield code="g">y-gencatlg</subfield>
+  </datafield>
+  <datafield tag="925" ind1="0" ind2=" ">
+    <subfield code="a">acquire</subfield>
+    <subfield code="b">1 shelf copy</subfield>
+    <subfield code="x">policy default</subfield>
+  </datafield>
+  <datafield tag="955" ind1=" " ind2=" ">
+    <subfield code="a">LCAP batch update 2025-06-01-04:00: LCAPM-644</subfield>
+  </datafield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">   72177684 </subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="9">(DLC)   72177684</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">DLC</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">BF319</subfield>
+    <subfield code="b">.C573</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="0">
+    <subfield code="a">152.3/224</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Classical conditioning II: current research and theory.</subfield>
+    <subfield code="c">Abraham H. Black [and] William F. Prokasy, editors.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">New York,</subfield>
+    <subfield code="b">Appleton-Century-Crofts</subfield>
+    <subfield code="c">[1972]</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">xii, 497 p.</subfield>
+    <subfield code="b">illus.</subfield>
+    <subfield code="c">24 cm.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">volume</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="490" ind1="0" ind2=" ">
+    <subfield code="a">Century psychology series</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Revised versions of papers presented at a conference held at McMaster University in May 1969.</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+    <subfield code="a">Includes bibliographies.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Classical conditioning.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Neuropsychology.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Rabbits</subfield>
+    <subfield code="x">Psychology.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Black, Abraham H.,</subfield>
+    <subfield code="e">ed.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Prokasy, William F.</subfield>
+    <subfield code="q">(William Frederick),</subfield>
+    <subfield code="d">1930-</subfield>
+    <subfield code="e">ed.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">McMaster University, Hamilton, Ont.</subfield>
+  </datafield>
+  <datafield tag="985" ind1=" " ind2=" ">
+    <subfield code="f">ba14 2/28/86</subfield>
+  </datafield>
+  <datafield tag="991" ind1=" " ind2=" ">
+    <subfield code="b">c-GenColl</subfield>
+    <subfield code="h">BF319</subfield>
+    <subfield code="i">.C573</subfield>
+    <subfield code="p">00009861087</subfield>
+    <subfield code="t">Copy 1</subfield>
+    <subfield code="w">BOOKS</subfield>
+  </datafield>
+</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.lccn=72177684</zs:query><zs:maximumRecords>1</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>
+
+  
+  1.1  1    marcxml  xml   
+   01379cam a2200373   4500 
+   1246301 
+   20250606185947.0 
+   720321s1972    nyua     b    001 0 eng   
+   
+     1246301 
+   
+   
+     7 
+     cbc 
+     orignew 
+     2 
+     ncip 
+     19 
+     y-gencatlg 
+   
+   
+     acquire 
+     1 shelf copy 
+     policy default 
+   
+   
+     LCAP batch update 2025-06-01-04:00: LCAPM-644 
+   
+   
+        72177684  
+   
+   
+     (DLC)   72177684 
+   
+   
+     DLC 
+     DLC 
+     DLC 
+   
+   
+     BF319 
+     .C573 
+   
+   
+     152.3/224 
+   
+   
+     Classical conditioning II: current research and theory. 
+     Abraham H. Black [and] William F. Prokasy, editors. 
+   
+   
+     New York, 
+     Appleton-Century-Crofts 
+     [1972] 
+   
+   
+     xii, 497 p. 
+     illus. 
+     24 cm. 
+   
+   
+     text 
+     txt 
+     rdacontent 
+   
+   
+     unmediated 
+     n 
+     rdamedia 
+   
+   
+     volume 
+     nc 
+     rdacarrier 
+   
+   
+     Century psychology series 
+   
+   
+     Revised versions of papers presented at a conference held at McMaster University in May 1969. 
+   
+   
+     Includes bibliographies. 
+   
+   
+     Classical conditioning. 
+   
+   
+     Neuropsychology. 
+   
+   
+     Rabbits 
+     Psychology. 
+   
+   
+     Black, Abraham H., 
+     ed. 
+   
+   
+     Prokasy, William F. 
+     (William Frederick), 
+     1930- 
+     ed. 
+   
+   
+     McMaster University, Hamilton, Ont. 
+   
+   
+     ba14 2/28/86 
+   
+   
+     c-GenColl 
+     BF319 
+     .C573 
+     00009861087 
+     Copy 1 
+     BOOKS 
+   
+   1     1.1  bath.lccn=72177684  1  xml  marcxml   

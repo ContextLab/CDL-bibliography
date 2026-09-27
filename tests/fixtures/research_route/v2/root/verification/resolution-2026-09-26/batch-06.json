@@ -1,0 +1,16 @@
+[
+ {
+  "key": "YoneJaco97",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "``Response bias and the process-dissociation procedure'': correction to {Yonelinas} and {Jacoby} (1996)",
+    "url": "https://api.crossref.org/v1/works/10.1037/0096-3445.126.1.18/transform/application/vnd.crossref.unixsd+xml",
+    "quote": "\"Response bias and the process-dissociation procedure\": Correction to Yonelinas and Jacoby (1996)."
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "The quote is taken from the Crossref unixsd XML, where the title is plain text (the JSON escapes the quotation marks). The printed title puts the corrected article's title in quotation marks, which HEAD drops. Pages 18, issue 1 and DOI are added. RECONCILED 2026-09-26: Quoted title keeps its marks as ``X'' (default)."
+ }
+]

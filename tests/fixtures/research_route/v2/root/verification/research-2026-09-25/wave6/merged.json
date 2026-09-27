@@ -1,0 +1,300 @@
+[
+ {
+  "key": "Fred04",
+  "batch": "batch-047",
+  "verdict": "correction",
+  "current": {
+   "year": "2004",
+   "volume": "359",
+   "title": "The broaden-and-build theory of positive emotions",
+   "number": "1449",
+   "journal": "Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences",
+   "author": "B L Fredrickson",
+   "ENTRYTYPE": "article",
+   "ID": "Fred04"
+  },
+  "final_changes": [
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1098/rstb.2004.1512",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15347528/",
+      "quote": "10.1098/rstb.2004.1512 [doi]"
+     }
+    ]
+   },
+   {
+    "field": "pages",
+    "current": null,
+    "proposed": "1367--1377",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1098/rstb.2004.1512",
+      "quote": "\"page\":\"1367-1377\""
+     }
+    ]
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Fred04",
+   "target_base": "Fred04",
+   "action": "keep"
+  },
+  "flags": [],
+  "doi_status": {
+   "doi": "10.1098/rstb.2004.1512",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "The broaden–and–build theory of positive emotions",
+   "subtitle": null,
+   "container": "Philosophical Transactions of the Royal Society of London. Series B: Biological Sciences",
+   "print_year": "2004",
+   "online_year": "2004",
+   "issued_year": "2004",
+   "page": "1367-1377",
+   "volume": "359",
+   "issue": "1449",
+   "type": "journal-article",
+   "authors": [
+    "Barbara L. Fredrickson"
+   ],
+   "families": [
+    "Fredrickson"
+   ]
+  },
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": null,
+  "needs_user": false
+ },
+ {
+  "key": "BarEtal06",
+  "batch": "batch-048",
+  "verdict": "correction",
+  "current": {
+   "year": "2006",
+   "volume": "103",
+   "title": "Top-down facilitation of visual recognition",
+   "pages": "449--454",
+   "number": "2",
+   "journal": "Proceedings of the National Academy of Sciences, {USA}",
+   "author": "M Bar and K S Kassam and A S Ghuman and J Boshyan and A M Schmid and A M Dale and M S Hamalainen and K Marinkovic and D L Schacter and B R Rosen and others",
+   "ENTRYTYPE": "article",
+   "ID": "BarEtal06"
+  },
+  "final_changes": [
+   {
+    "field": "author",
+    "current": "M Bar and K S Kassam and A S Ghuman and J Boshyan and A M Schmid and A M Dale and M S Hamalainen and K Marinkovic and D L Schacter and B R Rosen and others",
+    "proposed": "M Bar and K S Kassam and A S Ghuman and J Boshyan and A M Schmid and A M Dale and M S H{\\\"a}m{\\\"a}l{\\\"a}inen and K Marinkovic and D L Schacter and B R Rosen and E Halgren",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16407167/",
+      "quote": "M Bar, K S Kassam, A S Ghuman, J Boshyan, A M Schmid, A M Dale, M S Hämäläinen, K Marinkovic, D L Schacter, B R Rosen, E Halgren"
+     }
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1073/pnas.0507062103",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1073/pnas.0507062103",
+      "quote": "\"DOI\":\"10.1073\\/pnas.0507062103\""
+     }
+    ],
+    "reviewer": "agree"
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "BarEtal06",
+   "target_base": "BarEtal06",
+   "action": "keep"
+  },
+  "flags": [],
+  "doi_status": {
+   "doi": "10.1073/pnas.0507062103",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "Top-down facilitation of visual recognition",
+   "subtitle": null,
+   "container": "Proceedings of the National Academy of Sciences",
+   "print_year": "2006",
+   "online_year": "2006",
+   "issued_year": "2006",
+   "page": "449-454",
+   "volume": "103",
+   "issue": "2",
+   "type": "journal-article",
+   "authors": [
+    "M. Bar",
+    "K. S. Kassam",
+    "A. S. Ghuman",
+    "J. Boshyan",
+    "A. M. Schmid",
+    "A. M. Dale",
+    "M. S. Hämäläinen",
+    "K. Marinkovic",
+    "D. L. Schacter",
+    "B. R. Rosen",
+    "E. Halgren"
+   ],
+   "families": [
+    "Bar",
+    "Kassam",
+    "Ghuman",
+    "Boshyan",
+    "Schmid",
+    "Dale",
+    "Hämäläinen",
+    "Marinkovic",
+    "Schacter",
+    "Rosen",
+    "Halgren"
+   ]
+  },
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree"
+   },
+   "problems": [
+    "Crossref 10.1073/pnas.0507062103: Proceedings of the National Academy of Sciences 103(2) 449-454, print 2006 / issued 2006"
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
+ },
+ {
+  "key": "Perr14",
+  "batch": "batch-051",
+  "verdict": "correction",
+  "current": {
+   "year": "1914",
+   "volume": "16",
+   "title": "An experimental an introspective study of human learning process in the maze",
+   "pages": "1--97",
+   "journal": "Psychological Monographs",
+   "author": "F A C Perrin",
+   "ENTRYTYPE": "article",
+   "ID": "Perr14"
+  },
+  "final_changes": [
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1037/h0093081",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"DOI\":\"10.1037\\/h0093081\""
+     }
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "number",
+    "current": null,
+    "proposed": "4",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"issue\":\"4\""
+     }
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "pages",
+    "current": "1--97",
+    "proposed": "i--97",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"page\":\"i-97\""
+     }
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "title",
+    "current": "An experimental an introspective study of human learning process in the maze",
+    "proposed": "An experimental and introspective study of the human learning process in the maze",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"title\":[\"An experimental and introspective study of the human learning process in the maze.\"]"
+     }
+    ],
+    "reviewer": "agree"
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Perr14",
+   "target_base": "Perr14",
+   "action": "keep"
+  },
+  "flags": [],
+  "doi_status": {
+   "doi": "10.1037/h0093081",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "An experimental and introspective study of the human learning process in the maze.",
+   "subtitle": null,
+   "container": "The Psychological Monographs",
+   "print_year": null,
+   "online_year": "1914",
+   "issued_year": "1914",
+   "page": "i-97",
+   "volume": "16",
+   "issue": "4",
+   "type": "journal-article",
+   "authors": [
+    "Fleming Allen Clay Perrin"
+   ],
+   "families": [
+    "Perrin"
+   ]
+  },
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "number": "agree",
+    "pages": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change",
+    "Crossref 10.1037/h0093081: The Psychological Monographs 16(4) i-97, print None / issued 1914"
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
+ }
+]

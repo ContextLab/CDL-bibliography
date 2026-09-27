@@ -1,0 +1,15 @@
+[
+ {
+  "key": "KingEtal11",
+  "decision": "apply",
+  "new_key": "MorrRNSS11",
+  "set": {
+   "author": {
+    "value": "M J Morrell and {RNS System in Epilepsy Study Group}",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1212/wnl.0b013e3182302056%22&resultType=core&format=json",
+    "quote": "\"authorString\":\"Morrell MJ, RNS System in Epilepsy Study Group.\""
+   }
+  },
+  "notes": "Byline is Morrell on behalf of the RNS System in Epilepsy Study Group (PubMed 21917777, Crossref); the 37 names were the investigator list. MorrRNSS11 is bibcheck authors2key's output for this byline; free in HEAD. RECONCILED 2026-09-26: Question answered by rule: person + corporate byline: key from authors2key (default)."
+ }
+]

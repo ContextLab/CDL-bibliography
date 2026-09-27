@@ -1,0 +1,94 @@
+[
+ {
+  "key": "GonsPall00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+   "quote": "Neural events that underlie remembering something that never happened.",
+   "why": "PubMed 11100153: same title (published version) and authors, Nature neuroscience 3(12):1316-1321, DOI 10.1038/81851."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "Neural events that underlie remembering something that never happened",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "Neural events that underlie remembering something that never happened."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "B Gonsalves and K A Paller",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "B Gonsalves, K A Paller"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Nature Neuroscience",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "Nature neuroscience"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "3",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "VI  - 3"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "12",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "IP  - 12"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1316--1321",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "PG  - 1316-21"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "DP  - 2000 Dec"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1038/81851",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "10.1038/81851 [doi]"
+     }
+    ]
+   }
+  },
+  "notes": "Erratum 10.1038/82837 ('Errata', page 109, Crossref update date 2001-01-01) exists; text not retrieved, metadata fully matches. Needless brace '{N}eural' removed from title. DOI added. No duplicate in cdl.bib (other Gonsalves entries are different works)."
+ }
+]

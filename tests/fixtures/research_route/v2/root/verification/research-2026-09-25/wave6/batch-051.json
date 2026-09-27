@@ -1,0 +1,94 @@
+[
+ {
+  "key": "Perr14",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/h0093081",
+   "quote": "\"title\":[\"An experimental and introspective study of the human learning process in the maze.\"]",
+   "why": "Same author(s), same work, same journal volume and year (APA Crossref record)."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "F A C Perrin",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"given\":\"Fleming Allen Clay\",\"family\":\"Perrin\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "An experimental and introspective study of the human learning process in the maze",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"title\":[\"An experimental and introspective study of the human learning process in the maze.\"]"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Monographs",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"container-title\":[\"The Psychological Monographs\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1914",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"issued\":{\"date-parts\":[[1914,7]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "16",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"volume\":\"16\""
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "i--97",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"page\":\"i-97\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/h0093081",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/h0093081",
+      "quote": "\"DOI\":\"10.1037\\/h0093081\""
+     }
+    ]
+   }
+  },
+  "notes": "Title had typos ('an introspective study of human learning process') -> 'and introspective study of the human learning process'. APA/Crossref paginate the monograph i-97 (roman front matter); proposed i--97 in place of 1--97. Added number 4 and DOI."
+ }
+]

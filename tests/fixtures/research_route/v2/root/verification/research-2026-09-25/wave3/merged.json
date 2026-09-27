@@ -1,0 +1,70 @@
+[
+ {
+  "key": "HeniEtal19",
+  "batch": "batch-017",
+  "verdict": "correction",
+  "current": {
+   "year": "2019",
+   "volume": "6",
+   "title": "Closed-loop acoustic stimulation enhances sleep oscillations but not memory performance",
+   "number": "6",
+   "journal": "Eneuro",
+   "doi": "10.1523/eneuro.0306-19.2019",
+   "author": "S Henin and H Borges and A Shankar and C Sarac and L Melloni and D Friedman and A Flinker and L C Parra and G Buzs{\\'a}ki and O Devinsky and A Liu",
+   "ENTRYTYPE": "article",
+   "ID": "HeniEtal19"
+  },
+  "final_changes": [
+   {
+    "field": "journal",
+    "current": "Eneuro",
+    "proposed": "eNeuro",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+      "quote": "\"title\":\"eNeuro\""
+     }
+    ]
+   },
+   {
+    "field": "pages",
+    "current": null,
+    "proposed": "ENEURO.0306-19.2019",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523/eneuro.0306-19.2019%22&format=json&resultType=core",
+      "quote": "\"pageInfo\":\"ENEURO.0306-19.2019\""
+     }
+    ]
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "HeniEtal19",
+   "target_base": "HeniEtal19",
+   "action": "keep"
+  },
+  "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+    "action": "applied"
+   }
+  ],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-05",
+   "notes": "The flag is a false conflict: Crossref page 'ENEURO.0306-19.2019' equals the proposed pages. Journal 'eNeuro' as printed (Europe PMC/Crossref).",
+   "residue": [],
+   "noop": null
+  },
+  "reviewer": null,
+  "needs_user": false
+ }
+]

@@ -1,0 +1,94 @@
+[
+ {
+  "key": "TompDava17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+   "quote": "Consolidation Promotes the Emergence of Representational Overlap in the Hippocampus and Medial Prefrontal Cortex.",
+   "why": "PubMed 28957671: same title and authors, Neuron 2017;96(1):228-241.e5."
+  },
+  "fields": {
+   "journal": {
+    "status": "confirmed",
+    "value": "Neuron",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+      "quote": "JT  - Neuron"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "96",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+      "quote": "VI  - 96"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+      "quote": "IP  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "228--241.e5",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+      "quote": "PG  - 228-241.e5"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+      "quote": "DP  - 2017 Sep 27"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuron.2017.09.005",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+      "quote": "10.1016/j.neuron.2017.09.005 [doi]"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Consolidation promotes the emergence of representational overlap in the hippocampus and medial prefrontal cortex",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+      "quote": "Consolidation Promotes the Emergence of Representational Overlap in the Hippocampus and Medial Prefrontal Cortex."
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "A Tompary and L Davachi",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+      "quote": "Alexa Tompary, Lila Davachi"
+     }
+    ]
+   }
+  },
+  "notes": "Pages become 228--241.e5 (house form used by 10 cdl.bib entries, e.g. 439--452.e5); DOI added. Notices: PubMed links an erratum (Neuron 2020;105(1):199-200, 10.1016/j.neuron.2019.12.020, Crossref type 'erratum') and an 'Editorial Note to' this article (Neuron 2020;105(1):198, 10.1016/j.neuron.2019.12.021, Crossref type 'addendum'). Neither is a retraction; their text was not retrieved, so flag for the user per the notice policy."
+ }
+]

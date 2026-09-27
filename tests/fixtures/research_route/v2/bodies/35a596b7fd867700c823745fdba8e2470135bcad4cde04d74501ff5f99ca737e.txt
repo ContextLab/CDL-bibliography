@@ -1,0 +1,90 @@
+Dynamic grouping of hippocampal neural activity during cognitive control of two spatial frames. Eduard Kelemen, Andr&#xe9; A Fenton PLoS biology PLoS Biol 2010 2021 2010 2010 2009 2010 2010 2010 2010 2010 8 6 e1000403
+
+PMID- 20585373
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20101021
+LR  - 20211020
+IS  - 1545-7885 (Electronic)
+IS  - 1544-9173 (Print)
+IS  - 1544-9173 (Linking)
+VI  - 8
+IP  - 6
+DP  - 2010 Jun 22
+TI  - Dynamic grouping of hippocampal neural activity during cognitive control of two 
+      spatial frames.
+PG  - e1000403
+LID - 10.1371/journal.pbio.1000403 [doi]
+LID - e1000403
+AB  - Cognitive control is the ability to coordinate multiple streams of information to 
+      prevent confusion and select appropriate behavioral responses, especially when 
+      presented with competing alternatives. Despite its theoretical and clinical 
+      significance, the neural mechanisms of cognitive control are poorly understood. 
+      Using a two-frame place avoidance task and partial hippocampal inactivation, we 
+      confirmed that intact hippocampal function is necessary for coordinating two 
+      streams of spatial information. Rats were placed on a continuously rotating arena 
+      and trained to organize their behavior according to two concurrently relevant 
+      spatial frames: one stationary, the other rotating. We then studied how 
+      information about locations in these two spatial frames is organized in the 
+      action potential discharge of ensembles of hippocampal cells. Both streams of 
+      information were represented in neuronal discharge-place cell activity was 
+      organized according to both spatial frames, but almost all cells preferentially 
+      represented locations in one of the two spatial frames. At any given time, most 
+      coactive cells tended to represent locations in the same spatial frame, reducing 
+      the risk of interference between the two information streams. An ensemble's 
+      preference to represent locations in one or the other spatial frame alternated 
+      within a session, but at each moment, location in the more behaviorally relevant 
+      spatial frame was more likely to be represented. This discharge organized into 
+      transient groups of coactive neurons that fired together within 25 ms to 
+      represent locations in the same spatial frame. These findings show that dynamic 
+      grouping, the transient coactivation of neural subpopulations that represent the 
+      same stream of information, can coordinate representations of concurrent 
+      information streams and avoid confusion, demonstrating neural-ensemble correlates 
+      of cognitive control in hippocampus.
+FAU - Kelemen, Eduard
+AU  - Kelemen E
+AD  - Department of Physiology and Pharmacology, State University of New York, 
+      Downstate Medical Center, Brooklyn, New York, United States of America.
+FAU - Fenton, Andre A
+AU  - Fenton AA
+LA  - eng
+GR  - R01 MH084038/MH/NIMH NIH HHS/United States
+GR  - R01MH084038-01/MH/NIMH NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+PT  - Research Support, U.S. Gov't, Non-P.H.S.
+DEP - 20100622
+PL  - United States
+TA  - PLoS Biol
+JT  - PLoS biology
+JID - 101183755
+SB  - IM
+EIN - PLoS Biol. 2015 Mar 11;13(3):e1002100. doi: 10.1371/journal.pbio.1002100. PMID: 
+      25761137
+MH  - Animals
+MH  - Avoidance Learning
+MH  - *Cognition
+MH  - Hippocampus/cytology/*physiology
+MH  - Neurons/*physiology
+MH  - Rats
+PMC - PMC2889929
+COIS- The authors have declared that no competing interests exist.
+EDAT- 2010/06/30 06:00
+MHDA- 2010/10/22 06:00
+PMCR- 2010/06/22
+CRDT- 2010/06/30 06:00
+PHST- 2009/11/02 00:00 [received]
+PHST- 2010/05/13 00:00 [accepted]
+PHST- 2010/06/30 06:00 [entrez]
+PHST- 2010/06/30 06:00 [pubmed]
+PHST- 2010/10/22 06:00 [medline]
+PHST- 2010/06/22 00:00 [pmc-release]
+AID - 09-PLBI-RA-4711R3 [pii]
+AID - 10.1371/journal.pbio.1000403 [doi]
+PST - epublish
+SO  - PLoS Biol. 2010 Jun 22;8(6):e1000403. doi: 10.1371/journal.pbio.1000403.
+
+ 
+ 
+ 
+   20585373   2010  10  21    2021  10  20     1545-7885   8  6   2010  Jun  22    PLoS biology  PLoS Biol   Dynamic grouping of hippocampal neural activity during cognitive control of two spatial frames.   e1000403  e1000403   e1000403  10.1371/journal.pbio.1000403   Cognitive control is the ability to coordinate multiple streams of information to prevent confusion and select appropriate behavioral responses, especially when presented with competing alternatives. Despite its theoretical and clinical significance, the neural mechanisms of cognitive control are poorly understood. Using a two-frame place avoidance task and partial hippocampal inactivation, we confirmed that intact hippocampal function is necessary for coordinating two streams of spatial information. Rats were placed on a continuously rotating arena and trained to organize their behavior according to two concurrently relevant spatial frames: one stationary, the other rotating. We then studied how information about locations in these two spatial frames is organized in the action potential discharge of ensembles of hippocampal cells. Both streams of information were represented in neuronal discharge-place cell activity was organized according to both spatial frames, but almost all cells preferentially represented locations in one of the two spatial frames. At any given time, most coactive cells tended to represent locations in the same spatial frame, reducing the risk of interference between the two information streams. An ensemble's preference to represent locations in one or the other spatial frame alternated within a session, but at each moment, location in the more behaviorally relevant spatial frame was more likely to be represented. This discharge organized into transient groups of coactive neurons that fired together within 25 ms to represent locations in the same spatial frame. These findings show that dynamic grouping, the transient coactivation of neural subpopulations that represent the same stream of information, can coordinate representations of concurrent information streams and avoid confusion, demonstrating neural-ensemble correlates of cognitive control in hippocampus.     Kelemen  Eduard  E   Department of Physiology and Pharmacology, State University of New York, Downstate Medical Center, Brooklyn, New York, United States of America.     Fenton  Andr&#xe9; A  AA    eng    R01 MH084038  MH  NIMH NIH HHS  United States    R01MH084038-01  MH  NIMH NIH HHS  United States     Journal Article  Research Support, N.I.H., Extramural  Research Support, U.S. Gov't, Non-P.H.S.    2010  06  22     United States  PLoS Biol  101183755  1544-9173   IM    PLoS Biol. 2015 Mar 11;13(3):e1002100. doi: 10.1371/journal.pbio.1002100.  25761137      Animals    Avoidance Learning    Cognition    Hippocampus  cytology  physiology    Neurons  physiology    Rats    The authors have declared that no competing interests exist.      2009  11  2    2010  5  13    2010  6  30  6  0    2010  6  30  6  0    2010  10  22  6  0    2010  6  22    epublish   20585373  PMC2889929  10.1371/journal.pbio.1000403     Miller E. K, Cohen J. D. An integrative theory of prefrontal cortex function. Annu Rev Neurosci. 2001;24:167&#x2013;202.   11283309     Blake R, Logothetis N. K. Visual competition. Nat Rev Neurosci. 2002;3:13&#x2013;21.   11823801     Newsome W. T. The King Solomon Lectures in Neuroethology. Deciding about motion: linking perception to action. J Comp Physiol A. 1997;181:5&#x2013;12.   9216071     Wesierska M, Dockery C, Fenton A. A. Beyond memory, navigation, and inhibition: behavioral evidence for hippocampus-dependent cognitive coordination in the rat. J Neurosci. 2005;25:2413&#x2013;2419.   PMC6726107  15745968     Hebb D. O. New York: Wiley; 1949. The organization of behavior, a neuropsychological theory.    Abeles M, Bergman H, Gat I, Meilijson I, Seidemann E, et al. Cortical activity flips among quasi-stationary states. Proc Natl Acad Sci U S A. 1995;92:8616&#x2013;8620.   PMC41017  7567985     Wilson M. A, McNaughton B. L. Dynamics of the hippocampal ensemble code for space. Science. 1993;261:1055&#x2013;1058.   8351520     Harris K. D, Csicsvari J, Hirase H, Dragoi G, Buzsaki G. Organization of cell assemblies in the hippocampus. Nature. 2003;424:552&#x2013;556.   12891358     Fenton A. A, Kao H-Y, Neymotin S. A, Olypher A. V, Vayntrub Y, et al. Unmasking the CA1 ensemble place code by exposures to small and large environments: more place cells and multiple, irregularly-arranged, and expanded place fields in the larger space. J Neurosci. 2008;28:11250&#x2013;11262.   PMC2695947  18971467     Johnson A, Redish A. D. Neural ensembles in CA3 transiently encode paths forward of the animal at a decision point. J Neurosci. 2007;27:12176&#x2013;12189.   PMC6673267  17989284     von der Malsburg C. Berlin: Springer, 1994; 1981. The correlation theory of brain function (MPI Biophysical Chemistry, internal report 81&#x2013;82).    Phillips W. A, Singer W. In search of common foundations for cortical computation. Behav Brain Sci. 1997;20:657&#x2013;683; discussion 683-722.   10097008     Fenton A. A, Muller R. U. Place cell discharge is extremely variable during individual passes of the rat through the firing field. Proc Natl Acad Sci U S A. 1998;95:3182&#x2013;3187.   PMC19716  9501237     Redish A. D, Rosenzweig E. S, Bohanick J. D, McNaughton B. L, Barnes C. A. Dynamics of hippocampal ensemble activity realignment: time versus space. J Neurosci. 2000;20:9298&#x2013;9309.   PMC6772998  11125009     Gothard K. M, Skaggs W. E, McNaughton B. L. Dynamics of mismatch correction in the hippocampal ensemble code for space: interaction between path integration and environmental cues. J Neurosci. 1996;16:8027&#x2013;8040.   PMC6579211  8987829     Jackson J, Redish A. D. Network dynamics of hippocampal cell-assemblies resemble multiple spatial maps within single tasks. Hippocampus. 2007;17:1209&#x2013;1229.   17764083     Shapiro M. L, Tanila H, Eichenbaum H. Cues that hippocampal place cells encode: dynamic and hierarchical representation of local and distal stimuli. Hippocampus. 1997;7:624&#x2013;642.   9443059     Brown J. E, Skaggs W. E. Concordant and discordant coding of spatial location in populations of hippocampal CA1 pyramidal cells. J Neurophysiol. 2002;88:1605&#x2013;1613.   12364491     Knierim J. J. Dynamic interactions between local surface cues, distal landmarks, and intrinsic circuitry in hippocampal place cells. J Neurosci. 2002;22:6254&#x2013;6264.   PMC6757929  12122084     Wills T. J, Lever C, Cacucci F, Burgess N, O'Keefe J. Attractor dynamics in the hippocampal representation of the local environment. Science. 2005;308:873&#x2013;876.   PMC2680068  15879220     Leutgeb J. K, Leutgeb S, Treves A, Meyer R, Barnes C. A, et al. Progressive transformation of hippocampal neuronal representations in &#x201c;morphed&#x201d; environments. Neuron. 2005;48:345&#x2013;358.   16242413     Fenton A. A, Wesierska M, Kaminsky Y, Bures J. Both here and there: simultaneous expression of autonomous spatial memories in rats. Proc Natl Acad Sci U S A. 1998;95:11493&#x2013;11498.   PMC21671  9736765     Kelemen E, Fenton A. A. What do place cells tell us about learning to associate and learning to segregate? In: Mizumori S. A, editor. Hippocampal place fields, relevance to learning and memory. New York: Oxford University Press; 2008.    Jezek K, Wesierska M, Fenton A. A. Hippocampus-dependent retrieval and hippocampus-independent extinction of place avoidance navigation, and stress-induced out-of-context activation of a memory revealed by reversible lesion experiments in rats. Physiol Res. 2002;51(Suppl 1):S35&#x2013;S47.   12479785     Kubik S, Stuchlik A, Fenton A. A. Evidence for hippocampal role in place avoidance other than merely memory storage. Physiol Res. 2006;55:445&#x2013;452.   16238464     Cimadevilla J. M, Fenton A. A, Bures J. Functional inactivation of dorsal hippocampus impairs active place avoidance in rats. Neurosci Lett. 2000;285:53&#x2013;56.   10788706     Kubik S, Fenton A. A. Behavioral evidence that segregation and representation are dissociable hippocampal functions. J Neurosci. 2005;25:9205&#x2013;9212.   PMC6725773  16207880     Cimadevilla J. M, Wesierska M, Fenton A. A, Bures J. Inactivating one hippocampus impairs avoidance of a stable room-defined place during dissociation of arena cues from room cues by rotation of the arena. Proc Natl Acad Sci U S A. 2001;98:3531&#x2013;3536.   PMC30687  11248112     Olypher A. V, Klement D, Fenton A. A. Cognitive disorganization in hippocampus: a physiological model of the disorganization in psychosis. J Neurosci. 2006;26:158&#x2013;168.   PMC6674308  16399683     Zinyuk L, Kubik S, Kaminsky Y, Fenton A. A, Bures J. Understanding hippocampal activity by using purposeful behavior: place navigation induces place cell discharge in both task-relevant and task-irrelevant spatial reference frames. Proc Natl Acad Sci U S A. 2000;97:3771&#x2013;3776.   PMC16315  10716713     Olypher A. V, Lansky P, Muller R. U, Fenton A. A. Quantifying location-specific information in the discharge of rat hippocampal place cells. J Neurosci Methods. 2003;127:123&#x2013;135.   12906942     Diba K, Buzsaki G. Hippocampal network dynamics constrain the time lag between pyramidal cells across modified environments. J Neurosci. 2008;28:13448&#x2013;13456.   PMC2656938  19074018     Dragoi G, Buzsaki G. Temporal encoding of place sequences by hippocampal cell assemblies. Neuron. 2006;50:145&#x2013;157.   16600862     Gray C. M, Konig P, Engel A. K, Singer W. Oscillatory responses in cat visual cortex exhibit inter-columnar synchronization which reflects global stimulus properties. Nature. 1989;338:334&#x2013;337.   2922061     Singer W. Neuronal synchrony: a versatile code for the definition of relations? Neuron. 1999;24:49&#x2013;65, 111-125.   10677026     Fenton A. A, Lytton W. W, Barry J. M, Lenck-Santini P. P, Zinyuk L. E, et al. Attention-like modulation of hippocampus place cell discharge. J Neurosci. 2010;30:4613&#x2013;4625.   PMC2858227  20357112     Milner B, Squire L. R, Kandel E. R. Cognitive neuroscience and the study of memory. Neuron. 1998;20:445&#x2013;468.   9539121     Scoville W. B, Milner B. Loss of recent memory after bilateral hippocampal lesions. J Neurol Neurosurg Psychiatry. 1957;20:11&#x2013;21.   PMC497229  13406589     Serrano P, Friedman E. L, Kenney J, Taubenfeld S. M, Zimmerman J. M, et al.  PKMzeta maintains spatial, instrumental, and classically conditioned long-term memories. PLoS Biol. 2008;6:2698&#x2013;2706. doi: 10.1371/journal.pbio.0060318.   10.1371/journal.pbio.0060318  PMC2605920  19108606     Pastalkova E, Serrano P, Pinkhasova D, Wallace E, Fenton A. A, et al. Storage of spatial information by the maintenance mechanism of LTP. Science. 2006;313:1141&#x2013;1144.   16931766     O'Keefe J, Nadel L. Oxford: Clarendon Press; 1978. The hippocampus as a cognitive map.    Siapas A. G, Lubenov E. V, Wilson M. A. Prefrontal phase locking to hippocampal theta oscillations. Neuron. 2005;46:141&#x2013;151.   15820700     Jones M. W, Wilson M. A. Theta rhythms coordinate hippocampal-prefrontal interactions in a spatial memory task. PLoS Biol. 2005;3:e402. doi: 10.1371/journal.pbio.0030402.   10.1371/journal.pbio.0030402  PMC1283536  16279838     Cho R. Y, Konecky R. O, Carter C. S. Impairments in frontal cortical gamma synchrony and cognitive control in schizophrenia. Proc Natl Acad Sci U S A. 2006;103:19878&#x2013;19883.   PMC1750867  17170134     Phillips W. A, Silverstein S. M. Convergence of biological and psychological perspectives on cognitive coordination in schizophrenia. Behav Brain Sci. 2003;26:65&#x2013;82; discussion 82-137.   14598440     Uhlhaas P. J, Singer W. Neural synchrony in brain disorders: relevance for cognitive dysfunctions and pathophysiology. Neuron. 2006;52:155&#x2013;168.   17015233     Olypher A. V, Lansky P, Fenton A. A. Properties of the extra-positional signal in hippocampal place cell discharge derived from the overdispersion in location-specific firing. Neuroscience. 2002;111:553&#x2013;566.   12031343     Gothard K. M, Skaggs W. E, Moore K. M, McNaughton B. L. Binding of hippocampal CA1 neural activity to multiple reference frames in a landmark-based navigation task. J Neurosci. 1996;16:823&#x2013;835.   PMC6578660  8551362     Tanila H, Shapiro M. L, Eichenbaum H. Discordance of spatial representation in ensembles of hippocampal place cells. Hippocampus. 1997;7:613&#x2013;623.   9443058     Siegel J. J, Neunuebel J. P, Knierim J. J. Dominance of the proximal coordinate frame in determining the locations of hippocampal place cell activity during navigation. J Neurophysiol. 2008;99:60&#x2013;76.   PMC2268613  17959742     Klement D, Past'alkova E, Fenton A. A. Tetrodotoxin infusions into the dorsal hippocampus block non-locomotor place recognition. Hippocampus. 2005;15:460&#x2013;471.   15744735     Muller R. U, Kubie J. L. The firing of hippocampal place cells predicts the future position of freely moving rats. J Neurosci. 1989;9:4101&#x2013;4110.   PMC6569642  2592993       

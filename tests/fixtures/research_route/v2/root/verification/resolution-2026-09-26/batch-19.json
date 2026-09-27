@@ -1,0 +1,31 @@
+[
+ {
+  "key": "RescWagn72",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "R A Rescorla and A R Wagner",
+    "url": "https://books.google.com/books?vid=LCCN72177684",
+    "quote": "R A RESCORLA A R WAGNER 64"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Google Books contents of Classical Conditioning II (Appleton-Century-Crofts, 1972) print the chapter as 'R A RESCORLA A R WAGNER 64', confirming authors and the start page 64. The end page 99 and the next chapter's start page could not be seen (snippet view, no preview; HathiTrust search-only hides results), so pages are removed per the unconfirmable-optional-field rule. Apply the post-check (Pavlovian title fix, Appleton-Century-Crofts). RECONCILED 2026-09-26: Removal of pages withdrawn: an official contents list confirms the start page (Google Books contents 'R A RESCORLA A R WAGNER 64' (the batch's own evidence); https://books.google.com/books?vid=LCCN72177684); per the default the cited range is kept when its start page matches."
+ },
+ {
+  "key": "Crai00",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "75--92",
+    "url": "https://books.google.com/books?id=LXJ3SeXoHvoC&pg=PA93",
+    "quote": "6. COGNITIVE NEUROPSYCHOLOGY OF AGING 93"
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Google Books preview of the 2000 Psychology Press printing (ISBN 0863776922, LoC 99043572 pbk) shows chapter 5 'Age-related changes in human memory / Fergus I. M. Craik' opening on p. 75 (footer '5. MEMORY AND AGING 75', pg=PA75) and chapter 6 (Reuter-Lorenz) opening on p. 93; quotes transcribed from the page images (image-only). End page = next start - 1. Apply the post-check (editor D C Park).",
+  "questions": []
+ }
+]

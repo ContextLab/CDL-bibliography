@@ -1,0 +1,101 @@
+Top-down facilitation of visual recognition. M Bar, K S Kassam, A S Ghuman, J Boshyan, A M Schmid, A M Dale, M S H&#xe4;m&#xe4;l&#xe4;inen, K Marinkovic, D L Schacter, B R Rosen, E Halgren Proceedings of the National Academy of Sciences of the United States of America Proc Natl Acad Sci U S A 2006 2023 2006 2006 2006 2006 2006 2006 103 2 449-54
+
+PMID- 16407167
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20060307
+LR  - 20231105
+IS  - 0027-8424 (Print)
+IS  - 1091-6490 (Electronic)
+IS  - 0027-8424 (Linking)
+VI  - 103
+IP  - 2
+DP  - 2006 Jan 10
+TI  - Top-down facilitation of visual recognition.
+PG  - 449-54
+AB  - Cortical analysis related to visual object recognition is traditionally thought 
+      to propagate serially along a bottom-up hierarchy of ventral areas. Recent 
+      proposals gradually promote the role of top-down processing in recognition, but 
+      how such facilitation is triggered remains a puzzle. We tested a specific model, 
+      proposing that low spatial frequencies facilitate visual object recognition by 
+      initiating top-down processes projected from orbitofrontal to visual cortex. The 
+      present study combined magnetoencephalography, which has superior temporal 
+      resolution, functional magnetic resonance imaging, and a behavioral task that 
+      yields successful recognition with stimulus repetitions. Object recognition 
+      elicited differential activity that developed in the left orbitofrontal cortex 50 
+      ms earlier than it did in recognition-related areas in the temporal cortex. This 
+      early orbitofrontal activity was directly modulated by the presence of low 
+      spatial frequencies in the image. Taken together, the dynamics we revealed 
+      provide strong support for the proposal of how top-down facilitation of object 
+      recognition is initiated, and our observations are used to derive predictions for 
+      future research.
+FAU - Bar, M
+AU  - Bar M
+AD  - Martinos Center at Massachusetts General Hospital, Harvard Medical School, 
+      Charlestown, MA 02129, USA. bar@nmr.mgh.harvard.edu
+FAU - Kassam, K S
+AU  - Kassam KS
+FAU - Ghuman, A S
+AU  - Ghuman AS
+FAU - Boshyan, J
+AU  - Boshyan J
+FAU - Schmid, A M
+AU  - Schmid AM
+FAU - Dale, A M
+AU  - Dale AM
+FAU - Hamalainen, M S
+AU  - Hamalainen MS
+FAU - Marinkovic, K
+AU  - Marinkovic K
+FAU - Schacter, D L
+AU  - Schacter DL
+FAU - Rosen, B R
+AU  - Rosen BR
+FAU - Halgren, E
+AU  - Halgren E
+LA  - eng
+GR  - R01 NS044319/NS/NINDS NIH HHS/United States
+GR  - 5P41RR014075/RR/NCRR NIH HHS/United States
+GR  - NS18741/NS/NINDS NIH HHS/United States
+GR  - P41 RR014075/RR/NCRR NIH HHS/United States
+GR  - R01 NS018741/NS/NINDS NIH HHS/United States
+GR  - NS50615/NS/NINDS NIH HHS/United States
+GR  - NS44319/NS/NINDS NIH HHS/United States
+GR  - R01 NS050615/NS/NINDS NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20060103
+PL  - United States
+TA  - Proc Natl Acad Sci U S A
+JT  - Proceedings of the National Academy of Sciences of the United States of America
+JID - 7505876
+SB  - IM
+EIN - Proc Natl Acad Sci U S A. 2006 Feb 21;103(8):3007. Schmidt, AM [corrected to 
+      Schmid, AM]
+MH  - Cerebral Cortex/*physiology
+MH  - Humans
+MH  - Magnetic Resonance Imaging
+MH  - Models, Neurological
+MH  - Time Factors
+MH  - Visual Perception/*physiology
+PMC - PMC1326160
+EDAT- 2006/01/13 09:00
+MHDA- 2006/03/08 09:00
+PMCR- 2006/07/10
+CRDT- 2006/01/13 09:00
+PHST- 2006/01/13 09:00 [pubmed]
+PHST- 2006/03/08 09:00 [medline]
+PHST- 2006/01/13 09:00 [entrez]
+PHST- 2006/07/10 00:00 [pmc-release]
+AID - 0507062103 [pii]
+AID - 0449 [pii]
+AID - 10.1073/pnas.0507062103 [doi]
+PST - ppublish
+SO  - Proc Natl Acad Sci U S A. 2006 Jan 10;103(2):449-54. doi: 
+      10.1073/pnas.0507062103. Epub 2006 Jan 3.
+
+ 
+ 
+ 
+   16407167   2006  03  07    2023  11  05     0027-8424   103  2   2006  Jan  10    Proceedings of the National Academy of Sciences of the United States of America  Proc Natl Acad Sci U S A   Top-down facilitation of visual recognition.   449  454  449-54    Cortical analysis related to visual object recognition is traditionally thought to propagate serially along a bottom-up hierarchy of ventral areas. Recent proposals gradually promote the role of top-down processing in recognition, but how such facilitation is triggered remains a puzzle. We tested a specific model, proposing that low spatial frequencies facilitate visual object recognition by initiating top-down processes projected from orbitofrontal to visual cortex. The present study combined magnetoencephalography, which has superior temporal resolution, functional magnetic resonance imaging, and a behavioral task that yields successful recognition with stimulus repetitions. Object recognition elicited differential activity that developed in the left orbitofrontal cortex 50 ms earlier than it did in recognition-related areas in the temporal cortex. This early orbitofrontal activity was directly modulated by the presence of low spatial frequencies in the image. Taken together, the dynamics we revealed provide strong support for the proposal of how top-down facilitation of object recognition is initiated, and our observations are used to derive predictions for future research.     Bar  M  M   Martinos Center at Massachusetts General Hospital, Harvard Medical School, Charlestown, MA 02129, USA. bar@nmr.mgh.harvard.edu     Kassam  K S  KS    Ghuman  A S  AS    Boshyan  J  J    Schmid  A M  AM    Dale  A M  AM    H&#xe4;m&#xe4;l&#xe4;inen  M S  MS    Marinkovic  K  K    Schacter  D L  DL    Rosen  B R  BR    Halgren  E  E    eng    R01 NS044319  NS  NINDS NIH HHS  United States    5P41RR014075  RR  NCRR NIH HHS  United States    NS18741  NS  NINDS NIH HHS  United States    P41 RR014075  RR  NCRR NIH HHS  United States    R01 NS018741  NS  NINDS NIH HHS  United States    NS50615  NS  NINDS NIH HHS  United States    NS44319  NS  NINDS NIH HHS  United States    R01 NS050615  NS  NINDS NIH HHS  United States     Journal Article  Research Support, N.I.H., Extramural  Research Support, Non-U.S. Gov't    2006  01  03     United States  Proc Natl Acad Sci U S A  7505876  0027-8424   IM    Proc Natl Acad Sci U S A. 2006 Feb 21;103(8):3007  Schmidt, AM [corrected to Schmid, AM]      Cerebral Cortex  physiology    Humans    Magnetic Resonance Imaging    Models, Neurological    Time Factors    Visual Perception  physiology        2006  1  13  9  0    2006  3  8  9  0    2006  1  13  9  0    2006  7  10    ppublish   16407167  PMC1326160  10.1073/pnas.0507062103  0507062103     Kosslyn, S. M. (1994) Image and Brain (MIT Press, Cambridge, MA).    Ullman, S. (1995) Cereb. Cortex 1 ,  1-11.   7719126     Grossberg, S. (1980) Psychol. Rev. 87 ,  1-51.   7375607     Bullier, J. (2001) Brain Res. Rev. 36 ,  96-107.   11690606     Engel, A. K., Fries, P. &amp; Singer, W. (2001) Nat. Rev. Neurosci. 2 ,  704-716.   11584308     Lamme, V. A. &amp; Roelfsema, P. R. (2000) Trends Neurosci. 23 ,  571-579.   11074267     Miyashita, Y. &amp; Hayashi, T. (2000) Cur. Opin. Neurobiol. 10 ,  187-194.   10753793     Ranganath, C., Cohen, M. X., Dam, C. &amp; D'Esposito, M. (2004) J. Neurosci. 24 ,  3917-3925.   PMC6729418  15102907     Barcel&#xf3;, F., Suwazono, S. &amp; Knight, R. T. (2000) Nat. Neurosci. 3 ,  399-403.   10725931     Tomita, H., Ohbayashi, M., Nakahara, K., Hasegawa, I. &amp; Miyashita, Y. (1999) Nature 401 ,  699-703.   10537108     Bar, M. (2003) J. Cognit. Neurosci. 15 ,  600-609.   12803970     Tanaka, K. (1996) Annu. Rev. Neurosci. 19 ,  109-139.   8833438     Logothetis, N. K. &amp; Sheinberg, D. L. (1996) Annu. Rev. Neurosci. 19 ,  577-621.   8833455     Bar, M., Tootell, R., Schacter, D., Greve, D., Fischl, B., Mendola, J., Rosen, B. &amp; Dale, A. (2001) Neuron 29 ,  529-535.   11239441     Grill-Spector, K., Kourtzi, Z. &amp; Kanwisher, N. (2001) Vision Res. 41 ,  1409-1422.   11322983     Martin, A., Wiggs, C. L., Ungerleider, L. G. &amp; Haxby, J. V. (1996) Nature 379 ,  649-652.   8628399     Malach, R., Levy, I. &amp; Hasson, U. (2002) Trends Cognit. Sci. 6 ,  176-184.   11912041     Gabrieli, J. D., Poldrack, R. A. &amp; Desmond, J. E. (1998) Proc. Natl. Acad. Sci. USA 95 ,  906-913.   PMC33815  9448258     Petersen, S. E., Fox, P. T., Posner, M. I., Mintun, M. A. &amp; Raichle, M. E. (1989) J. Cognit. Neurosci. 1 ,  153-170.   23968463     Smith, E. E., Jonides, J., Koeppe, R. A., Awh, E., Schumacher, E. H. &amp; Minoshima, S. (1995) J. Cognit. Neurosci. 7 ,  337-356.   23961865     Thorpe, S. J., Rolls, E. T. &amp; Maddison, S. (1983) Exp. Brain Res. 49 ,  93-115.   6861938     Bar, M., Biederman, I. (1998) Psychol. Sci. 9 ,  464-469.    Mima, T., Oluwatimilehin, T., Hiraoka, T. &amp; Hallett, M. (2001) J. Neurosci. 21 ,  3942-3948.   PMC6762719  11356882     Vanni, S., Revonsuo, A., Saarinen, J. &amp; Hari, R. (1996) NeuroReport 8 ,  183-186.   9051777     Wilenius-Emet, M., Revonsuo, A. &amp; Ojanen, V. (2004) Neurosci. Lett. 354 ,  38-41.   14698477     Merigan, W. H. &amp; Maunsell, J. H. (1993) Annu. Rev. Neurosci. 16 ,  369-402.   8460898     Bullier, J. &amp; Nowak, L. G. (1995) Cur. Opin. Neurobiol. 5 ,  497-503.   7488852     Shapley, R. (1990) Annu. Rev. Psychol. 41 ,  635-658.   2407178     Oenguer, D. &amp; Price, J. L. (2000) Cerebr. Cortex 10 ,  206-219.   10731217     Rempel-Clower, N. L. &amp; Barbas, H. (2000) Cerebr. Cortex 10 ,  851-865.   10982746     DeValois, R. L. &amp; DeValois, K. K. (1988) Spatial Vision (Oxford Science Publications, New York).    Hughes, H. C., Nozawa, G. &amp; Kitterle, F. (1996) J. Cognit. Neurosci. 8, 197-230.   23968149     Navon, D. (1977) Cognit. Psychol. 9 ,  1-32.    Fiser, J., Subramaniam, S. &amp; Biederman, I. (2001) Vision Res. 41 ,  1931-1950.   11412885     Iidaka, T., Yamashita, K., Kashikura, K. and Yonekura, Y. (2004) Brain Res. Cognit. Brain Res. 18 ,  196-204.   14736578     Gusnard, D. A. &amp; Raichle, M. E. (2001) Nat. Rev. Neurosci. 2 ,  685-694.   11584306     Rao, R. P. &amp; Ballard, D. H. (1999) Nat. Neurosci. 2 ,  79-87.   10195184     Ahissar, M. &amp; Hochstein, S. (2004) Trends Cognit. Sci. 8 ,  457-464.   15450510     Barbas, H. (2000) Brain Res. Bull. 52 ,  319-330.   10922509     Bechara, A., Tranel, D. &amp; Damasio, H. (2000) Brain 123 ,  2189-2202.   11050020     Voytko, M. L. (1985) Physiol. Psychol. 13 ,  219-229.    Xiang, J. Z. &amp; Brown, M. W. (2004) Neuron 42 ,  817-829.   15182720     Meunier, M., Bachevalier, J. &amp; Mishkin, M. (1997) Neuropsychologia 35 ,  999-1015.   9226661     Petrides, M., Alivisatos, B. &amp; Frey, S. (2002) Proc. Natl. Acad. Sci. USA 99 ,  5649-5654.   PMC122825  11960018     Rolls, E. T., Browning, A. S., Inoue, K. &amp; Hernadi, I. (2005) Neurobiol. Learn. Mem. 84 ,  111-123.   15963737     Cavada, C., Company, T., Tejedor, J., Cruz-Rizzolo, R. J. &amp; Reinoso-Suarez, F. (2000) Cerebr. Cortex 10 ,  220-242.   10731218     Frith, C. &amp; Dolan, R. J. (1997) Philos. Trans. R. Soc. London B 352 ,  1221-1230.   PMC1692001  9304688     Elliott, R., Dolan, R. J. &amp; Frith, C. D. (2000) Cerebr. Cortex 10 ,  308-317.   10731225     Carretie, L., Hinojosa, J. A., Mercado, F. &amp; Tapia, M. (2005) NeuroImage 24 ,  615-623.   15652297     Ghashghaei, H. &amp; Barbas, H. (2002) Neuroscience 115 ,  1261-1279.   12453496     Bar, M. (2004) Nat. Rev. Neurosci. 5 ,  617-629.   15263892     Desimone, R. &amp; Duncan, J. (1995) Annu. Rev. Neurosci. 18 ,  193-222.   7605061     Cheng, A., Eysel, U. T. &amp; Vidyasagar, T. R. (2004) Eur. J. Neurosci. 20 ,  2188-2192.   15450098     Omtzigt, D. &amp; Hendriks, A. W. (2004) Vision Res. 44 ,  1927-1940.   15145686     Freedman, D. J., Riesenhuber, M., Poggio, T. &amp; Miller, E. K. (2003) J. Neurosci. 23 ,  5235-5246.   PMC6741148  12832548     Thorpe, S., Fize, D. &amp; Marlot, C. (1996) Nature 381 ,  520-522.   8632824     VanRullen, R. &amp; Thorpe, S. J. (2001) J. Cognit. Neurosci. 13 ,  454-461.   11388919     Yago, E., Duarte, A., Wong, T., Barcelo, F. &amp; Knight, R. T. (2004) Cognit. Affect Behav. Neurosci. 4 ,  609-617.   15849901       

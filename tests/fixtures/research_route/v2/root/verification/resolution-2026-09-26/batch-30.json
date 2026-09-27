@@ -1,0 +1,13 @@
+[
+ {
+  "key": "Frie79",
+  "wave": null,
+  "decision": "keep",
+  "set": {},
+  "remove": [],
+  "notes": "Pages 85--129: contents confirm p. 85; the only print of 129 is the p. 129 running head, which the lending-only IA scan's OCR splits as '1 29' (page image and page-number map return 401), and the next printed item is the untitled-page Part II divider before chapter 5 at 133, so no next_start of 130 exists. Left as HEAD (default: start page confirmed keeps the cited range).",
+  "questions": [
+   "When the only print of an end page is a scan's OCR that splits the number ('1 29' for 129 in a running head) and the page image cannot be viewed, may the quote be normalised (digits joined) and accepted, or must the end page stay partly confirmed / be removed?"
+  ]
+ }
+]

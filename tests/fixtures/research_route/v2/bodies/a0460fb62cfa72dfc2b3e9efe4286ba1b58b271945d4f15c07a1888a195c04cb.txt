@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>marcxml</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>01433cam a2200349   4500</leader>
+  <controlfield tag="001">2674587</controlfield>
+  <controlfield tag="005">20250607140415.2</controlfield>
+  <controlfield tag="008">720504s1972    nyua     b    101 0 eng  </controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">2674587</subfield>
+  </datafield>
+  <datafield tag="906" ind1=" " ind2=" ">
+    <subfield code="a">7</subfield>
+    <subfield code="b">cbc</subfield>
+    <subfield code="c">orignew</subfield>
+    <subfield code="d">2</subfield>
+    <subfield code="e">ncip</subfield>
+    <subfield code="f">19</subfield>
+    <subfield code="g">y-gencatlg</subfield>
+  </datafield>
+  <datafield tag="955" ind1=" " ind2=" ">
+    <subfield code="a">LCAP batch update 2025-06-02-04:00: LCAPM-644, LCAPM-150</subfield>
+  </datafield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">   73182647 </subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">0127036504</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780127036502</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="9">(DLC)   73182647</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">DLC</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">BF371</subfield>
+    <subfield code="b">.O74 1972</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="0">
+    <subfield code="a">153.1</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Organization of memory.</subfield>
+    <subfield code="c">Edited by Endel Tulving and Wayne Donaldson. Contributors: Gordon H. Bower [and others]</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">New York,</subfield>
+    <subfield code="b">Academic Press,</subfield>
+    <subfield code="c">1972.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">xiii, 423 p.</subfield>
+    <subfield code="b">illus.</subfield>
+    <subfield code="c">24 cm.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">volume</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">"This book ... grew out of a two-day conference held at the University of Pittsburgh in March 1971. The conference was sponsored by the Personnel and Training Research Programs, Psychological Sciences Division, Office of Naval Research, under Contract Nonr-624(18)."</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+    <subfield code="a">Includes bibliographies.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Memory</subfield>
+    <subfield code="x">Congresses.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Tulving, Endel,</subfield>
+    <subfield code="d">1927-</subfield>
+    <subfield code="e">ed.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Donaldson, Wayne,</subfield>
+    <subfield code="e">ed.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Bower, Gordon H.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="1" ind2=" ">
+    <subfield code="a">United States.</subfield>
+    <subfield code="b">Office of Naval Research.</subfield>
+  </datafield>
+  <datafield tag="991" ind1=" " ind2=" ">
+    <subfield code="b">c-GenColl</subfield>
+    <subfield code="h">BF371</subfield>
+    <subfield code="i">.O74 1972</subfield>
+    <subfield code="p">0001001752A</subfield>
+    <subfield code="t">Copy 1</subfield>
+    <subfield code="w">BOOKS</subfield>
+  </datafield>
+</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>dc.title="organization of memory" and dc.creator=tulving</zs:query><zs:maximumRecords>3</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>
+
+  
+  1.1  1    marcxml  xml   
+   01433cam a2200349   4500 
+   2674587 
+   20250607140415.2 
+   720504s1972    nyua     b    101 0 eng   
+   
+     2674587 
+   
+   
+     7 
+     cbc 
+     orignew 
+     2 
+     ncip 
+     19 
+     y-gencatlg 
+   
+   
+     LCAP batch update 2025-06-02-04:00: LCAPM-644, LCAPM-150 
+   
+   
+        73182647  
+   
+   
+     0127036504 
+   
+   
+     9780127036502 
+   
+   
+     (DLC)   73182647 
+   
+   
+     DLC 
+     DLC 
+     DLC 
+   
+   
+     BF371 
+     .O74 1972 
+   
+   
+     153.1 
+   
+   
+     Organization of memory. 
+     Edited by Endel Tulving and Wayne Donaldson. Contributors: Gordon H. Bower [and others] 
+   
+   
+     New York, 
+     Academic Press, 
+     1972. 
+   
+   
+     xiii, 423 p. 
+     illus. 
+     24 cm. 
+   
+   
+     text 
+     txt 
+     rdacontent 
+   
+   
+     unmediated 
+     n 
+     rdamedia 
+   
+   
+     volume 
+     nc 
+     rdacarrier 
+   
+   
+     "This book ... grew out of a two-day conference held at the University of Pittsburgh in March 1971. The conference was sponsored by the Personnel and Training Research Programs, Psychological Sciences Division, Office of Naval Research, under Contract Nonr-624(18)." 
+   
+   
+     Includes bibliographies. 
+   
+   
+     Memory 
+     Congresses. 
+   
+   
+     Tulving, Endel, 
+     1927- 
+     ed. 
+   
+   
+     Donaldson, Wayne, 
+     ed. 
+   
+   
+     Bower, Gordon H. 
+   
+   
+     United States. 
+     Office of Naval Research. 
+   
+   
+     c-GenColl 
+     BF371 
+     .O74 1972 
+     0001001752A 
+     Copy 1 
+     BOOKS 
+   
+   1     1.1  dc.title="organization of memory" and dc.creator=tulving  3  xml  marcxml   

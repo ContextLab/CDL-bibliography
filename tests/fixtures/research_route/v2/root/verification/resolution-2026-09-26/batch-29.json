@@ -1,0 +1,20 @@
+[
+ {
+  "key": "Crai00",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "75--92",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Age-Related%20Changes%20in%20Human%20Memory%22%20AND%20identifier%3Acognitiveagingpr0000unse",
+    "quote": "5.  {{{Age-related  changes  in  human  memory}}}  75",
+    "next_start": {
+     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Reuter-Lorenz%22%20AND%20identifier%3Acognitiveagingpr0000unse",
+     "quote": "neuropsychology  of  the  aging  brain  93"
+    }
+   }
+  },
+  "remove": [],
+  "notes": "Internet Archive full text of Cognitive Aging: A Primer (Psychology Press 2000): contents '5. Age-related changes in human memory 75 Fergus I. M. Craik'; next chapter (Reuter-Lorenz, '...neuropsychology of the aging brain 93'), so end page 92 by the next-start rule."
+ }
+]

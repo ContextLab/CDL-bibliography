@@ -1,0 +1,102 @@
+[
+ {
+  "key": "McDoEtal10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+   "quote": "Multimodal imaging of repetition priming: Using fMRI, MEG, and intracranial EEG to reveal spatiotemporal profiles of word processing",
+   "why": "PubMed 20620212 and Crossref: McDonald et al. (15 authors), NeuroImage 53(2):707-17, 1 November 2010."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "C R McDonald and T Thesen and C Carlson and M Blumberg and H M Girard and A Trongnetrpunya and J S Sherfey and O Devinsky and R Kuzniecky and W K Dolye and S S Cash and M K Leonard and D J Hagler and A M Dale and E Halgren",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+      "quote": "Carrie R McDonald, Thomas Thesen, Chad Carlson, Mark Blumberg, Holly M Girard"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+      "quote": "Amy Trongnetrpunya, Jason S Sherfey, Orrin Devinsky, Rubin Kuzniecky, Werner K Dolye"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+      "quote": "Sydney S Cash, Matthew K Leonard, Donald J Hagler, Anders M Dale, Eric Halgren"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Multimodal imaging of repetition priming: using {fMRI}, {MEG}, and intracranial {EEG} to reveal spatiotemporal profiles of word processing",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+      "quote": "Multimodal imaging of repetition priming: Using fMRI, MEG, and intracranial EEG to reveal spatiotemporal profiles of word processing"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{NeuroImage}",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.06.069",
+      "quote": "\"container-title\":[\"NeuroImage\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.06.069",
+      "quote": "\"published-print\":{\"date-parts\":[[2010,11"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "53",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.06.069",
+      "quote": "\"volume\":\"53\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.06.069",
+      "quote": "\"issue\":\"2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "707--717",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2010.06.069",
+      "quote": "\"page\":\"707-717\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/j.neuroimage.2010.06.069",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20620212/",
+      "quote": "10.1016/j.neuroimage.2010.06.069"
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields confirmed; DOI added. Crossref lists only the first 10 authors; PubMed has all 15. 'Dolye' (Werner K Doyle) is how both Crossref and PubMed print it, so it is kept as printed; the real name is likely Doyle but no source for the cited record says so. No duplicate in cdl.bib."
+ }
+]

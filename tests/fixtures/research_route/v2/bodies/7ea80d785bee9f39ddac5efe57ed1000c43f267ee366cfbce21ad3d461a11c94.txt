@@ -1,0 +1,77 @@
+The broaden-and-build theory of positive emotions. Barbara L Fredrickson Philosophical transactions of the Royal Society of London. Series B, Biological sciences Philos Trans R Soc Lond B Biol Sci 2004 2022 2004 2004 2004 2004 2006 359 1449 1367-78
+
+PMID- 15347528
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20041109
+LR  - 20220330
+IS  - 0962-8436 (Print)
+IS  - 1471-2970 (Electronic)
+IS  - 0962-8436 (Linking)
+VI  - 359
+IP  - 1449
+DP  - 2004 Sep 29
+TI  - The broaden-and-build theory of positive emotions.
+PG  - 1367-78
+AB  - The broaden-and-build theory describes the form and function of a subset of 
+      positive emotions, including joy, interest, contentment and love. A key 
+      proposition is that these positive emotions broaden an individual's momentary 
+      thought-action repertoire: joy sparks the urge to play, interest sparks the urge 
+      to explore, contentment sparks the urge to savour and integrate, and love sparks 
+      a recurring cycle of each of these urges within safe, close relationships. The 
+      broadened mindsets arising from these positive emotions are contrasted to the 
+      narrowed mindsets sparked by many negative emotions (i.e. specific action 
+      tendencies, such as attack or flee). A second key proposition concerns the 
+      consequences of these broadened mindsets: by broadening an individual's momentary 
+      thought-action repertoire--whether through play, exploration or similar 
+      activities--positive emotions promote discovery of novel and creative actions, 
+      ideas and social bonds, which in turn build that individual's personal resources; 
+      ranging from physical and intellectual resources, to social and psychological 
+      resources. Importantly, these resources function as reserves that can be drawn on 
+      later to improve the odds of successful coping and survival. This chapter reviews 
+      the latest empirical evidence supporting the broaden-and-build theory and draws 
+      out implications the theory holds for optimizing health and well-being.
+FAU - Fredrickson, Barbara L
+AU  - Fredrickson BL
+AD  - Department of Psychology, University of Michigan, 525 East University Avenue, Ann 
+      Arbor, MI 48109-1109, USA. blf@umich.edu
+LA  - eng
+GR  - MH53971/MH/NIMH NIH HHS/United States
+GR  - MH59615/MH/NIMH NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, Non-U.S. Gov't
+PT  - Research Support, U.S. Gov't, P.H.S.
+PT  - Review
+PL  - England
+TA  - Philos Trans R Soc Lond B Biol Sci
+JT  - Philosophical transactions of the Royal Society of London. Series B, Biological 
+      sciences
+JID - 7503623
+SB  - IM
+MH  - Adaptation, Psychological/physiology
+MH  - Attention/physiology
+MH  - *Happiness
+MH  - Humans
+MH  - *Love
+MH  - *Models, Psychological
+MH  - *Motivation
+MH  - *Personal Satisfaction
+PMC - PMC1693418
+EDAT- 2004/09/07 05:00
+MHDA- 2004/11/13 09:00
+PMCR- 2006/09/29
+CRDT- 2004/09/07 05:00
+PHST- 2004/09/07 05:00 [pubmed]
+PHST- 2004/11/13 09:00 [medline]
+PHST- 2004/09/07 05:00 [entrez]
+PHST- 2006/09/29 00:00 [pmc-release]
+AID - DH5NJJTNQCAMP8UT [pii]
+AID - 10.1098/rstb.2004.1512 [doi]
+PST - ppublish
+SO  - Philos Trans R Soc Lond B Biol Sci. 2004 Sep 29;359(1449):1367-78. doi: 
+      10.1098/rstb.2004.1512.
+
+ 
+ 
+ 
+   15347528   2004  11  09    2022  03  30     0962-8436   359  1449   2004  Sep  29    Philosophical transactions of the Royal Society of London. Series B, Biological sciences  Philos Trans R Soc Lond B Biol Sci   The broaden-and-build theory of positive emotions.   1367  1378  1367-78    The broaden-and-build theory describes the form and function of a subset of positive emotions, including joy, interest, contentment and love. A key proposition is that these positive emotions broaden an individual's momentary thought-action repertoire: joy sparks the urge to play, interest sparks the urge to explore, contentment sparks the urge to savour and integrate, and love sparks a recurring cycle of each of these urges within safe, close relationships. The broadened mindsets arising from these positive emotions are contrasted to the narrowed mindsets sparked by many negative emotions (i.e. specific action tendencies, such as attack or flee). A second key proposition concerns the consequences of these broadened mindsets: by broadening an individual's momentary thought-action repertoire--whether through play, exploration or similar activities--positive emotions promote discovery of novel and creative actions, ideas and social bonds, which in turn build that individual's personal resources; ranging from physical and intellectual resources, to social and psychological resources. Importantly, these resources function as reserves that can be drawn on later to improve the odds of successful coping and survival. This chapter reviews the latest empirical evidence supporting the broaden-and-build theory and draws out implications the theory holds for optimizing health and well-being.     Fredrickson  Barbara L  BL   Department of Psychology, University of Michigan, 525 East University Avenue, Ann Arbor, MI 48109-1109, USA. blf@umich.edu     eng    MH53971  MH  NIMH NIH HHS  United States    MH59615  MH  NIMH NIH HHS  United States     Journal Article  Research Support, Non-U.S. Gov't  Research Support, U.S. Gov't, P.H.S.  Review     England  Philos Trans R Soc Lond B Biol Sci  7503623  0962-8436   IM    Adaptation, Psychological  physiology    Attention  physiology    Happiness    Humans    Love    Models, Psychological    Motivation    Personal Satisfaction        2004  9  7  5  0    2004  11  13  9  0    2004  9  7  5  0    2006  9  29    ppublish   15347528  PMC1693418  10.1098/rstb.2004.1512  DH5NJJTNQCAMP8UT     J Pers Soc Psychol. 2000 Feb;78(2):273-84   10707334     Psychol Rev. 1999 Jul;106(3):529-50   10467897     Am Psychol. 2000 Jun;55(6):647-54   10892207     Psychosom Med. 2001 Mar-Apr;63(2):210-5   11292267     Am Psychol. 2001 Mar;56(3):218-26   11315248     J Pers Soc Psychol. 2001 May;80(5):804-13   11374751     Am Psychol. 2000 Jan;55(1):5-14   11392865     Am Psychol. 2000 Jan;55(1):34-43   11392863     Am Psychol. 2000 Jan;55(1):99-109   11392870     Psychol Sci. 2002 Jan;13(1):34-40   11892776     Psychol Sci. 2002 Mar;13(2):172-5   11934003     J Health Soc Behav. 2002 Jun;43(2):207-22   12096700     J Pers Soc Psychol. 2002 Aug;83(2):261-70   12150226     J Pers Soc Psychol. 2003 Feb;84(2):365-76   12585810     Psychosom Med. 2003 Jul-Aug;65(4):620-6   12883113     Psychol Sci. 2003 Sep;14(5):416-21   12930470     J Pers Soc Psychol. 2004 Feb;86(2):320-33   14769087     Science. 1971 Sep 17;173(4002):1103-7   5098954     Psychol Rev. 1974 Mar;81(2):119-45   4817611     Psychol Rev. 1984 Jul;91(3):347-74   6473583     J Pers Soc Psychol. 1985 Jun;48(6):1413-26   4020605     J Pers Soc Psychol. 1987 Jun;52(6):1122-31   3598858     Med Decis Making. 1991 Jul-Sep;11(3):221-7   1881279     Annu Rev Psychol. 1993;44:1-21   8434890     J Pers Soc Psychol. 1993 Jul;65(1):5-17   8355142     J Pers Soc Psychol. 1994 Apr;66(4):646-57   8189345     J Pers Soc Psychol. 1996 Feb;70(2):349-61   8636887     J Pers Soc Psychol. 1996 May;70(5):1067-79   8656335     J Pers. 1996 Dec;64(4):899-922   8956517     J Abnorm Psychol. 1997 Feb;106(1):126-37   9103724     J Pers Soc Psychol. 1997 Apr;72(4):872-84   9108700     Psychol Bull. 1997 May;121(3):417-36   9136643     J Pers Soc Psychol. 1997 Oct;73(4):687-702   9325589     Soc Sci Med. 1997 Oct;45(8):1207-21   9381234     J Int Neuropsychol Soc. 1996 May;2(3):249-55   9375191     J Am Geriatr Soc. 2000 May;48(5):473-8   10811538       

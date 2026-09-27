@@ -1,0 +1,393 @@
+[
+ {
+  "key": "AfraEtal06",
+  "batch": "batch-038",
+  "verdict": "correction",
+  "current": {
+   "year": "2006",
+   "volume": "442",
+   "title": "Microstimulation of inferotemporal cortex influences face categorization",
+   "pages": "692--695",
+   "number": "7103",
+   "journal": "Nature",
+   "author": "S Afraz and R Kiani and H Esteky",
+   "ENTRYTYPE": "article",
+   "ID": "AfraEtal06"
+  },
+  "final_changes": [
+   {
+    "field": "author",
+    "current": "S Afraz and R Kiani and H Esteky",
+    "proposed": "S-R Afraz and R Kiani and H Esteky",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "FAU - Afraz, Seyed-Reza"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "FAU - Kiani, Roozbeh"
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "FAU - Esteky, Hossein"
+     }
+    ]
+   },
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1038/nature04982",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://doi.org/api/handles/10.1038/nature04982",
+      "quote": "\"handle\":\"10.1038/nature04982\""
+     },
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16878143/",
+      "quote": "10.1038/nature04982 [doi]"
+     }
+    ]
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "AfraEtal06",
+   "target_base": "AfraEtal06",
+   "action": "keep"
+  },
+  "flags": [],
+  "doi_status": {
+   "doi": "10.1038/nature04982",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "Microstimulation of inferotemporal cortex influences face categorization",
+   "subtitle": null,
+   "container": "Nature",
+   "print_year": "2006",
+   "online_year": "2006",
+   "issued_year": "2006",
+   "page": "692-695",
+   "volume": "442",
+   "issue": "7103",
+   "type": "journal-article",
+   "authors": [
+    "Seyed-Reza Afraz",
+    "Roozbeh Kiani",
+    "Hossein Esteky"
+   ],
+   "families": [
+    "Afraz",
+    "Kiani",
+    "Esteky"
+   ]
+  },
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": null,
+  "needs_user": false
+ },
+ {
+  "key": "GonsPall00",
+  "batch": "batch-040",
+  "verdict": "correction",
+  "current": {
+   "year": "2000",
+   "volume": "3",
+   "title": "{N}eural events that underlie remembering something that never happened",
+   "pages": "1316--1321",
+   "number": "12",
+   "journal": "Nature Neuroscience",
+   "author": "B Gonsalves and K A Paller",
+   "ENTRYTYPE": "article",
+   "ID": "GonsPall00"
+  },
+  "final_changes": [
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1038/81851",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "10.1038/81851 [doi]"
+     }
+    ]
+   },
+   {
+    "field": "title",
+    "current": "{N}eural events that underlie remembering something that never happened",
+    "proposed": "Neural events that underlie remembering something that never happened",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11100153/",
+      "quote": "Neural events that underlie remembering something that never happened."
+     }
+    ]
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "GonsPall00",
+   "target_base": "GonsPall00",
+   "action": "keep"
+  },
+  "flags": [],
+  "doi_status": {
+   "doi": "10.1038/81851",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "Neural events that underlie remembering something that never happened",
+   "subtitle": null,
+   "container": "Nature Neuroscience",
+   "print_year": "2000",
+   "online_year": null,
+   "issued_year": "2000",
+   "page": "1316-1321",
+   "volume": "3",
+   "issue": "12",
+   "type": "journal-article",
+   "authors": [
+    "Brian Gonsalves",
+    "Ken A. Paller"
+   ],
+   "families": [
+    "Gonsalves",
+    "Paller"
+   ]
+  },
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": null,
+  "needs_user": false
+ },
+ {
+  "key": "KingEtal11",
+  "batch": "batch-042",
+  "verdict": "correction",
+  "current": {
+   "year": "2011",
+   "volume": "77",
+   "title": "Responsive cortical stimulation for the treatment of medical intractable partial epilepsy",
+   "pages": "1295--1304",
+   "number": "13",
+   "journal": "Neurology",
+   "author": "D King-Stephens and A D Massey and C N Heck and D R Nair and G L Barkley and A J Cole and R P Gwinn and B C Jobst and Salanova and C T Skidmore and M C Smith and P C {Van Ness} and G K Bergey and M Duchowny and E B Geller and Y D Park and P A Rutecki and D C Spencer and R Zimmerman and J C Edwards and E Mizrahi and M J Berg and A Fessler and N B Fountain and J W Leiphart and R E Wharen and L J Hirsch and W Marsh and R E Gross and R B Duckrow and S Eisenschenk and C A O'Donovan and D A Bloch and T Crabtree and D Loring and A Plenys-Loftman and F T Sun and M J Morrell",
+   "ENTRYTYPE": "article",
+   "ID": "KingEtal11"
+  },
+  "final_changes": [
+   {
+    "field": "author",
+    "current": "D King-Stephens and A D Massey and C N Heck and D R Nair and G L Barkley and A J Cole and R P Gwinn and B C Jobst and Salanova and C T Skidmore and M C Smith and P C {Van Ness} and G K Bergey and M Duchowny and E B Geller and Y D Park and P A Rutecki and D C Spencer and R Zimmerman and J C Edwards and E Mizrahi and M J Berg and A Fessler and N B Fountain and J W Leiphart and R E Wharen and L J Hirsch and W Marsh and R E Gross and R B Duckrow and S Eisenschenk and C A O'Donovan and D A Bloch and T Crabtree and D Loring and A Plenys-Loftman and F T Sun and M J Morrell",
+    "proposed": "M J Morrell and {RNS System in Epilepsy Study Group}",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1212/wnl.0b013e3182302056%22&resultType=core&format=json",
+      "quote": "\"authorString\":\"Morrell MJ, RNS System in Epilepsy Study Group.\""
+     }
+    ],
+    "decision": "resolution batch-09",
+    "reviewer": "agree"
+   },
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1212/wnl.0b013e3182302056",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1212/wnl.0b013e3182302056",
+      "quote": "\"DOI\":\"10.1212\\/wnl.0b013e3182302056\""
+     }
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "title",
+    "current": "Responsive cortical stimulation for the treatment of medical intractable partial epilepsy",
+    "proposed": "Responsive cortical stimulation for the treatment of medically intractable partial epilepsy",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21917777&retmode=xml",
+      "quote": "Responsive cortical stimulation for the treatment of medically intractable partial epilepsy."
+     }
+    ],
+    "reviewer": "agree"
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "KingEtal11",
+   "target_base": "MorrRNSS11",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "MorrRNSS11",
+   "resolution": "resolution (batch-09): key MorrRNSS11 confirmed"
+  },
+  "flags": [
+   {
+    "code": "resolution_decision",
+    "field": "author",
+    "detail": "resolution 'apply' (batch-09): author = 'M J Morrell and {RNS System in Epilepsy Study Group}'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "KingEtal11 -> MorrRNSS11 (key does not follow the corrected metadata)",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-09): KingEtal11 -> MorrRNSS11, as planned",
+    "action": "applied"
+   }
+  ],
+  "doi_status": {
+   "doi": "10.1212/wnl.0b013e3182302056",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "Responsive cortical stimulation for the treatment of medically intractable partial epilepsy",
+   "subtitle": null,
+   "container": "Neurology",
+   "print_year": "2011",
+   "online_year": null,
+   "issued_year": "2011",
+   "page": "1295-1304",
+   "volume": "77",
+   "issue": "13",
+   "type": "journal-article",
+   "authors": [
+    "Martha J. Morrell"
+   ],
+   "families": [
+    "Morrell"
+   ]
+  },
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-09",
+   "notes": "Byline is Morrell on behalf of the RNS System in Epilepsy Study Group (PubMed 21917777, Crossref); the 37 names were the investigator list. MorrRNSS11 is bibcheck authors2key's output for this byline; free in HEAD. RECONCILED 2026-09-26: Question answered by rule: person + corporate byline: key from authors2key (default).",
+   "residue": [],
+   "noop": null
+  },
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "author": "agree",
+    "doi": "agree",
+    "title": "agree",
+    "key": "agree"
+   },
+   "problems": [
+    "PubMed byline: AU Morrell MJ plus CN 'RNS System in Epilepsy Study Group' (the 37 cited names are the IR investigator list). Key MorrRNSS11 comes from authors2key on the corporate author; the researcher expected Morr11 or MorrRNS11. The key form needs the user's eye, but the rule applied consistently.",
+    "Crossref 10.1212/wnl.0b013e3182302056: 77(13) 1295-1304, print/issued 2011; PubMed 21917777: 77(13) 1295-304, 2011 Sep 27"
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
+ },
+ {
+  "key": "TompDava17",
+  "batch": "batch-043",
+  "verdict": "correction",
+  "current": {
+   "year": "2017",
+   "volume": "96",
+   "title": "Consolidation promotes the emergence of representational overlap in the hippocampus and medial prefrontal cortex",
+   "pages": "228--241",
+   "number": "1",
+   "journal": "Neuron",
+   "author": "A Tompary and L Davachi",
+   "ENTRYTYPE": "article",
+   "ID": "TompDava17"
+  },
+  "final_changes": [
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1016/j.neuron.2017.09.005",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+      "quote": "10.1016/j.neuron.2017.09.005 [doi]"
+     }
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "pages",
+    "current": "228--241",
+    "proposed": "228--241.e5",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28957671/",
+      "quote": "PG  - 228-241.e5"
+     }
+    ],
+    "reviewer": "agree"
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "TompDava17",
+   "target_base": "TompDava17",
+   "action": "keep"
+  },
+  "flags": [],
+  "doi_status": {
+   "doi": "10.1016/j.neuron.2017.09.005",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "Consolidation Promotes the Emergence of Representational Overlap in the Hippocampus and Medial Prefrontal Cortex",
+   "subtitle": null,
+   "container": "Neuron",
+   "print_year": "2017",
+   "online_year": null,
+   "issued_year": "2017",
+   "page": "228-241.e5",
+   "volume": "96",
+   "issue": "1",
+   "type": "journal-article",
+   "authors": [
+    "Alexa Tompary",
+    "Lila Davachi"
+   ],
+   "families": [
+    "Tompary",
+    "Davachi"
+   ]
+  },
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree"
+   },
+   "problems": [
+    "Crossref 10.1016/j.neuron.2017.09.005: 96(1) 228-241.e5, print/issued 2017; PubMed 28957671: 96(1) 228-241.e5, 2017 Sep 27"
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
+ }
+]

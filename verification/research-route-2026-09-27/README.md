@@ -17,7 +17,9 @@ under `tests/fixtures/research_route/` by its `build.py`).
 - Each wave's `merged.json` (post-check final values with their evidence, `needs_user`, `remove_entry`,
   field removals) and `review.json` (reviewer values).
 - The user's answers: `wave1/decisions/*.json` and `crosswave/applied-decisions.json`.
-- Resolution batches `resolution-2026-09-26/batch-*.json` (01-27; `set`, `withdraw`, `remove`, `drop`).
+- Resolution batches `resolution-2026-09-26/batch-*.json` (01-39 since the update below; `set`, `withdraw`,
+  `remove`, `drop`). A file that is not valid JSON raises; leave it out with `exclude`.
+- The notice classification `resolution-2026-09-27/notices-classified.json` (update below).
 - Manual research `research-2026-09-26-manual/proposals.json`.
 - `key-renames.json` is followed in log order. A key in `key-deletions.json` is never followed: its rows
   describe a deleted work, and the key may now name another one (KahaEtal08b: the wave-8 row and the
@@ -168,7 +170,104 @@ The 82 entries held before by "DOI-linked source correction/retraction notice re
 
 - `export.py`: exports `verification/baseline.jsonl.gz` and `review-queue.jsonl.gz` as the apply runners do.
 - `summarize.py`: writes `summary.json` (grouped reasons, flags, notice entries).
+- `dry-run-2.json`: per-entry outcomes of the updated route (dry run, no review rows written).
 - `.bibcheck/research-route-2026-09-27/`: cache backup before the backfill (`verification-before.sqlite3`),
   run logs, and the previous checkpoint validator. The fresh restore
   (`.bibcheck/validate-current-checkpoint.py`, now importing `research_route`) gave 6,390 restored,
   0 repeat imports, sqlite ok (`../completion-2026-09-15/restore-latest.json`).
+
+## Update 2026-09-27: rules settled since the route was built
+
+The rules are the "(default)" and "(plan)" lines of `../resolution-plan-2026-09-22/README.md` and the notice
+classification in `../resolution-2026-09-27/NOTICES.md`. Tests use real rows frozen by
+`tests/fixtures/research_route/build.py v2` into `tests/fixtures/research_route/v2/`.
+
+1. **Evidence.** Resolution batches 28-39 are read. All 12 files were valid JSON at the run and committed in
+   6a6f7e3. The route reads a resolution set with the post-check's own `evidence_items`, so the union of
+   `evidence`/`extra_evidence` quotes covers the value. It applies the post-check's `inferred_end_page`
+   (`next_start`), `catalogue_extent` ('N p.' gives 1--N) and `roman_page_prefix` (volume), in
+   `resolution_quote`'s order: with a `next_start`, only the end-page rule applies. As in
+   `resolution_quote`, a set with an item missing its URL or quote is refused. `apply` in one batch and
+   `keep` in another no longer conflict, because both settle the entry. A `drop` beside either still does.
+   When no claim is supported, the reason given is the latest claim's.
+2. **Start-only chapter pages.** Some chapters (`@incollection`/`@inbook`) have a range `S--E` that a
+   resolution or manual row keeps under the partial-confirmation default. Its notes say "confirms the start
+   page", "the start page 64 is confirmed", "partly-confirmed" and so on (`PARTIAL_PAGES`). Such a range is
+   approved with the flag `pages_start_only` when a found quote prints `S`. The quote is the pages claim's
+   own. When no row quotes the pages, it is a quote from the same row that the notes name ("R A RESCORLA
+   A R WAGNER 64"). A quote that prints `S` with another end page refuses it. A browser-read quote also
+   carries `browser_or_scan`. Approved this way: RescWagn72, Slam87, Frie79.
+3. **Identity.** When the researcher's identity quote has no saved body, a resolution, cross-wave or manual
+   title quote that verifies serves as the identity (`from_field: title`). The route already allowed this
+   before the update, and it still does when the researcher's quote is missing from a saved body. Keeping
+   that looser behaviour avoids withdrawing CaoWors99, KnigEtal04 and Schw78. It also approves Bull90 and
+   BunnEtal99. A stricter version was measured, and it would have withdrawn those three and held the
+   other two.
+4. **Notices.** Each research bundle carries its classified notices. `notice_adjudication` settles
+   them as follows:
+   - `content_only`: approved.
+   - `metadata_correction`: approved when every corrected value is already in the entry. The corrected
+     name must be one of the entry's names.
+   - `unread`: approved with `notice_unread` when the notes record that there is no retraction.
+   - `new_version`: approved when "no citation field changes".
+   - `cited_work_is_notice`, `unrelated`, `no_notice`: ignored.
+   - `coordinate_conflict`: the entry must carry the Crossref value.
+   - `retraction` and `expression_of_concern`, or any unknown class: never approved.
+
+   Two further conditions:
+   - Every notice is flagged `notice: notice_<class>`.
+   - A retraction, expression of concern or withdrawal on a saved record of the cited DOI holds the
+     approval whatever the classification says (`retraction_signals`). This covers Europe PMC, a
+     Crossref update and a JATS related-article. KeleFent10's retraction is on another work's record and
+     is ignored.
+
+   `merge` and `valid_research_approval` accept a DOI-linked hold that the classification settles. The
+   adjudication is part of the evidence id. Unclassified notices still hold.
+5. **Group names.** `canon` reads an author or editor name that the entry prints as one braced group
+   (`{RNS System in Epilepsy Study Group}`, or double-braced) as that group, braced or not, instead of
+   initialling it.
+
+### Cache.retain_notices: open
+
+`Cache.retain_notices` is in `bibcheck/verification.py`, which this update does not change. It reopens
+every machine approval, except `human_verified` and LoC book approvals, for which a DOI-linked notice,
+suffix or locator record is known in the cache. It has no route hook. Approvals the route grants on a
+settled Crossref registry notice survive, because such a notice is not in its tables: Pyly73, Eich85,
+Pike84, GonsPall00, McKiNoso96, Brun04, RubiEtal17, ThomEtal18, TokeSomm19, YoneJaco96a and YoneJaco97.
+The 78 that carry a Europe PMC, JATS or suffix record are reopened. The dry run marks those rows
+`route_granted` with the reason `RETAINED`. `test_retain_notices_keeps_a_settled_research_approval` is
+`xfail(strict=True)` until the hook exists. A hook that does not weaken the rule for other routes would
+work as follows:
+
+- In `retain_notices`, before `select_result` reopens the approval, keep a `metadata_verified` result
+  whose `accepted_source` is `research-evidence`.
+- Keep it only when `route_approval_valid(dict(result, candidates=candidates + added))` holds. That is
+  the route's own validator, which applies the notice classification and the retraction check to the
+  added records.
+
+### Dry run (`dry-run-2.json`; cdl.bib and evidence at 6a6f7e3, a copy of the verification cache)
+
+`bibcheck.py crossref status cdl.bib` before: 6390 entries: human_verified=31, metadata_verified=6023,
+needs_review=336.
+
+| Outcome for the 336 needs_review | Entries |
+|-|-|
+| approved (research evidence for every field; notice settled or none) | 173 |
+| route approves, `Cache.retain_notices` reopens (see above) | 78 |
+| held: notice not classified (BarrEtal18, JohnEtal98, MankEtal12, MarkEtal95a, MonaAbbo11, RebeEtal02, RutiEtal08, SohnEtal00, StarDava06, VirtEtal20, WangBuzs96, WheeEtal00) | 12 |
+| held: coordinate conflict, Crossref's article number not yet in the entry (HeniEtal19) | 1 |
+| not approved | 72 |
+
+The 72 not approved:
+
+| Reason | Entries |
+|-|-|
+| the entry does not yet carry the latest researched value or removal (pending cdl.bib edits; includes Ande76 and Huth13, whose identity is their pending title) | 61 |
+| post-check `needs_user` (ChanEtal12, DougPeuc73, LegaEtal11, McCaEtal06; Kolo13 also has pending removals) | 5 |
+| a resolution drops it (ElliAshb88: batch 18 keeps and batch 30 drops, see the plan's note; EngeEtal93; Rayp68) | 3 |
+| editor words not in the quotes and volume unresearched (Frie08) | 1 |
+| `type` quote not in its saved body (Mann06) | 1 |
+| author never researched (SvenEtal24, the open 'Hoang NT' question) | 1 |
+
+One current research approval would be withdrawn: Frie12. Batch 30 sets an editor value that cdl.bib does
+not carry yet.

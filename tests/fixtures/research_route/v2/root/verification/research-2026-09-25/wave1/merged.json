@@ -1,0 +1,94 @@
+[
+ {
+  "key": "Este91",
+  "batch": "batch-086",
+  "verdict": "verified",
+  "current": {
+   "year": "1991",
+   "title": "On types of item coding and source of recall in short-term memory",
+   "publisher": "Erlbaum",
+   "editor": "W E Hockley and S Lewandowsky",
+   "booktitle": "Relating Theory and Data: Essays on Human Memory in Honor of {Bennet} {B}. {Murdock}",
+   "author": "W K Estes",
+   "address": "Hillsdale, {NJ}",
+   "ENTRYTYPE": "inbook",
+   "ID": "Este91"
+  },
+  "final_changes": [
+   {
+    "field": "ENTRYTYPE",
+    "current": "inbook",
+    "proposed": "incollection",
+    "source": "reviewer",
+    "evidence": [
+     {
+      "reviewer_problems": [
+       "Proposed doi 10.4324/9780203772331-16 is not a registered DOI: https://doi.org/api/handles/10.4324/9780203772331-16 returns HTTP 404 and https://api.crossref.org/works/10.4324/9780203772331-16 returns 404 (other chapter suffixes -1..-36 also 404). Only the book-level 10.4324/9780203772331 (Crossref: 'Relating Theory and Data', issued 2013-06-17, a 2013 e-book reissue) and 10.4324/9781315799636 (2014) are registered. Do not add the chapter DOI.",
+       "Verdict 'verified' is inconsistent with a proposed new DOI and the @inbook -> @incollection conversion the notes call for; should be 'correction'."
+      ]
+     }
+    ],
+    "reviewer": "agree"
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Este91",
+   "target_base": "Este91",
+   "action": "keep"
+  },
+  "flags": [
+   {
+    "code": "verdict_inconsistent",
+    "field": "verdict",
+    "detail": "verdict 'verified' but fields are corrected: should be 'correction'",
+    "action": "flag"
+   },
+   {
+    "code": "field_not_found",
+    "field": "pages",
+    "detail": "verdict 'verified' but pages is not_found: the entry is not fully verified",
+    "action": "flag"
+   },
+   {
+    "code": "reviewer_disagrees",
+    "field": "doi",
+    "detail": "reviewer disagrees (disagree) and gave no replacement value; not applied",
+    "action": "held"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): pages='155--174'",
+    "action": "flag"
+   }
+  ],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "reviewer": {
+   "agree": "partly",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "editor": "agree",
+    "booktitle": "agree",
+    "publisher": "agree",
+    "address": "agree",
+    "year": "agree",
+    "author": "agree",
+    "title": "agree",
+    "pages": "unsure",
+    "doi": "disagree",
+    "ENTRYTYPE": "agree"
+   },
+   "problems": [
+    "Proposed doi 10.4324/9780203772331-16 is not a registered DOI: https://doi.org/api/handles/10.4324/9780203772331-16 returns HTTP 404 and https://api.crossref.org/works/10.4324/9780203772331-16 returns 404 (other chapter suffixes -1..-36 also 404). Only the book-level 10.4324/9780203772331 (Crossref: 'Relating Theory and Data', issued 2013-06-17, a 2013 e-book reissue) and 10.4324/9781315799636 (2014) are registered. Do not add the chapter DOI.",
+    "Verdict 'verified' is inconsistent with a proposed new DOI and the @inbook -> @incollection conversion the notes call for; should be 'correction'."
+   ],
+   "suggested_value": {
+    "ENTRYTYPE": "incollection"
+   }
+  },
+  "needs_user": true
+ }
+]

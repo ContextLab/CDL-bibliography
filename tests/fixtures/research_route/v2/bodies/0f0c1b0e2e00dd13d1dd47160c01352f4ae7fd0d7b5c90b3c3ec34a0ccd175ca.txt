@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>00913nam a2200229I  4500</leader>
+  <controlfield tag="001">    GLAD50480659-B</controlfield>
+  <controlfield tag="005">20060506231239.0</controlfield>
+  <controlfield tag="008">850909s1914    njua          000 0 eng c</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">14021128</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">ocm28628860</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">Univ. of Chicago Libr.</subfield>
+    <subfield code="c">CUY</subfield>
+    <subfield code="d">CUY</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2=" ">
+    <subfield code="a">LB1051</subfield>
+    <subfield code="b">.P4</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Perrin, Fleming Allen Clay.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="3">
+    <subfield code="a">An experimental and introspective study of the human learning process in the maze ...</subfield>
+    <subfield code="c">by Fleming Allen Clay Perrin.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">[Princeton, N.J.,</subfield>
+    <subfield code="b">Princeton University Press,</subfield>
+    <subfield code="c">1914]</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">3 p. l., 97 p. incl. tables, diagrs. fold. tab.</subfield>
+    <subfield code="c">25 cm.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">&quot;Published as one of the Psychological review monographs.&quot;</subfield>
+  </datafield>
+  <datafield tag="502" ind1=" " ind2=" ">
+    <subfield code="a">Thesis (PH.D.)--University of Chicago, 1913.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Educational psychology.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Psychological tests.</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="8">1.1</subfield>
+    <subfield code="a">GLAD</subfield>
+    <subfield code="b">NRLF</subfield>
+    <subfield code="h">LB1131</subfield>
+    <subfield code="i">.P48</subfield>
+    <subfield code="p">B 4 572 898</subfield>
+    <subfield code="z">Published as no. 70.</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">GLAD</subfield>
+    <subfield code="b">50480659</subfield>
+  </datafield>
+</record>
+
+  
+ 
+   00913nam a2200229I  4500 
+       GLAD50480659-B 
+   20060506231239.0 
+   850909s1914    njua          000 0 eng c 
+   
+     14021128 
+   
+   
+     ocm28628860 
+   
+   
+     Univ. of Chicago Libr. 
+     CUY 
+     CUY 
+   
+   
+     LB1051 
+     .P4 
+   
+   
+     Perrin, Fleming Allen Clay. 
+   
+   
+     An experimental and introspective study of the human learning process in the maze ... 
+     by Fleming Allen Clay Perrin. 
+   
+   
+     [Princeton, N.J., 
+     Princeton University Press, 
+     1914] 
+   
+   
+     3 p. l., 97 p. incl. tables, diagrs. fold. tab. 
+     25 cm. 
+   
+   
+     &quot;Published as one of the Psychological review monographs.&quot; 
+   
+   
+     Thesis (PH.D.)--University of Chicago, 1913. 
+   
+   
+     Educational psychology. 
+   
+   
+     Psychological tests. 
+   
+   
+     1.1 
+     GLAD 
+     NRLF 
+     LB1131 
+     .P48 
+     B 4 572 898 
+     Published as no. 70. 
+   
+   
+     GLAD 
+     50480659 
+   
+ 

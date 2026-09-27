@@ -1,0 +1,172 @@
+[
+ {
+  "key": "RescWagn72",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=72177684&maximumRecords=1&recordSchema=marcxml",
+   "quote": "Abraham H. Black [and] William F. Prokasy, editors.",
+   "why": "LoC record of Classical conditioning II: current research and theory (New York, Appleton-Century-Crofts, [1972]); Harvard's contents list the chapter title."
+  },
+  "fields": {
+   "title": {
+    "status": "corrected",
+    "value": "A theory of {Pavlovian} conditioning: variations in the effectiveness of reinforcement and nonreinforcement",
+    "evidence": [
+     {
+      "url": "https://api.lib.harvard.edu/v2/items.json?limit=5&q=classical%20conditioning%20II%20black%20prokasy",
+      "quote": "A theory of Pavlovian conditioning: variations in the effectiveness of reinforcement and nonreinforcement"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Classical Conditioning {II}: Current Research and Theory",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=72177684&maximumRecords=1&recordSchema=marcxml",
+      "quote": "Classical conditioning II: current research and theory."
+     }
+    ]
+   },
+   "editor": {
+    "status": "confirmed",
+    "value": "A H Black and W F Prokasy",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=72177684&maximumRecords=1&recordSchema=marcxml",
+      "quote": "Abraham H. Black [and] William F. Prokasy, editors."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "corrected",
+    "value": "Appleton-Century-Crofts",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=72177684&maximumRecords=1&recordSchema=marcxml",
+      "quote": "Appleton-Century-Crofts"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "New York, {NY}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=72177684&maximumRecords=1&recordSchema=marcxml",
+      "quote": "New York,"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1972",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=72177684&maximumRecords=1&recordSchema=marcxml",
+      "quote": "[1972]"
+     }
+    ]
+   },
+   "author": {
+    "status": "not_found",
+    "evidence": []
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Title typo fixed ('pavolvian' -> {Pavlovian}); publisher is Appleton-Century-Crofts (the firm's name since 1948; cdl.bib's other 'Appleton-Century' entries were not checked). Authors and pp. 64-99 not confirmed: Harvard's partial contents note skips a line and attributes this title to 'J. Theios', so it is used for the title only; LoC has no contents note and the IA scan is lending-only. No duplicate in cdl.bib."
+ },
+ {
+  "key": "Crai00",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.4324/9780203727027-12",
+   "quote": "Age-related changes in human memory: Fergus I. M. Craik",
+   "why": "Crossref record of the chapter in the Psychology Press ebook of Cognitive Aging: A Primer; LoC confirms the 2000 print book (Philadelphia, Psychology Press; eds Denise C. Park and Norbert Schwarz)."
+  },
+  "fields": {
+   "title": {
+    "status": "confirmed",
+    "value": "Age-related changes in human memory",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203727027-12",
+      "quote": "Age-related changes in human memory: Fergus I. M. Craik"
+     }
+    ]
+   },
+   "author": {
+    "status": "confirmed",
+    "value": "F I M Craik",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4324/9780203727027-12",
+      "quote": "Age-related changes in human memory: Fergus I. M. Craik"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Cognitive Aging: {A} Primer",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99043572&maximumRecords=1&recordSchema=mods",
+      "quote": "<title>Cognitive aging</title>"
+     },
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99043572&maximumRecords=1&recordSchema=mods",
+      "quote": "<subTitle>a primer</subTitle>"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "D C Park and N Schwarz",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99043572&maximumRecords=1&recordSchema=marcxml",
+      "quote": "edited by Denise C Park and Norbert Schwarz."
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Psychology Press",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99043572&maximumRecords=1&recordSchema=marcxml",
+      "quote": "Psychology Press,"
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Philadelphia, {PA}",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99043572&maximumRecords=1&recordSchema=marcxml",
+      "quote": "Philadelphia, PA :"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2000",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99043572&maximumRecords=1&recordSchema=marcxml",
+      "quote": "c2000."
+     }
+    ]
+   },
+   "pages": {
+    "status": "not_found",
+    "evidence": []
+   }
+  },
+  "notes": "Editor gains middle initial C (Denise C. Park). Pages 75--92 left as cited: the only chapter record (Crossref 10.4324/9780203727027-12, 'published' 2012) gives pp. 82-99 for the ebook, whose pagination differs from the 2000 print (same 18-page span, offset 7), so it neither confirms nor corrects the print pages; its DOI is that ebook's, not added. No duplicate in cdl.bib."
+ }
+]

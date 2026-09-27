@@ -1,0 +1,31 @@
+[
+ {
+  "key": "KingEtal11",
+  "agree": "yes",
+  "field_verdicts": {
+   "author": "agree",
+   "doi": "agree",
+   "title": "agree",
+   "key": "agree"
+  },
+  "problems": [
+   "PubMed byline: AU Morrell MJ plus CN 'RNS System in Epilepsy Study Group' (the 37 cited names are the IR investigator list). Key MorrRNSS11 comes from authors2key on the corporate author; the researcher expected Morr11 or MorrRNS11. The key form needs the user's eye, but the rule applied consistently.",
+   "Crossref 10.1212/wnl.0b013e3182302056: 77(13) 1295-1304, print/issued 2011; PubMed 21917777: 77(13) 1295-304, 2011 Sep 27"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "TompDava17",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree"
+  },
+  "problems": [
+   "Crossref 10.1016/j.neuron.2017.09.005: 96(1) 228-241.e5, print/issued 2017; PubMed 28957671: 96(1) 228-241.e5, 2017 Sep 27"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ }
+]

@@ -1,0 +1,326 @@
+[
+ {
+  "key": "RescWagn72",
+  "batch": "batch-080",
+  "verdict": "correction",
+  "current": {
+   "year": "1972",
+   "title": "A theory of pavolvian conditioning: variations in the effectiveness of reinforcement and nonreinforcement",
+   "publisher": "Appleton-Century",
+   "pages": "64--99",
+   "editor": "A H Black and W F Prokasy",
+   "booktitle": "Classical Conditioning {II}: Current Research and Theory",
+   "author": "R A Rescorla and A R Wagner",
+   "address": "New York, {NY}",
+   "ENTRYTYPE": "incollection",
+   "ID": "RescWagn72"
+  },
+  "final_changes": [
+   {
+    "field": "publisher",
+    "current": "Appleton-Century",
+    "proposed": "Appleton-Century-Crofts",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=72177684&maximumRecords=1&recordSchema=marcxml",
+      "quote": "Appleton-Century-Crofts"
+     }
+    ]
+   },
+   {
+    "field": "title",
+    "current": "A theory of pavolvian conditioning: variations in the effectiveness of reinforcement and nonreinforcement",
+    "proposed": "A theory of {Pavlovian} conditioning: variations in the effectiveness of reinforcement and nonreinforcement",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.lib.harvard.edu/v2/items.json?limit=5&q=classical%20conditioning%20II%20black%20prokasy",
+      "quote": "A theory of Pavlovian conditioning: variations in the effectiveness of reinforcement and nonreinforcement"
+     }
+    ]
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "RescWagn72",
+   "target_base": "RescWagn72",
+   "action": "keep"
+  },
+  "flags": [
+   {
+    "code": "field_not_found",
+    "field": "author",
+    "detail": "verdict 'correction' but author is not_found: the entry is not fully verified",
+    "action": "flag"
+   },
+   {
+    "code": "field_not_found",
+    "field": "pages",
+    "detail": "verdict 'correction' but pages is not_found: the entry is not fully verified",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "author",
+    "detail": "resolution 'apply' (batch-19): author = 'R A Rescorla and A R Wagner'",
+    "action": "applied"
+   }
+  ],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-19",
+   "notes": "Google Books contents of Classical Conditioning II (Appleton-Century-Crofts, 1972) print the chapter as 'R A RESCORLA A R WAGNER 64', confirming authors and the start page 64. The end page 99 and the next chapter's start page could not be seen (snippet view, no preview; HathiTrust search-only hides results), so pages are removed per the unconfirmable-optional-field rule. Apply the post-check (Pavlovian title fix, Appleton-Century-Crofts). RECONCILED 2026-09-26: Removal of pages withdrawn: an official contents list confirms the start page (Google Books contents 'R A RESCORLA A R WAGNER 64' (the batch's own evidence); https://books.google.com/books?vid=LCCN72177684); per the default the cited range is kept when its start page matches.",
+   "residue": [],
+   "noop": null
+  },
+  "reviewer": null,
+  "needs_user": false
+ },
+ {
+  "key": "Crai00",
+  "batch": "batch-080",
+  "verdict": "correction",
+  "current": {
+   "year": "2000",
+   "title": "Age-related changes in human memory",
+   "publisher": "Psychology Press",
+   "pages": "75--92",
+   "editor": "D Park and N Schwarz",
+   "booktitle": "Cognitive Aging: {A} Primer",
+   "author": "F I M Craik",
+   "address": "Philadelphia, {PA}",
+   "ENTRYTYPE": "incollection",
+   "ID": "Crai00"
+  },
+  "final_changes": [
+   {
+    "field": "editor",
+    "current": "D Park and N Schwarz",
+    "proposed": "D C Park and N Schwarz",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=99043572&maximumRecords=1&recordSchema=marcxml",
+      "quote": "edited by Denise C Park and Norbert Schwarz."
+     }
+    ],
+    "reviewer": "agree"
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Crai00",
+   "target_base": "Crai00",
+   "action": "keep"
+  },
+  "flags": [
+   {
+    "code": "field_not_found",
+    "field": "pages",
+    "detail": "verdict 'correction' but pages is not_found: the entry is not fully verified",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "pages",
+    "detail": "pages = '75--92': quote '6. COGNITIVE NEUROPSYCHOLOGY OF AGING 93' at https://books.google.com/books?id=LXJ3SeXoHvoC&pg=PA93: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('transcribed'; user rule)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-19): pages = '75--92'",
+    "action": "applied"
+   }
+  ],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-19",
+   "notes": "Google Books preview of the 2000 Psychology Press printing (ISBN 0863776922, LoC 99043572 pbk) shows chapter 5 'Age-related changes in human memory / Fergus I. M. Craik' opening on p. 75 (footer '5. MEMORY AND AGING 75', pg=PA75) and chapter 6 (Reuter-Lorenz) opening on p. 93; quotes transcribed from the page images (image-only). End page = next start - 1. Apply the post-check (editor D C Park).",
+   "residue": [],
+   "noop": null
+  },
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {
+    "editor": "agree"
+   },
+   "problems": [],
+   "suggested_value": {}
+  },
+  "needs_user": false
+ },
+ {
+  "key": "Frie79",
+  "batch": "batch-084",
+  "verdict": "verified",
+  "current": {
+   "year": "1979",
+   "title": "Methods for finding graphic representations of associative memory structures",
+   "publisher": "Academic Press",
+   "pages": "85--129",
+   "editor": "C R Puff",
+   "chapter": "4",
+   "booktitle": "Memory Organization and Structure",
+   "author": "M Friendly",
+   "address": "New York, {NY}",
+   "ENTRYTYPE": "incollection",
+   "ID": "Frie79"
+  },
+  "final_changes": [],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Frie79",
+   "target_base": "Frie79",
+   "action": "keep",
+   "resolution": "resolution 'keep' (batch-21)"
+  },
+  "flags": [
+   {
+    "code": "quote_check_failed",
+    "field": "pages",
+    "detail": "validator: pages not covered by its quotes (missing ['129']; failures []); superseded by the resolution ('keep', batch-21)",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'keep' (batch-21): the entry stays exactly as it is",
+    "action": "applied"
+   }
+  ],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": {
+   "decision": "keep",
+   "batch": "batch-21",
+   "notes": "HEAD is correct. The book's contents list the chapter at p. 85 by Michael Friendly (https://openlibrary.org/search/inside.json?q=%22graphic%20representations%20of%20associative%20memory%20structures%22: 'of Associative Memory Structures 85\\nMICHAEL FRIENDLY'), and its last page carries the odd-page running head for p. 129, which the scan's OCR splits as '1 29' (https://openlibrary.org/search/inside.json?q=%22MEMORY%20STRUCTURES%201%2029%22: 'GRAPHIC REPRESENTATIONS OF ASSOCIATIVE MEMORY STRUCTURES 1 29', transcribed from the page image as 129). The quote check failed only because of that OCR split. Chapter 5 (Lachman and Lachman) starts at p. 133, after the Part II title.",
+   "residue": [],
+   "noop": null
+  },
+  "reviewer": null,
+  "needs_user": false
+ },
+ {
+  "key": "Slam87",
+  "batch": "batch-084",
+  "verdict": "no_source",
+  "current": {
+   "year": "1987",
+   "title": "The law of frequency",
+   "publisher": "Erlbaum",
+   "pages": "105--128",
+   "editor": "D S Gorfein and R R Hoffman",
+   "booktitle": "Memory and Learning: the {Ebbinghaus} Centennial Conference",
+   "author": "N J Slamecka",
+   "address": "Hillsdale, {NJ}",
+   "ENTRYTYPE": "incollection",
+   "ID": "Slam87"
+  },
+  "final_changes": [],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Slam87",
+   "target_base": "Slam87",
+   "action": "keep"
+  },
+  "flags": [
+   {
+    "code": "verdict_understated",
+    "field": "verdict",
+    "detail": "verdict 'no_source' but identity is quoted and every field is confirmed/corrected",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "pages",
+    "detail": "pages = '105--128': quote 'Page 105' at https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22Norman+J.+Slamecka%22: fetch failed: HTTPError: HTTP Error 429: Too Many Requests; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-21): pages = '105--128'",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "verdict",
+    "detail": "verdict no_source resolved by the resolution ('apply', batch-21)",
+    "action": "applied"
+   }
+  ],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-21",
+   "notes": "Reconciled (partly-confirmed chapter pages default): the start page is now confirmed, so HEAD's cited range is kept, not removed. Google Books full-text search of the printed book (id 6S5-AAAAMAAJ, read in a real browser): '\"The law of frequency\" Slamecka University of Toronto' matches p. 105 (chapter opening: title, author and affiliation) and 'Norman J. Slamecka' matches 'Page viii' (contents) and 'Page 105'. The end page is not shown by any source (search-only item; HathiTrust mdp.39015012853183 gives no page numbers), so the cited end page stays.",
+   "residue": [],
+   "noop": null
+  },
+  "reviewer": null,
+  "needs_user": false
+ },
+ {
+  "key": "Tulv72",
+  "batch": "batch-085",
+  "verdict": "no_source",
+  "current": {
+   "year": "1972",
+   "title": "Episodic and semantic memory",
+   "publisher": "Academic Press",
+   "pages": "381--403",
+   "editor": "E Tulving and W Donaldson",
+   "booktitle": "Organization of Memory",
+   "author": "E Tulving",
+   "address": "New York, {NY}",
+   "ENTRYTYPE": "incollection",
+   "ID": "Tulv72"
+  },
+  "final_changes": [],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Tulv72",
+   "target_base": "Tulv72",
+   "action": "keep",
+   "resolution": "resolution 'keep' (batch-21)"
+  },
+  "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'keep' (batch-21): the entry stays exactly as it is",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "verdict",
+    "detail": "verdict no_source resolved by the resolution ('keep', batch-21)",
+    "action": "applied"
+   }
+  ],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": {
+   "decision": "keep",
+   "batch": "batch-21",
+   "notes": "HEAD is confirmed from the IA full-text index of the book (organizationofme0000unse_j3u4): contents '10. Episodic and Semantic Memory Endel Tulving'; contributor list 'ENDEL TuLvine (381)' (OCR of TULVING (381)); last running head '10. EPISODIC AND SEMANTIC MEMORY/403' on the reference page (https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Episodic%20and%20Semantic%20Memory%22%20403&hits_per_page=50); the contents then give 'References 402 AUTHOR INDEX 405'. So pages 381--403, and author, title and book are as cited.",
+   "residue": [],
+   "noop": null
+  },
+  "reviewer": null,
+  "needs_user": false
+ }
+]

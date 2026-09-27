@@ -10,8 +10,11 @@ Evidence (read-only, from the repository):
 * each wave's ``merged.json`` (post-check final values with provenance; ``needs_user``,
   ``remove_entry``, verdict);
 * the user's cross-wave decisions (``crosswave/applied-decisions.json``);
-* the resolution batches (``verification/resolution-2026-09-26/batch-*.json``);
-* the manual research of 2026-09-26 (``research-2026-09-26-manual/proposals.json``).
+* the resolution batches (``verification/resolution-2026-09-26/batch-*.json``, 01-39; a file
+  that is not valid JSON is refused, never read as "no decision");
+* the manual research of 2026-09-26 (``research-2026-09-26-manual/proposals.json``);
+* the notice classification of 2026-09-27 (``verification/resolution-2026-09-27/
+  notices-classified.json``): what each DOI-linked notice that held an entry actually is.
 
 Row keys are followed through ``verification/key-renames.json`` in log order and never
 from a key listed in ``verification/key-deletions.json`` (that work was deleted; the key
@@ -30,8 +33,23 @@ An entry is approved (status ``metadata_verified``, ``accepted_source`` = SOURCE
 3. an ``ENTRYTYPE`` that any evidence names equals the entry's type;
 4. no DOI-linked notice, suffix or coordinate conflict and no registry update notice is
    known for the entry's DOI (``preprint_review.context_issues``, as for every other
-   route approval; ``Cache.retain_notices`` then applies to research approvals exactly as
-   it does to the others).
+   route approval), unless the notice classification settles every such notice under the
+   resolution-plan rules (``notice_adjudication``): a content-only erratum, a metadata
+   correction whose corrected value the entry already carries, an unread notice with no
+   retraction or expression of concern recorded (flag ``notice_unread``), a same-DOI new
+   version, a notice that is the cited work itself, a PubMed record that is no notice or
+   belongs to another work, or a coordinate conflict the Crossref value (already in the
+   entry) wins. A retraction or expression of concern, classified or signalled by any
+   saved record, is never approved.
+
+Evidence forms (the post-check's own, ``postcheck.evidence_items`` / ``inferred_end_page`` /
+``catalogue_extent`` / ``roman_page_prefix``): several quotes whose union covers the value
+(``evidence`` / ``extra_evidence``), end page = next item's printed start - 1
+(``next_start``), catalogue extent 'N p.' for pages 1--N, a roman page prefix for the
+volume. A chapter's page range whose start page an official contents list confirms, kept
+under the partial-confirmation default, is approved with the flag ``pages_start_only``.
+Author and editor lists compare braced group names ({RNS System in Epilepsy Study Group})
+equal to the same name unbraced.
 
 Quotes the user accepted without a fetched body (read in a real browser, transcribed from
 an image-only scan: resolution-plan README, round 2) count only for resolution and manual
@@ -65,6 +83,7 @@ PILOT = 'verification/research-pilot-2026-09-24'
 WAVES = 'verification/research-2026-09-25'
 RESOLUTIONS = 'verification/resolution-2026-09-26'
 MANUAL = 'verification/research-2026-09-26-manual/proposals.json'
+NOTICES = 'verification/resolution-2026-09-27/notices-classified.json'
 RENAMES = 'verification/key-renames.json'
 DELETIONS = 'verification/key-deletions.json'
 
@@ -150,14 +169,55 @@ def _latex_letters(value):
     return LATEX_LETTER.sub(lambda m: V.delatex(m[0]), value)
 
 
-def canon(field, value, cities=None):
+def _group_inner(name):
+    """The text of a name that is one braced group ({RNS System in Epilepsy Study Group},
+    {{Jupyter Development Team}}), else None. A braced particle inside a personal name
+    (R {La Joie}) is not a group."""
+    name = name.strip()
+    while name.startswith('{') and name.endswith('}'):
+        inner, depth = name[1:-1], 0
+        for ch in inner:
+            depth += (ch == '{') - (ch == '}')
+            if depth < 0:
+                return None  # '{A} and {B}' style: the outer braces are not one pair
+        if depth:
+            return None
+        name = inner.strip()
+        if not (name.startswith('{') and name.endswith('}')):
+            return name
+    return None
+
+
+def braced_groups(value):
+    """The folded texts of the braced group names in an author/editor list (formatter
+    fix 9f84506 keeps whole-braced group names as given)."""
+    P = postcheck()
+    out = set()
+    for name in P.split_names(str(value or '')):
+        inner = _group_inner(name)
+        if inner:
+            out.add(_text(inner))
+    return frozenset(out)
+
+
+def canon(field, value, cities=None, groups=()):
     """The house form of ``value`` for comparison: the post-check's normalisers for the
     field (names, pages, issue ranges, ordinals, proceedings booktitles, em dashes,
     US addresses), then LaTeX accents to Unicode, braces dropped, dashes and
-    whitespace folded, case folded. Two values with one canon are one value."""
+    whitespace folded, case folded. Two values with one canon are one value.
+
+    ``groups`` (author/editor): the folded group names the entry prints braced; the same
+    name written unbraced in the evidence is read as that group, not as given names and
+    a surname (the name normaliser would initial it: 'R N S S I E S Group')."""
     P = postcheck()
     field = field.lower()
     v = str(value if value is not None else '').strip()
+    if field in ('author', 'editor'):
+        names = P.split_names(v)
+        groups = set(groups) | {g for g in (_group_inner(n) for n in names) if g}
+        groups = {_text(g) for g in groups}
+        v = ' and '.join('{%s}' % (_group_inner(n) or n) if _text(_group_inner(n) or n) in groups else n
+                         for n in names)
     if field == 'entrytype':
         v = v.lower().lstrip('@')
         return 'inproceedings' if v == 'conference' else v
@@ -190,18 +250,14 @@ def canon(field, value, cities=None):
 # ------------------------------------------------------------------ evidence files
 
 def _items(spec):
-    """{url, quote} items of one evidence value (researcher list, or resolution set)."""
+    """{url, quote} items of one evidence value: a researcher's evidence list, or a
+    resolution/manual/cross-wave set read by the post-check's own ``evidence_items`` (its
+    url/quote, then every item of ``evidence`` and ``extra_evidence``; the union of the
+    quotes covers the value). An item without a URL or quote is kept (as None), so a set
+    whose items must all be found is refused, as ``resolution_quote`` refuses it."""
     if isinstance(spec, list):
         return [{'url': i.get('url'), 'quote': i.get('quote')} for i in spec if isinstance(i, dict)]
-    items = []
-    if spec.get('url') or spec.get('quote'):
-        items.append({'url': spec.get('url'), 'quote': spec.get('quote')})
-    for name in ('evidence', 'extra_evidence'):
-        extra = spec.get(name) or []
-        for x in [extra] if isinstance(extra, dict) else extra:
-            if isinstance(x, dict):
-                items.append({'url': x.get('url'), 'quote': x.get('quote')})
-    return items
+    return postcheck().evidence_items(spec)
 
 
 def _claim(field, value, items, origin, row_key, lenient=False, next_start=None, all_items=False, kind='value'):
@@ -241,7 +297,7 @@ def evidence_files(root=ROOT):
     for wave in waves:
         files += sorted((wave / 'decisions').glob('*.json'))
     files += sorted((root / RESOLUTIONS).glob('batch-*.json'))
-    files += [root / MANUAL, root / RENAMES, root / DELETIONS]
+    files += [root / MANUAL, root / NOTICES, root / RENAMES, root / DELETIONS]
     return [f.relative_to(root).as_posix() for f in files if f.exists()]
 
 
@@ -258,7 +314,14 @@ def load_evidence(root=ROOT, bib_keys=None, exclude=()):
     files = [f for f in evidence_files(root) if f not in exclude]
 
     def read(rel):
-        return json.loads((root / rel).read_text(encoding='utf-8')) if rel in files else None
+        if rel not in files:
+            return None
+        try:
+            return json.loads((root / rel).read_text(encoding='utf-8'))
+        except ValueError as exc:
+            # A half-written file must never be read as "no research" (postcheck.load_resolutions).
+            raise ValueError('research evidence file %s is not valid JSON (%s); leave it out with exclude'
+                             % (rel, exc)) from exc
 
     renames = read(RENAMES) or []
     deleted = {r['key'] for r in (read(DELETIONS) or [])}
@@ -386,6 +449,14 @@ def load_evidence(root=ROOT, bib_keys=None, exclude=()):
                                                   lenient=says_browser_or_scan(notes), all_items=True))
                 for field in row.get('remove') or []:
                     b['claims'].append(_claim(field, None, [], 'manual', row['key'], kind='remove'))
+    # The notice classification is attached to entries that have research (it is no
+    # research of its own); it never creates a bundle.
+    for row in read(NOTICES) or []:
+        cur = walk(row.get('key', ''))
+        if cur in bundles:
+            bundles[cur].setdefault('notices', []).append(
+                {k: row.get(k) for k in ('key', 'notice_doi', 'class', 'quote', 'url', 'corrected_fields', 'notes')
+                 if k in row})
     return bundles
 
 
@@ -464,6 +535,9 @@ def _support(field, value, claim, bodies):
     record = {'origin': claim['origin'], 'row_key': claim['row_key'], 'claimed': claim['value'], 'evidence': []}
     if not items:
         return False, record, 'no quoted evidence'
+    if claim['all_items'] and len(items) != len(claim['items']):
+        # postcheck.resolution_quote refuses a set with an item lacking its URL or quote.
+        return False, record, 'an evidence item has no URL or quote'
     for item in items:
         ok, sha = bodies.found(item['url'], item['quote'])
         record['evidence'].append({'url': item['url'], 'quote': item['quote'], 'found': bool(ok),
@@ -493,11 +567,14 @@ def _support(field, value, claim, bodies):
     supported, missing = V.value_supported(field, value, quotes, urls)
     if supported:
         return True, record, None
+    # The user's inference rules, in postcheck.resolution_quote's order: with a
+    # next_start only the end-page rule applies.
     if field == 'pages' and nxt:
         ok, why = P.inferred_end_page(V, value, quotes, urls, nxt['quote'])
         if ok:
             record['rule'] = "end page = next item's printed start - 1"
             return True, record, None
+        return False, record, 'value words %s are not in the quotes; %s' % (missing, why)
     if field == 'pages':
         ok, _ = P.catalogue_extent(V, value, quotes)
         if ok:
@@ -541,7 +618,9 @@ def gates(bundle):
         issues.append('research: no researcher row or resolution decision for this entry')
     if 'drop' in decisions:
         issues.append('research: a resolution decision drops this entry')
-    if len(decisions) > 1:
+    if 'drop' in decisions and len(decisions) > 1:
+        # 'apply' and 'keep' both settle the entry (a later batch re-evidencing a kept
+        # entry applies its values); a drop beside either is a real conflict.
         issues.append('research: conflicting resolution decisions %s' % sorted(decisions))
     settled = (bool(decisions & {'apply', 'keep'}) and 'drop' not in decisions) or manual
     for r in rows:
@@ -566,32 +645,106 @@ def gates(bundle):
     return issues
 
 
-def _field(field, value, claims, bodies, cities):
+# The partial-confirmation default (resolution-plan README): "Chapter pages where an
+# official contents list confirms the start page but nothing shows the end page or the
+# next chapter's start: keep the cited range if its start page matches". A resolution or
+# manual row invokes it in its notes ("confirms the start page", "the start page 64 is
+# confirmed", "partly-confirmed"); a negated or unconfirmed start page does not match.
+PARTIAL_PAGES = re.compile(r"(?:\bconfirm(?:s|ed|ing)?\s+(?:the\s+|its\s+)?start\s+page"
+                           r"|\bstart\s+page\s+(?:\d+\s+)?(?:is\s+)?(?:now\s+)?confirmed"
+                           r"|\bstart\s+\d+\s+confirmed|\bpart(?:ly|ially)[- ]confirmed|\bpartial[- ]confirmation)", re.I)
+CHAPTER_TYPES = ('incollection', 'inbook')
+START_ONLY_RULE = 'chapter start page confirmed by an official contents list (partial-confirmation default)'
+
+
+def _start_only(value, claims, bundle, fields, bodies):
+    """(record, issue) for a chapter page range S--E whose start page S a found quote
+    prints, when a resolution or manual row keeps the range under the partial-confirmation
+    default. The quotes are the pages claims' own; when no row quotes the pages at all,
+    a found quote of that row's other fields that its notes name as the contents line
+    ('R A RESCORLA A R WAGNER 64': the notes give the start page). A quote printing a
+    range from S to another end refuses it; so does any other start page."""
+    V, P = validator(), postcheck()
+    if canon('entrytype', fields.get('ENTRYTYPE')) not in CHAPTER_TYPES:
+        return None, 'the entry is not a chapter'
+    m = P.PAGE_RANGE.match(str(value or ''))
+    if not m or int(m[2]) < int(m[1]):
+        return None, 'the value is not one page range S--E'
+    start, end = m[1], m[2]
+    rows = [r for r in bundle.get('resolutions', []) + [r for r in bundle.get('rows', []) if r['origin'] == 'manual']
+            if PARTIAL_PAGES.search(r.get('notes') or '')]
+    if not rows:
+        return None, 'no resolution keeps the range under the partial-confirmation default'
+    pools = [c for c in claims if c['kind'] == 'value']
+    if not pools:
+        # The row's own quotes of other fields, when its notes cite the start page.
+        origins = {r['origin'] for r in rows
+                   if re.search(r'(?<!\d)%s(?!\d)' % start, r.get('notes') or '')}
+        pools = [c for c in bundle['claims'] if c['kind'] == 'value' and c['origin'] in origins]
+    contrary = re.compile(r'(?<!\d)%s\s*(?:-{1,3}|\u2013|\u2014)\s*(\d+)' % start)
+    for c in pools:
+        items = [i for i in c['items'] if i.get('url') and i.get('quote')]
+        record = {'origin': c['origin'], 'row_key': c['row_key'], 'claimed': value, 'evidence': [],
+                  'flag': 'pages_start_only', 'rule': START_ONLY_RULE}
+        for item in items:
+            ok, sha = bodies.found(item['url'], item['quote'])
+            if not ok and not c['lenient']:
+                continue
+            if any(int(x) != int(end) for x in contrary.findall(V.norm(item['quote']))):
+                return None, 'a quote prints the start page %s with another end page' % start
+            if V.value_supported('pages', start, [item['quote']], [item['url']])[0]:
+                record['evidence'].append({'url': item['url'], 'quote': item['quote'], 'found': bool(ok),
+                                           'body_sha256': sha})
+        if record['evidence']:
+            if not any(e['found'] for e in record['evidence']):
+                # Read in a browser / transcribed from a scan (the row's notes say so).
+                record['read'] = 'browser_or_scan'
+            return record, None
+    return None, 'no found quote prints the start page %s' % start
+
+
+def _field(field, value, claims, bodies, cities, fields=None, bundle=None):
     """(record, issue) for one field of the entry. The latest research decision on the
     field must be its current value; that value must then be quoted and supported."""
-    here = canon(field, value, cities)
+    groups = braced_groups(value) if field in ('author', 'editor') else ()
+    here = canon(field, value, cities, groups)
+
+    def same_value(x):
+        return canon(field, x['value'], cities, groups) == here
     ranked = sorted((c for c in claims if c['field'] == field), key=_rank)
     live = []
     for c in ranked:
         if c['kind'] == 'withdraw':
             # A withdrawn change leaves the cited value: older claims of other values go.
-            live = [x for x in live if x['kind'] != 'value' or canon(field, x['value'], cities) == here]
+            live = [x for x in live if x['kind'] != 'value' or same_value(x)]
             ranked_below = [x for x in ranked if _rank(x) > _rank(c)]
-            live += [x for x in ranked_below if x['kind'] == 'value' and canon(field, x['value'], cities) == here]
+            live += [x for x in ranked_below if x['kind'] == 'value' and same_value(x)]
             break
         live.append(c)
+    start_only = field == 'pages' and fields is not None and bundle is not None
     if not live:
+        if start_only:
+            record, _ = _start_only(value, [], bundle, fields, bodies)
+            if record:
+                return dict(record, value=value), None
         return None, 'no research evidence for this field'
     top = live[0]
     if top['kind'] == 'remove':
         return None, 'the research removed this field (%s)' % top['origin']
-    if canon(field, top['value'], cities) != here:
+    if not same_value(top):
         return None, 'the entry value differs from the latest evidenced value (%s)' % top['origin']
-    same = [c for c in live if c['kind'] == 'value' and canon(field, c['value'], cities) == here]
-    why = 'no quoted evidence'
+    same = [c for c in live if c['kind'] == 'value' and same_value(c)]
+    whys = []
     for c in same:
         ok, record, why = _support(field, value, c, bodies)
         if ok:
+            return dict(record, value=value), None
+        whys.append(why)
+    # The latest claim's failure is the reason (an older row's may only repeat less).
+    why = whys[0] if whys else 'no quoted evidence'
+    if start_only:
+        record, _ = _start_only(value, same, bundle, fields, bodies)
+        if record:
             return dict(record, value=value), None
     return None, why
 
@@ -620,7 +773,7 @@ def assess_research(fields, bundle, bodies=None, cities=None):
         if field in NOT_REQUIRED:
             candidate['not_required'][field] = NOT_REQUIRED[field]
             continue
-        record, why = _field(field, fields[field], claims, bodies, cities)
+        record, why = _field(field, fields[field], claims, bodies, cities, fields, bundle)
         if why:
             issues.append(field + ': ' + why)
             continue
@@ -628,9 +781,15 @@ def assess_research(fields, bundle, bodies=None, cities=None):
         candidate['evidence'][field] = {'local': fields[field], 'source': record['claimed'], 'match': True}
         if record.get('flag'):
             candidate['flags'].append(field + ': ' + record['flag'])
-    # Identity: a researcher row's identity quote found in its saved body; else the title
-    # as quoted by a resolution, the user's decision or the manual research (their quote
-    # locates the work at its own URL).
+        if record.get('read'):
+            candidate['flags'].append(field + ': ' + record['read'])
+    # Identity: a researcher row's identity quote found in its saved body. When none is
+    # (its quote has no saved body: read in a browser or from a scan; or no wave queued
+    # the entry), the title as quoted by a resolution, the user's decision or the manual
+    # research serves (resolution-plan README, (plan) line): that quote was found at its
+    # own URL, or read in a browser / from a scan and flagged so. (Since 2026-09-27 the
+    # substitute also stands when the researcher's quote is missing from a saved body;
+    # README lists those approvals.)
     for r in bundle['rows']:
         ident = r.get('identity') or {}
         if ident.get('url') and ident.get('quote'):
@@ -647,6 +806,9 @@ def assess_research(fields, bundle, bodies=None, cities=None):
                 candidate['flags'].append('identity: ' + title['flag'])
         else:
             issues.append('identity: no identity quote found in a saved body')
+    if bundle.get('notices'):
+        candidate['notice'] = notice_adjudication(fields, bundle['notices'], cities)
+        candidate['flags'] += ['notice: ' + f for f in candidate['notice']['flags']]
     candidate['issues'] = list(dict.fromkeys(issues))
     if not candidate['issues']:
         candidate['category'] = 'verified'
@@ -659,8 +821,9 @@ def assess_research(fields, bundle, bodies=None, cities=None):
 
 
 def evidence_id(candidate):
-    """Stable id of an approval: the sha256 of the checked fields and the evidence used."""
-    keep = {k: candidate[k] for k in ('checked_fields', 'identity', 'fields')}
+    """Stable id of an approval: the sha256 of the checked fields and the evidence used
+    (with the notice adjudication, for an entry that has one)."""
+    keep = {k: candidate[k] for k in ('checked_fields', 'identity', 'fields', 'notice') if k in candidate}
     return 'research:' + hashlib.sha256(json.dumps(keep, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
 
 
@@ -677,13 +840,121 @@ def relevant_cities(fields, bundle, cities):
     return {k: cities[k] for k in sorted(wanted) if k in cities}
 
 
+# ------------------------------------------------------------------ notices
+
+# Classes of verification/resolution-2026-09-27/notices-classified.json (NOTICES.md) and
+# what each means for an entry whose fields the research verifies (resolution-plan
+# README: retractions go to the user; the (default) on unread notices; round 1: the
+# publisher/Crossref record wins a coordinate conflict).
+NEVER = ('retraction', 'expression_of_concern')
+NOTICE_FLAGS = {'content_only': 'notice_content_only', 'unread': 'notice_unread',
+                'metadata_correction': 'notice_metadata_correction', 'new_version': 'notice_new_version',
+                'cited_work_is_notice': 'notice_is_the_cited_work', 'coordinate_conflict': 'notice_crossref_wins',
+                'unrelated': 'notice_unrelated', 'no_notice': 'notice_none'}
+# The classifier's notes must record that no retraction / expression of concern exists.
+NO_RETRACTION = re.compile(r"\bnot\s+(?:a\s+)?retraction\b|\bno\s+retraction\b|\bno\s+(?:erratum/)?retraction\b", re.I)
+SAME_DOI_VERSION = re.compile(r"\bno citation field changes\b", re.I)
+CROSSREF_PAGE = re.compile(r'Crossref page\s+"([^"]+)"')
+
+
+def _names(value, groups=()):
+    P = postcheck()
+    return [canon('author', n, None, groups) for n in P.split_names(str(value or ''))]
+
+
+def notice_adjudication(fields, rows, cities=None):
+    """{'classes', 'flags', 'issues'} for the classified notices of one entry. No issue
+    means every notice is settled under the rules above; an issue holds the approval."""
+    classes, flags, issues = [], [], []
+    for row in rows:
+        kind = str(row.get('class') or '')
+        where = ' (%s)' % (row.get('notice_doi') or row.get('url') or '?')
+        classes.append(kind)
+        notes = str(row.get('notes') or '')
+        if kind in NEVER:
+            issues.append('notice: classified %s%s: never approved; the user decides' % (kind, where))
+            continue
+        if kind not in NOTICE_FLAGS:
+            issues.append('notice: unknown classification %r%s' % (kind, where))
+            continue
+        for field, fix in (row.get('corrected_fields') or {}).items():
+            field = field.lower()
+            new = (fix or {}).get('new')
+            if not (fix or {}).get('entry_already_matches') or not fields.get(field):
+                issues.append('notice: the corrected %s is not yet in the entry%s' % (field, where))
+            elif field in ('author', 'editor'):
+                groups = braced_groups(fields[field])
+                have = set(_names(fields[field], groups))
+                if not set(_names(new, groups)) <= have:
+                    issues.append('notice: the corrected %s %r is not in the entry%s' % (field, new, where))
+            elif canon(field, new, cities) != canon(field, fields[field], cities):
+                issues.append('notice: the corrected %s %r is not in the entry%s' % (field, new, where))
+        if kind == 'unread' and not NO_RETRACTION.search(notes):
+            issues.append('notice: unread, and no absence of a retraction/expression of concern recorded%s' % where)
+        elif kind == 'new_version' and not SAME_DOI_VERSION.search(notes):
+            issues.append('notice: new version with citation field changes%s' % where)
+        elif kind == 'coordinate_conflict' and not row.get('corrected_fields'):
+            m = CROSSREF_PAGE.search(str(row.get('quote') or ''))
+            if not m or not fields.get('pages') or canon('pages', m[1]) != canon('pages', fields['pages']):
+                issues.append('notice: the entry does not carry the Crossref pages of the conflict%s' % where)
+        flags.append(NOTICE_FLAGS[kind])
+    return {'classes': classes, 'flags': list(dict.fromkeys(flags)), 'issues': list(dict.fromkeys(issues))}
+
+
+RETRACTION_WORDS = re.compile(r'retract|expression[ _-]of[ _-]concern|withdraw|removal', re.I)
+
+
+def retraction_signals(candidates, doi=None):
+    """Retractions / expressions of concern that any saved record carries (Europe PMC
+    isRetracted or a 'Retraction in' / 'Expression of concern in' link or publication
+    type, a Crossref update of that type, a JATS related-article of that type): whatever
+    the classification says, these are never approved."""
+    out = []
+    for c in candidates:
+        try:
+            if doi and normalize_doi(c.get('doi') or '') != doi:
+                continue  # another work's record (KeleFent10: a rejected candidate's retraction)
+        except ValueError:
+            pass
+        raw = c.get('raw_record') or {}
+        if c.get('source') == 'europepmc' and isinstance(raw, dict):
+            labels = list((raw.get('pubTypeList') or {}).get('pubType') or []) + [
+                r.get('type', '') for r in ((raw.get('commentCorrectionList') or {}).get('commentCorrection') or [])
+                if isinstance(r, dict)]
+            if raw.get('isRetracted') == 'Y' or any(RETRACTION_WORDS.search(str(x)) for x in labels):
+                out.append('Europe PMC record of %s marks a retraction or expression of concern' % c.get('doi'))
+        if c.get('source') == 'crossref':
+            record = c.get('record') or {}
+            for rel in (record.get('update-to') or []) + (record.get('updated-by') or []):
+                if isinstance(rel, dict) and RETRACTION_WORDS.search(str(rel.get('type', ''))):
+                    out.append('Crossref record of %s has a %s update' % (c.get('doi'), rel.get('type')))
+        if c.get('source') == 'pmc-jats' and re.search(
+                r'related-article-type="(?:retract\w*|expression-of-concern|concern)', str(c.get('raw_xml') or '')):
+            out.append('JATS record of %s links a retraction or expression of concern' % c.get('doi'))
+    return list(dict.fromkeys(out))
+
+
+def notice_blocks(candidate, candidates):
+    """Why the DOI-linked evidence beside a research approval still holds it: [] when the
+    notice classification settles it and no saved record signals a retraction."""
+    notice = candidate.get('notice')
+    if not notice:
+        return ['notice: no classification of the DOI-linked evidence (%s)' % NOTICES]
+    return list(notice.get('issues') or []) + ['notice: ' + s for s in retraction_signals(candidates, candidate.get('doi'))]
+
+
 # ------------------------------------------------------------------ cache rows
 
 PRESERVED = ('auto_review', 'discovery_review', 'catalogue_review', 'preprint_review', 'arxiv_review',
              'research_attempt', 'datacite_review', 'acl_review', 'sfn_review', 'osf_review')
 HELD_BY_CONTEXT = ('Research evidence verifies every field; the approval is held by known DOI-linked evidence '
-                   '(resolution-plan rule: retractions go to the user; a content-only erratum is auto-verified '
-                   'only once its text is read)')
+                   '(resolution-plan rule: retractions go to the user; a classified content-only erratum, a '
+                   'metadata correction already in the entry or an unread notice with no retraction recorded is '
+                   'approved, anything unclassified is held)')
+
+
+RETAINED = ('The research route approves this entry (its notice is settled by the classification), but '
+            'Cache.retain_notices reopens every machine approval with a known DOI-linked notice')
 
 
 def merge(previous, result):
@@ -696,17 +967,23 @@ def merge(previous, result):
     result['candidates'] = [c for c in previous.get('candidates', []) if c.get('source') != SOURCE] + result['candidates']
     result['attempts'] = previous.get('attempts', []) + [{'source': SOURCE, 'url': None}]
     candidate = result['candidates'][-1]
+    adjudicated = False
     if result['status'] == 'metadata_verified':
         issues = context_issues(candidate['checked_fields'], result['candidates'], result.get('accepted_doi'))
-        if issues:
-            result.update(status='needs_review', issues=issues + [HELD_BY_CONTEXT] + [
-                i for i in previous.get('issues', []) if i not in issues])
+        blocks = notice_blocks(candidate, result['candidates']) if issues else []
+        if blocks:
+            result.update(status='needs_review', issues=issues + blocks + [HELD_BY_CONTEXT] + [
+                i for i in previous.get('issues', []) if i not in issues
+                and not i.startswith('Research evidence verifies every field; the approval is held')])
             for name in ('accepted_doi', 'accepted_source', 'accepted_record_id'):
                 result.pop(name, None)
+        adjudicated = bool(issues) and not blocks
     for name in PRESERVED:
         if name in previous:
             result[name] = deepcopy(previous[name])
     result[NAME] = {'policy': POLICY, 'category': candidate['category']}
+    if adjudicated:
+        result[NAME]['notice'] = 'settled by the notice classification'
     return result
 
 
@@ -739,7 +1016,7 @@ def _saved_consistent(result, c):
         if record.get('value') != fields[name] or not record.get('evidence'):
             return False
         found = [e for e in record['evidence'] if e.get('found') and re.fullmatch(r'[0-9a-f]{64}', e.get('body_sha256') or '')]
-        if not found and record.get('flag') != 'browser_or_scan':
+        if not found and 'browser_or_scan' not in (record.get('flag'), record.get('read')):
             return False
     ident = c.get('identity') or {}
     if not (ident.get('found') and ident.get('body_sha256')) and not (
@@ -770,7 +1047,8 @@ def valid_research_approval(result):
         if len(saved) != 1:
             return False
         c = saved[0]
-        if context_issues(c['checked_fields'], result['candidates'], result.get('accepted_doi')):
+        if (context_issues(c['checked_fields'], result['candidates'], result.get('accepted_doi'))
+                and notice_blocks(c, result['candidates'])):
             return False
         if not _saved_consistent(result, c):
             return False
@@ -792,6 +1070,8 @@ def valid_research_approval(result):
 
 def reason_class(issue):
     """A short class for grouping the reasons an entry is not approved."""
+    if issue == RETAINED:
+        return 'route approves; Cache.retain_notices reopens it (DOI-linked notice)'
     field, _, why = issue.partition(': ')
     if field == 'research':
         for text, name in (('needs_user', 'needs_user (post-check residue)'),
@@ -803,7 +1083,9 @@ def reason_class(issue):
                 return name
         return 'research gate: ' + why
     if field == 'identity':
-        return 'identity quote not found'
+        return 'identity quote not in its saved body' if 'not found in its saved body' in why else 'identity quote not found'
+    if field == 'notice':
+        return 'notice: ' + re.sub(r"\s*(?:\(.*|'.*)$", '', why)
     for text, name in (('no research evidence', 'field never researched'),
                        ('differs from the latest', 'value differs from the latest evidence'),
                        ('no quoted evidence', 'value has no verbatim quote (reviewer/user prose only)'),
@@ -812,7 +1094,8 @@ def reason_class(issue):
                        ('value words', 'value words not in the quotes'),
                        ('removed this field', 'field the research removed is still present'),
                        ('latest evidence names', 'entry type differs from the evidence'),
-                       ('next_start', 'inferred end page not supported')):
+                       ('next_start', 'inferred end page not supported'),
+                       ('no URL or quote', 'an evidence item has no URL or quote')):
         if text in why or text in issue:
             return name + ('' if field == 'ENTRYTYPE' else ' (%s)' % field)
     return issue
@@ -887,9 +1170,13 @@ def run_research_approve(filename, cache, report=None, dry_run=False, root=ROOT,
                     continue
                 # What Cache.put would store: retain_notices may reopen an approval.
                 predicted = cache.retain_notices(entry, result)
+                if result['status'] == 'metadata_verified' and predicted['status'] != 'metadata_verified':
+                    row['route_granted'] = True
                 own = [c for c in previous.get('candidates', []) if c.get('source') == SOURCE]
                 if own == [candidate] and previous.get('status') == predicted['status']:
                     row.update(outcome='unchanged', status=previous['status'])
+                    if row.get('route_granted'):
+                        row['reasons'] = [RETAINED] + predicted.get('issues', [])
                     rows[key] = row
                     continue
                 if not dry_run:
@@ -898,6 +1185,8 @@ def run_research_approve(filename, cache, report=None, dry_run=False, root=ROOT,
                 row.update(status=predicted['status'],
                            outcome='approved' if predicted['status'] == 'metadata_verified' else 'held_by_notice',
                            reasons=[] if predicted['status'] == 'metadata_verified' else predicted.get('issues', []))
+                if row.get('route_granted'):
+                    row['reasons'] = [RETAINED] + row['reasons']
                 rows[key] = row
         finally:
             if report and not dry_run:
@@ -905,7 +1194,7 @@ def run_research_approve(filename, cache, report=None, dry_run=False, root=ROOT,
     counts = {'outcomes': {}, 'first_reason': {}, 'all_reasons': {}, 'flags': {}, 'writes': writes}
     for row in rows.values():
         counts['outcomes'][row['outcome']] = counts['outcomes'].get(row['outcome'], 0) + 1
-        if row['outcome'] in ('not_approved', 'not_researched', 'skipped', 'withdrawn'):
+        if row['outcome'] in ('not_approved', 'not_researched', 'skipped', 'withdrawn') or row.get('route_granted'):
             classes = list(dict.fromkeys(reason_class(i) for i in row['reasons']))
             counts['first_reason'][classes[0]] = counts['first_reason'].get(classes[0], 0) + 1
             for c in classes:
@@ -924,7 +1213,7 @@ def uncommitted_evidence(root=ROOT):
     env = dict(os.environ)
     if 'DEVELOPER_DIR' not in env and Path('/Library/Developer/CommandLineTools').is_dir():
         env['DEVELOPER_DIR'] = '/Library/Developer/CommandLineTools'
-    dirs = [PILOT, WAVES, RESOLUTIONS, str(Path(MANUAL).parent), RENAMES, DELETIONS]
+    dirs = [PILOT, WAVES, RESOLUTIONS, str(Path(MANUAL).parent), NOTICES, RENAMES, DELETIONS]
     out = subprocess.run(['git', 'status', '--porcelain', '--untracked-files=all', '--'] + dirs, cwd=root, env=env,
                          check=True, capture_output=True, text=True).stdout
     changed = {line[3:].strip().strip('"') for line in out.splitlines() if line.strip()}

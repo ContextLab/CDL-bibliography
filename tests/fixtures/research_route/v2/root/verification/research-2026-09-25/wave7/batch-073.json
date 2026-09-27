@@ -1,0 +1,190 @@
+[
+ {
+  "key": "KeleFent10",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+   "quote": "Dynamic grouping of hippocampal neural activity during cognitive control of two spatial frames",
+   "why": "PubMed record: same title, Kelemen and Fenton, PLoS Biol 2010;8(6):e1000403."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E Kelemen and A A Fenton",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "Eduard Kelemen, André A Fenton"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Dynamic grouping of hippocampal neural activity during cognitive control of two spatial frames",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "Dynamic grouping of hippocampal neural activity during cognitive control of two spatial frames"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} Biology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pbio.1000403",
+      "quote": "\"container-title\":[\"PLoS Biology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "8",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "VI - 8"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "6",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "IP - 6"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e1000403",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "PG - e1000403"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2010",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20585373/",
+      "quote": "DP - 2010 Jun 22"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pbio.1000403",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pbio.1000403",
+      "quote": "\"DOI\":\"10.1371\\/journal.pbio.1000403\""
+     }
+    ]
+   }
+  },
+  "notes": "All cited fields match; DOI added. Correction notice 10.1371/journal.pbio.1002100 (2015) is content-only: it fixes swapped row labels and duplicated spatial-coherence numbers in S2 Fig; no metadata change."
+ },
+ {
+  "key": "RubiEtal17",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+   "quote": "Decoding brain activity using a large-scale probabilistic functional-anatomical atlas of human cognition",
+   "why": "PubMed record: same title and six authors, PLoS Comput Biol 2017;13(10):e1005649."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "T N Rubin and O Koyejo and K J Gorgolewski and M N Jones and R A Poldrack and T Yarkoni",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "Timothy N Rubin, Oluwasanmi Koyejo, Krzysztof J Gorgolewski, Michael N Jones, Russell A Poldrack, Tal Yarkoni"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1005649",
+      "quote": "\"given\":\"Oluwasanmi\",\"family\":\"Koyejo\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Decoding brain activity using a large-scale probabilistic functional-anatomical atlas of human cognition",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "Decoding brain activity using a large-scale probabilistic functional-anatomical atlas of human cognition"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{PLoS} Computational Biology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1005649",
+      "quote": "\"container-title\":[\"PLOS Computational Biology\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "VI - 13"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "10",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "IP - 10"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "e1005649",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "PG - e1005649"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2017",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29059185/",
+      "quote": "DP - 2017 Oct"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1371/journal.pcbi.1005649",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1371/journal.pcbi.1005649",
+      "quote": "\"DOI\":\"10.1371\\/journal.pcbi.1005649\""
+     }
+    ]
+   }
+  },
+  "notes": "Second author misspelled \"Kyoejo\"; PubMed and Crossref both print Koyejo (two sources; cdl.bib ParkEtal entry also writes \"O Koyejo\"). DOI added. Crossref \"new_version\" self-link is a PLOS re-deposit, not a correction."
+ }
+]

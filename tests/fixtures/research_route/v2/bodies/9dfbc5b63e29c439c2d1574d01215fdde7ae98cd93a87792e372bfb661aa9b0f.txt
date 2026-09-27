@@ -1,0 +1,66 @@
+Neural events that underlie remembering something that never happened. B Gonsalves, K A Paller Nature neuroscience Nat Neurosci 2001 2007 2000 2000 2001 2000 3 12 1316-21
+
+PMID- 11100153
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20010426
+LR  - 20071114
+IS  - 1097-6256 (Print)
+IS  - 1097-6256 (Linking)
+VI  - 3
+IP  - 12
+DP  - 2000 Dec
+TI  - Neural events that underlie remembering something that never happened.
+PG  - 1316-21
+AB  - We induced people to experience a false-memory illusion by first asking them to 
+      visualize common objects when cued with the corresponding word; on some trials, a 
+      photograph of the object was presented 1800 ms after the cue word. We then tested 
+      their memory for the photographs. Posterior brain potentials in response to words 
+      at encoding were more positive if the corresponding object was later falsely 
+      remembered as a photograph. Similar brain potentials during the memory test were 
+      more positive for true than for false memories. These results implicate visual 
+      imagery in the generation of false memories and provide neural correlates of 
+      processing differences between true and false memories.
+FAU - Gonsalves, B
+AU  - Gonsalves B
+AD  - Department of Psychology, Northwestern University, 2029 Sheridan Road, Evanston, 
+      Illinois 60208-2710, USA.
+FAU - Paller, K A
+AU  - Paller KA
+LA  - eng
+GR  - NS34639/NS/NINDS NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, U.S. Gov't, P.H.S.
+PL  - United States
+TA  - Nat Neurosci
+JT  - Nature neuroscience
+JID - 9809671
+SB  - IM
+MH  - Adolescent
+MH  - Adult
+MH  - Brain Mapping/methods
+MH  - Cerebral Cortex/anatomy & histology/*physiology
+MH  - Cues
+MH  - Evoked Potentials/physiology
+MH  - Humans
+MH  - Memory/*physiology
+MH  - Neuropsychological Tests/statistics & numerical data
+MH  - Pattern Recognition, Visual/*physiology
+MH  - Photic Stimulation/methods
+MH  - Psychomotor Performance/*physiology
+MH  - Reaction Time/physiology
+MH  - Verbal Behavior/physiology
+EDAT- 2000/12/02 11:00
+MHDA- 2001/05/01 10:01
+CRDT- 2000/12/02 11:00
+PHST- 2000/12/02 11:00 [pubmed]
+PHST- 2001/05/01 10:01 [medline]
+PHST- 2000/12/02 11:00 [entrez]
+AID - 10.1038/81851 [doi]
+PST - ppublish
+SO  - Nat Neurosci. 2000 Dec;3(12):1316-21. doi: 10.1038/81851.
+
+ 
+ 
+ 
+   11100153   2001  04  26    2007  11  14     1097-6256   3  12   2000  Dec    Nature neuroscience  Nat Neurosci   Neural events that underlie remembering something that never happened.   1316  1321  1316-21    We induced people to experience a false-memory illusion by first asking them to visualize common objects when cued with the corresponding word; on some trials, a photograph of the object was presented 1800 ms after the cue word. We then tested their memory for the photographs. Posterior brain potentials in response to words at encoding were more positive if the corresponding object was later falsely remembered as a photograph. Similar brain potentials during the memory test were more positive for true than for false memories. These results implicate visual imagery in the generation of false memories and provide neural correlates of processing differences between true and false memories.     Gonsalves  B  B   Department of Psychology, Northwestern University, 2029 Sheridan Road, Evanston, Illinois 60208-2710, USA.     Paller  K A  KA    eng    NS34639  NS  NINDS NIH HHS  United States     Journal Article  Research Support, U.S. Gov't, P.H.S.     United States  Nat Neurosci  9809671  1097-6256   IM    Adolescent    Adult    Brain Mapping  methods    Cerebral Cortex  anatomy &amp; histology  physiology    Cues    Evoked Potentials  physiology    Humans    Memory  physiology    Neuropsychological Tests  statistics &amp; numerical data    Pattern Recognition, Visual  physiology    Photic Stimulation  methods    Psychomotor Performance  physiology    Reaction Time  physiology    Verbal Behavior  physiology        2000  12  2  11  0    2001  5  1  10  1    2000  12  2  11  0    ppublish   11100153  10.1038/81851     

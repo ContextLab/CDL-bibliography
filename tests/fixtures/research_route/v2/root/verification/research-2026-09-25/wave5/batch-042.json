@@ -1,0 +1,98 @@
+[
+ {
+  "key": "KingEtal11",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21917777&retmode=xml",
+   "quote": "Responsive cortical stimulation for the treatment of medically intractable partial epilepsy.",
+   "why": "Same title (medically), Neurology 77(13):1295-1304, 2011; the cited author list is the study-group investigator list."
+  },
+  "fields": {
+   "author": {
+    "status": "corrected",
+    "value": "M J Morrell and {RNS System in Epilepsy Study Group}",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21917777&retmode=xml",
+      "quote": "<LastName>Morrell</LastName><ForeName>Martha J</ForeName>"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21917777&retmode=xml",
+      "quote": "<CollectiveName>RNS System in Epilepsy Study Group</CollectiveName>"
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Responsive cortical stimulation for the treatment of medically intractable partial epilepsy",
+    "evidence": [
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21917777&retmode=xml",
+      "quote": "Responsive cortical stimulation for the treatment of medically intractable partial epilepsy."
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Neurology",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1212/wnl.0b013e3182302056",
+      "quote": "\"container-title\":[\"Neurology\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2011",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1212/wnl.0b013e3182302056",
+      "quote": "\"published-print\":{\"date-parts\":[[2011,9,27]]}"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "77",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1212/wnl.0b013e3182302056",
+      "quote": "\"volume\":\"77\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "13",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1212/wnl.0b013e3182302056",
+      "quote": "\"issue\":\"13\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "1295--1304",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1212/wnl.0b013e3182302056",
+      "quote": "\"page\":\"1295-1304\""
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1212/wnl.0b013e3182302056",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1212/wnl.0b013e3182302056",
+      "quote": "\"DOI\":\"10.1212\\/wnl.0b013e3182302056\""
+     }
+    ]
+   }
+  },
+  "notes": "Author: the paper is by M J Morrell on behalf of the RNS System in Epilepsy Study Group (PubMed AuthorList = Morrell + collective name; Crossref = Morrell only). The cited 37 names (King-Stephens ... Morrell, with \"Salanova\" lacking initials) are PubMed's InvestigatorList, not the byline. Group-author form follows LantEtal26 ({Canadian Sleep Research Consortium}). Title medical -> medically. Added DOI. KEY: first author changes, so key becomes Morr11 (sole person author) or MorrRNS11 if the group counts as a second author; neither exists in cdl.bib; no other copy of this work found."
+ }
+]
