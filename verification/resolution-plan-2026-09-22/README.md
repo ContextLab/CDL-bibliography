@@ -278,3 +278,4 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - (default) Offset digital-edition pagination in Crossref (AllpEtal94 411–442 vs print 421–452): a different edition; the print edition's pages win.
 - (default) Locators (journal/volume/pages/year) and title point to different works by the same authors: the locators win (the work actually at that location), with the title corrected to it; if the authors don't match either work, drop.
 - Open (single entry, kept as held for the user): SvenEtal24 third author printed with a family name written as initials ('Hoang NT').
+- (default) A DOI that doi.org registers and the publisher's own article page prints (citation_doi), but that Crossref's API lacks (another agency or a lapsed deposit): keep it; the publisher page stands in for the missing registry title (McCaEtal06, 10.1609/aimag.v27i4.1904).
