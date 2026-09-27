@@ -2414,6 +2414,10 @@
      {
       "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Davida%22%20AND%20identifier%3Amitencyclopediao0000unse",
       "quote": "Teller  and  John  Palmer"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=Teller%20AND%20identifier%3Amitencyclopediao0000unse",
+      "quote": "D.  Y.  (1997).  First  glances"
      }
     ],
     "decision": "resolution batch-18"
@@ -2445,6 +2449,24 @@
     "decision": "resolution batch-18"
    },
    {
+    "field": "pages",
+    "current": null,
+    "proposed": "691--692",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Qualia%20693%22%20AND%20identifier%3Amitencyclopediao0000unse",
+      "quote": "Psychophysics  691"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Qualia%20693%22%20AND%20identifier%3Amitencyclopediao0000unse",
+      "quote": "Qualia  693",
+      "role": "next_start"
+     }
+    ],
+    "decision": "resolution batch-18"
+   },
+   {
     "field": "title",
     "current": "Psychophysics, {MIT} encyclopedia of cognitive science",
     "proposed": "Psychophysics",
@@ -2456,40 +2478,47 @@
      }
     ],
     "decision": "resolution batch-18"
+   },
+   {
+    "field": "year",
+    "current": "1998",
+    "proposed": "1999",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=99011115&maximumRecords=1&recordSchema=marcxml",
+      "quote": "<subfield code=\"b\">MIT Press,</subfield>\n    <subfield code=\"c\">c1999.</subfield>"
+     }
+    ],
+    "decision": "resolution batch-18"
    }
   ],
   "removals": {},
   "key_plan": {
    "current_key": "TellPalm98",
-   "target_base": "TellPalm98",
+   "target_base": "TellPalm99",
    "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
    "new_key": "TellPalm99",
-   "rename_reason": "resolution (batch-18)",
-   "resolution": "resolution (batch-18): key TellPalm99"
+   "resolution": "resolution (batch-18): key TellPalm99 confirmed"
   },
   "flags": [
    {
-    "code": "resolution_quote_unverified",
-    "field": "year",
-    "detail": "year = '1999': quote 'MIT Press,' at http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=99011115&maximumRecords=1&recordSchema=marcxml: value words ['1999'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "pages",
-    "detail": "pages = '691--692': quote 'Qualia  693' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Qualia%20693%22%20AND%20identifier%3Amitencyclopediao0000unse: value words ['691', '692'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
-    "code": "resolution_decision",
-    "field": "ENTRYTYPE, author, booktitle, editor, title",
-    "detail": "resolution 'apply' (batch-18): ENTRYTYPE = 'incollection'; author = 'D Y Teller and J Palmer'; booktitle = 'The {MIT} Encyclopedia of the Cognitive Sciences'; editor = 'R A Wilson and F C Keil'; title = 'Psychophysics'",
+    "detail": "pages = '691--692': end page = next item's printed start - 1 (user rule); applied",
     "action": "applied"
    },
    {
-    "code": "unverified_suggestions",
-    "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): year='1999'",
+    "code": "resolution_decision",
+    "field": "ENTRYTYPE, author, booktitle, editor, pages, title, year",
+    "detail": "resolution 'apply' (batch-18): ENTRYTYPE = 'incollection'; author = 'D Y Teller and J Palmer'; booktitle = 'The {MIT} Encyclopedia of the Cognitive Sciences'; editor = 'R A Wilson and F C Keil'; pages = '691--692'; title = 'Psychophysics'; year = '1999'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "TellPalm98 -> TellPalm99 (key does not follow the corrected metadata)",
     "action": "flag"
    },
    {
@@ -2501,7 +2530,7 @@
    {
     "code": "resolution_decision",
     "field": "key",
-    "detail": "resolution (batch-18): TellPalm98 -> TellPalm99",
+    "detail": "resolution (batch-18): TellPalm98 -> TellPalm99, as planned",
     "action": "applied"
    }
   ],
@@ -2511,16 +2540,12 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-18",
-   "notes": "The work is the 'Psychophysics' entry of MITECS (Internet Archive full-text of the printed book: contents 'Psychophysics 691' then 'Qualia 693'; entry signed '— Davida Teller and John Palmer'). @incollection per house form, year c1999 per LoC 99011115 (the '$c c1999' subfield follows 'MIT Press,'); end page = next entry's start - 1 (rule). Teller's middle initial Y from her own work cited in the same volume ('Teller, D. Y. (1997). First glances'). Key follows year: TellPalm99, free in HEAD.",
-   "residue": [
-    "year: quote unverified (value words ['1999'] are not in the quote)",
-    "pages: quote unverified (value words ['691', '692'] are not in the quote)",
-    "key TellPalm99 does not follow the ID rule for the corrected metadata (TellPalm98)"
-   ],
+   "notes": "The work is the 'Psychophysics' entry of MITECS (Internet Archive full-text of the printed book: contents 'Psychophysics 691' then 'Qualia 693'; entry signed '— Davida Teller and John Palmer'). @incollection per house form, year c1999 per LoC 99011115 (the '$c c1999' subfield follows 'MIT Press,'); end page = next entry's start - 1 (rule). Teller's middle initial Y from her own work cited in the same volume ('Teller, D. Y. (1997). First glances'). Key follows year: TellPalm99, free in HEAD. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Whor56",
@@ -2579,6 +2604,19 @@
     "proposed": "article",
     "source": "resolution",
     "evidence": [],
+    "decision": "resolution batch-18"
+   },
+   {
+    "field": "author",
+    "current": "J C Raven and J E Raven and J H Court",
+    "proposed": "L S Penrose and J C Raven",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1111/j.2044-8341.1936.tb00690.x",
+      "quote": "ICATION\"],\"prefix\":\"10.1111\",\"volume\":\"16\",\"author\":[{\"given\":\"L. S.\",\"family\":\"PENROSE\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"J. C.\",\"family\":\"RAVEN\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
+     }
+    ],
     "decision": "resolution batch-18"
    },
    {
@@ -2679,35 +2717,23 @@
   },
   "key_plan": {
    "current_key": "RaveEtal98",
-   "target_base": "RaveEtal36",
+   "target_base": "PenrRave36",
    "action": "rename",
-   "rename_reason": "resolution (batch-18)",
+   "rename_reason": "key does not follow the corrected metadata",
    "new_key": "PenrRave36",
-   "resolution": "resolution (batch-18): key PenrRave36"
+   "resolution": "resolution (batch-18): key PenrRave36 confirmed"
   },
   "flags": [
    {
-    "code": "resolution_quote_unverified",
-    "field": "author",
-    "detail": "author = 'L S Penrose and J C Raven': quote '\"given\":\"J. C.\",\"family\":\"RAVEN\"' at https://api.crossref.org/works/10.1111/j.2044-8341.1936.tb00690.x: value words ['penrose'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "resolution_decision",
-    "field": "ENTRYTYPE, address, doi, journal, number, pages, publisher, title, volume, year",
-    "detail": "resolution 'apply' (batch-18): ENTRYTYPE = 'article'; doi = '10.1111/j.2044-8341.1936.tb00690.x'; journal = 'British Journal of Medical Psychology'; number = '2'; pages = '97--104'; title = 'A new series of perceptual tests: preliminary communication'; volume = '16'; year = '1936'; removed publisher; removed address",
+    "field": "ENTRYTYPE, address, author, doi, journal, number, pages, publisher, title, volume, year",
+    "detail": "resolution 'apply' (batch-18): ENTRYTYPE = 'article'; author = 'L S Penrose and J C Raven'; doi = '10.1111/j.2044-8341.1936.tb00690.x'; journal = 'British Journal of Medical Psychology'; number = '2'; pages = '97--104'; title = 'A new series of perceptual tests: preliminary communication'; volume = '16'; year = '1936'; removed publisher; removed address",
     "action": "applied"
    },
    {
     "code": "key_rename",
     "field": "key",
-    "detail": "RaveEtal98 -> RaveEtal36 (key does not follow the corrected metadata)",
-    "action": "flag"
-   },
-   {
-    "code": "unverified_suggestions",
-    "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): author='J Raven and J C Raven and J H Court'",
+    "detail": "RaveEtal98 -> PenrRave36 (key does not follow the corrected metadata)",
     "action": "flag"
    },
    {
@@ -2719,7 +2745,7 @@
    {
     "code": "resolution_decision",
     "field": "key",
-    "detail": "resolution (batch-18): RaveEtal98 -> PenrRave36 (the post-check planned rename RaveEtal36)",
+    "detail": "resolution (batch-18): RaveEtal98 -> PenrRave36, as planned",
     "action": "applied"
    }
   ],
@@ -2752,14 +2778,11 @@
    "decision": "apply",
    "batch": "batch-18",
    "notes": "Reconciled (test/manual default): the cited 1998 Oxford Psychologists Press 'Progressive matrices' manual has no catalogue record reachable (LoC, Open Library, IA, Crossref), and which 1998 manual section was meant cannot be told. Per the default for a cited test/manual edition with no record, cite the original article that introduced the test: Penrose and Raven (1936), Br J Med Psychol 16(2):97-104 (Crossref). PsycTESTS 10.1037/t07027-000 ('Raven Standard Progressive Matrices', 1936) confirms the test dates from 1936. New key PenrRave36 (not in HEAD, not planned in any batch).",
-   "residue": [
-    "author: quote unverified (value words ['penrose'] are not in the quote)",
-    "key PenrRave36 does not follow the ID rule for the corrected metadata (RaveEtal36)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Buzs06",
@@ -2838,28 +2861,30 @@
    "ENTRYTYPE": "book",
    "ID": "ConwEtal07"
   },
-  "final_changes": [],
+  "final_changes": [
+   {
+    "field": "editor",
+    "current": null,
+    "proposed": "A R A Conway and C Jarrold and M J Kane and A Miyake and J N Towse",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.001.0001",
+      "quote": "mic.oup.com\\/book\\/25561\"}},\"subtitle\":[],\"editor\":[{\"given\":\"Andrew\",\"family\":\"Conway\",\"sequence\":\"first\",\"affiliation\":[{\"name\":\"University of Princeton\"}],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"Chris\",\"family\":\"Jarrold\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"Fylde College, Bristol University\"}],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"Michael\",\"family\":\"Kane\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"University of North Carolina at Greensboro\"}],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"Akira\",\"family\":\"Miyake\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"University of Colorado at Boulder\"}],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"John\",\"family\":\"Towse\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"University"
+     }
+    ],
+    "decision": "resolution batch-18"
+   }
+  ],
   "removals": {
    "author": "researcher asked to remove it (current 'A Conway and C Jarrold and M Kane and A Miyake and J Towse')"
   },
   "key_plan": {
    "current_key": "ConwEtal07",
-   "target_base": null,
-   "action": "no_key_rule"
+   "target_base": "ConwEtal07",
+   "action": "keep"
   },
   "flags": [
-   {
-    "code": "resolution_quote_unverified",
-    "field": "editor",
-    "detail": "editor = 'A R A Conway and C Jarrold and M J Kane and A Miyake and J N Towse': quote 'Conway, Andrew R. A.' at http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2006009858&maximumRecords=1&recordSchema=marcxml: value words ['jarrold', 'kane', 'miyake', 'towse'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
-    "code": "resolution_quote_unverified",
-    "field": "year",
-    "detail": "year = '2007': quote 'Oxford University Press,' at http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2006009858&maximumRecords=1&recordSchema=marcxml: value words ['2007'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
    {
     "code": "print_year_conflict",
     "field": "year",
@@ -2868,8 +2893,8 @@
    },
    {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-18): the post-check's final changes stand",
+    "field": "editor, year",
+    "detail": "resolution 'apply' (batch-18): editor = 'A R A Conway and C Jarrold and M J Kane and A Miyake and J N Towse'; year = '2007'",
     "action": "applied"
    },
    {
@@ -2886,14 +2911,11 @@
    "decision": "apply",
    "batch": "batch-18",
    "notes": "Edited volume: names move to editor (post-check removes author). Year stays 2007: LoC 2006009858 hardback '$c 2007'; Crossref's 2008 is the paperback. Kane's J and Towse's N from their own records (Towse's from his chapter in this very volume), per the most-complete-name rule.",
-   "residue": [
-    "editor: quote unverified (value words ['jarrold', 'kane', 'miyake', 'towse'] are not in the quote)",
-    "year: quote unverified (value words ['2007'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Este94",
@@ -3412,8 +3434,14 @@
     "field": "title",
     "current": "Neuroeconomics: decision making and the brain",
     "proposed": "Mechanisms for stochastic decision making in the primate frontal cortex: single-neuron recording and circuit modeling",
-    "source": "postcheck",
-    "evidence": [],
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://www.cns.nyu.edu/wanglab/publications/pdf/neuroeconomics_chap.pdf",
+      "quote": "31\n      Mechanisms for Stochastic Decision Making\n     in the Primate Frontal Cortex: Single-neuron\n            Recording and Circuit Modeling"
+     }
+    ],
+    "decision": "resolution batch-18",
     "reviewer": "agree"
    },
    {
@@ -3450,15 +3478,9 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "title",
-    "detail": "title = 'Mechanisms for stochastic decision making in the primate frontal cortex: single-neuron recording and circuit modeling': quote 'in the Primate Frontal Cortex: Single-neuron' at https://www.cns.nyu.edu/wanglab/publications/pdf/neuroeconomics_chap.pdf: value words ['mechanisms', 'stochastic', 'decision', 'making', 'recording', 'circuit', 'modeling'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "resolution_decision",
-    "field": "year",
-    "detail": "resolution 'apply' (batch-18): year = '2009'",
+    "field": "title, year",
+    "detail": "resolution 'apply' (batch-18): title = 'Mechanisms for stochastic decision making in the primate frontal cortex: single-neuron recording and circuit modeling'; year = '2009'",
     "action": "applied"
    },
    {
@@ -3503,9 +3525,7 @@
    "decision": "apply",
    "batch": "batch-18",
    "notes": "Printed chapter PDF (Wang lab copy of the Academic Press chapter 31, p. 481) prints the full title 'Mechanisms for Stochastic Decision Making / in the Primate Frontal Cortex: Single-neuron / Recording and Circuit Modeling' and '© 2009, Elsevier Inc.'; Crossref gives only the main title. Key follows 2009: LeeWang09, free in HEAD.",
-   "residue": [
-    "title: quote unverified (value words ['mechanisms', 'stochastic', 'decision', 'making', 'recording', 'circuit', 'modeling'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -3529,7 +3549,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "SiegWhit75",
@@ -3696,15 +3716,9 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "pages",
-    "detail": "pages = '460--468': quote '<meta name=\"citation_firstpage\" content=\"460\">' at https://web.archive.org/web/20160331161552/http://papers.nips.cc/paper/5855-a-reduced-dimension-fmri-shared-response-model: value words ['468'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "resolution_decision",
-    "field": "ENTRYTYPE",
-    "detail": "resolution 'apply' (batch-18): ENTRYTYPE = 'inproceedings'",
+    "field": "ENTRYTYPE, pages",
+    "detail": "resolution 'apply' (batch-18): ENTRYTYPE = 'inproceedings'; pages = '460--468'",
     "action": "applied"
    }
   ],
@@ -3715,13 +3729,11 @@
    "decision": "apply",
    "batch": "batch-18",
    "notes": "Pages 460--468 as printed by the NeurIPS Foundation's own proceedings page (archived papers.nips.cc record: citation_firstpage 460, citation_lastpage 468, 'Advances in Neural Information Processing Systems 28 (NIPS 2015)'); the official proceedings site beats DBLP (NeurIPS default; same source as SanbGrif08 in batch 01). The current site's BibTeX prints 'pages = {}'. Other post-check changes apply. RECONCILED 2026-09-26 (NeurIPS entry type): @incollection -> @inproceedings with booktitle 'Advances in Neural Information Processing Systems', the form every other NeurIPS/NIPS entry in the resolution batches ends with (batch 16 AlvaEtal05, batch 17 JainHuth18; the wave-2 post-check converts the batch-01 @article entries; batch 24 ParkPill12, LiuEtal18, LiuWang16, RaoHowa08 are @inproceedings, VaswEtal17 @conference -> @inproceedings). Editor, publisher and volume stay.",
-   "residue": [
-    "pages: quote unverified (value words ['468'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MozeEtal09",
@@ -3785,15 +3797,9 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "pages",
-    "detail": "pages = '1321--1329': quote '<meta name=\"citation_firstpage\" content=\"1321\">' at https://web.archive.org/web/20150523062030/http://papers.nips.cc/paper/3731-predicting-the-optimal-spacing-of-study-a-multiscale-context-model-of-memory: value words ['1329'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "resolution_decision",
-    "field": "ENTRYTYPE",
-    "detail": "resolution 'apply' (batch-18): ENTRYTYPE = 'inproceedings'",
+    "field": "ENTRYTYPE, pages",
+    "detail": "resolution 'apply' (batch-18): ENTRYTYPE = 'inproceedings'; pages = '1321--1329'",
     "action": "applied"
    }
   ],
@@ -3804,13 +3810,11 @@
    "decision": "apply",
    "batch": "batch-18",
    "notes": "Pages 1321--1329 as printed by the NeurIPS Foundation's archived proceedings page ('Advances in Neural Information Processing Systems 22 (NIPS 2009)'); official site beats DBLP (NeurIPS default). Author order stays as in HEAD: the paper PDF byline reads 'Michael C. Mozer, Harold Pashler, Nicholas Cepeda, Robert Lindsey, & Ed Vul' (the site's metadata lists Mozer last, but the printed paper wins). Other post-check changes apply. RECONCILED 2026-09-26 (NeurIPS entry type): @incollection -> @inproceedings with booktitle 'Advances in Neural Information Processing Systems', the form every other NeurIPS/NIPS entry in the resolution batches ends with (batch 16 AlvaEtal05, batch 17 JainHuth18; the wave-2 post-check converts the batch-01 @article entries; batch 24 ParkPill12, LiuEtal18, LiuWang16, RaoHowa08 are @inproceedings, VaswEtal17 @conference -> @inproceedings). Editor, publisher and volume stay.",
-   "residue": [
-    "pages: quote unverified (value words ['1329'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "SkagEtal93",
@@ -3847,6 +3851,10 @@
      {
       "url": "https://papers.nips.cc/paper_files/paper/1992/hash/5dd9db5e033da9c6fb5ba83c7a7ebea9-Abstract.html",
       "quote": "<meta name=\"citation_publication_date\" content=\"1992\">"
+     },
+     {
+      "url": "https://web.archive.org/web/20160411054441/http://papers.nips.cc/paper/671-an-information-theoretic-approach-to-deciphering-the-hippocampal-code",
+      "quote": "Advances in Neural Information Processing Systems 5 (NIPS 1992)"
      }
     ],
     "decision": "resolution batch-18"
@@ -3875,12 +3883,6 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "pages",
-    "detail": "pages = '1030--1037': quote '<meta name=\"citation_firstpage\" content=\"1030\">' at https://web.archive.org/web/20160411054441/http://papers.nips.cc/paper/671-an-information-theoretic-approach-to-deciphering-the-hippocampal-code: value words ['1037'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "print_year_conflict",
     "field": "year",
     "detail": "notes give a print date ['1993'] but the year is 1992: print year wins",
@@ -3888,8 +3890,8 @@
    },
    {
     "code": "resolution_decision",
-    "field": "ENTRYTYPE, address, year",
-    "detail": "resolution 'apply' (batch-18): ENTRYTYPE = 'inproceedings'; address = 'San Mateo, {CA}'; year = '1992'",
+    "field": "ENTRYTYPE, address, pages, year",
+    "detail": "resolution 'apply' (batch-18): ENTRYTYPE = 'inproceedings'; address = 'San Mateo, {CA}'; pages = '1030--1037'; year = '1992'",
     "action": "applied"
    },
    {
@@ -3918,13 +3920,11 @@
    "decision": "apply",
    "batch": "batch-18",
    "notes": "Reconciled: conference-year default for NeurIPS/NIPS proceedings -> year 1992 (NIPS 5, printed as 'Advances in Neural Information Processing Systems 5 (NIPS 1992)'; current NeurIPS site citation_publication_date 1992), not the 1993 Morgan Kaufmann print year; key SkagEtal92 (free in HEAD and in all batches). Pages 1030--1037 from the official archived NeurIPS page (beats DBLP). Address San Mateo, CA from the printed volume (IA full text). All four authors incl. Etan J. Markus are on the paper PDF byline (the site metadata omits Markus). RECONCILED 2026-09-26 (NeurIPS entry type): @incollection -> @inproceedings with booktitle 'Advances in Neural Information Processing Systems', the form every other NeurIPS/NIPS entry in the resolution batches ends with (batch 16 AlvaEtal05, batch 17 JainHuth18; the wave-2 post-check converts the batch-01 @article entries; batch 24 ParkPill12, LiuEtal18, LiuWang16, RaoHowa08 are @inproceedings, VaswEtal17 @conference -> @inproceedings). Editor, publisher and volume stay.",
-   "residue": [
-    "pages: quote unverified (value words ['1037'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "HalgEtal91",
@@ -4095,6 +4095,10 @@
      {
       "url": "https://link.springer.com/chapter/10.1007/978-1-4684-4178-9_11",
       "quote": "citation_title\" content=\"Aging and Cognitive Deficits"
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9_11",
+      "quote": "\"title\":[\"Aging and Cognitive Deficits\"]"
      }
     ],
     "decision": "resolution batch-18"
@@ -4267,7 +4271,7 @@
    {
     "code": "resolution_quote_unverified",
     "field": "pages",
-    "detail": "pages = '635--702': quote 'Page 635' at https://books.google.com/books?id=1LvJ4x3QCsYC&q=%22Life+and+Death%22: fetch failed: HTTPError: HTTP Error 429: Too Many Requests; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "detail": "pages = '635--702': quote 'Page 635' at https://books.google.com/books?id=1LvJ4x3QCsYC&q=%22Life+and+Death%22: fetch failed: HTTPError: HTTP Error 429: Too Many Requests (https://books.google.com/books?id=1LvJ4x3QCsYC&q=%22Life+and+Death%22); applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
     "action": "applied"
    },
    {
@@ -4470,7 +4474,56 @@
    "ENTRYTYPE": "incollection",
    "ID": "CraiRabi84"
   },
-  "final_changes": [],
+  "final_changes": [
+   {
+    "field": "pages",
+    "current": "471--499",
+    "proposed": "471--500",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Introduction%20472%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+      "quote": "and  Jan  C.  Rabinowitz .\\nAbstract  471"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Abstract%20%20501%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+      "quote": "Abstract  501}}} Introduction  501",
+      "role": "next_start"
+     }
+    ],
+    "decision": "resolution batch-18"
+   },
+   {
+    "field": "title",
+    "current": "Age differences in the acquisition and use of verbal information",
+    "proposed": "Age differences in the acquisition and use of verbal information: a tutorial review",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Age%20Differences%20in%20the%20Acquisition%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+      "quote": "29.  {{{Age  Differences  in  the  Acquisition}}}  and  Use  of  Verbal Information"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Verbal%20Information%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+      "quote": "A  Tutorial  Review\\nFergus  I.  M.  Craik"
+     }
+    ],
+    "decision": "resolution batch-18"
+   },
+   {
+    "field": "volume",
+    "current": "X",
+    "proposed": "10",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://archive.org/metadata/attentionperform0000unse_t7d8/metadata/description",
+      "quote": "of the Tenth International Symposium on Attention and Performance, Venlo, The Netherlands"
+     }
+    ],
+    "decision": "resolution batch-18"
+   }
+  ],
   "removals": {},
   "key_plan": {
    "current_key": "CraiRabi84",
@@ -4479,27 +4532,15 @@
   },
   "flags": [
    {
-    "code": "resolution_quote_unverified",
-    "field": "title",
-    "detail": "title = 'Age differences in the acquisition and use of verbal information: a tutorial review': quote 'A  Tutorial  Review\\\\nFergus  I.  M.  Craik' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Verbal%20Information%22%20AND%20identifier%3Aattentionperform0000unse_t7d8: value words ['age', 'differences', 'acquisition', 'use', 'verbal', 'information'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "pages",
-    "detail": "pages = '471--500': quote 'Abstract  501}}} Introduction  501' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Abstract%20%20501%22%20AND%20identifier%3Aattentionperform0000unse_t7d8: value words ['471', '500'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
-    "code": "resolution_quote_unverified",
-    "field": "volume",
-    "detail": "volume = '10': quote 'Attention and performance X' at https://archive.org/metadata/attentionperform0000unse_t7d8/metadata/title: value words ['10'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "pages = '471--500': end page = next item's printed start - 1 (user rule); applied",
+    "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-18): the post-check's final changes stand",
+    "field": "pages, title, volume",
+    "detail": "resolution 'apply' (batch-18): pages = '471--500'; title = 'Age differences in the acquisition and use of verbal information: a tutorial review'; volume = '10'",
     "action": "applied"
    },
    {
@@ -4521,16 +4562,12 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-18",
-   "notes": "Printed volume (Internet Archive full text of Attention and Performance X, Erlbaum 1984): chapter heading 'Age Differences in the Acquisition and Use of Verbal Information / A Tutorial Review / Fergus I. M. Craik and Jan C. Rabinowitz', contents 'Abstract 471'; next chapter (Cohen and Faulkner) 'Abstract 501', so end page 500 by the next-item rule. Subtitle on its own line -> colon; roman volume X -> 10 (default). Title page imprint 'London Hillsdale'; address left as is.",
-   "residue": [
-    "title: quote unverified (value words ['age', 'differences', 'acquisition', 'use', 'verbal', 'information'] are not in the quote)",
-    "pages: quote unverified (value words ['471', '500'] are not in the quote)",
-    "volume: quote unverified (value words ['10'] are not in the quote)"
-   ],
+   "notes": "Printed volume (Internet Archive full text of Attention and Performance X, Erlbaum 1984): chapter heading 'Age Differences in the Acquisition and Use of Verbal Information / A Tutorial Review / Fergus I. M. Craik and Jan C. Rabinowitz', contents 'Abstract 471'; next chapter (Cohen and Faulkner) 'Abstract 501', so end page 500 by the next-item rule. Subtitle on its own line -> colon; roman volume X -> 10 (default). Title page imprint 'London Hillsdale'; address left as is. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2). Title: union of the contents line ('29. Age Differences in the Acquisition and Use of Verbal Information') and the chapter heading ('A Tutorial Review'). Volume 10: IA catalogue note 'Proceedings of the Tenth International Symposium on Attention and Performance' (the volume is 'Attention and performance X').",
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Dond69",
@@ -4717,6 +4754,10 @@
      {
       "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
       "quote": "\"page\":\"653-676\""
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Competition%20in%20Recovery%20of%20Function%22%20AND%20identifier%3Aattentionperform0000unse_r9p7",
+      "quote": "after Brain Damage 677"
      }
     ],
     "decision": "resolution batch-18"
@@ -4808,15 +4849,15 @@
   },
   "flags": [
    {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "pages",
-    "detail": "pages = '269--280': quote 'I.  {{{Introduction . 281}}}' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Introduction%20.%20281%22%20AND%20identifier%3Aattentionperform0000unse: value words ['269', '280'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "pages = '269--280': end page = next item's printed start - 1 (user rule); applied",
+    "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": "author, title",
-    "detail": "resolution 'apply' (batch-18): author = 'T Shallice'; title = 'On the contents of primary memory'",
+    "field": "author, pages, title",
+    "detail": "resolution 'apply' (batch-18): author = 'T Shallice'; pages = '269--280'; title = 'On the contents of primary memory'",
     "action": "applied"
    },
    {
@@ -4838,10 +4879,8 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-18",
-   "notes": "Printed Attention and Performance V (Academic Press 1975; Internet Archive full text): contents '18. On the contents of primary memory (T. Shallice) I. Introduction . 269'; the next chapter's Introduction is at 281, so 269--280 (next-item rule). HEAD values confirmed.",
-   "residue": [
-    "pages: quote unverified (value words ['269', '280'] are not in the quote)"
-   ],
+   "notes": "Printed Attention and Performance V (Academic Press 1975; Internet Archive full text): contents '18. On the contents of primary memory (T. Shallice) I. Introduction . 269'; the next chapter's Introduction is at 281, so 269--280 (next-item rule). HEAD values confirmed. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -4855,7 +4894,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "RaaiShif81b",
@@ -4884,7 +4923,7 @@
    {
     "code": "resolution_quote_unverified",
     "field": "pages",
-    "detail": "pages = '403--415': quote 'Page 403' at https://books.google.com/books?id=fTkQAQAAIAAJ&q=%22order+effects+in+recall%22: fetch failed: HTTPError: HTTP Error 429: Too Many Requests; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "detail": "pages = '403--415': quote 'Page 403' at https://books.google.com/books?id=fTkQAQAAIAAJ&q=%22order+effects+in+recall%22: fetch failed: HTTPError: HTTP Error 429: Too Many Requests (https://books.google.com/books?id=fTkQAQAAIAAJ&q=%22order+effects+in+recall%22); applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
     "action": "applied"
    },
    {
@@ -5079,6 +5118,10 @@
      {
       "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0038",
       "quote": "\"page\":\"611-654\""
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Interactive%20Networks%22%20AND%20identifier%3Aattentionperform0000atte_x7w3",
+      "quote": "Interactive  Networks}}}  655"
      }
     ],
     "decision": "resolution batch-18"
@@ -5173,6 +5216,24 @@
       "quote": "edited by Robert W. Keith."
      }
     ]
+   },
+   {
+    "field": "pages",
+    "current": "13--31",
+    "proposed": "13--32",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Chapter%203%22%20AND%20identifier%3Aaudiologyforphys0000unse",
+      "quote": "Speech Audiometry Jean H. Lovrinic, Ph.D. 13"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Chapter%203%22%20AND%20identifier%3Aaudiologyforphys0000unse",
+      "quote": "Diagnostic Audiometry Robert W. Keith, Ph.D. 33",
+      "role": "next_start"
+     }
+    ],
+    "decision": "resolution batch-18"
    }
   ],
   "removals": {},
@@ -5201,15 +5262,15 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "pages",
-    "detail": "pages = '13--32': quote 'Diagnostic Audiometry Robert W. Keith, Ph.D. 33' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Chapter%203%22%20AND%20identifier%3Aaudiologyforphys0000unse: value words ['13', '32'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "pages = '13--32': end page = next item's printed start - 1 (user rule); applied",
+    "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": "author, title",
-    "detail": "resolution 'apply' (batch-18): author = 'J H Lovrinic'; title = 'Pure tone and speech audiometry'",
+    "field": "author, pages, title",
+    "detail": "resolution 'apply' (batch-18): author = 'J H Lovrinic'; pages = '13--32'; title = 'Pure tone and speech audiometry'",
     "action": "applied"
    }
   ],
@@ -5219,14 +5280,12 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-18",
-   "notes": "Printed book (Internet Archive full text of Audiology for the Physician, Williams & Wilkins 1980): contents 'Chapter 2 Pure Tone and Speech Audiometry Jean H. Lovrinic, Ph.D. 13 / Chapter 3 Diagnostic Audiometry Robert W. Keith, Ph.D. 33', so pages 13--32 by the next-item rule (HEAD had 13--31). Editor R W Keith per post-check.",
-   "residue": [
-    "pages: quote unverified (value words ['13', '32'] are not in the quote)"
-   ],
+   "notes": "Printed book (Internet Archive full text of Audiology for the Physician, Williams & Wilkins 1980): contents 'Chapter 2 Pure Tone and Speech Audiometry Jean H. Lovrinic, Ph.D. 13 / Chapter 3 Diagnostic Audiometry Robert W. Keith, Ph.D. 33', so pages 13--32 by the next-item rule (HEAD had 13--31). Editor R W Keith per post-check. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Klee56",
@@ -7187,6 +7246,23 @@
       "quote": "\"DOI\":\"10.1016\\/b978-012370509-9.00185-6\""
      }
     ]
+   },
+   {
+    "field": "pages",
+    "current": null,
+    "proposed": "467--490",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "490 Associative Retrieval Processes in Episodic Memory"
+     },
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "Our power to remember this feature. 467 Author's personal copy"
+     }
+    ],
+    "decision": "resolution batch-19"
    }
   ],
   "removals": {},
@@ -7200,15 +7276,15 @@
   },
   "flags": [
    {
-    "code": "resolution_quote_unverified",
+    "code": "doi_record_conflict",
     "field": "pages",
-    "detail": "pages = '467--490': quote '490 Associative Retrieval Processes in Episodic Memory' at https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf: value words ['467'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "Crossref record of 10.1016/b978-012370509-9.00185-6 gives pages '1-24', proposal '467--490'",
+    "action": "flag"
    },
    {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-19): the post-check's final changes stand",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-19): pages = '467--490'",
     "action": "applied"
    },
    {
@@ -7257,14 +7333,12 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-19",
-   "notes": "Printed record wins over Crossref '1-24': the authors' copy of the Elsevier chapter carries page folios 467 (first page) and '490 Associative Retrieval Processes in Episodic Memory' (last), and Crossref's preceding chapter (Raaijmakers) ends at 466. Keeps suffix 'a' because HEAD has another KahaEtal08 (KahaEtal08b, the Psychological Review reply renamed from KahaEtal08c). Apply the post-check (DOI, pages).",
-   "residue": [
-    "pages: quote unverified (value words ['467'] are not in the quote)"
-   ],
+   "notes": "Printed record wins over Crossref '1-24': the authors' copy of the Elsevier chapter carries page folios 467 (first page) and '490 Associative Retrieval Processes in Episodic Memory' (last), and Crossref's preceding chapter (Raaijmakers) ends at 466. Keeps suffix 'a' because HEAD has another KahaEtal08 (KahaEtal08b, the Psychological Review reply renamed from KahaEtal08c). Apply the post-check (DOI, pages). EVIDENCE 2026-09-26 (several-quotes rule): pages evidence is several quotes from the same official record whose union prints every page number of the value.",
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "KahaEtal08b",
@@ -7728,15 +7802,9 @@
   },
   "flags": [
    {
-    "code": "resolution_quote_unverified",
-    "field": "author",
-    "detail": "author = 'R C Atkinson and J F Juola': quote 'James F. Juola' at https://escholarship.org/content/qt40x8f9s7/qt40x8f9s7.pdf: value words ['atkinson'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "resolution_decision",
-    "field": "editor, publisher",
-    "detail": "resolution 'apply' (batch-19): editor = 'D H Krantz and R C Atkinson and R D Luce and P Suppes'; publisher = 'W H Freeman'",
+    "field": "author, editor, publisher",
+    "detail": "resolution 'apply' (batch-19): author = 'R C Atkinson and J F Juola'; editor = 'D H Krantz and R C Atkinson and R D Luce and P Suppes'; publisher = 'W H Freeman'",
     "action": "applied"
    },
    {
@@ -7753,13 +7821,11 @@
    "decision": "apply",
    "batch": "batch-19",
    "notes": "Stanford IMSSS Technical Report 194 (eScholarship) prints 'SEARCH AND DECISION PROCESSES IN RECOGNITION MEMORY / Richard C. Atkinson ... James F. Juola' and 'To be pUblished in: Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.) Contemporary Developments in Mathematical Psychology'. LoC 73021887 prints only 'Krantz [and others]'; the full editor list is expanded per the 'and others' default (adds R D Luce). Book (Freeman, San Francisco, 1974) confirmed by LoC. RECONCILED 2026-09-26: Publisher 'Freeman' -> 'W H Freeman' as printed (LoC), the user's publisher-initials rule, matching PribEtal74 (batch 04, same book).",
-   "residue": [
-    "author: quote unverified (value words ['atkinson'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "RehmNaus90",
@@ -8151,21 +8217,15 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "author",
-    "detail": "author = 'B B Murdock': quote 'Implications for Other Models 63 {{{Final Remarks}}} 66\\n{{{Learning in a Distributed Memory Model}}} 69 Bennet B. Murdock, Jr' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Final%20Remarks%22%20%22Learning%20in%20a%20Distributed%20Memory%20Model%22: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "pages",
-    "detail": "pages = '69--106': quote '(TODAM) 81\\nApplications 88\\n{{{Summary 99}}}\\nApproach-Avoidance: {{{Return to Dynamic Decision}}} Behavior 107 James T.' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Return%20to%20Dynamic%20Decision%22%20%22Summary%2099%22: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "pages = '69--106': end page = next item's printed start - 1 (user rule); applied",
+    "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-20): the post-check's final changes stand",
+    "field": "author, pages",
+    "detail": "resolution 'apply' (batch-20): author = 'B B Murdock'; pages = '69--106'",
     "action": "applied"
    }
   ],
@@ -8175,11 +8235,8 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-20",
-   "notes": "Printed contents of the 1989 Erlbaum book (IA full-text search, item currentissuesinc0000tula): 'Learning in a Distributed Memory Model 69 Bennet B. Murdock, Jr'; next chapter (Townsend, Approach-Avoidance) starts at 107, so HEAD 69--106 is confirmed (next start - 1). Suffix Jr dropped (house rule). Apply the post-check booktitle (Tulane Flowerree Symposium).",
-   "residue": [
-    "author: quote unverified (quote not found at url)",
-    "pages: quote unverified (quote not found at url)"
-   ],
+   "notes": "Printed contents of the 1989 Erlbaum book (IA full-text search, item currentissuesinc0000tula): 'Learning in a Distributed Memory Model 69 Bennet B. Murdock, Jr'; next chapter (Townsend, Approach-Avoidance) starts at 107, so HEAD 69--106 is confirmed (next start - 1). Suffix Jr dropped (house rule). Apply the post-check booktitle (Tulane Flowerree Symposium). EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -8193,7 +8250,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Hiko89",
@@ -9737,6 +9794,10 @@
      {
       "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Human%20brain%20function%22%20Frackowiak%20Friston%20Frith%20Dolan%20%22Cathy%20J.%20Price%22",
       "quote": "Richard S.J. {{{Frackowiak}}} e Karl J. {{{Friston}}} | Christopher D. {{{Frith}}} * Raymond J. {{{Dolan}}} ¢ {{{Cathy J. Price}}} : Semir"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Human%20brain%20function%22%20Zeki%20Ashburner%20Penny%20Frackowiak",
+      "quote": "Cathy J. Price : Semir {{{Zeki}}} * John {{{Ashburner}}} ¢ William {{{Penny}}}\n{{{HUMAN BRAIN FUNCTION}}}\nSECOND EDITION\nDigitized"
      }
     ],
     "decision": "resolution batch-20"
@@ -9804,7 +9865,7 @@
    {
     "code": "resolution_quote_unverified",
     "field": "editor",
-    "detail": "editor = 'R S J Frackowiak and K J Friston and C D Frith and R J Dolan and C J Price and S Zeki and J Ashburner and W D Penny': quote 'Richard S.J. {{{Frackowiak}}} e Karl J. {{{Friston}}} | Christopher D. {{{Frith}}} * Raymond J. {{{Dolan}}} ¢ {{{Cathy J. Price}}} : Semir' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Human%20brain%20function%22%20Frackowiak%20Friston%20Frith%20Dolan%20%22Cathy%20J.%20Price%22: value words ['zeki', 'ashburner', 'penny'] are not in the quote; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
+    "detail": "editor = 'R S J Frackowiak and K J Friston and C D Frith and R J Dolan and C J Price and S Zeki and J Ashburner and W D Penny': quote 'Richard S.J. {{{Frackowiak}}} e Karl J. {{{Friston}}} | Christopher D. {{{Frith}}} * Raymond J. {{{Dolan}}} ¢ {{{Cathy J. Price}}} : Semir' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Human%20brain%20function%22%20Frackowiak%20Friston%20Frith%20Dolan%20%22Cathy%20J.%20Price%22: quote not found at url (https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Human%20brain%20function%22%20Zeki%20Ashburner%20Penny%20Frackowiak); applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
     "action": "applied"
    },
    {
@@ -10671,15 +10732,9 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "pages",
-    "detail": "pages = '103--189': quote ')  R.  D.  {{{Luce}}},  R.  R.  Bush,  \"and” E.  Galanter.  New  York:  Wiley,  1963,  {{{103—189}}}-\\nShepard,  R' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=Luce%20%22Detection%20and%20recognition%22%20%22103-189%22: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "resolution_decision",
-    "field": "title",
-    "detail": "resolution 'apply' (batch-20): title = 'Detection and recognition'",
+    "field": "pages, title",
+    "detail": "resolution 'apply' (batch-20): pages = '103--189'; title = 'Detection and recognition'",
     "action": "applied"
    },
    {
@@ -10702,9 +10757,7 @@
    "decision": "apply",
    "batch": "batch-20",
    "notes": "Vol. II of the Handbook itself cites 'Chapter 3, Vol. 1, by Luce'; OpenAlex index record: 'Detection and recognition', R. Duncan Luce, 1963, volume 1, pp. 103-189; DTIC ADA071806 reference list prints 'Luce, R. D. Detection and recognition. In Handbook of Mathematical ... New York: Wiley, 1963, 103-189'. Year 1963, volume 1, key Luce63 (free).",
-   "residue": [
-    "pages: quote unverified (quote not found at url)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -10720,7 +10773,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Crai77",
@@ -10799,6 +10852,10 @@
      {
       "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Weber%20and%20Bennet%20B.%20Murdock%22%20%22DOMAIN-SPECIFIC%20RESOURCES%20IN%22",
       "quote": "MEMORY\nElke  U.  {{{Weber  and  Bennet  B.  Murdock}}}  87\n7  {{{DOMAIN-SPECIFIC  RESOURCES  IN}}}  WORD RECOGNITION"
+     },
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Kim%20Kirsner%2C%20John%20C.%20Dunn%2C%20and%22%20Standen",
+      "quote": "RESOURCES  IN  WORD RECOGNITION\n{{{Kim  Kirsner,  John  C.  Dunn,  and}}}  Peter  {{{Standen}}}  99\n8  FLUENT  REPROCESSING"
      }
     ],
     "decision": "resolution batch-20"
@@ -10820,7 +10877,7 @@
    {
     "code": "resolution_quote_unverified",
     "field": "pages",
-    "detail": "pages = '87--98': quote 'MEMORY\\nElke  U.  {{{Weber  and  Bennet  B.  Murdock}}}  87\\n7  {{{DOMAIN-SPECIFIC  RESOURCES  IN}}}  WORD RECOGNITION' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Weber%20and%20Bennet%20B.%20Murdock%22%20%22DOMAIN-SPECIFIC%20RESOURCES%20IN%22: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
+    "detail": "pages = '87--98': quote 'MEMORY\\nElke  U.  {{{Weber  and  Bennet  B.  Murdock}}}  87\\n7  {{{DOMAIN-SPECIFIC  RESOURCES  IN}}}  WORD RECOGNITION' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Weber%20and%20Bennet%20B.%20Murdock%22%20%22DOMAIN-SPECIFIC%20RESOURCES%20IN%22: quote not found at url (https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Weber%20and%20Bennet%20B.%20Murdock%22%20%22DOMAIN-SPECIFIC%20RESOURCES%20IN%22); applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
     "action": "applied"
    },
    {
@@ -13212,6 +13269,24 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "pages",
+    "current": null,
+    "proposed": "35--58",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410603692&type=googlepdf",
+      "quote": "Distributed Associative Model (TODAM) 35"
+     },
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410603692&type=googlepdf",
+      "quote": "4. Models of Human Memory: A 30-Year Retrospective 59",
+      "role": "next_start"
+     }
+    ],
+    "decision": "resolution batch-21"
    }
   ],
   "removals": {},
@@ -13228,15 +13303,15 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "pages",
-    "detail": "pages = '35--58': quote 'Distributed Associative Model (TODAM) 35' at https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410603692&type=googlepdf: value words ['58'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "pages = '35--58': end page = next item's printed start - 1 (user rule); applied",
+    "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-21): the post-check's final changes stand",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-21): pages = '35--58'",
     "action": "applied"
    }
   ],
@@ -13246,10 +13321,8 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-21",
-   "notes": "Printed contents (T&F front-matter PDF of the Erlbaum 1999 book): chapter 3 starts at p. 35 and chapter 4 ('4. Models of Human Memory: A 30-Year Retrospective 59') at p. 59. No source prints the end page, so it is inferred as 58 (next item − 1, user rule). The e-book reissue agrees: Crossref 10.4324/9781410603692-9 gives 49-72 under a +14 front-matter offset, which is 24 pages = 35--58. The address change applies.",
-   "residue": [
-    "pages: quote unverified (value words ['58'] are not in the quote)"
-   ],
+   "notes": "Printed contents (T&F front-matter PDF of the Erlbaum 1999 book): chapter 3 starts at p. 35 and chapter 4 ('4. Models of Human Memory: A 30-Year Retrospective 59') at p. 59. No source prints the end page, so it is inferred as 58 (next item − 1, user rule). The e-book reissue agrees: Crossref 10.4324/9781410603692-9 gives 49-72 under a +14 front-matter offset, which is 24 pages = 35--58. The address change applies. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -13263,7 +13336,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "OhrtGron99",
@@ -13282,6 +13355,24 @@
    "ID": "OhrtGron99"
   },
   "final_changes": [
+   {
+    "field": "pages",
+    "current": "105--125",
+    "proposed": "105--126",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410603692&type=googlepdf",
+      "quote": "List-length Effect and Continuous Memory: Confounds and 105"
+     },
+     {
+      "url": "https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410603692&type=googlepdf",
+      "quote": "7. Cues and Codes in W orking Memory Tasks 127",
+      "role": "next_start"
+     }
+    ],
+    "decision": "resolution batch-21"
+   },
    {
     "field": "title",
     "current": "List-length effects and continuous memory: confounds and solutions",
@@ -13313,15 +13404,15 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "pages",
-    "detail": "pages = '105--126': quote 'List-length Effect and Continuous Memory: Confounds and 105' at https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781410603692&type=googlepdf: value words ['126'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "pages = '105--126': end page = next item's printed start - 1 (user rule); applied",
+    "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-21): the post-check's final changes stand",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-21): pages = '105--126'",
     "action": "applied"
    }
   ],
@@ -13331,14 +13422,12 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-21",
-   "notes": "Printed contents: chapter 6 starts at p. 105 and chapter 7 ('7. Cues and Codes in Working Memory Tasks 127') at p. 127. The end page is inferred as 126 (next item − 1, user rule), replacing HEAD's unconfirmed 125. The e-book reissue agrees: Crossref 10.4324/9781410603692-12 gives 119-140 under the +14 offset, 22 pages = 105--126. The title fix (singular 'effect') applies.",
-   "residue": [
-    "pages: quote unverified (value words ['126'] are not in the quote)"
-   ],
+   "notes": "Printed contents: chapter 6 starts at p. 105 and chapter 7 ('7. Cues and Codes in Working Memory Tasks 127') at p. 127. The end page is inferred as 126 (next item − 1, user rule), replacing HEAD's unconfirmed 125. The e-book reissue agrees: Crossref 10.4324/9781410603692-12 gives 119-140 under the +14 offset, 22 pages = 105--126. The title fix (singular 'effect') applies. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Tulv72",
@@ -13433,15 +13522,15 @@
   },
   "flags": [
    {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "pages",
-    "detail": "pages = '365--422': quote 'Processing 365 M. I. JORDAN 10 The Logic of Activation Functions 423' at https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22The%20Logic%20of%20Activation%20Functions%22&hits_per_page=50: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "pages = '365--422': end page = next item's printed start - 1 (user rule); applied",
+    "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": "booktitle, editor",
-    "detail": "resolution 'apply' (batch-21): booktitle = 'Parallel Distributed Processing: Explorations in the Microstructure of Cognition'; removed editor",
+    "field": "booktitle, editor, pages",
+    "detail": "resolution 'apply' (batch-21): booktitle = 'Parallel Distributed Processing: Explorations in the Microstructure of Cognition'; pages = '365--422'; removed editor",
     "action": "applied"
    },
    {
@@ -13457,10 +13546,8 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-21",
-   "notes": "Contents of PDP vol. 1 (IA paralleldistribu00rume): '9 An Introduction to Linear Algebra in Parallel Distributed Processing 365 / M. I. JORDAN / 10 The Logic of Activation Functions 423', so 365--422 (next − 1). This confirms the author and title. LoC 85024073 gives the set's title, 'v. 1. Foundations' (Volume 1 kept), and Rumelhart, McClelland and the PDP Research Group as AUTHORS. No record prints editors, so Editor is removed (unconfirmable optional field).",
-   "residue": [
-    "pages: quote unverified (quote not found at url)"
-   ],
+   "notes": "Contents of PDP vol. 1 (IA paralleldistribu00rume): '9 An Introduction to Linear Algebra in Parallel Distributed Processing 365 / M. I. JORDAN / 10 The Logic of Activation Functions 423', so 365--422 (next − 1). This confirms the author and title. LoC 85024073 gives the set's title, 'v. 1. Foundations' (Volume 1 kept), and Rumelhart, McClelland and the PDP Research Group as AUTHORS. No record prints editors, so Editor is removed (unconfirmable optional field). EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -13475,7 +13562,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Wall09",
@@ -15288,8 +15375,8 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['376']; failures [])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['376']; failures []); superseded by the resolution (batch-21)",
+    "action": "dropped"
    },
    {
     "code": "country_dropped",
@@ -15298,9 +15385,15 @@
     "action": "applied"
    },
    {
+    "code": "resolution_quote_unverified",
+    "field": "pages",
+    "detail": "pages = '376--377': quote '376 II. Lehrbuch zur Psychologie.' at https://archive.org/download/johannfriedrichh04unse_0/page/n403.jpg: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
+    "action": "applied"
+   },
+   {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-21): the post-check's final changes stand",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-21): pages = '376--377'",
     "action": "applied"
    },
    {
@@ -15322,10 +15415,8 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-21",
-   "notes": "Pages 376--377 confirmed in the Kehrbach vol. 4 scan (https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt). The running heads '... 3. Cap. 375' and '... 3. Cap. 377' bracket p. 376, whose even-page head 'II. Lehrbuch zur Psychologie.' has its numeral OCR'd as '1'. Post-check changes apply: year 1891, publisher Hermann Beyer & Söhne, address Langensalza (no unprinted country), booktitle Sämtliche Werke. Key Herb91.",
-   "residue": [
-    "quote_check_failed on pages is held and the resolution does not address it"
-   ],
+   "notes": "Pages 376--377 confirmed in the Kehrbach vol. 4 scan (https://archive.org/download/johannfriedrichh04unse_0/johannfriedrichh04unse_0_djvu.txt). The running heads '... 3. Cap. 375' and '... 3. Cap. 377' bracket p. 376, whose even-page head 'II. Lehrbuch zur Psychologie.' has its numeral OCR'd as '1'. Post-check changes apply: year 1891, publisher Hermann Beyer & Söhne, address Langensalza (no unprinted country), booktitle Sämtliche Werke. Key Herb91. EVIDENCE 2026-09-26: p. 376 folio transcribed from the scan page image (archive.org page n403, header '376 II. Lehrbuch zur Psychologie.'), which the djvu OCR misread.",
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -15347,7 +15438,7 @@
     "address": "Langensalza, Germany"
    }
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "BuzsEtal94",
@@ -16117,7 +16208,7 @@
    {
     "code": "resolution_quote_unverified",
     "field": "pages",
-    "detail": "pages = '557--566': quote '47 MANNING, KAHANA, AND NORMAN 557 48 UNCAPHER, GORDON, AND WAGNER 567' at https://books.google.com/books?vid=ISBN9780262027779&q=%22Anthony+D.+Wagner%22: value words ['566'] are not in the quote; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "detail": "pages = '557--566': quote '47 MANNING, KAHANA, AND NORMAN 557 48 UNCAPHER, GORDON, AND WAGNER 567' at https://books.google.com/books?vid=ISBN9780262027779&q=%22Anthony+D.+Wagner%22: quote not found at url (https://books.google.com/books?vid=ISBN9780262027779&q=%22role+of+context+in+episodic+memory%22); applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
     "action": "applied"
    },
    {
@@ -19564,15 +19655,15 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "pages",
-    "detail": "pages = '309--330': quote '17. Theoretical Issues in State Dependent Memory 331' at https://api.taylorfrancis.com/content/books/edit/download?identifierName=doi&identifierValue=10.4324/9781315801841&type=googlepdf: value words ['309', '330'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "pages = '309--330': end page = next item's printed start - 1 (user rule); applied",
+    "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-23): the post-check's final changes stand",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-23): pages = '309--330'",
     "action": "applied"
    }
   ],
@@ -19582,14 +19673,12 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-23",
-   "notes": "Contents page of the book (T&F facsimile) prints ch. 16 Bjork at 309 and the next chapter (17, Eich) at 331, so the end page is 330 by the next-start-minus-one rule; HEAD 309--330 is confirmed, no change.",
-   "residue": [
-    "pages: quote unverified (value words ['309', '330'] are not in the quote)"
-   ],
+   "notes": "Contents page of the book (T&F facsimile) prints ch. 16 Bjork at 309 and the next chapter (17, Eich) at 331, so the end page is 330 by the next-start-minus-one rule; HEAD 309--330 is confirmed, no change. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Thom72",
@@ -19952,6 +20041,19 @@
     ]
    },
    {
+    "field": "author",
+    "current": "P Goldman-Rakic",
+    "proposed": "P S Goldman-Rakic",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3318747/",
+      "quote": "cortex and its relevance to dementia. P S Goldman-Rakic Archives of gerontology and geriatrics Arch"
+     }
+    ],
+    "decision": "resolution batch-23"
+   },
+   {
     "field": "booktitle",
     "current": null,
     "proposed": "Handbook of Physiology, Section 1: the Nervous System, Volume {V}: Higher Functions of the Brain",
@@ -20039,15 +20141,9 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "author",
-    "detail": "author = 'P S Goldman-Rakic': quote '\"given\":\"Patricia S.\",\"family\":\"Goldman\\\\u2010Rakic\"' at https://api.crossref.org/works/10.1002/cphy.cp010509: value words ['goldman-rakic'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "resolution_decision",
-    "field": "editor",
-    "detail": "resolution 'apply' (batch-23): editor = 'F Plum'",
+    "field": "author, editor",
+    "detail": "resolution 'apply' (batch-23): author = 'P S Goldman-Rakic'; editor = 'F Plum'",
     "action": "applied"
    }
   ],
@@ -20078,13 +20174,11 @@
    "decision": "apply",
    "batch": "batch-23",
    "notes": "Crossref byline Patricia S. Goldman-Rakic (fuller name). Editor: the volume's editor as printed (multi-volume default) is Fred Plum alone; Mountcastle is a section editor, so he is dropped from Editor. Post-check type, title, booktitle, address, DOI and pages 373--417 stand.",
-   "residue": [
-    "author: quote unverified (value words ['goldman-rakic'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "EngeEtal10",
@@ -21752,6 +21846,19 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "volume",
+    "current": null,
+    "proposed": "1",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+      "quote": "\"page\":\"I-212-I-224\""
+     }
+    ],
+    "decision": "resolution batch-23"
    }
   ],
   "removals": {
@@ -21766,14 +21873,14 @@
    {
     "code": "quote_check_failed",
     "field": "volume",
-    "detail": "validator: volume not covered by its quotes (missing ['1']; failures [])",
-    "action": "held"
+    "detail": "validator: volume not covered by its quotes (missing ['1']; failures []); superseded by the resolution (batch-23)",
+    "action": "dropped"
    },
    {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "volume",
-    "detail": "volume = '1': quote '\"page\":\"I-212-I-224\"' at https://api.crossref.org/works/10.4135/9781412964012.n23: value words ['1'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "volume = '1': volume from the roman page prefix (user rule); applied",
+    "action": "applied"
    },
    {
     "code": "doi_record_conflict",
@@ -21789,8 +21896,8 @@
    },
    {
     "code": "resolution_decision",
-    "field": "booktitle, pages",
-    "detail": "resolution 'apply' (batch-23): booktitle = '21\\\\textsuperscript{st} Century Education: A Reference Handbook'; pages = '212--224'",
+    "field": "booktitle, pages, volume",
+    "detail": "resolution 'apply' (batch-23): booktitle = '21\\\\textsuperscript{st} Century Education: A Reference Handbook'; pages = '212--224'; volume = '1'",
     "action": "applied"
    }
   ],
@@ -21823,10 +21930,7 @@
    "decision": "apply",
    "batch": "batch-23",
    "notes": "Crossref pages I-212-I-224 (the I- prefix is the volume) give 212--224; booktitle title case checked and correct. Volume 1 is not added: no fetchable page prints it (SAGE Knowledge requires login; the LoC TOC does not split volumes), and HEAD has no volume. RECONCILED 2026-09-26: Volume 1 from the 'I-' page prefix, as the ICASSP volume-prefix default does for HuggEtal06/YingEtal93 (batch 26).",
-   "residue": [
-    "volume: quote unverified (value words ['1'] are not in the quote)",
-    "quote_check_failed on volume is held and the resolution does not address it"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -21847,7 +21951,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "SnijBosk12",
@@ -21885,9 +21989,15 @@
    {
     "field": "booktitle",
     "current": null,
-    "proposed": "Multilevel Analysis: An Introduction to Basic and Advanced Multilevel Modeling, 2\\textsuperscript{nd} Edition",
-    "source": "postcheck",
-    "evidence": []
+    "proposed": "Multilevel Analysis: An Introduction to Basic and Advanced Multilevel Modeling",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008",
+      "quote": "Snijders, T. A. B. \n   \n   \n     Multilevel analysis : \n     an introduction to basic and advanced multilevel modeling / \n     Tom A.B. Snijders, Roel J. Bosker."
+     }
+    ],
+    "decision": "resolution batch-23"
    },
    {
     "field": "edition",
@@ -21931,15 +22041,9 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "booktitle",
-    "detail": "booktitle = 'Multilevel Analysis: An Introduction to Basic and Advanced Multilevel Modeling': quote '<subfield code=\"b\">an introduction to basic and advanced multilevel modeling /</subfield>' at http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn%3D9781849202008: value words ['analysis'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "resolution_decision",
-    "field": "title",
-    "detail": "resolution 'apply' (batch-23): title = 'Testing and model specification'",
+    "field": "booktitle, title",
+    "detail": "resolution 'apply' (batch-23): booktitle = 'Multilevel Analysis: An Introduction to Basic and Advanced Multilevel Modeling'; title = 'Testing and model specification'",
     "action": "applied"
    }
   ],
@@ -21950,13 +22054,11 @@
    "decision": "apply",
    "batch": "batch-23",
    "notes": "Chapter title from the authors' contents page of the 2nd edition; book title, edition, address from LoC. Chapter pages found in no source; HEAD has no pages, so nothing to remove.",
-   "residue": [
-    "booktitle: quote unverified (value words ['analysis'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "BenaEtal04",
@@ -22013,6 +22115,24 @@
       "quote": "5th ed."
      }
     ]
+   },
+   {
+    "field": "pages",
+    "current": "2803--2827",
+    "proposed": "2803--2828",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://www.google.com/books/feeds/volumes?max-results=20&q=%22Serge%20Pinto%22%20Benabid%20%22Deep%20Brain%20Stimulation%20for%20Movement%20Disorders%22%20Youmans%202803",
+      "quote": "Deep Brain Stimulation for Movement Disorders 2803 Alim L. Benabid"
+     },
+     {
+      "url": "https://www.google.com/books/feeds/volumes?max-results=20&q=Youmans%20Neurological%20Surgery%202004%20%22Cellular%20Transplantation%20in%20the%20Central%20Nervous%20System%22%20Funkiewiez",
+      "quote": "Funkiewiez 174 Cellular Transplantation in the Central Nervous System 2829",
+      "role": "next_start"
+     }
+    ],
+    "decision": "resolution batch-23"
    }
   ],
   "removals": {},
@@ -22035,15 +22155,15 @@
     "action": "applied"
    },
    {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_inferred_value",
     "field": "pages",
-    "detail": "pages = '2803--2828': quote 'Funkiewiez 174 Cellular Transplantation in the Central Nervous System 2829' at https://www.google.com/books/feeds/volumes?max-results=20&q=Youmans%20Neurological%20Surgery%202004%20%22Cellular%20Transplantation%20in%20the%20Central%20Nervous%20System%22%20Funkiewiez: value words ['2803', '2828'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "pages = '2803--2828': end page = next item's printed start - 1 (user rule); applied",
+    "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": "author, title",
-    "detail": "resolution 'apply' (batch-23): author = \"A L Benabid and J F {Le Bas} and S Grand and A Benazzouz and P Pollak and P Krack and A Koudsi{\\\\'e} and S Chabard{\\\\`e}s and V Fraix and P Limousin and S Pinto and D Hoffmann and C Ardouin and A Funkiewiez\"; title = 'Deep brain stimulation for movement disorders'",
+    "field": "author, pages, title",
+    "detail": "resolution 'apply' (batch-23): author = \"A L Benabid and J F {Le Bas} and S Grand and A Benazzouz and P Pollak and P Krack and A Koudsi{\\\\'e} and S Chabard{\\\\`e}s and V Fraix and P Limousin and S Pinto and D Hoffmann and C Ardouin and A Funkiewiez\"; pages = '2803--2828'; title = 'Deep brain stimulation for movement disorders'",
     "action": "applied"
    },
    {
@@ -22061,14 +22181,12 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-23",
-   "notes": "Printed contents of Youmans Neurological Surgery 5th ed (2004, Google Books 4L07mfRg7qsC, Section V Functional Neurosurgery = v. 3): chapter 173 at 2803 with 14 authors (adds J F Le Bas, fixes Pollack->Pollak, Hoffman->Hoffmann); next chapter starts 2829, so end page 2828 (next-start rule). Post-check booktitle and edition stand.",
-   "residue": [
-    "pages: quote unverified (value words ['2803', '2828'] are not in the quote)"
-   ],
+   "notes": "Printed contents of Youmans Neurological Surgery 5th ed (2004, Google Books 4L07mfRg7qsC, Section V Functional Neurosurgery = v. 3): chapter 173 at 2803 with 14 authors (adds J F Le Bas, fixes Pollack->Pollak, Hoffman->Hoffmann); next chapter starts 2829, so end page 2828 (next-start rule). Post-check booktitle and edition stand. EVIDENCE 2026-09-26 (next-start rule): pages quote the printed start page; next_start quotes the next item's printed start page (end = next start - 1, user rule round 2).",
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "AdamEtal10",
@@ -22134,6 +22252,19 @@
      }
     ],
     "decision": "resolution batch-23"
+   },
+   {
+    "field": "title",
+    "current": "{DAKOTA}: a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis",
+    "proposed": "{DAKOTA}, a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis: version 5.0 user's manual",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://www.osti.gov/servlets/purl/991842",
+      "quote": "Release\nPrinted Updated May 7, 2010\n\n\n\n\nDAKOTA, A Multilevel Parallel\nObject-Oriented Framework for\nDesign Optimization, Parameter\nEstimation, Uncertainty\nQuantification, and Sensitivity\nAnalysis\nVersion 5.0 User’s Manual\nBrian M. Adams, William J. Bohnhoff, Keith"
+     }
+    ],
+    "decision": "resolution batch-23"
    }
   ],
   "removals": {},
@@ -22144,21 +22275,9 @@
   },
   "flags": [
    {
-    "code": "resolution_quote_unverified",
-    "field": "title",
-    "detail": "title = \"{DAKOTA}, a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis: version 5.0 user's manual\": quote 'Version 5.0 User’s Manual' at https://www.osti.gov/servlets/purl/991842: value words ['dakota', 'multilevel', 'parallel', 'object', 'oriented', 'framework', 'design', 'optimization', 'parameter', 'estimation', 'uncertainty', 'quantification', 'sensitivity', 'analysis'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
-    "code": "doi_title_part_number",
-    "field": "doi",
-    "detail": "10.2172/991842 is registered to \"DAKOTA : a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis. Version 5.0, user's manual.\": titles agree except for part numbers (\"DAKOTA : a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis. Version 5.0, user's manual.\" vs '{DAKOTA}: a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis'); applied: the reviewer confirms the DOI (reviewer value)",
-    "action": "applied"
-   },
-   {
     "code": "resolution_decision",
-    "field": "author, doi, institution, number",
-    "detail": "resolution 'apply' (batch-23): author = 'B M Adams and W J Bohnhoff and K R Dalbey and J P Eddy and M S Eldred and D M Gay and K Haskell and P D Hough and L P Swiler'; doi = '10.2172/991842'; institution = 'Sandia National Laboratories'; number = 'SAND2010-2183'",
+    "field": "author, doi, institution, number, title",
+    "detail": "resolution 'apply' (batch-23): author = 'B M Adams and W J Bohnhoff and K R Dalbey and J P Eddy and M S Eldred and D M Gay and K Haskell and P D Hough and L P Swiler'; doi = '10.2172/991842'; institution = 'Sandia National Laboratories'; number = 'SAND2010-2183'; title = \"{DAKOTA}, a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis: version 5.0 user's manual\"",
     "action": "applied"
    },
    {
@@ -22211,9 +22330,7 @@
    "decision": "apply",
    "batch": "batch-23",
    "notes": "Three 2010 Sandia manuals share the title (user's SAND2010-2183, reference -2184, developers -2185; OSTI lists all with the same authors). Chose the User's Manual, the Dakota manual normally cited for the software; printed byline order and B M Adams from its title page ('Printed Updated May 7, 2010'). Key AdamEtal10 unchanged. RECONCILED 2026-09-26: Question answered by rule: DAKOTA: cite the user's manual (default).",
-   "residue": [
-    "title: quote unverified (value words ['dakota', 'multilevel', 'parallel', 'object', 'oriented', 'framework', 'design', 'optimization', 'parameter', 'estimation', 'uncertainty', 'quantification', 'sensitivity', 'analysis'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -22228,7 +22345,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Alva02",
@@ -22418,13 +22535,13 @@
    {
     "code": "quote_check_failed",
     "field": "title",
-    "detail": "validator: title not covered by its quotes (missing ['dynamics', 'engine']; failures [])",
-    "action": "held"
+    "detail": "validator: title not covered by its quotes (missing ['dynamics', 'engine']; failures []); superseded by the resolution (batch-23)",
+    "action": "dropped"
    },
    {
     "code": "resolution_decision",
-    "field": "author, howpublished, year",
-    "detail": "resolution 'apply' (batch-23): author = 'T Stranex and M Baas and B Hartshorn and B Roehl'; howpublished = '\\\\url{http://pyode.sourceforge.net}'; year = '2004'",
+    "field": "author, howpublished, title, year",
+    "detail": "resolution 'apply' (batch-23): author = 'T Stranex and M Baas and B Hartshorn and B Roehl'; howpublished = '\\\\url{http://pyode.sourceforge.net}'; title = 'Py{ODE}: {Python} bindings for the {O}pen {D}ynamics {E}ngine'; year = '2004'",
     "action": "applied"
    },
    {
@@ -22453,13 +22570,11 @@
    "decision": "apply",
    "batch": "batch-23",
    "notes": "Software cites its first version: PyODE 1.0.0 (SourceForge files page, read in a browser: released 2004-11-17). Its AUTHORS file (read from PyODE-1.0.0.tar.gz) lists exactly Stranex, Baas, Hartshorn, Roehl; the live git AUTHORS adds a later fifth author, Dumitrache, who is not included. StraEtal04 is free in HEAD. Title unchanged.",
-   "residue": [
-    "quote_check_failed on title is held and the resolution does not address it"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "BradLang99",

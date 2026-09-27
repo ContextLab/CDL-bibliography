@@ -836,6 +836,19 @@
   },
   "final_changes": [
    {
+    "field": "author",
+    "current": "L Torvalds and J Hamano",
+    "proposed": "L Torvalds",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.github.com/repos/git/git/commits/e83c5163316f89bfbde7d9ab23ca2e25604af290",
+      "quote": "MTZmODliZmJkZTdkOWFiMjNjYTJlMjU2MDRhZjI5MA==\",\"commit\":{\"author\":{\"name\":\"Linus Torvalds\",\"email\":\"torvalds@ppc970.osdl.org\",\"date\":\"2005-04-07T22:13:13Z\"},\"committer\":"
+     }
+    ],
+    "decision": "resolution batch-24"
+   },
+   {
     "field": "title",
     "current": "Git: {F}ast version control system",
     "proposed": "{GIT}: the stupid content tracker",
@@ -852,11 +865,11 @@
   "removals": {},
   "key_plan": {
    "current_key": "TorvHama05",
-   "target_base": "TorvHama05",
+   "target_base": "Torv05",
    "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
    "new_key": "Torv05",
-   "rename_reason": "resolution (batch-24)",
-   "resolution": "resolution (batch-24): key Torv05"
+   "resolution": "resolution (batch-24): key Torv05 confirmed"
   },
   "flags": [
    {
@@ -866,21 +879,21 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "author",
-    "detail": "author = 'L Torvalds': quote '\"name\": \"Linus Torvalds\"' at https://api.github.com/repos/git/git/commits/e83c5163316f89bfbde7d9ab23ca2e25604af290: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "code": "resolution_decision",
+    "field": "author, howpublished, title",
+    "detail": "resolution 'apply' (batch-24): author = 'L Torvalds'; howpublished = '\\\\url{https://git.kernel.org/pub/scm/git/git.git}'; title = '{GIT}: the stupid content tracker'",
+    "action": "applied"
    },
    {
-    "code": "resolution_decision",
-    "field": "howpublished, title",
-    "detail": "resolution 'apply' (batch-24): howpublished = '\\\\url{https://git.kernel.org/pub/scm/git/git.git}'; title = '{GIT}: the stupid content tracker'",
-    "action": "applied"
+    "code": "key_rename",
+    "field": "key",
+    "detail": "TorvHama05 -> Torv05 (key does not follow the corrected metadata)",
+    "action": "flag"
    },
    {
     "code": "resolution_decision",
     "field": "key",
-    "detail": "resolution (batch-24): TorvHama05 -> Torv05",
+    "detail": "resolution (batch-24): TorvHama05 -> Torv05, as planned",
     "action": "applied"
    }
   ],
@@ -891,14 +904,11 @@
    "decision": "apply",
    "batch": "batch-24",
    "notes": "HEAD URL resolves (HTTP 200 to curl) to the git.git repository. Year 2005 = initial commit e83c516. Post-check title/author (README 'Git - fast, scalable, distributed revision control system'; 'Junio C Hamano') applied, pending the software question. RECONCILED 2026-09-26: Software default: title/authors as in the first release (initial commit e83c516, 2005-04-07, by Linus Torvalds; its README reads 'GIT - the stupid content tracker'); the later README title and Hamano are not in the first version. Key Torv05 (free in HEAD).",
-   "residue": [
-    "author: quote unverified (quote not found at url)",
-    "key Torv05 does not follow the ID rule for the corrected metadata (TorvHama05)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Varo10",
@@ -1788,6 +1798,19 @@
     "decision": "resolution batch-24"
    },
    {
+    "field": "editor",
+    "current": null,
+    "proposed": "E Domany and J L {van Hemmen} and K Schulten",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5",
+      "quote": "0.1007\\/978-1-4612-4320-5\"}},\"subtitle\":[],\"editor\":[{\"given\":\"Eytan\",\"family\":\"Domany\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"J. Leo\",\"family\":\"van Hemmen\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"Klaus\",\"family\":\"Schulten\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
+     }
+    ],
+    "decision": "resolution batch-24"
+   },
+   {
     "field": "pages",
     "current": null,
     "proposed": "95--119",
@@ -1840,15 +1863,9 @@
   },
   "flags": [
    {
-    "code": "resolution_quote_unverified",
-    "field": "editor",
-    "detail": "editor = 'E Domany and J L {van Hemmen} and K Schulten': quote '\"given\":\"J. Leo\",\"family\":\"van Hemmen\"' at https://api.crossref.org/works/10.1007/978-1-4612-4320-5: value words ['domany', 'schulten'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "resolution_decision",
-    "field": "ENTRYTYPE, address, booktitle, doi, institution, number, pages, publisher, year",
-    "detail": "resolution 'apply' (batch-24): ENTRYTYPE = 'incollection'; address = 'New York, {NY}'; booktitle = 'Models of Neural Networks'; doi = '10.1007/978-1-4612-4320-5_2'; pages = '95--119'; publisher = 'Springer'; year = '1994'; removed institution; removed number",
+    "field": "ENTRYTYPE, address, booktitle, doi, editor, institution, number, pages, publisher, year",
+    "detail": "resolution 'apply' (batch-24): ENTRYTYPE = 'incollection'; address = 'New York, {NY}'; booktitle = 'Models of Neural Networks'; doi = '10.1007/978-1-4612-4320-5_2'; editor = 'E Domany and J L {van Hemmen} and K Schulten'; pages = '95--119'; publisher = 'Springer'; year = '1994'; removed institution; removed number",
     "action": "applied"
    },
    {
@@ -1897,9 +1914,7 @@
    "decision": "apply",
    "batch": "batch-24",
    "notes": "The 1981 report has no catalogue record reachable (MPG PuRe none; Springer, Scholar, IA Scholar, WorldCat behind walls); it is evidenced by a peer-reviewed reference list (Front Comput Neurosci 2011, PMC3167096) printing 'Internal Report 81-2', 1981, Göttingen, MPI Biophysical Chemistry. Country 'Germany' is not printed, so dropped. Title matches the registered 1994 reprint (10.1007/978-1-4612-4320-5_2, pp 95-119). RECONCILED 2026-09-26: Internal-report default: the 1981 report is known only from reference lists, so it is replaced by its registered reprint (Springer 1994 chapter, pp 95-119, eds Domany, van Hemmen, Schulten). Crossref registers the volume title only as 'Models of Neural Networks' (the printed volume is 'Models of Neural Networks II'; not confirmed by a fetchable page). Key vond94 (free in HEAD).",
-   "residue": [
-    "editor: quote unverified (value words ['domany', 'schulten'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -1914,7 +1929,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Weic96",
@@ -4206,8 +4221,8 @@
    {
     "code": "quote_check_failed",
     "field": "author",
-    "detail": "validator: author not covered by its quotes (missing ['berndt']; failures [])",
-    "action": "held"
+    "detail": "validator: author not covered by its quotes (missing ['berndt']; failures []); superseded by the resolution (batch-25)",
+    "action": "dropped"
    },
    {
     "code": "quote_check_failed",
@@ -4216,15 +4231,9 @@
     "action": "dropped"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "author",
-    "detail": "author = 'D J Berndt and J Clifford': quote '\"display_name\":\"Donald J. Berndt\"' at https://api.openalex.org/works/W116902681: value words ['clifford'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "resolution_decision",
-    "field": "title",
-    "detail": "resolution 'apply' (batch-25): title = 'Using dynamic time warping to find patterns in time series'",
+    "field": "author, title",
+    "detail": "resolution 'apply' (batch-25): author = 'D J Berndt and J Clifford'; title = 'Using dynamic time warping to find patterns in time series'",
     "action": "applied"
    }
   ],
@@ -4235,10 +4244,7 @@
    "decision": "apply",
    "batch": "batch-25",
    "notes": "Author/title unchanged from HEAD; the AAAI PDF (WS94-03-031) OCR mangles them ('Donald J. Bemdt', 'FindPatterns') but its email line reads '{dberndt,jclifford} @stern.nyu.edu' and the footer 'AAAI-94 Workshop on Knowledge Discovery in Databases' with pages 359-370, so quotes come from the OpenAlex index record (DBLP-sourced). Post-check booktitle and Volume removal apply.",
-   "residue": [
-    "author: quote unverified (value words ['clifford'] are not in the quote)",
-    "quote_check_failed on author is held and the resolution does not address it"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -4253,7 +4259,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "PolyEtal05b",
@@ -5477,6 +5483,20 @@
   },
   "final_changes": [
    {
+    "field": "author",
+    "current": "B Ragan-Kelley and C Willing",
+    "proposed": "{Project Jupyter} and M Bussonnier and J Forde and J Freeman and B Granger and T Head and C Holdgraf and K Kelley and G Nalvarte and A Osheroff and M Pacer and Y Panda and F P{\\'e}rez and B Ragan-Kelley and C Willing",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.25080/Majora-4af1f417-011",
+      "quote": "scale\"],\"prefix\":\"10.25080\",\"author\":[{\"given\":\"Project\",\"family\":\"Jupyter\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Matthias\",\"family\":\"Bussonnier\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Jessica\",\"family\":\"Forde\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Jeremy\",\"family\":\"Freeman\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Brian\",\"family\":\"Granger\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Tim\",\"family\":\"Head\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Chris\",\"family\":\"Holdgraf\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Kyle\",\"family\":\"Kelley\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Gladys\",\"family\":\"Nalvarte\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Andrew\",\"family\":\"Osheroff\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"M\",\"family\":\"Pacer\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Yuvi\",\"family\":\"Panda\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Fernando\",\"family\":\"Perez\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Benjamin\",\"family\":\"Ragan-Kelley\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Carol\",\"family\":\"Willing\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
+     }
+    ],
+    "decision": "resolution batch-25",
+    "reviewer": "agree"
+   },
+   {
     "field": "doi",
     "current": null,
     "proposed": "10.25080/majora-4af1f417-011",
@@ -5506,29 +5526,29 @@
   "removals": {},
   "key_plan": {
    "current_key": "RagaWill18",
-   "target_base": "RagaWill18",
+   "target_base": "ProjEtal18",
    "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
    "new_key": "ProjEtal18",
-   "rename_reason": "resolution (batch-25)",
-   "resolution": "resolution (batch-25): key ProjEtal18"
+   "resolution": "resolution (batch-25): key ProjEtal18 confirmed"
   },
   "flags": [
    {
-    "code": "resolution_quote_unverified",
+    "code": "resolution_decision",
     "field": "author",
-    "detail": "author = \"{Project Jupyter} and M Bussonnier and J Forde and J Freeman and B Granger and T Head and C Holdgraf and K Kelley and G Nalvarte and A Osheroff and M Pacer and Y Panda and F P{\\\\'e}rez and B Ragan-Kelley and C Willing\": quote 'Fernando Pérez' at https://pub.orcid.org/v3.0/0000-0002-1725-9815/personal-details: value words ['jupyter', 'bussonnier', 'forde', 'freeman', 'granger', 'head', 'holdgraf', 'kelley', 'nalvarte', 'osheroff', 'pacer', 'panda', 'ragan-kelley', 'willing'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "resolution 'apply' (batch-25): author = \"{Project Jupyter} and M Bussonnier and J Forde and J Freeman and B Granger and T Head and C Holdgraf and K Kelley and G Nalvarte and A Osheroff and M Pacer and Y Panda and F P{\\\\'e}rez and B Ragan-Kelley and C Willing\"",
+    "action": "applied"
    },
    {
-    "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-25): the post-check's final changes stand",
-    "action": "applied"
+    "code": "key_rename",
+    "field": "key",
+    "detail": "RagaWill18 -> ProjEtal18 (key does not follow the corrected metadata)",
+    "action": "flag"
    },
    {
     "code": "resolution_decision",
     "field": "key",
-    "detail": "resolution (batch-25): RagaWill18 -> ProjEtal18",
+    "detail": "resolution (batch-25): RagaWill18 -> ProjEtal18, as planned",
     "action": "applied"
    }
   ],
@@ -5587,10 +5607,7 @@
    "decision": "apply",
    "batch": "batch-25",
    "notes": "Printed PDF byline (proceedings.scipy.org Majora-4af1f417-011.pdf) and Crossref begin 'Project Jupyter', so key ProjEtal18 (not in HEAD). The byline prints 'Fernando Perez'; per the author-name rule the accent is restored from his ORCID record (other 14 names are covered by the post-check's citation_author quotes). Post-check DOI and title apply.",
-   "residue": [
-    "author: quote unverified (value words ['jupyter', 'bussonnier', 'forde', 'freeman', 'granger', 'head', 'holdgraf', 'kelley', 'nalvarte', 'osheroff', 'pacer', 'panda', 'ragan-kelley', 'willing'] are not in the quote)",
-    "key ProjEtal18 does not follow the ID rule for the corrected metadata (RagaWill18)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -5607,7 +5624,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MallEtal97",

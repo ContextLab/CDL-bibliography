@@ -2527,32 +2527,32 @@
    {
     "code": "quote_check_failed",
     "field": "title",
-    "detail": "validator: title not covered by its quotes (missing ['some', 'normative', 'psychometric', 'data', 'geriatric', 'depression', 'scale', 'cognitive', 'failures', 'questionnaire', 'sample', 'healthy', 'older', 'persons']; failures ['quote not found at url'])",
-    "action": "held"
+    "detail": "validator: title not covered by its quotes (missing ['some', 'normative', 'psychometric', 'data', 'geriatric', 'depression', 'scale', 'cognitive', 'failures', 'questionnaire', 'sample', 'healthy', 'older', 'persons']; failures ['quote not found at url']); superseded by the resolution (batch-10)",
+    "action": "dropped"
    },
    {
     "code": "quote_check_failed",
     "field": "journal",
-    "detail": "validator: journal not covered by its quotes (missing ['new', 'zealand', 'journal', 'psychology']; failures ['quote not found at url'])",
-    "action": "held"
+    "detail": "validator: journal not covered by its quotes (missing ['new', 'zealand', 'journal', 'psychology']; failures ['quote not found at url']); superseded by the resolution (batch-10)",
+    "action": "dropped"
    },
    {
     "code": "quote_check_failed",
     "field": "volume",
-    "detail": "validator: volume not covered by its quotes (missing ['33']; failures ['quote not found at url'])",
-    "action": "held"
+    "detail": "validator: volume not covered by its quotes (missing ['33']; failures ['quote not found at url']); superseded by the resolution (batch-10)",
+    "action": "dropped"
    },
    {
     "code": "quote_check_failed",
     "field": "number",
-    "detail": "validator: number not covered by its quotes (missing ['3']; failures ['quote not found at url'])",
-    "action": "held"
+    "detail": "validator: number not covered by its quotes (missing ['3']; failures ['quote not found at url']); superseded by the resolution (batch-10)",
+    "action": "dropped"
    },
    {
     "code": "quote_check_failed",
     "field": "year",
-    "detail": "validator: year not covered by its quotes (missing ['2004']; failures ['quote not found at url'])",
-    "action": "held"
+    "detail": "validator: year not covered by its quotes (missing ['2004']; failures ['quote not found at url']); superseded by the resolution (batch-10)",
+    "action": "dropped"
    },
    {
     "code": "quote_check_failed",
@@ -2562,8 +2562,8 @@
    },
    {
     "code": "resolution_decision",
-    "field": "author, pages",
-    "detail": "resolution 'apply' (batch-10): author = 'R G Knight and J McMahon and T J Green and C M Skeaff'; pages = '163--170'",
+    "field": "author, journal, number, pages, title, volume, year",
+    "detail": "resolution 'apply' (batch-10): author = 'R G Knight and J McMahon and T J Green and C M Skeaff'; journal = 'New Zealand Journal of Psychology'; number = '3'; pages = '163--170'; title = 'Some normative and psychometric data for the geriatric depression scale and the cognitive failures questionnaire from a sample of healthy older persons'; volume = '33'; year = '2004'",
     "action": "applied"
    }
   ],
@@ -2574,13 +2574,7 @@
    "decision": "apply",
    "batch": "batch-10",
    "notes": "SAHMRI research portal (Pure) prints title, NZ J Psychol 33(3), Nov 2004, pp 163-170 and byline 'C. Murray Skeaff' (so C M Skeaff). It gives 'Tim Green'; the publisher's image-only scan reads 'Timothy J. Green', so HEAD's T J is kept (same initial rule as batch 03 q4).",
-   "residue": [
-    "quote_check_failed on title is held and the resolution does not address it",
-    "quote_check_failed on journal is held and the resolution does not address it",
-    "quote_check_failed on volume is held and the resolution does not address it",
-    "quote_check_failed on number is held and the resolution does not address it",
-    "quote_check_failed on year is held and the resolution does not address it"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -2592,7 +2586,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MoyeEtal07",
@@ -3777,6 +3771,19 @@
     ]
    },
    {
+    "field": "journal",
+    "current": "Philosophical Transactions of the Royal Society of London Series {B}",
+    "proposed": "Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16087441/",
+      "quote": "Melie-Garc&#xed;a, Erick Canales-Rodr&#xed;guez Philosophical transactions of the Royal Society of London. Series B, Biological sciences Philos Trans R Soc Lond B Biol Sci 2005"
+     }
+    ],
+    "decision": "resolution batch-10"
+   },
+   {
     "field": "number",
     "current": null,
     "proposed": "1457",
@@ -3799,19 +3806,13 @@
    {
     "code": "quote_check_failed",
     "field": "journal",
-    "detail": "validator: journal not covered by its quotes (missing ['london', 'series']; failures [])",
-    "action": "held"
-   },
-   {
-    "code": "resolution_quote_unverified",
-    "field": "journal",
-    "detail": "journal = 'Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences': quote '\"container-title\":[\"Philosophical Transactions of the Royal Society B: Biological Sciences\"]' at https://api.crossref.org/works/10.1098/rstb.2005.1654: value words ['london', 'series'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "validator: journal not covered by its quotes (missing ['london', 'series']; failures []); superseded by the resolution (batch-10)",
+    "action": "dropped"
    },
    {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-10): the post-check's final changes stand",
+    "field": "journal",
+    "detail": "resolution 'apply' (batch-10): journal = 'Philosophical Transactions of the Royal Society of London Series {B}: Biological Sciences'",
     "action": "applied"
    }
   ],
@@ -3854,14 +3855,11 @@
    "decision": "apply",
    "batch": "batch-10",
    "notes": "Printed name is 'Philosophical Transactions of the Royal Society B: Biological Sciences'; bibcheck's journal table maps exactly that string to '...of London Series B: Biological Sciences' (hence the missing 'london','series'). Post-check author/DOI/number 1457 apply.",
-   "residue": [
-    "journal: quote unverified (value words ['london', 'series'] are not in the quote)",
-    "quote_check_failed on journal is held and the resolution does not address it"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Yone01",
@@ -7774,19 +7772,11 @@
   "key": "MairEtal09a",
   "batch": "batch-048",
   "verdict": "correction",
-  "current": {
-   "year": "2009",
-   "title": "Online dictionary learning for sparse coding",
-   "pages": "689--696",
-   "journal": "Proceedings of the International Conference on Machine Learning",
-   "author": "J B Mairal and F Bach and J Ponce and G Sapiro",
-   "ENTRYTYPE": "article",
-   "ID": "MairEtal09a"
-  },
+  "current": {},
   "final_changes": [
    {
     "field": "ENTRYTYPE",
-    "current": "article",
+    "current": null,
     "proposed": "inproceedings",
     "source": "researcher",
     "evidence": [
@@ -7799,7 +7789,7 @@
    },
    {
     "field": "author",
-    "current": "J B Mairal and F Bach and J Ponce and G Sapiro",
+    "current": null,
     "proposed": "J Mairal and F Bach and J Ponce and G Sapiro",
     "source": "researcher",
     "evidence": [
@@ -7849,17 +7839,69 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "pages",
+    "current": null,
+    "proposed": "689--696",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/1553374.1553463",
+      "quote": "\"page\":\"689-696\""
+     }
+    ]
+   },
+   {
+    "field": "title",
+    "current": null,
+    "proposed": "Online dictionary learning for sparse coding",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/1553374.1553463",
+      "quote": "Online dictionary learning for sparse coding"
+     }
+    ]
+   },
+   {
+    "field": "year",
+    "current": null,
+    "proposed": "2009",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/1553374.1553463",
+      "quote": "\"published-print\":{\"date-parts\":[[2009,6,14]]}"
+     }
+    ]
    }
   ],
-  "removals": {
-   "journal": "@inproceedings has no journal (names the same venue as the booktitle 'Proceedings of the 26\\\\textsuperscript{th} Annual International Conference on Machine Learning')"
-  },
+  "removals": {},
   "key_plan": {
    "current_key": "MairEtal09a",
    "target_base": "MairEtal09",
-   "action": "keep"
+   "action": "duplicate",
+   "same_work_as": [
+    "MairEtal09"
+   ],
+   "merge_into": "MairEtal09",
+   "detail": "same work (title, first author, year) already in cdl.bib as MairEtal09: merge MairEtal09a into it"
   },
-  "flags": [],
+  "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "MairEtal09a is not in cdl.bib",
+    "action": "held"
+   },
+   {
+    "code": "duplicate",
+    "field": "key",
+    "detail": "same work (title, first author, year) already in cdl.bib as MairEtal09: merge MairEtal09a into it",
+    "action": "flag"
+   }
+  ],
   "doi_status": {
    "doi": "10.1145/1553374.1553463",
    "registered": true,
@@ -7907,7 +7949,7 @@
     "booktitle": "Proceedings of the 26\\textsuperscript{th} Annual International Conference on Machine Learning"
    }
   },
-  "needs_user": false
+  "needs_user": true
  },
  {
   "key": "Sten95",
@@ -7962,8 +8004,8 @@
    {
     "code": "quote_check_failed",
     "field": "title",
-    "detail": "validator: title not covered by its quotes (missing ['replanning']; failures [])",
-    "action": "held"
+    "detail": "validator: title not covered by its quotes (missing ['replanning']; failures []); superseded by the resolution (batch-10)",
+    "action": "dropped"
    },
    {
     "code": "field_not_found",
@@ -7973,8 +8015,8 @@
    },
    {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-10): the post-check's final changes stand",
+    "field": "title",
+    "detail": "resolution 'apply' (batch-10): title = 'The focussed {D}* algorithm for real-time replanning'",
     "action": "applied"
    }
   ],
@@ -7985,9 +8027,7 @@
    "decision": "apply",
    "batch": "batch-10",
    "notes": "Title and pages unchanged from HEAD. The IJCAI TOC misprints 'Replannig' and '1662'; the paper PDF (ijcai.org/Proceedings/95-2/Papers/082.pdf) text layer reads 'R e a l - T i m e R e p l a n n i n g' and its 8 page footers OCR as 1662(=1652), 1663, 1654, 1666, 1666, 1657, 1658, 1669(=1659), i.e. 1652--1659 as in HEAD. Post-check inproceedings/booktitle/journal removal apply.",
-   "residue": [
-    "quote_check_failed on title is held and the resolution does not address it"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -8002,7 +8042,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "HaynEtal09",
@@ -8436,8 +8476,8 @@
    {
     "code": "quote_check_failed",
     "field": "title",
-    "detail": "validator: title not covered by its quotes (missing ['generalized', 'distance', 'statistics']; failures ['quote not found at url'])",
-    "action": "held"
+    "detail": "validator: title not covered by its quotes (missing ['generalized', 'distance', 'statistics']; failures ['quote not found at url']); superseded by the resolution (batch-10)",
+    "action": "dropped"
    },
    {
     "code": "quote_check_failed",
@@ -8460,8 +8500,8 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['49', '55']; failures ['quote not found at url'])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['49', '55']; failures ['quote not found at url']); superseded by the resolution (batch-10)",
+    "action": "dropped"
    },
    {
     "code": "resolution_quote_unverified",
@@ -8482,9 +8522,21 @@
     "action": "applied"
    },
    {
+    "code": "resolution_quote_unverified",
+    "field": "title",
+    "detail": "title = 'On the generalized distance in statistics': quote 'ON THE GENERALIZED DISTANCE IN STATISTICS' at https://insa.nic.in/writereaddata/UpLoadedFiles/PINSA/Vol02_1936_1_Art05.pdf: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "pages",
+    "detail": "pages = '49--55': quote 'DISTANCE IN STATISTICS. 55' at https://insa.nic.in/writereaddata/UpLoadedFiles/PINSA/Vol02_1936_1_Art05.pdf: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
+    "action": "applied"
+   },
+   {
     "code": "resolution_decision",
-    "field": "journal, number, volume",
-    "detail": "resolution 'apply' (batch-10): journal = 'Proceedings of the National Institute of Sciences of India'; number = '1'; volume = '2'",
+    "field": "journal, number, pages, title, volume",
+    "detail": "resolution 'apply' (batch-10): journal = 'Proceedings of the National Institute of Sciences of India'; number = '1'; pages = '49--55'; title = 'On the generalized distance in statistics'; volume = '2'",
     "action": "applied"
    }
   ],
@@ -8494,11 +8546,8 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-10",
-   "notes": "HEAD's 'Proceedings of the National Academy of Sciences, India' vol 12 is wrong. The INSA archive scan (image-only; my local OCR: 'ON THE GENERALIZED DISTANCE IN STATISTICS', 'VOL. II—No. 1. [Published April 1?th, 1936', page headers 50 and 55, imprint 'Published by the National Institute of Sciences of India') confirms title, 1936, pp 49--55 and the journal. These quotes will fail the text validator; no text-fetchable record found (Springer reprint page bot-walled, archive.org has no vol II). Apply depends on the scan rule. RECONCILED 2026-09-26: Question answered by rule: image-only scans accepted (round 2).",
-   "residue": [
-    "quote_check_failed on title is held and the resolution does not address it",
-    "quote_check_failed on pages is held and the resolution does not address it"
-   ],
+   "notes": "HEAD's 'Proceedings of the National Academy of Sciences, India' vol 12 is wrong. The INSA archive scan (image-only; my local OCR: 'ON THE GENERALIZED DISTANCE IN STATISTICS', 'VOL. II—No. 1. [Published April 1?th, 1936', page headers 50 and 55, imprint 'Published by the National Institute of Sciences of India') confirms title, 1936, pp 49--55 and the journal. These quotes will fail the text validator; no text-fetchable record found (Springer reprint page bot-walled, archive.org has no vol II). Apply depends on the scan rule. RECONCILED 2026-09-26: Question answered by rule: image-only scans accepted (round 2). EVIDENCE 2026-09-26: title and end page transcribed from the INSA image-only scan (re-OCR of PDF pages 1 and 7: 'ON THE GENERALIZED DISTANCE IN STATISTICS', running head 'DISTANCE IN STATISTICS. 55'); pages 49--55 over 7 scan pages.",
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -8510,7 +8559,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LeBiEtal93",
@@ -13172,7 +13221,36 @@
    "ENTRYTYPE": "article",
    "ID": "ShapPale70"
   },
-  "final_changes": [],
+  "final_changes": [
+   {
+    "field": "journal",
+    "current": "Psychological Monograph Supplements",
+    "proposed": "Psychonomic Monograph Supplements",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://psycnet.apa.org/record/1970-11832-001",
+      "quote": "Shipiro, S. I., & Palermo, D. S. (1970). Conceptual organization and class membership: Normative data for representatives of 100 categories. Psychonomic Monograph Supplements, 3(11), 107–127."
+     }
+    ],
+    "decision": "resolution batch-11",
+    "reviewer": "unsure"
+   },
+   {
+    "field": "pages",
+    "current": "43",
+    "proposed": "107--127",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://psycnet.apa.org/record/1970-11832-001",
+      "quote": "Psychonomic Monograph Supplements, 3(11), 107–127."
+     }
+    ],
+    "decision": "resolution batch-11",
+    "reviewer": "unsure"
+   }
+  ],
   "removals": {},
   "key_plan": {
    "current_key": "ShapPale70",
@@ -13183,25 +13261,25 @@
    {
     "code": "resolution_quote_unverified",
     "field": "journal",
-    "detail": "journal = 'Psychonomic Monograph Supplements': quote 'Shipiro, S. I., & Palermo, D. S. (1970). Conceptual organization and class membership: Normative data for representatives of 100 categories. Psychonomic Monograph Supplements, 3(11), 107–127.' at https://psycnet.apa.org/record/1970-11832-001: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "journal = 'Psychonomic Monograph Supplements': quote 'Shipiro, S. I., & Palermo, D. S. (1970). Conceptual organization and class membership: Normative data for representatives of 100 categories. Psychonomic Monograph Supplements, 3(11), 107–127.' at https://psycnet.apa.org/record/1970-11832-001: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "action": "applied"
    },
    {
     "code": "resolution_quote_unverified",
     "field": "number",
-    "detail": "number = '11': quote 'Psychonomic Monograph Supplements, 3(11), 107–127.' at https://psycnet.apa.org/record/1970-11832-001: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "number = '11': quote 'Psychonomic Monograph Supplements, 3(11), 107–127.' at https://psycnet.apa.org/record/1970-11832-001: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "action": "applied"
    },
    {
     "code": "resolution_quote_unverified",
     "field": "pages",
-    "detail": "pages = '107--127': quote 'Psychonomic Monograph Supplements, 3(11), 107–127.' at https://psycnet.apa.org/record/1970-11832-001: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
+    "detail": "pages = '107--127': quote 'Psychonomic Monograph Supplements, 3(11), 107–127.' at https://psycnet.apa.org/record/1970-11832-001: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": null,
-    "detail": "resolution 'apply' (batch-11): the post-check's final changes stand",
+    "field": "journal, number, pages",
+    "detail": "resolution 'apply' (batch-11): journal = 'Psychonomic Monograph Supplements'; number = '11'; pages = '107--127'",
     "action": "applied"
    },
    {
@@ -13217,12 +13295,8 @@
   "resolution": {
    "decision": "apply",
    "batch": "batch-11",
-   "notes": "Found via Google Scholar: APA PsycInfo record 1970-11832-001 gives journal Psychonomic Monograph Supplements (not 'Psychological'), 3(11) 107-127; HEAD pages '43' is the whole number. Title and year match. PsycInfo spells the first author 'Shipiro'; author kept as S I Shapiro. PsycNet renders only with JavaScript, so a plain fetch may not show the quote. RECONCILED 2026-09-26: Question answered by the author-name rule (round 1): keep the correct spelling.",
-   "residue": [
-    "journal: quote unverified (quote not found at url)",
-    "number: quote unverified (quote not found at url)",
-    "pages: quote unverified (quote not found at url)"
-   ],
+   "notes": "Found via Google Scholar: APA PsycInfo record 1970-11832-001 gives journal Psychonomic Monograph Supplements (not 'Psychological'), 3(11) 107-127; HEAD pages '43' is the whole number. Title and year match. PsycInfo spells the first author 'Shipiro'; author kept as S I Shapiro. PsycNet renders only with JavaScript, so a plain fetch may not show the quote. RECONCILED 2026-09-26: Question answered by the author-name rule (round 1): keep the correct spelling. EVIDENCE 2026-09-26: PsycNet record read in a browser (Playwright): the Citation block prints the quoted text verbatim; plain fetches get only the JavaScript shell.",
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -13237,7 +13311,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "GambWils16",
@@ -14838,133 +14912,66 @@
   "current": {},
   "final_changes": [
    {
-    "field": "author",
-    "current": null,
-    "proposed": "M J Kahana and P B Sederberg and M W Howard",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1037/a0013724",
-      "quote": "\"given\":\"Michael J.\",\"family\":\"Kahana\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1037/a0013724",
-      "quote": "\"given\":\"Per B.\",\"family\":\"Sederberg\""
-     },
-     {
-      "url": "https://api.crossref.org/works/10.1037/a0013724",
-      "quote": "\"given\":\"Marc W.\",\"family\":\"Howard\""
-     }
-    ]
-   },
-   {
     "field": "doi",
     "current": null,
     "proposed": "10.1037/a0013724",
-    "source": "researcher",
+    "source": "resolution",
     "evidence": [
      {
       "url": "https://api.crossref.org/works/10.1037/a0013724",
       "quote": "\"DOI\":\"10.1037\\/a0013724\""
      }
     ],
+    "decision": "resolution batch-11",
     "reviewer": "agree"
    },
    {
-    "field": "journal",
-    "current": null,
-    "proposed": "Psychological Review",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1037/a0013724",
-      "quote": "\"container-title\":[\"Psychological Review\"]"
-     }
-    ]
-   },
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "4",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1037/a0013724",
-      "quote": "\"issue\":\"4\""
-     }
-    ]
-   },
-   {
     "field": "pages",
-    "current": null,
+    "current": "1119--1126",
     "proposed": "1119--1125",
-    "source": "researcher",
+    "source": "resolution",
     "evidence": [
      {
       "url": "https://api.crossref.org/works/10.1037/a0013724",
       "quote": "\"page\":\"1119-1125\""
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20976034&retmode=xml",
-      "quote": "<MedlinePgn>1119-1125</MedlinePgn>"
      }
     ],
+    "decision": "resolution batch-11",
     "reviewer": "agree"
    },
    {
     "field": "title",
-    "current": null,
+    "current": "Putting short-term memory into context: {R}eply to {U}sher and colleagues",
     "proposed": "Putting short-term memory into context: reply to {Usher}, {Davelaar}, {Haarmann}, and {Goshen-Gottstein} (2008)",
-    "source": "researcher",
+    "source": "resolution",
     "evidence": [
      {
       "url": "https://api.crossref.org/works/10.1037/a0013724",
       "quote": "\"title\":[\"Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).\"]"
-     },
-     {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20976034&retmode=xml",
-      "quote": "<ArticleTitle>Putting Short-Term Memory Into Context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).</ArticleTitle>"
      }
     ],
+    "decision": "resolution batch-11",
     "reviewer": "agree"
-   },
-   {
-    "field": "volume",
-    "current": null,
-    "proposed": "115",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1037/a0013724",
-      "quote": "\"volume\":\"115\""
-     }
-    ]
-   },
-   {
-    "field": "year",
-    "current": null,
-    "proposed": "2008",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1037/a0013724",
-      "quote": "\"issued\":{\"date-parts\":[[2008"
-     }
-    ]
    }
   ],
   "removals": {},
   "key_plan": {
-   "current_key": "KahaEtal08c",
+   "current_key": "KahaEtal08b",
    "target_base": "KahaEtal08",
    "action": "keep"
   },
   "flags": [
    {
-    "code": "not_in_bib",
-    "field": null,
-    "detail": "KahaEtal08c is not in cdl.bib",
-    "action": "held"
+    "code": "resolution_decision",
+    "field": "doi, pages, title",
+    "detail": "resolution 'apply' (batch-11): doi = '10.1037/a0013724'; pages = '1119--1125'; title = 'Putting short-term memory into context: reply to {Usher}, {Davelaar}, {Haarmann}, and {Goshen-Gottstein} (2008)'",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_redirect",
+    "field": "key",
+    "detail": "resolution 'apply' (batch-11): KahaEtal08c was renamed to KahaEtal08b in the bibliography (KahaEtal08c -> KahaEtal08b, key-renames.json); the decision applies to KahaEtal08b",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -14994,7 +15001,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
-  "resolution": null,
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-11",
+   "notes": "Wave-6 key KahaEtal08c was renamed to KahaEtal08b in HEAD (key-renames.json; the old KahaEtal08b, a duplicate of KahaEtal08a, was deleted and its suffix reused), so this decision follows the rename to HEAD KahaEtal08b (Kahana, Sederberg and Howard 2008, Psychological Review 115(4)). Crossref 10.1037/a0013724 (and PubMed 20976034) print the full title 'Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).' and pages 1119-1125 (HEAD's 1119--1126 runs into the separate postscript, 1125-1126); DOI added. Author, journal, volume 115, number 4 and year 2008 are confirmed as in HEAD. Key stays KahaEtal08b (KahaEtal08a is the chapter).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -15009,7 +15022,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LewaLi94",
@@ -18027,6 +18040,20 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "title",
+    "current": "Free versus uninhibited recall",
+    "proposed": "Free vs uninhibited recall",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20230412122458/https://link.springer.com/article/10.3758/bf03335608",
+      "quote": "instruction conditions: Conditions, standard free recall instructions; Condition U, uninhibited recall instructions in which S s were told"
+     }
+    ],
+    "decision": "resolution batch-11",
+    "reviewer": "unsure"
    }
   ],
   "removals": {},
@@ -18043,21 +18070,15 @@
     "action": "flag"
    },
    {
-    "code": "resolution_quote_unverified",
-    "field": "title",
-    "detail": "title = 'Free vs uninhibited recall': quote 'Condition U, uninhibited recall instructions' at https://web.archive.org/web/20230412122458/https://link.springer.com/article/10.3758/bf03335608: value words ['free'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-    "action": "held"
-   },
-   {
     "code": "doi_title_near",
     "field": "doi",
-    "detail": "10.3758/bf03335608 is registered to 'Free vs unhibited recall': registry title 'Free vs unhibited recall' is the entry's 'Free versus uninhibited recall' up to two letters or run-together words; first author, year, volume and first page all agree; applied",
+    "detail": "10.3758/bf03335608 is registered to 'Free vs unhibited recall': registry title 'Free vs unhibited recall' is the entry's 'Free vs uninhibited recall' up to two letters or run-together words; first author, year, volume and first page all agree; applied",
     "action": "applied"
    },
    {
     "code": "resolution_decision",
-    "field": "doi, journal",
-    "detail": "resolution 'apply' (batch-11): doi = '10.3758/bf03335608'; journal = 'Psychonomic Science'",
+    "field": "doi, journal, title",
+    "detail": "resolution 'apply' (batch-11): doi = '10.3758/bf03335608'; journal = 'Psychonomic Science'; title = 'Free vs uninhibited recall'",
     "action": "applied"
    }
   ],
@@ -18090,9 +18111,7 @@
    "decision": "apply",
    "batch": "batch-11",
    "notes": "Springer page and Crossref give Psychonomic Science 20(2) 75-76, 1970, Bousfield and Rosner; HEAD bibcheck/journal_key_overrides.json already stops the old psychonomic->psychological alias. Both records title it 'Free vs unhibited recall', which looks like a deposit typo (the abstract says 'uninhibited recall instructions'). HEAD title 'Free versus uninhibited recall' is not confirmed by any fetchable source and is kept pending the rule question. RECONCILED 2026-09-26: Title misprint default: the record prints 'Free vs unhibited recall'; corrected spelling 'uninhibited' is evidenced by the same page's abstract ('Condition U, uninhibited recall instructions'); 'vs' as printed (HEAD's 'versus' is not printed).",
-   "residue": [
-    "title: quote unverified (value words ['free'] are not in the quote)"
-   ],
+   "residue": [],
    "noop": null
   },
   "reviewer": {
@@ -18114,7 +18133,7 @@
     "journal": "Psychonomic Science"
    }
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Crai68a",

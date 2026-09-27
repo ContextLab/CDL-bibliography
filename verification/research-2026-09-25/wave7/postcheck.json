@@ -11,15 +11,16 @@
    "doi_title_near": 1,
    "doi_title_part_number": 6,
    "doi_title_unavailable": 1,
+   "duplicate": 1,
    "field_not_found": 27,
-   "key_rename": 33,
-   "not_in_bib": 4,
+   "key_rename": 34,
+   "not_in_bib": 5,
    "other_version_named": 7,
    "print_year_conflict": 6,
    "quote_check_failed": 5,
    "resolution_decision": 157,
    "resolution_noop": 5,
-   "resolution_quote_unverified": 43,
+   "resolution_quote_unverified": 2,
    "software_first_version": 2,
    "software_first_version_authors": 1,
    "software_version_removed": 1,
@@ -70,7 +71,9 @@
    "PresEtal93": "PresEtal92",
    "TuftGrav83": "Tuft83"
   },
-  "duplicates": {},
+  "duplicates": {
+   "LegaEtal11a": "LegaEtal11"
+  },
   "collisions": {},
   "doi_requests_uncached": null,
   "user_decisions": {
@@ -174,9 +177,7 @@
    "AndrEtal74": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['609'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "AndrEtal74"
@@ -184,9 +185,7 @@
    "Attn50": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['516'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Attn50"
@@ -218,9 +217,7 @@
    "BousEtal54": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['111'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "BousEtal54"
@@ -228,9 +225,7 @@
    "BowmThur63": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['436'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "BowmThur63"
@@ -246,10 +241,7 @@
    "CaliVita05": {
     "decision": "apply",
     "batch": "batch-16",
-    "residue": [
-     "author: quote unverified (value words ['vitanyi'] are not in the quote)",
-     "key CiliVita07 does not follow the ID rule for the corrected metadata (CaliVita07)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "rename",
     "key": "CiliVita07"
@@ -257,9 +249,7 @@
    "Caso24": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['217'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Caso24"
@@ -275,9 +265,7 @@
    "ClarEtal60": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['22'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "ClarEtal60"
@@ -293,9 +281,7 @@
    "Corn62": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['485'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Corn62"
@@ -335,9 +321,7 @@
    "Denn91": {
     "decision": "apply",
     "batch": "batch-13",
-    "residue": [
-     "pages: quote unverified (value words ['27'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Denn91"
@@ -345,9 +329,7 @@
    "EggeEtal07": {
     "decision": "apply",
     "batch": "batch-12",
-    "residue": [
-     "author: quote unverified (value words ['swaab', 'luiten', 'scherder'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "rename",
     "key": "EggeEtal06"
@@ -355,9 +337,7 @@
    "Faw90": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['317'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Faw90"
@@ -381,9 +361,7 @@
    "GoldEtal21": {
     "decision": "apply",
     "batch": "batch-17",
-    "residue": [
-     "pages: the resolution's value '369--380' did not survive the post-check (final None)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "rename",
     "key": "GoldEtal22"
@@ -399,9 +377,7 @@
    "GreeCrow84": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['441'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "GreeCrow84"
@@ -417,9 +393,7 @@
    "Hall54": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['138'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Hall54"
@@ -451,9 +425,7 @@
    "Hash73": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['389'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Hash73"
@@ -493,9 +465,7 @@
    "JainHuth18": {
     "decision": "apply",
     "batch": "batch-17",
-    "residue": [
-     "volume: the resolution's value '31' did not survive the post-check (final None)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "JainHuth18"
@@ -503,9 +473,7 @@
    "JenkDall24": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['605'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "JenkDall24"
@@ -569,10 +537,7 @@
    "LiEtal24b": {
     "decision": "apply",
     "batch": "batch-16",
-    "residue": [
-     "volume: the resolution's value '18' did not survive the post-check (final None)",
-     "doi: the resolution's value '10.1109/rbme.2024.3492381' did not survive the post-check (final None)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "rename",
     "key": "LiEtal25"
@@ -604,9 +569,7 @@
    "MandEtal81": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['209'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "MandEtal81"
@@ -630,9 +593,7 @@
    "Marm83": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['17'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Marm83"
@@ -640,9 +601,7 @@
    "MarmEtal78": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['483'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "MarmEtal78"
@@ -659,7 +618,6 @@
     "decision": "apply",
     "batch": "batch-14",
     "residue": [
-     "pages: quote unverified (value words ['12', '14'] are not in the quote)",
      "doi: the resolution's value '10.1609/aimag.v27i4.1904' did not survive the post-check (final None)",
      "doi_title_unavailable on doi is held and the resolution does not address it"
     ],
@@ -670,9 +628,7 @@
    "MeltIrwi40": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['173'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "MeltIrwi40"
@@ -680,9 +636,7 @@
    "MeltvonL41": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['157'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "MeltvonL41"
@@ -706,9 +660,7 @@
    "MuelEtal18": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "key MuelEtal16 does not follow the ID rule for the corrected metadata (MuelEtal18)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "rename",
     "key": "MuelEtal16"
@@ -724,9 +676,7 @@
    "MullSchu94": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['190', '339'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "MullSchu94"
@@ -742,9 +692,7 @@
    "NairEtal95": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['345'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "NairEtal95"
@@ -784,9 +732,7 @@
    "NewmBuck62": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['429'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "NewmBuck62"
@@ -810,9 +756,7 @@
    "Ober28": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['295'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Ober28"
@@ -836,9 +780,7 @@
    "PollGero68": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['303'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "PollGero68"
@@ -846,9 +788,7 @@
    "Post62": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['372'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Post62"
@@ -856,10 +796,7 @@
    "PresEtal93": {
     "decision": "apply",
     "batch": "batch-17",
-    "residue": [
-     "title: quote unverified (value words ['numerical', 'recipes'] are not in the quote)",
-     "ambiguous_identity_held on title is held and the resolution does not address it"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "rename",
     "key": "PresEtal92"
@@ -867,10 +804,7 @@
    "Rans02": {
     "decision": "apply",
     "batch": "batch-14",
-    "residue": [
-     "pages: quote unverified (value words ['39'] are not in the quote)",
-     "quote_check_failed on pages is held and the resolution does not address it"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Rans02"
@@ -894,9 +828,7 @@
    "Robi27": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['297'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Robi27"
@@ -904,9 +836,7 @@
    "Rock57": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['186'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Rock57"
@@ -914,9 +844,7 @@
    "RockHeim59": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['1'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "RockHeim59"
@@ -964,9 +892,7 @@
    "SpecBied76": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['669'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "SpecBied76"
@@ -1022,9 +948,7 @@
    "TsitEtal19": {
     "decision": "apply",
     "batch": "batch-17",
-    "residue": [
-     "volume: the resolution's value '30' did not survive the post-check (final None)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "rename",
     "key": "TsitEtal20"
@@ -1064,9 +988,7 @@
    "UndeEtal62": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['353'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "UndeEtal62"
@@ -1074,9 +996,7 @@
    "UnswEtal09": {
     "decision": "apply",
     "batch": "batch-11",
-    "residue": [
-     "title: quote unverified (value words ['there', 'more', 'working'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "UnswEtal09"
@@ -1084,9 +1004,7 @@
    "ViniNels79": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['257'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "ViniNels79"
@@ -1102,10 +1020,7 @@
    "VodrEtal16": {
     "decision": "apply",
     "batch": "batch-17",
-    "residue": [
-     "author: quote unverified (value words ['vodrahalli', 'chen', 'liang', 'baldassano', 'chen', 'yong', 'honey', 'hasson', 'ramadge', 'arora'] are not in the quote)",
-     "pages: the resolution's value '223--231' did not survive the post-check (final None)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "rename",
     "key": "VodrEtal18"
@@ -1121,9 +1036,7 @@
    "WaszWalt83": {
     "decision": "apply",
     "batch": "batch-12",
-    "residue": [
-     "author: quote unverified (value words ['walters'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "WaszWalt83"
@@ -1131,9 +1044,7 @@
    "WatkEtal89": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['265'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "WatkEtal89"
@@ -1141,9 +1052,7 @@
    "Waug62": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['177'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Waug62"
@@ -1151,9 +1060,7 @@
    "WelcBurn24": {
     "decision": "apply",
     "batch": "batch-15",
-    "residue": [
-     "pages: quote unverified (value words ['396'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "WelcBurn24"
@@ -1192,150 +1099,9 @@
    }
   },
   "resolution_residue": {
-   "AndrEtal74": [
-    "pages: quote unverified (value words ['609'] are not in the quote)"
-   ],
-   "Attn50": [
-    "pages: quote unverified (value words ['516'] are not in the quote)"
-   ],
-   "BousEtal54": [
-    "pages: quote unverified (value words ['111'] are not in the quote)"
-   ],
-   "BowmThur63": [
-    "pages: quote unverified (value words ['436'] are not in the quote)"
-   ],
-   "CaliVita05": [
-    "author: quote unverified (value words ['vitanyi'] are not in the quote)",
-    "key CiliVita07 does not follow the ID rule for the corrected metadata (CaliVita07)"
-   ],
-   "Caso24": [
-    "pages: quote unverified (value words ['217'] are not in the quote)"
-   ],
-   "ClarEtal60": [
-    "pages: quote unverified (value words ['22'] are not in the quote)"
-   ],
-   "Corn62": [
-    "pages: quote unverified (value words ['485'] are not in the quote)"
-   ],
-   "Denn91": [
-    "pages: quote unverified (value words ['27'] are not in the quote)"
-   ],
-   "EggeEtal07": [
-    "author: quote unverified (value words ['swaab', 'luiten', 'scherder'] are not in the quote)"
-   ],
-   "Faw90": [
-    "pages: quote unverified (value words ['317'] are not in the quote)"
-   ],
-   "GoldEtal21": [
-    "pages: the resolution's value '369--380' did not survive the post-check (final None)"
-   ],
-   "GreeCrow84": [
-    "pages: quote unverified (value words ['441'] are not in the quote)"
-   ],
-   "Hall54": [
-    "pages: quote unverified (value words ['138'] are not in the quote)"
-   ],
-   "Hash73": [
-    "pages: quote unverified (value words ['389'] are not in the quote)"
-   ],
-   "JainHuth18": [
-    "volume: the resolution's value '31' did not survive the post-check (final None)"
-   ],
-   "JenkDall24": [
-    "pages: quote unverified (value words ['605'] are not in the quote)"
-   ],
-   "LiEtal24b": [
-    "volume: the resolution's value '18' did not survive the post-check (final None)",
-    "doi: the resolution's value '10.1109/rbme.2024.3492381' did not survive the post-check (final None)"
-   ],
-   "MandEtal81": [
-    "pages: quote unverified (value words ['209'] are not in the quote)"
-   ],
-   "Marm83": [
-    "pages: quote unverified (value words ['17'] are not in the quote)"
-   ],
-   "MarmEtal78": [
-    "pages: quote unverified (value words ['483'] are not in the quote)"
-   ],
    "McCaEtal06": [
-    "pages: quote unverified (value words ['12', '14'] are not in the quote)",
     "doi: the resolution's value '10.1609/aimag.v27i4.1904' did not survive the post-check (final None)",
     "doi_title_unavailable on doi is held and the resolution does not address it"
-   ],
-   "MeltIrwi40": [
-    "pages: quote unverified (value words ['173'] are not in the quote)"
-   ],
-   "MeltvonL41": [
-    "pages: quote unverified (value words ['157'] are not in the quote)"
-   ],
-   "MuelEtal18": [
-    "key MuelEtal16 does not follow the ID rule for the corrected metadata (MuelEtal18)"
-   ],
-   "MullSchu94": [
-    "pages: quote unverified (value words ['190', '339'] are not in the quote)"
-   ],
-   "NairEtal95": [
-    "pages: quote unverified (value words ['345'] are not in the quote)"
-   ],
-   "NewmBuck62": [
-    "pages: quote unverified (value words ['429'] are not in the quote)"
-   ],
-   "Ober28": [
-    "pages: quote unverified (value words ['295'] are not in the quote)"
-   ],
-   "PollGero68": [
-    "pages: quote unverified (value words ['303'] are not in the quote)"
-   ],
-   "Post62": [
-    "pages: quote unverified (value words ['372'] are not in the quote)"
-   ],
-   "PresEtal93": [
-    "title: quote unverified (value words ['numerical', 'recipes'] are not in the quote)",
-    "ambiguous_identity_held on title is held and the resolution does not address it"
-   ],
-   "Rans02": [
-    "pages: quote unverified (value words ['39'] are not in the quote)",
-    "quote_check_failed on pages is held and the resolution does not address it"
-   ],
-   "Robi27": [
-    "pages: quote unverified (value words ['297'] are not in the quote)"
-   ],
-   "Rock57": [
-    "pages: quote unverified (value words ['186'] are not in the quote)"
-   ],
-   "RockHeim59": [
-    "pages: quote unverified (value words ['1'] are not in the quote)"
-   ],
-   "SpecBied76": [
-    "pages: quote unverified (value words ['669'] are not in the quote)"
-   ],
-   "TsitEtal19": [
-    "volume: the resolution's value '30' did not survive the post-check (final None)"
-   ],
-   "UndeEtal62": [
-    "pages: quote unverified (value words ['353'] are not in the quote)"
-   ],
-   "UnswEtal09": [
-    "title: quote unverified (value words ['there', 'more', 'working'] are not in the quote)"
-   ],
-   "ViniNels79": [
-    "pages: quote unverified (value words ['257'] are not in the quote)"
-   ],
-   "VodrEtal16": [
-    "author: quote unverified (value words ['vodrahalli', 'chen', 'liang', 'baldassano', 'chen', 'yong', 'honey', 'hasson', 'ramadge', 'arora'] are not in the quote)",
-    "pages: the resolution's value '223--231' did not survive the post-check (final None)"
-   ],
-   "WaszWalt83": [
-    "author: quote unverified (value words ['walters'] are not in the quote)"
-   ],
-   "WatkEtal89": [
-    "pages: quote unverified (value words ['265'] are not in the quote)"
-   ],
-   "Waug62": [
-    "pages: quote unverified (value words ['177'] are not in the quote)"
-   ],
-   "WelcBurn24": [
-    "pages: quote unverified (value words ['396'] are not in the quote)"
    ]
   },
   "resolution_removals": [
@@ -1353,49 +1119,8 @@
   },
   "resolution_key_collisions": {},
   "resolution_quotes_unverified": [
-   "AndrEtal74: pages = '609--628': quote 'EP  - 628' at https://www.jstor.org/citation/ris/10.2307/1421970: value words ['609'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Attn50: pages = '516--556': quote 'EP  - 556' at https://www.jstor.org/citation/ris/10.2307/1418869: value words ['516'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "BousEtal54: pages = '111--118': quote 'EP  - 118' at https://www.jstor.org/citation/ris/10.2307/1418075: value words ['111'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "BowmThur63: pages = '436--445': quote 'EP  - 445' at https://www.jstor.org/citation/ris/10.2307/1419785: value words ['436'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "CaliVita05: author = 'R L Cilibrasi and P M B Vitanyi': quote '\"given\":\"Rudi L.\",\"family\":\"Cilibrasi\"' at https://api.crossref.org/works/10.1109/tkde.2007.48: value words ['vitanyi'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Caso24: pages = '217--221': quote 'EP  - 221' at https://www.jstor.org/citation/ris/10.2307/1413823: value words ['217'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "ClarEtal60: pages = '22--40': quote 'EP  - 40' at https://www.jstor.org/citation/ris/10.2307/1419114: value words ['22'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Corn62: pages = '485--491': quote 'EP  - 491' at https://www.jstor.org/citation/ris/10.2307/1419876: value words ['485'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Denn91: pages = '27--51': quote 'citation_lastpage\" content=\"51\"' at https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051: value words ['27'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "EggeEtal07: author = 'L Eggermont and D Swaab and P Luiten and E Scherder': quote '\"given\":\"Laura\",\"family\":\"Eggermont\"' at https://api.crossref.org/works/10.1016/j.neubiorev.2005.10.004: value words ['swaab', 'luiten', 'scherder'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Faw90: pages = '317--326': quote 'EP  - 326' at https://www.jstor.org/citation/ris/10.2307/1423212: value words ['317'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
    "GoldEtal21: author = 'A Goldstein and Z Zada and E Buchnik and M Schain and A Price and B Aubrey and S A Nastase and A Feder and D Emanuel and A Cohen and A Jansen and H Gazula and G Choe and A Rao and C Kim and C Casto and L Fanda and W Doyle and D Friedman and P Dugan and L Melloni and R Reichart and S Devore and A Flinker and L Hasenfratz and O Levy and A Hassidim and M Brenner and Y Matias and K A Norman and O Devinsky and U Hasson': quote '\"given\":\"Catherine\",\"family\":\"Kim\"' at https://api.crossref.org/works/10.1038/s41593-022-01026-4: value words ['goldstein', 'zada', 'buchnik', 'schain', 'price', 'aubrey', 'nastase', 'feder', 'emanuel', 'cohen', 'jansen', 'gazula', 'choe', 'rao', 'casto', 'fanda', 'doyle', 'friedman', 'dugan', 'melloni', 'reichart', 'devore', 'flinker', 'hasenfratz', 'levy', 'hassidim', 'brenner', 'matias', 'norman', 'devinsky', 'hasson'] are not in the quote; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
-   "GreeCrow84: pages = '441--449': quote 'EP  - 449' at https://www.jstor.org/citation/ris/10.2307/1422530: value words ['441'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Hall54: pages = '138--140': quote 'EP  - 140' at https://www.jstor.org/citation/ris/10.2307/1418080: value words ['138'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Hash73: pages = '389--397': quote 'EP  - 397' at https://www.jstor.org/citation/ris/10.2307/1421449: value words ['389'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "JenkDall24: pages = '605--612': quote 'EP  - 612' at https://www.jstor.org/citation/ris/10.2307/1414040: value words ['605'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "MandEtal81: pages = '209--222': quote 'EP  - 222' at https://www.jstor.org/citation/ris/10.2307/1422742: value words ['209'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Marm83: pages = '17--35': quote 'EP  - 35' at https://www.jstor.org/citation/ris/10.2307/1422206: value words ['17'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "MarmEtal78: pages = '483--490': quote 'EP  - 490' at https://www.jstor.org/citation/ris/10.2307/1421694: value words ['483'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "McCaEtal06: pages = '12--14': quote 'WINTER 2006 13' at https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802: value words ['12', '14'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "MeltIrwi40: pages = '173--203': quote 'EP  - 203' at https://www.jstor.org/citation/ris/10.2307/1417415: value words ['173'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "MeltvonL41: pages = '157--173': quote 'EP  - 173' at https://www.jstor.org/citation/ris/10.2307/1416789: value words ['157'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "MullPilz00: pages = '1--300': quote '300 \\n\\n\\nAnhang.' at https://archive.org/download/b28111916/b28111916_djvu.txt: value words ['1'] are not in the quote; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
-   "MullSchu94: pages = '81--190, 257--339': quote 'suchung des  Gedächtnisses 81  u.  257' at https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt: value words ['190', '339'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "NairEtal95: pages = '345--358': quote 'EP  - 358' at https://www.jstor.org/citation/ris/10.2307/1422894: value words ['345'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "NewmBuck62: pages = '429--436': quote 'EP  - 436' at https://www.jstor.org/citation/ris/10.2307/1419866: value words ['429'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Ober28: pages = '295--302': quote 'EP  - 302' at https://www.jstor.org/citation/ris/10.2307/1414490: value words ['295'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "PollGero68: pages = '303--313': quote 'EP  - 313' at https://www.jstor.org/citation/ris/10.2307/1420627: value words ['303'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Post62: pages = '372--389': quote 'EP  - 389' at https://www.jstor.org/citation/ris/10.2307/1419861: value words ['372'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "PresEtal93: title = 'Numerical recipes in {C}: the art of scientific computing': quote '<subTitle>the art of scientific computing</subTitle>' at http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D94105607: value words ['numerical', 'recipes'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Rans02: pages = '39--86': quote \"86 Paul Ranschbw'g.\" at https://archive.org/download/zeitschriftfrps02psycgoog/zeitschriftfrps02psycgoog_djvu.txt: value words ['39'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Robi27: pages = '297--312': quote 'EP  - 312' at https://www.jstor.org/citation/ris/10.2307/1415419: value words ['297'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Rock57: pages = '186--193': quote 'EP  - 193' at https://www.jstor.org/citation/ris/10.2307/1419320: value words ['186'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "RockHeim59: pages = '1--16': quote 'EP  - 16' at https://www.jstor.org/citation/ris/10.2307/1420207: value words ['1'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "SpecBied76: pages = '669--679': quote 'EP  - 679' at https://www.jstor.org/citation/ris/10.2307/1421465: value words ['669'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "UndeEtal62: pages = '353--371': quote 'EP  - 371' at https://www.jstor.org/citation/ris/10.2307/1419860: value words ['353'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "UnswEtal09: title = \"There's more to the working memory capacity---fluid intelligence relationship than just secondary memory\": quote 'capacity\\\\u2014fluid intelligence relationship than just secondary memory' at https://api.crossref.org/works/10.3758/pbr.16.5.931: value words ['there', 'more', 'working'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "ViniNels79: pages = '257--276': quote 'EP  - 276' at https://www.jstor.org/citation/ris/10.2307/1421923: value words ['257'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "VodrEtal16: author = 'K Vodrahalli and P-H Chen and Y Liang and C Baldassano and J Chen and E Yong and C Honey and U Hasson and P Ramadge and K A Norman and S Arora': quote '\"given\":\"Kenneth A.\",\"family\":\"Norman\"' at https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042: value words ['vodrahalli', 'chen', 'liang', 'baldassano', 'chen', 'yong', 'honey', 'hasson', 'ramadge', 'arora'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "WaszWalt83: author = 'B L Waszczak and J R Walters': quote 'FAU - Waszczak, B L' at https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8102308&rettype=medline&retmode=text: value words ['walters'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "WatkEtal89: pages = '265--270': quote 'EP  - 270' at https://www.jstor.org/citation/ris/10.2307/1422957: value words ['265'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Waug62: pages = '177--192': quote 'EP  - 192' at https://www.jstor.org/citation/ris/10.2307/1419602: value words ['177'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "WelcBurn24: pages = '396--401': quote 'EP  - 401' at https://www.jstor.org/citation/ris/10.2307/1414018: value words ['396'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)"
+   "MullPilz00: pages = '1--300': quote '300 \\n\\n\\nAnhang.' at https://archive.org/download/b28111916/b28111916_djvu.txt: value words ['1'] are not in the quote; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)"
   ]
  },
  "measurement": {
@@ -1636,9 +1361,8 @@
  },
  "review_resolution": {
   "findings": 13,
-  "resolved": 11,
+  "resolved": 12,
   "unresolved": [
-   "CaliVita05",
    "LeCuBeng95"
   ],
   "not_checkable": [],
@@ -1658,17 +1382,17 @@
    {
     "key": "CaliVita05",
     "random_sample": false,
-    "resolved": false,
+    "resolved": true,
     "checks": [
      [
       "key",
-      false,
+      true,
       "reviewer key 'CiliVita07'; plan rename CiliVita07"
      ],
      [
       "author",
-      false,
-      "final 'R L Calibrasi and P M B Vitanyi' vs reviewer 'R L Cilibrasi and P M B Vitanyi'"
+      true,
+      "final 'R L Cilibrasi and P M B Vitanyi' vs reviewer 'R L Cilibrasi and P M B Vitanyi'"
      ]
     ]
    },
@@ -3498,15 +3222,9 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "title",
-     "detail": "title = \"There's more to the working memory capacity---fluid intelligence relationship than just secondary memory\": quote 'capacity\\\\u2014fluid intelligence relationship than just secondary memory' at https://api.crossref.org/works/10.3758/pbr.16.5.931: value words ['there', 'more', 'working'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-11): the post-check's final changes stand",
+     "field": "title",
+     "detail": "resolution 'apply' (batch-11): title = \"There's more to the working memory capacity---fluid intelligence relationship than just secondary memory\"",
      "action": "applied"
     }
    ],
@@ -3523,12 +3241,23 @@
        "quote": "\"DOI\":\"10.3758\\/pbr.16.5.931\""
       }
      ]
+    },
+    {
+     "field": "title",
+     "current": "There's more to the working memory capacity--- fluid intelligence relationship than just secondary memory",
+     "proposed": "There's more to the working memory capacity---fluid intelligence relationship than just secondary memory",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.3758/pbr.16.5.931",
+       "quote": "000},\"page\":\"931-937\",\"source\":\"Crossref\",\"is-referenced-by-count\":69,\"title\":[\"There\\u2019s more to the working memory capacity\\u2014fluid intelligence relationship than just secondary memory\"],\"prefix\":\"10.3758\",\"volume\":\"16\",\"author\":[{\"given\":\"Nash\",\"family\":\"Unsworth\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"role\":\"author\",\"vocabulary\":\"crossref\"}]},{\"given\":\"Gene A.\",\"family\":\"Brewer\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"role\":\"author\",\"vocabulary\":\"crossref\"}]},{\"given\":\"Gregory J.\",\"family\":\"Spillers\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"role\":\"author\",\"vocabulary\":\"crossref\"}]}],\"member\":\"297\",\"reference\":[{\"key\":\"160500931_CR1\",\"doi-asserted-by\":\"crossref\",\"first-page\":\"30\",\"DOI\":\"10.1037\\/0033-2909.131.1.30\",\"volume\":\"131\",\"author\":\"P. L. Ackerman\",\"year\":\"2005\",\"unstructured\":\"Ackerman, P. L., Beier, M. E., & Boyle, M. O. (2005). Working memory and intelligence: The same or different constructs? Psychological Bulletin, 131, 30\\u201360.\",\"journal-title\":\"Psychological Bulletin\"},{\"key\":\"160500931_CR2\",\"doi-asserted-by\":\"crossref\",\"first-page\":\"323\",\"DOI\":\"10.1016\\/S0079-6123(07)00020-9\",\"volume-title\":\"The essence of memory\",\"author\":\"N. Cowan\",\"year\":\"2008\",\"unstructured\":\"Cowan, N. (2008). What are the differences between long-term, shortterm, and working memory? In W. Sossin, J.-C. Lacaille, V. F. Castellucci, & S. Belleville (Eds.), The essence of memory (pp. 323\\u2013338). Amsterdam: Elsevier.\"},{\"key\":\"160500931_CR3\",\"doi-asserted-by\":\"crossref\",\"first-page\":\"42\",\"DOI\":\"10.1016\\/j.cogpsych.2004.12.001\",\"volume\":\"51\",\"author\":\"N. Cowan\",\"year\":\"2005\",\"unstructured\":\"Cowan, N., Elliott, E. M., Saults, J. S., Morey, C. C., Mattox, S., Hismjatullina, A., & Conway, A. R. A. (2005). On the capacity of attention: Its estimation and its role in working memory and cognitive aptitudes. Cognitive Psychology, 51, 42\\u2013100.\",\"journal-title\":\"Cognitive Psychology\"},{\"key\":\"160500931_CR4\",\"first-page\":\"145\",\"volume-title\":\"The psychology of learning and motivation\",\"author\":\"R. W. Engle\",\"year\":\"2004\",\"unstructured\":\"Engle, R. W., & Kane, M. J. (2004). Executive attention, working memory capacity, and a two-factor theory of cognitive control. In B. Ross (Ed.), The psychology of learning and motivation (Vol. 44, pp. 145\\u2013199). New York: Elsevier.\"},{\"key\":\"160500931_CR5\",\"doi-asserted-by\":\"crossref\",\"first-page\":\"66\",\"DOI\":\"10.1037\\/0033-2909.131.1.66\",\"volume\":\"131\",\"author\":\"M. J. Kane\",\"year\":\"2005\",\"unstructured\":\"Kane, M. J., Hambrick, D. Z., & Conway, A. R. A. (2005). Working memory capacity and fluid intelligence are strongly related constructs:"
+      }
+     ],
+     "decision": "resolution batch-11"
     }
    ],
    "removals": {},
-   "held": {
-    "title": "resolution quote unverified: value words ['there', 'more', 'working'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "UnswEtal09",
@@ -3566,13 +3295,11 @@
     "decision": "apply",
     "batch": "batch-11",
     "notes": "Crossref prints a closed em dash ('capacity—fluid'), so the closed '---fluid' is as printed. DOI and 16(5) 931-937 confirmed. RECONCILED 2026-09-26: Question answered by rule: em dash a---b; value already conforms.",
-    "residue": [
-     "title: quote unverified (value words ['there', 'more', 'working'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "title": {
-      "ok": false,
-      "why": "value words ['there', 'more', 'working'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -5329,12 +5056,6 @@
    "verdict": "ambiguous",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "author",
-     "detail": "author = 'L Eggermont and D Swaab and P Luiten and E Scherder': quote '\"given\":\"Laura\",\"family\":\"Eggermont\"' at https://api.crossref.org/works/10.1016/j.neubiorev.2005.10.004: value words ['swaab', 'luiten', 'scherder'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "other_version_named",
      "field": null,
      "detail": "the researcher's notes name another version ('Replacement candidate'): replacement is the user's decision",
@@ -5342,8 +5063,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": "doi, journal, number, pages, title, volume, year",
-     "detail": "resolution 'apply' (batch-12): doi = '10.1016/j.neubiorev.2005.10.004'; journal = 'Neuroscience and Biobehavioral Reviews'; number = '4'; pages = '562--575'; title = \"Exercise, cognition and {Alzheimer's} disease: more is not necessarily better\"; volume = '30'; year = '2006'",
+     "field": "author, doi, journal, number, pages, title, volume, year",
+     "detail": "resolution 'apply' (batch-12): author = 'L Eggermont and D Swaab and P Luiten and E Scherder'; doi = '10.1016/j.neubiorev.2005.10.004'; journal = 'Neuroscience and Biobehavioral Reviews'; number = '4'; pages = '562--575'; title = \"Exercise, cognition and {Alzheimer's} disease: more is not necessarily better\"; volume = '30'; year = '2006'",
      "action": "applied"
     },
     {
@@ -5367,6 +5088,19 @@
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "L H P Eggermont and D Swaab and P Luiten and E Scherder",
+     "proposed": "L Eggermont and D Swaab and P Luiten and E Scherder",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neubiorev.2005.10.004",
+       "quote": "better\"],\"prefix\":\"10.1016\",\"volume\":\"30\",\"author\":[{\"given\":\"Laura\",\"family\":\"Eggermont\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Dick\",\"family\":\"Swaab\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Paul\",\"family\":\"Luiten\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Erik\",\"family\":\"Scherder\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
+      }
+     ],
+     "decision": "resolution batch-12"
+    },
     {
      "field": "doi",
      "current": null,
@@ -5460,9 +5194,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "resolution quote unverified: value words ['swaab', 'luiten', 'scherder'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "EggeEtal07",
@@ -5505,9 +5237,7 @@
     "decision": "apply",
     "batch": "batch-12",
     "notes": "The 2007 Research and Practice in Alzheimer's Disease vol 12 (Serdi reprint series) printing is in no catalogue: Open Library lists vols 5, 9, 10 only, and Crossref, PubMed and LoC have nothing. The original is Neurosci Biobehav Rev 30(4):562-575, 2006. Replaced by it (fixes the 'Excercise' typo); EggeEtal06 is free. Authors per Crossref/PubMed FAU (Laura, Dick, Paul, Erik). RECONCILED 2026-09-26: Question answered by rule: reprint not found -> original (default).",
-    "residue": [
-     "author: quote unverified (value words ['swaab', 'luiten', 'scherder'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "journal": {
       "ok": true,
@@ -5538,8 +5268,8 @@
       "why": null
      },
      "author": {
-      "ok": false,
-      "why": "value words ['swaab', 'luiten', 'scherder'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -8456,20 +8186,27 @@
      "action": "flag"
     },
     {
-     "code": "resolution_quote_unverified",
-     "field": "author",
-     "detail": "author = 'B L Waszczak and J R Walters': quote 'FAU - Waszczak, B L' at https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8102308&rettype=medline&retmode=text: value words ['walters'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-12): the post-check's final changes stand",
+     "field": "author",
+     "detail": "resolution 'apply' (batch-12): author = 'B L Waszczak and J R Walters'",
      "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "B Waszczak and J Walters",
+     "proposed": "B L Waszczak and J R Walters",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/3944613/",
+       "quote": "iontophoresis or striatal stimulation. B L Waszczak, J R Walters The Journal of neuroscience : the official"
+      }
+     ],
+     "decision": "resolution batch-12"
+    },
     {
      "field": "doi",
      "current": null,
@@ -8520,9 +8257,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "resolution quote unverified: value words ['walters'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "WaszWalt83",
@@ -8558,13 +8293,11 @@
     "decision": "apply",
     "batch": "batch-12",
     "notes": "PubMed 6828891 (FAU 'Waszcak, B L', 'Walters, J R') and Crossref (family 'Waszcak', given 'Barbara L.') both print 'Waszcak'. HEAD's 'Waszczak' is the author's usual spelling but not the record's. Set as printed per rule 3, pending the question. The key is unaffected. RECONCILED 2026-09-26: Author-name rule: 'Waszcak' in this record is a misprint; the author's other records spell 'Waszczak' (PubMed 8102308, 1993, FAU 'Waszczak, B L').",
-    "residue": [
-     "author: quote unverified (value words ['walters'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "author": {
-      "ok": false,
-      "why": "value words ['walters'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -15975,12 +15708,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '27--51': quote 'citation_lastpage\" content=\"51\"' at https://www.pdcnet.org/jphil/content/jphil_1991_0088_0001_0027_0051: value words ['27'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/2027085 gives pages '27', proposal '27--51'",
@@ -15988,8 +15715,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-13): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-13): pages = '27--51'",
      "action": "applied"
     }
    ],
@@ -16009,9 +15736,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['27'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Denn91",
@@ -16045,13 +15770,11 @@
     "decision": "apply",
     "batch": "batch-13",
     "notes": "Publisher page (PDC) prints first page 27, last page 51; Crossref's '27' is first page only. Pages unchanged from HEAD; DOI 10.2307/2027085 added.",
-    "residue": [
-     "pages: quote unverified (value words ['27'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['27'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -19842,15 +19565,9 @@
      "action": "flag"
     },
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '81--190, 257--339': quote 'suchung des  Gedächtnisses 81  u.  257' at https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt: value words ['190', '339'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '81--190, 257--339'",
      "action": "applied"
     }
    ],
@@ -19876,6 +19593,27 @@
      "normalised_by": "postcheck"
     },
     {
+     "field": "pages",
+     "current": "257--339",
+     "proposed": "81--190, 257--339",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
+       "quote": "suchung des  Gedächtnisses 81  u.  257"
+      },
+      {
+       "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
+       "quote": "190  ^*  ^  Müller  und  F.  Schumann."
+      },
+      {
+       "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
+       "quote": "Experimentelle  Beiträge  zur  Untersuchung  des  Gedächtnisses.         339"
+      }
+     ],
+     "decision": "resolution batch-14"
+    },
+    {
      "field": "title",
      "current": "Experimentelle beitrage zur untersuchungen des gedachtnisses",
      "proposed": "Experimentelle {Beitr{\\\"a}ge} zur {Untersuchung} des {Ged{\\\"a}chtnisses}",
@@ -19895,9 +19633,7 @@
    "removals": {
     "number": "researcher asked to remove it (current '80-191')"
    },
-   "held": {
-    "pages": "resolution quote unverified: value words ['190', '339'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "MullSchu94",
@@ -19910,14 +19646,12 @@
    "resolution": {
     "decision": "apply",
     "batch": "batch-14",
-    "notes": "Bd 6 prints the paper in two parts: contents 'suchung des  Gedächtnisses 81  u.  257'; part 1 runs 81--190 (ends '(Schlufs  folgt.)', Höpfner starts 191), part 2 257--339 (Meinong starts 340). HEAD pages 257--339 is part 2 only; kept pending the rule question. Number '80-191' removal stands. RECONCILED 2026-09-26: Two-part article: both ranges (default); part 1 81--190 (ends \"Schlufs folgt\", next item 191), part 2 257--339 (next item 340), per the batch evidence.",
-    "residue": [
-     "pages: quote unverified (value words ['190', '339'] are not in the quote)"
-    ],
+    "notes": "Bd 6 prints the paper in two parts: contents 'suchung des  Gedächtnisses 81  u.  257'; part 1 runs 81--190 (ends '(Schlufs  folgt.)', Höpfner starts 191), part 2 257--339 (Meinong starts 340). HEAD pages 257--339 is part 2 only; kept pending the rule question. Number '80-191' removal stands. RECONCILED 2026-09-26: Two-part article: both ranges (default); part 1 81--190 (ends \"Schlufs folgt\", next item 191), part 2 257--339 (next item 340), per the batch evidence. EVIDENCE 2026-09-26 (several-quotes rule): pages evidence is several quotes from the same official record whose union prints every page number of the value.",
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['190', '339'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -19936,19 +19670,13 @@
     {
      "code": "quote_check_failed",
      "field": "pages",
-     "detail": "validator: pages not covered by its quotes (missing ['86']; failures [])",
-     "action": "held"
-    },
-    {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '39--86': quote \"86 Paul Ranschbw'g.\" at https://archive.org/download/zeitschriftfrps02psycgoog/zeitschriftfrps02psycgoog_djvu.txt: value words ['39'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
+     "detail": "validator: pages not covered by its quotes (missing ['86']; failures []); superseded by the resolution (batch-14)",
+     "action": "dropped"
     },
     {
      "code": "resolution_decision",
-     "field": "author",
-     "detail": "resolution 'apply' (batch-14): author = 'P Ranschburg'",
+     "field": "author, pages",
+     "detail": "resolution 'apply' (batch-14): author = 'P Ranschburg'; pages = '39--86'",
      "action": "applied"
     }
    ],
@@ -19993,9 +19721,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['39'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Rans02",
@@ -20008,19 +19734,16 @@
    "resolution": {
     "decision": "apply",
     "batch": "batch-14",
-    "notes": "Re-quoted: running head on p. 54 'Faul Ranschburg.' (OCR of Paul Ranschburg); p. 86 running head '86 Paul Ranschbw\\'g.' is the article's last page (contents: start 39, Losskij 'Eine Willenstheorie' starts 87). HEAD values confirmed.",
-    "residue": [
-     "pages: quote unverified (value words ['39'] are not in the quote)",
-     "quote_check_failed on pages is held and the resolution does not address it"
-    ],
+    "notes": "Re-quoted: running head on p. 54 'Faul Ranschburg.' (OCR of Paul Ranschburg); p. 86 running head '86 Paul Ranschbw\\'g.' is the article's last page (contents: start 39, Losskij 'Eine Willenstheorie' starts 87). HEAD values confirmed. EVIDENCE 2026-09-26 (several-quotes rule): pages evidence is several quotes from the same official record whose union prints every page number of the value.",
+    "residue": [],
     "quotes": {
      "author": {
       "ok": true,
       "why": null
      },
      "pages": {
-      "ok": false,
-      "why": "value words ['39'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -20438,14 +20161,20 @@
     },
     {
      "code": "resolution_decision",
-     "field": "author, title",
-     "detail": "resolution 'apply' (batch-14): author = 'A Mueller and P Nechifor and M Corvellec and B Petrushev and K M Langner and {Alessio} and I Ozsvald and E Bailey and V Anand and T Jones and U Laserson and {Low Kian Seong} and J {Van Goey} and J S Smith'; title = '{word\\\\_cloud}'",
+     "field": "author, title, year",
+     "detail": "resolution 'apply' (batch-14): author = 'A Mueller and P Nechifor and M Corvellec and B Petrushev and K M Langner and {Alessio} and I Ozsvald and E Bailey and V Anand and T Jones and U Laserson and {Low Kian Seong} and J {Van Goey} and J S Smith'; title = '{word\\\\_cloud}'; year = '2016'",
      "action": "applied"
+    },
+    {
+     "code": "key_rename",
+     "field": "key",
+     "detail": "MuelEtal18 -> MuelEtal16 (key does not follow the corrected metadata)",
+     "action": "flag"
     },
     {
      "code": "resolution_decision",
      "field": "key",
-     "detail": "resolution (batch-14): MuelEtal18 -> MuelEtal16",
+     "detail": "resolution (batch-14): MuelEtal18 -> MuelEtal16, as planned",
      "action": "applied"
     }
    ],
@@ -20513,6 +20242,19 @@
      ],
      "decision": "resolution batch-14",
      "reviewer": "agree"
+    },
+    {
+     "field": "year",
+     "current": "2018",
+     "proposed": "2016",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.datacite.org/dois/text/x-bibliography/10.5281/zenodo.49907?style=apa",
+       "quote": "Smith, J. S. (2016)."
+      }
+     ],
+     "decision": "resolution batch-14"
     }
    ],
    "removals": {
@@ -20523,11 +20265,11 @@
    "suggestions": {},
    "key_plan": {
     "current_key": "MuelEtal18",
-    "target_base": "MuelEtal18",
+    "target_base": "MuelEtal16",
     "action": "rename",
+    "rename_reason": "key does not follow the corrected metadata",
     "new_key": "MuelEtal16",
-    "rename_reason": "resolution (batch-14)",
-    "resolution": "resolution (batch-14): key MuelEtal16"
+    "resolution": "resolution (batch-14): key MuelEtal16 confirmed"
    },
    "doi_status": {
     "doi": "10.5281/zenodo.1322068",
@@ -20607,15 +20349,17 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "User rule: software cites its first version (10.5281/zenodo.49907, 2016, v1.2.1), so its 14 DataCite creators and its title (version number dropped) replace those of v1.5.0. Key MuelEtal16 free in HEAD. RECONCILED 2026-09-26: Question answered by rule: software first version title as registered (default).",
-    "residue": [
-     "key MuelEtal16 does not follow the ID rule for the corrected metadata (MuelEtal18)"
-    ],
+    "residue": [],
     "quotes": {
      "author": {
       "ok": true,
       "why": null
      },
      "title": {
+      "ok": true,
+      "why": null
+     },
+     "year": {
       "ok": true,
       "why": null
      }
@@ -20826,12 +20570,6 @@
      "action": "flag"
     },
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '12--14': quote 'WINTER 2006 13' at https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/1904/1802: value words ['12', '14'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_title_unavailable",
      "field": "doi",
      "detail": "10.1609/aimag.v27i4.1904: Crossref record unavailable: HTTP 404; held",
@@ -20839,17 +20577,15 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '12--14'",
      "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['12', '14'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "McCaEtal06",
@@ -20867,16 +20603,15 @@
    "resolution": {
     "decision": "apply",
     "batch": "batch-14",
-    "notes": "Publisher PDF (3 pages) prints page footers 12 ('12 AI MAGAZINE'), 'WINTER 2006 13' and 14; OJS meta tags wrongly give lastpage 12. DOI registered with Crossref (doiRA) and resolves to the AAAI OJS page, which prints it; the Crossref API returns 404 for the record.",
+    "notes": "Publisher PDF (3 pages) prints page footers 12 ('12 AI MAGAZINE'), 'WINTER 2006 13' and 14; OJS meta tags wrongly give lastpage 12. DOI registered with Crossref (doiRA) and resolves to the AAAI OJS page, which prints it; the Crossref API returns 404 for the record. EVIDENCE 2026-09-26 (several-quotes rule): pages from the three PDF footers '12 AI MAGAZINE', 'WINTER 2006 13', '14 AI MAGAZINE'. DOI: doi.org resolves 10.1609/aimag.v27i4.1904 (HTTP 302 to the AAAI OJS article; handle API responseCode 1), so it is registered; only Crossref's REST API returns 404 for the record.",
     "residue": [
-     "pages: quote unverified (value words ['12', '14'] are not in the quote)",
      "doi: the resolution's value '10.1609/aimag.v27i4.1904' did not survive the post-check (final None)",
      "doi_title_unavailable on doi is held and the resolution does not address it"
     ],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['12', '14'] are not in the quote"
+      "ok": true,
+      "why": null
      },
      "doi": {
       "ok": true,
@@ -21434,12 +21169,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '609--628': quote 'EP  - 628' at https://www.jstor.org/citation/ris/10.2307/1421970: value words ['609'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1421970 gives pages '609', proposal '609--628'",
@@ -21447,8 +21176,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '609--628'",
      "action": "applied"
     }
    ],
@@ -21472,9 +21201,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['609'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "AndrEtal74",
@@ -21512,13 +21239,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 609' and 'EP  - 628' (fetched 2026-09-26), matching HEAD 609--628. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['609'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['609'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -21529,12 +21254,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '516--556': quote 'EP  - 556' at https://www.jstor.org/citation/ris/10.2307/1418869: value words ['516'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1418869 gives pages '516', proposal '516--556'",
@@ -21542,8 +21261,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '516--556'",
      "action": "applied"
     }
    ],
@@ -21581,9 +21300,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['516'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Attn50",
@@ -21617,13 +21334,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 516' and 'EP  - 556' (fetched 2026-09-26), matching HEAD 516--556. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['516'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['516'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -21634,12 +21349,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '111--118': quote 'EP  - 118' at https://www.jstor.org/citation/ris/10.2307/1418075: value words ['111'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1418075 gives pages '111', proposal '111--118'",
@@ -21647,8 +21356,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '111--118'",
      "action": "applied"
     }
    ],
@@ -21704,9 +21413,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['111'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "BousEtal54",
@@ -21744,13 +21451,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 111' and 'EP  - 118' (fetched 2026-09-26), matching HEAD 111--118. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['111'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['111'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -21761,12 +21466,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '436--445': quote 'EP  - 445' at https://www.jstor.org/citation/ris/10.2307/1419785: value words ['436'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1419785 gives pages '436', proposal '436--445'",
@@ -21774,8 +21473,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '436--445'",
      "action": "applied"
     }
    ],
@@ -21813,9 +21512,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['436'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "BowmThur63",
@@ -21851,13 +21548,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 436' and 'EP  - 445' (fetched 2026-09-26), matching HEAD 436--445. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['436'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['436'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -21868,12 +21563,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '217--221': quote 'EP  - 221' at https://www.jstor.org/citation/ris/10.2307/1413823: value words ['217'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1413823 gives pages '217', proposal '217--221'",
@@ -21881,8 +21570,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '217--221'",
      "action": "applied"
     }
    ],
@@ -21930,9 +21619,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['217'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Caso24",
@@ -21966,13 +21653,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 217' and 'EP  - 221' (fetched 2026-09-26), matching HEAD 217--221. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['217'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['217'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -21983,12 +21668,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '22--40': quote 'EP  - 40' at https://www.jstor.org/citation/ris/10.2307/1419114: value words ['22'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1419114 gives pages '22', proposal '22--40'",
@@ -21996,8 +21675,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '22--40'",
      "action": "applied"
     }
    ],
@@ -22033,9 +21712,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['22'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "ClarEtal60",
@@ -22073,13 +21750,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 22' and 'EP  - 40' (fetched 2026-09-26), matching HEAD 22--40. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['22'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['22'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -22090,12 +21765,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '485--491': quote 'EP  - 491' at https://www.jstor.org/citation/ris/10.2307/1419876: value words ['485'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1419876 gives pages '485', proposal '485--491'",
@@ -22103,8 +21772,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '485--491'",
      "action": "applied"
     }
    ],
@@ -22128,9 +21797,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['485'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Corn62",
@@ -22164,13 +21831,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 485' and 'EP  - 491' (fetched 2026-09-26), matching HEAD 485--491. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['485'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['485'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -22181,12 +21846,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '317--326': quote 'EP  - 326' at https://www.jstor.org/citation/ris/10.2307/1423212: value words ['317'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1423212 gives pages '317', proposal '317--326'",
@@ -22194,8 +21853,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '317--326'",
      "action": "applied"
     }
    ],
@@ -22219,9 +21878,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['317'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Faw90",
@@ -22255,13 +21912,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 317' and 'EP  - 326' (fetched 2026-09-26), matching HEAD 317--326. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['317'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['317'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -22272,12 +21927,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '441--449': quote 'EP  - 449' at https://www.jstor.org/citation/ris/10.2307/1422530: value words ['441'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1422530 gives pages '441', proposal '441--449'",
@@ -22285,8 +21934,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '441--449'",
      "action": "applied"
     }
    ],
@@ -22324,9 +21973,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['441'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "GreeCrow84",
@@ -22362,13 +22009,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 441' and 'EP  - 449' (fetched 2026-09-26), matching HEAD 441--449. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['441'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['441'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -22379,12 +22024,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '138--140': quote 'EP  - 140' at https://www.jstor.org/citation/ris/10.2307/1418080: value words ['138'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1418080 gives pages '138', proposal '138--140'",
@@ -22392,8 +22031,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '138--140'",
      "action": "applied"
     }
    ],
@@ -22429,9 +22068,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['138'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Hall54",
@@ -22465,13 +22102,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 138' and 'EP  - 140' (fetched 2026-09-26), matching HEAD 138--140. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['138'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['138'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -22482,12 +22117,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '389--397': quote 'EP  - 397' at https://www.jstor.org/citation/ris/10.2307/1421449: value words ['389'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1421449 gives pages '389', proposal '389--397'",
@@ -22495,8 +22124,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-14): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-14): pages = '389--397'",
      "action": "applied"
     }
    ],
@@ -22520,9 +22149,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['389'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Hash73",
@@ -22556,13 +22183,11 @@
     "decision": "apply",
     "batch": "batch-14",
     "notes": "Crossref (JSTOR deposit) gives the first page only; JSTOR's RIS record prints 'SP  - 389' and 'EP  - 397' (fetched 2026-09-26), matching HEAD 389--397. Printed range wins.",
-    "residue": [
-     "pages: quote unverified (value words ['389'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['389'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -22573,12 +22198,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '605--612': quote 'EP  - 612' at https://www.jstor.org/citation/ris/10.2307/1414040: value words ['605'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1414040 gives pages '605', proposal '605--612'",
@@ -22586,8 +22205,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '605--612'",
      "action": "applied"
     }
    ],
@@ -22651,9 +22270,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['605'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "JenkDall24",
@@ -22689,13 +22306,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 605' and 'EP  - 612' (Oct., 1924, vol 35 issue 4); Crossref deposits only the first page. Printed range wins; HEAD's 605--612 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['605'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['605'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -22706,12 +22321,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '209--222': quote 'EP  - 222' at https://www.jstor.org/citation/ris/10.2307/1422742: value words ['209'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1422742 gives pages '209', proposal '209--222'",
@@ -22719,8 +22328,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '209--222'",
      "action": "applied"
     }
    ],
@@ -22768,9 +22377,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['209'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "MandEtal81",
@@ -22808,13 +22415,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 209' and 'EP  - 222' (Jun., 1981, vol 94 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 209--222 stays, other post-check changes apply. RIS 'VL  - 94' supports the volume 92->94 fix.",
-    "residue": [
-     "pages: quote unverified (value words ['209'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['209'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -22825,12 +22430,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '17--35': quote 'EP  - 35' at https://www.jstor.org/citation/ris/10.2307/1422206: value words ['17'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1422206 gives pages '17', proposal '17--35'",
@@ -22838,8 +22437,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '17--35'",
      "action": "applied"
     }
    ],
@@ -22871,9 +22470,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['17'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Marm83",
@@ -22907,13 +22504,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 17' and 'EP  - 35' (Spring, 1983, vol 96 issue 1); Crossref deposits only the first page. Printed range wins; HEAD's 17--35 stays, other post-check changes apply. RIS byline 'Harvey H. C. Marmurek' supports H H C Marmurek.",
-    "residue": [
-     "pages: quote unverified (value words ['17'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['17'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -22924,12 +22519,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '483--490': quote 'EP  - 490' at https://www.jstor.org/citation/ris/10.2307/1421694: value words ['483'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1421694 gives pages '483', proposal '483--490'",
@@ -22937,8 +22526,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '483--490'",
      "action": "applied"
     }
    ],
@@ -22958,9 +22547,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['483'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "MarmEtal78",
@@ -22998,13 +22585,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 483' and 'EP  - 490' (Sep., 1978, vol 91 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 483--490 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['483'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['483'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -23015,12 +22600,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '173--203': quote 'EP  - 203' at https://www.jstor.org/citation/ris/10.2307/1417415: value words ['173'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1417415 gives pages '173', proposal '173--203'",
@@ -23028,8 +22607,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '173--203'",
      "action": "applied"
     }
    ],
@@ -23061,9 +22640,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['173'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "MeltIrwi40",
@@ -23099,13 +22676,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 173' and 'EP  - 203' (Apr., 1940, vol 53 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 173--203 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['173'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['173'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -23116,12 +22691,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '157--173': quote 'EP  - 173' at https://www.jstor.org/citation/ris/10.2307/1416789: value words ['157'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1416789 gives pages '157', proposal '157--173'",
@@ -23129,8 +22698,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '157--173'",
      "action": "applied"
     }
    ],
@@ -23162,9 +22731,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['157'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "MeltvonL41",
@@ -23200,13 +22767,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 157' and 'EP  - 173' (Apr., 1941, vol 54 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 157--173 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['157'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['157'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -23217,12 +22782,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '345--358': quote 'EP  - 358' at https://www.jstor.org/citation/ris/10.2307/1422894: value words ['345'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1422894 gives pages '345', proposal '345--358'",
@@ -23230,8 +22789,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '345--358'",
      "action": "applied"
     }
    ],
@@ -23251,9 +22810,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['345'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "NairEtal95",
@@ -23291,13 +22848,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 345' and 'EP  - 358' (Autumn, 1995, vol 108 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 345--358 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['345'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['345'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -23308,12 +22863,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '429--436': quote 'EP  - 436' at https://www.jstor.org/citation/ris/10.2307/1419866: value words ['429'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1419866 gives pages '429', proposal '429--436'",
@@ -23321,8 +22870,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '429--436'",
      "action": "applied"
     }
    ],
@@ -23342,9 +22891,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['429'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "NewmBuck62",
@@ -23380,13 +22927,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 429' and 'EP  - 436' (Sep., 1962, vol 75 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 429--436 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['429'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['429'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -23397,12 +22942,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '295--302': quote 'EP  - 302' at https://www.jstor.org/citation/ris/10.2307/1414490: value words ['295'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1414490 gives pages '295', proposal '295--302'",
@@ -23410,8 +22949,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '295--302'",
      "action": "applied"
     }
    ],
@@ -23467,9 +23006,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['295'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Ober28",
@@ -23503,13 +23040,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 295' and 'EP  - 302' (Apr., 1928, vol 40 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 295--302 stays, other post-check changes apply. RIS byline 'Oberly, H. Sherman' supports the H S Oberly author fix.",
-    "residue": [
-     "pages: quote unverified (value words ['295'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['295'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -23520,12 +23055,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '303--313': quote 'EP  - 313' at https://www.jstor.org/citation/ris/10.2307/1420627: value words ['303'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1420627 gives pages '303', proposal '303--313'",
@@ -23533,8 +23062,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '303--313'",
      "action": "applied"
     }
    ],
@@ -23566,9 +23095,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['303'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "PollGero68",
@@ -23604,13 +23131,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 303' and 'EP  - 313' (Sep., 1968, vol 81 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 303--313 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['303'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['303'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -23621,12 +23146,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '372--389': quote 'EP  - 389' at https://www.jstor.org/citation/ris/10.2307/1419861: value words ['372'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1419861 gives pages '372', proposal '372--389'",
@@ -23634,8 +23153,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '372--389'",
      "action": "applied"
     }
    ],
@@ -23679,9 +23198,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['372'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Post62",
@@ -23715,13 +23232,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 372' and 'EP  - 389' (Sep., 1962, vol 75 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 372--389 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['372'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['372'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -23732,12 +23247,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '297--312': quote 'EP  - 312' at https://www.jstor.org/citation/ris/10.2307/1415419: value words ['297'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1415419 gives pages '297', proposal '297--312'",
@@ -23745,8 +23254,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '297--312'",
      "action": "applied"
     }
    ],
@@ -23778,9 +23287,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['297'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Robi27",
@@ -23814,13 +23321,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 297' and 'EP  - 312' (Dec., 1927, vol 39 issue 1/4); Crossref deposits only the first page. Printed range wins; HEAD's 297--312 stays, other post-check changes apply. JSTOR prints issue '1/4' (combined issue); post-check's '1--4' follows the house form for combined issues (56 HEAD entries use '--', 3 use '/').",
-    "residue": [
-     "pages: quote unverified (value words ['297'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['297'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -23831,12 +23336,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '186--193': quote 'EP  - 193' at https://www.jstor.org/citation/ris/10.2307/1419320: value words ['186'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1419320 gives pages '186', proposal '186--193'",
@@ -23844,8 +23343,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '186--193'",
      "action": "applied"
     }
    ],
@@ -23877,9 +23376,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['186'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Rock57",
@@ -23913,13 +23410,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 186' and 'EP  - 193' (Jun., 1957, vol 70 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 186--193 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['186'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['186'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -23930,12 +23425,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '1--16': quote 'EP  - 16' at https://www.jstor.org/citation/ris/10.2307/1420207: value words ['1'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1420207 gives pages '1', proposal '1--16'",
@@ -23943,8 +23432,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '1--16'",
      "action": "applied"
     }
    ],
@@ -23978,9 +23467,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['1'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "RockHeim59",
@@ -24016,13 +23503,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 1' and 'EP  - 16' (Mar., 1959, vol 72 issue 1); Crossref deposits only the first page. Printed range wins; HEAD's 1--16 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['1'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['1'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -24033,12 +23518,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '669--679': quote 'EP  - 679' at https://www.jstor.org/citation/ris/10.2307/1421465: value words ['669'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1421465 gives pages '669', proposal '669--679'",
@@ -24046,8 +23525,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '669--679'",
      "action": "applied"
     }
    ],
@@ -24094,9 +23573,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['669'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "SpecBied76",
@@ -24132,13 +23609,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 669' and 'EP  - 679' (Dec., 1976, vol 89 issue 4); Crossref deposits only the first page. Printed range wins; HEAD's 669--679 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['669'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['669'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -24149,12 +23624,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '353--371': quote 'EP  - 371' at https://www.jstor.org/citation/ris/10.2307/1419860: value words ['353'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1419860 gives pages '353', proposal '353--371'",
@@ -24162,8 +23631,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '353--371'",
      "action": "applied"
     }
    ],
@@ -24207,9 +23676,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['353'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "UndeEtal62",
@@ -24247,13 +23714,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 353' and 'EP  - 371' (Sep., 1962, vol 75 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 353--371 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['353'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['353'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -24264,12 +23729,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '257--276': quote 'EP  - 276' at https://www.jstor.org/citation/ris/10.2307/1421923: value words ['257'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1421923 gives pages '257', proposal '257--276'",
@@ -24277,8 +23736,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '257--276'",
      "action": "applied"
     }
    ],
@@ -24312,9 +23771,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['257'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "ViniNels79",
@@ -24350,13 +23807,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 257' and 'EP  - 276' (Jun., 1979, vol 92 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 257--276 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['257'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['257'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -24367,12 +23822,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '265--270': quote 'EP  - 270' at https://www.jstor.org/citation/ris/10.2307/1422957: value words ['265'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1422957 gives pages '265', proposal '265--270'",
@@ -24380,8 +23829,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '265--270'",
      "action": "applied"
     }
    ],
@@ -24415,9 +23864,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['265'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "WatkEtal89",
@@ -24455,13 +23902,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 265' and 'EP  - 270' (Summer, 1989, vol 102 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 265--270 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['265'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['265'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -24472,12 +23917,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '177--192': quote 'EP  - 192' at https://www.jstor.org/citation/ris/10.2307/1419602: value words ['177'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1419602 gives pages '177', proposal '177--192'",
@@ -24485,8 +23924,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '177--192'",
      "action": "applied"
     }
    ],
@@ -24518,9 +23957,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['177'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Waug62",
@@ -24554,13 +23991,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 177' and 'EP  - 192' (Jun., 1962, vol 75 issue 2); Crossref deposits only the first page. Printed range wins; HEAD's 177--192 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['177'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['177'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -24571,12 +24006,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '396--401': quote 'EP  - 401' at https://www.jstor.org/citation/ris/10.2307/1414018: value words ['396'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/1414018 gives pages '396', proposal '396--401'",
@@ -24584,8 +24013,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-15): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-15): pages = '396--401'",
      "action": "applied"
     }
    ],
@@ -24617,9 +24046,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['396'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "WelcBurn24",
@@ -24655,13 +24082,11 @@
     "decision": "apply",
     "batch": "batch-15",
     "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 396' and 'EP  - 401' (Jul., 1924, vol 35 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 396--401 stays, other post-check changes apply.",
-    "residue": [
-     "pages: quote unverified (value words ['396'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['396'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -27737,32 +27162,40 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "author",
-     "detail": "author = 'R L Cilibrasi and P M B Vitanyi': quote '\"given\":\"Rudi L.\",\"family\":\"Cilibrasi\"' at https://api.crossref.org/works/10.1109/tkde.2007.48: value words ['vitanyi'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-16): the post-check's final changes stand",
+     "field": "author",
+     "detail": "resolution 'apply' (batch-16): author = 'R L Cilibrasi and P M B Vitanyi'",
      "action": "applied"
     },
     {
      "code": "key_rename",
      "field": "key",
-     "detail": "CaliVita05 -> CaliVita07 (key does not follow the corrected metadata)",
+     "detail": "CaliVita05 -> CiliVita07 (key does not follow the corrected metadata)",
      "action": "flag"
     },
     {
      "code": "resolution_decision",
      "field": "key",
-     "detail": "resolution (batch-16): CaliVita05 -> CiliVita07 (the post-check planned rename CaliVita07)",
+     "detail": "resolution (batch-16): CaliVita05 -> CiliVita07, as planned",
      "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "R L Calibrasi and P M B Vitanyi",
+     "proposed": "R L Cilibrasi and P M B Vitanyi",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+       "quote": "tance\"],\"prefix\":\"10.1109\",\"volume\":\"19\",\"author\":[{\"given\":\"Rudi L.\",\"family\":\"Cilibrasi\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Paul M.B.\",\"family\":\"Vitanyi\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
+      }
+     ],
+     "decision": "resolution batch-16",
+     "reviewer": "disagree (surname hold keeps a misspelling)"
+    },
     {
      "field": "doi",
      "current": null,
@@ -27791,22 +27224,20 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "resolution quote unverified: value words ['vitanyi'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "CaliVita05",
-    "target_base": "CaliVita07",
+    "target_base": "CiliVita07",
     "action": "rename",
-    "rename_reason": "resolution (batch-16)",
+    "rename_reason": "key does not follow the corrected metadata",
     "new_key": "CiliVita07",
     "reviewer_key": {
      "text": "CiliVita07",
      "key": "CiliVita07"
     },
-    "reviewer_agrees": false,
-    "resolution": "resolution (batch-16): key CiliVita07"
+    "reviewer_agrees": true,
+    "resolution": "resolution (batch-16): key CiliVita07 confirmed"
    },
    "doi_status": {
     "doi": "10.1109/tkde.2007.48",
@@ -27837,14 +27268,11 @@
     "decision": "apply",
     "batch": "batch-16",
     "notes": "HEAD's 'Calibrasi' is a misprint: Crossref gives 'Rudi L. Cilibrasi' and arXiv cs/0412098 gives 'Rudi Cilibrasi'. Crossref 19(3) 370-383, published-print 2007-03. Corrected surname and year drive key CiliVita07 (free in HEAD).",
-    "residue": [
-     "author: quote unverified (value words ['vitanyi'] are not in the quote)",
-     "key CiliVita07 does not follow the ID rule for the corrected metadata (CaliVita07)"
-    ],
+    "residue": [],
     "quotes": {
      "author": {
-      "ok": false,
-      "why": "value words ['vitanyi'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -31743,9 +31171,34 @@
   "LegaEtal11a": {
    "key": "LegaEtal11a",
    "verdict": "correction",
-   "flags": [],
+   "flags": [
+    {
+     "code": "not_in_bib",
+     "field": null,
+     "detail": "LegaEtal11a is not in cdl.bib",
+     "action": "held"
+    },
+    {
+     "code": "duplicate",
+     "field": "key",
+     "detail": "same work (title, first author, year) already in cdl.bib as LegaEtal11: merge LegaEtal11a into it",
+     "action": "flag"
+    }
+   ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": null,
+     "proposed": "B C Lega and M J Kahana and J L Jaggi and G H Baltuch and K A Zaghloul",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+       "quote": "Bradley C Lega, Michael J Kahana, Jurg Jaggi, Gordon H Baltuch, Kareem Zaghloul"
+      }
+     ]
+    },
     {
      "field": "doi",
      "current": null,
@@ -31757,6 +31210,66 @@
        "quote": "10.1097/wnr.0b013e32834b2975 [doi]"
       }
      ]
+    },
+    {
+     "field": "number",
+     "current": null,
+     "proposed": "16",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+       "quote": "IP  - 16"
+      }
+     ]
+    },
+    {
+     "field": "pages",
+     "current": null,
+     "proposed": "795--800",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+       "quote": "PG  - 795-800"
+      }
+     ]
+    },
+    {
+     "field": "title",
+     "current": null,
+     "proposed": "Neuronal and oscillatory activity during reward processing in the human ventral striatum",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+       "quote": "Neuronal and oscillatory activity during reward processing in the human ventral striatum."
+      }
+     ]
+    },
+    {
+     "field": "volume",
+     "current": null,
+     "proposed": "22",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+       "quote": "VI  - 22"
+      }
+     ]
+    },
+    {
+     "field": "year",
+     "current": null,
+     "proposed": "2011",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/21975313/",
+       "quote": "DP  - 2011 Nov 16"
+      }
+     ]
     }
    ],
    "removals": {},
@@ -31765,7 +31278,12 @@
    "key_plan": {
     "current_key": "LegaEtal11a",
     "target_base": "LegaEtal11",
-    "action": "keep"
+    "action": "duplicate",
+    "same_work_as": [
+     "LegaEtal11"
+    ],
+    "merge_into": "LegaEtal11",
+    "detail": "same work (title, first author, year) already in cdl.bib as LegaEtal11: merge LegaEtal11a into it"
    },
    "doi_status": {
     "doi": "10.1097/wnr.0b013e32834b2975",
@@ -33540,7 +33058,7 @@
     {
      "code": "resolution_decision",
      "field": "doi, journal, pages, volume, year",
-     "detail": "resolution 'apply' (batch-16): journal = '{IEEE} Reviews in Biomedical Engineering'; pages = '192--210'; year = '2025'; withdrawn doi; withdrawn volume",
+     "detail": "resolution 'apply' (batch-16): doi = '10.1109/rbme.2024.3492381'; journal = '{IEEE} Reviews in Biomedical Engineering'; pages = '192--210'; volume = '18'; year = '2025'",
      "action": "applied"
     },
     {
@@ -33558,6 +33076,19 @@
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1109/rbme.2024.3492381",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381",
+       "quote": "\"DOI\":\"10.1109\\/rbme.2024.3492381\""
+      }
+     ],
+     "decision": "resolution batch-16"
+    },
     {
      "field": "journal",
      "current": "{arXiv}",
@@ -33580,6 +33111,19 @@
       {
        "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381",
        "quote": "\"page\":\"192-210\""
+      }
+     ],
+     "decision": "resolution batch-16"
+    },
+    {
+     "field": "volume",
+     "current": null,
+     "proposed": "18",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381",
+       "quote": "\"volume\":\"18\""
       }
      ],
      "decision": "resolution batch-16"
@@ -33642,10 +33186,7 @@
     "decision": "apply",
     "batch": "batch-16",
     "notes": "Published version cited (other_version_named). Crossref 10.1109/rbme.2024.3492381 has the same title and authors (Chenqi Li, Timothy Denison, Tingting Zhu), IEEE RBME 18, 192-210, 2025. The arXiv DOI and volume are replaced; the junk Force field is removed by the post-check. Key LiEtal25 (free in HEAD, no suffix variants).",
-    "residue": [
-     "volume: the resolution's value '18' did not survive the post-check (final None)",
-     "doi: the resolution's value '10.1109/rbme.2024.3492381' did not survive the post-check (final None)"
-    ],
+    "residue": [],
     "quotes": {
      "journal": {
       "ok": true,
@@ -34344,12 +33885,6 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "author",
-     "detail": "author = 'K Vodrahalli and P-H Chen and Y Liang and C Baldassano and J Chen and E Yong and C Honey and U Hasson and P Ramadge and K A Norman and S Arora': quote '\"given\":\"Kenneth A.\",\"family\":\"Norman\"' at https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042: value words ['vodrahalli', 'chen', 'liang', 'baldassano', 'chen', 'yong', 'honey', 'hasson', 'ramadge', 'arora'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "other_version_named",
      "field": null,
      "detail": "the researcher's notes name another version ('REPLACEMENT CANDIDATE'): replacement is the user's decision",
@@ -34357,8 +33892,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": "ENTRYTYPE, doi, journal, title, volume, year",
-     "detail": "resolution 'apply' (batch-17): ENTRYTYPE = 'article'; doi = '10.1016/j.neuroimage.2017.06.042'; journal = '{NeuroImage}'; title = 'Mapping between {fMRI} responses to movies and their natural language annotations'; volume = '180'; year = '2018'",
+     "field": "ENTRYTYPE, author, doi, journal, pages, title, volume, year",
+     "detail": "resolution 'apply' (batch-17): ENTRYTYPE = 'article'; author = 'K Vodrahalli and P-H Chen and Y Liang and C Baldassano and J Chen and E Yong and C Honey and U Hasson and P Ramadge and K A Norman and S Arora'; doi = '10.1016/j.neuroimage.2017.06.042'; journal = '{NeuroImage}'; pages = '223--231'; title = 'Mapping between {fMRI} responses to movies and their natural language annotations'; volume = '180'; year = '2018'",
      "action": "applied"
     },
     {
@@ -34376,6 +33911,20 @@
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "K Vodrahalli and P-H Chen and Y Liang and J Chen and E Yong and C Honey and P Ramadge and K Norman and S Arora",
+     "proposed": "K Vodrahalli and P-H Chen and Y Liang and C Baldassano and J Chen and E Yong and C Honey and U Hasson and P Ramadge and K A Norman and S Arora",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+       "quote": "ations\"],\"prefix\":\"10.1016\",\"volume\":\"180\",\"author\":[{\"given\":\"Kiran\",\"family\":\"Vodrahalli\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Po-Hsuan\",\"family\":\"Chen\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Yingyu\",\"family\":\"Liang\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Christopher\",\"family\":\"Baldassano\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Janice\",\"family\":\"Chen\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Esther\",\"family\":\"Yong\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Christopher\",\"family\":\"Honey\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Uri\",\"family\":\"Hasson\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Peter\",\"family\":\"Ramadge\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Kenneth A.\",\"family\":\"Norman\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Sanjeev\",\"family\":\"Arora\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
+      }
+     ],
+     "decision": "resolution batch-17",
+     "reviewer": "agree"
+    },
     {
      "field": "doi",
      "current": null,
@@ -34402,6 +33951,20 @@
       }
      ],
      "decision": "resolution batch-17"
+    },
+    {
+     "field": "pages",
+     "current": "doi.org/10.48550/arXiv.1610.03914",
+     "proposed": "223--231",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.neuroimage.2017.06.042",
+       "quote": "\"page\":\"223-231\""
+      }
+     ],
+     "decision": "resolution batch-17",
+     "reviewer": "agree (removal)"
     },
     {
      "field": "volume",
@@ -34432,12 +33995,8 @@
      "reviewer": "agree"
     }
    ],
-   "removals": {
-    "pages": "researcher asked to remove it (current 'doi.org/10.48550/arXiv.1610.03914')"
-   },
-   "held": {
-    "author": "resolution quote unverified: value words ['vodrahalli', 'chen', 'liang', 'baldassano', 'chen', 'yong', 'honey', 'hasson', 'ramadge', 'arora'] are not in the quote"
-   },
+   "removals": {},
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "VodrEtal16",
@@ -34494,14 +34053,11 @@
     "decision": "apply",
     "batch": "batch-17",
     "notes": "Preprint published: NeuroImage 180:223-231 (print Oct 2018), same title and the same 11 authors as arXiv v3, whose comment reads 'in submission to NeuroImage'. Replaced by the published version per the preprint rule (supersedes the post-check's arXiv doi/volume/2017). VodrEtal18 free in HEAD; junk Pages URL replaced.",
-    "residue": [
-     "author: quote unverified (value words ['vodrahalli', 'chen', 'liang', 'baldassano', 'chen', 'yong', 'honey', 'hasson', 'ramadge', 'arora'] are not in the quote)",
-     "pages: the resolution's value '223--231' did not survive the post-check (final None)"
-    ],
+    "residue": [],
     "quotes": {
      "author": {
-      "ok": false,
-      "why": "value words ['vodrahalli', 'chen', 'liang', 'baldassano', 'chen', 'yong', 'honey', 'hasson', 'ramadge', 'arora'] are not in the quote"
+      "ok": true,
+      "why": null
      },
      "title": {
       "ok": true,
@@ -35667,8 +35223,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": "ENTRYTYPE, booktitle, doi, journal, title, year",
-     "detail": "resolution 'apply' (batch-17): ENTRYTYPE = 'inproceedings'; booktitle = 'Advances in Neural Information Processing Systems'; title = 'Incorporating context into language encoding models for {fMRI}'; year = '2018'; withdrawn doi; removed journal",
+     "field": "ENTRYTYPE, booktitle, doi, journal, title, volume, year",
+     "detail": "resolution 'apply' (batch-17): ENTRYTYPE = 'inproceedings'; booktitle = 'Advances in Neural Information Processing Systems'; title = 'Incorporating context into language encoding models for {fMRI}'; volume = '31'; year = '2018'; withdrawn doi; removed journal",
      "action": "applied"
     }
    ],
@@ -35715,11 +35271,23 @@
       }
      ],
      "decision": "resolution batch-17"
+    },
+    {
+     "field": "volume",
+     "current": "doi.org/10.1101/327601",
+     "proposed": "31",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2018/hash/f471223d1a1614b58a7dc45c9d01df19-Abstract.html",
+       "quote": "citation_volume\" content=\"31"
+      }
+     ],
+     "decision": "resolution batch-17"
     }
    ],
    "removals": {
-    "journal": "resolution asked to remove it (current '{bioRxiv}')",
-    "volume": "researcher asked to remove it (current 'doi.org/10.1101/327601')"
+    "journal": "resolution asked to remove it (current '{bioRxiv}')"
    },
    "held": {},
    "suggestions": {},
@@ -35735,9 +35303,7 @@
     "decision": "apply",
     "batch": "batch-17",
     "notes": "bioRxiv 327601 was published in NeurIPS 2018 (vol 31) with the same title and authors; replaced by the published version per the preprint rule (bioRxiv DOI withdrawn; NeurIPS 2018 has no DOI; NeurIPS record has no pages). A G Huth kept (bioRxiv byline 'Alexander G Huth', most-complete-name rule; NeurIPS prints 'Huth, Alexander'). Key unchanged.",
-    "residue": [
-     "volume: the resolution's value '31' did not survive the post-check (final None)"
-    ],
+    "residue": [],
     "quotes": {
      "booktitle": {
       "ok": true,
@@ -35771,8 +35337,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": "author, doi, journal, number, title, volume, year",
-     "detail": "resolution 'apply' (batch-17): author = 'A Goldstein and Z Zada and E Buchnik and M Schain and A Price and B Aubrey and S A Nastase and A Feder and D Emanuel and A Cohen and A Jansen and H Gazula and G Choe and A Rao and C Kim and C Casto and L Fanda and W Doyle and D Friedman and P Dugan and L Melloni and R Reichart and S Devore and A Flinker and L Hasenfratz and O Levy and A Hassidim and M Brenner and Y Matias and K A Norman and O Devinsky and U Hasson'; doi = '10.1038/s41593-022-01026-4'; journal = 'Nature Neuroscience'; number = '3'; title = 'Shared computational principles for language processing in humans and deep language models'; volume = '25'; year = '2022'",
+     "field": "author, doi, journal, number, pages, title, volume, year",
+     "detail": "resolution 'apply' (batch-17): author = 'A Goldstein and Z Zada and E Buchnik and M Schain and A Price and B Aubrey and S A Nastase and A Feder and D Emanuel and A Cohen and A Jansen and H Gazula and G Choe and A Rao and C Kim and C Casto and L Fanda and W Doyle and D Friedman and P Dugan and L Melloni and R Reichart and S Devore and A Flinker and L Hasenfratz and O Levy and A Hassidim and M Brenner and Y Matias and K A Norman and O Devinsky and U Hasson'; doi = '10.1038/s41593-022-01026-4'; journal = 'Nature Neuroscience'; number = '3'; pages = '369--380'; title = 'Shared computational principles for language processing in humans and deep language models'; volume = '25'; year = '2022'",
      "action": "applied"
     },
     {
@@ -35845,6 +35411,20 @@
      "decision": "resolution batch-17"
     },
     {
+     "field": "pages",
+     "current": "doi.org/10.1101/2020.12.02.403477",
+     "proposed": "369--380",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1038/s41593-022-01026-4",
+       "quote": "\"page\":\"369-380\""
+      }
+     ],
+     "decision": "resolution batch-17",
+     "reviewer": "agree (removal)"
+    },
+    {
      "field": "title",
      "current": "Thinking ahead: prediction in context as a keystone of language in humans and machines",
      "proposed": "Shared computational principles for language processing in humans and deep language models",
@@ -35885,9 +35465,7 @@
      "decision": "resolution batch-17"
     }
    ],
-   "removals": {
-    "pages": "researcher asked to remove it (current 'doi.org/10.1101/2020.12.02.403477')"
-   },
+   "removals": {},
    "held": {},
    "suggestions": {},
    "key_plan": {
@@ -35987,9 +35565,7 @@
     "decision": "apply",
     "batch": "batch-17",
     "notes": "Latest version v4 posted 30 Sep 2021 (read in a browser; plain fetches get 429); Crossref's 2020 is v1's posted date, so 2021 stands. No 'Now published' notice; bioRxiv pubs API: 'no articles found for published version'. Nat Neurosci 25:369-380 (2022) has the same 32 authors but a different title and no registry relation, so not substituted. RECONCILED 2026-09-26: Preprint default: replaced because the content confirms the same work. Nature Neuroscience abstract ('We provide empirical evidence that the human brain and autoregressive DLMs share three fundamental computational principles as they process the same natural narrative: (1) both are engaged in continuous next-word prediction before word onset; (2) both match their pre-onset predictions to the incoming word to calculate post-onset surprise', https://www.nature.com/articles/s41593-022-01026-4) repeats the bioRxiv abstract ('We provide empirical evidence that the human brain and autoregressive DLMs share three fundamental computational principles as they process natural language: 1) both are engaged in continuous next-word prediction before word-onset; 2) both match their pre-onset predictions to the incoming word to calculate post-onset surprise', Europe PMC PPR248100); same 32 authors in the same order. Crossref prints 'Catherine Kim' where the bioRxiv post-check had 'S C Kim'; the published byline is used. Key GoldEtal22 (free in HEAD).",
-    "residue": [
-     "pages: the resolution's value '369--380' did not survive the post-check (final None)"
-    ],
+    "residue": [],
     "quotes": {
      "title": {
       "ok": true,
@@ -36039,8 +35615,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": "ENTRYTYPE, doi, journal, number, pages, title, year",
-     "detail": "resolution 'apply' (batch-17): ENTRYTYPE = 'article'; doi = '10.1016/j.cub.2019.11.048'; journal = 'Current Biology'; number = '2'; pages = '245--253.e4'; title = 'Single-neuron representations of spatial targets in humans'; year = '2020'",
+     "field": "ENTRYTYPE, doi, journal, number, pages, title, volume, year",
+     "detail": "resolution 'apply' (batch-17): ENTRYTYPE = 'article'; doi = '10.1016/j.cub.2019.11.048'; journal = 'Current Biology'; number = '2'; pages = '245--253.e4'; title = 'Single-neuron representations of spatial targets in humans'; volume = '30'; year = '2020'",
      "action": "applied"
     },
     {
@@ -36142,6 +35718,20 @@
      "reviewer": "agree"
     },
     {
+     "field": "volume",
+     "current": "doi:10.1101/523753",
+     "proposed": "30",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.cub.2019.11.048",
+       "quote": "\"volume\":\"30\""
+      }
+     ],
+     "decision": "resolution batch-17",
+     "reviewer": "agree (removal)"
+    },
+    {
      "field": "year",
      "current": "2019",
      "proposed": "2020",
@@ -36155,9 +35745,7 @@
      "decision": "resolution batch-17"
     }
    ],
-   "removals": {
-    "volume": "researcher asked to remove it (current 'doi:10.1101/523753')"
-   },
+   "removals": {},
    "held": {},
    "suggestions": {},
    "key_plan": {
@@ -36219,9 +35807,7 @@
     "decision": "apply",
     "batch": "batch-17",
     "notes": "Crossref: Current Biology 10.1016/j.cub.2019.11.048 has-preprint 10.1101/523753; same 13 authors as HEAD. Replaced by the published version (preprint rule); supersedes the post-check's bioRxiv doi. TsitEtal20 free in HEAD.",
-    "residue": [
-     "volume: the resolution's value '30' did not survive the post-check (final None)"
-    ],
+    "residue": [],
     "quotes": {
      "title": {
       "ok": true,
@@ -36326,14 +35912,8 @@
     {
      "code": "ambiguous_identity_held",
      "field": "title",
-     "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: title='Numerical recipes in {C}: the art of scientific computing'",
-     "action": "held"
-    },
-    {
-     "code": "resolution_quote_unverified",
-     "field": "title",
-     "detail": "title = 'Numerical recipes in {C}: the art of scientific computing': quote '<subTitle>the art of scientific computing</subTitle>' at http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D94105607: value words ['numerical', 'recipes'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
+     "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: title='Numerical recipes in {C}: the art of scientific computing'; superseded by the resolution (batch-17)",
+     "action": "dropped"
     },
     {
      "code": "print_year_conflict",
@@ -36343,8 +35923,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": "address, edition, year",
-     "detail": "resolution 'apply' (batch-17): address = 'Cambridge'; edition = '2\\\\textsuperscript{nd}'; year = '1992'",
+     "field": "address, edition, title, year",
+     "detail": "resolution 'apply' (batch-17): address = 'Cambridge'; edition = '2\\\\textsuperscript{nd}'; title = 'Numerical recipes in {C}: the art of scientific computing'; year = '1992'",
      "action": "applied"
     },
     {
@@ -36356,7 +35936,7 @@
     {
      "code": "unverified_suggestions",
      "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): title='Numerical recipes in {C}: the art of scientific computing', year='1993'",
+     "detail": "values left not_found or suggested by the rules (never applied): year='1993'",
      "action": "flag"
     },
     {
@@ -36401,6 +35981,20 @@
      "decision": "resolution batch-17"
     },
     {
+     "field": "title",
+     "current": "Numerical recipes in {C}: {T}he art of scientific computing",
+     "proposed": "Numerical recipes in {C}: the art of scientific computing",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D94105607",
+       "quote": "Numerical recipes in C \n     the art of scientific computing"
+      }
+     ],
+     "decision": "resolution batch-17",
+     "reviewer": "agree"
+    },
+    {
      "field": "year",
      "current": "1993",
      "proposed": "1992",
@@ -36415,11 +36009,8 @@
     }
    ],
    "removals": {},
-   "held": {
-    "title": "resolution quote unverified: value words ['numerical', 'recipes'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {
-    "title": "Numerical recipes in {C}: the art of scientific computing",
     "year": "1993"
    },
    "key_plan": {
@@ -36437,10 +36028,7 @@
     "decision": "apply",
     "batch": "batch-17",
     "notes": "The authors' own front-matter PDF (numerical.recipes obsolete-editions reader) prints the title page 'Numerical Recipes in C / The Art of Scientific Computing / Second Edition', authors Press, Teukolsky, Vetterling, Flannery (HEAD order), 'Cambridge', and 'Second Edition originally published 1992. Reprinted with corrections, 1993, ...'. 1993 is a corrected reprint, so the edition year 1992 is cited (as BendPier01). Address: title page prints Cambridge with no country (country rule). PresEtal92 free in HEAD.",
-    "residue": [
-     "title: quote unverified (value words ['numerical', 'recipes'] are not in the quote)",
-     "ambiguous_identity_held on title is held and the resolution does not address it"
-    ],
+    "residue": [],
     "quotes": {
      "year": {
       "ok": true,
@@ -36451,8 +36039,8 @@
       "why": null
      },
      "title": {
-      "ok": false,
-      "why": "value words ['numerical', 'recipes'] are not in the quote"
+      "ok": true,
+      "why": null
      },
      "address": {
       "ok": true,
@@ -37995,7 +37583,10 @@
   "CheuChan03": [],
   "GoldEtal02": [],
   "LeVaEtal97": [],
-  "LegaEtal11a": [],
+  "LegaEtal11a": [
+   "not_in_bib",
+   "duplicate:key"
+  ],
   "NakaEtal92": [
    "doi_record_conflict:pages"
   ],

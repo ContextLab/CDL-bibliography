@@ -12,7 +12,7 @@
    "quote_check_failed": 2,
    "resolution_decision": 50,
    "resolution_noop": 2,
-   "resolution_quote_unverified": 8,
+   "resolution_quote_unverified": 3,
    "style_only_change": 2,
    "surname_corroborated": 4,
    "user_decision": 4
@@ -256,9 +256,7 @@
    "NadeEtal00": {
     "decision": "apply",
     "batch": "batch-09",
-    "residue": [
-     "author: quote unverified (value words ['nader', 'schafe'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "NadeEtal00"
@@ -266,9 +264,7 @@
    "NeldWedd72": {
     "decision": "apply",
     "batch": "batch-08",
-    "residue": [
-     "pages: quote unverified (value words ['370'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "NeldWedd72"
@@ -276,9 +272,7 @@
    "Nobl04": {
     "decision": "apply",
     "batch": "batch-08",
-    "residue": [
-     "editor: quote unverified (value words ['scholkopf'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Nobl04"
@@ -342,9 +336,7 @@
    "ToluEtal12": {
     "decision": "apply",
     "batch": "batch-09",
-    "residue": [
-     "author: quote unverified (value words ['tolu', 'eddine', 'marti', 'david', 'graupner', 'pons', 'baudonnat', 'husson', 'besson', 'reperant', 'zemdegs', 'pages', 'hay', 'lambolez', 'caboche', 'gutkin', 'gardier', 'faure', 'maskos'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "rename",
     "key": "ToluEtal13"
@@ -368,9 +360,7 @@
    "Turi50": {
     "decision": "apply",
     "batch": "batch-08",
-    "residue": [
-     "volume: quote unverified (value words ['59'] are not in the quote)"
-    ],
+    "residue": [],
     "noop": null,
     "key_plan": "keep",
     "key": "Turi50"
@@ -392,23 +382,7 @@
     "key": "Wayn96"
    }
   },
-  "resolution_residue": {
-   "NadeEtal00": [
-    "author: quote unverified (value words ['nader', 'schafe'] are not in the quote)"
-   ],
-   "NeldWedd72": [
-    "pages: quote unverified (value words ['370'] are not in the quote)"
-   ],
-   "Nobl04": [
-    "editor: quote unverified (value words ['scholkopf'] are not in the quote)"
-   ],
-   "ToluEtal12": [
-    "author: quote unverified (value words ['tolu', 'eddine', 'marti', 'david', 'graupner', 'pons', 'baudonnat', 'husson', 'besson', 'reperant', 'zemdegs', 'pages', 'hay', 'lambolez', 'caboche', 'gutkin', 'gardier', 'faure', 'maskos'] are not in the quote)"
-   ],
-   "Turi50": [
-    "volume: quote unverified (value words ['59'] are not in the quote)"
-   ]
-  },
+  "resolution_residue": {},
   "resolution_removals": [],
   "resolution_redirects": {},
   "resolution_noops": {
@@ -419,12 +393,7 @@
   "resolution_quotes_unverified": [
    "HartWong79: pages = '100--108': quote 'Vol. 28, No. 1 (1979), pp. 100-108 (9 pages)' at https://www.jstor.org/stable/2346830: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
    "Merk14: number = '239': quote 'Linux Journal, Volume 2014, Issue 239' at https://dl.acm.org/doi/10.5555/2600239.2600241: fetch failed: HTTPError: HTTP Error 403: Forbidden; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
-   "Merk14: pages = '2': quote 'Article No.: 2, Page 2' at https://dl.acm.org/doi/10.5555/2600239.2600241: fetch failed: HTTPError: HTTP Error 403: Forbidden; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
-   "NadeEtal00: author = 'K Nader and G E Schafe and J E LeDoux': quote 'FAU - LeDoux, J E' at https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10845062&rettype=medline&retmode=text: value words ['nader', 'schafe'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "NeldWedd72: pages = '370--384': quote 'EP  - 384' at https://www.jstor.org/citation/ris/10.2307/2344614: value words ['370'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Nobl04: editor = 'B Sch{\\\\\"o}lkopf and K Tsuda and J-P Vert': quote 'Koji Tsuda, Jean-Philippe Vert.' at http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22kernel%20methods%20in%20computational%20biology%22: value words ['scholkopf'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "ToluEtal12: author = 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos': quote 'content=\"Changeux, J-P\"' at https://www.nature.com/articles/mp201283: value words ['tolu', 'eddine', 'marti', 'david', 'graupner', 'pons', 'baudonnat', 'husson', 'besson', 'reperant', 'zemdegs', 'pages', 'hay', 'lambolez', 'caboche', 'gutkin', 'gardier', 'faure', 'maskos'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-   "Turi50: volume = '59': quote '\"volume\":\"LIX\"' at https://api.crossref.org/works/10.1093/mind/lix.236.433: value words ['59'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)"
+   "Merk14: pages = '2': quote 'Article No.: 2, Page 2' at https://dl.acm.org/doi/10.5555/2600239.2600241: fetch failed: HTTPError: HTTP Error 403: Forbidden; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)"
   ]
  },
  "measurement": {
@@ -699,11 +668,8 @@
  },
  "review_resolution": {
   "findings": 19,
-  "resolved": 17,
-  "unresolved": [
-   "Nobl04",
-   "ToluEtal12"
-  ],
+  "resolved": 19,
+  "unresolved": [],
   "not_checkable": [],
   "rows": [
    {
@@ -798,12 +764,12 @@
    {
     "key": "Nobl04",
     "random_sample": false,
-    "resolved": false,
+    "resolved": true,
     "checks": [
      [
       "editor",
-      false,
-      "final None vs reviewer 'B Sch{\\\\\"o}lkopf and K Tsuda and J-P Vert'"
+      true,
+      "final 'B Sch{\\\\\"o}lkopf and K Tsuda and J-P Vert' vs reviewer 'B Sch{\\\\\"o}lkopf and K Tsuda and J-P Vert'"
      ]
     ]
    },
@@ -834,12 +800,12 @@
    {
     "key": "ToluEtal12",
     "random_sample": false,
-    "resolved": false,
+    "resolved": true,
     "checks": [
      [
       "author",
-      false,
-      "final 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Besson and C Reperant and J Zemdegs and C Pages and Y A Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J P Cangeux and P Faure and U Maskos' vs reviewer 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos'"
+      true,
+      "final 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos' vs reviewer 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos'"
      ]
     ]
    },
@@ -2664,12 +2630,6 @@
      "action": "flag"
     },
     {
-     "code": "resolution_quote_unverified",
-     "field": "pages",
-     "detail": "pages = '370--384': quote 'EP  - 384' at https://www.jstor.org/citation/ris/10.2307/2344614: value words ['370'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/2344614 gives pages '370', proposal '370--384'",
@@ -2677,8 +2637,8 @@
     },
     {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-08): the post-check's final changes stand",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-08): pages = '370--384'",
      "action": "applied"
     }
    ],
@@ -2710,9 +2670,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "pages": "resolution quote unverified: value words ['370'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "NeldWedd72",
@@ -2748,13 +2706,11 @@
     "decision": "apply",
     "batch": "batch-08",
     "notes": "JSTOR's RIS record (the publisher's archive) prints 'SP  - 370' and 'EP  - 384'; Crossref deposits only the first page. The next item in 135(3) (10.2307/2344615) starts at 385 in Crossref, which fits. Printed range wins; HEAD's 370--384 stays.",
-    "residue": [
-     "pages: quote unverified (value words ['370'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "pages": {
-      "ok": false,
-      "why": "value words ['370'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -3268,15 +3224,9 @@
      "action": "dropped"
     },
     {
-     "code": "resolution_quote_unverified",
-     "field": "editor",
-     "detail": "editor = 'B Sch{\\\\\"o}lkopf and K Tsuda and J-P Vert': quote 'Koji Tsuda, Jean-Philippe Vert.' at http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22kernel%20methods%20in%20computational%20biology%22: value words ['scholkopf'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "resolution_decision",
-     "field": "address",
-     "detail": "resolution 'apply' (batch-08): address = 'Cambridge, {MA}'",
+     "field": "address, editor",
+     "detail": "resolution 'apply' (batch-08): address = 'Cambridge, {MA}'; editor = 'B Sch{\\\\\"o}lkopf and K Tsuda and J-P Vert'",
      "action": "applied"
     }
    ],
@@ -3341,6 +3291,20 @@
      "reviewer": "agree"
     },
     {
+     "field": "editor",
+     "current": null,
+     "proposed": "B Sch{\\\"o}lkopf and K Tsuda and J-P Vert",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=3&recordSchema=marcxml&query=dc.title%3D%22kernel%20methods%20in%20computational%20biology%22",
+       "quote": "edited by Bernhard Scho&#x308;lkopf, Koji Tsuda, Jean-Philippe Vert."
+      }
+     ],
+     "decision": "resolution batch-08",
+     "reviewer": "disagree (held but correct)"
+    },
+    {
      "field": "publisher",
      "current": null,
      "proposed": "{MIT} Press",
@@ -3357,9 +3321,7 @@
    "removals": {
     "journal": "@incollection has no journal (already given by the booktitle)"
    },
-   "held": {
-    "editor": "resolution quote unverified: value words ['scholkopf'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Nobl04",
@@ -3393,17 +3355,15 @@
     "decision": "apply",
     "batch": "batch-08",
     "notes": "Library of Congress MARC record for the book: 245 'edited by Bernhard Schölkopf, Koji Tsuda, Jean-Philippe Vert.', 260 'Cambridge, Mass. : MIT Press, c2004.' Replaces the 403 MIT Press page; the reviewer's editor value is confirmed.",
-    "residue": [
-     "editor: quote unverified (value words ['scholkopf'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "address": {
       "ok": true,
       "why": null
      },
      "editor": {
-      "ok": false,
-      "why": "value words ['scholkopf'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -8403,15 +8363,9 @@
      "action": "flag"
     },
     {
-     "code": "resolution_quote_unverified",
-     "field": "volume",
-     "detail": "volume = '59': quote '\"volume\":\"LIX\"' at https://api.crossref.org/works/10.1093/mind/lix.236.433: value words ['59'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-08): the post-check's final changes stand",
+     "field": "volume",
+     "detail": "resolution 'apply' (batch-08): volume = '59'",
      "action": "applied"
     }
    ],
@@ -8433,9 +8387,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "volume": "resolution quote unverified: value words ['59'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Turi50",
@@ -8469,13 +8421,11 @@
     "decision": "apply",
     "batch": "batch-08",
     "notes": "Crossref: Mind vol LIX, issue 236, 433-460, 1950-10, A M Turing; the DOI is this work (the 'I.—' section prefix broke the title match). HEAD writes 59 in arabic, as do the other Mind entries in HEAD. RECONCILED 2026-09-26: Question answered by rule: roman volume -> arabic (default); value already conforms.",
-    "residue": [
-     "volume: quote unverified (value words ['59'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "volume": {
-      "ok": false,
-      "why": "value words ['59'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -8656,15 +8606,9 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "resolution_quote_unverified",
-     "field": "author",
-     "detail": "author = 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos': quote 'content=\"Changeux, J-P\"' at https://www.nature.com/articles/mp201283: value words ['tolu', 'eddine', 'marti', 'david', 'graupner', 'pons', 'baudonnat', 'husson', 'besson', 'reperant', 'zemdegs', 'pages', 'hay', 'lambolez', 'caboche', 'gutkin', 'gardier', 'faure', 'maskos'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "resolution_decision",
-     "field": "year",
-     "detail": "resolution 'apply' (batch-09): year = '2013'",
+     "field": "author, year",
+     "detail": "resolution 'apply' (batch-09): author = 'S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos'; year = '2013'",
      "action": "applied"
     },
     {
@@ -8682,6 +8626,20 @@
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Besson and C Reperant and J Zemdegs and C Pages and Y A Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J P Cangeux and P Faure and U Maskos",
+     "proposed": "S Tolu and R Eddine and F Marti and V David and M Graupner and S Pons and M Baudonnat and M Husson and M Besson and C Reperant and J Zemdegs and C Pag\\`{e}s and Y A H Hay and B Lambolez and J Caboche and B Gutkin and A M Gardier and J-P Changeux and P Faure and U Maskos",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://www.nature.com/articles/mp201283",
+       "quote": "rendsLicenceType\":null}},\"articleInPress\":\"false\"},\"contentInfo\":{\"authors\":[\"S Tolu\",\"R Eddine\",\"F Marti\",\"V David\",\"M Graupner\",\"S Pons\",\"M Baudonnat\",\"M Husson\",\"M Besson\",\"C Reperant\",\"J Zemdegs\",\"C Pagès\",\"Y A H Hay\",\"B Lambolez\",\"J Caboche\",\"B Gutkin\",\"A M Gardier\",\"J-P Changeux\",\"P Faure\",\"U Maskos\"],\"publishedAt\":1341273600,\"publishedAtString\":\"2012-07-03\",\"title\":\"Co-activat"
+      }
+     ],
+     "decision": "resolution batch-09",
+     "reviewer": "disagree"
+    },
     {
      "field": "doi",
      "current": null,
@@ -8767,9 +8725,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "resolution quote unverified: value words ['tolu', 'eddine', 'marti', 'david', 'graupner', 'pons', 'baudonnat', 'husson', 'besson', 'reperant', 'zemdegs', 'pages', 'hay', 'lambolez', 'caboche', 'gutkin', 'gardier', 'faure', 'maskos'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "ToluEtal12",
@@ -8844,17 +8800,15 @@
     "decision": "apply",
     "batch": "batch-09",
     "notes": "Publisher page (nature.com meta, needs a cookie-accepting fetch) lists 'Hay, Y A H' and 'Changeux, J-P' plus Husson; Crossref agrees. Printed issue March 2013, 18(3) 382-393, so key ToluEtal13 (free in HEAD).",
-    "residue": [
-     "author: quote unverified (value words ['tolu', 'eddine', 'marti', 'david', 'graupner', 'pons', 'baudonnat', 'husson', 'besson', 'reperant', 'zemdegs', 'pages', 'hay', 'lambolez', 'caboche', 'gutkin', 'gardier', 'faure', 'maskos'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "year": {
       "ok": true,
       "why": null
      },
      "author": {
-      "ok": false,
-      "why": "value words ['tolu', 'eddine', 'marti', 'david', 'graupner', 'pons', 'baudonnat', 'husson', 'besson', 'reperant', 'zemdegs', 'pages', 'hay', 'lambolez', 'caboche', 'gutkin', 'gardier', 'faure', 'maskos'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
@@ -10810,15 +10764,9 @@
      "action": "flag"
     },
     {
-     "code": "resolution_quote_unverified",
-     "field": "author",
-     "detail": "author = 'K Nader and G E Schafe and J E LeDoux': quote 'FAU - LeDoux, J E' at https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10845062&rettype=medline&retmode=text: value words ['nader', 'schafe'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
-     "action": "held"
-    },
-    {
      "code": "resolution_decision",
-     "field": null,
-     "detail": "resolution 'apply' (batch-09): the post-check's final changes stand",
+     "field": "author",
+     "detail": "resolution 'apply' (batch-09): author = 'K Nader and G E Schafe and J E LeDoux'",
      "action": "applied"
     }
    ],
@@ -10838,9 +10786,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "resolution quote unverified: value words ['nader', 'schafe'] are not in the quote"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "NadeEtal00",
@@ -10878,13 +10824,11 @@
     "decision": "apply",
     "batch": "batch-09",
     "notes": "The publisher page byline reads 'Joseph E. Le Doux' (nature.com, data-author-search=\"Le Doux, Joseph E.\"), as do Crossref and PubMed 10963596 ('Le Doux JE'); so this paper prints 'Le Doux', not 'LeDoux'. Particle surname braced as house form ({de Cothi}). Key unchanged. RECONCILED 2026-09-26: Author-name rule (round 1): the author's correct, most complete name, 'LeDoux' (e.g. PubMed 10845062 'Emotion circuits in the brain', FAU 'LeDoux, J E'), not this paper's 'Le Doux'.",
-    "residue": [
-     "author: quote unverified (value words ['nader', 'schafe'] are not in the quote)"
-    ],
+    "residue": [],
     "quotes": {
      "author": {
-      "ok": false,
-      "why": "value words ['nader', 'schafe'] are not in the quote"
+      "ok": true,
+      "why": null
      }
     }
    },
