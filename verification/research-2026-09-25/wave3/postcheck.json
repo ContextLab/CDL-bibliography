@@ -5,15 +5,17 @@
   "flag_counts": {
    "doi_generic_title": 1,
    "doi_record_conflict": 9,
-   "duplicate": 1,
    "field_not_found": 7,
-   "key_rename": 13,
-   "needs_user": 6,
+   "key_rename": 15,
+   "not_in_bib": 4,
    "other_version_named": 1,
    "print_year_conflict": 1,
    "quote_check_failed": 1,
+   "resolution_decision": 59,
+   "resolution_noop": 4,
+   "resolution_quote_unverified": 5,
    "style_only_change": 3,
-   "surname_corroborated": 8,
+   "surname_corroborated": 5,
    "surname_single_source": 2,
    "unverified_suggestions": 1,
    "user_decision": 5,
@@ -26,6 +28,8 @@
    "DehaNacc00": "DehaNacc01",
    "BrigEtal18": "DeBrEtal19",
    "Skan98": "Skra98",
+   "DaPo67": "DaPo66",
+   "Yone96": "Yone95",
    "Allo12": "AlloEtal12",
    "Braz03": "Bazi03",
    "Bastvand05": "Bastvand06",
@@ -36,9 +40,7 @@
    "VannEtal12": "VannEtal13",
    "DennReed92": "DennHunt92"
   },
-  "duplicates": {
-   "WhitEtal96": "WitmEtal96"
-  },
+  "duplicates": {},
   "collisions": {},
   "doi_requests_uncached": null,
   "user_decisions": {
@@ -55,16 +57,399 @@
     "cross-wave a-TongEtal95: wrong (this is a real article NOT an abstract; should keep): a real article, not a conference abstract: keep it and verify it normally"
    ],
    "WhitEtal96": [
-    "cross-wave dup-WhitEtal96-WitmEtal96: correct: merge WhitEtal96 into WitmEtal96 (approved duplicate)"
+    "cross-wave dup-WhitEtal96-WitmEtal96: correct: merge WhitEtal96 into WitmEtal96 (the post-check planned no_key_rule; the user's decision wins)"
    ]
   },
   "remove_entries": [
    "EskrEtal12",
    "HealEtal12a",
-   "JohnRedi07b"
+   "JohnRedi07b",
+   "Seac97",
+   "TongEtal95"
   ],
   "software_first_version": {},
-  "country_dropped": []
+  "country_dropped": [],
+  "resolutions": {
+   "Allo12": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "AlloEtal12"
+   },
+   "BabiEtal08": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [
+     "author: quote unverified (value words ['babiloni', 'vecchio', 'mirabella', 'buttiglione', 'sebastiano', 'picardi', 'gennaro', 'quarato', 'grammaldo', 'buffo', 'esposito', 'manfredi', 'cantore'] are not in the quote)"
+    ],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "BabiEtal09"
+   },
+   "Bastvand05": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "Bastvand06"
+   },
+   "BotvEtal04": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "BotvEtal09"
+   },
+   "Braz03": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "Bazi03"
+   },
+   "Brig12": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "DeBr12"
+   },
+   "BrigEtal18": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [
+     "author: quote unverified (value words ['hanna', 'jacques', 'schacter'] are not in the quote)",
+     "key DeBrEtal19 does not follow the ID rule for the corrected metadata (BrigEtal19)"
+    ],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "DeBrEtal19"
+   },
+   "Buse01": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Buse01"
+   },
+   "CookEtal16": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "CookEtal16"
+   },
+   "DaPo67": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "DaPo66"
+   },
+   "DehaNacc00": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "DehaNacc01"
+   },
+   "DennReed92": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "DennHunt92"
+   },
+   "EskrEtal12": {
+    "decision": "drop",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": "not in the bibliography",
+    "key_plan": "keep",
+    "key": "EskrEtal12"
+   },
+   "FranEtal01": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "FranEtal01"
+   },
+   "Gran69": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Gran69"
+   },
+   "Half88": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [
+     "pages: quote unverified (value words ['108'] are not in the quote)"
+    ],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Half88"
+   },
+   "HankEtal09": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "HankEtal09"
+   },
+   "Hara96": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Hara96"
+   },
+   "Hass05": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Hass05"
+   },
+   "HealEtal12a": {
+    "decision": "drop",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": "not in the bibliography",
+    "key_plan": "keep",
+    "key": "HealEtal12a"
+   },
+   "HeniEtal19": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "HeniEtal19"
+   },
+   "JohnRedi07b": {
+    "decision": "drop",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": "not in the bibliography",
+    "key_plan": "keep",
+    "key": "JohnRedi07b"
+   },
+   "LegaEtal11b": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "LegaEtal12"
+   },
+   "MuntEtal07": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "MuntEtal07"
+   },
+   "PellEtal88": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "PellEtal88"
+   },
+   "PetrPand94": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "PetrPand94"
+   },
+   "PfurEtal96": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "PfurEtal96"
+   },
+   "PribEtal74": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "PribEtal74"
+   },
+   "RogeEvan93": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "RogeEvan93"
+   },
+   "Sate14": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Sate14"
+   },
+   "SchuEtal83": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "SchuEtal83"
+   },
+   "Seac97": {
+    "decision": "drop",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Seac97"
+   },
+   "SimoEtal04": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [
+     "pages: quote unverified (quote not found at url)"
+    ],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "SimoEtal04"
+   },
+   "Skan98": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "Skra98"
+   },
+   "SohaHass98b": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "SohaHass98b"
+   },
+   "SteiEtal09": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "SteiEtal10"
+   },
+   "TongEtal95": {
+    "decision": "drop",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "TongEtal95"
+   },
+   "TsodEtal96": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "TsodEtal96"
+   },
+   "VannEtal12": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "VannEtal13"
+   },
+   "WhitEtal96": {
+    "decision": "drop",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": "not in the bibliography",
+    "key_plan": "keep",
+    "key": "WhitEtal96"
+   },
+   "Yone96": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "Yone95"
+   },
+   "ZaraEtal05": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "ZaraEtal05"
+   }
+  },
+  "resolution_residue": {
+   "BabiEtal08": [
+    "author: quote unverified (value words ['babiloni', 'vecchio', 'mirabella', 'buttiglione', 'sebastiano', 'picardi', 'gennaro', 'quarato', 'grammaldo', 'buffo', 'esposito', 'manfredi', 'cantore'] are not in the quote)"
+   ],
+   "BrigEtal18": [
+    "author: quote unverified (value words ['hanna', 'jacques', 'schacter'] are not in the quote)",
+    "key DeBrEtal19 does not follow the ID rule for the corrected metadata (BrigEtal19)"
+   ],
+   "Half88": [
+    "pages: quote unverified (value words ['108'] are not in the quote)"
+   ],
+   "SimoEtal04": [
+    "pages: quote unverified (quote not found at url)"
+   ]
+  },
+  "resolution_removals": [
+   "Seac97",
+   "TongEtal95"
+  ],
+  "resolution_redirects": {},
+  "resolution_noops": {
+   "EskrEtal12": "not in the bibliography",
+   "HealEtal12a": "not in the bibliography",
+   "JohnRedi07b": "not in the bibliography",
+   "WhitEtal96": "not in the bibliography"
+  },
+  "resolution_key_collisions": {},
+  "resolution_quotes_unverified": [
+   "BabiEtal08: author = 'C Babiloni and F Vecchio and G Mirabella and M Buttiglione and F Sebastiano and A Picardi and G {Di Gennaro} and P P Quarato and L G Grammaldo and P Buffo and V Esposito and M Manfredi and G Cantore and F Eusebi': quote '\"given\":\"Fabrizio\",\"family\":\"Eusebi\"' at https://api.crossref.org/works/10.1002/hbm.20648: value words ['babiloni', 'vecchio', 'mirabella', 'buttiglione', 'sebastiano', 'picardi', 'gennaro', 'quarato', 'grammaldo', 'buffo', 'esposito', 'manfredi', 'cantore'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+   "BrigEtal18: author = 'F {De Brigard} and E Hanna and P L {St Jacques} and D L Schacter': quote '\"given\":\"Felipe\",\"family\":\"De Brigard\"' at https://api.crossref.org/works/10.1080/02699931.2018.1478280: value words ['hanna', 'jacques', 'schacter'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+   "Half88: pages = '79--108': quote 'Curriculum  and  Instruction  in  Automated  Tutors}}}  79' at https://openlibrary.org/search/inside.json?q=%22Curriculum%20and%20instruction%20in%20automated%20tutors%22: value words ['108'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+   "PetrPand94: pages = '17--58': quote 'ides  and  D.N.  Pandya .  17' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Frontal%20lobes%20and%20working%20memory%22%20Petrides: value words ['58'] are not in the quote; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
+   "SimoEtal04: pages = '305--329': quote 'Journal for Research in Mathematics Education, v35 n5 p305-329 Nov 2004' at https://eric.ed.gov/?id=EJ764970: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)"
+  ]
  },
  "measurement": {
   "findings": 8,
@@ -471,6 +856,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "ZaraEtal05": {
@@ -482,6 +868,12 @@
      "field": "year",
      "detail": "Crossref record of 10.1093/cercor/bhh132 is dated 2004, proposal 2005",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "number, pages, title, year",
+     "detail": "resolution 'apply' (batch-04): number = '3'; pages = '303--316'; title = 'Positive evidence against human hippocampal involvement in working memory maintenance of familiar stimuli'; year = '2005'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -502,37 +894,40 @@
      "field": "number",
      "current": null,
      "proposed": "3",
-     "source": "researcher",
+     "source": "resolution",
      "evidence": [
       {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
-       "quote": "IP  - 3"
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15342440&retmode=xml",
+       "quote": "<Issue>3</Issue>"
       }
-     ]
+     ],
+     "decision": "resolution batch-04"
     },
     {
      "field": "pages",
      "current": "305--316",
      "proposed": "303--316",
-     "source": "researcher",
+     "source": "resolution",
      "evidence": [
       {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
-       "quote": "PG  - 303-16"
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15342440&retmode=xml",
+       "quote": "<StartPage>303</StartPage><EndPage>316</EndPage>"
       }
-     ]
+     ],
+     "decision": "resolution batch-04"
     },
     {
      "field": "title",
      "current": "Positive evidence against human hippocampal involvementt in working memory maintenance of familiar stimuli",
      "proposed": "Positive evidence against human hippocampal involvement in working memory maintenance of familiar stimuli",
-     "source": "researcher",
+     "source": "resolution",
      "evidence": [
       {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/15342440/",
-       "quote": "Positive evidence against human hippocampal involvement in working memory maintenance of familiar stimuli."
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15342440&retmode=xml",
+       "quote": "<ArticleTitle>Positive evidence against human hippocampal involvement in working memory maintenance of familiar stimuli.</ArticleTitle>"
       }
-     ]
+     ],
+     "decision": "resolution batch-04"
     }
    ],
    "removals": {},
@@ -566,6 +961,30 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "Crossref's 2004 is online-first; print issue 15(3) is March 2005, so year stays 2005. Number, pages and title re-quoted from PubMed efetch (the post-check quotes came from the pubmed.ncbi web page, which blocks scripts).",
+    "residue": [],
+    "quotes": {
+     "year": {
+      "ok": true,
+      "why": null
+     },
+     "number": {
+      "ok": true,
+      "why": null
+     },
+     "pages": {
+      "ok": true,
+      "why": null
+     },
+     "title": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-012"
   },
   "vonSEtal99": {
@@ -618,6 +1037,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "Sate14": {
@@ -629,6 +1049,12 @@
      "field": "title",
      "detail": "'International classification of sleep disorders --- third edition: highlights and modifications' -> 'International classification of sleep disorders---third edition: highlights and modifications' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-04): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -691,6 +1117,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "PubMed prints 'disorders-third edition'; cdl.bib writes an em dash as '---' without spaces in 5 titles (vs 4 with spaces), so the unspaced form is applied as house style. RECONCILED 2026-09-26: Question answered by rule: em dash a---b; value already conforms.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-012"
   },
   "PollEtal00": {
@@ -794,6 +1227,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "RosaEtal07": {
@@ -932,6 +1366,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "ChkhEtal04": {
@@ -1014,6 +1449,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "GrubEtal99": {
@@ -1078,6 +1514,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "LuuEtal04": {
@@ -1170,6 +1607,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "LuuTuck01": {
@@ -1260,6 +1698,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "ChatEtal96": {
@@ -1332,6 +1771,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "MattEtal92": {
@@ -1420,6 +1860,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "Kaba03": {
@@ -1484,6 +1925,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "PellEtal88": {
@@ -1495,10 +1937,30 @@
      "field": "number",
      "detail": "verdict 'correction' but number is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "number",
+     "detail": "resolution 'apply' (batch-04): number = '3'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "number",
+     "current": null,
+     "proposed": "3",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://denispelli.com/pubs/pelli1988chart.pdf",
+       "quote": "Vol. 2, No.3"
+      }
+     ],
+     "decision": "resolution batch-04",
+     "reviewer": "not_found, left (agree; OpenAlex gives issue 3)"
+    },
     {
      "field": "title",
      "current": "Designing a new letter chart for measuring contrast sensitivity",
@@ -1524,6 +1986,18 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "The author-hosted scan of the printed article header reads 'Clin .Vision Sci. Vol. 2, No.3, ... pp. 187-199, 1988' (text layer); title 'THE DESIGN OF A NEW LETTER CHART FOR MEASURING CONTRAST SENSITIVITY' confirms the post-check title. The host returns 406 without a browser User-Agent.",
+    "residue": [],
+    "quotes": {
+     "number": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-012"
   },
   "Nied90": {
@@ -1588,6 +2062,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "Nied91": {
@@ -1652,6 +2127,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "ShinEtal99": {
@@ -1720,6 +2196,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "BotvEtal04": {
@@ -1727,10 +2204,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-04): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "BotvEtal04 -> BotvEtal09 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-04): BotvEtal04 -> BotvEtal09, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -1796,7 +2285,8 @@
     "target_base": "BotvEtal09",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "BotvEtal09"
+    "new_key": "BotvEtal09",
+    "resolution": "resolution (batch-04): key BotvEtal09 confirmed"
    },
    "doi_status": {
     "doi": "10.1016/j.cognition.2008.08.011",
@@ -1825,6 +2315,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "Crossref published-print 2009-12, 113(3):262-280, 'Andew G. Barto' (typo for Andrew; initials A G); BotvEtal09 free in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-012"
   },
   "DehaNacc00": {
@@ -1832,10 +2329,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-04): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "DehaNacc00 -> DehaNacc01 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-04): DehaNacc00 -> DehaNacc01, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -1888,7 +2397,8 @@
     "target_base": "DehaNacc01",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "DehaNacc01"
+    "new_key": "DehaNacc01",
+    "resolution": "resolution (batch-04): key DehaNacc01 confirmed"
    },
    "doi_status": {
     "doi": "10.1016/s0010-0277(00)00123-2",
@@ -1913,6 +2423,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "Crossref and PubMed: Cognition 79(1-2):1-37, April 2001; DehaNacc01 free in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-012"
   },
   "JayaEtal23": {
@@ -1988,6 +2505,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-012"
   },
   "BrigEtal18": {
@@ -1995,51 +2513,32 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "surname_corroborated",
+     "code": "resolution_quote_unverified",
      "field": "author",
-     "detail": "surname 'brigard' -> 'de brigard': released by the DOI record rule, the api.crossref.org record of the kept DOI is the second host ['api.crossref.org', 'www.ebi.ac.uk']",
-     "action": "applied"
+     "detail": "author = 'F {De Brigard} and E Hanna and P L {St Jacques} and D L Schacter': quote '\"given\":\"Felipe\",\"family\":\"De Brigard\"' at https://api.crossref.org/works/10.1080/02699931.2018.1478280: value words ['hanna', 'jacques', 'schacter'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+     "action": "held"
     },
     {
-     "code": "surname_corroborated",
-     "field": "author",
-     "detail": "surname 'jacques' -> 'st jacques': released by the DOI record rule, the api.crossref.org record of the kept DOI is the second host ['api.crossref.org', 'www.ebi.ac.uk']",
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-04): the post-check's final changes stand",
      "action": "applied"
     },
     {
      "code": "key_rename",
      "field": "key",
-     "detail": "BrigEtal18 -> DeBrEtal19 (key does not follow the corrected metadata)",
+     "detail": "BrigEtal18 -> BrigEtal19 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-04): BrigEtal18 -> DeBrEtal19 (the post-check planned rename BrigEtal19)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [
-    {
-     "field": "author",
-     "current": "F D Brigard and E Hanna and P L St Jacques and D L Schacter",
-     "proposed": "F {De Brigard} and E Hanna and P L {St Jacques} and D L Schacter",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
-       "quote": "\"fullName\":\"De Brigard F\""
-      },
-      {
-       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
-       "quote": "\"fullName\":\"Hanna E\""
-      },
-      {
-       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
-       "quote": "\"fullName\":\"St Jacques PL\""
-      },
-      {
-       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1080/02699931.2018.1478280%22&resultType=core&format=json",
-       "quote": "\"fullName\":\"Schacter DL\""
-      }
-     ],
-     "reviewer": "agree (held only by the single-source rule; Crossref family 'De Brigard' and HEAD form {St Jacques} corroborate)"
-    },
     {
      "field": "doi",
      "current": null,
@@ -2119,14 +2618,17 @@
     }
    ],
    "removals": {},
-   "held": {},
+   "held": {
+    "author": "resolution quote unverified: value words ['hanna', 'jacques', 'schacter'] are not in the quote"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "BrigEtal18",
-    "target_base": "DeBrEtal19",
+    "target_base": "BrigEtal19",
     "action": "rename",
-    "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "DeBrEtal19"
+    "rename_reason": "resolution (batch-04)",
+    "new_key": "DeBrEtal19",
+    "resolution": "resolution (batch-04): key DeBrEtal19"
    },
    "doi_status": {
     "doi": "10.1080/02699931.2018.1478280",
@@ -2157,6 +2659,21 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "Crossref family names De Brigard, Hanna, St Jacques, Schacter; print 2019 33(4):646-659. Key prefix follows house particle keys (DeBaVoge10, DeRoHass00); DeBrEtal19 free in HEAD.",
+    "residue": [
+     "author: quote unverified (value words ['hanna', 'jacques', 'schacter'] are not in the quote)",
+     "key DeBrEtal19 does not follow the ID rule for the corrected metadata (BrigEtal19)"
+    ],
+    "quotes": {
+     "author": {
+      "ok": false,
+      "why": "value words ['hanna', 'jacques', 'schacter'] are not in the quote"
+     }
+    }
+   },
    "batch": "batch-013"
   },
   "MiraKihl05": {
@@ -2211,6 +2728,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "CurrFrie04": {
@@ -2305,6 +2823,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "DoveEtal00": {
@@ -2377,6 +2896,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "RuggEtal96": {
@@ -2493,6 +3013,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "SandEtal98": {
@@ -2561,6 +3082,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "Skan98": {
@@ -2574,10 +3096,22 @@
      "action": "applied"
     },
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-04): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "Skan98 -> Skra98 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-04): Skan98 -> Skra98, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -2650,7 +3184,8 @@
     "target_base": "Skra98",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "Skra98"
+    "new_key": "Skra98",
+    "resolution": "resolution (batch-04): key Skra98 confirmed"
    },
    "doi_status": {
     "doi": "10.1016/s0926-6410(97)00033-5",
@@ -2675,6 +3210,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "Crossref: Wolfgang Skrandies, Cognitive Brain Research 6(3):173-183, 1998; Skra98 free in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-013"
   },
   "GautLogo00": {
@@ -2741,6 +3283,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "KensScha99": {
@@ -2823,6 +3366,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "SpinEtal88": {
@@ -2908,6 +3452,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "Boro01": {
@@ -2972,6 +3517,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "DarwEtal72": {
@@ -3067,6 +3613,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "Ratc06": {
@@ -3151,6 +3698,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "SchoAnde97": {
@@ -3221,6 +3769,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "ChiEtal01": {
@@ -3240,6 +3789,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "FranEtal01": {
@@ -3251,6 +3801,12 @@
      "field": "author",
      "detail": "verdict 'correction' but author is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "author",
+     "detail": "resolution 'apply' (batch-04): author = \"M J Frank and B Loughry and R C O'Reilly\"",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -3331,6 +3887,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "Authors confirmed by Europe PMC (PMID 12467110) and Crossref (M. J. FRANK, B. LOUGHRY, R. C. O'REILLY); HEAD value was already correct.",
+    "residue": [],
+    "quotes": {
+     "author": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-013"
   },
   "ThomEtal02": {
@@ -3452,6 +4020,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "WageSmit03": {
@@ -3518,6 +4087,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "HollWels77": {
@@ -3596,6 +4166,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "Mill95": {
@@ -3660,6 +4231,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-013"
   },
   "Terr10": {
@@ -3712,6 +4284,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "Kerb14": {
@@ -3751,6 +4324,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "Brem35": {
@@ -3812,6 +4386,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "BrowEtal92": {
@@ -3845,6 +4420,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "SaltEtal93": {
@@ -3902,6 +4478,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "CookEtal16": {
@@ -3913,6 +4490,12 @@
      "field": "pages",
      "detail": "Crossref record of 10.1155/2016/8708434 gives pages '1-8', proposal '8708434'",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "author, pages",
+     "detail": "resolution 'apply' (batch-04): author = 'B L Cook and A M Progovac and P Chen and B Mullin and S Hou and E Baca-Garcia'; pages = '8708434'",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -3926,13 +4509,14 @@
      "field": "author",
      "current": "B J Cook and A M Progovac and P Chen and B Mullin and S Hou and E Baca-Garcia",
      "proposed": "B L Cook and A M Progovac and P Chen and B Mullin and S Hou and E Baca-Garcia",
-     "source": "researcher",
+     "source": "resolution",
      "evidence": [
       {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/27752278/",
-       "quote": "Benjamin L Cook, Ana M Progovac, Pei Chen, Brian Mullin, Sherry Hou, Enrique Baca-Garcia"
+       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%2210.1155/2016/8708434%22&resultType=core&format=json",
+       "quote": "\"authorString\":\"Cook BL, Progovac AM, Chen P, Mullin B, Hou S, Baca-Garcia E.\""
       }
-     ]
+     ],
+     "decision": "resolution batch-04"
     },
     {
      "field": "doi",
@@ -3950,13 +4534,14 @@
      "field": "pages",
      "current": "1--9",
      "proposed": "8708434",
-     "source": "researcher",
+     "source": "resolution",
      "evidence": [
       {
-       "url": "https://pubmed.ncbi.nlm.nih.gov/27752278/",
-       "quote": "PG  - 8708434"
+       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5056245/fullTextXML",
+       "quote": "<elocation-id>8708434</elocation-id>"
       }
-     ]
+     ],
+     "decision": "resolution batch-04"
     }
    ],
    "removals": {
@@ -4002,6 +4587,22 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "Crossref's '1-8' is the page count of an article-numbered paper; the JATS elocation-id and PubMed give article 8708434, which the house article-number rule puts in pages (number removed by post-check).",
+    "residue": [],
+    "quotes": {
+     "pages": {
+      "ok": true,
+      "why": null
+     },
+     "author": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-014"
   },
   "JohnRedi07b": {
@@ -4009,10 +4610,22 @@
    "verdict": "no_source",
    "flags": [
     {
-     "code": "needs_user",
+     "code": "not_in_bib",
+     "field": null,
+     "detail": "JohnRedi07b is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+     "action": "dropped"
+    },
+    {
+     "code": "resolution_noop",
+     "field": null,
+     "detail": "resolution 'drop' (batch-04): JohnRedi07b is not in the bibliography; nothing to do",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
      "field": "verdict",
-     "detail": "verdict no_source: user decision",
-     "action": "flag"
+     "detail": "verdict no_source resolved by the resolution ('drop', batch-04)",
+     "action": "applied"
     },
     {
      "code": "user_decision",
@@ -4028,12 +4641,21 @@
    "suggestions": {},
    "key_plan": {
     "current_key": "JohnRedi07b",
-    "target_base": "JohnRedi07",
-    "action": "keep"
+    "target_base": null,
+    "action": "keep",
+    "resolution": "resolution 'drop': not in the bibliography"
    },
    "doi_status": null,
-   "user_resolved": false,
+   "user_resolved": true,
    "software": null,
+   "resolution": {
+    "decision": "drop",
+    "batch": "batch-04",
+    "notes": "Cosyne 2007 program pages are no longer online (404); no journal or proceedings version found.",
+    "residue": [],
+    "quotes": {},
+    "noop": "not in the bibliography"
+   },
    "batch": "batch-014",
    "remove_entry": "conference abstract"
   },
@@ -4046,6 +4668,12 @@
      "field": "pages",
      "detail": "verdict 'correction' but pages is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-04): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -4138,6 +4766,13 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "Chapter, editors, publisher and address confirmed by LoC; pages 147--191 left as is: the 2001 Erlbaum book exists only as a lending-restricted Internet Archive scan (computationalgeo0000unse) and the Crossref chapter record (10.4324/9781410612328-10) is the 2005 reissue with pages 154-198. RECONCILED 2026-09-26: Pages kept: IA contents (computationalgeo0000unse): chapter start pages 'Vii 39 83 115 147 193 ...' (ch. 5 Busey at 147) and p. 147 text '...revolves around the 147 148 BUSEY' confirms the start page, so the cited range stays (default: partly confirmed chapter pages are kept).",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-014"
   },
   "Seac97": {
@@ -4145,10 +4780,16 @@
    "verdict": "no_source",
    "flags": [
     {
-     "code": "needs_user",
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'drop' (batch-04): remove the entry (no evidence found after: Crossref bibliographic search, OpenAlex, Internet Archive (Computer Dealer News collection has no accessible 1997 issues), local PDF library; trade magazine indexed only in ProQuest/Gale)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
      "field": "verdict",
-     "detail": "verdict no_source: user decision",
-     "action": "flag"
+     "detail": "verdict no_source resolved by the resolution ('drop', batch-04)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -4159,12 +4800,22 @@
    "key_plan": {
     "current_key": "Seac97",
     "target_base": "Seac97",
-    "action": "keep"
+    "action": "keep",
+    "resolution": "resolution 'drop' (batch-04): the entry is removed"
    },
    "doi_status": null,
-   "user_resolved": false,
+   "user_resolved": true,
    "software": null,
-   "batch": "batch-014"
+   "resolution": {
+    "decision": "drop",
+    "batch": "batch-04",
+    "notes": "No fetchable record of the article exists.",
+    "residue": [],
+    "quotes": {}
+   },
+   "batch": "batch-014",
+   "remove_entry": "no evidence found after: Crossref bibliographic search, OpenAlex, Internet Archive (Computer Dealer News collection has no accessible 1997 issues), local PDF library; trade magazine indexed only in ProQuest/Gale",
+   "remove_entry_source": "resolution batch-04"
   },
   "Hara96": {
    "key": "Hara96",
@@ -4175,6 +4826,12 @@
      "field": "pages",
      "detail": "verdict 'correction' but pages is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-04): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -4276,6 +4933,13 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "Book, editors, publisher, address confirmed by LoC and the SUNY Press TOC ('Online Education: The Future Linda Harasim'); the TOC prints no pages and no fetchable source gives them, so 203--214 is left as is. RECONCILED 2026-09-26: Pages kept: IA contents (computernetworki0000unse_q8a0): 'Online Education: The Future 203 Linda Harasim' confirms the start page, so the cited range stays (default: partly confirmed chapter pages are kept).",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-014"
   },
   "PradEtal93": {
@@ -4346,6 +5010,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "Hunt07": {
@@ -4398,6 +5063,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "PereGran07": {
@@ -4479,6 +5145,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "YoneEtal96": {
@@ -4567,6 +5234,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "BotvPlau03": {
@@ -4663,6 +5331,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "PribEtal74": {
@@ -4674,6 +5343,12 @@
      "field": "editor",
      "detail": "verdict 'correction' but editor is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "editor, publisher",
+     "detail": "resolution 'apply' (batch-04): editor = 'D H Krantz and R C Atkinson and R D Luce and P Suppes'; publisher = 'W H Freeman'",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -4736,16 +5411,31 @@
      "reviewer": "agree"
     },
     {
+     "field": "editor",
+     "current": null,
+     "proposed": "D H Krantz and R C Atkinson and R D Luce and P Suppes",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://escholarship.org/content/qt40x8f9s7/qt40x8f9s7.pdf",
+       "quote": "Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.)"
+      }
+     ],
+     "decision": "resolution batch-04",
+     "reviewer": "not_found, left (agree)"
+    },
+    {
      "field": "publisher",
      "current": null,
-     "proposed": "Freeman",
-     "source": "researcher",
+     "proposed": "W H Freeman",
+     "source": "resolution",
      "evidence": [
       {
        "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=73021887&maximumRecords=1&recordSchema=mods",
        "quote": "<namePart>W. H. Freeman</namePart>"
       }
      ],
+     "decision": "resolution batch-04",
      "reviewer": "agree"
     }
    ],
@@ -4762,6 +5452,22 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-04",
+    "notes": "Editor left absent: LoC prints only 'Edited by David H. Krantz [and others]' and no fetchable source lists all editors correctly (karlpribram.com misprints 'R. C. Luce'). Publisher set to 'W H Freeman' per the user's publisher-initials rule. Sibling AtkiJuol74 (same book) lists editors 'D H Krantz and R C Atkinson and P Suppes' (omits Luce) and publisher 'Freeman'. RECONCILED 2026-09-26: Editors expanded per the 'and others' default, with the same evidence AtkiJuol74 (batch 19, same book) uses: Stanford IMSSS TR 194 'To be pUblished in: Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.)'.",
+    "residue": [],
+    "quotes": {
+     "publisher": {
+      "ok": true,
+      "why": null
+     },
+     "editor": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-014"
   },
   "EskrEtal12": {
@@ -4769,72 +5475,46 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "not_in_bib",
+     "field": null,
+     "detail": "EskrEtal12 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+     "action": "dropped"
+    },
+    {
+     "code": "resolution_noop",
+     "field": null,
+     "detail": "resolution 'drop' (batch-04): EskrEtal12 is not in the bibliography; nothing to do",
+     "action": "applied"
+    },
+    {
      "code": "user_decision",
      "field": null,
      "detail": "user decision (a-EskrEtal12): remove EskrEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
-   "normalisations": [
-    {
-     "field": "journal",
-     "note": "@inproceedings has no journal: already given by the booktitle"
-    }
-   ],
-   "changes": [
-    {
-     "field": "ENTRYTYPE",
-     "current": "article",
-     "proposed": "inproceedings",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://memory.psych.upenn.edu/CEMS_2012",
-       "quote": "The 2012 Context and Episodic Memory Symposium (CEMS) will be held in Bloomington, Indiana, on May 10th."
-      }
-     ],
-     "reviewer": "agree"
-    },
-    {
-     "field": "address",
-     "current": null,
-     "proposed": "Bloomington, {IN}",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://memory.psych.upenn.edu/CEMS_2012",
-       "quote": "May 10th, Bloomington, IN"
-      }
-     ],
-     "reviewer": "agree"
-    },
-    {
-     "field": "booktitle",
-     "current": null,
-     "proposed": "Context and Episodic Memory Symposium",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://memory.psych.upenn.edu/CEMS_2012",
-       "quote": "The 2012 Context and Episodic Memory Symposium (CEMS) will be held in Bloomington, Indiana"
-      }
-     ],
-     "reviewer": "agree"
-    }
-   ],
-   "removals": {
-    "journal": "@inproceedings has no journal (already given by the booktitle)"
-   },
+   "normalisations": [],
+   "changes": [],
+   "removals": {},
    "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "EskrEtal12",
-    "target_base": "EskrEtal12",
-    "action": "keep"
+    "target_base": null,
+    "action": "keep",
+    "resolution": "resolution 'drop': not in the bibliography"
    },
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "drop",
+    "batch": "batch-04",
+    "notes": "Talk listed in the CEMS 2012 program; the symposium publishes no papers; user already approved removal.",
+    "residue": [],
+    "quotes": {},
+    "noop": "not in the bibliography"
+   },
    "batch": "batch-014",
    "remove_entry": "conference abstract"
   },
@@ -4843,72 +5523,46 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "not_in_bib",
+     "field": null,
+     "detail": "HealEtal12a is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+     "action": "dropped"
+    },
+    {
+     "code": "resolution_noop",
+     "field": null,
+     "detail": "resolution 'drop' (batch-04): HealEtal12a is not in the bibliography; nothing to do",
+     "action": "applied"
+    },
+    {
      "code": "user_decision",
      "field": null,
      "detail": "user decision (a-HealEtal12a): remove HealEtal12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
      "action": "flag"
     }
    ],
-   "normalisations": [
-    {
-     "field": "journal",
-     "note": "@inproceedings has no journal: already given by the booktitle"
-    }
-   ],
-   "changes": [
-    {
-     "field": "ENTRYTYPE",
-     "current": "article",
-     "proposed": "inproceedings",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://memory.psych.upenn.edu/CEMS_2012",
-       "quote": "The 2012 Context and Episodic Memory Symposium (CEMS) will be held in Bloomington, Indiana, on May 10th."
-      }
-     ],
-     "reviewer": "agree"
-    },
-    {
-     "field": "address",
-     "current": null,
-     "proposed": "Bloomington, {IN}",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://memory.psych.upenn.edu/CEMS_2012",
-       "quote": "May 10th, Bloomington, IN"
-      }
-     ],
-     "reviewer": "agree"
-    },
-    {
-     "field": "booktitle",
-     "current": null,
-     "proposed": "Context and Episodic Memory Symposium",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://memory.psych.upenn.edu/CEMS_2012",
-       "quote": "The 2012 Context and Episodic Memory Symposium (CEMS) will be held in Bloomington, Indiana"
-      }
-     ],
-     "reviewer": "agree"
-    }
-   ],
-   "removals": {
-    "journal": "@inproceedings has no journal (already given by the booktitle)"
-   },
+   "normalisations": [],
+   "changes": [],
+   "removals": {},
    "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "HealEtal12a",
-    "target_base": "HealEtal12",
-    "action": "keep"
+    "target_base": null,
+    "action": "keep",
+    "resolution": "resolution 'drop': not in the bibliography"
    },
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "drop",
+    "batch": "batch-04",
+    "notes": "Listed in the CEMS 2012 program ('Karl Healey, Lynn Lohnas & Michael J. Kahana ... Modeling age-related changes in episodic memory'); user already approved removal.",
+    "residue": [],
+    "quotes": {},
+    "noop": "not in the bibliography"
+   },
    "batch": "batch-014",
    "remove_entry": "conference abstract"
   },
@@ -4982,6 +5636,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "Hint12": {
@@ -5040,6 +5695,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-014"
   },
   "Scha12": {
@@ -5128,6 +5784,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "DaPo67": {
@@ -5135,25 +5792,105 @@
    "verdict": "no_source",
    "flags": [
     {
-     "code": "needs_user",
-     "field": "verdict",
-     "detail": "verdict no_source: user decision",
+     "code": "resolution_decision",
+     "field": "ENTRYTYPE, journal, pages, school, title, volume, year",
+     "detail": "resolution 'apply' (batch-05): ENTRYTYPE = 'phdthesis'; school = 'Indiana University'; title = 'Proactive effects with independent retrieval of competing responses'; year = '1966'; removed journal; removed volume; removed pages",
+     "action": "applied"
+    },
+    {
+     "code": "key_rename",
+     "field": "key",
+     "detail": "DaPo67 -> DaPo66 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "verdict",
+     "detail": "verdict no_source resolved by the resolution ('apply', batch-05)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-05): DaPo67 -> DaPo66, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
-   "changes": [],
-   "removals": {},
+   "changes": [
+    {
+     "field": "ENTRYTYPE",
+     "current": "article",
+     "proposed": "phdthesis",
+     "source": "resolution",
+     "evidence": [],
+     "decision": "resolution batch-05"
+    },
+    {
+     "field": "school",
+     "current": null,
+     "proposed": "Indiana University",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://iucat.iu.edu/catalog/617689/librarian_view",
+       "quote": "Thesis (Ph. D.)--Indiana University, 1966."
+      }
+     ],
+     "decision": "resolution batch-05"
+    },
+    {
+     "field": "year",
+     "current": "1967",
+     "proposed": "1966",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://iucat.iu.edu/catalog/617689/librarian_view",
+       "quote": "Thesis (Ph. D.)--Indiana University, 1966."
+      }
+     ],
+     "decision": "resolution batch-05"
+    }
+   ],
+   "removals": {
+    "journal": "resolution asked to remove it (current 'Dissertation Abstracts International')",
+    "volume": "resolution asked to remove it (current '27')",
+    "pages": "resolution asked to remove it (current '2522--2523')"
+   },
    "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "DaPo67",
-    "target_base": "DaPo67",
-    "action": "keep"
+    "target_base": "DaPo66",
+    "action": "rename",
+    "rename_reason": "key does not follow the corrected metadata",
+    "new_key": "DaPo66",
+    "resolution": "resolution (batch-05): key DaPo66 confirmed"
    },
    "doi_status": null,
-   "user_resolved": false,
+   "user_resolved": true,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Real Indiana University doctoral dissertation (F J DaPolito, 1966), not a conference abstract. The DAI citation as in HEAD (27, 2522-2523, 1967) is printed identically in two independent books' reference lists (Internet Archive full text: Foundations of Human Memory; Human Memory: a constructivist view: 'Proactive effects with independent retrieval of competing responses. Dissertation Abstracts International, 27, 2522-2523.'), search URL https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=DaPolito%20%22Proactive%20effects%22%202522 ; the DAI page itself is behind ProQuest/HathiTrust bot walls. Kept pending the DAI rule question. RECONCILED 2026-09-26: DAI rule (round 2): cite the dissertation as @phdthesis from its catalogue record. IUCAT (Indiana University Libraries) MARC: 100 'DaPolito, Frank Joseph, 1933-', 245 title, 300 '77 l.', 502 'Thesis (Ph. D.)--Indiana University, 1966.' Key DaPo66 (free in HEAD). Author F J Da{P}olito unchanged.",
+    "residue": [],
+    "quotes": {
+     "school": {
+      "ok": true,
+      "why": null
+     },
+     "year": {
+      "ok": true,
+      "why": null
+     },
+     "title": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-016"
   },
   "Yone96": {
@@ -5167,25 +5904,135 @@
      "action": "flag"
     },
     {
-     "code": "needs_user",
-     "field": "verdict",
-     "detail": "verdict ambiguous: user decision",
+     "code": "resolution_decision",
+     "field": "ENTRYTYPE, doi, journal, pages, school, title, volume, year",
+     "detail": "resolution 'apply' (batch-05): ENTRYTYPE = 'phdthesis'; doi = '10.71548/12410'; school = 'McMaster University'; title = 'Dissociating recollection and familiarity in recognition memory'; year = '1995'; removed journal; removed volume; removed pages",
+     "action": "applied"
+    },
+    {
+     "code": "key_rename",
+     "field": "key",
+     "detail": "Yone96 -> Yone95 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "verdict",
+     "detail": "verdict ambiguous resolved by the resolution ('apply', batch-05)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-05): Yone96 -> Yone95, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
-   "changes": [],
-   "removals": {},
+   "changes": [
+    {
+     "field": "ENTRYTYPE",
+     "current": "article",
+     "proposed": "phdthesis",
+     "source": "resolution",
+     "evidence": [],
+     "decision": "resolution batch-05"
+    },
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.71548/12410",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://prod-ms-be.lib.mcmaster.ca/server/oai/request?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:macsphere.mcmaster.ca:11375/6990",
+       "quote": "https://doi.org/10.71548/12410"
+      }
+     ],
+     "decision": "resolution batch-05"
+    },
+    {
+     "field": "school",
+     "current": null,
+     "proposed": "McMaster University",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.datacite.org/dois/10.71548/12410",
+       "quote": "\"publisher\":\"McMaster University\""
+      }
+     ],
+     "decision": "resolution batch-05"
+    },
+    {
+     "field": "year",
+     "current": "1996",
+     "proposed": "1995",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://prod-ms-be.lib.mcmaster.ca/server/oai/request?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:macsphere.mcmaster.ca:11375/6990",
+       "quote": "<dc:date>1995</dc:date>"
+      }
+     ],
+     "decision": "resolution batch-05"
+    }
+   ],
+   "removals": {
+    "journal": "resolution asked to remove it (current 'Dissertation Abstracts International')",
+    "volume": "resolution asked to remove it (current '57')",
+    "pages": "resolution asked to remove it (current '2193')"
+   },
    "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Yone96",
-    "target_base": "Yone96",
-    "action": "keep"
+    "target_base": "Yone95",
+    "action": "rename",
+    "rename_reason": "key does not follow the corrected metadata",
+    "new_key": "Yone95",
+    "resolution": "resolution (batch-05): key Yone95 confirmed"
    },
-   "doi_status": null,
-   "user_resolved": false,
+   "doi_status": {
+    "doi": "10.71548/12410",
+    "registered": true,
+    "ra": "DataCite",
+    "title": "Dissociating Recollection and Familiarity in Recognition Memory",
+    "authors": [
+     "Yonelinas, Andrew P."
+    ],
+    "families": [
+     "Yonelinas"
+    ],
+    "issued_year": "1995",
+    "type": "Other"
+   },
+   "user_resolved": true,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "DAI 57:2193 could not be found in any reachable source; the thesis is verified by DataCite 10.71548/12410 (Yonelinas, Andrew P., McMaster University, 1995, resourceType thesis) but the degree (PhD) is not printed there and MacSphere is behind a bot wall. Replacement by @phdthesis Yone95 (key free in HEAD) waits on the DAI rule question. RECONCILED 2026-09-26: DAI rule (round 2): @phdthesis from the MacSphere/DataCite record: 'Yonelinas, Andrew P.', McMaster University, 1995, degree 'Doctor of Philosophy (PhD)' (MacSphere OAI record, fetchable at the backend URL). Key Yone95 (free in HEAD).",
+    "residue": [],
+    "quotes": {
+     "school": {
+      "ok": true,
+      "why": null
+     },
+     "year": {
+      "ok": true,
+      "why": null
+     },
+     "doi": {
+      "ok": true,
+      "why": null
+     },
+     "title": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-016"
   },
   "OlesEtal25": {
@@ -5254,6 +6101,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "Warr98": {
@@ -5330,6 +6178,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "Gran69": {
@@ -5341,6 +6190,12 @@
      "field": "pages",
      "detail": "Crossref record of 10.2307/1912791 gives pages '424', proposal '424--438'",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-05): pages = '424--438'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -5389,6 +6244,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Crossref deposits only the first page (424); RePEc prints the full range 424-438 (JSTOR bot wall). HEAD pages stand; DOI added.",
+    "residue": [],
+    "quotes": {
+     "pages": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-016"
   },
   "Poph99": {
@@ -5439,6 +6306,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "Allo12": {
@@ -5446,10 +6314,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "Allo12 -> AlloEtal12 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-05): Allo12 -> AlloEtal12, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -5489,11 +6369,19 @@
     "target_base": "AlloEtal12",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "AlloEtal12"
+    "new_key": "AlloEtal12",
+    "resolution": "resolution (batch-05): key AlloEtal12 confirmed"
    },
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Publisher page re-fetched: 'Tracy Packiam Alloway*, Gwyneth Doherty-Sneddon and Lynsey Forbes', Educational Research and Reviews Vol.7(6), pp. 138-142. Three authors drive AlloEtal12 (free in HEAD).",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-016"
   },
   "RhoaEtal13": {
@@ -5550,6 +6438,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "ChaoEtal95": {
@@ -5620,6 +6509,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "FabiEtal90": {
@@ -5704,6 +6594,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "IshiEtal75": {
@@ -5782,6 +6673,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "Lope91": {
@@ -5848,6 +6740,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "LopeEtal73": {
@@ -5918,6 +6811,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "MenoEtal96": {
@@ -5987,6 +6881,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "NuneEtal97": {
@@ -6058,6 +6953,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "PeloEtal95": {
@@ -6126,6 +7022,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "RuggEtal92": {
@@ -6182,6 +7079,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "Snyd91": {
@@ -6234,6 +7132,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "VolaEtal67": {
@@ -6314,6 +7213,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-016"
   },
   "HeniEtal19": {
@@ -6325,6 +7225,12 @@
      "field": "pages",
      "detail": "Crossref record of 10.1523/eneuro.0306-19.2019 gives pages 'ENEURO.0306-19.2019', proposal 'ENEURO.0306-19.2019'",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -6417,6 +7323,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "The flag is a false conflict: Crossref page 'ENEURO.0306-19.2019' equals the proposed pages. Journal 'eNeuro' as printed (Europe PMC/Crossref).",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-017"
   },
   "DesaEtal12": {
@@ -6535,6 +7448,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "TlauWils96": {
@@ -6613,6 +7527,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "BrunHaus03": {
@@ -6681,6 +7596,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "FishEtal10": {
@@ -6839,6 +7755,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "HalgEtal77a": {
@@ -6909,6 +7826,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "JobsEtal10": {
@@ -6979,6 +7897,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "KatzEtal89": {
@@ -7061,6 +7980,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "Spen94": {
@@ -7113,6 +8033,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "Sper97": {
@@ -7201,6 +8122,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "UlbeEtal04": {
@@ -7273,6 +8195,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "Braz03": {
@@ -7286,10 +8209,22 @@
      "action": "flag"
     },
     {
+     "code": "resolution_decision",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-05): pages = '204--206'",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "Braz03 -> Bazi03 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-05): Braz03 -> Bazi03, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -7333,7 +8268,8 @@
     "target_base": "Bazi03",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "Bazi03"
+    "new_key": "Bazi03",
+    "resolution": "resolution (batch-05): key Bazi03 confirmed"
    },
    "doi_status": {
     "doi": "10.1046/j.1535-7597.2003.03610.x",
@@ -7358,6 +8294,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Printed record: PubMed 15346153 MedlinePgn 204-206 and PMC 321224 (scanned print, fpage 204 / lpage 206) agree; Crossref's 204-205 is the outlier, so HEAD pages 204--206 stand. Author Carl Bazil (PubMed/PMC); Bazi03 free in HEAD.",
+    "residue": [],
+    "quotes": {
+     "pages": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-017"
   },
   "DaviEtal11": {
@@ -7450,6 +8398,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "KahaEtal06": {
@@ -7537,6 +8486,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "BaddLong78": {
@@ -7631,6 +8581,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "RogeEvan93": {
@@ -7642,6 +8593,12 @@
      "field": "pages",
      "detail": "Crossref record of 10.1249/00003677-199301000-00003 gives pages '65???102', proposal '65--102'",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-05): pages = '65--102'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -7704,6 +8661,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Crossref '65???102' is a mis-encoded en dash; PubMed 8504850 prints 65-102 (vol 21, 1993). HEAD pages stand; DOI and issue added.",
+    "residue": [],
+    "quotes": {
+     "pages": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-017"
   },
   "Bastvand05": {
@@ -7717,10 +8686,22 @@
      "action": "flag"
     },
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "Bastvand05 -> Bastvand06 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-05): Bastvand05 -> Bastvand06, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -7764,7 +8745,8 @@
     "target_base": "Bastvand06",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "Bastvand06"
+    "new_key": "Bastvand06",
+    "resolution": "resolution (batch-05): key Bastvand06 confirmed"
    },
    "doi_status": {
     "doi": "10.1080/03610730500326291",
@@ -7791,6 +8773,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Print date 2006 (PubMed 16293569 '<Year>2006</Year><Season>Jan-Mar</Season>', Europe PMC printPublicationDate 2006-01-01) for vol 32(1); Crossref 2005 is the deposit date. Bastvand06 free in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-017"
   },
   "SekuEtal05": {
@@ -7863,6 +8852,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "WingEtal88": {
@@ -7937,6 +8927,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "AlonGarc87": {
@@ -8031,6 +9022,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-017"
   },
   "BrazEtal02": {
@@ -8149,6 +9141,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "KitaEtal76": {
@@ -8253,6 +9246,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "McNaEtal83": {
@@ -8309,6 +9303,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "SchuEtal83": {
@@ -8320,6 +9315,12 @@
      "field": "pages",
      "detail": "verdict 'correction' but pages is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-05): pages = '377--387'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -8386,6 +9387,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Springer's own citation export for 10.1007/BF00237874 prints SP 377 / EP 387 (vol 51, issue 3, 1983); HEAD pages confirmed.",
+    "residue": [],
+    "quotes": {
+     "pages": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-018"
   },
   "WichEtal99": {
@@ -8448,6 +9461,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "WilsEtal90": {
@@ -8520,6 +9534,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "KramEtal75": {
@@ -8577,6 +9592,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "RuthEtal21": {
@@ -8639,6 +9655,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "MarcEtal07": {
@@ -8701,6 +9718,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "BoseEtal92": {
@@ -8865,6 +9883,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "Half88": {
@@ -8876,6 +9895,18 @@
      "field": "pages",
      "detail": "verdict 'correction' but pages is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_quote_unverified",
+     "field": "pages",
+     "detail": "pages = '79--108': quote 'Curriculum  and  Instruction  in  Automated  Tutors}}}  79' at https://openlibrary.org/search/inside.json?q=%22Curriculum%20and%20instruction%20in%20automated%20tutors%22: value words ['108'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+     "action": "held"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -8954,7 +9985,9 @@
    "removals": {
     "journal": "@incollection has no journal (already given by the booktitle)"
    },
-   "held": {},
+   "held": {
+    "pages": "resolution quote unverified: value words ['108'] are not in the quote"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "Half88",
@@ -8964,6 +9997,20 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Printed TOC of the 1988 Erlbaum volume (Internet Archive isbn_9780805800548, search-inside) lists ch. 4 Halff at p. 79 and ch. 5 Burton ('The Environment Module of Intelligent Tutoring Systems 1 09') at p. 109, so the chapter spans 79-108 as in HEAD. RECONCILED 2026-09-26: Question answered by rule: end page from next start - 1 (round 2).",
+    "residue": [
+     "pages: quote unverified (value words ['108'] are not in the quote)"
+    ],
+    "quotes": {
+     "pages": {
+      "ok": false,
+      "why": "value words ['108'] are not in the quote"
+     }
+    }
+   },
    "batch": "batch-018"
   },
   "BurkEtal15": {
@@ -9061,6 +10108,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "GilbEtal10": {
@@ -9152,6 +10200,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "HansEtal12a": {
@@ -9243,6 +10292,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "MormEtal08b": {
@@ -9309,6 +10359,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "MuntEtal07": {
@@ -9320,6 +10371,12 @@
      "field": "year",
      "detail": "Crossref published-print 2008 vs year 2007: print year wins",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+     "action": "applied"
     },
     {
      "code": "unverified_suggestions",
@@ -9428,6 +10485,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Frontiers in Human Neuroscience is online-only; vol 1 is 2007 (PubMed 18958225 '<Volume>1</Volume><PubDate><Year>2007</Year></PubDate>', Frontiers 'Front. Hum. Neurosci. 1 :11'). Crossref's 2008 published-print is not a print issue date, so the suggested year 2008 is not applied; year 2007 and key stand.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-018"
   },
   "OntoEtal18": {
@@ -9486,6 +10550,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "ScanEtal21": {
@@ -9583,6 +10648,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "VidaEtal10": {
@@ -9715,6 +10781,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "AfshEtal13": {
@@ -9864,6 +10931,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-018"
   },
   "HankEtal09": {
@@ -9875,6 +10943,12 @@
      "field": "year",
      "detail": "year evidence is an online-publication date; the print year wins",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -9963,6 +11037,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Online-only journal: PubMed 19212459 gives Volume 3, PubDate 2009 and Frontiers 'Front. Neuroinform. 3 :3'; there is no separate print year, so 2009 stands.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-019"
   },
   "FerrEtal12": {
@@ -10057,6 +11138,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "NastEtal18": {
@@ -10136,6 +11218,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "Brig12": {
@@ -10149,10 +11232,22 @@
      "action": "applied"
     },
     {
+     "code": "resolution_decision",
+     "field": "number",
+     "detail": "resolution 'apply' (batch-05): removed number",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "Brig12 -> DeBr12 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-05): Brig12 -> DeBr12, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -10203,7 +11298,7 @@
     }
    ],
    "removals": {
-    "number": "article number 420 moved into pages"
+    "number": "resolution asked to remove it (current '420')"
    },
    "held": {},
    "suggestions": {},
@@ -10212,7 +11307,8 @@
     "target_base": "DeBr12",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "DeBr12"
+    "new_key": "DeBr12",
+    "resolution": "resolution (batch-05): key DeBr12 confirmed"
    },
    "doi_status": {
     "doi": "10.3389/fpsyg.2012.00420",
@@ -10237,6 +11333,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "PubMed 23162493 'FAU - De Brigard, Felipe' and Crossref family 'De Brigard'; article number 420 goes in pages and Number is removed (Frontiers has no issue). DeBr12 free in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-019"
   },
   "DeadEtal13": {
@@ -10353,6 +11456,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "FoxGrei10": {
@@ -10419,6 +11523,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "KrieEtal08b": {
@@ -10515,6 +11620,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "KrzyEtal09": {
@@ -10595,6 +11701,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "PetrPand94": {
@@ -10602,15 +11709,90 @@
    "verdict": "no_source",
    "flags": [
     {
-     "code": "needs_user",
+     "code": "resolution_quote_unverified",
+     "field": "pages",
+     "detail": "pages = '17--58': quote 'ides  and  D.N.  Pandya .  17' at https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Frontal%20lobes%20and%20working%20memory%22%20Petrides: value words ['58'] are not in the quote; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "ENTRYTYPE, address, booktitle, editor, journal, pages, publisher",
+     "detail": "resolution 'apply' (batch-05): ENTRYTYPE = 'incollection'; address = 'Amsterdam'; booktitle = 'Handbook of Neuropsychology'; editor = 'F Boller and J Grafman'; pages = '17--58'; publisher = 'Elsevier'; removed journal",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
      "field": "verdict",
-     "detail": "verdict no_source: user decision",
-     "action": "flag"
+     "detail": "verdict no_source resolved by the resolution ('apply', batch-05)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
-   "changes": [],
-   "removals": {},
+   "changes": [
+    {
+     "field": "ENTRYTYPE",
+     "current": "article",
+     "proposed": "incollection",
+     "source": "resolution",
+     "evidence": [],
+     "decision": "resolution batch-05"
+    },
+    {
+     "field": "address",
+     "current": null,
+     "proposed": "Amsterdam",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://archive.org/metadata/handbookofneurop0000unse_h8v4/metadata",
+       "quote": "Amsterdam : Elsevier"
+      }
+     ],
+     "decision": "resolution batch-05"
+    },
+    {
+     "field": "booktitle",
+     "current": null,
+     "proposed": "Handbook of Neuropsychology",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://archive.org/metadata/handbookofneurop0000unse_h8v4/metadata",
+       "quote": "Handbook of neuropsychology / 9"
+      }
+     ],
+     "decision": "resolution batch-05"
+    },
+    {
+     "field": "editor",
+     "current": null,
+     "proposed": "F Boller and J Grafman",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=Spinnler%20Grafman%20Boller%20%22Handbook%20of%20neuropsychology%22",
+       "quote": "Franpois  {{{BOLLER}}} Jordan  {{{GRAFMAN}}}"
+      }
+     ],
+     "decision": "resolution batch-05"
+    },
+    {
+     "field": "publisher",
+     "current": null,
+     "proposed": "Elsevier",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://archive.org/metadata/handbookofneurop0000unse_h8v4/metadata",
+       "quote": "Amsterdam : Elsevier"
+      }
+     ],
+     "decision": "resolution batch-05"
+    }
+   ],
+   "removals": {
+    "journal": "resolution asked to remove it (current 'Handbook of Neuropsychology')"
+   },
    "held": {},
    "suggestions": {},
    "key_plan": {
@@ -10619,8 +11801,36 @@
     "action": "keep"
    },
    "doi_status": null,
-   "user_resolved": false,
+   "user_resolved": true,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Internet Archive scan of Handbook of Neuropsychology vol 9 (Elsevier, Amsterdam, 1994, ISBN 0444899669): TOC '2. Comparative architectonic analysis of the human and the macaque frontal cortex M. Petrides and D.N. Pandya . 17'; chapter pages carry 'Handbook of Neuropsychology, Vol. 9. F. Boller and J. Grafman (Eds)' and running heads 'Ch. 2 M. Petrides and D.N. Pandya' on pp. 19-27; p. 59 is already Ch. 3, so 17--58 (also printed by many citing works). Volume 9 kept; @article -> @incollection, journal removed. RECONCILED 2026-09-26: Question answered by rule: end page from next start - 1 (round 2).",
+    "residue": [],
+    "quotes": {
+     "booktitle": {
+      "ok": true,
+      "why": null
+     },
+     "editor": {
+      "ok": true,
+      "why": null
+     },
+     "publisher": {
+      "ok": true,
+      "why": null
+     },
+     "address": {
+      "ok": true,
+      "why": null
+     },
+     "pages": {
+      "ok": false,
+      "why": "value words ['58'] are not in the quote"
+     }
+    }
+   },
    "batch": "batch-019"
   },
   "RoedMcDe93": {
@@ -10703,6 +11913,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "Klei06": {
@@ -10736,6 +11947,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "KlasEtal15": {
@@ -10824,6 +12036,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "BodiEtal01": {
@@ -10950,6 +12163,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "BragEtal99": {
@@ -11038,6 +12252,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "BranEtal96": {
@@ -11106,6 +12321,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "CaveSqui92": {
@@ -11208,6 +12424,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "EkstEtal07": {
@@ -11273,6 +12490,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "FernEtal99b": {
@@ -11389,6 +12607,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "Hass05": {
@@ -11400,6 +12619,12 @@
      "field": "title",
      "detail": "'What is the function of hippocampal theta rhythm?--- {L}inking behavioral data to phasic properties of field potential and unit recording data' -> 'What is the function of hippocampal theta rhythm?---{L}inking behavioral data to phasic properties of field potential and unit recording data' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -11477,6 +12702,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Printed title has an unspaced em dash (Crossref 'rhythm?—Linking'; PubMed 'rhythm?--Linking'), so '?---{L}inking' without the space is as printed; this is also the only spaced '?--- ' in HEAD. RECONCILED 2026-09-26: Question answered by rule: em dash a---b; value already conforms.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-019"
   },
   "JohnEtal08": {
@@ -11588,6 +12820,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-019"
   },
   "KamoEtal98": {
@@ -11670,6 +12903,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "KingEtal02": {
@@ -11742,6 +12976,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "LegaEtal11b": {
@@ -11749,10 +12984,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "LegaEtal11b -> LegaEtal12 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-05): LegaEtal11b -> LegaEtal12, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -11792,7 +13039,8 @@
     "target_base": "LegaEtal12",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "LegaEtal12"
+    "new_key": "LegaEtal12",
+    "resolution": "resolution (batch-05): key LegaEtal12 confirmed"
    },
    "doi_status": {
     "doi": "10.1002/hipo.20937",
@@ -11821,6 +13069,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Print issue Hippocampus 22(4) April 2012 (PubMed 'DP - 2012 Apr'; Crossref published-print 2012); 2011 is online-first. LegaEtal12 free in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-020"
   },
   "RobeEtal99": {
@@ -11891,6 +13146,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "SkagEtal96": {
@@ -11961,6 +13217,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "SohaHass98b": {
@@ -11970,8 +13227,14 @@
     {
      "code": "quote_check_failed",
      "field": "title",
-     "detail": "validator: title not covered by its quotes (missing ['gabab']; failures [])",
-     "action": "held"
+     "detail": "validator: title not covered by its quotes (missing ['gabab']; failures []); superseded by the resolution (batch-05)",
+     "action": "dropped"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "title",
+     "detail": "resolution 'apply' (batch-05): title = '{GABA$_B$} modulation improves sequence disambiguation in computational models of hippocampal region {CA3}'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -11988,12 +13251,24 @@
       }
      ],
      "reviewer": "agree"
+    },
+    {
+     "field": "title",
+     "current": "{GABA(B}) modulation improves sequence disambiguation in computational models of hippocampal region {CA3}",
+     "proposed": "{GABA$_B$} modulation improves sequence disambiguation in computational models of hippocampal region {CA3}",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1998)8:2%3C171::aid-hipo9%3E3.0.co;2-o",
+       "quote": "GABAB modulation improves sequence disambiguation in computational models of hippocampal region CA3"
+      }
+     ],
+     "decision": "resolution batch-05",
+     "reviewer": "agree"
     }
    ],
    "removals": {},
-   "held": {
-    "title": "quote check failed"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "SohaHass98b",
@@ -12025,6 +13300,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Fixes the malformed '{GABA(B})' brace; subscript B written {GABA$_B$} as HEAD already does ('Changes in {GABA$_B$} modulation during a theta cycle...'). Re-quoted from Crossref, which prints 'GABAB' (PubMed 'GABA(B)').",
+    "residue": [],
+    "quotes": {
+     "title": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-020"
   },
   "SquiZola98": {
@@ -12115,6 +13402,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "SteiEtal09": {
@@ -12122,10 +13410,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "SteiEtal09 -> SteiEtal10 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-05): SteiEtal09 -> SteiEtal10, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -12208,7 +13508,8 @@
     "target_base": "SteiEtal10",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "SteiEtal10"
+    "new_key": "SteiEtal10",
+    "resolution": "resolution (batch-05): key SteiEtal10 confirmed"
    },
    "doi_status": {
     "doi": "10.1002/hipo.20597",
@@ -12241,6 +13542,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Print issue Hippocampus 20(1) January 2010, 166-173 (PubMed 'DP - 2010 Jan'; Crossref published-print 2010). SteiEtal10 free in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-020"
   },
   "TsodEtal96": {
@@ -12252,6 +13560,12 @@
      "field": "year",
      "detail": "Crossref record of 10.1002/(sici)1098-1063(1996)6:3<271::aid-hipo5>3.0.co;2-q is dated 1998, proposal 1996",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "year",
+     "detail": "resolution 'apply' (batch-05): year = '1996'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -12333,6 +13647,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Crossref's 1998 is the Wiley digitisation date; PubMed 8841826 prints Hippocampus 6(3) 1996, 271-80. Year 1996 and key stand; DOI, issue and the title correction (Population ... precession) apply.",
+    "residue": [],
+    "quotes": {
+     "year": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-020"
   },
   "vandEtal17": {
@@ -12389,6 +13715,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "WrigBeck83": {
@@ -12444,6 +13771,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "BabiEtal08": {
@@ -12451,10 +13779,28 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_quote_unverified",
+     "field": "author",
+     "detail": "author = 'C Babiloni and F Vecchio and G Mirabella and M Buttiglione and F Sebastiano and A Picardi and G {Di Gennaro} and P P Quarato and L G Grammaldo and P Buffo and V Esposito and M Manfredi and G Cantore and F Eusebi': quote '\"given\":\"Fabrizio\",\"family\":\"Eusebi\"' at https://api.crossref.org/works/10.1002/hbm.20648: value words ['babiloni', 'vecchio', 'mirabella', 'buttiglione', 'sebastiano', 'picardi', 'gennaro', 'quarato', 'grammaldo', 'buffo', 'esposito', 'manfredi', 'cantore'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+     "action": "held"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-05): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "BabiEtal08 -> BabiEtal09 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-05): BabiEtal08 -> BabiEtal09, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -12487,14 +13833,17 @@
     }
    ],
    "removals": {},
-   "held": {},
+   "held": {
+    "author": "resolution quote unverified: value words ['babiloni', 'vecchio', 'mirabella', 'buttiglione', 'sebastiano', 'picardi', 'gennaro', 'quarato', 'grammaldo', 'buffo', 'esposito', 'manfredi', 'cantore'] are not in the quote"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "BabiEtal08",
     "target_base": "BabiEtal09",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "BabiEtal09"
+    "new_key": "BabiEtal09",
+    "resolution": "resolution (batch-05): key BabiEtal09 confirmed"
    },
    "doi_status": {
     "doi": "10.1002/hbm.20648",
@@ -12545,6 +13894,20 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-05",
+    "notes": "Print issue Human Brain Mapping 30(7) July 2009 (PubMed 'DP - 2009 Jul'; Crossref published-print 2009). BabiEtal09 free in HEAD. HEAD truncates the 14 printed authors with 'and others' (Crossref lists all 14); left as is pending the rule question. RECONCILED 2026-09-26: 'and others' expanded to the 14 printed authors (default); Crossref lists Babiloni ... Esposito, Manfredi, Cantore, Eusebi.",
+    "residue": [
+     "author: quote unverified (value words ['babiloni', 'vecchio', 'mirabella', 'buttiglione', 'sebastiano', 'picardi', 'gennaro', 'quarato', 'grammaldo', 'buffo', 'esposito', 'manfredi', 'cantore'] are not in the quote)"
+    ],
+    "quotes": {
+     "author": {
+      "ok": false,
+      "why": "value words ['babiloni', 'vecchio', 'mirabella', 'buttiglione', 'sebastiano', 'picardi', 'gennaro', 'quarato', 'grammaldo', 'buffo', 'esposito', 'manfredi', 'cantore'] are not in the quote"
+     }
+    }
+   },
    "batch": "batch-020"
   },
   "CalhEtal01": {
@@ -12604,6 +13967,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "CradEtal12": {
@@ -12678,6 +14042,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "FiscEtal99": {
@@ -12763,6 +14128,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "GammEtal04": {
@@ -12849,6 +14215,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "JungEtal08": {
@@ -12957,6 +14324,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "KorzEtal08": {
@@ -13048,6 +14416,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "LachEtal07a": {
@@ -13169,6 +14538,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "MainEtal08": {
@@ -13265,6 +14635,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-020"
   },
   "TervEtal00": {
@@ -13367,6 +14738,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "TulaEtal07": {
@@ -13461,6 +14833,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "VannEtal12": {
@@ -13468,10 +14841,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "VannEtal12 -> VannEtal13 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-06): VannEtal12 -> VannEtal13, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [
@@ -13567,7 +14952,8 @@
     "target_base": "VannEtal13",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "VannEtal13"
+    "new_key": "VannEtal13",
+    "resolution": "resolution (batch-06): key VannEtal13 confirmed"
    },
    "doi_status": {
     "doi": "10.1002/hbm.22011",
@@ -13598,6 +14984,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "Crossref print date 2013-07 and PubMed 'DP  - 2013 Jul' give year 2013, 34(7) 1568-1578; VannEtal13 is not in HEAD cdl.bib, so the rename follows the corrected year.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-021"
   },
   "Bala98a": {
@@ -13669,6 +15062,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "KochUllm85": {
@@ -13688,6 +15082,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "GaneGosh02": {
@@ -13782,6 +15177,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "PhilEtal98": {
@@ -13865,6 +15261,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "BeieAcke04": {
@@ -13920,6 +15317,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "Free92": {
@@ -13972,6 +15370,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "FreeEtal03b": {
@@ -14070,6 +15469,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "LachEtal00a": {
@@ -14174,6 +15574,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "Srin99": {
@@ -14206,6 +15607,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "CrimEtal00": {
@@ -14263,6 +15665,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "CoopEtal07": {
@@ -14319,6 +15722,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "WhitEtal96": {
@@ -14326,108 +15730,36 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "surname_corroborated",
-     "field": "author",
-     "detail": "surname 'whitmer' -> 'witmer': released by the cdl.bib rule, ['api.crossref.org'] plus cdl.bib's own spelling for this person in WitmEtal96 (the cited spelling is in no other entry)",
-     "action": "applied"
+     "code": "not_in_bib",
+     "field": null,
+     "detail": "WhitEtal96 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+     "action": "dropped"
     },
     {
-     "code": "duplicate",
-     "field": "key",
-     "detail": "same work already in cdl.bib as WitmEtal96: merge WhitEtal96 into it",
-     "action": "flag"
+     "code": "resolution_noop",
+     "field": null,
+     "detail": "resolution 'drop' (batch-06): WhitEtal96 is not in the bibliography; nothing to do",
+     "action": "applied"
     },
     {
      "code": "user_decision",
      "field": "key",
-     "detail": "cross-wave dup-WhitEtal96-WitmEtal96: correct: merge WhitEtal96 into WitmEtal96 (approved duplicate)",
+     "detail": "cross-wave dup-WhitEtal96-WitmEtal96: correct: merge WhitEtal96 into WitmEtal96 (the post-check planned no_key_rule; the user's decision wins)",
      "action": "applied"
     }
    ],
    "normalisations": [],
-   "changes": [
-    {
-     "field": "author",
-     "current": "B G Whitmer and J H Bailey and B W Knerr and K C Parsons",
-     "proposed": "B G Witmer and J H Bailey and B W Knerr and K C Parsons",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
-       "quote": "\"given\":\"Bob G.\",\"family\":\"Witmer\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
-       "quote": "\"given\":\"John H.\",\"family\":\"Bailey\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
-       "quote": "\"given\":\"Bruce W.\",\"family\":\"Knerr\""
-      },
-      {
-       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
-       "quote": "\"given\":\"Kimberly C.\",\"family\":\"Parsons\""
-      }
-     ],
-     "reviewer": "agree"
-    },
-    {
-     "field": "doi",
-     "current": null,
-     "proposed": "10.1006/ijhc.1996.0060",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
-       "quote": "\"volume\":\"45\""
-      }
-     ],
-     "reviewer": "agree"
-    },
-    {
-     "field": "number",
-     "current": null,
-     "proposed": "4",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
-       "quote": "\"issue\":\"4\""
-      }
-     ],
-     "reviewer": "agree"
-    },
-    {
-     "field": "title",
-     "current": "Virtual spaces and real-world places: transfer of route knowledge",
-     "proposed": "Virtual spaces and real world places: transfer of route knowledge",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/works/10.1006/ijhc.1996.0060",
-       "quote": "\"title\":[\"Virtual spaces and real world places: transfer of route knowledge\"]"
-      }
-     ],
-     "reviewer": "agree"
-    }
-   ],
+   "changes": [],
    "removals": {},
    "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "WhitEtal96",
-    "target_base": "WitmEtal96",
-    "action": "duplicate",
-    "same_doi_as": [
-     "WitmEtal96"
-    ],
-    "same_work_as": [
-     "WitmEtal96"
-    ],
-    "rename_reason": "key does not follow the corrected metadata",
-    "merge_into": "WitmEtal96",
-    "detail": "same work already in cdl.bib as WitmEtal96: merge WhitEtal96 into it",
-    "user_decision": "cross-wave dup-WhitEtal96-WitmEtal96: correct"
+    "target_base": null,
+    "action": "keep",
+    "user_decision": "cross-wave dup-WhitEtal96-WitmEtal96: correct",
+    "detail": "user decision (cross-wave dup-WhitEtal96-WitmEtal96: correct): merge WhitEtal96 into WitmEtal96",
+    "resolution": "resolution 'drop': not in the bibliography"
    },
    "doi_status": {
     "doi": "10.1006/ijhc.1996.0060",
@@ -14458,6 +15790,14 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "drop",
+    "batch": "batch-06",
+    "notes": "HEAD WitmEtal96 holds the same work (same DOI 10.1006/ijhc.1996.0060, Witmer, Bailey, Knerr, Parsons, IJHCS 45(4) 413-428, title as Crossref). WitmEtal96 is the keeper; WhitEtal96 (misspelled Whitmer) merges into it. RECONCILED 2026-09-26: Decision changed apply -> drop for consistency with the other already-merged duplicates (CronEtal98c, LimoEtal95c, Rugg00): WhitEtal96 is absent from HEAD.",
+    "residue": [],
+    "quotes": {},
+    "noop": "not in the bibliography"
+   },
    "batch": "batch-021"
   },
   "VieiEtal03": {
@@ -14542,6 +15882,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "AriEtal04": {
@@ -14669,6 +16010,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "BasaEtal87": {
@@ -14739,6 +16081,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "MurpEtal00": {
@@ -14815,6 +16158,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "BasaEtal92": {
@@ -14956,6 +16300,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-021"
   },
   "VanSEtal07": {
@@ -15026,6 +16371,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "BrowEtal99": {
@@ -15096,6 +16442,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "Lewa99": {
@@ -15162,6 +16509,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "BasaEtal01": {
@@ -15263,6 +16611,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "CoopEtal03": {
@@ -15347,6 +16696,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "JohnEtal98": {
@@ -15417,6 +16767,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "PfurEtal96": {
@@ -15428,6 +16779,12 @@
      "field": "title",
      "detail": "'Event-related synchronization {(ERS)} in the alpha band--- an electrophysiological correlate of cortical idling: a review' -> 'Event-related synchronization {(ERS)} in the alpha band---an electrophysiological correlate of cortical idling: a review' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -15520,6 +16877,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "Author Stanc{\\'a}k, DOI and number 1--2 are backed by PubMed 8978434 and Crossref. The title change only moves the space around the dash. Crossref prints a spaced dash ('alpha band — an electrophysiological') and PubMed an unspaced '--'. HEAD cdl.bib mostly writes '--- ' (27 titles) against a few '---x', so the current title is withdrawn from the change pending a house rule. RECONCILED 2026-09-26: Title withdrawal cancelled: the em-dash rule (user, round 1) is 'a---b' with no spaces, which is the post-check's title.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-022"
   },
   "CarlEtal05": {
@@ -15596,6 +16960,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "JerbEtal09c": {
@@ -15682,6 +17047,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "Vand88": {
@@ -15734,6 +17100,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "TongEtal95": {
@@ -15741,10 +17108,16 @@
    "verdict": "no_source",
    "flags": [
     {
-     "code": "needs_user",
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'drop' (batch-06): remove the entry (no evidence found after: Crossref bibliographic query, OpenAlex search, and wave-3 researcher and reviewer searches. IOVS 36 page S1679 is a 1995 ARVO supplement page, and no record of the work exists online.)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
      "field": "verdict",
-     "detail": "verdict no_source: user decision",
-     "action": "flag"
+     "detail": "verdict no_source resolved by the resolution ('drop', batch-06)",
+     "action": "applied"
     },
     {
      "code": "user_decision",
@@ -15761,22 +17134,44 @@
    "key_plan": {
     "current_key": "TongEtal95",
     "target_base": "TongEtal95",
-    "action": "keep"
+    "action": "keep",
+    "resolution": "resolution 'drop' (batch-06): the entry is removed"
    },
    "doi_status": null,
-   "user_resolved": false,
+   "user_resolved": true,
    "software": null,
-   "batch": "batch-022"
+   "resolution": {
+    "decision": "drop",
+    "batch": "batch-06",
+    "notes": "The cited journal is misspelled ('Investigatie Opthalmology') and the page 'S1679' is a supplement page; the reviewer noted the 1995 ARVO abstract book is not online. No source confirms any field.",
+    "residue": [],
+    "quotes": {}
+   },
+   "batch": "batch-022",
+   "remove_entry": "no evidence found after: Crossref bibliographic query, OpenAlex search, and wave-3 researcher and reviewer searches. IOVS 36 page S1679 is a 1995 ARVO supplement page, and no record of the work exists online.",
+   "remove_entry_source": "resolution batch-06"
   },
   "SimoEtal04": {
    "key": "SimoEtal04",
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_quote_unverified",
+     "field": "pages",
+     "detail": "pages = '305--329': quote 'Journal for Research in Mathematics Education, v35 n5 p305-329 Nov 2004' at https://eric.ed.gov/?id=EJ764970: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+     "action": "held"
+    },
+    {
      "code": "doi_record_conflict",
      "field": "pages",
      "detail": "Crossref record of 10.2307/30034818 gives pages '305', proposal '305--329'",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -15796,7 +17191,9 @@
     }
    ],
    "removals": {},
-   "held": {},
+   "held": {
+    "pages": "resolution quote unverified: quote not found at url"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "SimoEtal04",
@@ -15832,6 +17229,20 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "Crossref gives only the first page (305). ERIC EJ764970 prints the full range 305-329, which confirms the HEAD value. The DOI is added.",
+    "residue": [
+     "pages: quote unverified (quote not found at url)"
+    ],
+    "quotes": {
+     "pages": {
+      "ok": false,
+      "why": "quote not found at url"
+     }
+    }
+   },
    "batch": "batch-022"
   },
   "DennReed92": {
@@ -15839,10 +17250,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "DennReed92 -> DennHunt92 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-06): DennReed92 -> DennHunt92, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -15890,7 +17313,8 @@
     "target_base": "DennHunt92",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "DennHunt92"
+    "new_key": "DennHunt92",
+    "resolution": "resolution (batch-06): key DennHunt92 confirmed"
    },
    "doi_status": {
     "doi": "10.1037/0021-843x.101.3.575",
@@ -15917,6 +17341,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "Crossref prints the second author as given 'R. Reed', family 'Hunt', and PubMed 1500616 as 'R R Hunt'. The surname is Hunt, so the key is DennHunt92, which is not in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-022"
   },
   "DaniEtal95": {
@@ -16033,6 +17464,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "MoscEtal05": {
@@ -16117,6 +17549,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "DonoRado99": {
@@ -16185,6 +17618,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "WeisEtal16": {
@@ -16265,6 +17699,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "StepEtal05": {
@@ -16298,6 +17733,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "PruiEtal20": {
@@ -16379,6 +17815,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   },
   "MeckEtal99": {
@@ -16438,6 +17875,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-022"
   }
  },
@@ -16514,6 +17952,7 @@
    "doi_record_conflict:pages"
   ],
   "JohnRedi07b": [
+   "not_in_bib",
    "needs_user:verdict"
   ],
   "Buse01": [
@@ -16533,8 +17972,12 @@
   "PribEtal74": [
    "field_not_found:editor"
   ],
-  "EskrEtal12": [],
-  "HealEtal12a": [],
+  "EskrEtal12": [
+   "not_in_bib"
+  ],
+  "HealEtal12a": [
+   "not_in_bib"
+  ],
   "ConwFthe03": [],
   "Hint12": [],
   "Scha12": [],
@@ -16709,7 +18152,7 @@
   "CrimEtal00": [],
   "CoopEtal07": [],
   "WhitEtal96": [
-   "surname_corroborated:author",
+   "not_in_bib",
    "duplicate:key"
   ],
   "VieiEtal03": [],

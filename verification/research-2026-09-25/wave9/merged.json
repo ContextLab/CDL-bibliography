@@ -52,6 +52,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -197,6 +198,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -254,6 +256,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -291,6 +294,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -341,6 +345,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -377,6 +382,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -433,11 +439,30 @@
     "field": "author",
     "detail": "verdict 'correction' but author is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "author",
+    "detail": "author = 'W A Russell and J J Jenkins': quote 'WALLACE A. RUSSELL and JAMES J. JENKINS' at https://archive.org/download/DTIC_AD0043237/page/n2_w800.jpg: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "author",
+    "detail": "resolution 'apply' (batch-24): author = 'W A Russell and J J Jenkins'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "Title page of the DTIC AD0043237 scan (image-only; quote transcribed from the page image, whose OCR reads 'WALLACE A F/JobELL and JAMES J. JEJIKINS') prints both authors, 'Technical Report No. 11', 'August, 1954', University of Minnesota Department of Psychology. Author unchanged; post-check institution applies.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -449,60 +474,39 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Wech97",
   "batch": "batch-092",
   "verdict": "correction",
-  "current": {
-   "year": "1997",
-   "title": "{Wechsler} adult intelligence {Scale-III} {(WAIS-III})",
-   "author": "D Wechsler",
-   "ENTRYTYPE": "misc",
-   "ID": "Wech97"
-  },
-  "final_changes": [
-   {
-    "field": "edition",
-    "current": null,
-    "proposed": "3\\textsuperscript{rd}",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1037/t49755-000",
-      "quote": "Wechsler Adult Intelligence Scale--Third Edition"
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "title",
-    "current": "{Wechsler} adult intelligence {Scale-III} {(WAIS-III})",
-    "proposed": "{Wechsler} adult intelligence scale--third edition ({WAIS-III})",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "Crossref 10.1037/t49755-000 title: \"Wechsler Adult Intelligence Scale--Third Edition\". The proposal moves the edition to an Edition field, but this entry is @misc, and standard BibTeX styles do not print edition for @misc, so the rendered citation would read like WAIS-IV (Wech08). Also the notes say sibling Wech08 has an edition field; at HEAD it has none (@book, Title {Wechsler} adult intelligence scale, no Edition). Keep the edition in the title."
-      ]
-     }
-    ],
-    "reviewer": "disagree: loses the edition on @misc"
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "Wech97",
-   "target_base": "Wech97",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "Wech97 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
    {
     "code": "field_not_found",
     "field": "publisher",
     "detail": "verdict 'correction' but publisher is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-24): Wech97 is not in the bibliography; nothing to do",
+    "action": "applied"
    },
    {
     "code": "unverified_suggestions",
@@ -514,6 +518,13 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-24",
+   "notes": "Wech97 is not in HEAD cdl.bib; commit 282d321 deleted it with Wech81 under the approved 'superseded Wechsler editions' decision. Nothing to apply.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -528,7 +539,7 @@
     "title": "{Wechsler} adult intelligence scale--third edition ({WAIS-III})"
    }
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "OGra11",
@@ -559,18 +570,14 @@
     "field": "year",
     "current": "2011",
     "proposed": "2008",
-    "source": "user",
+    "source": "resolution",
     "evidence": [
      {
       "url": "https://themoth.org/stories/pie-man",
       "quote": "November 18, 2008"
-     },
-     {
-      "url": "https://themoth.org/stories/pie-man",
-      "quote": ">November 24, 2008</a>"
      }
     ],
-    "decision": "cross-wave q-ogrady: 2008",
+    "decision": "resolution batch-24",
     "reviewer": "agree"
    }
   ],
@@ -581,13 +588,20 @@
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
    "new_key": "OGra08",
-   "user_decision": "cross-wave q-ogrady: 2008"
+   "user_decision": "cross-wave q-ogrady: 2008",
+   "resolution": "resolution (batch-24): key OGra08 confirmed"
   },
   "flags": [
    {
     "code": "user_decision",
     "field": "year",
     "detail": "cross-wave q-ogrady: 2008: year = '2008'",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "year",
+    "detail": "resolution 'apply' (batch-24): year = '2008'",
     "action": "applied"
    },
    {
@@ -601,6 +615,12 @@
     "field": "key",
     "detail": "cross-wave q-ogrady: 2008: key OGra11 -> OGra08, as planned (approved)",
     "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-24): OGra11 -> OGra08, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": null,
@@ -609,6 +629,13 @@
    "cross-wave q-ogrady: 2008: year = '2008'",
    "cross-wave q-ogrady: 2008: key OGra11 -> OGra08, as planned (approved)"
   ],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "Cross-wave decision (year 2008, key OGra08) re-confirmed: The Moth page prints recording date November 18, 2008 and feature date November 24, 2008. OGra08 is free in HEAD.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -622,7 +649,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Qwen26",
@@ -661,6 +688,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -725,6 +753,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -779,6 +808,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -806,39 +836,27 @@
   },
   "final_changes": [
    {
-    "field": "author",
-    "current": "L Torvalds and J Hamano",
-    "proposed": "L Torvalds and J C Hamano",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://raw.githubusercontent.com/git/git/master/README.md",
-      "quote": "It was originally written by Linus\nTorvalds with help of a group of hackers around the net."
-     },
-     {
-      "url": "https://raw.githubusercontent.com/git/git/master/Documentation/howto/maintain-git.adoc",
-      "quote": "From: Junio C Hamano <gitster@pobox.com>"
-     }
-    ]
-   },
-   {
     "field": "title",
     "current": "Git: {F}ast version control system",
-    "proposed": "Git: fast, scalable, distributed revision control system",
-    "source": "researcher",
+    "proposed": "{GIT}: the stupid content tracker",
+    "source": "resolution",
     "evidence": [
      {
-      "url": "https://raw.githubusercontent.com/git/git/master/README.md",
-      "quote": "Git - fast, scalable, distributed revision control system"
+      "url": "https://raw.githubusercontent.com/git/git/e83c5163316f89bfbde7d9ab23ca2e25604af290/README",
+      "quote": "GIT - the stupid content tracker"
      }
-    ]
+    ],
+    "decision": "resolution batch-24"
    }
   ],
   "removals": {},
   "key_plan": {
    "current_key": "TorvHama05",
    "target_base": "TorvHama05",
-   "action": "keep"
+   "action": "rename",
+   "new_key": "Torv05",
+   "rename_reason": "resolution (batch-24)",
+   "resolution": "resolution (batch-24): key Torv05"
   },
   "flags": [
    {
@@ -846,11 +864,39 @@
     "field": "howpublished",
     "detail": "verdict 'correction' but howpublished is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "author",
+    "detail": "author = 'L Torvalds': quote '\"name\": \"Linus Torvalds\"' at https://api.github.com/repos/git/git/commits/e83c5163316f89bfbde7d9ab23ca2e25604af290: quote not found at url; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+    "action": "held"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "howpublished, title",
+    "detail": "resolution 'apply' (batch-24): howpublished = '\\\\url{https://git.kernel.org/pub/scm/git/git.git}'; title = '{GIT}: the stupid content tracker'",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-24): TorvHama05 -> Torv05",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "HEAD URL resolves (HTTP 200 to curl) to the git.git repository. Year 2005 = initial commit e83c516. Post-check title/author (README 'Git - fast, scalable, distributed revision control system'; 'Junio C Hamano') applied, pending the software question. RECONCILED 2026-09-26: Software default: title/authors as in the first release (initial commit e83c516, 2005-04-07, by Linus Torvalds; its README reads 'GIT - the stupid content tracker'); the later README title and Hamano are not in the first version. Key Torv05 (free in HEAD).",
+   "residue": [
+    "author: quote unverified (quote not found at url)",
+    "key Torv05 does not follow the ID rule for the corrected metadata (TorvHama05)"
+   ],
+   "noop": null
+  },
   "reviewer": null,
   "needs_user": true
  },
@@ -894,6 +940,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -933,6 +980,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -970,13 +1018,42 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "title",
+    "current": "The {Biosig} project",
+    "proposed": "The {BioSig} project",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "http://biosig.sourceforge.net/",
+      "quote": "The BioSig Project"
+     }
+    ],
+    "decision": "resolution batch-24"
+   },
+   {
+    "field": "year",
+    "current": "2007",
+    "proposed": "2000",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://sourceforge.net/rest/p/biosig",
+      "quote": "\"creation_date\": \"2000-06-17\""
+     }
+    ],
+    "decision": "resolution batch-24"
    }
   ],
   "removals": {},
   "key_plan": {
    "current_key": "Schl07",
-   "target_base": "Schl07",
-   "action": "keep"
+   "target_base": "Schl00",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "Schl00",
+   "resolution": "resolution (batch-24): key Schl00 confirmed"
   },
   "flags": [
    {
@@ -986,15 +1063,40 @@
     "action": "flag"
    },
    {
-    "code": "needs_user",
-    "field": "verdict",
-    "detail": "verdict ambiguous: user decision",
+    "code": "resolution_decision",
+    "field": "title, year",
+    "detail": "resolution 'apply' (batch-24): title = 'The {BioSig} project'; year = '2000'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "Schl07 -> Schl00 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "verdict",
+    "detail": "verdict ambiguous resolved by the resolution ('apply', batch-24)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-24): Schl07 -> Schl00, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "Project homepage title 'The BioSig Project'. The Vidaurre et al. 2011 paper is a different work, not a version, so no replacement. Year 2007 is confirmed by no source (SourceForge 'creation_date': '2000-06-17'; file pages behind bot walls); year left as in HEAD, unconfirmed. RECONCILED 2026-09-26: Software default: year = earliest date the project itself prints: SourceForge project registration of BioSig (earliest date the project prints). Key Schl00 (free in HEAD).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1007,7 +1109,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Smit05",
@@ -1048,13 +1150,29 @@
       "quote": "ODE is an open source, high performance library for simulating rigid body dynamics"
      }
     ]
+   },
+   {
+    "field": "year",
+    "current": "2005",
+    "proposed": "2001",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://www.ode.org/",
+      "quote": "Copyright (C) 2001-2004 Russell L. Smith"
+     }
+    ],
+    "decision": "resolution batch-24"
    }
   ],
   "removals": {},
   "key_plan": {
    "current_key": "Smit05",
-   "target_base": "Smit05",
-   "action": "keep"
+   "target_base": "Smit01",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "Smit01",
+   "resolution": "resolution (batch-24): key Smit01 confirmed"
   },
   "flags": [
    {
@@ -1062,13 +1180,38 @@
     "field": "year",
     "detail": "verdict 'correction' but year is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "year",
+    "detail": "resolution 'apply' (batch-24): year = '2001'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "Smit05 -> Smit01 (key does not follow the corrected metadata)",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-24): Smit05 -> Smit01, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "Post-check author (R L Smith, 'Russell L. Smith') and URL apply. Year 2005 matches no printed release (ode.org 'Copyright (C) 2001-2004 Russell L. Smith'); left as in HEAD, unconfirmed. RECONCILED 2026-09-26: Software default: year = earliest date the project itself prints: ode.org copyright start 2001 (SourceForge 'opende' registered 2001-04-09). Key Smit01 (free in HEAD).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Stra06",
@@ -1107,13 +1250,29 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "year",
+    "current": "2006",
+    "proposed": "2001",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://sourceforge.net/rest/p/visionegg",
+      "quote": "\"creation_date\": \"2001-11-27\""
+     }
+    ],
+    "decision": "resolution batch-24"
    }
   ],
   "removals": {},
   "key_plan": {
    "current_key": "Stra06",
-   "target_base": "Stra06",
-   "action": "keep"
+   "target_base": "Stra01",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "Stra01",
+   "resolution": "resolution (batch-24): key Stra01 confirmed"
   },
   "flags": [
    {
@@ -1121,11 +1280,36 @@
     "field": null,
     "detail": "the researcher's notes name another version ('replacement candidate'): replacement is the user's decision",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "year",
+    "detail": "resolution 'apply' (batch-24): year = '2001'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "Stra06 -> Stra01 (key does not follow the corrected metadata)",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-24): Stra06 -> Stra01, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "Post-check title 'The {Vision Egg}' and URL apply. Straw 2008 Front Neuroinform paper is a separate work, not another version of the software, so no replacement. Year 2006 = Vision Egg 1.0 (PyPI), not the first version; see question. RECONCILED 2026-09-26: Software default: year = earliest date the project itself prints: SourceForge registration of Vision Egg (1.0 on PyPI 2006 is not the first version). Key Stra01 (free in HEAD).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1139,7 +1323,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "deCa05a",
@@ -1164,13 +1348,29 @@
       "quote": "[GitHub](https://github.com/libsndfile/libsamplerate)"
      }
     ]
+   },
+   {
+    "field": "year",
+    "current": "2005",
+    "proposed": "2004",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://raw.githubusercontent.com/libsndfile/libsamplerate/master/NEWS",
+      "quote": "Version 0.1.0 (2004-03-14)"
+     }
+    ],
+    "decision": "resolution batch-24"
    }
   ],
   "removals": {},
   "key_plan": {
    "current_key": "deCa05a",
-   "target_base": "deCa05",
-   "action": "keep"
+   "target_base": "deCa04",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "deCa04",
+   "resolution": "resolution (batch-24): key deCa04 confirmed"
   },
   "flags": [
    {
@@ -1178,13 +1378,38 @@
     "field": "year",
     "detail": "verdict 'correction' but year is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "year",
+    "detail": "resolution 'apply' (batch-24): year = '2004'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "deCa05a -> deCa04 (key does not follow the corrected metadata)",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-24): deCa05a -> deCa04, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "Post-check URL applies. Year 2005 matches no release: NEWS prints 'Version 0.1.0 (2004-03-14)' ... 'Version 0.1.2 (2004-09-12)' then 0.1.3 (2008); ChangeLog 2002-11-28 says private releases only; earliest public release date not printed. Year left as in HEAD, unconfirmed. RECONCILED 2026-09-26: Software default: year = earliest date the project itself prints: earliest release in NEWS (ChangeLog: earlier releases were private). Key deCa04 (free in HEAD). RECONCILED 2026-09-26: Side effect: HEAD deCa05b would then be the only deCa05 (suffix rule may rename it).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "SingEtal24",
@@ -1337,6 +1562,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -1388,6 +1614,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -1417,6 +1644,14 @@
   },
   "final_changes": [
    {
+    "field": "ENTRYTYPE",
+    "current": "techreport",
+    "proposed": "misc",
+    "source": "resolution",
+    "evidence": [],
+    "decision": "resolution batch-24"
+   },
+   {
     "field": "author",
     "current": "G {van Rossum} and J Lehtosalo and {\\L}ukasz Langa",
     "proposed": "G {van Rossum} and J Lehtosalo and {\\L} Langa",
@@ -1432,13 +1667,14 @@
     "field": "howpublished",
     "current": null,
     "proposed": "\\url{https://peps.python.org/pep-0484/}",
-    "source": "researcher",
+    "source": "resolution",
     "evidence": [
      {
       "url": "https://peps.python.org/pep-0484/",
-      "quote": "PEP 484 – Type Hints"
+      "quote": "<title>PEP 484 – Type Hints | peps.python.org"
      }
-    ]
+    ],
+    "decision": "resolution batch-24"
    },
    {
     "field": "title",
@@ -1453,7 +1689,11 @@
     ]
    }
   ],
-  "removals": {},
+  "removals": {
+   "institution": "resolution asked to remove it (current 'Python Software Foundation')",
+   "type": "resolution asked to remove it (current 'PEP')",
+   "number": "resolution asked to remove it (current '484')"
+  },
   "key_plan": {
    "current_key": "vanREtal14",
    "target_base": "vanREtal14",
@@ -1465,13 +1705,26 @@
     "field": "institution",
     "detail": "verdict 'correction' but institution is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "ENTRYTYPE, howpublished, institution, number, type",
+    "detail": "resolution 'apply' (batch-24): ENTRYTYPE = 'misc'; howpublished = '\\\\url{https://peps.python.org/pep-0484/}'; removed institution; removed type; removed number",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "Post-check author/title/URL apply. Institution 'Python Software Foundation' (required for @techreport) is printed nowhere on peps.python.org (the PEP says 'This document has been placed in the public domain.'); neither the current nor any other institution can be confirmed. Kept as in HEAD. RECONCILED 2026-09-26: PEP default: @misc with howpublished = the peps.python.org URL; institution (never printed), type and number removed (the PEP number is in the URL).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "vond81",
@@ -1486,24 +1739,169 @@
    "ENTRYTYPE": "techreport",
    "ID": "vond81"
   },
-  "final_changes": [],
-  "removals": {},
+  "final_changes": [
+   {
+    "field": "ENTRYTYPE",
+    "current": "techreport",
+    "proposed": "incollection",
+    "source": "resolution",
+    "evidence": [],
+    "decision": "resolution batch-24"
+   },
+   {
+    "field": "address",
+    "current": "G{\\\"{o}}ttingen, Germany",
+    "proposed": "New York, {NY}",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+      "quote": "\"publisher-location\":\"New York, NY\""
+     }
+    ],
+    "decision": "resolution batch-24"
+   },
+   {
+    "field": "booktitle",
+    "current": null,
+    "proposed": "Models of Neural Networks",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+      "quote": "\"container-title\":[\"Physics of Neural Networks\",\"Models of Neural Networks\"]"
+     }
+    ],
+    "decision": "resolution batch-24"
+   },
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1007/978-1-4612-4320-5_2",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+      "quote": "\"DOI\":\"10.1007\\/978-1-4612-4320-5_2\""
+     }
+    ],
+    "decision": "resolution batch-24"
+   },
+   {
+    "field": "pages",
+    "current": null,
+    "proposed": "95--119",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+      "quote": "\"page\":\"95-119\""
+     }
+    ],
+    "decision": "resolution batch-24"
+   },
+   {
+    "field": "publisher",
+    "current": null,
+    "proposed": "Springer",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+      "quote": "\"publisher\":\"Springer New York\""
+     }
+    ],
+    "decision": "resolution batch-24"
+   },
+   {
+    "field": "year",
+    "current": "1981",
+    "proposed": "1994",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+      "quote": "\"published-print\":{\"date-parts\":[[1994]]}"
+     }
+    ],
+    "decision": "resolution batch-24"
+   }
+  ],
+  "removals": {
+   "number": "resolution asked to remove it (current '81-2')"
+  },
   "key_plan": {
    "current_key": "vond81",
-   "target_base": "vond81",
-   "action": "keep"
+   "target_base": "vond94",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "vond94",
+   "resolution": "resolution (batch-24): key vond94 confirmed"
   },
   "flags": [
    {
-    "code": "needs_user",
-    "field": "verdict",
-    "detail": "verdict ambiguous: user decision",
+    "code": "resolution_quote_unverified",
+    "field": "editor",
+    "detail": "editor = 'E Domany and J L {van Hemmen} and K Schulten': quote '\"given\":\"J. Leo\",\"family\":\"van Hemmen\"' at https://api.crossref.org/works/10.1007/978-1-4612-4320-5: value words ['domany', 'schulten'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+    "action": "held"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "ENTRYTYPE, address, booktitle, doi, institution, number, pages, publisher, year",
+    "detail": "resolution 'apply' (batch-24): ENTRYTYPE = 'incollection'; address = 'New York, {NY}'; booktitle = 'Models of Neural Networks'; doi = '10.1007/978-1-4612-4320-5_2'; pages = '95--119'; publisher = 'Springer'; year = '1994'; removed institution; removed number",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "vond81 -> vond94 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "verdict",
+    "detail": "verdict ambiguous resolved by the resolution ('apply', batch-24)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-24): vond81 -> vond94, as planned",
+    "action": "applied"
    }
   ],
-  "doi_status": null,
+  "doi_status": {
+   "doi": "10.1007/978-1-4612-4320-5_2",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "The Correlation Theory of Brain Function",
+   "subtitle": null,
+   "container": "Physics of Neural Networks Models of Neural Networks",
+   "print_year": "1994",
+   "online_year": null,
+   "issued_year": "1994",
+   "page": "95-119",
+   "volume": null,
+   "issue": null,
+   "type": "book-chapter",
+   "authors": [
+    "Christoph von der Malsburg"
+   ],
+   "families": [
+    "von der Malsburg"
+   ]
+  },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "The 1981 report has no catalogue record reachable (MPG PuRe none; Springer, Scholar, IA Scholar, WorldCat behind walls); it is evidenced by a peer-reviewed reference list (Front Comput Neurosci 2011, PMC3167096) printing 'Internal Report 81-2', 1981, Göttingen, MPI Biophysical Chemistry. Country 'Germany' is not printed, so dropped. Title matches the registered 1994 reprint (10.1007/978-1-4612-4320-5_2, pp 95-119). RECONCILED 2026-09-26: Internal-report default: the 1981 report is known only from reference lists, so it is replaced by its registered reprint (Springer 1994 chapter, pp 95-119, eds Domany, van Hemmen, Schulten). Crossref registers the volume title only as 'Models of Neural Networks' (the printed volume is 'Models of Neural Networks II'; not confirmed by a fetchable page). Key vond94 (free in HEAD).",
+   "residue": [
+    "editor: quote unverified (value words ['domany', 'schulten'] are not in the quote)"
+   ],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1539,19 +1937,33 @@
   "key_plan": {
    "current_key": "Weic96",
    "target_base": "Weic96",
-   "action": "keep"
+   "action": "keep",
+   "resolution": "resolution 'drop' (batch-24): the entry is removed"
   },
   "flags": [
    {
-    "code": "needs_user",
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'drop' (batch-24): remove the entry (no evidence found after: ProQuest/PsycINFO (login), HathiTrust, Open Library, OpenAlex (429), Crossref bibliographic search, Europe PMC, Google Books (quota), WorldCat and Google Scholar (bot walls), CUNY Academic Works (Cloudflare); ORCID 0000-0002-6408-718X confirms only 'PhD, City University of New York Graduate School and University Center, Psychology, 1988-1996', not the title or DAI 57(1-B):757)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict ambiguous: user decision",
-    "action": "flag"
+    "detail": "verdict ambiguous resolved by the resolution ('drop', batch-24)",
+    "action": "applied"
    }
   ],
   "doi_status": null,
-  "remove_entry": null,
+  "remove_entry": "no evidence found after: ProQuest/PsycINFO (login), HathiTrust, Open Library, OpenAlex (429), Crossref bibliographic search, Europe PMC, Google Books (quota), WorldCat and Google Scholar (bot walls), CUNY Academic Works (Cloudflare); ORCID 0000-0002-6408-718X confirms only 'PhD, City University of New York Graduate School and University Center, Psychology, 1988-1996', not the title or DAI 57(1-B):757",
   "user_decisions": [],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-24",
+   "notes": "Under round-2 rule 1 (no verifiable record -> drop). A PsycINFO/ProQuest record almost certainly exists; if the user can read it, the entry could be restored as @phdthesis (school CUNY, 1996).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1564,7 +1976,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "DiazEtal15",
@@ -1667,6 +2079,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1760,6 +2173,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1895,6 +2309,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -1998,6 +2413,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -2053,6 +2469,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2121,6 +2538,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -2148,6 +2566,19 @@
       "quote": "editor = {S. Bengio and H. Wallach and H. Larochelle and K. Grauman and N. Cesa-Bianchi and R. Garnett},"
      }
     ]
+   },
+   {
+    "field": "pages",
+    "current": null,
+    "proposed": "5356--5366",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2018/file/dda04f9d634145a9c68d5dfe53b21272-Metadata.json",
+      "quote": "\"page_first\": 5356, \"page_last\": 5366"
+     }
+    ],
+    "decision": "resolution batch-24"
    },
    {
     "field": "publisher",
@@ -2184,8 +2615,8 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['5366']; failures [])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['5366']; failures []); superseded by the resolution (batch-24)",
+    "action": "dropped"
    },
    {
     "code": "field_not_found",
@@ -2198,13 +2629,26 @@
     "field": "year",
     "detail": "notes give a print date ['2019'] of the proceedings; the conference year 2018 is quoted and stands (no year suggested)",
     "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-24): pages = '5356--5366'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "NeurIPS Foundation's own metadata record prints page_first 5356, page_last 5366 (matches Curran TOC). No DOI exists for NeurIPS 2018 papers; post-check editor/publisher/volume apply.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LiuWang16",
@@ -2238,6 +2682,19 @@
       "quote": "Ulrike von Luxburg"
      }
     ]
+   },
+   {
+    "field": "pages",
+    "current": null,
+    "proposed": "2378--2386",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2016/file/b3ba8f1bee1238a2f37603d90b58898d-Metadata.json",
+      "quote": "\"page_first\": 2378, \"page_last\": 2386"
+     }
+    ],
+    "decision": "resolution batch-24"
    },
    {
     "field": "publisher",
@@ -2274,8 +2731,8 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['2386']; failures [])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['2386']; failures []); superseded by the resolution (batch-24)",
+    "action": "dropped"
    },
    {
     "code": "field_not_found",
@@ -2288,13 +2745,26 @@
     "field": "year",
     "detail": "notes give a print date ['2017'] of the proceedings; the conference year 2016 is quoted and stands (no year suggested)",
     "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-24): pages = '2378--2386'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "NeurIPS metadata record prints 2378-2386. No DOI for NeurIPS 2016; post-check editor/publisher/volume apply.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "ParkPill12",
@@ -2360,19 +2830,32 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['2356']; failures [])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['2356']; failures []); superseded by the resolution (batch-24)",
+    "action": "dropped"
    },
    {
     "code": "field_not_found",
     "field": "doi",
     "detail": "verdict 'correction' but doi is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-24): pages = '2348--2356'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "NeurIPS metadata record prints 2348-2356, equal to HEAD. No DOI for NeurIPS 2012.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2386,7 +2869,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "RaoHowa08",
@@ -2405,6 +2888,19 @@
   },
   "final_changes": [
    {
+    "field": "publisher",
+    "current": "{MIT} Press",
+    "proposed": "Curran Associates",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2007/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "publisher = {Curran Associates, Inc.},"
+     }
+    ],
+    "decision": "resolution batch-24"
+   },
+   {
     "field": "volume",
     "current": null,
     "proposed": "20",
@@ -2415,13 +2911,29 @@
       "quote": "<meta name=\"citation_volume\" content=\"20\">"
      }
     ]
+   },
+   {
+    "field": "year",
+    "current": "2008",
+    "proposed": "2007",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://papers.nips.cc/paper_files/paper/2007/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+      "quote": "year = {2007}"
+     }
+    ],
+    "decision": "resolution batch-24"
    }
   ],
   "removals": {},
   "key_plan": {
    "current_key": "RaoHowa08",
-   "target_base": "RaoHowa08",
-   "action": "keep"
+   "target_base": "RaoHowa07",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "RaoHowa07",
+   "resolution": "resolution (batch-24): key RaoHowa07 confirmed"
   },
   "flags": [
    {
@@ -2447,13 +2959,50 @@
     "field": "year",
     "detail": "verdict 'correction' but year is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "print_year_conflict",
+    "field": "year",
+    "detail": "notes give a print date ['2008'] but the year is 2007: print year wins",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages, publisher, year",
+    "detail": "resolution 'apply' (batch-24): pages = '1193--1200'; publisher = 'Curran Associates'; year = '2007'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "RaoHowa08 -> RaoHowa07 (key does not follow the corrected metadata)",
+    "action": "flag"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): year='2008'",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-24): RaoHowa08 -> RaoHowa07, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "NeurIPS record: pages 1193-1200 (= HEAD), volume 20, year 2007 (conference year, per the NeurIPS default), publisher Curran Associates (publisher page beats unconfirmed MIT Press). Key RaoHowa07 free in HEAD. Editor J C Platt kept (known middle initial). No DOI. Note: SanbGrif08 (same NIPS 20 volume) was kept at 2008 in batch-01 from the archived page's citation_publication_date, before the conference-year default; the two now disagree.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "VaswEtal17",
@@ -2555,11 +3104,24 @@
     "field": "year",
     "detail": "notes give a print date ['2018'] of the proceedings; the conference year 2017 is quoted and stands (no year suggested)",
     "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-24): pages = '5998--6008'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "NeurIPS metadata record prints 5998-6008 (= HEAD); per the NeurIPS default it beats Curran's reprint 5999-6009. No DOI (10.65215 records are 2025 re-depositions).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -2575,7 +3137,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "YangEtal13",
@@ -2632,6 +3194,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -2745,13 +3308,26 @@
     "field": "doi",
     "detail": "verdict 'correction' but doi is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-24): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-24",
+   "notes": "PMLR (AISTATS 2014, v33) issues no DOIs; post-check booktitle/pages/volume/series/editor/address/publisher apply from proceedings.mlr.press.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "WolfEtal20",
@@ -2916,6 +3492,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -3013,6 +3590,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -3037,29 +3615,33 @@
   "key": "HealEtal12b",
   "batch": "batch-093",
   "verdict": "no_source",
-  "current": {
-   "year": "2012",
-   "title": "Understanding age related memory impairments: new data and a model-based approach to theory development",
-   "organization": "Cognitive Aging Conference",
-   "booktitle": "Cognitive Aging Conference Abstracts",
-   "author": "M Karl Healey and L J Lohnas and M J Kahana",
-   "address": "Atlanta, {GA}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "HealEtal12b"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "HealEtal12b",
-   "target_base": "HealEtal12",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "HealEtal12b is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-24): HealEtal12b is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict no_source: user decision",
-    "action": "flag"
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-24)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -3073,6 +3655,13 @@
   "user_decisions": [
    "user decision (a-HealEtal12b): remove HealEtal12b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-24",
+   "notes": "Deleted in 282d321.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3085,47 +3674,34 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LongKaha12a",
   "batch": "batch-094",
   "verdict": "correction",
-  "current": {
-   "year": "2012",
-   "title": "The encoding and retrieval neural mechanisms supporting temporal and semantic clustering in free recall",
-   "organization": "Cognitive Neuroscience Society",
-   "booktitle": "Cognitive Neuroscience Society Abstracts",
-   "author": "N M Long and M J Kahana",
-   "address": "Chicago, {IL}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "LongKaha12a"
-  },
-  "final_changes": [
-   {
-    "field": "booktitle",
-    "current": "Cognitive Neuroscience Society Abstracts",
-    "proposed": "Cognitive Neuroscience Society Annual Meeting",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20170731223302id_/http://www.cogneurosociety.org/wordpress2015/wp-content/uploads/2016/06/CNS2012_Program.pdf",
-      "quote": "2012 Annual Meeting Program"
-     },
-     {
-      "url": "https://web.archive.org/web/20170731223302id_/http://www.cogneurosociety.org/wordpress2015/wp-content/uploads/2016/06/CNS2012_Program.pdf",
-      "quote": "Cognitive Neuroscience Society"
-     }
-    ]
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "LongKaha12a",
-   "target_base": "LongKaha12",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "LongKaha12a is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-24): LongKaha12a is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -3138,48 +3714,42 @@
   "user_decisions": [
    "user decision (a-LongKaha12a): remove LongKaha12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-24",
+   "notes": "Deleted in 282d321.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "BurkKaha13",
   "batch": "batch-094",
   "verdict": "correction",
-  "current": {
-   "year": "2013",
-   "title": "Theta and gamma activity during human episodic memory retrieval",
-   "booktitle": "Computational and Systems Neuroscience (coysne)",
-   "author": "J F Burke and M J Kahana",
-   "address": "Salt Lake City, {UT}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "BurkKaha13"
-  },
-  "final_changes": [
-   {
-    "field": "booktitle",
-    "current": "Computational and Systems Neuroscience (coysne)",
-    "proposed": "Computational and Systems Neuroscience ({Cosyne})",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20150922193544id_/http://cosyne.org/cosyne13/Cosyne2013_program_book.pdf",
-      "quote": "Computational and Systems Neuroscience"
-     },
-     {
-      "url": "https://web.archive.org/web/20150922193544id_/http://cosyne.org/cosyne13/Cosyne2013_program_book.pdf",
-      "quote": "COSYNE 2013"
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "BurkKaha13",
-   "target_base": "BurkKaha13",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "BurkKaha13 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-24): BurkKaha13 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -3192,6 +3762,13 @@
   "user_decisions": [
    "user decision (a-BurkKaha13): remove BurkKaha13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-24",
+   "notes": "Deleted in 282d321.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3203,62 +3780,39 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "RamaEtal13",
   "batch": "batch-094",
   "verdict": "correction",
-  "current": {
-   "year": "2013",
-   "title": "Distinct neuronal responses in the human substantia nigra during reinforcement learning",
-   "booktitle": "Computational and Systems Neuroscience (coysne)",
-   "author": "A G Ramayya and K A Zaghloul and C T Weidemann and B C Lega and M J Kahana and G H Baltuch",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "RamaEtal13"
-  },
-  "final_changes": [
-   {
-    "field": "address",
-    "current": null,
-    "proposed": "Salt Lake City, {UT}",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20150922193544id_/http://cosyne.org/cosyne13/Cosyne2013_program_book.pdf",
-      "quote": "Salt Lake City, UT"
-     }
-    ]
-   },
-   {
-    "field": "booktitle",
-    "current": "Computational and Systems Neuroscience (coysne)",
-    "proposed": "Computational and Systems Neuroscience ({Cosyne})",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20150922193544id_/http://cosyne.org/cosyne13/Cosyne2013_program_book.pdf",
-      "quote": "Computational and Systems Neuroscience"
-     },
-     {
-      "url": "https://web.archive.org/web/20150922193544id_/http://cosyne.org/cosyne13/Cosyne2013_program_book.pdf",
-      "quote": "COSYNE 2013"
-     }
-    ]
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "RamaEtal13",
-   "target_base": "RamaEtal13",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "RamaEtal13 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
     "code": "quote_check_failed",
     "field": "author",
-    "detail": "validator: author not covered by its quotes (missing ['baltuch']; failures [])",
-    "action": "held"
+    "detail": "validator: author not covered by its quotes (missing ['baltuch']; failures []); the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): RamaEtal13 is not in the bibliography; nothing to do",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -3272,8 +3826,15 @@
   "user_decisions": [
    "user decision (a-RamaEtal13): remove RamaEtal13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)').",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Beaz96",
@@ -3293,19 +3854,33 @@
   "key_plan": {
    "current_key": "Beaz96",
    "target_base": "Beaz96",
-   "action": "keep"
+   "action": "keep",
+   "resolution": "resolution 'keep' (batch-25)"
   },
   "flags": [
    {
     "code": "quote_check_failed",
     "field": "title",
-    "detail": "validator: title not covered by its quotes (missing ['swig']; failures [])",
-    "action": "held"
+    "detail": "validator: title not covered by its quotes (missing ['swig']; failures []); superseded by the resolution ('keep', batch-25)",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'keep' (batch-25): the entry stays exactly as it is",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "keep",
+   "batch": "batch-25",
+   "notes": "HEAD confirmed by the USENIX page https://www.usenix.org/legacy/publications/library/proceedings/tcl96/beazley.html: 'SWIG : An Easy to Use Tool For Integrating Scripting Languages' / 'David M. Beazley' / 'Fourth Annual USENIX Tcl/Tk Workshop, 1996'; workshop index prints 'Monterey, California'. The failed 'swig' quote was a split quote; nothing to change.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3317,7 +3892,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "dBakEtal08",
@@ -3392,6 +3967,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -3410,6 +3986,19 @@
    "ID": "FiscMode03"
   },
   "final_changes": [
+   {
+    "field": "booktitle",
+    "current": "International Workshop on Biomedical Image Registration",
+    "proposed": "Biomedical Image Registration",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-3-540-39701-4_28",
+      "quote": "\"container-title\":[\"Lecture Notes in Computer Science\",\"Biomedical Image Registration\"]"
+     }
+    ],
+    "decision": "resolution batch-25"
+   },
    {
     "field": "doi",
     "current": null,
@@ -3449,6 +4038,12 @@
     "field": "booktitle",
     "detail": "verdict 'correction' but booktitle is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "booktitle",
+    "detail": "resolution 'apply' (batch-25): booktitle = 'Biomedical Image Registration'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -3476,8 +4071,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-25",
+   "notes": "Crossref chapter record gives the volume title 'Biomedical Image Registration' (LNCS series); HEAD's 'International Workshop on Biomedical Image Registration' is not printed by any fetched record. Post-check DOI, publisher Springer and removal of Organization apply.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "HalpEtal16",
@@ -3549,6 +4151,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3609,13 +4212,35 @@
    {
     "code": "quote_check_failed",
     "field": "title",
-    "detail": "validator: title not covered by its quotes (missing ['find']; failures [])",
+    "detail": "validator: title not covered by its quotes (missing ['find']; failures []); superseded by the resolution (batch-25)",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "author",
+    "detail": "author = 'D J Berndt and J Clifford': quote '\"display_name\":\"Donald J. Berndt\"' at https://api.openalex.org/works/W116902681: value words ['clifford'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
     "action": "held"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "title",
+    "detail": "resolution 'apply' (batch-25): title = 'Using dynamic time warping to find patterns in time series'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-25",
+   "notes": "Author/title unchanged from HEAD; the AAAI PDF (WS94-03-031) OCR mangles them ('Donald J. Bemdt', 'FindPatterns') but its email line reads '{dberndt,jclifford} @stern.nyu.edu' and the footer 'AAAI-94 Workshop on Knowledge Discovery in Databases' with pages 359-370, so quotes come from the OpenAlex index record (DBLP-sourced). Post-check booktitle and Volume removal apply.",
+   "residue": [
+    "author: quote unverified (value words ['clifford'] are not in the quote)",
+    "quote_check_failed on author is held and the resolution does not address it"
+   ],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3634,63 +4259,28 @@
   "key": "PolyEtal05b",
   "batch": "batch-094",
   "verdict": "correction",
-  "current": {
-   "year": "2005",
-   "title": "A {MATLAB-based} toolbox to facilitate multi-voxel pattern classification of {fMRI} data",
-   "publisher": "Organization for Human Brain Mapping",
-   "author": "S M Polyn and G Detre and S Takerkart and V Natu and M Benharrosh and B Singer and J D Cohen and J V Haxby and K A Norman",
-   "ENTRYTYPE": "conference",
-   "ID": "PolyEtal05b"
-  },
-  "final_changes": [
-   {
-    "field": "ENTRYTYPE",
-    "current": "conference",
-    "proposed": "inproceedings",
-    "source": "postcheck",
-    "evidence": [],
-    "reviewer": "agree"
-   },
-   {
-    "field": "author",
-    "current": "S M Polyn and G Detre and S Takerkart and V Natu and M Benharrosh and B Singer and J D Cohen and J V Haxby and K A Norman",
-    "proposed": "S M Polyn and G J Detre and S Takerkart and V S Natu and M S Benharrosh and B D Singer and J D Cohen and J V Haxby and K A Norman",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/2008id_/http://www.csbmb.princeton.edu/mvpa/polyn_et_al_mvpa_ohbm2005.pdf",
-      "quote": "Sean M Polyn , Greg J Detre , Sylvain Takerkart , Vaidehi S Natu , Michael S Benharrosh ,"
-     },
-     {
-      "url": "https://web.archive.org/web/2008id_/http://www.csbmb.princeton.edu/mvpa/polyn_et_al_mvpa_ohbm2005.pdf",
-      "quote": "Benjamin D Singer , Jonathan D Cohen , James V Haxby , and Kenneth A Norman"
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "booktitle",
-    "current": null,
-    "proposed": "Annual Meeting of the Organization for Human Brain Mapping",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20071224120824id_/http://www.csbmb.princeton.edu/mvpa/",
-      "quote": "Annual Meeting of the Organization of Human Brain Mapping"
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
-  "removals": {
-   "publisher": "researcher asked to remove it (current 'Organization for Human Brain Mapping')"
-  },
+  "current": {},
+  "final_changes": [],
+  "removals": {},
   "key_plan": {
    "current_key": "PolyEtal05b",
-   "target_base": "PolyEtal05",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "PolyEtal05b is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): PolyEtal05b is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -3703,6 +4293,13 @@
   "user_decisions": [
    "user decision (a-PolyEtal05b): remove PolyEtal05b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)').",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3718,7 +4315,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "KluyEtal16",
@@ -3737,6 +4334,32 @@
    "ID": "KluyEtal16"
   },
   "final_changes": [
+   {
+    "field": "address",
+    "current": "Netherlands",
+    "proposed": "Amsterdam",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/lcdb?version=1.1&operation=searchRetrieve&query=bath.isbn=9781614996484&maximumRecords=1&recordSchema=mods",
+      "quote": "Amsterdam :"
+     }
+    ],
+    "decision": "resolution batch-25"
+   },
+   {
+    "field": "author",
+    "current": "T Kluyver and B Ragan-Kelley and F P{\\'e}rez and B Granger and M Bussonnier and J Frederic and K Kelley and J Hamrick and J Grout and S Corlay and P Ivanov and D Avila and S Abdalla and C Willing",
+    "proposed": "T Kluyver and B Ragan-Kelley and F P{\\'e}rez and B Granger and M Bussonnier and J Frederic and K Kelley and J Hamrick and J Grout and S Corlay and P Ivanov and D Avila and S Abdalla and C Willing and {Jupyter Development Team}",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87",
+      "quote": "Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team"
+     }
+    ],
+    "decision": "resolution batch-25"
+   },
    {
     "field": "doi",
     "current": null,
@@ -3772,14 +4395,20 @@
    {
     "code": "quote_check_failed",
     "field": "author",
-    "detail": "validator: author not covered by its quotes (missing ['perez']; failures [])",
-    "action": "held"
+    "detail": "validator: author not covered by its quotes (missing ['perez']; failures []); superseded by the resolution (batch-25)",
+    "action": "dropped"
    },
    {
     "code": "field_not_found",
     "field": "address",
     "detail": "verdict 'correction' but address is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "address, author",
+    "detail": "resolution 'apply' (batch-25): address = 'Amsterdam'; author = \"T Kluyver and B Ragan-Kelley and F P{\\\\'e}rez and B Granger and M Bussonnier and J Frederic and K Kelley and J Hamrick and J Grout and S Corlay and P Ivanov and D Avila and S Abdalla and C Willing and {Jupyter Development Team}\"",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -3833,8 +4462,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-25",
+   "notes": "IOS Press chapter page (as rendered; raw HTML encodes é as &#233;) and Crossref both list 'Jupyter Development Team' as the 15th author, so it is added; pages 87-90 confirmed (citation_firstpage 87 / lastpage 90). LoC record for the print ISBN gives place 'Amsterdam :'. Post-check DOI and editor Schmidt apply; key unchanged.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "StonEtal25",
@@ -3876,6 +4512,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -3984,6 +4621,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -4082,6 +4720,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -4190,6 +4829,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -4308,6 +4948,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -4416,6 +5057,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -4534,6 +5176,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -4683,6 +5326,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -4813,6 +5457,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -4831,75 +5476,6 @@
    "ID": "RagaWill18"
   },
   "final_changes": [
-   {
-    "field": "author",
-    "current": "B Ragan-Kelley and C Willing",
-    "proposed": "{Project Jupyter} and M Bussonnier and J Forde and J Freeman and B Granger and T Head and C Holdgraf and K Kelley and G Nalvarte and A Osheroff and M Pacer and Y Panda and F Perez and B Ragan-Kelley and C Willing",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Project Jupyter"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Matthias Bussonnier"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Jessica Forde"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Jeremy Freeman"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Brian Granger"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Tim Head"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Chris Holdgraf"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Kyle Kelley"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Gladys Nalvarte"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Andrew Osheroff"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"M Pacer"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Yuvi Panda"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Fernando Perez"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Benjamin Ragan-Kelley"
-     },
-     {
-      "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
-      "quote": "citation_author\" content=\"Carol Willing"
-     }
-    ],
-    "reviewer": "agree"
-   },
    {
     "field": "doi",
     "current": null,
@@ -4930,17 +5506,30 @@
   "removals": {},
   "key_plan": {
    "current_key": "RagaWill18",
-   "target_base": "ProjEtal18",
+   "target_base": "RagaWill18",
    "action": "rename",
-   "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "ProjEtal18"
+   "new_key": "ProjEtal18",
+   "rename_reason": "resolution (batch-25)",
+   "resolution": "resolution (batch-25): key ProjEtal18"
   },
   "flags": [
    {
-    "code": "key_rename",
+    "code": "resolution_quote_unverified",
+    "field": "author",
+    "detail": "author = \"{Project Jupyter} and M Bussonnier and J Forde and J Freeman and B Granger and T Head and C Holdgraf and K Kelley and G Nalvarte and A Osheroff and M Pacer and Y Panda and F P{\\\\'e}rez and B Ragan-Kelley and C Willing\": quote 'Fernando Pérez' at https://pub.orcid.org/v3.0/0000-0002-1725-9815/personal-details: value words ['jupyter', 'bussonnier', 'forde', 'freeman', 'granger', 'head', 'holdgraf', 'kelley', 'nalvarte', 'osheroff', 'pacer', 'panda', 'ragan-kelley', 'willing'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+    "action": "held"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-25): the post-check's final changes stand",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "key",
-    "detail": "RagaWill18 -> ProjEtal18 (key does not follow the corrected metadata)",
-    "action": "flag"
+    "detail": "resolution (batch-25): RagaWill18 -> ProjEtal18",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -4994,6 +5583,16 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-25",
+   "notes": "Printed PDF byline (proceedings.scipy.org Majora-4af1f417-011.pdf) and Crossref begin 'Project Jupyter', so key ProjEtal18 (not in HEAD). The byline prints 'Fernando Perez'; per the author-name rule the accent is restored from his ORCID record (other 14 names are covered by the post-check's citation_author quotes). Post-check DOI and title apply.",
+   "residue": [
+    "author: quote unverified (value words ['jupyter', 'bussonnier', 'forde', 'freeman', 'granger', 'head', 'holdgraf', 'kelley', 'nalvarte', 'osheroff', 'pacer', 'panda', 'ragan-kelley', 'willing'] are not in the quote)",
+    "key ProjEtal18 does not follow the ID rule for the corrected metadata (RagaWill18)"
+   ],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5143,6 +5742,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5184,6 +5784,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -5258,11 +5859,24 @@
     "field": "booktitle",
     "detail": "verdict 'correction' but booktitle is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "booktitle",
+    "detail": "resolution 'apply' (batch-25): booktitle = 'Proceedings of the International Conference on Development and Learning'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-25",
+   "notes": "No proceedings record for ICDL 2004 is fetchable (not in Crossref/IEEE/DBLP). The ICDL series site names the conference as quoted and its history page records 'the 3rd ICDL (2004) at La Jolla, CA'; the UMass lab list's 'Developmental Learning' is a slip. Work confirmed by the 2005 Wayback PDF; post-check author, address, entrytype and Organization removal apply.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5278,7 +5892,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MuelShif06",
@@ -5341,6 +5955,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5383,6 +5998,19 @@
       "quote": "\"DOI\":\"10.1145\\/1143844.1143859\""
      }
     ]
+   },
+   {
+    "field": "publisher",
+    "current": "Association for Computing Machinery",
+    "proposed": "{ACM} Press",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1145/1143844.1143859",
+      "quote": "\"publisher\":\"ACM Press\""
+     }
+    ],
+    "decision": "resolution batch-25"
    }
   ],
   "removals": {},
@@ -5397,6 +6025,12 @@
     "field": "publisher",
     "detail": "verdict 'correction' but publisher is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "publisher",
+    "detail": "resolution 'apply' (batch-25): publisher = '{ACM} Press'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -5424,8 +6058,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-25",
+   "notes": "Crossref (publisher-deposited) prints 'ACM Press' and publisher-location 'New York, New York, USA' (matches Address); dl.acm.org is 403 to scripts, so the precedence rule takes Crossref's form over HEAD's unquotable 'Association for Computing Machinery'. Post-check DOI applies.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "ParkEtal24",
@@ -5461,6 +6102,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5490,8 +6132,38 @@
    "ENTRYTYPE": "inproceedings",
    "ID": "PellMoor00"
   },
-  "final_changes": [],
-  "removals": {},
+  "final_changes": [
+   {
+    "field": "author",
+    "current": "D Pelleg and A Moore",
+    "proposed": "D Pelleg and A W Moore",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://dblp.org/rec/conf/icml/PellegM00.html",
+      "quote": "Dan Pelleg, Andrew W. Moore:"
+     }
+    ],
+    "decision": "resolution batch-25"
+   },
+   {
+    "field": "publisher",
+    "current": null,
+    "proposed": "Morgan Kaufmann",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://dblp.org/db/conf/icml/icml2000.html",
+      "quote": "Proceedings of the Seventeenth International Conference on Machine Learning (ICML 2000), Stanford University, Stanford, CA, USA, June 29 - July 2, 2000. Morgan Kaufmann 2000, ISBN 1-55860-707-2"
+     }
+    ],
+    "decision": "resolution batch-25"
+   }
+  ],
+  "removals": {
+   "volume": "resolution asked to remove it (current '1')",
+   "organization": "resolution asked to remove it (current 'San Francisco')"
+  },
   "key_plan": {
    "current_key": "PellMoor00",
    "target_base": "PellMoor00",
@@ -5499,15 +6171,46 @@
   },
   "flags": [
    {
-    "code": "needs_user",
+    "code": "resolution_quote_unverified",
+    "field": "author",
+    "detail": "author = 'D Pelleg and A W Moore': quote 'Dan Pelleg, Andrew W. Moore:' at https://dblp.org/rec/conf/icml/PellegM00.html: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "pages",
+    "detail": "pages = '727--734': quote 'X-means: Extending K-means with Efficient Estimation of the Number of Clusters. ICML 2000: 727-734' at https://dblp.org/rec/conf/icml/PellegM00.html: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "publisher",
+    "detail": "publisher = 'Morgan Kaufmann': quote 'Proceedings of the Seventeenth International Conference on Machine Learning (ICML 2000), Stanford University, Stanford, CA, USA, June 29 - July 2, 2000. Morgan Kaufmann 2000, ISBN 1-55860-707-2' at https://dblp.org/db/conf/icml/icml2000.html: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "author, organization, pages, publisher, volume",
+    "detail": "resolution 'apply' (batch-25): author = 'D Pelleg and A W Moore'; pages = '727--734'; publisher = 'Morgan Kaufmann'; removed volume; removed organization",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict ambiguous: user decision",
-    "action": "flag"
+    "detail": "verdict ambiguous resolved by the resolution ('apply', batch-25)",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-25",
+   "notes": "DBLP pages read in a real browser (Anubis blocks scripts; accepted evidence rule). DBLP index record confirms authors, title, ICML 2000, pp 727-734, Morgan Kaufmann; the proceedings are one volume, so Volume {1} and Organization {San Francisco} (a city) are unconfirmable and removed.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5520,7 +6223,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "DolfWend98",
@@ -5582,6 +6285,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5640,6 +6344,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -5647,42 +6352,45 @@
   "key": "CrutEtal12",
   "batch": "batch-096",
   "verdict": "ambiguous",
-  "current": {
-   "year": "2012",
-   "title": "Individual differences in free recall and intelligence",
-   "booktitle": "Proceedings of the Society for Mathematical Psychology",
-   "author": "P Crutchley and M K Healey and M J Kahana",
-   "address": "Columbus, {OH}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "CrutEtal12"
-  },
-  "final_changes": [
-   {
-    "field": "author",
-    "current": "P Crutchley and M K Healey and M J Kahana",
-    "proposed": "P N Crutchley and M K Healey and M J Kahana",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20160309074752id_/http://memory.psych.upenn.edu/files/pubs/CrutEtal12.poster.pdf",
-      "quote": "Patrick N. Crutchley, M. Karl Healey, and Michael J. Kahana"
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "CrutEtal12",
-   "target_base": "CrutEtal12",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
-    "field": "verdict",
-    "detail": "verdict ambiguous: user decision",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "CrutEtal12 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "ambiguous_identity_held",
+    "field": "title",
+    "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: title='Individual differences in free recall and intelligence'; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): CrutEtal12 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): booktitle='Proceedings of the Society for Mathematical Psychology', address='Columbus, {OH}', year='2012', title='Individual differences in free recall and intelligence'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "verdict",
+    "detail": "verdict ambiguous resolved by the resolution ('drop', batch-25)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -5696,6 +6404,13 @@
   "user_decisions": [
    "user decision (a-CrutEtal12): remove CrutEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)').",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5708,33 +6423,39 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "vanVEtal06",
   "batch": "batch-096",
   "verdict": "no_source",
-  "current": {
-   "year": "2006",
-   "title": "Finding {NEMO} in the brain: correlations between theta oscillations in human {EEG} and summed similarity",
-   "booktitle": "Proceedings of the Society for Mathematical Psychology",
-   "author": "M K {van Vugt} and R Sekuler and H R Wilson and M J Kahana",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "vanVEtal06"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "vanVEtal06",
-   "target_base": "vanVEtal06",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "vanVEtal06 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): vanVEtal06 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict no_source: user decision",
-    "action": "flag"
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-25)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -5748,6 +6469,13 @@
   "user_decisions": [
    "user decision (a-vanVEtal06): remove vanVEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)').",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5760,7 +6488,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "BambEtal90",
@@ -5828,6 +6556,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5904,14 +6633,27 @@
    "target_base": "YuEtal16",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "YuEtal16"
+   "new_key": "YuEtal16",
+   "resolution": "resolution (batch-25): key YuEtal16 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-25): the post-check's final changes stand",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "HaonEtal16 -> YuEtal16 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-25): HaonEtal16 -> YuEtal16, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -5945,6 +6687,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-25",
+   "notes": "Crossref 10.1109/cvpr.2016.496 and CVF open access list 'Haonan Yu; Jiang Wang; Zhiheng Huang; Yi Yang; Wei Xu' (HEAD had given/family names swapped), pp 4584-4593, 2016; key follows the corrected first author (YuEtal16, not in HEAD). Post-check author and DOI apply.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -5958,29 +6707,28 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LohnEtal09",
   "batch": "batch-096",
   "verdict": "ambiguous",
-  "current": {
-   "year": "2009",
-   "title": "Re-evaluating the contextual variability hypothesis of free recall",
-   "booktitle": "Psychonomic Society",
-   "author": "L J Lohnas and S M Polyn and M J Kahana",
-   "address": "Boston, {MA}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "LohnEtal09"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "LohnEtal09",
-   "target_base": "LohnEtal09",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "LohnEtal09 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
    {
     "code": "identity_quote_failed",
     "field": "identity",
@@ -5988,10 +6736,16 @@
     "action": "flag"
    },
    {
-    "code": "needs_user",
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): LohnEtal09 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict ambiguous: user decision",
-    "action": "flag"
+    "detail": "verdict ambiguous resolved by the resolution ('drop', batch-25)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -6005,6 +6759,13 @@
   "user_decisions": [
    "user decision (a-LohnEtal09): remove LohnEtal09 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)').",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6017,34 +6778,51 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LohnEtal10",
   "batch": "batch-096",
   "verdict": "ambiguous",
-  "current": {
-   "year": "2010",
-   "title": "Modeling intralist and interlist effects in free recall",
-   "booktitle": "Psychonomic Society",
-   "author": "L J Lohnas and S M Polyn and M J Kahana",
-   "address": "Saint Louis, {MO}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "LohnEtal10"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "LohnEtal10",
-   "target_base": "LohnEtal10",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
-    "field": "verdict",
-    "detail": "verdict ambiguous: user decision",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "LohnEtal10 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "ambiguous_identity_held",
+    "field": "title, year",
+    "detail": "verdict ambiguous: the identity-defining changes are one decision for the user, held together: title='Modeling intralist and interlist effects in free recall'; year='2010'; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): LohnEtal10 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): booktitle='Psychonomic Society', address='Saint Louis, {MO}', title='Modeling intralist and interlist effects in free recall', year='2010'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "verdict",
+    "detail": "verdict ambiguous resolved by the resolution ('drop', batch-25)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -6058,6 +6836,13 @@
   "user_decisions": [
    "user decision (a-LohnEtal10): remove LohnEtal10 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)').",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6070,33 +6855,39 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "PolyEtal06",
   "batch": "batch-096",
   "verdict": "no_source",
-  "current": {
-   "year": "2006",
-   "title": "Task effects on memory accessibility in free recall",
-   "publisher": "Psychonomic Society",
-   "author": "S M Polyn and N W Morton and D K Kogen and K A Norman and M J Kahana",
-   "ENTRYTYPE": "conference",
-   "ID": "PolyEtal06"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "PolyEtal06",
-   "target_base": "PolyEtal06",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "PolyEtal06 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): PolyEtal06 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict no_source: user decision",
-    "action": "flag"
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-25)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -6110,6 +6901,13 @@
   "user_decisions": [
    "user decision (a-PolyEtal06): remove PolyEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)').",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6122,7 +6920,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "WallEtal57",
@@ -6142,19 +6940,33 @@
   "key_plan": {
    "current_key": "WallEtal57",
    "target_base": "WallEtal57",
-   "action": "keep"
+   "action": "keep",
+   "resolution": "resolution 'drop' (batch-25): the entry is removed"
   },
   "flags": [
    {
-    "code": "needs_user",
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): remove the entry (no evidence found after: LoC, Internet Archive, Open Library, Crossref, OpenAlex, HathiTrust (researcher); Google Books and Google web search in a real browser (2026-09-26) found only reference-list citations of it in other works (Miller, Galanter & Pribram; Paivio; Kahana 2014; Bugelski 1968), no catalogue, DTIC or index record of the report itself)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict no_source: user decision",
-    "action": "flag"
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-25)",
+    "action": "applied"
    }
   ],
   "doi_status": null,
-  "remove_entry": null,
+  "remove_entry": "no evidence found after: LoC, Internet Archive, Open Library, Crossref, OpenAlex, HathiTrust (researcher); Google Books and Google web search in a real browser (2026-09-26) found only reference-list citations of it in other works (Miller, Galanter & Pribram; Paivio; Kahana 2014; Bugelski 1968), no catalogue, DTIC or index record of the report itself",
   "user_decisions": [],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "A 1957 Signal Corps technical report (Project No. 1320, Institute for Cooperative Research, Univ. of Pennsylvania); citing works disagree on the project number (1320 vs 132C). Under round-2 rule 1 (no verifiable record -> drop) it is dropped; see question. RECONCILED 2026-09-26: Question answered by rule: reference-list-only -> drop (default).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6167,33 +6979,39 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MillEtal07e",
   "batch": "batch-096",
   "verdict": "no_source",
-  "current": {
-   "year": "2007",
-   "title": "Clustering by spatial proximity during memory search",
-   "publisher": "Society for Mathematical Psychology",
-   "author": "J F Miller and S M Polyn and M J Kahana",
-   "ENTRYTYPE": "conference",
-   "ID": "MillEtal07e"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "MillEtal07e",
-   "target_base": "MillEtal07",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "MillEtal07e is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): MillEtal07e is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict no_source: user decision",
-    "action": "flag"
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-25)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -6207,6 +7025,13 @@
   "user_decisions": [
    "user decision (a-MillEtal07e): remove MillEtal07e from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)').",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6219,33 +7044,39 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MortEtal07",
   "batch": "batch-096",
   "verdict": "no_source",
-  "current": {
-   "year": "2007",
-   "title": "Tracking encoding task context during free recall using scalp {EEG}",
-   "publisher": "Society for Neuroscience",
-   "author": "N W Morton and S M Polyn and M J Kahana",
-   "ENTRYTYPE": "conference",
-   "ID": "MortEtal07"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "MortEtal07",
-   "target_base": "MortEtal07",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "MortEtal07 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): MortEtal07 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict no_source: user decision",
-    "action": "flag"
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-25)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -6259,6 +7090,13 @@
   "user_decisions": [
    "user decision (a-MortEtal07): remove MortEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)').",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6271,33 +7109,39 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "PolyEtal07",
   "batch": "batch-096",
   "verdict": "no_source",
-  "current": {
-   "year": "2007",
-   "title": "Tracking category-related neural patterns during free recall using scalp {EEG}",
-   "publisher": "Society for Neuroscience",
-   "author": "S M Polyn and J F Miller and V S Koshkin and N W Morton and M J Kahana",
-   "ENTRYTYPE": "conference",
-   "ID": "PolyEtal07"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "PolyEtal07",
-   "target_base": "PolyEtal07",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "PolyEtal07 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-25): PolyEtal07 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict no_source: user decision",
-    "action": "flag"
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-25)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -6311,6 +7155,13 @@
   "user_decisions": [
    "user decision (a-PolyEtal07): remove PolyEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-25",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)').",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6323,77 +7174,34 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MannEtal09b",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2009",
-   "title": "Neural correlates of context-based models of free recall",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "J Manning and S M Polyn and M J Kahana",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "MannEtal09b"
-  },
-  "final_changes": [
-   {
-    "field": "address",
-    "current": null,
-    "proposed": "Chicago, {IL}",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=fc1825ff-9e77-4293-8635-813ce4907290&cKey=a2df6268-4f3b-4e53-a947-a106206724e0&mKey=%7B081F7976-E4CD-4F3D-A0AF-E8387992A658%7D",
-      "quote": "2009 Neuroscience Meeting Planner. Chicago, IL: Society for Neuroscience, 2009"
-     }
-    ]
-   },
-   {
-    "field": "author",
-    "current": "J Manning and S M Polyn and M J Kahana",
-    "proposed": "J R Manning and S M Polyn and M J Kahana",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=fc1825ff-9e77-4293-8635-813ce4907290&cKey=a2df6268-4f3b-4e53-a947-a106206724e0&mKey=%7B081F7976-E4CD-4F3D-A0AF-E8387992A658%7D",
-      "quote": "J.R. Manning , None; S.M. Polyn , None; M.J. Kahana , None."
-     }
-    ]
-   },
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "279.3",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=fc1825ff-9e77-4293-8635-813ce4907290&cKey=a2df6268-4f3b-4e53-a947-a106206724e0&mKey=%7B081F7976-E4CD-4F3D-A0AF-E8387992A658%7D",
-      "quote": "Program#/Poster#: 279.3"
-     }
-    ]
-   },
-   {
-    "field": "organization",
-    "current": null,
-    "proposed": "Society for Neuroscience",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=fc1825ff-9e77-4293-8635-813ce4907290&cKey=a2df6268-4f3b-4e53-a947-a106206724e0&mKey=%7B081F7976-E4CD-4F3D-A0AF-E8387992A658%7D",
-      "quote": "2009 Neuroscience Meeting Planner. Chicago, IL: Society for Neuroscience, 2009"
-     }
-    ]
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "MannEtal09b",
-   "target_base": "MannEtal09",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "MannEtal09b is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): MannEtal09b is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -6406,67 +7214,42 @@
   "user_decisions": [
    "user decision (a-MannEtal09b): remove MannEtal09b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "WatrEtal09",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2009",
-   "title": "Behavioral correlates of human hippocampal local field potentials",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "A J Watrous and I Fried and A D Ekstrom",
-   "address": "Chicago, {IL}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "WatrEtal09"
-  },
-  "final_changes": [
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "187.7",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=47d6d1ac-cce5-4489-b533-e60e10a8e1dc&cKey=63369177-42db-4a48-9eea-21b47e9b54f8&mKey=%7B081F7976-E4CD-4F3D-A0AF-E8387992A658%7D",
-      "quote": "Program#/Poster#: 187.7"
-     }
-    ]
-   },
-   {
-    "field": "organization",
-    "current": null,
-    "proposed": "Society for Neuroscience",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=47d6d1ac-cce5-4489-b533-e60e10a8e1dc&cKey=63369177-42db-4a48-9eea-21b47e9b54f8&mKey=%7B081F7976-E4CD-4F3D-A0AF-E8387992A658%7D",
-      "quote": "2009 Neuroscience Meeting Planner. Chicago, IL: Society for Neuroscience, 2009"
-     }
-    ]
-   },
-   {
-    "field": "title",
-    "current": "Behavioral correlates of human hippocampal local field potentials",
-    "proposed": "Behavioral correlates of human local field potentials",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=47d6d1ac-cce5-4489-b533-e60e10a8e1dc&cKey=63369177-42db-4a48-9eea-21b47e9b54f8&mKey=%7B081F7976-E4CD-4F3D-A0AF-E8387992A658%7D",
-      "quote": "Behavioral correlates of human local field potentials"
-     }
-    ]
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "WatrEtal09",
-   "target_base": "WatrEtal09",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "WatrEtal09 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): WatrEtal09 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -6479,58 +7262,42 @@
   "user_decisions": [
    "user decision (a-WatrEtal09): remove WatrEtal09 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "RamaEtal10",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2010",
-   "title": "The firing rate-{LFP} relation changes as a function of firing rate in humans",
-   "organization": "Society for Neuroscience",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "A G Ramayya and J R Manning and J Jacobs and M J Kahana",
-   "address": "San Diego, {CA}",
-   "ENTRYTYPE": "conference",
-   "ID": "RamaEtal10"
-  },
-  "final_changes": [
-   {
-    "field": "ENTRYTYPE",
-    "current": "conference",
-    "proposed": "inproceedings",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=0c709087-deb8-4d6c-b092-a87322ccd3d5&cKey=c8a5a191-5950-4fd7-8dfb-1b8e3bbcd32b&mKey=%7BE5D5C83F-CE2D-4D71-9DD6-FC7231E090FB%7D",
-      "quote": "Program#/Poster#: 44.1"
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "44.1",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=0c709087-deb8-4d6c-b092-a87322ccd3d5&cKey=c8a5a191-5950-4fd7-8dfb-1b8e3bbcd32b&mKey=%7BE5D5C83F-CE2D-4D71-9DD6-FC7231E090FB%7D",
-      "quote": "Program#/Poster#: 44.1"
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "RamaEtal10",
-   "target_base": "RamaEtal10",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "RamaEtal10 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): RamaEtal10 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -6543,6 +7310,13 @@
   "user_decisions": [
    "user decision (a-RamaEtal10): remove RamaEtal10 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6556,70 +7330,34 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "GratEtal11",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2011",
-   "title": "Increased dopamine concentrations increase the perceived value of an action",
-   "organization": "Society for Neuroscience",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "L E Grattan and R B Rutledge and P W Glimcher",
-   "address": "San Diego, {CA}",
-   "ENTRYTYPE": "conference",
-   "ID": "GratEtal11"
-  },
-  "final_changes": [
-   {
-    "field": "ENTRYTYPE",
-    "current": "conference",
-    "proposed": "inproceedings",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=28b3af96-04af-4198-a1fb-e57aeb174c93&cKey=18ac0ebc-952b-45e3-97ff-6aa5fe546521&mKey=%7B8334BE29-8911-4991-8C31-32B32DD5E6C8%7D",
-      "quote": "Program#/Poster#: 732.12"
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "address",
-    "current": "San Diego, {CA}",
-    "proposed": "Washington, {DC}",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=28b3af96-04af-4198-a1fb-e57aeb174c93&cKey=18ac0ebc-952b-45e3-97ff-6aa5fe546521&mKey=%7B8334BE29-8911-4991-8C31-32B32DD5E6C8%7D",
-      "quote": "2011 Neuroscience Meeting Planner. Washington, DC: Society for Neuroscience, 2011"
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "732.12",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=28b3af96-04af-4198-a1fb-e57aeb174c93&cKey=18ac0ebc-952b-45e3-97ff-6aa5fe546521&mKey=%7B8334BE29-8911-4991-8C31-32B32DD5E6C8%7D",
-      "quote": "Program#/Poster#: 732.12"
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "GratEtal11",
-   "target_base": "GratEtal11",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "GratEtal11 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): GratEtal11 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -6632,6 +7370,13 @@
   "user_decisions": [
    "user decision (a-GratEtal11): remove GratEtal11 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6646,55 +7391,34 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LongEtal11",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2011",
-   "title": "Neural correlates of temporal and semantic clustering in free recall",
-   "organization": "Society for Neuroscience",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "N M Long and J F Miller and P B Sederberg and M J Kahana",
-   "address": "Washington, {DC}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "LongEtal11"
-  },
-  "final_changes": [
-   {
-    "field": "author",
-    "current": "N M Long and J F Miller and P B Sederberg and M J Kahana",
-    "proposed": "N M Long and P B Sederberg and J F Miller and M J Kahana",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=474f1dc2-cb67-4a11-841e-838e360f9d4a&cKey=05d0c807-90ae-4808-bf13-eba31115d068&mKey=%7B8334BE29-8911-4991-8C31-32B32DD5E6C8%7D",
-      "quote": "N.M. Long: None. P.B. Sederberg: None. J.F. Miller: None. M.J. Kahana: None."
-     }
-    ]
-   },
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "603.15",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=474f1dc2-cb67-4a11-841e-838e360f9d4a&cKey=05d0c807-90ae-4808-bf13-eba31115d068&mKey=%7B8334BE29-8911-4991-8C31-32B32DD5E6C8%7D",
-      "quote": "Program#/Poster#: 603.15"
-     }
-    ]
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "LongEtal11",
-   "target_base": "LongEtal11",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "LongEtal11 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): LongEtal11 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -6707,45 +7431,42 @@
   "user_decisions": [
    "user decision (a-LongEtal11): remove LongEtal11 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "BurkEtal12",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2012",
-   "title": "Synchronous and asynchronous theta activity mark human episodic memory encoding",
-   "organization": "Society for Neuroscience",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "J F Burke and K A Zaghloul and J Jacobs and M J Kahana",
-   "address": "New Orleans, {LA}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "BurkEtal12"
-  },
-  "final_changes": [
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "593.12",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=7e56e1ae-955e-4a00-a994-172f61da2082&cKey=23521fba-bf2f-44bc-9659-d688734805f4&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
-      "quote": "Program#/Poster#: 593.12"
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "BurkEtal12",
-   "target_base": "BurkEtal12",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "BurkEtal12 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): BurkEtal12 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -6758,6 +7479,13 @@
   "user_decisions": [
    "user decision (a-BurkEtal12): remove BurkEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6769,73 +7497,34 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "KrauEtal12",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2012",
-   "title": "Medial entorhinal cortical neurons exhibit temporally-modulated firing patterns during stationary treadmill running",
-   "number": "203.14",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "B J Kraus and M P Brandon and M A Connerney and R J {Robinson I I } and S Eriksson and C P Libby and J A White and M E Hasselmo and H Eichenbaum",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "KrauEtal12"
-  },
-  "final_changes": [
-   {
-    "field": "address",
-    "current": null,
-    "proposed": "New Orleans, {LA}",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=806b0644-ae04-4196-b436-3c8a65da2a43&cKey=02a0b7e9-e7c1-4032-8c8a-d67c06d47749&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
-      "quote": "2012 Neuroscience Meeting Planner. New Orleans, LA: Society for Neuroscience, 2012"
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "author",
-    "current": "B J Kraus and M P Brandon and M A Connerney and R J {Robinson I I } and S Eriksson and C P Libby and J A White and M E Hasselmo and H Eichenbaum",
-    "proposed": "B J Kraus and M P Brandon and M A Connerney and R J Robinson and S Eriksson and C P Libby and J A White and M E Hasselmo and H Eichenbaum",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=806b0644-ae04-4196-b436-3c8a65da2a43&cKey=02a0b7e9-e7c1-4032-8c8a-d67c06d47749&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
-      "quote": "B.J. Kraus: None. M.P. Brandon: None. M.A. Connerney: None. R.J. Robinson: None. S. Eriksson: None."
-     },
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=806b0644-ae04-4196-b436-3c8a65da2a43&cKey=02a0b7e9-e7c1-4032-8c8a-d67c06d47749&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
-      "quote": "C.P. Libby: None. J.A. White: None. M.E. Hasselmo: None. H. Eichenbaum: None."
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "organization",
-    "current": null,
-    "proposed": "Society for Neuroscience",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=806b0644-ae04-4196-b436-3c8a65da2a43&cKey=02a0b7e9-e7c1-4032-8c8a-d67c06d47749&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
-      "quote": "2012 Neuroscience Meeting Planner. New Orleans, LA: Society for Neuroscience, 2012"
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "KrauEtal12",
-   "target_base": "KrauEtal12",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "KrauEtal12 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): KrauEtal12 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -6848,6 +7537,13 @@
   "user_decisions": [
    "user decision (a-KrauEtal12): remove KrauEtal12 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6861,43 +7557,34 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LongKaha12b",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2012",
-   "title": "The neural correlates of temporal and semantic clustering during retrieval",
-   "organization": "Society for Neuroscience",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "N M Long and M J Kahana",
-   "address": "New Orleans, {LA}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "LongKaha12b"
-  },
-  "final_changes": [
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "593.09",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=7e56e1ae-955e-4a00-a994-172f61da2082&cKey=c162ab27-3619-4153-a640-3606665d030c&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
-      "quote": "Program#/Poster#: 593.09"
-     }
-    ]
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "LongKaha12b",
-   "target_base": "LongKaha12",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "LongKaha12b is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): LongKaha12b is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -6910,49 +7597,47 @@
   "user_decisions": [
    "user decision (a-LongKaha12b): remove LongKaha12b from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "RamaEtal12a",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2012",
-   "title": "A non-linear relation between human neuronal spiking and broadband high frequency power in the local field potential",
-   "organization": "Society for Neuroscience",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "A G Ramayya and J R Manning and J Jacobs and I Fried and M J Kahana",
-   "address": "New Orleans, {LA}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "RamaEtal12a"
-  },
-  "final_changes": [
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "646.12",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=adb13f81-b340-457c-a4b9-882915b2d6dc&cKey=19a528ea-8f54-4448-ba59-7d952a818923&mKey=%7B70007181-01C9-4DE9-A0A2-EEBFA14CD9F1%7D",
-      "quote": "Program#/Poster#: 646.12"
-     }
-    ]
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "RamaEtal12a",
-   "target_base": "RamaEtal12",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "RamaEtal12a is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
     "code": "quote_check_failed",
     "field": "title",
-    "detail": "validator: title not covered by its quotes (missing ['field', 'potential']; failures [])",
-    "action": "held"
+    "detail": "validator: title not covered by its quotes (missing ['field', 'potential']; failures []); the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): RamaEtal12a is not in the bibliography; nothing to do",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -6966,57 +7651,42 @@
   "user_decisions": [
    "user decision (a-RamaEtal12a): remove RamaEtal12a from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LongKaha13",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2013",
-   "title": "Neural correlates of memory encoding as a function of practice",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "N M Long and M J Kahana",
-   "address": "San Diego, {CA}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "LongKaha13"
-  },
-  "final_changes": [
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "284.10",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/ViewAbstract.aspx?sKey=bd28180c-8d0f-4875-9625-2c87ff0b6e19&cKey=826fe321-12c0-46d5-b8ce-7fab18c2fe29&mKey=%7B8D2A5BEC-4825-4CD6-9439-B42BB151D1CF%7D",
-      "quote": "Program#/Poster#: 284.10"
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "organization",
-    "current": null,
-    "proposed": "Society for Neuroscience",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.abstractsonline.com/Plan/start.aspx?mkey=%7B8D2A5BEC-4825-4CD6-9439-B42BB151D1CF%7D",
-      "quote": "2013 Neuroscience Meeting Planner. San Diego, CA: Society for Neuroscience, 2013"
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "LongKaha13",
-   "target_base": "LongKaha13",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "LongKaha13 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): LongKaha13 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -7029,6 +7699,13 @@
   "user_decisions": [
    "user decision (a-LongKaha13): remove LongKaha13 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7041,65 +7718,34 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "HartEtal05",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2005",
-   "title": "The four mountains test: hippocampal damage selectively impairs topographical processing of spatial scenes over very short delays",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "T Hartley and C M Bird and D Chan and L Cipolotti and M Husain and F Vargha-Khadem and N Burgess",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "HartEtal05"
-  },
-  "final_changes": [
-   {
-    "field": "address",
-    "current": null,
-    "proposed": "Washington, {DC}",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=3443",
-      "quote": "2005 Neuroscience Meeting Planner. Washington, DC : Society for Neuroscience, 2005"
-     }
-    ]
-   },
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "191.14",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=3443",
-      "quote": "Presentation Number: 191.14"
-     }
-    ]
-   },
-   {
-    "field": "organization",
-    "current": null,
-    "proposed": "Society for Neuroscience",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=3443",
-      "quote": "2005 Neuroscience Meeting Planner. Washington, DC : Society for Neuroscience, 2005"
-     }
-    ]
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "HartEtal05",
-   "target_base": "HartEtal05",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "HartEtal05 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): HartEtal05 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -7112,83 +7758,42 @@
   "user_decisions": [
    "user decision (a-HartEtal05): remove HartEtal05 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "vanVEtal05",
   "batch": "batch-097",
   "verdict": "correction",
-  "current": {
-   "year": "2005",
-   "title": "{EEG} correlate of summed similarity during a working memory task",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "M {van Vugt} and G Hwang and M J Kahana",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "vanVEtal05"
-  },
-  "final_changes": [
-   {
-    "field": "address",
-    "current": null,
-    "proposed": "Washington, {DC}",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=1348",
-      "quote": "2005 Neuroscience Meeting Planner. Washington, DC : Society for Neuroscience, 2005"
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "author",
-    "current": "M {van Vugt} and G Hwang and M J Kahana",
-    "proposed": "M K {van Vugt} and G Hwang-Grodzins and M J Kahana",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "SfN 2005 archive page: \"Presentation Number: 65.26 Abstract Title: EEG correlate of summed similarity during a working memory task. Authors: van Vugt, M. K.* 1 ; Hwang-Grodzins, G. 3 ; Kahana, M. J. 2\" and \"2005 Neuroscience Meeting Planner. Washington, DC\". The byline prints 'Hwang-Grodzins, G.', so G Hwang-Grodzins is right for this abstract. The same byline prints 'M. K.' for van Vugt, and the 7 other HEAD cdl.bib entries for him all write 'M K {van Vugt}'; the researcher's \"no initial added to a braced particle surname\" is not a house rule (PROTOCOL: particles as printed; add initials as printed, as done for CrutEtal12). Consistency with DankEtal08 (wave 7): the Psychophysiology 2008 byline (PubMed \"Hwang Grace M\"; PDF \"Grace M. Hwang\") supports 'G M Hwang' there. Both are right for their own bylines: the same person printed under two names. Removal list anyway."
-      ]
-     }
-    ],
-    "reviewer": "partly: G Hwang-Grodzins agreed, missing K for van Vugt"
-   },
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "65.26",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=1348",
-      "quote": "Presentation Number: 65.26"
-     }
-    ],
-    "reviewer": "agree"
-   },
-   {
-    "field": "organization",
-    "current": null,
-    "proposed": "Society for Neuroscience",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://www.sfn.org/meetings/past-and-future-sfn-meetings/abstract-archive/Abstract-Archive-Details?AbsYear=2005&AbsID=1348",
-      "quote": "2005 Neuroscience Meeting Planner. Washington, DC : Society for Neuroscience, 2005"
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "vanVEtal05",
-   "target_base": "vanVEtal05",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "vanVEtal05 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): vanVEtal05 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
    {
     "code": "user_decision",
     "field": null,
@@ -7208,6 +7813,13 @@
    "user decision (a-vanVEtal05, q-hwang): remove vanVEtal05 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)",
    "cross-wave a-vanVEtal05: correct; cross-wave q-hwang: as-printed: each paper keeps the author's printed name (no unification across papers)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -7224,7 +7836,7 @@
     "author": "M K {van Vugt} and G Hwang-Grodzins and M J Kahana"
    }
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "DengEtal13",
@@ -7319,6 +7931,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7350,6 +7963,19 @@
   },
   "final_changes": [
    {
+    "field": "booktitle",
+    "current": "{IEEE} Conference on Acoustics, Speech, and Signal Processing",
+    "proposed": "{IEEE} International Conference on Acoustics, Speech and Signal Processing",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+      "quote": "\"container-title\":[\"IEEE International Conference on Acoustics Speech and Signal Processing\"]"
+     }
+    ],
+    "decision": "resolution batch-26"
+   },
+   {
     "field": "doi",
     "current": null,
     "proposed": "10.1109/icassp.2006.1659988",
@@ -7373,14 +7999,20 @@
    {
     "code": "quote_check_failed",
     "field": "booktitle",
-    "detail": "validator: booktitle not covered by its quotes (missing ['speech']; failures [])",
-    "action": "held"
+    "detail": "validator: booktitle not covered by its quotes (missing ['speech']; failures []); superseded by the resolution (batch-26)",
+    "action": "dropped"
    },
    {
     "code": "doi_record_conflict",
     "field": "pages",
     "detail": "Crossref record of 10.1109/icassp.2006.1659988 gives pages 'I-185-I-188', proposal '185--188'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "booktitle, pages, volume",
+    "detail": "resolution 'apply' (batch-26): booktitle = '{IEEE} International Conference on Acoustics, Speech and Signal Processing'; pages = '185--188'; volume = '1'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -7416,6 +8048,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-26",
+   "notes": "DOI applied. Crossref's 2006 container reads 'Acoustics Speed and Signal Processing' (evident misprint), so the booktitle takes the series name as Crossref registers it for ICASSP (1993 record; same form as HEAD's 10.1109/ICASSP.2010.5494999 entry). The author PDF (cs.cmu.edu/~awb/papers/ICASSP2006/0100185.pdf) prints 'I - 185' / 'ICASSP 2006': the 'I-' prefix is the volume numeral, carried by Volume 1 (roman-volume default), so pages stay 185--188. RECONCILED 2026-09-26: Question answered by rule: ICASSP volume prefix -> Volume (default).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7427,7 +8066,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "YingEtal92",
@@ -7490,7 +8129,8 @@
    "target_base": "YingEtal93",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "YingEtal93"
+   "new_key": "YingEtal93",
+   "resolution": "resolution (batch-26): key YingEtal93 confirmed"
   },
   "flags": [
    {
@@ -7500,10 +8140,22 @@
     "action": "flag"
    },
    {
+    "code": "resolution_decision",
+    "field": "pages, volume",
+    "detail": "resolution 'apply' (batch-26): pages = '732--735'; volume = '2'",
+    "action": "applied"
+   },
+   {
     "code": "key_rename",
     "field": "key",
     "detail": "YingEtal92 -> YingEtal93 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-26): YingEtal92 -> YingEtal93, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -7533,6 +8185,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-26",
+   "notes": "Crossref: ICASSP '93 (Minneapolis, 27-30 Apr 1993), published-print 1993; applies booktitle, DOI and year 1993 from the post-check, so key follows as YingEtal93 (not in HEAD). The 'vol.2' in Crossref's page string is the volume, so pages 732--735 with Volume 2.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7547,7 +8206,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "AndeEtal16",
@@ -7651,6 +8310,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7670,27 +8330,39 @@
   "key": "SedeNorm07",
   "batch": "batch-097",
   "verdict": "no_source",
-  "current": {
-   "year": "2007",
-   "title": "Tracking episodic and semantic retrieval with {fMRI} pattern classification",
-   "publisher": "Society for Neuroscience",
-   "author": "P B Sederberg and K A Norman",
-   "ENTRYTYPE": "conference",
-   "ID": "SedeNorm07"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "SedeNorm07",
-   "target_base": "SedeNorm07",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
-    "field": "verdict",
-    "detail": "verdict no_source: user decision",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "SedeNorm07 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): SedeNorm07 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): author='P B Sederberg and K A Norman', title='Tracking episodic and semantic retrieval with {fMRI} pattern classification', year='2007'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "verdict",
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-26)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -7704,6 +8376,13 @@
   "user_decisions": [
    "user decision (a-SedeNorm07): remove SedeNorm07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json). The PsycEXTRA record 10.1037/e527342012-512 has a different title and is not identified as this work.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7716,34 +8395,45 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "DetrEtal07",
   "batch": "batch-097",
   "verdict": "no_source",
-  "current": {
-   "year": "2007",
-   "title": "Reinstatement of encoding task context during free recall",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "G J Detre and S M Polyn and M J Bannert and K A Norman",
-   "address": "San Diego, {CA}",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "DetrEtal07"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "DetrEtal07",
-   "target_base": "DetrEtal07",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
-    "field": "verdict",
-    "detail": "verdict no_source: user decision",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "DetrEtal07 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): DetrEtal07 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): author='G J Detre and S M Polyn and M J Bannert and K A Norman', title='Reinstatement of encoding task context during free recall', year='2007', address='San Diego, {CA}'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "verdict",
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-26)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -7757,6 +8447,13 @@
   "user_decisions": [
    "user decision (a-DetrEtal07): remove DetrEtal07 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7769,35 +8466,45 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "DerdEtal06",
   "batch": "batch-097",
   "verdict": "no_source",
-  "current": {
-   "year": "2006",
-   "volume": "33",
-   "title": "Breaking up the entorhinal grid in a hairpin maze",
-   "number": "68.10",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "D Derdikman and M Fyhn and T Hafting and M B Moser and E I Moser",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "DerdEtal06"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "DerdEtal06",
-   "target_base": "DerdEtal06",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
-    "field": "verdict",
-    "detail": "verdict no_source: user decision",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "DerdEtal06 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): DerdEtal06 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): author='D Derdikman and M Fyhn and T Hafting and M B Moser and E I Moser', title='Breaking up the entorhinal grid in a hairpin maze', year='2006', volume='33', number='68.10'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "verdict",
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-26)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -7811,6 +8518,13 @@
   "user_decisions": [
    "user decision (a-DerdEtal06): remove DerdEtal06 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7823,36 +8537,45 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "ReccOKee89",
   "batch": "batch-097",
   "verdict": "no_source",
-  "current": {
-   "year": "1989",
-   "volume": "15",
-   "title": "The tetrode: a new technique for multi-unit extracellular recording",
-   "pages": "1250",
-   "number": "2",
-   "booktitle": "Society for Neuroscience Abstracts",
-   "author": "M L Recce and J O'Keefe",
-   "ENTRYTYPE": "inproceedings",
-   "ID": "ReccOKee89"
-  },
+  "current": {},
   "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "ReccOKee89",
-   "target_base": "ReccOKee89",
-   "action": "keep"
+   "target_base": null,
+   "action": "keep",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "needs_user",
-    "field": "verdict",
-    "detail": "verdict no_source: user decision",
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "ReccOKee89 is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-26): ReccOKee89 is not in the bibliography; nothing to do",
+    "action": "applied"
+   },
+   {
+    "code": "unverified_suggestions",
+    "field": null,
+    "detail": "values left not_found or suggested by the rules (never applied): author=\"M L Recce and J O'Keefe\", title='The tetrode: a new technique for multi-unit extracellular recording', year='1989', volume='15', number='2', pages='1250'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "verdict",
+    "detail": "verdict no_source resolved by the resolution ('drop', batch-26)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -7866,6 +8589,13 @@
   "user_decisions": [
    "user decision (a-ReccOKee89): remove ReccOKee89 from cdl.bib (approved removal as an abstract; listed in crosswave/removals.json)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-26",
+   "notes": "Already removed from HEAD cdl.bib (verification/key-deletions.json: 'conference abstract (approved removal)'). SfN annual-meeting abstract, not a proceedings paper.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7878,7 +8608,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "DalaTrig05",
@@ -7920,6 +8650,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8060,6 +8791,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -8154,6 +8886,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8258,6 +8991,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -8343,6 +9077,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8437,6 +9172,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8540,6 +9276,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8610,6 +9347,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8688,6 +9426,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -8763,6 +9502,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  }

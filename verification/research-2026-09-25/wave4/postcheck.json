@@ -7,15 +7,14 @@
    "field_not_found": 8,
    "identity_quote_failed": 1,
    "key_collision": 1,
-   "key_rename": 5,
-   "needs_user": 2,
+   "key_rename": 6,
    "print_year_conflict": 1,
    "quote_check_failed": 8,
+   "resolution_decision": 40,
+   "resolution_quote_unverified": 11,
    "style_only_change": 5,
    "surname_corroborated": 6,
-   "surname_single_source": 5,
-   "unverified_suggestions": 2,
-   "year_from_online_date": 1
+   "unverified_suggestions": 1
   },
   "dois_dropped": [],
   "dois_dropped_by_rules_alone": [],
@@ -23,7 +22,9 @@
    "MarsEtal06": "MarsEtal00",
    "YantMord91": "MordYant91",
    "Hirs86": "HirsEtal86",
+   "CranPari57": "CranParr57",
    "Whal20": "TrusWhal20",
+   "vand95": "vandFisl95",
    "Kopp78": "Kopp63"
   },
   "duplicates": {},
@@ -34,7 +35,293 @@
   "user_decisions": {},
   "remove_entries": [],
   "software_first_version": {},
-  "country_dropped": []
+  "country_dropped": [],
+  "resolutions": {
+   "Aber40": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Aber40"
+   },
+   "BahrPhel87": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [
+     "author: quote unverified (value words ['bahrick'] are not in the quote)"
+    ],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "BahrPhel87"
+   },
+   "Bull90": {
+    "decision": "keep",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Bull90"
+   },
+   "CoheEtal08a": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "collision",
+    "key": "CoheEtal09c"
+   },
+   "CoheEtal09b": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "CoheEtal09b"
+   },
+   "CranPari57": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "CranParr57"
+   },
+   "DobbHan06": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "DobbHan06"
+   },
+   "ElliEtal95": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "ElliEtal95"
+   },
+   "EvanEtal84": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [
+     "author: quote unverified (value words ['evans', 'garling', 'bryant', 'bresolin'] are not in the quote)"
+    ],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "EvanEtal84"
+   },
+   "Hirs86": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "HirsEtal86"
+   },
+   "KeppEtal68": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "KeppEtal68"
+   },
+   "Knut07": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Knut07"
+   },
+   "Kopp78": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "Kopp63"
+   },
+   "Madi71": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Madi71"
+   },
+   "MarsEtal06": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "MarsEtal00"
+   },
+   "MullWehn94": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "MullWehn94"
+   },
+   "MurdMetc78": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "MurdMetc78"
+   },
+   "MurdOkad70": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "MurdOkad70"
+   },
+   "ParrSabi90": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "ParrSabi90"
+   },
+   "RadvEtal05": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "RadvEtal05"
+   },
+   "RaskCook37": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "RaskCook37"
+   },
+   "SuppEtal66": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "SuppEtal66"
+   },
+   "TulvHast72": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "TulvHast72"
+   },
+   "WalkHulm99": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "WalkHulm99"
+   },
+   "WatkWatk75": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "WatkWatk75"
+   },
+   "Waug63b": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "Waug63b"
+   },
+   "Whal20": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "TrusWhal20"
+   },
+   "YantMord91": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "MordYant91"
+   },
+   "YoneJaco97": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "YoneJaco97"
+   },
+   "ZhanEtal06": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [],
+    "noop": null,
+    "key_plan": "keep",
+    "key": "ZhanEtal06"
+   },
+   "vand95": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "residue": [
+     "author: quote unverified (value words ['kolk'] are not in the quote)",
+     "key vandFisl95 does not follow the ID rule for the corrected metadata (vand95)"
+    ],
+    "noop": null,
+    "key_plan": "rename",
+    "key": "vandFisl95"
+   }
+  },
+  "resolution_residue": {
+   "BahrPhel87": [
+    "author: quote unverified (value words ['bahrick'] are not in the quote)"
+   ],
+   "EvanEtal84": [
+    "author: quote unverified (value words ['evans', 'garling', 'bryant', 'bresolin'] are not in the quote)"
+   ],
+   "vand95": [
+    "author: quote unverified (value words ['kolk'] are not in the quote)",
+    "key vandFisl95 does not follow the ID rule for the corrected metadata (vand95)"
+   ]
+  },
+  "resolution_removals": [],
+  "resolution_redirects": {},
+  "resolution_noops": {},
+  "resolution_key_collisions": {},
+  "resolution_quotes_unverified": [
+   "Aber40: author = 'E M Abernethy': quote 'Ethel Mary Abernethy' at https://www.tandfonline.com/doi/abs/10.1080/00223980.1940.9917005: fetch failed: HTTPError: HTTP Error 403: Forbidden; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "BahrPhel87: author = 'H P Bahrick and E Phelps': quote 'Elizabeth Phelps' at https://gwern.net/doc/psychology/spaced-repetition/1987-bahrick.pdf: value words ['bahrick'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+   "CranPari57: author = 'C W Crannell and J M Parrish': quote 'C. W. Crannell &J. M. Parrish' at https://www.tandfonline.com/doi/abs/10.1080/00223980.1957.9713089: fetch failed: HTTPError: HTTP Error 403: Forbidden; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "ElliEtal95: title = 'Emotion and memory: effect of mood states on immediate and unexpected delayed recall': quote 'Ellis, H. C., Seibert, P. S., & Varner, L. J. (1995). Emotion and memory: Effect of mood states on immediate and unexpected delayed recall. Journal of Social Behavior & Personality, 10(2), 349–362.' at https://psycnet.apa.org/record/1996-91222-001: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "EvanEtal84: author = 'G W Evans and M A Skorpanich and T G{\\\\\"a}rling and K J Bryant and B Bresolin': quote 'Skorpanich' at https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml: value words ['evans', 'garling', 'bryant', 'bresolin'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+   "KeppEtal68: title = 'Studies of learning to learn: {VIII}. The influence of massive amounts of training upon the learning and retention of paired-associate lists': quote 'Keppel, G., Postman, L., & Zavortink, B. (1968). Studies of learning to learn: VIII. The influence of massive amounts of training upon the learning and retention of paired-associate lists. Journal of Verbal Learning & Verbal Behavior, 7(4), 790–796.' at https://psycnet.apa.org/record/1969-01946-001: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "MullWehn94: author = 'M M{\\\\\"u}ller and R Wehner': quote 'Müller, M.' at https://link.springer.com/article/10.1007/BF00199474: value words ['wehner'] are not in the quote; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "ParrSabi90: author = 'W G Parrott and J Sabini': quote 'Parrott, W. G., & Sabini, J. (1990). Mood and memory under natural conditions: Evidence for mood incongruent recall.' at https://psycnet.apa.org/doiLanding?doi=10.1037%2F0022-3514.59.2.321: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "SuppEtal66: author = 'P Suppes and G Groen and M Schlag-Rey': quote 'Suppes, P., Groen, G., & Schlag-Rey, M. (1966). A model for response latency in paired-associate learning. Journal of Mathematical Psychology, 3(1), 99–128.' at https://psycnet.apa.org/record/1966-04728-001: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "WalkHulm99: year = '1999': quote 'Walker, I., & Hulme, C. (1999). Concrete words are easier to recall than abstract words: Evidence for a semantic contribution to short-term serial recall. Journal of Experimental Psychology: Learning, Memory, and Cognition, 25(5), 1256–1271.' at https://psycnet.apa.org/doiLanding?doi=10.1037%2F0278-7393.25.5.1256: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+   "vand95: author = 'B A van der Kolk and R Fisler': quote '\"family\":\"Fisler\"' at https://api.crossref.org/works/10.1002/jts.2490080402: value words ['kolk'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)"
+  ]
  },
  "measurement": {
   "findings": 4,
@@ -281,6 +568,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "ChanEtal21b": {
@@ -377,6 +665,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "CoheEtal08a": {
@@ -384,10 +673,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_collision",
      "field": "key",
      "detail": "CoheEtal09 is taken by a different work (CoheEtal09a, CoheEtal09b); proposed key CoheEtal09c",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-06): CoheEtal08a -> CoheEtal09c, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -471,7 +772,8 @@
      "CoheEtal09a",
      "CoheEtal09b"
     ],
-    "detail": "CoheEtal09 is taken by a different work (CoheEtal09a, CoheEtal09b)"
+    "detail": "CoheEtal09 is taken by a different work (CoheEtal09a, CoheEtal09b)",
+    "resolution": "resolution (batch-06): key CoheEtal09c confirmed"
    },
    "doi_status": {
     "doi": "10.1162/jocn.2009.21062",
@@ -506,6 +808,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "PubMed 18702577 'DP  - 2009 May' and Crossref (print 2009) give JOCN 21(5) 875-889, 2009. CoheEtal09a and CoheEtal09b are different works, and CoheEtal09b stays in 2009 (see its entry), so the next free key is CoheEtal09c.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-023"
   },
   "CoheEtal09b": {
@@ -517,6 +826,12 @@
      "field": "year",
      "detail": "Crossref published-print 2008 vs year 2009: print year wins",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "year",
+     "detail": "resolution 'apply' (batch-06): year = '2009'",
+     "action": "applied"
     },
     {
      "code": "unverified_suggestions",
@@ -577,6 +892,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "Crossref's published-print 2008-02 is wrong: the MIT Press page (doi.org/10.1162/jocn.2008.21020) shows 'Volume 21, Issue 2 February 2009' with citation_publication_date=2009/02/01, and PubMed agrees. 2008 is only the online-first date, so the printed year 2009 stays. The DOI is added.",
+    "residue": [],
+    "quotes": {
+     "year": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-023"
   },
   "DobbHan06": {
@@ -588,6 +915,12 @@
      "field": "title",
      "detail": "'Cue-versus probe-dependent prefrontal cortex activity during contextual remembering' -> 'Cue- versus probe-dependent prefrontal cortex activity during contextual remembering' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -662,6 +995,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "This is not spacing only: the title as printed (PubMed 16989546 and Crossref) uses a suspended hyphen, 'Cue- versus probe-dependent'. cdl.bib already writes suspended hyphens this way ('short- and long-term', 'left- and right-handed'). Pages 1439--1452 and the DOI are added.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-023"
   },
   "GonzEtal05": {
@@ -762,6 +1102,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "GuilEtal99": {
@@ -830,6 +1171,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "JhaMcCa00": {
@@ -911,6 +1253,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "MarsEtal06": {
@@ -918,10 +1261,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "MarsEtal06 -> MarsEtal00 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-06): MarsEtal06 -> MarsEtal00, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -1000,7 +1355,8 @@
     "target_base": "MarsEtal00",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "MarsEtal00"
+    "new_key": "MarsEtal00",
+    "resolution": "resolution (batch-06): key MarsEtal00 confirmed"
    },
    "doi_status": {
     "doi": "10.1162/08989290051137459",
@@ -1033,6 +1389,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "PubMed 11506653 'DP  - 2000' and Crossref give JOCN 12(Supplement 2) 130-144, 2000, so the key is MarsEtal00, which is not in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-023"
   },
   "QiCout26": {
@@ -1052,6 +1415,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "RoyEtal14": {
@@ -1156,6 +1520,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "TaylEtal04": {
@@ -1259,6 +1624,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "WagnEtal00": {
@@ -1355,6 +1721,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "deArEtal02": {
@@ -1425,6 +1792,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "deBeEtal21": {
@@ -1483,6 +1851,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "StanEtal89": {
@@ -1553,6 +1922,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "HougBing04": {
@@ -1619,6 +1989,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "LyndHabe94": {
@@ -1713,6 +2084,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "ZeitEtal08": {
@@ -1809,6 +2181,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "CollRees97": {
@@ -1890,6 +2263,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-023"
   },
   "MullWehn94": {
@@ -1903,14 +2277,33 @@
      "action": "flag"
     },
     {
-     "code": "unverified_suggestions",
-     "field": null,
-     "detail": "values left not_found or suggested by the rules (never applied): author='M {M\\\\\"u}ller and R Wehner'",
-     "action": "flag"
+     "code": "resolution_quote_unverified",
+     "field": "author",
+     "detail": "author = 'M M{\\\\\"u}ller and R Wehner': quote 'Müller, M.' at https://link.springer.com/article/10.1007/BF00199474: value words ['wehner'] are not in the quote; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "author",
+     "detail": "resolution 'apply' (batch-06): author = 'M M{\\\\\"u}ller and R Wehner'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "M {M\\\"uller} and R Wehner",
+     "proposed": "M M{\\\"u}ller and R Wehner",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://link.springer.com/article/10.1007/BF00199474",
+       "quote": "Müller, M."
+      }
+     ],
+     "decision": "resolution batch-06"
+    },
     {
      "field": "doi",
      "current": null,
@@ -1966,9 +2359,7 @@
    ],
    "removals": {},
    "held": {},
-   "suggestions": {
-    "author": "M {M\\\"u}ller and R Wehner"
-   },
+   "suggestions": {},
    "key_plan": {
     "current_key": "MullWehn94",
     "target_base": "MullWehn94",
@@ -1999,6 +2390,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "The Springer article page meta tags (fetched via a browser; plain fetches get a cookie redirect) give citation_author 'Müller, M.' and 'Wehner, R.', pages 525-530. Crossref's name is mojibake. The local PDF reads 'J Comp Physiol A (1994) 175:525-530'. The umlaut uses the house form M{\\\"u}ller (7 of 13 in cdl.bib).",
+    "residue": [],
+    "quotes": {
+     "author": {
+      "ok": false,
+      "why": "value words ['wehner'] are not in the quote"
+     }
+    }
+   },
    "batch": "batch-024"
   },
   "WehnSrin81": {
@@ -2089,6 +2492,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "CoucEtal87": {
@@ -2187,6 +2591,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "EvanEtal84": {
@@ -2194,58 +2599,20 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "surname_single_source",
+     "code": "resolution_quote_unverified",
      "field": "author",
-     "detail": "surname 'skorpanovich' -> 'skorpanich' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'M A Skorpanovich' is kept",
+     "detail": "author = 'G W Evans and M A Skorpanich and T G{\\\\\"a}rling and K J Bryant and B Bresolin': quote 'Skorpanich' at https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml: value words ['evans', 'garling', 'bryant', 'bresolin'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
      "action": "held"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [
-    {
-     "field": "author",
-     "current": "G W Evans and M A Skorpanovich and T Garling and Bryant K J and B Bresolin",
-     "proposed": "G W Evans and M A Skorpanovich and T G{\\\"a}rling and K J Bryant and B Bresolin",
-     "source": "researcher",
-     "evidence": [
-      {
-       "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
-       "quote": "Gary W."
-      },
-      {
-       "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
-       "quote": "Evans"
-      },
-      {
-       "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
-       "quote": "Mary Anne"
-      },
-      {
-       "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
-       "quote": "Skorpanich"
-      },
-      {
-       "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
-       "quote": "Tommy"
-      },
-      {
-       "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
-       "quote": "Gärling"
-      },
-      {
-       "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
-       "quote": "Kendall J."
-      },
-      {
-       "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
-       "quote": "Bryant"
-      },
-      {
-       "url": "https://api.crossref.org/v1/works/10.1016/s0272-4944(84)80003-1/transform/application/vnd.crossref.unixsd+xml",
-       "quote": "Bresolin"
-      }
-     ]
-    },
     {
      "field": "doi",
      "current": null,
@@ -2273,7 +2640,7 @@
    ],
    "removals": {},
    "held": {
-    "author": "single-source surname respelling not applied; kept as cited: M A Skorpanovich"
+    "author": "resolution quote unverified: value words ['evans', 'garling', 'bryant', 'bresolin'] are not in the quote"
    },
    "suggestions": {},
    "key_plan": {
@@ -2312,6 +2679,20 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "A second host confirms the spelling: PubMed 6736581 (Evans, Brennan, Skorpanich, Held, J Gerontol 1984) lists 'FAU - Skorpanich, M A'. PubMed has no author 'Skorpanovich'. OpenAlex raw author name is 'Mary Anne Skorpanich'. ScienceDirect blocked the fetch with a captcha.",
+    "residue": [
+     "author: quote unverified (value words ['evans', 'garling', 'bryant', 'bresolin'] are not in the quote)"
+    ],
+    "quotes": {
+     "author": {
+      "ok": false,
+      "why": "value words ['evans', 'garling', 'bryant', 'bresolin'] are not in the quote"
+     }
+    }
+   },
    "batch": "batch-024"
   },
   "Bala99": {
@@ -2388,6 +2769,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "McKiNoso96": {
@@ -2466,6 +2848,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "KelbRoth06": {
@@ -2585,6 +2968,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "RakiEtal98": {
@@ -2679,6 +3063,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "BarnUnde59": {
@@ -2777,6 +3162,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "BattMont69": {
@@ -2855,6 +3241,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "BoweEtal81": {
@@ -2931,6 +3318,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "Brig57": {
@@ -3023,6 +3411,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "BuchEtal95": {
@@ -3123,6 +3512,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "CeraHend65": {
@@ -3205,6 +3595,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "DoshRose89": {
@@ -3259,6 +3650,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "ElliEtal85": {
@@ -3331,6 +3723,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "Falk72": {
@@ -3407,6 +3800,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "Fisc66": {
@@ -3473,6 +3867,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "ForrCunn73": {
@@ -3563,6 +3958,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "Giur73": {
@@ -3642,6 +4038,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-024"
   },
   "Gorm61": {
@@ -3750,6 +4147,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "Hell62": {
@@ -3846,6 +4244,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "HintEtal73": {
@@ -3926,6 +4325,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "HoroIzaw63": {
@@ -4004,6 +4404,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "LevyNevi74": {
@@ -4098,6 +4499,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "Loes67": {
@@ -4162,6 +4564,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "MacLKamp96": {
@@ -4247,6 +4650,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "Madi71": {
@@ -4258,6 +4662,12 @@
      "field": "author",
      "detail": "verdict 'correction' but author is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -4330,6 +4740,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "Journal (JEP, before the 1975 split), issue 2 and DOI come from Crossref and APA PsycNet ('Journal of Experimental Psychology, 87(2), 294–296'). The author is not confirmed: PsycNet and Crossref both print 'Madigna, S. A.' and no printed PDF was reachable, so HEAD's 'S A Madigan' is left unchanged. RECONCILED 2026-09-26: HEAD author kept under the author-name rule (round 1: correct, most complete name; misprints such as 'Madigna'/'Tulvig' are not copied). Evidence: Madigan's other records: Crossref 10.1016/s0022-5371(69)80050-2 'Stephen A. Madigan' (JVLVB 1969).",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-025"
   },
   "Metc90": {
@@ -4409,6 +4826,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "MeyeSchv71": {
@@ -4503,6 +4921,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "Murd56": {
@@ -4579,6 +4998,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "NelsBord73": {
@@ -4669,6 +5089,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "Nils74": {
@@ -4748,6 +5169,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "NormWaug68": {
@@ -4826,6 +5248,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "PetePete59": {
@@ -4904,6 +5327,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "Pier63": {
@@ -4987,6 +5411,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "PostKepp77": {
@@ -5055,6 +5480,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "RaskCook37": {
@@ -5066,6 +5492,12 @@
      "field": "author",
      "detail": "verdict 'correction' but author is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -5140,6 +5572,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "Journal (JEP), issue 4 and DOI come from Crossref and PsycNet ('Journal of Experimental Psychology, 20(4), 381–395'). The author is not confirmed: PsycNet prints 'Raskin, E., & Cook, S. A.' against HEAD's 'S W Cook', no printed PDF was reachable, and HEAD is left unchanged. RECONCILED 2026-09-26 (unsettled entries): Author-name rule (round 1: the author's correct, most complete name, with evidence from other records of the same author): HEAD 'S W Cook' stays. Crossref shows APA printing 'Stuart A. Cook' only on its 1937-1940 deposits (10.1037/h0061612 this paper; 10.1037/h0063197 GSR conditioning 1937; 10.1037/h0054598 1939; 10.1037/h0061199 polls 1940), while the same author's other records of those years print 'Stuart W. Cook': APA itself on 10.1037/h0063120 (JAP 1936) and 10.1037/h0049639 (JASP 1940), Journal of Social Psychology 10.1080/00224545.1938.9921689 (1938, attitude toward Fascism) and American Journal of Psychiatry 10.1176/ajp.95.6.1259 (1939). Crossref (query.author 'Stuart Cook', to 1945) lists no 'Stuart A. Cook' outside those APA 1937-1940 deposits, and the topics (attitudes, polls, conditioning, experimental neurosis) are one research line: the 'A.' is APA's metadata misprint.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-025"
   },
   "Sauf67": {
@@ -5204,6 +5643,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "Slam68": {
@@ -5268,6 +5708,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-025"
   },
   "SmitEtal13a": {
@@ -5387,6 +5828,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "SnodCorw88": {
@@ -5455,6 +5897,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "SnodVand80": {
@@ -5523,6 +5966,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "SwalEtal09": {
@@ -5579,6 +6023,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "TulvHast72": {
@@ -5590,6 +6035,12 @@
      "field": "author",
      "detail": "verdict 'correction' but author is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -5664,6 +6115,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "Journal (JEP), issue 3 and DOI come from Crossref and PsycNet ('Journal of Experimental Psychology, 92(3), 297–304'). The author is not confirmed: PsycNet, Crossref and Google Scholar all print 'Tulvig, E.', no printed PDF was reachable, and HEAD's 'E Tulving and R Hastie' is left unchanged. RECONCILED 2026-09-26: HEAD author kept under the author-name rule (round 1: correct, most complete name; misprints such as 'Madigna'/'Tulvig' are not copied). Evidence: Tulving's other records throughout cdl.bib (e.g. PubMed/Crossref 'Tulving, E.').",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-026"
   },
   "Unde65": {
@@ -5756,6 +6214,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "Unde72b": {
@@ -5844,6 +6303,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "Voss69": {
@@ -5920,6 +6380,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "Waug63b": {
@@ -5931,6 +6392,12 @@
      "field": "title",
      "detail": "verdict 'correction' but title is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "title",
+     "detail": "resolution 'apply' (batch-06): title = 'Two methods for testing serial memorization'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -6003,6 +6470,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "PubMed 13999258 (J Exp Psychol 65, 1963 Feb, 215-6, WAUGH NC) prints the title with 'Two'; Crossref's '2 methods' is a data-entry artifact. The title is confirmed as it stands in HEAD.",
+    "residue": [],
+    "quotes": {
+     "title": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-026"
   },
   "WeidEtal19": {
@@ -6079,6 +6558,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "Will61": {
@@ -6155,6 +6635,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "YoneJaco96a": {
@@ -6223,6 +6704,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "YoneJaco97": {
@@ -6232,8 +6714,14 @@
     {
      "code": "quote_check_failed",
      "field": "title",
-     "detail": "validator: title not covered by its quotes (missing ['response', 'bias', 'process', 'dissociation', 'procedure']; failures ['quote not found at url'])",
-     "action": "held"
+     "detail": "validator: title not covered by its quotes (missing ['response', 'bias', 'process', 'dissociation', 'procedure']; failures ['quote not found at url']); superseded by the resolution (batch-06)",
+     "action": "dropped"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "title",
+     "detail": "resolution 'apply' (batch-06): title = \"``Response bias and the process-dissociation procedure'': correction to {Yonelinas} and {Jacoby} (1996)\"",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -6261,12 +6749,23 @@
        "quote": "\"issue\":\"1\""
       }
      ]
+    },
+    {
+     "field": "title",
+     "current": "Response bias and the process-dissociation procedure: correction to {Yonelinas} and {Jacoby} (1996)",
+     "proposed": "``Response bias and the process-dissociation procedure'': correction to {Yonelinas} and {Jacoby} (1996)",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/v1/works/10.1037/0096-3445.126.1.18/transform/application/vnd.crossref.unixsd+xml",
+       "quote": "\"Response bias and the process-dissociation procedure\": Correction to Yonelinas and Jacoby (1996)."
+      }
+     ],
+     "decision": "resolution batch-06"
     }
    ],
    "removals": {},
-   "held": {
-    "title": "quote check failed"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "YoneJaco97",
@@ -6298,6 +6797,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "The quote is taken from the Crossref unixsd XML, where the title is plain text (the JSON escapes the quotation marks). The printed title puts the corrected article's title in quotation marks, which HEAD drops. Pages 18, issue 1 and DOI are added. RECONCILED 2026-09-26: Quoted title keeps its marks as ``X'' (default).",
+    "residue": [],
+    "quotes": {
+     "title": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-026"
   },
   "GlenEtal80": {
@@ -6416,6 +6927,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "Hack80": {
@@ -6521,6 +7033,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "WatkWatk75": {
@@ -6532,6 +7045,12 @@
      "field": "title",
      "detail": "'Build up of proactive inhibition as a cue-overload effect' -> 'Buildup of proactive inhibition as a cue-overload effect' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -6634,6 +7153,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "This is a spelling change, not a style change: Crossref prints 'Buildup of proactive inhibition as a cue-overload effect.' as one word, and cdl.bib writes 'buildup' elsewhere. The author typo (Watking), volume 1 (JEP:HLM) and issue 4 follow Crossref.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-026"
   },
   "FagoPash95": {
@@ -6712,6 +7238,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "MagnEtal98": {
@@ -6816,6 +7343,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-026"
   },
   "YantMord91": {
@@ -6823,10 +7351,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "YantMord91 -> MordYant91 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-06): YantMord91 -> MordYant91, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -6870,7 +7410,8 @@
     "target_base": "MordYant91",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "MordYant91"
+    "new_key": "MordYant91",
+    "resolution": "resolution (batch-06): key MordYant91 confirmed"
    },
    "doi_status": {
     "doi": "10.1037/0096-1523.17.2.520",
@@ -6897,6 +7438,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "PubMed 1830090 (FAU Mordkoff then Yantis) and Crossref ('J. Toby Mordkoff', 'Steven Yantis') list Mordkoff first. MordYant91 is not in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-026"
   },
   "BahrPhel87": {
@@ -6908,6 +7456,18 @@
      "field": "author",
      "detail": "verdict 'correction' but author is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_quote_unverified",
+     "field": "author",
+     "detail": "author = 'H P Bahrick and E Phelps': quote 'Elizabeth Phelps' at https://gwern.net/doc/psychology/spaced-repetition/1987-bahrick.pdf: value words ['bahrick'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+     "action": "held"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-06): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -6962,7 +7522,9 @@
     }
    ],
    "removals": {},
-   "held": {},
+   "held": {
+    "author": "resolution quote unverified: value words ['bahrick'] are not in the quote"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "BahrPhel87",
@@ -6994,6 +7556,20 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-06",
+    "notes": "The printed article PDF (header 'Learning, Memory, and Cognition 1987, Vol. 13, No. 2. 344-349') gives the byline 'Harry P. Bahrick' and 'Elizabeth Phelps'. PsycNet and Crossref misspell the second author as 'Phelphs'.",
+    "residue": [
+     "author: quote unverified (value words ['bahrick'] are not in the quote)"
+    ],
+    "quotes": {
+     "author": {
+      "ok": false,
+      "why": "value words ['bahrick'] are not in the quote"
+     }
+    }
+   },
    "batch": "batch-026"
   },
   "BlooWatk99": {
@@ -7062,6 +7638,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "BrowEtal91": {
@@ -7144,6 +7721,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "CorbWick78": {
@@ -7285,6 +7863,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "GlenEtal83": {
@@ -7400,6 +7979,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "GronShif86": {
@@ -7481,6 +8061,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "HaymTulv89": {
@@ -7567,6 +8148,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "Heat03": {
@@ -7619,6 +8201,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "Hirs86": {
@@ -7626,10 +8209,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-07): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "Hirs86 -> HirsEtal86 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-07): Hirs86 -> HirsEtal86, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -7710,7 +8305,8 @@
     "target_base": "HirsEtal86",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "HirsEtal86"
+    "new_key": "HirsEtal86",
+    "resolution": "resolution (batch-07): key HirsEtal86 confirmed"
    },
    "doi_status": {
     "doi": "10.1037/0278-7393.12.3.445",
@@ -7745,6 +8341,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Crossref 10.1037/0278-7393.12.3.445 lists six authors (Hirst, Johnson, Kim, Phelps, Risse, Volpe); JEP:LMC 12(3) 445-451, 1986. Reviewer agreed; HirsEtal86 is free in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-027"
   },
   "HulmEtal97": {
@@ -7874,6 +8477,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "Lami06": {
@@ -7926,6 +8530,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "LohnKaha13": {
@@ -7994,6 +8599,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "MurdKaha93a": {
@@ -8072,6 +8678,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "MurdKaha93b": {
@@ -8153,6 +8760,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "Nave00": {
@@ -8229,6 +8837,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "NelsEtal03": {
@@ -8303,6 +8912,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "NilsEtal88": {
@@ -8399,6 +9009,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "PageEtal06": {
@@ -8460,6 +9071,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "RatcEtal94": {
@@ -8543,6 +9155,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "RedeEtal00": {
@@ -8676,6 +9289,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "RohrEtal95": {
@@ -8786,6 +9400,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-027"
   },
   "SahaDela05": {
@@ -8852,6 +9467,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "ShifEtal90": {
@@ -8909,6 +9525,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "ShifEtal93": {
@@ -8994,6 +9611,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "SmitEtal01": {
@@ -9066,6 +9684,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "SzpuEtal08": {
@@ -9123,6 +9742,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "WalkHulm99": {
@@ -9130,10 +9750,16 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "year_from_online_date",
+     "code": "resolution_quote_unverified",
      "field": "year",
-     "detail": "year evidence is an online-publication date; the print year wins",
-     "action": "flag"
+     "detail": "year = '1999': quote 'Walker, I., & Hulme, C. (1999). Concrete words are easier to recall than abstract words: Evidence for a semantic contribution to short-term serial recall. Journal of Experimental Psychology: Learning, Memory, and Cognition, 25(5), 1256–1271.' at https://psycnet.apa.org/doiLanding?doi=10.1037%2F0278-7393.25.5.1256: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "year",
+     "detail": "resolution 'apply' (batch-07): year = '1999'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -9196,6 +9822,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Year is unchanged (1999); APA's PsycArticles record (the publisher's own citation; page renders via JavaScript, read in a browser 2026-09-26) prints 1999 for vol 25 no 5. Title 'short-term' matches the printed title.",
+    "residue": [],
+    "quotes": {
+     "year": {
+      "ok": false,
+      "why": "quote not found at url"
+     }
+    }
+   },
    "batch": "batch-028"
   },
   "StepBaer06": {
@@ -9277,6 +9915,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "Mile28": {
@@ -9341,6 +9980,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "Glaz28": {
@@ -9429,6 +10069,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "StonNysw27": {
@@ -9519,6 +10160,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "RadvEtal05": {
@@ -9530,6 +10172,12 @@
      "field": "volume",
      "detail": "verdict 'correction' but volume is not_found: the entry is not fully verified",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "volume",
+     "detail": "resolution 'apply' (batch-07): volume = '60'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -9559,6 +10207,19 @@
       }
      ],
      "reviewer": "agree"
+    },
+    {
+     "field": "volume",
+     "current": "60B",
+     "proposed": "60",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/geronb/60.5.p276",
+       "quote": "\"volume\":\"60\""
+      }
+     ],
+     "decision": "resolution batch-07"
     }
    ],
    "removals": {},
@@ -9596,6 +10257,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Printed volume is 60 (series B is carried by the journal name, not the volume): Crossref volume 60 issue 5 P276-P278; PubMed 16131622 'VI  - 60' (https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=16131622&rettype=medline&retmode=text).",
+    "residue": [],
+    "quotes": {
+     "volume": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-028"
   },
   "ZackHash97": {
@@ -9686,6 +10359,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "KahaEtal05a": {
@@ -9810,6 +10484,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "VerhEtal93": {
@@ -9902,6 +10577,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "GoodEtal07": {
@@ -9921,6 +10597,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "Free03": {
@@ -9987,6 +10664,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "BoweEtal78": {
@@ -10067,6 +10745,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "BengEtal03": {
@@ -10099,6 +10778,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "BleiEtal03": {
@@ -10131,6 +10811,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "DuchEtal11": {
@@ -10150,6 +10831,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-028"
   },
   "FanEtal08": {
@@ -10182,6 +10864,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "GardEtal06": {
@@ -10215,6 +10898,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "HeusEtal18a": {
@@ -10234,6 +10918,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "HoffEtal13": {
@@ -10267,6 +10952,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "PedrEtal11": {
@@ -10286,6 +10972,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "ZhouEtal06": {
@@ -10305,6 +10992,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "vandHint08": {
@@ -10338,6 +11026,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "SingEtal94": {
@@ -10410,6 +11099,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "AshbEtal93": {
@@ -10508,6 +11198,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "AshbMadd93": {
@@ -10574,6 +11265,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "Gros78": {
@@ -10657,6 +11349,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "McMiHolm06": {
@@ -10747,6 +11440,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "MurdEtal01": {
@@ -10830,6 +11524,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "SuppEtal66": {
@@ -10837,14 +11532,33 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "surname_single_source",
+     "code": "resolution_quote_unverified",
      "field": "author",
-     "detail": "surname 'grown' -> 'groen' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'G Grown' is kept",
-     "action": "held"
+     "detail": "author = 'P Suppes and G Groen and M Schlag-Rey': quote 'Suppes, P., Groen, G., & Schlag-Rey, M. (1966). A model for response latency in paired-associate learning. Journal of Mathematical Psychology, 3(1), 99–128.' at https://psycnet.apa.org/record/1966-04728-001: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "author",
+     "detail": "resolution 'apply' (batch-07): author = 'P Suppes and G Groen and M Schlag-Rey'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "P Suppes and G Grown and M Schlag-Rey",
+     "proposed": "P Suppes and G Groen and M Schlag-Rey",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://psycnet.apa.org/record/1966-04728-001",
+       "quote": "Suppes, P., Groen, G., & Schlag-Rey, M. (1966). A model for response latency in paired-associate learning. Journal of Mathematical Psychology, 3(1), 99–128."
+      }
+     ],
+     "decision": "resolution batch-07"
+    },
     {
      "field": "doi",
      "current": null,
@@ -10871,9 +11585,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: G Grown"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "SuppEtal66",
@@ -10907,6 +11619,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Second source for 'Groen': APA PsycInfo record 1966-04728-001 (JS-rendered, read in a browser 2026-09-26) agrees with Crossref '\"family\":\"Groen\"' (given Guy). 'Grown' is a typo.",
+    "residue": [],
+    "quotes": {
+     "author": {
+      "ok": false,
+      "why": "quote not found at url"
+     }
+    }
+   },
    "batch": "batch-029"
   },
   "Bran01": {
@@ -10971,6 +11695,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "LowEtal20": {
@@ -11074,6 +11799,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "Ande03": {
@@ -11127,6 +11853,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "BraiEtal03": {
@@ -11191,6 +11918,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "BurgHitc92": {
@@ -11270,6 +11998,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "NeweRose81": {
@@ -11364,6 +12093,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-029"
   },
   "Gold94": {
@@ -11430,6 +12160,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "GoldEtal94": {
@@ -11490,6 +12221,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "HeimEtal97": {
@@ -11565,6 +12297,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "Brun04": {
@@ -11629,6 +12362,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "LeVaEtal01": {
@@ -11711,6 +12445,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "MillEtal07d": {
@@ -11801,6 +12536,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "OzdeEtal05": {
@@ -11909,6 +12645,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "WuEtal01": {
@@ -11987,6 +12724,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "ZhanEtal06": {
@@ -11998,6 +12736,12 @@
      "field": "title",
      "detail": "'Detecting time-dependent coherence between non-stationary electrophysiological signals--- a combined statistical and time-frequency approach' -> 'Detecting time-dependent coherence between non-stationary electrophysiological signals---a combined statistical and time-frequency approach' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-07): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -12066,6 +12810,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "DOI applied (PubMed 16563517 'AID - 10.1016/j.jneumeth.2006.02.013 [doi]'). Title change is spacing-only around '---'; HEAD writes '--- ' in 27 of 34 em-dash titles, so the current house form is kept pending the rule question. RECONCILED 2026-09-26: Title withdrawal cancelled: the em-dash rule (user, round 1) is 'a---b' with no spaces, which is the post-check's title.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-031"
   },
   "Dimi18": {
@@ -12118,6 +12869,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "FrieEtal99": {
@@ -12198,6 +12950,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "HowaEtal96a": {
@@ -12272,6 +13025,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "KeleEtal04": {
@@ -12334,6 +13088,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "KleiEtal07a": {
@@ -12412,6 +13167,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "LafrEtal09": {
@@ -12491,6 +13247,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "LittEtal09": {
@@ -12595,6 +13352,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "OjemDodr85": {
@@ -12667,6 +13425,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "OjemEtal89": {
@@ -12761,6 +13520,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "SimuEtal02": {
@@ -12860,6 +13620,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "KhoEtal07": {
@@ -12934,6 +13695,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-031"
   },
   "HeusEtal17": {
@@ -13034,6 +13796,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "Wask21": {
@@ -13086,6 +13849,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "LairEtal82": {
@@ -13168,6 +13932,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "ParrSabi90": {
@@ -13175,14 +13940,33 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "surname_single_source",
+     "code": "resolution_quote_unverified",
      "field": "author",
-     "detail": "surname 'parrot' -> 'parrott' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'W G Parrot' is kept",
-     "action": "held"
+     "detail": "author = 'W G Parrott and J Sabini': quote 'Parrott, W. G., & Sabini, J. (1990). Mood and memory under natural conditions: Evidence for mood incongruent recall.' at https://psycnet.apa.org/doiLanding?doi=10.1037%2F0022-3514.59.2.321: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "author",
+     "detail": "resolution 'apply' (batch-07): author = 'W G Parrott and J Sabini'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "W G Parrot and J Sabini",
+     "proposed": "W G Parrott and J Sabini",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://psycnet.apa.org/doiLanding?doi=10.1037%2F0022-3514.59.2.321",
+       "quote": "Parrott, W. G., & Sabini, J. (1990). Mood and memory under natural conditions: Evidence for mood incongruent recall."
+      }
+     ],
+     "decision": "resolution batch-07"
+    },
     {
      "field": "doi",
      "current": null,
@@ -13197,9 +13981,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: W G Parrot"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "ParrSabi90",
@@ -13231,6 +14013,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Second source for 'Parrott': APA PsycArticles record (publisher page, JS-rendered, read in a browser 2026-09-26) agrees with Crossref '\"family\":\"Parrott\"'. No other HEAD entry spells him 'Parrot'.",
+    "residue": [],
+    "quotes": {
+     "author": {
+      "ok": false,
+      "why": "quote not found at url"
+     }
+    }
+   },
    "batch": "batch-032"
   },
   "KinnEtal99": {
@@ -13360,6 +14154,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "BrinCrag72": {
@@ -13392,6 +14187,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "LachEtal03": {
@@ -13460,6 +14256,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "WattPate99": {
@@ -13492,6 +14289,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "Aber40": {
@@ -13499,14 +14297,34 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "surname_single_source",
+     "code": "resolution_quote_unverified",
      "field": "author",
-     "detail": "surname 'abernathy' -> 'abernethy' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'E M Abernathy' is kept",
-     "action": "held"
+     "detail": "author = 'E M Abernethy': quote 'Ethel Mary Abernethy' at https://www.tandfonline.com/doi/abs/10.1080/00223980.1940.9917005: fetch failed: HTTPError: HTTP Error 403: Forbidden; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "author",
+     "detail": "resolution 'apply' (batch-07): author = 'E M Abernethy'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "E M Abernathy",
+     "proposed": "E M Abernethy",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://www.tandfonline.com/doi/abs/10.1080/00223980.1940.9917005",
+       "quote": "Ethel Mary Abernethy"
+      }
+     ],
+     "decision": "resolution batch-07",
+     "reviewer": "hold correct: Crossref Ethel Mary Abernethy; no second independent host (OpenAlex mirrors Crossref; T&F 403)"
+    },
     {
      "field": "doi",
      "current": null,
@@ -13548,9 +14366,7 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: E M Abernathy"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Aber40",
@@ -13580,6 +14396,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Taylor & Francis article page (read in a browser 2026-09-26; blocks plain scripts) prints 'Ethel Mary Abernethy' and 'Pages 293-301', agreeing with Crossref '\"family\":\"Abernethy\"'. Title fix 'changed ... examinations' is printed there too.",
+    "residue": [],
+    "quotes": {
+     "author": {
+      "ok": false,
+      "why": "fetch failed: HTTPError: HTTP Error 403: Forbidden"
+     }
+    }
+   },
    "batch": "batch-032"
   },
   "CranPari57": {
@@ -13587,14 +14415,40 @@
    "verdict": "correction",
    "flags": [
     {
-     "code": "surname_single_source",
+     "code": "resolution_quote_unverified",
      "field": "author",
-     "detail": "surname 'parish' -> 'parrish' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'J M Parish' is kept",
-     "action": "held"
+     "detail": "author = 'C W Crannell and J M Parrish': quote 'C. W. Crannell &J. M. Parrish' at https://www.tandfonline.com/doi/abs/10.1080/00223980.1957.9713089: fetch failed: HTTPError: HTTP Error 403: Forbidden; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "author",
+     "detail": "resolution 'apply' (batch-07): author = 'C W Crannell and J M Parrish'",
+     "action": "applied"
+    },
+    {
+     "code": "key_rename",
+     "field": "key",
+     "detail": "CranPari57 -> CranParr57 (key does not follow the corrected metadata)",
+     "action": "flag"
     }
    ],
    "normalisations": [],
    "changes": [
+    {
+     "field": "author",
+     "current": "C W Crannell and J M Parish",
+     "proposed": "C W Crannell and J M Parrish",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://www.tandfonline.com/doi/abs/10.1080/00223980.1957.9713089",
+       "quote": "C. W. Crannell &J. M. Parrish"
+      }
+     ],
+     "decision": "resolution batch-07",
+     "reviewer": "hold correct: Crossref J. M. Parrish; no second independent host found (OpenAlex mirrors Crossref; T&F page 403)"
+    },
     {
      "field": "doi",
      "current": null,
@@ -13623,14 +14477,14 @@
     }
    ],
    "removals": {},
-   "held": {
-    "author": "single-source surname respelling not applied; kept as cited: J M Parish"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "CranPari57",
-    "target_base": "CranPari57",
-    "action": "keep"
+    "target_base": "CranParr57",
+    "action": "rename",
+    "rename_reason": "key does not follow the corrected metadata",
+    "new_key": "CranParr57"
    },
    "doi_status": {
     "doi": "10.1080/00223980.1957.9713089",
@@ -13657,6 +14511,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Taylor & Francis article page (read in a browser 2026-09-26) prints 'C. W. Crannell &J. M. Parrish', agreeing with Crossref '\"family\":\"Parrish\"'. The other HEAD 'Parish' entries are different people.",
+    "residue": [],
+    "quotes": {
+     "author": {
+      "ok": false,
+      "why": "fetch failed: HTTPError: HTTP Error 403: Forbidden"
+     }
+    }
+   },
    "batch": "batch-032"
   },
   "Jens62": {
@@ -13711,6 +14577,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "Shap70": {
@@ -13790,6 +14657,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "Mitc09": {
@@ -13885,6 +14753,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "SchuEtal01": {
@@ -13982,6 +14851,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "vanBBock04": {
@@ -14036,6 +14906,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "BenjHoch95": {
@@ -14114,6 +14985,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "Hote53": {
@@ -14193,6 +15065,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "TippBish99": {
@@ -14259,6 +15132,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "Buzs98": {
@@ -14325,6 +15199,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-032"
   },
   "Bull90": {
@@ -14346,60 +15221,67 @@
     {
      "code": "quote_check_failed",
      "field": "author",
-     "detail": "validator: author not covered by its quotes (missing ['bullington']; failures ['quote not found at url'])",
-     "action": "held"
+     "detail": "validator: author not covered by its quotes (missing ['bullington']; failures ['quote not found at url']); superseded by the resolution ('keep', batch-07)",
+     "action": "dropped"
     },
     {
      "code": "quote_check_failed",
      "field": "journal",
-     "detail": "validator: journal not covered by its quotes (missing ['journal', 'social', 'behavior', 'personality']; failures ['quote not found at url'])",
-     "action": "held"
+     "detail": "validator: journal not covered by its quotes (missing ['journal', 'social', 'behavior', 'personality']; failures ['quote not found at url']); superseded by the resolution ('keep', batch-07)",
+     "action": "dropped"
     },
     {
      "code": "quote_check_failed",
      "field": "year",
-     "detail": "validator: year not covered by its quotes (missing ['1990']; failures ['quote not found at url'])",
-     "action": "held"
+     "detail": "validator: year not covered by its quotes (missing ['1990']; failures ['quote not found at url']); superseded by the resolution ('keep', batch-07)",
+     "action": "dropped"
     },
     {
      "code": "quote_check_failed",
      "field": "volume",
-     "detail": "validator: volume not covered by its quotes (missing ['5']; failures ['quote not found at url'])",
-     "action": "held"
+     "detail": "validator: volume not covered by its quotes (missing ['5']; failures ['quote not found at url']); superseded by the resolution ('keep', batch-07)",
+     "action": "dropped"
     },
     {
      "code": "quote_check_failed",
      "field": "number",
-     "detail": "validator: number not covered by its quotes (missing ['4']; failures ['quote not found at url'])",
-     "action": "held"
+     "detail": "validator: number not covered by its quotes (missing ['4']; failures ['quote not found at url']); superseded by the resolution ('keep', batch-07)",
+     "action": "dropped"
     },
     {
      "code": "quote_check_failed",
      "field": "pages",
-     "detail": "validator: pages not covered by its quotes (missing ['123', '134']; failures ['quote not found at url'])",
-     "action": "held"
+     "detail": "validator: pages not covered by its quotes (missing ['123', '134']; failures ['quote not found at url']); superseded by the resolution ('keep', batch-07)",
+     "action": "dropped"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'keep' (batch-07): the entry stays exactly as it is",
+     "action": "applied"
     }
    ],
    "normalisations": [],
    "changes": [],
    "removals": {},
-   "held": {
-    "author": "quote check failed",
-    "journal": "quote check failed",
-    "year": "quote check failed",
-    "volume": "quote check failed",
-    "number": "quote check failed",
-    "pages": "quote check failed"
-   },
+   "held": {},
    "suggestions": {},
    "key_plan": {
     "current_key": "Bull90",
     "target_base": "Bull90",
-    "action": "keep"
+    "action": "keep",
+    "resolution": "resolution 'keep' (batch-07)"
    },
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "keep",
+    "batch": "batch-07",
+    "notes": "APA PsycInfo record 1991-00341-001 (JS-rendered; read in a browser 2026-09-26): 'Bullington, J. C. (1990). Mood congruent memory: A replication of symmetrical effects for both positive and negative moods. Journal of Social Behavior & Personality, 5(4), 123–134.' Every HEAD field matches; no DOI exists. RECONCILED 2026-09-26: Question answered by rule: browser-read PsycNET pages accepted (round 2).",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-032"
   },
   "ElliEtal95": {
@@ -14407,14 +15289,40 @@
    "verdict": "no_source",
    "flags": [
     {
-     "code": "needs_user",
+     "code": "resolution_quote_unverified",
+     "field": "title",
+     "detail": "title = 'Emotion and memory: effect of mood states on immediate and unexpected delayed recall': quote 'Ellis, H. C., Seibert, P. S., & Varner, L. J. (1995). Emotion and memory: Effect of mood states on immediate and unexpected delayed recall. Journal of Social Behavior & Personality, 10(2), 349–362.' at https://psycnet.apa.org/record/1996-91222-001: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "title",
+     "detail": "resolution 'apply' (batch-07): title = 'Emotion and memory: effect of mood states on immediate and unexpected delayed recall'",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
      "field": "verdict",
-     "detail": "verdict no_source: user decision",
-     "action": "flag"
+     "detail": "verdict no_source resolved by the resolution ('apply', batch-07)",
+     "action": "applied"
     }
    ],
    "normalisations": [],
-   "changes": [],
+   "changes": [
+    {
+     "field": "title",
+     "current": "Emotion and memory: effects of mood states on immediate and unexpected delayed recall",
+     "proposed": "Emotion and memory: effect of mood states on immediate and unexpected delayed recall",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://psycnet.apa.org/record/1996-91222-001",
+       "quote": "Ellis, H. C., Seibert, P. S., & Varner, L. J. (1995). Emotion and memory: Effect of mood states on immediate and unexpected delayed recall. Journal of Social Behavior & Personality, 10(2), 349–362."
+      }
+     ],
+     "decision": "resolution batch-07"
+    }
+   ],
    "removals": {},
    "held": {},
    "suggestions": {},
@@ -14424,8 +15332,20 @@
     "action": "keep"
    },
    "doi_status": null,
-   "user_resolved": false,
+   "user_resolved": true,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Found: APA PsycInfo record 1996-91222-001 (JS-rendered, read in a browser 2026-09-26) confirms authors, journal, year, 10(2), 349-362; the only correction is 'Effects' -> 'Effect'. Not an abstract (PsycInfo 'Journal Article').",
+    "residue": [],
+    "quotes": {
+     "title": {
+      "ok": false,
+      "why": "quote not found at url"
+     }
+    }
+   },
    "batch": "batch-033"
   },
   "BateEtal15a": {
@@ -14485,6 +15405,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "HaleHojs14": {
@@ -14504,6 +15425,7 @@
    "doi_status": null,
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "Ross12": {
@@ -14592,6 +15514,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "Knut07": {
@@ -14603,6 +15526,12 @@
      "field": "pages",
      "detail": "Crossref record of 10.1519/r-505011.1 gives pages '973', proposal '973--978'",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "pages",
+     "detail": "resolution 'apply' (batch-07): pages = '973--978'",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -14651,6 +15580,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Crossref deposits the first page only; Europe PMC gives 973-978 and PubMed 17685726 'PG  - 973-8'. The page range is kept, not shortened.",
+    "residue": [],
+    "quotes": {
+     "pages": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-033"
   },
   "Whal20": {
@@ -14658,10 +15599,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-07): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "Whal20 -> TrusWhal20 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-07): Whal20 -> TrusWhal20, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -14713,7 +15666,8 @@
     "target_base": "TrusWhal20",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "TrusWhal20"
+    "new_key": "TrusWhal20",
+    "resolution": "resolution (batch-07): key TrusWhal20 confirmed"
    },
    "doi_status": {
     "doi": "10.70725/307718pkpjuu",
@@ -14740,6 +15694,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Crossref 10.70725/307718pkpjuu lists Torrey Trust and Jeromie Whalen; JTATE 28(2) 189-199, 2020. Reviewer agreed; TrusWhal20 is free in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-033"
   },
   "KrakEtal00": {
@@ -14824,6 +15785,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "VogtEtal14": {
@@ -14910,6 +15872,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "vand95": {
@@ -14917,25 +15880,120 @@
    "verdict": "ambiguous",
    "flags": [
     {
-     "code": "needs_user",
+     "code": "resolution_quote_unverified",
+     "field": "author",
+     "detail": "author = 'B A van der Kolk and R Fisler': quote '\"family\":\"Fisler\"' at https://api.crossref.org/works/10.1002/jts.2490080402: value words ['kolk'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+     "action": "held"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "doi, title",
+     "detail": "resolution 'apply' (batch-07): doi = '10.1002/jts.2490080402'; title = 'Dissociation and the fragmentary nature of traumatic memories: overview and exploratory study'",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
      "field": "verdict",
-     "detail": "verdict ambiguous: user decision",
-     "action": "flag"
+     "detail": "verdict ambiguous resolved by the resolution ('apply', batch-07)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-07): vand95 -> vandFisl95",
+     "action": "applied"
     }
    ],
    "normalisations": [],
-   "changes": [],
+   "changes": [
+    {
+     "field": "doi",
+     "current": null,
+     "proposed": "10.1002/jts.2490080402",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1002/jts.2490080402",
+       "quote": "\"DOI\":\"10.1002\\/jts.2490080402\""
+      }
+     ],
+     "decision": "resolution batch-07"
+    },
+    {
+     "field": "title",
+     "current": "Trauma and memory",
+     "proposed": "Dissociation and the fragmentary nature of traumatic memories: overview and exploratory study",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1002/jts.2490080402",
+       "quote": "\"title\":[\"Dissociation and the fragmentary nature of traumatic memories: Overview and exploratory study\"]"
+      }
+     ],
+     "decision": "resolution batch-07"
+    }
+   ],
    "removals": {},
-   "held": {},
+   "held": {
+    "author": "resolution quote unverified: value words ['kolk'] are not in the quote"
+   },
    "suggestions": {},
    "key_plan": {
     "current_key": "vand95",
     "target_base": "vand95",
-    "action": "keep"
+    "action": "rename",
+    "new_key": "vandFisl95",
+    "rename_reason": "resolution (batch-07)",
+    "resolution": "resolution (batch-07): key vandFisl95"
    },
-   "doi_status": null,
-   "user_resolved": false,
+   "doi_status": {
+    "doi": "10.1002/jts.2490080402",
+    "registered": true,
+    "ra": "Crossref",
+    "title": "Dissociation and the fragmentary nature of traumatic memories: Overview and exploratory study",
+    "subtitle": null,
+    "container": "Journal of Traumatic Stress",
+    "print_year": "1995",
+    "online_year": "2006",
+    "issued_year": "1995",
+    "page": "505-525",
+    "volume": "8",
+    "issue": "4",
+    "type": "journal-article",
+    "authors": [
+     "Bessel A. van Der Kolk",
+     "Rita Fisler"
+    ],
+    "families": [
+     "van Der Kolk",
+     "Fisler"
+    ]
+   },
+   "user_resolved": true,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Journal, year, volume 8, issue 4 and pages 505-525 all match van der Kolk & Fisler 1995 (Crossref; PubMed 8564271 'PG  - 505-25'); only the title/sole author point at the 1998 PCN paper or 1996 chapter 'Trauma and memory'. Five locator fields outweigh a generic title. vandFisl95 is free in HEAD.",
+    "residue": [
+     "author: quote unverified (value words ['kolk'] are not in the quote)",
+     "key vandFisl95 does not follow the ID rule for the corrected metadata (vand95)"
+    ],
+    "quotes": {
+     "author": {
+      "ok": false,
+      "why": "value words ['kolk'] are not in the quote"
+     },
+     "title": {
+      "ok": true,
+      "why": null
+     },
+     "doi": {
+      "ok": true,
+      "why": null
+     }
+    }
+   },
    "batch": "batch-033"
   },
   "Melt70": {
@@ -15012,6 +16070,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "Ande83": {
@@ -15076,6 +16135,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "BellSchi75": {
@@ -15170,6 +16230,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "Good76": {
@@ -15249,6 +16310,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "KeppEtal68": {
@@ -15262,9 +16324,21 @@
      "action": "flag"
     },
     {
+     "code": "resolution_quote_unverified",
+     "field": "title",
+     "detail": "title = 'Studies of learning to learn: {VIII}. The influence of massive amounts of training upon the learning and retention of paired-associate lists': quote 'Keppel, G., Postman, L., & Zavortink, B. (1968). Studies of learning to learn: VIII. The influence of massive amounts of training upon the learning and retention of paired-associate lists. Journal of Verbal Learning & Verbal Behavior, 7(4), 790–796.' at https://psycnet.apa.org/record/1969-01946-001: quote not found at url; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+     "action": "applied"
+    },
+    {
      "code": "surname_corroborated",
      "field": "author",
      "detail": "surname 'zavortnik' -> 'zavortink': released by the cdl.bib rule, ['api.crossref.org'] plus cdl.bib's own spelling for this person in ZavoKepp68 (the cited spelling is in no other entry)",
+     "action": "applied"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "title",
+     "detail": "resolution 'apply' (batch-07): title = 'Studies of learning to learn: {VIII}. The influence of massive amounts of training upon the learning and retention of paired-associate lists'",
      "action": "applied"
     }
    ],
@@ -15353,6 +16427,18 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Full title (unchanged from HEAD) confirmed by APA PsycInfo 1969-01946-001 (JS-rendered, read in a browser 2026-09-26), which also corroborates 'Zavortink' and issue 4.",
+    "residue": [],
+    "quotes": {
+     "title": {
+      "ok": false,
+      "why": "quote not found at url"
+     }
+    }
+   },
    "batch": "batch-033"
   },
   "Kopp78": {
@@ -15360,10 +16446,22 @@
    "verdict": "correction",
    "flags": [
     {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-07): the post-check's final changes stand",
+     "action": "applied"
+    },
+    {
      "code": "key_rename",
      "field": "key",
      "detail": "Kopp78 -> Kopp63 (key does not follow the corrected metadata)",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": "key",
+     "detail": "resolution (batch-07): Kopp78 -> Kopp63, as planned",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -15416,7 +16514,8 @@
     "target_base": "Kopp63",
     "action": "rename",
     "rename_reason": "key does not follow the corrected metadata",
-    "new_key": "Kopp63"
+    "new_key": "Kopp63",
+    "resolution": "resolution (batch-07): key Kopp63 confirmed"
    },
    "doi_status": {
     "doi": "10.1016/s0022-5371(63)80099-7",
@@ -15441,6 +16540,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "JVLVB volume 2 is 1963: Crossref 10.1016/s0022-5371(63)80099-7 gives 2(4) 310-319, print year 1963. Reviewer agreed; Kopp63 is free in HEAD.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-033"
   },
   "Murd62b": {
@@ -15520,6 +16626,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "MurdMetc78": {
@@ -15531,6 +16638,12 @@
      "field": "title",
      "detail": "'Controlled rehearsal in single- trial free recall' -> 'Controlled rehearsal in single-trial free recall' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-07): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -15605,6 +16718,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "'single- trial' is a broken hyphen; Crossref prints 'Controlled rehearsal in single-trial free recall', and HEAD writes 'single-trial' in five other titles. Not a house-style choice.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-033"
   },
   "MurdOkad70": {
@@ -15616,6 +16736,12 @@
      "field": "title",
      "detail": "'Interresponse times in single- trial free recall' -> 'Interresponse times in single-trial free recall' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
      "action": "flag"
+    },
+    {
+     "code": "resolution_decision",
+     "field": null,
+     "detail": "resolution 'apply' (batch-07): the post-check's final changes stand",
+     "action": "applied"
     }
    ],
    "normalisations": [],
@@ -15706,6 +16832,13 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": {
+    "decision": "apply",
+    "batch": "batch-07",
+    "notes": "Crossref 10.1037/h0029993: Journal of Experimental Psychology 86(2) 263-267, 1970, title 'Interresponse times in single-trial free recall.' Reviewer agreed with journal, number and title.",
+    "residue": [],
+    "quotes": {}
+   },
    "batch": "batch-033"
   },
   "PhilEtal67": {
@@ -15806,6 +16939,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   },
   "PollEtal68": {
@@ -15902,6 +17036,7 @@
    },
    "user_resolved": false,
    "software": null,
+   "resolution": null,
    "batch": "batch-033"
   }
  },

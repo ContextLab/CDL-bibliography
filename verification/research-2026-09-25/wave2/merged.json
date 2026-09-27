@@ -130,6 +130,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -274,6 +275,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -433,6 +435,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -594,6 +597,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -723,19 +727,32 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['296']; failures [])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['296']; failures []); superseded by the resolution (batch-01)",
+    "action": "dropped"
    },
    {
     "code": "proceedings_print_year",
     "field": "year",
     "detail": "notes give a print date ['2010'] of the proceedings; the conference year 2009 is quoted and stands (no year suggested)",
     "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-01): pages = '288--296'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Pages 288--296 (unchanged) printed by the NeurIPS Foundation's archived proceedings page (same title); Curran reprint TOC agrees on start page 288. Post-check changes incl. journal removal apply. RECONCILED 2026-09-26: Question answered by rule: NeurIPS default: the NeurIPS proceedings site (official publisher) beats Curran's reprint TOC; values already follow it.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -755,7 +772,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "SochEtal09",
@@ -828,6 +845,19 @@
     "reviewer": "agree"
    },
    {
+    "field": "pages",
+    "current": null,
+    "proposed": "1714--1722",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20140902235356/http://papers.nips.cc/paper/3720-a-bayesian-analysis-of-dynamics-in-free-recall",
+      "quote": "<meta name=\"citation_firstpage\" content=\"1714\"> <meta name=\"citation_lastpage\" content=\"1722\">"
+     }
+    ],
+    "decision": "resolution batch-01"
+   },
+   {
     "field": "publisher",
     "current": null,
     "proposed": "Curran Associates",
@@ -853,19 +883,32 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['1722']; failures [])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['1722']; failures []); superseded by the resolution (batch-01)",
+    "action": "dropped"
    },
    {
     "code": "proceedings_print_year",
     "field": "year",
     "detail": "notes give a print date ['2010'] of the proceedings; the conference year 2009 is quoted and stands (no year suggested)",
     "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-01): pages = '1714--1722'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Pages 1714--1722 from the archived NeurIPS proceedings page (title matches); Curran reprint TOC also starts at 1714.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -883,7 +926,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "KrizEtal12",
@@ -965,19 +1008,32 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['1105']; failures [])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['1105']; failures []); superseded by the resolution (batch-01)",
+    "action": "dropped"
    },
    {
     "code": "proceedings_print_year",
     "field": "year",
     "detail": "notes give a print date ['2013'] of the proceedings; the conference year 2012 is quoted and stands (no year suggested)",
     "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-01): pages = '1097--1105'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "HEAD pages 1097--1105 confirmed by the archived NeurIPS proceedings page; Curran reprint TOC starts at 1097.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -994,7 +1050,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "KiroEtal15",
@@ -1109,19 +1165,32 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['3302']; failures [])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['3302']; failures []); superseded by the resolution (batch-01)",
+    "action": "dropped"
    },
    {
     "code": "proceedings_print_year",
     "field": "year",
     "detail": "notes give a print date ['2016'] of the proceedings; the conference year 2015 is quoted and stands (no year suggested)",
     "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-01): pages = '3294--3302'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "HEAD pages 3294--3302 confirmed by the archived NeurIPS proceedings page; Curran reprint TOC starts at 3294.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -1140,7 +1209,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "PaszEtal19",
@@ -1181,6 +1250,19 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "pages",
+    "current": "8026--8037",
+    "proposed": "8024--8035",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20191208162228/http://papers.nips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library",
+      "quote": "<meta name=\"citation_firstpage\" content=\"8024\"> <meta name=\"citation_lastpage\" content=\"8035\">"
+     }
+    ],
+    "decision": "resolution batch-01"
    },
    {
     "field": "publisher",
@@ -1231,15 +1313,22 @@
     "action": "applied"
    },
    {
-    "code": "unverified_suggestions",
-    "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): pages='7994--8005'",
-    "action": "flag"
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-01): pages = '8024--8035'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "HEAD 8026--8037 appears in no source; NeurIPS Foundation's archived page prints 8024--8035 (Curran reprint TOC starts at 7994, see question). No author change is in final_changes, so the post-check's K{\\\"o}pf initials bug does not apply. RECONCILED 2026-09-26: Question answered by rule: NeurIPS default: the NeurIPS proceedings site (official publisher) beats Curran's reprint TOC; values already follow it.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -1259,7 +1348,7 @@
     "author": "A Paszke and S Gross and F Massa and A Lerer and J Bradbury and G Chanan and T Killeen and Z Lin and N Gimelshein and L Antiga and A Desmaison and A K{\\\"o}pf and E Yang and Z DeVito and M Raison and A Tejani and S Chilamkurthy and B Steiner and L Fang and J Bai and S Chintala"
    }
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MairEtal09b",
@@ -1356,6 +1445,19 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "year",
+    "current": "2009",
+    "proposed": "2008",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/hash/c0f168ce8900fa56e57789e2a2f2c9d0-Abstract.html",
+      "quote": "<meta name=\"citation_publication_date\" content=\"2008\">"
+     }
+    ],
+    "decision": "resolution batch-01"
    }
   ],
   "removals": {
@@ -1363,8 +1465,11 @@
   },
   "key_plan": {
    "current_key": "MairEtal09b",
-   "target_base": "MairEtal09",
-   "action": "keep"
+   "target_base": "MairEtal08",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "MairEtal08",
+   "resolution": "resolution (batch-01): key MairEtal08 confirmed"
   },
   "flags": [
    {
@@ -1374,15 +1479,34 @@
     "action": "flag"
    },
    {
-    "code": "unverified_suggestions",
-    "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): pages='1036--1043'",
+    "code": "resolution_decision",
+    "field": "pages, year",
+    "detail": "resolution 'apply' (batch-01): pages = '1033--1040'; year = '2008'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "MairEtal09b -> MairEtal08 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-01): MairEtal09b -> MairEtal08, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "HEAD pages 1033--1040 are printed by the NeurIPS Foundation's archived page; the unverified suggestion 1036--1043 was derived from Curran's reprint TOC (withdrawn). Year 2009 per the same page. RECONCILED 2026-09-26: Year 2008 = conference year printed by the NeurIPS proceedings site (default: proceedings year = conference year; the archived papers.nips.cc citation_publication_date gave the bound-volume year). Key MairEtal09b -> MairEtal08 (free in HEAD). Consistent with RaoHowa07 (batch 24). RECONCILED 2026-09-26: Side effect: HEAD MairEtal09a would then be the only MairEtal09 (suffix rule may rename it to MairEtal09). RECONCILED 2026-09-26: Question answered by rule: NeurIPS default: the NeurIPS proceedings site (official publisher) beats Curran's reprint TOC; values already follow it.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -1402,7 +1526,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MnihHint09",
@@ -1470,6 +1594,19 @@
     "reviewer": "agree"
    },
    {
+    "field": "pages",
+    "current": null,
+    "proposed": "1081--1088",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20140903000116/http://papers.nips.cc/paper/3583-a-scalable-hierarchical-distributed-language-model",
+      "quote": "<meta name=\"citation_firstpage\" content=\"1081\"> <meta name=\"citation_lastpage\" content=\"1088\">"
+     }
+    ],
+    "decision": "resolution batch-01"
+   },
+   {
     "field": "publisher",
     "current": null,
     "proposed": "Curran Associates",
@@ -1494,6 +1631,19 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "year",
+    "current": "2009",
+    "proposed": "2008",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2008/hash/1e056d2b0ebd5c878c550da6ac5d3724-Abstract.html",
+      "quote": "<meta name=\"citation_publication_date\" content=\"2008\">"
+     }
+    ],
+    "decision": "resolution batch-01"
    }
   ],
   "removals": {
@@ -1501,8 +1651,11 @@
   },
   "key_plan": {
    "current_key": "MnihHint09",
-   "target_base": "MnihHint09",
-   "action": "keep"
+   "target_base": "MnihHint08",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "MnihHint08",
+   "resolution": "resolution (batch-01): key MnihHint08 confirmed"
   },
   "flags": [
    {
@@ -1512,15 +1665,34 @@
     "action": "flag"
    },
    {
-    "code": "unverified_suggestions",
-    "field": null,
-    "detail": "values left not_found or suggested by the rules (never applied): pages='1084--1091'",
+    "code": "resolution_decision",
+    "field": "pages, year",
+    "detail": "resolution 'apply' (batch-01): pages = '1081--1088'; year = '2008'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "MnihHint09 -> MnihHint08 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-01): MnihHint09 -> MnihHint08, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Pages 1081--1088 from the NeurIPS Foundation's archived page (same pagination family as MairEtal09b's HEAD value); suggestion 1084--1091 (Curran reprint, derived end) not used. RECONCILED 2026-09-26: Year 2008 = conference year printed by the NeurIPS proceedings site (default: proceedings year = conference year; the archived papers.nips.cc citation_publication_date gave the bound-volume year). Key MnihHint09 -> MnihHint08 (free in HEAD). Consistent with RaoHowa07 (batch 24). RECONCILED 2026-09-26: Question answered by rule: NeurIPS default: the NeurIPS proceedings site (official publisher) beats Curran's reprint TOC; values already follow it.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -1539,7 +1711,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "SanbGrif08",
@@ -1593,6 +1765,33 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "pages",
+    "current": null,
+    "proposed": "1265--1272",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20140903001612/http://papers.nips.cc/paper/3214-markov-chain-monte-carlo-with-people",
+      "quote": "<meta name=\"citation_firstpage\" content=\"1265\"> <meta name=\"citation_lastpage\" content=\"1272\">"
+     }
+    ],
+    "decision": "resolution batch-01"
+   },
+   {
+    "field": "year",
+    "current": "2008",
+    "proposed": "2007",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2007/hash/89d4402dc03d3b7318bbac10203034ab-Abstract.html",
+      "quote": "<meta name=\"citation_publication_date\" content=\"2007\">"
+     }
+    ],
+    "decision": "resolution batch-01",
+    "reviewer": "not_found, kept (agree)"
    }
   ],
   "removals": {
@@ -1600,8 +1799,11 @@
   },
   "key_plan": {
    "current_key": "SanbGrif08",
-   "target_base": "SanbGrif08",
-   "action": "keep"
+   "target_base": "SanbGrif07",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "SanbGrif07",
+   "resolution": "resolution (batch-01): key SanbGrif07 confirmed"
   },
   "flags": [
    {
@@ -1609,11 +1811,36 @@
     "field": "year",
     "detail": "verdict 'correction' but year is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages, year",
+    "detail": "resolution 'apply' (batch-01): pages = '1265--1272'; year = '2007'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "SanbGrif08 -> SanbGrif07 (key does not follow the corrected metadata)",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-01): SanbGrif08 -> SanbGrif07, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Year 2008 (unchanged) and pages 1265--1272 printed by the NeurIPS Foundation's archived proceedings page for this title; key unchanged. RECONCILED 2026-09-26: Year 2007 = conference year printed by the NeurIPS proceedings site (default: proceedings year = conference year; the archived papers.nips.cc citation_publication_date gave the bound-volume year). Key SanbGrif08 -> SanbGrif07 (free in HEAD). Consistent with RaoHowa07 (batch 24).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -1630,7 +1857,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "GrifStey03",
@@ -1732,6 +1959,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -1874,6 +2102,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -1975,6 +2204,12 @@
     "field": "pages",
     "detail": "Crossref record of 10.2307/1415745 gives pages '221', proposal '221--245'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-01): pages = '221--245'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -2000,6 +2235,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Crossref deposits only the first page; JSTOR's RIS for the same DOI prints SP 221 / EP 245, so HEAD 221--245 stands.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2014,7 +2256,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Spea04",
@@ -2096,6 +2338,12 @@
     "field": "pages",
     "detail": "Crossref record of 10.2307/1412107 gives pages '201', proposal '201--292'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-01): pages = '201--292'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -2121,6 +2369,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Crossref deposits only the first page; JSTOR's RIS prints SP 201 / EP 292, so HEAD 201--292 stands.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2135,7 +2390,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "CaoWors99",
@@ -2157,28 +2412,28 @@
     "field": "doi",
     "current": null,
     "proposed": "10.1214/aoap/1029962864",
-    "source": "reviewer",
+    "source": "resolution",
     "evidence": [
      {
-      "reviewer_problems": [
-       "All changes held only because Project Euclid blocks the validator; Crossref 10.1214/aoap/1029962864 (fetched) title 'The geometry of correlation fields with an application to functional connectivity of the brain' (no comma). Final state (no change) leaves the wrong comma and no DOI."
-      ]
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
+      "quote": "<meta name=\"citation_doi\" content=\"10.1214/aoap/1029962864\"  />"
      }
     ],
+    "decision": "resolution batch-01",
     "reviewer": "disagree (held but correct)"
    },
    {
     "field": "title",
     "current": "The geometry of correlation fields, with an application to functional connectivity of the brain",
     "proposed": "The geometry of correlation fields with an application to functional connectivity of the brain",
-    "source": "reviewer",
+    "source": "resolution",
     "evidence": [
      {
-      "reviewer_problems": [
-       "All changes held only because Project Euclid blocks the validator; Crossref 10.1214/aoap/1029962864 (fetched) title 'The geometry of correlation fields with an application to functional connectivity of the brain' (no comma). Final state (no change) leaves the wrong comma and no DOI."
-      ]
+      "url": "https://projecteuclid.org/journals/annals-of-applied-probability/volume-9/issue-4/The-geometry-of-correlation-fields-with-an-application-to-functional/10.1214/aoap/1029962864.full",
+      "quote": "content=\"The geometry of correlation fields with an application to functional connectivity of the brain\""
      }
     ],
+    "decision": "resolution batch-01",
     "reviewer": "disagree (held but correct)"
    }
   ],
@@ -2228,8 +2483,8 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['1021', '1057']; failures ['quote not found at url', 'quote not found at url'])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['1021', '1057']; failures ['quote not found at url', 'quote not found at url']); superseded by the resolution (batch-01)",
+    "action": "dropped"
    },
    {
     "code": "quote_check_failed",
@@ -2241,6 +2496,12 @@
     "code": "quote_check_failed",
     "field": "doi",
     "detail": "validator: doi not covered by its quotes (missing ['1214', 'aoap', '1029962864']; failures ['quote not found at url']); reviewer supplied the value (source reviewer)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "doi, pages, title",
+    "detail": "resolution 'apply' (batch-01): doi = '10.1214/aoap/1029962864'; pages = '1021--1057'; title = 'The geometry of correlation fields with an application to functional connectivity of the brain'",
     "action": "applied"
    }
   ],
@@ -2269,6 +2530,19 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Project Euclid now serves the article page to a browser UA: DOI, title without the comma, 9(4), 1021-1057, 1999/11 confirmed. Author kept as 'K J Worsley' (Euclid prints 'Keith Worsley'; not dropping an initial on an omission).",
+   "residue": [
+    "quote_check_failed on author is held and the resolution does not address it",
+    "quote_check_failed on journal is held and the resolution does not address it",
+    "quote_check_failed on volume is held and the resolution does not address it",
+    "quote_check_failed on number is held and the resolution does not address it",
+    "quote_check_failed on year is held and the resolution does not address it"
+   ],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -2377,6 +2651,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2451,6 +2726,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -2473,42 +2749,42 @@
     "field": "doi",
     "current": null,
     "proposed": "10.1214/aos/1176344136",
-    "source": "reviewer",
+    "source": "resolution",
     "evidence": [
      {
-      "reviewer_problems": [
-       "All changes held only because Project Euclid blocks the validator. Crossref 10.1214/aos/1176344136 (fetched): 'Estimating the Dimension of a Model', Gideon Schwarz, volume 6, issue 2, issued 1978-03. Final state leaves volume '6 (2)' (house-invalid) and no DOI."
-      ]
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+      "quote": "<meta name=\"citation_doi\" content=\"10.1214/aos/1176344136\"  />"
      }
     ],
+    "decision": "resolution batch-01",
     "reviewer": "disagree (held but correct)"
    },
    {
     "field": "number",
     "current": null,
     "proposed": "2",
-    "source": "reviewer",
+    "source": "resolution",
     "evidence": [
      {
-      "reviewer_problems": [
-       "All changes held only because Project Euclid blocks the validator. Crossref 10.1214/aos/1176344136 (fetched): 'Estimating the Dimension of a Model', Gideon Schwarz, volume 6, issue 2, issued 1978-03. Final state leaves volume '6 (2)' (house-invalid) and no DOI."
-      ]
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+      "quote": "<meta name=\"citation_issue\" content=\"2\"  />"
      }
     ],
+    "decision": "resolution batch-01",
     "reviewer": "disagree (held but correct)"
    },
    {
     "field": "volume",
     "current": "6 (2)",
     "proposed": "6",
-    "source": "reviewer",
+    "source": "resolution",
     "evidence": [
      {
-      "reviewer_problems": [
-       "All changes held only because Project Euclid blocks the validator. Crossref 10.1214/aos/1176344136 (fetched): 'Estimating the Dimension of a Model', Gideon Schwarz, volume 6, issue 2, issued 1978-03. Final state leaves volume '6 (2)' (house-invalid) and no DOI."
-      ]
+      "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-6/issue-2/Estimating-the-Dimension-of-a-Model/10.1214/aos/1176344136.full",
+      "quote": "<meta name=\"citation_volume\" content=\"6\"  />"
      }
     ],
+    "decision": "resolution batch-01",
     "reviewer": "disagree (held but correct)"
    }
   ],
@@ -2558,8 +2834,8 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['461', '464']; failures ['quote not found at url', 'quote not found at url'])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['461', '464']; failures ['quote not found at url', 'quote not found at url']); superseded by the resolution (batch-01)",
+    "action": "dropped"
    },
    {
     "code": "quote_check_failed",
@@ -2571,6 +2847,12 @@
     "code": "quote_check_failed",
     "field": "doi",
     "detail": "validator: doi not covered by its quotes (missing ['1214', 'aos', '1176344136']; failures ['quote not found at url']); reviewer supplied the value (source reviewer)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "doi, number, pages, volume",
+    "detail": "resolution 'apply' (batch-01): doi = '10.1214/aos/1176344136'; number = '2'; pages = '461--464'; volume = '6'",
     "action": "applied"
    }
   ],
@@ -2597,6 +2879,18 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Project Euclid article page (browser UA) confirms Gideon Schwarz, Annals of Statistics 6(2), 461-464, 1978/03; volume '6 (2)' split into volume 6, number 2; DOI added.",
+   "residue": [
+    "quote_check_failed on title is held and the resolution does not address it",
+    "quote_check_failed on author is held and the resolution does not address it",
+    "quote_check_failed on journal is held and the resolution does not address it",
+    "quote_check_failed on year is held and the resolution does not address it"
+   ],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -2676,6 +2970,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2752,6 +3047,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2819,6 +3115,12 @@
   },
   "flags": [
    {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-01): the post-check's final changes stand",
+    "action": "applied"
+   },
+   {
     "code": "user_decision",
     "field": "key",
     "detail": "cross-wave q-shim: shim95b-new: Shim94 -> Shim95b, existing Shim95 -> Shim95a: key Shim95 -> Shim95a (the post-check planned keep; the user's decision wins)",
@@ -2850,6 +3152,13 @@
   "user_decisions": [
    "cross-wave q-shim: shim95b-new: Shim94 -> Shim95b, existing Shim95 -> Shim95a: key Shim95 -> Shim95a (the post-check planned keep; the user's decision wins)"
   ],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "No flags; PubMed 8595022 prints 'Memory and the prefrontal cortex.' (Crossref's trailing 'a' is a footnote marker). Apply post-check changes incl. the user-decided key Shim95 -> Shim95a.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -2863,7 +3172,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Suzu07",
@@ -2936,6 +3245,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -3000,6 +3310,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -3064,6 +3375,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3166,6 +3478,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -3229,6 +3542,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -3290,6 +3604,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -3351,6 +3666,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -3406,6 +3722,12 @@
     "field": "title",
     "detail": "'Verbal learning and memory : does the modal model still work?' -> 'Verbal learning and memory: does the modal model still work?' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-01): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -3433,8 +3755,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "PubMed 15012480 prints 'Verbal learning and memory: does the modal model still work?' (Annu Rev Psychol 47:143-72); house colon form has no space before ':' so the title change and the DOI apply.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "JoniEtal07",
@@ -3508,14 +3837,27 @@
    "target_base": "JoniEtal08",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "JoniEtal08"
+   "new_key": "JoniEtal08",
+   "resolution": "resolution (batch-01): key JoniEtal08 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-01): the post-check's final changes stand",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "JoniEtal07 -> JoniEtal08 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-01): JoniEtal07 -> JoniEtal08, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -3551,6 +3893,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Crossref/PubMed: Annu Rev Psychol 59:193-224, published-print 2008; year 2008 drives key JoniEtal08 (absent in HEAD).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3566,7 +3915,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "KutaFede11",
@@ -3655,6 +4004,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -3759,6 +4109,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -3833,6 +4184,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -4091,6 +4443,12 @@
     "action": "flag"
    },
    {
+    "code": "resolution_decision",
+    "field": "year",
+    "detail": "resolution 'apply' (batch-01): year = '2021'",
+    "action": "applied"
+   },
+   {
     "code": "unverified_suggestions",
     "field": null,
     "detail": "values left not_found or suggested by the rules (never applied): year='2022'",
@@ -4194,6 +4552,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Aperture Neuro is online-only; the publisher page prints Vol. 1, 2021, published 2021/12/15. Crossref's published-print 2022 (with volume '2021') is a deposit artefact, so year stays 2021 and the key is unchanged.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -4211,7 +4576,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "DArgEtal03",
@@ -4276,6 +4641,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -4332,14 +4698,27 @@
    "target_base": "BusbWals16",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "BusbWals16"
+   "new_key": "BusbWals16",
+   "resolution": "resolution (batch-01): key BusbWals16 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-01): the post-check's final changes stand",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "GranWals16 -> BusbWals16 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-01): GranWals16 -> BusbWals16, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -4367,6 +4746,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Post-check author change (Crossref family 'Busby Grant') applies; corroborated by the author's ORCID record https://pub.orcid.org/v3.0/0000-0001-7330-0213/person: '<personal-details:family-name>Busby Grant</personal-details:family-name>', whose works list includes 10.1002/acp.3215. Key BusbWals16 (absent in HEAD).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -4380,7 +4766,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "RendCrai00",
@@ -4436,6 +4822,18 @@
     "field": "pages",
     "detail": "verdict 'correction' but pages is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "pages",
+    "detail": "pages = 'S43--S62': quote '<meta name=\"citation_firstpage\" content=\"S43\"' at http://web.archive.org/web/20220709200648/https://onlinelibrary.wiley.com/doi/abs/10.1002/acp.770: value words ['62'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+    "action": "held"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-01): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -4463,6 +4861,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "DOI and number 7 apply. Pages S43--S62 (HEAD) could not be confirmed: Crossref has no page data, Wiley (live and Wayback) returns 403, not in PubMed/Europe PMC; HEAD pages left unchanged. RECONCILED 2026-09-26: Pages now confirmed: archived Wiley article page prints citation_firstpage S43 / citation_lastpage S62 ('S43-S62').",
+   "residue": [
+    "pages: quote unverified (value words ['62'] are not in the quote)"
+   ],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -4493,6 +4900,19 @@
    "ID": "HillEtal87"
   },
   "final_changes": [
+   {
+    "field": "journal",
+    "current": "Architecture and Behavior",
+    "proposed": "Architecture and Comportement / Architecture and Behaviour",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://comportements.ch/en/journal-architecture-behaviour-2/",
+      "quote": "Architecture & Comportement / Architecture & Behaviour"
+     }
+    ],
+    "decision": "resolution batch-01"
+   },
    {
     "field": "number",
     "current": null,
@@ -4530,13 +4950,26 @@
     "field": "journal",
     "detail": "verdict 'correction' but journal is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "journal",
+    "detail": "resolution 'apply' (batch-01): journal = 'Architecture and Comportement / Architecture and Behaviour'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "Editor's archive (comportements.ch) and the article PDF header ('Arch. & Comport./Arch. Behav., Vol. 3, n. 3, p. 233-250 (1987)') confirm the article; journal is the bilingual 'Architecture & Comportement / Architecture & Behaviour', cited by its English title with British spelling. RECONCILED 2026-09-26: Bilingual journal default: the full title as printed ('Architecture & Comportement / Architecture & Behaviour'; & written 'and' as house journal names do).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "JaspPenf49",
@@ -4578,6 +5011,19 @@
     ],
     "normalised_from": "Archiv F{\\\"u}r Psychiatrie und Nervenkrankheiten",
     "normalised_by": "postcheck"
+   },
+   {
+    "field": "number",
+    "current": null,
+    "proposed": "1",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20251204150514id_/https://link.springer.com/article/10.1007/BF01062488",
+      "quote": "<meta name=\"citation_issue\" content=\"1\"/>"
+     }
+    ],
+    "decision": "resolution batch-01"
    }
   ],
   "removals": {},
@@ -4592,6 +5038,12 @@
     "field": "number",
     "detail": "verdict 'correction' but number is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "number",
+    "detail": "resolution 'apply' (batch-01): number = '1'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -4619,8 +5071,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-01",
+   "notes": "DOI and journal name apply. Number left absent: Crossref deposits issue '1-2' while Springer's article page prints citation_issue '1' (Issue Date January 1949, archived 2022). RECONCILED 2026-09-26 (unsettled entries): Conflicting official records rule (round 1: publisher page / Crossref wins, publisher page first): Springer's own article page (archived 2025-12-04) prints citation_issue '1' (Issue date January 1949, volume 183, pages 163-174); Crossref's deposit '1-2' yields to it. Number = 1.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Berg29",
@@ -4718,6 +5177,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -4812,6 +5272,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -4875,13 +5336,14 @@
     "field": "pages",
     "current": "150",
     "proposed": "150--158",
-    "source": "researcher",
+    "source": "resolution",
     "evidence": [
      {
       "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:22213770%20AND%20SRC:MED&resultType=core&format=json",
       "quote": "\"pageInfo\":\"150-158\""
      }
-    ]
+    ],
+    "decision": "resolution batch-02"
    }
   ],
   "removals": {},
@@ -4896,6 +5358,12 @@
     "field": "pages",
     "detail": "Crossref record of 10.1001/archgenpsychiatry.2011.1456 gives pages '150', proposal '150--158'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-02): pages = '150--158'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -4921,8 +5389,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "Crossref gives only the first page (150); PubMed/Europe PMC print 69(2):150-158, which also matches the DOI's first page. Printed range wins.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "DelbBeau89",
@@ -4952,19 +5427,22 @@
     ]
    },
    {
-    "field": "journal",
-    "current": "Archives of Gerontology and Geriatrics",
-    "proposed": "Archives of Gerontology and Geriatrics Supplement",
-    "source": "researcher",
+    "field": "number",
+    "current": null,
+    "proposed": "Suppl 1",
+    "source": "resolution",
     "evidence": [
      {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/2757728/",
-      "quote": "Archives of gerontology and geriatrics. Supplement"
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2757728,2757730&rettype=medline&retmode=text",
+      "quote": "SO  - Arch Gerontol Geriatr Suppl. 1989;1:121-50."
      }
-    ]
+    ],
+    "decision": "resolution batch-02"
    }
   ],
-  "removals": {},
+  "removals": {
+   "volume": "resolution asked to remove it (current '1')"
+  },
   "key_plan": {
    "current_key": "DelbBeau89",
    "target_base": "DelbBeau89",
@@ -4976,13 +5454,26 @@
     "field": "doi",
     "detail": "verdict 'correction' but doi is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "journal, number, volume",
+    "detail": "resolution 'apply' (batch-02): number = 'Suppl 1'; withdrawn journal; removed volume",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "No DOI exists: Crossref bibliographic search for the title returns no match and PubMed/Europe PMC 2757728 lists no DOI (Arch Gerontol Geriatr Suppl 1, 1989, 121-150). Apply post-check changes without a DOI. RECONCILED 2026-09-26: Supplement default: parent journal name (post-check 'Archives of Gerontology and Geriatrics Supplement' withdrawn; HEAD journal kept) with the supplement in Number ('Suppl 1'); HEAD volume 1 was the supplement number, so Volume is removed.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "PoitEtal89",
@@ -5000,19 +5491,22 @@
   },
   "final_changes": [
    {
-    "field": "journal",
-    "current": "Archives of Gerontology and Geriatrics",
-    "proposed": "Archives of Gerontology and Geriatrics Supplement",
-    "source": "researcher",
+    "field": "number",
+    "current": null,
+    "proposed": "Suppl 1",
+    "source": "resolution",
     "evidence": [
      {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/2757730/",
-      "quote": "Archives of gerontology and geriatrics. Supplement"
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2757728,2757730&rettype=medline&retmode=text",
+      "quote": "SO  - Arch Gerontol Geriatr Suppl. 1989;1:173-83."
      }
-    ]
+    ],
+    "decision": "resolution batch-02"
    }
   ],
-  "removals": {},
+  "removals": {
+   "volume": "resolution asked to remove it (current '1')"
+  },
   "key_plan": {
    "current_key": "PoitEtal89",
    "target_base": "PoitEtal89",
@@ -5024,29 +5518,32 @@
     "field": "doi",
     "detail": "verdict 'correction' but doi is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "journal, number, volume",
+    "detail": "resolution 'apply' (batch-02): number = 'Suppl 1'; withdrawn journal; removed volume",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "No DOI exists: Crossref bibliographic search returns no match and PubMed/Europe PMC 2757730 lists no DOI (Arch Gerontol Geriatr Suppl 1:173-183, 1989). Apply without a DOI. Same journal-name question as DelbBeau89. RECONCILED 2026-09-26: Supplement default: parent journal name (post-check 'Archives of Gerontology and Geriatrics Supplement' withdrawn; HEAD journal kept) with the supplement in Number ('Suppl 1'); HEAD volume 1 was the supplement number, so Volume is removed.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "HerrEtal10",
   "batch": "batch-004",
   "verdict": "correction",
-  "current": {
-   "year": "2010",
-   "volume": "170",
-   "title": "The effects of exercise training on anxiety symptoms among patients: a systematic review",
-   "pages": "321--331",
-   "number": "4",
-   "journal": "Archives of Internal Medicine",
-   "author": "M P Herring and P J O'Connor and R K Dishman",
-   "ENTRYTYPE": "article",
-   "ID": "HerrEtal10"
-  },
+  "current": {},
   "final_changes": [
    {
     "field": "doi",
@@ -5075,7 +5572,7 @@
   ],
   "removals": {},
   "key_plan": {
-   "current_key": "HerrEtal10",
+   "current_key": "HerrEtal10a",
    "target_base": "HerrEtal10",
    "action": "keep"
   },
@@ -5085,6 +5582,18 @@
     "field": "pages",
     "detail": "Crossref record of 10.1001/archinternmed.2009.530 gives pages '321', proposal '321--331'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-02): pages = '321--331'",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_redirect",
+    "field": "key",
+    "detail": "resolution 'apply' (batch-02): HerrEtal10 was renamed to HerrEtal10a in the bibliography (HerrEtal10 -> HerrEtal10a, key-renames.json); the decision applies to HerrEtal10a",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -5110,8 +5619,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "Crossref has first page only (321); PubMed prints 170(4):321-331, equal to HEAD. Title 'The effect...' confirmed by the Europe PMC record. RECONCILED 2026-09-26: HEAD key is now HerrEtal10a (key-renames.json); apply to that entry.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "AdeyEtal62",
@@ -5156,13 +5672,14 @@
     "field": "pages",
     "current": "34--47",
     "proposed": "194--207",
-    "source": "researcher",
+    "source": "resolution",
     "evidence": [
      {
-      "url": "https://pubmed.ncbi.nlm.nih.gov/13859405/",
-      "quote": "194-207"
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:13859405%20AND%20SRC:MED&resultType=core&format=json",
+      "quote": "\"pageInfo\":\"194-207\""
      }
-    ]
+    ],
+    "decision": "resolution batch-02"
    }
   ],
   "removals": {},
@@ -5177,6 +5694,12 @@
     "field": "pages",
     "detail": "Crossref record of 10.1001/archneur.1962.00450210022003 gives pages '194', proposal '194--207'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-02): pages = '194--207'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -5202,8 +5725,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "HEAD pages 34--47 are wrong; PubMed 13859405 prints 194-207 and Crossref's first page 194 agrees (vol 6, issue 3).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "FreuEtal09",
@@ -5324,6 +5854,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -5413,14 +5944,26 @@
    {
     "code": "quote_check_failed",
     "field": "pages",
-    "detail": "validator: pages not covered by its quotes (missing ['96', '115']; failures ['fetch failed: HTTPError: HTTP Error 403: Forbidden'])",
-    "action": "held"
+    "detail": "validator: pages not covered by its quotes (missing ['96', '115']; failures ['fetch failed: HTTPError: HTTP Error 403: Forbidden']); superseded by the resolution (batch-02)",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "pages",
+    "detail": "pages = '96--115': quote '1938;39(1):96-115' at https://jamanetwork.com/journals/archneurpsyc/article-abstract/647465: fetch failed: HTTPError: HTTP Error 403: Forbidden; applied: the notes say it was read in a browser or transcribed from a scan ('browser'; user rule)",
+    "action": "applied"
    },
    {
     "code": "doi_record_conflict",
     "field": "pages",
     "detail": "Crossref record of 10.1001/archneurpsyc.1938.02270010106010 gives pages '96', proposal '96--115'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-02): pages = '96--115'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -5446,8 +5989,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "JAMA Network article page (the publisher) prints 'Arch NeurPsych. 1938;39(1):96-115'; it returns 403 to scripted fetches but loads via a browser fetcher. Crossref has first page only.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Gate17",
@@ -5475,6 +6025,19 @@
       "quote": "Gates, Arthur I. (Arthur Irving), 1890-1972"
      }
     ]
+   },
+   {
+    "field": "pages",
+    "current": "104",
+    "proposed": "1--104",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://www.loc.gov/item/17031875/?fo=json",
+      "quote": "4 p. l., 104 p. ill."
+     }
+    ],
+    "decision": "resolution batch-02"
    }
   ],
   "removals": {},
@@ -5495,13 +6058,32 @@
     "field": "volume",
     "detail": "verdict 'correction' but volume is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "pages",
+    "detail": "pages = '1--104': quote '4 p. l., 104 p. ill.' at https://www.loc.gov/item/17031875/?fo=json: value words ['1'] are not in the quote; applied: the notes say it was read in a browser or transcribed from a scan ('scan'; user rule)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-02): pages = '1--104'",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "LoC catalogue: 4 preliminary leaves + 104 numbered pages, 'Archives of psychology no. 40'. The issue itself prints only 'No. 40, SEPTEMBER, 1917'; volume VI appears only on the later bound-volume title page ('VOLUME VI 1917-1921', archive.org scan), so Volume is left absent.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "AndeEtal90",
@@ -5581,6 +6163,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5693,6 +6276,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -5727,15 +6311,9 @@
     "field": "ENTRYTYPE",
     "current": "article",
     "proposed": "incollection",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "POST-CHECK GAP: the researcher wrote the type change as field 'entrytype' (lowercase); the post-check does not recognise it, so the merged row adds a field named 'entrytype' and the type conversion rules (and this review's set-A filter) never fire. Journal 'Attention and Performance' and Volume 15 remain although the notes say to drop them.",
-       "Pages: NCKU record (fetched) citation_firstpage 421 / lastpage 452 and RIS SP 421 EP 452, MIT Press 1994, editors C Umilta and M Moscovitch; Crossref's 411-442 (the doi_record_conflict flag) is the digital re-pagination - keeping 421--452 is right."
-      ]
-     }
-    ],
+    "source": "resolution",
+    "evidence": [],
+    "decision": "resolution batch-02",
     "reviewer": "disagree: lowercase 'entrytype' passed through as a BibTeX field; ENTRYTYPE stays @article"
    },
    {
@@ -5832,6 +6410,12 @@
     "field": "pages",
     "detail": "Crossref record of 10.7551/mitpress/1478.003.0025 gives pages '411-442', proposal '421--452'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "ENTRYTYPE, pages",
+    "detail": "resolution 'apply' (batch-02): ENTRYTYPE = 'incollection'; pages = '421--452'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -5853,6 +6437,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "Crossref/OpenAlex (MIT Press Direct digital edition) give 411-442 and neighbouring chapters are likewise offset; the co-author's institutional record (NCKU) and Semantic Scholar give 421-452, the pagination cited for the print book. MIT Press Direct returns 403, so the print page could not be seen; kept HEAD 421--452.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -5874,7 +6465,7 @@
     "ENTRYTYPE": "incollection"
    }
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "HirsAly22",
@@ -5946,13 +6537,14 @@
     "field": "year",
     "current": "2022",
     "proposed": "2023",
-    "source": "researcher",
+    "source": "resolution",
     "evidence": [
      {
       "url": "https://api.crossref.org/works/10.3758/s13414-022-02593-1",
       "quote": "\"published-print\":{\"date-parts\":[[2023,7]]}"
      }
     ],
+    "decision": "resolution batch-02",
     "reviewer": "agree"
    }
   ],
@@ -5962,14 +6554,27 @@
    "target_base": "HirsAly23",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "HirsAly23"
+   "new_key": "HirsAly23",
+   "resolution": "resolution (batch-02): key HirsAly23 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": "year",
+    "detail": "resolution 'apply' (batch-02): year = '2023'",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "HirsAly22 -> HirsAly23 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-02): HirsAly22 -> HirsAly23, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -5997,6 +6602,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "Printed issue 85(5):1517-1549, July 2023 (Crossref, PubMed); online 2022. Key follows print year; HirsAly23 is free in HEAD.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6013,7 +6625,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "KeenEtal22",
@@ -6081,6 +6693,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6135,13 +6748,26 @@
     "field": "doi",
     "detail": "verdict 'correction' but doi is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-02): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "No DOI exists: Aviation, Space, and Environmental Medicine had no DOIs in 2007; PubMed/Europe PMC 17547316 lists none (78(5 Suppl):B153-64). Number '5 Suppl' as indexed. RECONCILED 2026-09-26: Question answered by the supplement default; '5 Suppl' conforms.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "BaloEtal07",
@@ -6220,6 +6846,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -6311,14 +6938,27 @@
    "target_base": "DahmEtal12",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "DahmEtal12"
+   "new_key": "DahmEtal12",
+   "resolution": "resolution (batch-02): key DahmEtal12 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-02): the post-check's final changes stand",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "DahmEtal11 -> DahmEtal12 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-02): DahmEtal11 -> DahmEtal12, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -6350,6 +6990,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "Printed in 44(2):447-454, June 2012 (Crossref published-print, PubMed 22045563); online 2011. DahmEtal12 is free in HEAD.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6366,7 +7013,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MasoSuri12",
@@ -6443,6 +7090,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6547,6 +7195,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -6682,6 +7331,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -6778,6 +7428,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -6898,6 +7549,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -7032,6 +7684,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7126,6 +7779,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -7211,6 +7865,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -7300,6 +7955,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7421,6 +8077,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -7535,6 +8192,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -7644,6 +8302,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -7769,6 +8428,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -7845,6 +8505,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -7942,14 +8603,27 @@
    "target_base": "AsakEtal02",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "AsakEtal02"
+   "new_key": "AsakEtal02",
+   "resolution": "resolution (batch-02): key AsakEtal02 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-02): the post-check's final changes stand",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "BerrEtal02 -> AsakEtal02 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-02): BerrEtal02 -> AsakEtal02, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -7979,6 +8653,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "Crossref and PubMed 12049324 list authors Asaka, Griffin, Berry; key follows first author. AsakEtal02 is free in HEAD (only AsakEtal00).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -7994,7 +8675,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Bret19",
@@ -8036,6 +8717,12 @@
     "field": "verdict",
     "detail": "verdict 'verified' but fields are corrected: should be 'correction'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-02): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -8061,8 +8748,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "Only change is adding DOI 10.1017/s0140525x19000049 (Crossref: vol 42, article e215, print 2019); flag was a verdict label only. Lowercase DOI matches house form.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MahrCsib18",
@@ -8104,6 +8798,12 @@
     "field": "verdict",
     "detail": "verdict 'verified' but fields are corrected: should be 'correction'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-02): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -8131,8 +8831,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "Only change is adding DOI 10.1017/s0140525x17000012 (Crossref: vol 41, article e1, print 2018); flag was a verdict label only.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "EichEtal92",
@@ -8166,13 +8873,14 @@
     "field": "title",
     "current": "The hippocampus--- what does it do?",
     "proposed": "The hippocampus---what does it do?",
-    "source": "researcher",
+    "source": "resolution",
     "evidence": [
      {
-      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=1567331&retmode=xml",
-      "quote": "The hippocampus--what does it do?"
+      "url": "https://api.crossref.org/works/10.1016/0163-1047(92)90724-i",
+      "quote": "\"title\":[\"The hippocampus\\u2014what does it do?\"]"
      }
-    ]
+    ],
+    "decision": "resolution batch-02"
    }
   ],
   "removals": {},
@@ -8183,10 +8891,10 @@
   },
   "flags": [
    {
-    "code": "style_only_change",
+    "code": "resolution_decision",
     "field": "title",
-    "detail": "'The hippocampus--- what does it do?' -> 'The hippocampus---what does it do?' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
-    "action": "flag"
+    "detail": "resolution 'apply' (batch-02): title = 'The hippocampus---what does it do?'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -8216,8 +8924,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "The publisher record prints a closed em dash (no space), so '---what' is as printed; HEAD's '--- what' adds a space the source lacks. RECONCILED 2026-09-26: Question answered by rule: em dash a---b; value already conforms.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "RobiEtal13",
@@ -8307,6 +9022,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -8386,6 +9102,18 @@
     "field": "title",
     "detail": "validator: title not covered by its quotes (missing ['beta']; failures [])",
     "action": "held"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "title",
+    "detail": "title = 'Voluntary exercise counteracts {A$\\\\beta$25-35}-induced memory impairment in mice': quote '\"title\":\"Voluntary exercise counteracts Aβ25-35-induced memory impairment in mice.\"' at https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:24055357%20AND%20SRC:MED&resultType=core&format=json: value words ['beta'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+    "action": "held"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-02): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -8423,6 +9151,16 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "Title matches the source except that the printed Greek beta is written $\\beta$ (the validator cannot map it); HEAD's outer braces around the whole title are removed. Author 'Ting Wu' -> 'T Wu' per Crossref.",
+   "residue": [
+    "title: quote unverified (value words ['beta'] are not in the quote)",
+    "quote_check_failed on title is held and the resolution does not address it"
+   ],
+   "noop": null
+  },
   "reviewer": null,
   "needs_user": true
  },
@@ -8509,6 +9247,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -8599,6 +9338,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8711,6 +9451,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -8781,6 +9522,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -8839,6 +9581,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -8929,6 +9672,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -8959,6 +9703,7 @@
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -9004,6 +9749,12 @@
     "field": "pages",
     "detail": "Crossref record of 10.2307/2331838 gives pages '507', proposal '507--521'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-02): pages = '507--521'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -9029,6 +9780,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "JSTOR DOI record has first page only; the OUP (publisher) Crossref record of the same article prints 507-521, equal to HEAD. JSTOR DOI kept per house precedent (Wilc45).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -9040,7 +9798,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Mora50",
@@ -9105,6 +9863,12 @@
     "field": "pages",
     "detail": "Crossref record of 10.2307/2332142 gives pages '17', proposal '17--23'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-02): pages = '17--23'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -9130,8 +9894,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "JSTOR DOI record has first page only; OUP Crossref record prints 37(1-2):17-23, equal to HEAD pages.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "AdriYama35",
@@ -9221,6 +9992,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -9287,6 +10059,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -9369,6 +10142,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -9445,7 +10219,8 @@
    "target_base": "duBoEtal06",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "duBoEtal06"
+   "new_key": "duBoEtal06",
+   "resolution": "resolution (batch-02): key duBoEtal06 confirmed"
   },
   "flags": [
    {
@@ -9455,10 +10230,22 @@
     "action": "applied"
    },
    {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-02): the post-check's final changes stand",
+    "action": "applied"
+   },
+   {
     "code": "key_rename",
     "field": "key",
     "detail": "BoisEtal06 -> duBoEtal06 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-02): BoisEtal06 -> duBoEtal06, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -9500,6 +10287,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "PubMed 16984899 lists surname 'du Boisgueheneuc'; Crossref pages 3315-3328. Particle key follows house precedent (delaEtal07, vanEEtal11); duBoEtal06 is free in HEAD.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -9514,7 +10308,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "BungEtal01",
@@ -9589,6 +10383,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -9686,6 +10481,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -9784,6 +10580,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -9858,6 +10655,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -9894,13 +10692,14 @@
     "field": "pages",
     "current": "2301",
     "proposed": "2301--2315",
-    "source": "researcher",
+    "source": "resolution",
     "evidence": [
      {
-      "url": "https://api.crossref.org/works/10.1093/brain/121.12.2301",
-      "quote": "\"page\":\"2301-2315\""
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:9874481%20AND%20SRC:MED&resultType=core&format=json",
+      "quote": "\"pageInfo\":\"2301-2315\""
      }
     ],
+    "decision": "resolution batch-02",
     "reviewer": "agree"
    }
   ],
@@ -9908,18 +10707,14 @@
   "key_plan": {
    "current_key": "CronEtal98a",
    "target_base": "CronEtal98",
-   "action": "keep",
-   "same_work_as": [
-    "CronEtal98c"
-   ],
-   "detail": "same work (title, first author, year) as CronEtal98c in cdl.bib: CronEtal98c should merge into CronEtal98a"
+   "action": "keep"
   },
   "flags": [
    {
-    "code": "duplicate",
-    "field": "key",
-    "detail": "same work (title, first author, year) as CronEtal98c in cdl.bib: CronEtal98c should merge into CronEtal98a",
-    "action": "flag"
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-02): pages = '2301--2315'",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -9953,6 +10748,13 @@
   "user_decisions": [
    "cross-wave dup-CronEtal98c-CronEtal98a: correct: CronEtal98c merge(s) into CronEtal98a (approved duplicate)"
   ],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-02",
+   "notes": "The duplicate CronEtal98c was already merged into CronEtal98a in HEAD (commit 282d321; no CronEtal98c remains). CronEtal98a is the keeper; apply DOI 10.1093/brain/121.12.2301 and pages 2301--2315.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -9967,7 +10769,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "CronEtal98b",
@@ -10039,6 +10841,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -10046,54 +10849,34 @@
   "key": "CronEtal98c",
   "batch": "batch-006",
   "verdict": "correction",
-  "current": {
-   "year": "1998",
-   "volume": "121",
-   "title": "Functional mapping of human sensorimotor cortex with electrocorticographic spectral analysis. {II}. {E}vent-related synchronization in the gamma band",
-   "pages": "2301--2315",
-   "number": "12",
-   "journal": "Brain",
-   "author": "N E Crone and D L Miglioretti and B Gordon and R P Lesser",
-   "ENTRYTYPE": "article",
-   "ID": "CronEtal98c"
-  },
-  "final_changes": [
-   {
-    "field": "doi",
-    "current": null,
-    "proposed": "10.1093/brain/121.12.2301",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1093/brain/121.12.2301",
-      "quote": "\"page\":\"2301-2315\""
-     }
-    ]
-   }
-  ],
+  "current": {},
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "CronEtal98c",
-   "target_base": "CronEtal98",
-   "action": "duplicate",
-   "same_work_as": [
-    "CronEtal98a"
-   ],
-   "merge_into": "CronEtal98a",
-   "detail": "same work (title, first author, year) already in cdl.bib as CronEtal98a: merge CronEtal98c into it",
-   "user_decision": "cross-wave dup-CronEtal98c-CronEtal98a: correct"
+   "target_base": null,
+   "action": "keep",
+   "user_decision": "cross-wave dup-CronEtal98c-CronEtal98a: correct",
+   "detail": "user decision (cross-wave dup-CronEtal98c-CronEtal98a: correct): merge CronEtal98c into CronEtal98a",
+   "resolution": "resolution 'drop': not in the bibliography"
   },
   "flags": [
    {
-    "code": "duplicate",
-    "field": "key",
-    "detail": "same work (title, first author, year) already in cdl.bib as CronEtal98a: merge CronEtal98c into it",
-    "action": "flag"
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "CronEtal98c is not in cdl.bib; the key is not in the bibliography: resolution 'drop' is a no-op",
+    "action": "dropped"
+   },
+   {
+    "code": "resolution_noop",
+    "field": null,
+    "detail": "resolution 'drop' (batch-03): CronEtal98c is not in the bibliography; nothing to do",
+    "action": "applied"
    },
    {
     "code": "user_decision",
     "field": "key",
-    "detail": "cross-wave dup-CronEtal98c-CronEtal98a: correct: merge CronEtal98c into CronEtal98a (approved duplicate)",
+    "detail": "cross-wave dup-CronEtal98c-CronEtal98a: correct: merge CronEtal98c into CronEtal98a (the post-check planned no_key_rule; the user's decision wins)",
     "action": "applied"
    }
   ],
@@ -10120,10 +10903,17 @@
   },
   "remove_entry": null,
   "user_decisions": [
-   "cross-wave dup-CronEtal98c-CronEtal98a: correct: merge CronEtal98c into CronEtal98a (approved duplicate)"
+   "cross-wave dup-CronEtal98c-CronEtal98a: correct: merge CronEtal98c into CronEtal98a (the post-check planned no_key_rule; the user's decision wins)"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-03",
+   "notes": "CronEtal98c is absent from HEAD cdl.bib; key-deletions.json records the approved merge. The keeper CronEtal98a (queued in batch 2) still has Pages {2301} and no DOI; Crossref 10.1093/brain/121.12.2301 gives \"page\":\"2301-2315\" for it.",
+   "residue": [],
+   "noop": "not in the bibliography"
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "DamiEtal99a",
@@ -10180,9 +10970,21 @@
     "action": "held"
    },
    {
+    "code": "resolution_quote_unverified",
+    "field": "title",
+    "detail": "title = 'The substantia nigra of the human brain {I}. Nigrosomes and the nigral matrix, a compartmental organization based on calbindin {D28K} immunohistochemistry': quote 'The substantia nigra of the human brain: I. Nigrosomes and the nigral matrix, a compartmental organization based on calbindin D28K immunohistochemistry' at https://academic.oup.com/brain/article/122/8/1421/305054: fetch failed: HTTPError: HTTP Error 403: Forbidden; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+    "action": "held"
+   },
+   {
     "code": "doi_title_part_number",
     "field": "doi",
     "detail": "10.1093/brain/122.8.1421 is registered to 'The substantia nigra of the human brain': titles agree except for part numbers ('The substantia nigra of the human brain' vs 'The substantia nigra of the human brain {I}. Nigrosomes and the nigral matrix, a compartmental organization based on calbindin {D28K} immunohistochemistry'); the record's first page is the entry's; applied",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
     "action": "applied"
    }
   ],
@@ -10215,6 +11017,16 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Title unchanged from HEAD; the publisher page prints 'calbindin D28K' (PubMed writes 'D(28K)', which failed the quote check). OUP page is behind Cloudflare for curl but loads via WebFetch; PubMed 10430829 corroborates the rest ('TI  - The substantia nigra of the human brain. I. Nigrosomes...'). Post-check author and DOI changes stand.",
+   "residue": [
+    "title: quote unverified (fetch failed: HTTPError: HTTP Error 403: Forbidden)",
+    "quote_check_failed on title is held and the resolution does not address it"
+   ],
+   "noop": null
+  },
   "reviewer": null,
   "needs_user": true
  },
@@ -10325,6 +11137,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -10437,6 +11250,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -10527,6 +11341,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -10675,6 +11490,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -10788,6 +11604,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -10906,6 +11723,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -11032,6 +11850,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -11120,6 +11939,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -11194,6 +12014,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -11276,6 +12097,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -11404,6 +12226,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -11496,6 +12319,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -11515,6 +12339,20 @@
    "ID": "Jack79"
   },
   "final_changes": [
+   {
+    "field": "author",
+    "current": "J H Jackson",
+    "proposed": "J Hughlings-Jackson",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1093/brain/2.3.323",
+      "quote": "\"family\":\"HUGHLINGS-JACKSON\""
+     }
+    ],
+    "decision": "resolution batch-03",
+    "reviewer": "not_found, left (agree)"
+   },
    {
     "field": "doi",
     "current": null,
@@ -11540,13 +12378,29 @@
      }
     ],
     "reviewer": "agree"
+   },
+   {
+    "field": "title",
+    "current": "On affection of speech from disease of the brain",
+    "proposed": "On affections of speech from disease of the brain",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://archive.org/download/brainjournalofne02londuoft/brainjournalofne02londuoft_djvu.txt",
+      "quote": "On  Affections  of  Speech  from  Disease  of  the  Brain.     By  J.  Hughlings-"
+     }
+    ],
+    "decision": "resolution batch-03"
    }
   ],
   "removals": {},
   "key_plan": {
    "current_key": "Jack79",
-   "target_base": "Jack79",
-   "action": "keep"
+   "target_base": "Hugh79",
+   "action": "rename",
+   "rename_reason": "key does not follow the corrected metadata",
+   "new_key": "Hugh79",
+   "resolution": "resolution (batch-03): key Hugh79 confirmed"
   },
   "flags": [
    {
@@ -11554,6 +12408,24 @@
     "field": "author",
     "detail": "verdict 'correction' but author is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "author, title",
+    "detail": "resolution 'apply' (batch-03): author = 'J Hughlings-Jackson'; title = 'On affections of speech from disease of the brain'",
+    "action": "applied"
+   },
+   {
+    "code": "key_rename",
+    "field": "key",
+    "detail": "Jack79 -> Hugh79 (key does not follow the corrected metadata)",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-03): Jack79 -> Hugh79, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -11579,6 +12451,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Scanned Brain vol 2 (archive.org OCR) prints the p.323 heading 'ON  AFFECTIONS  OF  SPEECH ... BY  J.   HUGHLINGS-JACKSOIT' and index 'HUGHLINGS-JACKSON,  J.'; Crossref/OUP byline 'J. HUGHLINGS-JACKSON'. So the printed surname is hyphenated (two hosts) and the title is plural 'affections' (Crossref's 'AFFECTION' is a metadata slip; parts 1.3.304 and 2.2.203 read 'AFFECTIONS'). Surname change renames the key Jack79 -> Hugh79 (absent in HEAD). DOI and pages 323--356 from post-check stand.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -11592,7 +12471,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "JirsEtal06",
@@ -11665,6 +12544,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -11759,6 +12639,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -11870,6 +12751,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -11958,6 +12840,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -12061,14 +12944,27 @@
    "target_base": "OjemEtal10",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "OjemEtal10"
+   "new_key": "OjemEtal10",
+   "resolution": "resolution (batch-03): key OjemEtal10 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "OjemEtal09 -> OjemEtal10 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-03): OjemEtal09 -> OjemEtal10, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -12106,6 +13002,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Print year 2010 (PubMed 'DP  - 2010 Jan'; Crossref published-print 2010-01), 133(1):46-59; OjemEtal10 absent in HEAD. Rename per keys-follow-metadata rule.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -12122,7 +13025,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "OtteEtal01",
@@ -12197,6 +13100,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -12277,14 +13181,27 @@
    "target_base": "OwenEtal96",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "OwenEtal96"
+   "new_key": "OwenEtal96",
+   "resolution": "resolution (batch-03): key OwenEtal96 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "OwenEtal97 -> OwenEtal96 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-03): OwenEtal97 -> OwenEtal96, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -12318,6 +13235,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "PubMed 8931583 'DP  - 1996 Oct', 'VI  - 119 ( Pt 5)'; Crossref published-print 1996. OwenEtal96 absent in HEAD.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -12332,7 +13256,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "PenfPero63",
@@ -12407,6 +13331,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -12482,6 +13407,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -12604,6 +13530,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -12666,6 +13593,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -12756,6 +13684,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "b",
@@ -12844,6 +13773,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -12952,6 +13882,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -13027,6 +13958,12 @@
     "field": "year",
     "detail": "Crossref record of 10.1093/brain/awl329 is dated 2006, proposal 2007",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "year",
+    "detail": "resolution 'apply' (batch-03): year = '2007'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -13058,6 +13995,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Crossref's 2006 is the online-first date (no published-print); the print issue is Brain 130(1), January 2007 per PubMed. Print year wins; year and key unchanged. Post-check author J-P, DOI, pages 88--99 stand.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -13071,7 +14015,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "WarrShal84",
@@ -13146,6 +14090,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -13245,6 +14190,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -13331,6 +14277,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -13393,6 +14340,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -13511,6 +14459,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -13594,6 +14543,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -13673,6 +14623,12 @@
     "field": "title",
     "detail": "'The neural basis of ego-and allocentric reference frames in spatial navigation: evidence from spatio-temporal coupled current density reconstruction' -> 'The neural basis of ego- and allocentric reference frames in spatial navigation: evidence from spatio-temporal coupled current density reconstruction' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -13704,8 +14660,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "'ego-and' in HEAD is a typo, not house style: PubMed 16996041 and Crossref both print 'ego- and allocentric'; apply the post-check title plus umlaut authors, DOI, number 1.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "HowaEtal96b",
@@ -13776,6 +14739,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -13806,6 +14770,19 @@
       "quote": "10.1016/0006-8993(82)91145-3 [doi]"
      }
     ]
+   },
+   {
+    "field": "pages",
+    "current": "43--49",
+    "proposed": "43--50",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/0006-8993(82)91145-3",
+      "quote": "\"page\":\"43-50\""
+     }
+    ],
+    "decision": "resolution batch-03"
    }
   ],
   "removals": {},
@@ -13822,10 +14799,10 @@
     "action": "flag"
    },
    {
-    "code": "doi_record_conflict",
+    "code": "resolution_decision",
     "field": "pages",
-    "detail": "Crossref record of 10.1016/0006-8993(82)91145-3 gives pages '43-50', proposal '43--49'",
-    "action": "flag"
+    "detail": "resolution 'apply' (batch-03): pages = '43--50'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -13853,8 +14830,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "HEAD pages kept: PubMed/Europe PMC give 43-49; Crossref/OpenAlex give 43-50 (next article starts p.51). Printed PDF not reachable (ScienceDirect 403, Elsevier API returns no pages). DOI from post-check applies. RECONCILED 2026-09-26: Round-1 precedence rule: publisher/Crossref wins over PubMed when the printed PDF is unseen; Crossref/OpenAlex 43-50 (next article starts p. 51).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "LeunBors87",
@@ -13933,6 +14917,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -14027,6 +15012,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14128,6 +15114,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -14207,6 +15194,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -14306,6 +15294,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -14419,6 +15408,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -14524,6 +15514,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -14598,6 +15589,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -14705,6 +15697,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -14802,6 +15795,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -14922,6 +15916,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -14955,21 +15950,6 @@
   },
   "final_changes": [
    {
-    "field": "author",
-    "current": "M P Dezfouli and M R Daliri",
-    "proposed": "M {Parto Dezfouli} and M R Daliri",
-    "source": "reviewer",
-    "evidence": [
-     {
-      "reviewer_problems": [
-       "POST-CHECK BUG: initials_from_source turned the researcher's correct 'M {Parto Dezfouli}' into 'M P {Parto Dezfouli}' by reading the first word of the compound surname as a given name. PubMed 31363879 XML: LastName 'Parto Dezfouli', ForeName 'Mohsen', Initials 'M'; Crossref given 'Mohsen', family 'Parto Dezfouli'. Same bug hits HoltEtal12, TingEtal02, CassEtal02, CowaEtal04, DupoEtal00, SilbEtal03 (and PaszEtal19 'A A D A').",
-       "Key PartDali20 is right for surname 'Parto Dezfouli' (absent in HEAD)."
-      ]
-     }
-    ],
-    "reviewer": "disagree: post-check added a spurious initial"
-   },
-   {
     "field": "doi",
     "current": null,
     "proposed": "10.1007/s10548-019-00726-8",
@@ -14999,17 +15979,30 @@
   "removals": {},
   "key_plan": {
    "current_key": "DezfDali20",
-   "target_base": "PartDali20",
+   "target_base": "DezfDali20",
    "action": "rename",
-   "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "PartDali20"
+   "new_key": "PartDali20",
+   "rename_reason": "resolution (batch-03)",
+   "resolution": "resolution (batch-03): key PartDali20"
   },
   "flags": [
    {
-    "code": "key_rename",
+    "code": "resolution_quote_unverified",
+    "field": "author",
+    "detail": "author = 'M {Parto Dezfouli} and M R Daliri': quote 'AU  - Parto Dezfouli M' at https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31363879&rettype=medline&retmode=text: value words ['daliri'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+    "action": "held"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "key",
-    "detail": "DezfDali20 -> PartDali20 (key does not follow the corrected metadata)",
-    "action": "flag"
+    "detail": "resolution (batch-03): DezfDali20 -> PartDali20",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -15037,6 +16030,16 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Compound surname 'Parto Dezfouli' (PubMed LastName; Crossref family 'Parto Dezfouli'); reviewer's value replaces the post-check's spurious 'M P'. PartDali20 absent in HEAD.",
+   "residue": [
+    "author: quote unverified (value words ['daliri'] are not in the quote)",
+    "key PartDali20 does not follow the ID rule for the corrected metadata (DezfDali20)"
+   ],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -15139,6 +16142,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -15203,6 +16207,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -15297,6 +16302,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15398,6 +16404,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -15483,6 +16490,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -15573,6 +16581,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15660,6 +16669,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -15742,6 +16752,12 @@
     "field": "title",
     "detail": "'Context-dependent memory in two natural environments: on land and under water' -> 'Context-dependent memory in two natural environments: on land and underwater' changes only spacing; a house-style decision (check how cdl.bib writes it), not a source correction",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -15769,8 +16785,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Printed title is 'ON LAND AND UNDERWATER' (one word): Crossref title, and the printed first page in the local PDF library (GoddBadd75.pdf p.1: 'ENVIRONMENTS: ON LAND AND UNDERWATER', 'Br. J. Psychol. (1975), 66, 3, pp. 325-331'). A source correction, not style; apply post-check.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "GoddBadd80",
@@ -15844,6 +16867,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -15865,13 +16889,9 @@
     "field": "ENTRYTYPE",
     "current": "article",
     "proposed": "incollection",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1007/978-0-387-74980-8_10",
-      "quote": "\"type\":\"book-chapter\""
-     }
-    ],
+    "source": "resolution",
+    "evidence": [],
+    "decision": "resolution batch-03",
     "reviewer": "agree"
    },
    {
@@ -15980,21 +17000,34 @@
    }
   ],
   "removals": {
-   "journal": "@incollection has no journal (already given by the booktitle)"
+   "journal": "resolution asked to remove it (current 'Brain Research in Language')"
   },
   "key_plan": {
    "current_key": "Sina07",
    "target_base": "Sina08",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "Sina08"
+   "new_key": "Sina08",
+   "resolution": "resolution (batch-03): key Sina08 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": "ENTRYTYPE, journal",
+    "detail": "resolution 'apply' (batch-03): ENTRYTYPE = 'incollection'; removed journal",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "Sina07 -> Sina08 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-03): Sina07 -> Sina08, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -16020,6 +17053,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Crossref book-chapter in Brain Research in Language (ed. Z Breznitz, Springer US, Boston, MA), 247-273, published-print 2008; title as printed ends 'in the Electrocorticography'. Journal removed (booktitle carries it). Sina08 absent in HEAD.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "partly",
    "sampled_as": "a",
@@ -16042,7 +17082,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "CronEtal94",
@@ -16058,33 +17098,26 @@
    "ENTRYTYPE": "article",
    "ID": "CronEtal94"
   },
-  "final_changes": [
-   {
-    "field": "number",
-    "current": null,
-    "proposed": "3",
-    "source": "researcher",
-    "evidence": [
-     {
-      "url": "https://api.crossref.org/works/10.1006/brln.1994.1057",
-      "quote": "\"issue\":\"3\""
-     }
-    ],
-    "reviewer": "agree"
-   }
-  ],
+  "final_changes": [],
   "removals": {},
   "key_plan": {
    "current_key": "CronEtal94",
    "target_base": "CronEtal94",
-   "action": "keep"
+   "action": "keep",
+   "resolution": "resolution 'drop' (batch-03): the entry is removed"
   },
   "flags": [
    {
-    "code": "needs_user",
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'drop' (batch-03): remove the entry (item inside a journal's collective 'Abstracts' record (Crossref 10.1006/brln.1994.1057 title 'Abstracts', Brain and Language 47(3) pp 409-490): abstracts -> drop (default); no item-level record)",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
     "field": "verdict",
-    "detail": "verdict ambiguous: user decision",
-    "action": "flag"
+    "detail": "verdict ambiguous resolved by the resolution ('drop', batch-03)",
+    "action": "applied"
    },
    {
     "code": "user_decision",
@@ -16094,10 +17127,17 @@
    }
   ],
   "doi_status": null,
-  "remove_entry": null,
+  "remove_entry": "item inside a journal's collective 'Abstracts' record (Crossref 10.1006/brln.1994.1057 title 'Abstracts', Brain and Language 47(3) pp 409-490): abstracts -> drop (default); no item-level record",
   "user_decisions": [
    "cross-wave a-CronEtal94: wrong (this is a real article NOT an abstract; should keep): a real article, not a conference abstract: keep it and verify it normally"
   ],
+  "resolution": {
+   "decision": "drop",
+   "batch": "batch-03",
+   "notes": "User decision (crosswave a-CronEtal94): real article, keep. Only record: Crossref 10.1006/brln.1994.1057 \"title\":[\"Abstracts\"], Brain and Language 47(3), Oct 1994, pp 409-490 (contains 466-468), no per-item DOI; ScienceDirect 403 and Elsevier API give no text, so title/authors/pages 466--468 remain unverified. Number 3 applies; 'J {Hart Jr}' should lose the suffix (J Hart) under the no-suffix rule. No DOI added. RECONCILED 2026-09-26: Default: items inside a collective Abstracts record are abstracts -> drop; rule 1 also beats the earlier keep.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -16110,7 +17150,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Salt93",
@@ -16171,6 +17211,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -16201,11 +17242,32 @@
     "field": "pages",
     "detail": "verdict 'verified' but pages is not_found: the entry is not fully verified",
     "action": "flag"
+   },
+   {
+    "code": "resolution_quote_unverified",
+    "field": "pages",
+    "detail": "pages = '1--94': quote '94 p.' at https://www.loc.gov/item/53011675/?fo=json: value words ['1'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
+    "action": "held"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": null,
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Work confirmed (Harvard/LoC LCCN 53011675: Gomulicki, Bronislaw R., 1953, series 'British journal of psychology. Monograph supplements ; 29'). Pages unconfirmed and conflicting: Harvard/LoC '94 p.' with 'Bibliography: pages [86]-91'; BJPS review 10.1093/bjps/vi.24.346 says 'pp. 85'. HEAD 1--91 left unchanged; no DOI exists. RECONCILED 2026-09-26: HEAD 1--91 is confirmed by no record; LoC catalogue extent '94 p.' gives 1--94, the same catalogue-extent form Gate17 (batch 02) uses for a numbered monograph issue.",
+   "residue": [
+    "pages: quote unverified (value words ['1'] are not in the quote)"
+   ],
+   "noop": null
+  },
   "reviewer": null,
   "needs_user": true
  },
@@ -16313,6 +17375,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -16418,6 +17481,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -16481,10 +17545,16 @@
   },
   "flags": [
    {
-    "code": "surname_single_source",
+    "code": "resolution_quote_unverified",
     "field": "author",
-    "detail": "surname 'mccullough' -> 'mcculloch' rests on 1 source host(s) ['api.crossref.org']; single-source surname changes need corroboration or the user's sign-off; held: the cited name 'W S McCullough' is kept",
+    "detail": "author = 'W S McCulloch and W H Pitts': quote '\"given\":\"Warren S.\",\"family\":\"McCulloch\"' at https://api.crossref.org/works/10.1007/bf02478259: value words ['pitts'] are not in the quote; not applied (the notes do not say it was read in a browser or transcribed from a scan)",
     "action": "held"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -16512,6 +17582,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Surname corroborated on a second host: PubMed 2185863 (1990 reprint) 'FAU - McCulloch, W S'. Both sources print Pitts as 'Walter'/'W'; the cited middle initial H (Walter Harry Pitts) is kept per 'never drop an initial only because a source omits it'. DOI and number 4 apply. RECONCILED 2026-09-26: Initials question answered by the author-name rule (round 1: most complete name; keep known middle initials).",
+   "residue": [
+    "author: quote unverified (value words ['pitts'] are not in the quote)"
+   ],
+   "noop": null
+  },
   "reviewer": null,
   "needs_user": true
  },
@@ -16556,6 +17635,12 @@
     "field": "verdict",
     "detail": "verdict 'verified' but fields are corrected: should be 'correction'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -16583,8 +17668,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Only change is the DOI 10.1037/h0087328 (PubMed 10721237; handle resolves; Crossref 54(1):33-41, 2000). Verdict label should read 'correction'; no field conflicts.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "WingKaha02",
@@ -16670,6 +17762,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -16727,6 +17820,12 @@
     "field": "verdict",
     "detail": "verdict 'verified' but fields are corrected: should be 'correction'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -16756,6 +17855,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "DOI 10.1037/h0081652 and issue 2 from Crossref (31(2):71-89, 1977); reviewer agreed. Verdict label only.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -16769,7 +17875,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "Tulv85b",
@@ -16823,6 +17929,12 @@
     "field": "verdict",
     "detail": "verdict 'verified' but fields are corrected: should be 'correction'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -16848,8 +17960,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "DOI 10.1037/h0080017 and issue 1 from Crossref (Canadian Psychology 26(1):1-12, 1985); handle resolves. Verdict label only; key unchanged (Tulv85a exists).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "HamiEtal21",
@@ -16928,6 +18047,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -17050,6 +18170,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -17164,6 +18285,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -17228,6 +18350,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -17326,6 +18449,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -17390,14 +18514,27 @@
    "target_base": "ChanEtal13",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "ChanEtal13"
+   "new_key": "ChanEtal13",
+   "resolution": "resolution (batch-03): key ChanEtal13 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "ChanEtal12a -> ChanEtal13 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-03): ChanEtal12a -> ChanEtal13, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -17429,6 +18566,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Print year 2013 (PubMed 'DP - 2013 Mar'; Crossref published-print 2013-03), 23(3):739-749. ChanEtal13 absent in HEAD.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -17442,7 +18586,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "CheiFiez01",
@@ -17485,6 +18629,12 @@
     "field": "verdict",
     "detail": "verdict 'verified' but fields are corrected: should be 'correction'",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-03): the post-check's final changes stand",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -17510,8 +18660,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "DOI 10.1093/cercor/11.11.1003 (PubMed 11590110; Crossref 11(11):1003-1014, 2001). Verdict label only.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "CompEtal00",
@@ -17619,6 +18776,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -17716,6 +18874,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -17823,6 +18982,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -17927,6 +19087,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -18055,6 +19216,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -18130,6 +19292,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -18205,6 +19368,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -18290,6 +19454,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -18362,7 +19527,8 @@
    "target_base": "GrubMull05",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "GrubMull05"
+   "new_key": "GrubMull05",
+   "resolution": "resolution (batch-03): key GrubMull05 confirmed"
   },
   "flags": [
    {
@@ -18372,10 +19538,22 @@
     "action": "flag"
    },
    {
+    "code": "resolution_decision",
+    "field": "year",
+    "detail": "resolution 'apply' (batch-03): year = '2005'",
+    "action": "applied"
+   },
+   {
     "code": "key_rename",
     "field": "key",
     "detail": "GrubMatt05 -> GrubMull05 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-03): GrubMatt05 -> GrubMull05, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -18401,6 +19579,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Crossref 2004 is online-first (no published-print); print issue Cerebral Cortex 15(1), Jan 2005. Second author is M M Müller (PubMed XML), so key GrubMatt05 -> GrubMull05 (absent in HEAD).",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -18415,7 +19600,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "HansEtal07",
@@ -18458,6 +19643,12 @@
     "field": "year",
     "detail": "Crossref record of 10.1093/cercor/bhj129 is dated 2006, proposal 2007",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "year",
+    "detail": "resolution 'apply' (batch-04): year = '2007'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -18497,8 +19688,15 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-04",
+   "notes": "Crossref's 2006 is the online-first date; the print issue 17(1) is dated January 2007 (PubMed JournalIssue CitedMedium=Print), so the year stays 2007 and only the DOI is added.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "HansEtal09",
@@ -18583,6 +19781,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -18703,6 +19902,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -18791,6 +19991,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -18878,6 +20079,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -18951,6 +20153,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -19049,14 +20252,27 @@
     "MeyeEtal19a",
     "MeyeEtal19b"
    ],
-   "detail": "MeyeEtal19 is taken by a different work (MeyeEtal19a, MeyeEtal19b)"
+   "detail": "MeyeEtal19 is taken by a different work (MeyeEtal19a, MeyeEtal19b)",
+   "resolution": "resolution (batch-04): key MeyeEtal19c confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-04): the post-check's final changes stand",
+    "action": "applied"
+   },
    {
     "code": "key_collision",
     "field": "key",
     "detail": "MeyeEtal19 is taken by a different work (MeyeEtal19a, MeyeEtal19b); proposed key MeyeEtal19c",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-04): MeyeEtal18 -> MeyeEtal19c, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -19088,6 +20304,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-04",
+   "notes": "Print 2019, 29(5):1910-1920 per PubMed and Crossref published-print; HEAD has MeyeEtal19a and MeyeEtal19b (different works) and no bare MeyeEtal19, so the key becomes MeyeEtal19c.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -19104,7 +20327,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "MillEtal03",
@@ -19176,6 +20399,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -19292,6 +20516,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -19444,6 +20669,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": null,
   "needs_user": false
  },
@@ -19507,6 +20733,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -19631,14 +20858,27 @@
    "target_base": "RissEtal08",
    "action": "rename",
    "rename_reason": "key does not follow the corrected metadata",
-   "new_key": "RissEtal08"
+   "new_key": "RissEtal08",
+   "resolution": "resolution (batch-04): key RissEtal08 confirmed"
   },
   "flags": [
+   {
+    "code": "resolution_decision",
+    "field": null,
+    "detail": "resolution 'apply' (batch-04): the post-check's final changes stand",
+    "action": "applied"
+   },
    {
     "code": "key_rename",
     "field": "key",
     "detail": "RissEtal07 -> RissEtal08 (key does not follow the corrected metadata)",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "key",
+    "detail": "resolution (batch-04): RissEtal07 -> RissEtal08, as planned",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -19668,6 +20908,13 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-04",
+   "notes": "Print issue 18(7) July 2008 (PubMed, Crossref published-print 2008); RissEtal08 is free in HEAD.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": {
    "agree": "yes",
    "sampled_as": "a",
@@ -19685,7 +20932,7 @@
    ],
    "suggested_value": {}
   },
-  "needs_user": true
+  "needs_user": false
  },
  {
   "key": "SchaEtal18",
@@ -19814,6 +21061,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -19927,6 +21175,7 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": null,
   "reviewer": {
    "agree": "yes",
    "sampled_as": "b",
@@ -19983,6 +21232,12 @@
     "field": "year",
     "detail": "Crossref record of 10.1093/cercor/bhl030 is dated 2006, proposal 2007",
     "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "year",
+    "detail": "resolution 'apply' (batch-04): year = '2007'",
+    "action": "applied"
    }
   ],
   "doi_status": {
@@ -20022,7 +21277,14 @@
   },
   "remove_entry": null,
   "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-04",
+   "notes": "Crossref's 2006 is the online-first date; the print issue 17(5) is dated May 2007, so the year stays 2007 and only the DOI is added.",
+   "residue": [],
+   "noop": null
+  },
   "reviewer": null,
-  "needs_user": true
+  "needs_user": false
  }
 ]
