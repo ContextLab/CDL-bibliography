@@ -1,0 +1,343 @@
+[
+ {
+  "key": "Chos05",
+  "decision": "apply",
+  "new_key": "ChosEtal05",
+  "notes": "Post-check author list (7 authors, LoC 2004044906 and Crossref review record) makes the key ChosEtal05; first author Choset, year c2005 per LoC. ChosEtal05 is free in HEAD."
+ },
+ {
+  "key": "KurzEtal90",
+  "decision": "apply",
+  "new_key": "Kurz90",
+  "notes": "LoC 89013606 prints a single author ('The age of intelligent machines / Raymond Kurzweil.'), so the key becomes Kurz90; free in HEAD."
+ },
+ {
+  "key": "RumeEtal86a",
+  "decision": "apply",
+  "set": {
+   "doi": {
+    "value": "10.7551/mitpress/5236.001.0001",
+    "url": "https://api.crossref.org/works/10.7551/mitpress/5236.001.0001",
+    "quote": "\"subtitle\":[\"Explorations in the Microstructure of Cognition: Foundations\"]"
+   }
+  },
+  "notes": "The DOI's Crossref subtitle names the Foundations volume (volume 1), the work this entry cites (MIT Press, 1986, Rumelhart and McClelland); the held DOI is correct and is added. Key unchanged."
+ },
+ {
+  "key": "TellPalm98",
+  "decision": "apply",
+  "entrytype": "incollection",
+  "new_key": "TellPalm99",
+  "set": {
+   "title": {
+    "value": "Psychophysics",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Qualia%20693%22%20AND%20identifier%3Amitencyclopediao0000unse",
+    "quote": "Psychophysics  691"
+   },
+   "author": {
+    "value": "D Y Teller and J Palmer",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Davida%22%20AND%20identifier%3Amitencyclopediao0000unse",
+    "quote": "Teller  and  John  Palmer",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=Teller%20AND%20identifier%3Amitencyclopediao0000unse",
+      "quote": "D.  Y.  (1997).  First  glances"
+     }
+    ]
+   },
+   "booktitle": {
+    "value": "The {MIT} Encyclopedia of the Cognitive Sciences",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=99011115&maximumRecords=1&recordSchema=marcxml",
+    "quote": "The MIT encyclopedia of the cognitive sciences /"
+   },
+   "editor": {
+    "value": "R A Wilson and F C Keil",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=99011115&maximumRecords=1&recordSchema=marcxml",
+    "quote": "edited by Robert A. Wilson and Frank C. Keil."
+   },
+   "year": {
+    "value": "1999",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=99011115&maximumRecords=1&recordSchema=marcxml",
+    "quote": "MIT Press,"
+   },
+   "pages": {
+    "value": "691--692",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Qualia%20693%22%20AND%20identifier%3Amitencyclopediao0000unse",
+    "quote": "Qualia  693"
+   }
+  },
+  "notes": "The work is the 'Psychophysics' entry of MITECS (Internet Archive full-text of the printed book: contents 'Psychophysics 691' then 'Qualia 693'; entry signed '— Davida Teller and John Palmer'). @incollection per house form, year c1999 per LoC 99011115 (the '$c c1999' subfield follows 'MIT Press,'); end page = next entry's start - 1 (rule). Teller's middle initial Y from her own work cited in the same volume ('Teller, D. Y. (1997). First glances'). Key follows year: TellPalm99, free in HEAD."
+ },
+ {
+  "key": "RaveEtal98",
+  "decision": "drop",
+  "drop_reason": "no evidence found after: LoC SRU (title/creator), Open Library, Internet Archive catalogue and full-text search, Crossref; no record of a 1998 'Progressive matrices' by J C Raven, J E Raven and J H Court",
+  "notes": "No 'J E Raven' exists among the manual's authors; the 1998 Oxford Psychologists Press items cited elsewhere are several different manual sections (J Raven, J C Raven, J H Court 1998a/b/c: Standard, Advanced, Coloured), so which work was meant cannot be determined and none has a catalogue record reachable here. Rule: no verifiable record -> drop."
+ },
+ {
+  "key": "ConwEtal07",
+  "decision": "apply",
+  "set": {
+   "editor": {
+    "value": "A R A Conway and C Jarrold and M J Kane and A Miyake and J N Towse",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2006009858&maximumRecords=1&recordSchema=marcxml",
+    "quote": "Conway, Andrew R. A.",
+    "extra_evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/0096-3445.132.1.47",
+      "quote": "\"given\":\"Michael J.\",\"family\":\"Kane\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.003.0005",
+      "quote": "\"given\":\"John N.\",\"family\":\"Towse\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1093/acprof:oso/9780195168648.001.0001",
+      "quote": "\"given\":\"Chris\",\"family\":\"Jarrold\""
+     }
+    ]
+   },
+   "year": {
+    "value": "2007",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=2006009858&maximumRecords=1&recordSchema=marcxml",
+    "quote": "Oxford University Press,"
+   }
+  },
+  "notes": "Edited volume: names move to editor (post-check removes author). Year stays 2007: LoC 2006009858 hardback '$c 2007'; Crossref's 2008 is the paperback. Kane's J and Towse's N from their own records (Towse's from his chapter in this very volume), per the most-complete-name rule."
+ },
+ {
+  "key": "LeeWang08",
+  "decision": "apply",
+  "new_key": "LeeWang09",
+  "set": {
+   "title": {
+    "value": "Mechanisms for stochastic decision making in the primate frontal cortex: single-neuron recording and circuit modeling",
+    "url": "https://www.cns.nyu.edu/wanglab/publications/pdf/neuroeconomics_chap.pdf",
+    "quote": "in the Primate Frontal Cortex: Single-neuron"
+   },
+   "year": {
+    "value": "2009",
+    "url": "https://www.cns.nyu.edu/wanglab/publications/pdf/neuroeconomics_chap.pdf",
+    "quote": "© 2009, Elsevier Inc."
+   }
+  },
+  "notes": "Printed chapter PDF (Wang lab copy of the Academic Press chapter 31, p. 481) prints the full title 'Mechanisms for Stochastic Decision Making / in the Primate Frontal Cortex: Single-neuron / Recording and Circuit Modeling' and '© 2009, Elsevier Inc.'; Crossref gives only the main title. Key follows 2009: LeeWang09, free in HEAD."
+ },
+ {
+  "key": "ChenEtal15a",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "460--468",
+    "url": "https://dblp.org/rec/conf/nips/ChenCYHHR15.bib?param=0",
+    "quote": "{460--468}"
+   }
+  },
+  "notes": "DBLP record of the NIPS 2015 paper gives pages 460--468 (read in a real browser; dblp blocks scripted fetches). Other post-check changes apply."
+ },
+ {
+  "key": "MozeEtal09",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "1321--1329",
+    "url": "https://dblp.org/rec/conf/nips/MozerPCLV09.bib?param=0",
+    "quote": "{1321--1329}"
+   }
+  },
+  "notes": "DBLP record of the NIPS 2009 paper gives pages 1321--1329 (read in a real browser). Other post-check changes apply."
+ },
+ {
+  "key": "SkagEtal93",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "1030--1037",
+    "url": "https://dblp.org/rec/conf/nips/SkaggsMG92.bib?param=0",
+    "quote": "{1030--1037}"
+   },
+   "address": {
+    "value": "San Mateo, {CA}",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22San%20Mateo%22%20AND%20identifier%3Aadvancesinneural0000unse_n3r1",
+    "quote": "San Mateo}}}, CA 94403"
+   }
+  },
+  "notes": "DBLP gives pages 1030--1037; the printed NIPS 5 volume (Internet Archive full text) prints 'Editorial Office: 2929 Campus Drive, Suite 260 San Mateo, CA 94403' and '© 1993 by Morgan Kaufmann'. HEAD values confirmed; no change."
+ },
+ {
+  "key": "ElliAshb88",
+  "decision": "apply",
+  "set": {
+   "booktitle": {
+    "value": "Affect, Cognition, and Social Behavior",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=87026602&maximumRecords=1&recordSchema=marcxml",
+    "quote": "Affect, cognition, and social behavior :"
+   },
+   "editor": {
+    "value": "K Fiedler and J P Forgas",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=87026602&maximumRecords=1&recordSchema=marcxml",
+    "quote": "Forgas, Joseph P."
+   }
+  },
+  "notes": "Parent book confirmed (LoC 87026602: Toronto; Lewiston, NY: C.J. Hogrefe, c1988). The chapter has no catalogue/index record reachable here (Scholar, S2, Google Books rate-limited or captcha); it is evidenced only by citations, e.g. PMC3902198 ref 30 (https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3902198/fullTextXML: '<article-title>Resource allocation model of the effects of depressed mood states on memory</article-title>', pp. 25-43) and several books in Internet Archive full text. Kept provisionally; see question.",
+  "questions": [
+   "Is a book chapter whose parent book is confirmed by a library catalogue, but whose own existence is evidenced only by citations in other published works (reference lists, not an abstracting index), enough to keep the entry, or should it be dropped?"
+  ]
+ },
+ {
+  "key": "CraiByrd82",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Aging and cognitive deficits",
+    "url": "https://link.springer.com/chapter/10.1007/978-1-4684-4178-9_11",
+    "quote": "citation_title\" content=\"Aging and Cognitive Deficits",
+    "extra_evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4684-4178-9_11",
+      "quote": "\"title\":[\"Aging and Cognitive Deficits\"]"
+     }
+    ]
+   }
+  },
+  "notes": "Publisher page (read in a real browser: citation_title=Aging and Cognitive Deficits, pp. 191-211) and Crossref both give the title without the subtitle 'the role of attentional resources'; printed chapter unseen (Springer PDF paywalled), so publisher/Crossref wins per the precedence rule."
+ },
+ {
+  "key": "Swet98",
+  "decision": "apply",
+  "remove": [
+   "pages"
+  ],
+  "notes": "No source prints the chapter's page range: Crossref and MIT Press Direct give no pages (MIT page read in a browser), the volume is not on the Internet Archive, and Sternberg's list (next chapter pp. 703-863) is unreachable (403) and gives no start page. Unconfirmable optional field on a verified work -> remove."
+ },
+ {
+  "key": "Wolf98",
+  "decision": "apply",
+  "remove": [
+   "address"
+  ],
+  "notes": "Place of publication not printed in any reachable record (Open Library editions of ISBN 0863778135/9780863778124 and the Taylor & Francis reissue give none; LoC has no record). Unconfirmable optional field -> remove; post-check pages 13--73 apply."
+ },
+ {
+  "key": "CraiRabi84",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Age differences in the acquisition and use of verbal information: a tutorial review",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Verbal%20Information%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+    "quote": "A  Tutorial  Review\\nFergus  I.  M.  Craik"
+   },
+   "pages": {
+    "value": "471--500",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Abstract%20%20501%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+    "quote": "Abstract  501}}} Introduction  501",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Introduction%20472%22%20AND%20identifier%3Aattentionperform0000unse_t7d8",
+      "quote": "and  Jan  C.  Rabinowitz .\\nAbstract  471"
+     }
+    ]
+   },
+   "volume": {
+    "value": "10",
+    "url": "https://archive.org/metadata/attentionperform0000unse_t7d8/metadata/title",
+    "quote": "Attention and performance X"
+   }
+  },
+  "notes": "Printed volume (Internet Archive full text of Attention and Performance X, Erlbaum 1984): chapter heading 'Age Differences in the Acquisition and Use of Verbal Information / A Tutorial Review / Fergus I. M. Craik and Jan C. Rabinowitz', contents 'Abstract 471'; next chapter (Cohen and Faulkner) 'Abstract 501', so end page 500 by the next-item rule. Subtitle on its own line -> colon; roman volume X -> 10 (default). Title page imprint 'London Hillsdale'; address left as is."
+ },
+ {
+  "key": "HashEtal99",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "653--676",
+    "url": "https://api.crossref.org/works/10.7551/mitpress/1480.003.0032",
+    "quote": "\"page\":\"653-676\"",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Competition%20in%20Recovery%20of%20Function%22%20AND%20identifier%3Aattentionperform0000unse_r9p7",
+      "quote": "after Brain Damage 677"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref gives 653-676, and the printed volume's contents (Internet Archive full text) put chapter 23 at 653 and chapter 24 (Robertson) at 677, so 676 is the printed end page."
+ },
+ {
+  "key": "Shal75",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "On the contents of primary memory",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22primary%20memory%22%20AND%20identifier%3Aattentionperform0000unse",
+    "quote": "18.  On  the  contents  of  {{{primary  memory}}}  ( T .  Shallice)"
+   },
+   "author": {
+    "value": "T Shallice",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=Shallice%20AND%20identifier%3Aattentionperform0000unse",
+    "quote": "TIM  {{{SHALLICE}}} National  Hospital"
+   },
+   "pages": {
+    "value": "269--280",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Introduction%20.%20281%22%20AND%20identifier%3Aattentionperform0000unse",
+    "quote": "I.  {{{Introduction . 281}}}",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=Shallice%20AND%20identifier%3Aattentionperform0000unse",
+      "quote": "I.  Introduction . 269"
+     }
+    ]
+   }
+  },
+  "notes": "Printed Attention and Performance V (Academic Press 1975; Internet Archive full text): contents '18. On the contents of primary memory (T. Shallice) I. Introduction . 269'; the next chapter's Introduction is at 281, so 269--280 (next-item rule). HEAD values confirmed."
+ },
+ {
+  "key": "RaaiShif81b",
+  "decision": "apply",
+  "remove": [
+   "pages"
+  ],
+  "notes": "Chapter has an abstracting-index record: Semantic Scholar 9f0cb4d0bfcfafcd99221c978f491a30f6fd2e3c ('Order effects in recall.', 1981, J. Raaijmakers, R. Shiffrin, venue Attention and Performance; https://api.semanticscholar.org/graph/v1/paper/9f0cb4d0bfcfafcd99221c978f491a30f6fd2e3c?fields=title,year,authors,venue), and the book is LoC 81009735. Pages 403--415 appear only in citing works; the volume is not on the Internet Archive and the Routledge reissue gives no chapter pages, so pages are removed (unconfirmable optional field)."
+ },
+ {
+  "key": "RobeSter93",
+  "decision": "apply",
+  "set": {
+   "pages": {
+    "value": "611--654",
+    "url": "https://api.crossref.org/works/10.7551/mitpress/1477.003.0038",
+    "quote": "\"page\":\"611-654\"",
+    "extra_evidence": [
+     {
+      "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Interactive%20Networks%22%20AND%20identifier%3Aattentionperform0000atte_x7w3",
+      "quote": "Interactive  Networks}}}  655"
+     }
+    ]
+   }
+  },
+  "notes": "Crossref gives 611-654, and the printed volume's contents (Internet Archive full text of Attention and Performance XIV) put chapter 26 at 611 and chapter 27 (McClelland) at 655, so 654 is the printed end page; Sternberg's list '611-653' is superseded."
+ },
+ {
+  "key": "Lovr80",
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "J H Lovrinic",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Chapter%203%22%20AND%20identifier%3Aaudiologyforphys0000unse",
+    "quote": "Speech Audiometry Jean H. Lovrinic, Ph.D. 13"
+   },
+   "title": {
+    "value": "Pure tone and speech audiometry",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Speech%20Audiometry%22%20AND%20identifier%3Aaudiologyforphys0000unse",
+    "quote": "Pure Tone and {{{Speech Audiometry}}} Jean H. Lovrinic"
+   },
+   "pages": {
+    "value": "13--32",
+    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=5&user_query=%22Chapter%203%22%20AND%20identifier%3Aaudiologyforphys0000unse",
+    "quote": "Diagnostic Audiometry Robert W. Keith, Ph.D. 33"
+   }
+  },
+  "notes": "Printed book (Internet Archive full text of Audiology for the Physician, Williams & Wilkins 1980): contents 'Chapter 2 Pure Tone and Speech Audiometry Jean H. Lovrinic, Ph.D. 13 / Chapter 3 Diagnostic Audiometry Robert W. Keith, Ph.D. 33', so pages 13--32 by the next-item rule (HEAD had 13--31). Editor R W Keith per post-check."
+ }
+]

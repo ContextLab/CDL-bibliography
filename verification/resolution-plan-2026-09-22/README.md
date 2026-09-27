@@ -266,3 +266,7 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - (default) A work known only from reference lists of other publications (no catalogue, repository or abstracting-index record of its own): not a verifiable record → drop (WallEtal57). Abstracting-index records still count (user round 2).
 - (default) Encyclopedia article with a print edition (no DOI) and a later online edition (DOI): cite the print edition as cited (print year wins); no DOI.
 - NOTE for reconciliation: batch 20 keeps McGi63, Crai77 on reference-list evidence only → drop under the reference-list default.
+- (default) Print book with a later e-book reissue carrying its own DOI/year/pagination: cite the print edition as cited (print year and pages), no DOI (same as the encyclopedia default).
+- (default) Book year: the imprint year printed on the title page (as LoC records it) beats an earlier Crossref published-print date.
+- NOTE for reconciliation: batch 22 removed MannEtal15's chapter pages as unconfirmable; try harder (MIT Press / Google Books contents of The Cognitive Neurosciences) before removing.
+- (default) Chapter in a catalogue-confirmed edited book, evidenced only by other works' reference lists: the chapter is unverified → drop (reference-list default; ElliAshb88 in batch 18). A chapter of a confirmed single-author book is instead cited as the whole book.
