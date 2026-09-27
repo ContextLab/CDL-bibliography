@@ -49,12 +49,22 @@
   "key": "MannEtal15",
   "decision": "apply",
   "new_key": "MannEtal14c",
-  "set": {},
+  "set": {
+   "pages": {
+    "value": "557--566",
+    "url": "https://books.google.com/books?vid=ISBN9780262027779&q=%22Anthony+D.+Wagner%22",
+    "quote": "47 MANNING, KAHANA, AND NORMAN 557 48 UNCAPHER, GORDON, AND WAGNER 567",
+    "extra_evidence": [
+     {
+      "url": "https://books.google.com/books?vid=ISBN9780262027779&q=%22role+of+context+in+episodic+memory%22",
+      "quote": "Role of Context in Episodic Memory Jeremy R. Manning, Michael J. Kahana, and Kenneth A. Norman 557"
+     }
+    ]
+   }
+  },
   "withdraw": [],
-  "remove": [
-   "pages"
-  ],
-  "notes": "Crossref 10.7551/mitpress/9504.003.0061 deposits no pages; MIT Press chapter page is Cloudflare-blocked (403); the lab PDF is the 2013 preprint without page numbers; no scan of the 5th ed. found on IA. Chapter pages 557--566 unconfirmable, removed per the optional-field rule. Other post-check changes (2014, editors, DOI, author order, edition) apply; key MannEtal14c.",
+  "remove": [],
+  "notes": "Reconciled (NOTE for reconciliation, tried harder): Google Books' licensed full text of the printed 5th edition (ISBN 9780262027779, 'Pages displayed by permission of MIT Press', read in a real browser) prints the contents line '... Role of Context in Episodic Memory Jeremy R. Manning, Michael J. Kahana, and Kenneth A. Norman 557' and the section contents on p. 522 '47 MANNING, KAHANA, AND NORMAN 557 48 UNCAPHER, GORDON, AND WAGNER 567'; the chapter's running heads run to p. 565. Start 557 confirmed and next chapter at 567, so end 566 (next-item rule): HEAD 557--566 confirmed and kept. Title page verso '© 2014 Massachusetts Institute of Technology' supports year 2014. MIT Press Direct chapter page shows only 'Published: 2014' (no pages). Other post-check changes (2014, editors, DOI, author order, edition) apply; key MannEtal14c (MannEtal14a/b exist in HEAD).",
   "questions": []
  },
  {
@@ -70,10 +80,8 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "IA scan of the 1999 Routledge printing (LoC 98039659 'Routledge, 1999.'): contents 'Introducing and supporting change towards more flexible teaching approaches 39 SUE JOHNSTON'; p. 50 carries the chapter's running head and references; chapter 5 begins 51. No DOI for the 1999 printing: the only DOI, 10.4324/9780203016862-6, is Routledge's 2002 e-book reissue with different pagination (51-62), so no DOI set. The page-50 hit (search '\"50 Introducing and supporting change\"') reads 'centralized policies and support. 50 Introducing and supporting change References Caladine, R. (1993)'; the page number sits in the highlighted match, so the quote is the unhighlighted tail.",
-  "questions": [
-   "When a print book (e.g. Routledge 1999) has a later e-book reissue with its own DOI, year and pagination (10.4324/..., 2002, pp. 51-62), do we cite the print edition without a DOI, or switch to the DOI edition's year and pages?"
-  ]
+  "notes": "IA scan of the 1999 Routledge printing (LoC 98039659 'Routledge, 1999.'): contents 'Introducing and supporting change towards more flexible teaching approaches 39 SUE JOHNSTON'; p. 50 carries the chapter's running head and references; chapter 5 begins 51. No DOI for the 1999 printing: the only DOI, 10.4324/9780203016862-6, is Routledge's 2002 e-book reissue with different pagination (51-62), so no DOI set. The page-50 hit (search '\"50 Introducing and supporting change\"') reads 'centralized policies and support. 50 Introducing and supporting change References Caladine, R. (1993)'; the page number sits in the highlighted match, so the quote is the unhighlighted tail. Reconciled: the question is answered by the print-book/e-book-reissue default (cite the print edition as cited, no DOI).",
+  "questions": []
  },
  {
   "key": "Heal14",
@@ -118,8 +126,10 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "IA scan of the 1995 Handbook contents: 'Hebbian Synaptic Plasticity 454', next article starts 459; articles run on (the next article begins on the page where the previous one's references end), so HEAD 454--459 confirmed.",
-  "questions": []
+  "notes": "Reconciled (partly-confirmed chapter pages default): IA scan of the 1995 Handbook contents confirms the start 'Hebbian Synaptic Plasticity 454', and the next article starts at 459. No source prints the end page; since the start page matches, HEAD's cited 454--459 is kept (the default keeps the cited range when its start page is confirmed; the next-item rule alone would give 458). The earlier 'articles run on' claim is not evidenced and is not relied on.",
+  "questions": [
+   "For a chapter whose start page is confirmed and whose cited end page equals the next item's printed start page (possible run-on layout, e.g. BrowChat95 454--459 with the next article at 459), keep the cited end page or correct it to next start - 1 (458)?"
+  ]
  },
  {
   "key": "ZimmEtal11",
@@ -230,10 +240,8 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "LoC 2010003122 imprint 'Malden, MA : Wiley-Blackwell, 2011.' (printed title-page year); Crossref published-print 2010-08-16 is a distribution date. Year stays 2011; address, DOI, edition, editor and pages 49--75 apply.",
-  "questions": [
-   "For a printed book whose Crossref published-print date (e.g. 2010-08-16) precedes the imprint/copyright year on the title page (2011, as LoC records it), which is the print year: the imprint year or Crossref's?"
-  ]
+  "notes": "LoC 2010003122 imprint 'Malden, MA : Wiley-Blackwell, 2011.' (printed title-page year); Crossref published-print 2010-08-16 is a distribution date. Year stays 2011; address, DOI, edition, editor and pages 49--75 apply. Reconciled: the question is answered by the book-year default (imprint year as LoC records it beats an earlier Crossref published-print date).",
+  "questions": []
  },
  {
   "key": "CrowGree98",

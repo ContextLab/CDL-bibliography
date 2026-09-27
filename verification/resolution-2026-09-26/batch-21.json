@@ -12,18 +12,26 @@
  {
   "key": "Newm87",
   "decision": "apply",
-  "remove": [
-   "pages"
-  ],
-  "notes": "The work exists. HathiTrust full-text search of the book (mdp.39015012853183, 'Memory and learning : the Ebbinghaus Centennial Conference / edited by David S. Gorfein and Robert R. Hoffman', read in a real browser) finds the phrase \"some effects on early American research\" 2 times (contents + chapter), but the item is search-only, so it gives no page numbers. Other books cite it: https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Newman%2C%20S.%20E.%22%20%22early%20American%20research%22&hits_per_page=50 'Newman, S. E. (1987). Ebbinghaus' \"on memory\": Some effects on early American research. In D.'. Author, title and book are confirmed. The pages 77--87 appear only in secondary citations, so they are removed (unconfirmable optional field)."
+  "notes": "Reconciled (partly-confirmed chapter pages default): the start page is now confirmed, so HEAD's cited range is kept, not removed. Google Books full-text search of the printed book (id 6S5-AAAAMAAJ, Memory and Learning: The Ebbinghaus Centennial Conference, read in a real browser): 'Some effects on early American research' and 'Slater E. Newman' each match only 'Page vii' (contents) and 'Page 77', so the chapter opens on p. 77; 'early American research' also matches pp. 85 and 87 (running heads inside the cited range). The end page is not shown by any source (search-only item; HathiTrust mdp.39015012853183 gives no page numbers), so the cited end page stays.",
+  "set": {
+   "pages": {
+    "value": "77--87",
+    "url": "https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22Some+effects+on+early+American+research%22",
+    "quote": "Page 77"
+   }
+  }
  },
  {
   "key": "Slam87",
   "decision": "apply",
-  "remove": [
-   "pages"
-  ],
-  "notes": "The work exists. HathiTrust full-text search of the book (mdp.39015012853183, read in a real browser) finds \"The law of frequency\" 24 times and 'Slamecka' 28 times, but the item is search-only, so it gives no page numbers. Other books cite it: https://archive.org/services/search/beta/page_production/?service_backend=fts&user_query=%22Slamecka%2C%20N.%20J.%20%281987%29%22&hits_per_page=50 'Slamecka, N. J. (1987). The law of frequency. In D. S. Gorfein'. The pages 105--128 appear only in secondary citations, so they are removed (unconfirmable optional field)."
+  "notes": "Reconciled (partly-confirmed chapter pages default): the start page is now confirmed, so HEAD's cited range is kept, not removed. Google Books full-text search of the printed book (id 6S5-AAAAMAAJ, read in a real browser): '\"The law of frequency\" Slamecka University of Toronto' matches p. 105 (chapter opening: title, author and affiliation) and 'Norman J. Slamecka' matches 'Page viii' (contents) and 'Page 105'. The end page is not shown by any source (search-only item; HathiTrust mdp.39015012853183 gives no page numbers), so the cited end page stays.",
+  "set": {
+   "pages": {
+    "value": "105--128",
+    "url": "https://books.google.com/books?id=6S5-AAAAMAAJ&q=%22Norman+J.+Slamecka%22",
+    "quote": "Page 105"
+   }
+  }
  },
  {
   "key": "ElliAshb89",
@@ -78,15 +86,14 @@
  {
   "key": "LismEtal01",
   "decision": "apply",
-  "new_key": "LismEtal00",
   "set": {
    "year": {
-    "value": "2000",
-    "url": "https://www.cambridge.org/core/books/abs/neuronal-mechanisms-of-memory-formation/toward-a-physiologic-explanation-of-behavioral-data-on-human-memory-the-role-of-thetagamma-oscillations-and-nmdardependent-ltp/2A9572BD9FD15FCAA3A8D822F9DA27DA",
-    "quote": "Print publication year: 2000"
+    "value": "2001",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&query=bath.lccn=00036768&maximumRecords=1&recordSchema=marcxml",
+    "quote": "2001."
    }
   },
-  "notes": "Year conflict: the publisher page (Cambridge Core) prints 'Print publication year: 2000' and Crossref published-print is 2000-11-06, while LoC 00036768 prints 2001. Per the precedence rule (publisher/Crossref first), the year is 2000 and the key becomes LismEtal00 (not in HEAD). Other post-check changes (full title, booktitle, DOI) apply."
+  "notes": "Reconciled (book-year default: the imprint year on the title page, as LoC records it, beats an earlier Crossref/publisher print date): LoC 00036768 imprint 'Cambridge ; New York : Cambridge University Press, 2001.' wins over Cambridge Core's 'Print publication year: 2000' and Crossref published-print 2000-11-06. Year stays 2001 and the key stays LismEtal01 (the earlier rename to LismEtal00 is withdrawn). Other post-check changes (full title, booktitle, DOI) apply."
  },
  {
   "key": "Rayp72",
@@ -160,11 +167,20 @@
   "set": {
    "year": {
     "value": "2009",
-    "url": "https://api.crossref.org/works/10.1007/978-1-4020-6710-5_13",
-    "quote": "\"published-print\":{\"date-parts\":[[2009]]}"
+    "url": "https://link.springer.com/book/10.1007/978-1-4020-6710-5",
+    "quote": "Springer Science+Business Media B.V. 2009",
+    "extra_evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1007/978-1-4020-6710-5_13",
+      "quote": "\"published-print\":{\"date-parts\":[[2009]]}"
+     }
+    ]
    }
   },
-  "notes": "Year: Crossref published-print 2009 (online 2007-11-23). LoC prints c2008. Per the precedence rule (publisher/Crossref), the cited 2009 stands and the key is unchanged. The Springer page is behind a bot wall. The booktitle subtitle and DOI changes apply."
+  "notes": "Year 2009: the publisher's book page (read in a real browser; plain fetches hit a login redirect) prints 'Copyright information Springer Science+Business Media B.V. 2009' (hardcover 'Published: 30 January 2008', eBook 23 November 2007), and Crossref published-print is 2009. LoC 2007937657 records only a copyright date 'New York : Springer, c2008.' with no separate imprint year, so the book-year default (imprint year beats an earlier Crossref date) does not apply; see question. Key unchanged. Booktitle subtitle and DOI changes apply.",
+  "questions": [
+   "When a book's catalogue record gives only a copyright date (LoC 'c2008') that disagrees with the publisher's printed copyright line and Crossref print year (Springer '© 2009', Crossref 2009), which year wins: the publisher's copyright/print year (current choice) or LoC's?"
+  ]
  },
  {
   "key": "Kepp68",
@@ -220,12 +236,6 @@
  {
   "key": "Bron95",
   "decision": "apply",
-  "remove": [
-   "pages"
-  ],
-  "notes": "The chapter's start page 201 is confirmed (contents; index 'Electroencephalography, principles of, 201-211'), and p. 211 is a text page ('Principles of Electroencephalography 211', Figure 15.4). The end page (211 or 212) could not be read, and the next chapter's start page is garbled in the OCR. So the range is unconfirmable and removed (user rule). The 2000 2nd-edition Crossref record is a different version.",
-  "questions": [
-   "When a chapter's start page is confirmed but its end page cannot be read and the next item's start page is illegible, should Pages be removed entirely (current rule) or kept as the start page alone (e.g. Pages = {201})?"
-  ]
+  "notes": "Reconciled (partly-confirmed chapter pages default): the chapter's start page 201 is confirmed (printed contents; the book's index 'Electroencephalography, principles of, 201-211'; p. 211 is a text page 'Principles of Electroencephalography 211'), so HEAD's cited 201--212 is kept rather than removed; the end page (211 or 212) and the next chapter's start page could not be read. The 2000 2nd-edition Crossref record is a different version. The earlier question is answered by the default."
  }
 ]

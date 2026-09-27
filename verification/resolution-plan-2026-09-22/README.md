@@ -270,3 +270,5 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - (default) Book year: the imprint year printed on the title page (as LoC records it) beats an earlier Crossref published-print date.
 - NOTE for reconciliation: batch 22 removed MannEtal15's chapter pages as unconfirmable; try harder (MIT Press / Google Books contents of The Cognitive Neurosciences) before removing.
 - (default) Chapter in a catalogue-confirmed edited book, evidenced only by other works' reference lists: the chapter is unverified → drop (reference-list default; ElliAshb88 in batch 18). A chapter of a confirmed single-author book is instead cited as the whole book.
+- (default) Book year when the catalogue ("c2008") and the book's own printed copyright page / publisher record (2009) disagree: the printed copyright page wins (Wall09 stays 2009).
+- (default) A cited end page equal to the next item's start page: keep it when an official record prints it (articles can share a page); infer next-start−1 only when no record prints the end page.
