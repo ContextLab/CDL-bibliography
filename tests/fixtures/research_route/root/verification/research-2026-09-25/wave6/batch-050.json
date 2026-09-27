@@ -1,0 +1,92 @@
+[
+ {
+  "key": "AschEben62",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://www.jstor.org/citation/ris/985378",
+   "quote": "TI  - The Principle of Associative Symmetry",
+   "why": "JSTOR stable 985378: Asch and Ebenholtz, Proc Am Philos Soc 106(2):135-163, Apr 30 1962 - same work."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "S E Asch and S M Ebenholtz",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/985378",
+      "quote": "AU  - Asch, Solomon E."
+     },
+     {
+      "url": "https://www.jstor.org/citation/ris/985378",
+      "quote": "AU  - Ebenholtz, Sheldon M."
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "The principle of associative symmetry",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/985378",
+      "quote": "TI  - The Principle of Associative Symmetry"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Proceedings of the {American} Philosophical Society",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/985378",
+      "quote": "T2  - Proceedings of the American Philosophical Society"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "106",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/985378",
+      "quote": "VL  - 106"
+     }
+    ]
+   },
+   "number": {
+    "status": "corrected",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/985378",
+      "quote": "IS  - 2"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "135--163",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/985378",
+      "quote": "SP  - 135"
+     },
+     {
+      "url": "https://www.jstor.org/citation/ris/985378",
+      "quote": "EP  - 163"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1962",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/985378",
+      "quote": "PY  - 1962"
+     }
+    ]
+   }
+  },
+  "notes": "All cited values confirmed; add number 2 (JSTOR). No DOI: the JSTOR-style 10.2307/985378 does not resolve (doi.org handle API 404) and Crossref has no record, so no doi is proposed. Crossref candidates 10.2307/1005914 etc. are unrelated Transactions of the APS papers. Not the same as Asch & Ebenholtz 1962 J Psychol 'The process of free recall' (different work)."
+ }
+]

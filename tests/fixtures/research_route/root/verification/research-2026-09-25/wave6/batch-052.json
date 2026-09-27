@@ -1,0 +1,110 @@
+[
+ {
+  "key": "KahaEtal08c",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1037/a0013724",
+   "quote": "\"title\":[\"Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).\"]",
+   "why": "Same three authors, same title start and reply target, Psychological Review 115(4), 2008, starting p. 1119."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M J Kahana and P B Sederberg and M W Howard",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"given\":\"Michael J.\",\"family\":\"Kahana\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"given\":\"Per B.\",\"family\":\"Sederberg\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"given\":\"Marc W.\",\"family\":\"Howard\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Putting short-term memory into context: reply to {Usher}, {Davelaar}, {Haarmann}, and {Goshen-Gottstein} (2008)",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"title\":[\"Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).\"]"
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20976034&retmode=xml",
+      "quote": "<ArticleTitle>Putting Short-Term Memory Into Context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).</ArticleTitle>"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "Psychological Review",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"container-title\":[\"Psychological Review\"]"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"issued\":{\"date-parts\":[[2008"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "115",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"volume\":\"115\""
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "4",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"issue\":\"4\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "1119--1125",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"page\":\"1119-1125\""
+     },
+     {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20976034&retmode=xml",
+      "quote": "<MedlinePgn>1119-1125</MedlinePgn>"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1037/a0013724",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"DOI\":\"10.1037\\/a0013724\""
+     }
+    ]
+   }
+  },
+  "notes": "Title completed from the source (\"Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008)\" instead of \"Reply to Usher and colleagues\"); end page 1126 -> 1125 (Crossref and PubMed agree). Added DOI."
+ }
+]

@@ -1,0 +1,93 @@
+[
+ {
+  "key": "YingEtal92",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+   "quote": "\"title\":[\"Endpoint detection of isolated utterances based on a modified Teager energy measurement\"]",
+   "why": "Crossref record: same title and three authors, Proceedings of ICASSP '93, vol. 2, pp. 732-735."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "G S Ying and C D Mitchell and L H Jamieson",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+      "quote": "\"given\":\"G.S.\",\"family\":\"Ying\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+      "quote": "\"given\":\"C.D.\",\"family\":\"Mitchell\""
+     },
+     {
+      "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+      "quote": "\"given\":\"L.H.\",\"family\":\"Jamieson\""
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Endpoint detection of isolated utterances based on a modified {T}eager energy measurement",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+      "quote": "\"title\":[\"Endpoint detection of isolated utterances based on a modified Teager energy measurement\"]"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "corrected",
+    "value": "{IEEE} International Conference on Acoustics, Speech and Signal Processing",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+      "quote": "\"container-title\":[\"IEEE International Conference on Acoustics Speech and Signal Processing\"]"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "2",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+      "quote": "\"page\":\"732-735 vol.2\""
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "732--735",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+      "quote": "\"page\":\"732-735 vol.2\""
+     }
+    ]
+   },
+   "year": {
+    "status": "corrected",
+    "value": "1993",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+      "quote": "\"published-print\":{\"date-parts\":[[1993]]}"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1109/icassp.1993.319416",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+      "quote": "\"DOI\":\"10.1109\\/icassp.1993.319416\""
+     }
+    ]
+   }
+  },
+  "new_key": "YingEtal93",
+  "notes": "Year corrected 1992 -> 1993: the paper is in Proceedings of ICASSP '93 (Minneapolis), vol. 2, pp. 732-735 (Crossref event name \"Proceedings of ICASSP '93\"). The 1992 ICASSP record in the queue (10.1109/icassp.1992.225856) is a different paper (Hahn and Park, Korean utterances). New key YingEtal93 is not in cdl.bib at HEAD (no collision); no other entry for this work. DOI added (handle resolves, 200)."
+ }
+]

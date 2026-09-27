@@ -1,0 +1,40 @@
+[
+ {
+  "key": "vanPEtal21",
+  "agree": "yes",
+  "field_verdicts": {
+   "ENTRYTYPE": "agree",
+   "booktitle": "agree"
+  },
+  "problems": [
+   "Set A reason: entrytype"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "KahaEtal08c",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "pages": "agree",
+   "title": "agree"
+  },
+  "problems": [
+   "Set A reason: title/journal change",
+   "Crossref 10.1037/a0013724: Psychological Review 115(4) 1119-1125, print None / issued 2008"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ },
+ {
+  "key": "Pyly73",
+  "agree": "yes",
+  "field_verdicts": {},
+  "problems": [
+   "Crossref 10.1037/h0034650: Psychological Bulletin 80(1) 1-24, print None / issued 1973"
+  ],
+  "sampled_as": "b",
+  "suggested_value": {}
+ }
+]

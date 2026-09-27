@@ -1,0 +1,23 @@
+[
+ {
+  "key": "YingEtal92",
+  "decision": "apply",
+  "new_key": "YingEtal93",
+  "set": {
+   "pages": {
+    "value": "732--735",
+    "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+    "quote": "\"page\":\"732-735 vol.2\""
+   },
+   "volume": {
+    "value": "2",
+    "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+    "quote": "\"page\":\"732-735 vol.2\""
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Crossref: ICASSP '93 (Minneapolis, 27-30 Apr 1993), published-print 1993; applies booktitle, DOI and year 1993 from the post-check, so key follows as YingEtal93 (not in HEAD). The 'vol.2' in Crossref's page string is the volume, so pages 732--735 with Volume 2.",
+  "questions": []
+ }
+]

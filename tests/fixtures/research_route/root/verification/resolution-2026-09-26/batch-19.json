@@ -1,0 +1,13 @@
+[
+ {
+  "key": "KahaEtal08b",
+  "decision": "drop",
+  "merge_into": "KahaEtal08a",
+  "set": {},
+  "withdraw": [],
+  "remove": [],
+  "drop_reason": "duplicate of KahaEtal08a (user-approved merge); already deleted in HEAD (verification/key-deletions.json, keeper KahaEtal08a)",
+  "notes": "The queued KahaEtal08b (chapter 'Associative processes in episodic memory') is the same chapter as KahaEtal08a and was removed in 282d321. CAUTION: the key KahaEtal08b in HEAD now names a different work (Kahana, Sederberg and Howard 2008, Psychological Review 115(4), renamed from KahaEtal08c per key-renames.json); do NOT delete it. RECONCILED 2026-09-26: Checked: this drop is about the deleted queued work only. HEAD KahaEtal08b now names a different work (key-renames.json), and postcheck.apply_resolutions/build_resolution_removals treat a drop of a key listed in key-deletions.json as a no-op ('the key now names another work ... not removed'). The decision stays 'drop' for that machinery; an applier must NOT delete HEAD KahaEtal08b.",
+  "questions": []
+ }
+]

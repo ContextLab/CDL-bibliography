@@ -1,0 +1,116 @@
+[
+ {
+  "key": "KahaEtal08b",
+  "verdict": "correction",
+  "identity": {
+   "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+   "quote": "2.26 Associative Retrieval Processes in Episodic Memory",
+   "why": "Authors' personal copy of the chapter (Kahana lab), 2008 Elsevier, running heads give pages 467-490; Crossref record DOI 10.1016/b978-012370509-9.00185-6 is the same chapter in Learning and Memory: A Comprehensive Reference."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "M J Kahana and M W Howard and S M Polyn",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "M. J. Kahana, University of Pennsylvania, Philadelphia, PA, USA"
+     },
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "M. W. Howard, Syracuse University, Syracuse, NY, USA"
+     },
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "S. M. Polyn, University of Pennsylvania, Philadelphia, PA, USA"
+     }
+    ]
+   },
+   "booktitle": {
+    "status": "confirmed",
+    "value": "Cognitive Psychology of Memory",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=5&recordSchema=marcxml&query=dc.title%3D%22learning%20and%20memory%20a%20comprehensive%20reference%22",
+      "quote": "v. 2. Cognitive psychology of memory / Henry L. Roediger III"
+     }
+    ]
+   },
+   "publisher": {
+    "status": "confirmed",
+    "value": "Elsevier",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "2008 Elsevier Ltd. All rights reserved."
+     }
+    ]
+   },
+   "address": {
+    "status": "confirmed",
+    "value": "Oxford, {UK}",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=5&recordSchema=marcxml&query=dc.title%3D%22learning%20and%20memory%20a%20comprehensive%20reference%22",
+      "quote": "Oxford, UK ;"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "2008",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "2008 Elsevier Ltd. All rights reserved."
+     }
+    ]
+   },
+   "pages": {
+    "status": "corrected",
+    "value": "467--490",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "Our power to remember this feature. 467"
+     },
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "490 Associative Retrieval Processes in Episodic Memory"
+     }
+    ]
+   },
+   "doi": {
+    "status": "corrected",
+    "value": "10.1016/b978-012370509-9.00185-6",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/b978-012370509-9.00185-6",
+      "quote": "\"DOI\":\"10.1016\\/b978-012370509-9.00185-6\""
+     }
+    ]
+   },
+   "title": {
+    "status": "corrected",
+    "value": "Associative retrieval processes in episodic memory",
+    "evidence": [
+     {
+      "url": "https://memory.psych.upenn.edu/files/pubs/KahaEtal08.pdf",
+      "quote": "2.26 Associative Retrieval Processes in Episodic Memory"
+     }
+    ]
+   },
+   "editor": {
+    "status": "corrected",
+    "value": "H L Roediger",
+    "evidence": [
+     {
+      "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=5&recordSchema=marcxml&query=dc.title%3D%22learning%20and%20memory%20a%20comprehensive%20reference%22",
+      "quote": "v. 2. Cognitive psychology of memory / Henry L. Roediger III"
+     }
+    ]
+   }
+  },
+  "notes": "duplicate of KahaEtal08a. Same authors, year and volume; the Kahana lab publication list and Crossref show only one 2008 Kahana-Howard-Polyn chapter, titled \"Associative retrieval processes in episodic memory\", printed pp. 467-490 (the cited 476--490 and the shortened title are errors). Editor suffix III dropped per house rule. Recommend merging into KahaEtal08a."
+ }
+]

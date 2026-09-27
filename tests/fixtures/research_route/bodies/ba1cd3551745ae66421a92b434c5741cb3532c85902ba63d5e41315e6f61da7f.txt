@@ -1,0 +1,22 @@
+Provider: JSTOR http://www.jstor.org
+Database: JSTOR
+Content: text/plain; charset="UTF-8"
+
+
+TY  - JOUR
+TI  - The Principle of Associative Symmetry
+AU  - Asch, Solomon E.
+AU  - Ebenholtz, Sheldon M.
+C1  - Full publication date: Apr. 30, 1962
+DB  - JSTOR
+EP  - 163
+IS  - 2
+PB  - American Philosophical Society
+PY  - 1962
+SN  - 0003049X
+SP  - 135
+T2  - Proceedings of the American Philosophical Society
+UR  - http://www.jstor.org/stable/985378
+VL  - 106
+Y2  - 2026/09/26/
+ER  - 

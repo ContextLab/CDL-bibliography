@@ -1,0 +1,20 @@
+[
+ {
+  "key": "KahaEtal08b",
+  "agree": "yes",
+  "field_verdicts": {
+   "doi": "agree",
+   "editor": "agree",
+   "pages": "agree",
+   "title": "agree",
+   "key": "agree (KahaEtal08a)"
+  },
+  "problems": [
+   "Set A reason: key duplicate",
+   "Duplicate of KahaEtal08a (HEAD: same authors, 'Associative retrieval processes in episodic memory', Cognitive Psychology of Memory, 2008, no pages/DOI). The merge should carry pages 467--490 and the DOI into KahaEtal08a; Crossref pages 1-24 are online pagination.",
+   "Crossref 10.1016/b978-012370509-9.00185-6: 'Associative Retrieval Processes in Episodic Memory' in Learning and Memory: A Comprehensive Reference, pages 1-24, print/issued 2008, authors ['Kahana', 'Howard', 'Polyn']"
+  ],
+  "sampled_as": "a",
+  "suggested_value": {}
+ }
+]

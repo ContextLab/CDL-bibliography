@@ -1,8 +1,8 @@
 {
   "restored": 6390,
   "statuses": {
-    "metadata_verified": 5096,
-    "needs_review": 1263,
+    "metadata_verified": 6023,
+    "needs_review": 336,
     "human_verified": 31
   },
   "repeat_imports": 0,

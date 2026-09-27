@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>mods</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><mods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" version="3.8" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-8.xsd">
+  <titleInfo>
+    <title>Biostatistical analysis</title>
+  </titleInfo>
+  <name type="personal" usage="primary">
+    <namePart>Zar, Jerrold H.,</namePart>
+    <namePart type="date">1941-</namePart>
+  </name>
+  <typeOfResource>text</typeOfResource>
+  <genre authority="marcgt">bibliography</genre>
+  <genre authority="rdacontent">text</genre>
+  <originInfo>
+    <place>
+      <placeTerm type="code" authority="marccountry">nju</placeTerm>
+    </place>
+    <dateIssued encoding="marc">2010</dateIssued>
+    <issuance>monographic</issuance>
+    <place>
+      <placeTerm type="text">Upper Saddle River, N.J</placeTerm>
+    </place>
+    <agent>
+      <namePart>Prentice-Hall/Pearson</namePart>
+    </agent>
+    <dateIssued>c2010</dateIssued>
+    <edition>5th ed.</edition>
+  </originInfo>
+  <language>
+    <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+  </language>
+  <physicalDescription>
+    <form authority="marcform">print</form>
+    <form type="media" authority="rdamedia">unmediated</form>
+    <form type="carrier" authority="rdacarrier">volume</form>
+    <extent>xiii, 944 p. : ill. ; 26 cm.</extent>
+  </physicalDescription>
+  <note type="statement of responsibility">Jerrold H. Zar.</note>
+  <note type="bibliography">Includes bibliographical references (p. 886-921) and indexes.</note>
+  <subject authority="lcsh">
+    <topic>Biometry</topic>
+  </subject>
+  <classification authority="lcc">QH323.5 .Z37 2010</classification>
+  <classification authority="ddc" edition="22">570.1/5195</classification>
+  <location>
+    <url displayLabel="Table of contents only" usage="primary display">http://www.loc.gov/catdir/toc/ecip0825/2008035156.html</url>
+  </location>
+  <identifier type="isbn">9780131008465</identifier>
+  <identifier type="isbn">0131008463</identifier>
+  <identifier type="lccn">2008035156</identifier>
+  <recordInfo>
+    <descriptionStandard>aacr</descriptionStandard>
+    <recordContentSource authority="marcorg">DLC</recordContentSource>
+    <recordCreationDate encoding="marc">080809</recordCreationDate>
+    <recordChangeDate encoding="iso8601">20250607025009.2</recordChangeDate>
+    <recordIdentifier>15406730</recordIdentifier>
+    <recordOrigin>Converted from MARCXML to MODS version 3.8 using MARC21slim2MODS3-8_XSLT1-0.xsl
+				(Revision 1.172 20230208)</recordOrigin>
+  </recordInfo>
+</mods></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.lccn=2008035156</zs:query><zs:maximumRecords>1</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>mods</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>
+
+  
+  1.1  1    mods  xml   
+   
+     Biostatistical analysis 
+   
+   
+     Zar, Jerrold H., 
+     1941- 
+   
+   text 
+   bibliography 
+   text 
+   
+     
+       nju 
+     
+     2010 
+     monographic 
+     
+       Upper Saddle River, N.J 
+     
+     
+       Prentice-Hall/Pearson 
+     
+     c2010 
+     5th ed. 
+   
+   
+     eng 
+   
+   
+     print 
+     unmediated 
+     volume 
+     xiii, 944 p. : ill. ; 26 cm. 
+   
+   Jerrold H. Zar. 
+   Includes bibliographical references (p. 886-921) and indexes. 
+   
+     Biometry 
+   
+   QH323.5 .Z37 2010 
+   570.1/5195 
+   
+     http://www.loc.gov/catdir/toc/ecip0825/2008035156.html 
+   
+   9780131008465 
+   0131008463 
+   2008035156 
+   
+     aacr 
+     DLC 
+     080809 
+     20250607025009.2 
+     15406730 
+     Converted from MARCXML to MODS version 3.8 using MARC21slim2MODS3-8_XSLT1-0.xsl
+				(Revision 1.172 20230208) 
+   
+   1     1.1  bath.lccn=2008035156  1  xml  mods   

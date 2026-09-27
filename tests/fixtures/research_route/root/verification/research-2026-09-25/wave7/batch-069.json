@@ -1,0 +1,88 @@
+[
+ {
+  "key": "Tulv74",
+  "verdict": "verified",
+  "identity": {
+   "url": "https://www.jstor.org/citation/ris/10.2307/27844717",
+   "quote": "AU  - Tulving, Endel",
+   "why": "JSTOR record 27844717: Tulving, Cue-Dependent Forgetting, American Scientist 62(1):74-82, Jan-Feb 1974."
+  },
+  "fields": {
+   "author": {
+    "status": "confirmed",
+    "value": "E Tulving",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/27844717",
+      "quote": "AU  - Tulving, Endel"
+     }
+    ]
+   },
+   "title": {
+    "status": "confirmed",
+    "value": "Cue-dependent forgetting",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/27844717",
+      "quote": "TI  - Cue-Dependent Forgetting"
+     }
+    ]
+   },
+   "journal": {
+    "status": "confirmed",
+    "value": "{American} Scientist",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/27844717",
+      "quote": "T2  - American Scientist"
+     }
+    ]
+   },
+   "volume": {
+    "status": "confirmed",
+    "value": "62",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/27844717",
+      "quote": "VL  - 62"
+     }
+    ]
+   },
+   "number": {
+    "status": "confirmed",
+    "value": "1",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/27844717",
+      "quote": "IS  - 1"
+     }
+    ]
+   },
+   "pages": {
+    "status": "confirmed",
+    "value": "74--82",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/27844717",
+      "quote": "SP  - 74"
+     },
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/27844717",
+      "quote": "EP  - 82"
+     }
+    ]
+   },
+   "year": {
+    "status": "confirmed",
+    "value": "1974",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/27844717",
+      "quote": "PY  - 1974"
+     }
+    ]
+   }
+  },
+  "notes": "JSTOR RIS prints the magazine deck after the title (\"Cue-Dependent Forgetting: When we forget something we once knew, it does not necessarily mean that the memory trace has been lost; it may only be inaccessible\"); the deck is a magazine standfirst, so the short title is kept. No DOI: 10.2307/27844717 does not resolve (handle 404). PsycNET record 1974-20253-001 and OpenAlex (leads) agree on 62(1):74-82."
+ }
+]

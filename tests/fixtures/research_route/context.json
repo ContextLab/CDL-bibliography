@@ -1,0 +1,1147 @@
+{
+ "DamaEtal96": [
+  {
+   "advisories": [],
+   "doi": "10.1038/380499a0",
+   "evidence": {
+    "author": {
+     "detail": "Complete author list in order; citation initials agree with source names",
+     "local": "H Damasio and T J Grabowski and D Tranel and R D Hichwa and A R Damasio",
+     "match": true,
+     "source": [
+      {
+       "affiliation": [],
+       "family": "Damasio",
+       "given": "Hanna",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Grabowski",
+       "given": "Thomas J.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Tranel",
+       "given": "Daniel",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Hichwa",
+       "given": "Richard D.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Damasio",
+       "given": "Antonio R.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ]
+    },
+    "doi": {
+     "local": "10.1038/380499a0",
+     "match": true,
+     "source": [
+      "10.1038/380499a0"
+     ]
+    },
+    "journal": {
+     "local": "Nature",
+     "match": true,
+     "source": [
+      "Nature"
+     ]
+    },
+    "number": {
+     "local": "6574",
+     "match": true,
+     "source": [
+      "6574"
+     ]
+    },
+    "pages": {
+     "local": "499--505",
+     "match": true,
+     "source": [
+      "499-505"
+     ]
+    },
+    "title": {
+     "local": "A neural basis for lexical retrieval",
+     "match": true,
+     "source": [
+      "A neural basis for lexical retrieval"
+     ]
+    },
+    "volume": {
+     "local": "380",
+     "match": true,
+     "source": [
+      "380"
+     ]
+    },
+    "year": {
+     "local": "1996",
+     "match": true,
+     "source": [
+      "1996"
+     ]
+    }
+   },
+   "issues": [
+    "Source flags an update/correction/retraction relationship",
+    "Source has related versions/works; review publication identity"
+   ],
+   "record": {
+    "DOI": "10.1038/380499a0",
+    "ISSN": [
+     "0028-0836",
+     "1476-4687"
+    ],
+    "URL": "https://doi.org/10.1038/380499a0",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Damasio",
+      "given": "Hanna",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [],
+      "family": "Grabowski",
+      "given": "Thomas J.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Tranel",
+      "given": "Daniel",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Hichwa",
+      "given": "Richard D.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Damasio",
+      "given": "Antonio R.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Nature"
+    ],
+    "issue": "6574",
+    "issued": {
+     "date-parts": [
+      [
+       1996,
+       4,
+       11
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://www.nature.com/articles/380499a0",
+      "content-type": "text/html",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "http://www.nature.com/articles/380499a0.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "http://www.nature.com/articles/380499a0.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "499-505",
+    "published": {
+     "date-parts": [
+      [
+       1996,
+       4,
+       11
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       1996,
+       4,
+       11
+      ]
+     ]
+    },
+    "publisher": "Springer Science and Business Media LLC",
+    "relation": {
+     "correction": [
+      {
+       "asserted-by": "object",
+       "id": "10.1038/381810b0",
+       "id-type": "doi"
+      }
+     ]
+    },
+    "subtitle": [],
+    "title": [
+     "A neural basis for lexical retrieval"
+    ],
+    "type": "journal-article",
+    "updated-by": [
+     {
+      "DOI": "10.1038/381810b0",
+      "label": "Correction",
+      "source": "publisher",
+      "type": "correction",
+      "updated": {
+       "date-parts": [
+        [
+         1996,
+         6,
+         27
+        ]
+       ],
+       "date-time": "1996-06-27T00:00:00Z",
+       "timestamp": 835833600000
+      }
+     }
+    ],
+    "volume": "380"
+   },
+   "retrieved_at": "2026-09-27T06:42:46.319934+00:00",
+   "source": "crossref",
+   "url": "https://doi.org/10.1038/380499a0"
+  },
+  {
+   "advisories": [],
+   "doi": "10.1038/380499a0",
+   "evidence": {
+    "author": {
+     "detail": "Complete author list in order; citation initials agree with source names",
+     "local": "H Damasio and T J Grabowski and D Tranel and R D Hichwa and A R Damasio",
+     "match": true,
+     "source": [
+      {
+       "affiliation": [],
+       "family": "Damasio",
+       "given": "Hanna",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Grabowski",
+       "given": "Thomas J.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Tranel",
+       "given": "Daniel",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Hichwa",
+       "given": "Richard D.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Damasio",
+       "given": "Antonio R.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ]
+    },
+    "doi": {
+     "local": "10.1038/380499a0",
+     "match": true,
+     "source": [
+      "10.1038/380499a0"
+     ]
+    },
+    "journal": {
+     "local": "Nature",
+     "match": true,
+     "source": [
+      "Nature"
+     ]
+    },
+    "number": {
+     "local": "6574",
+     "match": true,
+     "source": [
+      "6574"
+     ]
+    },
+    "pages": {
+     "local": "499--505",
+     "match": true,
+     "source": [
+      "499-505"
+     ]
+    },
+    "title": {
+     "local": "A neural basis for lexical retrieval",
+     "match": true,
+     "source": [
+      "A neural basis for lexical retrieval"
+     ]
+    },
+    "volume": {
+     "local": "380",
+     "match": true,
+     "source": [
+      "380"
+     ]
+    },
+    "year": {
+     "local": "1996",
+     "match": true,
+     "source": [
+      "1996"
+     ]
+    }
+   },
+   "issues": [
+    "Source flags an update/correction/retraction relationship",
+    "Source has related versions/works; review publication identity"
+   ],
+   "record": {
+    "DOI": "10.1038/380499a0",
+    "ISSN": [
+     "0028-0836",
+     "1476-4687"
+    ],
+    "URL": "https://doi.org/10.1038/380499a0",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Damasio",
+      "given": "Hanna",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [],
+      "family": "Grabowski",
+      "given": "Thomas J.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Tranel",
+      "given": "Daniel",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Hichwa",
+      "given": "Richard D.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Damasio",
+      "given": "Antonio R.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Nature"
+    ],
+    "issue": "6574",
+    "issued": {
+     "date-parts": [
+      [
+       1996,
+       4,
+       11
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://www.nature.com/articles/380499a0",
+      "content-type": "text/html",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "http://www.nature.com/articles/380499a0.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "http://www.nature.com/articles/380499a0.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "499-505",
+    "published": {
+     "date-parts": [
+      [
+       1996,
+       4,
+       11
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       1996,
+       4,
+       11
+      ]
+     ]
+    },
+    "publisher": "Springer Science and Business Media LLC",
+    "relation": {
+     "correction": [
+      {
+       "asserted-by": "object",
+       "id": "10.1038/381810b0",
+       "id-type": "doi"
+      }
+     ]
+    },
+    "title": [
+     "A neural basis for lexical retrieval"
+    ],
+    "type": "journal-article",
+    "updated-by": [
+     {
+      "DOI": "10.1038/381810b0",
+      "label": "Correction",
+      "source": "publisher",
+      "type": "correction",
+      "updated": {
+       "date-parts": [
+        [
+         1996,
+         6,
+         27
+        ]
+       ],
+       "date-time": "1996-06-27T00:00:00Z",
+       "timestamp": 835833600000
+      }
+     }
+    ],
+    "volume": "380"
+   },
+   "retrieved_at": "2026-09-17T20:43:18.374054+00:00",
+   "source": "crossref",
+   "url": "https://doi.org/10.1038/380499a0"
+  },
+  {
+   "doi": "10.1038/380499a0",
+   "evidence": {},
+   "issues": [
+    "Unsupported secondary evidence: Secondary publication type or correction relationship requires review"
+   ],
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Department of Neurology, Division of Behavioral Neurology and CognitiveNeuroscience, University of Iowa College of Medicine, Iowa City, 52242, USA."
+         }
+        ]
+       },
+       "firstName": "H",
+       "fullName": "Damasio H",
+       "initials": "H",
+       "lastName": "Damasio"
+      },
+      {
+       "firstName": "T J",
+       "fullName": "Grabowski TJ",
+       "initials": "TJ",
+       "lastName": "Grabowski"
+      },
+      {
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-1338-1389"
+       },
+       "firstName": "D",
+       "fullName": "Tranel D",
+       "initials": "D",
+       "lastName": "Tranel"
+      },
+      {
+       "firstName": "R D",
+       "fullName": "Hichwa RD",
+       "initials": "RD",
+       "lastName": "Hichwa"
+      },
+      {
+       "firstName": "A R",
+       "fullName": "Damasio AR",
+       "initials": "AR",
+       "lastName": "Damasio"
+      }
+     ]
+    },
+    "commentCorrectionList": {
+     "commentCorrection": [
+      {
+       "orderIn": 1,
+       "reference": "Nature 1996 Jun 27;381(6595):810",
+       "source": "MED",
+       "type": "Erratum in"
+      },
+      {
+       "id": "8606763",
+       "orderIn": 2,
+       "reference": "Nature. 1996 Apr 11;380(6574):485-6. doi: 10.1038/380485a0.",
+       "source": "MED",
+       "type": "Comment in"
+      }
+     ]
+    },
+    "doi": "10.1038/380499a0",
+    "firstPublicationDate": "1996-04-01",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1038/380499a0"
+      }
+     ]
+    },
+    "id": "8606767",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "1996 Apr",
+     "issue": "6574",
+     "journal": {
+      "essn": "1476-4687",
+      "isoabbreviation": "Nature",
+      "issn": "0028-0836",
+      "medlineAbbreviation": "Nature",
+      "nlmid": "0410462",
+      "title": "Nature"
+     },
+     "journalIssueId": 926038,
+     "monthOfPublication": 4,
+     "printPublicationDate": "1996-04-01",
+     "volume": "380",
+     "yearOfPublication": 1996
+    },
+    "pageInfo": "499-505",
+    "pubTypeList": {
+     "pubType": [
+      "Research Support, U.S. Gov't, P.H.S.",
+      "Research Support, Non-U.S. Gov't",
+      "Journal Article"
+     ]
+    },
+    "pubYear": "1996",
+    "source": "MED",
+    "title": "A neural basis for lexical retrieval."
+   },
+   "record": {},
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1038%2Ftp.2011.15%22+OR+DOI%3A%2210.1162%2Fjocn.2009.21043%22+OR+DOI%3A%2210.1523%2Fjneurosci.1916-08.2008%22+OR+DOI%3A%2210.1038%2Fnn1918%22+OR+DOI%3A%2210.1007%2Fbf00337115%22+OR+DOI%3A%2210.1073%2Fpnas.0803390105%22+OR+DOI%3A%2210.7554%2Felife.10778%22+OR+DOI%3A%2210.1038%2Fnn.3973%22+OR+DOI%3A%2210.1016%2Fj.tics.2007.11.004%22+OR+DOI%3A%2210.1167%2F11.10.6%22+OR+DOI%3A%2210.1371%2Fjournal.pbio.2005479%22+OR+DOI%3A%2210.1016%2Fj.cortex.2008.07.003%22+OR+DOI%3A%2210.1101%2Flm.605607%22+OR+DOI%3A%2210.1016%2Fj.bbr.2010.12.009%22+OR+DOI%3A%2210.1016%2Fj.nlm.2017.08.009%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2013.10.063%22+OR+DOI%3A%2210.1016%2Fj.neuron.2012.10.014%22+OR+DOI%3A%2210.1038%2F380499a0%22+OR+DOI%3A%2210.1016%2Fj.neuropsychologia.2017.01.029%22+OR+DOI%3A%2210.3389%2Ffninf.2014.00014%22+OR+DOI%3A%2210.1007%2F978-3-540-39701-4_28%22+OR+DOI%3A%2210.1523%2Fjneurosci.4402-15.2016%22+OR+DOI%3A%2210.1371%2Fjournal.pcbi.1005649%22+OR+DOI%3A%2210.1101%2F059618%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhs065%22&format=json&resultType=core&pageSize=100",
+   "resolved_findings": [],
+   "retrieved_at": "2026-09-10T00:59:14.394926+00:00",
+   "source": "europepmc",
+   "url": "https://europepmc.org/article/MED/8606767"
+  },
+  {
+   "doi": "10.1038/380499a0",
+   "evidence": {},
+   "issues": [
+    "Unsupported secondary evidence: Secondary publication type or correction relationship requires review"
+   ],
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Department of Neurology, Division of Behavioral Neurology and CognitiveNeuroscience, University of Iowa College of Medicine, Iowa City, 52242, USA."
+         }
+        ]
+       },
+       "firstName": "H",
+       "fullName": "Damasio H",
+       "initials": "H",
+       "lastName": "Damasio"
+      },
+      {
+       "firstName": "T J",
+       "fullName": "Grabowski TJ",
+       "initials": "TJ",
+       "lastName": "Grabowski"
+      },
+      {
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-1338-1389"
+       },
+       "firstName": "D",
+       "fullName": "Tranel D",
+       "initials": "D",
+       "lastName": "Tranel"
+      },
+      {
+       "firstName": "R D",
+       "fullName": "Hichwa RD",
+       "initials": "RD",
+       "lastName": "Hichwa"
+      },
+      {
+       "firstName": "A R",
+       "fullName": "Damasio AR",
+       "initials": "AR",
+       "lastName": "Damasio"
+      }
+     ]
+    },
+    "commentCorrectionList": {
+     "commentCorrection": [
+      {
+       "orderIn": 1,
+       "reference": "Nature 1996 Jun 27;381(6595):810",
+       "source": "MED",
+       "type": "Erratum in"
+      },
+      {
+       "id": "8606763",
+       "orderIn": 2,
+       "reference": "Nature. 1996 Apr 11;380(6574):485-6. doi: 10.1038/380485a0.",
+       "source": "MED",
+       "type": "Comment in"
+      }
+     ]
+    },
+    "doi": "10.1038/380499a0",
+    "firstPublicationDate": "1996-04-01",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1038/380499a0"
+      }
+     ]
+    },
+    "id": "8606767",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "1996 Apr",
+     "issue": "6574",
+     "journal": {
+      "essn": "1476-4687",
+      "isoabbreviation": "Nature",
+      "issn": "0028-0836",
+      "medlineAbbreviation": "Nature",
+      "nlmid": "0410462",
+      "title": "Nature"
+     },
+     "journalIssueId": 926038,
+     "monthOfPublication": 4,
+     "printPublicationDate": "1996-04-01",
+     "volume": "380",
+     "yearOfPublication": 1996
+    },
+    "pageInfo": "499-505",
+    "pubTypeList": {
+     "pubType": [
+      "Research Support, U.S. Gov't, P.H.S.",
+      "Research Support, Non-U.S. Gov't",
+      "Journal Article"
+     ]
+    },
+    "pubYear": "1996",
+    "source": "MED",
+    "title": "A neural basis for lexical retrieval."
+   },
+   "record": {},
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1017%2Fs1355617720001009%22+OR+DOI%3A%2210.1038%2Fs41586-020-2649-2%22+OR+DOI%3A%2210.1038%2Fs41592-019-0686-2%22+OR+DOI%3A%2210.2307%2F2344614%22+OR+DOI%3A%2210.1007%2Fs11042-016-4281-6%22+OR+DOI%3A%2210.3758%2Fs13421-021-01178-x%22+OR+DOI%3A%2210.1111%2Fj.2517-6161.1960.tb00375.x%22+OR+DOI%3A%2210.1038%2Fs41467-021-25280-5%22+OR+DOI%3A%2210.1038%2Fs41562-019-0767-3%22+OR+DOI%3A%2210.1038%2Fs41562-019-0779-z%22+OR+DOI%3A%2210.1167%2F18.10.37%22+OR+DOI%3A%2210.1038%2Fnn.3973%22+OR+DOI%3A%2210.1038%2F380499a0%22+OR+DOI%3A%2210.1038%2Fnbt.4314%22+OR+DOI%3A%2210.1016%2Fj.neuron.2017.09.005%22+OR+DOI%3A%2210.1038%2Fs41593-018-0148-7%22+OR+DOI%3A%2210.1007%2F11866763_8%22+OR+DOI%3A%2210.1016%2Fj.mcn.2013.07.011%22+OR+DOI%3A%2210.1177%2F1352458511409612%22+OR+DOI%3A%2210.3233%2Fjad-2012-121078%22+OR+DOI%3A%2210.2307%2F2346830%22+OR+DOI%3A%2210.1038%2Fnn.4450%22+OR+DOI%3A%2210.1002%2Fmrm.10354%22+OR+DOI%3A%2210.1016%2Fb978-012370509-9.00168-6%22+OR+DOI%3A%2210.3758%2Fs13421-012-0264-7%22&format=json&resultType=core&pageSize=100",
+   "resolved_findings": [],
+   "retrieved_at": "2026-09-27T06:46:17.399037+00:00",
+   "source": "europepmc",
+   "url": "https://europepmc.org/article/MED/8606767"
+  }
+ ],
+ "Pyly73": [
+  {
+   "advisories": [],
+   "doi": "10.1037/h0034650",
+   "evidence": {
+    "author": {
+     "detail": "Complete author list in order; citation initials agree with source names",
+     "local": "Z W Pylyshyn",
+     "match": true,
+     "source": [
+      {
+       "affiliation": [],
+       "family": "Pylyshyn",
+       "given": "Zenon W.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ]
+    },
+    "doi": {
+     "local": "10.1037/h0034650",
+     "match": true,
+     "source": [
+      "10.1037/h0034650"
+     ]
+    },
+    "journal": {
+     "local": "Psychological Bulletin",
+     "match": true,
+     "source": [
+      "Psychological Bulletin"
+     ]
+    },
+    "number": {
+     "local": "1",
+     "match": true,
+     "source": [
+      "1"
+     ]
+    },
+    "pages": {
+     "local": "1--24",
+     "match": true,
+     "source": [
+      "1-24"
+     ]
+    },
+    "title": {
+     "local": "What the mind's eye tells the mind's brain: a critique of mental imagery",
+     "match": true,
+     "source": [
+      "What the mind's eye tells the mind's brain: A critique of mental imagery."
+     ]
+    },
+    "volume": {
+     "local": "80",
+     "match": true,
+     "source": [
+      "80"
+     ]
+    },
+    "year": {
+     "local": "1973",
+     "match": true,
+     "source": [
+      "1973"
+     ]
+    }
+   },
+   "issues": [
+    "Source flags an update/correction/retraction relationship"
+   ],
+   "record": {
+    "DOI": "10.1037/h0034650",
+    "ISSN": [
+     "1939-1455",
+     "0033-2909"
+    ],
+    "URL": "https://doi.org/10.1037/h0034650",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Pylyshyn",
+      "given": "Zenon W.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     }
+    ],
+    "container-title": [
+     "Psychological Bulletin"
+    ],
+    "issue": "1",
+    "issued": {
+     "date-parts": [
+      [
+       1973,
+       7
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://psycnet.apa.org/journals/bul/80/1/1.pdf",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "1-24",
+    "published": {
+     "date-parts": [
+      [
+       1973,
+       7
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       1973,
+       7
+      ]
+     ]
+    },
+    "publisher": "American Psychological Association (APA)",
+    "relation": {},
+    "subtitle": [],
+    "title": [
+     "What the mind's eye tells the mind's brain: A critique of mental imagery."
+    ],
+    "type": "journal-article",
+    "updated-by": [
+     {
+      "DOI": "10.1037/h0020008",
+      "label": "Correction",
+      "source": "publisher",
+      "type": "correction",
+      "updated": {
+       "date-parts": [
+        [
+         2006,
+         3,
+         29
+        ]
+       ],
+       "date-time": "2006-03-29T00:00:00Z",
+       "timestamp": 1143590400000
+      }
+     }
+    ],
+    "volume": "80"
+   },
+   "retrieved_at": "2026-09-09T21:44:29.896080+00:00",
+   "source": "crossref",
+   "url": "https://doi.org/10.1037/h0034650"
+  },
+  {
+   "advisories": [],
+   "doi": "10.1037/h0034650",
+   "evidence": {
+    "author": {
+     "detail": "Complete author list in order; citation initials agree with source names",
+     "local": "Z W Pylyshyn",
+     "match": true,
+     "source": [
+      {
+       "affiliation": [],
+       "family": "Pylyshyn",
+       "given": "Zenon W.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ]
+    },
+    "doi": {
+     "local": "10.1037/h0034650",
+     "match": true,
+     "source": [
+      "10.1037/h0034650"
+     ]
+    },
+    "journal": {
+     "local": "Psychological Bulletin",
+     "match": true,
+     "source": [
+      "Psychological Bulletin"
+     ]
+    },
+    "number": {
+     "local": "1",
+     "match": true,
+     "source": [
+      "1"
+     ]
+    },
+    "pages": {
+     "local": "1--24",
+     "match": true,
+     "source": [
+      "1-24"
+     ]
+    },
+    "title": {
+     "local": "What the mind's eye tells the mind's brain: a critique of mental imagery",
+     "match": true,
+     "source": [
+      "What the mind's eye tells the mind's brain: A critique of mental imagery."
+     ]
+    },
+    "volume": {
+     "local": "80",
+     "match": true,
+     "source": [
+      "80"
+     ]
+    },
+    "year": {
+     "local": "1973",
+     "match": true,
+     "source": [
+      "1973"
+     ]
+    }
+   },
+   "issues": [
+    "Source flags an update/correction/retraction relationship"
+   ],
+   "record": {
+    "DOI": "10.1037/h0034650",
+    "ISSN": [
+     "1939-1455",
+     "0033-2909"
+    ],
+    "URL": "https://doi.org/10.1037/h0034650",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Pylyshyn",
+      "given": "Zenon W.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     }
+    ],
+    "container-title": [
+     "Psychological Bulletin"
+    ],
+    "issue": "1",
+    "issued": {
+     "date-parts": [
+      [
+       1973,
+       7
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://psycnet.apa.org/journals/bul/80/1/1.pdf",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "1-24",
+    "published": {
+     "date-parts": [
+      [
+       1973,
+       7
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       1973,
+       7
+      ]
+     ]
+    },
+    "publisher": "American Psychological Association (APA)",
+    "title": [
+     "What the mind's eye tells the mind's brain: A critique of mental imagery."
+    ],
+    "type": "journal-article",
+    "updated-by": [
+     {
+      "DOI": "10.1037/h0020008",
+      "label": "Correction",
+      "source": "publisher",
+      "type": "correction",
+      "updated": {
+       "date-parts": [
+        [
+         2006,
+         3,
+         29
+        ]
+       ],
+       "date-time": "2006-03-29T00:00:00Z",
+       "timestamp": 1143590400000
+      }
+     }
+    ],
+    "volume": "80"
+   },
+   "retrieved_at": "2026-09-21T17:56:49.676168+00:00",
+   "source": "crossref",
+   "url": "https://doi.org/10.1037/h0034650"
+  }
+ ]
+}

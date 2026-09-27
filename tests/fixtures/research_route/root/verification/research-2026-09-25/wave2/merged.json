@@ -1,0 +1,221 @@
+[
+ {
+  "key": "ChanEtal12b",
+  "batch": "batch-008",
+  "verdict": "correction",
+  "current": {},
+  "final_changes": [
+   {
+    "field": "author",
+    "current": null,
+    "proposed": "Y K Chang and J D Labban and J I Gapin and J L Etnier",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+      "quote": "Y K Chang, J D Labban, J I Gapin, J L Etnier"
+     }
+    ]
+   },
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1016/j.brainres.2012.02.068",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+      "quote": "10.1016/j.brainres.2012.02.068 [doi]"
+     }
+    ]
+   },
+   {
+    "field": "journal",
+    "current": null,
+    "proposed": "Brain Research",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+      "quote": "JT  - Brain research"
+     }
+    ]
+   },
+   {
+    "field": "pages",
+    "current": null,
+    "proposed": "87--101",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2012.02.068",
+      "quote": "\"page\":\"87-101\""
+     }
+    ]
+   },
+   {
+    "field": "title",
+    "current": null,
+    "proposed": "The effects of acute exercise on cognitive performance: a meta-analysis",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+      "quote": "The effects of acute exercise on cognitive performance: a meta-analysis."
+     }
+    ]
+   },
+   {
+    "field": "volume",
+    "current": null,
+    "proposed": "1453",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1016/j.brainres.2012.02.068",
+      "quote": "\"volume\":\"1453\""
+     }
+    ]
+   },
+   {
+    "field": "year",
+    "current": null,
+    "proposed": "2012",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22480735/",
+      "quote": "DP  - 2012 May 9"
+     }
+    ]
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "ChanEtal12b",
+   "target_base": "ChanEtal12",
+   "action": "duplicate",
+   "same_doi_as": [
+    "ChanEtal12"
+   ],
+   "same_work_as": [
+    "ChanEtal12"
+   ],
+   "merge_into": "ChanEtal12"
+  },
+  "flags": [
+   {
+    "code": "not_in_bib",
+    "field": null,
+    "detail": "ChanEtal12b is not in cdl.bib",
+    "action": "held"
+   },
+   {
+    "code": "duplicate",
+    "field": "key",
+    "detail": "same DOI as ChanEtal12: merge ChanEtal12b into ChanEtal12",
+    "action": "flag"
+   }
+  ],
+  "doi_status": {
+   "doi": "10.1016/j.brainres.2012.02.068",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "The effects of acute exercise on cognitive performance: A meta-analysis",
+   "subtitle": null,
+   "container": "Brain Research",
+   "print_year": "2012",
+   "online_year": null,
+   "issued_year": "2012",
+   "page": "87-101",
+   "volume": "1453",
+   "issue": null,
+   "type": "journal-article",
+   "authors": [
+    "Y.K. Chang",
+    "J.D. Labban",
+    "J.I. Gapin",
+    "J.L. Etnier"
+   ],
+   "families": [
+    "Chang",
+    "Labban",
+    "Gapin",
+    "Etnier"
+   ]
+  },
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": null,
+  "needs_user": true
+ },
+ {
+  "key": "Gomu53",
+  "batch": "batch-010",
+  "verdict": "verified",
+  "current": {
+   "year": "1953",
+   "volume": "29",
+   "title": "The development and present status of the trace theory of memory",
+   "pages": "1--91",
+   "journal": "British Journal of Psychology Monograph Supplements",
+   "author": "B R Gomulicki",
+   "ENTRYTYPE": "article",
+   "ID": "Gomu53"
+  },
+  "final_changes": [
+   {
+    "field": "pages",
+    "current": "1--91",
+    "proposed": "1--94",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://www.loc.gov/item/53011675/?fo=json",
+      "quote": "94 p."
+     }
+    ],
+    "decision": "resolution batch-03"
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Gomu53",
+   "target_base": "Gomu53",
+   "action": "keep"
+  },
+  "flags": [
+   {
+    "code": "field_not_found",
+    "field": "pages",
+    "detail": "verdict 'verified' but pages is not_found: the entry is not fully verified",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_inferred_value",
+    "field": "pages",
+    "detail": "pages = '1--94': monograph pages 1--N from the catalogue extent 'N p.' (user rule); applied",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-03): pages = '1--94'",
+    "action": "applied"
+   }
+  ],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-03",
+   "notes": "Work confirmed (Harvard/LoC LCCN 53011675: Gomulicki, Bronislaw R., 1953, series 'British journal of psychology. Monograph supplements ; 29'). Pages unconfirmed and conflicting: Harvard/LoC '94 p.' with 'Bibliography: pages [86]-91'; BJPS review 10.1093/bjps/vi.24.346 says 'pp. 85'. HEAD 1--91 left unchanged; no DOI exists. RECONCILED 2026-09-26: HEAD 1--91 is confirmed by no record; LoC catalogue extent '94 p.' gives 1--94, the same catalogue-extent form Gate17 (batch 02) uses for a numbered monograph issue.",
+   "residue": [],
+   "noop": null
+  },
+  "reviewer": null,
+  "needs_user": false
+ }
+]

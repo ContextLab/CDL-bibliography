@@ -1,0 +1,272 @@
+[
+ {
+  "key": "vanPEtal21",
+  "batch": "batch-048",
+  "verdict": "correction",
+  "current": {
+   "year": "2021",
+   "volume": "43",
+   "title": "How do blind people know that blue is cold? Distributional semantics encode color-adjective associations",
+   "number": "43",
+   "journal": "Proceedings of the Annual Meeting of the Cognitive Science Society",
+   "author": "J {van Paridon} and Q Liu and G Lupyan",
+   "ENTRYTYPE": "article",
+   "ID": "vanPEtal21"
+  },
+  "final_changes": [
+   {
+    "field": "ENTRYTYPE",
+    "current": "article",
+    "proposed": "inproceedings",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://escholarship.org/graphql?query=%7Bitem%28id%3A%22ark%3A/13030/qt6sq7h506%22%2Cscheme%3AARK%29%7Btitle%20published%20journal%20volume%20authors%7Bnodes%7Bname%7D%7D%7D%7D",
+      "quote": "\"journal\":\"Proceedings of the Annual Meeting of the Cognitive Science Society\""
+     }
+    ],
+    "reviewer": "agree"
+   },
+   {
+    "field": "booktitle",
+    "current": null,
+    "proposed": "Proceedings of the Annual Meeting of the Cognitive Science Society",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://escholarship.org/graphql?query=%7Bitem%28id%3A%22ark%3A/13030/qt6sq7h506%22%2Cscheme%3AARK%29%7Btitle%20published%20journal%20volume%20authors%7Bnodes%7Bname%7D%7D%7D%7D",
+      "quote": "\"journal\":\"Proceedings of the Annual Meeting of the Cognitive Science Society\""
+     }
+    ],
+    "reviewer": "agree"
+   }
+  ],
+  "removals": {
+   "journal": "@inproceedings has no journal (already given by the booktitle)",
+   "number": "researcher asked to remove it (current '43')"
+  },
+  "key_plan": {
+   "current_key": "vanPEtal21",
+   "target_base": "vanPEtal21",
+   "action": "keep"
+  },
+  "flags": [],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "ENTRYTYPE": "agree",
+    "booktitle": "agree"
+   },
+   "problems": [
+    "Set A reason: entrytype"
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
+ },
+ {
+  "key": "AschEben62",
+  "batch": "batch-050",
+  "verdict": "correction",
+  "current": {
+   "year": "1962",
+   "volume": "106",
+   "title": "The principle of associative symmetry",
+   "pages": "135--163",
+   "journal": "Proceedings of the {American} Philosophical Society",
+   "author": "S E Asch and S M Ebenholtz",
+   "ENTRYTYPE": "article",
+   "ID": "AschEben62"
+  },
+  "final_changes": [
+   {
+    "field": "number",
+    "current": null,
+    "proposed": "2",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/985378",
+      "quote": "IS  - 2"
+     }
+    ]
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "AschEben62",
+   "target_base": "AschEben62",
+   "action": "keep"
+  },
+  "flags": [],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": null,
+  "needs_user": false
+ },
+ {
+  "key": "Pyly73",
+  "batch": "batch-051",
+  "verdict": "verified",
+  "current": {
+   "year": "1973",
+   "volume": "80",
+   "title": "What the mind's eye tells the mind's brain: a critique of mental imagery",
+   "pages": "1--24",
+   "number": "1",
+   "journal": "Psychological Bulletin",
+   "doi": "10.1037/h0034650",
+   "author": "Z W Pylyshyn",
+   "ENTRYTYPE": "article",
+   "ID": "Pyly73"
+  },
+  "final_changes": [],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Pyly73",
+   "target_base": "Pyly73",
+   "action": "keep"
+  },
+  "flags": [],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "b",
+   "field_verdicts": {},
+   "problems": [
+    "Crossref 10.1037/h0034650: Psychological Bulletin 80(1) 1-24, print None / issued 1973"
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
+ },
+ {
+  "key": "KahaEtal08c",
+  "batch": "batch-052",
+  "verdict": "correction",
+  "current": {},
+  "final_changes": [
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.1037/a0013724",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"DOI\":\"10.1037\\/a0013724\""
+     }
+    ],
+    "decision": "resolution batch-11",
+    "reviewer": "agree"
+   },
+   {
+    "field": "pages",
+    "current": "1119--1126",
+    "proposed": "1119--1125",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"page\":\"1119-1125\""
+     }
+    ],
+    "decision": "resolution batch-11",
+    "reviewer": "agree"
+   },
+   {
+    "field": "title",
+    "current": "Putting short-term memory into context: {R}eply to {U}sher and colleagues",
+    "proposed": "Putting short-term memory into context: reply to {Usher}, {Davelaar}, {Haarmann}, and {Goshen-Gottstein} (2008)",
+    "source": "resolution",
+    "evidence": [
+     {
+      "url": "https://api.crossref.org/works/10.1037/a0013724",
+      "quote": "\"title\":[\"Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).\"]"
+     }
+    ],
+    "decision": "resolution batch-11",
+    "reviewer": "agree"
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "KahaEtal08b",
+   "target_base": "KahaEtal08",
+   "action": "keep"
+  },
+  "flags": [
+   {
+    "code": "resolution_decision",
+    "field": "doi, pages, title",
+    "detail": "resolution 'apply' (batch-11): doi = '10.1037/a0013724'; pages = '1119--1125'; title = 'Putting short-term memory into context: reply to {Usher}, {Davelaar}, {Haarmann}, and {Goshen-Gottstein} (2008)'",
+    "action": "applied"
+   },
+   {
+    "code": "resolution_redirect",
+    "field": "key",
+    "detail": "resolution 'apply' (batch-11): KahaEtal08c was renamed to KahaEtal08b in the bibliography (KahaEtal08c -> KahaEtal08b, key-renames.json); the decision applies to KahaEtal08b",
+    "action": "applied"
+   }
+  ],
+  "doi_status": {
+   "doi": "10.1037/a0013724",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).",
+   "subtitle": null,
+   "container": "Psychological Review",
+   "print_year": null,
+   "online_year": "2008",
+   "issued_year": "2008",
+   "page": "1119-1125",
+   "volume": "115",
+   "issue": "4",
+   "type": "journal-article",
+   "authors": [
+    "Michael J. Kahana",
+    "Per B. Sederberg",
+    "Marc W. Howard"
+   ],
+   "families": [
+    "Kahana",
+    "Sederberg",
+    "Howard"
+   ]
+  },
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-11",
+   "notes": "Wave-6 key KahaEtal08c was renamed to KahaEtal08b in HEAD (key-renames.json; the old KahaEtal08b, a duplicate of KahaEtal08a, was deleted and its suffix reused), so this decision follows the rename to HEAD KahaEtal08b (Kahana, Sederberg and Howard 2008, Psychological Review 115(4)). Crossref 10.1037/a0013724 (and PubMed 20976034) print the full title 'Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).' and pages 1119-1125 (HEAD's 1119--1126 runs into the separate postscript, 1125-1126); DOI added. Author, journal, volume 115, number 4 and year 2008 are confirmed as in HEAD. Key stays KahaEtal08b (KahaEtal08a is the chapter).",
+   "residue": [],
+   "noop": null
+  },
+  "reviewer": {
+   "agree": "yes",
+   "sampled_as": "a",
+   "field_verdicts": {
+    "doi": "agree",
+    "pages": "agree",
+    "title": "agree"
+   },
+   "problems": [
+    "Set A reason: title/journal change",
+    "Crossref 10.1037/a0013724: Psychological Review 115(4) 1119-1125, print None / issued 2008"
+   ],
+   "suggested_value": {}
+  },
+  "needs_user": false
+ }
+]

@@ -1,0 +1,27 @@
+[
+ {
+  "key": "KahaEtal08c",
+  "decision": "apply",
+  "set": {
+   "title": {
+    "value": "Putting short-term memory into context: reply to {Usher}, {Davelaar}, {Haarmann}, and {Goshen-Gottstein} (2008)",
+    "url": "https://api.crossref.org/works/10.1037/a0013724",
+    "quote": "\"title\":[\"Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).\"]"
+   },
+   "pages": {
+    "value": "1119--1125",
+    "url": "https://api.crossref.org/works/10.1037/a0013724",
+    "quote": "\"page\":\"1119-1125\""
+   },
+   "doi": {
+    "value": "10.1037/a0013724",
+    "url": "https://api.crossref.org/works/10.1037/a0013724",
+    "quote": "\"DOI\":\"10.1037\\/a0013724\""
+   }
+  },
+  "withdraw": [],
+  "remove": [],
+  "notes": "Wave-6 key KahaEtal08c was renamed to KahaEtal08b in HEAD (key-renames.json; the old KahaEtal08b, a duplicate of KahaEtal08a, was deleted and its suffix reused), so this decision follows the rename to HEAD KahaEtal08b (Kahana, Sederberg and Howard 2008, Psychological Review 115(4)). Crossref 10.1037/a0013724 (and PubMed 20976034) print the full title 'Putting short-term memory into context: Reply to Usher, Davelaar, Haarmann, and Goshen-Gottstein (2008).' and pages 1119-1125 (HEAD's 1119--1126 runs into the separate postscript, 1125-1126); DOI added. Author, journal, volume 115, number 4 and year 2008 are confirmed as in HEAD. Key stays KahaEtal08b (KahaEtal08a is the chapter).",
+  "questions": []
+ }
+]

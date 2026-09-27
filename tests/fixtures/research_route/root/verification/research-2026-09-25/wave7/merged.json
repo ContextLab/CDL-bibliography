@@ -1,0 +1,137 @@
+[
+ {
+  "key": "Post62",
+  "batch": "batch-068",
+  "verdict": "correction",
+  "current": {
+   "year": "1962",
+   "volume": "75(3)",
+   "title": "Repetition and paired-associate learning",
+   "pages": "372--389",
+   "journal": "{American} Journal of Psychology",
+   "author": "L Postman",
+   "ENTRYTYPE": "article",
+   "ID": "Post62"
+  },
+  "final_changes": [
+   {
+    "field": "doi",
+    "current": null,
+    "proposed": "10.2307/1419861",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1419861",
+      "quote": "DO  - 10.2307/1419861"
+     }
+    ]
+   },
+   {
+    "field": "number",
+    "current": null,
+    "proposed": "3",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1419861",
+      "quote": "IS  - 3"
+     }
+    ]
+   },
+   {
+    "field": "volume",
+    "current": "75(3)",
+    "proposed": "75",
+    "source": "researcher",
+    "evidence": [
+     {
+      "url": "https://www.jstor.org/citation/ris/10.2307/1419861",
+      "quote": "VL  - 75"
+     }
+    ]
+   }
+  ],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Post62",
+   "target_base": "Post62",
+   "action": "keep"
+  },
+  "flags": [
+   {
+    "code": "doi_record_conflict",
+    "field": "pages",
+    "detail": "Crossref record of 10.2307/1419861 gives pages '372', proposal '372--389'",
+    "action": "flag"
+   },
+   {
+    "code": "resolution_decision",
+    "field": "pages",
+    "detail": "resolution 'apply' (batch-15): pages = '372--389'",
+    "action": "applied"
+   }
+  ],
+  "doi_status": {
+   "doi": "10.2307/1419861",
+   "registered": true,
+   "ra": "Crossref",
+   "title": "Repetition and Paired-Associate Learning",
+   "subtitle": null,
+   "container": "The American Journal of Psychology",
+   "print_year": "1962",
+   "online_year": null,
+   "issued_year": "1962",
+   "page": "372",
+   "volume": "75",
+   "issue": "3",
+   "type": "journal-article",
+   "authors": [
+    "Leo Postman"
+   ],
+   "families": [
+    "Postman"
+   ]
+  },
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": {
+   "decision": "apply",
+   "batch": "batch-15",
+   "notes": "JSTOR's RIS record (publisher archive) prints 'SP  - 372' and 'EP  - 389' (Sep., 1962, vol 75 issue 3); Crossref deposits only the first page. Printed range wins; HEAD's 372--389 stays, other post-check changes apply.",
+   "residue": [],
+   "noop": null
+  },
+  "reviewer": null,
+  "needs_user": false
+ },
+ {
+  "key": "Tulv74",
+  "batch": "batch-069",
+  "verdict": "verified",
+  "current": {
+   "year": "1974",
+   "volume": "62",
+   "title": "Cue-dependent forgetting",
+   "pages": "74--82",
+   "number": "1",
+   "journal": "{American} Scientist",
+   "author": "E Tulving",
+   "ENTRYTYPE": "article",
+   "ID": "Tulv74"
+  },
+  "final_changes": [],
+  "removals": {},
+  "key_plan": {
+   "current_key": "Tulv74",
+   "target_base": "Tulv74",
+   "action": "keep"
+  },
+  "flags": [],
+  "doi_status": null,
+  "remove_entry": null,
+  "user_decisions": [],
+  "resolution": null,
+  "reviewer": null,
+  "needs_user": false
+ }
+]

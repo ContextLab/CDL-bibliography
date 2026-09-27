@@ -1,0 +1,22 @@
+Provider: JSTOR http://www.jstor.org
+Database: JSTOR
+Content: text/plain; charset="us-ascii"
+
+
+TY  - JOUR
+AU  - Postman, Leo
+C1  - Full publication date: Sep., 1962
+DB  - JSTOR
+DO  - 10.2307/1419861
+EP  - 389
+IS  - 3
+PB  - University of Illinois Press
+PY  - 1962
+SN  - 00029556
+SP  - 372
+T2  - The American Journal of Psychology
+TI  - Repetition and Paired-Associate Learning
+UR  - http://www.jstor.org/stable/1419861
+VL  - 75
+Y2  - 2026/09/26/
+ER  - 
