@@ -66,15 +66,12 @@
   "decision": "apply",
   "set": {
    "author": {
-    "value": "K Nader and G E Schafe and J E {Le Doux}",
-    "url": "https://api.crossref.org/works/10.1038/35021052",
-    "quote": "{\"given\":\"Joseph E.\",\"family\":\"Le Doux\""
+    "value": "K Nader and G E Schafe and J E LeDoux",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=10845062&rettype=medline&retmode=text",
+    "quote": "FAU - LeDoux, J E"
    }
   },
-  "notes": "The publisher page byline reads 'Joseph E. Le Doux' (nature.com, data-author-search=\"Le Doux, Joseph E.\"), as do Crossref and PubMed 10963596 ('Le Doux JE'); so this paper prints 'Le Doux', not 'LeDoux'. Particle surname braced as house form ({de Cothi}). Key unchanged.",
-  "questions": [
-   "When an author's name is printed differently on one paper than on the rest of their work (Nature 406 prints 'Joseph E. Le Doux'; elsewhere 'LeDoux'), should the entry follow this paper's printed byline or the author's usual form?"
-  ]
+  "notes": "The publisher page byline reads 'Joseph E. Le Doux' (nature.com, data-author-search=\"Le Doux, Joseph E.\"), as do Crossref and PubMed 10963596 ('Le Doux JE'); so this paper prints 'Le Doux', not 'LeDoux'. Particle surname braced as house form ({de Cothi}). Key unchanged. RECONCILED 2026-09-26: Author-name rule (round 1): the author's correct, most complete name, 'LeDoux' (e.g. PubMed 10845062 'Emotion circuits in the brain', FAU 'LeDoux, J E'), not this paper's 'Le Doux'."
  },
  {
   "key": "PaleEtal93",
@@ -161,10 +158,7 @@
     "quote": "\"page\":\"1596-1603\""
    }
   },
-  "notes": "Publisher page (neurology.org, browser-only; 403 to scripts) prints 'Pages: 1596-1603' and citation_lastpage=1603, matching Crossref; PubMed has 1596-602. Publisher record wins over the proposal 1596--1602.",
-  "questions": [
-   "When the publisher page and Crossref agree on a last page and PubMed differs by one (Neurology 54:1596-1603 vs PubMed 1596-602), does the publisher range win even though the printed PDF was not seen?"
-  ]
+  "notes": "Publisher page (neurology.org, browser-only; 403 to scripts) prints 'Pages: 1596-1603' and citation_lastpage=1603, matching Crossref; PubMed has 1596-602. Publisher record wins over the proposal 1596--1602. RECONCILED 2026-09-26: Question answered by rule: publisher/Crossref beats PubMed (round 1)."
  },
  {
   "key": "KingEtal11",
@@ -177,10 +171,7 @@
     "quote": "\"authorString\":\"Morrell MJ, RNS System in Epilepsy Study Group.\""
    }
   },
-  "notes": "Byline is Morrell on behalf of the RNS System in Epilepsy Study Group (PubMed 21917777, Crossref); the 37 names were the investigator list. MorrRNSS11 is bibcheck authors2key's output for this byline; free in HEAD.",
-  "questions": [
-   "When a byline is one person plus a corporate group (Morrell and {RNS System in Epilepsy Study Group}), should the key use authors2key's two-author form (MorrRNSS11) or the single-person form (Morr11)?"
-  ]
+  "notes": "Byline is Morrell on behalf of the RNS System in Epilepsy Study Group (PubMed 21917777, Crossref); the 37 names were the investigator list. MorrRNSS11 is bibcheck authors2key's output for this byline; free in HEAD. RECONCILED 2026-09-26: Question answered by rule: person + corporate byline: key from authors2key (default)."
  },
  {
   "key": "MeadEtal91",
@@ -214,9 +205,7 @@
  {
   "key": "TrenEtal93",
   "decision": "apply",
-  "withdraw": [
-   "author"
-  ],
+  "withdraw": [],
   "set": {
    "pages": {
     "value": "1800--1805",
@@ -224,7 +213,7 @@
     "quote": "\"pageInfo\":\"1800-1805\""
    }
   },
-  "notes": "Publisher page byline prints 'C. R. Jack, Jr., MD' (neurology.org, browser-only), so the proposed removal of Jr is withdrawn; HEAD '{Jack Jr}' is house form. Crossref has first page only; PubMed 8414035 prints 1800-1805."
+  "notes": "Publisher page byline prints 'C. R. Jack, Jr., MD' (neurology.org, browser-only), so the proposed removal of Jr is withdrawn; HEAD '{Jack Jr}' is house form. Crossref has first page only; PubMed 8414035 prints 1800-1805. RECONCILED 2026-09-26: Author withdrawal cancelled: house rule drops name suffixes even when printed (BRIEF clarification), so the post-check author 'C R Jack' applies."
  },
  {
   "key": "Trei99",

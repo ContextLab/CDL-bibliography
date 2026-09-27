@@ -57,13 +57,8 @@
  {
   "key": "ZhanEtal06",
   "decision": "apply",
-  "withdraw": [
-   "title"
-  ],
-  "notes": "DOI applied (PubMed 16563517 'AID - 10.1016/j.jneumeth.2006.02.013 [doi]'). Title change is spacing-only around '---'; HEAD writes '--- ' in 27 of 34 em-dash titles, so the current house form is kept pending the rule question.",
-  "questions": [
-   "Should an em-dash in a title be written '---' with no spaces (as printed, e.g. Crossref 'signals—A combined') or '--- ' with a trailing space (the form 27 of 34 em-dash titles in HEAD cdl.bib use)? One rule for all such titles would let bibcheck normalise them."
-  ],
+  "withdraw": [],
+  "notes": "DOI applied (PubMed 16563517 'AID - 10.1016/j.jneumeth.2006.02.013 [doi]'). Title change is spacing-only around '---'; HEAD writes '--- ' in 27 of 34 em-dash titles, so the current house form is kept pending the rule question. RECONCILED 2026-09-26: Title withdrawal cancelled: the em-dash rule (user, round 1) is 'a---b' with no spaces, which is the post-check's title.",
   "set": {},
   "remove": []
  },
@@ -115,10 +110,7 @@
  {
   "key": "Bull90",
   "decision": "keep",
-  "notes": "APA PsycInfo record 1991-00341-001 (JS-rendered; read in a browser 2026-09-26): 'Bullington, J. C. (1990). Mood congruent memory: A replication of symmetrical effects for both positive and negative moods. Journal of Social Behavior & Personality, 5(4), 123–134.' Every HEAD field matches; no DOI exists.",
-  "questions": [
-   "Records on APA PsycNET render only via JavaScript (a plain fetch gets an Incapsula 403), so a script validator cannot re-fetch their quotes. Should PsycNET quotes read in a real browser count as verified evidence, or must every value also have a script-fetchable source?"
-  ],
+  "notes": "APA PsycInfo record 1991-00341-001 (JS-rendered; read in a browser 2026-09-26): 'Bullington, J. C. (1990). Mood congruent memory: A replication of symmetrical effects for both positive and negative moods. Journal of Social Behavior & Personality, 5(4), 123–134.' Every HEAD field matches; no DOI exists. RECONCILED 2026-09-26: Question answered by rule: browser-read PsycNET pages accepted (round 2).",
   "set": {},
   "withdraw": [],
   "remove": []

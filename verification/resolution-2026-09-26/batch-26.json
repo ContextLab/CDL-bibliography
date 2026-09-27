@@ -133,10 +133,7 @@
   },
   "remove": [],
   "withdraw": [],
-  "notes": "DOI applied. Crossref's 2006 container reads 'Acoustics Speed and Signal Processing' (evident misprint), so the booktitle takes the series name as Crossref registers it for ICASSP (1993 record; same form as HEAD's 10.1109/ICASSP.2010.5494999 entry). The author PDF (cs.cmu.edu/~awb/papers/ICASSP2006/0100185.pdf) prints 'I - 185' / 'ICASSP 2006': the 'I-' prefix is the volume numeral, carried by Volume 1 (roman-volume default), so pages stay 185--188.",
-  "questions": [
-   "Proceedings page numbers printed with a volume-numeral prefix (ICASSP 'I-185-I-188', Crossref 'vol.2' suffixes): drop the prefix and keep the numeral in Volume (185--188, Volume 1), or keep pages as printed (I-185--I-188)?"
-  ]
+  "notes": "DOI applied. Crossref's 2006 container reads 'Acoustics Speed and Signal Processing' (evident misprint), so the booktitle takes the series name as Crossref registers it for ICASSP (1993 record; same form as HEAD's 10.1109/ICASSP.2010.5494999 entry). The author PDF (cs.cmu.edu/~awb/papers/ICASSP2006/0100185.pdf) prints 'I - 185' / 'ICASSP 2006': the 'I-' prefix is the volume numeral, carried by Volume 1 (roman-volume default), so pages stay 185--188. RECONCILED 2026-09-26: Question answered by rule: ICASSP volume prefix -> Volume (default)."
  },
  {
   "key": "YingEtal92",

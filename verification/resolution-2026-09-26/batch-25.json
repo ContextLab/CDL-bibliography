@@ -200,10 +200,7 @@
   "key": "WallEtal57",
   "decision": "drop",
   "drop_reason": "no evidence found after: LoC, Internet Archive, Open Library, Crossref, OpenAlex, HathiTrust (researcher); Google Books and Google web search in a real browser (2026-09-26) found only reference-list citations of it in other works (Miller, Galanter & Pribram; Paivio; Kahana 2014; Bugelski 1968), no catalogue, DTIC or index record of the report itself",
-  "notes": "A 1957 Signal Corps technical report (Project No. 1320, Institute for Cooperative Research, Univ. of Pennsylvania); citing works disagree on the project number (1320 vs 132C). Under round-2 rule 1 (no verifiable record -> drop) it is dropped; see question.",
-  "questions": [
-   "Does a work known only from reference-list citations in other publications (e.g. a 1957 government technical report cited by Miller, Galanter & Pribram 1960 and others, with no catalogue, DTIC or index record of its own) count as a verifiable record to keep it (as @techreport), or is it dropped?"
-  ]
+  "notes": "A 1957 Signal Corps technical report (Project No. 1320, Institute for Cooperative Research, Univ. of Pennsylvania); citing works disagree on the project number (1320 vs 132C). Under round-2 rule 1 (no verifiable record -> drop) it is dropped; see question. RECONCILED 2026-09-26: Question answered by rule: reference-list-only -> drop (default)."
  },
  {
   "key": "MillEtal07e",

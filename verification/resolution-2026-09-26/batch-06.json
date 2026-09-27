@@ -11,26 +11,21 @@
  },
  {
   "key": "WhitEtal96",
-  "decision": "apply",
+  "decision": "drop",
   "merge_into": "WitmEtal96",
-  "set": {},
   "withdraw": [],
   "remove": [],
-  "notes": "HEAD WitmEtal96 holds the same work (same DOI 10.1006/ijhc.1996.0060, Witmer, Bailey, Knerr, Parsons, IJHCS 45(4) 413-428, title as Crossref). WitmEtal96 is the keeper; WhitEtal96 (misspelled Whitmer) merges into it.",
-  "questions": []
+  "notes": "HEAD WitmEtal96 holds the same work (same DOI 10.1006/ijhc.1996.0060, Witmer, Bailey, Knerr, Parsons, IJHCS 45(4) 413-428, title as Crossref). WitmEtal96 is the keeper; WhitEtal96 (misspelled Whitmer) merges into it. RECONCILED 2026-09-26: Decision changed apply -> drop for consistency with the other already-merged duplicates (CronEtal98c, LimoEtal95c, Rugg00): WhitEtal96 is absent from HEAD.",
+  "questions": [],
+  "drop_reason": "duplicate of WitmEtal96 (user-approved merge); already deleted in HEAD (verification/key-deletions.json, keeper WitmEtal96)"
  },
  {
   "key": "PfurEtal96",
   "decision": "apply",
   "set": {},
-  "withdraw": [
-   "title"
-  ],
+  "withdraw": [],
   "remove": [],
-  "notes": "Author Stanc{\\'a}k, DOI and number 1--2 are backed by PubMed 8978434 and Crossref. The title change only moves the space around the dash. Crossref prints a spaced dash ('alpha band — an electrophysiological') and PubMed an unspaced '--'. HEAD cdl.bib mostly writes '--- ' (27 titles) against a few '---x', so the current title is withdrawn from the change pending a house rule.",
-  "questions": [
-   "House rule for em dashes in titles: write them as 'a--- b' (the most common form in cdl.bib), 'a---b', or 'a --- b' (matching a spaced dash in print)? One rule should cover every title with a dash."
-  ]
+  "notes": "Author Stanc{\\'a}k, DOI and number 1--2 are backed by PubMed 8978434 and Crossref. The title change only moves the space around the dash. Crossref prints a spaced dash ('alpha band — an electrophysiological') and PubMed an unspaced '--'. HEAD cdl.bib mostly writes '--- ' (27 titles) against a few '---x', so the current title is withdrawn from the change pending a house rule. RECONCILED 2026-09-26: Title withdrawal cancelled: the em-dash rule (user, round 1) is 'a---b' with no spaces, which is the post-check's title."
  },
  {
   "key": "TongEtal95",
@@ -147,10 +142,7 @@
   "set": {},
   "withdraw": [],
   "remove": [],
-  "notes": "Journal (JEP, before the 1975 split), issue 2 and DOI come from Crossref and APA PsycNet ('Journal of Experimental Psychology, 87(2), 294–296'). The author is not confirmed: PsycNet and Crossref both print 'Madigna, S. A.' and no printed PDF was reachable, so HEAD's 'S A Madigan' is left unchanged.",
-  "questions": [
-   "When the publisher's own records (APA PsycNet and Crossref agree) print an author name that differs from the name the author is known by and the printed PDF cannot be reached (Madigna vs Madigan, Tulvig vs Tulving, 'S. A.' vs 'S. W.' Cook), do we keep the cited spelling or copy the publisher record?"
-  ]
+  "notes": "Journal (JEP, before the 1975 split), issue 2 and DOI come from Crossref and APA PsycNet ('Journal of Experimental Psychology, 87(2), 294–296'). The author is not confirmed: PsycNet and Crossref both print 'Madigna, S. A.' and no printed PDF was reachable, so HEAD's 'S A Madigan' is left unchanged. RECONCILED 2026-09-26: HEAD author kept under the author-name rule (round 1: correct, most complete name; misprints such as 'Madigna'/'Tulvig' are not copied). Evidence: Madigan's other records: Crossref 10.1016/s0022-5371(69)80050-2 'Stephen A. Madigan' (JVLVB 1969)."
  },
  {
   "key": "RaskCook37",
@@ -169,10 +161,7 @@
   "set": {},
   "withdraw": [],
   "remove": [],
-  "notes": "Journal (JEP), issue 3 and DOI come from Crossref and PsycNet ('Journal of Experimental Psychology, 92(3), 297–304'). The author is not confirmed: PsycNet, Crossref and Google Scholar all print 'Tulvig, E.', no printed PDF was reachable, and HEAD's 'E Tulving and R Hastie' is left unchanged.",
-  "questions": [
-   "When the publisher's own records (APA PsycNet and Crossref agree) print an author name that differs from the name the author is known by and the printed PDF cannot be reached (Madigna vs Madigan, Tulvig vs Tulving, 'S. A.' vs 'S. W.' Cook), do we keep the cited spelling or copy the publisher record?"
-  ]
+  "notes": "Journal (JEP), issue 3 and DOI come from Crossref and PsycNet ('Journal of Experimental Psychology, 92(3), 297–304'). The author is not confirmed: PsycNet, Crossref and Google Scholar all print 'Tulvig, E.', no printed PDF was reachable, and HEAD's 'E Tulving and R Hastie' is left unchanged. RECONCILED 2026-09-26: HEAD author kept under the author-name rule (round 1: correct, most complete name; misprints such as 'Madigna'/'Tulvig' are not copied). Evidence: Tulving's other records throughout cdl.bib (e.g. PubMed/Crossref 'Tulving, E.')."
  },
  {
   "key": "Waug63b",
@@ -194,17 +183,14 @@
   "decision": "apply",
   "set": {
    "title": {
-    "value": "Response bias and the process-dissociation procedure: correction to {Yonelinas} and {Jacoby} (1996)",
+    "value": "``Response bias and the process-dissociation procedure'': correction to {Yonelinas} and {Jacoby} (1996)",
     "url": "https://api.crossref.org/v1/works/10.1037/0096-3445.126.1.18/transform/application/vnd.crossref.unixsd+xml",
     "quote": "\"Response bias and the process-dissociation procedure\": Correction to Yonelinas and Jacoby (1996)."
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "The quote is taken from the Crossref unixsd XML, where the title is plain text (the JSON escapes the quotation marks). The printed title puts the corrected article's title in quotation marks, which HEAD drops. Pages 18, issue 1 and DOI are added.",
-  "questions": [
-   "When a printed title quotes another title inside quotation marks (e.g. '\"X\": Correction to A and B (1996)'), should cdl.bib keep the marks as ``X'' or drop them?"
-  ]
+  "notes": "The quote is taken from the Crossref unixsd XML, where the title is plain text (the JSON escapes the quotation marks). The printed title puts the corrected article's title in quotation marks, which HEAD drops. Pages 18, issue 1 and DOI are added. RECONCILED 2026-09-26: Quoted title keeps its marks as ``X'' (default)."
  },
  {
   "key": "WatkWatk75",

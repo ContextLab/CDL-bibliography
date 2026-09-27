@@ -272,3 +272,7 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - (default) Chapter in a catalogue-confirmed edited book, evidenced only by other works' reference lists: the chapter is unverified → drop (reference-list default; ElliAshb88 in batch 18). A chapter of a confirmed single-author book is instead cited as the whole book.
 - (default) Book year when the catalogue ("c2008") and the book's own printed copyright page / publisher record (2009) disagree: the printed copyright page wins (Wall09 stays 2009).
 - (default) A cited end page equal to the next item's start page: keep it when an official record prints it (articles can share a page); infer next-start−1 only when no record prints the end page.
+- (default) Part numerals in titles (`{II}. Title`): keep the period form (as printed; HEAD majority).
+- (default) A spaced en dash used as a title dash: write `a---b` like the em dash rule.
+- (default) Publishers whose official volume is the year (Hindawi): keep Volume = year as printed (unlike ACM's magazine "Volume <year>", which is omitted).
+- (default) Offset digital-edition pagination in Crossref (AllpEtal94 411–442 vs print 421–452): a different edition; the print edition's pages win.

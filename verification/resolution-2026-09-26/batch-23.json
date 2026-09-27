@@ -27,7 +27,7 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Crossref and the OUP book page ('Published: 13 March 2008', read in a browser at https://academic.oup.com/book/25561) give 2008; LoC/archive.org give the imprint 2007. Printed copy unseen, so publisher/Crossref wins per the round-1 rule. HashEtal08 is free in HEAD. Post-check DOI and editor initials stand.",
+  "notes": "Crossref and the OUP book page ('Published: 13 March 2008', read in a browser at https://academic.oup.com/book/25561) give 2008; LoC/archive.org give the imprint 2007. Printed copy unseen, so publisher/Crossref wins per the round-1 rule. HashEtal08 is free in HEAD. Post-check DOI and editor initials stand. RECONCILED 2026-09-26: Checked for print-year consistency: LoC 2007036456 prints 'Oxford ; New York : Oxford University Press, 2008.' for the printed book (not 2007 as stated above), so 2008 stands.",
   "questions": []
  },
  {
@@ -74,12 +74,12 @@
  {
   "key": "Frie08",
   "decision": "apply",
-  "new_key": "Frie11",
+  "new_key": "Frie12",
   "set": {
    "year": {
-    "value": "2011",
-    "url": "https://api.crossref.org/works/10.1093/oxfordhb/9780195374148.013.0243",
-    "quote": "\"published-print\":{\"date-parts\":[[2011,12,15]]}"
+    "value": "2012",
+    "url": "http://lx2.loc.gov:210/LCDB?operation=searchRetrieve&version=1.1&maximumRecords=1&recordSchema=marcxml&query=bath.isbn=9780195374148",
+    "quote": "c2012."
    },
    "pages": {
     "value": "514--536",
@@ -89,7 +89,7 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Publisher page (browser; citation_publication_date=2011/12/15, 'Pages 514–536') and Crossref published-print 2011-12-15 beat the LoC imprint c2012, so year 2011 (not the post-check's 2012) and key Frie11 (free in HEAD). Post-check DOI and journal removal stand.",
+  "notes": "Publisher page (browser; citation_publication_date=2011/12/15, 'Pages 514–536') and Crossref published-print 2011-12-15 beat the LoC imprint c2012, so year 2011 (not the post-check's 2012) and key Frie11 (free in HEAD). Post-check DOI and journal removal stand. RECONCILED 2026-09-26: Print-year rule, consistent with BoydEtal15/Rugg95/MontEtal03 (batch 20): the printed book is 'Oxford : Oxford University Press, c2012.' (LoC 2010053196); Crossref/OUP 2011-12-15 is the Oxford Handbooks Online date. Key Frie12 (free). NOTE: this entry's HEAD key is now Frie08a (key-renames.json).",
   "questions": []
  },
  {
@@ -115,10 +115,7 @@
    "chapter",
    "pages"
   ],
-  "notes": "The authored book is confirmed (LoC 78006011, Wiley, New York, c1978). The cited chapter 'Multidimensional scaling' pp. 177-205 has no source: archive.org copy is lending-only, HathiTrust search-only returns no snippets, Scholar/Open Library/Crossref have no contents. Cited as the whole book with the unconfirmable chapter and pages removed.",
-  "questions": [
-   "When a chapter of an authored (single-work) book cannot be confirmed but the book is, should the entry cite the whole book (chapter and pages removed) or be dropped?"
-  ]
+  "notes": "The authored book is confirmed (LoC 78006011, Wiley, New York, c1978). The cited chapter 'Multidimensional scaling' pp. 177-205 has no source: archive.org copy is lending-only, HathiTrust search-only returns no snippets, Scholar/Open Library/Crossref have no contents. Cited as the whole book with the unconfirmable chapter and pages removed. RECONCILED 2026-09-26: Question answered by rule: unconfirmable chapter of a single-author book -> whole book (default)."
  },
  {
   "key": "Rugg00",
@@ -150,7 +147,7 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Same book as HashEtal07: Crossref and the OUP page (Published: 13 March 2008) give 2008 over the LoC imprint 2007 (publisher/Crossref rule). Pages 76--106 match Crossref. BravEtal08 is free in HEAD. Post-check type, title, booktitle, address, DOI, editors stand.",
+  "notes": "Same book as HashEtal07: Crossref and the OUP page (Published: 13 March 2008) give 2008 over the LoC imprint 2007 (publisher/Crossref rule). Pages 76--106 match Crossref. BravEtal08 is free in HEAD. Post-check type, title, booktitle, address, DOI, editors stand. RECONCILED 2026-09-26: Checked for print-year consistency: LoC 2007036456 prints 'Oxford ; New York : Oxford University Press, 2008.' for the printed book (not 2007 as stated above), so 2008 stands.",
   "questions": []
  },
  {
@@ -166,7 +163,7 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Same book as HashEtal07: Crossref and the OUP page give 2008 over the LoC imprint 2007. Pages 21--48 match Crossref. KaneEtal08 is free in HEAD. Post-check title, booktitle, DOI, editors stand.",
+  "notes": "Same book as HashEtal07: Crossref and the OUP page give 2008 over the LoC imprint 2007. Pages 21--48 match Crossref. KaneEtal08 is free in HEAD. Post-check title, booktitle, DOI, editors stand. RECONCILED 2026-09-26: Checked for print-year consistency: LoC 2007036456 prints 'Oxford ; New York : Oxford University Press, 2008.' for the printed book (not 2007 as stated above), so 2008 stands.",
   "questions": []
  },
  {
@@ -182,11 +179,16 @@
     "value": "21\\textsuperscript{st} Century Education: A Reference Handbook",
     "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
     "quote": "\"container-title\":[\"21st Century Education: A Reference Handbook\"]"
+   },
+   "volume": {
+    "value": "1",
+    "url": "https://api.crossref.org/works/10.4135/9781412964012.n23",
+    "quote": "\"page\":\"I-212-I-224\""
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Crossref pages I-212-I-224 (the I- prefix is the volume) give 212--224; booktitle title case checked and correct. Volume 1 is not added: no fetchable page prints it (SAGE Knowledge requires login; the LoC TOC does not split volumes), and HEAD has no volume.",
+  "notes": "Crossref pages I-212-I-224 (the I- prefix is the volume) give 212--224; booktitle title case checked and correct. Volume 1 is not added: no fetchable page prints it (SAGE Knowledge requires login; the LoC TOC does not split volumes), and HEAD has no volume. RECONCILED 2026-09-26: Volume 1 from the 'I-' page prefix, as the ICASSP volume-prefix default does for HuggEtal06/YingEtal93 (batch 26).",
   "questions": []
  },
  {
@@ -266,10 +268,7 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Three 2010 Sandia manuals share the title (user's SAND2010-2183, reference -2184, developers -2185; OSTI lists all with the same authors). Chose the User's Manual, the Dakota manual normally cited for the software; printed byline order and B M Adams from its title page ('Printed Updated May 7, 2010'). Key AdamEtal10 unchanged.",
-  "questions": [
-   "When a cited title is shared by several reports of one series (Dakota user's, reference and developers manuals, same year and authors) and the entry has nothing that distinguishes them, cite the user's manual?"
-  ]
+  "notes": "Three 2010 Sandia manuals share the title (user's SAND2010-2183, reference -2184, developers -2185; OSTI lists all with the same authors). Chose the User's Manual, the Dakota manual normally cited for the software; printed byline order and B M Adams from its title page ('Printed Updated May 7, 2010'). Key AdamEtal10 unchanged. RECONCILED 2026-09-26: Question answered by rule: DAKOTA: cite the user's manual (default)."
  },
  {
   "key": "Alva02",
@@ -311,13 +310,21 @@
  {
   "key": "CannEtal16",
   "decision": "apply",
-  "set": {},
+  "set": {
+   "howpublished": {
+    "value": "\\url{https://peps.python.org/pep-0518/}",
+    "url": "https://peps.python.org/pep-0518/",
+    "quote": "<title>PEP 518 – Specifying Minimum Build System Requirements for Python Projects | peps.python.org"
+   }
+  },
   "withdraw": [],
-  "remove": [],
-  "notes": "Post-check author (N J Smith) and sentence-case title stand (PEP JSON). Institution 'Python Software Foundation' is printed on no PEP page (pep-0518 shows only a public-domain notice); it is a required @techreport field, so it is kept unconfirmed.",
-  "questions": [
-   "PEPs never print an issuing body: keep Institution = Python Software Foundation on @techreport PEP entries unconfirmed (required field), or convert PEPs to @misc with howpublished = \\url{https://peps.python.org/pep-NNNN/} and no institution?"
-  ]
+  "remove": [
+   "institution",
+   "type",
+   "number"
+  ],
+  "notes": "Post-check author (N J Smith) and sentence-case title stand (PEP JSON). Institution 'Python Software Foundation' is printed on no PEP page (pep-0518 shows only a public-domain notice); it is a required @techreport field, so it is kept unconfirmed. RECONCILED 2026-09-26: PEP default: @misc with howpublished = the peps.python.org URL; institution (never printed), type and number removed (the PEP number is in the URL).",
+  "entrytype": "misc"
  },
  {
   "key": "CapoEtal17",
@@ -347,18 +354,25 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "OpenAI's announcement (read in a browser; plain fetches get 403) dates the first release to November 30, 2022. HEAD's 2023 is only an access year, so the first-version-year rule gives 2022 and the key follows the metadata: Open22 (free in HEAD). Post-check \\url howpublished and removal of the junk force field stand.",
-  "questions": [
-   "Descriptive keys that never followed the Author+YY rule (e.g. ChatGPT): rename to the rule key (Open22) when a correction changes the year, or keep the descriptive key because papers cite it?"
-  ]
+  "notes": "OpenAI's announcement (read in a browser; plain fetches get 403) dates the first release to November 30, 2022. HEAD's 2023 is only an access year, so the first-version-year rule gives 2022 and the key follows the metadata: Open22 (free in HEAD). Post-check \\url howpublished and removal of the junk force field stand. RECONCILED 2026-09-26: Question answered by rule: descriptive keys -> rule keys (default)."
  },
  {
   "key": "CoghStuf13",
   "decision": "apply",
-  "set": {},
+  "set": {
+   "howpublished": {
+    "value": "\\url{https://peps.python.org/pep-0440/}",
+    "url": "https://peps.python.org/pep-0440/",
+    "quote": "<title>PEP 440 – Version Identification and Dependency Specification | peps.python.org"
+   }
+  },
   "withdraw": [],
-  "remove": [],
-  "notes": "Post-check sentence-case title stands; byline Nick Coghlan and Donald Stufft as printed in the 2013-14 PEP source. Institution is printed on no PEP page but is a required @techreport field, so it is kept unconfirmed (see the CannEtal16 question).",
-  "questions": []
+  "remove": [
+   "institution",
+   "type",
+   "number"
+  ],
+  "notes": "Post-check sentence-case title stands; byline Nick Coghlan and Donald Stufft as printed in the 2013-14 PEP source. Institution is printed on no PEP page but is a required @techreport field, so it is kept unconfirmed (see the CannEtal16 question). RECONCILED 2026-09-26: PEP default: @misc with howpublished = the peps.python.org URL; institution (never printed), type and number removed (the PEP number is in the URL).",
+  "entrytype": "misc"
  }
 ]

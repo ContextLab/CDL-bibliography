@@ -5,10 +5,7 @@
   "set": {},
   "withdraw": [],
   "remove": [],
-  "notes": "Journal/title/volume changes confirmed by the IA scan of Bd 14 (1897). Pages 436--472 kept: contents prints the start ('der  Verteilung  der  Wiederholungen 436'); no page prints 472 in the OCR, but the Litteraturbericht (Dessoir review, index 'Dessoir,  U.  473.') starts at the top of p. 473 (line count after the '471' header = one full page), so the article ends on 472. End page inferred, not quoted.",
-  "questions": [
-   "When no page of the scan prints an article's end page as a number, may the end page be inferred from the next item's printed start page (next item starts at the top of the page after), or must pages stay unconfirmed?"
-  ]
+  "notes": "Journal/title/volume changes confirmed by the IA scan of Bd 14 (1897). Pages 436--472 kept: contents prints the start ('der  Verteilung  der  Wiederholungen 436'); no page prints 472 in the OCR, but the Litteraturbericht (Dessoir review, index 'Dessoir,  U.  473.') starts at the top of p. 473 (line count after the '471' header = one full page), so the article ends on 472. End page inferred, not quoted. RECONCILED 2026-09-26: Question answered by rule: end page from next start - 1 (round 2)."
  },
  {
   "key": "Kroh35",
@@ -16,10 +13,7 @@
   "set": {},
   "withdraw": [],
   "remove": [],
-  "notes": "Work exists: Google Scholar citation record (PsycINFO-style, read in a browser) 'Kroh, O. (1935). Georg Elias Müller, ein Nachruf [GE Müller, in memoriam]. Zeitschrift für angewandte Psychologie und Charakterkunde, 134, 150-190.' (volume 134 and pages 150-190 match HEAD; the journal name there is wrong: ZfaP had no vol 134, Zeitschrift für Psychologie did). HathiTrust full-text search hits 'Zeitschrift für Psychologie ... Abt. 1, v.134 pt.1 1935' (search-only, Cloudflare-blocked, not quotable). No printed page is fetchable, so nothing is set; HEAD kept.",
-  "questions": [
-   "When the only fetchable evidence for a pre-1950 article is an abstracting-index citation (PsycINFO via Google Scholar) plus a search-only HathiTrust hit, keep the entry as is, or drop it as unverifiable?"
-  ]
+  "notes": "Work exists: Google Scholar citation record (PsycINFO-style, read in a browser) 'Kroh, O. (1935). Georg Elias Müller, ein Nachruf [GE Müller, in memoriam]. Zeitschrift für angewandte Psychologie und Charakterkunde, 134, 150-190.' (volume 134 and pages 150-190 match HEAD; the journal name there is wrong: ZfaP had no vol 134, Zeitschrift für Psychologie did). HathiTrust full-text search hits 'Zeitschrift für Psychologie ... Abt. 1, v.134 pt.1 1935' (search-only, Cloudflare-blocked, not quotable). No printed page is fetchable, so nothing is set; HEAD kept. RECONCILED 2026-09-26: Question answered by rule: abstracting-index citation alone keeps an entry (round 2)."
  },
  {
   "key": "MullPilz00",
@@ -41,17 +35,14 @@
   "decision": "apply",
   "set": {
    "pages": {
-    "value": "257--339",
+    "value": "81--190, 257--339",
     "url": "https://archive.org/download/zeitschriftfurp09psycgoog/zeitschriftfurp09psycgoog_djvu.txt",
-    "quote": "Experimentelle  Beiträge  zur  Untersuchung  des  Gedächtnisses.         339"
+    "quote": "suchung des  Gedächtnisses 81  u.  257"
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Bd 6 prints the paper in two parts: contents 'suchung des  Gedächtnisses 81  u.  257'; part 1 runs 81--190 (ends '(Schlufs  folgt.)', Höpfner starts 191), part 2 257--339 (Meinong starts 340). HEAD pages 257--339 is part 2 only; kept pending the rule question. Number '80-191' removal stands.",
-  "questions": [
-   "An article printed in two parts in one volume (81--190 and 257--339): Pages = both ranges ('81--190, 257--339'), the first part only, or the full span?"
-  ]
+  "notes": "Bd 6 prints the paper in two parts: contents 'suchung des  Gedächtnisses 81  u.  257'; part 1 runs 81--190 (ends '(Schlufs  folgt.)', Höpfner starts 191), part 2 257--339 (Meinong starts 340). HEAD pages 257--339 is part 2 only; kept pending the rule question. Number '80-191' removal stands. RECONCILED 2026-09-26: Two-part article: both ranges (default); part 1 81--190 (ends \"Schlufs folgt\", next item 191), part 2 257--339 (next item 340), per the batch evidence."
  },
  {
   "key": "Rans02",
@@ -100,10 +91,7 @@
   },
   "withdraw": [],
   "remove": [],
-  "notes": "User rule: software cites its first version (10.5281/zenodo.49907, 2016, v1.2.1), so its 14 DataCite creators and its title (version number dropped) replace those of v1.5.0. Key MuelEtal16 free in HEAD.",
-  "questions": [
-   "Software cited at its first version: when the first version's registered title lacks the '{owner}/repo' form later releases use ('word_cloud: 1.2.1' vs 'amueller/word_cloud: WordCloud 1.5.0'), use the first version's title as printed or the house '{owner}/repo' form?"
-  ]
+  "notes": "User rule: software cites its first version (10.5281/zenodo.49907, 2016, v1.2.1), so its 14 DataCite creators and its title (version number dropped) replace those of v1.5.0. Key MuelEtal16 free in HEAD. RECONCILED 2026-09-26: Question answered by rule: software first version title as registered (default)."
  },
  {
   "key": "AbdeEtal21",

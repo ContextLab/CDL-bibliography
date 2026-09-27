@@ -1,18 +1,65 @@
 [
  {
   "key": "DaPo67",
-  "decision": "keep",
-  "notes": "Real Indiana University doctoral dissertation (F J DaPolito, 1966), not a conference abstract. The DAI citation as in HEAD (27, 2522-2523, 1967) is printed identically in two independent books' reference lists (Internet Archive full text: Foundations of Human Memory; Human Memory: a constructivist view: 'Proactive effects with independent retrieval of competing responses. Dissertation Abstracts International, 27, 2522-2523.'), search URL https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=DaPolito%20%22Proactive%20effects%22%202522 ; the DAI page itself is behind ProQuest/HathiTrust bot walls. Kept pending the DAI rule question.",
-  "questions": [
-   "Dissertation Abstracts International (DAI) entries: when the DAI volume/page cannot be reached (ProQuest/HathiTrust bot walls) but the dissertation itself is documented, should the entry (a) stay an @article in DAI when independent citing works agree on the DAI volume/pages, (b) be converted to @phdthesis (School, Year of the degree) from a catalogue/DataCite record of the thesis, or (c) be dropped?"
+  "decision": "apply",
+  "notes": "Real Indiana University doctoral dissertation (F J DaPolito, 1966), not a conference abstract. The DAI citation as in HEAD (27, 2522-2523, 1967) is printed identically in two independent books' reference lists (Internet Archive full text: Foundations of Human Memory; Human Memory: a constructivist view: 'Proactive effects with independent retrieval of competing responses. Dissertation Abstracts International, 27, 2522-2523.'), search URL https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=DaPolito%20%22Proactive%20effects%22%202522 ; the DAI page itself is behind ProQuest/HathiTrust bot walls. Kept pending the DAI rule question. RECONCILED 2026-09-26: DAI rule (round 2): cite the dissertation as @phdthesis from its catalogue record. IUCAT (Indiana University Libraries) MARC: 100 'DaPolito, Frank Joseph, 1933-', 245 title, 300 '77 l.', 502 'Thesis (Ph. D.)--Indiana University, 1966.' Key DaPo66 (free in HEAD). Author F J Da{P}olito unchanged.",
+  "entrytype": "phdthesis",
+  "new_key": "DaPo66",
+  "set": {
+   "school": {
+    "value": "Indiana University",
+    "url": "https://iucat.iu.edu/catalog/617689/librarian_view",
+    "quote": "Thesis (Ph. D.)--Indiana University, 1966."
+   },
+   "year": {
+    "value": "1966",
+    "url": "https://iucat.iu.edu/catalog/617689/librarian_view",
+    "quote": "Thesis (Ph. D.)--Indiana University, 1966."
+   },
+   "title": {
+    "value": "Proactive effects with independent retrieval of competing responses",
+    "url": "https://iucat.iu.edu/catalog/617689/librarian_view",
+    "quote": "Proactive effects with independent retrieval of competing responses."
+   }
+  },
+  "remove": [
+   "journal",
+   "volume",
+   "pages"
   ]
  },
  {
   "key": "Yone96",
-  "decision": "keep",
-  "notes": "DAI 57:2193 could not be found in any reachable source; the thesis is verified by DataCite 10.71548/12410 (Yonelinas, Andrew P., McMaster University, 1995, resourceType thesis) but the degree (PhD) is not printed there and MacSphere is behind a bot wall. Replacement by @phdthesis Yone95 (key free in HEAD) waits on the DAI rule question.",
-  "questions": [
-   "Dissertation Abstracts International (DAI) entries: when the DAI volume/page cannot be reached (ProQuest/HathiTrust bot walls) but the dissertation itself is documented, should the entry (a) stay an @article in DAI when independent citing works agree on the DAI volume/pages, (b) be converted to @phdthesis (School, Year of the degree) from a catalogue/DataCite record of the thesis, or (c) be dropped?"
+  "decision": "apply",
+  "notes": "DAI 57:2193 could not be found in any reachable source; the thesis is verified by DataCite 10.71548/12410 (Yonelinas, Andrew P., McMaster University, 1995, resourceType thesis) but the degree (PhD) is not printed there and MacSphere is behind a bot wall. Replacement by @phdthesis Yone95 (key free in HEAD) waits on the DAI rule question. RECONCILED 2026-09-26: DAI rule (round 2): @phdthesis from the MacSphere/DataCite record: 'Yonelinas, Andrew P.', McMaster University, 1995, degree 'Doctor of Philosophy (PhD)' (MacSphere OAI record, fetchable at the backend URL). Key Yone95 (free in HEAD).",
+  "entrytype": "phdthesis",
+  "new_key": "Yone95",
+  "set": {
+   "school": {
+    "value": "McMaster University",
+    "url": "https://api.datacite.org/dois/10.71548/12410",
+    "quote": "\"publisher\":\"McMaster University\""
+   },
+   "year": {
+    "value": "1995",
+    "url": "https://prod-ms-be.lib.mcmaster.ca/server/oai/request?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:macsphere.mcmaster.ca:11375/6990",
+    "quote": "<dc:date>1995</dc:date>"
+   },
+   "doi": {
+    "value": "10.71548/12410",
+    "url": "https://prod-ms-be.lib.mcmaster.ca/server/oai/request?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:macsphere.mcmaster.ca:11375/6990",
+    "quote": "https://doi.org/10.71548/12410"
+   },
+   "title": {
+    "value": "Dissociating recollection and familiarity in recognition memory",
+    "url": "https://prod-ms-be.lib.mcmaster.ca/server/oai/request?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:macsphere.mcmaster.ca:11375/6990",
+    "quote": "<dc:title>Dissociating Recollection and Familiarity in Recognition Memory</dc:title>"
+   }
+  },
+  "remove": [
+   "journal",
+   "volume",
+   "pages"
   ]
  },
  {
@@ -91,10 +138,7 @@
     "quote": "Curriculum  and  Instruction  in  Automated  Tutors}}}  79"
    }
   },
-  "notes": "Printed TOC of the 1988 Erlbaum volume (Internet Archive isbn_9780805800548, search-inside) lists ch. 4 Halff at p. 79 and ch. 5 Burton ('The Environment Module of Intelligent Tutoring Systems 1 09') at p. 109, so the chapter spans 79-108 as in HEAD.",
-  "questions": [
-   "Chapter page ranges: when a printed table of contents gives only chapter start pages, may the end page be taken as the next chapter's start page minus one (as for Half88 79--108, PetrPand94 17--58)?"
-  ]
+  "notes": "Printed TOC of the 1988 Erlbaum volume (Internet Archive isbn_9780805800548, search-inside) lists ch. 4 Halff at p. 79 and ch. 5 Burton ('The Environment Module of Intelligent Tutoring Systems 1 09') at p. 109, so the chapter spans 79-108 as in HEAD. RECONCILED 2026-09-26: Question answered by rule: end page from next start - 1 (round 2)."
  },
  {
   "key": "MuntEtal07",
@@ -149,18 +193,12 @@
   "remove": [
    "journal"
   ],
-  "notes": "Internet Archive scan of Handbook of Neuropsychology vol 9 (Elsevier, Amsterdam, 1994, ISBN 0444899669): TOC '2. Comparative architectonic analysis of the human and the macaque frontal cortex M. Petrides and D.N. Pandya . 17'; chapter pages carry 'Handbook of Neuropsychology, Vol. 9. F. Boller and J. Grafman (Eds)' and running heads 'Ch. 2 M. Petrides and D.N. Pandya' on pp. 19-27; p. 59 is already Ch. 3, so 17--58 (also printed by many citing works). Volume 9 kept; @article -> @incollection, journal removed.",
-  "questions": [
-   "Chapter page ranges: when a printed table of contents gives only chapter start pages, may the end page be taken as the next chapter's start page minus one (as for Half88 79--108, PetrPand94 17--58)?"
-  ]
+  "notes": "Internet Archive scan of Handbook of Neuropsychology vol 9 (Elsevier, Amsterdam, 1994, ISBN 0444899669): TOC '2. Comparative architectonic analysis of the human and the macaque frontal cortex M. Petrides and D.N. Pandya . 17'; chapter pages carry 'Handbook of Neuropsychology, Vol. 9. F. Boller and J. Grafman (Eds)' and running heads 'Ch. 2 M. Petrides and D.N. Pandya' on pp. 19-27; p. 59 is already Ch. 3, so 17--58 (also printed by many citing works). Volume 9 kept; @article -> @incollection, journal removed. RECONCILED 2026-09-26: Question answered by rule: end page from next start - 1 (round 2)."
  },
  {
   "key": "Hass05",
   "decision": "apply",
-  "notes": "Printed title has an unspaced em dash (Crossref 'rhythm?—Linking'; PubMed 'rhythm?--Linking'), so '?---{L}inking' without the space is as printed; this is also the only spaced '?--- ' in HEAD.",
-  "questions": [
-   "Titles with em dashes: write '---' with spacing exactly as printed (unspaced when the publisher prints it unspaced)?"
-  ]
+  "notes": "Printed title has an unspaced em dash (Crossref 'rhythm?—Linking'; PubMed 'rhythm?--Linking'), so '?---{L}inking' without the space is as printed; this is also the only spaced '?--- ' in HEAD. RECONCILED 2026-09-26: Question answered by rule: em dash a---b; value already conforms."
  },
  {
   "key": "LegaEtal11b",
@@ -202,9 +240,13 @@
   "key": "BabiEtal08",
   "decision": "apply",
   "new_key": "BabiEtal09",
-  "notes": "Print issue Human Brain Mapping 30(7) July 2009 (PubMed 'DP - 2009 Jul'; Crossref published-print 2009). BabiEtal09 free in HEAD. HEAD truncates the 14 printed authors with 'and others' (Crossref lists all 14); left as is pending the rule question.",
-  "questions": [
-   "Author lists truncated with 'and others' in HEAD (14 entries): should they be expanded to the full printed author list when the record prints all authors (e.g. BabiEtal08, 14 authors in Crossref)?"
-  ]
+  "notes": "Print issue Human Brain Mapping 30(7) July 2009 (PubMed 'DP - 2009 Jul'; Crossref published-print 2009). BabiEtal09 free in HEAD. HEAD truncates the 14 printed authors with 'and others' (Crossref lists all 14); left as is pending the rule question. RECONCILED 2026-09-26: 'and others' expanded to the 14 printed authors (default); Crossref lists Babiloni ... Esposito, Manfredi, Cantore, Eusebi.",
+  "set": {
+   "author": {
+    "value": "C Babiloni and F Vecchio and G Mirabella and M Buttiglione and F Sebastiano and A Picardi and G {Di Gennaro} and P P Quarato and L G Grammaldo and P Buffo and V Esposito and M Manfredi and G Cantore and F Eusebi",
+    "url": "https://api.crossref.org/works/10.1002/hbm.20648",
+    "quote": "\"given\":\"Fabrizio\",\"family\":\"Eusebi\""
+   }
+  }
  }
 ]

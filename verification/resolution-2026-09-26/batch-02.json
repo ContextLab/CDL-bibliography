@@ -14,15 +14,38 @@
  {
   "key": "DelbBeau89",
   "decision": "apply",
-  "notes": "No DOI exists: Crossref bibliographic search for the title returns no match and PubMed/Europe PMC 2757728 lists no DOI (Arch Gerontol Geriatr Suppl 1, 1989, 121-150). Apply post-check changes without a DOI.",
-  "questions": [
-   "The 1989 supplement series is indexed as 'Archives of gerontology and geriatrics. Supplement', which is not in bibcheck's journal table: should supplement series be cited under their own journal name ('... Supplement') or under the parent journal with the supplement in Number?"
+  "notes": "No DOI exists: Crossref bibliographic search for the title returns no match and PubMed/Europe PMC 2757728 lists no DOI (Arch Gerontol Geriatr Suppl 1, 1989, 121-150). Apply post-check changes without a DOI. RECONCILED 2026-09-26: Supplement default: parent journal name (post-check 'Archives of Gerontology and Geriatrics Supplement' withdrawn; HEAD journal kept) with the supplement in Number ('Suppl 1'); HEAD volume 1 was the supplement number, so Volume is removed.",
+  "withdraw": [
+   "journal"
+  ],
+  "set": {
+   "number": {
+    "value": "Suppl 1",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2757728,2757730&rettype=medline&retmode=text",
+    "quote": "SO  - Arch Gerontol Geriatr Suppl. 1989;1:121-50."
+   }
+  },
+  "remove": [
+   "volume"
   ]
  },
  {
   "key": "PoitEtal89",
   "decision": "apply",
-  "notes": "No DOI exists: Crossref bibliographic search returns no match and PubMed/Europe PMC 2757730 lists no DOI (Arch Gerontol Geriatr Suppl 1:173-183, 1989). Apply without a DOI. Same journal-name question as DelbBeau89."
+  "notes": "No DOI exists: Crossref bibliographic search returns no match and PubMed/Europe PMC 2757730 lists no DOI (Arch Gerontol Geriatr Suppl 1:173-183, 1989). Apply without a DOI. Same journal-name question as DelbBeau89. RECONCILED 2026-09-26: Supplement default: parent journal name (post-check 'Archives of Gerontology and Geriatrics Supplement' withdrawn; HEAD journal kept) with the supplement in Number ('Suppl 1'); HEAD volume 1 was the supplement number, so Volume is removed.",
+  "withdraw": [
+   "journal"
+  ],
+  "set": {
+   "number": {
+    "value": "Suppl 1",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2757728,2757730&rettype=medline&retmode=text",
+    "quote": "SO  - Arch Gerontol Geriatr Suppl. 1989;1:173-83."
+   }
+  },
+  "remove": [
+   "volume"
+  ]
  },
  {
   "key": "HerrEtal10",
@@ -34,7 +57,7 @@
     "quote": "\"pageInfo\":\"321-331\""
    }
   },
-  "notes": "Crossref has first page only (321); PubMed prints 170(4):321-331, equal to HEAD. Title 'The effect...' confirmed by the Europe PMC record."
+  "notes": "Crossref has first page only (321); PubMed prints 170(4):321-331, equal to HEAD. Title 'The effect...' confirmed by the Europe PMC record. RECONCILED 2026-09-26: HEAD key is now HerrEtal10a (key-renames.json); apply to that entry."
  },
  {
   "key": "AdeyEtal62",
@@ -107,10 +130,7 @@
  {
   "key": "KeriEtal07",
   "decision": "apply",
-  "notes": "No DOI exists: Aviation, Space, and Environmental Medicine had no DOIs in 2007; PubMed/Europe PMC 17547316 lists none (78(5 Suppl):B153-64). Number '5 Suppl' as indexed.",
-  "questions": [
-   "Supplement issues appear in cdl.bib as '4 Suppl 2', 'Supplement 1' and 'Suppl 10': which single form should Number use for supplement issues?"
-  ]
+  "notes": "No DOI exists: Aviation, Space, and Environmental Medicine had no DOIs in 2007; PubMed/Europe PMC 17547316 lists none (78(5 Suppl):B153-64). Number '5 Suppl' as indexed. RECONCILED 2026-09-26: Question answered by the supplement default; '5 Suppl' conforms."
  },
  {
   "key": "DahmEtal11",
@@ -144,10 +164,7 @@
     "quote": "\"title\":[\"The hippocampus\\u2014what does it do?\"]"
    }
   },
-  "notes": "The publisher record prints a closed em dash (no space), so '---what' is as printed; HEAD's '--- what' adds a space the source lacks.",
-  "questions": [
-   "About 25 cdl.bib titles write an em dash as '--- ' (space after) where sources print a closed dash: should all titles use '---' with spacing exactly as printed?"
-  ]
+  "notes": "The publisher record prints a closed em dash (no space), so '---what' is as printed; HEAD's '--- what' adds a space the source lacks. RECONCILED 2026-09-26: Question answered by rule: em dash a---b; value already conforms."
  },
  {
   "key": "WangEtal13",

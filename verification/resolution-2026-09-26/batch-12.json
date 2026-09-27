@@ -11,11 +11,9 @@
  },
  {
   "key": "PailEtal00",
-  "decision": "keep",
-  "notes": "The user ruled it a real article (cross-wave a-PailEtal00: keep). No record found: Crossref (Psychophysiology ISSN, 2000), OpenAlex, and the Wiley 37(S1) TOC (403). WebSearch budget is exhausted. HEAD is left as is, pending the rule question.",
-  "questions": [
-   "When the user ruled an item 'a real article, not an abstract' (keep) but no online record of it exists anywhere (e.g. meeting-supplement pages like Psychophysiology 37:S76 or Sleep Research 26:27), does standing rule 1 (no evidence -> drop) override that earlier keep decision?"
-  ]
+  "decision": "drop",
+  "notes": "The user ruled it a real article (cross-wave a-PailEtal00: keep). No record found: Crossref (Psychophysiology ISSN, 2000), OpenAlex, and the Wiley 37(S1) TOC (403). WebSearch budget is exhausted. HEAD is left as is, pending the rule question. RECONCILED 2026-09-26: Round-2 rule: no verifiable record -> drop even if earlier marked a real article.",
+  "drop_reason": "no verifiable record: rule 1 overrides the earlier user keep (round 2); no Crossref/OpenAlex/Wiley record of Psychophysiology 37:S76 (batch 12 search), no index record found"
  },
  {
   "key": "VoEtal07",
@@ -79,10 +77,7 @@
     "quote": "\"given\":\"Laura\",\"family\":\"Eggermont\""
    }
   },
-  "notes": "The 2007 Research and Practice in Alzheimer's Disease vol 12 (Serdi reprint series) printing is in no catalogue: Open Library lists vols 5, 9, 10 only, and Crossref, PubMed and LoC have nothing. The original is Neurosci Biobehav Rev 30(4):562-575, 2006. Replaced by it (fixes the 'Excercise' typo); EggeEtal06 is free. Authors per Crossref/PubMed FAU (Laura, Dick, Paul, Erik).",
-  "questions": [
-   "When the cited printing of a work cannot be found (e.g. a reprint in an edited annual series) but the original journal article by the same authors and title is registered, should the entry be replaced by the original (new key, original metadata) or dropped under rule 1?"
-  ]
+  "notes": "The 2007 Research and Practice in Alzheimer's Disease vol 12 (Serdi reprint series) printing is in no catalogue: Open Library lists vols 5, 9, 10 only, and Crossref, PubMed and LoC have nothing. The original is Neurosci Biobehav Rev 30(4):562-575, 2006. Replaced by it (fixes the 'Excercise' typo); EggeEtal06 is free. Authors per Crossref/PubMed FAU (Laura, Dick, Paul, Erik). RECONCILED 2026-09-26: Question answered by rule: reprint not found -> original (default)."
  },
  {
   "key": "Seid07",
@@ -130,15 +125,12 @@
   "decision": "apply",
   "set": {
    "author": {
-    "value": "B L Waszcak and J R Walters",
-    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=6828891&rettype=medline&retmode=text",
-    "quote": "FAU - Waszcak, B L"
+    "value": "B L Waszczak and J R Walters",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=8102308&rettype=medline&retmode=text",
+    "quote": "FAU - Waszczak, B L"
    }
   },
-  "notes": "PubMed 6828891 (FAU 'Waszcak, B L', 'Walters, J R') and Crossref (family 'Waszcak', given 'Barbara L.') both print 'Waszcak'. HEAD's 'Waszczak' is the author's usual spelling but not the record's. Set as printed per rule 3, pending the question. The key is unaffected.",
-  "questions": [
-   "When the official record's author name is an evident misspelling or a name-order inversion (Crossref/PubMed 'Waszcak' for Waszczak; Crossref family 'NT', given 'Hoang' for the byline 'Hoang NT'), do we copy the record literally or keep the author's own usual spelling/order?"
-  ]
+  "notes": "PubMed 6828891 (FAU 'Waszcak, B L', 'Walters, J R') and Crossref (family 'Waszcak', given 'Barbara L.') both print 'Waszcak'. HEAD's 'Waszczak' is the author's usual spelling but not the record's. Set as printed per rule 3, pending the question. The key is unaffected. RECONCILED 2026-09-26: Author-name rule: 'Waszcak' in this record is a misprint; the author's other records spell 'Waszczak' (PubMed 8102308, 1993, FAU 'Waszczak, B L')."
  },
  {
   "key": "SvenEtal24",
@@ -150,11 +142,9 @@
  },
  {
   "key": "MannEtal97",
-  "decision": "keep",
-  "notes": "The user ruled it a real article (cross-wave a-MannEtal97: keep). Sleep Research 26 (1997) is the APSS printed volume, which PubMed, Crossref and OpenAlex do not index; no record was found and WebSearch is exhausted. HEAD is left as is, pending the rule question.",
-  "questions": [
-   "When the user ruled an item 'a real article, not an abstract' (keep) but no online record of it exists anywhere (e.g. meeting-supplement pages like Psychophysiology 37:S76 or Sleep Research 26:27), does standing rule 1 (no evidence -> drop) override that earlier keep decision?"
-  ]
+  "decision": "drop",
+  "notes": "The user ruled it a real article (cross-wave a-MannEtal97: keep). Sleep Research 26 (1997) is the APSS printed volume, which PubMed, Crossref and OpenAlex do not index; no record was found and WebSearch is exhausted. HEAD is left as is, pending the rule question. RECONCILED 2026-09-26: Round-2 rule: no verifiable record -> drop even if earlier marked a real article.",
+  "drop_reason": "no verifiable record: rule 1 overrides the earlier user keep (round 2); Sleep Research 26 is indexed by no reachable source (batch 12 search)"
  },
  {
   "key": "ThorTami20",
@@ -172,7 +162,7 @@
   "key": "JacoEtal05b",
   "decision": "drop",
   "drop_reason": "confirmed conference abstract: SfN archive AbsYear=2005 AbsID=9688 'Neuroscience 2005 Abstract Presentation Number: 581.4'; user decision a-JacoEtal05b 'correct'",
-  "notes": "The Jacobs/Kahana abstract is already deleted (key-deletions.json). HEAD's current JacoEtal05b is a DIFFERENT work (Jacoby et al. 2005 JML 52(4):493-504, reused suffix); it must NOT be removed."
+  "notes": "The Jacobs/Kahana abstract is already deleted (key-deletions.json). HEAD's current JacoEtal05b is a DIFFERENT work (Jacoby et al. 2005 JML 52(4):493-504, reused suffix); it must NOT be removed. RECONCILED 2026-09-26: Checked: this drop is about the deleted queued work only. HEAD JacoEtal05b now names a different work (key-renames.json), and postcheck.apply_resolutions/build_resolution_removals treat a drop of a key listed in key-deletions.json as a no-op ('the key now names another work ... not removed'). The decision stays 'drop' for that machinery; an applier must NOT delete HEAD JacoEtal05b."
  },
  {
   "key": "KoroEtal05",

@@ -77,15 +77,12 @@
   "decision": "apply",
   "set": {
    "pages": {
-    "value": "43--49",
-    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7127141&rettype=medline&retmode=text",
-    "quote": "PG  - 43-9"
+    "value": "43--50",
+    "url": "https://api.crossref.org/works/10.1016/0006-8993(82)91145-3",
+    "quote": "\"page\":\"43-50\""
    }
   },
-  "notes": "HEAD pages kept: PubMed/Europe PMC give 43-49; Crossref/OpenAlex give 43-50 (next article starts p.51). Printed PDF not reachable (ScienceDirect 403, Elsevier API returns no pages). DOI from post-check applies.",
-  "questions": [
-   "When PubMed and Crossref disagree only on an article's last page and the printed PDF is unreachable, which record wins (PubMed's printed-index page range or the publisher's Crossref deposit)?"
-  ]
+  "notes": "HEAD pages kept: PubMed/Europe PMC give 43-49; Crossref/OpenAlex give 43-50 (next article starts p.51). Printed PDF not reachable (ScienceDirect 403, Elsevier API returns no pages). DOI from post-check applies. RECONCILED 2026-09-26: Round-1 precedence rule: publisher/Crossref wins over PubMed when the printed PDF is unseen; Crossref/OpenAlex 43-50 (next article starts p. 51)."
  },
  {
   "key": "DezfDali20",
@@ -120,19 +117,24 @@
  },
  {
   "key": "CronEtal94",
-  "decision": "apply",
-  "notes": "User decision (crosswave a-CronEtal94): real article, keep. Only record: Crossref 10.1006/brln.1994.1057 \"title\":[\"Abstracts\"], Brain and Language 47(3), Oct 1994, pp 409-490 (contains 466-468), no per-item DOI; ScienceDirect 403 and Elsevier API give no text, so title/authors/pages 466--468 remain unverified. Number 3 applies; 'J {Hart Jr}' should lose the suffix (J Hart) under the no-suffix rule. No DOI added.",
-  "questions": [
-   "Items printed inside a journal's collective 'Abstracts' record (e.g. Academy of Aphasia papers in Brain and Language, one Crossref DOI for pp 409-490, text unreadable): is the collective record enough evidence to keep an entry the user marked as a real article, or must title/authors/pages be confirmed item by item?"
-  ]
+  "decision": "drop",
+  "notes": "User decision (crosswave a-CronEtal94): real article, keep. Only record: Crossref 10.1006/brln.1994.1057 \"title\":[\"Abstracts\"], Brain and Language 47(3), Oct 1994, pp 409-490 (contains 466-468), no per-item DOI; ScienceDirect 403 and Elsevier API give no text, so title/authors/pages 466--468 remain unverified. Number 3 applies; 'J {Hart Jr}' should lose the suffix (J Hart) under the no-suffix rule. No DOI added. RECONCILED 2026-09-26: Default: items inside a collective Abstracts record are abstracts -> drop; rule 1 also beats the earlier keep.",
+  "drop_reason": "item inside a journal's collective 'Abstracts' record (Crossref 10.1006/brln.1994.1057 title 'Abstracts', Brain and Language 47(3) pp 409-490): abstracts -> drop (default); no item-level record"
  },
  {
   "key": "Gomu53",
   "decision": "apply",
-  "notes": "Work confirmed (Harvard/LoC LCCN 53011675: Gomulicki, Bronislaw R., 1953, series 'British journal of psychology. Monograph supplements ; 29'). Pages unconfirmed and conflicting: Harvard/LoC '94 p.' with 'Bibliography: pages [86]-91'; BJPS review 10.1093/bjps/vi.24.346 says 'pp. 85'. HEAD 1--91 left unchanged; no DOI exists.",
+  "notes": "Work confirmed (Harvard/LoC LCCN 53011675: Gomulicki, Bronislaw R., 1953, series 'British journal of psychology. Monograph supplements ; 29'). Pages unconfirmed and conflicting: Harvard/LoC '94 p.' with 'Bibliography: pages [86]-91'; BJPS review 10.1093/bjps/vi.24.346 says 'pp. 85'. HEAD 1--91 left unchanged; no DOI exists. RECONCILED 2026-09-26: HEAD 1--91 is confirmed by no record; LoC catalogue extent '94 p.' gives 1--94, the same catalogue-extent form Gate17 (batch 02) uses for a numbered monograph issue.",
   "questions": [
    "For numbered monograph supplements catalogued as books (a whole issue by one author, e.g. BJP Monograph Supplements no. 29, '94 p.'), should pages be the catalogue extent (1--94), the text through the bibliography, or should the entry become @book with series/number and no pages?"
-  ]
+  ],
+  "set": {
+   "pages": {
+    "value": "1--94",
+    "url": "https://www.loc.gov/item/53011675/?fo=json",
+    "quote": "94 p."
+   }
+  }
  },
  {
   "key": "McCuPitt43",
@@ -144,10 +146,7 @@
     "quote": "\"given\":\"Warren S.\",\"family\":\"McCulloch\""
    }
   },
-  "notes": "Surname corroborated on a second host: PubMed 2185863 (1990 reprint) 'FAU - McCulloch, W S'. Both sources print Pitts as 'Walter'/'W'; the cited middle initial H (Walter Harry Pitts) is kept per 'never drop an initial only because a source omits it'. DOI and number 4 apply.",
-  "questions": [
-   "When every official record prints a byline without a middle initial the cited entry has (Crossref 'Walter Pitts', PubMed 'Pitts W' vs cited 'W H Pitts'), does 'as printed' override 'never drop an initial only because a source omits it'?"
-  ]
+  "notes": "Surname corroborated on a second host: PubMed 2185863 (1990 reprint) 'FAU - McCulloch, W S'. Both sources print Pitts as 'Walter'/'W'; the cited middle initial H (Walter Harry Pitts) is kept per 'never drop an initial only because a source omits it'. DOI and number 4 apply. RECONCILED 2026-09-26: Initials question answered by the author-name rule (round 1: most complete name; keep known middle initials)."
  },
  {
   "key": "ArbuFran00",

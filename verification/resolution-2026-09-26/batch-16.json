@@ -1,63 +1,206 @@
 [
- {"key": "Ster69b", "decision": "apply",
-  "notes": "JSTOR RIS (https://www.jstor.org/citation/ris/27828738) prints 'IS  - 4', 'SP  - 421', 'EP  - 457', 'VL  - 57', 'PY  - 1969' and has no DO line; doi.org/api/handles/10.2307/27828738 returns 404 and Crossref has no record. The work has no DOI; DOI is optional, so the entry is verified. Apply the post-check's number 4."},
- {"key": "NybeTulv96", "decision": "apply",
-  "withdraw": ["pages"],
-  "notes": "Printed article (image-only scan, http://alicekim.ca/EuropJCognPsychol96_8.pdf, page 1 transcribed): 'EUROPEAN JOURNAL OF COGNITIVE PSYCHOLOGY, 1996, 8 (2), 163-183' and byline 'Lars Nyberg and Endel Tulving'. So HEAD's author list is as printed (T&F/Crossref metadata drop Tulving) and printed last page 183 beats Crossref/T&F '163-184' (print-record rule; the scan has 21 pages = 163-183). Apply DOI and number 2; withdraw the pages change."},
- {"key": "BaleEtal21", "decision": "apply", "new_key": "BaleEtal22",
-  "notes": "Crossref 10.1111/ejn.15264: vol 55 issue 11-12, 3040-3053, published-print 2022-06 (online 2021); PubMed 'DP  - 2022 Jun'. Print year 2022 drives key BaleEtal22 (free in HEAD, no suffix variants)."},
- {"key": "ClauEtal04", "decision": "apply", "new_key": "BabiEtal04",
-  "notes": "PubMed 15182317 byline Babiloni C, Bares M, Vecchio F, Brazdil M, Jurak P, Moretti DV, Ubaldi A, Rossini PM, Rektor I; Crossref deposits given names as surnames (a misprint, and it also drops Bares). Corrected first author drives key BabiEtal04 (free in HEAD)."},
- {"key": "GaynEtal08", "decision": "apply", "new_key": "DoylEtal08",
-  "notes": "Crossref (publisher deposit) gives family 'Doyle Gaynor', given 'L. M. F.'; PubMed splits it as 'Gaynor, L M F Doyle'. Publisher/Crossref wins under the precedence rule, so the key is DoylEtal08 (free in HEAD). HEAD also has another entry by this author written 'L {Gaynor Doyle}' (line ~28090, not in this batch). Other fields match Crossref 28(8) 1686-1695, 2008."},
- {"key": "Lin09", "decision": "apply", "new_key": "Lin91",
-  "notes": "Crossref 10.1109/18.61115: IEEE Trans Inf Theory 37(1) 145-151, published-print 1991; the local PDF header reads 'VOL. 37, NO. I , JANUARY 1991'. Year 1991 drives key Lin91 (free in HEAD)."},
- {"key": "CaliVita05", "decision": "apply", "new_key": "CiliVita07",
-  "set": {"author": {"value": "R L Cilibrasi and P M B Vitanyi", "url": "https://api.crossref.org/works/10.1109/tkde.2007.48", "quote": "\"given\":\"Rudi L.\",\"family\":\"Cilibrasi\""}},
-  "notes": "HEAD's 'Calibrasi' is a misprint: Crossref gives 'Rudi L. Cilibrasi' and arXiv cs/0412098 gives 'Rudi Cilibrasi'. Crossref 19(3) 370-383, published-print 2007-03. Corrected surname and year drive key CiliVita07 (free in HEAD)."},
- {"key": "MaoEtal12", "decision": "apply", "new_key": "HughEtal12",
-  "notes": "Crossref 10.1109/tpami.2012.16 and PubMed 23289129 both list J M Hughes first (then Mao, Rockmore, Wang, Wu); 34(11) 2147-2157, 2012. Key HughEtal12 (free in HEAD)."},
- {"key": "GuoEtal20", "decision": "apply", "new_key": "GuoEtal22",
-  "notes": "Crossref 10.1109/tkde.2020.3028705: IEEE Transactions on Knowledge and Data Engineering 34(8) 3549-3568, published-print 2022-08-01; 'IEEE Xplore' is a platform, not the journal. Print year drives key GuoEtal22 (free in HEAD)."},
- {"key": "StonEtal18", "decision": "apply", "new_key": "StonEtal08",
-  "notes": "Crossref 10.1109/cvprw.2008.4562956: proceedings-article, 2008 IEEE CVPR Workshops, pages 1-8, published-print 2008-06 (an 8-page full paper, not an abstract). Year 2008 drives key StonEtal08 (free in HEAD)."},
- {"key": "HansSchm10", "decision": "apply", "new_key": "HansSchm11",
-  "notes": "Crossref 10.1016/j.neuroimage.2010.08.028: NeuroImage 54(2) 1715-1734, published-print 2011-01. Print year drives key HansSchm11 (free in HEAD)."},
- {"key": "HansStau13", "decision": "apply", "new_key": "HansStau14",
-  "set": {"title": {"value": "How brain oscillations form memories---a processing based perspective on oscillatory subsequent memory effects", "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23769913&retmode=xml", "quote": "How brain oscillations form memories--a processing based perspective on oscillatory subsequent memory effects."}},
-  "notes": "Crossref 10.1016/j.neuroimage.2013.05.121: NeuroImage 85, 648-655, published-print 2014-01; PubMed 'VI  - 85 Pt 2'. Print year drives key HansStau14 (free in HEAD). Title: Crossref prints an em dash ('memories — A processing'); HEAD's spaced '--- a' is set to the house em-dash form a---b."},
- {"key": "NeggEtal06", "decision": "apply",
-  "notes": "Crossref and PubMed both print 'representations of space'; HEAD's 'ofspace' is a typo, so the title fix is a correction, not style. DOI and {Van der Lubbe} brace apply."},
- {"key": "ReynEtal04", "decision": "apply",
-  "notes": "Crossref and PubMed print 'Item- and task-level processes' (hyphen then space); HEAD's 'Item-and' is a typo. Author J R Reynolds per PubMed 'Jeremy R Reynolds' and Crossref 'Jeremy R'. DOI applies."},
- {"key": "RosbEtal09", "decision": "apply",
-  "notes": "Em-dash rule: 'recordings---the role of phase locking' (Crossref prints an em dash, PubMed '--'). Author K A Moxon (initials, house form) from 'Karen Anne Moxon'. DOI applies."},
- {"key": "WaltEtal08", "decision": "apply",
-  "notes": "Em-dash rule: Crossref prints 'fMRI—Subcortical', so the title becomes '{fMRI}---subcortical ...' with no spaces. DOI applies."},
- {"key": "NakaEtal92", "decision": "apply",
-  "notes": "The publisher (Ovid/LWW, reached via doi.org) prints 'NeuroReport 3(1):p 117, January 1992' and Crossref gives page '117' (a first page only, on a 'PDF ONLY' legacy record). PubMed 1611028 prints 'PG  - 117-20'. The previous item (-00030) is 113-116, and PubMed has no item starting at 121. HEAD's 117--120 is kept (no pages change was proposed); DOI and number 1 apply.",
-  "questions": ["When the publisher/Crossref record gives only a first page (e.g. 'p 117') and PubMed gives a full range (117-20), is that a conflict where the publisher wins (cite the single page), or an incomplete record where PubMed's range is kept?"]},
- {"key": "DehaChan06", "decision": "apply", "new_key": "DehaChan05",
-  "notes": "Crossref 10.1371/journal.pbio.0030141: PLoS Biology 3(5) e141, published online 2005-04-12 (online-only journal); PubMed 'DP  - 2005 May'. Title typo 'spontaenous' corrected. Key DehaChan05 (free in HEAD)."},
- {"key": "AlvaEtal05", "decision": "apply",
-  "withdraw": ["doi"],
+ {
+  "key": "Ster69b",
+  "decision": "apply",
+  "notes": "JSTOR RIS (https://www.jstor.org/citation/ris/27828738) prints 'IS  - 4', 'SP  - 421', 'EP  - 457', 'VL  - 57', 'PY  - 1969' and has no DO line; doi.org/api/handles/10.2307/27828738 returns 404 and Crossref has no record. The work has no DOI; DOI is optional, so the entry is verified. Apply the post-check's number 4."
+ },
+ {
+  "key": "NybeTulv96",
+  "decision": "apply",
+  "withdraw": [
+   "pages"
+  ],
+  "notes": "Printed article (image-only scan, http://alicekim.ca/EuropJCognPsychol96_8.pdf, page 1 transcribed): 'EUROPEAN JOURNAL OF COGNITIVE PSYCHOLOGY, 1996, 8 (2), 163-183' and byline 'Lars Nyberg and Endel Tulving'. So HEAD's author list is as printed (T&F/Crossref metadata drop Tulving) and printed last page 183 beats Crossref/T&F '163-184' (print-record rule; the scan has 21 pages = 163-183). Apply DOI and number 2; withdraw the pages change."
+ },
+ {
+  "key": "BaleEtal21",
+  "decision": "apply",
+  "new_key": "BaleEtal22",
+  "notes": "Crossref 10.1111/ejn.15264: vol 55 issue 11-12, 3040-3053, published-print 2022-06 (online 2021); PubMed 'DP  - 2022 Jun'. Print year 2022 drives key BaleEtal22 (free in HEAD, no suffix variants)."
+ },
+ {
+  "key": "ClauEtal04",
+  "decision": "apply",
+  "new_key": "BabiEtal04",
+  "notes": "PubMed 15182317 byline Babiloni C, Bares M, Vecchio F, Brazdil M, Jurak P, Moretti DV, Ubaldi A, Rossini PM, Rektor I; Crossref deposits given names as surnames (a misprint, and it also drops Bares). Corrected first author drives key BabiEtal04 (free in HEAD)."
+ },
+ {
+  "key": "GaynEtal08",
+  "decision": "apply",
+  "new_key": "DoylEtal08",
+  "notes": "Crossref (publisher deposit) gives family 'Doyle Gaynor', given 'L. M. F.'; PubMed splits it as 'Gaynor, L M F Doyle'. Publisher/Crossref wins under the precedence rule, so the key is DoylEtal08 (free in HEAD). HEAD also has another entry by this author written 'L {Gaynor Doyle}' (line ~28090, not in this batch). Other fields match Crossref 28(8) 1686-1695, 2008."
+ },
+ {
+  "key": "Lin09",
+  "decision": "apply",
+  "new_key": "Lin91",
+  "notes": "Crossref 10.1109/18.61115: IEEE Trans Inf Theory 37(1) 145-151, published-print 1991; the local PDF header reads 'VOL. 37, NO. I , JANUARY 1991'. Year 1991 drives key Lin91 (free in HEAD)."
+ },
+ {
+  "key": "CaliVita05",
+  "decision": "apply",
+  "new_key": "CiliVita07",
   "set": {
-   "title": {"value": "Large scale networks fingerprinting and visualization using the $k$-core decomposition", "url": "https://papers.nips.cc/paper_files/paper/2005/hash/b19aa25ff58940d974234b48391b9549-Abstract.html", "quote": "<meta name=\"citation_title\" content=\"Large scale networks fingerprinting and visualization using the k-core decomposition\">"},
-   "journal": {"value": "Advances in Neural Information Processing Systems", "url": "https://papers.nips.cc/paper_files/paper/2005/hash/b19aa25ff58940d974234b48391b9549-Abstract.html", "quote": "<meta name=\"citation_journal_title\" content=\"Advances in Neural Information Processing Systems\">"},
-   "volume": {"value": "18", "url": "https://papers.nips.cc/paper_files/paper/2005/hash/b19aa25ff58940d974234b48391b9549-Abstract.html", "quote": "<meta name=\"citation_volume\" content=\"18\">"},
-   "year": {"value": "2005", "url": "https://papers.nips.cc/paper_files/paper/2005/hash/b19aa25ff58940d974234b48391b9549-Abstract.html", "quote": "<meta name=\"citation_publication_date\" content=\"2005\">"},
-   "author": {"value": "J I Alvarez-Hamelin and L Dall'Asta and A Barrat and A Vespignani", "url": "https://papers.nips.cc/paper_files/paper/2005/hash/b19aa25ff58940d974234b48391b9549-Abstract.html", "quote": "J. I. Alvarez-hamelin, Luca Dall&#x27;asta, Alain Barrat, Alessandro Vespignani"}
+   "author": {
+    "value": "R L Cilibrasi and P M B Vitanyi",
+    "url": "https://api.crossref.org/works/10.1109/tkde.2007.48",
+    "quote": "\"given\":\"Rudi L.\",\"family\":\"Cilibrasi\""
+   }
   },
-  "notes": "Published version cited (other_version_named). arXiv cs/0504107 prints journal_ref 'Advances in Neural Information Processing Systems 18, Canada (2006) 41'. The NeurIPS proceedings page lists the same four authors in NIPS 18 (2005) under the published title. Capitalisation per arXiv: 'José Ignacio Alvarez-Hamelin', 'Luca Dall'Asta'. The arXiv DOI and volume from the post-check are replaced; pages are left out (the NeurIPS BibTeX has pages = {} and dblp is bot-walled). House @article/Journal form follows KrizEtal12 and PaszEtal19. Key AlvaEtal05 is unchanged.",
-  "questions": ["For NeurIPS/NIPS papers, is the year the conference year NeurIPS prints (e.g. NIPS 18 = 2005), or the MIT Press print year of the bound volume (2006), as under the society-proceedings print-year default?"]},
- {"key": "LiEtal24b", "decision": "apply", "new_key": "LiEtal25",
-  "withdraw": ["doi", "volume"],
+  "notes": "HEAD's 'Calibrasi' is a misprint: Crossref gives 'Rudi L. Cilibrasi' and arXiv cs/0412098 gives 'Rudi Cilibrasi'. Crossref 19(3) 370-383, published-print 2007-03. Corrected surname and year drive key CiliVita07 (free in HEAD)."
+ },
+ {
+  "key": "MaoEtal12",
+  "decision": "apply",
+  "new_key": "HughEtal12",
+  "notes": "Crossref 10.1109/tpami.2012.16 and PubMed 23289129 both list J M Hughes first (then Mao, Rockmore, Wang, Wu); 34(11) 2147-2157, 2012. Key HughEtal12 (free in HEAD)."
+ },
+ {
+  "key": "GuoEtal20",
+  "decision": "apply",
+  "new_key": "GuoEtal22",
+  "notes": "Crossref 10.1109/tkde.2020.3028705: IEEE Transactions on Knowledge and Data Engineering 34(8) 3549-3568, published-print 2022-08-01; 'IEEE Xplore' is a platform, not the journal. Print year drives key GuoEtal22 (free in HEAD)."
+ },
+ {
+  "key": "StonEtal18",
+  "decision": "apply",
+  "new_key": "StonEtal08",
+  "notes": "Crossref 10.1109/cvprw.2008.4562956: proceedings-article, 2008 IEEE CVPR Workshops, pages 1-8, published-print 2008-06 (an 8-page full paper, not an abstract). Year 2008 drives key StonEtal08 (free in HEAD)."
+ },
+ {
+  "key": "HansSchm10",
+  "decision": "apply",
+  "new_key": "HansSchm11",
+  "notes": "Crossref 10.1016/j.neuroimage.2010.08.028: NeuroImage 54(2) 1715-1734, published-print 2011-01. Print year drives key HansSchm11 (free in HEAD)."
+ },
+ {
+  "key": "HansStau13",
+  "decision": "apply",
+  "new_key": "HansStau14",
   "set": {
-   "journal": {"value": "{IEEE} Reviews in Biomedical Engineering", "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381", "quote": "\"container-title\":[\"IEEE Reviews in Biomedical Engineering\"]"},
-   "volume": {"value": "18", "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381", "quote": "\"volume\":\"18\""},
-   "pages": {"value": "192--210", "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381", "quote": "\"page\":\"192-210\""},
-   "year": {"value": "2025", "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381", "quote": "\"published-print\":{\"date-parts\":[[2025]]}"},
-   "doi": {"value": "10.1109/rbme.2024.3492381", "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381", "quote": "\"DOI\":\"10.1109\\/rbme.2024.3492381\""}
+   "title": {
+    "value": "How brain oscillations form memories---a processing based perspective on oscillatory subsequent memory effects",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=23769913&retmode=xml",
+    "quote": "How brain oscillations form memories--a processing based perspective on oscillatory subsequent memory effects."
+   }
   },
-  "notes": "Published version cited (other_version_named). Crossref 10.1109/rbme.2024.3492381 has the same title and authors (Chenqi Li, Timothy Denison, Tingting Zhu), IEEE RBME 18, 192-210, 2025. The arXiv DOI and volume are replaced; the junk Force field is removed by the post-check. Key LiEtal25 (free in HEAD, no suffix variants)."}
+  "notes": "Crossref 10.1016/j.neuroimage.2013.05.121: NeuroImage 85, 648-655, published-print 2014-01; PubMed 'VI  - 85 Pt 2'. Print year drives key HansStau14 (free in HEAD). Title: Crossref prints an em dash ('memories — A processing'); HEAD's spaced '--- a' is set to the house em-dash form a---b."
+ },
+ {
+  "key": "NeggEtal06",
+  "decision": "apply",
+  "notes": "Crossref and PubMed both print 'representations of space'; HEAD's 'ofspace' is a typo, so the title fix is a correction, not style. DOI and {Van der Lubbe} brace apply."
+ },
+ {
+  "key": "ReynEtal04",
+  "decision": "apply",
+  "notes": "Crossref and PubMed print 'Item- and task-level processes' (hyphen then space); HEAD's 'Item-and' is a typo. Author J R Reynolds per PubMed 'Jeremy R Reynolds' and Crossref 'Jeremy R'. DOI applies."
+ },
+ {
+  "key": "RosbEtal09",
+  "decision": "apply",
+  "notes": "Em-dash rule: 'recordings---the role of phase locking' (Crossref prints an em dash, PubMed '--'). Author K A Moxon (initials, house form) from 'Karen Anne Moxon'. DOI applies."
+ },
+ {
+  "key": "WaltEtal08",
+  "decision": "apply",
+  "notes": "Em-dash rule: Crossref prints 'fMRI—Subcortical', so the title becomes '{fMRI}---subcortical ...' with no spaces. DOI applies."
+ },
+ {
+  "key": "NakaEtal92",
+  "decision": "apply",
+  "notes": "The publisher (Ovid/LWW, reached via doi.org) prints 'NeuroReport 3(1):p 117, January 1992' and Crossref gives page '117' (a first page only, on a 'PDF ONLY' legacy record). PubMed 1611028 prints 'PG  - 117-20'. The previous item (-00030) is 113-116, and PubMed has no item starting at 121. HEAD's 117--120 is kept (no pages change was proposed); DOI and number 1 apply. RECONCILED 2026-09-26: Question answered by rule: a first-page-only record is incomplete, not conflicting (default)."
+ },
+ {
+  "key": "DehaChan06",
+  "decision": "apply",
+  "new_key": "DehaChan05",
+  "notes": "Crossref 10.1371/journal.pbio.0030141: PLoS Biology 3(5) e141, published online 2005-04-12 (online-only journal); PubMed 'DP  - 2005 May'. Title typo 'spontaenous' corrected. Key DehaChan05 (free in HEAD)."
+ },
+ {
+  "key": "AlvaEtal05",
+  "decision": "apply",
+  "withdraw": [
+   "doi"
+  ],
+  "set": {
+   "title": {
+    "value": "Large scale networks fingerprinting and visualization using the $k$-core decomposition",
+    "url": "https://papers.nips.cc/paper_files/paper/2005/hash/b19aa25ff58940d974234b48391b9549-Abstract.html",
+    "quote": "<meta name=\"citation_title\" content=\"Large scale networks fingerprinting and visualization using the k-core decomposition\">"
+   },
+   "volume": {
+    "value": "18",
+    "url": "https://papers.nips.cc/paper_files/paper/2005/hash/b19aa25ff58940d974234b48391b9549-Abstract.html",
+    "quote": "<meta name=\"citation_volume\" content=\"18\">"
+   },
+   "year": {
+    "value": "2005",
+    "url": "https://papers.nips.cc/paper_files/paper/2005/hash/b19aa25ff58940d974234b48391b9549-Abstract.html",
+    "quote": "<meta name=\"citation_publication_date\" content=\"2005\">"
+   },
+   "author": {
+    "value": "J I Alvarez-Hamelin and L Dall'Asta and A Barrat and A Vespignani",
+    "url": "https://papers.nips.cc/paper_files/paper/2005/hash/b19aa25ff58940d974234b48391b9549-Abstract.html",
+    "quote": "J. I. Alvarez-hamelin, Luca Dall&#x27;asta, Alain Barrat, Alessandro Vespignani"
+   },
+   "booktitle": {
+    "value": "Advances in Neural Information Processing Systems",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2005/file/b19aa25ff58940d974234b48391b9549-Bibtex.bib",
+    "quote": "booktitle = {Advances in Neural Information Processing Systems},"
+   },
+   "publisher": {
+    "value": "MIT Press",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2005/file/b19aa25ff58940d974234b48391b9549-Bibtex.bib",
+    "quote": "publisher = {MIT Press},"
+   },
+   "editor": {
+    "value": "Y Weiss and B Sch{\\\"o}lkopf and J C Platt",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2005/file/b19aa25ff58940d974234b48391b9549-Bibtex.bib",
+    "quote": "editor = {Y. Weiss and B. Sch\\\"{o}lkopf and J. Platt},"
+   }
+  },
+  "notes": "Published version cited (other_version_named). arXiv cs/0504107 prints journal_ref 'Advances in Neural Information Processing Systems 18, Canada (2006) 41'. The NeurIPS proceedings page lists the same four authors in NIPS 18 (2005) under the published title. Capitalisation per arXiv: 'José Ignacio Alvarez-Hamelin', 'Luca Dall'Asta'. The arXiv DOI and volume from the post-check are replaced; pages are left out (the NeurIPS BibTeX has pages = {} and dblp is bot-walled). House @article/Journal form follows KrizEtal12 and PaszEtal19. Key AlvaEtal05 is unchanged. RECONCILED 2026-09-26: @inproceedings with booktitle/publisher/editor from the NeurIPS BibTeX, like every other NeurIPS entry in batches 01, 17, 24 (post-check form); J C Platt keeps his known middle initial as in RaoHowa07. Year 2005 = conference year (default).",
+  "entrytype": "inproceedings",
+  "remove": [
+   "journal"
+  ]
+ },
+ {
+  "key": "LiEtal24b",
+  "decision": "apply",
+  "new_key": "LiEtal25",
+  "withdraw": [
+   "doi",
+   "volume"
+  ],
+  "set": {
+   "journal": {
+    "value": "{IEEE} Reviews in Biomedical Engineering",
+    "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381",
+    "quote": "\"container-title\":[\"IEEE Reviews in Biomedical Engineering\"]"
+   },
+   "volume": {
+    "value": "18",
+    "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381",
+    "quote": "\"volume\":\"18\""
+   },
+   "pages": {
+    "value": "192--210",
+    "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381",
+    "quote": "\"page\":\"192-210\""
+   },
+   "year": {
+    "value": "2025",
+    "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381",
+    "quote": "\"published-print\":{\"date-parts\":[[2025]]}"
+   },
+   "doi": {
+    "value": "10.1109/rbme.2024.3492381",
+    "url": "https://api.crossref.org/works/10.1109/rbme.2024.3492381",
+    "quote": "\"DOI\":\"10.1109\\/rbme.2024.3492381\""
+   }
+  },
+  "notes": "Published version cited (other_version_named). Crossref 10.1109/rbme.2024.3492381 has the same title and authors (Chenqi Li, Timothy Denison, Tingting Zhu), IEEE RBME 18, 192-210, 2025. The arXiv DOI and volume are replaced; the junk Force field is removed by the post-check. Key LiEtal25 (free in HEAD, no suffix variants)."
+ }
 ]

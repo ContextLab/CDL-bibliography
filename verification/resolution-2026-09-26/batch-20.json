@@ -58,24 +58,10 @@
  },
  {
   "key": "KaneHash95",
-  "decision": "apply",
-  "remove": [
-   "pages"
-  ],
-  "set": {
-   "author": {
-    "value": "M J Kane and L Hasher",
-    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Kane%2C%20M.%20J.%2C%20%26%20Hasher%2C%20L.%22%20Interference",
-    "quote": "Memory  and  Cognition\n{{{Kane,  M.  J.,  &  Hasher,  L}}}.  (in  press).  {{{Interference}}}.  In  G.  Maddox  (Ed"
-   },
-   "title": {
-    "value": "Interference",
-    "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Kane%2C%20M.%20J.%2C%20%26%20Hasher%2C%20L.%22%20Interference",
-    "quote": "Memory  and  Cognition\n{{{Kane,  M.  J.,  &  Hasher,  L}}}.  (in  press).  {{{Interference}}}.  In  G.  Maddox  (Ed"
-   }
-  },
-  "notes": "Entry evidenced by the reference list of Working Memory and Human Cognition (OUP 1996, Hasher a co-author): 'Kane, M. J., & Hasher, L. (in press). Interference. In G. Maddox (Ed...'; the 2006 Encyclopedia of Aging also cites 'previous entries (Kane & Hasher, 1995...)'. Host book LoC 2nd ed. c1995. Pages 514--516 not printed in any source reached: removed (optional-field rule). Apply edition/editor post-check.",
-  "questions": []
+  "decision": "drop",
+  "notes": "Entry evidenced by the reference list of Working Memory and Human Cognition (OUP 1996, Hasher a co-author): 'Kane, M. J., & Hasher, L. (in press). Interference. In G. Maddox (Ed...'; the 2006 Encyclopedia of Aging also cites 'previous entries (Kane & Hasher, 1995...)'. Host book LoC 2nd ed. c1995. Pages 514--516 not printed in any source reached: removed (optional-field rule). Apply edition/editor post-check. RECONCILED 2026-09-26: Host book is catalogued, but the chapter itself has no catalogue, contents-page or abstracting-index record; reference-list citations do not count (default, WallEtal57 precedent).",
+  "questions": [],
+  "drop_reason": "known only from reference lists of other publications (reference-list default: not a verifiable record); no scan or index record of the 1995 Encyclopedia of Aging (2nd ed) entry; OpenAlex search found none"
  },
  {
   "key": "HoyeVerh06",
@@ -163,8 +149,8 @@
  },
  {
   "key": "McGi63",
-  "decision": "keep",
-  "notes": "Host volume confirmed (LoC; Science review: vol. 1, Wiley, New York, 1963). Chapter author/title/pages confirmed only by printed reference lists (vol. I scans lending-only; Scholar CAPTCHA): ERIC ED086305 'McGill, W. J. Stochastic latency mechanisms. In R. D. Luce, R. R. Bush ... Vol. I. New York: Wiley, 1963. Pp. 309-360.' (IA full-text search); also Mathematics in the Behavioral and Social Sciences 1970, Binocular Vision 1991. Accepted as index-level evidence like DaPo67.",
+  "decision": "drop",
+  "notes": "Host volume confirmed (LoC; Science review: vol. 1, Wiley, New York, 1963). Chapter author/title/pages confirmed only by printed reference lists (vol. I scans lending-only; Scholar CAPTCHA): ERIC ED086305 'McGill, W. J. Stochastic latency mechanisms. In R. D. Luce, R. R. Bush ... Vol. I. New York: Wiley, 1963. Pp. 309-360.' (IA full-text search); also Mathematics in the Behavioral and Social Sciences 1970, Binocular Vision 1991. Accepted as index-level evidence like DaPo67. RECONCILED 2026-09-26: Host book is catalogued, but the chapter itself has no catalogue, contents-page or abstracting-index record; reference-list citations do not count (default, WallEtal57 precedent).",
   "evidence": [
    {
     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=McGill%20%22Stochastic%20latency%20mechanisms%22%20%22309-360%22",
@@ -175,7 +161,8 @@
     "quote": "psychology.   Vol. I«   New York:\nWiley, 1963.   Pp. {{{309-360}}}. Meyer, D. E.   On the representation and retrieval"
    }
   ],
-  "questions": []
+  "questions": [],
+  "drop_reason": "known only from reference lists of other publications (reference-list default: not a verifiable record); IA full text of Handbook of Mathematical Psychology vol II (handbookofmathem017893mbp) has no vol I contents; vol I scans lending-only; OpenAlex/Semantic Scholar rate-limited or no record"
  },
  {
   "key": "Luce59",
@@ -198,8 +185,8 @@
  },
  {
   "key": "Crai77",
-  "decision": "keep",
-  "notes": "Host book confirmed by LoC 77001991 (Birren & Schaie, Van Nostrand Reinhold, c1977). Chapter confirmed by printed reference lists (no scan of the 1977 edition; Scholar CAPTCHA): DTIC ADA133594 'Craik, F. I. M. 1977. Age differences in human memory. In: J. E. Birren and K. ... Van Nostrand Reinhold Co., pp 384-420', and Brain Function in Old Age (1979) with the same pages. HEAD matches.",
+  "decision": "drop",
+  "notes": "Host book confirmed by LoC 77001991 (Birren & Schaie, Van Nostrand Reinhold, c1977). Chapter confirmed by printed reference lists (no scan of the 1977 edition; Scholar CAPTCHA): DTIC ADA133594 'Craik, F. I. M. 1977. Age differences in human memory. In: J. E. Birren and K. ... Van Nostrand Reinhold Co., pp 384-420', and Brain Function in Old Age (1979) with the same pages. HEAD matches. RECONCILED 2026-09-26: Host book is catalogued, but the chapter itself has no catalogue, contents-page or abstracting-index record; reference-list citations do not count (default, WallEtal57 precedent).",
   "evidence": [
    {
     "url": "https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Age%20differences%20in%20human%20memory%22%20%22384-420%22",
@@ -210,7 +197,8 @@
     "quote": "New X  rk:  Van  Nostrand  Reinhold  Co.,  pp  {{{384-420}}}.\n7-  Crosby,  J.  V.,  and  S.  R.  Parkinson."
    }
   ],
-  "questions": []
+  "questions": [],
+  "drop_reason": "known only from reference lists of other publications (reference-list default: not a verifiable record); no scan of the 1977 Handbook of the Psychology of Aging; OpenAlex search (top 50) has no record"
  },
  {
   "key": "WebeMurd89",
@@ -331,9 +319,6 @@
     "quote": "\"by_statement\": \"editor-in-chief, Lynn Nadel\""
    }
   },
-  "notes": "Steyvers's article 'Multidimensional Scaling' in the Encyclopedia of Cognitive Science (Crossref record of the Wiley online edition). The published print edition is London: Nature Publishing Group, 2003 (ISBN 0333792610); the cited 2001 and pp. 1--7 match no printing (preprint). Cited as the print article: @incollection, title/booktitle unswapped, chapter (held the book title) and unconfirmable pages removed; no Wiley 2006 DOI. Stey03 free.",
-  "questions": [
-   "When an encyclopedia article exists in a print edition (2003, no fetchable pagination) and a later online edition with a DOI (2006), cite the print edition without DOI (as here) or the online edition with its DOI and year?"
-  ]
+  "notes": "Steyvers's article 'Multidimensional Scaling' in the Encyclopedia of Cognitive Science (Crossref record of the Wiley online edition). The published print edition is London: Nature Publishing Group, 2003 (ISBN 0333792610); the cited 2001 and pp. 1--7 match no printing (preprint). Cited as the print article: @incollection, title/booktitle unswapped, chapter (held the book title) and unconfirmable pages removed; no Wiley 2006 DOI. Stey03 free. RECONCILED 2026-09-26: Question answered by rule: encyclopedia print edition (default)."
  }
 ]

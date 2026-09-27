@@ -9,10 +9,7 @@
     "quote": "<meta name=\"citation_firstpage\" content=\"288\"> <meta name=\"citation_lastpage\" content=\"296\">"
    }
   },
-  "notes": "Pages 288--296 (unchanged) printed by the NeurIPS Foundation's archived proceedings page (same title); Curran reprint TOC agrees on start page 288. Post-check changes incl. journal removal apply.",
-  "questions": [
-   "When the NeurIPS Foundation's own proceedings pages (archived papers.nips.cc, citation_firstpage/lastpage) and Curran's 'printed from e-media' reprint TOC give different pagination (NIPS 21: 1033 vs 1036, 1081 vs 1084; NeurIPS 32: 8024 vs 7994), which pagination is 'as printed': the NeurIPS Foundation's (used here) or Curran's reprint?"
-  ]
+  "notes": "Pages 288--296 (unchanged) printed by the NeurIPS Foundation's archived proceedings page (same title); Curran reprint TOC agrees on start page 288. Post-check changes incl. journal removal apply. RECONCILED 2026-09-26: Question answered by rule: NeurIPS default: the NeurIPS proceedings site (official publisher) beats Curran's reprint TOC; values already follow it."
  },
  {
   "key": "SochEtal09",
@@ -60,10 +57,7 @@
     "quote": "<meta name=\"citation_firstpage\" content=\"8024\"> <meta name=\"citation_lastpage\" content=\"8035\">"
    }
   },
-  "notes": "HEAD 8026--8037 appears in no source; NeurIPS Foundation's archived page prints 8024--8035 (Curran reprint TOC starts at 7994, see question). No author change is in final_changes, so the post-check's K{\\\"o}pf initials bug does not apply.",
-  "questions": [
-   "When the NeurIPS Foundation's own proceedings pages (archived papers.nips.cc, citation_firstpage/lastpage) and Curran's 'printed from e-media' reprint TOC give different pagination (NIPS 21: 1033 vs 1036, 1081 vs 1084; NeurIPS 32: 8024 vs 7994), which pagination is 'as printed': the NeurIPS Foundation's (used here) or Curran's reprint?"
-  ]
+  "notes": "HEAD 8026--8037 appears in no source; NeurIPS Foundation's archived page prints 8024--8035 (Curran reprint TOC starts at 7994, see question). No author change is in final_changes, so the post-check's K{\\\"o}pf initials bug does not apply. RECONCILED 2026-09-26: Question answered by rule: NeurIPS default: the NeurIPS proceedings site (official publisher) beats Curran's reprint TOC; values already follow it."
  },
  {
   "key": "MairEtal09b",
@@ -75,15 +69,13 @@
     "quote": "<meta name=\"citation_firstpage\" content=\"1033\"> <meta name=\"citation_lastpage\" content=\"1040\">"
    },
    "year": {
-    "value": "2009",
-    "url": "https://web.archive.org/web/20140903000252/http://papers.nips.cc/paper/3448-supervised-dictionary-learning",
-    "quote": "<meta name=\"citation_publication_date\" content=\"2009\">"
+    "value": "2008",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2008/hash/c0f168ce8900fa56e57789e2a2f2c9d0-Abstract.html",
+    "quote": "<meta name=\"citation_publication_date\" content=\"2008\">"
    }
   },
-  "notes": "HEAD pages 1033--1040 are printed by the NeurIPS Foundation's archived page; the unverified suggestion 1036--1043 was derived from Curran's reprint TOC (withdrawn). Year 2009 per the same page.",
-  "questions": [
-   "When the NeurIPS Foundation's own proceedings pages (archived papers.nips.cc, citation_firstpage/lastpage) and Curran's 'printed from e-media' reprint TOC give different pagination (NIPS 21: 1033 vs 1036, 1081 vs 1084; NeurIPS 32: 8024 vs 7994), which pagination is 'as printed': the NeurIPS Foundation's (used here) or Curran's reprint?"
-  ]
+  "notes": "HEAD pages 1033--1040 are printed by the NeurIPS Foundation's archived page; the unverified suggestion 1036--1043 was derived from Curran's reprint TOC (withdrawn). Year 2009 per the same page. RECONCILED 2026-09-26: Year 2008 = conference year printed by the NeurIPS proceedings site (default: proceedings year = conference year; the archived papers.nips.cc citation_publication_date gave the bound-volume year). Key MairEtal09b -> MairEtal08 (free in HEAD). Consistent with RaoHowa07 (batch 24). RECONCILED 2026-09-26: Side effect: HEAD MairEtal09a would then be the only MairEtal09 (suffix rule may rename it to MairEtal09). RECONCILED 2026-09-26: Question answered by rule: NeurIPS default: the NeurIPS proceedings site (official publisher) beats Curran's reprint TOC; values already follow it.",
+  "new_key": "MairEtal08"
  },
  {
   "key": "MnihHint09",
@@ -95,24 +87,22 @@
     "quote": "<meta name=\"citation_firstpage\" content=\"1081\"> <meta name=\"citation_lastpage\" content=\"1088\">"
    },
    "year": {
-    "value": "2009",
-    "url": "https://web.archive.org/web/20140903000116/http://papers.nips.cc/paper/3583-a-scalable-hierarchical-distributed-language-model",
-    "quote": "<meta name=\"citation_publication_date\" content=\"2009\">"
+    "value": "2008",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2008/hash/1e056d2b0ebd5c878c550da6ac5d3724-Abstract.html",
+    "quote": "<meta name=\"citation_publication_date\" content=\"2008\">"
    }
   },
-  "notes": "Pages 1081--1088 from the NeurIPS Foundation's archived page (same pagination family as MairEtal09b's HEAD value); suggestion 1084--1091 (Curran reprint, derived end) not used.",
-  "questions": [
-   "When the NeurIPS Foundation's own proceedings pages (archived papers.nips.cc, citation_firstpage/lastpage) and Curran's 'printed from e-media' reprint TOC give different pagination (NIPS 21: 1033 vs 1036, 1081 vs 1084; NeurIPS 32: 8024 vs 7994), which pagination is 'as printed': the NeurIPS Foundation's (used here) or Curran's reprint?"
-  ]
+  "notes": "Pages 1081--1088 from the NeurIPS Foundation's archived page (same pagination family as MairEtal09b's HEAD value); suggestion 1084--1091 (Curran reprint, derived end) not used. RECONCILED 2026-09-26: Year 2008 = conference year printed by the NeurIPS proceedings site (default: proceedings year = conference year; the archived papers.nips.cc citation_publication_date gave the bound-volume year). Key MnihHint09 -> MnihHint08 (free in HEAD). Consistent with RaoHowa07 (batch 24). RECONCILED 2026-09-26: Question answered by rule: NeurIPS default: the NeurIPS proceedings site (official publisher) beats Curran's reprint TOC; values already follow it.",
+  "new_key": "MnihHint08"
  },
  {
   "key": "SanbGrif08",
   "decision": "apply",
   "set": {
    "year": {
-    "value": "2008",
-    "url": "https://web.archive.org/web/20140903001612/http://papers.nips.cc/paper/3214-markov-chain-monte-carlo-with-people",
-    "quote": "<meta name=\"citation_publication_date\" content=\"2008\">"
+    "value": "2007",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2007/hash/89d4402dc03d3b7318bbac10203034ab-Abstract.html",
+    "quote": "<meta name=\"citation_publication_date\" content=\"2007\">"
    },
    "pages": {
     "value": "1265--1272",
@@ -120,7 +110,8 @@
     "quote": "<meta name=\"citation_firstpage\" content=\"1265\"> <meta name=\"citation_lastpage\" content=\"1272\">"
    }
   },
-  "notes": "Year 2008 (unchanged) and pages 1265--1272 printed by the NeurIPS Foundation's archived proceedings page for this title; key unchanged."
+  "notes": "Year 2008 (unchanged) and pages 1265--1272 printed by the NeurIPS Foundation's archived proceedings page for this title; key unchanged. RECONCILED 2026-09-26: Year 2007 = conference year printed by the NeurIPS proceedings site (default: proceedings year = conference year; the archived papers.nips.cc citation_publication_date gave the bound-volume year). Key SanbGrif08 -> SanbGrif07 (free in HEAD). Consistent with RaoHowa07 (batch 24).",
+  "new_key": "SanbGrif07"
  },
  {
   "key": "McGe36",
@@ -232,25 +223,26 @@
  {
   "key": "RendCrai00",
   "decision": "apply",
-  "notes": "DOI and number 7 apply. Pages S43--S62 (HEAD) could not be confirmed: Crossref has no page data, Wiley (live and Wayback) returns 403, not in PubMed/Europe PMC; HEAD pages left unchanged.",
-  "questions": [
-   "An optional field already in HEAD (pages) that no fetchable official record prints (Crossref has no pages, publisher 403): keep the HEAD value or remove it?"
-  ]
+  "notes": "DOI and number 7 apply. Pages S43--S62 (HEAD) could not be confirmed: Crossref has no page data, Wiley (live and Wayback) returns 403, not in PubMed/Europe PMC; HEAD pages left unchanged. RECONCILED 2026-09-26: Pages now confirmed: archived Wiley article page prints citation_firstpage S43 / citation_lastpage S62 ('S43-S62').",
+  "set": {
+   "pages": {
+    "value": "S43--S62",
+    "url": "http://web.archive.org/web/20220709200648/https://onlinelibrary.wiley.com/doi/abs/10.1002/acp.770",
+    "quote": "<meta name=\"citation_firstpage\" content=\"S43\""
+   }
+  }
  },
  {
   "key": "HillEtal87",
   "decision": "apply",
   "set": {
    "journal": {
-    "value": "Architecture and Behaviour",
+    "value": "Architecture and Comportement / Architecture and Behaviour",
     "url": "https://comportements.ch/en/journal-architecture-behaviour-2/",
-    "quote": "Architecture & Behaviour is a scientific quaterly"
+    "quote": "Architecture & Comportement / Architecture & Behaviour"
    }
   },
-  "notes": "Editor's archive (comportements.ch) and the article PDF header ('Arch. & Comport./Arch. Behav., Vol. 3, n. 3, p. 233-250 (1987)') confirm the article; journal is the bilingual 'Architecture & Comportement / Architecture & Behaviour', cited by its English title with British spelling.",
-  "questions": [
-   "Bilingual journal titles ('Architecture & Comportement / Architecture & Behaviour'): cite the full bilingual title or only the part in the article's language?"
-  ]
+  "notes": "Editor's archive (comportements.ch) and the article PDF header ('Arch. & Comport./Arch. Behav., Vol. 3, n. 3, p. 233-250 (1987)') confirm the article; journal is the bilingual 'Architecture & Comportement / Architecture & Behaviour', cited by its English title with British spelling. RECONCILED 2026-09-26: Bilingual journal default: the full title as printed ('Architecture & Comportement / Architecture & Behaviour'; & written 'and' as house journal names do)."
  },
  {
   "key": "JaspPenf49",

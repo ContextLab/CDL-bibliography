@@ -2,20 +2,17 @@
  {
   "key": "LiuEtal24",
   "decision": "apply",
-  "new_key": "DeepEtal25",
+  "new_key": "Deep25",
   "set": {
    "author": {
-    "value": "{DeepSeek-AI} and A Liu and B Feng and B Xue and B Wang and B Wu and C Lu and C Zhao and C Deng and C Zhang and C Ruan and D Dai and D Guo and D Yang and D Chen and D Ji and E Li and F Lin and F Dai and F Luo and G Hao and G Chen and G Li and H Zhang and H Bao and H Xu and H Wang and H Zhang and H Ding and H Xin and H Gao and H Li and H Qu and J L Cai and J Liang and J Guo and J Ni and J Li and J Wang and J Chen and J Chen and J Yuan and J Qiu and J Li and J Song and K Dong and K Hu and K Gao and K Guan and K Huang and K Yu and L Wang and L Zhang and L Xu and L Xia and L Zhao and L Wang and L Zhang and M Li and M Wang and M Zhang and M Zhang and M Tang and M Li and N Tian and P Huang and P Wang and P Zhang and Q Wang and Q Zhu and Q Chen and Q Du and R J Chen and R L Jin and R Ge and R Zhang and R Pan and R Wang and R Xu and R Zhang and R Chen and S S Li and S Lu and S Zhou and S Chen and S Wu and S Ye and S Ye and S Ma and S Wang and S Zhou and S Yu and S Zhou and S Pan and T Wang and T Yun and T Pei and T Sun and W L Xiao and W Zeng and W Zhao and W An and W Liu and W Liang and W Gao and W Yu and W Zhang and X Q Li and X Jin and X Wang and X Bi and X Liu and X Wang and X Shen and X Chen and X Zhang and X Chen and X Nie and X Sun and X Wang and X Cheng and X Liu and X Xie and X Liu and X Yu and X Song and X Shan and X Zhou and X Yang and X Li and X Su and X Lin and Y K Li and Y Q Wang and Y X Wei and Y X Zhu and Y Zhang and Y Xu and Y Xu and Y Huang and Y Li and Y Zhao and Y Sun and Y Li and Y Wang and Y Yu and Y Zheng and Y Zhang and Y Shi and Y Xiong and Y He and Y Tang and Y Piao and Y Wang and Y Tan and Y Ma and Y Liu and Y Guo and Y Wu and Y Ou and Y Zhu and Y Wang and Y Gong and Y Zou and Y He and Y Zha and Y Xiong and Y Ma and Y Yan and Y Luo and Y You and Y Liu and Y Zhou and Z F Wu and Z Z Ren and Z Ren and Z Sha and Z Fu and Z Xu and Z Huang and Z Zhang and Z Xie and Z Zhang and Z Hao and Z Gou and Z Ma and Z Yan and Z Shao and Z Xu and Z Wu and Z Zhang and Z Li and Z Gu and Z Zhu and Z Liu and Z Li and Z Xie and Z Song and Z Gao and Z Pan",
-    "url": "https://api.datacite.org/dois/10.48550/arxiv.2412.19437",
-    "quote": "\"creators\":[{\"name\":\"DeepSeek-AI\",\"nameType\":\"Organizational\""
+    "value": "{DeepSeek-AI}",
+    "url": "https://arxiv.org/pdf/2412.19437v2",
+    "quote": "DeepSeek-V3 Technical Report DeepSeek-AI"
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Year 2025 = latest arXiv version (v2, 18 Feb 2025; DataCite 2024 is v1). The cited 14 names + 'others' truncate the registered list: DataCite/arXiv print the organizational author DeepSeek-AI first, then 199 people (arXiv API, 200 <name> entries; two names repeat as printed). Full list per the 'and others' default; authors2key gives DeepEtal25 (free in HEAD), superseding the post-check's LiuEtal25.",
-  "questions": [
-   "When an arXiv/DataCite record lists an organizational author first and then the individual contributors (DeepSeek-AI, Aixin Liu, ... 199 people; PDF byline 'DeepSeek-AI' only), should Author be the organization alone, the organization plus all individuals (key from the organization, e.g. DeepEtal25), or the individuals only (key LiuEtal25)? YangEtal25b (Qwen3) uses individuals only because arXiv prints 'Qwen' as a group label."
-  ]
+  "notes": "Year 2025 = latest arXiv version (v2, 18 Feb 2025; DataCite 2024 is v1). The cited 14 names + 'others' truncate the registered list: DataCite/arXiv print the organizational author DeepSeek-AI first, then 199 people (arXiv API, 200 <name> entries; two names repeat as printed). Full list per the 'and others' default; authors2key gives DeepEtal25 (free in HEAD), superseding the post-check's LiuEtal25. RECONCILED 2026-09-26: Organizational-byline default: Author = the byline printed on the paper (PDF title page: 'DeepSeek-V3 Technical Report / DeepSeek-AI'), the organization alone; key from authors2key('{DeepSeek-AI}', 2025) = Deep25 (free in HEAD). Supersedes the 200-name list and DeepEtal25."
  },
  {
   "key": "VodrEtal16",
@@ -67,11 +64,17 @@
  {
   "key": "YangEtal24",
   "decision": "apply",
-  "new_key": "YangEtal25c",
-  "set": {},
+  "new_key": "Qwen25",
+  "set": {
+   "author": {
+    "value": "{Qwen Team}",
+    "url": "https://arxiv.org/pdf/2412.15115v2",
+    "quote": "Qwen2.5 Technical Report Qwen Team"
+   }
+  },
   "withdraw": [],
   "remove": [],
-  "notes": "Latest arXiv version v2 dated 3 Jan 2025 (arXiv API <updated>2025-01-03T02:18:21Z</updated>); DataCite 2024 is v1, so 2025 stands. arXiv/DataCite 'Qwen' + ':' are a group label, so the 42 individuals are used as in YangEtal25b. YangEtal25a/b are different works; YangEtal25c free.",
+  "notes": "Latest arXiv version v2 dated 3 Jan 2025 (arXiv API <updated>2025-01-03T02:18:21Z</updated>); DataCite 2024 is v1, so 2025 stands. arXiv/DataCite 'Qwen' + ':' are a group label, so the 42 individuals are used as in YangEtal25b. YangEtal25a/b are different works; YangEtal25c free. RECONCILED 2026-09-26: Organizational-byline default: the PDF byline is 'Qwen Team' only (the 42 names are contributors in metadata), as HEAD Qwen26 already cites {Qwen Team}; key Qwen25 (authors2key; free in HEAD). Note HEAD YangEtal25b (Qwen3 report, not in these batches) lists individuals and may need the same treatment.",
   "questions": []
  },
  {
@@ -128,18 +131,51 @@
   "key": "GoldEtal21",
   "decision": "apply",
   "set": {
+   "title": {
+    "value": "Shared computational principles for language processing in humans and deep language models",
+    "url": "https://api.crossref.org/works/10.1038/s41593-022-01026-4",
+    "quote": "Shared computational principles for language processing in humans and deep language models"
+   },
+   "journal": {
+    "value": "Nature Neuroscience",
+    "url": "https://api.crossref.org/works/10.1038/s41593-022-01026-4",
+    "quote": "\"container-title\":[\"Nature Neuroscience\"]"
+   },
+   "volume": {
+    "value": "25",
+    "url": "https://api.crossref.org/works/10.1038/s41593-022-01026-4",
+    "quote": "\"volume\":\"25\""
+   },
+   "number": {
+    "value": "3",
+    "url": "https://api.crossref.org/works/10.1038/s41593-022-01026-4",
+    "quote": "\"issue\":\"3\""
+   },
+   "pages": {
+    "value": "369--380",
+    "url": "https://api.crossref.org/works/10.1038/s41593-022-01026-4",
+    "quote": "\"page\":\"369-380\""
+   },
    "year": {
-    "value": "2021",
-    "url": "https://www.biorxiv.org/content/10.1101/2020.12.02.403477v4",
-    "quote": "Posted September 30, 2021."
+    "value": "2022",
+    "url": "https://api.crossref.org/works/10.1038/s41593-022-01026-4",
+    "quote": "\"published-print\":{\"date-parts\":[[2022,3]]}"
+   },
+   "doi": {
+    "value": "10.1038/s41593-022-01026-4",
+    "url": "https://api.crossref.org/works/10.1038/s41593-022-01026-4",
+    "quote": "\"DOI\":\"10.1038\\/s41593-022-01026-4\""
+   },
+   "author": {
+    "value": "A Goldstein and Z Zada and E Buchnik and M Schain and A Price and B Aubrey and S A Nastase and A Feder and D Emanuel and A Cohen and A Jansen and H Gazula and G Choe and A Rao and C Kim and C Casto and L Fanda and W Doyle and D Friedman and P Dugan and L Melloni and R Reichart and S Devore and A Flinker and L Hasenfratz and O Levy and A Hassidim and M Brenner and Y Matias and K A Norman and O Devinsky and U Hasson",
+    "url": "https://api.crossref.org/works/10.1038/s41593-022-01026-4",
+    "quote": "\"given\":\"Catherine\",\"family\":\"Kim\""
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Latest version v4 posted 30 Sep 2021 (read in a browser; plain fetches get 429); Crossref's 2020 is v1's posted date, so 2021 stands. No 'Now published' notice; bioRxiv pubs API: 'no articles found for published version'. Nat Neurosci 25:369-380 (2022) has the same 32 authors but a different title and no registry relation, so not substituted.",
-  "questions": [
-   "A preprint whose latest version has the same full author list as a later journal article with a different title, but no bioRxiv/Crossref relation (GoldEtal21 'Thinking ahead' vs Nat Neurosci 2022 'Shared computational principles...'): treat the article as the published version and replace, or keep the preprint?"
-  ]
+  "notes": "Latest version v4 posted 30 Sep 2021 (read in a browser; plain fetches get 429); Crossref's 2020 is v1's posted date, so 2021 stands. No 'Now published' notice; bioRxiv pubs API: 'no articles found for published version'. Nat Neurosci 25:369-380 (2022) has the same 32 authors but a different title and no registry relation, so not substituted. RECONCILED 2026-09-26: Preprint default: replaced because the content confirms the same work. Nature Neuroscience abstract ('We provide empirical evidence that the human brain and autoregressive DLMs share three fundamental computational principles as they process the same natural narrative: (1) both are engaged in continuous next-word prediction before word onset; (2) both match their pre-onset predictions to the incoming word to calculate post-onset surprise', https://www.nature.com/articles/s41593-022-01026-4) repeats the bioRxiv abstract ('We provide empirical evidence that the human brain and autoregressive DLMs share three fundamental computational principles as they process natural language: 1) both are engaged in continuous next-word prediction before word-onset; 2) both match their pre-onset predictions to the incoming word to calculate post-onset surprise', Europe PMC PPR248100); same 32 authors in the same order. Crossref prints 'Catherine Kim' where the bioRxiv post-check had 'S C Kim'; the published byline is used. Key GoldEtal22 (free in HEAD).",
+  "new_key": "GoldEtal22"
  },
  {
   "key": "TsitEtal19",
@@ -365,38 +401,56 @@
   "key": "Ship46",
   "decision": "apply",
   "new_key": "Ship40",
-  "entrytype": "misc",
+  "entrytype": "article",
   "set": {
    "title": {
-    "value": "{Shipley Institute of Living Scale}",
-    "url": "https://api.crossref.org/works/10.1037/t07774-000",
-    "quote": "\"title\":[\"Shipley Institute of Living Scale\"]"
+    "value": "A self-administering scale for measuring intellectual impairment and deterioration",
+    "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917704",
+    "quote": "A Self-Administering Scale for Measuring Intellectual Impairment and Deterioration"
+   },
+   "author": {
+    "value": "W C Shipley",
+    "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917704",
+    "quote": "\"given\":\"Walter C.\",\"family\":\"Shipley\""
+   },
+   "journal": {
+    "value": "The Journal of Psychology",
+    "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917704",
+    "quote": "\"container-title\":[\"The Journal of Psychology\"]"
+   },
+   "volume": {
+    "value": "9",
+    "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917704",
+    "quote": "\"volume\":\"9\""
+   },
+   "number": {
+    "value": "2",
+    "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917704",
+    "quote": "\"issue\":\"2\""
+   },
+   "pages": {
+    "value": "371--377",
+    "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917704",
+    "quote": "\"page\":\"371-377\""
    },
    "year": {
     "value": "1940",
-    "url": "https://api.crossref.org/works/10.1037/t07774-000",
-    "quote": "\"published\":{\"date-parts\":[[1940]]}"
+    "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917704",
+    "quote": "\"issued\":{\"date-parts\":[[1940,4]]}"
    },
    "doi": {
-    "value": "10.1037/t07774-000",
-    "url": "https://api.crossref.org/works/10.1037/t07774-000",
-    "quote": "\"container-title\":[\"PsycTESTS Dataset\"]"
-   },
-   "howpublished": {
-    "value": "{PsycTESTS} Dataset",
-    "url": "https://api.crossref.org/works/10.1037/t07774-000",
-    "quote": "\"container-title\":[\"PsycTESTS Dataset\"]"
+    "value": "10.1080/00223980.1940.9917704",
+    "url": "https://api.crossref.org/works/10.1080/00223980.1940.9917704",
+    "quote": "\"DOI\":\"10.1080\\/00223980.1940.9917704\""
    }
   },
   "withdraw": [],
   "remove": [
    "publisher",
-   "address"
+   "address",
+   "howpublished"
   ],
-  "notes": "No record of a 1946 Western Psychological Services edition (LoC, IA, Scholar in a browser). A 1946 'Manual of Directions and Scoring Key, Shipley-Institute of Living Scale...' is cited (Crossref reference in 10.2466/pr0.1965.16.2.417) but with no publisher; WPS published only the 1986 revised manual (Zachary). The test itself is registered: APA PsycTESTS 10.1037/t07774-000, Walter C. Shipley, 1940. Replaced by that record (reprint default). Ship40 free.",
-  "questions": [
-   "When a cited test edition/manual (Shipley 1946, Western Psychological Services) has no record but the test itself is registered in APA PsycTESTS (DOI, original year 1940), cite the PsycTESTS record (@misc, new key), cite the original journal article that introduced the test, or drop?"
-  ]
+  "notes": "No record of a 1946 Western Psychological Services edition (LoC, IA, Scholar in a browser). A 1946 'Manual of Directions and Scoring Key, Shipley-Institute of Living Scale...' is cited (Crossref reference in 10.2466/pr0.1965.16.2.417) but with no publisher; WPS published only the 1986 revised manual (Zachary). The test itself is registered: APA PsycTESTS 10.1037/t07774-000, Walter C. Shipley, 1940. Replaced by that record (reprint default). Ship40 free. RECONCILED 2026-09-26: Test-manual default (Wech45 precedent): cite the original article that introduced the test, Shipley 1940 J Psychol 9(2):371-377, instead of the PsycTESTS record. Key Ship40 (free in HEAD)."
  },
  {
   "key": "BendPier01",

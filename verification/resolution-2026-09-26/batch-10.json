@@ -2,10 +2,7 @@
  {
   "key": "BunnEtal99",
   "decision": "keep",
-  "notes": "HEAD equals the publisher's scan (psychology.org.nz NZJP-Vol281-1999-4-Bunnell.pdf, 7 pages; my local OCR reads 'Julie K. Bunnell', 'Donald M. Baken', 'Llewellyn A. Richards-Ward', 'New Zealand Journal of Psychology Vol. 28 No.1 June 1999'). Text-fetchable OpenAlex/APA PsycInfo record W1785987719 confirms title, journal, 28(1), first page 23, 1999 but not last page 29 or middle initials; PsycNET itself is bot-walled. Kept pending the scan rule.",
-  "questions": [
-   "When the only copy printed by the publisher is an image-only scan (no text layer) that a person or local OCR can read, may it serve as the evidence for setting or keeping values, or must a text-fetchable record exist (otherwise hold or drop)?"
-  ]
+  "notes": "HEAD equals the publisher's scan (psychology.org.nz NZJP-Vol281-1999-4-Bunnell.pdf, 7 pages; my local OCR reads 'Julie K. Bunnell', 'Donald M. Baken', 'Llewellyn A. Richards-Ward', 'New Zealand Journal of Psychology Vol. 28 No.1 June 1999'). Text-fetchable OpenAlex/APA PsycInfo record W1785987719 confirms title, journal, 28(1), first page 23, 1999 but not last page 29 or middle initials; PsycNET itself is bot-walled. Kept pending the scan rule. RECONCILED 2026-09-26: Question answered by rule: image-only scans accepted (round 2)."
  },
  {
   "key": "KnigEtal04",
@@ -92,10 +89,7 @@
     "quote": "VOL. II—No. 1. [Published April 15th, 1936."
    }
   },
-  "notes": "HEAD's 'Proceedings of the National Academy of Sciences, India' vol 12 is wrong. The INSA archive scan (image-only; my local OCR: 'ON THE GENERALIZED DISTANCE IN STATISTICS', 'VOL. II—No. 1. [Published April 1?th, 1936', page headers 50 and 55, imprint 'Published by the National Institute of Sciences of India') confirms title, 1936, pp 49--55 and the journal. These quotes will fail the text validator; no text-fetchable record found (Springer reprint page bot-walled, archive.org has no vol II). Apply depends on the scan rule.",
-  "questions": [
-   "When the only copy printed by the publisher is an image-only scan (no text layer) that a person or local OCR can read, may it serve as the evidence for setting or keeping values, or must a text-fetchable record exist (otherwise hold or drop)?"
-  ]
+  "notes": "HEAD's 'Proceedings of the National Academy of Sciences, India' vol 12 is wrong. The INSA archive scan (image-only; my local OCR: 'ON THE GENERALIZED DISTANCE IN STATISTICS', 'VOL. II—No. 1. [Published April 1?th, 1936', page headers 50 and 55, imprint 'Published by the National Institute of Sciences of India') confirms title, 1936, pp 49--55 and the journal. These quotes will fail the text validator; no text-fetchable record found (Springer reprint page bot-walled, archive.org has no vol II). Apply depends on the scan rule. RECONCILED 2026-09-26: Question answered by rule: image-only scans accepted (round 2)."
  },
  {
   "key": "MankEtal12",
@@ -124,15 +118,12 @@
    }
   },
   "new_key": "GrunSher02",
-  "notes": "Applied the standing print-year rule: Crossref published-print 1902-04-04 (vol 69, issues 451-458); the printed page says 'Received July 20,—Read November 21, 1901' (archive.org OCR). GrunSher02 is absent from HEAD. If the reading/part year should win instead, withdraw year and keep GrunSher01.",
-  "questions": [
-   "For society proceedings where a paper was read in one year but Crossref's published-print date for the bound part range is the next year (e.g. Proc R Soc Lond 69: 'Read November 21, 1901', published-print 1902-04-04, issues 451-458), does Crossref's published-print year win, or the year of the individual part/reading?"
-  ]
+  "notes": "Applied the standing print-year rule: Crossref published-print 1902-04-04 (vol 69, issues 451-458); the printed page says 'Received July 20,—Read November 21, 1901' (archive.org OCR). GrunSher02 is absent from HEAD. If the reading/part year should win instead, withdraw year and keep GrunSher01. RECONCILED 2026-09-26: Question answered by rule: society proceedings: printed year of the bound part (default)."
  },
  {
   "key": "Adey67a",
   "decision": "apply",
-  "notes": "Only change is the DOI 10.1016/s0079-6123(08)63102-7 (PubMed 4865089); Crossref pages 228-245, 1967 match HEAD. Key stays Adey67a (Adey67 exists)."
+  "notes": "Only change is the DOI 10.1016/s0079-6123(08)63102-7 (PubMed 4865089); Crossref pages 228-245, 1967 match HEAD. Key stays Adey67a (Adey67 exists). RECONCILED 2026-09-26: HEAD key is now Adey67 (key-renames.json); apply to that entry. The statement 'Key stays Adey67a (Adey67 exists)' above is out of date: Adey67a was renamed to Adey67."
  },
  {
   "key": "CronEtal06",

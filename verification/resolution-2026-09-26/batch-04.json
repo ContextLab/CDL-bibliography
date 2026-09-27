@@ -65,10 +65,7 @@
  {
   "key": "Sate14",
   "decision": "apply",
-  "notes": "PubMed prints 'disorders-third edition'; cdl.bib writes an em dash as '---' without spaces in 5 titles (vs 4 with spaces), so the unspaced form is applied as house style.",
-  "questions": [
-   "Should every title em dash be written '---' with no surrounding spaces (HEAD has 5 titles unspaced and 4 with ' --- ')? If yes, the 4 spaced ones should be normalized too."
-  ]
+  "notes": "PubMed prints 'disorders-third edition'; cdl.bib writes an em dash as '---' without spaces in 5 titles (vs 4 with spaces), so the unspaced form is applied as house style. RECONCILED 2026-09-26: Question answered by rule: em dash a---b; value already conforms."
  },
  {
   "key": "PellEtal88",
@@ -151,10 +148,7 @@
  {
   "key": "Buse01",
   "decision": "apply",
-  "notes": "Chapter, editors, publisher and address confirmed by LoC; pages 147--191 left as is: the 2001 Erlbaum book exists only as a lending-restricted Internet Archive scan (computationalgeo0000unse) and the Crossref chapter record (10.4324/9781410612328-10) is the 2005 reissue with pages 154-198.",
-  "questions": [
-   "When a book chapter's pages (an optional field) cannot be confirmed by any fetchable source (the only copies are lending-restricted scans, and the Crossref record is a reissue with different pagination), should the existing pages value be kept or removed?"
-  ]
+  "notes": "Chapter, editors, publisher and address confirmed by LoC; pages 147--191 left as is: the 2001 Erlbaum book exists only as a lending-restricted Internet Archive scan (computationalgeo0000unse) and the Crossref chapter record (10.4324/9781410612328-10) is the 2005 reissue with pages 154-198. RECONCILED 2026-09-26: Pages kept: IA contents (computationalgeo0000unse): chapter start pages 'Vii 39 83 115 147 193 ...' (ch. 5 Busey at 147) and p. 147 text '...revolves around the 147 148 BUSEY' confirms the start page, so the cited range stays (default: partly confirmed chapter pages are kept)."
  },
  {
   "key": "Seac97",
@@ -165,10 +159,7 @@
  {
   "key": "Hara96",
   "decision": "apply",
-  "notes": "Book, editors, publisher, address confirmed by LoC and the SUNY Press TOC ('Online Education: The Future Linda Harasim'); the TOC prints no pages and no fetchable source gives them, so 203--214 is left as is.",
-  "questions": [
-   "When a book chapter's pages (an optional field) cannot be confirmed by any fetchable source (the only copies are lending-restricted scans, and the Crossref record is a reissue with different pagination), should the existing pages value be kept or removed?"
-  ]
+  "notes": "Book, editors, publisher, address confirmed by LoC and the SUNY Press TOC ('Online Education: The Future Linda Harasim'); the TOC prints no pages and no fetchable source gives them, so 203--214 is left as is. RECONCILED 2026-09-26: Pages kept: IA contents (computernetworki0000unse_q8a0): 'Online Education: The Future 203 Linda Harasim' confirms the start page, so the cited range stays (default: partly confirmed chapter pages are kept)."
  },
  {
   "key": "PribEtal74",
@@ -178,12 +169,14 @@
     "value": "W H Freeman",
     "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=73021887&maximumRecords=1&recordSchema=mods",
     "quote": "<namePart>W. H. Freeman</namePart>"
+   },
+   "editor": {
+    "value": "D H Krantz and R C Atkinson and R D Luce and P Suppes",
+    "url": "https://escholarship.org/content/qt40x8f9s7/qt40x8f9s7.pdf",
+    "quote": "Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.)"
    }
   },
-  "notes": "Editor left absent: LoC prints only 'Edited by David H. Krantz [and others]' and no fetchable source lists all editors correctly (karlpribram.com misprints 'R. C. Luce'). Publisher set to 'W H Freeman' per the user's publisher-initials rule. Sibling AtkiJuol74 (same book) lists editors 'D H Krantz and R C Atkinson and P Suppes' (omits Luce) and publisher 'Freeman'.",
-  "questions": [
-   "When the only fetchable catalogue record prints the editors as '<first editor> [and others]', should the editor field be omitted, set to '<first editor> and others', or completed from secondary citations? (Same book: AtkiJuol74 currently lists three of the four editors.)"
-  ]
+  "notes": "Editor left absent: LoC prints only 'Edited by David H. Krantz [and others]' and no fetchable source lists all editors correctly (karlpribram.com misprints 'R. C. Luce'). Publisher set to 'W H Freeman' per the user's publisher-initials rule. Sibling AtkiJuol74 (same book) lists editors 'D H Krantz and R C Atkinson and P Suppes' (omits Luce) and publisher 'Freeman'. RECONCILED 2026-09-26: Editors expanded per the 'and others' default, with the same evidence AtkiJuol74 (batch 19, same book) uses: Stanford IMSSS TR 194 'To be pUblished in: Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.)'."
  },
  {
   "key": "EskrEtal12",

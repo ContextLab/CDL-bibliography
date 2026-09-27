@@ -9,10 +9,7 @@
     "quote": "\"title\":[\"More on measures of category clustering in free recall-although probably not the last word.\"]"
    }
   },
-  "notes": "Crossref (APA) prints the dash closed ('recall-although'), so the closed '---although' is as printed; HEAD's '--- although' adds a space the source lacks. DOI, 81(1) 64-66 confirmed by Crossref.",
-  "questions": [
-   "Every title em dash written '---' with spacing exactly as printed (closed when the source prints it closed), replacing the '--- ' form that about 27 cdl.bib titles use?"
-  ]
+  "notes": "Crossref (APA) prints the dash closed ('recall-although'), so the closed '---although' is as printed; HEAD's '--- although' adds a space the source lacks. DOI, 81(1) 64-66 confirmed by Crossref. RECONCILED 2026-09-26: Question answered by rule: em dash a---b; value already conforms."
  },
  {
   "key": "GarrEtal12",
@@ -40,10 +37,7 @@
     "quote": "Psychonomic Monograph Supplements, 3(11), 107–127."
    }
   },
-  "notes": "Found via Google Scholar: APA PsycInfo record 1970-11832-001 gives journal Psychonomic Monograph Supplements (not 'Psychological'), 3(11) 107-127; HEAD pages '43' is the whole number. Title and year match. PsycInfo spells the first author 'Shipiro'; author kept as S I Shapiro. PsycNet renders only with JavaScript, so a plain fetch may not show the quote.",
-  "questions": [
-   "When the only official record misspells an author's surname that the rest of the literature spells otherwise (PsycInfo 'Shipiro' for Shapiro, Crossref/PsycNet 'Wickelgran' for Wickelgren) and the printed page cannot be fetched, keep the conventional spelling or copy the record?"
-  ]
+  "notes": "Found via Google Scholar: APA PsycInfo record 1970-11832-001 gives journal Psychonomic Monograph Supplements (not 'Psychological'), 3(11) 107-127; HEAD pages '43' is the whole number. Title and year match. PsycInfo spells the first author 'Shipiro'; author kept as S I Shapiro. PsycNet renders only with JavaScript, so a plain fetch may not show the quote. RECONCILED 2026-09-26: Question answered by the author-name rule (round 1): keep the correct spelling."
  },
  {
   "key": "Hint81",
@@ -89,10 +83,7 @@
  {
   "key": "Wick69",
   "decision": "apply",
-  "notes": "DOI and number 1 confirmed by Crossref. Every official record (Crossref, APA PsycNet: 'Wickelgran, W. A. (1969). Context-sensitive coding...') spells the author 'Wickelgran'. The author's name is Wickelgren and the printed page could not be fetched, so author stays W A Wickelgren pending the rule question.",
-  "questions": [
-   "When the only official record misspells an author's surname that the rest of the literature spells otherwise (PsycInfo 'Shipiro' for Shapiro, Crossref/PsycNet 'Wickelgran' for Wickelgren) and the printed page cannot be fetched, keep the conventional spelling or copy the record?"
-  ]
+  "notes": "DOI and number 1 confirmed by Crossref. Every official record (Crossref, APA PsycNet: 'Wickelgran, W. A. (1969). Context-sensitive coding...') spells the author 'Wickelgran'. The author's name is Wickelgren and the printed page could not be fetched, so author stays W A Wickelgren pending the rule question. RECONCILED 2026-09-26: Question answered by the author-name rule (round 1): keep the correct spelling."
  },
  {
   "key": "BousRosn70",
@@ -107,12 +98,14 @@
     "value": "10.3758/bf03335608",
     "url": "https://api.crossref.org/works/10.3758/bf03335608",
     "quote": "\"DOI\":\"10.3758\\/bf03335608\""
+   },
+   "title": {
+    "value": "Free vs uninhibited recall",
+    "url": "https://web.archive.org/web/20230412122458/https://link.springer.com/article/10.3758/bf03335608",
+    "quote": "Condition U, uninhibited recall instructions"
    }
   },
-  "notes": "Springer page and Crossref give Psychonomic Science 20(2) 75-76, 1970, Bousfield and Rosner; HEAD bibcheck/journal_key_overrides.json already stops the old psychonomic->psychological alias. Both records title it 'Free vs unhibited recall', which looks like a deposit typo (the abstract says 'uninhibited recall instructions'). HEAD title 'Free versus uninhibited recall' is not confirmed by any fetchable source and is kept pending the rule question.",
-  "questions": [
-   "When the publisher record's title has an apparent typo ('Free vs unhibited recall') and the printed page cannot be fetched, copy the record's title or keep the cited title?"
-  ]
+  "notes": "Springer page and Crossref give Psychonomic Science 20(2) 75-76, 1970, Bousfield and Rosner; HEAD bibcheck/journal_key_overrides.json already stops the old psychonomic->psychological alias. Both records title it 'Free vs unhibited recall', which looks like a deposit typo (the abstract says 'uninhibited recall instructions'). HEAD title 'Free versus uninhibited recall' is not confirmed by any fetchable source and is kept pending the rule question. RECONCILED 2026-09-26: Title misprint default: the record prints 'Free vs unhibited recall'; corrected spelling 'uninhibited' is evidenced by the same page's abstract ('Condition U, uninhibited recall instructions'); 'vs' as printed (HEAD's 'versus' is not printed)."
  },
  {
   "key": "Dall65",
@@ -127,10 +120,7 @@
   "remove": [
    "number"
   ],
-  "notes": "Springer and Crossref give first and last page 237 (the next article, 10.3758/bf03343115, starts at 239). Neither prints an issue number: Crossref has issue '1-12', Springer '1', so HEAD number 6 is removed. DOI, journal Psychonomic Science and the quoted title as in the final changes.",
-  "questions": [
-   "For 1960s Psychonomic Science items, Springer and Crossref list only a first page and a whole-volume issue ('1-12'). Should pages be that single page and number left out, or should the range be inferred from where the next article starts?"
-  ]
+  "notes": "Springer and Crossref give first and last page 237 (the next article, 10.3758/bf03343115, starts at 239). Neither prints an issue number: Crossref has issue '1-12', Springer '1', so HEAD number 6 is removed. DOI, journal Psychonomic Science and the quoted title as in the final changes. RECONCILED 2026-09-26: Question answered by rule: Round-1 precedence: the publisher (Springer) and Crossref both print first and last page 237, so the single page stands; no inference needed."
  },
  {
   "key": "PansKori03",
@@ -148,18 +138,12 @@
   "key": "LaVoLigh92",
   "decision": "apply",
   "new_key": "LaVoLigh94",
-  "notes": "PubMed 7893425 ('DP  - 1994 Dec', 'FAU - La Voie, D') and Crossref ('Donna La Voie'): Psychology and Aging 9(4) 539-553. Neither prints HEAD's middle initial J, which is kept pending the initials rule already asked (batch 03 q4). LaVoLigh94 is free in HEAD.",
-  "questions": [
-   "Every official record prints a byline without a middle initial the cited entry has (La Voie 'D' vs 'D J'; chapter byline 'Arie Spirgel' vs 'A S', though other Crossref records give 'Arie S.'): does 'as printed' override 'never drop an initial only because a source omits it'?"
-  ]
+  "notes": "PubMed 7893425 ('DP  - 1994 Dec', 'FAU - La Voie, D') and Crossref ('Donna La Voie'): Psychology and Aging 9(4) 539-553. Neither prints HEAD's middle initial J, which is kept pending the initials rule already asked (batch 03 q4). LaVoLigh94 is free in HEAD. RECONCILED 2026-09-26: Initials question answered by the author-name rule (round 1: most complete name; keep known middle initials)."
  },
  {
   "key": "DelaEtal10",
   "decision": "apply",
-  "notes": "Archived ScienceDirect page prints 'Chapter 3 - Spacing and Testing Effects : A Deeply Critical, Lengthy, and At Times Discursive Review of the Literature' with byline 'Peter F. Delaney , Peter P.J.L. Verkoeijen , Arie Spirgel', and citation_firstpage 63 / lastpage 147 (https://web.archive.org/web/20240419215444/https://www.sciencedirect.com/science/article/abs/pii/S0079742110530032). Delaney and Verkoeijen are confirmed. The byline omits Spirgel's S, which other Crossref records give ('Arie S.'), so A S is kept.",
-  "questions": [
-   "Every official record prints a byline without a middle initial the cited entry has (La Voie 'D' vs 'D J'; chapter byline 'Arie Spirgel' vs 'A S', though other Crossref records give 'Arie S.'): does 'as printed' override 'never drop an initial only because a source omits it'?"
-  ]
+  "notes": "Archived ScienceDirect page prints 'Chapter 3 - Spacing and Testing Effects : A Deeply Critical, Lengthy, and At Times Discursive Review of the Literature' with byline 'Peter F. Delaney , Peter P.J.L. Verkoeijen , Arie Spirgel', and citation_firstpage 63 / lastpage 147 (https://web.archive.org/web/20240419215444/https://www.sciencedirect.com/science/article/abs/pii/S0079742110530032). Delaney and Verkoeijen are confirmed. The byline omits Spirgel's S, which other Crossref records give ('Arie S.'), so A S is kept. RECONCILED 2026-09-26: Initials question answered by the author-name rule (round 1: most complete name; keep known middle initials)."
  },
  {
   "key": "HartDunl11",
@@ -189,10 +173,7 @@
     "quote": "\"title\":[\"A model for recognition memory: REM\\u2014retrieving effectively from memory\"]"
    }
   },
-  "notes": "Crossref prints a closed em dash ('REM—retrieving') and 4(2) 145-166, so the closed dash and the full page range are as printed.",
-  "questions": [
-   "Every title em dash written '---' with spacing exactly as printed (closed when the source prints it closed), replacing the '--- ' form that about 27 cdl.bib titles use?"
-  ]
+  "notes": "Crossref prints a closed em dash ('REM—retrieving') and 4(2) 145-166, so the closed dash and the full page range are as printed. RECONCILED 2026-09-26: Question answered by rule: em dash a---b; value already conforms."
  },
  {
   "key": "UnswEtal09",
@@ -204,9 +185,6 @@
     "quote": "capacity\\u2014fluid intelligence relationship than just secondary memory"
    }
   },
-  "notes": "Crossref prints a closed em dash ('capacity—fluid'), so the closed '---fluid' is as printed. DOI and 16(5) 931-937 confirmed.",
-  "questions": [
-   "Every title em dash written '---' with spacing exactly as printed (closed when the source prints it closed), replacing the '--- ' form that about 27 cdl.bib titles use?"
-  ]
+  "notes": "Crossref prints a closed em dash ('capacity—fluid'), so the closed '---fluid' is as printed. DOI and 16(5) 931-937 confirmed. RECONCILED 2026-09-26: Question answered by rule: em dash a---b; value already conforms."
  }
 ]

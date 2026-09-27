@@ -19,18 +19,12 @@
    "number",
    "pages"
   ],
-  "notes": "Web article, Chronicle of Higher Education, published 2012-07-19 (archived page: '\"datePublished\":\"2012-07-19T05:00:00Z\"'). No print volume/issue/pages found anywhere; HEAD's 19(7) 1--4 is not the Chronicle's 2012 volume (58) and is unconfirmable, so removed; url added by post-check.",
-  "questions": [
-   "Newspaper/magazine articles known only from their web version, print volume/issue/pages unconfirmable: remove them and cite with url and online year, or keep the cited print coordinates?"
-  ]
+  "notes": "Web article, Chronicle of Higher Education, published 2012-07-19 (archived page: '\"datePublished\":\"2012-07-19T05:00:00Z\"'). No print volume/issue/pages found anywhere; HEAD's 19(7) 1--4 is not the Chronicle's 2012 volume (58) and is unconfirmable, so removed; url added by post-check. RECONCILED 2026-09-26: Question answered by rule: web-only articles (default)."
  },
  {
   "key": "Tulv95",
   "decision": "apply",
-  "notes": "Post-check changes (incollection in Gazzaniga, The Cognitive Neurosciences, MIT Press) confirmed. Pages 839--847 kept: OpenAlex W205754681 gives '\"first_page\":\"839\",\"last_page\":\"847\"'; the author's own list prints a typo 'pp. 753-847'; the book scan on archive.org (cognitiveneurosc0000unse_a9n8) is lending-restricted.",
-  "questions": [
-   "Book chapter pages that no official record (publisher, Crossref, catalogue) prints, only an index such as OpenAlex/MAG and the author's list agree with the cited value: keep the cited pages, or remove them? (Tulv95; same as batch 04 q1)"
-  ]
+  "notes": "Post-check changes (incollection in Gazzaniga, The Cognitive Neurosciences, MIT Press) confirmed. Pages 839--847 kept: OpenAlex W205754681 gives '\"first_page\":\"839\",\"last_page\":\"847\"'; the author's own list prints a typo 'pp. 753-847'; the book scan on archive.org (cognitiveneurosc0000unse_a9n8) is lending-restricted. RECONCILED 2026-09-26: Pages kept: IA contents of The Cognitive Neurosciences 1995 (cognitiveneurosc0000unse_a9n8): '54 Organization of Memory: Quo Vadis? ENDEL TULVING 839 VII LANGUAGE' confirms the start page, so the cited range stays (default: partly confirmed chapter pages are kept)."
  },
  {
   "key": "LeCuBeng95",
@@ -41,7 +35,10 @@
   "remove": [
    "pages"
   ],
-  "notes": "HEAD pages 1--14 are the page count of the authors' preprint PDF (yann.lecun.com/exdb/publis/pdf/lecun-bengio-95a.pdf, 14 pages), not the printed chapter; printed pages (commonly 255--258, ACM record of the 1998 reprint, 10.5555/303568.303704) unfetchable, so pages removed. Author bib (lecun.bib) gives no pages. Other post-check changes confirmed."
+  "notes": "HEAD pages 1--14 are the page count of the authors' preprint PDF (yann.lecun.com/exdb/publis/pdf/lecun-bengio-95a.pdf, 14 pages), not the printed chapter; printed pages (commonly 255--258, ACM record of the 1998 reprint, 10.5555/303568.303704) unfetchable, so pages removed. Author bib (lecun.bib) gives no pages. Other post-check changes confirmed. RECONCILED 2026-09-26: IA contents of The Handbook of Brain Theory and Neural Networks (handbookofbraint0000unse): 'Convolutional Networks for Images, Speech, and Time Series 255 Cooperative Behavior in Networks of Chaotic Elements 258', so the start page is 255, but HEAD 1--14 does not match it and articles in this handbook share pages (next starts on 258), so the end page cannot be inferred; pages stay removed.",
+  "questions": [
+   "Encyclopedic handbooks whose articles start mid-page (next article starts on the page where this one ends, e.g. LeCun and Bengio 255, next 258): may the end page be the next article's start page (255--258) rather than start - 1?"
+  ]
  },
  {
   "key": "DeadEtal96",
@@ -59,13 +56,8 @@
  {
   "key": "MurEtal12",
   "decision": "apply",
-  "withdraw": [
-   "title"
-  ],
-  "notes": "DOI confirmed (PubMed 22723705). Title change is only em-dash spacing; withdrawn pending the open em-dash house-form rule (batch 02 q5, batch 06 q2). Sources disagree (PubMed 'graded--single', Crossref 'Graded - Single').",
-  "questions": [
-   "Em dash in titles: 'a---b' or 'a--- b' (cdl.bib has both: 16 vs 5)? Same as batch 02 q5 / batch 06 q2; MurEtal12 waits on it."
-  ]
+  "withdraw": [],
+  "notes": "DOI confirmed (PubMed 22723705). Title change is only em-dash spacing; withdrawn pending the open em-dash house-form rule (batch 02 q5, batch 06 q2). Sources disagree (PubMed 'graded--single', Crossref 'Graded - Single'). RECONCILED 2026-09-26: Title withdrawal cancelled: the em-dash rule (user, round 1) is 'a---b' with no spaces, which is the post-check's title."
  },
  {
   "key": "UncaEtal11",
@@ -209,9 +201,6 @@
     "quote": "\"title\":[\"Gamma activity in human EEG is related to highspeed memory comparisons during object selective attention\"]"
    }
   },
-  "notes": "Every fetchable record prints 'highspeed' without hyphen: Crossref, MPG PuRe item_722740, OpenAlex; T&F page blocked (403). Printed PDF unseen.",
-  "questions": [
-   "Publisher metadata (Crossref and repositories) prints a compound closed up (highspeed) where the cited entry hyphenates it, and the printed PDF is unreachable: copy the metadata spelling or keep the hyphen?"
-  ]
+  "notes": "Every fetchable record prints 'highspeed' without hyphen: Crossref, MPG PuRe item_722740, OpenAlex; T&F page blocked (403). Printed PDF unseen. RECONCILED 2026-09-26: Question answered by rule: compound spelling: publisher/Crossref form (default); value already conforms."
  }
 ]

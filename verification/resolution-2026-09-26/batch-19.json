@@ -10,11 +10,8 @@
    }
   },
   "withdraw": [],
-  "remove": [
-   "pages"
-  ],
-  "notes": "Book confirmed by LoC 64022089 (Welford and Birren, Springfield, Ill., Thomas [1965]); chapter author and title confirmed by a Google Scholar citation record (abstracting-index evidence, round-2 rule c). Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 114--149 are not printed in any source reached (HathiTrust search-only returns no hits, Google Books snippet view shows no contents for this chapter), so removed per the unconfirmable-optional-field rule.",
-  "questions": []
+  "remove": [],
+  "notes": "Book confirmed by LoC 64022089 (Welford and Birren, Springfield, Ill., Thomas [1965]); chapter author and title confirmed by a Google Scholar citation record (abstracting-index evidence, round-2 rule c). Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 114--149 are not printed in any source reached (HathiTrust search-only returns no hits, Google Books snippet view shows no contents for this chapter), so removed per the unconfirmable-optional-field rule. RECONCILED 2026-09-26: Removal of pages withdrawn: an official contents list confirms the start page (IA full text of the book (behavioragingner0000atwe / 0000jame): chapter '8 COGNITIVE SETS, SPEED AND ACCURACY OF PERFORMANCE IN THE ELDERLY JOSEPH F. BRINLEY' opens on printed p. 114 ('...is gratefully acknowledged. 114 Cognitive Sets, Speed and Accuracy of Performance 115'); https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Cognitive%20sets%2C%20speed%20and%20accuracy%22); per the default the cited range is kept when its start page matches."
  },
  {
   "key": "ChunWolf01",
@@ -51,13 +48,8 @@
    }
   },
   "withdraw": [],
-  "remove": [
-   "pages"
-  ],
-  "notes": "Google Books contents of Classical Conditioning II (Appleton-Century-Crofts, 1972) print the chapter as 'R A RESCORLA A R WAGNER 64', confirming authors and the start page 64. The end page 99 and the next chapter's start page could not be seen (snippet view, no preview; HathiTrust search-only hides results), so pages are removed per the unconfirmable-optional-field rule. Apply the post-check (Pavlovian title fix, Appleton-Century-Crofts).",
-  "questions": [
-   "When an official contents list confirms a chapter's start page (e.g. Google Books contents 'R A RESCORLA A R WAGNER 64') but no source shows its end page or the next chapter's start, should Pages be removed, kept as the cited range, or reduced to the start page only?"
-  ]
+  "remove": [],
+  "notes": "Google Books contents of Classical Conditioning II (Appleton-Century-Crofts, 1972) print the chapter as 'R A RESCORLA A R WAGNER 64', confirming authors and the start page 64. The end page 99 and the next chapter's start page could not be seen (snippet view, no preview; HathiTrust search-only hides results), so pages are removed per the unconfirmable-optional-field rule. Apply the post-check (Pavlovian title fix, Appleton-Century-Crofts). RECONCILED 2026-09-26: Removal of pages withdrawn: an official contents list confirms the start page (Google Books contents 'R A RESCORLA A R WAGNER 64' (the batch's own evidence); https://books.google.com/books?vid=LCCN72177684); per the default the cited range is kept when its start page matches."
  },
  {
   "key": "Bowe72",
@@ -75,12 +67,8 @@
    }
   },
   "withdraw": [],
-  "remove": [
-   "pages",
-   "chapter"
-  ],
-  "notes": "Author and full title confirmed by a Google Scholar citation record (Harvard's partial contents truncate the title to 'Stimulus-sampling theory of encoding'). Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 85--121 and chapter 5 are not printed in any source reached (Google Books snippet view, HathiTrust search-only, IA lending-only), so removed. Apply the post-check (Washington, DC; Winston).",
-  "questions": []
+  "remove": [],
+  "notes": "Author and full title confirmed by a Google Scholar citation record (Harvard's partial contents truncate the title to 'Stimulus-sampling theory of encoding'). Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 85--121 and chapter 5 are not printed in any source reached (Google Books snippet view, HathiTrust search-only, IA lending-only), so removed. Apply the post-check (Washington, DC; Winston). RECONCILED 2026-09-26: Removal of pages, chapter withdrawn: an official contents list confirms the start page (IA contents of Coding Processes in Human Memory (codingprocessesi0000unse): '5 STIMULUS-SAMPLING THEORY OF ENCODING VARIABILITY, Cordon H. Bower . 85' (also confirms chapter 5); https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Coding%20processes%20in%20human%20memory%22%20%22VARIABILITY%2C%20Cordon%20H.%20Bower%22); per the default the cited range is kept when its start page matches."
  },
  {
   "key": "Este72",
@@ -93,11 +81,8 @@
    }
   },
   "withdraw": [],
-  "remove": [
-   "pages"
-  ],
-  "notes": "Title in Harvard contents of Coding Processes in Human Memory; author confirmed by a Google Scholar citation record. Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 161--190 unconfirmable (snippet view only, IA lending-only), removed.",
-  "questions": []
+  "remove": [],
+  "notes": "Title in Harvard contents of Coding Processes in Human Memory; author confirmed by a Google Scholar citation record. Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 161--190 unconfirmable (snippet view only, IA lending-only), removed. RECONCILED 2026-09-26: Removal of pages withdrawn: an official contents list confirms the start page (IA contents: '7 AN ASSOCIATIVE BASIS FOR CODING AND ORGANIZATION IN MEMORY, W. K. Estes . 16!' (OCR of 161; follows Johnson's 'References 156'); https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Coding%20processes%20in%20human%20memory%22%20%22ORGANIZATION%20IN%20MEMORY%2C%20W.%20K.%20Estes%22); per the default the cited range is kept when its start page matches."
  },
  {
   "key": "John72a",
@@ -110,11 +95,8 @@
    }
   },
   "withdraw": [],
-  "remove": [
-   "pages"
-  ],
-  "notes": "Title in Harvard contents of Coding Processes in Human Memory; author confirmed by a Google Scholar citation record. Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 125--159 unconfirmable, removed.",
-  "questions": []
+  "remove": [],
+  "notes": "Title in Harvard contents of Coding Processes in Human Memory; author confirmed by a Google Scholar citation record. Scholar result read in a real browser (plain fetch blocked); abstracting-index citation accepted under round-2 rule (c). Pages 125--159 unconfirmable, removed. RECONCILED 2026-09-26: Removal of pages withdrawn: an official contents list confirms the start page (IA contents: 'ORGANIZATION AND THE CONCEPT OF A MEMORY CODE, Neal F. Johnson . 125 How We Characterize What We Know 126'; https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Coding%20processes%20in%20human%20memory%22%20%22How%20We%20Characterize%22); per the default the cited range is kept when its start page matches."
  },
  {
   "key": "Unde72a",
@@ -151,11 +133,8 @@
   "decision": "apply",
   "set": {},
   "withdraw": [],
-  "remove": [
-   "pages"
-  ],
-  "notes": "Authors and title confirmed by the IA catalogue contents ('Toward a cognitive theory of associative learning / Irvin Rock, John Ceraso') and a Google Scholar record ('I Rock, J Ceraso - Cognition: Theory, research, promise, 1964 - Harper & Row New York'). Pages 110--146 not printed in any source reached (IA lending-only, no Google Books preview), removed.",
-  "questions": []
+  "remove": [],
+  "notes": "Authors and title confirmed by the IA catalogue contents ('Toward a cognitive theory of associative learning / Irvin Rock, John Ceraso') and a Google Scholar record ('I Rock, J Ceraso - Cognition: Theory, research, promise, 1964 - Harper & Row New York'). Pages 110--146 not printed in any source reached (IA lending-only, no Google Books preview), removed. RECONCILED 2026-09-26: Removal of pages withdrawn: an official contents list confirms the start page (IA contents of Cognition: Theory, Research, Promise (cognitiontheoryr0000mart): 'TOWARD A COGNITIVE THEORY OF ASSOCIATIVE LEARNING Irvin Rock and John Ceraso 110'; https://archive.org/services/search/beta/page_production/?service_backend=fts&hits_per_page=100&user_query=%22Cognition%3A%20theory%2C%20research%2C%20promise%22%20%22cognitive%20theory%20of%20associative%20learning%22); per the default the cited range is kept when its start page matches."
  },
  {
   "key": "Crai00",
@@ -220,7 +199,7 @@
   "withdraw": [],
   "remove": [],
   "drop_reason": "duplicate of KahaEtal08a (user-approved merge); already deleted in HEAD (verification/key-deletions.json, keeper KahaEtal08a)",
-  "notes": "The queued KahaEtal08b (chapter 'Associative processes in episodic memory') is the same chapter as KahaEtal08a and was removed in 282d321. CAUTION: the key KahaEtal08b in HEAD now names a different work (Kahana, Sederberg and Howard 2008, Psychological Review 115(4), renamed from KahaEtal08c per key-renames.json); do NOT delete it.",
+  "notes": "The queued KahaEtal08b (chapter 'Associative processes in episodic memory') is the same chapter as KahaEtal08a and was removed in 282d321. CAUTION: the key KahaEtal08b in HEAD now names a different work (Kahana, Sederberg and Howard 2008, Psychological Review 115(4), renamed from KahaEtal08c per key-renames.json); do NOT delete it. RECONCILED 2026-09-26: Checked: this drop is about the deleted queued work only. HEAD KahaEtal08b now names a different work (key-renames.json), and postcheck.apply_resolutions/build_resolution_removals treat a drop of a key listed in key-deletions.json as a no-op ('the key now names another work ... not removed'). The decision stays 'drop' for that machinery; an applier must NOT delete HEAD KahaEtal08b.",
   "questions": []
  },
  {
@@ -251,11 +230,16 @@
     "value": "D H Krantz and R C Atkinson and R D Luce and P Suppes",
     "url": "https://escholarship.org/content/qt40x8f9s7/qt40x8f9s7.pdf",
     "quote": "Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.)"
+   },
+   "publisher": {
+    "value": "W H Freeman",
+    "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.lccn=73021887&maximumRecords=1&recordSchema=mods",
+    "quote": "<namePart>W. H. Freeman</namePart>"
    }
   },
   "withdraw": [],
   "remove": [],
-  "notes": "Stanford IMSSS Technical Report 194 (eScholarship) prints 'SEARCH AND DECISION PROCESSES IN RECOGNITION MEMORY / Richard C. Atkinson ... James F. Juola' and 'To be pUblished in: Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.) Contemporary Developments in Mathematical Psychology'. LoC 73021887 prints only 'Krantz [and others]'; the full editor list is expanded per the 'and others' default (adds R D Luce). Book (Freeman, San Francisco, 1974) confirmed by LoC.",
+  "notes": "Stanford IMSSS Technical Report 194 (eScholarship) prints 'SEARCH AND DECISION PROCESSES IN RECOGNITION MEMORY / Richard C. Atkinson ... James F. Juola' and 'To be pUblished in: Krantz, D. H., Atkinson, R. C., Luce, R. D., and Suppes P. (Eds.) Contemporary Developments in Mathematical Psychology'. LoC 73021887 prints only 'Krantz [and others]'; the full editor list is expanded per the 'and others' default (adds R D Luce). Book (Freeman, San Francisco, 1974) confirmed by LoC. RECONCILED 2026-09-26: Publisher 'Freeman' -> 'W H Freeman' as printed (LoC), the user's publisher-initials rule, matching PribEtal74 (batch 04, same book).",
   "questions": []
  },
  {
