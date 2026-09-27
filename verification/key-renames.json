@@ -596,5 +596,61 @@
   "date": "2026-09-26",
   "reason": "wave3: suffix rule: LegaEtal11b renamed to LegaEtal12 (house suffix rule (helpers.check_key_suffixes) after this batch)",
   "commit": "wave3"
+ },
+ {
+  "old_key": "CoheEtal08a",
+  "new_key": "CoheEtal09c",
+  "date": "2026-09-26",
+  "reason": "wave4: key does not follow the corrected metadata; CoheEtal09 is taken by a different work (CoheEtal09a, CoheEtal09b); resolution (batch-06): key CoheEtal09c confirmed (wave4 merged.json (correction; resolution apply batch-06))",
+  "commit": "wave4"
+ },
+ {
+  "old_key": "MarsEtal06",
+  "new_key": "MarsEtal00",
+  "date": "2026-09-26",
+  "reason": "wave4: key does not follow the corrected metadata; resolution (batch-06): key MarsEtal00 confirmed (wave4 merged.json (correction; resolution apply batch-06))",
+  "commit": "wave4"
+ },
+ {
+  "old_key": "YantMord91",
+  "new_key": "MordYant91",
+  "date": "2026-09-26",
+  "reason": "wave4: key does not follow the corrected metadata; resolution (batch-06): key MordYant91 confirmed (wave4 merged.json (correction; resolution apply batch-06))",
+  "commit": "wave4"
+ },
+ {
+  "old_key": "Hirs86",
+  "new_key": "HirsEtal86",
+  "date": "2026-09-26",
+  "reason": "wave4: key does not follow the corrected metadata; resolution (batch-07): key HirsEtal86 confirmed (wave4 merged.json (correction; resolution apply batch-07))",
+  "commit": "wave4"
+ },
+ {
+  "old_key": "CranPari57",
+  "new_key": "CranParr57",
+  "date": "2026-09-26",
+  "reason": "wave4: key does not follow the corrected metadata (wave4 merged.json (correction; resolution apply batch-07))",
+  "commit": "wave4"
+ },
+ {
+  "old_key": "Whal20",
+  "new_key": "TrusWhal20",
+  "date": "2026-09-26",
+  "reason": "wave4: key does not follow the corrected metadata; resolution (batch-07): key TrusWhal20 confirmed (wave4 merged.json (correction; resolution apply batch-07))",
+  "commit": "wave4"
+ },
+ {
+  "old_key": "Kopp78",
+  "new_key": "Kopp63",
+  "date": "2026-09-26",
+  "reason": "wave4: key does not follow the corrected metadata; resolution (batch-07): key Kopp63 confirmed (wave4 merged.json (correction; resolution apply batch-07))",
+  "commit": "wave4"
+ },
+ {
+  "old_key": "CoheEtal08b",
+  "new_key": "CoheEtal08",
+  "date": "2026-09-26",
+  "reason": "wave4: suffix rule: CoheEtal08a renamed to CoheEtal09c (house suffix rule (helpers.check_key_suffixes) after this batch)",
+  "commit": "wave4"
  }
 ]

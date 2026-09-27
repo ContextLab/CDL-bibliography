@@ -86,6 +86,17 @@ running the pipeline, so they were `pending` at the start and the fresh restore 
   (wave 2), LegaEtal11a -> LegaEtal11 (wave 3), CoheEtal08b -> CoheEtal08 (wave 4), Arch11a -> Arch11 (wave 6),
   Frie08b -> Frie08 (wave 8, as the wave-1 README expected) and deCa05b -> deCa05 (wave 9).
 
+## Stopped before wave 5: a test reads the live cdl.bib
+
+A dry run of all eight waves in a scratch worktree (every wave staged and `check_bib` clean) found that the
+full suite breaks at wave 5: `tests/test_sfn_abstracts.py::test_held_on_surname_consensus` expects KrauEtal12's
+proposed `R J Robinson` to be held by "library consensus", and `correction_proposals.library_people` reads the
+live cdl.bib (`LIBRARY_BIB`). The consensus is KrauEtal13's cited `R J {Robinson I I }`, which wave 5 corrects to
+`R J Robinson` (reviewer value, ready row). With wave 5 applied the test gets `proposal` instead of `held`. The
+test is not ours to edit, so waves 5-9 are not applied here; their proposals were built and staged cleanly in the
+dry run (build.py already holds their `check_bib` exceptions). No other test failed on the dry run's final
+cdl.bib.
+
 ## Results
 
 Library counts come from `bibcheck.py crossref status cdl.bib`.
@@ -95,3 +106,4 @@ Library counts come from `bibcheck.py crossref status cdl.bib`.
 | start | | | | | | 6,401 entries: 4,537 verified, 1,828 needs_review, 5 pending, 31 human |
 | wave2 | 191: 189 edited, 19 renamed (1 rename only), 1 deleted (CronEtal94); 5 pending entries verified with it | 8 | 5 / 0 (first attempt 220) | 22 / 0 (first attempt 702) | 809 / 773 | 6,400 entries: 4,590 verified, 1,779 needs_review, 31 human |
 | wave3 | 191: 188 edited, 14 renamed (1 rename only), 2 deleted (Seac97, TongEtal95) | 4 | 221 / 0 | 666 / 0 | 1076 / 756 | 6,398 entries: 4,660 verified, 1,707 needs_review, 31 human |
+| wave4 | 189: 188 edited, 8 renamed (1 rename only), 0 deleted | 3 | 206 / 0 | 568 / 0 | 1003 / 744 | 6,398 entries: 4,763 verified, 1,604 needs_review, 31 human |

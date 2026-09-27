@@ -195,7 +195,21 @@
     "DennReed92": "DennHunt92",
     "LegaEtal11a": "LegaEtal11"
    }
+  },
+  {
+   "batch": "wave4",
+   "removed": [],
+   "renames": {
+    "CoheEtal08a": "CoheEtal09c",
+    "MarsEtal06": "MarsEtal00",
+    "YantMord91": "MordYant91",
+    "Hirs86": "HirsEtal86",
+    "CranPari57": "CranParr57",
+    "Whal20": "TrusWhal20",
+    "Kopp78": "Kopp63",
+    "CoheEtal08b": "CoheEtal08"
+   }
   }
  ],
- "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave3-staged.bib"
+ "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave4-staged.bib"
 }
