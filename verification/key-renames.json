@@ -1436,5 +1436,26 @@
   "date": "2026-09-26",
   "reason": "wave9: key does not follow the corrected metadata; resolution (batch-26): key YingEtal93 confirmed (wave9 merged.json (correction; resolution apply batch-26))",
   "commit": "wave9"
+ },
+ {
+  "old_key": "RegeEtal18",
+  "new_key": "RegeEtal19",
+  "date": "2026-09-27",
+  "reason": "res27: house key rule (authors2key of author/editor and year, suffix rule) (resolution batch-27 (apply))",
+  "commit": "res27"
+ },
+ {
+  "old_key": "HameChid08",
+  "new_key": "HameChid09",
+  "date": "2026-09-27",
+  "reason": "res27: house key rule (authors2key of author/editor and year, suffix rule) (resolution batch-27 (apply))",
+  "commit": "res27"
+ },
+ {
+  "old_key": "Luca83",
+  "new_key": "Luca81",
+  "date": "2026-09-27",
+  "reason": "res27: house key rule (authors2key of author/editor and year, suffix rule) (resolution batch-27 (apply))",
+  "commit": "res27"
  }
 ]
