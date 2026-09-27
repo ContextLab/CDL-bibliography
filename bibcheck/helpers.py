@@ -243,10 +243,53 @@ def last_name(names):
         return x[0]
 
 
+def split_names(names):
+    """Split a BibTeX name list at " and " outside braces (2026-09-27): a braced
+    group or organization such as ``{U.S. Food and Drug Administration}`` is one
+    name, not two. A list with unbalanced braces is split as before."""
+    parts, depth, start, i = [], 0, 0, 0
+    while i < len(names):
+        c = names[i]
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth < 0:
+                return names.split(" and ")
+        elif depth == 0 and names.startswith(" and ", i):
+            parts.append(names[start:i])
+            i += 5
+            start = i
+            continue
+        i += 1
+    if depth != 0:
+        return names.split(" and ")
+    parts.append(names[start:])
+    return parts
+
+
+def organization_key(name):
+    """Key part of a fully braced (organization/group) author: the first 4 letters of
+    its first word, letters only (user rule 2026-09-27, resolution-plan README
+    "Organization authors in keys"): {U.S. Food and Drug Administration} -> US,
+    {Centers for Disease Control and Prevention} -> Cent, {RNS System ...} -> RNS.
+    None for any other name ({van der Meer} inside a personal name is not braced whole)."""
+    name = name.strip()
+    if not fully_braced(name):
+        return None
+    inner = name[1:-1].strip()
+    while fully_braced(inner):  # the formatter's double-braced form
+        inner = inner[1:-1].strip()
+    words = remove_accents_and_hyphens(decode(inner)).split()
+    if not words:
+        return None
+    return remove_non_letters(remove_curlies(words[0]))[:4]
+
+
 def last_names_from_str(x):
     # pass in a single string (and-separated) or list of authors and get back a list of last names
     if type(x) == str:
-        return [last_name(n) for n in x.split(" and ")]
+        return [last_name(n) for n in split_names(x)]
     elif type(x) == list:
         return [last_name(n) for n in x]
     else:
@@ -255,6 +298,11 @@ def last_names_from_str(x):
 
 def authors2key(authors, year):
     def key(author):
+        # an organization (a fully braced name) is one author keyed by its first word
+        org = organization_key(author)
+        if org:
+            return org
+
         # convert accented unicode characters to closest ascii equivalent
         author = decode(author)
 
@@ -269,7 +317,7 @@ def authors2key(authors, year):
 
     yr_str = str(year)[-2:]
 
-    authors = authors.split(" and ")
+    authors = split_names(authors)
     if len(authors) == 0:
         raise Exception("Author information missing, no key generated")
     elif len(authors) == 1:
@@ -869,8 +917,8 @@ def fully_braced(s):
 
 
 def reformat_author(author, fragment=False):
-    if len(author.split(" and ")) > 1:
-        return " and ".join([reformat_author(a) for a in author.split(" and ")])
+    if len(split_names(author)) > 1:
+        return " and ".join([reformat_author(a) for a in split_names(author)])
 
     # A name braced whole is a corporate or group author and is kept exactly
     # as given (held form 2026-09-27, KingEtal11 "{RNS System in Epilepsy
@@ -1088,6 +1136,9 @@ def insert_non_letters(x, y):
     return z
 
 
+SECTION_DESIGNATION = re.compile(r"\d+[A-Za-z]?(?:\([A-Za-z0-9]{1,4}\))+[.,;:]?")
+
+
 def format_title(title):
     def ends_in_punctuation(s):
         return (len(s) > 0) and (s[-1] in [".", "!", "?"])
@@ -1129,6 +1180,10 @@ def format_title(title):
 
         # leave "a" and specified caps unchanged
         if w.lower() == "a" or (before_letters(w, "{") and after_letters(w, "}")):
+            reformatted_title.append(w)
+        # a statutory section with lettered subsections, kept as printed (held form
+        # 2026-09-27, FoodAdmi20b "section 513(f)(2)" became "513({F})(2)")
+        elif SECTION_DESIGNATION.fullmatch(w):
             reformatted_title.append(w)
         # if w contains curly braces, just append it unchanged
         elif (w.count("{") > 0) or (w.count("}") > 0):

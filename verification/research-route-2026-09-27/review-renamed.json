@@ -1,0 +1,36 @@
+[
+ {
+  "cycle": "run",
+  "network_requests": 0,
+  "added_review_records": 6,
+  "statuses": {
+   "MorrRNS11": "needs_review",
+   "Cent23": "metadata_verified",
+   "R12": "metadata_verified",
+   "US20a": "needs_review",
+   "US20b": "needs_review"
+  },
+  "library_statuses": {
+   "metadata_verified": 6052,
+   "needs_review": 305,
+   "human_verified": 31
+  }
+ },
+ {
+  "cycle": "repeat",
+  "network_requests": 0,
+  "added_review_records": 0,
+  "statuses": {
+   "MorrRNS11": "needs_review",
+   "Cent23": "metadata_verified",
+   "R12": "metadata_verified",
+   "US20a": "needs_review",
+   "US20b": "needs_review"
+  },
+  "library_statuses": {
+   "metadata_verified": 6052,
+   "needs_review": 305,
+   "human_verified": 31
+  }
+ }
+]

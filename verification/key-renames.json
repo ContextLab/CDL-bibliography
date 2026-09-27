@@ -1492,5 +1492,40 @@
   "date": "2026-09-27",
   "reason": "res28to33: suffix rule: another entry moves to this key base (house suffix rule (helpers.check_key_suffixes) after this batch)",
   "commit": "res28to33"
+ },
+ {
+  "old_key": "MorrRNSS11",
+  "new_key": "MorrRNS11",
+  "date": "2026-09-27",
+  "reason": "organization-author key rule, user 2026-09-27",
+  "commit": "organization-keys"
+ },
+ {
+  "old_key": "ContPrev23",
+  "new_key": "Cent23",
+  "date": "2026-09-27",
+  "reason": "organization-author key rule, user 2026-09-27",
+  "commit": "organization-keys"
+ },
+ {
+  "old_key": "FoodAdmi20a",
+  "new_key": "US20a",
+  "date": "2026-09-27",
+  "reason": "organization-author key rule, user 2026-09-27",
+  "commit": "organization-keys"
+ },
+ {
+  "old_key": "FoodAdmi20b",
+  "new_key": "US20b",
+  "date": "2026-09-27",
+  "reason": "organization-author key rule, user 2026-09-27",
+  "commit": "organization-keys"
+ },
+ {
+  "old_key": "RCor12",
+  "new_key": "R12",
+  "date": "2026-09-27",
+  "reason": "organization-author key rule, user 2026-09-27",
+  "commit": "organization-keys"
  }
 ]

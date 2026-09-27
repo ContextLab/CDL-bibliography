@@ -91,10 +91,60 @@ def test_braced_group_authors_round_trip(author):
 
 
 def test_group_author_key():
-    # the key follows the group author as authors2key builds it
+    # an organization (a fully braced name) is ONE author keyed by the first 4 letters of
+    # its first word (user rule 2026-09-27, resolution-plan README "Organization authors
+    # in keys"; the old key was MorrRNSS11)
     assert helpers.authors2key("M J Morrell and {RNS System in Epilepsy Study Group}", "2011") \
-        == "MorrRNSS11"
+        == "MorrRNS11"
     assert helpers.authors2key("{DeepSeek-AI}", "2025") == "Deep25"
+
+
+# --- organizations: braced names are never split at " and " (2026-09-27) ----------------
+
+@pytest.mark.parametrize("author,key", [
+    ("{U.S. Food and Drug Administration}", "US20"),              # FoodAdmi20a/b -> US20a/b
+    ("{Centers for Disease Control and Prevention}", "Cent20"),   # ContPrev23 -> Cent23
+    ("{ R Core Team}", "R20"),                                    # RCor12 as printed -> R12
+    ("{American Academy of Sleep Medicine}", "Amer20"),           # Amer23a-c (already conform)
+    ("{Qwen Team}", "Qwen20"),                                    # Qwen25, Qwen26
+    ("{Stan Development Team}", "Stan20"),                        # Stan13
+    ("{{U.S. Food and Drug Administration}}", "US20"),            # the double-braced form
+])
+def test_organization_is_one_author_keyed_by_its_first_word(author, key):
+    assert helpers.split_names(author) == [author]
+    assert helpers.authors2key(author, "2020") == key
+    assert helpers.reformat_author(author) == author
+
+
+def test_organization_with_and_round_trips():
+    # HEAD formatted it as "{ U S Food and Drug Administration}", splitting the group at
+    # " and " and reading "U.S." as initials; FoodAdmi20a/b carried Force for that.
+    fda = "{U.S. Food and Drug Administration}"
+    assert helpers.reformat_author(fda) == fda
+    assert helpers.last_names_from_str(fda) == ["Administration"]
+    # a person followed by an organization, and the organization first (ProjEtal18)
+    assert helpers.split_names("M J Morrell and " + fda) == ["M J Morrell", fda]
+    assert helpers.authors2key("{Project Jupyter} and M Bussonnier and J Forde", "2018") == "ProjEtal18"
+    assert helpers.authors2key(fda + " and J Smith", "2020") == "USSmit20"
+
+
+def test_braced_particle_surname_is_a_person_not_an_organization():
+    # Real bylines (PezzEtal14-style, van der Meer): a braced surname inside a personal
+    # name is not braced whole, so it is keyed and formatted as before.
+    assert helpers.organization_key("M A A {van der Meer}") is None
+    assert helpers.authors2key("M A {van der Meer} and A A Carey and Y Tanaka", "2010") == "vand" + "Etal10"
+    assert helpers.authors2key("G Pezzulo and M A A {van der Meer} and C S Lansink and C M A Pennartz",
+                               "2014") == "PezzEtal14"
+    assert helpers.authors2key("A {de la Vega} and E Finn", "2021") == "delaFinn21"
+    assert helpers.reformat_author("M A {van der Meer} and A A Carey") == "M A {van der Meer} and A A Carey"
+
+
+def test_split_names_matches_str_split_outside_braces():
+    assert helpers.split_names("A B Smith and C D Jones") == ["A B Smith", "C D Jones"]
+    assert helpers.split_names("A {Smith and Jones}") == ["A {Smith and Jones}"]
+    # unbalanced braces fall back to the old split
+    assert helpers.split_names("A {Smith and C Jones") == ["A {Smith", "C Jones"]
+    assert helpers.split_names("A Smith} and C Jones") == ["A Smith}", "C Jones"]
 
 
 def test_unbraced_group_name_still_read_as_person():
@@ -154,7 +204,7 @@ def test_name_negative_controls():
 
 def test_held_values_pass_check_bib(tmp_path):
     bib = tmp_path / "held.bib"
-    bib.write_text("""@article{MorrRNSS11,
+    bib.write_text("""@article{MorrRNS11,
 \tAuthor = {M J Morrell and {RNS System in Epilepsy Study Group}},
 \tJournal = {Neurology},
 \tPages = {81--190, 257--339},
@@ -196,9 +246,47 @@ def test_held_values_pass_check_bib(tmp_path):
 \tPages = {28P--29P},
 \tTitle = {Third test title},
 \tYear = {1972}}
+
+@misc{US20a,
+\tAuthor = {{U.S. Food and Drug Administration}},
+\tHowpublished = {\\url{https://www.accessdata.fda.gov/cdrh_docs/reviews/DEN200033.pdf}},
+\tTitle = {{DEN200033} de novo decision summary: {NightWare} kit (digital therapy device)},
+\tYear = {2020}}
+
+@misc{US20b,
+\tAuthor = {{U.S. Food and Drug Administration}},
+\tHowpublished = {\\url{https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033}},
+\tTitle = {Device classification under section 513(f)(2) (de novo) --- {DEN200033}},
+\tYear = {2020}}
+
+@misc{Cent23,
+\tAuthor = {{Centers for Disease Control and Prevention}},
+\tHowpublished = {\\url{https://www.cdc.gov/media/releases/2023/s0810-US-Suicide-Deaths-2022.html}},
+\tTitle = {Provisional suicide deaths in the {United States}, 2022},
+\tYear = {2023}}
 """)
     errors, _ = helpers.check_bib(str(bib), verbose=False)
     assert errors == {}
+
+
+def test_check_bib_wants_the_organization_keys(tmp_path):
+    # FoodAdmi20a/b (HEAD, with Force) without Force: the author now passes, and the old
+    # keys are corrected to the organization rule's US20a/US20b.
+    bib = tmp_path / "org.bib"
+    bib.write_text("""@misc{FoodAdmi20a,
+\tAuthor = {{U.S. Food and Drug Administration}},
+\tTitle = {{DEN200033} de novo decision summary: {NightWare} kit (digital therapy device)},
+\tYear = {2020}}
+
+@misc{FoodAdmi20b,
+\tAuthor = {{U.S. Food and Drug Administration}},
+\tTitle = {Device classification under section 513(f)(2) (de novo) --- {DEN200033}},
+\tYear = {2020}}
+""")
+    errors, _ = helpers.check_bib(str(bib), verbose=False)
+    assert set(errors) == {"FoodAdmi20a", "FoodAdmi20b"}
+    assert {e["ID"] for e in errors.values()} == {"US20a", "US20b"}
+    assert all(set(e) == {"ID"} for e in errors.values())   # no author correction
 
 
 def test_check_bib_still_rejects_malformed_pages(tmp_path):
@@ -212,3 +300,13 @@ def test_check_bib_still_rejects_malformed_pages(tmp_path):
 """)
     with pytest.raises(Exception, match="ambiguous or incorrect"):
         helpers.check_bib(str(bib), verbose=False)
+
+
+def test_statutory_section_kept_in_titles():
+    # FoodAdmi20b: "section 513(f)(2)" became "513({F})(2)" (the entry carried Force for it)
+    title = "Device classification under section 513(f)(2) (de novo) --- {DEN200033}"
+    assert helpers.format_title(title) == title
+    # negative controls: a lone lettered subsection and a letter-led designation are
+    # still formatted as before
+    assert helpers.format_title("Rule (f) of the code") == "Rule ({F}) of the code"
+    assert helpers.format_title("Section F(2) of the code") == "Section {F}(2) of the code"
