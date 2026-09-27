@@ -65,3 +65,15 @@ Every `set` value needs a URL and verbatim quote the validator can fetch (no ima
 
 Keep NCBI E-utilities to at most 1 request per second. Prefer direct APIs and catalogues;
 WebSearch quota may be limited.
+
+## Clarification (2026-09-26, after batch 9)
+"As printed" is subject to the user's standing house-form rules, which are formatting rules:
+no name suffixes (Jr, III — drop them even when printed), initials without periods, all
+initials the source gives, keys follow corrected metadata. Do not restore a suffix because the
+byline prints it (TrenEtal93 in batch 9 was wrong to).
+
+## Rule answers (user, 2026-09-26) — apply these from now on
+- Em dashes in titles: `a---b`, no spaces.
+- Conflicting records (e.g. last page), printed PDF unseen: publisher page / Crossref wins; then PubMed.
+- Author names: the author's correct, most complete name (fix misprints like 'Tulvig', 'Wickelgran', 'Waszcak'→'Waszczak' if the author's other records spell it so; keep known middle initials); cite evidence from other records of the same author.
+- Unconfirmable optional fields (chapter pages, editors, volume) on a verified work: `remove` the field (do not keep an unconfirmed value, do not infer from secondary sources).

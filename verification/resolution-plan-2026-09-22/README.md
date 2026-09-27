@@ -215,3 +215,9 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 2. No conference abstracts. Before dropping one, verify it is *actually* an abstract and not a real paper; conference *proceedings* papers are fine.
 3. All information must be *as printed* in the official record, up to the formatting differences bibcheck requires.
 4. Flag anything needing the user, phrased where possible as a question about a *rule* that generalizes; single-entry questions only when unavoidable.
+
+## Rule answers (user, 2026-09-26, round 1 of resolution questions)
+- **Em dashes in titles:** `a---b`, no spaces, regardless of source spacing.
+- **Conflicting official records** (usually the last page) when the printed PDF can't be seen: publisher page / Crossref wins; if the publisher is unreachable, Crossref, then PubMed.
+- **Author names** that a record prints differently from the author's usual name (misprint 'Tulvig', missing middle initial 'Walter Pitts', 'Le Doux' vs 'LeDoux'): use the author's correct, most complete name; cite evidence from other records of the same author.
+- **Unconfirmable optional fields** (chapter pages, editors, volume) on a verified work: remove the field.
