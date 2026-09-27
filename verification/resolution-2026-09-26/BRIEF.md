@@ -77,3 +77,10 @@ byline prints it (TrenEtal93 in batch 9 was wrong to).
 - Conflicting records (e.g. last page), printed PDF unseen: publisher page / Crossref wins; then PubMed.
 - Author names: the author's correct, most complete name (fix misprints like 'Tulvig', 'Wickelgran', 'Waszcak'→'Waszczak' if the author's other records spell it so; keep known middle initials); cite evidence from other records of the same author.
 - Unconfirmable optional fields (chapter pages, editors, volume) on a verified work: `remove` the field (do not keep an unconfirmed value, do not infer from secondary sources).
+
+## Rule answers round 2 + defaults (2026-09-26) — see verification/resolution-plan-2026-09-22/README.md
+- No verifiable record → drop, even if the user earlier marked it "real article, keep".
+- Evidence accepted: image-only scans (transcribe the quote from the page image and say so in notes), pages read in a real browser when fetches are blocked, and an abstracting-index citation alone (PsycINFO/Google Scholar) is enough to keep an entry.
+- End page not printed anywhere: infer from the next item's printed start page − 1 (cite the TOC/next item).
+- Dissertation Abstracts International entries → @phdthesis (school, degree year) from a catalogue/DataCite record.
+- Follow the "Defaults chosen by Claude" list in the README for supplements, roman volumes, subtitles, ×, ACM volumes, two-part articles, software titles, web-only articles, "and others" lists, multi-volume editors, quoted titles, compounds, renamed journals, collective abstract records, society-proceedings years, reprints, and title misprints.

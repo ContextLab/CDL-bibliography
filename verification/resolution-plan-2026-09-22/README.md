@@ -221,3 +221,29 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - **Conflicting official records** (usually the last page) when the printed PDF can't be seen: publisher page / Crossref wins; if the publisher is unreachable, Crossref, then PubMed.
 - **Author names** that a record prints differently from the author's usual name (misprint 'Tulvig', missing middle initial 'Walter Pitts', 'Le Doux' vs 'LeDoux'): use the author's correct, most complete name; cite evidence from other records of the same author.
 - **Unconfirmable optional fields** (chapter pages, editors, volume) on a verified work: remove the field.
+
+## Rule answers (user, 2026-09-26, round 2)
+- **Rule 1 beats earlier single-entry keeps:** no verifiable record → drop, even if previously marked "real article, keep" (PailEtal00, MannEtal97, TongEtal95).
+- **Evidence accepted:** (a) image-only scans of the original printing (quote transcribed from the page image); (b) publisher pages read in a real browser when plain fetches are blocked; (c) an abstracting-index citation alone (PsycINFO/Scholar) is enough to keep an entry.
+- **End pages:** when no source prints the end page, infer it from the next item's printed start page − 1 (printed TOC or next article).
+- **Dissertation Abstracts International:** cite the dissertation itself as @phdthesis (school, degree year) from a catalogue/DataCite record.
+
+## Defaults chosen by Claude for the remaining rule questions (2026-09-26; user may veto)
+- Supplements: parent journal name; Number as printed (e.g. `4 Suppl 2`).
+- Roman-numeral volumes: arabic numerals.
+- Subtitle printed after a period: colon (house form).
+- Multiplication sign printed as 'x'/'X' in metadata: `$\times$`.
+- ACM-style "Volume <year>": omit Volume.
+- Article printed in two parts: both ranges, `81--190, 257--339`.
+- Software at its first version: the first version's title as registered (no version number).
+- Web-only newspaper/magazine articles: cite the web version (url, online year); remove unconfirmable print volume/issue/pages.
+- Truncated "and others" author lists: expand to the full printed list.
+- Chapter in one volume of a multi-volume work: Editor = that volume's editor as printed.
+- Person + corporate group byline: key from bibcheck's authors2key as it stands (consistency).
+- A title quoting another title: keep the marks as ``X''.
+- Compound spelled differently (highspeed vs high-speed): publisher/Crossref form (precedence rule).
+- Renamed journals: the name as printed at publication.
+- Items inside a journal's collective "Abstracts" record: abstracts → drop.
+- Society proceedings: the printed year of the bound part (print-year rule).
+- Cited reprint not found but the original is registered: replace with the original (new key).
+- Record title with an evident misprint ('unhibited'): correct spelling, with evidence (same principle as author names).
