@@ -630,5 +630,19 @@
   "decision_source": "verification/resolution-2026-09-26/batch-20.json (drop; post-check research-2026-09-25/wave8/merged.json): Host book confirmed by LoC 77001991 (Birren & Schaie, Van Nostrand Reinhold, c1977). Chapter confirmed by printed reference lists (no scan of the 1977 edition; Scholar CAPTCHA): DTIC ADA133594 'Craik, F. I. M. 1977. Age differences in human memory. In: J. E. Birren and K. ... Van Nostrand Reinhold Co., pp 384-420', and Brain Function in Old Age (1979) with the same pages. HEAD matches. RECONCILED 2026-09-26: Host book is catalogued, but the chapter itself has no catalogue, contents-page or abstracting-index record; reference-list citations do not count (default, WallEtal57 precedent).",
   "date": "2026-09-26",
   "batch": "wave8"
+ },
+ {
+  "key": "Weic96",
+  "reason": "no evidence found after: ProQuest/PsycINFO (login), HathiTrust, Open Library, OpenAlex (429), Crossref bibliographic search, Europe PMC, Google Books (quota), WorldCat and Google Scholar (bot walls), CUNY Academic Works (Cloudflare); ORCID 0000-0002-6408-718X confirms only 'PhD, City University of New York Graduate School and University Center, Psychology, 1988-1996', not the title or DAI 57(1-B):757",
+  "decision_source": "verification/resolution-2026-09-26/batch-24.json (drop; post-check research-2026-09-25/wave9/merged.json): Under round-2 rule 1 (no verifiable record -> drop). A PsycINFO/ProQuest record almost certainly exists; if the user can read it, the entry could be restored as @phdthesis (school CUNY, 1996).",
+  "date": "2026-09-26",
+  "batch": "wave9"
+ },
+ {
+  "key": "WallEtal57",
+  "reason": "no evidence found after: LoC, Internet Archive, Open Library, Crossref, OpenAlex, HathiTrust (researcher); Google Books and Google web search in a real browser (2026-09-26) found only reference-list citations of it in other works (Miller, Galanter & Pribram; Paivio; Kahana 2014; Bugelski 1968), no catalogue, DTIC or index record of the report itself",
+  "decision_source": "verification/resolution-2026-09-26/batch-25.json (drop; post-check research-2026-09-25/wave9/merged.json): A 1957 Signal Corps technical report (Project No. 1320, Institute for Cooperative Research, Univ. of Pennsylvania); citing works disagree on the project number (1320 vs 132C). Under round-2 rule 1 (no verifiable record -> drop) it is dropped; see question. RECONCILED 2026-09-26: Question answered by rule: reference-list-only -> drop (default).",
+  "date": "2026-09-26",
+  "batch": "wave9"
  }
 ]

@@ -347,7 +347,28 @@
     "Shim95": "Shim95a",
     "Frie08b": "Frie08"
    }
+  },
+  {
+   "batch": "wave9",
+   "removed": [
+    "WallEtal57",
+    "Weic96"
+   ],
+   "renames": {
+    "OGra11": "OGra08",
+    "TorvHama05": "Torv05",
+    "Schl07": "Schl00",
+    "Smit05": "Smit01",
+    "Stra06": "Stra01",
+    "deCa05a": "deCa04",
+    "deCa05b": "deCa05",
+    "vond81": "vond94",
+    "RaoHowa08": "RaoHowa07",
+    "RagaWill18": "ProjEtal18",
+    "HaonEtal16": "YuEtal16",
+    "YingEtal92": "YingEtal93"
+   }
   }
  ],
- "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave8-staged.bib"
+ "last_staged": ".bibcheck/apply-2026-09-29-waves2-9/wave9-staged.bib"
 }
