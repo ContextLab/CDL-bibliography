@@ -1,0 +1,82 @@
+{
+ "stages": [
+  {
+   "cycle": "run",
+   "seconds": 732.87,
+   "network_requests": 0,
+   "added_review_records": 6,
+   "batch_statuses_before": {
+    "needs_review": 2
+   },
+   "batch_statuses_after": {
+    "needs_review": 2
+   },
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [],
+   "library_statuses_before": {
+    "metadata_verified": 6319,
+    "needs_review": 38,
+    "human_verified": 31
+   },
+   "library_statuses": {
+    "metadata_verified": 6319,
+    "needs_review": 38,
+    "human_verified": 31
+   }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 702.2,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch_statuses_before": {
+    "needs_review": 2
+   },
+   "batch_statuses_after": {
+    "needs_review": 2
+   },
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [],
+   "library_statuses_before": {
+    "metadata_verified": 6319,
+    "needs_review": 38,
+    "human_verified": 31
+   },
+   "library_statuses": {
+    "metadata_verified": 6319,
+    "needs_review": 38,
+    "human_verified": 31
+   }
+  }
+ ],
+ "entries": {
+  "ElliAshb88": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:cf784398b383eb8ce5894e08c3753550aa1bd0cbfb09ca7c8ebc8dbfe75e04ab",
+   "fingerprint": "v2:db55768acea335fa7b616593bc583387dca56c23e8b0e9493bc3a9e2de138889",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Mann06": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint_before": "v2:b726e3ccdc3679dbf7b4ff53c30c47e79ccac3cdceaadbb8ad80dfe02c2199e4",
+   "fingerprint": "v2:b14089b31dce9d5ce765bdbbcbae519284e03b0b91df0cf6785822d6e6e4697a",
+   "accepted_doi": null,
+   "accepted_source": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  }
+ }
+}
