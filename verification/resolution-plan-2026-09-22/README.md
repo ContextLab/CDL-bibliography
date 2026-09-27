@@ -293,3 +293,6 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - (default) Notices that cannot be read (paywall/CAPTCHA/no notice DOI) where Crossref and Europe PMC record no retraction or expression of concern: treat as errata; the entry is verified with a `notice_unread` flag and listed for the user (verification/resolution-2026-09-27/NOTICES.md).
 - REPORT to user: GrilEtal06b — a correction (not a retraction) that withdraws the paper's headline claim.
 - (default) Registry deposit codes that are not printed issue labels (SAGE `3_suppl`) are not evidence for Number; if the printed label ("3, Pt. 2") cannot be confirmed, remove Number.
+
+## Organization authors in keys (user, 2026-09-27)
+- An organization (a fully braced author name) counts as ONE author; its key part is the first 4 letters of its first word (letters only: 'U.S.' → 'US'). Person + group → e.g. MorrRNSS11 → MorrRNS11; 'Centers for Disease Control and Prevention' → Cent23 (not ContPrev23); '{U.S. Food and Drug Administration}' → US20a/b (not FoodAdmi20a/b); Amer23a, Qwen25, Stan13, ProjEtal18 already conform.
