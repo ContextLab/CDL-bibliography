@@ -130,3 +130,19 @@ now applies after the organization-keys renames and the mop-up batch (previous v
 31 human, 2 needs_review (SvenEtal24, RCor12). The research route then approved RCor12 and re-approved the three
 renamed entries (`../research-route-2026-09-27/FINAL.md`): 6,387 entries, 6,355 verified, 31 human,
 1 needs_review (SvenEtal24).
+
+## Ambiguity-rule drops of 2026-09-28 (`decisions0928b/`)
+
+User rule (2026-09-28): "ok, if ambiguous, drop-- we can always add back if needed later". `decisions0928b/batch-42.json`
+drops BrinCrag72 (abstract or paper unsettled), SvenEtal24 (no official record spells out the co-author 'NT';
+the records conflict with the entry) and ChanEtal12 (corrigendum; the printed article and the corrigendum could
+not be read). `build.py`/`apply.py`/`log.py` as in `decisions0928/`. No suffixed sibling existed, so no key changed.
+A removal-only batch leaves no key for the review layers, which refuse an empty key list
+(`publisher_year_review`: "Publisher review keys must name existing citations"; the first run stopped there
+after writing cdl.bib, which was restored from the batch backup, the run's files kept under
+`.bibcheck/decisions0928b-2026-09-28/failed-run-1/`); `decisions0928b/apply.py` therefore reads the current
+results without running a layer when the batch has no key left. Run and repeat: 0 requests, 0 review writes; no
+accepted result outside the batch changed. `.bibcheck/validate-current-checkpoint.py` applies the removals after
+decisions0928 (previous validator kept as `.bibcheck/decisions0928b-validate-current-checkpoint.py.bak`).
+research-approve dry run: nothing to approve. Library after: 6,384 entries: 6,353 verified, 31 human,
+0 needs_review.

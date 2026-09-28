@@ -1,0 +1,55 @@
+{
+ "stages": [
+  {
+   "cycle": "run",
+   "seconds": 16.55,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch_statuses_before": {},
+   "batch_statuses_after": {},
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [
+    "BrinCrag72",
+    "ChanEtal12",
+    "SvenEtal24"
+   ],
+   "library_statuses_before": {
+    "metadata_verified": 6353,
+    "human_verified": 31
+   },
+   "library_statuses": {
+    "metadata_verified": 6353,
+    "human_verified": 31
+   }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 15.33,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch_statuses_before": {},
+   "batch_statuses_after": {},
+   "batch_verified_before_and_after": 0,
+   "batch_newly_verified": [],
+   "previously_accepted_now_unresolved": [],
+   "newly_verified_outside_batch": [],
+   "removed": [
+    "BrinCrag72",
+    "ChanEtal12",
+    "SvenEtal24"
+   ],
+   "library_statuses_before": {
+    "metadata_verified": 6353,
+    "human_verified": 31
+   },
+   "library_statuses": {
+    "metadata_verified": 6353,
+    "human_verified": 31
+   }
+  }
+ ],
+ "entries": {}
+}

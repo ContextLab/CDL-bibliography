@@ -1,0 +1,135 @@
+{
+ "batch": "decisions0928b",
+ "generated": "2026-09-28 10:56:09",
+ "input": [
+  {
+   "file": "verification/apply-2026-09-30-final/decisions0928b/batch-42.json",
+   "sha256": "eb7279961566aaa80cb96be6499df1c72636f44d3c084c7932dd7d50d9e74dd5",
+   "rows": 3
+  }
+ ],
+ "count": 3,
+ "counts": {
+  "edit": 0,
+  "remove": 3
+ },
+ "renames": {},
+ "key_mismatch": {},
+ "followed_renames": {},
+ "noops": {},
+ "skipped": {},
+ "set_not_applied": {},
+ "house_form_check_bib": [
+  {
+   "key": "HeniEtal19",
+   "field": "journal",
+   "value": "eNeuro",
+   "applied": "{eNeuro}",
+   "note": "the value as cited: no change"
+  },
+  {
+   "key": "RangEtal14",
+   "field": "publisher",
+   "value": "PMLR",
+   "applied": "{PMLR}",
+   "note": "the value as cited: no change"
+  }
+ ],
+ "check_bib_rejects": [],
+ "held_changes": [],
+ "flags": {},
+ "conflicts": [
+  {
+   "key": "SvenEtal24",
+   "field": "(decision)",
+   "rows": [
+    {
+     "batch": "batch-12",
+     "decision": "apply"
+    },
+    {
+     "batch": "batch-42",
+     "decision": "drop"
+    }
+   ],
+   "resolved": "batch-42",
+   "why": "the later row wins"
+  }
+ ],
+ "held_forms": [
+  {
+   "wave": "wave3",
+   "key": "HeniEtal19",
+   "field": "pages",
+   "proposed": "ENEURO.0306-19.2019",
+   "outcome": "already in the entry"
+  },
+  {
+   "wave": "wave3",
+   "key": "HeniEtal19",
+   "field": "journal",
+   "proposed": "eNeuro",
+   "outcome": "applied: 'eNeuro'"
+  },
+  {
+   "wave": "wave4",
+   "key": "BrinCrag72",
+   "field": "pages",
+   "proposed": "28P--29P",
+   "outcome": "already in the entry"
+  },
+  {
+   "wave": "wave6",
+   "key": "Calk96",
+   "field": "pages",
+   "proposed": "i--56",
+   "outcome": "already in the entry"
+  },
+  {
+   "wave": "wave7",
+   "key": "Youn12",
+   "field": "url",
+   "proposed": "https://www.chronicle.com/article/inside-the-coursera-contract-how-an-upstart-company-might-profit-from-free-courses/",
+   "outcome": "still rejected: url is not a house field (bibcheck/keep_fields.txt; check_bib 'non-essential fields'); 9f84506 did not change that"
+  },
+  {
+   "wave": "wave9",
+   "key": "RangEtal14",
+   "field": "publisher",
+   "proposed": "PMLR",
+   "outcome": "applied: 'PMLR'"
+  },
+  {
+   "wave": "wave9",
+   "key": "BartEtal04c",
+   "field": "address",
+   "proposed": "La Jolla, {CA}",
+   "outcome": "already in the entry"
+  }
+ ],
+ "questions": {},
+ "normalised": {},
+ "proposals": [
+  {
+   "key": "BrinCrag72",
+   "fingerprint": "v2:06776d04700a7e1c843cc355f1dc2a7abc49408c271b087bcab7b56224d41f91",
+   "kind": "remove",
+   "reason": "user rule 2026-09-28: \"ok, if ambiguous, drop-- we can always add back if needed later\". J Physiol 223(1):28P-29P is a 'COMMUNICATIONS' item of the Proceedings of the Physiological Society, Imperial College Meeting, 18-19 February 1972 (PMC1331376 page scans); nothing printed or official says whether it is an abstract or a refereed paper, so the question stays ambiguous",
+   "decision": "verification/apply-2026-09-30-final/decisions0928b/batch-42.json (drop): User answers 2026-09-28 (ambiguity rule): drop BrinCrag72."
+  },
+  {
+   "key": "SvenEtal24",
+   "fingerprint": "v2:e503fc681f12eb57b588ac47b9ee0da6797a90434917aecb2ce94ed95ef32e71",
+   "kind": "remove",
+   "reason": "user rule 2026-09-28: \"ok, if ambiguous, drop-- we can always add back if needed later\". No official record spells out the co-author 'NT' (Crossref, PubMed 38382312 and ORCID 0009-0008-1232-0817 give given name 'Hoang', family name 'NT'), and those records conflict with the entry's 'N T Hoang'",
+   "decision": "verification/apply-2026-09-30-final/decisions0928b/batch-42.json (drop): User answers 2026-09-28 (ambiguity rule): drop SvenEtal24."
+  },
+  {
+   "key": "ChanEtal12",
+   "fingerprint": "v2:fc8da335cb40296a1347db2ab5c511ea0d25e91fe6330a48151397447196aac1",
+   "kind": "remove",
+   "reason": "user rule 2026-09-28: \"ok, if ambiguous, drop-- we can always add back if needed later\". A corrigendum exists (doi 10.1016/j.brainres.2012.06.039, which titles the article '...: A meta-analytic review'); under the printed-paper rule the printed article decides, and neither the printed article (ScienceDirect CAPTCHA; the UNCG copy is the submitted version) nor the corrigendum could be read, so the title is unverifiable",
+   "decision": "verification/apply-2026-09-30-final/decisions0928b/batch-42.json (drop): User answers 2026-09-28 (ambiguity rule): drop ChanEtal12."
+  }
+ ]
+}
