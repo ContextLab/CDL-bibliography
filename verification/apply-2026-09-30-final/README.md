@@ -110,3 +110,21 @@ made 0 requests and 6 review writes, and its repeat made 0 requests and 0 review
 outside the batch changed (`mopup/mopup-results.json`). `.bibcheck/validate-current-checkpoint.py` now applies
 the frozen mop-up proposals on top of the organization-keys state, and requires the result to equal the mop-up
 staged file and cdl.bib.
+
+## User answers of 2026-09-28 (`decisions0928/`)
+
+`decisions0928/batch-41.json` holds the rows for the user's answers of 2026-09-28 (decision log:
+`../resolution-plan-2026-09-22/README.md`, "User answers 2026-09-28"); `decisions0928/build.py` runs this folder's
+`build.py` rules on it (read as batch 41) and `decisions0928/apply.py` is this folder's runner pointed at
+`decisions0928/` (work files under `.bibcheck/decisions0928-2026-09-28/`). The batch: R12's author
+`{ R Core Team}` -> `{R Core Team}` (R 2.15 CITATION: `author = person("R Core Team"),`); the organization-key
+rule of 2026-09-28 (letters of successive words up to 4) renames R12 -> RCor12, MorrRNS11 -> MorrRNSS11,
+US20a -> USFo20a, US20b -> USFo20b (the whole-library key check found no others); GrilEtal06b is dropped, so by the
+suffix rule GrilEtal06a -> GrilEtal06. The run made 2 requests and 5 review writes; its repeat made 0 requests
+and 0 review writes; no accepted result outside the batch changed (`decisions0928/decisions0928-results.json`).
+RCor12 went from verified to needs_review (its author changed, so its fingerprint did); the research route's
+approval follows in the next commit. `decisions0928/log.py` logged the 5 renames and the deletion (commit/batch
+`decisions0928`) and wrote `decisions0928/library-changes.json`, which `.bibcheck/validate-current-checkpoint.py`
+now applies after the organization-keys renames and the mop-up batch (previous validator kept as
+`.bibcheck/decisions0928-validate-current-checkpoint.py.bak`). Library after: 6,387 entries, 6,354 verified,
+31 human, 2 needs_review (SvenEtal24, RCor12).

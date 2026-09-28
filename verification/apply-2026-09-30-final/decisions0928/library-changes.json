@@ -1,0 +1,15 @@
+{
+ "note": "The decisions0928 batch's removals and simultaneous renames (logged in key-deletions.json and key-renames.json), read by .bibcheck/validate-current-checkpoint.py after the organization-keys renames and the mop-up batch.",
+ "batch": "decisions0928",
+ "removed": [
+  "GrilEtal06b"
+ ],
+ "renames": {
+  "R12": "RCor12",
+  "MorrRNS11": "MorrRNSS11",
+  "US20a": "USFo20a",
+  "US20b": "USFo20b",
+  "GrilEtal06a": "GrilEtal06"
+ },
+ "staged": ".bibcheck/decisions0928-2026-09-28/decisions0928-staged.bib"
+}

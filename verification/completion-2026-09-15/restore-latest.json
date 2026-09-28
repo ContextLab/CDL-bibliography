@@ -1,12 +1,12 @@
 {
-  "restored": 6388,
+  "restored": 6387,
   "statuses": {
-    "metadata_verified": 6356,
+    "metadata_verified": 6354,
     "human_verified": 31,
-    "needs_review": 1
+    "needs_review": 2
   },
   "repeat_imports": 0,
-  "original_keys_preserved": 6388,
+  "original_keys_preserved": 6387,
   "formatted_staging_matches_current": true,
   "source_notices": 138,
   "source_author_suffixes": 51,

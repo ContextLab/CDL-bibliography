@@ -1527,5 +1527,40 @@
   "date": "2026-09-27",
   "reason": "organization-author key rule, user 2026-09-27",
   "commit": "organization-keys"
+ },
+ {
+  "old_key": "R12",
+  "new_key": "RCor12",
+  "date": "2026-09-28",
+  "reason": "organization-author key rule, user 2026-09-28 (\"use as many organization 'words' as are available, until 4 letters are achieved\")",
+  "commit": "decisions0928"
+ },
+ {
+  "old_key": "MorrRNS11",
+  "new_key": "MorrRNSS11",
+  "date": "2026-09-28",
+  "reason": "organization-author key rule, user 2026-09-28 (\"use as many organization 'words' as are available, until 4 letters are achieved\")",
+  "commit": "decisions0928"
+ },
+ {
+  "old_key": "US20a",
+  "new_key": "USFo20a",
+  "date": "2026-09-28",
+  "reason": "organization-author key rule, user 2026-09-28 (\"use as many organization 'words' as are available, until 4 letters are achieved\")",
+  "commit": "decisions0928"
+ },
+ {
+  "old_key": "US20b",
+  "new_key": "USFo20b",
+  "date": "2026-09-28",
+  "reason": "organization-author key rule, user 2026-09-28 (\"use as many organization 'words' as are available, until 4 letters are achieved\")",
+  "commit": "decisions0928"
+ },
+ {
+  "old_key": "GrilEtal06a",
+  "new_key": "GrilEtal06",
+  "date": "2026-09-28",
+  "reason": "suffix rule: GrilEtal06b dropped (user 2026-09-28), so GrilEtal06a is the only GrilEtal06 entry",
+  "commit": "decisions0928"
  }
 ]

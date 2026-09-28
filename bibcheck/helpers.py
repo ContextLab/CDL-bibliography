@@ -269,10 +269,13 @@ def split_names(names):
 
 
 def organization_key(name):
-    """Key part of a fully braced (organization/group) author: the first 4 letters of
-    its first word, letters only (user rule 2026-09-27, resolution-plan README
-    "Organization authors in keys"): {U.S. Food and Drug Administration} -> US,
-    {Centers for Disease Control and Prevention} -> Cent, {RNS System ...} -> RNS.
+    """Key part of a fully braced (organization/group) author: the letters of its
+    successive words, concatenated until 4 letters are reached, then truncated to 4,
+    with the capitalization as printed (user rule 2026-09-28, resolution-plan README
+    "Organization authors in keys": "use as many organization 'words' as are available,
+    until 4 letters are achieved"): {R Core Team} -> RCor, {U.S. Food and Drug
+    Administration} -> USFo, {RNS System ...} -> RNSS, {Centers for Disease Control and
+    Prevention} -> Cent. A name with fewer than 4 letters in all keeps what it has.
     None for any other name ({van der Meer} inside a personal name is not braced whole)."""
     name = name.strip()
     if not fully_braced(name):
@@ -283,7 +286,12 @@ def organization_key(name):
     words = remove_accents_and_hyphens(decode(inner)).split()
     if not words:
         return None
-    return remove_non_letters(remove_curlies(words[0]))[:4]
+    letters = ""
+    for word in words:
+        letters += "".join(c for c in remove_curlies(word) if c.isascii() and c.isalpha())
+        if len(letters) >= 4:
+            break
+    return letters[:4] or None
 
 
 def last_names_from_str(x):
@@ -298,7 +306,8 @@ def last_names_from_str(x):
 
 def authors2key(authors, year):
     def key(author):
-        # an organization (a fully braced name) is one author keyed by its first word
+        # an organization (a fully braced name) is one author keyed by the letters of its
+        # successive words, up to 4
         org = organization_key(author)
         if org:
             return org

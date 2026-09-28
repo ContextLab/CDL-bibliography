@@ -1,0 +1,52 @@
+[
+ {
+  "key": "R12",
+  "wave": null,
+  "decision": "apply",
+  "set": {
+   "author": {
+    "value": "{R Core Team}",
+    "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
+    "quote": "author = person(\"R Core Team\"),"
+   }
+  },
+  "remove": [],
+  "new_key": "RCor12",
+  "notes": "User answers 2026-09-28 (4). Author as printed in R 2.15's own CITATION file ('R Core Team'); the stray leading space of '{ R Core Team}' is dropped. Key under the organization rule of 2026-09-28 (\"use as many organization 'words' as are available, until 4 letters are achieved\"): R + Cor -> RCor12."
+ },
+ {
+  "key": "MorrRNS11",
+  "wave": null,
+  "decision": "apply",
+  "set": {},
+  "remove": [],
+  "new_key": "MorrRNSS11",
+  "notes": "User answers 2026-09-28 (4): rename only. Organization rule of 2026-09-28: {RNS System in Epilepsy Study Group} -> RNS + S = RNSS."
+ },
+ {
+  "key": "US20a",
+  "wave": null,
+  "decision": "apply",
+  "set": {},
+  "remove": [],
+  "new_key": "USFo20a",
+  "notes": "User answers 2026-09-28 (4): rename only. Organization rule of 2026-09-28: {U.S. Food and Drug Administration} -> US + Fo = USFo."
+ },
+ {
+  "key": "US20b",
+  "wave": null,
+  "decision": "apply",
+  "set": {},
+  "remove": [],
+  "new_key": "USFo20b",
+  "notes": "User answers 2026-09-28 (4): rename only. Organization rule of 2026-09-28: {U.S. Food and Drug Administration} -> US + Fo = USFo."
+ },
+ {
+  "key": "GrilEtal06b",
+  "wave": null,
+  "decision": "drop",
+  "drop_reason": "user decision 2026-09-28: \"DROP it\" (a later correction, doi 10.1038/nn0107-133, withdraws the paper's headline claim; verification/resolution-2026-09-27/NOTICES.md: 'corrigendum withdraws the headline claim (FFA nonface-selective voxels); Figs 4 and 8 invalid. Not a retraction')",
+  "notes": "User answers 2026-09-28 (3): drop GrilEtal06b.",
+  "questions": []
+ }
+]

@@ -83,7 +83,7 @@ def test_two_part_range_separator_is_normalized():
     "{DeepSeek-AI}",                                           # Deep25
     "{Qwen Team}",                                             # Qwen25, Qwen26
     "{SciPy 1.0 Contributors}",                                # VirtEtal20 as researched
-    "{R Core Team}",                                           # RCor12 as printed
+    "{R Core Team}",                                           # RCor12 as printed (R 2.15 CITATION)
     "{National Center for PTSD (VA)}",
 ])
 def test_braced_group_authors_round_trip(author):
@@ -91,26 +91,32 @@ def test_braced_group_authors_round_trip(author):
 
 
 def test_group_author_key():
-    # an organization (a fully braced name) is ONE author keyed by the first 4 letters of
-    # its first word (user rule 2026-09-27, resolution-plan README "Organization authors
-    # in keys"; the old key was MorrRNSS11)
+    # an organization (a fully braced name) is ONE author keyed by the letters of its
+    # successive words until 4 letters are reached (user rule 2026-09-28, resolution-plan
+    # README "Organization authors in keys": "use as many organization 'words' as are
+    # available, until 4 letters are achieved"): RNS (3 letters) + S(ystem) -> RNSS
     assert helpers.authors2key("M J Morrell and {RNS System in Epilepsy Study Group}", "2011") \
-        == "MorrRNS11"
+        == "MorrRNSS11"
     assert helpers.authors2key("{DeepSeek-AI}", "2025") == "Deep25"
 
 
 # --- organizations: braced names are never split at " and " (2026-09-27) ----------------
 
 @pytest.mark.parametrize("author,key", [
-    ("{U.S. Food and Drug Administration}", "US20"),              # FoodAdmi20a/b -> US20a/b
+    # short first words: letters of the next words fill the part up to 4 (rule 2026-09-28)
+    ("{U.S. Food and Drug Administration}", "USFo20"),            # US20a/b -> USFo20a/b
+    ("{R Core Team}", "RCor20"),                                  # R12 -> RCor12
+    ("{ R Core Team}", "RCor20"),                                 # the old stray-space form
+    ("{SciPy 1.0 Contributors}", "SciP20"),                       # digits are not letters
+    ("{A I}", "AI20"),                                            # fewer than 4 letters in all
+    # a first word of 4+ letters: its first 4 letters, as before
     ("{Centers for Disease Control and Prevention}", "Cent20"),   # ContPrev23 -> Cent23
-    ("{ R Core Team}", "R20"),                                    # RCor12 as printed -> R12
     ("{American Academy of Sleep Medicine}", "Amer20"),           # Amer23a-c (already conform)
     ("{Qwen Team}", "Qwen20"),                                    # Qwen25, Qwen26
     ("{Stan Development Team}", "Stan20"),                        # Stan13
-    ("{{U.S. Food and Drug Administration}}", "US20"),            # the double-braced form
+    ("{{U.S. Food and Drug Administration}}", "USFo20"),          # the double-braced form
 ])
-def test_organization_is_one_author_keyed_by_its_first_word(author, key):
+def test_organization_is_one_author_keyed_by_its_words_up_to_4_letters(author, key):
     assert helpers.split_names(author) == [author]
     assert helpers.authors2key(author, "2020") == key
     assert helpers.reformat_author(author) == author
@@ -125,7 +131,7 @@ def test_organization_with_and_round_trips():
     # a person followed by an organization, and the organization first (ProjEtal18)
     assert helpers.split_names("M J Morrell and " + fda) == ["M J Morrell", fda]
     assert helpers.authors2key("{Project Jupyter} and M Bussonnier and J Forde", "2018") == "ProjEtal18"
-    assert helpers.authors2key(fda + " and J Smith", "2020") == "USSmit20"
+    assert helpers.authors2key(fda + " and J Smith", "2020") == "USFoSmit20"
 
 
 def test_braced_particle_surname_is_a_person_not_an_organization():
@@ -204,7 +210,7 @@ def test_name_negative_controls():
 
 def test_held_values_pass_check_bib(tmp_path):
     bib = tmp_path / "held.bib"
-    bib.write_text("""@article{MorrRNS11,
+    bib.write_text("""@article{MorrRNSS11,
 \tAuthor = {M J Morrell and {RNS System in Epilepsy Study Group}},
 \tJournal = {Neurology},
 \tPages = {81--190, 257--339},
@@ -247,13 +253,13 @@ def test_held_values_pass_check_bib(tmp_path):
 \tTitle = {Third test title},
 \tYear = {1972}}
 
-@misc{US20a,
+@misc{USFo20a,
 \tAuthor = {{U.S. Food and Drug Administration}},
 \tHowpublished = {\\url{https://www.accessdata.fda.gov/cdrh_docs/reviews/DEN200033.pdf}},
 \tTitle = {{DEN200033} de novo decision summary: {NightWare} kit (digital therapy device)},
 \tYear = {2020}}
 
-@misc{US20b,
+@misc{USFo20b,
 \tAuthor = {{U.S. Food and Drug Administration}},
 \tHowpublished = {\\url{https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033}},
 \tTitle = {Device classification under section 513(f)(2) (de novo) --- {DEN200033}},
@@ -264,6 +270,13 @@ def test_held_values_pass_check_bib(tmp_path):
 \tHowpublished = {\\url{https://www.cdc.gov/media/releases/2023/s0810-US-Suicide-Deaths-2022.html}},
 \tTitle = {Provisional suicide deaths in the {United States}, 2022},
 \tYear = {2023}}
+
+@manual{RCor12,
+\tAddress = {Vienna, Austria},
+\tAuthor = {{R Core Team}},
+\tOrganization = {{R Foundation for Statistical Computing}},
+\tTitle = {{R}: a language and environment for statistical computing},
+\tYear = {2012}}
 """)
     errors, _ = helpers.check_bib(str(bib), verbose=False)
     assert errors == {}
@@ -271,7 +284,8 @@ def test_held_values_pass_check_bib(tmp_path):
 
 def test_check_bib_wants_the_organization_keys(tmp_path):
     # FoodAdmi20a/b (HEAD, with Force) without Force: the author now passes, and the old
-    # keys are corrected to the organization rule's US20a/US20b.
+    # keys are corrected to the organization rule's USFo20a/USFo20b (rule 2026-09-28);
+    # R12 (the 2026-09-27 first-word rule) is corrected to RCor12.
     bib = tmp_path / "org.bib"
     bib.write_text("""@misc{FoodAdmi20a,
 \tAuthor = {{U.S. Food and Drug Administration}},
@@ -282,10 +296,17 @@ def test_check_bib_wants_the_organization_keys(tmp_path):
 \tAuthor = {{U.S. Food and Drug Administration}},
 \tTitle = {Device classification under section 513(f)(2) (de novo) --- {DEN200033}},
 \tYear = {2020}}
+
+@manual{R12,
+\tAddress = {Vienna, Austria},
+\tAuthor = {{R Core Team}},
+\tOrganization = {{R Foundation for Statistical Computing}},
+\tTitle = {{R}: a language and environment for statistical computing},
+\tYear = {2012}}
 """)
     errors, _ = helpers.check_bib(str(bib), verbose=False)
-    assert set(errors) == {"FoodAdmi20a", "FoodAdmi20b"}
-    assert {e["ID"] for e in errors.values()} == {"US20a", "US20b"}
+    assert set(errors) == {"FoodAdmi20a", "FoodAdmi20b", "R12"}
+    assert {e["ID"] for e in errors.values()} == {"USFo20a", "USFo20b", "RCor12"}
     assert all(set(e) == {"ID"} for e in errors.values())   # no author correction
 
 

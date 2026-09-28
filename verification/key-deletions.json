@@ -658,5 +658,12 @@
   "decision_source": "verification/resolution-2026-09-26/batch-35.json (drop): Dropped: no verifiable record of the cited chapter; the EEG 1968 item is a society-meeting abstract.",
   "date": "2026-09-27",
   "batch": "res34to39"
+ },
+ {
+  "key": "GrilEtal06b",
+  "reason": "user decision 2026-09-28: \"DROP it\" (a later correction, doi 10.1038/nn0107-133, withdraws the paper's headline claim; verification/resolution-2026-09-27/NOTICES.md: 'corrigendum withdraws the headline claim (FFA nonface-selective voxels); Figs 4 and 8 invalid. Not a retraction')",
+  "decision_source": "verification/apply-2026-09-30-final/decisions0928/batch-41.json (drop): User answers 2026-09-28 (3): drop GrilEtal06b.",
+  "date": "2026-09-28",
+  "batch": "decisions0928"
  }
 ]
