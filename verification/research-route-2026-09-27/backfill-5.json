@@ -1,0 +1,57 @@
+{
+ "counts": {
+  "all_reasons": {
+   "field never researched (author)": 1
+  },
+  "first_reason": {
+   "field never researched (author)": 1
+  },
+  "flags": {},
+  "outcomes": {
+   "approved": 1,
+   "not_approved": 1,
+   "reapproved": 3
+  },
+  "writes": 4
+ },
+ "dry_run": false,
+ "excluded_files": [],
+ "rows": {
+  "MorrRNSS11": {
+   "flags": [],
+   "outcome": "reapproved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "metadata_verified"
+  },
+  "RCor12": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "SvenEtal24": {
+   "flags": [],
+   "outcome": "not_approved",
+   "reasons": [
+    "author: no research evidence for this field"
+   ],
+   "status_before": "needs_review"
+  },
+  "USFo20a": {
+   "flags": [],
+   "outcome": "reapproved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "metadata_verified"
+  },
+  "USFo20b": {
+   "flags": [],
+   "outcome": "reapproved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "metadata_verified"
+  }
+ }
+}

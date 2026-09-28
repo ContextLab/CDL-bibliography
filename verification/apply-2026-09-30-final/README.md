@@ -127,4 +127,6 @@ approval follows in the next commit. `decisions0928/log.py` logged the 5 renames
 `decisions0928`) and wrote `decisions0928/library-changes.json`, which `.bibcheck/validate-current-checkpoint.py`
 now applies after the organization-keys renames and the mop-up batch (previous validator kept as
 `.bibcheck/decisions0928-validate-current-checkpoint.py.bak`). Library after: 6,387 entries, 6,354 verified,
-31 human, 2 needs_review (SvenEtal24, RCor12).
+31 human, 2 needs_review (SvenEtal24, RCor12). The research route then approved RCor12 and re-approved the three
+renamed entries (`../research-route-2026-09-27/FINAL.md`): 6,387 entries, 6,355 verified, 31 human,
+1 needs_review (SvenEtal24).

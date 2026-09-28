@@ -5,6 +5,25 @@ notice-accounting hook") and the organization-author formatter fix. The five ren
 reviewed by the production pipeline before the route ran (`review_renamed.py`, `review-renamed.json`).
 The pipeline made 0 network requests, and its repeat added 0 review records.
 
+## After the user answers of 2026-09-28 (decisions0928): 1 approved, 3 re-approved, 1 left
+
+The decisions0928 batch (`../apply-2026-09-30-final/decisions0928/`, commit 4071cf3) changed R12's author and
+renamed R12 -> RCor12, MorrRNS11 -> MorrRNSS11, US20a/b -> USFo20a/b, GrilEtal06a -> GrilEtal06, and dropped
+GrilEtal06b. `bibcheck.py crossref status cdl.bib`:
+
+- before: 6387 entries: human_verified=31, metadata_verified=6354, needs_review=2
+- after: 6387 entries: human_verified=31, metadata_verified=6355, needs_review=1
+
+| Run | Approved | Re-approved | Not approved | Review writes |
+|-|-|-|-|-|
+| dry run (`dry-run-5.json`) | 1 | 3 | 1 | 0 |
+| backfill (`backfill-5.json`) | 1 | 3 | 1 | 4 |
+| repeat (`repeat-5.json`) | | | 1 | 0 |
+
+RCor12 is the approval (its author `{R Core Team}` matches the wave-9 row's evidence). The re-approvals are
+MorrRNSS11, USFo20a and USFo20b (renamed). SvenEtal24 is still not approved: its author was never researched,
+and no official record spells out 'NT' (resolution-plan README, "User answers 2026-09-28").
+
 ## Mop-up of the 38 (2026-09-27, later): 37 approved, 1 left
 
 `bibcheck.py crossref status cdl.bib`:
