@@ -1,0 +1,120 @@
+{
+ "counts": {
+  "all_reasons": {},
+  "first_reason": {},
+  "flags": {},
+  "outcomes": {
+   "approved": 15
+  },
+  "writes": 15
+ },
+ "dry_run": false,
+ "excluded_files": [],
+ "rows": {
+  "Ande04": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "CarvEtal22b": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "ClanEtal19": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "GeisEtal08": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "JoneEtal03": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "Kipp01": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "LiEtal16": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "LiEtal17b": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "LiEtal20": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "PimeEtal19": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "ScheEtal02": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "TardEtal08": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "TianEtal16b": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "TianEtal18": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  },
+  "TianEtal20b": {
+   "flags": [],
+   "outcome": "approved",
+   "reasons": [],
+   "status": "metadata_verified",
+   "status_before": "needs_review"
+  }
+ }
+}

@@ -1,0 +1,318 @@
+{
+ "batch": "caps0929",
+ "generated": "2026-09-29 14:53:02",
+ "input": [
+  {
+   "file": "cdl.bib",
+   "sha256": "b7126681aa21bac6d9d782abbcfc63e110fe048278f0e742f121e3ffe54eed98"
+  }
+ ],
+ "count": 25,
+ "counts": {
+  "edit": 25,
+  "remove": 0
+ },
+ "renames": {},
+ "proposals": [
+  {
+   "key": "JuanRabi85",
+   "kind": "edit",
+   "fingerprint": "v2:dd99c6c230ba52580b43f301b4c0fd758882dfa8a37e826baabfaf72ef49ace9",
+   "changes": {
+    "journal": {
+     "before": "At\\&t Technical Journal",
+     "after": "{AT\\&T} Technical Journal"
+    }
+   },
+   "source": "Crossref 10.1002/j.1538-7305.1985.tb00439.x container-title 'AT&T Technical Journal'"
+  },
+  {
+   "key": "RabiEtal85",
+   "kind": "edit",
+   "fingerprint": "v2:25731e0eff846e45bf3c6c77c3f008e81c1c885f458266161230b5522ca9ac44",
+   "changes": {
+    "journal": {
+     "before": "At\\&t Technical Journal",
+     "after": "{AT\\&T} Technical Journal"
+    }
+   },
+   "source": "Crossref 10.1002/j.1538-7305.1985.tb00272.x container-title 'AT&T Technical Journal'"
+  },
+  {
+   "key": "CarvEtal22a",
+   "kind": "edit",
+   "fingerprint": "v2:8c7af8325dbf8eff3d6efa4fbb66818d14df19f2e6eb231f81a50e19eda22b3f",
+   "changes": {
+    "booktitle": {
+     "before": "14\\textsuperscript{th} International Conference on Communication Systems \\& Networks ({comsnets})",
+     "after": "14\\textsuperscript{th} International Conference on Communication Systems \\& Networks ({COMSNETS})"
+    }
+   },
+   "source": "Crossref 10.1109/comsnets53615.2022.9668473 container-title '2022 14th International Conference on COMmunication Systems & NETworkS (COMSNETS)'"
+  },
+  {
+   "key": "ClanEtal19",
+   "kind": "edit",
+   "fingerprint": "v2:f071848bb872a8e45b9404cf2e1275f65dd230e56d6931d5fbd3fde1c7cf08ed",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the Second Workshop on Fact Extraction and Verification ({fever})",
+     "after": "Proceedings of the Second Workshop on Fact Extraction and Verification ({FEVER})"
+    }
+   },
+   "source": "Crossref 10.18653/v1/d19-6607 container-title 'Proceedings of the Second Workshop on Fact Extraction and VERification (FEVER)'"
+  },
+  {
+   "key": "GeisEtal08",
+   "kind": "edit",
+   "fingerprint": "v2:b4b305ecbb02765308b07db1c1a03c08a5176ba3389a4add26130ca60346b387",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the 10\\textsuperscript{th} Workshop on Algorithm Engineering and Experiments ({alenex})",
+     "after": "Proceedings of the 10\\textsuperscript{th} Workshop on Algorithm Engineering and Experiments ({ALENEX})"
+    }
+   },
+   "source": "Crossref 10.1137/1.9781611972887.9 container-title '2008 Proceedings of the Tenth Workshop on Algorithm Engineering and Experiments (ALENEX)'"
+  },
+  {
+   "key": "JoneEtal03",
+   "kind": "edit",
+   "fingerprint": "v2:f2b076bd162db6b8080c299d668200b433bdd96bf67db2eb914bf78f6b4a7b93",
+   "changes": {
+    "booktitle": {
+     "before": "8\\textsuperscript{th} {European} Conference on Speech Communication and Technology ({eurospeech})",
+     "after": "8\\textsuperscript{th} {European} Conference on Speech Communication and Technology ({Eurospeech})"
+    }
+   },
+   "source": "Crossref 10.21437/eurospeech.2003-463 container-title '8th European Conference on Speech Communication and Technology (Eurospeech 2003)'"
+  },
+  {
+   "key": "Kipp01",
+   "kind": "edit",
+   "fingerprint": "v2:ba352a7ba5ce6548ffe293dd3df2523ac52925a5acc86d48202cc281b92e547a",
+   "changes": {
+    "booktitle": {
+     "before": "7\\textsuperscript{th} {European} Conference on Speech Communication and Technology ({eurospeech})",
+     "after": "7\\textsuperscript{th} {European} Conference on Speech Communication and Technology ({Eurospeech})"
+    }
+   },
+   "source": "Crossref 10.21437/eurospeech.2001-354 container-title '7th European Conference on Speech Communication and Technology (Eurospeech 2001)'"
+  },
+  {
+   "key": "SchiEtal13",
+   "kind": "edit",
+   "fingerprint": "v2:a8977fcdebe4da75453a8cc4c0080f1ea907cd1e3449ad61300c32d52824a994",
+   "changes": {
+    "journal": {
+     "before": "The {febs} Journal",
+     "after": "The {FEBS} Journal"
+    }
+   },
+   "source": "Crossref 10.1111/febs.12253 container-title 'The FEBS Journal'"
+  },
+  {
+   "key": "ScheEtal02",
+   "kind": "edit",
+   "fingerprint": "v2:ee1ef3319d98443fa054b4217f47a3ec8280772e701044a23bf7c10a03af95c6",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the 25\\textsuperscript{th} Annual International {ACM} {sigir} Conference on Research and Development in Information Retrieval",
+     "after": "Proceedings of the 25\\textsuperscript{th} Annual International {ACM} {SIGIR} Conference on Research and Development in Information Retrieval"
+    }
+   },
+   "source": "Crossref 10.1145/564376.564421 container-title 'Proceedings of the 25th annual international ACM SIGIR conference on Research and development in information retrieval'"
+  },
+  {
+   "key": "TardEtal08",
+   "kind": "edit",
+   "fingerprint": "v2:f903917bed4dcd5cf860ffc8e4e4d230b1109e580a68a15425917143aedf86ea",
+   "changes": {
+    "booktitle": {
+     "before": "{ieee/rsj} International Conference on Intelligent Robots and Systems",
+     "after": "{IEEE/RSJ} International Conference on Intelligent Robots and Systems"
+    }
+   },
+   "source": "Crossref 10.1109/iros.2008.4651205 container-title '2008 IEEE/RSJ International Conference on Intelligent Robots and Systems'"
+  },
+  {
+   "key": "Ande04",
+   "kind": "edit",
+   "fingerprint": "v2:d6844124a8f2e9b9f9ab6bc538ee15b2c887bb713beb6397967c4115207c2450",
+   "changes": {
+    "booktitle": {
+     "before": "5\\textsuperscript{th} {ieee/acm} International Workshop on Grid Computing",
+     "after": "5\\textsuperscript{th} {IEEE/ACM} International Workshop on Grid Computing"
+    }
+   },
+   "source": "Crossref 10.1109/grid.2004.14 container-title 'Fifth IEEE/ACM International Workshop on Grid Computing'"
+  },
+  {
+   "key": "PimeEtal19",
+   "kind": "edit",
+   "fingerprint": "v2:a0630238c3644ccda843484295954c76a788aabae226db44ede26a800b6705f9",
+   "changes": {
+    "booktitle": {
+     "before": "{ieee/acm} International Conference on Mining Software Repositories",
+     "after": "{IEEE/ACM} International Conference on Mining Software Repositories"
+    }
+   },
+   "source": "Crossref 10.1109/msr.2019.00077 container-title '2019 IEEE/ACM 16th International Conference on Mining Software Repositories (MSR)'"
+  },
+  {
+   "key": "LiEtal16",
+   "kind": "edit",
+   "fingerprint": "v2:a9b6ac6ec95bfdd5437b0b2efdebc0452006967b2c92b884dcbdd764b1ee9625",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the 14\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services ({mobisys})",
+     "after": "Proceedings of the 14\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services ({MobiSys})"
+    }
+   },
+   "source": "Crossref 10.1145/2906388.2906401 event acronym \"MobiSys'16\""
+  },
+  {
+   "key": "TianEtal18",
+   "kind": "edit",
+   "fingerprint": "v2:e0cabb402a1400217ae7ebeec5e75045d40f1cbae57bc49100ec91135f9ff593",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the 16\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services ({mobisys})",
+     "after": "Proceedings of the 16\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services ({MobiSys})"
+    }
+   },
+   "source": "Crossref 10.1145/3210240.3210340 event acronym \"MobiSys '18\""
+  },
+  {
+   "key": "CarvEtal22b",
+   "kind": "edit",
+   "fingerprint": "v2:1520caa975ddbf81004c8d2bae8ea1e0983a4a23e302a538c909e3b305e75e73",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the 20\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications and Services ({mobisys})",
+     "after": "Proceedings of the 20\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications and Services ({MobiSys})"
+    }
+   },
+   "source": "Crossref 10.1145/3498361.3539773 event acronym \"MobiSys '22\""
+  },
+  {
+   "key": "TianEtal16b",
+   "kind": "edit",
+   "fingerprint": "v2:81929f37c3e198347a5bb34b933eaa8296b7398b2358155508424e0d7f9a0409",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the 17\\textsuperscript{th} International Workshop on Mobile Computing Systems and Applications ({hotmobile})",
+     "after": "Proceedings of the 17\\textsuperscript{th} International Workshop on Mobile Computing Systems and Applications ({HotMobile})"
+    }
+   },
+   "source": "Crossref 10.1145/2873587.2873598 event acronym \"HotMobile '16\""
+  },
+  {
+   "key": "TianEtal20b",
+   "kind": "edit",
+   "fingerprint": "v2:b0a93ddf1cfd366a6c325e791f9015028d64f5b91a776e7b1a301d55a422d351",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the 21\\textsuperscript{st} International Workshop on Mobile Computing Systems and Applications ({hotmobile})",
+     "after": "Proceedings of the 21\\textsuperscript{st} International Workshop on Mobile Computing Systems and Applications ({HotMobile})"
+    }
+   },
+   "source": "Crossref 10.1145/3376897.3377854 event acronym \"HotMobile '20\""
+  },
+  {
+   "key": "LiEtal17b",
+   "kind": "edit",
+   "fingerprint": "v2:a679cb57508bbfb92b53a7ecc0ba0aca55dac6babf5473fdf43cf43bef0807c4",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the 15\\textsuperscript{th} {ACM} Conference on Embedded Network Sensor Systems ({sensys})",
+     "after": "Proceedings of the 15\\textsuperscript{th} {ACM} Conference on Embedded Network Sensor Systems ({SenSys})"
+    }
+   },
+   "source": "Crossref 10.1145/3131672.3131682 event acronym \"SenSys '17\""
+  },
+  {
+   "key": "LiEtal20",
+   "kind": "edit",
+   "fingerprint": "v2:fd11928939a17fba92a5fa2430daae4250a33a78225d440693c6ab12d981c5f5",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the 18\\textsuperscript{th} Conference on Embedded Networked Sensor Systems ({sensys})",
+     "after": "Proceedings of the 18\\textsuperscript{th} Conference on Embedded Networked Sensor Systems ({SenSys})"
+    }
+   },
+   "source": "Crossref 10.1145/3384419.3430720 event acronym \"SenSys '20\""
+  },
+  {
+   "key": "CarvEtal19",
+   "kind": "edit",
+   "fingerprint": "v2:76846235bac4af080e75e789bf9bf0b63df9ec486e11608e6aa17831f939eb00",
+   "changes": {
+    "journal": {
+     "before": "Xrds: Crossroads, the {ACM} Magazine for Students",
+     "after": "{XRDS}: Crossroads, the {ACM} Magazine for Students"
+    }
+   },
+   "source": "Crossref 10.1145/3357229 container-title 'XRDS: Crossroads, The ACM Magazine for Students'"
+  },
+  {
+   "key": "BorzEtal23a",
+   "kind": "edit",
+   "fingerprint": "v2:1e9e126211a9567bc97f27a944d00f06c3c4539c0466fe8132f0c065d6a23adc",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the 61\\textsuperscript{st} Annual Meeting of the Association for Computational Linguistics (volume 3: System Demonstrations)",
+     "after": "Proceedings of the 61\\textsuperscript{st} Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations)"
+    }
+   },
+   "source": "Crossref 10.18653/v1/2023.acl-demo.54 container-title 'Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations)' (and the ACL Anthology record in the stored evidence)"
+  },
+  {
+   "key": "Nied90",
+   "kind": "edit",
+   "fingerprint": "v2:2d836c9865837ac5386bc2499ea30a98dc0cecce5e6d5e400b1ebaad3b04afb9",
+   "changes": {
+    "journal": {
+     "before": "Clinical {EEG} (electroencephalography)",
+     "after": "Clinical {EEG} (Electroencephalography)"
+    }
+   },
+   "source": "Europe PMC / NLM journal title 'Clinical EEG (electroencephalography)' (stored evidence, accepted source europepmc; Crossref 10.1177/155005949002100410 prints the later title 'Clinical Electroencephalography'); house title case: the formatter now capitalizes the word after an opening parenthesis"
+  },
+  {
+   "key": "Nied91",
+   "kind": "edit",
+   "fingerprint": "v2:7aea12ff81c77c8e1e8becf17ae43baf4110dce7aba497360db166505a19156d",
+   "changes": {
+    "journal": {
+     "before": "Clinical {EEG} (electroencephalography)",
+     "after": "Clinical {EEG} (Electroencephalography)"
+    }
+   },
+   "source": "Europe PMC / NLM journal title 'Clinical EEG (electroencephalography)' (stored evidence, accepted source europepmc; Crossref 10.1177/155005949102200208 prints the later title 'Clinical Electroencephalography'); house title case: the formatter now capitalizes the word after an opening parenthesis"
+  },
+  {
+   "key": "ShinEtal99",
+   "kind": "edit",
+   "fingerprint": "v2:c754f458e05ecaff7949d7f5c1b009d89d01bbab17d6df448927cd94d887970c",
+   "changes": {
+    "journal": {
+     "before": "Clinical {EEG} (electroencephalography)",
+     "after": "Clinical {EEG} (Electroencephalography)"
+    }
+   },
+   "source": "Europe PMC / NLM journal title 'Clinical EEG (electroencephalography)' (stored evidence, accepted source europepmc; Crossref 10.1177/155005949903000405 prints the later title 'Clinical Electroencephalography'); house title case: the formatter now capitalizes the word after an opening parenthesis"
+  },
+  {
+   "key": "Albe00",
+   "kind": "edit",
+   "fingerprint": "v2:287dd68cdb6374c481738dd13073a6324f20a8bdc4966f3fff729dd0d95517cb",
+   "changes": {
+    "address": {
+     "before": "Cambridge, Mass.",
+     "after": "Cambridge, {MA}"
+    }
+   },
+   "source": "Library of Congress record 12064937 (LCCN 00056732) 260 $a 'Cambridge, Mass. :' $b 'Harvard University Press,'; house form 'City, {ST}' (verification/resolution-plan-2026-09-22/README.md)"
+  }
+ ]
+}

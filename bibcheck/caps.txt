@@ -401,3 +401,13 @@ ACS
 SAGE
 npj
 IRE
+COMSNETS
+ALENEX
+SIGIR
+FEBS
+MobiSys
+SenSys
+HotMobile
+XRDS
+Eurospeech
+RSJ

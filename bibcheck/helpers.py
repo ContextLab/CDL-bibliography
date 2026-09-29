@@ -741,6 +741,68 @@ ALIAS_COUNTRIES = {
 }
 
 
+# Traditional (GPO/AP-style) US state abbreviations, dotted or not, and the house's
+# two-letter code for each. The house address form is "City, {ST}"; an address whose
+# last comma component is one of these is written with the code (Albe00 "Cambridge,
+# Mass." passed bibcheck because address_key.xls only lists "cambridge, mass" without
+# the period). Two-letter codes themselves are in addresses.txt and need no entry.
+US_STATE_ABBREVIATIONS = {
+    "ala": "AL", "ariz": "AZ", "ark": "AR", "calif": "CA", "cal": "CA", "colo": "CO",
+    "conn": "CT", "del": "DE", "d c": "DC", "fla": "FL", "ga": "GA", "ill": "IL",
+    "ind": "IN", "kans": "KS", "kan": "KS", "ky": "KY", "la": "LA", "md": "MD",
+    "mass": "MA", "mich": "MI", "minn": "MN", "miss": "MS", "mo": "MO", "mont": "MT",
+    "nebr": "NE", "neb": "NE", "nev": "NV", "n h": "NH", "n j": "NJ", "n mex": "NM",
+    "n m": "NM", "n y": "NY", "n c": "NC", "n dak": "ND", "n d": "ND", "okla": "OK",
+    "oreg": "OR", "ore": "OR", "pa": "PA", "penn": "PA", "penna": "PA", "r i": "RI",
+    "s c": "SC", "s dak": "SD", "s d": "SD", "tenn": "TN", "tex": "TX", "vt": "VT",
+    "va": "VA", "wash": "WA", "w va": "WV", "wis": "WI", "wisc": "WI", "wyo": "WY",
+}
+
+
+def us_state_code(component):
+    """The two-letter code for a traditional state abbreviation ("Mass.", "N.Y.",
+    "Calif", "{N}.{J}."), or None. Braces, periods and spacing are ignored; two-letter
+    codes already in house form ("{MA}", "MA") return None and are left to addresses.txt."""
+    plain = remove_curlies(component).strip()
+    if re.fullmatch(r"[A-Z]{2}", plain):
+        return None
+    letters = re.sub(r"\s+", " ", re.sub(r"\.", " ", plain)).strip().lower()
+    return US_STATE_ABBREVIATIONS.get(letters)
+
+
+# A compound acronym joined by "\&" ("AT\&T", "R\&D"): each side is one to three letters.
+AMPERSAND_ACRONYM = re.compile(r"[A-Za-z]{1,3}(?:\\&[A-Za-z]{1,3})+")
+
+
+def compound_acronym(core, force_caps):
+    """The caps form of a compound acronym, or None.
+
+    "AT\&T" and "At\&t" -> "AT\&T" (every side of a "\&" is one to three letters);
+    "ieee/acm" -> "IEEE/ACM" when every "/"-separated part is a caps.txt word. The
+    word-capitalizing rule turned "AT\&T" into "At\&t" (JuanRabi85, RabiEtal85), and a
+    braced "{ieee/acm}" was protected as given (PimeEtal19, Ande04, TardEtal08).
+    """
+    plain = remove_curlies(core)
+    if AMPERSAND_ACRONYM.fullmatch(plain):
+        return plain.upper()
+    parts = plain.split("/")
+    if len(parts) < 2 or not all(re.fullmatch(r"[A-Za-z]+", q) for q in parts):
+        return None
+    forms = []
+    for q in parts:
+        listed = [f for f in force_caps if f.lower() == q.lower()]
+        if not listed:
+            return None
+        forms.append(remove_curlies(listed[-1]))
+    return "/".join(forms)
+
+
+# A word in parentheses given with two or more capitals ("(COMSNETS)", "(MobiSys)") is an
+# acronym as printed. The word-capitalizing rule lowercased it ("(comsnets)"), and a
+# lowercased acronym later braced ("({comsnets})") was then protected as given.
+PAREN_ACRONYM = re.compile(r"\((?:[A-Za-z]*[A-Z][A-Za-z]*[A-Z][A-Za-z]*)\)?[.,;:]?")
+
+
 def drop_added_country(name, target):
     """Return an alias target without a country that ``name`` does not print.
 
@@ -793,6 +855,12 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
     # An alias that only cuts a hyphenated suffix ("journal of physiology-paris" ->
     # "journal of physiology") names a different journal, not a spelling variant of
     # the same one (LachEtal03); the name is formatted as given instead.
+    if force_caps is address_codes and "," in n:
+        # "Cambridge, Mass." -> "Cambridge, MA" (house form "City, {ST}")
+        head, _, last = n.rpartition(",")
+        code = us_state_code(last)
+        if code is not None:
+            n = f"{head}, {code}"
     alias = key.get(n.lower()) if isinstance(key.get(n.lower()), str) else None
     if drop_countries is None:
         drop_countries = key is address_key
@@ -838,6 +906,16 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
                 remove_curlies(given, join=" ") if given_braced else given)[1]
             listed = core and any(f.lower() == remove_non_letters(core.lower())
                                   for f in force_caps)
+            compound = core and compound_acronym(core, force_caps)
+            if compound:
+                pre, _, suf = strip_leading_trailing_non_letters(
+                    remove_curlies(given, join=" ") if given_braced else given)
+                words[i] = pre + "{" + compound + "}" + suf
+                continue
+            if (not given_braced and PAREN_ACRONYM.fullmatch(given) and not listed):
+                pre, core_given, suf = strip_leading_trailing_non_letters(given)
+                words[i] = pre + "{" + core_given + "}" + suf
+                continue
             if given_braced and core and not listed:
                 words[i] = given
                 continue
@@ -878,6 +956,11 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
             words[i] = prefix + c + suffix
         else:
             words[i] = w.capitalize()
+            # "(proceedings" -> "(Proceedings": capitalize the first letter after an
+            # opening parenthesis or bracket, not the parenthesis ("(Eurospeech 2003)"
+            # became "(eurospeech 2003)").
+            if prefix and re.fullmatch(r"[(\[]+", prefix):
+                words[i] = prefix + core.capitalize() + suffix
 
             # deal with hyphens
             if len(w.split("-")) > 1:
