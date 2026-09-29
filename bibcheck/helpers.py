@@ -851,6 +851,13 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
         # The prefixed NLM title applied in 1989-2005. Do not impose it on
         # articles whose sources use the unprefixed journal title.
         "brain research reviews",
+        # Two names whose braces used to block their alias ("The {American} Journal of
+        # Psychology", Youn61; "The {Oxford} Handbook of Memory", five chapters). The
+        # aliases drop the leading "The" that the printed titles carry; removing the
+        # braces that protect nothing (unbrace_ordinary, 2026-09-29) must not change
+        # the text, so the titles are kept as given.
+        "the american journal of psychology",
+        "the oxford handbook of memory",
     }
     # An alias that only cuts a hyphenated suffix ("journal of physiology-paris" ->
     # "journal of physiology") names a different journal, not a spelling variant of
@@ -979,7 +986,35 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
             if not aliased and re.fullmatch(r"[A-Z]'[A-Z][a-z]+\W*", as_given[i]) \
                     and re.fullmatch(r"[A-Z]'[a-z]+\W*", words[i]):
                 words[i] = words[i][:2] + words[i][2].upper() + words[i][3:]
+    for i, w in enumerate(words):
+        words[i] = "-".join(unbrace_ordinary(part, i > 0) for part in w.split("-"))
     return " ".join(words)
+
+
+# A braced word that is only ordinary title-case capitalization: a capital, then lower-case
+# letters, optionally a possessive "'s" ("{University}", "{Oxford}", "{Alzheimer's}"), with
+# only non-letter, non-brace, non-command characters around it ("({European}",
+# "{American},"). Acronyms ("{IEEE}", "{MIT}", "{AT\&T}", single letters "{A}"), internal
+# capitals ("{NeuroImage}", "{PLoS}"), deliberate lower case ("{npj}", "{e}") and anything
+# holding a LaTeX command or accent ("{\"u}") do not match and keep their braces.
+ORDINARY_BRACED = re.compile(r"([^A-Za-z{}\\]*)\{([A-Z][a-z]+(?:'s)?)\}([^A-Za-z{}\\]*)")
+
+
+def unbrace_ordinary(word, inside):
+    """Drop braces that protect nothing in a journal, booktitle, publisher or address.
+
+    These fields are printed in title case as given (BibTeX styles do not change their
+    case), so "{University}" prints exactly as "University". caps.txt braced every listed
+    word, which put braces around ordinary capitalized words ("Harvard {University} Press",
+    "{Oxford} {University} Press", "{American} Journal of Psychology"; user decision
+    2026-09-29). A word in uncaps.txt ("{Of}", "{The}") inside a name keeps its braces,
+    because without them this formatter would lower-case it. Article titles (format_title,
+    sentence case) are not affected: there the braces protect proper nouns.
+    """
+    m = ORDINARY_BRACED.fullmatch(word)
+    if m is None or (inside and m[2].lower() in uncaps):
+        return word
+    return m[1] + m[2] + m[3]
 
 
 # rearrange author name (first middle last suffix)

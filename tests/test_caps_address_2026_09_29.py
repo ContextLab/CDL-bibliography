@@ -102,7 +102,8 @@ def test_comsnets(given):
     ("Proceedings of the 10\\textsuperscript{th} Workshop on Algorithm Engineering and "
      "Experiments ({alenex})", "({ALENEX})"),                                  # GeisEtal08
     ("8\\textsuperscript{th} {European} Conference on Speech Communication and Technology "
-     "({eurospeech})", "({Eurospeech})"),                                      # JoneEtal03
+     "({eurospeech})", "(Eurospeech)"),                                        # JoneEtal03
+    # ^ unbraced: ordinary capitalization carries no braces in names (user decision 2026-09-29, "Correct the braces")
 ])
 def test_listed_acronyms_restore_their_caps(given, house):
     out = journal(given)
@@ -122,8 +123,8 @@ def test_capital_after_opening_parenthesis():
         "(Volume 3: System Demonstrations)")
     assert journal("(workshop papers)") == "(Workshop Papers)"
     # Crossref 10.21437/eurospeech.2003-463 prints "(Eurospeech 2003)"; Eurospeech is a
-    # caps.txt word, braced like every caps.txt word in a venue name.
-    assert journal("(Eurospeech 2003)") == "({Eurospeech} 2003)"
+    # caps.txt word, but ordinary capitalization is unbraced in names (user decision 2026-09-29, "Correct the braces").
+    assert journal("(Eurospeech 2003)") == "(Eurospeech 2003)"
 
 
 @pytest.mark.parametrize("name", [
@@ -182,10 +183,11 @@ def test_state_rule_is_address_only():
 
 # --- check_bib end to end (real file IO) ------------------------------------------
 
+# Publisher unbraced: the house form since the user decision 2026-09-29 ("Correct the braces").
 ENTRIES = r"""@book{Albe00,
 	Address = {%s},
 	Author = {D Z Albert},
-	Publisher = {Harvard {University} Press},
+	Publisher = {Harvard University Press},
 	Title = {Time and chance},
 	Year = {2000}}
 

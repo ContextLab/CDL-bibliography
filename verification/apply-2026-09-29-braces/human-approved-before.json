@@ -1,0 +1,52 @@
+{
+ "Bart32": {
+  "fingerprint": "v2:b03771169d58c48f0cf749165c4238e052587ef0a28c71ce4ec628d856405fb1",
+  "status": "human_verified",
+  "human_review": {
+   "note": "Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unique, fully matching catalogue edition).",
+   "reviewer": "Jeremy Manning",
+   "source": "https://lccn.loc.gov/39016008/mods"
+  },
+  "raw": "@book{Bart32,\n\tAuthor = {F C Bartlett},\n\tPublisher = {Cambridge {University} Press},\n\tTitle = {Remembering: a study in experimental and social psychology},\n\tYear = {1932}}"
+ },
+ "KahaEtal24": {
+  "fingerprint": "v2:a194218093f5f5cc4d34d9b5ba8505976b45bdfd943bde1471a2b3bb66fe2d3d",
+  "status": "human_verified",
+  "human_review": {
+   "note": "Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page (pilot key KahaEtal22, renamed per the key rule). Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).",
+   "reviewer": "Jeremy Manning",
+   "source": "https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.013.2"
+  },
+  "raw": "@incollection{KahaEtal24,\n\tAuthor = {M J Kahana and N B Diamond and A Aka},\n\tBooktitle = {The {Oxford} Handbook of Human Memory},\n\tDoi = {10.1093/oxfordhb/9780190917982.013.2},\n\tEditor = {M J Kahana and A D Wagner},\n\tPages = {29--63},\n\tPublisher = {{Oxford} {University} Press},\n\tTitle = {Laws of human memory},\n\tYear = {2024}}"
+ },
+ "MikoEtal13b": {
+  "fingerprint": "v2:9e20e9893441cd1e17b3c9039e1a80a49334cf24480416772d4f55eb67105d37",
+  "status": "human_verified",
+  "human_review": {
+   "note": "Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: address: missing evidence or mismatch).",
+   "reviewer": "Jeremy Manning",
+   "source": "https://aclanthology.org/N13-1090/"
+  },
+  "raw": "@inproceedings{MikoEtal13b,\n\tAddress = {Atlanta, {GA}},\n\tAuthor = {T Mikolov and W-T Yih and G Zweig},\n\tBooktitle = {Proceedings of the Conference of the North {American} Chapter of the Association for Computational Linguistics: Human Language Technologies},\n\tPages = {746--751},\n\tPublisher = {Association for Computational Linguistics},\n\tTitle = {Linguistic regularities in continuous space word representations},\n\tYear = {2013}}"
+ },
+ "Mink15": {
+  "fingerprint": "v2:0c83ad54efbd8e0b9d5861cb788114a53c60bde8fc5ad1dcef171b9dbbc5c53b",
+  "status": "human_verified",
+  "human_review": {
+   "note": "Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved (pilot key Mink07, renamed per the key rule). Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).",
+   "reviewer": "Jeremy Manning",
+   "source": "https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D2015458479"
+  },
+  "raw": "@incollection{Mink15,\n\tAddress = {Philadelphia, {PA}},\n\tAuthor = {J W Mink},\n\tBooktitle = {{Parkinson's} Disease and Movement Disorders},\n\tEdition = {6\\textsuperscript{th}},\n\tEditor = {J Jankovic and E Tolosa},\n\tPublisher = {Wolters Kluwer},\n\tTitle = {Functional organization of the basal ganglia},\n\tYear = {2015}}"
+ },
+ "Youn61": {
+  "fingerprint": "v2:971f9d175dd98c45b4064ba3b647e3e119539e72c962a65c1ae69656565079c0",
+  "status": "human_verified",
+  "human_review": {
+   "note": "Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).",
+   "reviewer": "Jeremy Manning",
+   "source": "https://api.crossref.org/works/10.2307/1419662"
+  },
+  "raw": "@article{Youn61,\n\tAuthor = {R K Young},\n\tDoi = {10.2307/1419662},\n\tJournal = {The {American} Journal of Psychology},\n\tNumber = {4},\n\tPages = {517--528},\n\tTitle = {The stimulus in serial verbal learning},\n\tVolume = {74},\n\tYear = {1961}}"
+ }
+}

@@ -37,8 +37,8 @@ OVERRIDES = json.loads((ROOT / "bibcheck" / "journal_key_overrides.json").read_t
     ("Proceedings of the Royal Society of London A", "Proceedings of the Royal Society of London Series {A}"),
     ("Learning, Memory", "Learning, Memory"),                          # was Learning and Memory
     ("Learning and Memory: Memory Systems", "Learning and Memory: Memory Systems"),
-    ("Proceedings of the NAACL-HLT",
-     "Proceedings of the Conference of the North {American} Chapter of the Association for "
+    ("Proceedings of the NAACL-HLT",  # "American" unbraced: user decision 2026-09-29, "Correct the braces"
+     "Proceedings of the Conference of the North American Chapter of the Association for "
      "Computational Linguistics: Human Language Technologies"),
 ])
 def test_alias_no_longer_renames_into_a_different_journal(name, expected):
