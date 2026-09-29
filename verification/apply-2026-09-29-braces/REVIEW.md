@@ -1,5 +1,12 @@
 # Human-approved entries awaiting review (braces0929, 2026-09-29)
 
+> **Superseded (2026-09-29).** Use [../2026-09-29-user-review/REVIEW.md](../2026-09-29-user-review/REVIEW.md) instead.
+> An attribution audit found that the approval notes quoted below overstate what the user approved.
+> For MikoEtal13b and Mink15, "the fix as applied ... is user-approved" is not true: the user marked
+> the pilot rows wrong and never saw the applied text. Both approvals were revoked
+> (`verification/revocations.jsonl`). Do not run the approve commands below, because they reuse
+> those notes. The new REVIEW.md gives current commands with a note for you to fill in.
+
 The braces batch changed only braces in these entries, but each human approval was bound
 to the old text, so it lapsed to `needs_review`. Nothing here was re-approved. To restore
 an approval after checking the entry, run its `crossref approve` command from the repo root.

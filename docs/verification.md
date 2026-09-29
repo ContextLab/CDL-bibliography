@@ -8,14 +8,18 @@ current state; sections below that describe a dated pilot or measurement say so.
 ## Current state
 
 As of September 29, 2026, `bibcheck.py crossref status cdl.bib` (after restoring
-`verification/baseline.jsonl.gz`) reports `6384 entries: human_verified=31,
-metadata_verified=6353`. Run it again for the current figures. The `accepted_source` of
-each approval in the committed baseline (snapshot of 2026-09-28) breaks down as follows:
+`verification/baseline.jsonl.gz`) reports `6384 entries: human_verified=16,
+metadata_verified=6361, needs_review=7`. The seven are waiting for the user's own review
+([verification/2026-09-29-user-review/REVIEW.md](../verification/2026-09-29-user-review/REVIEW.md)):
+twelve approvals recorded in the user's name were revoked after an attribution audit, and
+eight of those twelve were then verified by the research route. Run the command again for
+the current figures. The `accepted_source` of each approval in the committed baseline
+(snapshot of 2026-09-29) breaks down as follows:
 
 |Source (`accepted_source`)|Approvals|
 |-|-|
-|`crossref`|4,400, plus 99 older Crossref approvals saved before the field existed|
-|`research-evidence` (research route)|1,224|
+|`crossref`|4,401, plus 98 older Crossref approvals saved before the field existed|
+|`research-evidence` (research route)|1,232|
 |`europepmc` (PubMed through Europe PMC)|411|
 |`loc-catalogue` (Library of Congress)|113|
 |`pmc-jats` (open-access PMC front matter)|39|
@@ -26,7 +30,7 @@ each approval in the committed baseline (snapshot of 2026-09-28) breaks down as 
 |`datacite-registry`|4|
 |`acl-anthology`|2|
 |`catalogue-imprint`|1|
-|`human_verified` (explicit `approve`)|31|
+|`human_verified` (explicit `approve`)|16|
 
 ## Decision rules for what the library contains
 
@@ -195,6 +199,29 @@ Each quote must occur on its indicated page, allowing whitespace differences onl
 Saved findings include landing/PDF URLs, PDF SHA-256, local PDF/text paths, retrieval time, field quotations, adapter identity and uncertainties. `attach-evidence` imports the same general evidence object from another review workflow; imported evidence remains unverified human-review material. It requires `landing_url`, `pdf_url`, `pdf_sha256`, `fields`, and `reviewer`. It does not itself download the claimed PDF or validate its quotations.
 
 A human should check the publication's identity and edition, all cited authors and fields, and any discrepancy with deposited metadata. Correct the bibliography when necessary. Only a human decision should be recorded with `approve`; the CLI is an audit mechanism, not an identity/authentication service. It does not make an LLM assertion into a human review.
+
+### Revoking an approval
+
+`crossref revoke KEY --by WHO --reason WHY [--fingerprint FP ...]` withdraws a human
+approval that should not stand, for example one recorded in someone's name without their
+decision. By default it revokes every human approval recorded for the key, including ones on
+older text that later edits made lapse; `--fingerprint` restricts it to specific texts. For
+each approval it appends one row to `verification/revocations.jsonl` and to the database's
+`revocations` table. The row records the key, the approved fingerprint, the approval
+(reviewer, source, note, time) and its digest, `revoked_at`, `revoked_by` and the reason. The
+entry becomes `needs_review`, and the revoked approval is kept under `revoked_approval`.
+
+A revocation matches an approval on its fingerprint, and on either its exact
+reviewer/source/note digest or a recording time no later than the revocation. So:
+
+- `Cache.get` never returns a revoked approval as current, whatever route wrote it back;
+- `restore` of any snapshot, however old, records a revoked approval as `needs_review`, into
+  an empty database too (the ledger is committed; `snapshot` also carries the revocations in
+  its header);
+- `approve` refuses to replay the exact revoked approval, but a new approval with a new note,
+  recorded after the revocation, is a new decision and counts.
+
+Tests: `tests/test_revocation.py` (real entries and approval rows frozen from commit 7f3eead).
 
 ## Operational limits
 

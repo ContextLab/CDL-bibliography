@@ -4,7 +4,7 @@
 
 The main bibtex file ([cdl.bib](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib)) is shared by all documents produced by the [Contextual Dynamics Lab](https://www.context-lab.com/) at [Dartmouth College](https://www.dartmouth.edu/).
 
-As of September 29, 2026, every one of the 6,384 entries in `cdl.bib` has been checked against the published record. 6,353 entries match their source's metadata, and a person reviewed and approved the remaining 31 against the source itself. New and edited entries are checked automatically on every pull request. "Verified" means the citation agrees with the published record. It does not guarantee the record is error-free, so please still look over the rendered bibliography of anything you submit.
+As of September 29, 2026, the 6,384 entries in `cdl.bib` have been checked against the published record. 6,361 entries match their source's metadata, and a person reviewed and approved 16 more against the source itself. The remaining 7 are waiting for review ([verification/2026-09-29-user-review/REVIEW.md](verification/2026-09-29-user-review/REVIEW.md)). New and edited entries are checked automatically on every pull request. "Verified" means the citation agrees with the published record. It does not guarantee the record is error-free, so please still look over the rendered bibliography of anything you submit.
 
 ## Contents:
 - [What can you use this repository for?](#what-can-you-use-this-repository-for)
@@ -316,7 +316,7 @@ python bibcheck.py crossref approve CiteKey \
   --note 'Which fields you checked, and why the automatic check failed'
 ```
 
-The approval is tied to the entry's exact text: if the entry is edited later, it has to be approved again. To share it, export the updated results (`python bibcheck.py crossref snapshot verification/baseline.jsonl.gz`) and commit them with your change. Because the pull request check trusts only the results already on `master`, it will still fail for that entry on your pull request. Say so in the pull request; a maintainer who has checked your approval can merge it, and from then on the entry counts as verified.
+The approval is tied to the entry's exact text: if the entry is edited later, it has to be approved again. An approval recorded in error can be withdrawn with `python bibcheck.py crossref revoke CiteKey --by 'Who decided' --reason 'Why'`. The revocation is logged in `verification/revocations.jsonl` and the entry goes back to `needs_review`. Restoring an older snapshot can't bring the approval back, but a new `approve` with a new note can. To share it, export the updated results (`python bibcheck.py crossref snapshot verification/baseline.jsonl.gz`) and commit them with your change. Because the pull request check trusts only the results already on `master`, it will still fail for that entry on your pull request. Say so in the pull request; a maintainer who has checked your approval can merge it, and from then on the entry counts as verified.
 
 ### Research evidence
 

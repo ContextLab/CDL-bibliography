@@ -15,9 +15,13 @@ FROZEN_LIBRARY = ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib"
 
 
 @pytest.fixture(autouse=True)
-def _frozen_library(monkeypatch):
+def _frozen_library(monkeypatch, tmp_path):
     if str(ROOT / "bibcheck") not in sys.path:
         sys.path.insert(0, str(ROOT / "bibcheck"))
+    # The committed revocation ledger is live data too: every test starts with an
+    # empty ledger of its own (tests/test_revocation.py writes to it).
+    import verification
+    monkeypatch.setattr(verification, "REVOCATION_LEDGER", tmp_path / "revocations.jsonl")
     try:
         import correction_proposals as cp
     except Exception:  # a module that fails to import is reported by its own tests

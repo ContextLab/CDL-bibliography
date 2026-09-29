@@ -8,9 +8,14 @@ from typing import List
 
 import typer
 
+import verification
 from verification import (
     ACCEPTED,
     Cache,
+    approval_digest,
+    dumps,
+    now,
+    revoked_view,
     PoliteClient,
     ProviderError,
     current_results,
@@ -713,17 +718,107 @@ def approve(
                 raise ValueError(
                     "Human reviewer, source, and review notes are required"
                 )
+            human_review = {"reviewer": reviewer, "source": source, "note": note}
+            for revocation in cache.revocations():
+                if (revocation["fingerprint"] == fingerprint
+                        and revocation["approval_digest"] == approval_digest(human_review)):
+                    raise ValueError(
+                        f"This exact approval was revoked {revocation['revoked_at']} "
+                        f"({revocation['reason']}); record the new review in a new note")
             previous = cache.get(fname, entry) or outcome("pending", [])
+            previous = {k: v for k, v in previous.items() if k != "revoked_approval"}
             cache.put(
                 fname,
                 entry,
                 dict(
                     previous,
                     status="human_verified",
-                    human_review={"reviewer": reviewer, "source": source, "note": note},
+                    human_review=human_review,
                 ),
             )
         typer.echo(f"Human review recorded for {key}; any source edit invalidates it.")
+    except (ValueError, OSError, KeyError) as exc:
+        typer.echo(str(exc), err=True)
+        raise typer.Exit(2)
+    finally:
+        cache.close()
+
+
+@app.command()
+def revoke(
+    key: str,
+    reason: str = typer.Option(..., "--reason", help="Why the approval is withdrawn."),
+    by: str = typer.Option(..., "--by", help="Who decided the revocation (and who ran it)."),
+    fingerprint: Optional[List[str]] = typer.Option(
+        None, "--fingerprint",
+        help="Revoke only approvals of this content fingerprint (repeatable). Default: every "
+             "human approval recorded for KEY, including ones lapsed by later edits."),
+    ledger: Optional[str] = typer.Option(
+        None, "--ledger", help="Revocation ledger (default verification/revocations.jsonl)."),
+    fname: str = typer.Option("cdl.bib", "--fname"),
+    database: Optional[str] = typer.Option(None, "--database"),
+):
+    """Withdraw a human approval: audited, bound to its fingerprint, never restored.
+
+    Appends one row per revoked approval (who, when, why, and the approval's reviewer,
+    source, note and time) to the database and to the committed ledger, and records the
+    entry as needs_review. Restoring any snapshot, however old, keeps it revoked; a later
+    approval with a new review note is a new decision."""
+    database, _ = paths(fname, database)
+    if ledger:
+        verification.REVOCATION_LEDGER = Path(ledger)
+    ledger_path = Path(verification.REVOCATION_LEDGER)
+    cache = Cache(database)
+    try:
+        if not reason.strip() or not by.strip():
+            raise ValueError("A revocation needs --reason and --by")
+        with run_lock(cache):
+            entry = load_entries(fname)[key]
+            current = cache.get(fname, entry)
+            rows = cache.db.execute(
+                "SELECT fingerprint,result FROM reviews WHERE bibliography=? AND key=? ORDER BY id",
+                (str(Path(fname).resolve()), key)).fetchall()
+            approvals = {}
+            for row_fingerprint, text in rows:
+                result = json.loads(text)
+                if result.get("status") != "human_verified":
+                    continue
+                if fingerprint and row_fingerprint not in fingerprint:
+                    continue
+                approvals[(row_fingerprint, approval_digest(result.get("human_review")))] = result
+            if not approvals:
+                raise ValueError(f"No human approval recorded for {key}"
+                                 + (" with that fingerprint" if fingerprint else ""))
+            known = {(r["fingerprint"], r["approval_digest"]) for r in cache.revocations()}
+            stamp = now()
+            records = [
+                {
+                    "key": key,
+                    "fingerprint": fp,
+                    "approval": result.get("human_review") or {},
+                    "approval_digest": dig,
+                    "approval_checked_at": result.get("checked_at") or "",
+                    "revoked_at": stamp,
+                    "revoked_by": by,
+                    "reason": reason,
+                }
+                for (fp, dig), result in approvals.items() if (fp, dig) not in known
+            ]
+            if not records:
+                typer.echo(f"{key}: every matching approval is already revoked")
+                return
+            ledger_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(ledger_path, "a", encoding="utf-8") as stream:
+                for record in records:
+                    stream.write(dumps(record) + "\n")
+            cache.remember_revocations(records)
+            revoked_now = next((r for r in records if r["fingerprint"] == entry["fingerprint"]), None)
+            if revoked_now and current and current.get("status") == "human_verified":
+                cache.put(fname, entry, revoked_view(current, revoked_now))
+            status = (cache.get(fname, entry) or {"status": "pending"})["status"]
+        for record in records:
+            typer.echo(f"Revoked {key} approval {record['approval_digest'][:12]} "
+                       f"(fingerprint {record['fingerprint']}); entry now {status}")
     except (ValueError, OSError, KeyError) as exc:
         typer.echo(str(exc), err=True)
         raise typer.Exit(2)

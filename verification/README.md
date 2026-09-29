@@ -1,8 +1,9 @@
 # Bibliography verification records
 
-As of September 29, 2026, every one of the **6,384 entries** in `cdl.bib` is verified: **6,353** have status `metadata_verified` and **31** have status `human_verified`. No entry is left unresolved. The rules used to decide each case (cite as printed, no conference abstracts, drop what can't be verified or stays ambiguous) are in the [decision log](resolution-plan-2026-09-22/README.md).
+As of September 29, 2026, **6,377** of the **6,384 entries** in `cdl.bib` are verified: **6,361** have status `metadata_verified` and **16** have status `human_verified`. The other **7** are `needs_review` and are waiting for the user's review: see [2026-09-29-user-review/REVIEW.md](2026-09-29-user-review/REVIEW.md). An attribution audit on September 29 revoked twelve approvals that had been recorded in the user's name without the user approving the applied text; the research route then verified eight of them. The rules used to decide each case (cite as printed, no conference abstracts, drop what can't be verified or stays ambiguous) are in the [decision log](resolution-plan-2026-09-22/README.md).
 
 - [Current baseline](baseline.jsonl.gz): the saved result and evidence for every entry. `python bibcheck.py crossref restore verification/baseline.jsonl.gz` loads it into a local database; the pull request check reads it from the base branch.
+- [Revoked approvals](revocations.jsonl): every human approval withdrawn with `crossref revoke`, recording who, when, why, and which approval. Restoring any snapshot keeps them revoked.
 - [Key renames](key-renames.json) and [key deletions](key-deletions.json): every citation key that was renamed or removed during verification, with the reason. Check these if a paper's `\cite` key stops resolving.
 - [Historical policy-1 baseline](baseline-policy1.jsonl.gz): the first Crossref pass (805 accepted / 5,617 unresolved). It can't approve anything under the current policy.
 

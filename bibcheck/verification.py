@@ -218,6 +218,77 @@ def load_entries(filename):
     return entries
 
 
+# Revoked human approvals (2026-09-29). A revocation is bound to the approved
+# content fingerprint and to that approval: its human_review digest, or any human
+# approval on that fingerprint recorded no later than the revocation. The ledger
+# is committed with the repository, so restoring an older snapshot (even into an
+# empty database) cannot bring a revoked approval back. A later approval with a
+# new review note is a new decision and is not affected. Tests patch this constant.
+REVOCATION_LEDGER = Path(__file__).resolve().parents[1] / "verification" / "revocations.jsonl"
+REVOCATION_FIELDS = {"key", "fingerprint", "approval", "approval_digest", "approval_checked_at",
+                     "revoked_at", "revoked_by", "reason"}
+
+
+def approval_digest(human_review):
+    """Identity of one human approval: a hash of its reviewer/source/note record."""
+    return digest(dumps(human_review or {}))
+
+
+def valid_revocation(record):
+    return (isinstance(record, dict) and REVOCATION_FIELDS <= record.keys()
+            and all(isinstance(record[k], str) and record[k].strip()
+                    for k in REVOCATION_FIELDS - {"approval", "approval_checked_at"})
+            and isinstance(record["approval"], dict))
+
+
+def read_revocation_ledger(path=None):
+    path = Path(path if path is not None else REVOCATION_LEDGER)
+    if not path.exists():
+        return []
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    if not all(valid_revocation(r) for r in records):
+        raise ValueError(f"Invalid revocation record in {path}")
+    return records
+
+
+def _instant(value):
+    try:
+        moment = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return moment if moment.tzinfo else moment.replace(tzinfo=timezone.utc)
+
+
+def revocation_matches(revocation, fingerprint, result):
+    """True when ``revocation`` revokes the human approval in ``result``."""
+    if result.get("status") != "human_verified" or revocation["fingerprint"] != fingerprint:
+        return False
+    if approval_digest(result.get("human_review")) == revocation["approval_digest"]:
+        return True
+    approved, revoked = _instant(result.get("checked_at")), _instant(revocation["revoked_at"])
+    # An approval with no readable time cannot be shown to postdate the revocation.
+    return approved is None or revoked is None or approved <= revoked
+
+
+def revoked_view(result, revocation):
+    """The needs_review result that replaces a revoked human approval."""
+    view = {k: v for k, v in result.items() if k != "human_review"}
+    view.update(
+        status="needs_review",
+        issues=[f"Human approval revoked {revocation['revoked_at']} by {revocation['revoked_by']}: "
+                f"{revocation['reason']}"],
+        revoked_approval={
+            "human_review": result.get("human_review"),
+            "approval_digest": approval_digest(result.get("human_review")),
+            "approval_checked_at": result.get("checked_at"),
+            "revoked_at": revocation["revoked_at"],
+            "revoked_by": revocation["revoked_by"],
+            "reason": revocation["reason"],
+        },
+    )
+    return view
+
+
 class Cache:
     """Indexed SQLite with atomic per-entry checkpoints and immutable history."""
 
@@ -255,11 +326,41 @@ class Cache:
                 PRIMARY KEY (doi, evidence_hash));
             CREATE TABLE IF NOT EXISTS article_locator_checkpoint (
                 singleton INTEGER PRIMARY KEY CHECK(singleton=1), review_id INTEGER NOT NULL);
+            CREATE TABLE IF NOT EXISTS revocations (
+                fingerprint TEXT NOT NULL, approval_digest TEXT NOT NULL, record TEXT NOT NULL,
+                PRIMARY KEY (fingerprint, approval_digest));
             PRAGMA user_version=1;
         """)
 
     def close(self):
         self.db.close()
+
+    def revocations(self):
+        """Every known revocation: this database's table plus the committed ledger."""
+        known = {}
+        for (row,) in self.db.execute("SELECT record FROM revocations"):
+            record = json.loads(row)
+            known[(record["fingerprint"], record["approval_digest"])] = record
+        for record in read_revocation_ledger():
+            known.setdefault((record["fingerprint"], record["approval_digest"]), record)
+        return list(known.values())
+
+    def remember_revocations(self, records):
+        with self.db:
+            for record in records:
+                if not valid_revocation(record):
+                    raise ValueError("Invalid revocation record")
+                self.db.execute(
+                    "INSERT OR IGNORE INTO revocations (fingerprint,approval_digest,record) VALUES (?,?,?)",
+                    (record["fingerprint"], record["approval_digest"], dumps(record)))
+
+    def revocation_for(self, fingerprint, result, revocations=None):
+        if result.get("status") != "human_verified":
+            return None
+        for revocation in (self.revocations() if revocations is None else revocations):
+            if revocation_matches(revocation, fingerprint, result):
+                return revocation
+        return None
 
     def get(self, bibliography, entry, any_policy=False):
         # Separate indexed lookups: an OR across the two fingerprint formats
@@ -305,6 +406,10 @@ class Cache:
             ):
                 return self.get(bibliography, entry, any_policy=any_policy)
         result = dict(result, key=entry["key"])
+        revocation = self.revocation_for(entry["fingerprint"], result)
+        if revocation:
+            # A revoked approval is never current, whichever route wrote it back.
+            return revoked_view(result, revocation)
         retained = self.retain_notices(entry, result)
         if retained != result:
             return self.put(bibliography, entry, retained)
@@ -2105,6 +2210,8 @@ def export_snapshot(filename, cache, output):
                         "SELECT candidate FROM source_author_suffixes ORDER BY doi,evidence_hash")],
                     "source_article_locators": [json.loads(r[0]) for r in cache.db.execute(
                         "SELECT candidate FROM source_article_locators ORDER BY doi,evidence_hash")],
+                    "revocations": sorted(cache.revocations(),
+                                          key=lambda r: (r["revoked_at"], r["fingerprint"], r["approval_digest"])),
                 }
             )
             + "\n"
@@ -2334,6 +2441,11 @@ def import_snapshot(filename, cache, snapshot):
     locators = header.get("source_article_locators", [])
     if not isinstance(locators, list) or any(not isinstance(c, dict) or not locator_dois([c]) for c in locators):
         raise ValueError("Invalid snapshot article locator evidence")
+    revocations = header.get("revocations", [])
+    if not isinstance(revocations, list) or not all(valid_revocation(r) for r in revocations):
+        raise ValueError("Invalid snapshot revocation record")
+    cache.remember_revocations(revocations)
+    known_revocations = cache.revocations()
     # Even an edited entry must retain known warnings from the trusted baseline.
     cache.remember_notices(notices + suffixes + locators)
     for result in records:
@@ -2361,6 +2473,10 @@ def import_snapshot(filename, cache, snapshot):
                 restored = dict(
                     result, key=entry["key"], fingerprint=entry["fingerprint"]
                 )
+                revocation = cache.revocation_for(entry["fingerprint"], restored, known_revocations)
+                if revocation:
+                    # An older snapshot cannot resurrect a revoked human approval.
+                    restored = revoked_view(restored, revocation)
                 if header["schema"] == 1:
                     restored["fingerprint_migration"] = {
                         "key": result["key"],
